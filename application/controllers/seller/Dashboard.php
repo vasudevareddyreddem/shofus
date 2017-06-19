@@ -28,6 +28,7 @@ class Dashboard extends Admin_Controller {
 		$data['seller_ad'] = $this->dashboard_model->seller_ads();
 		$data['sellerscats'] = $this->dashboard_model->seller_cats();
 		//echo '<pre>';print_r($data);exit;
+		
 		$this->template->write_view('content', 'seller/dashboard/index', $data);
 		$this->template->render();
 	}

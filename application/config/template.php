@@ -80,7 +80,7 @@ $template['website']['template'] = 'layout/_home.php';
 	$template['website']['parse_template'] = FALSE;
 
 
-$template['seller']['template'] = 'seller_admin/layouts/_selleradmin.php';
+$template['seller']['template'] = 'seller/layouts/_selleradmin.php';
 	$template['seller']['regions'] = array(
 	   'sidebar',
 	   'header',
