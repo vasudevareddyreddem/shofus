@@ -45,31 +45,11 @@
     <div class="header">
       <div class="col-md-6 col-xs-12">
         <div class="logo">
-          <h3><a href="index.html">CART IN HOUR<span> Admin</span></a></h3>
+          <h3><a href="<?php echo base_url('admin/login'); ?>">CART IN HOUR<span> Admin</span></a></h3>
         </div>
       </div>
       <div class="col-md-6 col-xs-12 hidden-xs">
-       <!-- <div class="loginfields">
-          <form action="<?php echo base_url();?>admin/login/do_login" method="post">
-            <div class="form-group">
-              <div class="col-md-1"> &nbsp </div>
-              <div class="col-md-4 hdr-form-input_s paddingRightZero">
-                <label for="usr">Username :</label>
-                <input type="text" class="form-control" name="admin_name" id="admin_name" value="<?php echo set_value('admin_name'); ?>" placeholder="Username"/>
-                 <span class="error" style="color:red"><?php echo form_error('admin_password'); ?></span>
-              </div>
-              <div class="col-md-4 hdr-form-input_s paddingRightZero">
-                <label for="pwd">Password :</label>
-                 <input type="password" name="admin_password" class="form-control" placeholder="Password" />
-                <span class="error" style="color:red"><?php echo form_error('admin_password'); ?></span>
-              </div>
-              <div class="col-md-3 paddingRightZero">
-                <div class="pswrd text-right"><a href="#">Unable to Login?</a></div>
-                <input type="submit" class="btn btn-info san_submit" value="Login">
-              </div>
-            </div>
-          </form>
-        </div>-->
+     
       </div>
     </div>
   </div>
@@ -86,20 +66,6 @@
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
         <a class="navbar-brand hidden-md hidden-sm hidden-lg" href="#">Infinity Seller</a> </div>
       
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav san_act">
-          <li class="active san_active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Infinity Sellers</a></li>
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FAQ's <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>-->
-      <!-- /.navbar-collapse --> 
-      <!-- /.container-fluid --> 
     </nav>
   </div>
 </div>
@@ -117,7 +83,11 @@
 		  <form action="<?php echo base_url();?>admin/login/do_login" method="post">
             <div class="col-md-12">
               <div class="row">
-              <?php echo $this->session->flashdata('msg'); ?>
+             	<?php if($this->session->flashdata('success')): ?>
+				<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('success');?></div>
+				<?php endif; ?>
                 <div class="col-xs-12 inf_cmpy">
                   <label for="ex1"><strong>Username</strong></label>
                    <input type="text" class="form-control" name="admin_name" id="admin_name" value="<?php echo set_value('admin_name'); ?>" placeholder="Username"/>

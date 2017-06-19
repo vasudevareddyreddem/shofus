@@ -124,72 +124,84 @@ public function do_login()
 
 public function forgot()
 {
-	$this->load->view('admin/forgot_view');
-	
-}
-    
-public function doforget()
-	{
-		$x=$this->encrypt->encode($this->input->post('admin_email'));
-		$x=str_replace(array('+', '/', '='), array('-', '_', '~'), $x);
-		
-		if ($this->login_model->checkEmailExits($this->input->post('admin_email')))
-		{
-		$from_email = 'admin@cartinhour.com';
-		$subject = 'Reset Your Password';
-		$message = "Dear User,\nPlease click on below URL to change the password\n\n dev2.kateit.in/php/infinity/admin/login/changepwd/". $x ."?id=changepwd"."\n\nThanks,\nUncancer Team";
-		
-		//send mail
-		$this->email->from($from_email, 'CART IN HOUR');
-		
-				$this->email->to($this->input->post('admin_email'));
-				$this->email->subject($subject);
-				$this->email->message($message);
-				$this->email->send();
-				
-		
-			
-			 echo '1';
-		
-        }
-		else
-		{
-			
-	   echo '0';
-			
+$this->load->view('admin/forgot_view');
 
-		}
+}
+
+public function doforget()
+{		
+	$post=$this->input->post();
+	//echo '<pre>';print_r($post);exit;
+	$email=$post['admin_email'];
+	$users = $this->login_model->forgot_password($email);
+	//echo '<pre>';print_r($users);exit;
+	if(count($users)>0)
+	{
+		$this->load->library('email');
+		$this->email->from('admin@cartinhour.com', 'CartInHour');
+		$this->email->to($email);
+		$this->email->subject('CartInHour - Forgot Password');
+		$html = "Click this link to reset your password. ".site_url('admin/login/changepwd?code='.base64_encode($email).'__'.base64_encode($users['admin_id']));
+		//echo $html;exit;
+		$this->email->message($html);
+		if($this->email->send())
+		{	
+		$this->session->set_flashdata('success','Check Your Email to reset your password!');
+		redirect('user/forgotpassword');
+		}else{
+		$this->session->set_flashdata('emailinvalid','Your  email not send!');
+		redirect('user/forgotpassword');
+		}			
+	}else{
 		
+		$this->session->set_flashdata('emailinvalid','The email you entered is not a registered email. Please try again. ');
+		redirect('user/forgotpassword');
+	}
 	
-		}
+
+	}
+
 	public function changepwd(){
 		
-	
-
-	
-    
-		$this->load->view('admin/changepwd_view');
-		
-              
-    
-    }
+		$code= $_GET['code'];
+		$arr = explode('__',$code);
+		$data['email'] = base64_decode($arr[0]);
+		$data['userid'] = base64_decode($arr[1]);
+		// echo '<pre>';print_r($data);exit;
+		$this->load->view('admin/changepwd_view',$data);
+	 }
 	
 public function changepassword()
 {
 	
-	$this->load->library('form_validation');
-	//$this->form_validation->set_rules('Email','Current Email','trim|callback_change');
-	$this->form_validation->set_rules('npassword','New Password','required|trim|callback_change');
-	$this->form_validation->set_rules('cpassword','Confirm Password','required|trim|matches[npassword]');
 	
-	if ($this->form_validation->run() == FALSE)
- 
-    {
-    
-		$this->load->view('admin/changepwd_view');
-		
-              
-    }
+	$reset_pass = $this->input->post();
+	//echo '<pre>';print_r($reset_pass);exit;
+		if(isset($reset_pass['npassword']) && $reset_pass['cpassword'] !='' )
+		{
+			if(!empty($reset_pass['npassword']) && $reset_pass['npassword']== $reset_pass['cpassword'])
+			{
+				$this->load->model('users_model');
+				$users = $this->login_model->update_password($reset_pass);
+				if(count($users)>0)
+				{
+					$this->session->set_flashdata("success","Your password changed successfully!");
+					redirect('admin/login');
+				}
+			}
+			else
+			{
+				$this->session->set_flashdata("error","Passwords are Not matched!");
+				redirect('admin/login/changepwd?code='.base64_encode($reset_pass['email']).'__'.base64_encode($reset_pass['userid']));
+			}
+		}else{
+			
+			$this->session->set_flashdata("error","Please enter Passwords and Confirm password");
+				redirect('admin/login/changepwd?code='.base64_encode($reset_pass['email']).'__'.base64_encode($reset_pass['userid']));
+				
+		}
+	
+	
 	
 }	
 	

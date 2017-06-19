@@ -16,7 +16,7 @@ class New_orders extends Admin_Controller {
 
 	{
 
-		$this->load->library('pagination');
+	$this->load->library('pagination');
 		$result=$this->new_orders_model->get_neworders();
 		$result1=$this->new_orders_model->get_deliveryboys();
 		//echo "<pre>";print_r($result);exit;
@@ -26,7 +26,19 @@ class New_orders extends Admin_Controller {
 		$this->template->render();
 
 	}
+public function view_detail()
+{
 
+  $id = $this->uri->segment('4');
+
+  $data['newordersdata'] = $this->new_orders_model->get_view_neworderdata($id);
+
+  //echo "<pre>";print_r($data);exit;
+  $this->template->write_view('content', 'admin/new_orders/view_details',$data);
+
+  $this->template->render();
+
+}
 public function view_details()
 {
 

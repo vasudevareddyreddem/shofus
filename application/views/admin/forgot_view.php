@@ -45,7 +45,7 @@
     <div class="header">
       <div class="col-md-6 col-xs-12">
         <div class="logo">
-          <h3><a href="index.html">CART IN HOUR<span> Admin</span></a></h3>
+          <h3><a href="<?php echo base_url('admin/login'); ?>">CART IN HOUR<span> Admin</span></a></h3>
         </div>
       </div>
       <div class="col-md-6 col-xs-12 hidden-xs">
@@ -66,20 +66,6 @@
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
         <a class="navbar-brand hidden-md hidden-sm hidden-lg" href="#">Infinity Seller</a> </div>
       
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav san_act">
-          <li class="active san_active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Infinity Sellers</a></li>
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FAQ's <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>-->
-      <!-- /.navbar-collapse --> 
-      <!-- /.container-fluid --> 
     </nav>
   </div>
 </div>
@@ -94,7 +80,12 @@
         <h1 align="center"> Lost Password Form </h1>
          <div id="lost-response" style="font-size:100%;"></div>
           <div class="form-group">
-		  <form method="post" id="lost-form">
+		  	<?php if($this->session->flashdata('emailinvalid')): ?>
+				<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('emailinvalid');?></div>
+				<?php endif; ?>
+		  <form  action="<?php echo base_url('admin/login/doforget');?>" name="forgotpassword" id="forgotpassword" method="post">
             <div class="col-md-12">
               <div class="row">
               <?php echo $this->session->flashdata('msg'); ?>
@@ -106,13 +97,13 @@
                
               
                 <div class="col-xs-12 inf_cmpy">
-                  <input type="submit" class="btn btn-block" value="Submit" id="lost_submit">
+                  <input type="submit" class="btn btn-block" value="Submit">
                 </div>
               </div>
             </div>
 			 </form>
 			  <div class="forgot">
-                <a href="<?php echo base_url();?>admin/login" >Login</a>
+                <a href="<?php //echo base_url('admin/login');?>" >Login</a>
               </div>
           </div>
        
@@ -133,57 +124,34 @@
     </div>
   </div>
 </div>
-<script>
-$(document).ready(function() {
-  //carousel options
-  $('#quote-carousel').carousel({
-    pause: true, interval: 10000,
-  });
-});
-</script>
- <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
+    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+
 	<script type="text/javascript" language="javascript">
- 
-		$(document).ready(function(){
-		$("#lost_submit").click(function(e){
-		e.preventDefault();
+ $(document).ready(function() {
+    $('#forgotpassword').bootstrapValidator({
+       
+        fields: {
+			
+            admin_email: {
+               validators: {
+				notEmpty: {
+					message: 'Email is required'
+				},
+				regexp: {
+				regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+				message: 'Please enter a valid email address. For example johndoe@domain.com.'
+				}
+            
+			}
+            }
+            
 		
-		var admin_email= $("#admin_email").val();
-	
-		if (admin_email == "")
-    {
-    $("#NameErr1").html("Enter Email").css("color", "red");
-    $("#login_email").focus();
-    return false;
-    }
-    else{
-      $("#NameErr1").html("");
-    }
-	
-		$.ajax({
-		type: "POST",
-		url: '<?php echo base_url() ?>admin/login/doforget',
-		data: {admin_email:admin_email},
-		success:function(data)
-		{
-		if(data == 1)
-		{
-		$("#lost-response").html("Please Check your email to reset the password").css("color", "green");
-		$('#lost-form')[0].reset();	
-		}
-		else{
-		$("#lost-response").html("Its not a Registered Email ID").css("color", "red");
-		$('#lost-form')[0].reset();	
-		}
-		},
-		error:function()
-		{
-		//$("#signupsuccess").html("Oops! Error.  Please try again later!!!");
-		}
-		});
-		
-		});
-		});
+        }
+    });
+});
+
 	
 	
 </script>

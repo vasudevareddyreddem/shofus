@@ -14,7 +14,9 @@
         <div class="col-md-12">
           <section class="panel">
             <header class="panel-heading">
-              <h3>Details Of <?php  echo $newordersdata->order_id; ?></h3>
+             <h3>Details Of <?php 
+//echo "<pre>";print_r($newordersdata);exit;
+			  echo $newordersdata->order_id; ?></h3>
             </header>
             <div class="panel-body">
                         <!--    <a href="<?php// echo base_url(); ?>admin/new_orders/edit/<?php  echo $newordersdata->new_orders_id; ?>" class="add_item"><button class="btn btn-primary" type="submit">Edit new_orders</button></a> -->
@@ -82,7 +84,7 @@
                  
                   <tr>
                     <td class="title">Seller Shop:</td>
-                    <td class="text"><?php  echo $newordersdata->seller_shop; ?></td>
+                    <td class="text"><?php  echo $newordersdata->store_name; ?></td>
                   </tr>
 
                   
