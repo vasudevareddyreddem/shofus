@@ -1,0 +1,1 @@
+promotions_model
