@@ -46,7 +46,7 @@
                     <!-- Sidebar user panel -->
                <div class="user-panel">
                         <div class="info">
-                            <span class="wel_tit" >Welcome:</span>&nbsp;&nbsp;&nbsp;<span class="wel_tit_name"><?php echo ucfirst($this->session->userdata('seller_name'));    ?></span>                            
+                            <span class="wel_tit" >Welcome:</span>&nbsp;&nbsp;&nbsp;<span class="wel_tit_name"><?php echo ucfirst($sellerdetails['seller_name']);    ?></span>                            
                         </div>
                     </div>
                    
