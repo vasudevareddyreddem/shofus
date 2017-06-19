@@ -13,6 +13,37 @@ class Login_model extends CI_Model
 
 	
 	
+ public function get_all_seller_registers() {
+	 
+		$this->db->select('*')->from('sellers');
+		$this->db->where('register_complete',0);
+		return $this->db->get()->result_array();
+	 
+ }
+ public function get_pending_seller_cat_details($sid) {
+	 
+		$this->db->select('*')->from('seller_categories');
+		$this->db->where('seller_id',$sid);
+		return $this->db->get()->result_array();
+	 
+ }
+ public function delete_pending_seller_details($sid) {
+	 
+		$sql1="DELETE FROM sellers WHERE seller_id = '".$sid."'";
+		return $this->db->query($sql1);
+	 
+ } 
+ public function delete_pending_seller_store_details($sid) {
+	 
+		$sql1="DELETE FROM seller_store_details WHERE seller_id = '".$sid."'";
+		return $this->db->query($sql1);
+	 
+ } public function delete_pending_seller_cat_details($sid) {
+	 
+		$sql1="DELETE FROM seller_categories WHERE seller_cat_id = '".$sid."'";
+		return $this->db->query($sql1);
+	 
+ }
  public function verify_mobile($mobile) {
 	 
 	 $sql="SELECT * FROM sellers WHERE seller_mobile ='".$mobile."'";

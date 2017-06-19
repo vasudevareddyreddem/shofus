@@ -38,6 +38,11 @@ class Adddetails_model extends MY_Model
 	$this->db->where('category_id',$cat_id);
 	return $this->db->get()->row_array();
 }
+	function update_seller_competed($sid,$status){
+		$sql1="UPDATE sellers SET register_complete ='".$status."'WHERE seller_id = '".$sid."'";
+		return $this->db->query($sql1);
+
+	}
 	function seller_personal_details($data,$sid){
 		$this->db->where('seller_id',$sid);
     	return $this->db->update("sellers",$data);

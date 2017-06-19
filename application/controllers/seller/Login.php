@@ -5,18 +5,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 
 	public function __construct() {
-		parent::__construct();
-$this->load->helper(array('url', 'html'));
-    $this->load->library('email');
-    $this->load->library('encrypt');
-    $this->load->library('session');
-		$this->load->model('seller/login_model');
-		$this->load->model('admin/sellers_model');
-		$this->load->model('seller/dashboard_model');
-		$this->load->model('seller/login_model');
-		
-		
-$this->load->model('seller/subcategory_model');
+	parent::__construct();
+	$this->load->helper(array('url', 'html'));
+	$this->load->library('email');
+	$this->load->library('encrypt');
+	$this->load->library('session');
+	$this->load->model('seller/login_model');
+	$this->load->model('admin/sellers_model');
+	$this->load->model('seller/dashboard_model');
+	$this->load->model('seller/login_model');
+	$this->load->model('seller/subcategory_model');
+	
+	$incompleteregisters=$this->login_model->get_all_seller_registers();
+	
+	foreach($incompleteregisters as $all_lists){
+		$sellerdetails=$this->login_model->delete_pending_seller_details($all_lists['seller_id']);
+		$storedetails=$this->login_model->delete_pending_seller_store_details($all_lists['seller_id']);
+		$incompletecat=$this->login_model->get_pending_seller_cat_details($all_lists['seller_id']);
+		foreach($incompletecat as $all_subcategory){
+			$deletependingcats=$this->login_model->delete_pending_seller_cat_details($all_subcategory['seller_cat_id']);
+		}
+	}
+	//echo '<pre>';print_r($incompleteregisters); exit;     
 }
 
  public function index() {

@@ -190,6 +190,7 @@ class Adddetails extends Seller_adddetails{
 				$changedata=array('seller_password'=>$conpassword);
 				$passwordchange = $this->adddetails_model->setpassword($seller_id,$changedata);
 				if(count($passwordchange)>0){
+					$completeregistration = $this->adddetails_model->update_seller_competed($seller_id,1);
 					$sellerdetails = $this->adddetails_model->getseller_details($seller_id);
 					$sellerlogindetails  = array(
 					'seller_id'    => $sellerdetails['seller_id'],
