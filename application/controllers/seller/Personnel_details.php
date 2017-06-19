@@ -145,9 +145,9 @@ public function updatebd()
 public function seller_storedetails()
 	{  
 		$post=$this->input->post();
-		echo '<pre>';print_r($_FILES);
+		//echo '<pre>';print_r($_FILES);
 					$seller_upload_file=$this->Personnel_details_model->get_upload_file($this->session->userdata('seller_id'));
-		echo '<pre>';print_r($seller_upload_file);
+		//echo '<pre>';print_r($seller_upload_file);
 			if($_FILES['timimages']['name']!=''){
 			$tinimg=$_FILES['timimages']['name'];
 			move_uploaded_file($_FILES['timimages']['tmp_name'], "assets/sellerfile/" . $_FILES['timimages']['name']);

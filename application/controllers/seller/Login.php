@@ -84,8 +84,11 @@ public function insert() {
     	if(count($res)>0 )
 
 			{
-$this->session->set_userdata('seller_id',$res);
-//echo '<pre>';print_r($res);exit;			
+			$this->session->set_userdata('seller_id',$res);
+			//echo '<pre>';print_r($res);exit;
+			$data=array('seller_id'=>$res);
+			$addstoredetails=$this->login_model->addind_seller_id($data);
+			
 		//  $from_email = 'mails@dev2.kateit.in';
 		// $subject = 'Registraion';
 		// $message = "Dear User,\nYou are Registered Successfully. \n Your Password is : " .$six_digit_random_number. "\n\n Thanks,\nCart In Hour Team";

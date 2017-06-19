@@ -181,6 +181,14 @@ return $query->result();
 
 }	
 
+public function addind_seller_id($data)
+{
+	
+	
+	$this->db->insert('seller_store_details',$data);
+			//print_r($data); exit;
+	return $insert_id = $this->db->insert_id();	
+}
 public function insertseller($data)
 {
 	

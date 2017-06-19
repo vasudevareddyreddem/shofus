@@ -26,16 +26,7 @@
   <section class="content ">
   <section id="main-content">
     <section class="wrapper">
-      <!--<div class="row">
-        <div class="col-lg-12">
-          <h3 class="page-header"><i class="fa fa-cutlery" aria-hidden="true"></i>Add <?php //echo $catname->category_name;?> Item Details</h3>
-          <ol class="breadcrumb">
-            <li><i class="fa fa-home"></i><a href="<?php //echo base_url();?>seller/dashboard">Home</a></li>
-            <li><i class="fa fa-cutlery" aria-hidden="true"></i><?php //echo $catname->category_name;?></li>
-            <li><i class="fa fa-square-o"></i><?php //echo $subcatname->subcategory_name;?></li>
-          </ol>
-        </div>
-      </div>-->
+   
       <div class="row">
         <div class="col-lg-12">
           <section class="panel">
@@ -128,8 +119,7 @@
           </section>
         </div>
       </div>
-      <!-- page start--> 
-      <!-- page end--> 
+ 
     </section>
   </section>
   </section>

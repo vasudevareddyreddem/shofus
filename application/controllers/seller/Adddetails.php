@@ -10,16 +10,18 @@ class Adddetails extends Seller_adddetails{
 		$this->load->model('seller/adddetails_model');
 		$this->load->model('seller/products_model');
 		$this->load->model('seller/sellercat_model');
+		$this->load->model('seller/Personnel_details_model');
 		$this->load->helper(array('url', 'html'));
 		$this->load->library('session');
 		$this->load->helper('security');
 		$this->load->library(array('form_validation','session'));
 	}
 
-	 public function index() {	
+	 public function index() {
+		$data['sellerdata']=$this->adddetails_model->get_seller_data($this->session->userdata('seller_id'));		 
 	 
 	  $this->load->view('seller/layouts/header');
-	  $this->load->view('seller/adddetails/index');
+	  $this->load->view('seller/adddetails/index',$data);
 	}
  
   //store 
@@ -60,6 +62,11 @@ class Adddetails extends Seller_adddetails{
 	{  
 			$post=$this->input->post();
 			$result = array_unique($post['seller_cat']);
+			$catresult=$this->Personnel_details_model->get_old_seller_categories($this->session->userdata('seller_id'));
+			foreach($catresult as $delcats){
+				
+				$this->Personnel_details_model->delet_get_old_seller_categories($delcats['seller_cat_id']);
+			}
 			foreach($result as $subcats){
 			$carname=$this->adddetails_model->get_categories_name($subcats);
 			$data = array(
@@ -86,27 +93,52 @@ class Adddetails extends Seller_adddetails{
 	public function storedetails()
 	{  
 		$this->load->view('seller/layouts/header');
-		$this->load->view('seller/adddetails/storedetails');
+		$data['sellerdata']=$this->adddetails_model->get_seller_storedetails_data($this->session->userdata('seller_id'));		 
+		$this->load->view('seller/adddetails/storedetails',$data);
 
 	}
 	public function personaldetails()
 	{  
 		$this->load->view('seller/layouts/header');
-		$this->load->view('seller/adddetails/personaldetails');
+		$data['sellerdata']=$this->adddetails_model->get_seller_data($this->session->userdata('seller_id'));		 
+
+		$this->load->view('seller/adddetails/personaldetails',$data);
 	}
 	
 	
 	public function seller_storedetails()
 	{  
 		$post=$this->input->post();
-		//echo '<pre>';print_r($_FILES);
-		move_uploaded_file($_FILES['timimages']['tmp_name'], "assets/sellerfile/" . $_FILES['timimages']['name']);
-		move_uploaded_file($_FILES['tanimages']['tmp_name'], "assets/sellerfile/" . $_FILES['tanimages']['name']);
-		move_uploaded_file($_FILES['cstimag']['tmp_name'], "assets/sellerfile/" . $_FILES['cstimag']['name']);
+		echo '<pre>';print_r($_FILES);
+		
+		
+		$seller_upload_file=$this->Personnel_details_model->get_upload_file($this->session->userdata('seller_id'));
+		echo '<pre>';print_r($seller_upload_file);
+			if($_FILES['timimages']['name']!=''){
+			$tinimg=$_FILES['timimages']['name'];
+			move_uploaded_file($_FILES['timimages']['tmp_name'], "assets/sellerfile/" . $_FILES['timimages']['name']);
 
-		//echo '<pre>';print_r($post);
+			}else{
+			$tinimg=$seller_upload_file['tinvatimage'];
+			}
+
+			if($_FILES['tanimages']['name']!=''){
+			$tanimg=$_FILES['tanimages']['name'];
+			move_uploaded_file($_FILES['tanimages']['tmp_name'], "assets/sellerfile/" . $_FILES['tanimages']['name']);
+
+			}else{
+			$tanimg=$seller_upload_file['tanimage'];
+			}
+			if($_FILES['cstimag']['name']!=''){
+			$cetimg=$_FILES['cstimag']['name'];
+				move_uploaded_file($_FILES['cstimag']['tmp_name'], "assets/sellerfile/" . $_FILES['cstimag']['name']);
+
+			}else{
+			$cetimg=$seller_upload_file['cstimage'];
+			}
+		
+		//echo '<pre>';print_r($post);exit;
 			$data = array(
-			'seller_id' => $this->session->userdata('seller_id'), 
 			'store_name' => $post['storename'], 
 			'addrees1' => $post['address1'],    
 			'addrees2' => $post['address2'],    
@@ -116,16 +148,16 @@ class Adddetails extends Seller_adddetails{
 			'deliveryes'  =>$post['deliveryes'],
 			'weblink'  =>$post['weblink'],
 			'tin_vat'  =>$post['tin'],
-			'tinvatimage'  =>$_FILES['timimages']['name'],
+			'tinvatimage'  =>$tinimg,
 			'tan'  =>$post['tan'],
-			'tanimage'  =>$_FILES['tanimages']['name'],
+			'tanimage'  =>$tanimg,
 			'cst'  =>$post['cst'],
-			'cstimage'  =>$_FILES['cstimag']['name'],
+			'cstimage'  =>$cetimg,
 			'gstin'  =>$post['gstin'],
 			 'created_at'  => date('Y-m-d H:i:s'),
 			);
 			//echo '<pre>';print_r($data);exit;
-			$addstoredetails=$this->adddetails_model->storedetails_adding($data);
+			$addstoredetails=$this->adddetails_model->storedetails_adding($this->session->userdata('seller_id'),$data);
 			
 			if(count($addstoredetails)>0)
 			{

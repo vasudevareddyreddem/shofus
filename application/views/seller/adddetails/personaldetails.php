@@ -65,6 +65,7 @@
 <div class="" style="margin-bottom:50px;">&nbsp;</div>
 <div class="container" >
   <?php echo $this->session->flashdata('msg2'); ?>
+  <?php //echo '<pre>';print_r($sellerdata);exit; ?>
   <form id="personalidetails" name="personalidetails" action="<?php echo base_url('seller/adddetails/updatepersonaldetails'); ?>" method="post" >
     <div class="row setup-content">
       <div class="col-xs-6 col-md-offset-3">
@@ -72,21 +73,18 @@
           <h3>Personal Details</h3>
           <div class="form-group">
             <label class="control-label">Bank Account</label>
-            <input class="form-control" maxlength="16" placeholder="Enter your Bank Account" type="text" id="bank_account" name="bank_account"  >
+            <input class="form-control" maxlength="16" placeholder="Enter your Bank Account" type="text" id="bank_account" name="bank_account" value="<?php echo isset($sellerdata['seller_bank_account'])?$sellerdata['seller_bank_account']:''; ?>"  >
           </div>         
           <div class="form-group">
             <label class="control-label">Aadhaar Card</label>
-            <input maxlength="100" type="text" maxlength="12" name="aadhaar_card" class="form-control" placeholder="Enter Your Aadhaar Card" />
+            <input maxlength="100" type="text" maxlength="12" name="aadhaar_card" class="form-control" placeholder="Enter Your Aadhaar Card" value="<?php echo isset($sellerdata['seller_adhar'])?$sellerdata['seller_adhar']:''; ?>" />
           </div>
           <div class="form-group">
             <label class="control-label">Personal Pan card</label>
-            <input maxlength="100" type="text"  name="pan_card" class="form-control" placeholder="Enter your Pan Card" />
+            <input maxlength="100" type="text"  name="pan_card" class="form-control" placeholder="Enter your Pan Card" value="<?php echo isset($sellerdata['seller_pan_card'])?$sellerdata['seller_pan_card']:''; ?>" />
           </div>
-          <!-- <div class="form-group">
-            <label class="control-label">KYC documents of store</label>
-            <input  type="file"   class="form-control" name="report_file" />
-          </div> -->
-             <input type="submit" class="btn btn-primary " value="Next">
+             <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/storedetails'); ?>">Back</a>
+			<input type="submit" class="btn btn-primary " value="Submit">
               </form>
         </div>
       </div>

@@ -95,7 +95,7 @@ $(document).ready(function(){
       <div class="col-xs-12 ">
         <div class="col-md-12">
           <h3>Select Your Category</h3>
-          <div class="field_wrapper nopaddingRight col-md-5 san-lg pos_r" id="CenterForm" >
+          <div class="field_wrapper nopaddingRight col-md-5 san-lg pos_r form-group" id="CenterForm" >
 		
                  <select class="form-control"  id="seller_cat[]" name="seller_cat[]" onchange="categoryid(this.value);" required="required">
                     <option value="">Select Category</option>
@@ -110,9 +110,13 @@ $(document).ready(function(){
 					</div>
       
            </div>
+<div>
+             			  <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails'); ?>">Back</a>
 
-             <input type="submit" class="btn btn-primary " value="Next">
+			 <input type="submit" class="btn btn-primary " value="Next">
               </form>
+		</div>
+			  
         </div>
       </div>
     </div>

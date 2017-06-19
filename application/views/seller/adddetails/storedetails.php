@@ -74,74 +74,88 @@
 		<input type="hidden" name="timimageserrormsg" id="timimageserrormsg" value="1">
 		<input type="hidden" name="cstimageserrormsg" id="cstimageserrormsg" value="1">
 		<input type="hidden" name="tanimgesserrormsg" id="tanimgesserrormsg" value="1">
+		<?php //echo '<pre>';print_r($sellerdata);exit; ?>
           <div class="form-group">
             <label class="control-label">Your Store Name (Which displays on our website)</label>
-            <input  type="text" class="form-control" name="storename" id="storename" class="storename">
+            <input  type="text" class="form-control" name="storename" id="storename" value="<?php echo isset($sellerdata['store_name'])?$sellerdata['store_name']:''; ?>" class="storename">
           </div>
 		   <label class="control-label">Enter your Store location</label>
 		<div class="form-group">
             <label class="control-label">Address Line 1</label>
-            <input  type="text"  name="address1" id="address1" class="form-control" />
+            <input  type="text"  name="address1" id="address1" value="<?php echo isset($sellerdata['addrees1'])?$sellerdata['addrees1']:''; ?>" class="form-control" />
           </div>
 		  <div class="form-group">
             <label class="control-label">Address Line 2</label>
-            <input  type="text"  name="address2" id="address2" class="form-control" />
+            <input  type="text"  name="address2" id="address2" value="<?php echo isset($sellerdata['addrees2'])?$sellerdata['addrees2']:''; ?>" class="form-control" />
           </div>
 		  <div class="form-group">
             <label class="control-label">Pincode</label>
-            <input  type="text"  name="pincode" id="pincode" class="form-control" />
+            <input  type="text"  name="pincode" id="pincode" value="<?php echo isset($sellerdata['pin_code'])?$sellerdata['pin_code']:''; ?>" class="form-control" />
           </div>
 		  <div class="form-group">
             <label class="control-label">Other Shops (if any): </label>
-            <input  type="text"  name="other_shops" id="other_shops" class="form-control"  />
+            <input  type="text"  name="other_shops" id="other_shops" value="<?php echo isset($sellerdata['other_shops'])?$sellerdata['other_shops']:''; ?>" class="form-control"  />
           </div>
 		 <div class="form-group">
             <label class="control-label">Other Shop Locations</label>
-            <input  type="text"  name="other_shops_location" id="other_shops_location" class="form-control"  />
+            <input  type="text"  name="other_shops_location" id="other_shops_location" value="<?php echo isset($sellerdata['other_shops_location'])?$sellerdata['other_shops_location']:''; ?>" class="form-control"  />
           </div>
 		 <div class="form-group">
             <label class="control-label">Delivery service on your Own ?</label>
-            <input  type="radio" name="deliveryes"  id="deliveryes" value="1" />YES
-            <input  type="radio" name="deliveryes"  id="deliveryes" value="0" />No
+				<select class="form-control" required="required" name = "deliveryes" id = "deliveryes">
+					<option value ="">Select</option>
+				
+					<?php if($sellerdata['deliveryes']==1) {?>
+					<option value ="1" selected>YES</option> 
+					<?php } else {?>
+					<option value ="1">YES</option>
+					<?php }if($sellerdata['deliveryes']==0) {?>
+					<option value ="0" selected>No</option>
+					<?php }else{ ?>
+					<option value ="0">No</option>						
+					<?php } ?>					
+				</select>
+       
           </div>
 		 <div class="form-group">
             <label class="control-label">Any web link </label>
-            <input type="text" id="weblink"  name="weblink" class="form-control"/>
+            <input type="text" id="weblink"  name="weblink" value="<?php echo isset($sellerdata['weblink'])?$sellerdata['weblink']:''; ?>" class="form-control"/>
           </div>
 		   <div class="form-group">
             <label class="control-label">TIN / VAT</label>
-            <input type="text"  name="tin" id="tin" class="form-control" />
-            <input type="file" title="Upload" name="timimages" onchange="tinpopupimage(this.value);" id="timimages" class="form-control" />
-			<a onclick="deactive();" href="javascript:void(0)" >Upload</a>
+            <input type="text"  name="tin" id="tin" value="<?php echo isset($sellerdata['tin_vat'])?$sellerdata['tin_vat']:''; ?>" class="form-control" />
+            <input type="file" title="Upload" name="timimages" onchange="tinpopupimage(this.value);"  id="timimages" class="form-control" />
+			<a onclick="deactive();" href="javascript:void(0)" >Upload</a><span id="backid1"><?php echo isset($sellerdata['tinvatimage'])?$sellerdata['tinvatimage']:''; ?></span>
 			<span id="tinimage"></span>
 			<span style="color:red" id="tinimageerror"></span>
 		
           </div>
 		  <div class="form-group">
             <label class="control-label">Tan </label>
-            <input  type="text"  name="tan" id="tan" class="form-control"/>
-			<input type="file" name="tanimages" id="tanimages" onchange="tanimageuload(this.value)">
-			<a onclick="deactive1();" href="javascript:void(0)" >Upload</a>
+            <input  type="text"  name="tan" id="tan" value="<?php echo isset($sellerdata['tan'])?$sellerdata['tan']:''; ?>" class="form-control"/>
+			<input type="file" name="tanimages" id="tanimages"  onchange="tanimageuload(this.value)">
+			<a onclick="deactive1();" href="javascript:void(0)" >Upload</a><span id="backid2"><?php echo isset($sellerdata['tanimage'])?$sellerdata['tanimage']:''; ?></span>
 			<span id="tanimgs"></span>
 			<span style="color:red" id="tanimgserror"></span>
           </div>
 		<div class="form-group">
             <label class="control-label">Cst </label>
-            <input  type="text" id="cst"  name="cst" class="form-control"/>
-			<input type="file" id="cstimag" name="cstimag" onchange="cstimageuload(this.value)">
-			<a onclick="deactive2();" href="javascript:void(0)" >Upload</a>
+            <input  type="text" id="cst"  name="cst" value="<?php echo isset($sellerdata['cst'])?$sellerdata['cst']:''; ?>" class="form-control"/>
+			<input type="file" id="cstimag" name="cstimag"  onchange="cstimageuload(this.value)">
+			<a onclick="deactive2();" href="javascript:void(0)" >Upload</a><span id="backid3"><?php echo isset($sellerdata['cstimage'])?$sellerdata['cstimage']:''; ?></span>
 			<span id="cstimages"></span>
 			<span style="color:red" id="cstimageserror"></span>
           </div>
 		
 		 <div class="form-group">
             <label class="control-label">GSTIN</label>
-            <input  type="text"  name="gstin" id="gstin" class="form-control"  />
+            <input  type="text"  name="gstin" id="gstin" value="<?php echo isset($sellerdata['gstin'])?$sellerdata['gstin']:''; ?>" class="form-control"  />
           </div>
 		
 		 
 	
-             <input type="submit" id="resubmit" class="btn btn-primary pull-right " value="Next">
+               <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/categories'); ?>">Back</a>
+			<input type="submit" id="resubmit" class="btn btn-primary pull-right " value="Next">
               </form>
         </div>
       </div>
@@ -178,96 +192,110 @@
 $('#timimages').hide();
 $('#tanimages').hide();
 $('#cstimag').hide();
-function tinpopupimage(imagename){
- $('input[type="file"]').change(function(e){
-	var fileName0 = e.target.files[0].name;
-		document.getElementById("tinimage").innerHTML = fileName0; 
-	});
-	var fup = document.getElementById('timimages');
-		var fileName = fup.value;
-		var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
-		if(ext !=''){
-			if(ext == "docx" || ext == "doc" || ext == "pdf" || ext == "xlsx" || ext == "xls")
-			{
-			jQuery('#timimageserrormsg').val(1);
-			jQuery(tinimageerror).html('')
-			 document.getElementById("resubmit").disabled = false; 
-			} else{
-				document.getElementById("resubmit").disabled = true; 
-			jQuery('#timimageserrormsg').val(0);
-			jQuery('#tinimageerror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
-			return false;
-			
-			}
-		}
+
+
+
+document.getElementById('timimages').onchange = uploadOnChange;
+function uploadOnChange() {
+    var filename = this.value;
+    var lastIndex = filename.lastIndexOf("\\");
+    if (lastIndex >= 0) {
+        filename = filename.substring(lastIndex + 1);
+    }
+	jQuery('#backid1').hide();
+	jQuery('#tinimageerror').html('');
+    document.getElementById("tinimage").innerHTML  = filename;
+	document.getElementById("resubmit").disabled = false; 
+	
+}
+document.getElementById('tanimages').onchange = tanuploadOnChange;
+function tanuploadOnChange() {
+    var filename = this.value;
+    var lastIndex = filename.lastIndexOf("\\");
+    if (lastIndex >= 0) {
+        filename = filename.substring(lastIndex + 1);
+    }
+	jQuery('#backid2').hide();
+	jQuery('#tanimgserror').html('');
+    document.getElementById("tanimgs").innerHTML  = filename;
+	document.getElementById("resubmit").disabled = false; 
+	
+}
+document.getElementById('cstimag').onchange = cstuploadOnChange;
+
+function cstuploadOnChange() {
+    var filename = this.value;
+    var lastIndex = filename.lastIndexOf("\\");
+    if (lastIndex >= 0) {
+        filename = filename.substring(lastIndex + 1);
+    }
+	jQuery('#backid3').hide();
+	$('#editcstimage').hide();
+	jQuery('#cstimageserror').html('');
+    document.getElementById("cstimages").innerHTML  = filename;
+	document.getElementById("resubmit").disabled = false; 
 	
 }
 
 function deactive(id){
 	$('#timimages').trigger("click");	
-	var imgname=document.getElementById("timimages").value;	
 }
 function deactive1(id){
 	$('#tanimages').trigger("click");	
-	var imgname=document.getElementById("timimages").value;	
 }
 function deactive2(id){
 	$('#cstimag').trigger("click");	
-	var imgname=document.getElementById("timimages").value;	
 }
-function tanimageuload(imagename){
-	$('input[type="file"]').change(function(e){
-	var fileName = e.target.files[0].name;
-		document.getElementById("tanimgs").innerHTML = fileName; 
-	});
-	var fup = document.getElementById('tanimages');
-		var fileName = fup.value;
-		var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
-		if(ext !=''){
-			if(ext == "docx" || ext == "doc" || ext == "pdf" || ext == "xlsx" || ext == "xls")
-			{
-				document.getElementById("resubmit").disabled = false; 
-			jQuery('#tanimgesserrormsg').val(1);
-			jQuery('#tanimgserror').html('')
-			} else{
-			jQuery('#tanimgesserrormsg').val(0);
-			jQuery('#tanimgserror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
-			return false;
-			}
-		}
-	
-}
-function cstimageuload(imagename){
-	$('input[type="file"]').change(function(e){
-	var fileName1 = e.target.files[0].name;
-		document.getElementById("cstimages").innerHTML = fileName1; 
-	});
-	var fup = document.getElementById('cstimag');
-		var fileName = fup.value;
-		var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
-		if(ext !=''){
-			if(ext == "docx" || ext == "doc" || ext == "pdf" || ext == "xlsx" || ext == "xls")
-			{
-			document.getElementById("resubmit").disabled = false; 
-			jQuery('#cstimageserrormsg').val(1);
-			jQuery('#cstimageserror').html('')
-			} else{
-			jQuery('#cstimageserrormsg').val(0);
-			jQuery('#cstimageserror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
-			return false;
-			}
-		}
-}
+
  function validation(){
 	 
-	 var imageerror1=document.getElementById("timimageserrormsg").value;
-	 var imageerror2=document.getElementById("cstimageserrormsg").value;
-	 var imageerror3=document.getElementById("tanimgesserrormsg").value;
-	if(imageerror1==0 || imageerror2 ==0 || imageerror3 ==0){
-		return false; 
-	 }else{
+	  var fup = document.getElementById('timimages');
+		var fileName = fup.value;
+		var ext1 = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+		if(ext1 !=''){
+		if(ext1 == "docx" || ext1 == "doc" || ext1 == "pdf" || ext1 == "xlsx" || ext1 == "xls")
+		{
+		jQuery('#timimageserrormsg').val(1);
+		jQuery(tinimageerror).html('');
+		} else{
+		jQuery('#timimageserrormsg').val(0);
+		jQuery('#tinimageerror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
+		return false;
+		}
+		}
+		var fup1 = document.getElementById('tanimages');
+		var fileName1 = fup1.value;
+		var ext2 = fileName1.substring(fileName1.lastIndexOf('.') + 1);
+
+		if(ext2 !=''){
+		if(ext2 == "docx" || ext2 == "doc" || ext2 == "pdf" || ext2 == "xlsx" || ext2 == "xls")
+		{
+		jQuery('#timimageserrormsg').val(1);
+		jQuery('#tanimgserror').html('');
+		} else{
+		jQuery('#timimageserrormsg').val(0);
+		jQuery('#tanimgserror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
+		return false;
+		}
+		}
+		var fup3 = document.getElementById('cstimag');
+		var fileName2 = fup3.value;
+		var ext3 = fileName2.substring(fileName2.lastIndexOf('.') + 1);
+
+		if(ext3 !=''){
+		if(ext3 == "docx" || ext3 == "doc" || ext3 == "pdf" || ext3 == "xlsx" || ext3 == "xls")
+		{
+		jQuery('#timimageserrormsg').val(1);
+		jQuery('#cstimageserror').html('');
+		} else{
+		jQuery('#timimageserrormsg').val(0);
+		jQuery('#cstimageserror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
+		return false;
+		}
+		}
 		return true; 
-	 }
+	
 	 
  }
  

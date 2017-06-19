@@ -162,6 +162,8 @@ $('.window').hide();
 					<span aria-hidden="true">&times;</span>
 				</button><?php echo $this->session->flashdata('error');?></div>
 				<?php endif; ?>
+				
+				<?php //echo '<pre>';print_r($sellerdata);exit; ?>
   <form  id="basicdetails" name="basicdetails" action="<?php echo base_url('seller/adddetails/updatebasicdetails'); ?>" method="post" >
     <div class="row setup-content">
       <div class="col-xs-6 col-md-offset-3">
@@ -169,15 +171,15 @@ $('.window').hide();
           <h3>Basic Details</h3><br>
           <div class="form-group">
             <label class="control-label">Name</label>
-            <input class="form-control" placeholder="Name" type="text" id="seller_name" name="seller_name" >
+            <input class="form-control" placeholder="Name" type="text" id="seller_name" name="seller_name" value="<?php echo isset($sellerdata['seller_name'])?$sellerdata['seller_name']:''; ?>" >
           </div>
           <div class="form-group">
             <label class="control-label">Email address</label>
-            <input class="form-control" placeholder="Email Address" type="Email" id="seller_email" name="seller_email">
+            <input class="form-control" placeholder="Email Address" type="Email" id="seller_email" name="seller_email" value="<?php echo isset($sellerdata['seller_email'])?$sellerdata['seller_email']:''; ?>">
           </div>         
           <div class="form-group">
             <label class="control-label">Resident address</label>
-            <input maxlength="100" type="text" id="seller_address"  name="seller_address" class="form-control" placeholder="Enter Resident address" />
+            <input maxlength="100" type="text" id="seller_address"  name="seller_address" class="form-control" placeholder="Enter Resident address" value="<?php echo isset($sellerdata['seller_address'])?$sellerdata['seller_address']:''; ?>" />
           </div>
 
              <button type="submit" class="btn btn-primary pull-right" value="Next">Next</button>
