@@ -25,6 +25,7 @@ class Login extends CI_Controller {
 		foreach($incompletecat as $all_subcategory){
 			$deletependingcats=$this->login_model->delete_pending_seller_cat_details($all_subcategory['seller_cat_id']);
 		}
+        $this->session->unset_userdata('seller_id');
 	}
 	//echo '<pre>';print_r($incompleteregisters); exit;     
 }

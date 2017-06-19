@@ -22,7 +22,7 @@
       <div class="">
         <div class="navbar-header logo_style" >
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="<?php echo base_url('seller/login'); ?>">
       <img  src="<?php echo base_url(); ?>assets/seller/images/logo.png" class="img-responsive" style="width: 30%;"/></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
