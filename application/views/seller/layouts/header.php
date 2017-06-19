@@ -10,7 +10,7 @@
 <!-- jquery-ui css -->
    <link href="<?php echo base_url(); ?>assets/seller/plugins/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
    <!-- Bootstrap -->
-   <link href="<?php echo base_url(); ?>assets/seller/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> \
+   <link href="<?php echo base_url(); ?>assets/seller/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> 
    <link href="<?php echo base_url(); ?>assets/seller/css/timePicker.css" rel="stylesheet" type="text/css"/> 
 
 
