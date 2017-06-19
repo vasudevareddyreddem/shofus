@@ -128,7 +128,8 @@
                 <form  name="register_form" id="register_submit" method="POST">
                 <label>Enter your Mobile Number</label>
                 <input   class="form-control" type="text" maxlength="10" id="seller_mobile" name="seller_mobile" autofocus>
-              </div>
+              <a href="<?php echo base_url('seller/login/termsandconditions'); ?>">Terms and Conditions</a>
+			  </div>
               <div class="clearfix"></div>
               <input type="submit" class="btn btn-primary  btn-block btn-sm mar_t10" name="register_do" id="register_do" value="Get OTP">
               <!-- <button class="btn btn-primary btn-sm mar_t10" type="submit">Get OTP</button> -->
