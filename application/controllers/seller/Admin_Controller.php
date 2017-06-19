@@ -20,7 +20,6 @@ class Admin_Controller extends MY_Controller {
 			$this->template->write_view('header', 'seller/shared/header',$result);
 			
 			$this->template->write_view('sidebar', 'seller/shared/sidebar',$data);
-			$this->load->view('seller/layouts/testing');
 			$this->template->write_view('footer', 'seller/shared/footer');
         if (!current_admin()) {
              return redirect(base_url('seller/login'));
