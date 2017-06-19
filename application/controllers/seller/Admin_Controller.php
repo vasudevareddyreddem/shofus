@@ -16,9 +16,7 @@ class Admin_Controller extends MY_Controller {
 			$result['sellernotify'] =  $this->request_model->getdata();		
        		$data['catdata'] = $this->dashboard_model->getcatsubcat();
 			$this->template->set_template('seller');
-			
 			$this->template->write_view('header', 'seller/shared/header',$result);
-			
 			$this->template->write_view('sidebar', 'seller/shared/sidebar',$data);
 			$this->template->write_view('footer', 'seller/shared/footer');
         if (!current_admin()) {

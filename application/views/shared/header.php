@@ -1,258 +1,105 @@
-<div id="page">
-  <header>
-    <div class="header-banner">
-      <div class="assetBlock">
-       <!-- <div style="height: 20px; overflow: hidden;" id="">
-         <p style="display: block; margin-left: 918px;"><i class="fa fa-map-marker" aria-hidden="true"></i> Location : <?php //echo $this->session->userdata('location_name'); ?></p>
-       
-		
-		</div>-->
-		
-		<div class="fl-header-right">
-          <div class="fl-links locv">
+<!--wrapper start here -->
+<div class="wrapper"> 
+  <!--header part start here -->
+  <div class="jain_container">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container1 container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
+          <a class="navbar-brand" href="<?php echo base_url(); ?>"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
+        <div class="col-md-8">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal form-horizontal_x">
+                  <div class="flipkart-navbar-search smallsearch">
+                    <div class="cart_search">
+                      <input class="flipkart-navbar-input col-xs-11" type="" placeholder="Search for Products, Brands and more" name="">
+                      <button class="flipkart-navbar-button col-xs-1"> <svg width="15px" height="15px">
+                      <path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
+                      </svg> </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-12">
+                <ul class="nav navbar-nav">
+                  <li><a href="<?php echo base_url(); ?>">HOME</a></li>
+				   <?php foreach($catdata as $cat_data){?>
+                  <li class="dropdown mega-dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <?php echo strtoupper($cat_data->category_name);  ?> <span class="caret"></span></a>
+                    <ul class="dropdown-menu mega-dropdown-menu">
+					<?php foreach($cat_data->subcat as $subcat_data){?>
+                      <li class="col-sm-4">
+                        <ul>
+                          <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $subcat_data->subcategory_name;  ?>"><li class="dropdown-header"><?php echo ucwords($subcat_data->subcategory_name);  ?></li></a>
+                          <!--<li><a href="#">Veg Biryani</a></li>
+                          <li><a href="#">Curries</a></li>-->
+                          <!-- <li class="divider"></li>
+							<li class="dropdown-header">Fonts</li>
+                            <li><a href="#">Glyphicon</a></li>
+							<li><a href="#">Google Fonts</a></li> -->
+                        </ul>
+                      </li>
+					<?php } ?>
+                      
+                     
+                    </ul>
+                  </li>
+                  
+				   <?php } ?>
+                
+                  <li><a href="#">PAGES</a></li>
+                  <li> <a href="#">CONTACT US</a> </li>
+                </ul>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 medias">
+          <ul class="largenav">
+            <li class="upper-links"><a class="links cust_btn md-trigger" data-modal="modal-8" onClick="registershow()" href="javascript:void(0);">Login/signup</a></li>
+            <!--<li class="upper-links dropdown"><a class="links" href="#">Dropdown</a>
+              <ul class="dropdown-menu">
+                <li class="profile-li"><a class="profile-links" href="#">Link</a></li>
+                <li class="profile-li"><a class="profile-links" href="#">Link</a></li>
+                <li class="profile-li"><a class="profile-links" href="#">Link</a></li>
+              </ul>
+            </li>-->
+          </ul>
+          <div class="classus">
             <div class="no-js">
-              <h2 align="right" class="hm_lcao"><i class="fa fa-map-marker" aria-hidden="true"></i> Location : <?php echo $this->session->userdata('location_name');   ?></h2>
+              <h2 class="hm_lcao"><i class="fa fa-map-marker" aria-hidden="true"></i> Location : <?php echo $this->session->userdata('location_name');   ?></h2>
               <div class="fl-nav-links">
                 <div class="input-box">
-        <select name="location_name" id="location_name" class="validate-select sel_are">
+                  <select name="location_name" id="location_name" class="validate-select sel_are">
         <option value="">Select Area </option>
 		<?php foreach($locationdata as $location_data) {?>
         <option value="<?php echo $location_data->location_name; ?>"><?php echo $location_data->location_name; ?></option>
        
 		<?php } ?>
         </select>     
-          <!-- <button type="submit" class="button subscribe" name="location_submit" id="location_submit"><span>submit</span></button>-->
-         
-        </div> 
-
-
-				</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="header">
-      <div class="header-container container">
-        <div class="row">
-          <div class="logo"> <a href="<?php echo base_url(); ?>">
-            <div><img src="<?php echo base_url(); ?>assets/home/images/logo.png" alt=""></div>
-            </a> </div>
-          <div class="fl-nav-menu">
-            <nav>
-              <div class="mm-toggle-wrap">
-                <div class="mm-toggle"><i class="icon-align-justify"></i><span class="mm-label">Menu</span> </div>
-              </div>
-              <div class="nav-inner"> 
-                <!-- BEGIN NAV -->
-                <ul id="nav" class="hidden-xs">
-                  <li id="nav-home" class="level0 parent drop-menu"><a class="level-top active" href="<?php echo base_url(); ?>"><span>Home</span></a> 
-                    <!--<ul class="level1" style="display: none;">
-                      <li class="level1 parent"><a href="#"><span>Home Version 1</span></a></li>
-                      <li class="level1 parent"><a href="#"><span>Home Version 2</span></a></li>
-                    </ul>--> 
-                  </li>
-				  
-				  <?php foreach($catdata as $cat_data){?>
-                  <li class="mega-menu"> <a class="level-top" href="#"><span><?php echo $cat_data->category_name;  ?></span></a>
-                    <div class="level0-wrapper dropdown-6col" style="left: 0px; display: none;">
-                      <div class="container">
-                        <div class="level0-wrapper2">
-                          <div class="nav-block nav-block-center"> 
-                            <!--mega menu-->
-                            
-                            <ul class="level0">
-                              <li class="level3 nav-6-1 parent item"> <a href="#"><span><?php echo $cat_data->category_name;  ?></span></a> 
-                                <!--sub sub category-->
-                                <ul class="level1">
-								
-                                 <?php if(!empty($cat_data->subcat[0]))  { ?> <li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[0]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[0]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                  <?php if(!empty($cat_data->subcat[1]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[1]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[1]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                  <?php if(!empty($cat_data->subcat[2]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[2]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[2]['subcategory_name'];  ?></span></a> </li><?php } ?>
-								
-                                </ul>
-                                <!--level1--> 
-                                <!--sub sub category--> 
-                              </li>
-                              <!--level3 nav-6-1 parent item-->
-                              <li class="level3 nav-6-1 parent item"> <a href="#"><span><?php echo $cat_data->category_name;  ?></span></a> 
-                                <!--sub sub category-->
-                                <ul class="level1">
-                                  <?php if(!empty($cat_data->subcat[3]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[3]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[3]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                  <?php if(!empty($cat_data->subcat[4]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[4]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[4]['subcategory_name'];  ?></span></a> </li><?php } ?>
-								  <?php if(!empty($cat_data->subcat[5]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[5]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[5]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                </ul>
-                                <!--level1--> 
-                                <!--sub sub category--> 
-                              </li>
-                              <!--level3 nav-6-1 parent item-->
-                              <li class="level3 nav-6-1 parent item"> <a href="#"><span><?php echo $cat_data->category_name;  ?></span></a> 
-                                <!--sub sub category-->
-                                <ul class="level1">
-                                 <?php if(!empty($cat_data->subcat[6]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[6]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[6]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                 <?php if(!empty($cat_data->subcat[7]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[7]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[7]['subcategory_name'];  ?></span></a> </li><?php } ?>
-								 <?php if(!empty($cat_data->subcat[8]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[8]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[8]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                </ul>
-                                <!--level1--> 
-                                <!--sub sub category--> 
-                              </li>
-                              <!--level3 nav-6-1 parent item-->
-                              <li class="level3 nav-6-1 parent item"> <a href="#"><span><?php echo $cat_data->category_name;  ?></span></a> 
-                                <!--sub sub category-->
-                                <ul class="level1">
-                                  <?php if(!empty($cat_data->subcat[9]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[9]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[9]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                  <?php if(!empty($cat_data->subcat[10]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[10]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[10]['subcategory_name'];  ?></span></a> </li><?php } ?>
-								  <?php if(!empty($cat_data->subcat[11]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[11]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[11]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                </ul>
-                                <!--level1--> 
-                                <!--sub sub category--> 
-                              </li>
-                              <!--level3 nav-6-1 parent item-->
-                              <li class="level3 nav-6-1 parent item"> <a href="#"><span><?php echo $cat_data->category_name;  ?></span></a> 
-                                <!--sub sub category-->
-                                <ul class="level1">
-                                  <?php if(!empty($cat_data->subcat[12]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[12]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[12]['subcategory_name'];  ?></span></a> </li><?php } ?>
-								  <?php if(!empty($cat_data->subcat[13]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[13]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[13]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                  <?php if(!empty($cat_data->subcat[14]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[14]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[14]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                </ul>
-                                <!--level1--> 
-                                <!--sub sub category--> 
-                              </li>
-                              <!--level3 nav-6-1 parent item-->
-                              <li class="level3 nav-6-1 parent item"> <a href="#"><span><?php echo $cat_data->category_name;  ?></span></a> 
-                                <!--sub sub category-->
-                                <ul class="level1">
-                                  <?php if(!empty($cat_data->subcat[15]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[15]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[15]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                  <?php if(!empty($cat_data->subcat[16]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[16]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[16]['subcategory_name'];  ?></span></a> </li><?php } ?>
-								  <?php if(!empty($cat_data->subcat[17]))  { ?><li class="level2 nav-6-1-1"> <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $cat_data->subcat[17]['subcategory_name'];  ?>"><span><?php echo $cat_data->subcat[17]['subcategory_name'];  ?></span></a> </li><?php } ?>
-                                </ul>
-                                <!--level1--> 
-                                <!--sub sub category--> 
-                              </li>
-                              <!--level3 nav-6-1 parent item-->
-                            </ul>
-                            <!--level0--> 
-                          </div>
-                          <!--nav-block nav-block-center--> 
-                        </div>
-                        <!--level0-wrapper2--> 
-                      </div>
-                      <!--container--> 
-                    </div>
-                    <!--level0-wrapper dropdown-6col--> 
-                    <!--mega menu--> 
-                  </li>
-                 
-                  <?php } ?>
-                  
-                  
-                  
-                  <!--<li class="mega-menu"> <a class="level-top" href="#"><span>Sandwiches‎</span></a> </li>-->
-                  <li class="level0 parent drop-menu"><a href="#"><span>Pages</span> </a> 
-                    <!--sub sub category-->
-                    <ul class="level1" style="">
-                      <li class="level1 nav-10-4"> <a href="#"> <span>About Us</span> </a> </li>
-                      <li class="level1 first parent"><a href="#"><span>Blog</span></a> 
-                        <!--sub sub category-->
-                        <ul class="level2 right-sub">
-                          <li class="level2 nav-2-1-1 first"><a href="#"><span>Blog Detail</span></a></li>
-                        </ul>
-                        <!--sub sub category--> 
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="fl-custom-tabmenulink mega-menu"> <a href="#" class="level-top"> <span>Custom</span> </a>
-                    <div class="level0-wrapper fl-custom-tabmenu" style="left: 0px; display: none;">
-                      <div class="container">
-                        <div class="header-nav-dropdown-wrapper clearer">
-                          <div class="grid12-3">
-                            <div><img src="<?php echo base_url(); ?>assets/home/images/custom-img1.jpg" alt=""></div>
-                            <h4 class="heading">SALE UP TO 30% OFF</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                          </div>
-                          <div class="grid12-3">
-                            <div><img src="<?php echo base_url(); ?>assets/home/images/custom-img2.jpg" alt=""></div>
-                            <h4 class="heading">SALE UP TO 30% OFF</h4>
-                            <p>Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-                          </div>
-                          <div class="grid12-3">
-                            <div><img src="<?php echo base_url(); ?>assets/home/images/custom-img1.jpg" alt=""></div>
-                            <h4 class="heading">SALE UP TO 30% OFF</h4>
-                            <p>Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-                          </div>
-                          <div class="grid12-3">
-                            <div><img src="<?php echo base_url(); ?>assets/home/images/custom-img4.jpg" alt=""></div>
-                            <h4 class="heading">SALE UP TO 30% OFF</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-                <!--nav--> 
-              </div>
-            </nav>
-          </div>
-          <!--row--> 
-        </div>
-        <div class="fl-header-right">
-          <div class="fl-links">
-            <div class="no-js"> <a title="Company" class="clicker"></a>
-              <div class="fl-nav-links">
-                <?php if($this->session->userdata('user_id') == "")  {?>
-                <ul class="links">
-                 <!-- <li><a href="#" title="My Account">My Account</a></li>-->
-                  <!--<li><a href="#" title="Wishlist">Wishlist</a></li>-->
-                  <!--<li><a href="#" title="Checkout">Checkout</a></li>-->
-                  <!--<li><a href="#" title="Blog"><span>Blog</span></a></li>-->
-                 <li>
-                    <button class="btn btn-danger hm_login cust_btn md-trigger" data-modal="modal-8" onClick="registershow()"> Login/Sign Up</button>
-                  </li>
-                </ul>
-				
-				<?php } else { ?>
-				
-				<ul class="links">
-                 <!-- <li><a href="#" title="My Account">My Account</a></li>-->
-                  <!--<li><a href="#" title="Wishlist">Wishlist</a></li>-->
-                  <!--<li><a href="#" title="Checkout">Checkout</a></li>-->
-                  <!--<li><a href="#" title="Blog"><span>Blog</span></a></li>-->
-                 <li>
-                    <button class="btn btn-danger hm_login cust_btn md-trigger"> <?php echo $this->session->userdata('user_name'); ?></button>
-                  </li>
-				   
-				   <li><a href="<?php echo base_url(); ?>users/viewprofile" title="Blog"><span>View Profile</span></a></li>
-              
-                <li><a href="<?php echo base_url(); ?>users/change_password" title="Blog"><span>Change Password</span></a></li>
-              
-				  <li><a href="<?php echo base_url(); ?>home/logout" title="Blog"><span>Logout</span></a></li>
-                </ul>
-				
-				
-				<?php } ?>
-				
+                </div>
               </div>
             </div>
           </div>
-          <div class="fl-cart-contain">
-          <div class="mini-cart">
-	        <?php $cart = $this->cart->contents();  ?>
-            <div class="basket"> <a href="<?php echo base_url();?>home/addtocart"><span> <?php echo count($cart);   ?> </span></a> </div>
-			 <?php
-                  // All values of cart store in "$cart". 
-                  if ($cart = $this->cart->contents()): ?>
-			 
-			<form action="<?php echo base_url(); ?>home/addtocart" method="post">
-            <div class="fl-mini-cart-content" style="display: none;">
-              <div class="block-subtitle">
-                <div class="top-subtotal"><?php echo count($cart);   ?> items, <!--<span class="price">RS 259.99</span>--> </div>
-                <!--top-subtotal-->
-                <!--pull-right-->
+		   <?php $cart = $this->cart->contents();  ?>
+		   
+          <div class="cart largenav" id="cart"> <a class="cart-button dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <svg class="cart-svg " width="16 " height="16 " viewBox="0 0 16 16 ">
+            <path d="M15.32 2.405H4.887C3 2.405 2.46.805 2.46.805L2.257.21C2.208.085 2.083 0 1.946 0H.336C.1 0-.064.24.024.46l.644 1.945L3.11 9.767c.047.137.175.23.32.23h8.418l-.493 1.958H3.768l.002.003c-.017 0-.033-.003-.05-.003-1.06 0-1.92.86-1.92 1.92s.86 1.92 1.92 1.92c.99 0 1.805-.75 1.91-1.712l5.55.076c.12.922.91 1.636 1.867 1.636 1.04 0 1.885-.844 1.885-1.885 0-.866-.584-1.593-1.38-1.814l2.423-8.832c.12-.433-.206-.86-.655-.86 " fill="#fff "></path>
+            </svg> Cart <span class="item-number "><?php echo count($cart);   ?></span> </a>
+            <ul class="dropdown-menu notify-drop">
+			
+              <div class="notify-drop-title">
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-6">View Products (<b><?php echo count($cart);   ?></b>)</div>
+                  <div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="tümü okundu."><i class="fa fa-dot-circle-o"></i></a></div>
+                </div>
               </div>
-              <!--block-subtitle-->
-              <ul class="mini-products-list" id="cart-sidebar">
-			 <?php
+              <!-- end notify title --> 
+              <!-- notify content -->
+              <div class="drop-content">
+			  <?php
                      // Create form and send all values in "shopping/update_cart" function.
                     
                     $i = 1;
@@ -266,54 +113,37 @@
                         echo form_hidden('cart[' . $item['id'] . '][qty]', $item['qty']);
 						echo form_hidden('cart[' . $item['id'] . '][item_quantity]', $item['item_quantity']);
 					?>
-                <li class="item first">
-                  <div class="item-inner">
-                  <a class="product-image" href="<?php echo base_url();?>home/addtocart"><img alt="" src="<?php echo base_url();?>uploads/products/<?php  echo $item['pro_image']; ?>"></a>
-                    <div class="product-details">
-                      <div class="access"><a class="btn-remove1" title="Remove This Item" href="#">Remove</a> 
-                      <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a> </div>
-                      <!--access-->
-                      <strong><?php echo $item['qty'];?></strong> x <span class="price">RS <?php echo $item['price'];?></span>
-                      <p class="product-name"><a href="<?php echo base_url();?>home/addtocart"><?php echo $item['name'];?></a></p>
-                    </div>
+                <li>
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                    <div class="notify-img"><img src="<?php echo base_url();?>uploads/products/<?php  echo $item['pro_image']; ?>" alt="" style="width:45px;height:45px;"></div>
+                  </div>
+                  <div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="#"><?php echo $item['name'];?></a> <a href="" class="rIcon"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <p>Lorem ipsum sit dolor amet consilium.</p>
+                    <p class="time">Rs. <?php echo $item['price'];?></p>
                   </div>
                 </li>
-				<?php endforeach; ?>
-              
-              </ul>
-              <div class="actions">
-                <button class="btn-checkout" title="Checkout" type="submit" name="submit"><span>Checkout</span></button>
+               <?php endforeach; ?>
+               
+               
               </div>
-              <!--actions-->
-            </div>
-            <!--fl-mini-cart-content-->
-			</form>
-			<?php endif; ?>
-			
+              <div class="notify-drop-footer text-center"> <a href="<?php echo base_url(); ?>home/addtocart"><i class="fa fa-eye"></i> Check Out</a> </div>
+            </ul>
           </div>
-        </div>
-          <!--mini-cart-->
-          <div class="collapse navbar-collapse">
-            <form class="navbar-form" role="search">
-              <div class="input-group">
-                <input class="form-control" placeholder="Search" type="text">
-                <span class="input-group-btn">
-                <button type="submit" class="search-btn"> <span class="glyphicon glyphicon-search"> <span class="sr-only">Search</span> </span> </button>
-                </span> </div>
-            </form>
-          </div>
-          <!--links--> 
+		  
         </div>
       </div>
-    </div>
-  </header>
-  <!-- content related to popup -->
+    </nav>
+	
+	
+	
+	
+	<!-- Login popup start here -->
 <div class="md-modal md-effect-8" id="modal-8">
   <div class="md-content">
     <div id="log_sign"> 
       
       <!-- Nav tabs -->
-      <button class="md-close cls pull-right">Close me!</button>
+      <button class="md-close pull-right miy">Close me!</button>
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#login" aria-controls="home" role="tab" data-toggle="tab"> <i class="fa fa-lock" aria-hidden="true"></i> Login</a></li>
         <li role="presentation"><a href="#signup" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
@@ -378,7 +208,8 @@
       </div>
     </div>
     <div id="show_pass" style="display: none;">
-      <button class="md-close cls pull-right" style="margin-bottom: 15px;">Close me!</button>
+      
+	  <button class="md-close pull-right miy" style="margin-bottom: 15px;">Close me!</button>
       Forgot Your Password ?
 	  <div id="lost-response" style="font-size:100%;"></div>
 	  <form method="post" id="lost-form">
@@ -392,23 +223,11 @@
   </div>
 </div>
 <div class="md-overlay"></div>
-<!-- the overlay element --> 
 
-<!-- classie.js by @desandro: https://github.com/desandro/classie --> 
+<!-- the overlay element --> 
 
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
-
-<!-- for the blur effect --> 
-<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill --> 
-<script>
-      // this is important for IEs
-      var polyfilter_scriptpath = '/js/';
-    </script> 
-<!--<script src="<?php echo base_url(); ?>assets/home/js/cssParser.js"></script> -->
-<script src="<?php echo base_url(); ?>assets/home/js/css-filters-polyfill.js"></script> 
-<!--slider --> 
-
 <script type="text/javascript">
     $(document).ready(function(){
       $('#frgt_pass').click(function(){
@@ -425,8 +244,16 @@
           $('#show_pass').hide();
        })
     });
-  </script>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+  </script> 
+
+<!-- Login popup end here -->
+<script>
+function registershow(){
+	
+$("#modal-8").show();	
+} 
+</script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 
     <script type="text/javascript">
 $(document).ready(function()
@@ -455,12 +282,7 @@ window.location.href="<?php echo base_url(); ?>";
 });
 });
 </script>
-<script>
-function registershow(){
-	
-$("#modal-8").show();	
-} 
-</script>
+
 <script type="text/javascript" language="javascript">
       $(document).ready(function(){
     $('#register_submit').click(function(e){
