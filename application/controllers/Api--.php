@@ -20,17 +20,19 @@ class Api extends REST_Controller
       
     }
 
-   public function login_post()
+   public function login_post($id)
     {    
 
         //$username = NULL;
 
      
-        	 $username = $this->post('admin_name');
+        	//echo '<pre>';print_r($id);exit;
+			$username = $this->post('admin_name');
         	 $password = md5($this->post('admin_password'));
         	
         $res = $this->login_model->get_data($username,$password);
-       // print_r($res);exit;
+		echo $this->db->last_query();exit;
+        print_r($res);exit;
         if($res)
                 {
                 $this->response(
@@ -94,7 +96,8 @@ class Api extends REST_Controller
 
    public function deliveryboy_insert_post()
     {    
-        if(!empty($_FILES['deliveryboy_photo']['name'])){
+       
+	   if(!empty($_FILES['deliveryboy_photo']['name'])){
 
                 $config['upload_path'] = 'uploads/deliveryboys/';
                 $config['allowed_types'] = 'jpg|jpeg|png|gif';
