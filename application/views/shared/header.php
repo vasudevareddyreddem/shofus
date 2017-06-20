@@ -1,8 +1,285 @@
 <!--wrapper start here -->
+
+<div class="sidebar_right" >
+			
+			<ul style="padding:0 ">
+				<li class="spin btn-group show-on-hover">
+					<a  class=" dropdown-toggle" data-toggle="dropdown">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">Electronics</span>
+					</a>
+					<ul class="dropdown-menu " role="menu">
+						<div class="row">
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Mobiles</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;"> Accessories</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Laptops</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Televisions</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+						</div>
+						
+					</ul>
+				</li><div class="clearfix"></div>
+				<li class="spin btn-group show-on-hover">
+					<a  class=" dropdown-toggle" data-toggle="dropdown">
+						<span  class="circ_icon glyphicon glyphicon-home rot "></span>
+						<span class="menu_tit">Fashion</span>
+					</a>
+					<ul class="dropdown-menu " role="menu">
+						<div class="row">
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Mobiles</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;"> Accessories</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Laptops</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Televisions</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+						</div>
+						
+					</ul>
+				</li><div class="clearfix"></div>
+				<li class="spin btn-group show-on-hover">
+					<a  class=" dropdown-toggle" data-toggle="dropdown">
+						<span  class="circ_icon glyphicon glyphicon-cutlery rot "></span>
+						<span class="menu_tit">Food</span>
+					</a>
+					<ul class="dropdown-menu " role="menu">
+						<div class="row">
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Mobiles</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;"> Accessories</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Laptops</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Televisions</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+						</div>
+						
+					</ul>
+				</li><div class="clearfix"></div>
+				<li class="spin btn-group show-on-hover">
+					<a  class=" dropdown-toggle" data-toggle="dropdown">
+						<span  class="circ_icon glyphicon glyphicon-home rot "></span>
+						<span class="menu_tit">Grocery</span>
+					</a>
+					<ul class="dropdown-menu " role="menu">
+						<div class="row">
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Mobiles</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;"> Accessories</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Laptops</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Televisions</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+						</div>
+						
+					</ul>
+				</li><div class="clearfix"></div>
+				
+				
+			</ul>
+</div>
 <div class="wrapper"> 
   <!--header part start here -->
   <div class="jain_container">
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="top-navbar">
+    <div class="container">
+      <div class=" row">
+        <div class="social-media col-sm-4"> Stay connected:
+          <ul>
+            <li><a href="#" class=""><span class=""><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a></li>
+            <li><a href="#" class=""><span class=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></span></a></li>
+            <li><a href="#" class=""><span class=""><i class="fa fa-twitter-square" aria-hidden="true"></i></span></a></li>
+            <li><a href="#" class=""><span class=""><i class="fa fa-pinterest-square" aria-hidden="true"></i></span></a></li>
+          </ul>
+        </div>
+        <div class="user-link col-sm-8"> <a class="tel" href="tel:+201234567891"><span class="glyphicon glyphicon-earphone">&nbsp;</span>+123456789</a> <a class="" href="mailto:support@resalatheme.com"><i><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
       <div class="container1 container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
@@ -15,16 +292,16 @@
                   <div class="flipkart-navbar-search smallsearch">
                     <div class="cart_search">
                       <input class="flipkart-navbar-input col-xs-11" type="" placeholder="Search for Products, Brands and more" name="">
-                      <button class="flipkart-navbar-button col-xs-1"> <svg width="15px" height="15px">
-                      <path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
-                      </svg> </button>
+                      <button class="flipkart-navbar-button col-xs-1"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
+					
                   </div>
                 </form>
               </div>
-              <div class="col-md-12">
+			
+              <!--<div class="col-md-12">
                 <ul class="nav navbar-nav">
-                  <li><a href="<?php echo base_url(); ?>">HOME</a></li>
+                 <li><a href="<?php echo base_url(); ?>">HOME</a></li>
 				   <?php foreach($catdata as $cat_data){?>
                   <li class="dropdown mega-dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <?php echo strtoupper($cat_data->category_name);  ?> <span class="caret"></span></a>
                     <ul class="dropdown-menu mega-dropdown-menu">
@@ -32,12 +309,7 @@
                       <li class="col-sm-4">
                         <ul>
                           <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $subcat_data->subcategory_name;  ?>"><li class="dropdown-header"><?php echo ucwords($subcat_data->subcategory_name);  ?></li></a>
-                          <!--<li><a href="#">Veg Biryani</a></li>
-                          <li><a href="#">Curries</a></li>-->
-                          <!-- <li class="divider"></li>
-							<li class="dropdown-header">Fonts</li>
-                            <li><a href="#">Glyphicon</a></li>
-							<li><a href="#">Google Fonts</a></li> -->
+                          
                         </ul>
                       </li>
 					<?php } ?>
@@ -51,25 +323,30 @@
                   <li><a href="#">PAGES</a></li>
                   <li> <a href="#">CONTACT US</a> </li>
                 </ul>
-              </div>
+              </div>-->
               
             </div>
           </div>
         </div>
-        <div class="col-md-2 medias">
+		  <div class="medias ">
+			<span>
+				<a data-toggle="modal" data-target="#sin_log" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+			</span>
+			<span><a href="<?php echo base_url('testing');?>"><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
+			<span class=""><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>
+			<div class="sprinkle"></div>
+				
+		  </div>
+		 
+	
+       <!-- <div class="col-md-2 medias">
           <ul class="largenav">
-            <li class="upper-links"><a class="links cust_btn md-trigger" data-modal="modal-8" onClick="registershow()" href="javascript:void(0);">Login/signup</a></li>
-            <!--<li class="upper-links dropdown"><a class="links" href="#">Dropdown</a>
-              <ul class="dropdown-menu">
-                <li class="profile-li"><a class="profile-links" href="#">Link</a></li>
-                <li class="profile-li"><a class="profile-links" href="#">Link</a></li>
-                <li class="profile-li"><a class="profile-links" href="#">Link</a></li>
-              </ul>
-            </li>-->
+            <li class="upper-links"><a class="links cust_btn md-trigger btn btn-warning btn-xs "style="padding:1px 20px; data-modal="modal-8" onClick="registershow()" href="javascript:void(0);">Login/signup</a></li>
+           
           </ul>
-          <div class="classus">
-            <div class="no-js">
-              <h2 class="hm_lcao"><i class="fa fa-map-marker" aria-hidden="true"></i> Location : <?php echo $this->session->userdata('location_name');   ?></h2>
+          <div class="classus mar_t_b5 ">
+            <div class="no-js ">
+              <h2 class="hm_lcao"><span class="btn btn-warning btn-xs" style="padding:1px 25px;"><i class="fa fa-map-marker" aria-hidden="true"></i> Location : </span><?php echo $this->session->userdata('location_name');   ?></h2>
               <div class="fl-nav-links">
                 <div class="input-box">
                   <select name="location_name" id="location_name" class="validate-select sel_are">
@@ -87,7 +364,7 @@
 		   
           <div class="cart largenav" id="cart"> <a class="cart-button dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <svg class="cart-svg " width="16 " height="16 " viewBox="0 0 16 16 ">
             <path d="M15.32 2.405H4.887C3 2.405 2.46.805 2.46.805L2.257.21C2.208.085 2.083 0 1.946 0H.336C.1 0-.064.24.024.46l.644 1.945L3.11 9.767c.047.137.175.23.32.23h8.418l-.493 1.958H3.768l.002.003c-.017 0-.033-.003-.05-.003-1.06 0-1.92.86-1.92 1.92s.86 1.92 1.92 1.92c.99 0 1.805-.75 1.91-1.712l5.55.076c.12.922.91 1.636 1.867 1.636 1.04 0 1.885-.844 1.885-1.885 0-.866-.584-1.593-1.38-1.814l2.423-8.832c.12-.433-.206-.86-.655-.86 " fill="#fff "></path>
-            </svg> Cart <span class="item-number "><?php echo count($cart);   ?></span> </a>
+            </svg> <span class="col_fff">Cart</span> <span class="item-number "><?php echo count($cart);   ?></span> </a>
             <ul class="dropdown-menu notify-drop">
 			
               <div class="notify-drop-title">
@@ -96,11 +373,10 @@
                   <div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="tümü okundu."><i class="fa fa-dot-circle-o"></i></a></div>
                 </div>
               </div>
-              <!-- end notify title --> 
-              <!-- notify content -->
+             
               <div class="drop-content">
 			  <?php
-                     // Create form and send all values in "shopping/update_cart" function.
+                    
                     
                     $i = 1;
 
@@ -130,11 +406,123 @@
             </ul>
           </div>
 		  
-        </div>
+        </div>-->
       </div>
+	  <div class="top-navbar1">
+    <div class="container">
+      <div class=" row">
+		  <ul class="navbar_1"><li><span style="color:#555">Qucik Jump to </span></li>
+			<li><a href="">Grocery</a></li>
+			<li><a href="">Food</a></li>
+			<li><a href="">Fashion</a></li>
+			<li><a href="">Electronics</a></li>
+			<li><a href="">Grocery</a></li>
+			<li><a href="">Food</a></li>
+			<li><a href="">Fashion</a></li>
+			<li><a href="">Electronics</a></li>
+			<li><a href="">Grocery</a></li>
+			<li><a href="">Food</a></li>
+			<li><a href="">Fashion</a></li>
+			
+		  </ul>
+	  </div>
+	 
     </nav>
 	
+	 
 	
+	
+	<!-- Login popup start here -->
+	
+	<!-- Modal -->
+<div class="modal animated  zoomIn" id="sin_log" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="md-content">
+    <div id="log_sign"> 
+      
+      <!-- Nav tabs -->
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#login" aria-controls="home" role="tab" data-toggle="tab"> <i class="fa fa-lock" aria-hidden="true"></i> Login</a></li>
+        <li role="presentation"><a href="#signup" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
+      </ul>
+      
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="login">
+		 <div id="login-response" style="font-size:100%;"></div>
+          <form id="login-form" method="post">
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="text" class="form-control" name="login_email" id="login_email">
+			  <span class="all_errors"><p id="NameErr1" class="Error_msge"></p></span>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Password:</label>
+              <label class="pull-right" id="frgt_pass"><a href="#" class="pull-right" style="text-decoration: none;"><i class="icon-question-sign"></i>&nbsp; <i class="fa fa-question-circle" aria-hidden="true"></i> Forgot Password ?</a> </label>
+              <input type="password" class="form-control" name="login_password" id="login_password">
+			  <span class="all_errors"><p id="PasswordErr5" class="Error_msge"></p></span>
+            </div>
+            <!--<div class="checkbox">
+              <label>
+                <input type="checkbox">
+                Remember me</label>
+            </div>-->
+            <button type="submit" class="btn btn-danger cls pull-left" id="login_submit" name="submit">SIGN IN</button>
+          </form>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="signup">
+		<div id="signup-response" style="font-size:100%;"></div>
+          <form method="post" id="register-form">
+            <div class="form-group">
+              <label for="user name">User Name:</label>
+              <input type="text" name="user_name" id="user_name" class="form-control">
+			  <span class="all_errors"><p id="NameErr" class="Error_msge"></p></span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="text" class="form-control" name="user_email" id="user_email">
+			  <span class="all_errors"><p id="EmailErr" class="Error_msge"></p></span>
+            </div>
+			 <div class="form-group">
+              <label for="phone">Phone No:</label>
+              <input type="text" class="form-control" name="user_phone" id="user_phone">
+			  <span class="all_errors"><p id="PhoneErr" class="Error_msge"></p></span>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" name="user_password" id="user_password">
+			  <span class="all_errors"><p id="PassErr1" class="Error_msge"></p></span>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="chkterms2">
+                By signing up I agree to terms & conditions</label>
+				<span class="all_errors"><p id="TermsErr" class="Error_msge"></p></span>
+            </div>
+            <button type="submit" class="btn btn-danger cls pull-left" id="register_submit" name="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="show_pass" style="display: none;">
+      
+	  <button class="md-close pull-right miy" style="margin-bottom: 15px;">Close me!</button>
+      Forgot Your Password ?
+	  <div id="lost-response" style="font-size:100%;"></div>
+	  <form method="post" id="lost-form">
+      <div class="form-group">
+        <input type="password" class="form-control" name="lost_email" id="lost_email" placeholder="Please Enter Your Email Here">
+      </div>
+      <button type="submit" class="btn btn-danger cls pull-left" id="lost_submit">Submit</button>
+	  </form>
+      <label id="show_login" class="pull-right lgo"><i class="fa fa-user-plus"></i> Login</label>
+    </div>
+  </div> 	
+  </div>
+</div>
+	
+	<!-- end popup start here -->   
 	
 	
 	<!-- Login popup start here -->
@@ -223,6 +611,7 @@
   </div>
 </div>
 <div class="md-overlay"></div>
+
 
 <!-- the overlay element --> 
 
@@ -488,4 +877,9 @@ window.location.href="<?php echo base_url(); ?>";
 		});
 	
 	
+</script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
 </script>

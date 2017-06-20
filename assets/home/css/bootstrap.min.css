@@ -54,7 +54,7 @@ sub, sup {
 	position: relative;
 	font-size: 75%;
 	line-height: 0;
-	vertical-align: baseline
+	/* vertical-align: baseline */
 }
 sup {
 	top: -.5em
@@ -2848,8 +2848,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 .btn-danger {
 	color: #fff;
-	background-color: #d9534f;
-	border-color: #d43f3a
+	background-color: #d44f1a;
+	border-color: #d44f1a
 }
 .btn-danger.focus, .btn-danger:focus {
 	color: #fff;
@@ -3636,7 +3636,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 .navbar-brand {
 	float: left;
 	height: 50px;
-	padding: 15px 15px;
+	padding: 8px 15px;
 	font-size: 18px;
 	line-height: 20px
 }
@@ -3847,7 +3847,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 }
 .navbar-default {
 	background-color: #f8f8f8;
-	border-color: #e7e7e7
+	border-color: #ccc;
 }
 .navbar-default .navbar-brand {
 	color: #777
