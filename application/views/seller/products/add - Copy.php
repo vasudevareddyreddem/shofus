@@ -27,19 +27,13 @@
   <section id="main-content">
     <section class="wrapper">
    
-     <div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-12 m-b-20">
-		<!-- Nav tabs -->
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#tab1" data-toggle="tab">Add Single Product</a></li>
-			<li><a href="#tab2" data-toggle="tab">Add Multipule Products</a></li>
-		</ul>
-		<!-- Tab panels -->
-		<div class="tab-content">
-			<div class="tab-pane fade in active" id="tab1">
-				<div class="panel-body">
-				 <div id="categoryiddoc" class="form-group nopaddingRight "></div>
-				 <form name="addprodustc" id="addprodustc" action="<?php echo base_url(); ?>seller/products/insert/<?php echo $this->uri->segment(4); ?>/<?php echo $this->uri->segment(5); ?>" method="post" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col-lg-12">
+          <section class="panel">
+            <!--<header class="panel-heading"> Basic Forms </header>-->
+			<div><?php echo $this->session->flashdata('message');?></div>
+            <div class="panel-body">
+              <form name="addprodustc" id="addprodustc" action="<?php echo base_url(); ?>seller/products/insert/<?php echo $this->uri->segment(4); ?>/<?php echo $this->uri->segment(5); ?>" method="post" enctype="multipart/form-data">
                 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Select Category</label>
 				  <?php //echo '<pre>';print_r($sub_cat_data);exit;?>
@@ -116,42 +110,15 @@
 				
                 <div class="clearfix"></div>
 				<div style="margin-top: 20px; margin-left: 15px;">
-                <button type="submit" class="btn btn-primary" >Submit</button>
+                <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
                 <button type="submit" class="btn btn-danger" onclick="window.location='<?php echo base_url(); ?>seller/products';return false;">Cancel</button>
 				</div>
               </form>
-				</div>
-			</div>
-			<div class="tab-pane fade" id="tab2">
-				
-				<div class="panel-body">
-				<div>
-					Please Select your Category and Download sample file then filling  the data then again upload your products &nbsp;&nbsp;<a href="" id="documentfilelink"><span id="documentfilename"></span></a>
-				</div>
-				 <div class="form-group nopaddingRight col-md-8 ">
-                  <label for="exampleInputEmail1">Select Category</label>
-				  <?php //echo '<pre>';print_r($sub_cat_data);exit;?>
-				  <select class="form-control " onchange="documentid(this.value);"  id="category_id" name="category_id">
-                    <option value="">Select Category</option>
-					<?php foreach($sub_cat_data as $single_cat_data){ ?>
-					<option value="<?php echo $single_cat_data['documetfile']; ?>"><?php echo $single_cat_data['category_name']; ?></option>
-                   <?php }?>
-                  </select>
-				 </div>
-				<div class="form-group nopaddingRight col-md-8">
-				<form action="<?php echo base_url('seller/products/uploadproducts'); ?>" method="post" enctype="multipart/form-data" >
-				<input type="file" name="categoryes" id="categoryes" class="form-control" >
-				 <button type="submit" class="btn btn-primary" >Submit</button>
-				</form>
-				</div>
-				</div>
-      
-			</div>
-		</div>
-	</div>
-	
-
-		</div>
+			   
+            </div>
+          </section>
+        </div>
+      </div>
  
     </section>
   </section>
@@ -163,14 +130,6 @@
 		
   
   <script type="text/javascript">
-  
-  
-  function documentid(ids){
-	  
-	 var url='<?php echo base_url('assets/sellerfile/category/'); ?>'+ids;
-	 document.getElementById("documentfilename").innerHTML  = ids;
-	 $('a#documentfilelink').attr({target: '_blank', href  : url})
-  }
 		$(document).ready(function()
 		{
 		$("#category_id").change(function()

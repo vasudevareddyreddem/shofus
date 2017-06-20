@@ -18,14 +18,25 @@ class Categories_model extends MY_Model
 
 	}
 
-public function search(){
-
-    $match = $this->input->post('search');
-	$this->db->like('category_name',$match);
-	$query = $this->db->get('categories');
-	return $query->result();
-
-}
+	public function search(){
+		$match = $this->input->post('search');
+		$this->db->like('category_name',$match);
+		$query = $this->db->get('categories');
+		return $query->result();
+	}
+	public function insert_cat_data($data){
+			$this->db->insert('category', $data);
+			return $insert_id = $this->db->insert_id();
+	}
+	public function select_cat_data($catid){
+		$this->db->select('*')->from('category');
+		$this->db->where('category_id',$catid);
+        return $this->db->get()->row_array();
+	}
+	public function update_cat_data($catid,$data){
+		$this->db->where('category_id', $catid);
+		return $this->db->update('category', $data);
+	}
 }
 
 

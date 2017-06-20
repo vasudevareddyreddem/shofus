@@ -246,6 +246,7 @@ class Adddetails extends Seller_adddetails{
 
 
     }
+
 	
 	
 

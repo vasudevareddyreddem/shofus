@@ -68,45 +68,31 @@ public function create()
 
     }
 
-public function insert()
-
-  {   
-
-   
-    if( $this->form_validation->run('category_rules'))
-    {
-
-      $data = array(
-        'category_name' => $this->input->post('category_name'),
-       
-        );
-    //print_r($data); exit;
-    $res=$this->categories_model->insert($data);
-
-        if($res)
-
-            {       
-                    $this->prepare_flashmessage(" Successfully Inserted..", 0);
-                   return redirect('admin/categories');
-
-                
-            } else
-
-            {
-
-                //redirect(site_url('add_blogs_view'));
-
-                $this->prepare_flashmessage("Failed to Insert..", 1);
-
-                return redirect('admin/categories');
-
-            }
-   }
-    else
-    {
-      $this->template->write_view('content', 'admin/categories/add');
-           $this->template->render();
-    }    
+	public function insert()
+	{ 
+		if( $this->form_validation->run('category_rules'))
+		{
+			$post=$this->input->post();
+			move_uploaded_file($_FILES['category_file']['tmp_name'], "assets/sellerfile/category/" . trim($_FILES['category_file']['name']));
+			$data = array(
+				'category_name' => $post['category_name'], 
+				'documetfile' => trim($_FILES['category_file']['name']),    
+				'created_at' => date('Y-m-d H:i:s'),    
+				'updated_at' => date('Y-m-d H:i:s'),
+				
+				);
+			$result=$this->categories_model->insert_cat_data($data);
+			if(count($result)>0){
+				
+				$this->session->set_flashdata('success',"Successfully Inserted");
+				redirect('admin/categories');
+			}
+		}
+		else
+		{
+		  $this->template->write_view('content', 'admin/categories/add');
+			   $this->template->render();
+		}    
 
     }
 
@@ -140,19 +126,8 @@ public function edit()
 
         $id = $this->uri->segment(4); //controller/function/id
 
-        $result=$this->categories_model->get($id);
+        $data['categorydata']=$this->categories_model->select_cat_data($id);
 
-        //print_r($result);
-        //exit;
-
-        $data['categoriesdata'] = null;
-
-        if($result)
-
-        {
-            $data['categoriesdata'] = $result;
-
-        }
 
         $this->template->write_view('content', 'admin/categories/edit',$data);
         $this->template->render();
@@ -162,32 +137,35 @@ public function edit()
 public function update()
 
     {
-
-
-        $id = $this->uri->segment(4);
-        
-      $data = array(
-        'category_name' => $this->input->post('category_name'),
-        
-        );
-          $res=$this->categories_model->update($id,$data);
-
-            if($res)
-
-            {
-                $this->prepare_flashmessage("Successfully Updated..", 0);
-                return redirect('admin/categories');
-
-            }
-
-            else
-            {
-
-               $this->prepare_flashmessage("Failed to Update..", 1);
-                return redirect(base_url('admin/categories'));
-
-            }
-
+		$post=$this->input->post();
+		$cat_data=$this->categories_model->select_cat_data($this->uri->segment(4));
+		//echo '<pre>';print_r($post);
+		//echo '<pre>';print_r($_FILES);
+			if($_FILES['category_file']['name']!=''){
+			$uploadfile=$_FILES['category_file']['name'];
+			unlink("assets/sellerfile/category/".$cat_data['documetfile']);
+			move_uploaded_file($_FILES['category_file']['tmp_name'], "assets/sellerfile/category/" . trim($_FILES['category_file']['name']));
+			}else{
+			$uploadfile=$cat_data['documetfile'];
+			}
+			$data = array(
+				'category_name' => $post['category_name'], 
+				'documetfile' => trim($uploadfile),    
+				'created_at' => date('Y-m-d H:i:s'),    
+				'updated_at' => date('Y-m-d H:i:s'),
+				
+				);
+				//echo '<pre>';print_r($data);exit;
+			$result=$this->categories_model->update_cat_data($this->uri->segment(4),$data);
+			if(count($result)>0){
+				
+				$this->session->set_flashdata('success',"Successfully Updated");
+				redirect('admin/categories');
+			}else{
+			$this->session->set_flashdata('error',"Data not inserting");
+				redirect('admin/categories');	
+			}
+       
 
  }
 

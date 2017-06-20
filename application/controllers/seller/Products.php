@@ -305,15 +305,45 @@ $this->template->write_view('content', 'seller/products/approval_request', $data
 public function returns()
 
 {
-
-  $data['returncatitemdata'] = $this->products_model->returns();
+		$data['returncatitemdata'] = $this->products_model->returns();
 		
 		$this->template->write_view('content', 'seller/products/returns', $data);
 		$this->template->render();
+}
+public function uploadproducts(){
+	echo '<pre>';print_r($_FILES);
+		
+	if((!empty($_FILES["categoryes"])) && ($_FILES['categoryes']['error'] == 0)) {
+				
+				$limitSize	= 100000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
+				$fileName	= basename($_FILES['categoryes']['name']);
+				$fileSize	= $_FILES["categoryes"]["size"];
+				$fileExt	= substr($fileName, strrpos($fileName, '.') + 1);
+				
+				if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
+					
+						include( 'simplexlsx.class.php');
 
-
-
-
+					$getWorksheetName = array();
+					$xlsx = new SimpleXLSX( $_FILES['categoryes']['tmp_name'] );
+					$getWorksheetName = $xlsx->getWorksheetName();
+					//echo $xlsx->sheetsCount();exit;
+					for($j=1;$j <= $xlsx->sheetsCount();$j++){
+						$cnt=$xlsx->sheetsCount()-1;
+						$arry=$xlsx->rows($j);
+						unset($arry[0]);
+						unset($arry[1]);
+					
+						echo "<pre>";print_r($arry);
+						
+					}
+					
+					}
+						//echo '<pre>';print_r($data['errors']);exit;
+					
+						
+					} 
+					echo "hello";exit;
 }	
 
 }
