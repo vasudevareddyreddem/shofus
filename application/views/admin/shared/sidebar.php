@@ -17,9 +17,10 @@
             <li><a class="" href="<?php echo base_url();?>admin/orders/rejected_orders">Rejected Orders</a></li>        
           </ul>
         </li>
-		<li> <a class="" href="<?php echo base_url();?>admin/Categories"> <i class="fa fa-list"></i> <span>Categories</span> </a> </li>
-		<li> <a class="" href="<?php echo base_url();?>admin/subcategories"> <i class="fa fa-list"></i> <span>SubCategories</span> </a> </li>
-		<li> <a class="" href="<?php echo base_url();?>admin/Locations"> <i class="fa fa-location-arrow" aria-hidden="true"></i> <span>Locations</span> </a> </li>
+        <!-- <li> <a class="" href="<?php echo base_url();?>admin/addcategories"> <i class="fa fa-list"></i> <span>Categories</span> </a> </li> -->
+    <li> <a class="" href="<?php echo base_url();?>admin/Categories"> <i class="fa fa-list"></i> <span>Categories</span> </a> </li>
+    <li> <a class="" href="<?php echo base_url();?>admin/subcategories"> <i class="fa fa-list"></i> <span>SubCategories</span> </a> </li>
+    <li> <a class="" href="<?php echo base_url();?>admin/Locations"> <i class="fa fa-location-arrow" aria-hidden="true"></i> <span>Locations</span> </a> </li>
       
           <li> <a class="" href="<?php echo base_url();?>admin/deliveryboy_location"> <i class="fa fa-angle-right"></i> <span>Deliveryboys Locations</span> </a> </li>
           <li> <a class="" href="<?php echo base_url();?>admin/deliveryboy_ratings"> <i class="fa fa-angle-right"></i> <span>Deliveryboys Ratings</span> </a> </li>
@@ -40,9 +41,14 @@
           <li> <a class="" href="<?php echo base_url(); ?>admin/sellers"> <i class="icon_genius"></i> <span>Sellers</span> </a> </li>
         <li> <a class="" href="<?php echo base_url(); ?>admin/cih"> <i class="fa fa-money"></i> <span>CIH Fee</span> </a> </li>
         <li> <a class="" href="<?php echo base_url(); ?>admin/shipping"> <i class="fa fa-credit-card"></i> <span>Shipping Charges</span> </a> </li>
-		<li> <a class="" href="<?php echo base_url(); ?>admin/closingfee"> <i class="fa fa-money"></i> <span>Closing Fee</span> </a> </li>
-	   <li> <a class="" href="<?php echo base_url(); ?>admin/servicefee"> <i class="fa fa-money"></i> <span>Delivery Service Fee</span> </a> </li>
+    <li> <a class="" href="<?php echo base_url(); ?>admin/closingfee"> <i class="fa fa-money"></i> <span>Closing Fee</span> </a> </li>
+     <li> <a class="" href="<?php echo base_url(); ?>admin/servicefee"> <i class="fa fa-money"></i> <span>Delivery Service Fee</span> </a> </li>
         <li> <a class="" href="<?php echo base_url();?>admin/deliveryboy"> <i class="fa fa-spinner"></i> <span>Delivery Boys</span> </a> </li>
+        <li> <a class="" href="<?php echo base_url();?>admin/contactus"> <i class="fa fa-phone"></i> <span>Contact Requests</span> </a> </li>
+        <li> <a class="" href="<?php echo base_url();?>admin/request"> <i class="fa fa-bell-o"></i> <span>Seller Notification</span> </a> </li>
+        <li> <a class="" href="<?php echo base_url();?>admin/promotions"> <i class="fa fa-bell-o"></i> <span>Promotion Requests</span> </a> </li>
+        <li> <a class="" href="<?php echo base_url();?>admin/service"> <i class="fa fa-bell-o"></i> <span>Service Requests</span> </a> </li>
+        <li> <a class="" href="<?php echo base_url();?>admin/sellerads"> <i class="fa fa-angle-right"></i> <span>Service Ads</span> </a> </li>
 
        <!-- <li class="sub-menu"> <a href="javascript:;" class=""> <i class="fa fa-cutlery" aria-hidden="true"></i> <span>Food</span> <span class="menu-arrow arrow_carrot-right"></span> </a>
           <ul class="sub">
