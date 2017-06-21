@@ -101,23 +101,13 @@ $this->db->select('*');
 }	
 	
 public function getrecentproducts()	
-	
-	{
-	
-	$this->db->select('*');
-	$this->db->from('products');
-	$this->db->where('item_status', 1);
-	$this->db->order_by("item_id", "desc");
-		
-    	$this->db->limit(10);
-		$query=$this->db->get();
-		return $query->result();
-		
-		
-		
-		
-		
-	}
+{
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status', 1);
+		$this->db->order_by("item_id", "desc");
+		$this->db->limit(10);
+		return $this->db->get()->result_array();
+}
 	
 	
 public function getsubcatdata($cat_id)

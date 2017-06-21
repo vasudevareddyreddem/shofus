@@ -632,18 +632,20 @@
     
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
+		  
+		  <?php //echo '<pre>';print_r($recentproducts);exit; ?>
       <?php foreach($recentproducts as $recent_products)  {    ?>
             <div class="item">
               <div class="item-inner">
                 <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"> <img src="<?php echo base_url();?>uploads/products/<?php  echo $recent_products->item_image; ?>" style="width : 214px; height : 214px" alt=""></a> </div>
+                  <div class="item-img-info"><a href="#" class="product-image"> <img src="<?php echo base_url();?>uploads/products/<?php  echo $recent_products['item_image']; ?>" style="width : 214px; height : 214px" alt=""></a> </div>
                 </div>
                 <div class="item-info">
                   <div class="info-inner">
-                    <div class="item-title"><a href="#"><?php echo $recent_products->item_name;  ?></a> </div>
+                    <div class="item-title"><a href="#"><?php echo $recent_products['item_name'];  ?></a> </div>
                     <div class="item-content">
                       <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">RS. <?php echo $recent_products->item_cost;  ?></span> </span> </div>
+                        <div class="price-box"><span class="regular-price" ><span class="price">RS. <?php echo $recent_products['item_cost'];  ?></span> </span> </div>
                       </div>
                       <div class="add_cart">
                         <button class="button btn-cart" type="button"><span>More Details</span></button>
@@ -669,17 +671,17 @@
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
       <?php foreach($recentproducts as $recent_products)  {    ?>
-            <div class="item">
+               <div class="item">
               <div class="item-inner">
                 <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"> <img src="<?php echo base_url();?>uploads/products/<?php  echo $recent_products->item_image; ?>" style="width : 214px; height : 214px" alt=""></a> </div>
+                  <div class="item-img-info"><a href="#" class="product-image"> <img src="<?php echo base_url();?>uploads/products/<?php  echo $recent_products['item_image']; ?>" style="width : 214px; height : 214px" alt=""></a> </div>
                 </div>
                 <div class="item-info">
                   <div class="info-inner">
-                    <div class="item-title"><a href="#"><?php echo $recent_products->item_name;  ?></a> </div>
+                    <div class="item-title"><a href="#"><?php echo $recent_products['item_name'];  ?></a> </div>
                     <div class="item-content">
                       <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">RS. <?php echo $recent_products->item_cost;  ?></span> </span> </div>
+                        <div class="price-box"><span class="regular-price" ><span class="price">RS. <?php echo $recent_products['item_cost'];  ?></span> </span> </div>
                       </div>
                       <div class="add_cart">
                         <button class="button btn-cart" type="button"><span>More Details</span></button>
