@@ -462,8 +462,36 @@
 		<div class="row">
 		<div class="col-md-3" style="position: fixed;">
 		<div class="panel panel-primary">
-			<div class="panel-heading ">Payment</div>
-			<div class="panel-body">Panel Content</div>
+			<div class="panel-heading ">Price details</div>
+			<div class="panel-body">
+				<div class="pull-left">
+					Price (8 item)
+				</div>
+				<div class="pull-right">
+					<i class="fa fa-inr" aria-hidden="true"></i>4800
+				</div>
+				
+				<div class="clearfix"></div>
+				<div class="mar_t20">
+				<div class="pull-left">
+					Delivery Charges
+				</div>
+				<div class="pull-right">
+					<i class="fa fa-inr" aria-hidden="true"></i>84
+				</div>
+				</div>
+				<div class="clearfix"></div>
+				<hr>
+				<div class="mar_t20">
+				<div class="pull-left">
+					<b>Amount Payable</b>
+				</div>
+				<div class="pull-right">
+					<i class="fa fa-inr" aria-hidden="true"></i><b>4884</b>
+				</div>
+				</div>
+				
+			</div>
 		</div>
 		</div>
 		
@@ -649,7 +677,7 @@
 								<div class="panel-heading" role="tab" id="headingTwo">
 									 <h4 class="panel-title">
 								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-								  PhonePe / Wallet
+								   Wallet
 								</a>
 							  </h4>
 
