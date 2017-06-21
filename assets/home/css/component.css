@@ -696,11 +696,11 @@ transform: translateZ(-200px);
 	background: none repeat scroll 0 0 #88be4c;
 	color: #fff !important;
 }
-#login, .form-group, label {
-	font-size: 13px;
-	font-weight: normal;
-	text-align: left;
-}
+/* #login, .form-group, label { */
+	/* font-size: 13px; */
+	/* font-weight: normal; */
+	/* text-align: left; */
+/* } */
 #log_sign, .nav.nav-tabs {
 	margin: 0 0 12px;
 }

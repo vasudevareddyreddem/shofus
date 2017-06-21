@@ -4081,23 +4081,16 @@ a,
   background-color: #eee;
 }
 
-.form-control {
-  border-radius: 0;
-  -webkit-transition: none;
-  -o-transition: none;
-  transition: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
+
 .form-control:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
-input[type=checkbox],
-input[type=radio] {
-  display: none;
-}
+/* input[type=checkbox], */
+/* input[type=radio] { */
+  /* display: none; */
+/* } */
 input[type=checkbox] + span::before,
 input[type=radio] + span::before {
   font-family: 'fontAwesome';
@@ -5490,3 +5483,114 @@ ul .bzoom_small_thumbs li,
 .z_ind{
 	z-index:1024!important;
 }
+ /* steps css for finnal start */
+
+.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tab {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+}
+span.round-tab i{
+    color:#555555;
+	line-height:60px;
+}
+.wizard li.active span.round-tab {
+    background: #fff;
+    border: 2px solid #5bc0de;
+    
+}
+.wizard li.active span.round-tab i{
+    color: #5bc0de;
+}
+
+span.round-tab:hover {
+    color: #333;
+    border: 2px solid #333;
+}
+
+.wizard .nav-tabs > li {
+    width: 30%;
+}
+
+.wizard li:after {
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 5px solid transparent;
+    border-bottom-color: #5bc0de;
+    transition: 0.1s ease-in-out;
+}
+
+.wizard li.active:after {
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 1;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 10px solid transparent;
+    border-bottom-color: #5bc0de;
+}
+
+.wizard .nav-tabs > li a {
+    width: 70px;
+    height: 70px;
+    margin: 6px auto;
+    border-radius: 100%;
+    padding: 0;
+}
+
+    .wizard .nav-tabs > li a:hover {
+        background: transparent;
+    }
+
+.wizard .tab-pane {
+    position: relative;
+    padding-top: 50px;
+}
+
+.wizard h3 {
+    margin-top: 0;
+}
+.site_color{
+	background-color:#45b1b5;
+	color:#fff;
+}
+.mar_l20{
+	margin-left:20px;
+}
+.site_col{
+	color:#45b1b5;
+	font-size:15px;
+}
+.site_co{
+	color:#45b1b5;
+}
+.inpu_pad{
+	margin:5px 0px;
+}
+.pad_l15{
+	padding-left:15px;
+}
+
+ /* steps css for finnal end */
+ 
