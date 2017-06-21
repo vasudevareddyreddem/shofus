@@ -139,8 +139,9 @@
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p1.jpg">
+				   
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
@@ -154,7 +155,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div class="pull-left" >$13.50 
 					<span class="label-tags"><span class="label label-default">-10%</span></span>
@@ -181,7 +182,7 @@
                <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p2.jpg">
                 </a>
                 <div class="tags">
@@ -196,7 +197,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div class="pull-left" >$13.50 
 					<span class="label-tags"><span class="label label-default">-10%</span></span>
@@ -225,7 +226,7 @@
                 <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p3.jpg">
                 </a>
                 <div class="tags">
@@ -237,7 +238,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">Levi'sNavy Blue Printed Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">Levi'sNavy Blue Printed Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50</div>
               </div>
@@ -260,7 +261,7 @@
            <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail" src="<?php echo base_url(); ?>assets/home/images/p4.jpg">
                 </a>
                 <div class="tags">
@@ -272,7 +273,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50 <span class="label-tags"><span class="label label-success arrowed">-10%</span></span></div>
                 <span class="price-old">$15.00</span>
@@ -296,7 +297,7 @@
                 <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p5.jpg">
                 </a>
                 <div class="tags">
@@ -311,7 +312,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div class="pull-left" >$13.50 
 					<span class="label-tags"><span class="label label-default">-10%</span></span>
@@ -340,7 +341,7 @@
                 <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail" src="<?php echo base_url(); ?>assets/home/images/p6.jpg">
                 </a>
                 <div class="tags">
@@ -352,7 +353,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50 <span class="label-tags"><span class="label label-success arrowed">-10%</span></span></div>
                 <span class="price-old">$15.00</span>
@@ -386,7 +387,7 @@
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p7.jpg">
                 </a>
                 <div class="tags">
@@ -401,7 +402,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div class="pull-left" >$13.50 
 					<span class="label-tags"><span class="label label-default">-10%</span></span>
@@ -428,7 +429,7 @@
                <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p8.jpg">
                 </a>
                 <div class="tags">
@@ -443,7 +444,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div class="pull-left" >$13.50 
 					<span class="label-tags"><span class="label label-default">-10%</span></span>
@@ -472,7 +473,7 @@
                 <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p9.jpg">
                 </a>
                 <div class="tags">
@@ -484,7 +485,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">Levi'sNavy Blue Printed Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">Levi'sNavy Blue Printed Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50</div>
               </div>
@@ -507,7 +508,7 @@
            <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail" src="<?php echo base_url(); ?>assets/home/images/p10.jpg">
                 </a>
                 <div class="tags">
@@ -519,7 +520,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50 <span class="label-tags"><span class="label label-success arrowed">-10%</span></span></div>
                 <span class="price-old">$15.00</span>
@@ -543,7 +544,7 @@
                 <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p11.jpg">
                 </a>
                 <div class="tags">
@@ -558,7 +559,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div class="pull-left" >$13.50 
 					<span class="label-tags"><span class="label label-default">-10%</span></span>
@@ -587,7 +588,7 @@
                 <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('testing');?>">
                    <img class="thumbnail" src="<?php echo base_url(); ?>assets/home/images/p1.jpg">
                 </a>
                 <div class="tags">
@@ -599,7 +600,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50 <span class="label-tags"><span class="label label-success arrowed">-10%</span></span></div>
                 <span class="price-old">$15.00</span>

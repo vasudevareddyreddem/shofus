@@ -32,7 +32,12 @@
 <header>
 
 <!--wrapper start here -->
-
+<style>
+	.carousel .item {
+    height: 335px;
+    background-color: #555;
+}
+</style>
 <div class="sidebar_right" >
 			
 			<ul style="padding:0 ">
@@ -633,8 +638,7 @@
           <div class="col-sm-4 col-md-3 box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  ">
-					<div class=" row">
-						<div class="container">
+				
 						<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
 							<div class='carousel-outer'>
 								<!-- me art lab slider -->
@@ -658,8 +662,6 @@
 									<div class='item'>
 										<img src='<?php echo base_url(); ?>assets/home/images/p7-1.jpg' alt='' data-zoom-image="<?php echo base_url(); ?>assets/home/images/p7-1.jpg" id="zoom_05"/>
 									</div>
-								   
-						 
 								</div>
 									
 								<!-- sag sol -->
@@ -670,33 +672,14 @@
 									<span class='glyphicon glyphicon-chevron-right'></span>
 								</a>
 							</div>
-							
-							<!-- thumb -->
-							<ol class='carousel-indicators mCustomScrollbar meartlab'>
-								<li data-target='#carousel-custom' data-slide-to='0' class='active'><img src='<?php echo base_url(); ?>assets/home/images/p3-1.jpg' alt='' /></li>
-								<li data-target='#carousel-custom' data-slide-to='1'><img src='<?php echo base_url(); ?>assets/home/images/p2-1.jpg' alt='' /></li>
-								<li data-target='#carousel-custom' data-slide-to='2'><img src='<?php echo base_url(); ?>assets/home/images/p4-1.jpg' alt='' /></li>
-								<li data-target='#carousel-custom' data-slide-to='3'><img src='<?php echo base_url(); ?>assets/home/images/p5-1.jpg' alt='' /></li>
-								<li data-target='#carousel-custom' data-slide-to='4'><img src='<?php echo base_url(); ?>assets/home/images/p6-1.jpg' alt='' /></li>
-								<li data-target='#carousel-custom' data-slide-to='5'><img src='<?php echo base_url(); ?>assets/home/images/p7-1.jpg' alt='' /></li>
-
-							</ol>
 						</div>
-						</div>
-					</div>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
-                </div>
-                <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
-                </div>
                 <div class="option">
                   <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
                   <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('singleproduct');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div class="pull-left" >$13.50 
 					<span class="label-tags"><span class="label label-default">-10%</span></span>
@@ -724,7 +707,7 @@
           <div class="col-sm-4 col-md-3 box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('singleproduct');?>">
                    <img src="<?php echo base_url(); ?>assets/home/images/p2-1.jpg">
                 </a>
                 <div class="tags tags-left">
@@ -736,7 +719,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">CelioKhaki Printed Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('singleproduct');?>">CelioKhaki Printed Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50 <span class="label-tags"><span class="label label-primary">-10%</span></span></div>
                 <span class="price-old">$15.00</span>
@@ -754,7 +737,7 @@
           <div class="col-sm-4 col-md-3 box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('singleproduct');?>">
                    <img src="<?php echo base_url(); ?>assets/home/images/p3-1.jpg">
                 </a>
                 <div class="tags">
@@ -767,7 +750,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">CelioOff White Printed Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('singleproduct');?>">CelioOff White Printed Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50</div>
               </div>
@@ -784,7 +767,7 @@
           <div class="col-sm-4 col-md-3 hidden-sm box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('singleproduct');?>">
                    <img src="<?php echo base_url(); ?>assets/home/images/p4-1.jpg">
                 </a>
                 <div class="tags">
@@ -796,7 +779,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">Levi'sNavy Blue Printed Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('singleproduct');?>">Levi'sNavy Blue Printed Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50</div>
               </div>
@@ -814,7 +797,7 @@
           <div class="col-sm-4 col-md-3 box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('singleproduct');?>">
                    <img src="<?php echo base_url(); ?>assets/home/images/p5-1.jpg">
                 </a>
                 <div class="tags tags-left">
@@ -826,7 +809,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">IncultAcid Wash Raglan Crew Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('singleproduct');?>">IncultAcid Wash Raglan Crew Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50 <span class="label-tags"><span class="label label-danger arrowed">-10%</span></span></div>
                 <span class="price-old">$15.00</span>
@@ -844,7 +827,7 @@
           <div class="col-sm-4 col-md-3 box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('singleproduct');?>">
                    <img src="<?php echo base_url(); ?>assets/home/images/p6-1.jpg">
                 </a>
                 <div class="tags">
@@ -856,7 +839,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('singleproduct');?>">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50 <span class="label-tags"><span class="label label-success arrowed">-10%</span></span></div>
                 <span class="price-old">$15.00</span>
@@ -874,7 +857,7 @@
           <div class="col-sm-4 col-md-3 box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('singleproduct');?>">
                    <img src="<?php echo base_url(); ?>assets/home/images/p7-1.jpg">
                 </a>
                 <div class="tags">
@@ -886,7 +869,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">ElaboradoBrown Printed Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('singleproduct');?>">ElaboradoBrown Printed Round Neck T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50 <span class="label-tags"><span class="label label-primary arrowed">-10%</span></span></div>
                 <span class="price-old">$15.00</span>
@@ -904,7 +887,7 @@
           <div class="col-sm-4 col-md-3 hidden-sm box-product-outer">
             <div class="box-product">
               <div class="img-wrapper img_hover">
-                <a href="detail.html">
+                <a href="<?php echo base_url('singleproduct');?>">
                    <img src="<?php echo base_url(); ?>assets/home/images/polo1.jpg">
                 </a>
                 <div class="tags">
@@ -916,7 +899,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="detail.html">IncultGeo Print Polo T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('singleproduct');?>">IncultGeo Print Polo T-Shirt</a></h6>
               <div class="price">
                 <div>$13.50 <span class="label-tags"><span class="label label-default arrowed">-10%</span></span></div>
                 <span class="price-old">$15.00</span>
