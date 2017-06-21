@@ -16,26 +16,19 @@ class Home extends Front_Controller {
 public function index()
 
  {
-	     $data['locationdata'] = $this->home_model->getlocations();
-		 $data['recentproducts'] = $this->home_model->getrecentproducts();
-$this->template->write_view('content', 'home/index',$data);
-		$this->template->render();
-	
-
-		
-
- }
+	$data['locationdata'] = $this->home_model->getlocations();
+	$data['recentproducts'] = $this->home_model->getrecentproducts();
+	//echo '<pre>';print_r($data);exit;
+	$this->template->write_view('content', 'home/index',$data);
+	$this->template->render();
+}
  
  public function addtocart()
 
  {
 		 
-$this->template->write_view('content', 'home/cart_view');
-		$this->template->render();
-	
-
-		
-
+	$this->template->write_view('content', 'home/cart_view');
+	$this->template->render();
  }
  
  public function shipping_address()
