@@ -19,7 +19,7 @@ class Adddetails extends Seller_adddetails{
 
 	 public function index() {
 		$data['sellerdata']=$this->adddetails_model->get_seller_data($this->session->userdata('seller_id'));		 
-	 
+	// echo '<pre>';print_r($data);exit;
 	  $this->load->view('seller/layouts/header');
 	  $this->load->view('seller/adddetails/index',$data);
 	}
@@ -27,12 +27,45 @@ class Adddetails extends Seller_adddetails{
   //store 
 	public function updatebasicdetails()
 	{  
-		$data = array(
+		
+		$post=$this->input->post();
+		
+		$editform=$this->adddetails_model->check_email_editing($this->session->userdata('seller_id'));
+		if($editform['seller_email']==''){
+				$checkemail=$this->adddetails_model->check_email_exits($post['seller_email']);
+				if(count($checkemail)==0){
+				$data = array(
 
+				'seller_id' => $this->session->userdata('seller_id'),
+				'seller_name' => $post['seller_name'],
+				'seller_email' => $post['seller_email'],
+				//'seller_address' => $this->input->post('seller_address'),
+				'created_at'  => date('Y-m-d H:i:s'),
+				'updated_at'  => date('Y-m-d H:i:s')
+
+				);
+				$res=$this->adddetails_model->insertseller_basic($data);
+				if(count($res)>0)
+				{
+				$this->session->set_flashdata('sucess','personal data successfully added');
+				redirect('seller/adddetails/categories');
+				}else{
+
+				$this->session->set_flashdata('error','Some error are occured.');
+				redirect('seller/adddetails/updatebasicdetails'); 
+				}
+
+				}else{
+				$this->session->set_flashdata('error','Email Id Aready Exits. Please use another Email Id');
+				redirect('seller/adddetails'); 
+				}
+			
+		}else{
+		$data = array(
 		'seller_id' => $this->session->userdata('seller_id'),
-		'seller_name' => $this->input->post('seller_name'),
-		'seller_email' => $this->input->post('seller_email'),
-		'seller_address' => $this->input->post('seller_address'),
+		'seller_name' => $post['seller_name'],
+		'seller_email' => $post['seller_email'],
+		//'seller_address' => $this->input->post('seller_address'),
 		'created_at'  => date('Y-m-d H:i:s'),
 		'updated_at'  => date('Y-m-d H:i:s')
 
@@ -41,14 +74,14 @@ class Adddetails extends Seller_adddetails{
 		if(count($res)>0)
 		  {
 			$this->session->set_flashdata('sucess','personal data successfully added');
-			return redirect('seller/adddetails/categories');
+			redirect('seller/adddetails/categories');
 		  }else{
 			  
 			 $this->session->set_flashdata('error','Some error are occured.');
-			return redirect('seller/adddetails/updatebasicdetails'); 
+			redirect('seller/adddetails/updatebasicdetails'); 
 		  }
-
-
+		}
+		
     }
 
 	public function categories() {	 

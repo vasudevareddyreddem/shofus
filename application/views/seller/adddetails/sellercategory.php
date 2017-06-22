@@ -111,7 +111,6 @@ $(document).ready(function(){
       
            </div>
 <div>
-             			  <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails'); ?>">Back</a>
 
 			 <input type="submit" class="btn btn-primary " value="Next">
               </form>
