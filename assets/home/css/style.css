@@ -3462,7 +3462,7 @@ table#cart tfoot td .btn {
 /* side bar start */
 .sidebar_right{
 	position:fixed;
-	 top:114px; 
+	 top:132px; 
 	right: -96px;
 	z-index:1024;
 	    background: rgba(255,255,255, 0.8);
