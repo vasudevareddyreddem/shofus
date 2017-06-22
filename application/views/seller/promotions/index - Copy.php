@@ -1,10 +1,9 @@
+ 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 <script src=" https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
 <style>
 tfoot input {
         width: 100%;
@@ -36,7 +35,6 @@ tfoot input {
 	</section>
   <section class="content ">
   <div class="faq_main">
-  	
    <?php if(!empty($catitemdata))  { ?>
     <div class="container" style="width:100%">
 	
@@ -45,11 +43,7 @@ tfoot input {
 	 <div><?php echo $this->session->flashdata('message');?></div>
       <div class="faq">
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
- <?php if($this->session->flashdata('success')): ?>
-					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('success');?></div>	
-					<?php endif; ?>
+
 	   <?php  foreach($catitemdata1 as $catitem_data1 )  {  ?> 
 		
 		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
@@ -72,18 +66,15 @@ tfoot input {
                 </div>
                 <div id="collapseOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
 		
-	<form onsubmit="return validations<?php echo $subcategory->subcategory_id;?>();" id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
+	<form id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
 		<table id="example<?php echo $subcategory->subcategory_id;  ?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>"/>
-				</th><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>" onclick="assigntoconfirm<?php echo $subcategory->subcategory_id;?>();"  type="button">Assign</a>
-				<th>Item Name</th>
-                <th>Item Code</th>
-                <th>Item Cost</th>
-                <th>Affer Amount</th>
-                <th>Offer combo Item Name</th>
-                <th>Offer expairydate and Time</th>
+				</th><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>" onclick="assigntoconfirm<?php echo $subcategory->subcategory_id;?>();" type="button">Assign</a>
+				<th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
                 
             </tr>
         </thead>
@@ -95,13 +86,10 @@ tfoot input {
 						
 						?>
 					<tr>
-						<td><input value="<?php echo $item_data->item_id; ?>" type="checkbox" id="cat_id[]" name="cat_id[]" ></td>
+						<td><input value="<?php echo $item_data->item_id; ?>"  type="checkbox" name="cat_id[]" ></td>
 						<td><?php echo $item_data->item_name;?></td>
 						<td><?php echo $item_data->item_code;?></td>
-						<td><?php echo $item_data->item_cost;?></td>
-						<td><?php echo $item_data->offer_amount;?></td>
-						<td><?php echo $item_data->offer_combo_item_id;?></td>
-						<td><?php echo $item_data->offer_expairdate;?>,&nbsp;<?php echo $item_data->offer_time;?></td>
+						<td><?php echo $item_data->item_description;?></td>
 
 					</tr>
 				  <?php $k++; } ?>
@@ -116,56 +104,20 @@ tfoot input {
         </div>
         <div class="modal-body">
 		<div class="form-group">
-		<label class="control-label">Select your offer type: </label>                      
-		<select class="form-control" id="offertype" onchange="fetoffertype<?php echo $subcategory->subcategory_id;  ?>(this.value);" name="offertype">	
+		<label class="control-label">Assign To: </label>                      
+		<select class="form-control" id="offertype" name="offertype">	
 
-			<option value="">Select</option>
-			<option value="1">Listing Discount</option>
-			<option value="2">Cart Discount</option>
-			<option value="3">Flat Price Offer</option>
-			<option value="4">Combo Disoucnt</option>
-		</select>
-		<span style="color:red" id="offertypeerror"></span>
-		
+			<option value="0">Select Assign To</option>
+			<option value="1">Select Assign To</option>
+			<option value="2">Select Assign To</option>
+			<option value="3">Select Assign To</option>
+		</select>					
 		</div>
-		<div id="ComboDisoucnt<?php echo $subcategory->subcategory_id;?>" style="display:none;">
 		<div class="form-group">
-		<label class="control-label">Select your Products: </label>                      
-		<select class="form-control"   id="combo" name="combo">
-				<option value="">Select product</option>
-				<?php foreach($seller_prducts as $cat_data){ ?>
-				<option value="<?php echo $cat_data['item_id']; ?>"><?php echo $cat_data['item_name']; ?></option>                  
-				<?php }?>
-		</select>				
+		<label class="control-label">Assign To: </label>                      
+		<input type="text" class="form-control"  name="offeramount" id="offeramount" >					
 		</div>
-		</div>
-		<div id="offervalue<?php echo $subcategory->subcategory_id;?>" style="display:none;">
-		<div class="form-group">
-		<label class="control-label">Enter your  offer value: </label>                      
-		<input type="text" class="form-control"  name="offeramount" id="offeramount">					
-		</div>
-		</div>
-	
-		<div class="row">
-			<div class="form-group">
-			<label class="control-label">Enter your offer expair date and time: </label> 
-			</div>
-			<div class="col-md-6">			
-			<input type="text" class="form-control" required="required"  name="expairdate" id="datepicker<?php echo $subcategory->subcategory_id;?>" >					
-			</div>		
-			<div class="col-md-6">		
-			<select class="form-control" required="required" id="offertime" name ="offertime">
-			<option value="">select</option>
-			<?php $time = array('12:00 am','12:30am','01:00am','01:30am','02:00am','02:30am','03:00am','03:30am','04:00am','04:30am','05:00am','05:30am','06:00am','06:30am','07:00am','07:30am','08:00am','08:30am','09:00am','09:30am','10:00am','10:30am','11:00am','11:30am','12:00pm','12:30pm','01:00pm','01:30pm','02:00pm','02:30pm','03:00pm','03:30pm','04:00pm','04:30pm','05:00pm','05:30pm','06:00pm','06:30pm','07:00pm','07:30pm','08:00pm','08:30pm','09:00pm','09:30pm','10:00pm','10:30pm','11:00pm','11:30pm');?>
-			<?php foreach($time as $status): ?>
-			<option value = "<?php echo $status;?>"><?php echo $status;?></option>
-			<?php endforeach; ?>
-			</select>	
-			</div>	
-
-		</div>		
-	
-		
+        </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-default">Submit</button>
         </div>
@@ -174,26 +126,9 @@ tfoot input {
   </div>
    </form>
 	<script type="text/javascript">
-	$(function() {
-		$("#datepicker<?php echo $subcategory->subcategory_id;?>" ).datepicker({
-			      changeMonth: true,
-					changeYear: true,
-					minDate: -0,
-			autoclose: true
-			});
-		});
-	function fetoffertype<?php echo $subcategory->subcategory_id;?>(id){
-		
-		var offertype=id;
-		if(offertype==4){
-			$('#offervalue<?php echo $subcategory->subcategory_id;?>').hide();
-			$('#ComboDisoucnt<?php echo $subcategory->subcategory_id;?>').show();
-		}else{
-			$('#offervalue<?php echo $subcategory->subcategory_id;?>').show();
-			$('#ComboDisoucnt<?php echo $subcategory->subcategory_id;?>').hide();
-		}
+	 function assigntoconfirm<?php echo $subcategory->subcategory_id;?>(){
+	   $('#offerspopup<?php echo $subcategory->subcategory_id;?>').modal('show');
 	}
-
 	$(document).ready(function (){
    // Array holding selected row IDs
    var rows_selected = [];
@@ -203,7 +138,9 @@ tfoot input {
          'searchable':false,
          'orderable':false,
          'className': 'dt-body-center',
-      
+         'render': function (data, type, full, meta){
+             return '<input type="checkbox">';
+         }
       }],
       'order': [1, 'DESC'],
       'rowCallback': function(row, data, dataIndex){
@@ -224,12 +161,14 @@ tfoot input {
  
       // Get row data
       var data = table.row($row).data();
+	 alert(data); 
       // Get row ID
       var rowId = data[0];
 	
 
       // Determine whether row ID is in the list of selected row IDs 
       var index = $.inArray(rowId, rows_selected);
+	  alert(index);return false;
 
       // If checkbox is checked and row ID is not in list of selected row IDs
       if(this.checked && index === -1){
@@ -277,7 +216,7 @@ tfoot input {
    });
     
    // Handle form submission event 
-  $('#frm-example<?php echo $subcategory->subcategory_id;  ?>').on('submit', function(e){
+   $('#frm-example<?php echo $subcategory->subcategory_id;  ?>').on('submit', function(e){
       var form = this;
 
       // Iterate over all selected checkboxes
@@ -297,14 +236,6 @@ tfoot input {
       $('#example<?php echo $subcategory->subcategory_id;  ?>-console').text($(form).serialize()); 
       console.log("Form submission", $(form).serialize()); 
       var $data = $(form).serialize();
-	  var offertpes=document.getElementById('offertype').value;
-	  
-	  if(offertpes==''){
-		jQuery('#offertypeerror').html('Plase select an Offer Type');
- 
-	  }
-	  alert(offertpes);
-	  alert('hello1');return false;
 	  if(jQuery("#offertype").val()!=''){
       jQuery.ajax({
 			url: "<?php echo base_url('/seller/promotions/storepromotions');?>",
@@ -313,9 +244,10 @@ tfoot input {
 			format:"html",
 					success:function(data){
 					if(data.msg=1){
-
-					location.reload();
-						}
+						
+						return false;
+							//window.location.reload();
+							}
 					}
         });
 	  }
@@ -380,7 +312,22 @@ function updateDataTableSelectAllCtrl(table){
       }
    }
 }
-
+  function sibcategoryproductlist(id){
+	  $("#containerhigh").empty();
+	  jQuery.ajax({
+				url: "<?php echo site_url('seller/promotions/storepromotions');?>",
+				type: 'post',
+				data: {
+				cat_id: id,
+				},
+				dataType: 'html',
+				success: function (data) {
+					//alert(data);return false;
+					$("#containerhigh").append(data);
+				}
+			});
+  }
+  
 
   function addtabactives(val)
 {
