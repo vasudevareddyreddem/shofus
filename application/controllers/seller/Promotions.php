@@ -52,7 +52,7 @@ class Promotions extends Admin_Controller {
 			//echo $offer_price;
 			//echo '--';
 			//echo $offer_price_pertange;
-			//echo '<pre>';print_r($productprice);exit;
+			//	echo '<pre>';print_r($productprice);exit;
 			$data=array('offer_percentage'=>$post['offeramount'],'offer_amount'=>$offer_price_pertange,'offer_combo_item_id'=>$post['combo'],'offer_type'=>$post['offertype'],'offer_time'=>$post['offertime'],'offer_expairdate'=>$post['expairdate']);
 			//echo '<pre>';print_r($data);
 			$update=$this->Promotions_model->add_offer_to_products($cat_ida,$data);

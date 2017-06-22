@@ -66,18 +66,18 @@ tfoot input {
 			$nospace = str_replace(' ','',$space);
 			
 			?>
-              <div class="panel panel-default mar_t10">
+              <div style="padding:10px;" class="panel panel-default mar_t10">
                 <div class="panel-heading" role="tab" id="headingOne<?php echo $nospace;  ?>">
                   <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" onclick="sibcategoryproductlist(<?php echo $subcategory->subcategory_id;  ?>);" href="#collapseOne<?php echo $nospace;  ?>" aria-expanded="true" aria-controls="collapseOne<?php echo $nospace;  ?>"> <i class="more-less glyphicon glyphicon-plus"></i> <?php echo $subcategory->subcategory_name; ?> </a> </h4>
                 </div>
                 <div id="collapseOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
 		
-	<form onsubmit="return validations<?php echo $subcategory->subcategory_id;?>();" id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
+	<form  id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
 		<table id="example<?php echo $subcategory->subcategory_id;  ?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>"/>
-				</th><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>" onclick="assigntoconfirm<?php echo $subcategory->subcategory_id;?>();"  type="button">Assign</a>
+                <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">
+				</th><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Select All</a>
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
@@ -117,7 +117,7 @@ tfoot input {
         <div class="modal-body">
 		<div class="form-group">
 		<label class="control-label">Select your offer type: </label>                      
-		<select class="form-control" id="offertype" onchange="fetoffertype<?php echo $subcategory->subcategory_id;  ?>(this.value);" name="offertype">	
+		<select class="form-control" id="offertype<?php echo $subcategory->subcategory_id;?>" onchange="fetoffertype<?php echo $subcategory->subcategory_id;  ?>(this.value);" name="offertype">	
 
 			<option value="">Select</option>
 			<option value="1">Listing Discount</option>
@@ -125,42 +125,47 @@ tfoot input {
 			<option value="3">Flat Price Offer</option>
 			<option value="4">Combo Disoucnt</option>
 		</select>
-		<span style="color:red" id="offertypeerror"></span>
+		<span style="color:red" id="offertypeerror<?php echo $subcategory->subcategory_id;?>"></span>
 		
 		</div>
 		<div id="ComboDisoucnt<?php echo $subcategory->subcategory_id;?>" style="display:none;">
 		<div class="form-group">
 		<label class="control-label">Select your Products: </label>                      
-		<select class="form-control"   id="combo" name="combo">
+		<select class="form-control"   id="combo<?php echo $subcategory->subcategory_id;?>" name="combo">
 				<option value="">Select product</option>
 				<?php foreach($seller_prducts as $cat_data){ ?>
 				<option value="<?php echo $cat_data['item_id']; ?>"><?php echo $cat_data['item_name']; ?></option>                  
 				<?php }?>
-		</select>				
+		</select>
+		<span style="color:red" id="producttypeerror<?php echo $subcategory->subcategory_id;?>"></span>		
 		</div>
 		</div>
 		<div id="offervalue<?php echo $subcategory->subcategory_id;?>" style="display:none;">
 		<div class="form-group">
 		<label class="control-label">Enter your  offer value: </label>                      
-		<input type="text" class="form-control"  name="offeramount" id="offeramount">					
-		</div>
+		<input type="text" class="form-control"  name="offeramount" id="offeramount<?php echo $subcategory->subcategory_id;?>">					
+		</div><span style="color:red" id="offeramounterror<?php echo $subcategory->subcategory_id;?>"></span>
 		</div>
 	
 		<div class="row">
 			<div class="form-group">
-			<label class="control-label">Enter your offer expair date and time: </label> 
+			<label class="control-label ">Enter your offer expair date and time: </label> 
 			</div>
 			<div class="col-md-6">			
-			<input type="text" class="form-control" required="required"  name="expairdate" id="datepicker<?php echo $subcategory->subcategory_id;?>" >					
-			</div>		
+			<input type="text" class="form-control"   name="expairdate" id="datepicker<?php echo $subcategory->subcategory_id;?>" >					
+			<span style="color:red" id="offertdate<?php echo $subcategory->subcategory_id;?>"></span>	
+			</div>
+					
+			
 			<div class="col-md-6">		
-			<select class="form-control" required="required" id="offertime" name ="offertime">
+			<select class="form-control" id="offertime<?php echo $subcategory->subcategory_id;?>" name ="offertime">
 			<option value="">select</option>
 			<?php $time = array('12:00 am','12:30am','01:00am','01:30am','02:00am','02:30am','03:00am','03:30am','04:00am','04:30am','05:00am','05:30am','06:00am','06:30am','07:00am','07:30am','08:00am','08:30am','09:00am','09:30am','10:00am','10:30am','11:00am','11:30am','12:00pm','12:30pm','01:00pm','01:30pm','02:00pm','02:30pm','03:00pm','03:30pm','04:00pm','04:30pm','05:00pm','05:30pm','06:00pm','06:30pm','07:00pm','07:30pm','08:00pm','08:30pm','09:00pm','09:30pm','10:00pm','10:30pm','11:00pm','11:30pm');?>
 			<?php foreach($time as $status): ?>
 			<option value = "<?php echo $status;?>"><?php echo $status;?></option>
 			<?php endforeach; ?>
-			</select>	
+			</select>
+			<span style="color:red" id="offerttime<?php echo $subcategory->subcategory_id;?>"></span>			
 			</div>	
 
 		</div>		
@@ -173,7 +178,14 @@ tfoot input {
      </div>
   </div>
    </form>
+   </div>
 	<script type="text/javascript">
+	function IsMobile<?php echo $subcategory->subcategory_id;?>(reasontype) {
+        var regex = /^[0-9]+$/;
+        return regex.test(reasontype);
+	}
+	$('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('');
+	$('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
 	$(function() {
 		$("#datepicker<?php echo $subcategory->subcategory_id;?>" ).datepicker({
 			      changeMonth: true,
@@ -183,7 +195,8 @@ tfoot input {
 			});
 		});
 	function fetoffertype<?php echo $subcategory->subcategory_id;?>(id){
-		
+		$('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('');
+		$('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
 		var offertype=id;
 		if(offertype==4){
 			$('#offervalue<?php echo $subcategory->subcategory_id;?>').hide();
@@ -297,15 +310,52 @@ tfoot input {
       $('#example<?php echo $subcategory->subcategory_id;  ?>-console').text($(form).serialize()); 
       console.log("Form submission", $(form).serialize()); 
       var $data = $(form).serialize();
-	  var offertpes=document.getElementById('offertype').value;
+	  var offertpes=document.getElementById('offertype<?php echo $subcategory->subcategory_id;?>').value;
 	  
 	  if(offertpes==''){
-		jQuery('#offertypeerror').html('Plase select an Offer Type');
- 
+		jQuery('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('Plase select an Offer Type');
+		return false;
 	  }
-	  alert(offertpes);
-	  alert('hello1');return false;
-	  if(jQuery("#offertype").val()!=''){
+	  if(offertpes==4){
+		 var product=document.getElementById('combo<?php echo $subcategory->subcategory_id;?>').value;
+		if(product==''){
+			jQuery('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('Plase select a Product');
+			return false;   
+		  }
+		  jQuery('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
+	}else{
+		 var offerAmt=document.getElementById('offeramount<?php echo $subcategory->subcategory_id;?>').value;
+			 if(offerAmt==''){
+				jQuery('#offeramounterror<?php echo $subcategory->subcategory_id;?>').html('Plase eneter offer Percentages');
+				return false; 
+			 }else{
+					if (!IsMobile<?php echo $subcategory->subcategory_id;?>(offerAmt)) {
+					$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter Correct Offer Percentages");
+					return false;
+					} 
+			 }
+			 if(offerAmt >100){
+				$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter lessthan or equal 100 Percentages");
+				return false; 
+			 }
+  
+	  }	
+	jQuery("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html('');
+	  var date=document.getElementById('datepicker<?php echo $subcategory->subcategory_id;?>').value;
+	  
+		if(date==''){
+		jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Plase select an expiry Date');
+		return false;
+	  }
+	  jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('');
+	    var time=document.getElementById('offertime<?php echo $subcategory->subcategory_id;?>').value;
+		if(time==''){
+		jQuery('#offerttime<?php echo $subcategory->subcategory_id;?>').html('Plase select an expiry Time');
+		return false;
+	  }
+	  jQuery('#offerttime<?php echo $subcategory->subcategory_id;?>').html('');
+	  $("#offeramounterror").html('');
+	  if(jQuery("#offertype<?php echo $subcategory->subcategory_id;?>").val()!=''){
       jQuery.ajax({
 			url: "<?php echo base_url('/seller/promotions/storepromotions');?>",
 			data:$data,
