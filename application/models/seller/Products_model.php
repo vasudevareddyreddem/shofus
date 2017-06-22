@@ -94,6 +94,33 @@ public function getsubcatdata($cat_id)
   return $query->result();
   
  }
+ public function get_items($q){
+    $this->db->select('item_name');
+    $this->db->like('item_name', $q);
+    $query = $this->db->get('items');
+     if($query->num_rows() > 0){
+       foreach ($query->result_array() as $row){
+         $row_set[] = htmlentities(stripslashes($row['item_name'])); //build an array
+       }
+       echo json_encode($row_set);
+     }
+  }
+ // public function sw_search($keyword)
+ //    {
+ //        $this->db->select('id, friendly_name');
+ //        $this->db->from('business_category');
+ //        $this->db->where('suppress', 0);
+ //        $this->db->like('friendly_name', $keyword);
+ //        $this->db->order_by("friendly_name", "asc");
+ 
+ //        $query = $this->db->get();
+ //        foreach($query->result_array() as $row){
+ //            //$data[$row['friendly_name']];
+ //            $data[] = $row;
+ //        }
+ //        //return $data;
+ //        return $query;
+ //    }
 
 
 public function getproductdata($id)

@@ -72,6 +72,28 @@ class Products extends Admin_Controller {
 	}
 	exit;	
 	}	
+
+	//get_itemname autocompleate
+	public function get_item(){
+    $this->load->model('products_model');
+    if (isset($_GET['term'])){
+      $q = strtolower($_GET['term']);
+      $this->products_model->get_items($q);
+    }
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
 		
 	public function insert()
  		{

@@ -1,5 +1,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+    
+    <script src="<?php echo base_url(); ?>assets/dist/js/autocomplete.js"></script>
 
 <div class="content-wrapper mar_t_con" >
 <section class="content-header">
@@ -74,10 +76,10 @@
                 </div>
 				
                 
-				 <div class="form-group nopaddingRight col-md-6 san-lg">
+				<div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Item Name</label>
                   <input class="form-control" placeholder="Item Name" type="text" id="item_name" name="item_name">
-           </div>
+           		</div>
 
            <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Item Code</label>
@@ -302,4 +304,15 @@ $(document).ready(function() {
     });
 });
 </script>
+
+<script type="text/javascript">  
+        $(function(){
+  $("#item_name").autocomplete({
+    source: "<?php echo base_url();?>seller/products/get_item" // path to the get_birds method
+  });
+});  
+        </script>
+
+
+
 		

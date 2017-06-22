@@ -145,31 +145,39 @@ class Mobile extends REST_Controller {
 		public function seller_categories_post()
 		{
 			$id = $this->input->get('seller_id'); 
-			$post=$this->input->post();
-			$result =$this->input->get('seller_cat');
-			//echo print_r($);exit;
-			//$catresult=$this->mobile_model->get_old_seller_categories($id);
-			
-			foreach($result as $subcats){
-			$carname=$this->adddetails_model->get_categories_name($subcats);
-			echo print_r($carname);exit;
-			$data = array(
+			$seller_cat_id =$this->input->get('seller_cat_id');
+			$seller_cat_names =$this->input->get('seller_cat_name');
+			// foreach ($seller_cat_id as $seller_cats_id) {
+			// 	$store_id =$seller_cat_id['seller_cat_id'];
+			// }
+			// foreach ($seller_cat_names as $seller_cat_name) {
+			// 	$store_name =$seller_cat_name['seller_cat_name'];
+			// }
+
+			$seller_category = array(
 			'seller_id' => $id,
-			'seller_category_id'=> $subcats,
-			'category_name'=> $carname['category_name'],
+			'category_name'=> $seller_cat_names,
 			'created_at'=> date('Y-m-d h:i:s'),
 			'updated_at'=>  date('Y-m-d h:i:s'),
 			);
-			if($subcats!=''){
-			$res=$this->adddetails_model->insertseller_cat($data);
-			}
-			
-			}
-			
-			if(count($res)>0)
+			$seller_cats=$this->mobile_model->insertseller_cat($id,$seller_category);
+			if(count($seller_cats)>0)
 			{
-			$this->session->set_flashdata('success','category details updated');
-			return redirect('seller/adddetails/storedetails');
+			$message = array
+				(
+					'status'=>Success,
+					'seller_category'=>$seller_category,							
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+			else
+			{
+				$message = array
+				(
+					'status'=>FALSE,
+					'message'=>'Faild'
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 
 
@@ -234,7 +242,7 @@ class Mobile extends REST_Controller {
 		
 
 
-
+		//seller_personal_details
 		public function seller_personal_details_post()
 		{
 			$id = $this->input->get('seller_id');
@@ -427,7 +435,23 @@ class Mobile extends REST_Controller {
 		{
 			$id = $this->input->get('seller_id');
 			$list = $this->mobile_model->getcatsubcatpro($id);
-			$this->response($list, REST_Controller::HTTP_OK);
+			if(count($list)>0){
+				$message = array
+				(
+					'status'=>true,
+					'my_listings'=>$list,							
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+			else
+			{
+				$message = array
+				(
+					'status'=>FALSE,
+					'message'=>'No Listings'
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
 
 		}
 
