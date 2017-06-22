@@ -10,8 +10,11 @@ class Mobile_model extends MY_Model
 
 	}
 	public function seller_register($data){
-		$this->db->insert('sellers', $data);
-		return $insert_id = $this->db->insert_id();;
+		$query =$this->db->insert('sellers', $data);
+	 
+	 return $insert_id = $this->db->insert_id();
+		// $this->db->insert('sellers', $data);
+		// return $insert_id = $this->db->insert_id();;
 		
 	}
 	public function seller_mobile_check($mobile){

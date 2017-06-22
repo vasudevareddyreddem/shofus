@@ -94,17 +94,34 @@ public function getsubcatdata($cat_id)
   return $query->result();
   
  }
- public function get_items($q){
-    $this->db->select('item_name');
-    $this->db->like('item_name', $q);
-    $query = $this->db->get('items');
-     if($query->num_rows() > 0){
-       foreach ($query->result_array() as $row){
-         $row_set[] = htmlentities(stripslashes($row['item_name'])); //build an array
-       }
-       echo json_encode($row_set);
-     }
+ public function get_items($keyword){
+    // $this->db->select('item_name');
+    // $this->db->like('item_name', $q);
+    // $query = $this->db->get('items');
+    //  if($query->num_rows() > 0){
+    //    foreach ($query->result_array() as $row){
+    //      $row_set[] = htmlentities(stripslashes($row['item_name'])); //build an array
+    //    }
+    //    echo print_r($row_set);exit;;
+    //    echo json_encode($row_set);
+
+    //  }
+        $this->db->select('item_name')->from('items');
+        $this->db->like('item_name',$keyword,'after');
+        $query = $this->db->get();    
+         
+        return $query->result();
   }
+
+
+    // public function autocomplete($term)
+    // {
+    //     $query = $this->db->query("SELECT item_name
+    //         FROM items
+    //          LIKE '%".$term."%'
+    //         GROUP BY item_name");
+    //     echo json_encode($query->result_array());
+    // }
  // public function sw_search($keyword)
  //    {
  //        $this->db->select('id, friendly_name');

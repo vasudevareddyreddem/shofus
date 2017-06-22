@@ -39,8 +39,8 @@ class Mobile extends REST_Controller {
 	
 	public function  seller_register_post(){
 			// $this->form_validation->set_rules('seller_mobile_number', 'mobile_number', 'trim|required'); 
-   //      if ($this->form_validation->run() == FALSE) {
-			// $message = array('status'=>FALSE,'message'=>'Phone Number Filed Not empty.');
+   //      if ($this->form_validation->run() == 0) {
+			// $message = array('status'=>0,'message'=>'Phone Number Filed Not empty.');
 			// 	$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 
 			// }
@@ -57,6 +57,9 @@ class Mobile extends REST_Controller {
 					'seller_rand_id' => $seller.''.$seller_rand_id,
 					'seller_password' => md5($six_digit_random_number),
 					'seller_mobile' => $this->input->get('seller_mobile_number'),
+					'seller_name' => $this->input->get('seller_name'),
+					'seller_email' => $this->input->get('seller_email'),
+					'seller_address' => $this->input->get('seller_address'),
 					'created_at'  => date('Y-m-d H:i:s'),
 					'updated_at'  => date('Y-m-d H:i:s')
 					);
@@ -64,15 +67,20 @@ class Mobile extends REST_Controller {
 					if(count($createseller)>0){
 						$message = array
 						(
+							'status'=>1,
 							'seller_id'=>$createseller,
-							'status'=>Success,
+							'seller_details' =>$data,
 							'message'=>'Seller Successfully Created!'
 						);
 						$this->response($message, REST_Controller::HTTP_OK);
 					}
 				
 			}else{
-				$message = array('status'=>FALSE,'message'=>'Already mobile Number registered.');
+				$message = array
+				(
+					'status'=>0,
+					'message'=>'Already mobile Number registered.'
+					);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 			}
@@ -82,14 +90,14 @@ class Mobile extends REST_Controller {
 		{
 				
         	//$this->input->post();
-            $username   = $this->input->get('login_email');
-            $password = md5($this->input->get('login_password'));           
+            $username   = $this->input->get('seller_email');
+            $password = md5($this->input->get('seller_password'));           
             $result   = $this->mobile_model->seller_login($username, $password);
              if(count($result)>0)
             {
 				$message = array
 				(
-					'status'=>Success,
+					'status'=>1,
 					'seller_details'=>$result,							
 					'message'=>'Seller Successfully LoginIn!'
 				);
@@ -99,7 +107,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'login Faild.'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -125,7 +133,7 @@ class Mobile extends REST_Controller {
             {
 				$message = array
 				(
-					'status'=>Success,
+					'status'=>1,
 					'seller_basic_details'=>$data,							
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -134,7 +142,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'Faild'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -166,7 +174,7 @@ class Mobile extends REST_Controller {
 			{
 			$message = array
 				(
-					'status'=>Success,
+					'status'=>1,
 					'seller_category'=>$seller_category,							
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -175,7 +183,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'Faild'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -224,7 +232,7 @@ class Mobile extends REST_Controller {
 			{
 			$message = array
 				(
-					'status'=>Success,
+					'status'=>1,
 					'seller_store_details'=>$data,							
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -233,7 +241,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'Faild'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -264,7 +272,7 @@ class Mobile extends REST_Controller {
 		      {
 		      $message = array
 				(
-					'status'=>Success,
+					'status'=>1,
 					'seller_personal_details'=>$data,							
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -273,7 +281,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'Faild'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -297,7 +305,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'Empty categorys'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -320,7 +328,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'Empty subcategorys'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -342,7 +350,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'Empty subitems'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -367,7 +375,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'Please Wait For Notifications'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -391,7 +399,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'Please Wait For Notifications'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -418,7 +426,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'No Oredrs'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -448,7 +456,7 @@ class Mobile extends REST_Controller {
 			{
 				$message = array
 				(
-					'status'=>FALSE,
+					'status'=>0,
 					'message'=>'No Listings'
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
