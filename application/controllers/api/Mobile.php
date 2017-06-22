@@ -156,6 +156,7 @@ class Mobile extends REST_Controller {
 
 			$seller_category = array(
 			'seller_id' => $id,
+			'seller_category_id'=> $seller_cat_id,
 			'category_name'=> $seller_cat_names,
 			'created_at'=> date('Y-m-d h:i:s'),
 			'updated_at'=>  date('Y-m-d h:i:s'),
