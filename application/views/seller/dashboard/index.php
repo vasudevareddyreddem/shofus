@@ -287,6 +287,7 @@
                         </div>-->
                  </section> <!-- /.content -->
              </div>
+             
              </div>
              </div>
          <div class="modal fade" id="dashboardpopup" role="dialog">
@@ -305,6 +306,7 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
+
       
     </div>
   </div>

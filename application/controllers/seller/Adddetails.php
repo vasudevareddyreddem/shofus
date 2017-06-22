@@ -155,7 +155,7 @@ class Adddetails extends Seller_adddetails{
 			'cst'  =>$post['cst'],
 			'cstimage'  =>$cetimg,
 			'gstin'  =>$post['gstin'],
-			 'created_at'  => date('Y-m-d H:i:s'),
+			'created_at'  => date('Y-m-d H:i:s'),
 			);
 			//echo '<pre>';print_r($data);exit;
 			$addstoredetails=$this->adddetails_model->storedetails_adding($this->session->userdata('seller_id'),$data);

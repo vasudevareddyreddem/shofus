@@ -537,7 +537,8 @@
                 <td>
                   <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                   <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</button>
-                  <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i> Add to Wishlist</button>
+                  <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i> Add to Wishlist</button>  
+				  <a href="<?php echo base_url('tabs');?>" class="btn btn-theme m-b-1" type="button"> Next</a>
                 </td>
               </tr>
         </div>
