@@ -30,7 +30,29 @@ class Products extends Admin_Controller {
 	public function create()
 	{
 		//$this->load->view('welcome_message');
-		
+		// $keyword = $this->input->post('term');
+  //       $data['response'] = 'false'; //Set default response
+  //       $query = $this->products_model->get_items($keyword); //Search DB
+  //       if( ! empty($query) )
+  //       {
+  //           $data['response'] = 'true'; //Set response
+  //           $data['message'] = array(); //Create array
+  //           foreach( $query as $row )
+  //           {
+  //               $data['message'][] = array( 
+  //                                       'value' => $row->item_name,
+                                  
+  //                                    );  //Add a row to array
+  //           }
+  //       }
+  //        if('IS_AJAX')
+  //       {
+  //           $show = json_encode($data); //echo json string if ajax request
+  //           echo print_r($show);exit;
+             
+  //       }
+        
+        
 		
 		//$cat_id = $this->uri->segment('4');
 		//$subcat_id = $this->uri->segment('5');
@@ -43,7 +65,6 @@ class Products extends Admin_Controller {
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'seller/products/add', $data);
 		$this->template->render();
-
 
 	}
 	
@@ -72,6 +93,45 @@ class Products extends Admin_Controller {
 	}
 	exit;	
 	}	
+
+	//get_itemname autocompleate
+	// public function get_item()
+	// {	    
+	// 	$this->db->select('item_name');
+ //    $this->db->like('item_name', $q);
+ //    $query = $this->db->get('items');
+ //     if($query->num_rows() > 0){
+ //       foreach ($query->result_array() as $row){
+ //         $row_set[] = htmlentities(stripslashes($row['item_name'])); //build an array
+ //       }
+ //       //echo print_r($row_set);exit;;
+ //       //echo json_encode($row_set);
+
+ //     }
+	//     // if (isset($_GET['term'])){
+	//     //   $letters = strtolower($_GET['term']);
+	//     //   $this->products_model->get_items($letters);
+	//     // }
+ //  	}
+	function suggested_cities()
+  {
+		$term = $this->input->post('term');
+
+		$query = "SELECT item_name FROM items LIKE '{$term}%'";
+
+		$querys= $query->result_array();
+		//$cities_data = $this->$query;
+
+		$cities = array();
+		foreach($query as $key){
+			$a = array(
+				'value' => trim($key['item_name'])
+			);
+
+			$cities[] = $a;
+		}
+		echo json_encode($cities);
+	}
 		
 	public function insert()
  		{

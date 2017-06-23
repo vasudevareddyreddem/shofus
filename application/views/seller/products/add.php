@@ -1,5 +1,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+    
+    <script src="<?php echo base_url(); ?>assets/dist/js/autocomplete.js"></script>
 
 <div class="content-wrapper mar_t_con" >
 <section class="content-header">
@@ -74,10 +76,14 @@
                 </div>
 				
                 
-				 <div class="form-group nopaddingRight col-md-6 san-lg">
+				<div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Item Name</label>
-                  <input class="form-control" placeholder="Item Name" type="text" id="item_name" name="item_name">
-           </div>
+                  <input class="form-control" placeholder="Item Name" type="text" id="item_name" name="item_name" >
+                   <ul>
+            <div id="result"></div>
+        </ul>
+
+           		</div>
 
            <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Item Code</label>
@@ -302,4 +308,65 @@ $(document).ready(function() {
     });
 });
 </script>
+
+<!-- <script type="text/javascript">  
+    $(function(){
+   $("#item_name").autocomplete({
+     source: "<?php echo base_url();?>seller/products/get_item" // path to the get_birds method
+   });
+
+  
+});  
+</script> -->
+ <script type="text/javascript">
+        // $(this).ready( function() {
+        //     $("#item_name").autocomplete({
+        //         minLength: 1,
+        //         source: 
+        //         function(reqq, add){
+        //             $.ajax({
+        //                 url: "<?php echo base_url(); ?>seller/products/create",
+        //                 dataType: 'json',
+        //                 type: 'get',
+        //                 data: reqq,
+        //                 success:    
+        //                 function(data){
+        //                     if(data.response =="true"){
+        //                         add(data.message);
+        //                     }
+        //                 },
+        //             });
+        //         },
+        //     select: 
+        //         function(event, ui) {
+        //             $("#result").append(
+        //                 "<li>"+ ui.item.value + "</li>"
+        //             );                  
+        //         },      
+        //     });
+        // });
+        $( "#item_name" ).autocomplete({
+		source: function(request, response) {
+			//console.info(request, 'request');
+			//console.info(response, 'response');
+
+			$.ajax({
+				//q: request.term,
+				url: "<?php echo base_url('seller/products/suggested_cities'); ?>",
+				data: { term: $("#item_name").val()},
+				dataType: "json",
+				type: "POST",
+				success: function(data) {
+					//console.info(data);
+					response(data);
+				}
+			});
+		},
+		minLength: 2
+	});
+
+        </script>
+
+
+
 		

@@ -10,8 +10,11 @@ class Mobile_model extends MY_Model
 
 	}
 	public function seller_register($data){
-		$this->db->insert('sellers', $data);
-		return $insert_id = $this->db->insert_id();;
+		$query =$this->db->insert('sellers', $data);
+	 
+	 return $insert_id = $this->db->insert_id();
+		// $this->db->insert('sellers', $data);
+		// return $insert_id = $this->db->insert_id();;
 		
 	}
 	public function seller_mobile_check($mobile){
@@ -28,7 +31,7 @@ class Mobile_model extends MY_Model
 	{
 		
 		$query=$this->db->get('category');
-		return $query->result_array();	
+		return $query->result();	
 	}
 	public function get_seller_subcategory()
 	{
@@ -93,6 +96,14 @@ class Mobile_model extends MY_Model
     	$query =  $this->db->update("sellers",$data);
     	return $query;
 
+	}
+
+	//seller_categories
+	 public function insertseller_cat($id,$seller_category)
+	{	
+		$this->db->where('seller_id',$id);
+		$query= $this->db->insert('seller_categories', $seller_category);
+		return $query;
 	}
 
 	//seller_ads
