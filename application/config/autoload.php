@@ -720,7 +720,7 @@ $autoload['drivers'] = array();
 
 
 
-$autoload['helper'] = array('url', 'file','form','common');
+$autoload['helper'] = array('url', 'file','form','security');
 
 
 

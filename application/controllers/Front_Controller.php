@@ -13,24 +13,19 @@ class Front_Controller extends MY_Controller {
 	
 
 	public function __construct() {
+		
+		//echo "hello";exit;
 
 			parent::__construct();
             $this->load->library('cart');
 			$this->load->model('home_model');
+				$data['catitemdata'] = $this->home_model->getcatsubcatpro();
+				$data['catitemdata1'] = $this->home_model->getcatsubcatpro();
+				$data['cnt']= count($data['catitemdata1']);
 			
 			$data['catdata'] = $this->home_model->getcatsubcat();
             $data['locationdata'] = $this->home_model->getlocations();
-			//$this->load->library('googleplus');
-
-			//$data['login_url'] = $this->googleplus->loginURL();
-
-		   // $data['citiesnames'] = $this->home_model->getcitiesdata();
-
-		    //$data['searchtype'] = $this->input->get('search');
-
-            //$data['searchid'] = $this->input->get('searchtype');
-
-            //$data['searchcity'] = $this->input->get('selectedcity');
+			
 
 		$this->template->set_template('website'); 
 

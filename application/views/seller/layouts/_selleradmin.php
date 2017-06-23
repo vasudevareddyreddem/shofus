@@ -1,23 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>::Cart in Hour::</title>
-<link rel="icon" href="<?php echo base_url(); ?>assets/seller/images/fav_icon.png" type="image/x-icon" />
-
-
-
+<link rel="icon" href="<?php echo base_url(); ?>assets/seller/seller_admin/images/fav.ico" type="image/x-icon" />
 <!-- jquery-ui css -->
    <link href="<?php echo base_url(); ?>assets/seller/plugins/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
    <!-- Bootstrap -->
-   <link href="<?php echo base_url(); ?>assets/seller/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> \
-   <link href="<?php echo base_url(); ?>assets/seller/css/timePicker.css" rel="stylesheet" type="text/css"/> 
+ <!--   <link href="<?php echo base_url(); ?>assets/seller/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->
 
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/seller/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/seller/dist/css/seller_dashboard.css" />
-<script src="<?php echo base_url();?>assets/examples/css/forms/validation.css"></script>
-
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/seller/plugins/bootstrap-toggle/bootstrap-toggle.min.css" />
 
@@ -104,32 +98,22 @@
         <script src="<?php echo base_url(); ?>assets/seller/plugins/datamaps/datamaps.all.min.js" type="text/javascript"></script>
 
         <script src="<?php echo base_url(); ?>assets/seller/dist/js/custom.js" type="text/javascript"></script>
-        <script>
-                "use strict"; // Start of use strict
-                // notification
-               /* setTimeout(function () {
-                    toastr.options = {
-                        closeButton: true,
-                        progressBar: true,
-                        showMethod: 'slideDown',
-                        timeOut: 2000
-                    };
-                    toastr.success('Thank you for visit', 'Welcome to Seller Portal');
 
-                }, 1300);
+        <script>
+                
 
                 //counter
                 $('.count-number').counterUp({
                     delay: 10,
                     time: 5000
-                });*/
+                });
 
                 //data maps
                 var basic_choropleth = new Datamap({
                     element: document.getElementById("map1"),
                     projection: 'mercator',
                     fills: {
-                        defaultFill: "#000",
+                        defaultFill: "#009688",
                         authorHasTraveledTo: "#fa0fa0"
                     },
                     data: {

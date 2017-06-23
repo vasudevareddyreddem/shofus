@@ -295,12 +295,12 @@
     
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header"  style="background-color:#5cb85c;color:#fff;padding:10px;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Successfully completed</h4>
         </div>
         <div class="modal-body">
-          <p>Welcome to Your Seller Portal.</p>
+          <h3 class="text-center">Welcome to Your Seller Portal.</h3>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

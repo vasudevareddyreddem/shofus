@@ -32,7 +32,18 @@ class Adddetails_model extends MY_Model
 	 return $query;
 
 	}
-	function get_categories_name($cat_id)
+	function check_email_exits($semail)
+	{
+		$sql = "SELECT seller_email FROM sellers WHERE seller_email ='".$semail."'";
+        return $this->db->query($sql)->row_array();
+	}
+	function check_email_editing($sid)
+	{
+		$sql = "SELECT * FROM sellers WHERE seller_id ='".$sid."'";
+        return $this->db->query($sql)->row_array();
+	}
+
+function get_categories_name($cat_id)
 {
 	$this->db->select('category.category_name')->from('category');
 	$this->db->where('category_id',$cat_id);

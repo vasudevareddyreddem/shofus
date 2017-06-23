@@ -40,6 +40,11 @@ $(document).ready(function(){
 .process-step{display:table-cell;text-align:center;position:relative}
 .process-step p{margin-top:4px}
 .btn-circle{width:80px;height:80px;text-align:center;font-size:12px;border-radius:50%}
+.pos_re{
+	top:44;
+	right:-80px;
+	position: absolute;
+}
 </style>
 <div class="navigation_main">
     <nav class="navbar navbar-inverse hm_nav">
@@ -103,20 +108,21 @@ $(document).ready(function(){
                     <option value="<?php echo $cat_data['category_id']; ?>"><?php echo $cat_data['category_name']; ?></option>                  
                     <?php }?>
                   </select>
-           </div>
+		</div>
 			<div class="form-group">
-					<input type="hidden" name="centerCount" id="centerCount" value="0" />
-					<button class="btn btn-primary" type="button" onclick="addCenter();"><span>Add More</span></button>
+						<input type="hidden" name="centerCount" id="centerCount" value="0" />
+						<button class="btn btn-primary" type="button" onclick="addCenter();"><span>Add </span></button>
 					</div>
       
-           </div>
-<div>
-             			  <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails'); ?>">Back</a>
+     
+	
 
-			 <input type="submit" class="btn btn-primary " value="Next">
-              </form>
-		</div>
-			  
+			 
+                </div>
+		</form>
+			<div class="col-md-6" style="padding-right:30px;">		
+				<input type="submit" class="btn btn-info pull-right" value="Next">
+			</div>
         </div>
       </div>
     </div>
@@ -154,7 +160,7 @@ function addCenter()
         var toDiv = document.getElementById("CenterForm");
         var div = document.createElement('div');
         div.id = 'mainForms'+val;
-        div.innerHTML = '<div class="form-group" id="CenterForm"><div class="field_wrapper nopaddingRight col-md-5 san-lg pos_r" data-plugin="inputGroupFile"><select class="form-control"  id="seller_cat[]" name="seller_cat[]" required="required"><option value="">Select Category</option><?php foreach($getcat as $cat_data){ ?><option value="<?php echo $cat_data['category_id']; ?>"><?php echo $cat_data['category_name']; ?></option><?php }?></select></div></div><button class="btn btn-primary" type="button" onclick="removeCenterRow(this);"><span>Remove File</span></button>';
+        div.innerHTML = '<div style="" class="form-group" id="CenterForm"><div style="width:100%" class="field_wrapper nopaddingRight col-md-5 san-lg pos_r" data-plugin="inputGroupFile"><select class="form-control"  id="seller_cat[]" name="seller_cat[]" required="required"><option value="">Select Category</option><?php foreach($getcat as $cat_data){ ?><option value="<?php echo $cat_data['category_id']; ?>"><?php echo $cat_data['category_name']; ?></option><?php }?></select></div></div><button class="btn btn-primary pos_re" type="button" onclick="removeCenterRow(this);"><span>Remove </span></button>';
         toDiv.appendChild(div);
         var divclear = document.createElement('div');
         divclear.className = 'clear';

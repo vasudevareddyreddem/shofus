@@ -18,6 +18,7 @@ public function index()
  {
 	$data['locationdata'] = $this->home_model->getlocations();
 	$data['recentproducts'] = $this->home_model->getrecentproducts();
+	
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'home/index',$data);
 	$this->template->render();

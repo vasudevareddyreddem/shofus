@@ -175,11 +175,11 @@ $('.window').hide();
           </div>
           <div class="form-group">
             <label class="control-label">Email address</label>
+			<?php if(isset($sellerdata['seller_email']) && $sellerdata['seller_email']!=''){?>
+			            <input class="form-control" placeholder="Email Address"  type="Email" id="seller_email" name="seller_email" value="<?php echo isset($sellerdata['seller_email'])?$sellerdata['seller_email']:''; ?>">
+			<?php }else{ ?>
             <input class="form-control" placeholder="Email Address" type="Email" id="seller_email" name="seller_email" value="<?php echo isset($sellerdata['seller_email'])?$sellerdata['seller_email']:''; ?>">
-          </div>         
-          <div class="form-group">
-            <label class="control-label">Resident address</label>
-            <input maxlength="100" type="text" id="seller_address"  name="seller_address" class="form-control" placeholder="Enter Resident address" value="<?php echo isset($sellerdata['seller_address'])?$sellerdata['seller_address']:''; ?>" />
+			<?php }?>
           </div>
 
              <button type="submit" class="btn btn-primary pull-right" value="Next">Next</button>
@@ -255,18 +255,6 @@ $(document).ready(function() {
 				regexp: {
 				regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 				message: 'Please enter a valid email address. For example johndoe@domain.com.'
-				}
-            
-			}
-            },
-			seller_address: {
-               validators: {
-				notEmpty: {
-					message: 'Address Line is required'
-				},
-				regexp: {
-				regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-				message: 'Address Line wont allow <>[]'
 				}
             
 			}
