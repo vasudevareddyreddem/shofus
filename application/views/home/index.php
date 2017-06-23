@@ -705,16 +705,20 @@
   <div class="newsletter-sign-box">
     <div class="newsletter"> <img src="<?php echo base_url(); ?>assets/home/images/close-icon.ico" alt="close" class="x" onClick="HideMe();">
       <form method="post" id="popup-newsletter" name="popup-newsletter" class="email-form">
-        <h3>Enter Location</h3>
+        <h3>Select Your Delivery Location</h3>
         <div class="newsletter-form">
-          <div class="input-box">
-            <select name="location_name" id="location" class="validate-select sel_are">
-               <option value="">Select Area </option>
-		<?php foreach($locationdata as $location_data) {?>
-        <option value="<?php echo $location_data->location_name; ?>"><?php echo $location_data->location_name; ?></option>
-       
-		<?php } ?>
-            </select>
+          <div class="form-group">
+            <label class="control-label">Address Line 1</label>
+            <input maxlength="100" type="text"  name="pan_card" class="form-control" value="" />
+          </div>
+		  <div class="input-box">
+				<select name="location_name" id="location" class="validate-select sel_are">
+				<option value="">Select Area </option>
+				<?php foreach($locationdata as $location_data) {?>
+				<option value="<?php echo $location_data->location_name; ?>"><?php echo $location_data->location_name; ?></option>
+
+				<?php } ?>
+				</select>
             <button type="submit" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
           </div>
           <!--input-box--> 

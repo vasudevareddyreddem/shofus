@@ -108,7 +108,92 @@ public function getrecentproducts()
 		$this->db->limit(10);
 		return $this->db->get()->result_array();
 }
+public function getcategories()	
+{
+	$this->db->select('*')->from('category');
+		return $this->db->get()->result_array();
+}
+public function getsubcategories($subcatid)	
+{
+		$this->db->select('subcategories.*,category.category_name')->from('subcategories');
+		$this->db->join('category', 'category.category_id = subcategories.category_id', 'left');
+
+		$this->db->where('subcategories.subcategory_id', $subcatid);
+
+		return $this->db->get()->result_array();
+}
+public function getproducts($subid)	
+{
+		$this->db->select('products.*,category.category_name,subcategories.subcategory_name')->from('products');
+		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
+		$this->db->join('category', 'category.category_id = subcategories.category_id', 'left');
+
+		$this->db->where('products.subcategory_id', $subid);
+
+		return $this->db->get()->result_array();
+}
 	
+	public function getcatsubcatpro()
+
+	{
+	$this->db->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
+	$this->db->join('category', 'category.category_id =products.category_id');
+	$this->db->group_by('category.category_name');
+	$query = $this->db->get();
+	//echo '<pre>';print_r($query);exit;
+	foreach ($query->result() as $category)
+        {
+            $return[$category->category_id] = $category;
+
+        $return[$category->category_id]->docs = $this->get_catedata($category->category_id);
+        
+
+        
+    };
+     if(!empty($return))
+    {
+    return $return;
+}
+	
+	
+}
+public function get_catedata($category_id)
+{
+    $this->db->select('*');
+    $this->db->from('products');
+    $this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
+   $this->db->join('category', 'category.category_id =products.category_id');
+   $this->db->where('products.category_id', $category_id);
+	$this->db->group_by('subcategories.subcategory_name');
+    $query = $this->db->get();
+   foreach ($query->result() as $subcategory)
+        {
+            $return[$subcategory->subcategory_id] = $subcategory;
+
+        $return[$subcategory->subcategory_id]->docs12 = $this->get_subcatedata($subcategory->subcategory_id);
+        
+	}
+	if(!empty($return))
+    {
+    return $return;
+}
+}
+
+public function get_subcatedata($subcategory_id)
+{
+	
+	$sid = $this->session->userdata('seller_id');
+    $this->db->select('*');
+    $this->db->from('products');
+    $this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
+	$this->db->join('category', 'category.category_id =products.category_id');
+	$this->db->where('products.subcategory_id', $subcategory_id);
+	//$this->db->group_by('subcategories.subcategory_name');
+    $query = $this->db->get();
+    
+    return $query->result();
+}
 	
 public function getsubcatdata($cat_id)
 
@@ -123,14 +208,6 @@ $this->db->select('*');
 	
 		$query=$this->db->get();
 		return $query->result();	
-
-
-
-
-
-
-
-
 
 }	
 public function getlocations()

@@ -140,5 +140,14 @@ class Category_model extends MY_Model
 			
 		}
 	}
+/* added by vasudevareddy */
+	
+	public function get_all_products($catid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('subcategory_id',$catid);
+		$this->db->where('admin_status',0);
+		return $this->db->get()->result_array();
+	}
 }
 ?>
