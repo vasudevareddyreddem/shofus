@@ -48,11 +48,23 @@ class Mobile extends REST_Controller {
         
 			$this->input->post();
 			$mobile_number=$this->input->get('seller_mobile_number');
-			$mobile_check=$this->mobile_model->seller_mobile_check($mobile_number);
+			$email=$this->input->get('seller_email');
+			$mobile_check=$this->mobile_model->seller_mobile_check($mobile_number,$email);
+			//print_r($mobile_check);exit;
+			//$email_check =$this->mobile_model->seller_email_check($email); 
 			if($mobile_check==0){
 				$six_digit_random_number = mt_rand(100000, 999999);
 				$seller = 'SEL';
 				$seller_rand_id = mt_rand(100000, 999999);
+
+				$user_id="cartin"; 
+        		$pwd="9494422779";    
+        		$sender_id = "CARTIN";          
+        		$mobile_num = $mobile_number;  
+        		$message = "Your Temporary Password is : " .$six_digit_random_number;               
+        // Sending with PHP CURL
+       $url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
+			$ret = file($url);
 					$data = array(
 					'seller_rand_id' => $seller.''.$seller_rand_id,
 					'seller_password' => md5($six_digit_random_number),
@@ -75,11 +87,20 @@ class Mobile extends REST_Controller {
 						$this->response($message, REST_Controller::HTTP_OK);
 					}
 				
-			}else{
+			 }
+			 //elseif(){
+			// 	$message = array
+			// 	(
+			// 		'status'=>0,
+			// 		'message'=>'Already Email registered.'
+			// 		);
+			// 	$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			// }
+			else{
 				$message = array
 				(
 					'status'=>0,
-					'message'=>'Already mobile Number registered.'
+					'message'=>'Already mobile Number And Email registered.'
 					);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
@@ -99,7 +120,7 @@ class Mobile extends REST_Controller {
 				(
 					'status'=>1,
 					'seller_details'=>$result,							
-					'message'=>'Seller Successfully LoginIn!'
+					'message'=>'Seller Successfully LoggedIn!'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			}	
@@ -115,49 +136,32 @@ class Mobile extends REST_Controller {
 		}
 
 		//seller_basic_details
-		public function seller_basic_details_post()
-		{
-			$id = $this->input->get('seller_id');
-			//echo '<pre>';print_r($id);exit;
-			$data = array
-			(
-				'seller_id' => $id,
-				'seller_name' => $this->input->get('seller_name'),
-				'seller_email' => $this->input->get('seller_email'),
-				'seller_address' => $this->input->get('seller_address')
-			);
-			//echo print_r($data);exit;
-		$seller_basic_details=$this->mobile_model->seller_basic($id,$data);
-		
-		if(count($seller_basic_details)>0)
-            {
-				$message = array
-				(
-					'status'=>1,
-					'seller_basic_details'=>$data,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
-			}	
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Faild'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-		}	
+			
 
 		//seller_categories
 		public function seller_categories_post()
 		{
-			$id = $this->input->get('seller_id'); 
+			$id = $this->get('seller_id'); 
 			$seller_cat_id =$this->input->get('seller_cat_id');
+			$tmp = explode(',', $seller_cat_id);			
+			$cnt= count($tmp);
+			//echo "<pre>";print_r($cnt);exit;
 			$seller_cat_names =$this->input->get('seller_cat_name');
-			// foreach ($seller_cat_id as $seller_cats_id) {
-			// 	$store_id =$seller_cat_id['seller_cat_id'];
-			// }
+			for($i=0;$i<$cnt;$i++){
+			$cond = array('seller_categories.seller_category_id'=>$tmp[$i]);			
+			echo '<pre>';print_r($cond);exit;
+		}
+			//echo "<pre>";print_r($seller_cat_names);exit;
+
+			 // foreach ($seller_cat_id as $seller_cats_id) 
+			 // {
+			 // 	$store_id =$sellers_cat_id['seller_cat_id[]'];
+			 // }
+
+			 // for (i <= $seller_cat_id-1); 
+    // 		{     
+		  //       $store_id =$seller_cat_id(i);   
+    // 		}
 			// foreach ($seller_cat_names as $seller_cat_name) {
 			// 	$store_name =$seller_cat_name['seller_cat_name'];
 			// }
@@ -199,11 +203,11 @@ class Mobile extends REST_Controller {
 		{
 			
 			$id = $this->input->get('seller_id');
-			$base64_str = $this->input->get('tanvat_image');
-			$image = base64_decode($base64_str);
-			$image_name= $image;
-			$path ="/assets/sellerfile//" . $image_name;
-			$tanvatimage= file_put_contents($path, $image);
+			// $base64_str = $this->input->get('tanvat_image');
+			// $image = base64_decode($base64_str);
+			// $image_name= $image;
+			// $path ="/assets/sellerfile//" . $image_name;
+			// $tanvatimage= file_put_contents($path, $image);
 		
 		
 			$data = array(
@@ -296,7 +300,7 @@ class Mobile extends REST_Controller {
             {
 				$message = array
 				(
-					'status'=>true,
+					'status'=>1,
 					'seller_category'=>$seller_category,							
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -319,7 +323,7 @@ class Mobile extends REST_Controller {
 			if(count($seller_subcategory)>0){
 				$message = array
 				(
-					'status'=>true,
+					'status'=>1,
 					'seller_subcategory'=>$seller_subcategory,							
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -341,7 +345,7 @@ class Mobile extends REST_Controller {
 			if(count($seller_subitem)>0){
 				$message = array
 				(
-					'status'=>true,
+					'status'=>1,
 					'seller_subitems'=>$seller_subitem,							
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -366,7 +370,7 @@ class Mobile extends REST_Controller {
 			if(count($admin_notify)>0){
 				$message = array
 				(
-					'status'=>true,
+					'status'=>1,
 					'admin_notifications'=>$admin_notify,							
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -390,7 +394,7 @@ class Mobile extends REST_Controller {
 			if(count($seller_notify)>0){
 				$message = array
 				(
-					'status'=>true,
+					'status'=>1,
 					'admin_notifications'=>$seller_notify,							
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -417,7 +421,7 @@ class Mobile extends REST_Controller {
 			if(count($new_order)>0){
 				$message = array
 				(
-					'status'=>true,
+					'status'=>1,
 					'New Orders'=>$new_order,							
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -447,7 +451,7 @@ class Mobile extends REST_Controller {
 			if(count($list)>0){
 				$message = array
 				(
-					'status'=>true,
+					'status'=>1,
 					'my_listings'=>$list,							
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -464,10 +468,169 @@ class Mobile extends REST_Controller {
 
 		}
 
+		//Track Approval Requests
 
+		public function track_approval_request_get()
+		{
+			$id = $this->input->get('seller_id');
+			$track =$this->mobile_model->track_approval($id);
+			//print_r($track);
+			
+  				if(count($track)>0)
+  			{
+				$message = array
+		 		(
+		 			'status'=>1,
+		 			'track_approvals'=>$track,		 			
+					
+		 		);
+	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'No track_approvals'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+		}
+		//Total Orders
+		public function total_orders_get()
+		{
+			$id = $this->input->get('seller_id');
+			$total_orders = $this->mobile_model->get_total($id);
+			//print_r($total_orders);
+			if(count($total_orders)>0)
+  			{
+				$message = array
+		 		(
+		 			'status'=>1,
+		 			'total_orders'=>$total_orders,		 			
+					
+		 		);
+	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'No Orders'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+		}
 
+		//assigned orders
+		public function assigned_orders_get()
+		{
+			$id = $this->input->get('seller_id');
+			$assigned_orders = $this->mobile_model->assigned_Orders($id);
+			//print_r($assigned_orders);
+			if(count($assigned_orders)>0)
+  			{
+				$message = array
+		 		(
+		 			'status'=>1,
+		 			'Assigned_orders'=>$assigned_orders,		 			
+					
+		 		);
+	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'No Assigned_orders'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+		}
 
-	}
+		//inprogress_orders
+		public function inprogress_orders_get()
+		{
+			$id = $this->input->get('seller_id');
+			$inprogress_orders = $this->mobile_model->inprogress_orders($id);
+			//print_r($inprogress_orders);
+			if(count($inprogress_orders)>0)
+  			{
+				$message = array
+		 		(
+		 			'status'=>1,
+		 			'Inprogress_orders'=>$inprogress_orders,		 			
+					
+		 		);
+	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'No Inprogress_orders'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+		}
+
+		//delivery_orders
+		public function delivery_orders_get()
+		{
+			$id = $this->input->get('seller_id');
+			$delivery_orders = $this->mobile_model->delivery_orders($id);
+			//print_r($delivery_orders);
+			if(count($delivery_orders)>0)
+  			{
+				$message = array
+		 		(
+		 			'status'=>1,
+		 			'Delivery_orders'=>$delivery_orders,		 			
+					
+		 		);
+	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'No Delivery_orders'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+		}
+
+		//cancel_orders
+		public function cancel_orders_get()
+		{
+			$id = $this->input->get('seller_id');
+			$cancel_orders = $this->mobile_model->cancel_orders($id);
+			if(count($cancel_orders)>0)
+  			{
+				$message = array
+		 		(
+		 			'status'=>1,
+		 			'Cancel_orders'=>$cancel_orders,		 			
+					
+		 		);
+	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'No Cancel_orders'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+		}
+
+}
 
 
 

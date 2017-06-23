@@ -69,6 +69,11 @@ class Products_model extends MY_Model
 	// // 	 return $query->result();
 		
 	// // }
+	public function get_areas($term){
+    $this->db->like('item_name', $term, 'after');
+    $query = $this->db->get('items');
+    return $query->result(); 
+}
 	
 	
 public function getsubcatdata($cat_id)
@@ -426,11 +431,6 @@ public function getproductapproval()
 	 
 		$query=$this->db->get();
 		return $query->result();
-	
-	
-	
-	
-	
 	
 }
 	

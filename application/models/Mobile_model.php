@@ -10,18 +10,19 @@ class Mobile_model extends MY_Model
 
 	}
 	public function seller_register($data){
-		$query =$this->db->insert('sellers', $data);
-	 
+		$this->db->insert('sellers', $data);
 	 return $insert_id = $this->db->insert_id();
-		// $this->db->insert('sellers', $data);
-		// return $insert_id = $this->db->insert_id();;
-		
 	}
-	public function seller_mobile_check($mobile){
-		 $sql = "SELECT * FROM sellers WHERE seller_mobile ='".$mobile."'";
+	public function seller_mobile_check($mobile,$email){
+		 $sql = "SELECT * FROM sellers WHERE (seller_mobile ='".$mobile."') OR(seller_email ='".$email."')";
         return $this->db->query($sql)->row_array();
 		
 	}
+	// public function seller_email_check($email){
+	// 	 $sql = "SELECT seller_email FROM sellers WHERE seller_email ='".$email."'";
+ //        return $this->db->query($sql)->row_array();
+		
+	// }
 
 	public function seller_login($username, $password) {
 	 	$sql = "SELECT seller_id,seller_name,seller_rand_id FROM sellers WHERE (seller_email ='".$username."' AND seller_password ='".$password."') OR (seller_mobile ='".$username."' AND seller_password ='".$password."')";
@@ -141,7 +142,90 @@ public function getcatsubcatpro($id)
 	//$this->db->group_by('category.category_name');
 	$query = $this->db->get();
 	return $query->result_array();
-	 
+}
+
+
+//track _approval
+public function track_approval($id)
+{
+	$this->db->select('*');
+	$this->db->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
+   $this->db->join('category', 'category.category_id =products.category_id');
+	$this->db->where('products.seller_id', $id);
+		$query=$this->db->get();
+		return $query->result();
 	
 }
+
+//total_orders
+public function get_total($id){
+	$this->db->select('*');
+	$this->db->from('orders');
+	$this->db->where('orders.seller_id',$id);
+	$query=$this->db->get();
+	return $query->result();
+	}
+	//assigned_orders
+public function assigned_orders($id)
+{
+	$this->db->select('sellers.seller_id,orders.order_id,orders.item_id,orders.product_name,deliveryboy.deliveryboy_name,sellers.seller_name,orders.delivery_date,orders.delivery_time,orders.customer_name,orders.customer_email,orders.customer_phone,orders.customer_address');
+	$this->db->from('orders');
+	$this->db->join('assign_orders', 'orders.order_id = assign_orders.order_id');
+	$this->db->join('sellers', 'sellers.seller_id = orders.seller_id');
+	$this->db->join('deliveryboy', 'deliveryboy.deliveryboy_id = assign_orders.deliveryboy_id');
+	$this->db->where('orders.order_status','1');
+	$this->db->where('orders.seller_id', $id);
+	$this->db->order_by("orders.order_id","desc"); 
+	$query = $this->db->get();
+	//return $this->db->last_query(); exit;
+	return $query->result();
 }
+//inprogress_orders
+public function inprogress_orders($id)
+{
+	$this->db->select('sellers.seller_id,orders.order_id,orders.item_id,orders.product_name,deliveryboy.deliveryboy_name,sellers.seller_name,orders.delivery_date,orders.delivery_time,orders.customer_name,orders.customer_email,orders.customer_phone,orders.customer_address');
+	$this->db->from('orders');
+	$this->db->join('assign_orders', 'orders.order_id = assign_orders.order_id');
+	$this->db->join('sellers', 'sellers.seller_id = orders.seller_id');
+	$this->db->join('deliveryboy', 'deliveryboy.deliveryboy_id = assign_orders.deliveryboy_id');
+	$this->db->where('orders.order_status','2');
+	$this->db->where('orders.seller_id', $id);
+	$this->db->order_by("orders.order_id","desc"); 
+	$query = $this->db->get();
+	return $query->result();
+}
+//delivery_orders
+public function delivery_orders($id)
+{
+	$this->db->select('sellers.seller_id,orders.order_id,orders.item_id,orders.product_name,deliveryboy.deliveryboy_name,sellers.seller_name,orders.delivery_date,orders.delivery_time,orders.customer_name,orders.customer_email,orders.customer_phone,orders.customer_address,assign_orders.pickup_time,assign_orders.delivered_time,orders.payment_mode');
+	$this->db->from('orders');
+	$this->db->join('assign_orders', 'orders.order_id = assign_orders.order_id');
+	$this->db->join('sellers', 'sellers.seller_id = orders.seller_id');
+	$this->db->join('deliveryboy', 'deliveryboy.deliveryboy_id = assign_orders.deliveryboy_id');
+	$this->db->where('orders.order_status','3');
+	$this->db->where('orders.seller_id', $id);
+	$this->db->order_by("orders.order_id","desc"); 
+	$query = $this->db->get();
+		//return $this->db->last_query(); exit;
+	return $query->result();
+}
+//cancel_orders
+public function cancel_orders($id)
+{
+	$this->db->select('sellers.seller_id,orders.order_id,orders.item_id,orders.product_name,deliveryboy.deliveryboy_name,sellers.seller_name,orders.delivery_date,orders.delivery_time,orders.customer_name,orders.customer_email,orders.customer_phone,orders.customer_address');
+	$this->db->from('orders');
+	$this->db->join('assign_orders', 'orders.order_id = assign_orders.order_id');
+	$this->db->join('sellers', 'sellers.seller_id = orders.seller_id');
+	$this->db->join('deliveryboy', 'deliveryboy.deliveryboy_id = assign_orders.deliveryboy_id');
+	$this->db->where('orders.order_status','4');
+	$this->db->where('orders.seller_id', $id);
+	$this->db->order_by("orders.order_id","desc"); 
+	$query = $this->db->get();
+	return $query->result();
+}
+
+		
+
+}
+

@@ -209,6 +209,7 @@
     var id=$(this).val();
     //alert(id);
     var dataString = 'subcategory_id='+ id;
+    //alert(dataString);
     $.ajax
     ({
     type: "POST",
@@ -309,7 +310,7 @@ $(document).ready(function() {
 });
 </script>
 
-<!-- <script type="text/javascript">  
+ <script type="text/javascript">  
     $(function(){
    $("#item_name").autocomplete({
      source: "<?php echo base_url();?>seller/products/get_item" // path to the get_birds method
@@ -317,55 +318,54 @@ $(document).ready(function() {
 
   
 });  
-</script> -->
- <script type="text/javascript">
-        // $(this).ready( function() {
-        //     $("#item_name").autocomplete({
-        //         minLength: 1,
-        //         source: 
-        //         function(reqq, add){
-        //             $.ajax({
-        //                 url: "<?php echo base_url(); ?>seller/products/create",
-        //                 dataType: 'json',
-        //                 type: 'get',
-        //                 data: reqq,
-        //                 success:    
-        //                 function(data){
-        //                     if(data.response =="true"){
-        //                         add(data.message);
-        //                     }
-        //                 },
-        //             });
-        //         },
-        //     select: 
-        //         function(event, ui) {
-        //             $("#result").append(
-        //                 "<li>"+ ui.item.value + "</li>"
-        //             );                  
-        //         },      
-        //     });
-        // });
-        $( "#item_name" ).autocomplete({
-		source: function(request, response) {
-			//console.info(request, 'request');
-			//console.info(response, 'response');
+</script> 
+ <!-- <script type="text/javascript">
+//       $(function(){
+//     var $sfield = $('#item_name').autocomplete({
+//         source: function(request, response){
+//             var url = "<?php echo base_url('seller/products/control_areas');  ?>";
+//               $.post(url, {data:request.term}, function(data){
+//                 response($.map(data, function(countries) {
+//                     return {
+//                         value: countries.item_name
+//                     };
+//                 }));
+//               }, "json");  
+//         },
+//         minLength: 1,
+//         autofocus: true
+//     });
+// });
+$(function() {                     
+    $( "#item_name" ).autocomplete({ //the recipient text field with id #username
+        source: function( request, response ) {
+            $.ajax({
+                url: "<?php echo base_url('seller/products/get_item');  ?>",
+                dataType: "json",
+                data: request,
+                success: function(data){
+                    if(data.response == 'true') {
+                       response(data.message);
+                    }
+                }
+            });
+        },
+        minLength: 1,
+        select: function( event, ui ) {
+            //Do something extra on select... Perhaps add user id to hidden input    
+        },
 
-			$.ajax({
-				//q: request.term,
-				url: "<?php echo base_url('seller/products/suggested_cities'); ?>",
-				data: { term: $("#item_name").val()},
-				dataType: "json",
-				type: "POST",
-				success: function(data) {
-					//console.info(data);
-					response(data);
-				}
-			});
-		},
-		minLength: 2
-	});
+    });
+    
+});
 
-        </script>
+        </script> -->
+<!-- <style type="text/css">
+    #item_name
+	{
+    	text-transform:capitalize;
+	}
+</style> -->
 
 
 

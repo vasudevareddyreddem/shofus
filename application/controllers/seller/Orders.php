@@ -40,11 +40,10 @@ public function index()
 		   'cur_tag_close'  => '</a></li>',
 
 		  ];
-
-
 		$this->pagination->initialize($config);
-		$result=$this->Orders_model->limit($config['per_page'], $this->uri->segment(4) )->order_by('created_at',$order = 'DESC')->get_all();
+		$result=$this->Orders_model->limit($config['per_page'], $this->uri->segment(4) )->order_by('created_at',$order = 'DESC')->total();
 		$data['ordersdata'] =  $result;
+		//echo "<pre>";print_r($data);exit;
 		$this->template->write_view('content', 'seller/orders/index', $data);
 		$this->template->render();
 
@@ -182,6 +181,7 @@ public function inprogress_orders()
 
 		$this->pagination->initialize($config);
 		$result=$this->Orders_model->limit($config['per_page'], $this->uri->segment(4) )->inprogress_orders();
+		//print_r($result);exit;
 		$data['ordersdata'] =  $result;
 		$this->template->write_view('content', 'seller/orders/inprogress_orders', $data);
 		$this->template->render();

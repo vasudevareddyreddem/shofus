@@ -21,6 +21,15 @@ class Orders_model extends MY_Model
 	parent::__construct();
 	}
 
+	public function total(){
+		$sid = $this->session->userdata('seller_id');
+	$this->db->select('*');
+	$this->db->from('orders');
+	$this->db->where('orders.seller_id',$sid);
+	$query=$this->db->get();
+	return $query->result();
+	}
+
 public function new_orders()
 {
 
@@ -54,6 +63,7 @@ public function assigned_orders()
 public function inprogress_orders()
 {
     $id = $this->session->userdata('seller_id');
+    //return $id;
 	$this->db->select('*');
 	$this->db->from('orders');
 	$this->db->join('assign_orders', 'orders.order_id = assign_orders.order_id');
@@ -62,6 +72,7 @@ public function inprogress_orders()
 	$this->db->where('orders.seller_id', $id);
 	  $this->db->order_by("orders.order_id","desc"); 
 	$query = $this->db->get();
+	//return $this->db->last_query(); exit;
 	return $query->result();
 }
 
