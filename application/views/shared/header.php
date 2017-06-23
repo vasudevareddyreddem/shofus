@@ -1,25 +1,5 @@
-<link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico" >
-<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/font-awesome.min.css">
-<!--Style start here -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/style.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/animate.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/responsive.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl_002.css">
+<!--wrapper start here -->
 
-<!--Style end here -->
-<!--for image zooming -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.simpleLens.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.simpleGallery.css">
-<!--for image zooming -->
-<!-- pop up plugins -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/default.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/component.css" />
-<script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
-
-<script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
 <div class="sidebar_right" >
 			
 			<ul style="padding:0 ">
@@ -40,10 +20,10 @@
 									?>
 									<div class="col-md-3">
 											<ul class="list_cat">
-												<li><a href="<?php echo base_url('category/view/'.$subcategory->subcategory_id); ?>" style="color:#666;"><?php echo $subcategory->subcategory_name; ?></a></li>
+												<li><a href="<?php echo base_url('category/view/'.base64_encode($subcategory->subcategory_id)); ?>" style="color:#666;"><?php echo $subcategory->subcategory_name; ?></a></li>
 													<?php 
 													foreach($subcategory->docs12 as $item_data){?>
-													<li><a href="<?php echo base_url('category/productview/'.$item_data->item_id); ?>"><?php echo $item_data->item_name; ?></a></li>
+													<li><a href=""><?php echo $item_data->item_name; ?></a></li>
 													<?php } ?>
 											</ul>
 							

@@ -16,8 +16,6 @@ $this->load->model('admin/orders_model');
 }
 
 	public function index()
-
-
 	{
 
 

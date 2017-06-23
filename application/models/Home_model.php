@@ -21,7 +21,55 @@ class Home_model extends CI_Model
     }    
 
 	
-public function getcatsubcat()
+	public function get_top_offers()
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(8);
+		return $this->db->get()->result_array();
+
+	}
+	public function get_trending_products()
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(5);
+		return $this->db->get()->result_array();
+
+	}
+	public function get_offer_for_you()
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(5);
+		return $this->db->get()->result_array();
+
+	}
+	public function get_deals_of_the_day()
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(5);
+		return $this->db->get()->result_array();
+
+	}
+	public function get_season_sales()
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(5);
+		return $this->db->get()->result_array();
+
+	}
+		
+		
+		
+		public function getcatsubcat()
 	{
 		
 		$query=$this->db->get('category');
@@ -99,15 +147,7 @@ $this->db->select('*');
 	
 
 }	
-	
-public function getrecentproducts()	
-{
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status', 1);
-		$this->db->order_by("item_id", "desc");
-		$this->db->limit(10);
-		return $this->db->get()->result_array();
-}
+
 public function getcategories()	
 {
 	$this->db->select('*')->from('category');

@@ -34,7 +34,7 @@
   </div>
   <!--header part end here --> 
   <!--body part start here -->
-  <div class="cart_bdy"> 
+  <div class="cart_bdy" id="homepageoffers"> 
     <!--Top Category slider Start-->
     <div class="top-cate">
       <div class="featured-pro container_main">
@@ -45,81 +45,18 @@
             </div>
             <div id="top-categories" class="product-flexslider hidden-buttons">
               <div class="slider-items slider-width-col4 products-grid">
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p1.jpg" alt="">
-                    <div class="pro-info">Soups</div>
+			  <?php foreach ($topoffers as $tops){  ?>
+				<div class="item">
+                  <div class="pro-img"><img src="<?php echo base_url('assets/home/images/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
+                    <div class="pro-info"><?php echo $tops['item_name']; ?></div>
+					</div>
                   </div>
-                </div>
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p2.jpg" alt="">
-                    <div class="pro-info">Sandwiches</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p3.jpg" alt="">
-                    <div class="pro-info">Fast Food</div>
-                  </div>
-                </div>
-                <!-- End Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p4.jpg" alt="">
-                    <div class="pro-info">Vegetables</div>
-                  </div>
-                </div>
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p5.jpg" alt="">
-                    <div class="pro-info">Fruits</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p6.jpg" alt="">
-                    <div class="pro-info">Beans</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p7.jpg" alt="">
-                    <div class="pro-info">Salads‎</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p8.jpg" alt="">
-                    <div class="pro-info">Chinese</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p9.jpg" alt="">
-                    <div class="pro-info">South Indian</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p10.jpg" alt="">
-                    <div class="pro-info">Parath's</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p11.jpg" alt="">
-                    <div class="pro-info">Leafy Veg</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-              </div>
+              <?php } ?>
+			  </div>
             </div>
+			<div class="clearfix"></div>
+			  <div class="text-center"><button class="btn btn-primary"> See More</button></div>
+              
           </div>
         </div>
       </div>
@@ -135,12 +72,13 @@
         <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
+		   <?php foreach ($trending_products as $topslist){  ?>
             <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p1.jpg">
+                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$topslist['item_image']); ?>">
 				   
                 </a>
                 <div class="tags">
@@ -155,14 +93,14 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
-                <div class="pull-left" >$13.50 
-					<span class="label-tags"><span class="label label-default">-10%</span></span>
+                <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
+					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
 				</div>
 				
 			
-                <span class="price-old">$15.00</span>
+                <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -175,201 +113,10 @@
             </div>
           </div>
             </div>
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-               <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p2.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
-                </div>
-                <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
-              <div class="price">
-                <div class="pull-left" >$13.50 
-					<span class="label-tags"><span class="label label-default">-10%</span></span>
-				</div>
-				
 			
-                <span class="price-old">$15.00</span>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
-              </div>
-            </div>
-            <!-- End Item --> 
+		   <?php } ?>
             
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper img_hover">
-                <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p3.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-primary arrowed">Popular</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="<?php echo base_url('testing');?>">Levi'sNavy Blue Printed Round Neck T-Shirt</a></h6>
-              <div class="price">
-                <div>$13.50</div>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
-              </div>
-            </div>
-            <!-- End Item -->
-            
-            <div class="item">
-              <div class="item-inner">
-           <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper img_hover">
-                <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail" src="<?php echo base_url(); ?>assets/home/images/p4.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-danger arrowed">Hot Item</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="<?php echo base_url('testing');?>">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
-              <div class="price">
-                <div>$13.50 <span class="label-tags"><span class="label label-success arrowed">-10%</span></span></div>
-                <span class="price-old">$15.00</span>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
-              </div>
-            </div>
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p5.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
-                </div>
-                <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
-              <div class="price">
-                <div class="pull-left" >$13.50 
-					<span class="label-tags"><span class="label label-default">-10%</span></span>
-				</div>
-				
-			
-                <span class="price-old">$15.00</span>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
-              </div>
-            </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper img_hover">
-                <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail" src="<?php echo base_url(); ?>assets/home/images/p6.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-danger arrowed">Hot Item</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="<?php echo base_url('testing');?>">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
-              <div class="price">
-                <div>$13.50 <span class="label-tags"><span class="label label-success arrowed">-10%</span></span></div>
-                <span class="price-old">$15.00</span>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
-              </div>
-            </div>
+           
             <!-- End Item --> 
           </div>
         </div>
@@ -378,17 +125,19 @@
     <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
-          <h2>RECENT</h2>
+          <h2>Offers for You</h2>
         </div>
         <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
+            <?php foreach ($offer_for_you as $topslist){  ?>
             <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p7.jpg">
+                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$topslist['item_image']); ?>">
+				   
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
@@ -402,14 +151,14 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
+              <h6><a href="<?php echo base_url('testing');?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
-                <div class="pull-left" >$13.50 
-					<span class="label-tags"><span class="label label-default">-10%</span></span>
+                <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
+					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
 				</div>
 				
 			
-                <span class="price-old">$15.00</span>
+                <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -422,202 +171,11 @@
             </div>
           </div>
             </div>
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-               <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p8.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
-                </div>
-                <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
-              <div class="price">
-                <div class="pull-left" >$13.50 
-					<span class="label-tags"><span class="label label-default">-10%</span></span>
-				</div>
-				
 			
-                <span class="price-old">$15.00</span>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
-              </div>
-            </div>
-            <!-- End Item --> 
+		   <?php } ?>
             
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper img_hover">
-                <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p9.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-primary arrowed">Popular</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="<?php echo base_url('testing');?>">Levi'sNavy Blue Printed Round Neck T-Shirt</a></h6>
-              <div class="price">
-                <div>$13.50</div>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
-              </div>
-            </div>
-            <!-- End Item -->
+           
             
-            <div class="item">
-              <div class="item-inner">
-           <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper img_hover">
-                <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail" src="<?php echo base_url(); ?>assets/home/images/p10.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-danger arrowed">Hot Item</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="<?php echo base_url('testing');?>">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
-              <div class="price">
-                <div>$13.50 <span class="label-tags"><span class="label label-success arrowed">-10%</span></span></div>
-                <span class="price-old">$15.00</span>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
-              </div>
-            </div>
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail"src="<?php echo base_url(); ?>assets/home/images/p11.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
-                </div>
-                <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="<?php echo base_url('testing');?>">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
-              <div class="price">
-                <div class="pull-left" >$13.50 
-					<span class="label-tags"><span class="label label-default">-10%</span></span>
-				</div>
-				
-			
-                <span class="price-old">$15.00</span>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
-              </div>
-            </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper img_hover">
-                <a href="<?php echo base_url('testing');?>">
-                   <img class="thumbnail" src="<?php echo base_url(); ?>assets/home/images/p1.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-danger arrowed">Hot Item</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="<?php echo base_url('testing');?>">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
-              <div class="price">
-                <div>$13.50 <span class="label-tags"><span class="label label-success arrowed">-10%</span></span></div>
-                <span class="price-old">$15.00</span>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
-              </div>
-            </div>
-            <!-- End Item --> 
           </div>
         </div>
       </div>
@@ -634,7 +192,7 @@
           <div class="slider-items slider-width-col4 products-grid">
 		  
 		  <?php //echo '<pre>';print_r($recentproducts);exit; ?>
-      <?php foreach($recentproducts as $recent_products)  {    ?>
+      <?php foreach($deals_of_the_day as $recent_products)  {    ?>
             <div class="item">
               <div class="item-inner">
                 <div class="item-img">
@@ -670,7 +228,7 @@
     
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-      <?php foreach($recentproducts as $recent_products)  {    ?>
+      <?php foreach($season_sales as $recent_products)  {    ?>
                <div class="item">
               <div class="item-inner">
                 <div class="item-img">

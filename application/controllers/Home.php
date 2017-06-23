@@ -17,7 +17,11 @@ public function index()
 
  {
 	$data['locationdata'] = $this->home_model->getlocations();
-	$data['recentproducts'] = $this->home_model->getrecentproducts();
+	$data['topoffers'] = $this->home_model->get_top_offers();
+	$data['trending_products'] = $this->home_model->get_trending_products();
+	$data['offer_for_you'] = $this->home_model->get_offer_for_you();
+	$data['deals_of_the_day'] = $this->home_model->get_deals_of_the_day();
+	$data['season_sales'] = $this->home_model->get_season_sales();
 	
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'home/index',$data);
