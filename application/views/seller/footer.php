@@ -73,7 +73,7 @@
                 </div>
                 </form>
   </div>-->
-  <!--footer part end here -->
+  <!--footer part end here 
   <div class="fter">
     <div class="container">
       <div class="row">
@@ -81,7 +81,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
 <script src="<?php echo base_url();?>assets/seller_login/js/jssor.slider-22.2.16.mini.js" type="text/javascript"></script> 
 <script type="text/javascript">
         jQuery(document).ready(function ($) {
