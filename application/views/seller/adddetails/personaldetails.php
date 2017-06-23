@@ -86,6 +86,8 @@
              <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/storedetails'); ?>">Back</a>
 			<input type="submit" class="btn btn-primary " value="Submit">
               </form>
+			  <br>
+			  <div class="" style="margin-bottom:30px;">&nbsp;</div>
         </div>
       </div>
     </div>

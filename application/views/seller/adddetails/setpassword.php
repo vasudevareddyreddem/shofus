@@ -15,6 +15,9 @@
 .modal-backdrop.in {
     opacity: 0 !important;
 }
+.mar_t50{
+	margin-top:100px;
+}
 </style>
 
 <div class="navigation_main ">
@@ -50,25 +53,25 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo validation_errors(); ?></div>	
 				<?php  endif;?>
- <div class="row setup-content">
-		<div class="col-xs-12 ">
-          <div class="col-md-6">
-		  <form id="setpassword" name="setpassword" action="<?php echo base_url('seller/adddetails/setpasswordpost'); ?>" method="post" >
+				<div class="row setup-content">
+					<div class="col-xs-12 ">
+					  <div class="col-md-6 col-md-offset-3 mar_t50">
+					  <form id="setpassword" name="setpassword" action="<?php echo base_url('seller/adddetails/setpasswordpost'); ?>" method="post" >
 
-				<div class="form-group">
-				<label class="control-label">New Password</label>
-				<input type="password"id="password" name="password" class="form-control" />
-				</div>
-				<div class="form-group">
-				<label class="control-label">Confirm Password</label>
-				<input type="password" id="confirmpassword"  name="confirmpassword" class="form-control"  />
-				</div>
-				  <button type="submit" id="resubmit" class="btn btn-primary btn-info" value="Next"> Set Password</button>
+							<div class="form-group">
+							<label class="control-label">New Password</label>
+							<input type="password"id="password" name="password" class="form-control" />
+							</div>
+							<div class="form-group">
+							<label class="control-label">Confirm Password</label>
+							<input type="password" id="confirmpassword"  name="confirmpassword" class="form-control"  />
+							</div>
+							  <button type="submit" id="resubmit" class="btn btn-primary btn-info" value="Next"> Set Password</button>
 
-			</form>
-		  </div>
-		</div>
-		</div>
+						</form>
+					  </div>
+					</div>
+				</div>
 </html>
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
