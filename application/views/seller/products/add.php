@@ -1,7 +1,14 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrap-chosen.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
     
     <script src="<?php echo base_url(); ?>assets/dist/js/autocomplete.js"></script>
+    <script>
+      $(function() {
+        $('.chosen-select').chosen();
+        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+      });
+    </script>
 
 <div class="content-wrapper mar_t_con" >
 <section class="content-header">
@@ -75,15 +82,15 @@
                   </select>
                 </div>
 				
-                
-				<div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputEmail1">Item Name</label>
-                  <input class="form-control" placeholder="Item Name" type="text" id="item_name" name="item_name" >
-                   <ul>
-            <div id="result"></div>
-        </ul>
-
-           		</div>
+                <div class="form-group nopaddingRight col-md-6 san-lg">
+                  <label for="exampleInputEmail1">Select Item</label>
+                 <select class="form-control chosen-select" id="item_name" name="item_name" >
+                    <option value="Select Item"></option>					
+					 <?php foreach($items as $item){ ?>				
+                    <option value="<?php echo $item['item_name']; ?>"><?php echo $item['item_name']; ?></option>                   
+					 <?php }?>
+                  </select>				 
+                </div>
 
            <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Item Code</label>
@@ -309,63 +316,6 @@ $(document).ready(function() {
     });
 });
 </script>
-
- <script type="text/javascript">  
-    $(function(){
-   $("#item_name").autocomplete({
-     source: "<?php echo base_url();?>seller/products/get_item" // path to the get_birds method
-   });
-
-  
-});  
-</script> 
- <!-- <script type="text/javascript">
-//       $(function(){
-//     var $sfield = $('#item_name').autocomplete({
-//         source: function(request, response){
-//             var url = "<?php echo base_url('seller/products/control_areas');  ?>";
-//               $.post(url, {data:request.term}, function(data){
-//                 response($.map(data, function(countries) {
-//                     return {
-//                         value: countries.item_name
-//                     };
-//                 }));
-//               }, "json");  
-//         },
-//         minLength: 1,
-//         autofocus: true
-//     });
-// });
-$(function() {                     
-    $( "#item_name" ).autocomplete({ //the recipient text field with id #username
-        source: function( request, response ) {
-            $.ajax({
-                url: "<?php echo base_url('seller/products/get_item');  ?>",
-                dataType: "json",
-                data: request,
-                success: function(data){
-                    if(data.response == 'true') {
-                       response(data.message);
-                    }
-                }
-            });
-        },
-        minLength: 1,
-        select: function( event, ui ) {
-            //Do something extra on select... Perhaps add user id to hidden input    
-        },
-
-    });
-    
-});
-
-        </script> -->
-<!-- <style type="text/css">
-    #item_name
-	{
-    	text-transform:capitalize;
-	}
-</style> -->
 
 
 
