@@ -29,31 +29,7 @@ class Products extends Admin_Controller {
 	
 	public function create()
 	{
-		//$this->load->view('welcome_message');
-		// $keyword = $this->input->post('term');
-  //       $data['response'] = 'false'; //Set default response
-  //       $query = $this->products_model->get_items($keyword); //Search DB
-  //       if( ! empty($query) )
-  //       {
-  //           $data['response'] = 'true'; //Set response
-  //           $data['message'] = array(); //Create array
-  //           foreach( $query as $row )
-  //           {
-  //               $data['message'][] = array( 
-  //                                       'value' => $row->item_name,
-                                  
-  //                                    );  //Add a row to array
-  //           }
-  //       }
-  //        if('IS_AJAX')
-  //       {
-  //           $show = json_encode($data); //echo json string if ajax request
-  //           echo print_r($show);exit;
-             
-  //       }
-        
-        
-		
+	
 		//$cat_id = $this->uri->segment('4');
 		//$subcat_id = $this->uri->segment('5');
 		//$data['catname'] = $this->products_model->getcatname($cat_id);
@@ -61,6 +37,7 @@ class Products extends Admin_Controller {
        //$data['subcatdata'] = $this->products_model->getsubcatdata($cat_id);
 	   $sid = $this->session->userdata('seller_id'); 
 		$data['sub_cat_data'] = $this->products_model->getcatdata($sid);
+		$data['items'] = $this->products_model->auto_items();
 		//echo $this->db->last-query();exit;
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'seller/products/add', $data);

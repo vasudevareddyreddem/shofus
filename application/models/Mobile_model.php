@@ -104,6 +104,7 @@ class Mobile_model extends MY_Model
 	{	
 		$this->db->where('seller_id',$id);
 		$query= $this->db->insert('seller_categories', $seller_category);
+		return $this->db->last_query();
 		return $query;
 	}
 

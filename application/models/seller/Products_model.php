@@ -27,6 +27,14 @@ class Products_model extends MY_Model
 
 		
 	}
+	public function auto_items()
+	{
+		
+		$query=$this->db->get('items');
+		return $query->result_array();
+
+		
+	}
 	public function getcateditdata()
 	{
 		
