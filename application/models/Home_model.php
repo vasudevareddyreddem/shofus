@@ -432,11 +432,6 @@ $this->db->where('product_id',$id);
 		//print_r($query->result()); exit;
 		return $query->result();	
 	
-	
-	
-	
-	
-	
 }
 
 
@@ -459,18 +454,12 @@ public function getsubcategoryid($id)
 
 
 public function getsimilarproducts($id)
-
-
 {
 	
 $this->db->where('subcategory_id',$id);
 		$query = $this->db->get('products');
 		//print_r($query->result()); exit;
-		return $query->result();		
-	
-	
-	
-	
+		return $query->result();
 	
 }
 

@@ -838,6 +838,49 @@ class Mobile extends REST_Controller {
 		 	}
 		}
 
+		//seller_request_service
+		public function seller_request_service_post()
+		{
+			$id = $this->input->get('seller_id');
+			$seller_name_get = $this->mobile_model->seller_name($id);
+			foreach ($seller_name_get as $seller_name) {
+				$name =$seller_name['seller_name'];
+			}
+			//print_r($name);exit;
+			//print_r($seller_name);exit;
+			$service = array(
+  			'seller_id' => $id,
+  			'seller_name'=>$name,
+  	  		'phone_number' => $this->input->get('phone_number'),
+  	  		'select_plan' => $this->input->get('plan'),
+  	    	'created_at'  => date('Y-m-d H:i:s'),
+			'updated_at'  => date('Y-m-d H:i:s'),
+  	  	);
+			$service_save = $this->mobile_model->services_save($service);
+			print_r($service_save);exit;
+			if(count($service_save)>0)
+  			{
+				$message = array
+		 		(
+		 			'status'=>1,
+		 			'Request Service'=>$service_save,
+		 			'message'=> 'Wait For Replay!!'		 			
+					
+		 		);
+	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'Empty'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+
+		}
+
 
 
 }

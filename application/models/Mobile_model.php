@@ -272,7 +272,23 @@ public function payment_details($id)
 	$query = $this->db->get();
 	return $query->result();
 	}
+//seller name
 
+	public function seller_name($id)
+	{
+	$this->db->select('sellers.seller_name');
+	$this->db->from('sellers');
+	$this->db->where('seller_id',$id);
+	$query = $this->db->get();
+	return $query->result_array();
+	}
+	//save services
+	public function services_save($service)
+	{
+		//$this->db->where('seller_id',$id);
+		$query= $this->db->insert('request_for_services', $service);
+		return $query;	
+	}
 		
 
 }
