@@ -23,7 +23,7 @@
 												<li><a href="<?php echo base_url('category/view/'.base64_encode($subcategory->subcategory_id)); ?>" style="color:#666;"><?php echo $subcategory->subcategory_name; ?></a></li>
 													<?php 
 													foreach($subcategory->docs12 as $item_data){?>
-													<li><a href="<?php echo base_url('category/productview/'.base64_encode($subcategory->item_id)); ?>"><?php echo $item_data->item_name; ?></a></li>
+													<li><a href=""><?php echo $item_data->item_name; ?></a></li>
 													<?php } ?>
 											</ul>
 							
@@ -404,19 +404,7 @@ function searchfunction(val){
 	var length=val.length;
 	if(length >4){
 		
-		$.ajax({
-			type: "POST",
-			url: "<?php echo base_url('home/searchfunctionality');?>",
-			data: {
-				searhvalue:val,
-			},
-			cache: false,
-			success: function(data)
-			{
-			alert(data);
-			
-			} 
-			});
+		alert(length);
 	}
 	
 }
@@ -446,33 +434,6 @@ $("#modal-8").show();
 </script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-$(document).ready(function()
-{
-$("#location_name").change(function()
-{
-
-  
-var id=$(this).val();
-
-var dataString = 'location_name='+ id;
-$.ajax
-({
-type: "POST",
- url: "<?php echo base_url();?>home/location",
-data: dataString,
-cache: false,
-success: function(data)
-{
-  //alert(data);
-//location.reload();
-window.location.href="<?php echo base_url(); ?>";
-} 
-});
-
-});
-});
-</script>
 
 <script type="text/javascript" language="javascript">
       $(document).ready(function(){
