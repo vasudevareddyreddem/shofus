@@ -66,6 +66,16 @@ class Home_model extends CI_Model
 		return $this->db->get()->result_array();
 
 	}
+	
+	public function Search_functionality($searchvalue)
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(5);
+		return $this->db->get()->result_array();
+
+	}
 		
 		
 		
