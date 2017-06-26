@@ -434,6 +434,33 @@ $("#modal-8").show();
 </script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 
+    <script type="text/javascript">
+$(document).ready(function()
+{
+$("#location_name").change(function()
+{
+
+  
+var id=$(this).val();
+
+var dataString = 'location_name='+ id;
+$.ajax
+({
+type: "POST",
+ url: "<?php echo base_url();?>home/location",
+data: dataString,
+cache: false,
+success: function(data)
+{
+  //alert(data);
+//location.reload();
+window.location.href="<?php echo base_url(); ?>";
+} 
+});
+
+});
+});
+</script>
 
 <script type="text/javascript" language="javascript">
       $(document).ready(function(){
