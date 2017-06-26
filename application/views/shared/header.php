@@ -71,9 +71,10 @@
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
                   <div class="flipkart-navbar-search smallsearch">
                     <div class="cart_search">
-                      <input class="flipkart-navbar-input col-xs-11" type="" onkeyup="searchfunction(this.value);" placeholder="Search for Products, Brands and more" name="">
+                      <input class="flipkart-navbar-input col-xs-11" id="inputsearch" type="text" data-provide="typeahead" placeholder="Search for Products, Brands and more" name="">
                       <button class="flipkart-navbar-button col-xs-1"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
+					<input type="text" data-provide="typeahead">
 					
                   </div>
                 </form>
@@ -445,8 +446,21 @@ $("#modal-8").show();
 } 
 </script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-
+<script src="<?php echo base_url(); ?>assets/customer/js/bootstrap3-typeahead.js"></script>
+<script src="<?php echo base_url(); ?>assets/customer/js/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript">
+
+
+$(document).ready(function()
+{	
+	$("#inputsearch").tagsinput({
+  typeahead: {
+    source: ["Amsterdam", "Washington", "Sydney", "Beijing", "Cairo"]
+  }
+});
+
+}
+	
 $(document).ready(function()
 {
 $("#location_name").change(function()

@@ -61,26 +61,16 @@ class Products_model extends MY_Model
 		
 	}
 	
-	// public function getcatadddata()
-	// {
-	// 	$sid = $this->session->userdata('seller_id');
-		
-	//  $this->db->select('category.category_name,seller_categories.*')->from('seller_categories');
-	// $this->db->join('category', 'seller_categories.seller_id = category.category_id','left');
-	// $this->db->where('seller_categories.seller_id', $sid);
-	// return $this->db->get()->result_array();
-	// 	// $query = $this->db->get();
- //  //   	return $query->result();
 
-
-	// // 	 $query=$this->db->get('category');
-	// // 	 return $query->result();
-		
-	// // }
 	public function get_areas($term){
     $this->db->like('item_name', $term, 'after');
     $query = $this->db->get('items');
     return $query->result(); 
+}	
+public function get_store_location($sid){
+   $this->db->select('seller_store_details.area')->from('seller_store_details');
+   $this->db->where('seller_id',$sid);
+return $this->db->get()->row_array();
 }
 	
 	

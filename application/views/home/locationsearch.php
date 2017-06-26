@@ -1,49 +1,39 @@
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/font-awesome.min.css">
+<!--Style start here -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/style.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl_002.css">
+
+<!--Style end here -->
+<!--for image zooming -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.simpleLens.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.simpleGallery.css">
+<!--for image zooming -->
+<!-- pop up plugins -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/default.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/component.css" />
+<script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
+
+
+<script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
+
 <body class="bac_img">
-<div class="banner_home con_start">
-     
-      <div id="myCarousel" class="carousel slide"> 
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="item active"> <img src="<?php echo base_url(); ?>assets/home/images/food_bnr.jpg" class="img-responsive">
-            <div class="container">
-              <div class="carousel-caption"> </div>
-            </div>
-          </div>
-          <div class="item"> <img src="<?php echo base_url(); ?>assets/home/images/slide-img2.jpg" class="img-responsive">
-            <div class="container">
-              <div class="carousel-caption"> </div>
-            </div>
-          </div>
-          <div class="item"> <img src="<?php echo base_url(); ?>assets/home/images/slide-img1.jpg" class="img-responsive">
-            <div class="container">
-              <div class="carousel-caption"> </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Controls --> 
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev"> <i class="glyphicon glyphicon-chevron-left"></i> </a> <a class="right carousel-control" href="#myCarousel" data-slide="next"> <i class="glyphicon glyphicon-chevron-right"></i> </a> </div>
-      <!-- /.carousel --> 
-      
-    </div>
-  </div>
+
   <!--header part end here --> 
   <!--body part start here -->
-  
-  <div class="cart_bdy" style="display:none;" id="location_seacrh_result"></div>
-  <div class="cart_bdy" id="location_seacrh">
+  <div class="cart_bdy" id="homepageoffers"> 
     <!--Top Category slider Start-->
     <div class="top-cate">
       <div class="featured-pro container_main">
         <div class="row">
           <div class="slider-items-products">
             <div class="new_title">
-              <h2>Top Offers </h2>
+              <h2>Top Offers</h2>
             </div>
             <div id="top-categories" class="product-flexslider hidden-buttons">
               <div class="slider-items slider-width-col4 products-grid">
@@ -258,92 +248,5 @@
       </div>
     </section>
   </div>
-  
-  
-  <div class="popup1" style="display: block;">
-  <div class="newsletter-sign-box">
-    <div class="newsletter"> <img src="<?php echo base_url(); ?>assets/home/images/close-icon.ico" alt="close" class="x" onClick="HideMe();">
-      <form method="post" id="popup-newsletter" name="popup-newsletter" class="email-form">
-        <h3>Select Your Delivery Location</h3>
-        <div class="newsletter-form">
-          <div class="form-group">
-            <label class="control-label">Address Line 1</label>
-            <input maxlength="100" type="text" id="address1"  name="address1" class="form-control" value="" />
-          </div>
-		  <div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
-
-		  <div class="input-box">
-				<select name="location_name" id="location_name" class="validate-select sel_are">
-				<option value="">Select Area </option>
-				<?php foreach($locationdata as $location_data) {?>
-				<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
-
-				<?php } ?>
-				</select>
-            <button type="button" onclick="searchlocationoffers();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
-          </div>
-          <!--input-box--> 
-        </div>
-        <!--newsletter-form-->
-        
-      </form>
-    </div>
-    <!--newsletter--> 
-    
-  </div>
-  <!--newsletter-sign-box--> 
-</div>
-<div id="fade" style="display: block;"></div>
-</body>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-<script type="text/javascript" language="javascript">
-$("#location_seacrh").show();
-function IsLcemail(reasontype) {
-        var regex = /^[ A-Za-z0-9_@.,!;:}{@#&`~\\|^?$*)(_+-]*$/;
-        return regex.test(reasontype);
-		}
- function searchlocationoffers(){
-	 
-	 jQuery('#address1errormsg').show();
-	var address=jQuery('#address1').val();
-		if(address==''){
-				jQuery('#address1errormsg').html('Please enter Address Line 1');
-				return false;
-		 }else{
-			if (!IsLcemail(address)) {
-				jQuery('#address1errormsg').html('Closure details wont allow <> [] = % ');
-				return false;
-			}
-			 
-		 }
-		 var area=jQuery('#location_name').val();
-		 if(area==''){
-				jQuery('#address1errormsg').html('Please Select Area');
-				return false;
-		 }
-		jQuery('#address1errormsg').html(''); 
-		jQuery('#address1errormsg').hide();
-		$("#location_seacrh_result").empty();
-		jQuery.ajax({
-				url: "<?php echo site_url('home/search_location_offers');?>",
-				type: 'post',
-				data: {
-					form_key : window.FORM_KEY,
-					address1: jQuery("#address1").val(),
-					area: jQuery("#location_name").val(),
-					},
-				dataType: 'html',
-				success: function (data) {
-					jQuery('.popup1').hide();
-					jQuery('#fade').hide();
-					$("#location_seacrh").hide();
-					$("#location_seacrh_result").show();
-					$("#location_seacrh_result").append(data);
-
-				}
-			});
-
- }
-	
-	
-</script>
+  <script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/common.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/owl.carousel.min.js"></script> 

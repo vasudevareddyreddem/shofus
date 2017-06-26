@@ -25,7 +25,10 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/component.css" />
 <script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
 
+
 <script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
+
 
 </head>
 
