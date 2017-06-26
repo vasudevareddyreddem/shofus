@@ -1,11 +1,21 @@
-
+<style>
+#sticky {
+    height:80%;
+}
+#sticky.stick {
+    position: fixed;
+    top: 0;
+    
+}
+</style>
 <div class="" style="margin-top:110px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
 </div>
 <body >
 		<div class="pad_bod">
 		<div class="row">
-		 <div class="col-sm-2 bac_col_side side_bar" id="sidebar">
+		<div id="sticky-anchor"></div>
+		 <div class="col-sm-2 bac_col_side side_bar" id="sticky">
           <div class="filter-sidebar">
             <div class="title"><span>Enabled Filters</span></div>
           
@@ -386,6 +396,7 @@
           </div>
           </div>
           </div>
+          </div>
 
 </body>
 </html>
@@ -402,14 +413,30 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
 </script>
- <script>
-				var elementPosition = $('#sidebar').offset();
+  <script>
 
-		$(window).scroll(function(){
-				if($(window).scrollTop() > elementPosition.top){
-					  $('#sidebar').css('position','fixed').css('top','125px');
-				} else {
-					$('#sidebar').css('position','static');
-				}    
-		});
+
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    var footer_top = $("#footer-start").offset().top;
+    var div_top = $('#sticky-anchor').offset().top;
+    var div_height = $("#sticky").height();
+    
+    var padding = 20;  // tweak here or get from margins etc
+    
+    if (window_top + div_height > footer_top - padding)
+        $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
+    else if (window_top > div_top) {
+        $('#sticky').addClass('stick');
+        $('#sticky').css({top: 150})
+    } else {
+        $('#sticky').removeClass('stick');
+		$('#sticky').css({top: 0})
+    }
+}
+
+$(function () {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});
 </script>

@@ -1,38 +1,8 @@
- <!--shipping blocks start here -->
-  <div class="our-features-box" style="visibility: visible;">
-    <div class="container_main">
-      <ul>
-        <li>
-          <div class="feature-box free-shipping">
-            <div class="icon-truck"></div>
-            <div class="content">FREE SHIPPING on order over $99</div>
-          </div>
-        </li>
-        <li>
-          <div class="feature-box need-help">
-            <div class="icon-support"></div>
-            <div class="content">Need Help +1 800 123 1234</div>
-          </div>
-        </li>
-        <li>
-          <div class="feature-box money-back">
-            <div class="icon-money"></div>
-            <div class="content">Money Back Guarantee</div>
-          </div>
-        </li>
-        <li class="last">
-          <div class="feature-box return-policy">
-            <div class="icon-return"></div>
-            <div class="content">30 days return Service</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!--shipping blocks start here --> 
+ 
+
   <!--footer start here -->
   <footer>
-    <div class="footer-inner">
+    <div class="footer-inner" id="footer-start">
       <div class="newsletter-row">
         <div class="container">
           <div class="row">
