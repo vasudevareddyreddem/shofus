@@ -18,11 +18,23 @@ class User_profile_model extends MY_Model
     	return $query->result();
 	}
 
+	public function profile_pic_save($pic){
+		$sid = $this->session->userdata('seller_id');
+		$this->db->where('seller_id',$sid);
+    	$query =  $this->db->update("sellers",$pic);
+    	return $query;
+	}
+	 public function profile_pic_get()
+	 {
+	 	$sid = $this->session->userdata('seller_id');
+	 	$this->db->select('sellers.profile_pic');
+		$this->db->from('sellers');    
+		$this->db->where('seller_id', $sid);
+    	$query = $this->db->get();
+    	return $query->result_array();
 
-	// public function total_orders(){
-	// 	$sid = $this->session->userdata('seller_id');
-	// 	$query = $this->db->query("SELECT COUNT(order_id) AS total_order FROM orders WHERE seller_id = 8");
-	// //echo  $this->db->last_query();
-	// return $query->result();
+	 }
+
+
 	}
 

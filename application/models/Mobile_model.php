@@ -92,7 +92,7 @@ class Mobile_model extends MY_Model
 
 
 	//seller_personal_details
-	function seller_personal_details($data,$id){
+	function seller_personal_details($id,$data){
 		$this->db->where('seller_id',$id);
     	$query =  $this->db->update("sellers",$data);
     	return $query;

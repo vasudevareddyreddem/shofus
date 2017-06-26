@@ -72,14 +72,22 @@
 
                             <!-- user -->
                             <li class="dropdown dropdown-user admin-user">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <?php foreach($profiles as $profile){ ?>
+                                <?php if($profile['profile_pic'] == "") {  ?>
                                 <div class="user-image">
-                                <img src="<?php echo base_url();?>assets/seller/dist/img/avatar4.png" class="img-circle" height="40" width="40" alt="User Image">
+                                <img src="<?php echo base_url();?>uploads/profile/default.jpg" class="img-circle" height="40" width="40" alt="User Image">
                                 </div>
+                          <?php } else {?>
+                          <div class="user-image">
+                                <img src="<?php echo base_url();?>uploads/profile/<?php  echo $profile['profile_pic']; ?>" class="img-circle" height="40" width="40" alt="User Image">
+                                </div>
+                                <?php } ?>
+                                <?php } ?>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="<?php echo base_url();?>seller/personnel_details"><i class="fa fa-users"></i> Update Profile</a></li>
-                                    <li><a href="<?php echo base_url();?>seller/user_profile"><i class="fa fa-gear"></i> User Profile</a></li> 
+                                    <li><a href="<?php echo base_url();?>seller/user_profile"><i class="fa fa-gear"></i> User Profile</a></li>
+                                    <li><a href="<?php echo base_url();?>seller/user_profile/profile_pic"><i class="fa fa-picture-o"></i> Change ProfilePic</a></li> 
                                     <li><a href="<?php echo base_url() ; ?>seller/login/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
                                 </ul>
                             </li>
