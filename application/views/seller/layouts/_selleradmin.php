@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>::Cart in Hour::</title>
-<link rel="icon" href="<?php echo base_url(); ?>assets/seller/seller_admin/images/fav.ico" type="image/x-icon" />
+<link rel="icon" href="<?php echo base_url(); ?>assets/seller_admin/images/fav.ico" type="image/x-icon" />
 <!-- jquery-ui css -->
    <link href="<?php echo base_url(); ?>assets/seller/plugins/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
    <!-- Bootstrap -->

@@ -138,17 +138,18 @@ class Mobile extends REST_Controller {
 			$id = $this->get('seller_id'); 
 			$seller_cat_id =explode(',',$this->input->get('seller_cat_id'));
 			//$adresses = implode(',' , $seller_cat_id->result());
-			//echo '<pre>';print_r($adresses);exit;
+			//echo '<pre>';print_r($seller_cat_id);exit;
 			$seller_cat_names =explode(',',$this->input->get('seller_cat_name'));
 			//echo '<pre>';print_r($seller_cat_names);exit;
 
-			foreach($seller_cat_id->result_array() as $adr)
+			foreach($seller_cat_id as $adr)
 			{
-				$adresses .= $adr['seller_cat_id'] . ',' ;
+				$adresses = $adr['0'];
 			}
+			//print_r($adresses);exit;
 			$seller_category = array(
 			'seller_id' => $id,
-			'seller_category_id'=> $seller_cat_id,
+			'seller_category_id'=> $adresses,
 			'category_name'=> $seller_cat_names,
 			'created_at'=> date('Y-m-d h:i:s'),
 			'updated_at'=>  date('Y-m-d h:i:s'),
@@ -881,6 +882,31 @@ class Mobile extends REST_Controller {
 		 	}
 
 		}
+
+		//seller_offers
+		public function seller_offers_get()
+		{
+			$id = $this->input->get('seller_id');
+			$offers = $this->mobile_model->listing_category($id);
+			if(count($offers)>0){
+				$message = array
+				(
+					'status'=>1,
+					'Offers'=>$offers,							
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+			else
+			{
+				$message = array
+				(
+					'status'=>0,
+					'message'=>'No Listings'
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+		}
+
 
 
 
