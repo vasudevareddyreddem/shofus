@@ -44,7 +44,11 @@
 			</ol>
 		</div>
 	</section>
-  <section class="content ">
+  <section class="content ">  
+
+
+
+  
 
         <!--  <button class="draw pull-right">Your Id::<?php echo ucfirst($this->session->userdata('seller_rand_id'));?></button>
           -->
