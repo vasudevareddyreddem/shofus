@@ -15,7 +15,7 @@ class Services extends Admin_Controller {
 
 	public function index()
 	{
-		
+			
 	   
 		$this->template->write_view('content', 'seller/services/index');
 		$this->template->render();

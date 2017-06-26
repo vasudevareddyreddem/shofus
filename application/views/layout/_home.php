@@ -46,10 +46,12 @@
 <!--home page product scroller start here --> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/common.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/owl.carousel.min.js"></script> 
-<!--home page product scroller end  here --> 
-<!--home page start location here --> 
 
-<!--home page end location here -->
+
+<script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
+<script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/customer/js/search.js"></script> 
+
 
 </body>
 </html>
