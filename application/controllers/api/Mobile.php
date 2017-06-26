@@ -856,14 +856,15 @@ class Mobile extends REST_Controller {
   	    	'created_at'  => date('Y-m-d H:i:s'),
 			'updated_at'  => date('Y-m-d H:i:s'),
   	  	);
+			//print_r($service);exit;
 			$service_save = $this->mobile_model->services_save($service);
-			print_r($service_save);exit;
+			//print_r($service_save);exit;
 			if(count($service_save)>0)
   			{
 				$message = array
 		 		(
 		 			'status'=>1,
-		 			'Request Service'=>$service_save,
+		 			//'Request Service'=>$service_save,
 		 			'message'=> 'Wait For Replay!!'		 			
 					
 		 		);
