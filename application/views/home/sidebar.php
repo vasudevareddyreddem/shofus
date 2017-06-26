@@ -3,41 +3,260 @@
 <div class="sidebar_right" >
 			
 			<ul style="padding:0 ">
-			
-			<?php  foreach($catitemdata as $catitem_data )  {  
-			?>
 				<li class="spin btn-group show-on-hover">
 					<a  class=" dropdown-toggle" data-toggle="dropdown">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit"><?php echo $catitem_data->category_name; ?></span>
+						<span class="menu_tit">Electronics</span>
 					</a>
 					<ul class="dropdown-menu " role="menu">
 						<div class="row">
-							
-								<?php 
-								foreach($catitem_data->docs as $subcategory){
-									//echo '<pre>';print_r($subcategory);exit;
-									?>
-									<div class="col-md-3">
-											<ul class="list_cat">
-												<li><a href="<?php echo base_url('category/view/'.base64_encode($subcategory->subcategory_id)); ?>" style="color:#666;"><?php echo $subcategory->subcategory_name; ?></a></li>
-													<?php 
-													foreach($subcategory->docs12 as $item_data){?>
-													<li><a href=""><?php echo $item_data->item_name; ?></a></li>
-													<?php } ?>
-											</ul>
-							
-									</div>
-								<?php } ?>
-							
-							
-						
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Mobiles</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;"> Accessories</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Laptops</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Televisions</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
 						</div>
 						
 					</ul>
 				</li><div class="clearfix"></div>
-			
-				<?php }?>
+				<li class="spin btn-group show-on-hover">
+					<a  class=" dropdown-toggle" data-toggle="dropdown">
+						<span  class="circ_icon glyphicon glyphicon-home rot "></span>
+						<span class="menu_tit">Fashion</span>
+					</a>
+					<ul class="dropdown-menu " role="menu">
+						<div class="row">
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Mobiles</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;"> Accessories</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Laptops</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Televisions</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+						</div>
+						
+					</ul>
+				</li><div class="clearfix"></div>
+				<li class="spin btn-group show-on-hover">
+					<a  class=" dropdown-toggle" data-toggle="dropdown">
+						<span  class="circ_icon glyphicon glyphicon-cutlery rot "></span>
+						<span class="menu_tit">Food</span>
+					</a>
+					<ul class="dropdown-menu " role="menu">
+						<div class="row">
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Mobiles</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;"> Accessories</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Laptops</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Televisions</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+						</div>
+						
+					</ul>
+				</li><div class="clearfix"></div>
+				<li class="spin btn-group show-on-hover">
+					<a  class=" dropdown-toggle" data-toggle="dropdown">
+						<span  class="circ_icon glyphicon glyphicon-home rot "></span>
+						<span class="menu_tit">Grocery</span>
+					</a>
+					<ul class="dropdown-menu " role="menu">
+						<div class="row">
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Mobiles</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;"> Accessories</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Laptops</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Televisions</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+						</div>
+						
+					</ul>
+				</li><div class="clearfix"></div>
+				
+				
 			</ul>
 </div>
 <div class="wrapper"> 
@@ -68,10 +287,11 @@
         <div class="col-md-8">
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="row">
-            <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
+            <div class="col-md-12">
+                <form class="form-horizontal form-horizontal_x">
                   <div class="flipkart-navbar-search smallsearch">
                     <div class="cart_search">
-                      <input class="flipkart-navbar-input col-xs-11" type="" onkeyup="searchfunction(this.value);" placeholder="Search for Products, Brands and more" name="">
+                      <input class="flipkart-navbar-input col-xs-11" type="" placeholder="Search for Products, Brands and more" name="">
                       <button class="flipkart-navbar-button col-xs-1"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
 					
@@ -398,16 +618,6 @@
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">
-
-function searchfunction(val){
-	
-	var length=val.length;
-	if(length >4){
-		
-		alert(val);
-	}
-	
-}
     $(document).ready(function(){
       $('#frgt_pass').click(function(){
           $('#log_sign').hide();
