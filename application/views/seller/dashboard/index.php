@@ -8,6 +8,7 @@
    $('#view1').trigger("click");
 });
 </script>
+
 <?php }?>
 <div class="card-header cover">
 <a href="javascript:void(0)"  style="text-decoration:none;" id="view1" data-toggle="modal"  data-target="#dashboardpopup">
@@ -53,6 +54,7 @@
               <!-- <a href="<?php echo base_url();?>seller/products/create" class="btn btn-success pull-right" style="background: #bce1f1;">Add Listing</a>  
           </div> -->
 						<!--tabs start-->
+
       
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-8 m-b-20">
@@ -233,58 +235,28 @@
 				</div>
 			</div>
 			<div class="panel-body">
-      <?php foreach($seller_ad as $seller_ads) { ?>
-        <p><?php echo $seller_ads->message; ?></p>
-        <?php } ?>
+        <div class="col-xs-12">
+          <ul class="demo2">
+          <?php foreach($seller_ad as $seller_ads) { ?>
+              <li class="news-item">
+                <table cellpadding="4">
+                  <tr>
+                      <td><?php echo $seller_ads->message; ?></td>
+                  </tr>
+                </table>
+              </li>
+              <?php } ?>
+          </ul>
+        </div>
 				</div>
 			</div>
 		</div>
 
 </div>
-				<!--tabs start-->
-                       <!--  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                            <div class="panel panel-bd lobidisable">
-                                <div class="panel-heading">
-                                    <div class="panel-title">
-                                        <h4>New Orders</h4>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                <ul class="menu">
-                                        <?php foreach($ordersdata as $order_data){ ?>
-                                            <li>
-                                               <a href="#" class="border-gray">
-                                                    <div class="pull-left">
-                                                </div>
-                                                    <h4>Customer Name:<?php  echo $order_data->customer_name; ?></h4>
-                                                    <p>Product:<?php  echo $order_data->product_name; ?> 
-                                                    </p>
-                                                    <span class="label label-success pull-right"><?php  echo $order_data->updated_at; ?></span>
-                                                </a>       
-                                            </li>
-                                            <?php } ?>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                </div>
 
-                            </div>
-                        </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                            <div class="panel panel-bd lobidisable">
-                                <div class="panel-heading">
-                                    <div class="panel-title">
-                                        <h4>Calender</h4>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="monthly_calender">
-                                        <div class="monthly" id="m_calendar"></div>
-                                    </div>
-                                </div>
-                                 <div id="map1" class="hidden-xs hidden-sm hidden-md hidden-lg"></div>
-                            </div>
-                        </div>-->
+				
+  
+
                  </section> <!-- /.content -->
              </div>
              
@@ -310,3 +282,19 @@
       
     </div>
   </div>
+<script type="text/javascript">
+    $(function () {
+    $(".demo2").bootstrapNews({
+            newsPerPage: 4,
+            autoplay: true,
+            pauseOnHover: true,
+            navigation: false,
+            direction: 'up',
+            newsTickerInterval: 2500,
+            onToDo: function () {
+                //console.log(this);
+            }
+        });
+    
+    });
+</script>

@@ -142,30 +142,10 @@ class Mobile extends REST_Controller {
 		public function seller_categories_post()
 		{
 			$id = $this->get('seller_id'); 
-			$seller_cat_id =$this->input->get('seller_cat_id');
-			$tmp = explode(',', $seller_cat_id);			
-			$cnt= count($tmp);
-			//echo "<pre>";print_r($cnt);exit;
-			$seller_cat_names =$this->input->get('seller_cat_name');
-			for($i=0;$i<$cnt;$i++){
-			$cond = array('seller_categories.seller_category_id'=>$tmp[$i]);			
-			echo '<pre>';print_r($cond);exit;
-		}
-			//echo "<pre>";print_r($seller_cat_names);exit;
-
-			 // foreach ($seller_cat_id as $seller_cats_id) 
-			 // {
-			 // 	$store_id =$sellers_cat_id['seller_cat_id[]'];
-			 // }
-
-			 // for (i <= $seller_cat_id-1); 
-    // 		{     
-		  //       $store_id =$seller_cat_id(i);   
-    // 		}
-			// foreach ($seller_cat_names as $seller_cat_name) {
-			// 	$store_name =$seller_cat_name['seller_cat_name'];
-			// }
-
+			$seller_cat_id =explode(',',$this->input->get('seller_cat_id'));
+			//echo '<pre>';print_r($seller_cat_id);exit;
+			$seller_cat_names =explode(',',$this->input->get('seller_cat_name'));
+			//echo '<pre>';print_r($seller_cat_names);exit;
 			$seller_category = array(
 			'seller_id' => $id,
 			'seller_category_id'=> $seller_cat_id,
