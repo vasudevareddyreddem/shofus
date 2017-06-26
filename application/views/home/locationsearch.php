@@ -26,14 +26,14 @@
 
   <!--header part end here --> 
   <!--body part start here -->
-  <div class="cart_bdy" id="homepageoffers"> 
+ <div class="cart_bdy" id="location_seacrh">
     <!--Top Category slider Start-->
     <div class="top-cate">
       <div class="featured-pro container_main">
         <div class="row">
           <div class="slider-items-products">
             <div class="new_title">
-              <h2>Top Offers</h2>
+              <h2>Top Offers </h2>
             </div>
             <div id="top-categories" class="product-flexslider hidden-buttons">
               <div class="slider-items slider-width-col4 products-grid">
@@ -69,7 +69,7 @@
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('testing');?>">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
                    <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$topslist['item_image']); ?>">
 				   
                 </a>
@@ -85,7 +85,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="<?php echo base_url('testing');?>"><?php echo $topslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
 					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
@@ -127,7 +127,7 @@
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('testing');?>">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
                    <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$topslist['item_image']); ?>">
 				   
                 </a>
@@ -143,7 +143,7 @@
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="<?php echo base_url('testing');?>"><?php echo $topslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
 					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
@@ -185,25 +185,45 @@
 		  
 		  <?php //echo '<pre>';print_r($recentproducts);exit; ?>
       <?php foreach($deals_of_the_day as $recent_products)  {    ?>
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"> <img src="<?php echo base_url();?>uploads/products/<?php  echo $recent_products['item_image']; ?>" style="width : 214px; height : 214px" alt=""></a> </div>
+             <div class="item">
+          <div class=" box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper  img_hover">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$topslist['item_image']); ?>">
+				   
+                </a>
+                <div class="tags">
+                  <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
                 </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#"><?php echo $recent_products['item_name'];  ?></a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">RS. <?php echo $recent_products['item_cost'];  ?></span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
+                <div class="tags tags-left">
+                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
+                </div>
+                <div class="option">
+                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
+              <div class="price">
+                <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
+					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+				</div>
+				
+			
+                <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="#">(5 reviews)</a>
+              </div>
+            </div>
+          </div>
             </div>
             
       <?php  } ?>
@@ -221,25 +241,45 @@
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
       <?php foreach($season_sales as $recent_products)  {    ?>
-               <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"> <img src="<?php echo base_url();?>uploads/products/<?php  echo $recent_products['item_image']; ?>" style="width : 214px; height : 214px" alt=""></a> </div>
+                 <div class="item">
+          <div class=" box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper  img_hover">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$topslist['item_image']); ?>">
+				   
+                </a>
+                <div class="tags">
+                  <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
                 </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#"><?php echo $recent_products['item_name'];  ?></a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">RS. <?php echo $recent_products['item_cost'];  ?></span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
+                <div class="tags tags-left">
+                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
+                </div>
+                <div class="option">
+                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
+              <div class="price">
+                <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
+					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+				</div>
+				
+			
+                <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="#">(5 reviews)</a>
+              </div>
+            </div>
+          </div>
             </div>
             
       <?php  } ?>

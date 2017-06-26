@@ -23,7 +23,7 @@
 												<li><a href="<?php echo base_url('category/view/'.base64_encode($subcategory->subcategory_id)); ?>" style="color:#666;"><?php echo $subcategory->subcategory_name; ?></a></li>
 													<?php 
 													foreach($subcategory->docs12 as $item_data){?>
-													<li><a href="<?php echo base_url('category/productview/'.base64_encode($subcategory->item_id)); ?>"><?php echo $item_data->item_name; ?></a></li>
+													<li><a href=""><?php echo $item_data->item_name; ?></a></li>
 													<?php } ?>
 											</ul>
 							
@@ -108,14 +108,13 @@
             </div>
           </div>
         </div>
-		  <div class="medias ">
+		   <div class="medias ">
 			<span>
 				<a data-toggle="modal" data-target="#sin_log" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
 			</span>
 			<span><a href="<?php echo base_url('testing');?>"><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
-			<span class=""><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>
+			<span class=""><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i>&nbsp;<sup class="sup">5</sup></span>
 			<div class="sprinkle"></div>
-				
 		  </div>
 		 
 	
@@ -397,26 +396,18 @@
 
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
-<script type="text/javascript">
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+<script>
+
 
 function searchfunction(val){
 	
 	var length=val.length;
 	if(length >4){
 		
-		$.ajax({
-			type: "POST",
-			url: "<?php echo base_url('home/searchfunctionality');?>",
-			data: {
-				searhvalue:val,
-			},
-			cache: false,
-			success: function(data)
-			{
-			alert(data);
-			
-			} 
-			});
+		alert(length);
 	}
 	
 }
@@ -435,46 +426,11 @@ function searchfunction(val){
           $('#show_pass').hide();
        })
     });
-  </script> 
 
-<!-- Login popup end here -->
-<script>
 function registershow(){
 	
 $("#modal-8").show();	
 } 
-</script>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-$(document).ready(function()
-{
-$("#location_name").change(function()
-{
-
-  
-var id=$(this).val();
-
-var dataString = 'location_name='+ id;
-$.ajax
-({
-type: "POST",
- url: "<?php echo base_url();?>home/location",
-data: dataString,
-cache: false,
-success: function(data)
-{
-  //alert(data);
-//location.reload();
-window.location.href="<?php echo base_url(); ?>";
-} 
-});
-
-});
-});
-</script>
-
-<script type="text/javascript" language="javascript">
       $(document).ready(function(){
     $('#register_submit').click(function(e){
     e.preventDefault();
@@ -624,12 +580,7 @@ window.location.href="<?php echo base_url(); ?>";
     
     });
   
-
-</script>
-
-<script type="text/javascript" language="javascript">
- 
-		$(document).ready(function(){
+	$(document).ready(function(){
 		$("#login_submit").click(function(e){
 		e.preventDefault();
 		
@@ -679,9 +630,4 @@ window.location.href="<?php echo base_url(); ?>";
 		});
 	
 	
-</script>
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
 </script>

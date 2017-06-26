@@ -31,6 +31,9 @@ public function index()
 public function search_location_offers()
 {
 	$postvalue=$this->input->post();
+	$$this->session->set_userdata('location_area',$postvalue['area']);
+	
+	//echo '<pre>';print_r($tst);exit;
 	$data['topoffers'] = $this->home_model->get_search_top_offers($postvalue['area']);
 	$data['trending_products'] = $this->home_model->get_search_trending_products($postvalue['area']);
 	$data['offer_for_you'] = $this->home_model->get_search_offer_for_you($postvalue['area']);
