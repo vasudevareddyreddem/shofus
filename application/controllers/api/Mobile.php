@@ -36,16 +36,10 @@ class Mobile extends REST_Controller {
 	}
     
 	
-	
-	public function  seller_register_post(){
-			// $this->form_validation->set_rules('seller_mobile_number', 'mobile_number', 'trim|required'); 
-   //      if ($this->form_validation->run() == 0) {
-			// $message = array('status'=>0,'message'=>'Phone Number Filed Not empty.');
-			// 	$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+	/* start seller register Apis */
 
-			// }
-        
-        
+	public function  seller_register_post()
+	{
 			$this->input->post();
 			$mobile_number=$this->input->get('seller_mobile_number');
 			$email=$this->input->get('seller_email');
@@ -63,7 +57,7 @@ class Mobile extends REST_Controller {
         		$mobile_num = $mobile_number;  
         		$message = "Your Temporary Password is : " .$six_digit_random_number;               
         // Sending with PHP CURL
-       $url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
+       	$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
 			$ret = file($url);
 					$data = array(
 					'seller_rand_id' => $seller.''.$seller_rand_id,
@@ -143,9 +137,15 @@ class Mobile extends REST_Controller {
 		{
 			$id = $this->get('seller_id'); 
 			$seller_cat_id =explode(',',$this->input->get('seller_cat_id'));
-			//echo '<pre>';print_r($seller_cat_id);exit;
+			//$adresses = implode(',' , $seller_cat_id->result());
+			//echo '<pre>';print_r($adresses);exit;
 			$seller_cat_names =explode(',',$this->input->get('seller_cat_name'));
 			//echo '<pre>';print_r($seller_cat_names);exit;
+
+			foreach($seller_cat_id->result_array() as $adr)
+			{
+				$adresses .= $adr['seller_cat_id'] . ',' ;
+			}
 			$seller_category = array(
 			'seller_id' => $id,
 			'seller_category_id'=> $seller_cat_id,
@@ -271,6 +271,183 @@ class Mobile extends REST_Controller {
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 		}
+		/* End seller register Apis */
+
+
+		/* start seller Update Profile Apis */
+
+		public function update_stepone_details_post()
+		{
+			$id = $this->input->get('seller_id');
+			//echo $id;
+			$stepone = array(					
+					'seller_name' => $this->input->get('seller_name'),
+					'seller_mobile' => $this->input->get('seller_mobile_number'),
+					'seller_email' => $this->input->get('seller_email'),
+					'seller_address' => $this->input->get('seller_address'),
+					'created_at'  => date('Y-m-d H:i:s'),
+					'updated_at'  => date('Y-m-d H:i:s')
+					);
+			$update_stepone=$this->mobile_model->update_step_one($id,$stepone);
+
+		    if(count($update_stepone)>0)
+		      {
+		      $message = array
+				(
+					'status'=>1,
+					'Seller_update_stepone'=>$stepone,
+					'message'=>'Successfully Updated Stepone'						
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+			else
+			{
+				$message = array
+				(
+					'status'=>0,
+					'message'=>'Faild'
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+
+		}
+
+		//update seller_steptwo
+		public function update_steptwo_details_post()
+		{
+			$id = $this->get('seller_id'); 
+			$seller_cat_id =explode(',',$this->input->get('seller_cat_id'));
+			//$adresses = implode(',' , $seller_cat_id->result());
+			//echo '<pre>';print_r($adresses);exit;
+			$seller_cat_names =explode(',',$this->input->get('seller_cat_name'));
+			//echo '<pre>';print_r($seller_cat_names);exit;
+
+			foreach($seller_cat_id->result_array() as $adr)
+			{
+				$adresses .= $adr['seller_cat_id'] . ',' ;
+			}
+			$seller_category = array(
+			'seller_id' => $id,
+			'seller_category_id'=> $seller_cat_id,
+			'category_name'=> $seller_cat_names,
+			'created_at'=> date('Y-m-d h:i:s'),
+			'updated_at'=>  date('Y-m-d h:i:s'),
+			);
+			$seller_cats=$this->mobile_model->insertseller_cat($id,$seller_category);
+			if(count($seller_cats)>0)
+			{
+			$message = array
+				(
+					'status'=>1,
+					'Seller_update_stepone'=>$seller_category,
+					'message'=>'Successfully Updated Steptwo'							
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+			else
+			{
+				$message = array
+				(
+					'status'=>0,
+					'message'=>'Faild'
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+
+		}
+
+
+		//update seller_stepthree
+
+		public function update_stepthree_details_post()
+		{
+			$id = $this->input->get('seller_id');
+			// $base64_str = $this->input->get('tanvat_image');
+			// $image = base64_decode($base64_str);
+			// $image_name= $image;
+			// $path ="/assets/sellerfile//" . $image_name;
+			// $tanvatimage= file_put_contents($path, $image);
+		
+		
+			$stepthree = array(
+			'seller_id' => $id, 	
+			'store_name' => $this->input->get('store_name'), 
+			'addrees1' => $this->input->get('addrees1'),    
+			'addrees2' => $this->input->get('addrees2'),    
+			'pin_code' => $this->input->get('pin_code'),    
+			'other_shops'  =>$this->input->get('other_shops'),
+			'other_shops_location'  =>$this->input->get('other_shops_location'),
+			'deliveryes'  =>$this->input->get('deliveryes'),
+			'weblink'  =>$this->input->get('weblink'),
+			'tin_vat'  =>$this->input->get('tin_vat'),
+			'tan'  =>$this->input->get('tan'),			
+			'cst'  =>$this->input->get('cst'),		
+			'gstin'  =>$this->input->get('gstin'),
+			'created_at'  => date('Y-m-d H:i:s'),
+			);
+			//echo '<pre>';print_r($data);exit;
+			$update_stepthree=$this->mobile_model->update_step_three($id,$stepthree);
+			
+			if(count($update_stepthree)>0)	
+			{
+			$message = array
+				(
+					'status'=>1,
+					'Seller_update_stepthree'=>$stepthree,
+					'message'=>'Successfully Updated Stepthree'
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+			else
+			{
+				$message = array
+				(
+					'status'=>0,
+					'message'=>'Faild'
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+		}
+
+		//update seller_stepthree
+		public function update_stepfour_details_post()
+		{
+			$id = $this->input->get('seller_id');
+
+			$stepfour =array
+			(
+				'seller_id' => $id,
+				'seller_bank_account' => $this->input->get('bank_account'),
+				'seller_pan_card ' => $this->input->get('pan_card'),
+				'seller_adhar' => $this->input->get('adhar_card')
+			);
+			$update_stepfour=$this->mobile_model->update_step_four($id,$stepfour);
+			
+			if(count($update_stepfour)>0)	
+			{
+			$message = array
+				(
+					'status'=>1,
+					'Seller_update_stepfour'=>$stepfour,
+					'message'=>'Successfully Updated Stepfour'
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+			else
+			{
+				$message = array
+				(
+					'status'=>0,
+					'message'=>'Faild'
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+		}
+
+		/* End seller Update Profile Apis */
+
+
+
 
 		//seller_categorys
 		public function seller_category_get()
@@ -423,11 +600,36 @@ class Mobile extends REST_Controller {
 			$id = $this->input->get('seller_id');
 
 		}
-		
+		//listing cats
+		public function listing_get()
+		{
+			$id = $this->input->get('seller_id');
+			$lists = $this->mobile_model->listing_category($id);
+			if(count($lists)>0){
+				$message = array
+				(
+					'status'=>1,
+					'my_listings'=>$lists,							
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+			else
+			{
+				$message = array
+				(
+					'status'=>0,
+					'message'=>'No Listings'
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+
+		}
+
+		//my_listing
 		public function seller_listing_get()
 		{
 			$id = $this->input->get('seller_id');
-			$list = $this->mobile_model->getcatsubcatpro($id);
+			$list = $this->mobile_model->listing_sub_all($id);
 			if(count($list)>0){
 				$message = array
 				(
@@ -609,6 +811,34 @@ class Mobile extends REST_Controller {
 	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		 	}
 		}
+
+		//Seller Payments
+		public function seller_payments_get()
+		{
+			$id = $this->input->get('seller_id');
+			$payments = $this->mobile_model->payment_details($id);
+			if(count($payments)>0)
+  			{
+				$message = array
+		 		(
+		 			'status'=>1,
+		 			'Seller_Payments'=>$payments,		 			
+					
+		 		);
+	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'No Payments'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+		}
+
+
 
 }
 

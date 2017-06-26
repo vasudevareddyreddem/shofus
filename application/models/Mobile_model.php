@@ -99,13 +99,40 @@ class Mobile_model extends MY_Model
 
 	}
 
+	//update_stepone
+	public function update_step_one($id,$stepone)
+	{
+
+		$this->db->where('seller_id',$id);
+		$query =  $this->db->update('sellers', $stepone);
+		return $query;
+	}
+	//update_stepthree
+	public function update_step_three($id,$stepthree)
+	{
+		$this->db->where('seller_id',$id);		
+		$query =$this->db->update('seller_store_details', $stepthree);
+		return  $query;
+
+	}
+	//update_stepfour
+	public function update_step_four($id,$data)
+{
+		
+	$this->db->where('seller_id',$id);
+	$query=$this->db->update('sellers',$data);
+	return $query; 
+	
+}
+
+
 	//seller_categories
 	 public function insertseller_cat($id,$seller_category)
 	{	
 		$this->db->where('seller_id',$id);
 		$query= $this->db->insert('seller_categories', $seller_category);
-		return $this->db->last_query();
-		return $query;
+		//return $this->db->last_query();
+		return $query->result_array();
 	}
 
 	//seller_ads
@@ -133,14 +160,24 @@ class Mobile_model extends MY_Model
 
 
 //my listing
-public function getcatsubcatpro($id)
 
-{
+public function listing_category($id){
+	$this->db->select('products.seller_id,products.category_id,category.category_name');
+	$this->db->from('products');
+   $this->db->join('category', 'category.category_id =products.category_id');
+	$this->db->where('products.seller_id',$id);
+	$query = $this->db->get();
+	return $query->result_array();
+
+}
+public function listing_sub_all($id)
+
+{	
+	$this->db->select('products.seller_id,products.category_id,subcategories.subcategory_name,products.item_id,products.item_name,products.item_code,products.item_description,products.item_quantity,products.item_cost,products.item_image,products.item_status');
 	$this->db->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
    $this->db->join('category', 'category.category_id =products.category_id');
 	$this->db->where('products.seller_id',$id);
-	//$this->db->group_by('category.category_name');
 	$query = $this->db->get();
 	return $query->result_array();
 }
@@ -225,6 +262,16 @@ public function cancel_orders($id)
 	$query = $this->db->get();
 	return $query->result();
 }
+
+//seller_payments
+public function payment_details($id)
+	{
+	$this->db->select('*');
+	$this->db->from('seller_payments');
+	$this->db->where('seller_id',$id);
+	$query = $this->db->get();
+	return $query->result();
+	}
 
 		
 
