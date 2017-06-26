@@ -112,7 +112,7 @@
 			<span>
 				<a data-toggle="modal" data-target="#sin_log" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
 			</span>
-			<span><a data-toggle="modal" data-target="#location" ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
+			<span><a onclick="openpopup();"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
 			<span class=""><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>
 			<div class="sprinkle"></div>
 				
@@ -390,7 +390,8 @@
     </div>
   </div>
 </div>
-<div class="modal animated  zoomIn" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+ <div class="modal animated  zoomIn" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="md-content">
 <button type="button" id="popupclose" class="close" data-dismiss="modal">&times;</button>
@@ -410,7 +411,7 @@
 
 				<?php } ?>
 				</select>
-            <button type="submit" onclick="searchlocationoffers();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
+            <button type="submit" onclick="searchlocationoffer();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
           </div>
         </div>
    
@@ -427,6 +428,56 @@
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">
 
+function openpopup(val){
+	$("#location").fadeIn();
+}
+$("#location_seacrh").show();
+function IsLcemail(reasontype) {
+        var regex = /^[ A-Za-z0-9_@.,!;:}{@#&`~\\|^?$*)(_+-]*$/;
+        return regex.test(reasontype);
+		}
+ function searchlocationoffer(){
+	 
+	 jQuery('#address1errormsg').show();
+	var address=jQuery('#address1').val();
+		if(address==''){
+				jQuery('#address1errormsg').html('Please enter Address Line 1');
+				return false;
+		 }else{
+			if (!IsLcemail(address)) {
+				jQuery('#address1errormsg').html('Closure details wont allow <> [] = % ');
+				return false;
+			}
+			 
+		 }
+		 var area=jQuery('#location_name').val();
+		 if(area==''){
+				jQuery('#address1errormsg').html('Please Select Area');
+				return false;
+		 }
+		jQuery('#address1errormsg').html(''); 
+		jQuery('#address1errormsg').hide();
+		$("#location_seacrh_result").empty();
+		
+		jQuery.ajax({
+				url: "<?php echo site_url('home/search_location_offers');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					address1: jQuery("#address1").val(),
+					area: jQuery("#location_name").val(),
+					},
+				dataType: 'html',
+				success: function (data) {
+					$("#location").fadeOut();
+
+					$("#location_seacrh_result").show();
+					$("#location_seacrh_result").append(data);
+
+				}
+			});
+
+ }
 function searchfunction(val){
 	
 	var length=val.length;
@@ -463,53 +514,6 @@ $("#modal-8").show();
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 
 <script type="text/javascript" language="javascript">
-
-$("#location_seacrh").show();
-function IsLcemail(reasontype) {
-        var regex = /^[ A-Za-z0-9_@.,!;:}{@#&`~\\|^?$*)(_+-]*$/;
-        return regex.test(reasontype);
-		}
- function searchlocationoffers(){
-	 
-	 jQuery('#address1errormsg').show();
-	var address=jQuery('#address1').val();
-		if(address==''){
-				jQuery('#address1errormsg').html('Please enter Address Line 1');
-				return false;
-		 }else{
-			if (!IsLcemail(address)) {
-				jQuery('#address1errormsg').html('Closure details wont allow <> [] = % ');
-				return false;
-			}
-			 
-		 }
-		 var area=jQuery('#location_name').val();
-		 if(area==''){
-				jQuery('#address1errormsg').html('Please Select Area');
-				return false;
-		 }
-		jQuery('#address1errormsg').html(''); 
-		jQuery('#address1errormsg').hide();
-		$("#location_seacrh_result").empty();
-		jQuery.ajax({
-				url: "<?php echo site_url('home/search_location_offers');?>",
-				type: 'post',
-				data: {
-					form_key : window.FORM_KEY,
-					address1: jQuery("#address1").val(),
-					area: jQuery("#location_name").val(),
-					},
-				dataType: 'html',
-				success: function (data) {
-					window.opener.location.reload();
-					$("#location_seacrh").hide();
-					$("#location_seacrh_result").show();
-					$("#location_seacrh_result").append(data);
-
-				}
-			});
-
- }
       $(document).ready(function(){
     $('#register_submit').click(function(e){
     e.preventDefault();
