@@ -1,5 +1,3 @@
-<!--wrapper start here -->
-
 <div class="sidebar_right" >
 			
 			<ul style="padding:0 ">
