@@ -71,7 +71,7 @@
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-                      <input  class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                      <input onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                       <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
 					
@@ -394,7 +394,7 @@
  <div class="modal animated  zoomIn" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="md-content">
-<button type="button" id="popupclose" class="close" data-dismiss="modal">&times;</button>
+		<a href="javascript:void(0);" onclick="removepopup(this.value)" >X</a>
         <h3>Select Your Delivery Location</h3>
         <div class="newsletter-form">
           <div class="form-group">
@@ -427,7 +427,55 @@
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">
+function removepopup(){
+		$("#location").fadeOut();
+	
+}	
+function searchfunction(val){
+	
+	var length=val.length;
+	if(length >4){
+		
+	jQuery.ajax({
+			url: "<?php echo site_url('home/search_functionality');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				searchvalue: val,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+			
 
+			}
+		});
+	}
+	
+}
+
+
+$(document).ready(function(){
+    // Defining the local dataset
+    var cars = ['Audi', 'BMW', 'bayapu', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Chinnagosala'];
+    
+    // Constructing the suggestion engine
+    var cars = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: cars
+    });
+    
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'cars',
+        source: cars
+    });
+});
 function openpopup(val){
 	$("#location").fadeIn();
 }
@@ -478,15 +526,7 @@ function IsLcemail(reasontype) {
 			});
 
  }
-function searchfunction(val){
-	
-	var length=val.length;
-	if(length >4){
-		
-		alert(length);
-	}
-	
-}
+
     $(document).ready(function(){
       $('#frgt_pass').click(function(){
           $('#log_sign').hide();
@@ -723,28 +763,4 @@ $("#modal-8").show();
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
-</script>
-<script type="text/javascript">
-$(document).ready(function(){
-    // Defining the local dataset
-    var cars = ['Audi', 'BMW', 'bayapu', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Chinnagosala'];
-    
-    // Constructing the suggestion engine
-    var cars = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: cars
-    });
-    
-    // Initializing the typeahead
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true, /* Enable substring highlighting */
-        minLength: 1 /* Specify minimum characters required for showing result */
-    },
-    {
-        name: 'cars',
-        source: cars
-    });
-});  
 </script>

@@ -21,6 +21,16 @@ class Home_model extends CI_Model
     }    
 
 	
+	public function get_search_functionality($areaid)
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('seller_location_area',$areaid);
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(8);
+		return $this->db->get()->result_array();
+
+	}
 	public function get_search_top_offers($areaid)
 	{
 		$this->db->select('*')->from('products');

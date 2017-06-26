@@ -43,6 +43,15 @@ public function search_location_offers()
 
 }
 
+public function search_functionality(){
+	
+$post=$this->input->post();
+$details = $this->home_model->get_search_functionality($post['searchvalue']);
+echo "<pre>";print_r($details);exit;
+
+	
+}
+
  public function addtocart()
 
  {
