@@ -108,13 +108,14 @@
             </div>
           </div>
         </div>
-		   <div class="medias ">
+		  <div class="medias ">
 			<span>
 				<a data-toggle="modal" data-target="#sin_log" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
 			</span>
 			<span><a href="<?php echo base_url('testing');?>"><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
-			<span class=""><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i>&nbsp;<sup class="sup">5</sup></span>
+			<span class=""><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>
 			<div class="sprinkle"></div>
+				
 		  </div>
 		 
 	
@@ -396,11 +397,7 @@
 
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
-
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-
-<script>
-
+<script type="text/javascript">
 
 function searchfunction(val){
 	
@@ -426,11 +423,19 @@ function searchfunction(val){
           $('#show_pass').hide();
        })
     });
+  </script> 
 
+<!-- Login popup end here -->
+<script>
 function registershow(){
 	
 $("#modal-8").show();	
 } 
+</script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" language="javascript">
       $(document).ready(function(){
     $('#register_submit').click(function(e){
     e.preventDefault();
@@ -580,7 +585,12 @@ $("#modal-8").show();
     
     });
   
-	$(document).ready(function(){
+
+</script>
+
+<script type="text/javascript" language="javascript">
+ 
+		$(document).ready(function(){
 		$("#login_submit").click(function(e){
 		e.preventDefault();
 		
@@ -630,4 +640,9 @@ $("#modal-8").show();
 		});
 	
 	
+</script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
 </script>

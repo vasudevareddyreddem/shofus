@@ -27,7 +27,6 @@
 
 
 <script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
 
 
 </head>
@@ -49,6 +48,13 @@
 <!--home page product scroller start here --> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/common.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/owl.carousel.min.js"></script> 
+
+<script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
+<script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/customer/js/search.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
 <!--home page product scroller end  here --> 
 <!--home page start location here --> 
 
