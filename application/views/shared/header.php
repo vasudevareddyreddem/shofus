@@ -69,10 +69,10 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="row">
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
-                  <div class="flipkart-navbar-search smallsearch">
+                  <div class=" smallsearch">
                     <div class="cart_search">
-                      <input class="flipkart-navbar-input col-xs-11" type="" onkeyup="searchfunction(this.value);" placeholder="Search for Products, Brands and more" name="">
-                      <button class="flipkart-navbar-button col-xs-1"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
+                      <input  class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                      <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
 					
                   </div>
@@ -645,4 +645,28 @@ $("#modal-8").show();
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    // Defining the local dataset
+    var cars = ['Audi', 'BMW', 'bayapu', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Chinnagosala'];
+    
+    // Constructing the suggestion engine
+    var cars = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: cars
+    });
+    
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'cars',
+        source: cars
+    });
+});  
 </script>

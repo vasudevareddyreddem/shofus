@@ -536,6 +536,7 @@ a.offers_link {
     font-size: 15px;
     background: #fff;
     border: 1px solid #4a5c63;
+
 }
 .flipkart-navbar-button {
 	background-color: #4a5c63;
@@ -545,6 +546,8 @@ a.offers_link {
 	padding: 10px 0;
 	height: 43px;
 	cursor: pointer;
+	position:absolute;
+	left:0
 }
 .cart-button {
 	background-color: #d44f1a;
