@@ -27,15 +27,22 @@ public function index()
 	$this->template->write_view('content', 'home/index',$data);
 	$this->template->render();
 }
-public function searchfunctionality()
 
- {
-	$post=$this->input->post();
-		$dat = $this->home_model->Search_functionality($post['searhvalue']);
-	echo '<pre>';print_r($post);exit;
+public function search_location_offers()
+{
+	$postvalue=$this->input->post();
+	$$this->session->set_userdata('location_area',$postvalue['area']);
 	
+	//echo '<pre>';print_r($tst);exit;
+	$data['topoffers'] = $this->home_model->get_search_top_offers($postvalue['area']);
+	$data['trending_products'] = $this->home_model->get_search_trending_products($postvalue['area']);
+	$data['offer_for_you'] = $this->home_model->get_search_offer_for_you($postvalue['area']);
+	$data['deals_of_the_day'] = $this->home_model->get_search_deals_of_the_day($postvalue['area']);
+	$data['season_sales'] = $this->home_model->get_search_season_sales($postvalue['area']);
+	$this->load->view('home/locationsearch',$data);
+
 }
- 
+
  public function addtocart()
 
  {
@@ -245,23 +252,15 @@ function remove($rowid) {
 		}
 		redirect('home/addtocart');        
 	}	
-       
-        
-        	
+	
 public function location()
 {
 
-
-
- $session=array('location_name'=>$this->input->post('location_name'));
+$session=array('location_name'=>$this->input->post('location_name'));
 
 $this->session->set_userdata($session);
 
  echo "1";
- 
-		 
-		 
-		 
 }
 
 

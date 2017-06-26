@@ -89,6 +89,21 @@
             <input  type="text"  name="address2" id="address2" value="<?php echo isset($sellerdata['addrees2'])?$sellerdata['addrees2']:''; ?>" class="form-control" />
           </div>
 		  <div class="form-group">
+            <label class="control-label">Area</label>
+				<select class="form-control"  name = "areacode" id = "areacode">
+					<option value ="">Select</option>
+				
+                        <?php foreach($selectareas as $area){?>
+
+						<?php if(($sellerdata['area'])== $area['location_id'] ){?>
+						<option  selected="selected" value="<?php echo $area['location_id']; ?>"><?php echo $area['location_name'];?></option>
+						<?php } else{ ?>
+						<option value = "<?php echo $area['location_id'];?>"><?php echo $area['location_name'];?></option>
+					<?php } }; ?>			
+				</select>
+       
+          </div>
+		  <div class="form-group">
             <label class="control-label">Pincode</label>
             <input  type="text"  name="pincode" id="pincode" value="<?php echo isset($sellerdata['pin_code'])?$sellerdata['pin_code']:''; ?>" class="form-control" />
           </div>
@@ -350,6 +365,14 @@ $(document).ready(function() {
             
 			}
             },
+			areacode: {
+               validators: {
+				notEmpty: {
+					message: 'Please select an Area'
+				}
+			   }
+            
+			},
 			deliveryes: {
                validators: {
 				notEmpty: {

@@ -21,6 +21,52 @@ class Home_model extends CI_Model
     }    
 
 	
+	public function get_search_top_offers($areaid)
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('seller_location_area',$areaid);
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(8);
+		return $this->db->get()->result_array();
+
+	}
+	public function get_search_trending_products($areaid)
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('seller_location_area',$areaid);
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(5);
+		return $this->db->get()->result_array();
+	}
+	public function get_search_offer_for_you($areaid)
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('seller_location_area',$areaid);
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(5);
+		return $this->db->get()->result_array();
+	}
+	public function get_search_deals_of_the_day($areaid)
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('seller_location_area',$areaid);
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(5);
+		return $this->db->get()->result_array();
+	}
+	public function get_search_season_sales($areaid)
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('seller_location_area',$areaid);
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(5);
+		return $this->db->get()->result_array();
+	}
 	public function get_top_offers()
 	{
 		$this->db->select('*')->from('products');
@@ -263,15 +309,8 @@ $this->db->select('*');
 public function getlocations()
 
 {
-
-$this->db->select('*');
-	$this->db->from('locations');
-		$query=$this->db->get();
-		return $query->result();
-
-
-
-
+$this->db->select('*')->from('locations');
+return $this->db->get()->result_array();
 }	
 	
 /*    login and signup      */	

@@ -169,6 +169,9 @@ class Products extends Admin_Controller {
 				$picture = '';
 			}
 		}
+		
+		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));
+		//echo '<pre>';print_r($seller_location);exit;
 		$data=array(
 
             'category_id' => $this->input->post('category_id'),			
@@ -182,6 +185,7 @@ class Products extends Admin_Controller {
 			'item_description' => $this->input->post('item_description'),
 			'item_cost' => $this->input->post('item_cost'),
 			'item_image'=>$picture,
+			'seller_location_area'=>$seller_location['area'],
 
 			);
 

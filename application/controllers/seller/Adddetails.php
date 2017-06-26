@@ -126,6 +126,8 @@ class Adddetails extends Seller_adddetails{
 	public function storedetails()
 	{  
 		$this->load->view('seller/layouts/header');
+		$data['selectareas']=$this->adddetails_model->get_seleted_areas();		 
+
 		$data['sellerdata']=$this->adddetails_model->get_seller_storedetails_data($this->session->userdata('seller_id'));		 
 		$this->load->view('seller/adddetails/storedetails',$data);
 
@@ -176,6 +178,7 @@ class Adddetails extends Seller_adddetails{
 			'store_name' => $post['storename'], 
 			'addrees1' => $post['address1'],    
 			'addrees2' => $post['address2'],    
+			'area' => $post['areacode'],    
 			'pin_code' => $post['pincode'],    
 			'other_shops'  =>$post['other_shops'],
 			'other_shops_location'  =>$post['other_shops_location'],
