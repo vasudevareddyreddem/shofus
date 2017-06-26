@@ -69,10 +69,10 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="row">
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
-                  <div class="flipkart-navbar-search smallsearch">
+                  <div class=" smallsearch">
                     <div class="cart_search">
-                      <input class="flipkart-navbar-input col-xs-11" type="" onkeyup="searchfunction(this.value);" placeholder="Search for Products, Brands and more" name="">
-                      <button class="flipkart-navbar-button col-xs-1"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
+                      <input  class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                      <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
 					
                   </div>
@@ -112,7 +112,7 @@
 			<span>
 				<a data-toggle="modal" data-target="#sin_log" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
 			</span>
-			<span><a href="<?php echo base_url('testing');?>"><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
+			<span><a onclick="openpopup();"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
 			<span class=""><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>
 			<div class="sprinkle"></div>
 				
@@ -390,6 +390,35 @@
     </div>
   </div>
 </div>
+
+ <div class="modal animated  zoomIn" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="md-content">
+<button type="button" id="popupclose" class="close" data-dismiss="modal">&times;</button>
+        <h3>Select Your Delivery Location</h3>
+        <div class="newsletter-form">
+          <div class="form-group">
+            <label class="control-label">Address Line 1</label>
+            <input maxlength="100" type="text" id="address1"  name="address1" class="form-control" value="" />
+          </div>
+		  <div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
+
+		  <div class="input-box">
+				<select name="location_name" id="location_name" class="validate-select sel_are">
+				<option value="">Select Area </option>
+				<?php foreach($locationdata as $location_data) {?>
+				<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
+
+				<?php } ?>
+				</select>
+            <button type="submit" onclick="searchlocationoffer();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
+          </div>
+        </div>
+   
+    </div>
+    
+  </div>
+  </div> 
 <div class="md-overlay"></div>
 
 
@@ -399,6 +428,56 @@
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">
 
+function openpopup(val){
+	$("#location").fadeIn();
+}
+$("#location_seacrh").show();
+function IsLcemail(reasontype) {
+        var regex = /^[ A-Za-z0-9_@.,!;:}{@#&`~\\|^?$*)(_+-]*$/;
+        return regex.test(reasontype);
+		}
+ function searchlocationoffer(){
+	 
+	 jQuery('#address1errormsg').show();
+	var address=jQuery('#address1').val();
+		if(address==''){
+				jQuery('#address1errormsg').html('Please enter Address Line 1');
+				return false;
+		 }else{
+			if (!IsLcemail(address)) {
+				jQuery('#address1errormsg').html('Closure details wont allow <> [] = % ');
+				return false;
+			}
+			 
+		 }
+		 var area=jQuery('#location_name').val();
+		 if(area==''){
+				jQuery('#address1errormsg').html('Please Select Area');
+				return false;
+		 }
+		jQuery('#address1errormsg').html(''); 
+		jQuery('#address1errormsg').hide();
+		$("#location_seacrh_result").empty();
+		
+		jQuery.ajax({
+				url: "<?php echo site_url('home/search_location_offers');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					address1: jQuery("#address1").val(),
+					area: jQuery("#location_name").val(),
+					},
+				dataType: 'html',
+				success: function (data) {
+					$("#location").fadeOut();
+
+					$("#location_seacrh_result").show();
+					$("#location_seacrh_result").append(data);
+
+				}
+			});
+
+ }
 function searchfunction(val){
 	
 	var length=val.length;
@@ -433,7 +512,6 @@ $("#modal-8").show();
 } 
 </script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-
 
 <script type="text/javascript" language="javascript">
       $(document).ready(function(){
@@ -645,4 +723,28 @@ $("#modal-8").show();
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    // Defining the local dataset
+    var cars = ['Audi', 'BMW', 'bayapu', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Chinnagosala'];
+    
+    // Constructing the suggestion engine
+    var cars = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: cars
+    });
+    
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'cars',
+        source: cars
+    });
+});  
 </script>

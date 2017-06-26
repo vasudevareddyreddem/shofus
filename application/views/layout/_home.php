@@ -8,6 +8,7 @@
 <link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico" >
 <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/customer/css/animate.css">
 <!--Style start here -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/style.css">
@@ -25,9 +26,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/component.css" />
 <script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
 
-
 <script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
-
 
 </head>
 
@@ -49,16 +48,11 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/common.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/owl.carousel.min.js"></script> 
 
+
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/customer/js/search.js"></script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-
-<!--home page product scroller end  here --> 
-<!--home page start location here --> 
-
-<!--home page end location here -->
 
 </body>
 </html>

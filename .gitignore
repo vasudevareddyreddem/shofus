@@ -2,3 +2,4 @@ testing
 application/config/config.php
 application/config/config.php
 application/config/config.php
+application/views/layout/_home.php
