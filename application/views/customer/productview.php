@@ -1,10 +1,24 @@
+<style>
+#sticky {
+ 
+    height:80%;
 
+ 
+}
+#sticky.stick {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    border-radius: 0 0 0.5em 0.5em;
+}
+</style>
 <div class="" style="margin-top:150px;">
 	
 </div>
 <div class="pad_bod">
 		<div class="row">
-		<div class="col-md-4 z_ind " id="img_zoom_fix">
+		<div id="sticky-anchor"></div>
+		<div class="col-md-4 z_ind " id="sticky">
 			<div class="bzoom_wrap">
 				<ul id="bzoom">
 					<li>
@@ -217,6 +231,8 @@
           <!-- End Tab panes -->
 
         </div>
+          </div>
+          </div>
           </div>
 
 <script>
@@ -458,13 +474,29 @@ $("#bzoom").zoom({
 
 </script>
  <script>
-				var elementPosition = $('#img_zoom_fix').offset();
 
-		$(window).scroll(function(){
-				if($(window).scrollTop() > elementPosition.top){
-					  $('#img_zoom_fix').css('position','fixed').css('top','125px');
-				} else {
-					$('#img_zoom_fix').css('position','static');
-				}    
-		});
+
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    var footer_top = $("#footer-start").offset().top;
+    var div_top = $('#sticky-anchor').offset().top;
+    var div_height = $("#sticky").height();
+    
+    var padding = 20;  // tweak here or get from margins etc
+    
+    if (window_top + div_height > footer_top - padding)
+        $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
+    else if (window_top > div_top) {
+        $('#sticky').addClass('stick');
+        $('#sticky').css({top: 140})
+    } else {
+        $('#sticky').removeClass('stick');
+		$('#sticky').css({top:0})
+    }
+}
+
+$(function () {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});
 </script>

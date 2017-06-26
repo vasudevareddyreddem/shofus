@@ -2,7 +2,7 @@
 
   <!--footer start here -->
   <footer>
-    <div class="footer-inner" id="stopHere">
+    <div class="footer-inner" id="footer-start">
       <div class="newsletter-row">
         <div class="container">
           <div class="row">

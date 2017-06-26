@@ -235,7 +235,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-        <div class="col-xs-12">
+        <div class="">
           <ul class="demo2">
           <?php foreach($seller_ad as $seller_ads) { ?>
               <li class="news-item">
@@ -251,6 +251,7 @@
 				</div>
 			</div>
 		</div>
+		
 
 </div>
 
