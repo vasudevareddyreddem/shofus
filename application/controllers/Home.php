@@ -27,6 +27,14 @@ public function index()
 	$this->template->write_view('content', 'home/index',$data);
 	$this->template->render();
 }
+public function searchfunctionality()
+
+ {
+	$post=$this->input->post();
+		$dat = $this->home_model->Search_functionality($post['searhvalue']);
+	echo '<pre>';print_r($post);exit;
+	
+}
  
  public function addtocart()
 
