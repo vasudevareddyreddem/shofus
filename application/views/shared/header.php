@@ -23,7 +23,7 @@
 												<li><a href="<?php echo base_url('category/view/'.base64_encode($subcategory->subcategory_id)); ?>" style="color:#666;"><?php echo $subcategory->subcategory_name; ?></a></li>
 													<?php 
 													foreach($subcategory->docs12 as $item_data){?>
-													<li><a href=""><?php echo $item_data->item_name; ?></a></li>
+													<li><a href="<?php echo base_url('category/productview/'.base64_encode($subcategory->item_id)); ?>"><?php echo $item_data->item_name; ?></a></li>
 													<?php } ?>
 											</ul>
 							
@@ -404,7 +404,19 @@ function searchfunction(val){
 	var length=val.length;
 	if(length >4){
 		
-		alert(val);
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('home/searchfunctionality');?>",
+			data: {
+				searhvalue:val,
+			},
+			cache: false,
+			success: function(data)
+			{
+			alert(data);
+			
+			} 
+			});
 	}
 	
 }
