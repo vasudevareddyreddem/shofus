@@ -35,13 +35,6 @@
 <header>
 <!--wrapper start here -->
 
-<div class="sidebar_right" >
-		<p>snndzsjdjsad</p>	
-	</div>
-</body>
-</html>
-
-=======
 <div class="container" style="margin-top:150px">
       <div class="row">
         <div class="col-xs-12">
@@ -56,7 +49,7 @@
               <tbody>
                 <tr>
                   <td>Product</td>
-                  <td><a href="detail.html" class="d-block">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></td>
+                  <td><a href="detail.html" class="d-block"><?php echo $compore_products['item_name'];?></a></td>
                   <td><a href="detail.html" class="d-block">CelioKhaki Printed Round Neck T-Shirt</a></td>
                   <td><a href="detail.html" class="d-block">CelioOff White Printed Round Neck T-Shirt</a></td>
                   <td><a href="detail.html" class="d-block">Levi'sNavy Blue Printed Round Neck T-Shirt</a></td>
@@ -64,7 +57,7 @@
                 <tr>
                   <td>Image</td>
                   <td>
-                    <a href="detail.html"><img src="<?php echo base_url(); ?>assets/home/images/p1-small-1.jpg"></a>
+                    <a href="detail.html"><img src="<?php echo base_url('uploads/products/'.$compore_products['item_image3']); ?>"></a>
                   </td>
                   <td>
                     <a href="detail.html"><img src="<?php echo base_url(); ?>assets/home/images/p2-small-1.jpg"></a>
@@ -79,11 +72,17 @@
                 <tr>
                   <td>Price</td>
                   <td>
-                    <div class="price">
-                      <div>$13.50 <span class="label-tags"><span class="label label-default arrowed">-10%</span></span></div>
-                      <span class="price-old">$15.00</span>
-                    </div>
-                  </td>
+				<?php if(isset($compore_products['offer_amount']) && $compore_products['offer_percentage']!=''){ ?>
+				<div class="price">
+                    <div><?php echo ($compore_products['item_cost'])-($compore_products['offer_amount']); ?><span class="label label-default arrowed">-<?php echo $compore_products['offer_percentage']; ?>%</span></div>
+                    <span class="price-old"><?php echo $compore_products['item_cost']; ?></span>
+                  </div>
+				<?php }else{ ?>
+                  <div class="price">
+                    <span class="price-old"><?php echo $compore_products['item_cost']; ?></span>
+                  </div>				  
+				<?php } ?>
+                </td>
                   <td>
                     <div class="price">
                       <div>$13.50 <span class="label-tags"><span class="label label-primary arrowed">-10%</span></span></div>
@@ -104,79 +103,37 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Model</td>
-                  <td>Model 1</td>
-                  <td>Model 2</td>
-                  <td>Model 3</td>
-                  <td>Model 4</td>
-                </tr>
-                <tr>
-                  <td>Brand</td>
-                  <td>Brand 1</td>
-                  <td>Brand 2</td>
-                  <td>Brand 3</td>
-                  <td>Brand 4</td>
-                </tr>
-                <tr>
-                  <td>Availability</td>
-                  <td>Available 1</td>
-                  <td>Available 2</td>
-                  <td>Available 3</td>
-                  <td>Available 4</td>
-                </tr>
-                <tr>
-                  <td>Rating</td>
-                  <td>
-                    <div class="rating">
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star-half-o"></i>
-                      <i class="ace-icon fa fa-star-o"></i>
-                      <a href="#">(1 reviews)</a>
+                <td>Item Code</td>
+                	<td>
+
+                    <div class="price">
+                      <div><?php echo $compore_products['item_code']; ?></div>
+                    </div>
+                  </td><td>
+                    <div class="price">
+                      <div>$13.50 <span class="label-tags"><span class="label label-danger arrowed">-10%</span></span></div>
+                      <span class="price-old">$15.00</span>
+                    </div>
+                  </td><td>
+                    <div class="price">
+                      <div>$13.50 <span class="label-tags"><span class="label label-danger arrowed">-10%</span></span></div>
+                      <span class="price-old">$15.00</span>
+                    </div>
+                  </td><td>
+                    <div class="price">
+                      <div>$13.50 <span class="label-tags"><span class="label label-danger arrowed">-10%</span></span></div>
+                      <span class="price-old">$15.00</span>
                     </div>
                   </td>
-                  <td>
-                    <div class="rating">
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star-half-o"></i>
-                      <i class="ace-icon fa fa-star-o"></i>
-                      <a href="#">(2 reviews)</a>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="rating">
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star-half-o"></i>
-                      <i class="ace-icon fa fa-star-o"></i>
-                      <a href="#">(3 reviews)</a>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="rating">
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star"></i>
-                      <i class="ace-icon fa fa-star-half-o"></i>
-                      <i class="ace-icon fa fa-star-o"></i>
-                      <a href="#">(4 reviews)</a>
-                    </div>
-                  </td>
+
                 </tr>
-                <tr>
-                  <td>Summary</td>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, illum, qui1</td>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, illum, qui2</td>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, illum, qui3</td>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, illum, qui4</td>
-                </tr>
+                
+                
+               
+                
                 <tr>
                   <td></td>
-                  <td><button class="btn btn-sm btn-theme" type="button"><i class="fa fa-shopping-cart"></i> Add To Cart</button></td>
+                  <td><a href="<?php echo base_url ?>" class="btn btn-sm btn-theme" type="button"><i class="fa fa-shopping-cart"></i> Add To Cart</a></td>
                   <td><button class="btn btn-sm btn-theme" type="button"><i class="fa fa-shopping-cart"></i> Add To Cart</button></td>
                   <td><button class="btn btn-sm btn-theme" type="button"><i class="fa fa-shopping-cart"></i> Add To Cart</button></td>
                   <td><button class="btn btn-sm btn-theme" type="button"><i class="fa fa-shopping-cart"></i> Add To Cart</button></td>
@@ -201,17 +158,5 @@
       </div>
 	  
     </div>
-	 <div class="compar_btn" >
-	 <div class="btn-group show-on-hover">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-           COMPARE &nbsp;<span>1</span> 
-          </button>
-          <ul class="dropdown-menu" role="menu" style="position: absolute;top:-100px;height:150px;width:10px;left:-50px;opacity: 0.8;">
-				<li>
-					<img src="<?php echo base_url(); ?>assets/home/images/p3-small-1.jpg">
-				</li>
-          </ul>
-        </div>
-			
-	  </div>
->>>>>>> 72baddf3d10d55a753d2d3d7f3f68fcc749efdea
+	 
+
