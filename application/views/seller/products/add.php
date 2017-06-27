@@ -121,10 +121,16 @@
                   <textarea  placeholder="Item Description" class="form-control" rows="3" id="item_description" name="item_description"></textarea>
                 </div>
 				<div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputFile">Image</label>
-                  <input type="file" name="picture" id="picture">
-				  
+                  <label for="exampleInputFile">Image One</label>
+                  <input type="file" name="picture_one" id="picture_one"><br/>
+				  <label for="exampleInputFile">Image Two</label>
+                  <input type="file" name="picture_two" id="picture_two"><br/>
+                  <label for="exampleInputFile">Image Three</label>
+                  <input type="file" name="picture_three" id="picture_three"><br/>
+                  <label for="exampleInputFile">Image Four</label>
+                  <input type="file" name="picture_four" id="picture_four"><br/>
                 </div>
+                
                
 				
                 <div class="clearfix"></div>
