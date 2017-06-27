@@ -45,6 +45,7 @@
 		</ul>
 		<!-- Tab panels -->
 		<div class="tab-content">
+		<?php echo $this->session->flashdata('sucess'); ?>
 			<div class="tab-pane fade in active" id="tab1">
 				<div class="panel-body">
 				 <div id="categoryiddoc" class="form-group nopaddingRight "></div>

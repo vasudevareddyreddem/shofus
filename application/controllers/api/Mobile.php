@@ -71,14 +71,15 @@ class Mobile extends REST_Controller {
 					);
 					$createseller=$this->mobile_model->seller_register($data);
 					if(count($createseller)>0){
-						$message = array
-						(
-							'status'=>1,
-							'seller_id'=>$createseller,
-							'seller_details' =>$data,
-							'message'=>'Seller Successfully Created!'
-						);
-						$this->response($message, REST_Controller::HTTP_OK);
+						// $message = array
+						// (
+						// 	'status'=>1,
+						// 	'seller_id'=>$createseller,
+						// 	'seller_details' =>$data,
+						// 	'message'=>'Seller Successfully Created!'
+						// );
+						$createseller['status']=1;
+						$this->response($createseller, REST_Controller::HTTP_OK);
 					}
 				
 			 }
@@ -105,26 +106,20 @@ class Mobile extends REST_Controller {
 		{
 				
         	//$this->input->post();
-            $username   = $this->input->get('seller_email');
-            $password = md5($this->input->get('seller_password'));           
-            $result   = $this->mobile_model->seller_login($username, $password);
+            $seller_username   = $this->input->get('username');
+            $seller_password = md5($this->input->get('password'));
+            //print_r($seller_password);exit;
+
+            $result   = $this->mobile_model->seller_login($seller_username, $seller_password);
+                       
              if(count($result)>0)
             {
-				$message = array
-				(
-					'status'=>1,
-					'seller_details'=>$result,							
-					'message'=>'Seller Successfully LoggedIn!'
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+				$result['status']=1; 
+				$this->response($result, REST_Controller::HTTP_OK);
 			}	
 			else
 			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'login Faild.'
-				);
+				$message = array('status'=>0,'message'=>'Login Faild.');				
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 		}
