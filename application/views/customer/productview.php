@@ -16,13 +16,11 @@
 	
 </div>
 <div class="pad_bod">
-
-<?php //echo '<pre>';print_r($products_list);exit;?>
-		
+		<div class="row">
 		<div id="sticky-anchor"></div>
 		<div class="col-md-4 z_ind " id="sticky">
 			<div class="bzoom_wrap">
-				<ul id="bzoom">
+			<ul id="bzoom">
 					<li>
 				
 						<img class="bzoom_thumb_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>" title="<?php echo $products_list['item_image']; ?>" />
@@ -55,7 +53,7 @@
         <!-- End Image List -->
 
         <div class="col-md-8 col-md-offset-4">
-		<?php if($this->session->flashdata('success')): ?>
+          <?php if($this->session->flashdata('success')): ?>
 			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('success');?></div>
@@ -104,7 +102,8 @@
                   </div>
                 </td>
               </tr>
-             
+            
+			  
            
             </tbody>
 			<div class="clearfix"></div>
@@ -137,7 +136,7 @@
 
               <!-- Description Tab Content -->
               <div role="tabpanel" class="tab-pane active" id="desc">
-                <div class="well">
+                 <div class="well">
                   <p>
                   <?php echo $products_list['item_description']; ?> </p>
                 </div>
@@ -174,6 +173,7 @@
                       </tr>
                     </tbody>
                   </table>
+                  </table>
                 </div>
               </div>
               <!-- End Detail Tab Content -->
@@ -181,10 +181,7 @@
               <!-- Review Tab Content -->
               <div role="tabpanel" class="tab-pane" id="review">
                 <div class="well">
-                  
-				  
-				  
-				  <?php
+                  <?php
 					if(count($products_reviews)>0){ 
 					foreach($products_reviews as $reviewslist){ ?>
 				   <div class="media">
@@ -227,7 +224,7 @@
                     </div>
                     <button type="submit" class="btn btn-theme">Submit Review</button>
                   </form>
-                </div>
+              
               </div>
               <!-- End Review Tab Content -->
 
@@ -245,7 +242,6 @@ $(document).ready(function(){
 });
 </script>
 <script type="text/javascript">
-
 ;(function($){
 	$.fn.zoom = function(options){
 	
@@ -356,6 +352,7 @@ $(document).ready(function(){
 				}
 			}
 
+			// 循环小图
 			var $small = '';
 			if(!$(".bzoom_small_thumbs").length){
 				var top = _option.thumb_image_height+10,
@@ -370,9 +367,9 @@ $(document).ready(function(){
 					smurl = $li.eq(i).find('.bzoom_thumb_image').attr("src");
 
 					if(i==0){
-						html += '<li class="bzoom_smallthumb_active"><img src="'+smurl+'" alt="" style="width:'+smwidth+'px; height:'+smheight+'px;" /></li>';
+						html += '<li class="bzoom_smallthumb_active"><img src="'+smurl+'" alt="small" style="width:'+smwidth+'px; height:'+smheight+'px;" /></li>';
 					}else{
-						html += '<li style="opacity:0.4;"><img src="'+smurl+'" alt="" style="width:'+smwidth+'px; height:'+smheight+'px;" /></li>';
+						html += '<li style="opacity:0.4;"><img src="'+smurl+'" alt="small" style="width:'+smwidth+'px; height:'+smheight+'px;" /></li>';
 					}
 				}
 
@@ -472,7 +469,7 @@ $("#bzoom").zoom({
 
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? '' : '') + '';
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
