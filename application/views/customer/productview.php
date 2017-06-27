@@ -20,24 +20,32 @@
 		<div id="sticky-anchor"></div>
 		<div class="col-md-4 z_ind " id="sticky">
 			<div class="bzoom_wrap">
-				<ul id="bzoom">
+			<ul id="bzoom">
 					<li>
 				
-						<img class="bzoom_thumb_image" src="<?php echo base_url(); ?>assets/home/images/p1-1.jpg"" title="first img" />
-						<img class="bzoom_big_image" src="<?php echo base_url(); ?>assets/home/images/p1-1.jpg"/>
+						<img class="bzoom_thumb_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>" title="<?php echo $products_list['item_image']; ?>" />
+						<img class="bzoom_big_image"  src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>"/>
 					</li>
+					
+					<?php if(isset($products_list['item_image1']) && $products_list['item_image1'] ){  ?>
 					<li>
-						<img class="bzoom_thumb_image" src="<?php echo base_url(); ?>assets/home/images/p2-1.jpg"/>
-						<img class="bzoom_big_image" src="<?php echo base_url(); ?>assets/home/images/p2-1.jpg"/>
+						<img class="bzoom_thumb_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image1']); ?>"/>
+						<img class="bzoom_big_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image1']); ?>"/>
 					</li>
+					<?php } ?>
+					<?php if(isset($products_list['item_image2']) && $products_list['item_image2']!='' ){  ?>
 					<li>
-						<img class="bzoom_thumb_image" src="<?php echo base_url(); ?>assets/home/images/p3-1.jpg"/>
-						<img class="bzoom_big_image" src="<?php echo base_url(); ?>assets/home/images/p3-1.jpg"/>
+						<img class="bzoom_thumb_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image2']); ?>"/>
+						<img class="bzoom_big_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image2']); ?>"/>
 					</li>
+					<?php } ?>
+					<?php if(isset($products_list['item_image3']) && $products_list['item_image3']!='' ){  ?>
 					<li>
-						<img class="bzoom_thumb_image" src="<?php echo base_url(); ?>assets/home/images/p5-1.jpg"/>
-						<img class="bzoom_big_image" src="<?php echo base_url(); ?>assets/home/images/p5-1.jpg"/>
+						<img class="bzoom_thumb_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image3']); ?>"/>
+						<img class="bzoom_big_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image3']); ?>"/>
 					</li>
+					<?php } ?>
+					
 					
 				</ul>
 			</div>
@@ -45,21 +53,45 @@
         <!-- End Image List -->
 
         <div class="col-md-8 col-md-offset-4">
-          <div class="title-detail">WranglerGrey Printed Slim Fit Round Neck T-Shirt</div>
+          <?php if($this->session->flashdata('success')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('success');?></div>
+			<?php endif; ?>
+			<?php if($this->session->flashdata('error')): ?>	
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('error');?></div>
+			<?php endif; ?>
+          <div class="title-detail"><?php echo $products_list['item_name']; ?></div>
           <table class="table table-detail">
             <tbody>
               <tr>
                 <td>Price</td>
                 <td>
-                  <div class="price">
-                    <div>$13.50 <span class="label label-default arrowed">-10%</span></div>
-                    <span class="price-old">$15.00</span>
+				<?php if(isset($products_list['offer_amount']) && $products_list['offer_percentage']!=''){ ?>
+				<div class="price">
+                    <div><?php echo ($products_list['item_cost'])-($products_list['offer_amount']); ?><span class="label label-default arrowed">-<?php echo $products_list['offer_percentage']; ?>%</span></div>
+                    <span class="price-old"><?php echo $products_list['item_cost']; ?></span>
                   </div>
+				<?php }else{ ?>
+                  <div class="price">
+                    <span class="price-old"><?php echo $products_list['item_cost']; ?></span>
+                  </div>				  
+				<?php } ?>
                 </td>
               </tr>
               <tr>
                 <td>Availability</td>
-                <td><span class="label label-success arrowed">Ready Stock</span></td>
+                <td><span class="label label-success arrowed">
+				 <?php if($products_list['item_status']==1){ 
+					echo "Ready Stock";
+				}
+				else{
+					echo "Out of Stock";
+				}				?>
+				
+				</span></td>
               </tr>
               <tr>
                 <td>Quantity</td>
@@ -69,45 +101,18 @@
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td>Size</td>
-                <td>
-                  <select class="selectpicker" data-width="80px">
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Checkbox</td>
-                <td>
-                  <div class="checkbox"><label><input type="checkbox" id="checkbox1"><span> Checkbox 1</span></label></div>
-                  <div class="checkbox"><label><input type="checkbox" id="checkbox2"><span> Checkbox 2</span></label></div>
-                </td>
-              </tr>
-              <tr>
-                <td>Radio</td>
-                <td>
-                  <div class="radio"><label><input type="radio" name="radio-product" checked="checked"><span>Radio 1</span></label></div>
-                  <div class="radio"><label><input type="radio" name="radio-product"><span>Radio 2</span></label></div>
-                </td>
-              </tr>
-			  
-           
+
+         
             </tbody>
 			<div class="clearfix"></div>
-			
-			 
           </table>
 		    <tr>
                 <td></td>
                 <td>
                   <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                  <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</button>
-                  <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i> Add to Wishlist</button>  
+                  <a href="" id="compare" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
+                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>">                  
+                  <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</button>  
 				  <a href="<?php echo base_url('tabs');?>" class="btn btn-theme m-b-1" type="button"> Next</a>
                 </td>
               </tr>
@@ -119,7 +124,7 @@
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">Description</a></li>
             <li role="presentation"><a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">Detail</a></li>
-            <li role="presentation"><a href="#review" aria-controls="review" role="tab" data-toggle="tab">Reviews (2)</a></li>
+            <li role="presentation"><a href="#review" aria-controls="review" role="tab" data-toggle="tab">Reviews (<?php echo count($products_reviews); ?>)</a></li>
           </ul>
           <!-- End Nav tabs -->
 
@@ -128,10 +133,9 @@
 
               <!-- Description Tab Content -->
               <div role="tabpanel" class="tab-pane active" id="desc">
-                <div class="well">
+                 <div class="well">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, molestiae odit? Animi eligendi, optio culpa cupiditate, minus, eaque sint delectus non id accusamus suscipit illum quaerat quibusdam expedita dolore quos distinctio corporis quae. Error molestiae consequatur nostrum placeat architecto maiores commodi ipsam incidunt, adipisci tempora ratione soluta aliquam, velit voluptatum dolore reprehenderit quis aut. Obcaecati nam non quis praesentium deserunt qui consequatur illum quae nobis? Optio eos, sit corporis quam distinctio, ad aspernatur quisquam ut, corrupti accusamus saepe labore veritatis sed est rerum. Iste odit reiciendis mollitia culpa illum eligendi, soluta magnam voluptatum ut sequi vitae vel labore quae, ducimus.
-                  </p>
+                  <?php echo $products_list['item_description']; ?> </p>
                 </div>
               </div>
               <!-- End Description Tab Content -->
@@ -142,22 +146,30 @@
                   <table class="table table-bordered">
                     <tbody>
                       <tr>
-                        <td>Lorem</td>
-                        <td>Ipsum</td>
+                        <td>Item Name</td>
+                        <td><?php echo $products_list['item_name']; ?></td>
                       </tr>
                       <tr>
-                        <td>Dolor</td>
-                        <td>Sit Amet</td>
+                        <td>Item Cost</td>
+                        <td><?php echo $products_list['item_cost']; ?></td>
                       </tr>
                       <tr>
-                        <td>Consectetur</td>
-                        <td>Adipisicing</td>
+                        <td>Item Status</td>
+							<td>
+							<?php if($products_list['item_status']==1){ 
+							echo "Ready Stock";
+							}
+							else{
+							echo "Out of Stock";
+							}				?>
+							</td>
                       </tr>
                       <tr>
-                        <td>Excepteur</td>
-                        <td>Occaecat</td>
+                        <td>Item Code</td>
+                        <td><?php echo $products_list['item_code']; ?></td>
                       </tr>
                     </tbody>
+                  </table>
                   </table>
                 </div>
               </div>
@@ -166,7 +178,10 @@
               <!-- Review Tab Content -->
               <div role="tabpanel" class="tab-pane" id="review">
                 <div class="well">
-                  <div class="media">
+                  <?php
+					if(count($products_reviews)>0){ 
+					foreach($products_reviews as $reviewslist){ ?>
+				   <div class="media">
                     <div class="media-left">
                       <a href="#">
                         <img class="media-object img-thumbnail" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+">
@@ -180,50 +195,45 @@
                       </div>
                     </div>
                     <div class="media-body">
-                      <h5 class="media-heading"><strong>John Thor</strong></h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                      <h5 class="media-heading"><strong><?php echo $reviewslist['name']; ?></strong></h5>
+						<?php echo $reviewslist['review_content']; ?>
                     </div>
                   </div>
-                  <div class="media">
-                     <div class="media-left">
-                      <a href="#">
-                        <img class="media-object img-thumbnail" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+">
-                      </a>
-                      <div class="product-rating">
+					<?php } }else{ ?>
+					<div class="media"> NO Reviews</div>
+					<?php } ?>
+				
+                  <hr/>
+                  <h4 class="m-b-2">Add your review</h4>
+                  <form role="form" name="addreview" id="addreview" action="<?php echo base_url('category/productreview'); ?>" method="post">
+                    <input type="hidden" name="product_id" id="product_id"  value="<?php echo $products_list['item_id']; ?>">
+					<div class="form-group">
+                      <label for="Name">Name</label>
+                      <input type="text" id="name" name="name" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="Email">Email</label>
+                      <input type="text" name="email" id="email" class="form-control" placeholder="Email">
+                    </div>
+					
+					   <div class="form-group">
+                      <label for="Email">Rating</label>
+                     <span class="product-rating">
+                        <a href=""><i class="fa fa-star"></i></a>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
-                      </div>
+                     </span>
                     </div>
-                    <div class="media-body">
-                      <h5 class="media-heading"><strong>Michael Lelep</strong></h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                  </div>
-                  <hr/>
-                  <h4 class="m-b-2">Add your review</h4>
-                  <form role="form">
-                    <div class="form-group">
-                      <label for="Name">Name</label>
-                      <input type="text" id="Name" class="form-control" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                      <label for="Email">Email</label>
-                      <input type="text" id="Email" class="form-control" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                      <label>Rating</label><div class="clearfix"></div>
-                      <div class="input-rating"></div>
-                    </div>
+					
                     <div class="form-group">
                       <label for="Review">Your Review</label>
-                      <textarea id="Review" class="form-control" rows="5" placeholder="Your Review"></textarea>
+                      <textarea id="review" name="review" class="form-control" rows="5" placeholder="Your Review"></textarea>
                     </div>
                     <button type="submit" class="btn btn-theme">Submit Review</button>
                   </form>
-                </div>
+              
               </div>
               <!-- End Review Tab Content -->
 
@@ -234,6 +244,18 @@
           </div>
           </div>
           </div>
+          <div class="compar_btn" id="compar_btn">
+	 <div class="btn-group show-on-hover">
+          <a href="<?php echo base_url('category/productscompare/'.base64_encode($products_list['item_id'])); ?>" class="btn btn-primary" ><?php echo $products_list['item_name'];?>&nbsp;<span>1</span> 
+          </a>
+          <!-- <ul class="dropdown-menu" role="menu" style="position: absolute;top:-100px;height:150px;width:10px;left:-50px;opacity: 0.8;">
+				<li>
+					<img src="<?php echo base_url('uploads/products/'.$products_list['item_image3']); ?>" style="width: 80%;height: 80%">
+				</li>
+          </ul> -->
+        </div>
+			
+	  </div>
 
 <script>
 $(document).ready(function(){
@@ -499,4 +521,60 @@ $(function () {
     $(window).scroll(sticky_relocate);
     sticky_relocate();
 });
+
+$(document).ready(function() {
+    $('#addreview').bootstrapValidator({
+       
+        fields: {
+            
+			
+            name: {
+              validators: {
+					notEmpty: {
+						message: 'Name is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Name can only consist of alphanumaric, space and dot'
+					}
+                }
+            },
+			email: {
+             validators: {
+					notEmpty: {
+						message: 'Email is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+					message: 'Please enter a valid email address. For example johndoe@domain.com.'
+					}
+				}
+            },
+			review: {
+               validators: {
+					notEmpty: {
+						message: 'Please enter a review'
+					}
+				}
+            }
+        }
+    });
+});
+</script>
+
+<script type="text/javascript" language="javascript">
+      $(document).ready(function(){
+    $('#compare').click(function(e){
+    e.preventDefault();
+    $("#compar_btn").css("display", "block");
+    //alert('hello');
+    var item_id =  $("#compare_id").val();
+    
+    //alert(item_name);
+  
+    
+    });
+});
+  
+
 </script>

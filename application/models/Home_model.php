@@ -21,6 +21,29 @@ class Home_model extends CI_Model
     }    
 
 	
+	public function get_search_functionality_products($areaid)
+	{
+	$this->db->select('products.url,products.item_id,products.item_name,')->from('products');
+	//$this->db->where('item_name',$areaid);
+	$this->db->like('item_name', $areaid);
+	return $this->db->get()->result_array();
+	//echo $this->db->last_query();exit; 
+
+	}
+	public function get_search_functionality_category($areaid)
+	{
+	$this->db->select('*')->from('category');
+	$this->db->like('category_name', $areaid);
+	return $this->db->get()->result_array();
+	//echo $this->db->last_query();exit; 
+	}
+	public function get_search_functionality_sub_category($areaid)
+	{
+	$this->db->select('*')->from('subcategories');
+	$this->db->like('subcategory_name', $areaid);
+	return $this->db->get()->result_array();
+	//echo $this->db->last_query();exit; 
+	}
 	public function get_search_top_offers($areaid)
 	{
 		$this->db->select('*')->from('products');

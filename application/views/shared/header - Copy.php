@@ -23,7 +23,7 @@
 												<li><a href="<?php echo base_url('category/view/'.base64_encode($subcategory->subcategory_id)); ?>" style="color:#666;"><?php echo $subcategory->subcategory_name; ?></a></li>
 													<?php 
 													foreach($subcategory->docs12 as $item_data){?>
-													<li><a href="<?php echo base_url('category/productview/'.base64_encode($item_data->item_id)); ?>"><?php echo $item_data->item_name; ?></a></li>
+													<li><a href=""><?php echo $item_data->item_name; ?></a></li>
 													<?php } ?>
 											</ul>
 							
@@ -71,7 +71,7 @@
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-                      <input onchange="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                      <input onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                       <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
 					
@@ -79,18 +79,115 @@
                 </form>
               </div>
 			
+              <!--<div class="col-md-12">
+                <ul class="nav navbar-nav">
+                 <li><a href="<?php echo base_url(); ?>">HOME</a></li>
+				   <?php foreach($catdata as $cat_data){?>
+                  <li class="dropdown mega-dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <?php echo strtoupper($cat_data->category_name);  ?> <span class="caret"></span></a>
+                    <ul class="dropdown-menu mega-dropdown-menu">
+					<?php foreach($cat_data->subcat as $subcat_data){?>
+                      <li class="col-sm-4">
+                        <ul>
+                          <a href="<?php echo base_url(); ?>home/productsview/<?php echo $cat_data->category_name;  ?>/<?php echo $subcat_data->subcategory_name;  ?>"><li class="dropdown-header"><?php echo ucwords($subcat_data->subcategory_name);  ?></li></a>
+                          
+                        </ul>
+                      </li>
+					<?php } ?>
+                      
+                     
+                    </ul>
+                  </li>
+                  
+				   <?php } ?>
+                
+                  <li><a href="#">PAGES</a></li>
+                  <li> <a href="#">CONTACT US</a> </li>
+                </ul>
+              </div>-->
+              
             </div>
           </div>
         </div>
 		  <div class="medias ">
 			<span>
-				<a href="<?php echo base_url('customer'); ?>" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+				<a data-toggle="modal" data-target="#sin_log" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
 			</span>
 			<span><a onclick="openpopup();"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
 			<span class=""><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>
 			<div class="sprinkle"></div>
-		 </div>
-	</div>
+				
+		  </div>
+		 
+	
+       <!-- <div class="col-md-2 medias">
+          <ul class="largenav">
+            <li class="upper-links"><a class="links cust_btn md-trigger btn btn-warning btn-xs "style="padding:1px 20px; data-modal="modal-8" onClick="registershow()" href="javascript:void(0);">Login/signup</a></li>
+           
+          </ul>
+          <div class="classus mar_t_b5 ">
+            <div class="no-js ">
+              <h2 class="hm_lcao"><span class="btn btn-warning btn-xs" style="padding:1px 25px;"><i class="fa fa-map-marker" aria-hidden="true"></i> Location : </span><?php echo $this->session->userdata('location_name');   ?></h2>
+              <div class="fl-nav-links">
+                <div class="input-box">
+                  <select name="location_name" id="location_name" class="validate-select sel_are">
+        <option value="">Select Area </option>
+		<?php foreach($locationdata as $location_data) {?>
+        <option value="<?php echo $location_data->location_name; ?>"><?php echo $location_data->location_name; ?></option>
+       
+		<?php } ?>
+        </select>     
+                </div>
+              </div>
+            </div>
+          </div>
+		   <?php $cart = $this->cart->contents();  ?>
+		   
+          <div class="cart largenav" id="cart"> <a class="cart-button dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <svg class="cart-svg " width="16 " height="16 " viewBox="0 0 16 16 ">
+            <path d="M15.32 2.405H4.887C3 2.405 2.46.805 2.46.805L2.257.21C2.208.085 2.083 0 1.946 0H.336C.1 0-.064.24.024.46l.644 1.945L3.11 9.767c.047.137.175.23.32.23h8.418l-.493 1.958H3.768l.002.003c-.017 0-.033-.003-.05-.003-1.06 0-1.92.86-1.92 1.92s.86 1.92 1.92 1.92c.99 0 1.805-.75 1.91-1.712l5.55.076c.12.922.91 1.636 1.867 1.636 1.04 0 1.885-.844 1.885-1.885 0-.866-.584-1.593-1.38-1.814l2.423-8.832c.12-.433-.206-.86-.655-.86 " fill="#fff "></path>
+            </svg> <span class="col_fff">Cart</span> <span class="item-number "><?php echo count($cart);   ?></span> </a>
+            <ul class="dropdown-menu notify-drop">
+			
+              <div class="notify-drop-title">
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-6">View Products (<b><?php echo count($cart);   ?></b>)</div>
+                  <div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="tümü okundu."><i class="fa fa-dot-circle-o"></i></a></div>
+                </div>
+              </div>
+             
+              <div class="drop-content">
+			  <?php
+                    
+                    
+                    $i = 1;
+
+                    foreach ($cart as $item):
+					 echo form_hidden('cart[' . $item['id'] . '][id]', $item['id']);
+                        echo form_hidden('cart[' . $item['id'] . '][rowid]', $item['rowid']);
+                        echo form_hidden('cart[' . $item['id'] . '][name]', $item['name']);
+                        echo form_hidden('cart[' . $item['id'] . '][price]', $item['price']);
+						echo form_hidden('cart[' . $item['id'] . '][pro_image]', $item['pro_image']);
+                        echo form_hidden('cart[' . $item['id'] . '][qty]', $item['qty']);
+						echo form_hidden('cart[' . $item['id'] . '][item_quantity]', $item['item_quantity']);
+					?>
+                <li>
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                    <div class="notify-img"><img src="<?php echo base_url();?>uploads/products/<?php  echo $item['pro_image']; ?>" alt="" style="width:45px;height:45px;"></div>
+                  </div>
+                  <div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="#"><?php echo $item['name'];?></a> <a href="" class="rIcon"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <p>Lorem ipsum sit dolor amet consilium.</p>
+                    <p class="time">Rs. <?php echo $item['price'];?></p>
+                  </div>
+                </li>
+               <?php endforeach; ?>
+               
+               
+              </div>
+              <div class="notify-drop-footer text-center"> <a href="<?php echo base_url(); ?>home/addtocart"><i class="fa fa-eye"></i> Check Out</a> </div>
+            </ul>
+          </div>
+		  
+        </div>-->
+      </div>
 	  <div class="top-navbar1">
     <div class="container">
       <div class=" row">
@@ -336,9 +433,24 @@ function removepopup(){
 }	
 function searchfunction(val){
 	
-	
-	alert(val);return false;
-	
+	var length=val.length;
+	if(length >4){
+		
+	jQuery.ajax({
+			url: "<?php echo site_url('home/search_functionality');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				searchvalue: val,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+				alert(data);
+			
+
+			}
+		});
+	}
 	
 }
 

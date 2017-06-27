@@ -71,14 +71,15 @@ class Mobile extends REST_Controller {
 					);
 					$createseller=$this->mobile_model->seller_register($data);
 					if(count($createseller)>0){
-						$message = array
-						(
-							'status'=>1,
-							'seller_id'=>$createseller,
-							'seller_details' =>$data,
-							'message'=>'Seller Successfully Created!'
-						);
-						$this->response($message, REST_Controller::HTTP_OK);
+						// $message = array
+						// (
+						// 	'status'=>1,
+						// 	'seller_id'=>$createseller,
+						// 	'seller_details' =>$data,
+						// 	'message'=>'Seller Successfully Created!'
+						// );
+						$data['status']=1;
+						$this->response($data, REST_Controller::HTTP_OK);
 					}
 				
 			 }
@@ -104,6 +105,7 @@ class Mobile extends REST_Controller {
 		public function seller_login_post()
 		{
 				
+<<<<<<< HEAD
         
             $username   = $this->input->get('username');
             $password = md5($this->input->get('password'));           
@@ -113,15 +115,23 @@ class Mobile extends REST_Controller {
              if(count($result)>0)
             {
 				$result['status']=1;
+=======
+        	//$this->input->post();
+            $seller_username   = $this->input->get('username');
+            $seller_password = md5($this->input->get('password'));
+            //print_r($seller_password);exit;
+
+            $result   = $this->mobile_model->seller_login($seller_username, $seller_password);
+                       
+             if(count($result)>0)
+            {
+				$result['status']=1; 
+>>>>>>> b7300afacee3961cf12f5f159468193e3d9b4398
 				$this->response($result, REST_Controller::HTTP_OK);
 			}	
 			else
 			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'login Faild.'
-				);
+				$message = array('status'=>0,'message'=>'Login Faild.');				
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 		}

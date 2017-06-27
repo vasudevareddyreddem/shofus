@@ -45,6 +45,7 @@
 		</ul>
 		<!-- Tab panels -->
 		<div class="tab-content">
+		<?php echo $this->session->flashdata('sucess'); ?>
 			<div class="tab-pane fade in active" id="tab1">
 				<div class="panel-body">
 				 <div id="categoryiddoc" class="form-group nopaddingRight "></div>
@@ -116,15 +117,33 @@
                   </select>
                 </div>
 				
-                <div class="form-group nopaddingRight col-md-6 san-lg">
+                
+				<div class="form-group nopaddingRight col-md-6 san-lg">
+                  <label for="exampleInputFile">Image One</label>
+                  <input type="file" name="picture_one" id="picture_one">
+				 </div>
+				
+				 <div class="form-group nopaddingRight col-md-6 san-lg">
+				  
+				  <label for="exampleInputFile">Image Two</label>
+                  <input type="file" name="picture_two" id="picture_two">
+				  </div>
+				 <div class="form-group nopaddingRight col-md-6 san-lg">
+				  
+                  <label for="exampleInputFile">Image Three</label>
+                  <input type="file" name="picture_three" id="picture_three">
+				  </div>
+				 <div class="form-group nopaddingRight col-md-6 san-lg">
+				  
+                  <label for="exampleInputFile">Image Four</label>
+                  <input type="file" name="picture_four" id="picture_four">
+				  </div>
+				  <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Description</label>
                   <textarea  placeholder="Item Description" class="form-control" rows="3" id="item_description" name="item_description"></textarea>
                 </div>
-				<div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputFile">Image</label>
-                  <input type="file" name="picture" id="picture">
-				  
-                </div>
+               
+                
                
 				
                 <div class="clearfix"></div>
@@ -296,7 +315,36 @@ $(document).ready(function() {
 					}
                 }
             },
-			picture: {
+			picture_one: {
+				validators: {
+					 notEmpty: {
+						message: 'Image One is required'
+					},  
+					regexp: {
+					regexp: /\.(jpe?g|png|gif)$/i,
+					message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			picture_two: {
+				validators: {
+					   
+					regexp: {
+					regexp: /\.(jpe?g|png|gif)$/i,
+					message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			picture_three: {
+				validators: {
+					   
+					regexp: {
+					regexp: /\.(jpe?g|png|gif)$/i,
+					message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			picture_four: {
 				validators: {
 					   
 					regexp: {

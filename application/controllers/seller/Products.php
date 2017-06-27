@@ -77,23 +77,82 @@ class Products extends Admin_Controller {
  		{
 
 			if(isset($_POST)){
-			if(!empty($_FILES['picture']['name'])){
+			if(!empty($_FILES['picture_one']['name'])){
 				$config['upload_path'] = 'uploads/products/';
 				$config['allowed_types'] = 'jpg|jpeg|png|gif';
-				$config['file_name'] = $_FILES['picture']['name'];
+				$config['file_name'] = $_FILES['picture_one']['name'];
                 //Load upload library and initialize configuration
 				$this->load->library('upload',$config);
 				$this->upload->initialize($config);
-				if($this->upload->do_upload('picture')){
+				if($this->upload->do_upload('picture_one')){
 					$uploadData = $this->upload->data();
-					$picture = $uploadData['file_name'];
+					$picture_one = $uploadData['file_name'];
 				}else{
 			$this->prepare_flashmessage("Image format Invalid..", 1);
 				//return redirect('admin/fooditems');
 				echo "<script>window.location='".base_url()."seller/products/create';</script>";
 				}
 			}else{
-				$picture = '';
+				$picture_one = '';
+			}
+
+			//item_image_two
+			if(!empty($_FILES['picture_two']['name'])){
+				$config['upload_path'] = 'uploads/products/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['file_name'] = $_FILES['picture_two']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('picture_two')){
+					$uploadData = $this->upload->data();
+					$picture_two = $uploadData['file_name'];
+				}else{
+			$this->prepare_flashmessage("Image format Invalid..", 1);
+				//return redirect('admin/fooditems');
+				echo "<script>window.location='".base_url()."seller/products/create';</script>";
+				}
+			}else{
+				$picture_two = '';
+			}
+
+			//item_image_three
+			if(!empty($_FILES['picture_three']['name'])){
+				$config['upload_path'] = 'uploads/products/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['file_name'] = $_FILES['picture_three']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('picture_three')){
+					$uploadData = $this->upload->data();
+					$picture_three = $uploadData['file_name'];
+				}else{
+			$this->prepare_flashmessage("Image format Invalid..", 1);
+				//return redirect('admin/fooditems');
+				echo "<script>window.location='".base_url()."seller/products/create';</script>";
+				}
+			}else{
+				$picture_three = '';
+			}
+			//item_image_four
+			if(!empty($_FILES['picture_four']['name'])){
+				$config['upload_path'] = 'uploads/products/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['file_name'] = $_FILES['picture_four']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('picture_four')){
+					$uploadData = $this->upload->data();
+					$picture_four = $uploadData['file_name'];
+				}else{
+			$this->prepare_flashmessage("Image format Invalid..", 1);
+				//return redirect('admin/fooditems');
+				echo "<script>window.location='".base_url()."seller/products/create';</script>";
+				}
+			}else{
+				$picture_four = '';
 			}
 		}
 		
@@ -111,7 +170,10 @@ class Products extends Admin_Controller {
 			'item_status' => $this->input->post('item_status'),
 			'item_description' => $this->input->post('item_description'),
 			'item_cost' => $this->input->post('item_cost'),
-			'item_image'=>$picture,
+			'item_image'=>$picture_one,
+			'item_image1'=>$picture_two,
+			'item_image2'=>$picture_three,
+			'item_image3'=>$picture_four,
 			'seller_location_area'=>$seller_location['area'],
 
 			);
@@ -122,7 +184,8 @@ class Products extends Admin_Controller {
 
 			{
 
-               $this->prepare_flashmessage("Successfully Inserted..", 0);
+               //$this->prepare_flashmessage("Successfully Inserted..", 0);
+               $this->session->set_flashdata('success',"Successfully Inserted..", 0);
 
 				//return redirect('admin/fooditems');
 
@@ -134,7 +197,7 @@ class Products extends Admin_Controller {
 
 				$this->prepare_flashmessage("Failed to Insert..", 1);
 				//return redirect(base_url('admin/fooditems'));
-echo "<script>window.location='".base_url()."seller/products/".$this->uri->segment(4)."/".$this->uri->segment(5)."';</script>";
+		echo "<script>window.location='".base_url()."seller/products/".$this->uri->segment(4)."/".$this->uri->segment(5)."';</script>";
 			}
 }
 

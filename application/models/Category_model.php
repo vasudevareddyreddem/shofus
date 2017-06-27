@@ -144,10 +144,45 @@ class Category_model extends MY_Model
 	
 	public function get_all_products($catid){
 		
-		$this->db->select('*')->from('products');
+		$this->db->select('products.*,category.category_name')->from('products');
+		$this->db->join('category', 'category.category_id = products.category_id', 'left'); //
 		$this->db->where('subcategory_id',$catid);
 		$this->db->where('admin_status',0);
 		return $this->db->get()->result_array();
 	}
+	public function get_product_stock($catid){
+		
+		$this->db->select('products.*')->from('products');
+		$this->db->where('subcategory_id',$catid);
+		$this->db->where('admin_status',0);
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_category($catid){
+		
+		$this->db->select('category.category_name')->from('subcategories');
+		$this->db->join('category', 'category.category_id = subcategories.category_id', 'left'); //
+		$this->db->where('subcategories.subcategory_id',$catid);
+		return $this->db->get()->row_array();
+	}
+	public function get_products_reviews($pid){
+		
+		$this->db->select('*')->from('reviews');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->result_array();
+	}
+	public function get_products($pid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_id',$pid);
+		$this->db->where('admin_status',0);
+		return $this->db->get()->row_array();
+	}
+	public function save_review($data){
+		
+		$this->db->insert('reviews', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	
 }
 ?>
