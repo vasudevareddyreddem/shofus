@@ -299,7 +299,7 @@
     </section>
   </div>
   
-    <?php if($this->session->userdata('location_area') == "")   {?>
+    <?php //if($this->session->userdata('location_area') == "")   {?>
 
   <div class="popup1" style="display: block;">
   <div class="newsletter-sign-box">
@@ -321,7 +321,7 @@
 
 				<?php } ?>
 				</select>
-            <button type="button" onclick="searchlocationoffers();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
+            <button type="button" onclick="searchlocation();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
           </div>
           <!--input-box--> 
         </div>
@@ -336,16 +336,15 @@
 </div>
 <div id="fade" style="display: block;"></div>
 
-	<?php } ?>
+	<?php //} ?>
 </body>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 <script type="text/javascript" language="javascript">
 $("#location_seacrh").show();
 function IsLcemail(reasontype) {
         var regex = /^[ A-Za-z0-9_@.,!;:}{@#&`~\\|^?$*)(_+-]*$/;
         return regex.test(reasontype);
 		}
- function searchlocationoffers(){
+ function searchlocation(){
 	 
 	 jQuery('#address1errormsg').show();
 	var address=jQuery('#address1').val();

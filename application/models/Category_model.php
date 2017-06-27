@@ -149,5 +149,23 @@ class Category_model extends MY_Model
 		$this->db->where('admin_status',0);
 		return $this->db->get()->result_array();
 	}
+	public function get_products_reviews($pid){
+		
+		$this->db->select('*')->from('reviews');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->result_array();
+	}
+	public function get_products($pid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_id',$pid);
+		$this->db->where('admin_status',0);
+		return $this->db->get()->row_array();
+	}
+	public function save_review($data){
+		
+		$this->db->insert('reviews', $data);
+		return $insert_id = $this->db->insert_id();
+	}
 }
 ?>

@@ -15,7 +15,8 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/responsive.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl_002.css">
-
+ <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
+    
 <!--Style end here -->
 <!--for image zooming -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.simpleLens.css">
@@ -52,7 +53,7 @@
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/customer/js/search.js"></script> 
-
+  <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 
 </body>
 </html>
