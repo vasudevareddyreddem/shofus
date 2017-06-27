@@ -193,6 +193,17 @@ class Mobile extends REST_Controller {
 		public function seller_login_post()
 		{
 				
+<<<<<<< HEAD
+        
+            $username   = $this->input->get('username');
+            $password = md5($this->input->get('password'));           
+			
+            $result   = $this->mobile_model->seller_login($username, $password);
+			
+             if(count($result)>0)
+            {
+				$result['status']=1;
+=======
         	//$this->input->post();
             $seller_username   = $this->input->get('username');
             $seller_password = md5($this->input->get('password'));
@@ -203,6 +214,7 @@ class Mobile extends REST_Controller {
              if(count($result)>0)
             {
 				$result['status']=1; 
+>>>>>>> b7300afacee3961cf12f5f159468193e3d9b4398
 				$this->response($result, REST_Controller::HTTP_OK);
 			}	
 			else

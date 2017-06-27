@@ -97,7 +97,15 @@
                 <td>Quantity</td>
                 <td>
                   <div class="input-qty">
-                    <input type="text" value="1" class="form-control text-center"/>
+						<div class="input-group number-spinner">
+							<span class="input-group-btn data-dwn">
+								<button class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+							</span>
+							<input type="text" class="form-control text-center" value="1" min="1" max="20">
+							<span class="input-group-btn data-up">
+								<button class="btn btn-primary " data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+							</span>
+						</div>
                   </div>
                 </td>
               </tr>
@@ -113,7 +121,7 @@
                   <a href="" id="compare" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
                   <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>">                  
                   <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</button>  
-				  <a href="<?php echo base_url('tabs');?>" class="btn btn-theme m-b-1" type="button"> Next</a>
+				 
                 </td>
               </tr>
         </div>
@@ -578,3 +586,37 @@ $(document).ready(function() {
   
 
 </script>
+<!--quantity script start-->
+<script>
+$(function() {
+    var action;
+    $(".number-spinner button").mousedown(function () {
+        btn = $(this);
+        input = btn.closest('.number-spinner').find('input');
+        btn.closest('.number-spinner').find('button').prop("disabled", false);
+
+    	if (btn.attr('data-dir') == 'up') {
+            action = setInterval(function(){
+                if ( input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max')) ) {
+                    input.val(parseInt(input.val())+1);
+                }else{
+                    btn.prop("disabled", true);
+                    clearInterval(action);
+                }
+            }, 50);
+    	} else {
+            action = setInterval(function(){
+                if ( input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min')) ) {
+                    input.val(parseInt(input.val())-1);
+                }else{
+                    btn.prop("disabled", true);
+                    clearInterval(action);
+                }
+            }, 50);
+    	}
+    }).mouseup(function(){
+        clearInterval(action);
+    });
+});
+</script>
+<!--quantity script end-->
