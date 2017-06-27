@@ -104,19 +104,16 @@ class Mobile extends REST_Controller {
 		public function seller_login_post()
 		{
 				
-        	//$this->input->post();
-            $username   = $this->input->get('seller_email');
-            $password = md5($this->input->get('seller_password'));           
+        
+            $username   = $this->input->get('username');
+            $password = md5($this->input->get('password'));           
+			
             $result   = $this->mobile_model->seller_login($username, $password);
+			
              if(count($result)>0)
             {
-				$message = array
-				(
-					'status'=>1,
-					'seller_details'=>$result,							
-					'message'=>'Seller Successfully LoggedIn!'
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+				$result['status']=1;
+				$this->response($result, REST_Controller::HTTP_OK);
 			}	
 			else
 			{
