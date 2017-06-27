@@ -183,5 +183,6 @@ class Category_model extends MY_Model
 		$this->db->insert('reviews', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	
 }
 ?>
