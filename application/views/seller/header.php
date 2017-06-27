@@ -432,14 +432,14 @@
               <div class="modal-dialog modal-sm">
 			  <button type="button" id="poupclose" style="color:#444;z-index:1024;opacity:0.5;" class="close" data-dismiss="modal">&times;</button>
                 <div class="modal-content">
-                  <div class="modal-body pass_list">
-
+                  <div class="modal-body pass_list">                
                       <h4>How do you want temporary password to be send:</h4>
                        <div id="forgot-response"></div>
                         <form id="login_pass" name="login_pass" method="post"> 
 						<input type="radio" name="unable_login" id="unable_login" value="1" > E-Mail 
 						<input type="radio" name="unable_login" id="unable_login" value="0" > Mobile
-						<div id="loginerror"></div>
+						<div id="forgoterror"></div>
+            <div id="forgot-response"></div>
                         <input type="text" class="form-control" id="forgot_mobile" name="forgot_mobile">
                          <span id="MobileforErr"></span>
                       
@@ -468,22 +468,22 @@ function emailchecking(reasontype) {
 	 
 	 
 	  var radiovalue=$('input[name="unable_login"]:checked').val();
-	  alert(radiovalue);
+	  //alert(radiovalue);
 	  if(radiovalue==1 || radiovalue==0){
 		
 	  if(radiovalue==0){
 		  var mobile = document.getElementById('forgot_mobile').value;
 		  if(mobile==''){
-			  $("#loginerror").html("Please Enter Mobile Number").css("color", "red");
+			  $("#forgoterror").html("Please Enter Mobile Number").css("color", "red");
 		  }else{
 			 var mobile = document.getElementById('forgot_mobile').value;
 			if (!IsMobile(mobile)) {
-			$("#loginerror").html("Please Enter Correct Mobile Number").css("color", "red");
+			$("#forgoterror").html("Please Enter Correct Mobile Number").css("color", "red");
 			jQuery('#seller_mobile').focus();
 			return false;
 			} 
 		  }
-		  $("#loginerror").html("");
+		  $("#forgoterror").html("");
 			$("#forgot_submit").html("");
 		  $.ajax({
 			  
@@ -498,7 +498,7 @@ function emailchecking(reasontype) {
 					url: '<?php echo base_url("seller/login/forgot"); ?>',
 					success:function(data)
 					{
-					alert(data);
+					//alert(data);
 					if(data.sendmsg==1){
 							$("#myModal1").fadeOut(1);
 							$("#forgot_mobile").val('');
@@ -510,7 +510,7 @@ function emailchecking(reasontype) {
 							$('#forgot_submit')[0].reset();
 						}
 						if(data.nomobile==0){
-							$("#forgot-response").html("The Mobile you entered is not a registered Mobile. Please try again").css("color", "red");
+							$("#forgoterror").html("The Mobile you entered is not a registered Mobile. Please try again").css("color", "red");
 							$('#forgot_submit')[0].reset();
 							return false;
 						}
@@ -523,16 +523,16 @@ function emailchecking(reasontype) {
 	  if(radiovalue==1){
 		  var email = document.getElementById('forgot_mobile').value;
 		  if(email==''){
-			  $("#loginerror").html("Please Enter Email").css("color", "red");
+			  $("#forgoterror").html("Please Enter Email").css("color", "red");
 		  }else{
 			  
 			  if (!emailchecking(email)) {
-			$("#loginerror").html("Please enter a valid email address. For example johndoe@domain.com").css("color", "red");
+			$("#forgoterror").html("Please enter a valid email address. For example johndoe@domain.com").css("color", "red");
 			jQuery('#seller_mobile').focus();
 			return false;
 			}
 		  }
-			$("#loginerror").html("");
+			$("#forgoterror").html("");
 			$("#forgot_submit").html("");
 				$.ajax({
 					type: 'post',
@@ -568,7 +568,7 @@ function emailchecking(reasontype) {
 		  
 	
  }else{
-	 $("#loginerror").html("Please select one option").css("color", "red");
+	 $("#forgoterror").html("Please select one option").css("color", "red");
 	 return false;
  }
  
