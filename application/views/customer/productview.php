@@ -218,6 +218,18 @@
                       <label for="Email">Email</label>
                       <input type="text" name="email" id="email" class="form-control" placeholder="Email">
                     </div>
+					
+					   <div class="form-group">
+                      <label for="Email">Rating</label>
+                     <span class="product-rating">
+                        <a href=""><i class="fa fa-star"></i></a>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                     </span>
+                    </div>
+					
                     <div class="form-group">
                       <label for="Review">Your Review</label>
                       <textarea id="review" name="review" class="form-control" rows="5" placeholder="Your Review"></textarea>
