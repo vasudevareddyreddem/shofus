@@ -77,8 +77,7 @@
 				<?php }else{ ?>
                   <div class="price">
                     <span class="price-old"><?php echo $products_list['item_cost']; ?></span>
-                  </div>
-				  
+                  </div>				  
 				<?php } ?>
                 </td>
               </tr>
@@ -107,7 +106,7 @@
                 <td>Add to Compare</td>
                 <td>
                   <div class="input-qty">
-                    <a href="<?php echo base_url('category/productview/compare/'.base64_encode($products_list['item_id'])); ?>" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
+                    <a href="<?php echo base_url('category/productview/'.$products_list['item_id']); ?>" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
                   </div>
                 </td>
               </tr>
