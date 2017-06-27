@@ -78,8 +78,8 @@ class Mobile extends REST_Controller {
 						// 	'seller_details' =>$data,
 						// 	'message'=>'Seller Successfully Created!'
 						// );
-						//$createseller['status']=1;
-						$this->response($createseller, REST_Controller::HTTP_OK);
+						$data['status']=1;
+						$this->response($data, REST_Controller::HTTP_OK);
 					}
 				
 			 }
