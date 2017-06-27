@@ -68,9 +68,24 @@ class Customer extends Front_Controller
  public function loginpost(){
 	 
 	 	$post=$this->input->post();
-	echo '<pre>';print_r($post);exit;
-	$emailcheck = $this->customer_model->email_check($post['email']);
+	//echo '<pre>';print_r($post);
+	$pass=md5($post['password']);
+	$logindetails = $this->customer_model->login_details($post['email'],$pass);
+	//echo '<pre>';print_r($logindetails);exit;
+		if(count($logindetails)>0)
+		{
+			$this->session->set_userdata('userdetails',$logindetails);
+			$this->session->set_flashdata('sucesss',"Successfully Login");
+			redirect('');
+		}else{
+			$this->session->set_flashdata('loginerror',"Invalid Email Address or Password!");
+			redirect('customer');
+		}
  }
+  public function forgotpassword(){
+	  
+	$this->load->view( 'customer/forgotpassword'); 
+	} 
  
 
 	
