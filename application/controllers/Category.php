@@ -24,7 +24,8 @@ class Category extends Front_Controller
 	$this->template->write_view('content', 'customer/categoryproducts', $data);
 	$this->template->render();
 	
- } 
+ }
+  
  public function productview(){
 	 
 	$pid=base64_decode($this->uri->segment(3));
@@ -55,6 +56,13 @@ class Category extends Front_Controller
 	}
 
 	//echo '<pre>';print_r($data);exit;
+ }
+ 
+ public function productscompare(){
+	
+	$this->template->write_view('content', 'customer/compare');
+	$this->template->render();
+	
  }
 
 	

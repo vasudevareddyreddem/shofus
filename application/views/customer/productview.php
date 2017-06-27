@@ -77,8 +77,7 @@
 				<?php }else{ ?>
                   <div class="price">
                     <span class="price-old"><?php echo $products_list['item_cost']; ?></span>
-                  </div>
-				  
+                  </div>				  
 				<?php } ?>
                 </td>
               </tr>
@@ -102,6 +101,15 @@
                   </div>
                 </td>
               </tr>
+
+              <tr>
+                <td>Add to Compare</td>
+                <td>
+                  <div class="input-qty">
+                    <a href="<?php echo base_url('category/productview/'.$products_list['item_id']); ?>" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
+                  </div>
+                </td>
+              </tr>
             
 			  
            
@@ -114,7 +122,7 @@
                 <td></td>
                 <td>
                   <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                  <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</button>
+                  <a href="<?php echo base_url('category/productscompare');?>" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
                   <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i> Add to Wishlist</button>  
 				  <a href="<?php echo base_url('tabs');?>" class="btn btn-theme m-b-1" type="button"> Next</a>
                 </td>
@@ -218,6 +226,18 @@
                       <label for="Email">Email</label>
                       <input type="text" name="email" id="email" class="form-control" placeholder="Email">
                     </div>
+					
+					   <div class="form-group">
+                      <label for="Email">Rating</label>
+                     <span class="product-rating">
+                        <a href=""><i class="fa fa-star"></i></a>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                     </span>
+                    </div>
+					
                     <div class="form-group">
                       <label for="Review">Your Review</label>
                       <textarea id="review" name="review" class="form-control" rows="5" placeholder="Your Review"></textarea>

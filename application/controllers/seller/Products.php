@@ -184,7 +184,8 @@ class Products extends Admin_Controller {
 
 			{
 
-               $this->prepare_flashmessage("Successfully Inserted..", 0);
+               //$this->prepare_flashmessage("Successfully Inserted..", 0);
+               $this->session->set_flashdata('success',"Successfully Inserted..", 0);
 
 				//return redirect('admin/fooditems');
 
@@ -196,7 +197,7 @@ class Products extends Admin_Controller {
 
 				$this->prepare_flashmessage("Failed to Insert..", 1);
 				//return redirect(base_url('admin/fooditems'));
-echo "<script>window.location='".base_url()."seller/products/".$this->uri->segment(4)."/".$this->uri->segment(5)."';</script>";
+		echo "<script>window.location='".base_url()."seller/products/".$this->uri->segment(4)."/".$this->uri->segment(5)."';</script>";
 			}
 }
 
