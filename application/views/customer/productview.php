@@ -102,28 +102,18 @@
                 </td>
               </tr>
 
-              <tr>
-                <td>Add to Compare</td>
-                <td>
-                  <div class="input-qty">
-                    <a href="<?php echo base_url('category/productview/'.$products_list['item_id']); ?>" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
-                  </div>
-                </td>
-              </tr>
-            
-			  
-           
+         
             </tbody>
 			<div class="clearfix"></div>
-			
-			 
           </table>
 		    <tr>
                 <td></td>
                 <td>
                   <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                  <a href="<?php echo base_url('category/productscompare');?>" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
-                  <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i> Add to Wishlist</button>  
+                  <a href="" id="compare" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
+                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>">
+                  <img class="bzoom_thumb_image" name="compare_name" id="compare_name" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>"/>
+                  <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</button>  
 				  <a href="<?php echo base_url('tabs');?>" class="btn btn-theme m-b-1" type="button"> Next</a>
                 </td>
               </tr>
@@ -559,4 +549,20 @@ $(document).ready(function() {
         }
     });
 });
+</script>
+
+<script type="text/javascript" language="javascript">
+      $(document).ready(function(){
+    $('#compare').click(function(e){
+    e.preventDefault();
+    //alert('hello');
+    var item_id =  $("#compare_id").val();
+    var item_name =  $("#compare_name").val();
+    alert(item_name);
+  
+    
+    });
+});
+  
+
 </script>
