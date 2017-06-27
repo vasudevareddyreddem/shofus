@@ -16,8 +16,7 @@ class Customer extends Front_Controller
  
  public function index(){
 	
-	$this->template->write_view('content', 'customer/register');
-	$this->template->render();
+	$this->load->view( 'customer/register');
 	
  } 
  
