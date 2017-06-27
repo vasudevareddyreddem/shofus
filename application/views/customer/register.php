@@ -37,18 +37,19 @@
         <div class="row ">
 		<div class="col-md-10 col-md-offset-1" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
             <div class="col-md-6 " style="border-right:1px solid #ddd">
+			<div class="" style="padding:0px 15px;">
 			<h3 class="text-center">Sign in</h3>
 			<hr>
                 <div id="loginbox" class="mainbox ">
 						
                     <form id="loginform" name="loginform" method="post" action="<?php echo base_url('customer/loginpost');?>" class="form-horizontal" role="form">
-                        <div style="margin-bottom: 25px" class="input-group form-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" class="form-control" id="email" name="email" value="" placeholder="Email">
+                        <div class=" form-group">
+                            <label class="control-label">Email</label>
+                            <input type="text" class="form-control" id="email" name="email"  placeholder="Email">
                         </div>
 
-                        <div style="margin-bottom: 25px" class="input-group form-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <div  class=" form-group">
+                           <label class="control-label">Password</label>
                             <input id="password" type="password" class="form-control" name="password" placeholder="password">
                         </div>
 
@@ -81,6 +82,7 @@
 
                 </div>
 
+            </div>
             </div>
 
 
