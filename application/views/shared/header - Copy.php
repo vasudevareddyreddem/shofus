@@ -23,7 +23,7 @@
 												<li><a href="<?php echo base_url('category/view/'.base64_encode($subcategory->subcategory_id)); ?>" style="color:#666;"><?php echo $subcategory->subcategory_name; ?></a></li>
 													<?php 
 													foreach($subcategory->docs12 as $item_data){?>
-													<li><a href="<?php echo base_url('category/productview/'.base64_encode($item_data->item_id)); ?>"><?php echo $item_data->item_name; ?></a></li>
+													<li><a href=""><?php echo $item_data->item_name; ?></a></li>
 													<?php } ?>
 											</ul>
 							
@@ -110,7 +110,7 @@
         </div>
 		  <div class="medias ">
 			<span>
-				<a href="<?php echo base_url('customer'); ?>" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+				<a data-toggle="modal" data-target="#sin_log" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
 			</span>
 			<span><a onclick="openpopup();"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
 			<span class=""><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>

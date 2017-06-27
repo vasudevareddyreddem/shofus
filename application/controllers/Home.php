@@ -43,6 +43,19 @@ public function search_location_offers()
 
 }
 
+public function search_functionality(){
+	
+$post=$this->input->post();
+$data1 = $this->home_model->get_search_functionality_products($post['searchvalue']);
+
+//echo "<pre>";print_r($values);exit;
+$data2 = $this->home_model->get_search_functionality_category($post['searchvalue']);
+$data3 = $this->home_model->get_search_functionality_sub_category($post['searchvalue']);
+$data['detail']=array_merge($data1,$data2,$data3);
+//echo "<pre>";print_r($detail);exit;
+echo json_encode($data);
+}
+
  public function addtocart()
 
  {
