@@ -10,6 +10,7 @@ class Customer extends Front_Controller
 			$this->load->helper(array('url', 'html'));
 			$this->load->library('session');
 			$this->load->helper(array('url','html','form'));
+				$this->load->library('email');
 			$this->load->model('customer_model'); 
 			
  }
@@ -82,10 +83,79 @@ class Customer extends Front_Controller
 			redirect('customer');
 		}
  }
-  public function forgotpassword(){
+	public function forgotpassword(){
 	  
 	$this->load->view( 'customer/forgotpassword'); 
 	} 
+	
+
+	public function forgotpasswordpost(){
+	  
+		$post=$this->input->post();
+	//echo '<pre>';print_r($post);
+	$forgotpass = $this->customer_model->forgot_login($post['emailaddress']);
+	//echo '<pre>';print_r($forgotpass);exit;
+		if(count($forgotpass)>0)
+		{
+			
+			$this->load->library('email');
+			$this->email->from('admin@cartinhour.com', 'CartInHour');
+			$this->email->to($post['emailaddress']);
+			$this->email->subject('CartInHour - Forgot Password');
+			$html = "Click this link to reset your password. ".site_url('customer/resetpassword/'.base64_encode($forgotpass['cust_email']).'/'.base64_encode($forgotpass['customer_id']));
+			//echo $html;exit;
+			$this->email->message($html);
+			$this->email->send();
+			$this->session->set_flashdata('forsuccess','Check Your Email to reset your password!');
+			redirect('customer');
+		}else{
+			$this->session->set_flashdata('error',"Invalid Email Address!");
+			redirect('customer/forgotpassword');
+		}
+	}
+
+	public function resetpassword(){
+	
+		$data['cust_id'] = $this->uri->segment(4);
+		$data['email']= $this->uri->segment(3);
+	$this->load->view( 'customer/resetpassword',$data); 
+	} 
+	
+	public function resetpasswordpost(){
+	
+			$post=$this->input->post();
+		//echo '<pre>';print_r($post);exit;
+			if(isset($post['newpassword']) && $post['confirmpassword'] !='' )
+				{
+					if(md5($post['newpassword'])== md5($post['confirmpassword']))
+					{
+						$users = $this->customer_model->update_password($post['newpassword'],base64_decode($post['cust_id']),base64_decode($post['email']));
+						
+						//echo '<pre>';print_r($users);exit;
+						if(count($users)>0)
+						{
+							
+							
+						$this->load->library('email');
+						$this->email->from('admin@cartinhour.com', 'CartInHour');
+						$this->email->to(base64_decode($post['email']));
+						$this->email->subject('CartInHour - Forgot Password');
+						$html = "Pasword Successfully changed";
+						//echo $html;exit;
+						$this->email->message($html);
+						$this->email->send();
+							
+							$this->session->set_flashdata("forsuccess","Password successfully changed!");
+							redirect('customer');
+						}
+					}
+					else
+					{
+						$this->session->set_flashdata("error","Passwords are Not matched!");
+						redirect('customer/resetpassword/'.$post['email'].'/'.$post['cust_id']);
+					}
+		}
+	} 	
  
 
 	

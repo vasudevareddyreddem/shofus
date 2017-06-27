@@ -39,19 +39,27 @@
            
 
             <div class="col-md-10 col-md-offset-1 ">
-			<h3 class="">Forget Password</h3>
+			<h3 class="">Reset Password</h3>
 			<hr>
 				<?php if($this->session->flashdata('error')): ?>	
 			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>	
-			<form action="<?php echo base_url('customer/forgotpasswordpost'); ?>" method="post" name="forgotpass" id="forgotpass">
+			<form action="<?php echo base_url('customer/resetpasswordpost'); ?>" method="post" name="resetpassword" id="resetpassword">
 			<div class="row">
+			<input type="hidden" id="cust_id" name="cust_id" value="<?php echo $cust_id; ?>">
+			<input type="hidden" id="email" name="email" value="<?php echo $email; ?>">
                         <div class=" col-md-12">
 							<div class="form-group">
-								<label class="control-label">Email Address</label>
-								<input type="text" id="emailaddress" name="emailaddress" value="" class="form-control" placeholder="Email Address" />
+								<label class="control-label">New password</label>
+								<input type="text" id="newpassword" name="newpassword" value="" class="form-control" placeholder="Email Address" />
+							</div>
+						</div>
+						<div class=" col-md-12">
+							<div class="form-group">
+								<label class="control-label">Confirm Password</label>
+								<input type="text" id="confirmpassword" name="confirmpassword" value="" class="form-control" placeholder="Email Address" />
 							</div>
 						</div>
                         
@@ -76,20 +84,39 @@
 	<script type="text/javascript">
 
 $(document).ready(function() {
-    $('#forgotpass').bootstrapValidator({
+    $('#resetpassword').bootstrapValidator({
        
         fields: {
-            emailaddress: {
-             validators: {
+            newpassword: {
+					validators: {
 					notEmpty: {
-						message: 'Email is required'
+						message: 'New Password is required'
 					},
+					stringLength: {
+                        min: 6,
+                        message: 'New Password  must be greater than 6 characters'
+                    },
 					regexp: {
-					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-					message: 'Please enter a valid email address. For example johndoe@domain.com.'
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
+					message: 'New Password wont allow <>[]'
 					}
 				}
-            }
+			},
+			confirmpassword: {
+					validators: {
+					notEmpty: {
+						message: 'Confirm Password is required'
+					},
+					stringLength: {
+                        min: 6,
+                        message: 'Confirm Password  must be greater than 6 characters'
+                    },
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
+					message: 'Confirm Password wont allow <>[]'
+					}
+				}
+			},
         }
     });
 });
