@@ -36,6 +36,7 @@ class Category extends Front_Controller
 	$this->template->render();
 	//echo '<pre>';print_r($data);exit;
  }
+
  public function productreview(){
 	 
 	$post=$this->input->post();
