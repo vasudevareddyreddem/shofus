@@ -35,106 +35,22 @@
 <body style="background-color:#45b1b5;">
     <div class="container mar_t10per" style="position:relative" >
         <div class="row ">
-		<div class="col-md-10 col-md-offset-1" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
-            <div class="col-md-6 " style="border-right:1px solid #ddd">
-			<h3 class="text-center">Sign in</h3>
+		<div class="col-md-6 col-md-offset-3" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
+           
+
+            <div class="col-md-10 col-md-offset-1 ">
+			<h3 class="">Forget Password</h3>
 			<hr>
-                <div id="loginbox" class="mainbox ">
-					<?php if($this->session->flashdata('loginerror')): ?>	
-			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('loginerror');?></div>
-			<?php endif; ?>	
-                    <form id="loginform" name="loginform" method="post" action="<?php echo base_url('customer/loginpost');?>" class="form-horizontal" role="form">
-                        <div style="margin-bottom: 25px" class="input-group form-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" class="form-control" id="email" name="email" value="" placeholder="Email">
-                        </div>
-
-                        <div style="margin-bottom: 25px" class="input-group form-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="password" type="password" class="form-control" name="password" placeholder="password">
-                        </div>
-
-                        <div class="">
-                            <div class="checkbox pull-left">
-                                <label>
-                                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                                </label>
-                            </div>
-							<div class="pull-right">
-                                <label>
-                                    <a> forget password?</a>
-                                </label>
-                            </div>
-                        </div>
-						<div style="margin-top:10px" class="form-group">
-                            <!-- Button -->
-
-                            <div class="col-sm-12 controls">
-                                <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
-                                    login</button>
-
-                            </div>
-                        </div>
-					</form>
-  
-
-
-                </div>
-
-            </div>
-
-
-
-            <div class="col-md-6 ">
-			<h3 class="text-center">Sign up</h3>
-			<hr>
-			<?php if($this->session->flashdata('addcus')): ?>
-			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('addcus');?></div>
-			<?php endif; ?>
-			<?php if($this->session->flashdata('error')): ?>	
-			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('error');?></div>
-			<?php endif; ?>
-				<form id="customerregister" name="customerregister" action="<?php echo base_url('customer/registerpost');?>" method="post" accept-charset="utf-8" class="form" role="form" style="padding:0px 15px;">
-
-                    <div class="row">
-                        <div class="col-xs-6 col-md-6">
-						<div class="form-group">
-							<label class="control-label">First Name</label>
-                            <input type="text" id="firstname" name="firstname" value="" class="form-control" placeholder="First Name" />
-							</div>
-							</div>
-                        <div class="col-xs-6 col-md-6">
+			<div class="row">
+                        <div class=" col-md-12">
 							<div class="form-group">
-							<label class="control-label">Last Name</label>
-							<input type="text" id="lastname" name="lastname" value="" class="form-control" placeholder="Last Name" />
-							</div> 
+								<label class="control-label">Email Address</label>
+								<input type="email" id="firstname" name="firstname" value="" class="form-control" placeholder="email" />
 							</div>
+						</div>
+                        
 							
                     </div>
-					<div class="form-group">
-					<label class="control-label">Email Address</label>
-					<input type="text" id="email" name="email" value="" class="form-control " placeholder="Your Email" />
-					</div>
-					<div class="form-group">
-					<label class="control-label">Mobile Number</label>
-					<input type="text" id="mobile" name="mobile" value="" class="form-control " placeholder="Your Mobile Number" />
-					</div>         
-					<div class="form-group">
-					<label class="control-label">Password</label>
-                    <input type="password" id="password" name="password" value="" class="form-control" placeholder="Password" />
-					</div>
-					<div class="form-group">
-					<label class="control-label">Confirm Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password" value="" class="form-control" placeholder="Confirm Password" />
-					</div>
-					<div class="row">
-					<div>
 
                     <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
                         Create my account</button>
