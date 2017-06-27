@@ -245,44 +245,7 @@ $(document).ready(function(){
 });
 </script>
 <script type="text/javascript">
-$(document).ready(function() {
-    $('#addreview').bootstrapValidator({
-       
-        fields: {
-            
-			
-            name: {
-              validators: {
-					notEmpty: {
-						message: 'Name is required'
-					},
-                   regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Name can only consist of alphanumaric, space and dot'
-					}
-                }
-            },
-			email: {
-             validators: {
-					notEmpty: {
-						message: 'Email is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-					message: 'Please enter a valid email address. For example johndoe@domain.com.'
-					}
-				}
-            },
-			review: {
-               validators: {
-					notEmpty: {
-						message: 'Please enter a review'
-					}
-				}
-            }
-        }
-    });
-});
+
 ;(function($){
 	$.fn.zoom = function(options){
 	
@@ -539,5 +502,44 @@ function sticky_relocate() {
 $(function () {
     $(window).scroll(sticky_relocate);
     sticky_relocate();
+});
+
+$(document).ready(function() {
+    $('#addreview').bootstrapValidator({
+       
+        fields: {
+            
+			
+            name: {
+              validators: {
+					notEmpty: {
+						message: 'Name is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Name can only consist of alphanumaric, space and dot'
+					}
+                }
+            },
+			email: {
+             validators: {
+					notEmpty: {
+						message: 'Email is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+					message: 'Please enter a valid email address. For example johndoe@domain.com.'
+					}
+				}
+            },
+			review: {
+               validators: {
+					notEmpty: {
+						message: 'Please enter a review'
+					}
+				}
+            }
+        }
+    });
 });
 </script>
