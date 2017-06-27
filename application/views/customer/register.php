@@ -65,7 +65,7 @@
                             </div>
 							<div class="pull-right">
                                 <label>
-                                    <a> forget password?</a>
+                                    <a href="<?php echo base_url('customer/forgotpassword');?>" >forget password?</a>
                                 </label>
                             </div>
                         </div>
