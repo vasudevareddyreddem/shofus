@@ -60,8 +60,9 @@ class Category extends Front_Controller
  }
  
  public function productscompare(){
-	
-	$this->template->write_view('content', 'customer/compare');
+ 	$pid=base64_decode($this->uri->segment(3));
+	$data['compore_products']= $this->category_model->get_products($pid);
+	$this->template->write_view('content', 'customer/compare',$data);
 	$this->template->render();
 	
  }

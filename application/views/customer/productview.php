@@ -119,8 +119,7 @@
                 <td>
                   <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                   <a href="" id="compare" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
-                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>">
-                  <img class="bzoom_thumb_image" name="compare_name" id="compare_name" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>"/>
+                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>">                  
                   <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</button>  
 				 
                 </td>
@@ -253,6 +252,18 @@
           </div>
           </div>
           </div>
+          <div class="compar_btn" id="compar_btn">
+	 <div class="btn-group show-on-hover">
+          <a href="<?php echo base_url('category/productscompare/'.base64_encode($products_list['item_id'])); ?>" class="btn btn-primary" ><?php echo $products_list['item_name'];?>&nbsp;<span>1</span> 
+          </a>
+          <!-- <ul class="dropdown-menu" role="menu" style="position: absolute;top:-100px;height:150px;width:10px;left:-50px;opacity: 0.8;">
+				<li>
+					<img src="<?php echo base_url('uploads/products/'.$products_list['item_image3']); ?>" style="width: 80%;height: 80%">
+				</li>
+          </ul> -->
+        </div>
+			
+	  </div>
 
 <script>
 $(document).ready(function(){
@@ -563,10 +574,11 @@ $(document).ready(function() {
       $(document).ready(function(){
     $('#compare').click(function(e){
     e.preventDefault();
+    $("#compar_btn").css("display", "block");
     //alert('hello');
     var item_id =  $("#compare_id").val();
-    var item_name =  $("#compare_name").val();
-    alert(item_name);
+    
+    //alert(item_name);
   
     
     });
