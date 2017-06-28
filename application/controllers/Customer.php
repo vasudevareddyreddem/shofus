@@ -62,7 +62,7 @@ class Customer extends Front_Controller
  }
  public function checkout(){
 	 
-	$this->template->write_view('content', 'customer/billingadrres', $data);
+	$this->template->write_view('content', 'customer/billingadrres');
 	$this->template->render();
 	 
  }
