@@ -38,6 +38,9 @@ class Customer extends Front_Controller
 				$this->session->set_flashdata('adderror','Product already Exits');
 				redirect('category/view/'.base64_encode($post['category_id']));
 				
+			}else if(isset($post['wishlist']) && $post['wishlist']=!'' ){
+			$this->session->set_flashdata('adderror','Product already added to the cart');
+			redirect('customer/wishlist');	
 			}else{
 			$this->session->set_flashdata('error','Product already Exits');
 			redirect('category/productview/'.base64_encode($post['producr_id']));	
@@ -67,6 +70,22 @@ class Customer extends Front_Controller
 		$customerdetails=$this->session->userdata('userdetails');
 		$data['cart_items']= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 		$this->template->write_view('content', 'customer/cart', $data);
+		$this->template->render();
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	} 
+	 
+ } 
+ public function wishlist(){
+	 
+	 if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		$data['whistlist_items']= $this->customer_model->get_whishlist_products($customerdetails['customer_id']);
+		
+		//echo '<pre>';print_r($data);exit;
+		$this->template->write_view('content', 'customer/wishlist', $data);
 		$this->template->render();
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
@@ -104,6 +123,26 @@ class Customer extends Front_Controller
 		if(count($delete)>0){
 			$this->session->set_flashdata('productsuccess','cart Item Successfully deleted!');
 			redirect('customer/cart');	
+			
+		}
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	}
+	 
+ }
+ public function deletewishlist(){
+	 if($this->session->userdata('userdetails'))
+	 {
+		$whishid=base64_decode($this->uri->segment(3));
+		//echo '<pre>';print_r($item_id);exit; 
+		$customerdetails=$this->session->userdata('userdetails');
+		$post=$this->input->post();
+		$delete= $this->customer_model->delete_wishlist_item($customerdetails['customer_id'],$whishid);
+		if(count($delete)>0){
+			$this->session->set_flashdata('productsuccess','Wishlist Item Successfully deleted!');
+			redirect('customer/wishlist');	
 			
 		}
 		
