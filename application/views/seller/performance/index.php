@@ -71,11 +71,7 @@ window.onload = function () {
 			<div><?php echo $this->session->flashdata('message');?></div>
             <div class="panel-body">
 			
-              <form action="<?php echo base_url();   ?>seller/performance" method="post" enctype="multipart/form-data" onSubmit="return perfvalidateof();">
-			  
-               
-				
-   
+              <form action="<?php echo base_url();   ?>seller/performance/performance_profile" method="post" enctype="multipart/form-data" onSubmit="return perfvalidateof();">
 				<div class="form-group nopaddingRight col-md-3 san-lg">
                   <label for="exampleInputPassword1">Select Month</label>
                    <select class="form-control" id="per_month" name="per_month">
@@ -120,7 +116,7 @@ window.onload = function () {
           </section>
         </div>
       </div>
-	    <div class="row">
+	    <!-- <div class="row">
    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 ">  
 		<div class="panel panel-bd lobidrag">
 			<div class="panel-heading">
@@ -133,7 +129,7 @@ window.onload = function () {
 			</div>
 		</div>
 	</div>
-  </div>
+  </div> -->
       <!-- page start--> 
       <!-- page end--> 
     </section>
@@ -208,7 +204,7 @@ else{
 
 }
 </script>
-<script>
+<!-- <script>
 
              //line chart
                 var ctx = document.getElementById("lineChart");
@@ -241,4 +237,4 @@ else{
                 });
 
 
-        </script>
+        </script> -->

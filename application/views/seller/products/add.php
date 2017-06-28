@@ -310,8 +310,8 @@ $(document).ready(function() {
 						message: 'Item Cost is required'
 					},
                    regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: ' Item Cost can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9. ]+$/,
+					message: ' Item Cost can only consist of Numbers, space and dot'
 					}
                 }
             },
