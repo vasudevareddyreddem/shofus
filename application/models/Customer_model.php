@@ -41,6 +41,14 @@ class Customer_model extends MY_Model
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
+	public function update_cart_qty($cust_id,$pid,$qty){
+		$sql1="UPDATE cart SET qty ='".$qty."' WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."'";
+		return $this->db->query($sql1);
+	}
+	public function delete_cart_item($cust_id,$pid,$id){
+		$sql1="DELETE FROM cart WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."' AND id ='".$id."'";
+		return $this->db->query($sql1);
+	}
 	
 	
 }
