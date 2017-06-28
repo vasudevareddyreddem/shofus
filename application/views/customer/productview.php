@@ -64,7 +64,10 @@
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
           <div class="title-detail"><?php echo $products_list['item_name']; ?></div>
-          <table class="table table-detail">
+		  <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $products_list['item_id']; ?>" >
+         
+		 <table class="table table-detail">
             <tbody>
               <tr>
                 <td>Price</td>
@@ -99,11 +102,11 @@
                   <div class="input-qty">
 						<div class="input-group number-spinner">
 							<span class="input-group-btn data-dwn">
-								<button class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+								<a class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
 							</span>
-							<input type="text" class="form-control text-center" value="1" min="1" max="20">
+							<input type="text" name="qty" id="qty" class="form-control text-center" value="1" min="1" max="20">
 							<span class="input-group-btn data-up">
-								<button class="btn btn-primary " data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+								<a class="btn btn-primary " data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
 							</span>
 						</div>
                   </div>
@@ -117,13 +120,14 @@
 		    <tr>
                 <td></td>
                 <td>
-                  <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                  <a href="" id="compare" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
+                  <button class="btn btn-theme m-b-1" type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+				  <a href="" id="compare" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
                   <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>">                  
                   <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</button>  
 				 
                 </td>
               </tr>
+			 </form>
         </div>
 
         <div class="col-md-8 col-md-offset-4 mar_t20" >
@@ -590,10 +594,10 @@ $(document).ready(function() {
 <script>
 $(function() {
     var action;
-    $(".number-spinner button").mousedown(function () {
+    $(".number-spinner a").mousedown(function () {
         btn = $(this);
         input = btn.closest('.number-spinner').find('input');
-        btn.closest('.number-spinner').find('button').prop("disabled", false);
+        btn.closest('.number-spinner').find('a').prop("disabled", false);
 
     	if (btn.attr('data-dir') == 'up') {
             action = setInterval(function(){
