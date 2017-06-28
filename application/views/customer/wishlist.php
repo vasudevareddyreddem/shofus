@@ -86,7 +86,17 @@
 						</div>
                   </div>
 				  </td>
-				  <td class="unit">$13.50</td>
+				  <td class="unit">
+				    <?php if($items['offer_percentage']!==0 && $items['offer_percentage']!=='' ){
+						$offeramount=($items['item_cost'])-($items['offer_amount']);
+						echo $offeramount; 
+						}else{ 
+						echo $items['item_cost'];
+
+						} ?>
+				  
+				  
+				  </td>
 				    <td class="action">
                    <button style="background:transprent;" type="submit" ><i class="fa fa-refresh"></i></button>&nbsp;
                     <a href="<?php echo base_url('customer/deletewishlist/'.base64_encode($items['id'])); ?>" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>
