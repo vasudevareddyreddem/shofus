@@ -71,7 +71,7 @@
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-                      <input onchange="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                      <input onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                       <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
 					
@@ -336,9 +336,24 @@ function removepopup(){
 }	
 function searchfunction(val){
 	
-	
-	alert(val);return false;
-	
+	var length=val.length;
+	if(length >4){
+		//alert(val);
+	jQuery.ajax({
+			url: "<?php echo site_url('home/search_functionality');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				searchvalue: val,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+				alert(data);
+			
+
+			}
+		});
+	}
 	
 }
 

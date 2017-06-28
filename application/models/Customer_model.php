@@ -26,9 +26,28 @@ class Customer_model extends MY_Model
 		$this->db->where('cust_password', $pass);
         return $this->db->get()->row_array();
 	}
+	
 	public function save_customer($data){
 		$this->db->insert('customers', $data);
 		return $insert_id = $this->db->insert_id();
+	}
+	public function cart_products_save($data){
+		$this->db->insert('cart', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function get_cart_products($cust_id){
+		$this->db->select('cart.*,products.item_name,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type')->from('cart');
+		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
+		$this->db->where('cart.cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
+	public function update_cart_qty($cust_id,$pid,$qty){
+		$sql1="UPDATE cart SET qty ='".$qty."' WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."'";
+		return $this->db->query($sql1);
+	}
+	public function delete_cart_item($cust_id,$pid,$id){
+		$sql1="DELETE FROM cart WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."' AND id ='".$id."'";
+		return $this->db->query($sql1);
 	}
 	
 	

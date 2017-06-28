@@ -14,7 +14,111 @@ class Customer extends Front_Controller
 			$this->load->model('customer_model'); 
 			
  }
- 
+ public function addcart(){
+	 
+	if($this->session->userdata('userdetails'))
+	 {
+		$post=$this->input->post();
+		$customerdetails=$this->session->userdata('userdetails');
+		//echo '<pre>';print_r($post);
+		$adddata=array(
+		'cust_id'=>$customerdetails['customer_id'],
+		'item_id'=>$post['producr_id'],
+		'qty'=>$post['qty'],
+		'create_at'=>date('Y-m-d H:i:s'),
+		);
+		$data['cart_items']= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		
+			foreach($data['cart_items'] as $pids) { 
+						
+							$rid[]=$pids['item_id'];
+			}
+		if(in_array($post['producr_id'],$rid)){
+			$this->session->set_flashdata('error','Product already Exits');
+			redirect('category/productview/'.base64_encode($post['producr_id']));
+		}else{
+			$save= $this->customer_model->cart_products_save($adddata);
+			if(count($save)>0){
+			$this->session->set_flashdata('productsuccess','Product Successfully added to the cart');
+			redirect('customer/cart');
+
+			}
+		
+		}
+	
+		
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	} 
+	 
+ }
+ public function cart(){
+	 
+	 if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		$data['cart_items']= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		$this->template->write_view('content', 'customer/cart', $data);
+		$this->template->render();
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	} 
+	 
+ } 
+ public function updatecart(){
+	 if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		$post=$this->input->post();
+		$update= $this->customer_model->update_cart_qty($customerdetails['customer_id'],$post['product_id'],$post['qty']);
+		if(count($update)>0){
+			$this->session->set_flashdata('productsuccess','Product Quantity Successfully Updated!');
+			redirect('customer/cart');	
+			
+		}
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	}
+	 
+ } 
+ public function deletecart(){
+	 if($this->session->userdata('userdetails'))
+	 {
+		$item_id=base64_decode($this->uri->segment(3));
+		$id=base64_decode($this->uri->segment(4));
+		//echo '<pre>';print_r($item_id);exit; 
+		$customerdetails=$this->session->userdata('userdetails');
+		$post=$this->input->post();
+		$delete= $this->customer_model->delete_cart_item($customerdetails['customer_id'],$item_id,$id);
+		if(count($delete)>0){
+			$this->session->set_flashdata('productsuccess','cart Item Successfully deleted!');
+			redirect('customer/cart');	
+			
+		}
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	}
+	 
+ }
+ public function checkout(){
+	 
+	
+	if($this->session->userdata('userdetails'))
+	 {
+		$this->template->write_view('content', 'customer/billingadrres');
+		$this->template->render();
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	}
+	 
+ }
  public function index(){
 	
 	 $test=$this->session->userdata('userdetails');
