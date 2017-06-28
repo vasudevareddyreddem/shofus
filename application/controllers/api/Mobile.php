@@ -47,88 +47,91 @@ class Mobile extends REST_Controller {
 			//print_r($mobile_check);exit;
 			$email_check =$this->mobile_model->seller_email_check($email);
 			 //print_r($email_check);exit;
-			// if($mobile_check==0 && $email_check==0)
-			// {
+			 if($mobile_check==0 && $email_check==0)
+			 {
 				if($mobile_check==0){
-					echo "1";
+					$mobile = 'Already mobile Number registered.'
 				}else{
 					echo " 0";
 				}
 				if($email_check==0){
-					echo "1";
+					$email = 'Already Email Address registered.'
 				}else{
-					echo "Email bad";
+					echo "0";
 				}
 
 
+				$six_digit_random_number = mt_rand(100000, 999999);
+				$seller = 'SEL';
+				$seller_rand_id = mt_rand(100000, 999999);
 
-
-			//}
-
-
-
-
-
-
-
-
-
-		// 			$six_digit_random_number = mt_rand(100000, 999999);
-		// 		$seller = 'SEL';
-		// 		$seller_rand_id = mt_rand(100000, 999999);
-
-		// 		$user_id="cartin"; 
-  //       		$pwd="9494422779";    
-  //       		$sender_id = "CARTIN";          
-  //       		$mobile_num = $mobile_number;  
-  //       		$message = "Your Temporary Password is : " .$six_digit_random_number;               
-  //       // Sending with PHP CURL
-  //      	$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
-		// 	$ret = file($url);
-		// 			$data = array(
-		// 			'seller_rand_id' => $seller.''.$seller_rand_id,
-		// 			'seller_password' => md5($six_digit_random_number),
-		// 			'seller_mobile' => $this->input->get('seller_mobile_number'),
-		// 			'seller_name' => $this->input->get('seller_name'),
-		// 			'seller_email' => $this->input->get('seller_email'),
-		// 			'seller_address' => $this->input->get('seller_address'),
-		// 			'created_at'  => date('Y-m-d H:i:s'),
-		// 			'updated_at'  => date('Y-m-d H:i:s')
-		// 			);
-		// 			$createseller=$this->mobile_model->seller_register($data);
-		// 			if(count($createseller)>0){
-		// 				// $message = array
-		// 				// (
-		// 				// 	'status'=>1,
-		// 				// 	'seller_id'=>$createseller,
-		// 				// 	'seller_details' =>$data,
-		// 				// 	'message'=>'Seller Successfully Created!'
-		// 				// );
-		// 				$data['status']=1;
-		// 				$this->response($data, REST_Controller::HTTP_OK);
-		// 			}
+				$user_id="cartin"; 
+        		$pwd="9494422779";    
+        		$sender_id = "CARTIN";          
+        		$mobile_num = $mobile_number;  
+        		$message = "Your Temporary Password is : " .$six_digit_random_number;               
+        // Sending with PHP CURL
+       	$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
+			$ret = file($url);
+					$data = array(
+					'seller_rand_id' => $seller.''.$seller_rand_id,
+					'seller_password' => md5($six_digit_random_number),
+					'seller_mobile' => $this->input->get('seller_mobile_number'),
+					'seller_name' => $this->input->get('seller_name'),
+					'seller_email' => $this->input->get('seller_email'),
+					'seller_address' => $this->input->get('seller_address'),
+					'created_at'  => date('Y-m-d H:i:s'),
+					'updated_at'  => date('Y-m-d H:i:s')
+					);
+					$createseller=$this->mobile_model->seller_register($data);
+					if(count($createseller)>0){
+						// $message = array
+						// (
+						// 	'status'=>1,
+						// 	'seller_id'=>$createseller,
+						// 	'seller_details' =>$data,
+						// 	'message'=>'Seller Successfully Created!'
+						// );
+						$data['status']=1;
+						$this->response($data, REST_Controller::HTTP_OK);
+					}
 			
-		// 	if($email_check==0 )
-		// 	{
+			if($email_check==0 )
+			{
 
-		// 	$message = array
-		// 	  	(
-		// 	  		'status'=>0,
-		// 	  		'message'=>'Already Email registered.'
-		// 	  		);
-		// 	  	$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-		// 	}
-		// }
-		// 	else
-		// 	{
+			$message = array
+			  	(
+			  		'status'=>0,
+			  		'message'=>$email
+			  		);
+			  	$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+		}
+			else
+			{
 
-		// 		$message = array
-		// 	 	(
-		// 	 		'status'=>0,
-		// 	 		'message'=>'Already mobile Number registered.'
-		// 	 		);
-		// 	 	$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-		// 	}
+				$message = array
+			 	(
+			 		'status'=>0,
+			 		'message'=>$mobile
+			 		);
+			 	$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+
+
+
+
+			}
+
+
+
+
+
+
+
+
+
+				
 	
 
 			

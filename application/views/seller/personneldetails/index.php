@@ -99,7 +99,7 @@ $(function(){
                                                             <button type="submit" class="btn btn-primary">Submit</button>
                                                      
                                                     </form> 
-													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/personnel_details'); ?>">Cancel</a>
+													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/dashboard'); ?>">Cancel</a>
 												</div>
                                                 </div>
                                             </section>
@@ -136,7 +136,7 @@ $(function(){
 								<div>
 								<button type="submit" class="btn btn-primary">Submit</button>
 							</form> 
-							<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/personnel_details'); ?>">Cancel</a>
+							<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/dashboard'); ?>">Cancel</a>
 							</div>
 					</div>
 					</section>
@@ -238,7 +238,7 @@ $(function(){
                                                             <button type="submit" id="resubmit" class="btn btn-primary">Submit</button>
                                                      
                                                     </form>
-													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/personnel_details'); ?>">Cancel</a>
+													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/dashboard'); ?>">Cancel</a>
 
 														</div>
 														
@@ -274,7 +274,7 @@ $(function(){
                                                             <button type="submit" class="btn btn-primary">Submit</button>
                                                      
                                                     </form> 
-													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/personnel_details'); ?>">Cancel</a>
+													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/dashboard'); ?>">Cancel</a>
 												</div>
 												</div>
                                                 </div>
@@ -637,13 +637,14 @@ $(document).ready(function() {
 				notEmpty: {
 					message: 'Aadhar Number is required'
 				},
-				stringLength: {
-								min: 12,
-								message: 'Aadhar Number must be 12 digits'
-							},
+				
 				regexp: {
-				regexp: /^[0-9]+$/,
+				regexp: /^[0-9]{12}$/,
 				message: ' Aadhar Number can only consist of digits'
+				},
+				stringLength: {
+					min: 12,
+					message: 'Aadhar Number must be 12 digits'
 				}
             
 			}
