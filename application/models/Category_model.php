@@ -173,9 +173,10 @@ class Category_model extends MY_Model
 	}
 	public function get_products($pid){
 		
-		$this->db->select('*')->from('products');
-		$this->db->where('item_id',$pid);
-		$this->db->where('admin_status',0);
+		$this->db->select('products.*,item_wishlist.yes')->from('products');
+		$this->db->join('item_wishlist', 'item_wishlist.item_id = products.item_id', 'left'); //
+		$this->db->where('products.item_id',$pid);
+		$this->db->where('products.admin_status',0);
 		return $this->db->get()->row_array();
 	}
 	public function save_review($data){

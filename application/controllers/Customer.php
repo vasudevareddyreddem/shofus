@@ -124,10 +124,49 @@ class Customer extends Front_Controller
 	
 	if($this->session->userdata('userdetails'))
 	 {
-		echo "hello";
+		$customerdetails=$this->session->userdata('userdetails');
+		$post=$this->input->post();
+		$detailsa=array(
+		'cust_id'=>$customerdetails['customer_id'],
+		'item_id'=>$post['item_id'],
+		'create_at'=>date('Y-m-d H:i:s'),
+		'yes'=>1,
+		);
+		$whishlist = $this->customer_model->get_whishlist_list($customerdetails['customer_id']);
+		if(count($whishlist)>0){
+				foreach($whishlist as $lists) { 
+							
+								$itemsids[]=$lists['item_id'];
+				}
+			if(in_array($post['item_id'],$itemsids)){
+				$removewhislish=$this->customer_model->remove_whishlist($customerdetails['customer_id'],$post['item_id']);
+				if(count($removewhislish)>0){
+				$data['msg']=2;	
+				echo json_encode($data);
+				}
+			
+			}else{
+				$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+				if(count($addwhishlist)>0){
+				$data['msg']=1;	
+				echo json_encode($data);
+				}
+			}
+			
+		}else{
+			$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+				if(count($addwhishlist)>0){
+				$data['msg']=1;	
+				echo json_encode($data);
+				}
+			
+		}
+		
+	
+		
 	}else{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('customer');
+		$data['msg']=0;	
+		echo json_encode($data); 
 	}
 	 
  }

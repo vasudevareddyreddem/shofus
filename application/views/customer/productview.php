@@ -63,6 +63,8 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
+		<div style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"></div>
+
           <div class="title-detail"><?php echo $products_list['item_name']; ?></div>
 		  <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $products_list['item_id']; ?>" >
@@ -122,8 +124,12 @@
                 <td>
                   <button class="btn btn-theme m-b-1" type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 				  <a href="" id="compare" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
-                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>">                  
-                  <a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
+                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>"> 
+					<?php if($products_list['yes']==1){ ?>
+					<a href="javascript:void(0);" style="color:yellow;" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" id="addwhish" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
+					<?php }else{ ?>	
+					<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" id="addwhish" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
+					<?php } ?>			  
 				 
                 </td>
               </tr>
@@ -273,7 +279,29 @@
 
 <script type="text/javascript">
 function addwhishlidt(id){
-	alert(id);
+jQuery.ajax({
+			url: "<?php echo site_url('customer/addwhishlist');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				item_id: id,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+				jQuery('#sucessmsg').show();
+				//alert(data.msg);
+				if(data.msg==2){
+				$('#addwhish').css("color", "");
+				$('#sucessmsg').html('Product Successfully removed to Whishlist');	
+				}
+				if(data.msg==1){
+				$('#addwhish').css("color", "yellow");
+				$('#sucessmsg').html('Product Successfully added to Whishlist');	
+				}
+			
+
+			}
+		});
 	
 	
 }
