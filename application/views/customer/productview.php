@@ -123,7 +123,7 @@
                   <button class="btn btn-theme m-b-1" type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 				  <a href="" id="compare" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
                   <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>">                  
-                  <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</button>  
+                  <a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
 				 
                 </td>
               </tr>
@@ -269,12 +269,18 @@
 			
 	  </div>
 
-<script>
+
+
+<script type="text/javascript">
+function addwhishlidt(id){
+	alert(id);
+	
+	
+}
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
-</script>
-<script type="text/javascript">
+
 ;(function($){
 	$.fn.zoom = function(options){
 	
@@ -331,7 +337,7 @@ $(document).ready(function(){
 
 			var $bzoom_magnifier, $bzoom_magnifier_img, $bzoom_zoom_area, $bzoom_zoom_img;
 
-			// 遮罩显示的区域
+
 			if(!$(".bzoom_magnifier").length){
 				$bzoom_magnifier = $('<li class="bzoom_magnifier"><div class=""><img src="" /></div></li>');
                 $bzoom_magnifier_img = $bzoom_magnifier.find('img');
@@ -343,7 +349,7 @@ $(document).ready(function(){
                 $bzoom_magnifier.find('div').css({width:_option.thumb_image_width*scalex, height:_option.thumb_image_height*scaley});
 			}
 			
-			// 大图
+
 			if(!$('.bzoom_zoom_area').length){
                 $bzoom_zoom_area = $('<li class="bzoom_zoom_area"><div><img class="bzoom_zoom_img" /></div></li>');
                 $bzoom_zoom_img = $bzoom_zoom_area.find('.bzoom_zoom_img');
@@ -385,7 +391,7 @@ $(document).ready(function(){
 				}
 			}
 
-			// 循环小图
+
 			var $small = '';
 			if(!$(".bzoom_small_thumbs").length){
 				var top = _option.thumb_image_height+10,
@@ -483,8 +489,7 @@ $(document).ready(function(){
 		}
 	}
 })(jQuery);
-</script>
-<script type="text/javascript">
+
 $("#bzoom").zoom({
 	zoom_area_width: 1000,
 	zoom_area_height: 500,
@@ -492,10 +497,7 @@ $("#bzoom").zoom({
     small_thumbs : 4,
     autoplay : false
 });
-</script>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
+var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36251023-1']);
   _gaq.push(['_setDomainName', 'jqueryscript.net']);
   _gaq.push(['_trackPageview']);
@@ -505,10 +507,6 @@ $("#bzoom").zoom({
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-</script>
- <script>
-
 
 function sticky_relocate() {
     var window_top = $(window).scrollTop();
@@ -572,9 +570,7 @@ $(document).ready(function() {
         }
     });
 });
-</script>
 
-<script type="text/javascript" language="javascript">
       $(document).ready(function(){
     $('#compare').click(function(e){
     e.preventDefault();
@@ -587,11 +583,7 @@ $(document).ready(function() {
     
     });
 });
-  
 
-</script>
-<!--quantity script start-->
-<script>
 $(function() {
     var action;
     $(".number-spinner a").mousedown(function () {

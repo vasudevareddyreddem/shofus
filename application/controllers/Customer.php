@@ -118,6 +118,18 @@ class Customer extends Front_Controller
 		 redirect('customer');
 	}
 	 
+ } 
+ public function addwhishlist(){
+	 
+	
+	if($this->session->userdata('userdetails'))
+	 {
+		echo "hello";
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	}
+	 
  }
  public function index(){
 	
