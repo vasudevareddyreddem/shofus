@@ -59,7 +59,7 @@
               </thead>
               <tbody>
 			  <?php 
-			
+			$total='';
 			  foreach($cart_items as $items){ ?>
                 <tr>
                   <td class="img-cart">
@@ -77,6 +77,7 @@
 					 <?php 
 						$offeramount=($items['item_cost'])-($items['offer_amount']);
 						$amount=(($offeramount) * ($items['qty']));
+						$total+= $amount; 
 					 ?>
 					 
 					<td class="unit"><?php echo $offeramount; ?> </td>
@@ -84,6 +85,7 @@
 				 <?php  }else{ 
 				 
 				 $withoutofferamount=(($items['item_cost']) * ($items['qty']));
+					$total+= $withoutofferamount; 
 					?>
 					<td class="unit"><?php echo $items['item_cost']; ?> </td>
 					<td class="sub"><?php echo $withoutofferamount; ?></td>	
@@ -93,30 +95,28 @@
                     <a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Update"><i class="fa fa-refresh"></i></a>&nbsp;
                     <a href="#" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>
                   </td>
+				  	
                 </tr>
-				<?php echo $total+= $amount; ?>
-				<?php echo $total1+= $withoutofferamount; ?>
+				
 			  <?php } ?>
                
              
                
                 <tr>
                   <td colspan="4" class="text-right">Total</td>
-                  <td colspan="2"><b>$54.00</b></td>
+                  <td colspan="2"><b><?php echo $total; ?></b></td>
                 </tr>
               </tbody>
             </table>
           </div>
           <nav aria-label="Shopping Cart Next Navigation">
             <ul class="pager">
-              <li class="previous"><a href="products.html"><span aria-hidden="true">&larr;</span> Continue Shopping</a></li>
-              <li class="next"><a href="checkout.html">Proceed to Checkout <span aria-hidden="true">&rarr;</span></a></li>
+              <li class="previous"><a href="<?php echo base_url(''); ?>"><span aria-hidden="true">&larr;</span> Continue Shopping</a></li>
+              <li class="next"><a href="<?php echo base_url('customer/checkout'); ?>">Proceed to Checkout <span aria-hidden="true">&rarr;</span></a></li>
             </ul>
           </nav>
 						<div class="clearfix"></div>
-                        <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-primary next-step">next</button></li>
-                        </ul>
+          
                     </div>
                 
                    

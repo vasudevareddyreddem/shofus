@@ -60,6 +60,12 @@ class Customer extends Front_Controller
 		$this->template->render();
 	 
  }
+ public function checkout(){
+	 
+	$this->template->write_view('content', 'customer/billingadrres', $data);
+	$this->template->render();
+	 
+ }
  public function index(){
 	
 	 $test=$this->session->userdata('userdetails');
