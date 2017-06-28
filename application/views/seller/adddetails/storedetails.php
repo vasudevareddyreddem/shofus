@@ -197,7 +197,13 @@
     </div>
 	</div>
 	
-
+<footer class="foot_add_d mar_t15">
+    <div class="container">
+      <div class="row">
+                <strong>Copyright &copy; 2017 Cartinhour.</strong> All rights reserved.
+      </div>
+    </div>
+  </footer>
 
 </html>
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
