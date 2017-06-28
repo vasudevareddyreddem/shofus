@@ -36,10 +36,10 @@ body {
 .jain_container .navbar-brand {
 	height: inherit;
 }
-.jain_container .form-control {
-	border-radius: 0px;
-	border: 2px solid #adadad;
-}
+/* .jain_container .form-control { */
+	/* border-radius: 0px; */
+	/* border: 2px solid #adadad; */
+/* } */
 /*.jain_container .form-horizontal_x {
 	margin-top: 10px;
 }*/

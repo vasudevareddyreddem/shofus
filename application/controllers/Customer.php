@@ -7,9 +7,8 @@ class Customer extends Front_Controller
   {
 
 		parent::__construct();	
-			$this->load->helper(array('url', 'html'));
-			$this->load->library('session');
 			$this->load->helper(array('url','html','form'));
+			$this->load->library('session');
 				$this->load->library('email');
 			$this->load->model('customer_model'); 
 			
