@@ -240,12 +240,13 @@ class Mobile extends REST_Controller {
 			
 			if(count($store_details)>0)
 			{
-			$message = array
-				(
-					'status'=>1,
-					'seller_store_details'=>$data,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+			// $message = array
+			// 	(
+			// 		'status'=>1,
+			// 		'seller_store_details'=>$data,							
+			// 	);
+				$data['status']=1;
+				$this->response($data, REST_Controller::HTTP_OK);
 			}
 			else
 			{
@@ -280,11 +281,12 @@ class Mobile extends REST_Controller {
 
 		    if(count($seller_personal_details)>0)
 		      {
-		      $message = array
-				(
-					'status'=>1,
-					'seller_personal_details'=>$data,							
-				);
+		  //     $message = array
+				// (
+				// 	'status'=>1,
+				// 	'seller_personal_details'=>$data,							
+				// );
+				$data['status']=1;
 				$this->response($message, REST_Controller::HTTP_OK);
 			}
 			else
@@ -318,13 +320,15 @@ class Mobile extends REST_Controller {
 
 		    if(count($update_stepone)>0)
 		      {
-		      $message = array
-				(
-					'status'=>1,
-					'Seller_update_stepone'=>$stepone,
-					'message'=>'Successfully Updated Stepone'						
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+		  //     $message = array
+				// (
+				// 	'status'=>1,
+				// 	'Seller_update_stepone'=>$stepone,
+				// 	'message'=>'Successfully Updated Stepone'						
+				// );
+				$stepone['status']=1;
+				$stepone['message']='Successfully Updated Stepone';
+				$this->response($stepone, REST_Controller::HTTP_OK);
 			}
 			else
 			{
@@ -352,23 +356,25 @@ class Mobile extends REST_Controller {
 			{
 				$adresses .= $adr['seller_cat_id'] . ',' ;
 			}
-			$seller_category = array(
+			$steptwo = array(
 			'seller_id' => $id,
 			'seller_category_id'=> $seller_cat_id,
 			'category_name'=> $seller_cat_names,
 			'created_at'=> date('Y-m-d h:i:s'),
 			'updated_at'=>  date('Y-m-d h:i:s'),
 			);
-			$seller_cats=$this->mobile_model->insertseller_cat($id,$seller_category);
+			$seller_cats=$this->mobile_model->insertseller_cat($id,$steptwo);
 			if(count($seller_cats)>0)
 			{
-			$message = array
-				(
-					'status'=>1,
-					'Seller_update_stepone'=>$seller_category,
-					'message'=>'Successfully Updated Steptwo'							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+			// $message = array
+			// 	(
+			// 		'status'=>1,
+			// 		'Seller_update_stepone'=>$seller_category,
+			// 		'message'=>'Successfully Updated Steptwo'							
+			// 	);
+				$steptwo['status']=1;
+				$steptwo['message']='Successfully Updated Steptwo';
+				$this->response($steptwo, REST_Controller::HTTP_OK);
 			}
 			else
 			{
@@ -416,12 +422,14 @@ class Mobile extends REST_Controller {
 			
 			if(count($update_stepthree)>0)	
 			{
-			$message = array
-				(
-					'status'=>1,
-					'Seller_update_stepthree'=>$stepthree,
-					'message'=>'Successfully Updated Stepthree'
-				);
+			// $message = array
+			// 	(
+			// 		'status'=>1,
+			// 		'Seller_update_stepthree'=>$stepthree,
+			// 		'message'=>'Successfully Updated Stepthree'
+			// 	);
+				$stepthree['status']=1;
+				$stepthree['message']='Successfully Updated Stepthree';
 				$this->response($message, REST_Controller::HTTP_OK);
 			}
 			else
@@ -451,13 +459,15 @@ class Mobile extends REST_Controller {
 			
 			if(count($update_stepfour)>0)	
 			{
-			$message = array
-				(
-					'status'=>1,
-					'Seller_update_stepfour'=>$stepfour,
-					'message'=>'Successfully Updated Stepfour'
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+			// $message = array
+			// 	(
+			// 		'status'=>1,
+			// 		'Seller_update_stepfour'=>$stepfour,
+			// 		'message'=>'Successfully Updated Stepfour'
+			// 	);
+				$stepfour['status']=1;
+				$stepfour['message']='Successfully Updated Stepfour';
+				$this->response($stepfour, REST_Controller::HTTP_OK);
 			}
 			else
 			{
@@ -481,12 +491,13 @@ class Mobile extends REST_Controller {
 			$seller_category = $this->mobile_model->get_seller_category();
 			if(count($seller_category)>0)
             {
-				$message = array
-				(
-					'status'=>1,
-					'seller_category'=>$seller_category,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+				// $message = array
+				// (
+				// 	'status'=>1,
+				// 	'seller_category'=>$seller_category,							
+				// );
+				$seller_category['status']=1;
+				$this->response($seller_category, REST_Controller::HTTP_OK);
 			}	
 			else
 			{
@@ -504,12 +515,13 @@ class Mobile extends REST_Controller {
 		{
 			$seller_subcategory = $this->mobile_model->get_seller_subcategory();
 			if(count($seller_subcategory)>0){
-				$message = array
-				(
-					'status'=>1,
-					'seller_subcategory'=>$seller_subcategory,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+				// $message = array
+				// (
+				// 	'status'=>1,
+				// 	'seller_subcategory'=>$seller_subcategory,							
+				// );
+				$seller_subcategory['status']=1;
+				$this->response($seller_subcategory, REST_Controller::HTTP_OK);
 			}
 			else
 			{
@@ -526,12 +538,13 @@ class Mobile extends REST_Controller {
 		{
 			$seller_subitem = $this->mobile_model->get_seller_subitem();	
 			if(count($seller_subitem)>0){
-				$message = array
-				(
-					'status'=>1,
-					'seller_subitems'=>$seller_subitem,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+				// $message = array
+				// (
+				// 	'status'=>1,
+				// 	'seller_subitems'=>$seller_subitem,							
+				// );
+				$seller_subitem['status']=1;
+				$this->response($seller_subitem, REST_Controller::HTTP_OK);
 			}
 			else
 			{
@@ -551,12 +564,13 @@ class Mobile extends REST_Controller {
 			//echo $id;exit;
 			$admin_notify = $this->mobile_model->getdata($id);	
 			if(count($admin_notify)>0){
-				$message = array
-				(
-					'status'=>1,
-					'admin_notifications'=>$admin_notify,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+				// $message = array
+				// (
+				// 	'status'=>1,
+				// 	'admin_notifications'=>$admin_notify,							
+				// );
+				$admin_notify['status']=1;
+				$this->response($admin_notify, REST_Controller::HTTP_OK);
 			}
 			else
 			{
@@ -575,12 +589,13 @@ class Mobile extends REST_Controller {
 		{
 			$seller_notify = $this->mobile_model->seller_ads();	
 			if(count($seller_notify)>0){
-				$message = array
-				(
-					'status'=>1,
-					'admin_notifications'=>$seller_notify,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+				// $message = array
+				// (
+				// 	'status'=>1,
+				// 	'admin_notifications'=>$seller_notify,							
+				// );
+				$seller_notify['status']=1;
+				$this->response($seller_notify, REST_Controller::HTTP_OK);
 			}
 			else
 			{
@@ -602,12 +617,13 @@ class Mobile extends REST_Controller {
 			$new_order=$this->mobile_model->new_orders($id);
 			//echo print_r($result);exit;
 			if(count($new_order)>0){
-				$message = array
-				(
-					'status'=>1,
-					'New Orders'=>$new_order,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+				// $message = array
+				// (
+				// 	'status'=>1,
+				// 	'New Orders'=>$new_order,							
+				// );
+				$new_order['status']=1;
+				$this->response($new_order, REST_Controller::HTTP_OK);
 			}
 			else
 			{
@@ -632,12 +648,13 @@ class Mobile extends REST_Controller {
 			$id = $this->input->get('seller_id');
 			$lists = $this->mobile_model->listing_category($id);
 			if(count($lists)>0){
-				$message = array
-				(
-					'status'=>1,
-					'my_listings'=>$lists,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+				// $message = array
+				// (
+				// 	'status'=>1,
+				// 	'my_listings'=>$lists,							
+				// );
+				$lists['status']=1;
+				$this->response($lists, REST_Controller::HTTP_OK);
 			}
 			else
 			{
@@ -657,12 +674,13 @@ class Mobile extends REST_Controller {
 			$id = $this->input->get('seller_id');
 			$list = $this->mobile_model->listing_sub_all($id);
 			if(count($list)>0){
-				$message = array
-				(
-					'status'=>1,
-					'my_listings'=>$list,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+				// $message = array
+				// (
+				// 	'status'=>1,
+				// 	'my_listings'=>$list,							
+				// );
+				$list['status']=1;
+				$this->response($list, REST_Controller::HTTP_OK);
 			}
 			else
 			{
@@ -686,13 +704,14 @@ class Mobile extends REST_Controller {
 			
   				if(count($track)>0)
   			{
-				$message = array
-		 		(
-		 			'status'=>1,
-		 			'track_approvals'=>$track,		 			
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		'track_approvals'=>$track,		 			
 					
-		 		);
-	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	// 	);
+  				$track['status']=1;
+	 				$this->response($track, REST_Controller::HTTP_OK);
 		 	}
 		 	else
 		 	{
@@ -712,13 +731,14 @@ class Mobile extends REST_Controller {
 			//print_r($total_orders);
 			if(count($total_orders)>0)
   			{
-				$message = array
-		 		(
-		 			'status'=>1,
-		 			'total_orders'=>$total_orders,		 			
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		'total_orders'=>$total_orders,		 			
 					
-		 		);
-	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	// 	);
+  				$total_orders['status']=1;
+	 			$this->response($message, REST_Controller::HTTP_OK);
 		 	}
 		 	else
 		 	{
@@ -739,13 +759,14 @@ class Mobile extends REST_Controller {
 			//print_r($assigned_orders);
 			if(count($assigned_orders)>0)
   			{
-				$message = array
-		 		(
-		 			'status'=>1,
-		 			'Assigned_orders'=>$assigned_orders,		 			
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		'Assigned_orders'=>$assigned_orders,		 			
 					
-		 		);
-	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	// 	);
+  					$assigned_orders['status']=1;
+	 				$this->response($assigned_orders, REST_Controller::HTTP_OK);
 		 	}
 		 	else
 		 	{
@@ -766,13 +787,14 @@ class Mobile extends REST_Controller {
 			//print_r($inprogress_orders);
 			if(count($inprogress_orders)>0)
   			{
-				$message = array
-		 		(
-		 			'status'=>1,
-		 			'Inprogress_orders'=>$inprogress_orders,		 			
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		'Inprogress_orders'=>$inprogress_orders,		 			
 					
-		 		);
-	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	// 	);
+  				$inprogress_orders['status']=1;
+	 			$this->response($message, REST_Controller::HTTP_OK);
 		 	}
 		 	else
 		 	{
@@ -793,13 +815,14 @@ class Mobile extends REST_Controller {
 			//print_r($delivery_orders);
 			if(count($delivery_orders)>0)
   			{
-				$message = array
-		 		(
-		 			'status'=>1,
-		 			'Delivery_orders'=>$delivery_orders,		 			
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		'Delivery_orders'=>$delivery_orders,		 			
 					
-		 		);
-	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	// 	);
+  				$delivery_orders['status']=1;
+	 				$this->response($delivery_orders, REST_Controller::HTTP_OK);
 		 	}
 		 	else
 		 	{
@@ -819,13 +842,14 @@ class Mobile extends REST_Controller {
 			$cancel_orders = $this->mobile_model->cancel_orders($id);
 			if(count($cancel_orders)>0)
   			{
-				$message = array
-		 		(
-		 			'status'=>1,
-		 			'Cancel_orders'=>$cancel_orders,		 			
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		'Cancel_orders'=>$cancel_orders,		 			
 					
-		 		);
-	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	// 	);
+  				$cancel_orders['cancel_orders']=1;
+	 			$this->response($cancel_orders, REST_Controller::HTTP_OK);
 		 	}
 		 	else
 		 	{
@@ -845,13 +869,14 @@ class Mobile extends REST_Controller {
 			$payments = $this->mobile_model->payment_details($id);
 			if(count($payments)>0)
   			{
-				$message = array
-		 		(
-		 			'status'=>1,
-		 			'Seller_Payments'=>$payments,		 			
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		'Seller_Payments'=>$payments,		 			
 					
-		 		);
-	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	// 	);
+  				$payments['status']=1;
+	 			$this->response($payments, REST_Controller::HTTP_OK);
 		 	}
 		 	else
 		 	{
@@ -887,14 +912,15 @@ class Mobile extends REST_Controller {
 			//print_r($service_save);exit;
 			if(count($service_save)>0)
   			{
-				$message = array
-		 		(
-		 			'status'=>1,
-		 			//'Request Service'=>$service_save,
-		 			'message'=> 'Wait For Replay!!'		 			
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		//'Request Service'=>$service_save,
+		 	// 		'message'=> 'Wait For Replay!!'		 			
 					
-		 		);
-	 				$this->response($message, REST_Controller::HTTP_OK);
+		 	// 	);
+  				$service['status']=1;
+	 			$this->response($service, REST_Controller::HTTP_OK);
 		 	}
 		 	else
 		 	{
@@ -913,13 +939,14 @@ class Mobile extends REST_Controller {
 		{
 			$id = $this->input->get('seller_id');
 			$offers = $this->mobile_model->listing_category($id);
-			if(count($offers)>0){
-				$message = array
-				(
-					'status'=>1,
-					'Offers'=>$offers,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+			// if(count($offers)>0){
+			// 	$message = array
+			// 	(
+			// 		'status'=>1,
+			// 		'Offers'=>$offers,							
+			// 	);
+				$offers['status']=1;
+				$this->response($offers, REST_Controller::HTTP_OK);
 			}
 			else
 			{
