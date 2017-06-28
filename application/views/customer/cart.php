@@ -46,6 +46,7 @@
                     </button><?php echo $this->session->flashdata('success');?></div>
 			<?php endif; ?>
           <div class="table-responsive">
+		  <form action="<?php  echo base_url('customer/updatecart'); ?>" method="POST" name="updatecart" id="updatecart">
             <table class="table table-bordered table-cart">
               <thead>
                 <tr>
@@ -108,6 +109,7 @@
                 </tr>
               </tbody>
             </table>
+			</form>
           </div>
           <nav aria-label="Shopping Cart Next Navigation">
             <ul class="pager">
