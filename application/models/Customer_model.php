@@ -54,12 +54,22 @@ class Customer_model extends MY_Model
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
+	public function get_whishlist_products($cust_id){
+		$this->db->select('item_wishlist.*,products.*')->from('item_wishlist');
+		$this->db->join('products', 'products.item_id = item_wishlist.item_id', 'left');
+		$this->db->where('item_wishlist.cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
 	public function update_cart_qty($cust_id,$pid,$qty){
 		$sql1="UPDATE cart SET qty ='".$qty."' WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."'";
 		return $this->db->query($sql1);
 	}
 	public function delete_cart_item($cust_id,$pid,$id){
 		$sql1="DELETE FROM cart WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."' AND id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function delete_wishlist_item($cust_id,$wishlistid){
+		$sql1="DELETE FROM item_wishlist WHERE cust_id = '".$cust_id."' AND  id = '".$wishlistid."'";
 		return $this->db->query($sql1);
 	}
 	

@@ -59,7 +59,10 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('adderror');?></div>
 			<?php endif; ?>
-		<?php foreach ($category_list as $catlist){ ?>
+		<?php foreach ($category_list as $catlist){ 
+		
+		//echo '<pre>';print_r($catlist);exit;
+		?>
 		
 		  <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $catlist['item_id']; ?>" >
@@ -143,7 +146,12 @@
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
+				<?php if($catlist['reviewcount']!='' && $catlist['reviewcount']!=0 ){ ?>
+				<a href="<?php echo base_url('category/productview/'.base64_encode($catlist['item_id'])); ?>">( <?php echo $catlist['reviewcount']; ?> reviews)</a>
+				<?php }else{ ?>
+				<a href="<?php echo base_url('category/productview/'.base64_encode($catlist['item_id'])); ?>">(reviews)</a>
+				<?php } ?>
+                
               </div>
             </div>
           </div>

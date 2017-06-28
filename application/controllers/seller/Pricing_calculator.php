@@ -107,7 +107,8 @@ public function getreferalfee()
 
 	$product_price=$this->input->post('product_price');
 	$cih_fee=$this->input->post('cih_fee1');
-	$sell = 1000;
+	$sell = $this->input->post('product_price');
+	//echo "<pre>";print_r($sell);exit;
 	$disc = $sell - ($sell * $cih_fee / 100);
 	$serv_tax = 15;		   	
 	$you_get = $disc - $serv_tax;

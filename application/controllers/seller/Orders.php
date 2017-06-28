@@ -19,29 +19,29 @@ public function index()
 
 		$this->load->library('pagination');
 
-		  $config = [
+		  // $config = [
 
-		   'base_url'   => base_url('seller/orders/index'),
-		   'per_page'   => 5,
-		   'total_rows'  => $this->Orders_model->count_by(array()),
-		   'full_tag_open'  => "<ul class='pagination'>",
-		   'full_tag_close' => "</ul>",
-		   'first_tag_open' => '<li>',
-		   'first_tag_close' => '</li>',
-		   'last_tag_open'  => '<li>',
-		   'last_tag_close' => '</li>',
-		   'next_tag_open'  => '<li>',
-		   'next_tag_close' => '</li>',
-		   'prev_tag_open'  => '<li>',
-		   'prev_tag_close' => '</li>',
-		   'num_tag_open'  => '<li>',
-		   'num_tag_close'  => '</li>',
-		   'cur_tag_open'  => "<li class='active'><a>",
-		   'cur_tag_close'  => '</a></li>',
+		  //  'base_url'   => base_url('seller/orders/index'),
+		  //  'per_page'   => 5,
+		  //  'total_rows'  => $this->Orders_model->count_by(array()),
+		  //  'full_tag_open'  => "<ul class='pagination'>",
+		  //  'full_tag_close' => "</ul>",
+		  //  'first_tag_open' => '<li>',
+		  //  'first_tag_close' => '</li>',
+		  //  'last_tag_open'  => '<li>',
+		  //  'last_tag_close' => '</li>',
+		  //  'next_tag_open'  => '<li>',
+		  //  'next_tag_close' => '</li>',
+		  //  'prev_tag_open'  => '<li>',
+		  //  'prev_tag_close' => '</li>',
+		  //  'num_tag_open'  => '<li>',
+		  //  'num_tag_close'  => '</li>',
+		  //  'cur_tag_open'  => "<li class='active'><a>",
+		  //  'cur_tag_close'  => '</a></li>',
 
-		  ];
-		$this->pagination->initialize($config);
-		$result=$this->Orders_model->limit($config['per_page'], $this->uri->segment(4) )->order_by('created_at',$order = 'DESC')->total();
+		  // ];
+		//$this->pagination->initialize($config);
+		$result=$this->Orders_model->order_by('created_at',$order = 'DESC')->total();
 		$data['ordersdata'] =  $result;
 		//echo "<pre>";print_r($data);exit;
 		$this->template->write_view('content', 'seller/orders/index', $data);
