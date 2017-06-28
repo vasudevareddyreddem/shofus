@@ -7,9 +7,8 @@ class Customer extends Front_Controller
   {
 
 		parent::__construct();	
-			$this->load->helper(array('url', 'html'));
-			$this->load->library('session');
 			$this->load->helper(array('url','html','form'));
+			$this->load->library('session');
 				$this->load->library('email');
 			$this->load->model('customer_model'); 
 			
@@ -20,7 +19,7 @@ class Customer extends Front_Controller
 	 {
 		$post=$this->input->post();
 		$customerdetails=$this->session->userdata('userdetails');
-		//echo '<pre>';print_r($post);
+		//echo '<pre>';print_r($post);exit;
 		$adddata=array(
 		'cust_id'=>$customerdetails['customer_id'],
 		'item_id'=>$post['producr_id'],
@@ -34,8 +33,16 @@ class Customer extends Front_Controller
 							$rid[]=$pids['item_id'];
 			}
 		if(in_array($post['producr_id'],$rid)){
+			
+			if(isset($post['category_id']) && $post['category_id']=!'' ){
+				$this->session->set_flashdata('adderror','Product already Exits');
+				redirect('category/view/'.base64_encode($post['category_id']));
+				
+			}else{
 			$this->session->set_flashdata('error','Product already Exits');
-			redirect('category/productview/'.base64_encode($post['producr_id']));
+			redirect('category/productview/'.base64_encode($post['producr_id']));	
+			}
+			
 		}else{
 			$save= $this->customer_model->cart_products_save($adddata);
 			if(count($save)>0){
@@ -116,6 +123,57 @@ class Customer extends Front_Controller
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('customer');
+	}
+	 
+ } 
+ public function addwhishlist(){
+	 
+	
+	if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		$post=$this->input->post();
+		$detailsa=array(
+		'cust_id'=>$customerdetails['customer_id'],
+		'item_id'=>$post['item_id'],
+		'create_at'=>date('Y-m-d H:i:s'),
+		'yes'=>1,
+		);
+		$whishlist = $this->customer_model->get_whishlist_list($customerdetails['customer_id']);
+		if(count($whishlist)>0){
+				foreach($whishlist as $lists) { 
+							
+								$itemsids[]=$lists['item_id'];
+				}
+			if(in_array($post['item_id'],$itemsids)){
+				$removewhislish=$this->customer_model->remove_whishlist($customerdetails['customer_id'],$post['item_id']);
+				if(count($removewhislish)>0){
+				$data['msg']=2;	
+				echo json_encode($data);
+				}
+			
+			}else{
+				$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+				if(count($addwhishlist)>0){
+				$data['msg']=1;	
+				echo json_encode($data);
+				}
+			}
+			
+		}else{
+			$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+				if(count($addwhishlist)>0){
+				$data['msg']=1;	
+				echo json_encode($data);
+				}
+			
+		}
+		
+	
+		
+	}else{
+		$data['msg']=0;	
+		echo json_encode($data); 
 	}
 	 
  }

@@ -35,6 +35,19 @@ class Customer_model extends MY_Model
 		$this->db->insert('cart', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	public function add_whishlist($data){
+		$this->db->insert('item_wishlist', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function remove_whishlist($cust_id,$item_id){
+		$sql1="DELETE FROM item_wishlist WHERE cust_id = '".$cust_id."' AND  item_id = '".$item_id."'";
+		return $this->db->query($sql1);
+	}
+	public function get_whishlist_list($cust_id){
+		$this->db->select('*')->from('item_wishlist');
+		$this->db->where('cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
 	public function get_cart_products($cust_id){
 		$this->db->select('cart.*,products.item_name,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type')->from('cart');
 		$this->db->join('products', 'products.item_id = cart.item_id', 'left');

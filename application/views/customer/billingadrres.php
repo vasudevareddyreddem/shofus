@@ -1,34 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>::CART IN HOUR::</title>
-<link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico" >
-<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/font-awesome.min.css">
-<!--Style start here -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/style.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/animate.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/responsive.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl_002.css">
 
-<!--Style end here -->
-<!--for image zooming -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.simpleLens.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.simpleGallery.css">
-<!--for image zooming -->
-<!-- pop up plugins -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/default.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/component.css" />
-<script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
-
-<script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
-
-</head>
 <style>
 .panel-title > a:before {
     float: left !important;
@@ -43,418 +15,8 @@
     text-decoration:none;
 }
 </style>
-<header>
-<!--wrapper start here -->
 
-<div class="sidebar_right" >
-			
-			<ul style="padding:0 ">
-				<li class="spin btn-group show-on-hover">
-					<a  class=" dropdown-toggle" data-toggle="dropdown">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">Electronics</span>
-					</a>
-					<ul class="dropdown-menu " role="menu">
-						<div class="row">
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Mobiles</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;"> Accessories</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Laptops</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Televisions</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-						</div>
-						
-					</ul>
-				</li><div class="clearfix"></div>
-				<li class="spin btn-group show-on-hover">
-					<a  class=" dropdown-toggle" data-toggle="dropdown">
-						<span  class="circ_icon glyphicon glyphicon-home rot "></span>
-						<span class="menu_tit">Fashion</span>
-					</a>
-					<ul class="dropdown-menu " role="menu">
-						<div class="row">
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Mobiles</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;"> Accessories</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Laptops</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Televisions</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-						</div>
-						
-					</ul>
-				</li><div class="clearfix"></div>
-				<li class="spin btn-group show-on-hover">
-					<a  class=" dropdown-toggle" data-toggle="dropdown">
-						<span  class="circ_icon glyphicon glyphicon-cutlery rot "></span>
-						<span class="menu_tit">Food</span>
-					</a>
-					<ul class="dropdown-menu " role="menu">
-						<div class="row">
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Mobiles</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;"> Accessories</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Laptops</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Televisions</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-						</div>
-						
-					</ul>
-				</li><div class="clearfix"></div>
-				<li class="spin btn-group show-on-hover">
-					<a  class=" dropdown-toggle" data-toggle="dropdown">
-						<span  class="circ_icon glyphicon glyphicon-home rot "></span>
-						<span class="menu_tit">Grocery</span>
-					</a>
-					<ul class="dropdown-menu " role="menu">
-						<div class="row">
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Mobiles</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;"> Accessories</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Laptops</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">Televisions</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-						</div>
-						
-					</ul>
-				</li><div class="clearfix"></div>
-				
-				
-			</ul>
-</div>
-<div class="wrapper"> 
-  <!--header part start here -->
-  <div class="jain_container">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="top-navbar">
-    <div class="container">
-      <div class=" row">
-        <div class="social-media col-sm-4"> Stay connected:
-          <ul>
-            <li><a href="#" class=""><span class=""><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a></li>
-            <li><a href="#" class=""><span class=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></span></a></li>
-            <li><a href="#" class=""><span class=""><i class="fa fa-twitter-square" aria-hidden="true"></i></span></a></li>
-            <li><a href="#" class=""><span class=""><i class="fa fa-pinterest-square" aria-hidden="true"></i></span></a></li>
-          </ul>
-        </div>
-        <div class="user-link col-sm-8"> <a class="tel" href="tel:+201234567891"><span class="glyphicon glyphicon-earphone">&nbsp;</span>+123456789</a> <a class="" href="mailto:support@resalatheme.com"><i><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-      <div class="container1 container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
-          <a class="navbar-brand" href="<?php echo base_url(); ?>"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
-        <div class="col-md-8">
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <div class="row">
-            <div class="col-md-12">
-                <form class="form-horizontal form-horizontal_x">
-                  <div class="flipkart-navbar-search smallsearch">
-                    <div class="cart_search">
-                      <input class="flipkart-navbar-input col-xs-11" type="" placeholder="Search for Products, Brands and more" name="">
-                      <button class="flipkart-navbar-button col-xs-1"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
-                    </div>
-					
-                  </div>
-                </form>
-              </div>
-			
-              
-            </div>
-          </div>
-        </div>
-		  <div class="medias ">
-			<span>
-				<a data-toggle="modal" data-target="#sin_log" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
-			</span>
-			<span><a href="<?php echo base_url('testing');?>"><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
-			<span class=""><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i>&nbsp;<sup class="sup">5</sup></span>
-			<div class="sprinkle"></div>
-		  </div>
-	
-      </div>
-    </nav>
-	
-	
-	
-	
-	<!-- end popup start here -->   
-	
-	
-	<!-- Login popup start here -->
-<div class="md-modal md-effect-8" id="modal-8">
-  <div class="md-content">
-    <div id="log_sign"> 
-      
-      <!-- Nav tabs -->
-      <button class="md-close pull-right miy">Close me!</button>
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#login" aria-controls="home" role="tab" data-toggle="tab"> <i class="fa fa-lock" aria-hidden="true"></i> Login</a></li>
-        <li role="presentation"><a href="#signup" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
-      </ul>
-      
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="login">
-		 <div id="login-response" style="font-size:100%;"></div>
-          <form id="login-form" method="post">
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="text" class="form-control" name="login_email" id="login_email">
-			  <span class="all_errors"><p id="NameErr1" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="pwd">Password:</label>
-              <label class="pull-right" id="frgt_pass"><a href="#" class="pull-right" style="text-decoration: none;"><i class="icon-question-sign"></i>&nbsp; <i class="fa fa-question-circle" aria-hidden="true"></i> Forgot Password ?</a> </label>
-              <input type="password" class="form-control" name="login_password" id="login_password">
-			  <span class="all_errors"><p id="PasswordErr5" class="Error_msge"></p></span>
-            </div>
-            <!--<div class="checkbox">
-              <label>
-                <input type="checkbox">
-                Remember me</label>
-            </div>-->
-            <button type="submit" class="btn btn-danger cls pull-left" id="login_submit" name="submit">SIGN IN</button>
-          </form>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="signup">
-		<div id="signup-response" style="font-size:100%;"></div>
-          <form method="post" id="register-form">
-            <div class="form-group">
-              <label for="user name">User Name:</label>
-              <input type="text" name="user_name" id="user_name" class="form-control">
-			  <span class="all_errors"><p id="NameErr" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="text" class="form-control" name="user_email" id="user_email">
-			  <span class="all_errors"><p id="EmailErr" class="Error_msge"></p></span>
-            </div>
-			 <div class="form-group">
-              <label for="phone">Phone No:</label>
-              <input type="text" class="form-control" name="user_phone" id="user_phone">
-			  <span class="all_errors"><p id="PhoneErr" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="password">Password:</label>
-              <input type="password" class="form-control" name="user_password" id="user_password">
-			  <span class="all_errors"><p id="PassErr1" class="Error_msge"></p></span>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" id="chkterms2">
-                By signing up I agree to terms & conditions</label>
-				<span class="all_errors"><p id="TermsErr" class="Error_msge"></p></span>
-            </div>
-            <button type="submit" class="btn btn-danger cls pull-left" id="register_submit" name="submit">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div id="show_pass" style="display: none;">
-      
-	  <button class="md-close pull-right miy" style="margin-bottom: 15px;">Close me!</button>
-      Forgot Your Password ?
-	  <div id="lost-response" style="font-size:100%;"></div>
-	  <form method="post" id="lost-form">
-      <div class="form-group">
-        <input type="password" class="form-control" name="lost_email" id="lost_email" placeholder="Please Enter Your Email Here">
-      </div>
-      <button type="submit" class="btn btn-danger cls pull-left" id="lost_submit">Submit</button>
-	  </form>
-      <label id="show_login" class="pull-right lgo"><i class="fa fa-user-plus"></i> Login</label>
-    </div>
-  </div>
-</div>
-<div class="md-overlay"></div>
-</header>
-<div class="" style="margin-top:130px;">
+<div class="" style="margin-top:150px;">
 	
 </div>
 <body >
@@ -507,25 +69,34 @@
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+						 <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-shopping-cart"></i>
+                            </span>
+							
+                        </a>
+						<p class="text-center"><b>Check Cart</b> </p>
+                    </li>  
+					<li role="presentation" class="disabled" >
+						   <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-folder-open"></i>
                             </span>
 							
                         </a>
-						<p class="text-center"><b>Order Confirmation</b> </p>
+						<p class="text-center"><b>Billing Address</b> </p>
                     </li>
 
                     <li role="presentation" class="disabled">
-                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-pencil"></i>
+                                <i class="glyphicon glyphicon-credit-card"></i>
                             </span>
                         </a>
 						<p class="text-center"><b>Payment mode </b></p>
                     </li>
                     <li role="presentation" class="disabled">
-                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                        <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-ok"></i>
                             </span>
@@ -537,7 +108,8 @@
 
             <form role="form">
                 <div class="tab-content">
-                    <div class="tab-pane active" role="tabpanel" id="step1">
+				 
+             <div class="tab-pane active " role="tabpanel" id="step1">
 							 <div class="title"><span>Order Confirmation</span></div>
           <div class="table-responsive">
             <table class="table table-bordered table-cart">
@@ -637,12 +209,54 @@
               <li class="next"><a href="checkout.html">Proceed to Checkout <span aria-hidden="true">&rarr;</span></a></li>
             </ul>
           </nav>
-						<div class="clearfix"></div>
-                        <ul class="list-inline pull-right">
+					<div class="clearfix"></div>
+					 <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-primary next-step">next</button></li>
+                        </ul> 
+						
+                    </div>
+					<div class="tab-pane " role="tabpanel" id="step2">
+				<div class=" col-md-10 col-md-offset-1">
+					<div class="title"><span> Billing Address</span></div>
+						<form >
+							<div class="form-group">
+							  <label>Name:</label>
+							  <input type="text" class="form-control"  placeholder="Enter Name" >
+							</div>
+							<div class="form-group">
+							  <label >Mobile:</label>
+							  <input type="text" class="form-control" placeholder="Enter Mobile" >
+							</div>
+							<div class="form-group">
+							  <label for="sel1">Select list:</label>
+							  <select class="form-control" id="sel1">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+							  </select>
+							</div>
+							<div class="form-group">
+							  <label >Address 1:</label>
+							  <textarea class="form-control" rows="3"></textarea>
+							</div>
+							<div class="form-group">
+							  <label >Address 2:</label>
+							  <textarea class="form-control" rows="3"></textarea>
+							</div>
+							
+							
+						</form>
+						
+					<div class="clearfix"></div>
+					 <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
                             <li><button type="button" class="btn btn-primary next-step">next</button></li>
                         </ul>
-                    </div>
-                    <div class="tab-pane" role="tabpanel" id="step2">
+                       
+				 </div>
+				 </div>
+                    <div class="tab-pane" role="tabpanel" id="step3">
 						<div class="container">
 						<div class="row">
 						<div class="col-md-8">
@@ -884,7 +498,7 @@
                             <li><button type="button" class="btn btn-primary next-step">next</button></li>
                         </ul>
                     </div>
-                    <div class="tab-pane" role="tabpanel" id="step3">
+                    <div class="tab-pane" role="tabpanel" id="step4">
 						<div class="row">
 							<div class="col-md-6">
 								<h3 class="site_co">Thanks for Shoping </h3>
@@ -987,6 +601,7 @@ function prevTab(elem) {
     $(elem).prev().find('a[data-toggle="tab"]').click();
 }
 </script>
+
 
 		
 

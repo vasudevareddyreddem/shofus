@@ -54,9 +54,20 @@
 
         <div class="row pad_bod col-md-offset-2">
           <div class="title"><span><?php echo $category_name['category_name'];; ?></span></div>
-
-		<?php foreach ($category_list as $catlist){ ?>
-          <div class="col-sm-4 col-md-3 box-product-outer">
+	<?php if($this->session->flashdata('adderror')): ?>	
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('adderror');?></div>
+			<?php endif; ?>
+		<?php foreach ($category_list as $catlist){ 
+		
+		//echo '<pre>';print_r($catlist);exit;
+		?>
+		
+		  <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $catlist['item_id']; ?>" >
+			<input type="hidden" name="category_id" id="category_id" value="<?php echo $this->uri->segment(3); ?>" >
+		 <div class="col-sm-4 col-md-3 box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  ">
 				
@@ -90,10 +101,15 @@
 							</div>
 						</div>
                 <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  <button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>
                   <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
+                
+				<?php if($catlist['yes']==1){ ?>
+					<a href="javascript:void(0);" style="color:#ef5350;" onclick="addwhishlidts(<?php echo $catlist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+					<?php }else{ ?>	
+					<a href="javascript:void(0);"  onclick="addwhishlidts(<?php echo $catlist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+					<?php } ?>	
+				</div>
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($catlist['item_id'])); ?>"><?php echo $catlist['item_name']; ?></a></h6>
               <div class="price">
@@ -106,15 +122,23 @@
               
 				<?php } ?>
               
-				<div class="pull-right inc_des">
-					<span class="inc_btn"> Qty:</span>&nbsp;
-					<span class="glyphicon glyphicon-minus"></span>&nbsp;
-					<span class=""><input class=""style="width:20px;" type="text" value="1"></span>&nbsp;
-					<span class="glyphicon glyphicon-plus"></span>&nbsp;
-					
-				</div>
+				  <div class="input-qty">
+						<div class="input-group number-spinner">
+							<span class="input-group-btn data-dwn">
+								<a class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
+							</span>
+							<input type="text" name="qty" id="qty" class="form-control text-center" value="1" min="1" max="20">
+							<span class="input-group-btn data-up">
+								<a class="btn btn-primary " data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
+							</span>
+						</div>
+                  </div>
 				<div class="clearfix"></div>
+				 <?php if(isset($catlist['offer_amount']) && $catlist['offer_percentage']!=''){ ?>
                 <span class="price-old"><?php echo $catlist['item_cost']; ?></span>
+				<?php }else{ ?>
+				   <span class=""><?php echo $catlist['item_cost']; ?></span>
+				<?php } ?>
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -122,10 +146,17 @@
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
+				<?php if($catlist['reviewcount']!='' && $catlist['reviewcount']!=0 ){ ?>
+				<a href="<?php echo base_url('category/productview/'.base64_encode($catlist['item_id'])); ?>">( <?php echo $catlist['reviewcount']; ?> reviews)</a>
+				<?php }else{ ?>
+				<a href="<?php echo base_url('category/productview/'.base64_encode($catlist['item_id'])); ?>">(reviews)</a>
+				<?php } ?>
+                
               </div>
             </div>
           </div>
+		  
+		  </form>
 		  <?php } ?>
 		  
 		  
@@ -147,11 +178,38 @@
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 
 <script>
+
+function addwhishlidts(id){
+jQuery.ajax({
+			url: "<?php echo site_url('customer/addwhishlist');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				item_id: id,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+				jQuery('#sucessmsg').show();
+				//alert(data.msg);
+				if(data.msg==2){
+				$('#addwhish').css("color", "");
+				$('#sucessmsg').html('Product Successfully removed to Whishlist');	
+				}
+				if(data.msg==1){
+				$('#addwhish').css("color", "#ef5350");
+				$('#sucessmsg').html('Product Successfully added to Whishlist');	
+				}
+			
+
+			}
+		});
+	
+	
+}
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
-</script>
-  <script>
+
 
 
 function sticky_relocate() {
@@ -177,4 +235,36 @@ $(function () {
     $(window).scroll(sticky_relocate);
     sticky_relocate();
 });
+
+$(function() {
+    var action;
+    $(".number-spinner a").mousedown(function () {
+        btn = $(this);
+        input = btn.closest('.number-spinner').find('input');
+        btn.closest('.number-spinner').find('a').prop("disabled", false);
+
+    	if (btn.attr('data-dir') == 'up') {
+            action = setInterval(function(){
+                if ( input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max')) ) {
+                    input.val(parseInt(input.val())+1);
+                }else{
+                    btn.prop("disabled", true);
+                    clearInterval(action);
+                }
+            }, 50);
+    	} else {
+            action = setInterval(function(){
+                if ( input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min')) ) {
+                    input.val(parseInt(input.val())-1);
+                }else{
+                    btn.prop("disabled", true);
+                    clearInterval(action);
+                }
+            }, 50);
+    	}
+    }).mouseup(function(){
+        clearInterval(action);
+    });
+});
+
 </script>

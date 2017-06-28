@@ -63,6 +63,8 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
+		<div style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"></div>
+
           <div class="title-detail"><?php echo $products_list['item_name']; ?></div>
 		  <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $products_list['item_id']; ?>" >
@@ -122,8 +124,12 @@
                 <td>
                   <button class="btn btn-theme m-b-1" type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 				  <a href="" id="compare" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
-                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>">                  
-                  <button class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</button>  
+                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>"> 
+					<?php if($products_list['yes']==1){ ?>
+					<a href="javascript:void(0);" style="color:yellow;" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" id="addwhish" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
+					<?php }else{ ?>	
+					<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" id="addwhish" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
+					<?php } ?>			  
 				 
                 </td>
               </tr>
@@ -228,16 +234,6 @@
                       <input type="text" name="email" id="email" class="form-control" placeholder="Email">
                     </div>
 					
-					   <div class="form-group">
-                      <label for="Email">Rating</label>
-                     <span class="product-rating">
-                        <a href=""><i class="fa fa-star"></i></a>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                     </span>
-                    </div>
 					
                     <div class="form-group">
                       <label for="Review">Your Review</label>
@@ -269,12 +265,40 @@
 			
 	  </div>
 
-<script>
+
+
+<script type="text/javascript">
+function addwhishlidt(id){
+jQuery.ajax({
+			url: "<?php echo site_url('customer/addwhishlist');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				item_id: id,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+				jQuery('#sucessmsg').show();
+				//alert(data.msg);
+				if(data.msg==2){
+				$('#addwhish').css("color", "");
+				$('#sucessmsg').html('Product Successfully removed to Whishlist');	
+				}
+				if(data.msg==1){
+				$('#addwhish').css("color", "yellow");
+				$('#sucessmsg').html('Product Successfully added to Whishlist');	
+				}
+			
+
+			}
+		});
+	
+	
+}
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
-</script>
-<script type="text/javascript">
+
 ;(function($){
 	$.fn.zoom = function(options){
 	
@@ -331,7 +355,7 @@ $(document).ready(function(){
 
 			var $bzoom_magnifier, $bzoom_magnifier_img, $bzoom_zoom_area, $bzoom_zoom_img;
 
-			// 遮罩显示的区域
+
 			if(!$(".bzoom_magnifier").length){
 				$bzoom_magnifier = $('<li class="bzoom_magnifier"><div class=""><img src="" /></div></li>');
                 $bzoom_magnifier_img = $bzoom_magnifier.find('img');
@@ -343,7 +367,7 @@ $(document).ready(function(){
                 $bzoom_magnifier.find('div').css({width:_option.thumb_image_width*scalex, height:_option.thumb_image_height*scaley});
 			}
 			
-			// 大图
+
 			if(!$('.bzoom_zoom_area').length){
                 $bzoom_zoom_area = $('<li class="bzoom_zoom_area"><div><img class="bzoom_zoom_img" /></div></li>');
                 $bzoom_zoom_img = $bzoom_zoom_area.find('.bzoom_zoom_img');
@@ -385,7 +409,7 @@ $(document).ready(function(){
 				}
 			}
 
-			// 循环小图
+
 			var $small = '';
 			if(!$(".bzoom_small_thumbs").length){
 				var top = _option.thumb_image_height+10,
@@ -483,8 +507,7 @@ $(document).ready(function(){
 		}
 	}
 })(jQuery);
-</script>
-<script type="text/javascript">
+
 $("#bzoom").zoom({
 	zoom_area_width: 1000,
 	zoom_area_height: 500,
@@ -492,10 +515,7 @@ $("#bzoom").zoom({
     small_thumbs : 4,
     autoplay : false
 });
-</script>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
+var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36251023-1']);
   _gaq.push(['_setDomainName', 'jqueryscript.net']);
   _gaq.push(['_trackPageview']);
@@ -505,10 +525,6 @@ $("#bzoom").zoom({
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-</script>
- <script>
-
 
 function sticky_relocate() {
     var window_top = $(window).scrollTop();
@@ -572,9 +588,7 @@ $(document).ready(function() {
         }
     });
 });
-</script>
 
-<script type="text/javascript" language="javascript">
       $(document).ready(function(){
     $('#compare').click(function(e){
     e.preventDefault();
@@ -587,11 +601,7 @@ $(document).ready(function() {
     
     });
 });
-  
 
-</script>
-<!--quantity script start-->
-<script>
 $(function() {
     var action;
     $(".number-spinner a").mousedown(function () {
