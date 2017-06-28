@@ -50,9 +50,9 @@
                 <tr>
                   <td>Product</td>
                   <td><a href="detail.html" class="d-block"><?php echo $compore_products['item_name'];?></a></td>
-                  <td><a href="detail.html" class="d-block">CelioKhaki Printed Round Neck T-Shirt</a></td>
-                  <td><a href="detail.html" class="d-block">CelioOff White Printed Round Neck T-Shirt</a></td>
-                  <td><a href="detail.html" class="d-block">Levi'sNavy Blue Printed Round Neck T-Shirt</a></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
                   <td>Image</td>
@@ -60,45 +60,44 @@
                     <a href="detail.html"><img src="<?php echo base_url('uploads/products/'.$compore_products['item_image3']); ?>"></a>
                   </td>
                   <td>
-                    <a href="detail.html"><img src="<?php echo base_url(); ?>assets/home/images/p2-small-1.jpg"></a>
+                      
                   </td>
                   <td>
-                    <a href="detail.html"><img src="<?php echo base_url(); ?>assets/home/images/p3-small-1.jpg"></a>
+                    
                   </td>
                   <td>
-                    <a href="detail.html"><img src="<?php echo base_url(); ?>assets/home/images/p4-small-1.jpg"></a>
+                    
                   </td>
                 </tr>
                 <tr>
                   <td>Price</td>
                   <td>
-				<?php if(isset($compore_products['offer_amount']) && $compore_products['offer_percentage']!=''){ ?>
+				
 				<div class="price">
-                    <div><?php echo ($compore_products['item_cost'])-($compore_products['offer_amount']); ?><span class="label label-default arrowed">-<?php echo $compore_products['offer_percentage']; ?>%</span></div>
-                    <span class="price-old"><?php echo $compore_products['item_cost']; ?></span>
+                    <div><?php echo ($compore_products['item_cost'])-($compore_products['offer_amount']); ?></div>
+                    <!-- <span class="price-old"><?php echo $compore_products['item_cost']; ?></span> -->
                   </div>
-				<?php }else{ ?>
-                  <div class="price">
+                  <!-- <div class="price">
                     <span class="price-old"><?php echo $compore_products['item_cost']; ?></span>
-                  </div>				  
-				<?php } ?>
+                  </div> -->				  
+
                 </td>
                   <td>
                     <div class="price">
-                      <div>$13.50 <span class="label-tags"><span class="label label-primary arrowed">-10%</span></span></div>
-                      <span class="price-old">$15.00</span>
+                      <div></div>
+                      
                     </div>
                   </td>
                   <td>
                     <div class="price">
-                      <div>$13.50 <span class="label-tags"><span class="label label-success arrowed">-10%</span></span></div>
-                      <span class="price-old">$15.00</span>
+                      <div> </div>
+                      
                     </div>
                   </td>
                   <td>
                     <div class="price">
-                      <div>$13.50 <span class="label-tags"><span class="label label-danger arrowed">-10%</span></span></div>
-                      <span class="price-old">$15.00</span>
+                      <div></div>
+                    
                     </div>
                   </td>
                 </tr>
@@ -111,18 +110,18 @@
                     </div>
                   </td><td>
                     <div class="price">
-                      <div>$13.50 <span class="label-tags"><span class="label label-danger arrowed">-10%</span></span></div>
-                      <span class="price-old">$15.00</span>
+                      <div></div>
+                      
                     </div>
                   </td><td>
                     <div class="price">
-                      <div>$13.50 <span class="label-tags"><span class="label label-danger arrowed">-10%</span></span></div>
-                      <span class="price-old">$15.00</span>
+                      <div></div>
+                      
                     </div>
                   </td><td>
                     <div class="price">
-                      <div>$13.50 <span class="label-tags"><span class="label label-danger arrowed">-10%</span></span></div>
-                      <span class="price-old">$15.00</span>
+                      <div></div>
+                      
                     </div>
                   </td>
 
@@ -133,7 +132,7 @@
                 
                 <tr>
                   <td></td>
-                  <td><a href="<?php echo base_url ?>" class="btn btn-sm btn-theme" type="button"><i class="fa fa-shopping-cart"></i> Add To Cart</a></td>
+                  <td><a href="" class="btn btn-sm btn-theme" type="button"><i class="fa fa-shopping-cart"></i> Add To Cart</a></td>
                   <td><button class="btn btn-sm btn-theme" type="button"><i class="fa fa-shopping-cart"></i> Add To Cart</button></td>
                   <td><button class="btn btn-sm btn-theme" type="button"><i class="fa fa-shopping-cart"></i> Add To Cart</button></td>
                   <td><button class="btn btn-sm btn-theme" type="button"><i class="fa fa-shopping-cart"></i> Add To Cart</button></td>
