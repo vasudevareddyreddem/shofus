@@ -109,9 +109,7 @@ public function insert() {
         // Sending with PHP CURL
        $url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
 			$ret = file($url); 
-                  //   $this->session->set_flashdata('msg1','<div class="alert alert-success text-center" style="color: green;font-size:13px;">Registered successfully. please Check Your Mobile for Password.</div>');
-
-                  // return redirect('seller/adddetails'); 
+                   
                   echo "1";              
         	}
 			else
@@ -125,44 +123,18 @@ public function insert() {
    
    else{
 	   	   echo "0";
-	   // $this->session->set_flashdata('msg1','<div class="alert alert-success text-center" style="color: red;font-size:13px;">The email/phone number you entered already exist.</div>');
-				// //return redirect('seller/login/register');
+	   
 	   
 	   
    }
     }
 
 
-// public function do_login()
 
-// {
-
-//         $this->form_validation->set_rules('login_email', 'Username', 'trim|required'); 
-//         $this->form_validation->set_rules('login_password', 'Password', 'trim|required'); 
-
-//         if ($this->form_validation->run() == TRUE) {
-//             $username   = $this->input->post('login_email');
-//             $password = md5($this->input->post('login_password'));           
-//             $result   = $this->login_model->authenticate($username, $password);
-// 			if(count($result)>0){
-			
-//                 $userdteilas=$this->session->set_userdata($result);
-// 				return redirect ('seller/dashboard');
-				
-				
-// 			}
-// 		}
-		
-
-       
-
-// }
 
 
     public function do_login()
-
-{
-
+	{
         $this->form_validation->set_rules('login_email', 'Username', 'trim|required'); 
         $this->form_validation->set_rules('login_password', 'Password', 'trim|required'); 
         if ($this->form_validation->run() == TRUE) {
@@ -173,12 +145,11 @@ public function insert() {
                         
              if(count($result)>0) {
                 $datavalue= array(
-                    'seller_id'    => $result['seller_id'],
-                    'seller_name'    => $result['seller_name'],
+                    'seller_id'    		=> $result['seller_id'],
+                    'seller_name'   	=> $result['seller_name'],
                     'seller_address'    => $result['seller_address'],
-                    'seller_rand_id'    => $result['seller_rand_id'],
-                    'password_status'    => $result['password_status'],                     
-                    'loggedin'   => TRUE,
+                    'seller_rand_id'    => $result['seller_rand_id'],                   
+                    'loggedin'   		=> TRUE,
                 );
                 //echo '<pre>';print_r($datavalue);exit;
                 $this->session->set_userdata($datavalue);

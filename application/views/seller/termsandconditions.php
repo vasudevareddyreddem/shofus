@@ -5,11 +5,11 @@
       <div class="row">
       <div class="col-md-1">&nbsp</div>
         <div class="col-md-10 ">
-        <div class="reg_main2 text-center" ><h2>Terms and Conditions</h2></div>
+        <div class="reg_main2 text-center" ><h3>Terms and Conditions</h3></div>
         <br>
           <div class="reg_main">
           <!-- <center><h4>Terms and Conditions</h4></center> -->
-            <h2>Participation Agreement</h2>
+            <h4>Participation Agreement</h4>
             <ul>
                 <li>Welcome to the CARTINHOUR.com site (the "Site") and our selling services (the "Services").</li>
                 <li>Any person who wants to access the Site and use the Services to sell items must accept the terms and conditions of this Participation Agreement without change.</li>
