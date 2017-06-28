@@ -1,11 +1,11 @@
 	<!--footer part start here -->
-  <footer class="main-footer">
-    <div class="container">
-      <div class="row">
-        <div class="pull-right hidden-xs"> <b>Version</b> 1.0</div>
+  <footer class="main-footer text-center">
+   
+      <div class=" ">
+       <b>Version</b> 
                 <strong>Copyright &copy; 2017 Cartinhour.</strong> All rights reserved.
       </div>
-    </div>
+
   </footer>
   
   <style type="text/css">

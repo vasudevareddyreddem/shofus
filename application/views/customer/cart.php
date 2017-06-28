@@ -37,16 +37,15 @@
 			<section>
         <div class="wizard">
            
-            <form role="form">
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
-					 <?php if($this->session->flashdata('success')): ?>
+					 
+          <div class="table-responsive">
+		  <?php if($this->session->flashdata('productsuccess')): ?>
 			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('success');?></div>
+                    </button><?php echo $this->session->flashdata('productsuccess');?></div>
 			<?php endif; ?>
-          <div class="table-responsive">
-		  <form action="<?php  echo base_url('customer/updatecart'); ?>" method="POST" name="updatecart" id="updatecart">
             <table class="table table-bordered table-cart">
               <thead>
                 <tr>
@@ -62,16 +61,37 @@
 			  <?php 
 			$total='';
 			  foreach($cart_items as $items){ ?>
+			  <form action="<?php  echo base_url('customer/updatecart'); ?>" method="post" name="updatecart" id="updatecart">
+
+			  <input type="hidden" name="product_id" id="product_id"  value="<?php echo $items['item_id']; ?>">
                 <tr>
                   <td class="img-cart">
-                    <a href="detail.html">
-                      <img src="<?php echo base_url(); ?>assets/home/images/p1-small-1.jpg" class="img-thumbnail">
+                    <a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>">
+                      <img src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>" class="img-thumbnail">
                     </a>
                   </td>
                   <td>
                     <p><a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>" class="d-block"><?php echo $items['item_name']; ?></a></p>
                   </td>
-                  <td class="input-qty"><input type="text" value="<?php echo $items['qty']; ?>" class="form-control text-center" /></td>
+				  
+				  
+                  <td class="input-qty">
+				   <div class="input-qty">
+						<div class="input-group number-spinner">
+							<span class="input-group-btn data-dwn">
+								<a class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
+							</span>
+							<input type="text" name="qty" id="qty" class="form-control text-center" value="<?php echo $items['qty'];  ?>" min="1" max="20">
+							<span class="input-group-btn data-up">
+								<a class="btn btn-primary " data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
+							</span>
+						</div>
+                  </div>
+				  
+				  
+				  
+				  
+				  </td>
 				  
 				  <?php if($items['offer_percentage']!==0 && $items['offer_percentage']!=='' ){ ?>
 					 
@@ -93,11 +113,12 @@
 				  
 				 <?php } ?>
                   <td class="action">
-                    <a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Update"><i class="fa fa-refresh"></i></a>&nbsp;
-                    <a href="#" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>
+				  <button style="background:transprent;" type="submit" ><i class="fa fa-refresh"></i></button>&nbsp;
+                    <a href="<?php echo base_url('customer/deletecart/'.base64_encode($items['item_id']).'/'.base64_encode($items['id'])); ?>" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>
                   </td>
 				  	
                 </tr>
+				  </form>
 				
 			  <?php } ?>
                
@@ -124,7 +145,7 @@
                    
                 
                 </div>
-            </form>
+          
         </div>
     </section>
 	   </div>
@@ -172,7 +193,42 @@ function nextTab(elem) {
 function prevTab(elem) {
     $(elem).prev().find('a[data-toggle="tab"]').click();
 }
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+$(function() {
+    var action;
+    $(".number-spinner a").mousedown(function () {
+        btn = $(this);
+        input = btn.closest('.number-spinner').find('input');
+        btn.closest('.number-spinner').find('a').prop("disabled", false);
+
+    	if (btn.attr('data-dir') == 'up') {
+            action = setInterval(function(){
+                if ( input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max')) ) {
+                    input.val(parseInt(input.val())+1);
+                }else{
+                    btn.prop("disabled", true);
+                    clearInterval(action);
+                }
+            }, 50);
+    	} else {
+            action = setInterval(function(){
+                if ( input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min')) ) {
+                    input.val(parseInt(input.val())-1);
+                }else{
+                    btn.prop("disabled", true);
+                    clearInterval(action);
+                }
+            }, 50);
+    	}
+    }).mouseup(function(){
+        clearInterval(action);
+    });
+});
 </script>
+
 
 		
 
@@ -183,11 +239,5 @@ function prevTab(elem) {
 
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
-
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
-</script>
 
  

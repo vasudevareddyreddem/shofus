@@ -258,7 +258,7 @@
           </div>
           <div class="compar_btn" id="compar_btn">
 	 <div class="btn-group show-on-hover">
-          <a href="<?php echo base_url('category/productscompare/'.base64_encode($products_list['item_id'])); ?>" class="btn btn-primary" ><?php echo $products_list['item_name'];?>&nbsp;<span>1</span> 
+          <a href="<?php echo base_url('category/productscompare/'.base64_encode($products_list['item_id'])); ?>" class="btn btn-primary" ><?php echo $products_list['item_name'];?>&nbsp;<span><?php echo count($products_list['item_id']) ?></span> 
           </a>
           <!-- <ul class="dropdown-menu" role="menu" style="position: absolute;top:-100px;height:150px;width:10px;left:-50px;opacity: 0.8;">
 				<li>
