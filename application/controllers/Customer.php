@@ -19,7 +19,7 @@ class Customer extends Front_Controller
 	 {
 		$post=$this->input->post();
 		$customerdetails=$this->session->userdata('userdetails');
-		//echo '<pre>';print_r($post);
+		//echo '<pre>';print_r($post);exit;
 		$adddata=array(
 		'cust_id'=>$customerdetails['customer_id'],
 		'item_id'=>$post['producr_id'],
@@ -33,8 +33,16 @@ class Customer extends Front_Controller
 							$rid[]=$pids['item_id'];
 			}
 		if(in_array($post['producr_id'],$rid)){
+			
+			if(isset($post['category_id']) && $post['category_id']=!'' ){
+				$this->session->set_flashdata('adderror','Product already Exits');
+				redirect('category/view/'.base64_encode($post['category_id']));
+				
+			}else{
 			$this->session->set_flashdata('error','Product already Exits');
-			redirect('category/productview/'.base64_encode($post['producr_id']));
+			redirect('category/productview/'.base64_encode($post['producr_id']));	
+			}
+			
 		}else{
 			$save= $this->customer_model->cart_products_save($adddata);
 			if(count($save)>0){

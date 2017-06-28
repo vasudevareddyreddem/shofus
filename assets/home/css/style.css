@@ -4575,9 +4575,9 @@ input[type=radio]:checked + span::before {
 .box-product .img-wrapper > .option > a:hover {
   color: #9E9E9E;
 }
-.box-product .img-wrapper > .option > a.wishlist:hover {
+/*.box-product .img-wrapper > .option > a.wishlist:hover {
   color: #ef5350;
-}
+}*/
 .box-product h6 a {
   font-size: 13px;
   line-height: 1.4;

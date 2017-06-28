@@ -144,8 +144,9 @@ class Category_model extends MY_Model
 	
 	public function get_all_products($catid){
 		
-		$this->db->select('products.*,category.category_name')->from('products');
-		$this->db->join('category', 'category.category_id = products.category_id', 'left'); //
+		$this->db->select('products.*,category.category_name,item_wishlist.yes')->from('products');
+		$this->db->join('category', 'category.category_id = products.category_id', 'left');
+		$this->db->join('item_wishlist', 'item_wishlist.item_id = products.item_id', 'left'); //		//
 		$this->db->where('subcategory_id',$catid);
 		$this->db->where('admin_status',0);
 		return $this->db->get()->result_array();
