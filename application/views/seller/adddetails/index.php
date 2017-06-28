@@ -222,7 +222,7 @@ $('.window').hide();
 <footer class="foot_add_d">
     <div class="container">
       <div class="row">
-                <strong>Copyright &copy; 2016-2017 <a href="#">Cartinhour</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2016-2017 Cartinhour.</strong> All rights reserved.
       </div>
     </div>
   </footer>
