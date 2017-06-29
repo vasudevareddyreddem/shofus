@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.css">
-<script src="<?php echo base_url();?>assets/vendor/datatable/jquery-1.12.4.js"></script>
+
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery-ui.js"></script>

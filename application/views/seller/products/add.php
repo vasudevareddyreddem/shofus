@@ -69,7 +69,7 @@
                 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputPassword1">Select Subcategory</label>
                   <select class="form-control" id="subcategory_id" name="subcategory_id">
-                    <option value="">Select Subcategory</option>
+                    <!-- <option value="">Select Subcategory</option> -->
 					<?php foreach($subcatdata as $subcat_data){ ?>
                     <option value="<?php echo $subcat_data->subcategory_id; ?>"><?php echo $subcat_data->subcategory_name; ?></option>
                     <?php } ?>
