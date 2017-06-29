@@ -1,4 +1,3 @@
-
 <?php
 
 foreach($detail as $searhitems){  
