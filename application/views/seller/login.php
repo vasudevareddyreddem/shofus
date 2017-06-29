@@ -1456,12 +1456,16 @@ $("#cihfee1").html(data);
     e.preventDefault();
     //if ($('#chkterms2').is(':checked')) {  
     var youmake = $("#you_make").val();
+    //alert(youmake);
     var re = /^[+]?([0-9]+)$/;
     var text = $("#actual_price").val();
   var isValid = (text.match(re) == null);
     //alert(isValid);
   
   var actual_price = $("#actual_price").val();
+
+  var less = youmake <=  actual_price;
+  alert(less);
    
     //var product_price = $("#product_price").val(); TermsErr15
   
@@ -1476,6 +1480,14 @@ $("#cihfee1").html(data);
     if (product_price == "")
     {
     $("#TermsErr15").html("Please Enter your Product Selling Price").css("color", "#006a99").fadeIn().fadeOut(5000);
+    return false;
+    }
+    else{
+      $("#TermsErr15").html("");
+    }
+    if (less == true)
+    {
+    $("#TermsErr15").html("Please Enter hogh value Of you make").css("color", "#006a99").fadeIn().fadeOut(5000);
     return false;
     }
     else{

@@ -146,6 +146,7 @@ $("#cihfee1").html(data);
     
      
     var youmake = $("#youmake").val();
+    //alert(youmake);
   
   var actual_price = $("#actual_price").val();
    

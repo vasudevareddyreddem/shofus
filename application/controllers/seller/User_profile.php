@@ -20,6 +20,7 @@ class user_profile extends Admin_Controller {
 	{
 			   
 	   	$data['sellers_cat_display'] = $this->user_profile_model->seller_categories();
+	   	$data['profiles'] = $this->user_profile_model->profile_pic_get();
 	   	//$data['seller_orders'] = $this->user_profile_model->total_orders();
 	   //echo print_r($data);exit;
 	   //echo '<pre>';print_r($some);exit;
@@ -70,7 +71,7 @@ class user_profile extends Admin_Controller {
 			{
 				$this->session->set_flashdata('message',"Profile Pic Updated Successfully",0);
 
-				echo "<script>window.location='".base_url()."seller/user_profile/profile_pic';</script>";
+				echo "<script>window.location='".base_url()."seller/user_profile/';</script>";
 
 			}
 			else
