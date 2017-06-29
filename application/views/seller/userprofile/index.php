@@ -4,7 +4,12 @@
                         <div class="col-sm-12 col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-header-headshot"></div>
+                                    <div class="card-header-headshot">
+			<span style="position:absolute;position: absolute;top:92px;right:114px;
+    background: #207ba5; padding:5px; border-radius:50%;color:#fff;" class="glyphicon glyphicon-edit">
+	</span>
+									</div>
+								
                                 </div>
                                 <div class="card-content">
                                     <div class="card-content-member">
