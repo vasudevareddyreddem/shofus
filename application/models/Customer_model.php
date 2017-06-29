@@ -12,6 +12,14 @@ class Customer_model extends MY_Model
 		$sql="SELECT * FROM customers WHERE cust_email ='".$email."'";
         return $this->db->query($sql)->row_array(); 
 	}
+	public function set_password($custid,$pass){
+		$sql1="UPDATE customers SET cust_password ='".$pass."' WHERE customer_id = '".$custid."'";
+       	return $this->db->query($sql1);
+	}
+	public function getcustomer_oldpassword($cusid){
+		$sql="SELECT * FROM customers WHERE customer_id ='".$cusid."'";
+        return $this->db->query($sql)->row_array(); 
+	}
 	public function update_password($pass,$cust_id,$email){
 		$sql1="UPDATE customers SET cust_password ='".md5($pass)."' WHERE cust_email = '".$email."' AND customer_id = '".$cust_id."'";
        	return $this->db->query($sql1);

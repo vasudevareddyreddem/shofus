@@ -372,8 +372,56 @@ class Customer extends Front_Controller
 	}
 	public function changepassword(){
 	
-		$this->template->write_view('content', 'customer/changepassword');
-		$this->template->render();
+		
+		if($this->session->userdata('userdetails'))
+		{
+				$this->template->write_view('content', 'customer/changepassword');
+				$this->template->render();
+		}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+		}
+	} 
+	public function changepasswordpost(){
+		if($this->session->userdata('userdetails'))
+		{
+			$customerdetail=$this->session->userdata('userdetails');
+		$changepasword = $this->input->post();
+		//echo '<pre>';print_r($changepasword);
+		$currentpostpassword=md5($changepasword['oldpassword']);
+		$newpassword=md5($changepasword['newpassword']);
+		$conpassword=md5($changepasword['confirmpassword']);
+		$this->load->model('users_model');
+			$userdetails = $this->customer_model->getcustomer_oldpassword($customerdetail['customer_id']);
+			
+			$currentpasswords=$userdetails['cust_password'];
+			if($currentpostpassword == $currentpasswords ){
+				if($newpassword == $conpassword){
+						$this->load->model('users_model');
+						$passwordchange = $this->customer_model->set_password($customerdetail['customer_id'],$conpassword);
+						//echo $this->db->last_query();exit;
+						if (count($passwordchange)>0)
+							{
+								$this->session->set_flashdata('updatpassword',"Password successfully changed!");
+								redirect('customer/changepassword');
+							}else{
+								$this->session->set_flashdata('passworderror',"Something went wrong in change password process!");
+								redirect('customer/changepassword');
+							}
+				}else{
+					$this->session->set_flashdata('passworderror',"New password and confirm password was not matching");
+					redirect('customer/changepassword');
+				}
+			}else{
+					$this->session->set_flashdata('passworderror',"Your current password is incorrect. Please try again.");
+					redirect('customer/changepassword');
+				}
+			
+		
+		}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+		}
 	}  	
  
 
