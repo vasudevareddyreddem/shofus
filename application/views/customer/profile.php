@@ -1,18 +1,4 @@
 
-<style>
-.panel-title > a:before {
-    float: left !important;
-    font-family: FontAwesome;
-    content:"\f1db";
-    padding-right: 5px;
-}
-
-.panel-title > a:hover, 
-.panel-title > a:active, 
-.panel-title > a:focus  {
-    text-decoration:none;
-}
-</style>
 <header>
 <!--wrapper start here -->
 
@@ -25,119 +11,77 @@
 <div class="" style="margin-top:130px;">
 	
 </div>
-<body >
+
 <div class="pad_bod">
 		<div class="row">
 		
-		<?php //echo '<pre>';print_r($cart_items);exit; ?>
-		<div class="container">
-		<div class="col-md-8 col-md-offset-2">
-		<div class="panel panel-primary">
-			<div class="panel-heading ">Change Password</div>
-			
-			<div class="panel-body">
-			<div  style="padding:10px 15px;">
-			<section>
-        <div class="wizard">
-           
-                <div class="tab-content">
-                    <?php if($this->session->flashdata('updatpassword')): ?>
-					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('updatpassword');?></div>
-					<?php endif; ?>
-					<?php if($this->session->flashdata('passworderror')): ?>
-					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('passworderror');?></div>	
-					<?php endif; ?>
-                   <form id="chanagepassword" name="chanagepassword" method="post" action="<?php echo base_url('customer/changepasswordpost');?>" class="form-horizontal" role="form">
-                        <div class=" form-group">
-                            <label class="control-label">Old Password</label>
-                            <input type="text" class="form-control" id="oldpassword" name="oldpassword">
-                        </div>
-						<div class=" form-group">
-                            <label class="control-label">New Password</label>
-                            <input type="text" class="form-control" id="newpassword" name="newpassword">
-                        </div>
-
-                        <div  class=" form-group">
-                           <label class="control-label">Confirm Password</label>
-                            <input id="password" type="password" class="form-control" id="confirmpassword" name="confirmpassword" >
-                        </div>
-
-
-
-                        <div style="margin-top:10px" class="form-group">
-                            <!-- Button -->
-
-                            <div class="col-sm-12 controls">
-                                <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
-                                    Change password</button>
-
-                            </div>
-                        </div>
-				</form>
+			 <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Sheena Shrestha</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
                 
+                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Department:</td>
+                        <td>Programming</td>
+                      </tr>
+                      <tr>
+                        <td>Hire date:</td>
+                        <td>06/23/2013</td>
+                      </tr>
+                      <tr>
+                        <td>Date of Birth</td>
+                        <td>01/24/1988</td>
+                      </tr>
+                   
+                         <tr>
+                             <tr>
+                        <td>Gender</td>
+                        <td>Female</td>
+                      </tr>
+                        <tr>
+                        <td>Home Address</td>
+                        <td>Kathmandu,Nepal</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                      </tr>
+                        <td>Phone Number</td>
+                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
+                        </td>
+                           
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                  
+                  <a href="#" class="btn btn-primary">My Sales Performance</a>
+                  
                 </div>
-          
-        </div>
-    </section>
+              </div>
+            </div>
+                
+            
+          </div>
 	   </div>
-	   </div>
-	   </div>
-	   </div>
-	   </div>
-	   
-	   </div>
-	   </div>
-	</div>
+</div>
 
-	<script type="text/javascript">
-
-$(document).ready(function() {
-    $('#chanagepassword').bootstrapValidator({
-       
-        fields: {
-            oldpassword: {
-					validators: {
-					notEmpty: {
-						message: 'Old Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'Old Password  must be greater than 6 characters'
-                    },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Old Password wont allow <>[]'
-					}
-				}
-			},
-			newpassword: {
-					validators: {
-					notEmpty: {
-						message: 'New Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'New Password  must be greater than 6 characters'
-                    },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'New Password wont allow <>[]'
-					}
-				}
-			},
-			confirmpassword: {
-					 validators: {
-                identical: {
-                    field: 'newpassword',
-                    message: 'The New password and its confirm Password are not the same'
-                }
-            }
-			},
-        }
-    });
-});
-</script>
+	
