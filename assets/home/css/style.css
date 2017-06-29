@@ -5639,3 +5639,39 @@ bottom:40px;
 right:50px;
 display: none;
  }
+ .log_list{
+position: fixed;
+    top: 124px;
+    right: 4px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 8px;
+ } 
+ .log_list li{
+	display:block !important;
+	padding:10px !important;
+
+ } 
+ .log_list  a{
+	color:#000 !important;
+	
+
+ }
+ .top_fix_niv{
+	position: absolute;
+    top: -28px;
+    right: 10px;
+    color: #fff !important; 
+ }
+ .font_list span{
+	 font-size:16px !important;
+	 color:#000 !important;
+	 float:left !important;
+	
+	 
+ } 
+ .font_list span:hover{
+	 font-size:16px !important;
+	 color:#45b1b5 !important;
+	 
+ }

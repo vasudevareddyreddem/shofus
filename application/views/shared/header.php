@@ -82,14 +82,24 @@
             </div>
           </div>
         </div>
-		  <div class="medias ">
-			<span>
+		  <div class="medias list_ad">
+			<span class="medias user_log">
 				<!--<a href="<?php echo base_url('customer'); ?>" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>-->
 				
-				<a  class=""href="" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+				<a ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+						
 			</span>
-			<span><a onclick="openpopup();"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
-			<span class=""><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>
+			<div id="user_sow" style="display:none;">
+							<ul class="log_list" >
+								<span class="top_fix_niv glyphicon glyphicon-triangle-top"></span>
+								<li class="font_list"><a href="#">  <span >Orders</span> </a></li>
+								<li class="font_list"><a href="#">  <span >My Account</span> </a></li>
+								<li class="font_list"><a href="#">  <span >My Wishlist</span> </a></li>
+								<li class="font_list"><a href="#">  <span >Change Password</span> </a></li>
+							</ul>
+						</div>
+			<span class="medias"><a onclick="openpopup();"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
+			<span class="medias"><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>
 			<div class="sprinkle"></div>
 		 </div>
 	</div>
@@ -672,8 +682,8 @@ $(document).ready(function(){
 </script>
 <script>
 $(document).ready(function(){
-    $("button").click(function(){
-        $("p").toggle();
+    $(".user_log").click(function(){
+        $("#user_sow").toggle();
     });
 });
 </script>
