@@ -71,9 +71,10 @@
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-                      <input onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                      <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                       <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
+					<div class="" id="addingdropdown" style="position:absolute; top:75px;background-color:#fff;color:#000;padding:5px 15px;width:775px;"></div>
 					
                   </div>
                 </form>
@@ -347,10 +348,10 @@ function removepopup(){
 	
 }	
 function searchfunction(val){
-	
+	$('#addingdropdown').empty();
 	var length=val.length;
 	if(length >4){
-		//alert(val);
+
 	jQuery.ajax({
 			url: "<?php echo site_url('home/search_functionality');?>",
 			type: 'post',
@@ -358,10 +359,10 @@ function searchfunction(val){
 				form_key : window.FORM_KEY,
 				searchvalue: val,
 				},
-			dataType: 'JSON',
+			dataType: 'html',
 			success: function (data) {
-				alert(data);
-			
+			$("#addingdropdown").append(data);	
+
 
 			}
 		});
@@ -369,29 +370,6 @@ function searchfunction(val){
 	
 }
 
-
-$(document).ready(function(){
-    // Defining the local dataset
-    var cars = ['Audi','Audi', 'BMW', 'bayapu', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Chinnagosala'];
-    
-    // Constructing the suggestion engine
-    var cars = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: cars
-    });
-    
-    // Initializing the typeahead
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true, /* Enable substring highlighting */
-        minLength: 1 /* Specify minimum characters required for showing result */
-    },
-    {
-        name: 'cars',
-        source: cars
-    });
-});
 function openpopup(val){
 	$("#location").fadeIn();
 }
