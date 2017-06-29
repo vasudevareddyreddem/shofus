@@ -71,9 +71,10 @@
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-                      <input onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                      <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                       <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
+					<div id="addingdropdown"></div>
 					
                   </div>
                 </form>
@@ -337,10 +338,10 @@ function removepopup(){
 	
 }	
 function searchfunction(val){
-	
+	$('#addingdropdown').empty();
 	var length=val.length;
 	if(length >4){
-		//alert(val);
+
 	jQuery.ajax({
 			url: "<?php echo site_url('home/search_functionality');?>",
 			type: 'post',
@@ -350,8 +351,22 @@ function searchfunction(val){
 				},
 			dataType: 'JSON',
 			success: function (data) {
-				alert(data);
-			
+				//console.log(data);
+				//alert(data[0].item_id);
+				//alert(data.length);
+				$.each(data, function(key, value){
+					$.each(value, function(key, values){
+						alert(values.key);
+						if(values.item_id!=''){
+							$('#addingdropdown').append('<li>value.item_id</li>');
+						}else{
+							$('#addingdropdown').append('<li>value.subcategory_id</li>');
+						}
+						
+						
+					});
+					});
+
 
 			}
 		});
