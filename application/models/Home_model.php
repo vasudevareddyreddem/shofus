@@ -23,7 +23,7 @@ class Home_model extends CI_Model
 	
 	public function get_search_functionality_products($areaid)
 	{
-	$this->db->select('products.item_id,products.item_name,')->from('products');
+	$this->db->select('products.item_id,products.item_name,products.yes')->from('products');
 	//$this->db->where('item_name',$areaid);
 	$this->db->like('item_name', $areaid);
 	return $this->db->get()->result_array();
@@ -39,7 +39,7 @@ class Home_model extends CI_Model
 	}
 	public function get_search_functionality_sub_category($areaid)
 	{
-	$this->db->select('*')->from('subcategories');
+	$this->db->select('subcategories.subcategory_id,subcategories.subcategory_name,subcategories.yes')->from('subcategories');
 	$this->db->like('subcategory_name', $areaid);
 	return $this->db->get()->result_array();
 	//echo $this->db->last_query();exit; 

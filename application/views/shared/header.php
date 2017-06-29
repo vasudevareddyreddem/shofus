@@ -71,10 +71,10 @@
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-                      <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                      <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                       <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
-					<div id="addingdropdown"></div>
+					<div class="" id="addingdropdown" style="position:absolute; top:75px;background-color:#fff;color:#000;padding:5px 15px;width:775px;"></div>
 					
                   </div>
                 </form>
@@ -359,23 +359,9 @@ function searchfunction(val){
 				form_key : window.FORM_KEY,
 				searchvalue: val,
 				},
-			dataType: 'JSON',
+			dataType: 'html',
 			success: function (data) {
-				//console.log(data);
-				//alert(data[0].item_id);
-				//alert(data.length);
-				$.each(data, function(key, value){
-					$.each(value, function(key, values){
-						alert(values.key);
-						if(values.item_id!=''){
-							$('#addingdropdown').append('<li>value.item_id</li>');
-						}else{
-							$('#addingdropdown').append('<li>value.subcategory_id</li>');
-						}
-						
-						
-					});
-					});
+			$("#addingdropdown").append(data);	
 
 
 			}
@@ -384,29 +370,6 @@ function searchfunction(val){
 	
 }
 
-
-$(document).ready(function(){
-    // Defining the local dataset
-    var cars = ['Audi','Audi', 'BMW', 'bayapu', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Chinnagosala'];
-    
-    // Constructing the suggestion engine
-    var cars = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: cars
-    });
-    
-    // Initializing the typeahead
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true, /* Enable substring highlighting */
-        minLength: 1 /* Specify minimum characters required for showing result */
-    },
-    {
-        name: 'cars',
-        source: cars
-    });
-});
 function openpopup(val){
 	$("#location").fadeIn();
 }

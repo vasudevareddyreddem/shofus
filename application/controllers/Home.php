@@ -54,7 +54,7 @@ public function search_functionality(){
 	//$data2['url']=base_url('category/view/');
 	$data['detail']=array_merge($data1,$data2);
 	//echo "<pre>";print_r($data);exit;
-	echo json_encode($data);
+	$this->load->view('customer/search',$data);
 }
 
  public function addtocart()
