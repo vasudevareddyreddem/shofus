@@ -87,8 +87,6 @@
 		  
 		  <?php if($this->session->userdata('userdetails')){ ?>
 		  <span class="medias user_log">
-				<!--<a href="<?php echo base_url('customer'); ?>" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>-->
-				
 				<a ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
 						
 			</span>
@@ -108,8 +106,17 @@
 		  <?php } ?>
 			
 			<span class="medias"><a onclick="openpopup();"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
-			<span class="medias"><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>
-			<div class="sprinkle"></div>
+			<?php if($this->session->userdata('userdetails')){ ?>
+			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">
+			<?php if(count($cartitemcount)>0){ ?>
+				<?php echo count($cartitemcount); ?>
+				<div class="sprinkle"></div>
+			<?php } ?>
+			</sup></span>
+			<?php } else{ ?>
+			<span class="medias"><a href="<?php echo base_url('customer');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup"></sup></span>
+			<?php } ?>
+			
 		 </div>
 	</div>
 	  <div class="top-navbar1">

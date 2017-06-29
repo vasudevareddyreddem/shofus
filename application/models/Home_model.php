@@ -19,7 +19,12 @@ class Home_model extends CI_Model
         parent::__construct();
 
     }    
-
+	public function cart_item_count($cust_id)
+	{
+	$this->db->select('*')->from('cart');
+	$this->db->where('cust_id', $cust_id);
+	return $this->db->get()->result_array();
+	}
 	
 	public function get_search_functionality_products($areaid)
 	{
