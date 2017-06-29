@@ -146,11 +146,11 @@
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-half-o"></i>
-				<?php if($catlist['reviewcount']!='' && $catlist['reviewcount']!=0 ){ ?>
+				<!--<?php if($catlist['reviewcount']!='' && $catlist['reviewcount']!=0 ){ ?>
 				<a href="<?php echo base_url('category/productview/'.base64_encode($catlist['item_id'])); ?>">( <?php echo $catlist['reviewcount']; ?> reviews)</a>
 				<?php }else{ ?>
 				<a href="<?php echo base_url('category/productview/'.base64_encode($catlist['item_id'])); ?>">(reviews)</a>
-				<?php } ?>
+				<?php } ?>-->
                 
               </div>
             </div>

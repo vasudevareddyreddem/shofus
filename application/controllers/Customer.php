@@ -13,6 +13,18 @@ class Customer extends Front_Controller
 			$this->load->model('customer_model'); 
 			
  }
+ 
+  public function account(){
+	 
+	 if($this->session->userdata('userdetails'))
+	 {
+		echo "account edit";exit;
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	} 
+	 
+ }
  public function addcart(){
 	 
 	if($this->session->userdata('userdetails'))
@@ -322,6 +334,7 @@ class Customer extends Front_Controller
 	$this->load->view( 'customer/resetpassword',$data); 
 	} 
 	
+	
 	public function resetpasswordpost(){
 	
 			$post=$this->input->post();
@@ -356,7 +369,12 @@ class Customer extends Front_Controller
 						redirect('customer/resetpassword/'.$post['email'].'/'.$post['cust_id']);
 					}
 		}
-	} 	
+	}
+	public function changepassword(){
+	
+		$this->template->write_view('content', 'customer/changepassword');
+		$this->template->render();
+	}  	
  
 
 	

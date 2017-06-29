@@ -299,7 +299,7 @@
     </section>
   </div>
   
-    <?php //if($this->session->userdata('location_area') == "")   {?>
+    <?php if($this->session->userdata('location_area') == "")   {?>
 
   <div class="popup1" style="display: block;">
   <div class="newsletter-sign-box">
@@ -307,11 +307,7 @@
       <form method="post" id="popup-newsletter" name="popup-newsletter" class="email-form">
         <h3>Select Your Delivery Location</h3>
         <div class="newsletter-form">
-          <div class="form-group">
-            <label class="control-label">Address Line 1</label>
-            <input maxlength="100" type="text" id="address1"  name="address1" class="form-control" value="" />
-          </div>
-		  <div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
+         
 
 		  <div class="input-box">
 				<select name="location_name" id="location_name" class="validate-select sel_are">
@@ -321,6 +317,8 @@
 
 				<?php } ?>
 				</select>
+				<div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
+
             <button type="button" onclick="searchlocation();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
           </div>
           <!--input-box--> 
@@ -336,28 +334,15 @@
 </div>
 <div id="fade" style="display: block;"></div>
 
-	<?php //} ?>
+	<?php } ?>
 </body>
 <script type="text/javascript" language="javascript">
 $("#location_seacrh").show();
-function IsLcemail(reasontype) {
-        var regex = /^[ A-Za-z0-9_@.,!;:}{@#&`~\\|^?$*)(_+-]*$/;
-        return regex.test(reasontype);
-		}
+
  function searchlocation(){
 	 
 	 jQuery('#address1errormsg').show();
-	var address=jQuery('#address1').val();
-		if(address==''){
-				jQuery('#address1errormsg').html('Please enter Address Line 1');
-				return false;
-		 }else{
-			if (!IsLcemail(address)) {
-				jQuery('#address1errormsg').html('Closure details wont allow <> [] = % ');
-				return false;
-			}
-			 
-		 }
+	
 		 var area=jQuery('#location_name').val();
 		 if(area==''){
 				jQuery('#address1errormsg').html('Please Select Area');

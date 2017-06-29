@@ -84,7 +84,9 @@
           </div>
         </div>
 		  <div class="medias list_ad">
-			<span class="medias user_log">
+		  
+		  <?php if($this->session->userdata('userdetails')){ ?>
+		  <span class="medias user_log">
 				<!--<a href="<?php echo base_url('customer'); ?>" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>-->
 				
 				<a ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
@@ -93,12 +95,18 @@
 			<div id="user_sow" style="display:none;">
 							<ul class="log_list" >
 								<span class="top_fix_niv glyphicon glyphicon-triangle-top"></span>
-								<li class="font_list"><a href="#">  <span >Orders</span> </a></li>
-								<li class="font_list"><a href="#">  <span >My Account</span> </a></li>
-								<li class="font_list"><a href="#">  <span >My Wishlist</span> </a></li>
-								<li class="font_list"><a href="#">  <span >Change Password</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/account');?>">  <span >My Account</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/cart');?>">  <span >My Cart</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/wishlist');?>">  <span >My Wishlist</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/changepassword');?>">  <span >Change Password</span> </a></li>
 							</ul>
-						</div>
+			</div>
+		  <?php }else{ ?>
+			<span class="medias user_log">
+			<a href="<?php echo base_url('customer'); ?>" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+			</span>
+		  <?php } ?>
+			
 			<span class="medias"><a onclick="openpopup();"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
 			<span class="medias"><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>
 			<div class="sprinkle"></div>
@@ -307,34 +315,6 @@
   </div>
 </div>
 
- <div class="modal animated  zoomIn" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="md-content">
-		<a href="javascript:void(0);" onclick="removepopup(this.value)" >X</a>
-        <h3>Select Your Delivery Location</h3>
-        <div class="newsletter-form">
-          <div class="form-group">
-            <label class="control-label">Address Line 1</label>
-            <input maxlength="100" type="text" id="address1"  name="address1" class="form-control" value="" />
-          </div>
-		  <div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
-
-		  <div class="input-box">
-				<select name="location_name" id="location_name" class="validate-select sel_are">
-				<option value="">Select Area </option>
-				<?php foreach($locationdata as $location_data) {?>
-				<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
-
-				<?php } ?>
-				</select>
-            <button type="submit" onclick="searchlocationoffer();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
-          </div>
-        </div>
-   
-    </div>
-    
-  </div>
-  </div> 
 <div class="md-overlay"></div>
 
 
@@ -343,16 +323,14 @@
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">
-function removepopup(){
-		$("#location").fadeOut();
 	
-}	
 function searchfunction(val){
 	$('#addingdropdown').empty();
 	var length=val.length;
-	if(length >4){
-
-	jQuery.ajax({
+	if(length >2){
+	
+		
+		jQuery.ajax({
 			url: "<?php echo site_url('home/search_functionality');?>",
 			type: 'post',
 			data: {
@@ -366,6 +344,7 @@ function searchfunction(val){
 
 			}
 		});
+		
 	}
 	
 }
@@ -373,54 +352,8 @@ function searchfunction(val){
 function openpopup(val){
 	$("#location").fadeIn();
 }
-$("#location_seacrh").show();
-function IsLcemail(reasontype) {
-        var regex = /^[ A-Za-z0-9_@.,!;:}{@#&`~\\|^?$*)(_+-]*$/;
-        return regex.test(reasontype);
-		}
- function searchlocationoffer(){
-	 
-	 jQuery('#address1errormsg').show();
-	var address=jQuery('#address1').val();
-		if(address==''){
-				jQuery('#address1errormsg').html('Please enter Address Line 1');
-				return false;
-		 }else{
-			if (!IsLcemail(address)) {
-				jQuery('#address1errormsg').html('Closure details wont allow <> [] = % ');
-				return false;
-			}
-			 
-		 }
-		 var area=jQuery('#location_name').val();
-		 if(area==''){
-				jQuery('#address1errormsg').html('Please Select Area');
-				return false;
-		 }
-		jQuery('#address1errormsg').html(''); 
-		jQuery('#address1errormsg').hide();
-		$("#location_seacrh_result").empty();
-		
-		jQuery.ajax({
-				url: "<?php echo site_url('home/search_location_offers');?>",
-				type: 'post',
-				data: {
-					form_key : window.FORM_KEY,
-					address1: jQuery("#address1").val(),
-					area: jQuery("#location_name").val(),
-					},
-				dataType: 'html',
-				success: function (data) {
-					$("#location").fadeOut();
 
-					$("#location_seacrh_result").show();
-					$("#location_seacrh_result").append(data);
-
-				}
-			});
-
- }
-
+ 
     $(document).ready(function(){
       $('#frgt_pass').click(function(){
           $('#log_sign').hide();
@@ -598,10 +531,6 @@ $("#modal-8").show();
     });
   
 
-</script>
-
-<script type="text/javascript" language="javascript">
- 
 		$(document).ready(function(){
 		$("#login_submit").click(function(e){
 		e.preventDefault();
@@ -650,15 +579,7 @@ $("#modal-8").show();
 		
 		});
 		});
-	
-	
-</script>
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
-</script>
-<script>
+
 $(document).ready(function(){
     $(".user_log").click(function(){
         $("#user_sow").toggle();

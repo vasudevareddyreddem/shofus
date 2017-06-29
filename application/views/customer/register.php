@@ -86,7 +86,7 @@
 
                             </div>
                         </div>
-  </form>
+				</form>
   
 
 
@@ -153,9 +153,9 @@
             </div>
             </div>
         </div>
-		<div class="" style="position: absolute;top:-100px;right:43%">
+		<a  href="<?php echo base_url(); ?>" class="" style="position: absolute;top:-100px;right:43%">
 			<img src="<?php echo base_url(); ?>assets/home/images/logo_login.png" />
-		</div>
+		</a>
     </div>
 
 </body>
