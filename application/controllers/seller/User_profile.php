@@ -70,17 +70,13 @@ class user_profile extends Admin_Controller {
 			{
 				$this->session->set_flashdata('message',"Profile Pic Updated Successfully",0);
 
-               
-
-				//return redirect('admin/fooditems');
-
 				echo "<script>window.location='".base_url()."seller/user_profile/profile_pic';</script>";
 
 			}
 			else
 			{
 
-				$this->prepare_flashmessage("Failed to Insert..", 1);
+				$this->set_flashdata('message',"Failed to Insert..", 1);
 				//return redirect(base_url('seller/user_profile/profile_pic'));
 				echo "<script>window.location='".base_url()."seller/user_profile/profile_pic';</script>";
 			}

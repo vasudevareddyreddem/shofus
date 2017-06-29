@@ -50,11 +50,19 @@ class Products extends Admin_Controller {
 		
 	$cat=$this->input->post('category_id');
 	$result=$this->products_model->getsubcatdata($cat);
-	echo '<option value="">Select Subcategory</option>';
-	foreach($result as $alldata)
+	
+	if(count($result)>0){
+		echo '<option value="">Select Subcategory</option>';
+		foreach($result as $alldata)
 	{
+
 	echo '<option value="'.$alldata->subcategory_id.'">'.$alldata->subcategory_name.'</option>';
 	}
+		
+	}else{
+		echo '<option value="">Select Subcategory</option>';	
+	}
+	
 	exit;	
 		
 	}
