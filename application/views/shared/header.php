@@ -325,7 +325,7 @@
 <script type="text/javascript">
 	
 function searchfunction(val){
-	
+	$('#addingdropdown').hide();
 	$('#addingdropdown').empty();
 	var length=val.length;
 	if(length >2){
