@@ -74,7 +74,7 @@
                       <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                       <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
-					<div class="" id="addingdropdown" style="position:absolute; top:75px;background-color:#fff;color:#000;padding:5px 15px;width:775px;"></div>
+					<div class="search_fun" id="addingdropdown"></div>
 					
                   </div>
                 </form>
