@@ -18,7 +18,11 @@ class Customer extends Front_Controller
 	 
 	 if($this->session->userdata('userdetails'))
 	 {
-		echo "account edit";exit;
+		$customerdetails=$this->session->userdata('userdetails');
+		$data['profile_details']= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+
+		$this->template->write_view('content', 'customer/profile', $data);
+		$this->template->render();
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('customer');
