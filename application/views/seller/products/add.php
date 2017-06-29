@@ -54,8 +54,7 @@
                   <label for="exampleInputEmail1">Select Category</label>
 				  <?php //echo '<pre>';print_r($sub_cat_data);exit;?>
                  <select class="form-control " id="category_id" name="category_id">
-                    <option value="">Select Category</option>
-					
+                    <option value="">Select Category</option>					
 					 <?php foreach($sub_cat_data as $single_cat_data){ ?>
 					
                     <option value="<?php echo $single_cat_data['category_id']; ?>"><?php echo $single_cat_data['category_name']; ?></option>
@@ -69,10 +68,10 @@
                 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputPassword1">Select Subcategory</label>
                   <select class="form-control" id="subcategory_id" name="subcategory_id">
-                    <!-- <option value="">Select Subcategory</option> -->
+                     <!-- <option>Select Subcategory</option> 
 					<?php foreach($subcatdata as $subcat_data){ ?>
-                    <option value="<?php echo $subcat_data->subcategory_id; ?>"><?php echo $subcat_data->subcategory_name; ?></option>
-                    <?php } ?>
+                    <!-- <option value="<?php echo $subcat_data->subcategory_id; ?>"><?php echo $subcat_data->subcategory_name; ?></option> -->
+                    <?php } ?> -->
                   </select>
                 </div>
 				<div class="form-group nopaddingRight col-md-6 san-lg">
