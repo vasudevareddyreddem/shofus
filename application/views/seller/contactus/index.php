@@ -102,7 +102,7 @@
            </section>
            </div>
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
-    <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+   
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {

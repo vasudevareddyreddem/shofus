@@ -65,7 +65,7 @@
             <li><a href="#about_sc">ABOUT US</a></li>
        <li><a href="#faq_sc">FAQ's</a></li>
         <li><a href="#contact_sc">CONTACT US</a></li>
-		 <li><a id="sign_log" data-toggle="modal" data-target="#myModa2">SIGN UP / LOGIN</a></li>
+		 <li class="point_h"><a id="sign_log" data-toggle="modal" data-target="#myModa2">SIGN UP / LOGIN</a></li>
          
      
         </ul>

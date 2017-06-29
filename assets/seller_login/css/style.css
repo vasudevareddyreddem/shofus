@@ -2403,4 +2403,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
     cursor: pointer;
 	bottom:0px;
  }
+ .point_h {
+	 cursor:pointer;
+ }
  /* contact us btn end */
