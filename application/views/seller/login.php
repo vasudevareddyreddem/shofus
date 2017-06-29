@@ -502,8 +502,9 @@
              
        <div class="form-group" id="sellingfee" >
                 <h4>your Product Selling Price :</h4>
-                <input type="text" class="form-control san_label" id="product_price" name="product_price" placeholder="your Product Selling Price ">
+                <input type="number" min="0" class="form-control san_label" id="product_price" name="product_price" placeholder="your Product Selling Price ">
 				<div class="clearfix"></div>
+        <span id="prdErr"></span>
 				<div class="mar_t10">
                 <button type="submit" class="click" id="calfee_submit">Calculate</button>
 				</div>
@@ -518,7 +519,7 @@
         <div class="form-group" id="demoki" style="display:none">
         <h3>Calculate My Profit :</h3>
                   <h5>Enter your product Price :</h5>
-                  <input type="text" class="form-control san_label" id="actual_price" name="actual_price" placeholder="Enter your product Price">
+                  <input type="number" min="0" class="form-control san_label" id="actual_price" name="actual_price" placeholder="Enter your product Price">
                   <button type="submit" class="click" id="profit_submit">Calculate</button>
 				  <span id="TermsErr15"></span>
                 </div>
@@ -1376,8 +1377,10 @@ $("#cihfee1").html(data);
     //if ($('#chkterms2').is(':checked')) {
    var cih1_id =  $("#cih1_id").val();
      var product_price = $("#product_price").val();
-     var product_price_reg= /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
-     //alert(product_price_reg);
+     var re = /^[+]?([0-9]+)$/;
+    var text = $("#product_price").val();
+  var isValid = (text.match(re) == null);
+  //alert(isValid);
    var cih_fee1 = $("#cih_fee1").val();
      //var subcatname = $("#subcatname").val();
    //alert(cih1_id);
@@ -1392,9 +1395,15 @@ $("#cihfee1").html(data);
     else{
       $("#CatErr").html("");
     }
-  
-  
-  if (!product_price_reg)
+  if (product_price == "")
+    {
+    $("#prdErr").html("Please Enter your Product Selling Price").css("color", "#006a99").fadeIn().fadeOut(5000);
+    return false;
+    }
+    else{
+      $("#prdErr").html("");
+    }
+  if (isValid)
     {
     $("#TermsErr").html("Please Enter Price only +ve Numbers").css("color", "#006a99").fadeIn().fadeOut(5000);
     return false;
@@ -1423,6 +1432,19 @@ $("#cihfee1").html(data);
   
 
 </script>
+<!-- <script type="text/javascript">
+  
+  $(function(){
+
+  $('#product_price').keypress(function(e) {
+  if(isNaN(this.value+""+String.fromCharCode(e.charCode))) return false;
+  })
+  .on("cut copy paste",function(e){
+  e.preventDefault();
+  });
+
+});
+</script> -->
 
 
 
@@ -1434,7 +1456,10 @@ $("#cihfee1").html(data);
     e.preventDefault();
     //if ($('#chkterms2').is(':checked')) {  
     var youmake = $("#you_make").val();
-    //alert(youmake);
+    var re = /^[+]?([0-9]+)$/;
+    var text = $("#actual_price").val();
+  var isValid = (text.match(re) == null);
+    //alert(isValid);
   
   var actual_price = $("#actual_price").val();
    
@@ -1443,6 +1468,14 @@ $("#cihfee1").html(data);
   if (actual_price == "")
     {
     $("#TermsErr15").html("Please Enter Product Price").css("color", "#006a99").fadeIn().fadeOut(5000);
+    return false;
+    }
+    else{
+      $("#TermsErr15").html("");
+    }
+    if (product_price == "")
+    {
+    $("#TermsErr15").html("Please Enter your Product Selling Price").css("color", "#006a99").fadeIn().fadeOut(5000);
     return false;
     }
     else{

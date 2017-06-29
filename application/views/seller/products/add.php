@@ -78,20 +78,20 @@
 				<div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputPassword1">Select subitem</label>
                   <select class="form-control" id="subitem_id" name="subitem_id">
-                    <option value="">Select Subitem</option>
-          
+                    <option value="">Select Subitem</option>          
                   </select>
                 </div>
 				
-                <div class="form-group nopaddingRight col-md-6 san-lg">
+                 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Select Item</label>
-                 <select class="form-control chosen-select" id="item_name" name="item_name" >
-                    <option value="Select Item"></option>					
+                 <select class="form-control chosen-select" id="item_name" name="item_name" required="required">
+                    <option value=""></option>					
 					 <?php foreach($items as $item){ ?>				
                     <option value="<?php echo $item['item_name']; ?>"><?php echo $item['item_name']; ?></option>                   
 					 <?php }?>
                   </select>				 
-                </div>
+                </div> 
+                
 
            <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Item Code</label>
@@ -276,10 +276,10 @@ $(document).ready(function() {
 					notEmpty: {
 						message: 'Item Name is required'
 					},
-                   regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: ' Item Name can only consist of alphanumaric, space and dot'
-					}
+     //               regexp: {
+					// regexp: /^[a-zA-Z0-9. ]+$/,
+					// message: ' Item Name can only consist of alphanumaric, space and dot'
+					// }
                 }
             },
 			item_code: {

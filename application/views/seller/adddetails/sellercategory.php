@@ -127,13 +127,13 @@ $(document).ready(function(){
       </div>
     </div>
 </div>
-<footer class="foot_add_d " style="position:fixed;bottom:0">
+<footer class="foot_add_d " style="margin-top: 8%">
     <div class="container">
       <div class="row">
                 <strong>Copyright &copy; 2017 Cartinhour.</strong> All rights reserved.
       </div>
     </div>
-  </footer>
+  </footer> 
 </html>
 
    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
