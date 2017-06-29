@@ -59,12 +59,12 @@
             <button type="submit" name="search" id="search-btn" class="btn"><i class="fa fa-search"></i></button>
           </span>
         </div>
-      </form>  
-      
+      </form>        
       <h1>Dashboard</h1>
       <small>&nbsp;</small>
       <ol class="breadcrumb hidden-xs">
-        <li><a href="<?php echo base_url('seller/dashboard');?>"><i class="pe-7s-home"></i> Dashboard</a></li>
+        <li><a href="<?php echo base_url('seller/dashboard');?>"><i class="pe-7s-home"></i> Home</a></li>
+        <li><i class="pe-7s-home"></i>Change Profile Pic</a></li>
         
       </ol>
     </div>
@@ -82,8 +82,7 @@
 <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
  <script type="text/javascript">
 $(document).ready(function() {
-    $('#profile_pic').bootstrapValidator({
-       
+    $('#profile_pic').bootstrapValidator({       
         fields: {
         picture: {
         validators: {
