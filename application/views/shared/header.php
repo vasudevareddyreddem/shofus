@@ -74,7 +74,7 @@
                       <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                       <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
-					<div class="search_fun" id="addingdropdown"></div>
+					<div style="display:none;" class="search_fun" id="addingdropdown"></div>
 					
                   </div>
                 </form>
@@ -325,11 +325,11 @@
 <script type="text/javascript">
 	
 function searchfunction(val){
+	$('#addingdropdown').hide();
 	$('#addingdropdown').empty();
 	var length=val.length;
 	if(length >2){
 	
-		
 		jQuery.ajax({
 			url: "<?php echo site_url('home/search_functionality');?>",
 			type: 'post',
@@ -339,6 +339,7 @@ function searchfunction(val){
 				},
 			dataType: 'html',
 			success: function (data) {
+			$('#addingdropdown').show();
 			$("#addingdropdown").append(data);	
 
 
