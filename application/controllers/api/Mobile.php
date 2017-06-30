@@ -101,7 +101,22 @@ class Mobile extends REST_Controller {
 	/*mobile otp verification*/
 	public function  otp_verification_post()
 	{	
-		echo "helloo";exit;
+			$otp_verifing=$this->mobile_model->get_seller_details($this->input->get('seller_id'));
+			//echo '<pre>';print_r($otp_verifing);exit;
+			
+			if($otp_verifing['mobile_verification']== $this->input->get('otp'))
+			{
+					$verify=$this->mobile_model->verifing_mobile($this->input->get('seller_id'),1);
+					if(count($verify)>0){
+						
+						$message = array('status'=>1,'seller_id'=>$otp_verifing['seller_id'],'message'=>'Your mobile number is verified!');
+						$this->response($message, REST_Controller::HTTP_OK);
+					}
+			}else{
+				$message = array('status'=>0,'message'=>'Invalid mobile verification code. Please try again.');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+
 	}
 	
 

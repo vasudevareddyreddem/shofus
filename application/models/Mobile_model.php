@@ -13,6 +13,17 @@ class Mobile_model extends MY_Model
 		$this->db->insert('sellers', $data);
 	 return $insert_id = $this->db->insert_id();
 	}
+	public function get_seller_details($sid){
+		
+		$this->db->select('*')->from('sellers');
+		$this->db->where('seller_id',$sid);
+		return $this->db->get()->row_array();
+	}
+	public function verifing_mobile($sid,$otp){
+		
+		$sql1="UPDATE sellers SET verifiation_yes ='".$otp."' WHERE seller_id = '".$sid."'";
+       	return $this->db->query($sql1);
+	}
 	public function seller_mobile_check($mobile){
 		 $sql = "SELECT seller_mobile FROM sellers WHERE seller_mobile ='".$mobile."'";
         return $this->db->query($sql)->row_array();
