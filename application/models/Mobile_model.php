@@ -9,6 +9,10 @@ class Mobile_model extends MY_Model
 	parent::__construct();
 
 	}
+	public function get_location_list(){
+		$this->db->select('*')->from('locations');
+		return $this->db->get()->result_array();
+	}
 	public function seller_register($data){
 		$this->db->insert('sellers', $data);
 	 return $insert_id = $this->db->insert_id();
@@ -26,6 +30,20 @@ class Mobile_model extends MY_Model
 	public function seller_id_nsert($data){
 		$this->db->insert('seller_store_details', $data);
 		return $insert_id = $this->db->insert_id();
+	}
+	public function save_store_details($sid,$data){
+		$this->db->where('seller_id',$sid);
+		return $this->db->update('seller_store_details', $data);
+	}
+	public function save_personal_details($sid,$data){
+		$this->db->where('seller_id',$sid);
+		return $this->db->update('sellers', $data);
+	}
+	function get_upload_file($seller_id)
+	{
+	$this->db->select('*')->from('seller_store_details');
+	$this->db->where('seller_id',$seller_id);
+	return $this->db->get()->row_array();
 	}
 	function get_old_seller_categories($seller_id)
 	{
@@ -106,12 +124,7 @@ class Mobile_model extends MY_Model
 
 
 //store details 
-	function get_upload_file($id)
-	{
-		$this->db->select('*')->from('seller_store_details');
-		$this->db->where('seller_id',$id);
-		return $this->db->get()->row_array();
-	}
+	
 	function seller_store_details($id,$data){
 		
 		
