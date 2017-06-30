@@ -39,11 +39,10 @@ class Mobile_model extends MY_Model
 	 	$sql = "SELECT * FROM sellers WHERE (seller_email ='".$username."' AND seller_password ='".$password."') OR (seller_mobile ='".$username."' AND seller_password ='".$password."')";
 	 		return $this->db->query($sql)->row_array();
 	}
-	public function get_seller_category()
+	public function get_category_list()
 	{
-		
-		$query=$this->db->get('category');
-		return $query->result();	
+		$this->db->select('*')->from('category');
+		return $this->db->get()->result_array();	
 	}
 	public function get_seller_subcategory()
 	{

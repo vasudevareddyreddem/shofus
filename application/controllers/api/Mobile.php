@@ -118,6 +118,7 @@ class Mobile extends REST_Controller {
 			}
 
 	}
+	/* login purpose*/
 	public function  seller_login_post()
 	{
 		
@@ -130,6 +131,22 @@ class Mobile extends REST_Controller {
 			
 		}else{
 			$message = array('status'=>0,'message'=>'Invalid Mobile number / Email Id or Password.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+		
+	}
+	/*get category list*/
+	public function  get_category_list_get()
+	{
+		
+		$category=$this->mobile_model->get_category_list();
+		//echo '<pre>';print_r($category);exit;
+		if(count($category)>0){
+			$message = array('status'=>1,'category_list'=>$category,'message'=>'category list are found.');
+			$this->response($message, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'category list are not found.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 		
