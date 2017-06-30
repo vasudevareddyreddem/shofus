@@ -23,6 +23,10 @@ class Mobile_model extends MY_Model
 		$this->db->insert('seller_categories', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	public function seller_id_nsert($data){
+		$this->db->insert('seller_store_details', $data);
+		return $insert_id = $this->db->insert_id();
+	}
 	function get_old_seller_categories($seller_id)
 	{
 	$this->db->select('*')->from('seller_categories');

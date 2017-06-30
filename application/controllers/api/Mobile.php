@@ -89,6 +89,8 @@ class Mobile extends REST_Controller {
 				$savedetails=$this->mobile_model->seller_register($details);
 				
 				if(count($savedetails)>0){
+					$data=array('seller_id'=>$savedetails);
+					$this->mobile_model->seller_id_nsert($data);
 					$message = array('status'=>1,'seller_id'=>$savedetails,'message'=>'verification Code send to your Mobile number');
 						$this->response($message, REST_Controller::HTTP_OK);
 				}
@@ -188,7 +190,23 @@ class Mobile extends REST_Controller {
 		
 	}
 	
-
+	public function save_store_details_post()
+	{
+		
+		$data = array(
+			'store_name' => $this->input->get('businessname'),
+			'addrees1'=> $this->input->get('address1'),
+			'addrees2'=>$this->input->get('address2'),
+			'area'=>$this->input->get('area'),
+			'pin_code'=>$this->input->get('pincode'),
+			'gstin'=>$this->input->get('gstin'),
+			'category_name'=>$this->input->get('gstinimage'),
+			'other_shops'=>$this->input->get('othershops'),
+			'created_at'=> date('Y-m-d h:i:s'),
+			);
+			echo '<pre>';print_r($data);
+		echo "hello";exit;
+	}
 		
 
 
