@@ -35,8 +35,8 @@ class Mobile_model extends MY_Model
 		
 	 }
 
-	public function seller_login($username, $password) {
-	 	$sql = "SELECT seller_id,seller_name,seller_rand_id FROM sellers WHERE (seller_email ='".$username."' AND seller_password ='".$password."') OR (seller_mobile ='".$username."' AND seller_password ='".$password."')";
+	public function seller_login_check($username, $password) {
+	 	$sql = "SELECT * FROM sellers WHERE (seller_email ='".$username."' AND seller_password ='".$password."') OR (seller_mobile ='".$username."' AND seller_password ='".$password."')";
 	 		return $this->db->query($sql)->row_array();
 	}
 	public function get_seller_category()

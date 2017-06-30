@@ -118,6 +118,22 @@ class Mobile extends REST_Controller {
 			}
 
 	}
+	public function  seller_login_post()
+	{
+		
+		$username=$this->input->get('username');
+		$password=$this->input->get('password');
+		$login=$this->mobile_model->seller_login_check($username,md5($password));
+		if(count($login)>0){
+			$message = array('status'=>1,'seller_id'=>$login['seller_id'],'message'=>'Successfully login to your Account');
+			$this->response($message, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Invalid Mobile number / Email Id or Password.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+		
+	}
 	
 
 		
