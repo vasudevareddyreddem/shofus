@@ -151,6 +151,42 @@ class Mobile extends REST_Controller {
 		}
 		
 	}
+	/* save category List*/
+	public function  get_categorylist_save_post()
+	{
+		
+		
+		$categories=array_unique($this->input->get('seller_category_id[]'));
+		$seller_id=$this->input->get('seller_id');
+		$catresult=$this->mobile_model->get_old_seller_categories($this->input->get('seller_id'));
+			foreach($catresult as $delcats){
+				
+				$this->mobile_model->delet_get_old_seller_categories($delcats['seller_cat_id']);
+			}
+		foreach($categories as $lists){
+			$catname=$this->mobile_model->get_categories_name($lists);
+			
+		$data = array(
+			'seller_id' => $this->input->get('seller_id'),
+			'seller_category_id'=> $lists,
+			'category_name'=> $catname['category_name'],
+			'created_at'=> date('Y-m-d h:i:s'),
+			'updated_at'=>  date('Y-m-d h:i:s'),
+			);	
+		
+		if($lists!=''){
+			$save_category=$this->mobile_model->insert_seller_cat($data);
+		}
+		//echo '<pre>';print_r($data);
+		}
+		if(count($save_category)>0){
+			
+			$message = array('status'=>1,'seller_id'=>$seller_id,'message'=>'category list are successfully saved.');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
+		
+		
+	}
 	
 
 		

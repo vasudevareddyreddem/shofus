@@ -19,6 +19,28 @@ class Mobile_model extends MY_Model
 		$this->db->where('seller_id',$sid);
 		return $this->db->get()->row_array();
 	}
+	public function insert_seller_cat($data){
+		$this->db->insert('seller_categories', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	function get_old_seller_categories($seller_id)
+	{
+	$this->db->select('*')->from('seller_categories');
+	$this->db->where('seller_id',$seller_id);
+	return $this->db->get()->result_array();
+	}
+	function delet_get_old_seller_categories($catid)
+	{
+		$sql1="DELETE FROM seller_categories WHERE seller_cat_id = '".$catid."'";
+		return $this->db->query($sql1);
+	}
+	
+	function get_categories_name($cat_id)
+	{
+	$this->db->select('category.category_name')->from('category');
+	$this->db->where('category_id',$cat_id);
+	return $this->db->get()->row_array();
+	}
 	public function verifing_mobile($sid,$otp){
 		
 		$sql1="UPDATE sellers SET verifiation_yes ='".$otp."' WHERE seller_id = '".$sid."'";
@@ -76,12 +98,7 @@ class Mobile_model extends MY_Model
 
 	}
 
-	function get_categories_name($cat_id)
-{
-	$this->db->select('category.category_name')->from('category');
-	$this->db->where('category_id',$cat_id);
-	return $this->db->get()->row_array();
-}
+	
 
 
 //store details 
