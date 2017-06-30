@@ -54,16 +54,16 @@
                    <form id="chanagepassword" name="chanagepassword" method="post" action="<?php echo base_url('customer/changepasswordpost');?>" class="form-horizontal" role="form">
                         <div class=" form-group">
                             <label class="control-label">Old Password</label>
-                            <input type="text" class="form-control" id="oldpassword" name="oldpassword">
+                            <input type="password" class="form-control" id="oldpassword" name="oldpassword">
                         </div>
 						<div class=" form-group">
                             <label class="control-label">New Password</label>
-                            <input type="text" class="form-control" id="newpassword" name="newpassword">
+                            <input type="password" class="form-control" id="newpassword" name="newpassword">
                         </div>
 
                         <div  class=" form-group">
                            <label class="control-label">Confirm Password</label>
-                            <input id="password" type="password" class="form-control" id="confirmpassword" name="confirmpassword" >
+                            <input  type="password" class="form-control" id="confirmpassword" name="confirmpassword" >
                         </div>
 
 

@@ -8,14 +8,28 @@ class Customer_model extends MY_Model
 	}
 	
 	
-	public function get_profile_details($email){
+	public function get_profile_details($custid){
+		$this->db->select('customers.*,locations.location_name')->from('customers');
+		$this->db->join('locations', 'locations.location_id = customers.area', 'left');
+		$this->db->where('customers.customer_id',$custid);
+		return $this->db->get()->row_array();
+	}
+	public function update_deails($custid,$data){
+		$this->db->where('customer_id', $custid);
+		return $this->db->update('customers', $data);
+	}
+	public function get_customer_details($custid){
 		$this->db->select('*')->from('customers');
-		$this->db->where('customer_id',$order_id);
+		$this->db->where('customer_id',$custid);
 		return $this->db->get()->row_array();
 	}
 	public function email_check($email){
 		$sql="SELECT * FROM customers WHERE cust_email ='".$email."'";
         return $this->db->query($sql)->row_array(); 
+	}
+	public function update_sear_area($custid,$areaid){
+		$sql1="UPDATE customers SET area ='".$areaid."' WHERE customer_id = '".$custid."'";
+       	return $this->db->query($sql1);
 	}
 	public function set_password($custid,$pass){
 		$sql1="UPDATE customers SET cust_password ='".$pass."' WHERE customer_id = '".$custid."'";

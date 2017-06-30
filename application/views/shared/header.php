@@ -97,6 +97,7 @@
 								<li class="font_list"><a href="<?php echo base_url('customer/cart');?>">  <span >My Cart</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/wishlist');?>">  <span >My Wishlist</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/changepassword');?>">  <span >Change Password</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/logout');?>">  <span >Logout</span> </a></li>
 							</ul>
 			</div>
 		  <?php }else{ ?>
@@ -110,9 +111,11 @@
 			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">
 			<?php if(count($cartitemcount)>0){ ?>
 				<?php echo count($cartitemcount); ?>
+				</sup>
 				<div class="sprinkle"></div>
 			<?php } ?>
-			</sup></span>
+			
+			</span>
 			<?php } else{ ?>
 			<span class="medias"><a href="<?php echo base_url('customer');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup"></sup></span>
 			<?php } ?>
