@@ -41,14 +41,14 @@ class Mobile extends REST_Controller {
 	public function  seller_register_post()
 	{
 			$this->input->post();
-			$mobile_number=$this->input->get('seller_mobile_number');
+			$mobile_number=$this->input->get('seller_mobile');
 			$email=$this->input->get('seller_email');
 			$mobile_check=$this->mobile_model->seller_mobile_check($mobile_number,$email);
 			//print_r($mobile_check);exit;
 			//$email_check =$this->mobile_model->seller_email_check($email); 
 			if($mobile_check==0){
-				$six_digit_random_number = mt_rand(100000, 999999);
-				$seller = 'SEL';
+				//$six_digit_random_number = mt_rand(100000, 999999);
+				//$seller = 'SEL';
 				$seller_rand_id = mt_rand(100000, 999999);
 
 				$user_id="cartin"; 
@@ -60,12 +60,12 @@ class Mobile extends REST_Controller {
        	$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
 			$ret = file($url);
 					$data = array(
-					'seller_rand_id' => $seller.''.$seller_rand_id,
-					'seller_password' => md5($six_digit_random_number),
-					'seller_mobile' => $this->input->get('seller_mobile_number'),
+					'seller_rand_id' => $seller.''.$seller_rand_id,					
 					'seller_name' => $this->input->get('seller_name'),
-					'seller_email' => $this->input->get('seller_email'),
-					'seller_address' => $this->input->get('seller_address'),
+					'seller_email' => $this->input->get('seller_email'),					
+					'seller_mobile' => $this->input->get('seller_mobile'),
+					'seller_password' => md5($this->input->get('seller_password')),
+					//'seller_address' => $this->input->get('seller_address'),
 					'created_at'  => date('Y-m-d H:i:s'),
 					'updated_at'  => date('Y-m-d H:i:s')
 					);
@@ -105,7 +105,6 @@ class Mobile extends REST_Controller {
 		public function seller_login_post()
 		{
 				
-<<<<<<< HEAD
         
             $username   = $this->input->get('username');
             $password = md5($this->input->get('password'));           
@@ -115,7 +114,7 @@ class Mobile extends REST_Controller {
              if(count($result)>0)
             {
 				$result['status']=1;
-=======
+
         	//$this->input->post();
             $seller_username   = $this->input->get('username');
             $seller_password = md5($this->input->get('password'));
@@ -126,7 +125,6 @@ class Mobile extends REST_Controller {
              if(count($result)>0)
             {
 				$result['status']=1; 
->>>>>>> b7300afacee3961cf12f5f159468193e3d9b4398
 				$this->response($result, REST_Controller::HTTP_OK);
 			}	
 			else
@@ -135,7 +133,7 @@ class Mobile extends REST_Controller {
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 		}
-
+		}
 		//seller_basic_details
 			
 
