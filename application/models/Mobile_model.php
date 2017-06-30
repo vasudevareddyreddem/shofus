@@ -13,8 +13,19 @@ class Mobile_model extends MY_Model
 		$this->db->insert('sellers', $data);
 	 return $insert_id = $this->db->insert_id();
 	}
+	public function get_seller_details($sid){
+		
+		$this->db->select('*')->from('sellers');
+		$this->db->where('seller_id',$sid);
+		return $this->db->get()->row_array();
+	}
+	public function verifing_mobile($sid,$otp){
+		
+		$sql1="UPDATE sellers SET verifiation_yes ='".$otp."' WHERE seller_id = '".$sid."'";
+       	return $this->db->query($sql1);
+	}
 	public function seller_mobile_check($mobile){
-		 $sql = "SELECT * FROM sellers WHERE seller_mobile ='".$mobile."'";
+		 $sql = "SELECT seller_mobile FROM sellers WHERE seller_mobile ='".$mobile."'";
         return $this->db->query($sql)->row_array();
 		
 	}
@@ -24,15 +35,14 @@ class Mobile_model extends MY_Model
 		
 	 }
 
-	public function seller_login($username, $password) {
-	 	$sql = "SELECT seller_id,seller_name,seller_rand_id FROM sellers WHERE (seller_email ='".$username."' AND seller_password ='".$password."') OR (seller_mobile ='".$username."' AND seller_password ='".$password."')";
+	public function seller_login_check($username, $password) {
+	 	$sql = "SELECT * FROM sellers WHERE (seller_email ='".$username."' AND seller_password ='".$password."') OR (seller_mobile ='".$username."' AND seller_password ='".$password."')";
 	 		return $this->db->query($sql)->row_array();
 	}
-	public function get_seller_category()
+	public function get_category_list()
 	{
-		
-		$query=$this->db->get('category');
-		return $query->result();	
+		$this->db->select('*')->from('category');
+		return $this->db->get()->result_array();	
 	}
 	public function get_seller_subcategory()
 	{
