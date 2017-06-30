@@ -14,7 +14,7 @@ class Mobile_model extends MY_Model
 	 return $insert_id = $this->db->insert_id();
 	}
 	public function seller_mobile_check($mobile){
-		 $sql = "SELECT * FROM sellers WHERE seller_mobile ='".$mobile."'";
+		 $sql = "SELECT seller_mobile FROM sellers WHERE seller_mobile ='".$mobile."'";
         return $this->db->query($sql)->row_array();
 		
 	}
