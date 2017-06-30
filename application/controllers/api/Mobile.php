@@ -40,7 +40,7 @@ class Mobile extends REST_Controller {
 
 	public function  seller_register_post()
 	{
-			$this->input->post();
+
 			$mobile=$this->input->get('mobile');
 			$email=$this->input->get('email');
 			
@@ -67,6 +67,139 @@ class Mobile extends REST_Controller {
 				$seller = 'SEL';
 				$seller_rand_id = mt_rand(100000, 999999);
 				$user_id="cartin"; 
+        		$pwd="9494422779";    
+        		$sender_id = "CARTIN";          
+        		$mobile_num = $mobile_number;  
+        		$message = "Your Temporary Password is : " .$six_digit_random_number;               
+        // Sending with PHP CURL
+       	$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
+			$ret = file($url);
+					$data = array(
+					'seller_rand_id' => $seller.''.$seller_rand_id,					
+					'seller_name' => $this->input->get('seller_name'),
+					'seller_email' => $this->input->get('seller_email'),					
+					'seller_mobile' => $this->input->get('seller_mobile'),
+					'seller_password' => md5($this->input->get('seller_password')),
+					//'seller_address' => $this->input->get('seller_address'),
+					'created_at'  => date('Y-m-d H:i:s'),
+					'updated_at'  => date('Y-m-d H:i:s')
+					);
+					$createseller=$this->mobile_model->seller_register($data);
+					if(count($createseller)>0){
+						// $message = array
+						// (
+						// 	'status'=>1,
+						// 	'seller_id'=>$createseller,
+						// 	'seller_details' =>$data,
+						// 	'message'=>'Seller Successfully Created!'
+						// );
+						$data['status']=1;
+						$this->response($data, REST_Controller::HTTP_OK);
+					}
+				
+			 }
+			 //elseif(){
+			// 	$message = array
+			// 	(
+			// 		'status'=>0,
+			// 		'message'=>'Already Email registered.'
+			// 		);
+			// 	$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			// }
+			else{
+				$message = array
+				(
+					'status'=>0,
+					'message'=>'Already mobile Number And Email registered.'
+					);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			}
+
+		//seller_login
+		public function seller_login_post()
+		{
+				
+        
+            $username   = $this->input->get('username');
+            $password = md5($this->input->get('password'));           
+			
+            $result   = $this->mobile_model->seller_login($username, $password);
+			
+             if(count($result)>0)
+            {
+				$result['status']=1;
+
+        	//$this->input->post();
+            $seller_username   = $this->input->get('username');
+            $seller_password = md5($this->input->get('password'));
+            //print_r($seller_password);exit;
+
+            $result   = $this->mobile_model->seller_login($seller_username, $seller_password);
+                       
+             if(count($result)>0)
+            {
+				$result['status']=1; 
+				$this->response($result, REST_Controller::HTTP_OK);
+			}	
+			else
+			{
+				$message = array('status'=>0,'message'=>'Login Faild.');				
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+		}
+		}
+		//seller_basic_details
+			
+
+		//seller_categories
+		public function seller_categories_post()
+		{
+			$id = $this->get('seller_id'); 
+			$seller_cat_id =explode(',',$this->input->get('seller_cat_id'));
+			//$adresses = implode(',' , $seller_cat_id->result());
+			//echo '<pre>';print_r($seller_cat_id);exit;
+			$seller_cat_names =explode(',',$this->input->get('seller_cat_name'));
+			//echo '<pre>';print_r($seller_cat_names);exit;
+
+			foreach($seller_cat_id as $adr)
+			{
+				$adresses = $adr['0'];
+			}
+			//print_r($adresses);exit;
+			$seller_category = array(
+			'seller_id' => $id,
+			'seller_category_id'=> $adresses,
+			'category_name'=> $seller_cat_names,
+			'created_at'=> date('Y-m-d h:i:s'),
+			'updated_at'=>  date('Y-m-d h:i:s'),
+			);
+			$seller_cats=$this->mobile_model->insertseller_cat($id,$seller_category);
+			if(count($seller_cats)>0)
+			{
+			$message = array
+				(
+					'status'=>1,
+					'seller_category'=>$seller_category,							
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+			else
+			{
+				$message = array
+				(
+					'status'=>0,
+					'message'=>'Faild'
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+
+
+
+		}
+
+		//store_details
+=======
 				$pwd="9494422779";    
 				$sender_id = "CARTIN";          
 				$mobile_num = $mobile;  
@@ -95,6 +228,7 @@ class Mobile extends REST_Controller {
 						
 
 			}
+>>>>>>> f36cd99b91d2f7ce2c49ac89434f55e73562fa75
 		
 	}
 	
