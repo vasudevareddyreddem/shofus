@@ -89,6 +89,8 @@ class Mobile extends REST_Controller {
 				$savedetails=$this->mobile_model->seller_register($details);
 				
 				if(count($savedetails)>0){
+					$data=array('seller_id'=>$savedetails);
+					$this->mobile_model->seller_id_nsert($data);
 					$message = array('status'=>1,'seller_id'=>$savedetails,'message'=>'verification Code send to your Mobile number');
 						$this->response($message, REST_Controller::HTTP_OK);
 				}
@@ -151,8 +153,112 @@ class Mobile extends REST_Controller {
 		}
 		
 	}
-	
+	/* save category List*/
+	public function  get_categorylist_save_post()
+	{
+		
+		
+		$categories=array_unique($this->input->get('seller_category_id[]'));
+		$seller_id=$this->input->get('seller_id');
+		$catresult=$this->mobile_model->get_old_seller_categories($this->input->get('seller_id'));
+			foreach($catresult as $delcats){
+				
+				$this->mobile_model->delet_get_old_seller_categories($delcats['seller_cat_id']);
+			}
+		foreach($categories as $lists){
+			$catname=$this->mobile_model->get_categories_name($lists);
+			
+		$data = array(
+			'seller_id' => $this->input->get('seller_id'),
+			'seller_category_id'=> $lists,
+			'category_name'=> $catname['category_name'],
+			'created_at'=> date('Y-m-d h:i:s'),
+			'updated_at'=>  date('Y-m-d h:i:s'),
+			);	
+		
+		if($lists!=''){
+			$save_category=$this->mobile_model->insert_seller_cat($data);
+		}
+		//echo '<pre>';print_r($data);
+		}
+		if(count($save_category)>0){
+			
+			$message = array('status'=>1,'seller_id'=>$seller_id,'message'=>'category list are successfully saved.');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
+		
+		
+	}
+	/* store details saving puepose*/
+	public function save_store_details_post()
+	{
+		
+		$seller_upload_file=$this->mobile_model->get_upload_file($this->input->get('seller_id'));
+		if($this->input->get('gstinimage')!=''){
+			$gstimg=base64_decode($this->input->get('gstinimage'));
+			move_uploaded_file($gstimg['tmp_name'], "assets/sellerfile/" . $gstimg);
 
+			}else{
+			$gstimg=$seller_upload_file['gstinimage'];
+			}
+			$data = array(
+			'store_name' => $this->input->get('businessname'),
+			'addrees1'=> $this->input->get('address1'),
+			'addrees2'=>$this->input->get('address2'),
+			'area'=>$this->input->get('area'),
+			'pin_code'=>$this->input->get('pincode'),
+			'gstin'=>$this->input->get('gstin'),
+			'gstinimage'=>$gstimg,
+			'other_shops'=>$this->input->get('othershops'),
+			'created_at'=> date('Y-m-d h:i:s'),
+			);
+			//echo '<pre>';print_r($data);exit;
+			$cate_store_details=$this->mobile_model->save_store_details($this->input->get('seller_id'),$data);
+			if(count($cate_store_details)>0){
+				$message = array('status'=>1,'seller_id'=>$this->input->get('seller_id'),'message'=>'Store details are successfully saved.');
+				$this->response($message, REST_Controller::HTTP_OK);
+			}else{
+				$message = array('status'=>0,'message'=>'some problem are in query');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+			}
+			
+	}
+	
+	/* get location list */
+	public function  get_location_list_get()
+	{
+		
+		$locations=$this->mobile_model->get_location_list();
+		//echo '<pre>';print_r($category);exit;
+		if(count($locations)>0){
+			$message = array('status'=>1,'category_list'=>$locations,'message'=>'location list are found.');
+			$this->response($message, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'location list are not found.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+		
+	}
+	public function save_personal_details_post()
+	{
+	
+		$details = array(
+			'seller_bank_account'=> $this->input->get('accountnumber'),
+			'seller_account_name'=> $this->input->get('accountname'),
+			'seller_aaccount_ifsc_code'=> $this->input->get('ifsccode'),
+			);	
+		$save_personal_details=$this->mobile_model->save_personal_details($this->input->get('seller_id'),$details);
+		
+		if(count($save_personal_details)>0){
+			
+			$message = array('status'=>1,'seller_id'=>$this->input->get('seller_id'),'message'=>'personal Details are saved.');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>0,'message'=>'some problem are in query.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
 		
 
 
