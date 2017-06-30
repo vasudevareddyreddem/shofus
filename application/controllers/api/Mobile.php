@@ -50,15 +50,15 @@ class Mobile extends REST_Controller {
 			//echo '<pre>';print_r($mobile_check);
 			
 			if((count($mobile_check)>0 ) && (count($email_check)>0 )) {
-				$message = array('status'=>FALSE,'key'=>1,'message'=>'Mobile number and  email already exits. Please use another Mobile number and  email id.');
+				$message = array('status'=>0,'message'=>'Mobile number and  email already exits. Please use another Mobile number and  email id.');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}else if(count($mobile_check)>0){
 				
-				$message = array('status'=>FALSE,'key'=>1,'message'=>'Mobile number already exits. Please use another Mobile number.');
+				$message = array('status'=>0,'message'=>'Mobile number already exits. Please use another Mobile number.');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}else if(count($email_check)>0){
 				
-				$message = array('status'=>FALSE,'key'=>1,'message'=>'Email Id already exits. Please use another Email Id.');
+				$message = array('status'=>0,'message'=>'Email Id already exits. Please use another Email Id.');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}else{
 				
@@ -89,7 +89,7 @@ class Mobile extends REST_Controller {
 				$savedetails=$this->mobile_model->seller_register($details);
 				
 				if(count($savedetails)>0){
-					$message = array('status'=>true,'key'=>1,'seller_id'=>$savedetails,'message'=>'verification Code send to your Mobile number');
+					$message = array('status'=>1,'seller_id'=>$savedetails,'message'=>'verification Code send to your Mobile number');
 						$this->response($message, REST_Controller::HTTP_OK);
 				}
 						
