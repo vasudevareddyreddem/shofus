@@ -72,7 +72,7 @@
 </section>
 
 <div class="clearfix"></div>
-<div style=" height:90vh;"></div>
+<div style=" height:43em;"></div>
 <section>
   <div class="container" >
   <div class=' animated bounceInLeft slower'   data-id='3'>
