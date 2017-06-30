@@ -464,7 +464,7 @@ function emailchecking(reasontype) {
 }
  function validationcheckings (){
 	 
-	 
+	 $("#forgot-response").html("");
 	  var radiovalue=$('input[name="unable_login"]:checked').val();
 	  //alert(radiovalue);
 	  if(radiovalue==1 || radiovalue==0){
