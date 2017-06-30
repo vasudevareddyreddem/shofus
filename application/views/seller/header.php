@@ -106,10 +106,14 @@
               <form method="post"  name="login_form" id="login_submit">
               <div id="login-response"></div>
                 <div id="EmptyforError"></div>
+			<div class="form-group">
               <label >Email Address / Mobile Number</label>
               <input  name="login_email" id="login_email" class="form-control" type="text" name="username" autofocus>
+			</div>
+			<div class="form-group">
               <label>Password</label>
               <input  id="login_password" name="login_password" class="form-control" type="password" name="password">
+			  </div>
 			  <div class="col-md-6 paddingRightZero">
 				<div class="pswrd ">
 					<a href="#" tabindex="5" class="forgot-password" class="btn btn-info " data-toggle="modal" data-target="#myModal1">Unable to Login?</a>

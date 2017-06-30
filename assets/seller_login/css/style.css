@@ -1791,7 +1791,7 @@ ul {
 	border:1px solid#ccc;
 	outline:none;
 	width:100%;
-	margin:8px 0;
+	/* margin:8px 0; */
 	
 }
 .sa-innate-form input[type=submit]{
