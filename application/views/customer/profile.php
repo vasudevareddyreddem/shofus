@@ -20,10 +20,11 @@
             </div>
             <div class="panel-body">
               <div class="row">
-			  <?php if($profile_details['cust_firstname']!=''){ ?>
+			  <?php 
+			  if($profile_details['cust_propic']!=''){ ?>
 			    <div class="col-md-3 col-lg-3 " align="center"> <img alt="<?php echo $profile_details['cust_propic']; ?>" src="<?php echo base_url('uploads/profile/'.$profile_details['cust_propic']); ?>" class="img-circle img-responsive"> </div>
 			  <?php }else{ ?>
-			         <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="<?php echo base_url('uploads/profile/default.jpg'); ?>" class="img-circle img-responsive"> </div>
+			         <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="<?php echo base_url(); ?>uploads/profile/default.jpg" class="img-circle img-responsive"> </div>
 			  <?php } ?>
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
