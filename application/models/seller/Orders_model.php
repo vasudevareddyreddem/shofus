@@ -142,7 +142,7 @@ FROM orders
 WHERE seller_id=$sid
 AND MONTH(created_at)=$month
 AND YEAR(created_at) =$year 
-GROUP BY EXTRACT(DAY FROM created_at)");
+GROUP BY EXTRACT(DAY FROM created_at) ");
 	
 //$this->db->where("MONTH(created_at)", $month);
 //$this->db->where("YEAR(created_at)", $year );

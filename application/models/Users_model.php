@@ -32,4 +32,13 @@ public function get_data($username, $password)
  return $query->row();
 
     }
+    public function insertcontact($data)
+{
+	
+	
+	$this->db->insert('contactus',$data);
+			//print_r($data); exit;
+
+		return true;	
+}
 }

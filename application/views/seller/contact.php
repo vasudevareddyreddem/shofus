@@ -5,7 +5,7 @@
       
     </div>
 			<div class=" col-md-6 ">	  
-				<form  class=""id="ajax-contact"  method="post" action="<?php echo base_url(); ?>seller/contact/details" role="form">
+				<form  class=""id="ajax-contact"  method="post" action="<?php echo base_url(); ?>seller/contact/login_contact" role="form">
 					<div class="messages" id="form-messages"></div>
 					<?php echo $this->session->flashdata('msg1'); ?>
 					<div class="controls">

@@ -92,6 +92,13 @@
       </div>
     </div>
 </div>
+<footer class="foot_add_d ">
+    <div class="container">
+      <div class="row">
+                <strong>Copyright &copy; 2017 Cartinhour.</strong> All rights reserved.
+      </div>
+    </div>
+  </footer>
 </html>
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
@@ -102,45 +109,52 @@ $(document).ready(function() {
     $('#personalidetails').bootstrapValidator({
        
         fields: {
-			bank_account: {
-              validators: {
-					notEmpty: {
-						message: 'Bank Account is required'
-					},
-                   regexp: {
-					regexp:  /^[0-9]{9,16}$/,
-					message:'Bank Account  must be 9 to 16 digits'
-					}
-                }
-            },
-            aadhaar_card: {
-               validators: {
-				notEmpty: {
-					message: 'Aadhar Number is required'
-				},
-				stringLength: {
-								min: 12,
-								message: 'Aadhar Number must be 12 digits'
-							},
-				regexp: {
-				regexp: /^[0-9]+$/,
-				message: ' Aadhar Number can only consist of digits'
-				}
-            
-			}
-            },
-			pan_card: {
-               validators: {
-				notEmpty: {
-					message: 'Pan Card Number is required'
-				},
-				regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: ' Pan Card Number can only consist of alphanumaric, space and dot'
-				}
-            
-			}
+			bank_account:
+          {
+            validators: 
+            {
+					    notEmpty: 
+              {
+						    message: 'Bank Account is required'
+					    },
+              regexp: 
+              {
+					     regexp:  /^[0-9]{9,16}$/,
+					     message:'Bank Account  must be 9 to 16 digits'
+					    }
             }
+          },
+          aadhaar_card:
+          {
+            validators: 
+            {
+              notEmpty: 
+              {
+                message: 'Aadhar Number is required'
+              },
+              regexp: 
+              {
+               regexp:  /^[0-9]{12}$/,
+               message:'Aadhar Number must be 12 digits'
+              }
+            }
+          },
+
+			pan_card: 
+      {
+        validators:
+        {
+				  notEmpty: 
+          {
+					 message: 'Pan Card Number is required'
+				  },
+				  regexp: 
+          {
+					 regexp: /^[a-zA-Z0-9. ]+$/,
+					 message: ' Pan Card Number can only consist of alphanumaric, space and dot'
+				  }     
+			  }
+      }
             
 		
         }

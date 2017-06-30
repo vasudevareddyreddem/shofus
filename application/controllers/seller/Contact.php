@@ -24,7 +24,7 @@ $this->load->view('seller/footer');
 
 
 
-  public function details(){
+  public function login_contact(){
     
       $data = array(
         'first_name' => $this->input->post('fname'),
@@ -46,7 +46,7 @@ $this->load->view('seller/footer');
 
         $this->session->set_flashdata('msg1','<div class="alert alert-success text-center" style="color: green;font-size:13px;">Thank You! Our team will contact you shortly..</div>');
 
-                  return redirect(base_url('seller/contact'));
+                  return redirect(base_url('seller/login'));
 
       }
       else{

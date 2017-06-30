@@ -75,35 +75,35 @@ $(function(){
 			<div class="tab-content">
 				<div class="tab-pane fade in active" id="tab1">
 					  <section class="panel">
-								<?php if($this->session->flashdata('updatemessage')): ?>
-								<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-								</button><?php echo $this->session->flashdata('updatemessage');?></div>
-								<?php endif; ?>
-                                                <div class="panel-body">
-                                                    <form  id="basicdetails" name="basicdetails" action="<?php echo base_url('seller/personnel_details/updatebd'); ?>" method="post" enctype="multipart/form-data">
-                                                        <div class="form-group nopaddingRight col-md-6 san-lg">
-                                                            <label for="exampleInputEmail1">Seller Name</label>
-                                                            <input class="form-control" placeholder="Name" type="text" id="seller_name" name="seller_name" value="<?php echo $seller_storedetails['seller_name'];   ?>">
-                                                        </div>
-                                                        <div class="form-group nopaddingRight col-md-6 san-lg">
-                                                            <label for="exampleInputEmail1">Seller Email</label>
-                                                            <input class="form-control" placeholder="Email" type="text" id="seller_email" name="seller_email" value="<?php echo $seller_storedetails['seller_email']   ?>">
-                                                        </div>
-                                                        <div class="form-group nopaddingRight col-md-6 san-lg">
-                                                            <label for="exampleInputEmail1">Seller Address</label>
-                                                            <input class="form-control" placeholder="Type of Category" type="text" id="seller_address" name="seller_address" value="<?php echo $seller_storedetails['seller_address'];   ?>">
-                                                        </div> <div class="clearfix"></div>
+						<?php if($this->session->flashdata('updatemessage')): ?>
+						<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button><?php echo $this->session->flashdata('updatemessage');?></div>
+						<?php endif; ?>
+            <div class="panel-body">
+			
+			<?php //echo '<pre>';print_r($seller_storedetails);exit; ?>
+    <form  id="basicdetails" name="basicdetails" action="<?php echo base_url('seller/personnel_details/updatebd'); ?>" method="post" enctype="multipart/form-data">
+			<div class="form-group nopaddingRight col-md-6 san-lg">
+			<label for="exampleInputEmail1">Seller Name</label>
+			<input class="form-control" placeholder="Name" type="text" id="seller_name" name="seller_name" value="<?php echo $seller_storedetails['seller_name'];   ?>">
+			</div>
+			<div class="form-group nopaddingRight col-md-6 san-lg">
+			<label for="exampleInputEmail1">Seller Email</label>
+			<input class="form-control" placeholder="Email" readonly="true" type="text" id="seller_email" name="seller_email" value="<?php echo $seller_storedetails['seller_email']   ?>">
+			</div>
+			
+			<div class="clearfix"></div>
 
-                                                        <div style="margin-top: 20px; margin-left: 15px;">
-                                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                                     
-                                                    </form> 
-													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/personnel_details'); ?>">Cancel</a>
-												</div>
-                                                </div>
-                                            </section>
-				</div>
+			<div style="margin-top: 20px; margin-left: 15px;">
+			<button type="submit" class="btn btn-primary">Submit</button>
+
+			</form> 
+			<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/dashboard'); ?>">Cancel</a>
+			</div>
+             </div>
+           </section>
+		</div>
 				<div class="tab-pane fade" id="tab2">
 					<section class="panel">
 						<?php if($this->session->flashdata('catupdatemessage')): ?>
@@ -136,7 +136,7 @@ $(function(){
 								<div>
 								<button type="submit" class="btn btn-primary">Submit</button>
 							</form> 
-							<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/personnel_details'); ?>">Cancel</a>
+							<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/dashboard'); ?>">Cancel</a>
 							</div>
 					</div>
 					</section>
@@ -238,7 +238,7 @@ $(function(){
                                                             <button type="submit" id="resubmit" class="btn btn-primary">Submit</button>
                                                      
                                                     </form>
-													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/personnel_details'); ?>">Cancel</a>
+													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/dashboard'); ?>">Cancel</a>
 
 														</div>
 														
@@ -274,7 +274,7 @@ $(function(){
                                                             <button type="submit" class="btn btn-primary">Submit</button>
                                                      
                                                     </form> 
-													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/personnel_details'); ?>">Cancel</a>
+													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/dashboard'); ?>">Cancel</a>
 												</div>
 												</div>
                                                 </div>
@@ -637,13 +637,14 @@ $(document).ready(function() {
 				notEmpty: {
 					message: 'Aadhar Number is required'
 				},
-				stringLength: {
-								min: 12,
-								message: 'Aadhar Number must be 12 digits'
-							},
+				
 				regexp: {
-				regexp: /^[0-9]+$/,
+				regexp: /^[0-9]{12}$/,
 				message: ' Aadhar Number can only consist of digits'
+				},
+				stringLength: {
+					min: 12,
+					message: 'Aadhar Number must be 12 digits'
 				}
             
 			}

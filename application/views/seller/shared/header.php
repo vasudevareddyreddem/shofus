@@ -87,7 +87,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="<?php echo base_url();?>seller/personnel_details"><i class="fa fa-users"></i> Update Profile</a></li>
                                     <li><a href="<?php echo base_url();?>seller/user_profile"><i class="fa fa-gear"></i> User Profile</a></li>
-                                    <li><a href="<?php echo base_url();?>seller/user_profile/profile_pic"><i class="fa fa-picture-o"></i> Change ProfilePic</a></li> 
+                                    <!-- <li><a href="<?php echo base_url();?>seller/user_profile/profile_pic"><i class="fa fa-picture-o"></i> Change ProfilePic</a></li> --> 
                                     <li><a href="<?php echo base_url() ; ?>seller/login/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
                                 </ul>
                             </li>

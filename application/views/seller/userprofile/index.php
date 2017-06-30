@@ -1,10 +1,32 @@
 <div class="content-wrapper mar_t_con" >
   <section class="content">
+  <?php if($this->session->flashdata('message')): ?>
+                <div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button><?php echo $this->session->flashdata('message');?></div>
+                <?php endif; ?>
                     <div class="row">
                         <div class="col-sm-12 col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-header-headshot"></div>
+                                    <div class="card-header-headshot">
+								
+										<a type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span style="position:absolute;position: absolute;top:92px;right:180px;
+											background: #207ba5; padding:5px; border-radius:50%;color:#fff;" class="glyphicon glyphicon-edit">
+												</span></a>
+                                                <?php foreach($profiles as $profile){ ?>
+													<?php if($profile['profile_pic'] == "") {  ?>
+                                <div class="user-image">
+                                <img src="<?php echo base_url();?>uploads/profile/default.jpg" class="img-circle" height="40" width="40" alt="User Image">
+                                </div>
+                          <?php } else {?>
+                          <div class="user-image">
+                                <img src="<?php echo base_url();?>uploads/profile/<?php  echo $profile['profile_pic']; ?>" class="img-circle" height="40" width="40" alt="User Image">
+                                </div>
+                                <?php } ?>
+                                <?php } ?>
+									</div>
+								
                                 </div>
                                 <div class="card-content">
                                     <div class="card-content-member">
@@ -231,3 +253,52 @@
                     </div> 
                 </section>
                 </div>
+                <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Change Profile Pic</h4>
+        </div>
+        <div class="modal-body">
+          <form name="profile_pic" id="profile_pic" action="<?php echo base_url('/seller/user_profile/profile_pic_store'); ?>" method="post" enctype="multipart/form-data">
+    <div class="form-group nopaddingRight col-md-6 san-lg">
+      <label for="exampleInputFile">Change profile Pic</label>
+        <input type="file" name="picture" id="picture">
+    </div>
+    <button type="submit" class="btn btn-primary pull-left" >Submit</button>
+</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+<script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+ <script type="text/javascript">
+$(document).ready(function() {
+    $('#profile_pic').bootstrapValidator({       
+        fields: {
+        picture: {
+        validators: {
+           notEmpty: {
+            message: 'Profile Pic is required'
+          },  
+          regexp: {
+          regexp: /\.(jpe?g|png|gif)$/i,
+          message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+          }
+        }
+      },
+        }
+    });
+});
+</script>

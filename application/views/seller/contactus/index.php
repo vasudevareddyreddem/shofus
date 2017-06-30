@@ -91,8 +91,8 @@
 				   </div> -->
 
 				   <div class="thumbnail">
-						<div style="width: 100%"><iframe width="100%" height="300" src="https://www.maps.ie/create-google-map/map.php?width=100%&amp;height=300&amp;hl=en&amp;q=%20Sri%20Vani%20Nilayam%2C%20Sardar%20Patel%20Nagar%2C%20Nizampet%20%E2%80%98X%E2%80%99%20Road%2C%20Hyderabad%2C%20Telangana+(Cartinhour)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/it/misura-distanza-area-google-maps.html">Misurare distanze google maps</a></iframe></div><br />
-				   </div>
+						<!-- <div style="width: 100%"><iframe width="100%" height="300" src="https://www.maps.ie/create-google-map/map.php?width=100%&amp;height=300&amp;hl=en&amp;q=%20Sri%20Vani%20Nilayam%2C%20Sardar%20Patel%20Nagar%2C%20Nizampet%20%E2%80%98X%E2%80%99%20Road%2C%20Hyderabad%2C%20Telangana+(Cartinhour)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/it/misura-distanza-area-google-maps.html">Misurare distanze google maps</a></iframe></div><br />
+				   </div> -->
 					</div>
 					<div class="clearfix"></div>
 					
@@ -102,7 +102,7 @@
            </section>
            </div>
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
-    <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+   
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {

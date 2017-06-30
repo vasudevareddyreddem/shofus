@@ -502,8 +502,9 @@
              
        <div class="form-group" id="sellingfee" >
                 <h4>your Product Selling Price :</h4>
-                <input type="number" class="form-control san_label" id="product_price" name="product_price" placeholder="your Product Selling Price ">
+                <input type="number" min="0" class="form-control san_label" id="product_price" name="product_price" placeholder="your Product Selling Price ">
 				<div class="clearfix"></div>
+        <span id="prdErr"></span>
 				<div class="mar_t10">
                 <button type="submit" class="click" id="calfee_submit">Calculate</button>
 				</div>
@@ -518,7 +519,7 @@
         <div class="form-group" id="demoki" style="display:none">
         <h3>Calculate My Profit :</h3>
                   <h5>Enter your product Price :</h5>
-                  <input type="number" class="form-control san_label" id="actual_price" name="actual_price" placeholder="Enter your product Price">
+                  <input type="number" min="0" class="form-control san_label" id="actual_price" name="actual_price" placeholder="Enter your product Price">
                   <button type="submit" class="click" id="profit_submit">Calculate</button>
 				  <span id="TermsErr15"></span>
                 </div>
@@ -828,7 +829,7 @@
                   <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-target="#collapseOne11" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <i class="more-less glyphicon glyphicon-plus"></i> Why should I sell on CARTINHOUR? </a> </h4>
                 </div>
                 <div id="collapseOne11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                  <div class="panel-body">CARTINHOUR is the new revolution in Indian e-commerce with ability to reach maximum online and highest c#006a99ibility. </div>
+                  <div class="panel-body">CARTINHOUR is the new revolution in Indian e-commerce with ability to reach maximum online and highest Eligiibility. </div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -855,7 +856,7 @@
                       <li>Register yourself at seller.CARTINHOUR.com.</li>
                       <li>List your products under specific product categories.</li>
                       <li>Once an order is received, pack the product and mark it as ‘Ready to go’. Our delivery boy will pick up the product and deliver it to the customer.</li>
-                      <li>Once an order is successfully dispatched, CARTINHOUR will settle your payment within 7-14 business days. </li>
+                      <li>Once an order is successfully dispatched, CARTINHOUR will settle your payment within 4-7 business days. </li>
                     </ul>
                   </div>
                 </div>
@@ -878,10 +879,10 @@
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="six">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapsesix16" data-parent="#accordion" href="#collapsesix" aria-expanded="false" aria-controls="collapsesix"> <i class="more-less glyphicon glyphicon-plus"></i> What are the documents requi#006a99 to register as a seller on CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapsesix16" data-parent="#accordion" href="#collapsesix" aria-expanded="false" aria-controls="collapsesix"> <i class="more-less glyphicon glyphicon-plus"></i> What are the documents required to register as a seller on CARTINHOUR?</a> </h4>
                 </div>
                 <div id="collapsesix16" class="panel-collapse collapse" role="tabpanel" aria-labelledby="six">
-                  <div class="panel-body">You are requi#006a99 to have the following documents:
+                  <div class="panel-body">You are required to have the following documents:
                     <ul class="checkmark">
                       <li>PAN Card (Personal PAN for business type “Proprietorship” and Personal + Business PAN for business type as “Company”)</li>
                       <li>VAT/TIN Number (not mandatory for books)</li>
@@ -927,7 +928,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse"  data-target="#collapeleven13"data-parent="#accordion" href="#collapeleven" aria-expanded="false" aria-controls="collapeleven"> <i class="more-less glyphicon glyphicon-plus"></i> How and when will I get paid?</a> </h4>
                 </div>
                 <div id="collapeleven13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="eleven">
-                  <div class="panel-body">The payment will be made directly to your bank account through NEFT transactions within 7-14 business days of dispatching an order. The actual payment period will vary depending on how long you have been selling at CARTINHOUR, your customer ratings and number of orders fulfilled.</div>
+                  <div class="panel-body">The payment will be made directly to your bank account through NEFT transactions within 4-7 business days of dispatching an order. The actual payment period will vary depending on how long you have been selling at CARTINHOUR, your customer ratings and number of orders fulfilled.</div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -935,7 +936,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapteivel1" data-parent="#accordion" href="#collapteivel" aria-expanded="false" aria-controls="collapteivel"> <i class="more-less glyphicon glyphicon-plus"></i> When can I start selling?</a> </h4>
                 </div>
                 <div id="collapteivel1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="teivel">
-                  <div class="panel-body">After all the requi#006a99 documents have been verified and your seller profile is complete, you can start listing your products and start selling.</div>
+                  <div class="panel-body">After all the required documents have been verified and your seller profile is complete, you can start listing your products and start selling.</div>
                 </div>
               </div>
             </div>
@@ -960,9 +961,9 @@
                   <div class="panel-body">The following deductions are made from the order item value:
                     <ul class="checkmark">
                       <li>CIH fee: A percentage of the order item value vary based on vertical/sub-category. Check your CIH fee for your product here.</li>
-                      <li>Shipping fee (calculated on the basis of the product weight, shipping location and)</li>
+                      <!-- <li>Shipping fee (calculated on the basis of the product weight, shipping location and)</li>
                       <li>Collection fee: This will vary based on order item value and customer payment mode (Prepaid/Cash on Delivery) </li>
-                      <li>selling fee: A slab wise Fixed fee. This vary based on Order item value</li>
+                      <li>selling fee: A slab wise Fixed fee. This vary based on Order item value</li> -->
                       <li>Service tax (applicable on all the above components)</li>
                     </ul>
                   </div>
@@ -976,7 +977,7 @@
                   <div class="panel-body">Commission fee is a certain percentage of the order item value of your product. It differs across categories and vertical/sub-categories. Check here for your product.
                     Please give an example to show the cost calculation.
                     Here’s an easy example, which illustrates a sample the above calculation:
-                    <table class="table table-borde#006a99 table-responsive cat">
+                    <table class="table table-bordered table-responsive cat">
                       <thead class="thead-inverse">
                         <tr>
                           <th>ITEM</th>
@@ -986,39 +987,23 @@
                       <tbody>
                         <tr>
                           <td>Product Price (decided by you)</td>
-                          <td>1500</td>
-                        </tr>
+                          <td>Rs:1000</td>
+                        </tr>                      
                         <tr>
-                          <td>CIH Fee (varies across sub-categories/verticals)</td>
-                          <td>150 (assuming 10%)</td>
-                        </tr>
-                        <tr>
-                          <td>Shipping Fee (Local shipping, weight 500 grams)</td>
-                          <td>30</td>
-                        </tr>
-                        <tr>
-                          <td>Deliveryservice Fee (1.3% on the Order item value)</td>
-                          <td>19.5</td>
-                        </tr>
-                        <tr>
-                          <td>Selling Fee</td>
-                          <td>20</td>
-                        </tr>
-                        <tr>
-                          <td>Total Fee</td>
-                          <td>219.5</td>
+                          <td>CIH Fee</td>
+                          <td>Rs:100&nbsp;(10%)</td>
                         </tr>
                         <tr>
                           <td>Service Tax (15% of Marketplace Fee including Swachh Bharat&Krishi Kalyan cess)</td>
-                          <td>32.925</td>
+                          <td>Rs:15&nbsp;(15%)</td>
                         </tr>
                         <tr>
-                          <td>Total deductions</td>
-                          <td>252.425</td>
+                          <td>Total Fee</td>
+                          <td>Rs:115</td>
                         </tr>
-                        <tr>
-                          <td>Settlement Value (Amount c#006a99ited to you)</td>
-                          <td>1247.575</td>
+                                            
+                          <td>Settlement Value (Amount credited to you)</td>
+                          <td>Rs:885</td>
                         </tr>
                       </tbody>
                     </table>
@@ -1030,7 +1015,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapprice44" data-parent="#accordion" href="#collapprice4" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>How and when do I get paid?</a> </h4>
                 </div>
                 <div id="collapprice44" class="panel-collapse collapse" role="tabpanel" aria-labelledby="price4">
-                  <div class="panel-body">All payments are made through NEFT transactions (online banking). The payment is made directly to your bank account within the next 7-15 business days from the date of order dispatch. </div>
+                  <div class="panel-body">All payments are made through NEFT transactions (online banking). The payment is made directly to your bank account within the next 4-7 business days from the date of order dispatch. </div>
                 </div>
               </div>
             </div>
@@ -1177,7 +1162,7 @@
   <div class="title_lines"></div>
 	
 			<div class=" col-md-6 ">	  
-				<form  class=""id="ajax-contact"  method="post" action="<?php echo base_url(); ?>seller/contactus/details" role="form">
+				<form  class=""id="ajax-contact"  method="post" action="<?php echo base_url(); ?>seller/contact/login_contact" role="form">
 					<div class="messages" id="form-messages"></div>
 					<?php echo $this->session->flashdata('msg1'); ?>
 					<div class="controls">
@@ -1185,14 +1170,14 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="form_name">Firstname *</label>
-									<input id="form_name" type="text" name="fname" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is requi#006a99.">
+									<input id="form_name" type="text" name="fname" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
 									<div class="help-block with-errors"></div>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="form_lastname">Lastname </label>
-									<input id="form_lastname" type="text" name="lname" class="form-control" placeholder="Please enter your lastname *"  data-error="Lastname is requi#006a99.">
+									<input id="form_lastname" type="text" name="lname" class="form-control" placeholder="Please enter your lastname *"  data-error="Lastname is required.">
 									<div class="help-block with-errors"></div>
 								</div>
 							</div>
@@ -1201,7 +1186,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="form_email">Email *</label>
-									<input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is requi#006a99.">
+									<input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
 									<div class="help-block with-errors"></div>
 								</div>
 							</div>
@@ -1218,7 +1203,7 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="form_message">Message *</label>
-									<textarea id="form_message" name="message" class="form-control" placeholder="Message for me *" rows="4" requi#006a99="requi#006a99" data-error="Please,leave us a message."></textarea>
+									<textarea id="form_message" name="message" class="form-control" placeholder="Message for me *" rows="4" required="" ="required" data-error="Please,leave us a message."></textarea>
 									<div class="help-block with-errors"></div>
 								</div>
 							</div>
@@ -1242,8 +1227,7 @@
 				   </div> -->
 
 				   <div class="thumbnail">
-						<div style="width: 100%"><iframe width="100%" height="300" src="https://www.maps.ie/create-google-map/map.php?width=100%&amp;height=300&amp;hl=en&amp;q=%20Sri%20Vani%20Nilayam%2C%20Sardar%20Patel%20Nagar%2C%20Nizampet%20%E2%80%98X%E2%80%99%20Road%2C%20Hyderabad%2C%20Telangana+(Cartinhour)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/it/misura-distanza-area-google-maps.html">Misurare distanze google maps</a></iframe></div><br />
-				   </div>
+						
 					</div>
 					<div class="clearfix"></div>
 					<div class="pad_10">
@@ -1393,6 +1377,10 @@ $("#cihfee1").html(data);
     //if ($('#chkterms2').is(':checked')) {
    var cih1_id =  $("#cih1_id").val();
      var product_price = $("#product_price").val();
+     var re = /^[+]?([0-9]+)$/;
+    var text = $("#product_price").val();
+  var isValid = (text.match(re) == null);
+  //alert(isValid);
    var cih_fee1 = $("#cih_fee1").val();
      //var subcatname = $("#subcatname").val();
    //alert(cih1_id);
@@ -1407,16 +1395,23 @@ $("#cihfee1").html(data);
     else{
       $("#CatErr").html("");
     }
-  
-  
   if (product_price == "")
     {
-    $("#TermsErr").html("Please Enter Price").css("color", "#006a99").fadeIn().fadeOut(5000);
+    $("#prdErr").html("Please Enter your Product Selling Price").css("color", "#006a99").fadeIn().fadeOut(5000);
+    return false;
+    }
+    else{
+      $("#prdErr").html("");
+    }
+  if (isValid)
+    {
+    $("#TermsErr").html("Please Enter Price only +ve Numbers").css("color", "#006a99").fadeIn().fadeOut(5000);
     return false;
     }
     else{
       $("#TermsErr").html("");
     }
+    
  
     $.ajax({
     type: "POST",
@@ -1437,6 +1432,19 @@ $("#cihfee1").html(data);
   
 
 </script>
+<!-- <script type="text/javascript">
+  
+  $(function(){
+
+  $('#product_price').keypress(function(e) {
+  if(isNaN(this.value+""+String.fromCharCode(e.charCode))) return false;
+  })
+  .on("cut copy paste",function(e){
+  e.preventDefault();
+  });
+
+});
+</script> -->
 
 
 
@@ -1449,14 +1457,37 @@ $("#cihfee1").html(data);
     //if ($('#chkterms2').is(':checked')) {  
     var youmake = $("#you_make").val();
     //alert(youmake);
+    var re = /^[+]?([0-9]+)$/;
+    var text = $("#actual_price").val();
+  var isValid = (text.match(re) == null);
+    //alert(isValid);
   
   var actual_price = $("#actual_price").val();
+
+  var less = youmake <=  actual_price;
+  alert(less);
    
     //var product_price = $("#product_price").val(); TermsErr15
   
   if (actual_price == "")
     {
     $("#TermsErr15").html("Please Enter Product Price").css("color", "#006a99").fadeIn().fadeOut(5000);
+    return false;
+    }
+    else{
+      $("#TermsErr15").html("");
+    }
+    if (product_price == "")
+    {
+    $("#TermsErr15").html("Please Enter your Product Selling Price").css("color", "#006a99").fadeIn().fadeOut(5000);
+    return false;
+    }
+    else{
+      $("#TermsErr15").html("");
+    }
+    if (less == true)
+    {
+    $("#TermsErr15").html("Please Enter hogh value Of you make").css("color", "#006a99").fadeIn().fadeOut(5000);
     return false;
     }
     else{

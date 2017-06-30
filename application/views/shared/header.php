@@ -71,9 +71,10 @@
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-                      <input onchange="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11 typeahead tt-query"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                      <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                       <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
+					<div style="display:none;" class="search_fun" id="addingdropdown"></div>
 					
                   </div>
                 </form>
@@ -82,13 +83,44 @@
             </div>
           </div>
         </div>
-		  <div class="medias ">
-			<span>
-				<a href="<?php echo base_url('customer'); ?>" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+		  <div class="medias list_ad">
+		  
+		  <?php if($this->session->userdata('userdetails')){ ?>
+		  <span class="medias user_log">
+				<a ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+						
 			</span>
-			<span><a onclick="openpopup();"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
-			<span class=""><a href="<?php echo base_url('singleproduct');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">5</sup></span>
-			<div class="sprinkle"></div>
+			<div id="user_sow" style="display:none;">
+							<ul class="log_list" >
+								<span class="top_fix_niv glyphicon glyphicon-triangle-top"></span>
+								<li class="font_list"><a href="<?php echo base_url('customer/account');?>">  <span >My Account</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/cart');?>">  <span >My Cart</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/wishlist');?>">  <span >My Wishlist</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/changepassword');?>">  <span >Change Password</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/logout');?>">  <span >Logout</span> </a></li>
+							</ul>
+			</div>
+		  <?php }else{ ?>
+			<span class="medias user_log">
+			<a href="<?php echo base_url('customer'); ?>" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+			</span>
+		  <?php } ?>
+			
+			<span class="medias"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
+			
+			<?php if($this->session->userdata('userdetails')){ ?>
+			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">
+			<?php if(count($cartitemcount)>0){ ?>
+				<?php echo count($cartitemcount); ?>
+				</sup>
+				<div class="sprinkle"></div>
+			<?php } ?>
+			
+			</span>
+			<?php } else{ ?>
+			<span class="medias"><a href="<?php echo base_url('customer');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup"></sup></span>
+			<?php } ?>
+			
 		 </div>
 	</div>
 	  <div class="top-navbar1">
@@ -294,99 +326,47 @@
   </div>
 </div>
 
- <div class="modal animated  zoomIn" id="location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="md-content">
-		<a href="javascript:void(0);" onclick="removepopup(this.value)" >X</a>
-        <h3>Select Your Delivery Location</h3>
-        <div class="newsletter-form">
-          <div class="form-group">
-            <label class="control-label">Address Line 1</label>
-            <input maxlength="100" type="text" id="address1"  name="address1" class="form-control" value="" />
-          </div>
-		  <div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
-
-		  <div class="input-box">
+<div class="md-overlay"></div>
+<a href="javascript:void(0)"  style="text-decoration:none;" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup">
+</a>
+<div class="modal fade" id="locationsearchpopup" role="dialog">
+    <div class="modal-dialog">
+		<div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id="hidebutton" class="close" data-dismiss="modal">&times;</button>
+       </div>
+        <div class="newsletter-form" style="padding:0px 20px 15px 20px;">
+          <h3>Select Your Delivery Location</h3>
+			<div class="input-box">
 				<select name="location_name" id="location_name" class="validate-select sel_are">
 				<option value="">Select Area </option>
 				<?php foreach($locationdata as $location_data) {?>
-				<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
-
-				<?php } ?>
+				<?php if($this->session->userdata('location_area')== $location_data['location_id']){ ?>
+						<option value="<?php echo $location_data['location_id']; ?>" selected><?php echo $location_data['location_name']; ?></option>
+				<?php }else{ ?>
+						<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
+				<?php } } ?>
 				</select>
-            <button type="submit" onclick="searchlocationoffer();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
-          </div>
-        </div>
-   
-    </div>
-    
-  </div>
-  </div> 
-<div class="md-overlay"></div>
+				<div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
 
+            <button type="button" onclick="searchlocationpopup();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
+          </div>
+          <!--input-box--> 
+        </div>
+      </div>
+	</div>
+  </div>
+ 
 
 <!-- the overlay element --> 
 
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">
-function removepopup(){
-		$("#location").fadeOut();
-	
-}	
-function searchfunction(val){
-	
-	
-	alert(val);return false;
-	
-	
-}
 
-
-$(document).ready(function(){
-    // Defining the local dataset
-    var cars = ['Audi','Audi', 'BMW', 'bayapu', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Chinnagosala'];
-    
-    // Constructing the suggestion engine
-    var cars = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: cars
-    });
-    
-    // Initializing the typeahead
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true, /* Enable substring highlighting */
-        minLength: 1 /* Specify minimum characters required for showing result */
-    },
-    {
-        name: 'cars',
-        source: cars
-    });
-});
-function openpopup(val){
-	$("#location").fadeIn();
-}
-$("#location_seacrh").show();
-function IsLcemail(reasontype) {
-        var regex = /^[ A-Za-z0-9_@.,!;:}{@#&`~\\|^?$*)(_+-]*$/;
-        return regex.test(reasontype);
-		}
- function searchlocationoffer(){
-	 
+function searchlocationpopup(){
 	 jQuery('#address1errormsg').show();
-	var address=jQuery('#address1').val();
-		if(address==''){
-				jQuery('#address1errormsg').html('Please enter Address Line 1');
-				return false;
-		 }else{
-			if (!IsLcemail(address)) {
-				jQuery('#address1errormsg').html('Closure details wont allow <> [] = % ');
-				return false;
-			}
-			 
-		 }
+	
 		 var area=jQuery('#location_name').val();
 		 if(area==''){
 				jQuery('#address1errormsg').html('Please Select Area');
@@ -395,7 +375,6 @@ function IsLcemail(reasontype) {
 		jQuery('#address1errormsg').html(''); 
 		jQuery('#address1errormsg').hide();
 		$("#location_seacrh_result").empty();
-		
 		jQuery.ajax({
 				url: "<?php echo site_url('home/search_location_offers');?>",
 				type: 'post',
@@ -406,8 +385,9 @@ function IsLcemail(reasontype) {
 					},
 				dataType: 'html',
 				success: function (data) {
-					$("#location").fadeOut();
-
+					//$('#locationsearchpopup').hide('');
+					$('#hidebutton').click();
+					$("#location_seacrh").hide();
 					$("#location_seacrh_result").show();
 					$("#location_seacrh_result").append(data);
 
@@ -415,7 +395,35 @@ function IsLcemail(reasontype) {
 			});
 
  }
+function searchfunction(val){
+	$('#addingdropdown').hide();
+	$('#addingdropdown').empty();
+	var length=val.length;
+	if(length >2){
+	
+		jQuery.ajax({
+			url: "<?php echo site_url('home/search_functionality');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				searchvalue: val,
+				},
+			dataType: 'html',
+			success: function (data) {
+			$('#addingdropdown').show();
+			$("#addingdropdown").append(data);	
 
+
+			}
+		});
+		
+	}
+	
+}
+
+
+
+ 
     $(document).ready(function(){
       $('#frgt_pass').click(function(){
           $('#log_sign').hide();
@@ -593,10 +601,6 @@ $("#modal-8").show();
     });
   
 
-</script>
-
-<script type="text/javascript" language="javascript">
- 
 		$(document).ready(function(){
 		$("#login_submit").click(function(e){
 		e.preventDefault();
@@ -645,11 +649,10 @@ $("#modal-8").show();
 		
 		});
 		});
-	
-	
-</script>
-<script>
+
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
+    $(".user_log").click(function(){
+        $("#user_sow").toggle();
+    });
 });
 </script>

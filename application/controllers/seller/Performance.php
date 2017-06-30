@@ -31,6 +31,7 @@ class Performance extends Admin_Controller {
 	   $result = $this->orders_model->getperformancedaily($month,$year);
 	 
 	 $data['dailywise']=$result;
+
 	$this->template->write_view('content', 'seller/performance/index', $data);
 		$this->template->render();
   }
@@ -43,9 +44,10 @@ class Performance extends Admin_Controller {
 	 $year = $this->input->post('per_year');
 	 $result = $this->orders_model->getperformancedaily($month,$year);
 	 //echo $month; echo $year; exit;
-	 //print_r($result); exit;
+	 //echo "<pre>";print_r($result); exit;
 	 $data['dailywise']=$result;
-	  $this->template->write_view('content', 'seller/performance/performance_view', $data);
+	 //echo "<pre>";print_r($data);exit;
+	  $this->template->write_view('content', 'seller/performance/index', $data);
 		$this->template->render();
 	  
 	  

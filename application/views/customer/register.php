@@ -46,6 +46,12 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('loginerror');?></div>
 			<?php endif; ?>	
+			<?php if($this->session->flashdata('forsuccess')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('forsuccess');?></div>
+			<?php endif; ?>
+			
                     <form id="loginform" name="loginform" method="post" action="<?php echo base_url('customer/loginpost');?>" class="form-horizontal" role="form">
                         <div class=" form-group">
                             <label class="control-label">Email</label>
@@ -80,7 +86,7 @@
 
                             </div>
                         </div>
-  </form>
+				</form>
   
 
 
@@ -147,9 +153,9 @@
             </div>
             </div>
         </div>
-		<div class="" style="position: absolute;top:-100px;right:43%">
+		<a  href="<?php echo base_url(); ?>" class="" style="position: absolute;top:-100px;right:43%">
 			<img src="<?php echo base_url(); ?>assets/home/images/logo_login.png" />
-		</div>
+		</a>
     </div>
 
 </body>

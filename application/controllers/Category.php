@@ -7,16 +7,15 @@ class Category extends Front_Controller
   {
 
 		parent::__construct();	
-			$this->load->helper(array('url', 'html'));
-			$this->load->library('session');
 			$this->load->helper(array('url','html','form'));
+			$this->load->library('session');
 			$this->load->model('category_model'); 
 			
  }
  
  public function view(){
 	 
-	$caterory_id=base64_decode($this->uri->segment(3));
+	echo $caterory_id=base64_decode($this->uri->segment(3));
 	$data['category_list']= $this->category_model->get_all_products($caterory_id);
 	$data['category_name']= $this->category_model->get_category($caterory_id);
 	$data['stock']= $this->category_model->get_product_stock($caterory_id);

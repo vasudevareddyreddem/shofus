@@ -275,7 +275,7 @@ class Adddetails extends Seller_adddetails{
 				}
 				
 			}else{
-				$this->session->set_flashdata('matchpassworderror',"New password and confirm password was not matching");
+				$this->session->set_flashdata('matchpassworderror',"New password and confirm password do not match");
 				redirect('seller/adddetails/setpassword');
 			}
 		}
