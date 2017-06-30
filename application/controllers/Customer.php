@@ -51,16 +51,27 @@ class Customer extends Front_Controller
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
 		$post=$this->input->post();
+		//echo '<pre>';print_r($_FILES);
+		
+		$cust_upload_file= $this->customer_model->get_profile_details($customerdetails['customer_id']);
+		if($_FILES['profile']['name']!=''){
+			$profilepic=$_FILES['profile']['name'];
+			move_uploaded_file($_FILES['profile']['tmp_name'], "uploads/profile/" . $_FILES['profile']['name']);
+
+			}else{
+			$profilepic=$cust_upload_file['cust_propic'];
+			}
 		$details=array(
 		'cust_firstname'=>$post['fname'],
 		'cust_lastname'=>$post['lname'],
-		'cust_email'=>$post['email'],
+		//'cust_email'=>$post['email'],
 		'cust_mobile'=>$post['mobile'],
-		'cust_propic'=>$post['address1'],
+		'cust_propic'=>$profilepic,
 		'address1'=>$post['address1'],
 		'address2'=>$post['address2'],
 		'area'=>$post['area'],
 		);
+		//echo '<pre>';print_r($details);exit;
 		$updatedetails= $this->customer_model->update_deails($customerdetails['customer_id'],$details);
 		if(count($updatedetails)>0){
 			$this->session->set_flashdata('success','Profile Successfully updated');
@@ -339,7 +350,7 @@ class Customer extends Front_Controller
 	//echo '<pre>';print_r($post);exit;
 	$pass=md5($post['password']);
 	$logindetails = $this->customer_model->login_details($post['email'],$pass);
-	//echo '<pre>';print_r($logindetails);exit;
+	//echo '<pre>';print_r($logindetails);
 		if(count($logindetails)>0)
 		{
 			
@@ -347,12 +358,13 @@ class Customer extends Front_Controller
 			$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$this->session->userdata('location_area'));	
 				if(count($updatearea)>0){
 					$details = $this->customer_model->get_profile_details($logindetails['customer_id']);
-					$this->session->set_userdata('userdetails',$logindetails);
+					$this->session->set_userdata('userdetails',$details);
 				}
 			}else{
-				$logindetails = $this->customer_model->login_details($post['email'],$pass);	
+				$logindetails = $this->customer_model->login_details($post['email'],$pass);
+				$this->session->set_userdata('userdetails',$logindetails);				
 			}
-			
+			//echo '<pre>';print_r($logindetails);exit;
 			$this->session->set_flashdata('sucesss',"Successfully Login");
 			redirect('');
 		}else{

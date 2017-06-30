@@ -47,7 +47,7 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('passworderror');?></div>	
 					<?php endif; ?>
-                   <form id="editprofile" name="editprofile" method="post" action="<?php echo base_url('customer/updateprofilepost');?>" class="form-horizontal" role="form">
+                   <form id="editprofile" name="editprofile" method="post" action="<?php echo base_url('customer/updateprofilepost');?>" class="form-horizontal" enctype="multipart/form-data" role="form">
                         <div class=" form-group">
                             <label class="control-label">First Name</label>
                             <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $profile_details['cust_firstname']; ?>">
@@ -59,7 +59,7 @@
 
                         <div  class=" form-group">
                            <label class="control-label">Email Address</label>
-                            <input id="email" type="text" class="form-control"  name="email" value="<?php echo $profile_details['cust_email']; ?>" >
+                            <input id="email" type="text" readonly="true" class="form-control"  name="email" value="<?php echo $profile_details['cust_email']; ?>" >
                         </div> 
 						<div  class=" form-group">
                            <label class="control-label">Mobile</label>
@@ -73,13 +73,18 @@
                            <label class="control-label">Address 2</label>
                             <input id="address2" type="text" class="form-control"  name="address2" value="<?php echo $profile_details['address2']; ?>" >
                         </div>
+						<?php //echo '<pre>';print_r($profile_details); ?>
+						<?php //echo '<pre>';print_r($locationdata);exit; ?>
 						<div  class=" form-group">
 							<label class="control-label">Delivery Location Area</label>
 							<select class="form-control" id="area" name="area">
 							<option>Select</option>
-							<?php foreach($locationdata as $localarea){  ?>
-							<?php if($localarea['location_id']== $localarea['area']){ ?>
-								<option value="<?php echo $localarea['location_id']; ?>" selected="selected" ><?php echo $localarea['location_name']; ?></option>
+							
+							<?php foreach($locationdata as $localarea){ ?>
+							<?php if($profile_details['area']==$localarea['location_id']){
+
+				?>
+								<option value="<?php echo $localarea['location_id']; ?>" selected><?php echo $localarea['location_name']; ?></option>
 
 							<?php }else{ ?>
 							<option value="<?php echo $localarea['location_id']; ?>"><?php echo $localarea['location_name']; ?></option>
@@ -201,9 +206,7 @@ $(document).ready(function() {
 			},
 			profile: {
 				validators: {
-					 notEmpty: {
-						message: 'Image One is required'
-					},  
+					  
 					regexp: {
 					regexp: /\.(jpe?g|png|gif)$/i,
 					message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
