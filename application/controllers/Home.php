@@ -7,6 +7,7 @@ class Home extends Front_Controller {
 	public function __construct() {
 		parent::__construct();
 		
+		$this->load->model('customer_model');
 		$this->load->model('home_model');
 		$this->load->library('cart');
         $this->load->library('session');
@@ -18,12 +19,13 @@ public function index()
  {
 	$data['locationdata'] = $this->home_model->getlocations();
 		if($this->session->userdata('userdetails')){
-		$customerdetails=$this->session->userdata('userdetails');
-			$data['topoffers'] = $this->home_model->get_search_top_offers($customerdetails['area']);
-			$data['trending_products'] = $this->home_model->get_search_trending_products($customerdetails['area']);
-			$data['offer_for_you'] = $this->home_model->get_search_offer_for_you($customerdetails['area']);
-			$data['deals_of_the_day'] = $this->home_model->get_search_deals_of_the_day($customerdetails['area']);
-			$data['season_sales'] = $this->home_model->get_search_season_sales($customerdetails['area']);
+			$customerdetails=$this->session->userdata('userdetails');
+			$details = $this->customer_model->get_profile_details($customerdetails['customer_id']);
+			$data['topoffers'] = $this->home_model->get_search_top_offers($details['area']);
+			$data['trending_products'] = $this->home_model->get_search_trending_products($details['area']);
+			$data['offer_for_you'] = $this->home_model->get_search_offer_for_you($details['area']);
+			$data['deals_of_the_day'] = $this->home_model->get_search_deals_of_the_day($details['area']);
+			$data['season_sales'] = $this->home_model->get_search_season_sales($details['area']);
 		}else{
 			$data['topoffers'] = $this->home_model->get_top_offers();
 			$data['trending_products'] = $this->home_model->get_trending_products();
@@ -42,7 +44,11 @@ public function search_location_offers()
 {
 	$postvalue=$this->input->post();
 	$this->session->set_userdata('location_area',$postvalue['area']);
-	
+	if($this->session->userdata('userdetails'))
+	 {
+	$customerdetails=$this->session->userdata('userdetails');
+	$updatearea = $this->customer_model->update_sear_area($customerdetails['customer_id'],$this->session->userdata('location_area'));	
+	 }
 	//echo '<pre>';print_r($postvalue);exit;
 	$data['topoffers'] = $this->home_model->get_search_top_offers($postvalue['area']);
 	$data['trending_products'] = $this->home_model->get_search_trending_products($postvalue['area']);

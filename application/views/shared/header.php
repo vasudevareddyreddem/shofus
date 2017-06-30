@@ -106,7 +106,8 @@
 			</span>
 		  <?php } ?>
 			
-			<span class="medias"><a onclick="openpopup();"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
+			<span class="medias"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
+			
 			<?php if($this->session->userdata('userdetails')){ ?>
 			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">
 			<?php if(count($cartitemcount)>0){ ?>
@@ -326,14 +327,74 @@
 </div>
 
 <div class="md-overlay"></div>
+<a href="javascript:void(0)"  style="text-decoration:none;" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup">
+</a>
+<div class="modal fade" id="locationsearchpopup" role="dialog">
+    <div class="modal-dialog">
+		<div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id="hidebutton" class="close" data-dismiss="modal">&times;</button>
+       </div>
+        <div class="newsletter-form" style="padding:0px 20px 15px 20px;">
+          <h3>Select Your Delivery Location</h3>
+			<div class="input-box">
+				<select name="location_name" id="location_name" class="validate-select sel_are">
+				<option value="">Select Area </option>
+				<?php foreach($locationdata as $location_data) {?>
+				<?php if($this->session->userdata('location_area')== $location_data['location_id']){ ?>
+						<option value="<?php echo $location_data['location_id']; ?>" selected><?php echo $location_data['location_name']; ?></option>
+				<?php }else{ ?>
+						<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
+				<?php } } ?>
+				</select>
+				<div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
 
+            <button type="button" onclick="searchlocationpopup();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
+          </div>
+          <!--input-box--> 
+        </div>
+      </div>
+	</div>
+  </div>
+ 
 
 <!-- the overlay element --> 
 
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">
+
+function searchlocationpopup(){
+	 jQuery('#address1errormsg').show();
 	
+		 var area=jQuery('#location_name').val();
+		 if(area==''){
+				jQuery('#address1errormsg').html('Please Select Area');
+				return false;
+		 }
+		jQuery('#address1errormsg').html(''); 
+		jQuery('#address1errormsg').hide();
+		$("#location_seacrh_result").empty();
+		jQuery.ajax({
+				url: "<?php echo site_url('home/search_location_offers');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					address1: jQuery("#address1").val(),
+					area: jQuery("#location_name").val(),
+					},
+				dataType: 'html',
+				success: function (data) {
+					//$('#locationsearchpopup').hide('');
+					$('#hidebutton').click();
+					$("#location_seacrh").hide();
+					$("#location_seacrh_result").show();
+					$("#location_seacrh_result").append(data);
+
+				}
+			});
+
+ }
 function searchfunction(val){
 	$('#addingdropdown').hide();
 	$('#addingdropdown').empty();
@@ -360,9 +421,7 @@ function searchfunction(val){
 	
 }
 
-function openpopup(val){
-	$("#location").fadeIn();
-}
+
 
  
     $(document).ready(function(){
