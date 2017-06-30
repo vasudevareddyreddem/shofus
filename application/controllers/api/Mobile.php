@@ -98,6 +98,12 @@ class Mobile extends REST_Controller {
 		
 	}
 	
+	/*mobile otp verification*/
+	public function  otp_verification_post()
+	{
+		echo "helloo";exit;
+	}
+	
 
 		
 
