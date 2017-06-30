@@ -7,7 +7,16 @@ class Customer_model extends MY_Model
 		$this->load->database("default");
 	}
 	
-	
+	public function save_billing_deails($data){
+		$this->db->insert('billing_address', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function get_billing_details($custid){
+		$this->db->select('billing_address.*,locations.location_name')->from('billing_address');
+		$this->db->join('locations', 'locations.location_id = billing_address.area', 'left');
+		$this->db->where('billing_address.cust_id',$custid);
+		return $this->db->get()->row_array();
+	}
 	public function get_profile_details($custid){
 		$this->db->select('customers.*,locations.location_name')->from('customers');
 		$this->db->join('locations', 'locations.location_id = customers.area', 'left');
