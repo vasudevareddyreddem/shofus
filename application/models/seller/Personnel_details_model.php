@@ -93,6 +93,19 @@ function storedetails_adding($sid,$data){
 
 	}
 	
+function get_seller_details($seller_id)
+{
+	$this->db->select('*')->from('sellers');
+	$this->db->where('seller_id',$seller_id);
+	return $this->db->get()->row_array();
+}
+function get_seller_email_check($email)
+{
+	$this->db->select('*')->from('sellers');
+	$this->db->where('seller_email',$email);
+	return $this->db->get()->row_array();
+}
+
 function get_upload_file($seller_id)
 {
 	$this->db->select('*')->from('seller_store_details');

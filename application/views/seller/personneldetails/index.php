@@ -1,6 +1,5 @@
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
-    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 <?php 
 if($this->session->flashdata('updatemessage')=="Store details updated"){
@@ -80,6 +79,11 @@ $(function(){
 						<span aria-hidden="true">&times;</span>
 						</button><?php echo $this->session->flashdata('updatemessage');?></div>
 						<?php endif; ?>
+						<?php if($this->session->flashdata('errormessage')): ?>
+						<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button><?php echo $this->session->flashdata('errormessage');?></div>
+						<?php endif; ?>
             <div class="panel-body">
 			
 			<?php //echo '<pre>';print_r($seller_storedetails);exit; ?>
@@ -90,7 +94,7 @@ $(function(){
 			</div>
 			<div class="form-group nopaddingRight col-md-6 san-lg">
 			<label for="exampleInputEmail1">Seller Email</label>
-			<input class="form-control" placeholder="Email" readonly="true" type="text" id="seller_email" name="seller_email" value="<?php echo $seller_storedetails['seller_email']   ?>">
+			<input class="form-control" placeholder="Email" type="text" id="seller_email" name="seller_email" value="<?php echo $seller_storedetails['seller_email']   ?>">
 			</div>
 			
 			<div class="clearfix"></div>
