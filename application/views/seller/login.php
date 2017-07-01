@@ -1162,7 +1162,13 @@
  <h3 class="text-center wow bounceInRight animated"  id="contact_sc" data-spy="scroll"><span class="span_bg_g">CONTACT US</span></h3>
   <div class="title_lines"></div>
 	
-			<div class=" col-md-6 ">	  
+			<div class=" col-md-6 ">
+			<?php if($this->session->flashdata('msgsuccess')){ ?>
+					<div class="alert dark alert-success alert-dismissible" id="infoMessage">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>							
+					 </button><?php echo $this->session->flashdata('msgsuccess');?></div>
+					<?php } ?>			
 				<form  class=""id="ajax-contact"  method="post" action="<?php echo base_url(); ?>seller/contact/login_contact" role="form">
 					<div class="messages" id="form-messages"></div>
 					<?php echo $this->session->flashdata('msg1'); ?>
@@ -1284,6 +1290,7 @@
   <!--body end here --> 
 
 <script>
+
 function myFunction() {
     var x = document.getElementById('myDIV');
     if (x.style.display === 'none') {
