@@ -31,12 +31,17 @@ class Login extends CI_Controller {
 }
 
  public function index() {
-	 $data['cihcatdata']  = $this->login_model->getcihcatedata();
-	 $this->load->view('seller/header');
-  $this->load->view('seller/login',$data);
-   $this->load->view('seller/footer');
-
-        //$this->template->render(); 
+	 
+	$seller_id=$this->session->userdata('seller_id');
+	if($seller_id!	=''){
+		redirect('seller/dashboard');
+	}else{
+		$data['cihcatdata']  = $this->login_model->getcihcatedata();
+		$this->load->view('seller/header');
+		$this->load->view('seller/login',$data);
+		$this->load->view('seller/footer');
+	}
+	
   }
 
 

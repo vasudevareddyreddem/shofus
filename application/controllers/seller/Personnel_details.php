@@ -122,6 +122,16 @@ public function updatebd()
 	
 	$post = $this->input->post();
 	$sid = $this->session->userdata('seller_id');
+	$details=$this->Personnel_details_model->get_seller_details($sid);
+	if($details['seller_email']!= $post['seller_email']){
+		
+		$email_check=$this->Personnel_details_model->get_seller_email_check($post['seller_email']);
+		ECHO '<pre>';print_r($email_check);
+		if(count($email_check)>0){
+		$this->session->set_flashdata('errormessage',"Email ID already exits. Please use another Email id!");
+		redirect('seller/Personnel_details');
+		}
+	}
 	//ECHO '<pre>';print_r($post);exit;
 	$data = array(
 	'seller_name' => $post['seller_name'],

@@ -9,6 +9,10 @@ class Products extends Admin_Controller {
 	public function __construct() {
 		parent::__construct();
 		
+		$this->load->helper(array('url', 'html'));
+		$this->load->library('session');
+		$this->load->helper('security');
+		$this->load->library(array('form_validation','session'));
 		$this->load->model('seller/products_model');
 		$this->load->model('seller/dashboard_model');
        // $this->load->library('pagination');
@@ -193,7 +197,7 @@ class Products extends Admin_Controller {
 			{
 
                //$this->prepare_flashmessage("Successfully Inserted..", 0);
-               $this->session->set_flashdata('success',"Successfully Inserted..", 0);
+               $this->session->set_flashdata('addsuccess',"Item Successfully added..", 0);
 
 				//return redirect('admin/fooditems');
 
