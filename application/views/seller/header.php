@@ -58,9 +58,9 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="<?php echo base_url('seller/login');?>#home_scr">HOME <span class="sr-only">(current)</span></a></li>
          <!-- <li><a href="#benifits_sc">BENIFITS</a></li>-->
-      <li><a href="<?php echo base_url('seller/login');?>#how_its_w">HOW IT WORKS</a></li>
+      <li><a href="#how_its_w">HOW IT WORKS</a></li>
          
-          <li><a href="<?php echo base_url('seller/login');?>#pricing_scr">PRICING</a></li>
+          <li><a href="#pricing_scr">PRICING</a></li>
          
           <!--<li><a href="#ourservices_scr">OUR SERVICES</a></li>-->
             <li><a href="#about_sc">ABOUT US</a></li>
