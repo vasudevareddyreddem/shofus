@@ -8,48 +8,8 @@
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
   <!--banenr start here -->
   <section id="home_scr">
-  <!--
-  <div class="banner">
-    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1500px;height:450px;overflow:hidden;visibility:hidden;"> 
-     
-      <div data-u="loading" class="jssorl-oval" style="position:absolute;top:0px;left:0px;text-align:center;background-color:rgba(0,0,0,0.7);"> <img style="margin-top:-19.0px;position:relative;top:50%;width:38px;height:38px;" src="<?php echo base_url();?>assets/seller_login/images/oval.svg" /> </div>
-      <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1500px;height:450px;overflow:hidden;">
-        <div> <img data-u="image" src="<?php echo base_url();?>assets/seller_login/images/pacban1.png " />
-          <div class="bnr_title">
-            <h3><a class="" href="<?php echo base_url(); ?>seller/login/register">Register Now</a></h3>
-          </div>
-        </div>
-        <div> <img data-u="image" src="<?php echo base_url();?>assets/seller_login/images/Bnr_1.jpg" />
-          <div class="bnr_title">
-            <h3><a href="<?php echo base_url(); ?>seller/login/register">Register Now</a></h3>
-          </div>
-        </div>
-        <div> <img data-u="image" src="<?php echo base_url();?>assets/seller_login/images/Bnr_3.jpg" />
-          <div class="bnr_title">
-            <h3><a href="<?php echo base_url(); ?>seller/login/register">Register Now</a></h3>
-          </div>
-        </div>
-        <div> <img data-u="image" src="<?php echo base_url();?>assets/seller_login/images/Bnr_4.jpg" />
-          <div class="bnr_title">
-            <h3><a href="<?php echo base_url(); ?>seller/login/register">Register Now</a></h3>
-          </div>
-        </div>
-        <a data-u="any" href="#" style="display:none">Full Width Slider</a> </div>
-    
-      <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1"> 
-      
-        <div data-u="prototype" style="width:16px;height:16px;"></div>
-      </div>
-    
-      <span data-u="arrowleft" class="jssora22l" style="top:0px;left:8px;width:40px;height:58px;" data-autocenter="2"></span> <span data-u="arrowright" class="jssora22r" style="top:0px;right:8px;width:40px;height:58px;" data-autocenter="2"></span> </div>
-  </div>
-  <div class="clearfix"></div>
-  <!--banenr end here -->
+  
 <div class="  bac_img" style="position:absolute;top:0">
-
-
-	<!--<img class="img-responsive "  src="<?php echo base_url();?>assets/seller_login/images/pacban1.png " />-->
-
 <div class=" " style="position: absolute;bottom:10%; right:28%;left:25%">
  <h1 class="rw-sentence">
  <span class="font_si_ban">Build your hyperlocal store <br>where you can sell</span> 
@@ -114,224 +74,10 @@
  <!-- start <scroller>-->
  <a href="#home_scr" class="scrollup" style="display: block; background-color:none;border:none"><i class="fa fa-angle-up "></i></a>
  <!-- end<scroller>-->
-  <!--body part start here -->
-  
- <!-- <div class="container-fluid gallery-like-area c-h-mb mar_t15" >
-    <div class="row">
-      <div class="col-md-6 col-sm-6 text-center wow animated zoomIn slower ">
-        <div class="row "> <img class=" thumbnail img-responsive " src="<?php echo base_url();?>assets/seller_login/images/hyd.jpg" alt=""> </div>
-      </div>
-      <div class=" col-md-4 col-md-push-1 col-sm-6 text-center v-center bubble-contact animatedParent">
-        <div class="content  lightSpeedIn wow animated bounceInRight  ">
-          <h4>Who Are We</h4>
-          <ul class="checkmark">
-            <li>we are a platform for all offline/local sellers.</li>
-            <li>Access to thousands of customers.</li>
-            <li>Sell your products both offline & online.</li>
-			<li>Hassle free payments.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-md-5 col-md-offset-1 col-sm-6 text-center v-center bubble-contact ">
-        <div class="content">
-          <h4 class="">How to do Business with us?</h4>
-          <ul class="checkmark">
-            <li>Four step process to get your online store</li>
-            <li>Register with us</li>
-            <li>Get catalogue done for your products</li>
-			<li>Upload your inventory</li>
-			<li>Start selling from your online store.</li>
-          </ul>
-		    <button type="submit" class="btn btn-primary wow animated bounceInLeft slower" onclick="window.location='<?php echo base_url(); ?>seller/login/register';return false;">Register</button>
-        </div>
-	<br>
-      </div>
-      <div class="col-md-6 col-sm-6 text-center   ">
-        <div class="row"> <img class=" thumbnail img-responsive" src="<?php echo base_url();?>assets/seller_login/images/business.jpg" alt=""> </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-md-6 col-sm-6 text-center   ">
-        <div class="row"> <img class=" thumbnail img-responsive" src="<?php echo base_url();?>assets/seller_login/images/price.jpg" alt=""> </div>
-      </div>
-      <div class="col-md-4 col-md-push-1 col-sm-6 text-center v-center bubble-contact ">
-        <div class="content">
-          <h4 class="wow animated zoomIn slower">Pricing</h4>
-          <ul class="checkmark">
-            <li>Transparent pricing.</li>
-            <li>Get all details of pricing here.</li>
-            <li>Calculate your profit margin through our virtual pricing calculator before you sell.</li>
-          </ul>
-		  <button type="submit" class="btn btn-primary wow animated bounceInRight slower" onclick="window.location='<?php echo base_url(); ?>seller/pricing_calculator';return false;">Pricing Calculator</button>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-md-5 col-md-offset-1 col-sm-6 text-center v-center bubble-contact">
-        <div class="content">
-          <h4>Help</h4>
-          <ul class="checkmark">
-            <li><a href="<?php echo base_url();?>seller/faq">FAQ’s</a></li>
-            
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-6 text-center ">
-        <div class="row "> <img class=" thumbnail img-responsive wow animated zoomIn slower" src="<?php echo base_url();?>assets/seller_login/images/help.jpg" alt=""> </div>
-      </div>
-    </div>
-  </div>-->
+ 
   </section>
 	<div class="clearfix"></div>	
-		<!--benifits section start
-		<div id="benifits_sc">
-<section id="">
-  <div class="">
-	
-
-  <div class="pricing_main">
-    <div class="container">
-	 <div class='buttons-inline wow animated bounceInLeft slower'   data-id='3'>
-	    <h3 class="text-center"  id="" data-spy="scroll"><span class="span_bg_g"> BENIFITS</span></h3>
-  <div class="title_lines"></div>
-  </div>
-
-      <div class="row">
-        <div class="benifits">
-          <div class="col-md-6">
-            <div class="ben_lft ">
-              <h1 align="center">CATALOGUING</h1>
-              <p align="center"><img src="<?php echo base_url();?>assets/seller_login/images/ben_1.png" class="img-responsive fadeIn " /></p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="ben_rgt">
-              <h3>The art of selling smart</h3>
-              <p>Customers always choose to buy products that look the best and have the most accurate descriptions. We help you attract customers with smart cataloguing. Get attractive images and clear description of your products and grab customers’ attention.</p>
-              <h3>Our catalogue partners provide you with:</h3>
-              <ul class="checkmark">
-                <li>Quick design and development of your catalogues</li>
-                <li>Best quality images</li>
-                <li>Clear and complete description of your products</li>
-                <li>Catalogues that prompts quick buying decision</li>
-              </ul>
-              <p>You receive expert cataloguing solutions from professionals who assist you in creating best product catalogues.</p>
-            </div>
-          </div>
-        </div>
-        <div class="benifits">
-          <div class="col-md-6">
-            <div class="ben_lft">
-              <h3>Our inventory management provides you with:</h3>
-              <ul class="checkmark">
-              <li>We provide complete assistance to sellers regarding their inventory management.</li>
-              <li>We have vast network of inventory managers who will take care of your inventory.</li>
-              <li>All you have to do is separate your inventory for offline and online customers.</li>
-              <li>Give your online stock details to our inventory executives.</li>
-              <li>Rest we will take care.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="ben_rgt">
-              <h1 align="center">Inventory Management</h1>
-              <p align="center"><img src="<?php echo base_url();?>assets/seller_login/images/ben_2.png" class="img-responsive" /></p>
-            </div>
-          </div>
-        </div>
-        <div class="benifits">
-          <div class="col-md-6">
-            <div class="ben_lft">
-              <h1 align="center">Easy pick-up and delivery</h1>
-              <p align="center"><img src="<?php echo base_url();?>assets/seller_login/images/ben_3.png" class="img-responsive" /></p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="ben_rgt">
-              <h3>Delivering your products to 1000+ customers</h3>
-             <p>Our ever-growing delivery boy network ensures faster delivery of your products across India. Your customers get great service and you get better ratings.</p>
-              <h3>Our delivery boy network:</h3>
-              <ul class="checkmark">
-               <li>Ensures smooth pick-up and delivery of your products</li>
-               <li>Superior experience for your customers</li>
-               <li>Effortless order fulfilment through our vast network of delivery personnel</li>
-              </ul>
-              <p>Our delivery boy network is one of the largest in the industry and growing. Come onboard and sell to lakhs of customers.</p>
-            </div>
-          </div>
-        </div>
-        <div class="benifits">
-          <div class="col-md-6">
-            <div class="ben_lft">
-              <h3>Your earnings don’t keep you waiting</h3>
-              <p>Re-invest profits to generate more business without any delay. At CARTINHOUR, you get your payments within 4-7 business days of dispatching an order. The payment is made directly to your bank account, thus making the whole process fast and easy.</p>
-              <h3>Easy and fast payment process. You get:</h3>
-              <ul class="checkmark">
-              <li>Fastest payment for fulfilled orders</li>
-              <li>Quick re-investing opportunities</li>
-              <li>Detailed information on payment settlement on seller dashboard</li>
-              </ul>
-              <p>Experience smooth cash flow. Start selling on CARTINHOUR and grow your business with the fastest payment cycle in the industry.</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="ben_rgt">
-              <h1 align="center">FASTER PAYMENTS</h1>
-              <p align="center"><img src="<?php echo base_url();?>assets/seller_login/images/ben_4.png" class="img-responsive" /></p>
-            </div>
-          </div>
-        </div>
-        <div class="benifits">
-          <div class="col-md-6">
-            <div class="ben_lft">
-              <h1 align="center">TRAINING</h1>
-              <p align="center"><img src="<?php echo base_url();?>assets/seller_login/images/ben_5.png" class="img-responsive" /></p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="ben_rgt">
-              <h3>Learn the art of selling online</h3>
-            <p>CARTINHOUR has been driving seller training on key pain areas for the last 6 months. More than 2000 sellers have been trained during this period. We have further improved our training methods to enhance your learning.</p>
-              <h3>Webinars:</h3>
-              <p>We have been conducting majority of our trainings through webinars over the past 6 months. Recently, the webinars are being conducted with subject experts from various domains who can immediately resolve your doubts and provide tips and tricks to improve your business.We have also enabled the unmute function through which sellers can have a two way conversation with the experts.</p>
-              <h3>Smart Learn:</h3>
-              <p>We launched our self-paced learning platform, Smart Learn, with returns module. The response has been fabulous with many sellers getting certified on Returns. They have also found the content helpful and easy to understand. With this in mind, we have launched three new modules - Payments & Settlements, Listings &Cataloging and Trust & Safety. So, go to the Seller Learning Center, get certified and improve your business operations.</p>
-              <p>To help you become skilled at selling online is our job. Register your business today to sell your products online on CARTINHOUR.</p>
-              
-            </div>
-          </div>
-        </div>
-        <div class="benifits">
-          <div class="col-md-6">
-            <div class="ben_lft">
-              <h3>Get more business with less effort</h3>
-              <p>At CARTINHOUR, we promise you maximum returns with minimum investment. That’s why the CARTINHOUR Fulfilment service offers you the use of our state-of-the-art fulfilment centres at very low costs. You store your products in our fulfilment centres where we take utmost care of your inventory.</p>
-              <h3>What does CARTINHOUR Fulfilment offer?</h3>
-              <ul class="checkmark">
-              <li>Fulfilment centre space</li>
-              <li>Faster delivery of your products</li>
-              <li>Quality check of your products by our experts</li>
-              <li>Packaging that will delight your customers</li>
-              </ul>
-              <p>Take your business to the next level with CARTINHOUR Fulfilment on CARTINHOUR.</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="ben_rgt">
-              <h1 align="center">CARTINHOUR Fulfilment</h1>
-              <p align="center"><img src="<?php echo base_url();?>assets/seller_login/images/ben_6.png" class="img-responsive" /></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
- </section>
- </div>
-<div class="clearfix"></div>-->
-   <!--end part end here --> 
-
-  
+		
   <!--howitworks -->
 <section id="how_its_w" class="home-section bg-gray ">
 <div class="pricing_main">
@@ -446,17 +192,7 @@
               <li class="wow shake animated" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: rubberBand;"><img src="<?php echo base_url();?>assets/seller_login/images/service.png" /><br>
                 <h4 align="center">Service Tax</h4>
               </li>
-        <!--<li><img src="<?php echo base_url();?>assets/seller_login/images/closing.png" /><br>
-                <h4 align="center">Closing Fee</h4>
-              </li>
-          <li><span class="plus_fon">+</span></li>
-              <li><img src="<?php echo base_url();?>assets/seller_login/images/shipping.png" /><br>
-                <h4 align="center">Shipping Fee</h4>
-              </li>
-          <li><span class="plus_fon">+</span></li>
-              <li><img src="<?php echo base_url();?>assets/seller_login/images/delivery.png" /><br>
-                <h4 align="center">Delivery Services Fee</h4>
-              </li>-->
+       
             </ul>
             <h4 align="center" style="font-size:24px;">Find CIH Fee for your Product</h4>
             <div class="price_lt">
@@ -540,65 +276,14 @@
   </div>
   </section>
 <div class="clearfix"></div>
-  <!--pricing end here --> 
-  <!--our services -->
- <!--<section id="ourservices_scr">
-    <h3 class="text-center  wow fadeInDown animated"  id="" data-spy="scroll"><span class="span_bg_g"> OUR SERVICES</span></h3>
-  <div class="title_lines"></div>
-<div class="srvices_main1 ">
-<div class="container">
-		<div class="col-lg-6  col-md-6 col-sm-4">
-			<div class="service_first wow fadeInLeft animated" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
-			<img  class="img-responsive thumbnail" src="<?php echo base_url();?>assets/seller_login/images/inv_m.png" />
-					<h1 class="heading">Inventory management</h1>
-					<p>We provide complete product listing to inventory update & order process</p>
-				  
-			
-				   <br>
-				   <p class="lin_read"> <a href="<?php echo base_url();?>seller/marketplace_solutions" >Know more</a></p>
-			</div>
-		</div>
-                            
-		 <div class="col-lg-6  col-md-6 col-sm-4">
-			<div class="service_first wow fadeInRight animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">
-				<img  class="img-responsive thumbnail" src="<?php echo base_url();?>assets/seller_login/images/cat_m.png" />
-			<h1 class="heading">Catalog Management</h1>
-			
-				<p>We have expert team to make proper product digital catalog which provide good customer experience increase </p><br>
-			  
-			   <p class="lin_read"><a href="<?php echo base_url();?>seller/catalog_management" >Know more</a></p>
-			   
-		</div>
-		</div>-->
-							<!--<div class="col-lg-4  col-md-4 col-sm-4">
-                                <div class="service_first wow fadeInRight animated" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInRight;">
-                                
-                                <h1 class="heading">Product Photoshoot</h1>
-                                    <p>We do Model  and Table top Photo Shoot which enhance and enrich your product image help to generate more sale and to grow your business online. </p>
-                                  
-                                  
-                                   <p class="lin_read"><a  href="<?php echo base_url();?>seller/product_photoshoot" >Know more</a></p>
-                            </div>
-                            </div>-->
-							<div class="clearfix"></div>
-					<!--	<div class="container">
-							<div class="panel panel-default pad_10 mar_t10">
-							  <h4>Pricing</h4>
-							  
-							</div>
-						</div>--><p>&nbsp;</p>
+ <p>&nbsp;</p>
 	
 	<div class="clearfix"></div>
 	
 
        
  <div class="clearfix">   </div>  
-<!--<p class="note_st">	Note: Photoshoot Charges will applicable extra depend on your product abd quanity Services Tax applicable</p>-->
-
- <!--<button type="button" class="btn btn-primary btn-md pull-left" data-toggle="modal" data-target="#myModal_ser">Pricing details</button>
- <button type="button" class="btn btn-warning btn-md pull-right" data-toggle="modal" data-target="#myModal_sel_mod">Enquiry</button>-->
-
-                            
+                      
 </div>
 </div>
 </section>
@@ -790,8 +475,7 @@
           </div>
           
         </div>
-        <!--<a data-slide="prev" href="#media1" class="left carousel-control">‹</a>
-        <a data-slide="next" href="#media1" class="right carousel-control">›</a>-->
+     
       </div>                          
     </div>
   </div>
@@ -961,9 +645,7 @@
                   <div class="panel-body">The following deductions are made from the order item value:
                     <ul class="checkmark">
                       <li>CIH fee: A percentage of the order item value vary based on vertical/sub-category. Check your CIH fee for your product here.</li>
-                      <!-- <li>Shipping fee (calculated on the basis of the product weight, shipping location and)</li>
-                      <li>Collection fee: This will vary based on order item value and customer payment mode (Prepaid/Cash on Delivery) </li>
-                      <li>selling fee: A slab wise Fixed fee. This vary based on Order item value</li> -->
+                   
                       <li>Service tax (applicable on all the above components)</li>
                     </ul>
                   </div>
@@ -1223,9 +905,7 @@
 				</form>
 			</div>
 					<div class="col-md-6 pad_10">
-					<!-- <div class="thumbnail">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1902.603941571986!2d78.38998466067792!3d17.49758717711942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1494410712406" width="100%" height="300px" frameborder="0" style="border:0" allowfullscreen></iframe>
-				   </div> -->
+				
 
 				   <div class="thumbnail">
 						
