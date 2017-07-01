@@ -393,9 +393,14 @@ function emailchecking(reasontype) {
 		
 	  if(radiovalue==0){
 		  var mobile = document.getElementById('forgot_mobile').value;
+		  
 		  if(mobile==''){
+			  
 			  $("#forgoterror").html("Please Enter Mobile Number").css("color", "red");
+			  return false;
 		  }else{
+			  
+			 
 			 var mobile = document.getElementById('forgot_mobile').value;
 			if (!IsMobile(mobile)) {
 			$("#forgoterror").html("Please Enter Correct Mobile Number").css("color", "red");
@@ -405,7 +410,7 @@ function emailchecking(reasontype) {
 		  }
 		  $("#forgoterror").html("");
 			$("#forgot_submit").html("");
-		  $.ajax({
+			$.ajax({
 			  
 					type: 'post',
 					data: {
@@ -437,6 +442,7 @@ function emailchecking(reasontype) {
 					}
 					
 			});
+		
 		  
 	  }
 		
