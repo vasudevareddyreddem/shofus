@@ -1420,9 +1420,8 @@ $("#cihfee1").html(data);
     data: {product_price:product_price,cih_fee1:cih_fee1},
     success:function(data)
     {
-    
-  $("#refclose").html(data);
-  $('#demo3').show();
+	$("#refclose").html(data);
+	$('#demo3').show();
     $('#demoki').show();
   
     }
@@ -1466,7 +1465,7 @@ $("#cihfee1").html(data);
   var actual_price = $("#actual_price").val();
 
   var less = youmake <=  actual_price;
-  alert(less);
+  //alert(less);
    
     //var product_price = $("#product_price").val(); TermsErr15
   
