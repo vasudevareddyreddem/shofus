@@ -106,7 +106,7 @@
             <div class="innter-form">
               <form method="post"  name="login_form" id="login_submit">
               <div id="login-response"></div>
-                <div id="EmptyforError"></div>
+                <div id="EmptyforError"></div><div id="forgot-response1"></div>
 			<div class="form-group">
               <label >Email Address / Mobile Number</label>
               <input  name="login_email" id="login_email" class="form-control" type="text" name="username" autofocus>
@@ -360,12 +360,12 @@
 						<input type="radio" name="unable_login" id="unable_login" value="1" > E-Mail 
 						<input type="radio" name="unable_login" id="unable_login" value="0" > Mobile
 						<div id="forgoterror"></div>
-            <div id="forgot-response"></div>
+						<div id="forgot-response"></div>
                         <input type="text" class="form-control" id="forgot_mobile" name="forgot_mobile">
                          <span id="MobileforErr"></span>
                       
                       <br>
-                      <a href="javascript:void(0)"  onclick="validationcheckings();"  class="btn btn-success">Submit</a>
+                      <a href="javascript:void(0)"  onclick="validationcheckings();"   id="unableloginfield" class="btn btn-success">Submit</a>
 				</div>
 				     </form>           
 				 </div>
@@ -411,6 +411,7 @@ function emailchecking(reasontype) {
 		  }
 		  $("#forgoterror").html("");
 			$("#forgot_submit").html("");
+			//document.getElementById("unableloginfield").disabled = true;
 			$.ajax({
 			  
 					type: 'post',
@@ -425,10 +426,12 @@ function emailchecking(reasontype) {
 					success:function(data)
 					{
 					//alert(data);
+					//document.getElementById("unableloginfield").disabled = false;
 					if(data.sendmsg==1){
+					
 							$("#myModal1").fadeOut(1);
 							$("#forgot_mobile").val('');
-							$("#forgot-response").html("Temporary Password Successfully Sent").css("color", "Green");
+							$("#forgot-response1").html("Temporary Password Successfully Sent").css("color", "Green");
 							
 							return true;
 						}if(data.sendmsg==0){
@@ -451,6 +454,7 @@ function emailchecking(reasontype) {
 		  var email = document.getElementById('forgot_mobile').value;
 		  if(email==''){
 			  $("#forgoterror").html("Please Enter Email").css("color", "red");
+			  return false;
 		  }else{
 			  
 			  if (!emailchecking(email)) {
@@ -460,6 +464,7 @@ function emailchecking(reasontype) {
 			}
 		  }
 			$("#forgoterror").html("");
+			$("#forgot_submit").html("");
 			$("#forgot_submit").html("");
 				$.ajax({
 					type: 'post',
@@ -473,7 +478,6 @@ function emailchecking(reasontype) {
 					url: '<?php echo base_url("seller/login/forgot"); ?>',
 					success:function(data)
 					{
-						//alert(data.mailsend);return false;
 						if(data.mailsend==1){
 							$("#myModal1").fadeOut(1);
 							$("#forgot_mobile").val('');
