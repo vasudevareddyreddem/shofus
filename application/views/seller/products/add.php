@@ -37,6 +37,11 @@
     <section class="wrapper">
    
      <div class="row">
+	   <?php if($this->session->flashdata('addsuccess')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('addsuccess');?></div>
+			<?php endif; ?>
 	<div class="col-xs-12 col-sm-12 col-md-12 m-b-20">
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs">
