@@ -1494,7 +1494,7 @@ $("#cihfee1").html(data);
     }
     if (less == true)
     {
-    $("#TermsErr15").html("Please Enter high value Of you make").css("color", "#006a99").fadeIn().fadeOut(5000);
+    $("#TermsErr15").html("Please Enter high value").css("color", "#006a99").fadeIn().fadeOut(5000);
     return false;
     }
     else{
