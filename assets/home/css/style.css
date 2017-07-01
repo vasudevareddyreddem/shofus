@@ -3427,6 +3427,7 @@ table#cart tfoot td .btn {
 }
 .form-horizontal_x {
 	margin-top: 18px;
+
 }
 /* modifiy templetes */
 .col_fff{
@@ -3446,10 +3447,14 @@ table#cart tfoot td .btn {
 .medias span{
 
 	color:#45b1b5;
-	padding: 10px;
+	padding:0px 16px;
 	font-size:24px;
 	float:right;
 }
+.medias p{
+	font-size:13px;
+	padding-top:4px;
+	}
 .medias a{
 
 	color:#45b1b5;

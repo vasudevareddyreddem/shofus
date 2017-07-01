@@ -65,7 +65,7 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
           <a class="navbar-brand" href="<?php echo base_url(); ?>"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="row">
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
@@ -87,7 +87,8 @@
 		  
 		  <?php if($this->session->userdata('userdetails')){ ?>
 		  <span class="medias user_log">
-				<a ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+				<a ><i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+				</a>
 						
 			</span>
 			<div id="user_sow" style="display:none;">
@@ -101,12 +102,16 @@
 							</ul>
 			</div>
 		  <?php }else{ ?>
-			<span class="medias user_log">
-			<a href="<?php echo base_url('customer'); ?>" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+			<span class="medias user_log text-center">
+			<a href="<?php echo base_url('customer'); ?>" ><i class="" aria-hidden="true">
+			</i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" />
+			<p>Sign in/login</p></a>
 			</span>
 		  <?php } ?>
 			
-			<span class="medias"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
+			<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
+				<p>Location</p></a>
+			</span></a></span>
 			
 			<?php if($this->session->userdata('userdetails')){ ?>
 			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">
@@ -118,9 +123,14 @@
 			
 			</span>
 			<?php } else{ ?>
-			<span class="medias"><a href="<?php echo base_url('customer');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup"></sup></span>
+			<span class="medias text-center"><a href="<?php echo base_url('customer');?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+				<p >Cart</p></a>
+			</span>
+			</a>&nbsp;<sup class="sup"></sup></span>
 			<?php } ?>
-			
+			<span class="medias text-center"><a href=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></i>
+				<p>Track</p></a>
+			</span>
 		 </div>
 	</div>
 	  <div class="top-navbar1">
@@ -448,7 +458,7 @@ function registershow(){
 $("#modal-8").show();	
 } 
 </script>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	
 
 <script type="text/javascript" language="javascript">
       $(document).ready(function(){
