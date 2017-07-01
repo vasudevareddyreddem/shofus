@@ -41,7 +41,7 @@ document.getElementById('category_id').options[i].selected=true
 </script>
                 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputPassword1">Select Subcategory</label>
-                  <select class="form-control" id="subcategory_id" name="subcategory_id">
+                  <select class="form-control" onchange="displayingmsg(this.value);"  id="subcategory_id" name="subcategory_id">
                     <option value="">Select Subcategory</option>
 					<?php foreach($subcatdata as $subcat_data){ ?>
                     <option value="<?php echo $subcat_data->subcategory_id; ?>"><?php echo $subcat_data->subcategory_name; ?></option>
@@ -52,21 +52,21 @@ document.getElementById('category_id').options[i].selected=true
 				
 				<script type="text/javascript">
 
-for(var i=0;i<document.getElementById('subcategory_id').length;i++)
+				for(var i=0;i<document.getElementById('subcategory_id').length;i++)
 
-{
+				{
 
-if(document.getElementById('subcategory_id').options[i].value=="<?php echo $productdata->subcategory_id; ?>")
+				if(document.getElementById('subcategory_id').options[i].value=="<?php echo $productdata->subcategory_id; ?>")
 
-{
+				{
 
-document.getElementById('subcategory_id').options[i].selected=true
+				document.getElementById('subcategory_id').options[i].selected=true
 
-}
+				}
 
-}     
+				}     
 
-</script>
+			</script>
                 
 				 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Item Name</label>
@@ -158,6 +158,16 @@ document.getElementById('item_status').options[i].selected=true
 		
   
   <script type="text/javascript">
+  
+  function displayingmsg(val){
+	  if(val!=''){
+		 $('#errorsubcategory').hide(); 
+	  }else{
+		 $('#errorsubcategory').show();  
+	  }
+	  
+	  
+  }
 		$(document).ready(function()
 		{
 		$("#category_id").change(function()
