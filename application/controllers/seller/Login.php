@@ -43,6 +43,20 @@ class Login extends CI_Controller {
 	}
 	
   }
+  public function aboutus() {
+	 
+		$this->load->view('seller/header');
+		$this->load->view('seller/aboutus');
+		$this->load->view('seller/footer');
+	
+  }
+  public function contactus() {
+	 
+		$this->load->view('seller/header');
+		$this->load->view('seller/contactus');
+		$this->load->view('seller/footer');
+	
+  }
 
 
  public function register() {
