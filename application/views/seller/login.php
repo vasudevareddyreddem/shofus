@@ -724,7 +724,7 @@
                   <p>Developer PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class="child_round_circle child_round_circle_img2  ">
+                  <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -737,7 +737,7 @@
                   <p>CEO</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img3 ">
+                 <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -754,7 +754,7 @@
                   <p>DESIGNER PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img4 ">
+                 <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -767,7 +767,7 @@
                   <p>Developer PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img5">
+                <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -780,7 +780,7 @@
                   <p>DESIGNER PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img6">
+                  <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -1154,6 +1154,7 @@
     </div>
   </div>
   </section>
+  <div class="clearfix"></div>
   <!--  start contact us-->
 <section id="contact_sc">
 <div class="srvices_main1">

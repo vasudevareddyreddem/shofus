@@ -25,6 +25,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 
+
 <!--javascript end here -->
 
 
@@ -496,7 +497,7 @@ function emailchecking(reasontype) {
 
 //jQuery to collapse the navbar on scroll
 $(window).scroll(function() {
-    if ($(".navbar").offset().top > 50) {
+    if ($(".navbar").offset().top > 500) {
         $(".navbar-fixed-top").addClass("top-nav-collapse");
     } else {
         $(".navbar-fixed-top").removeClass("top-nav-collapse");
@@ -521,7 +522,7 @@ $(function() {
    
   
    $(window).scroll(function() {
-if ($(this).scrollTop() > 650) {
+if ($(this).scrollTop() > 400) {
 $('.hm_nav').addClass('affix');
 $('.hm_nav').addClass('animated fadeInDown');
 }
@@ -549,7 +550,7 @@ $(document).ready(function(){
       // Using jQuery's animate() method to add smooth page scroll
       // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
       $('html, body').animate({
-        scrollTop: $(hash).offset().top -100
+        scrollTop: $(hash).offset().top -120
       }, 1500, function(){
    
         // Add hash (#) to URL when done scrolling (default click behavior)
