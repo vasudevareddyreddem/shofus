@@ -583,12 +583,22 @@ $(document).ready(function(){
     var login_email = $("#login_email").val();
   var login_password = $("#login_password").val();
    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-   if(login_email == "" && login_password == "" )
-  {
-  $("#EmptyforError").html("Please Enter email and password").css("color", "red");
-        $("#login_email").focus();
-        return false;
-  }
+	if(login_email == "" && login_password == "" )
+	{
+	$("#EmptyforError").html("Please Enter email and password").css("color", "red");
+	$("#login_email").focus();
+	return false;
+	}
+	if(login_email == ""){
+	$("#EmptyforError").html("Please Enter email").css("color", "red");
+	$("#login_email").focus();
+	return false;	
+	}
+	if(login_password == ""){
+	$("#EmptyforError").html("Please Enter Password").css("color", "red");
+	$("#login_email").focus();
+	return false;	
+	}
   else{
   $("#EmptyforError").html(""); 
   }
