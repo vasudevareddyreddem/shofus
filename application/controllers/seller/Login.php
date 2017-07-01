@@ -33,7 +33,7 @@ class Login extends CI_Controller {
  public function index() {
 	 
 	$seller_id=$this->session->userdata('seller_id');
-	if($seller_id!	=''){
+	if($seller_id!=''){
 		redirect('seller/dashboard');
 	}else{
 		$data['cihcatdata']  = $this->login_model->getcihcatedata();
