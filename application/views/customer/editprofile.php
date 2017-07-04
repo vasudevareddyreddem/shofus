@@ -133,7 +133,7 @@ $(document).ready(function() {
             fname: {
               validators: {
 					notEmpty: {
-						message: 'Last Name is required'
+						message: 'First Name is required'
 					},
                    regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
@@ -171,7 +171,7 @@ $(document).ready(function() {
 					},
                     regexp: {
 					regexp:  /^[0-9]{10}$/,
-					message:'Mobile Number must be 10 to 14 digits'
+					message:'Mobile Number must be 10 digits'
 					}
                 }
             },
