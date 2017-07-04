@@ -99,14 +99,49 @@ class Customer extends Front_Controller
 	if($this->session->userdata('userdetails'))
 	 {
 		$post=$this->input->post();
+		//echo '<pre>';print_r($post);
 		$customerdetails=$this->session->userdata('userdetails');
-		//echo '<pre>';print_r($post);exit;
+		$details= $this->customer_model->get_product_details($post['producr_id']);
+		
+		if($details['offer_percentage']!='' && $details['offer_type']!=4){
+			$item_price= ($details['item_cost']-$details['offer_amount']);
+			
+			$price	=(($post['qty']) * ($item_price));		
+		}else{
+			$price= (($post['qty']) * ($details['item_cost']));
+			$item_price=$details['item_cost'];
+		}
+		if($details['category_id']==1){
+			if($price <500){
+				$delivery_charges=35;
+			}else{
+				$delivery_charges=0;
+			}
+		}else{
+			
+			if($price <500){
+				$delivery_charges=75;
+			}else if(($price > 500) && ($price < 1000)){
+				$delivery_charges=35;
+			}else if($price >1000){
+				$delivery_charges=0;
+			}
+		}
+		//echo '<pre>';print_r($details);exit;
+		
+		
 		$adddata=array(
 		'cust_id'=>$customerdetails['customer_id'],
 		'item_id'=>$post['producr_id'],
 		'qty'=>$post['qty'],
+		'item_price'=>$item_price,
+		'total_price'=>$price,
+		'delivery_amount'=>$delivery_charges,
+		'seller_id'=>$details['seller_id'],
+		'category_id'=>$details['category_id'],
 		'create_at'=>date('Y-m-d H:i:s'),
 		);
+		//echo '<pre>';print_r($adddata);exit;
 		$data['cart_items']= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 		
 			foreach($data['cart_items'] as $pids) { 
@@ -150,6 +185,9 @@ class Customer extends Front_Controller
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
 		$data['cart_items']= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+		
+		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/cart', $data);
 		$this->template->render();
 	}else{
@@ -179,7 +217,45 @@ class Customer extends Front_Controller
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
 		$post=$this->input->post();
-		$update= $this->customer_model->update_cart_qty($customerdetails['customer_id'],$post['product_id'],$post['qty']);
+		
+		$details= $this->customer_model->get_product_details($post['product_id']);
+		//echo '<pre>';print_r($details);exit;
+		
+		if($details['offer_percentage']!='' && $details['offer_type']!=4){
+			$item_price= ($details['item_cost']-$details['offer_amount']);
+			
+			$price	=(($post['qty']) * ($item_price));		
+		}else{
+			$price= (($post['qty']) * ($details['item_cost']));
+			$item_price=$details['item_cost'];
+		}
+		if($details['category_id']==1){
+			if($price <500){
+				$delivery_charges=35;
+			}else{
+				$delivery_charges=0;
+			}
+		}else{
+			
+			if($price <500){
+				$delivery_charges=75;
+			}else if(($price > 500) && ($price < 1000)){
+				$delivery_charges=35;
+			}else if($price >1000){
+				$delivery_charges=0;
+			}
+		}
+		//echo "<pre>";print_r($post);exit;
+		$updatedata=array(
+		'qty'=>$post['qty'],
+		'item_price'=>$item_price,
+		'total_price'=>$price,
+		'delivery_amount'=>$delivery_charges,
+		);
+		
+		$update= $this->customer_model->update_cart_qty($customerdetails['customer_id'],$post['product_id'],$updatedata);
+		
+		//echo '<pre>';print_r($update);exit;
 		if(count($update)>0){
 			$this->session->set_flashdata('productsuccess','Product Quantity Successfully Updated!');
 			redirect('customer/cart');	
@@ -241,6 +317,7 @@ class Customer extends Front_Controller
 		$customerdetails=$this->session->userdata('userdetails');
 		$data['locationdata'] = $this->home_model->getlocations();
 		$data['customerdetail']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
+		$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
 		$this->template->write_view('content', 'customer/billingadrres',$data);
 		$this->template->render();
 	}else{
@@ -278,8 +355,16 @@ class Customer extends Front_Controller
 	 
  } 
  public function orderpayment(){
-		$this->template->write_view('content', 'customer/payment');
+	 if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+		$this->template->write_view('content', 'customer/payment',$data);
 		$this->template->render();
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	}
 	 
 	 
  }
