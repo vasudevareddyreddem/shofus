@@ -1,6 +1,6 @@
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
-    <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+<script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 <?php 
 if($this->session->flashdata('updatemessage')=="Store details updated"){
 ?>

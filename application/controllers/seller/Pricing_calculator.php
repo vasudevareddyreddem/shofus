@@ -160,7 +160,7 @@ exit;
 		echo '<h5>Your Profit: '.$result.'</h5>';	
 			
 		}else{
-		echo '<h5>Your Lose: '.$result.'</h5>';		
+		echo '<h5>Your Loss: '.$result.'</h5>';		
 			
 		}
 		
