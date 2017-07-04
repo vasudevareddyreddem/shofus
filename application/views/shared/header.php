@@ -105,7 +105,7 @@
 			<span class="medias user_log text-center">
 			<a href="<?php echo base_url('customer'); ?>" ><i class="" aria-hidden="true">
 			</i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" />
-			<p>Sign in/login</p></a>
+			<p>Sign Up/Sign In</p></a>
 			</span>
 		  <?php } ?>
 			
@@ -114,7 +114,7 @@
 			</span></a></span>
 			
 			<?php if($this->session->userdata('userdetails')){ ?>
-			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">
+			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>	<p >Cart</p></a>&nbsp;<sup class="sup">
 			<?php if(count($cartitemcount)>0){ ?>
 				<?php echo count($cartitemcount); ?>
 				</sup>
