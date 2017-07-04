@@ -41,6 +41,7 @@ class Mobile extends REST_Controller {
 	public function  seller_register_post()
 	{
 			$this->input->post();
+<<<<<<< HEAD
 			$mobile_number=$this->input->get('seller_mobile');
 			$email=$this->input->get('seller_email');
 			$mobile_check=$this->mobile_model->seller_mobile_check($mobile_number);
@@ -80,665 +81,206 @@ class Mobile extends REST_Controller {
 				
 			}
 		}
-	
-
-		//seller_login
-		public function seller_login_post()
-		{
+=======
+			$mobile=$this->input->get('mobile');
+			$email=$this->input->get('email');
+			
+			$mobile_check =$this->mobile_model->seller_mobile_check($mobile);
+			$email_check =$this->mobile_model->seller_email_check($email);
+			//echo '<pre>';print_r($email_check);
+			//echo '<pre>';print_r($mobile_check);
+			
+			if((count($mobile_check)>0 ) && (count($email_check)>0 )) {
+				$message = array('status'=>0,'message'=>'Mobile number and  email already exits. Please use another Mobile number and  email id.');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if(count($mobile_check)>0){
 				
-        
-            $username   = $this->input->get('username');
-            $password = md5($this->input->get('password'));           
-			
-            $result   = $this->mobile_model->seller_login($username, $password);
-			
-             if(count($result)>0)
-            {
-				$result['status']=1;
-        	//$this->input->post();
-            $seller_username   = $this->input->get('username');
-            $seller_password = md5($this->input->get('password'));
-            //print_r($seller_password);exit;
+				$message = array('status'=>0,'message'=>'Mobile number already exits. Please use another Mobile number.');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if(count($email_check)>0){
+				
+				$message = array('status'=>0,'message'=>'Email Id already exits. Please use another Email Id.');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else{
+				
+				/* for otp purpose */
+				$six_digit_random_number = mt_rand(100000, 999999);
+				$seller = 'SEL';
+				$seller_rand_id = mt_rand(100000, 999999);
+				$user_id="cartin"; 
+				$pwd="9494422779";    
+				$sender_id = "CARTIN";          
+				$mobile_num = $mobile;  
+				$message = "Your Temporary Password is : " .$six_digit_random_number;               
+				// Sending with PHP CURL
+				$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
+				$ret = file($url);
+				/*-- */
+					$details = array(
+						'seller_rand_id' => $seller.''.$seller_rand_id,
+						'seller_mobile' => $this->input->get('mobile'),
+						'seller_name' => $this->input->get('name'),
+						'seller_email' => $this->input->get('email'),
+						'seller_password' => md5($this->input->get('password')),
+						'mobile_verification' => $six_digit_random_number,
+						'created_at'  => date('Y-m-d H:i:s'),
+						'updated_at'  => date('Y-m-d H:i:s')
+						);
 
-            $result   = $this->mobile_model->seller_login($seller_username, $seller_password);
-                       
-             if(count($result)>0)
-            {
-				$result['status']=1; 
-				$this->response($result, REST_Controller::HTTP_OK);
-			}	
-			else
+				$savedetails=$this->mobile_model->seller_register($details);
+				
+				if(count($savedetails)>0){
+					$data=array('seller_id'=>$savedetails);
+					$this->mobile_model->seller_id_nsert($data);
+					$message = array('status'=>1,'seller_id'=>$savedetails,'message'=>'verification Code send to your Mobile number');
+						$this->response($message, REST_Controller::HTTP_OK);
+				}
+						
+
+			}
+		
+	}
+>>>>>>> 821a9d99844e45e111cfcc245a7f7c66964049e8
+	
+	/*mobile otp verification*/
+	public function  otp_verification_post()
+	{	
+			$otp_verifing=$this->mobile_model->get_seller_details($this->input->get('seller_id'));
+			//echo '<pre>';print_r($otp_verifing);exit;
+			
+			if($otp_verifing['mobile_verification']== $this->input->get('otp'))
 			{
-				$message = array('status'=>0,'message'=>'Login Faild.');				
+					$verify=$this->mobile_model->verifing_mobile($this->input->get('seller_id'),1);
+					if(count($verify)>0){
+						
+						$message = array('status'=>1,'seller_id'=>$otp_verifing['seller_id'],'message'=>'Your mobile number is verified!');
+						$this->response($message, REST_Controller::HTTP_OK);
+					}
+			}else{
+				$message = array('status'=>0,'message'=>'Invalid mobile verification code. Please try again.');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
-			}
-		}
 
-		//seller_basic_details
+	}
+	/* login purpose*/
+	public function  seller_login_post()
+	{
+		
+		$username=$this->input->get('username');
+		$password=$this->input->get('password');
+		$login=$this->mobile_model->seller_login_check($username,md5($password));
+		if(count($login)>0){
+			$message = array('status'=>1,'seller_id'=>$login['seller_id'],'message'=>'Successfully login to your Account');
+			$this->response($message, REST_Controller::HTTP_OK);	
 			
-
-		//seller_categories
-		public function seller_categories_post()
-		{
-			$id = $this->get('seller_id'); 
-			$seller_cat_id =explode(',',$this->input->get('seller_cat_id'));
-			//$adresses = implode(',' , $seller_cat_id->result());
-			//echo '<pre>';print_r($seller_cat_id);exit;
-			$seller_cat_names =explode(',',$this->input->get('seller_cat_name'));
-			//echo '<pre>';print_r($seller_cat_names);exit;
-
-			foreach($seller_cat_id as $adr)
-			{
-				$adresses = $adr['0'];
+		}else{
+			$message = array('status'=>0,'message'=>'Invalid Mobile number / Email Id or Password.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+		
+	}
+	/*get category list*/
+	public function  get_category_list_get()
+	{
+		
+		$category=$this->mobile_model->get_category_list();
+		//echo '<pre>';print_r($category);exit;
+		if(count($category)>0){
+			$message = array('status'=>1,'category_list'=>$category,'message'=>'category list are found.');
+			$this->response($message, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'category list are not found.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+		
+	}
+	/* save category List*/
+	public function  get_categorylist_save_post()
+	{
+		
+		
+		$categories=array_unique($this->input->get('seller_category_id[]'));
+		$seller_id=$this->input->get('seller_id');
+		$catresult=$this->mobile_model->get_old_seller_categories($this->input->get('seller_id'));
+			foreach($catresult as $delcats){
+				
+				$this->mobile_model->delet_get_old_seller_categories($delcats['seller_cat_id']);
 			}
-			//print_r($adresses);exit;
-			$seller_category = array(
-			'seller_id' => $id,
-			'seller_category_id'=> $adresses,
-			'category_name'=> $seller_cat_names,
+		foreach($categories as $lists){
+			$catname=$this->mobile_model->get_categories_name($lists);
+			
+		$data = array(
+			'seller_id' => $this->input->get('seller_id'),
+			'seller_category_id'=> $lists,
+			'category_name'=> $catname['category_name'],
 			'created_at'=> date('Y-m-d h:i:s'),
 			'updated_at'=>  date('Y-m-d h:i:s'),
-			);
-			$seller_cats=$this->mobile_model->insertseller_cat($id,$seller_category);
-			if(count($seller_cats)>0)
-			{
-			$message = array
-				(
-					'status'=>1,
-					'seller_category'=>$seller_category,							
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Faild'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-
-
-
+			);	
+		
+		if($lists!=''){
+			$save_category=$this->mobile_model->insert_seller_cat($data);
 		}
-
-		//store_details
-		
-		public function seller_strore_details_post()
-		{
+		//echo '<pre>';print_r($data);
+		}
+		if(count($save_category)>0){
 			
-			$id = $this->input->get('seller_id');
-			// $base64_str = $this->input->get('tanvat_image');
-			// $image = base64_decode($base64_str);
-			// $image_name= $image;
-			// $path ="/assets/sellerfile//" . $image_name;
-			// $tanvatimage= file_put_contents($path, $image);
+			$message = array('status'=>1,'seller_id'=>$seller_id,'message'=>'category list are successfully saved.');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
 		
 		
+	}
+	/* store details saving puepose*/
+	public function save_store_details_post()
+	{
+		
+		$seller_upload_file=$this->mobile_model->get_upload_file($this->input->get('seller_id'));
+		if($this->input->get('gstinimage')!=''){
+			$gstimg=base64_decode($this->input->get('gstinimage'));
+			move_uploaded_file($gstimg['tmp_name'], "assets/sellerfile/" . $gstimg);
+
+			}else{
+			$gstimg=$seller_upload_file['gstinimage'];
+			}
 			$data = array(
-			'seller_id' => $id, 	
-			'store_name' => $this->input->get('store_name'), 
-			'addrees1' => $this->input->get('addrees1'),    
-			'addrees2' => $this->input->get('addrees2'),    
-			'pin_code' => $this->input->get('pin_code'),    
-			'other_shops'  =>$this->input->get('other_shops'),
-			'other_shops_location'  =>$this->input->get('other_shops_location'),
-			'deliveryes'  =>$this->input->get('deliveryes'),
-			'weblink'  =>$this->input->get('weblink'),
-			'tin_vat'  =>$this->input->get('tin_vat'),
-			'tinvatimage'  =>$tanvatimage,
-			'tan'  =>$this->input->get('tan'),
-			//'tanimage'  =>$tanimg,
-			'cst'  =>$this->input->get('cst'),
-			//'cstimage'  =>$cetimg,
-			'gstin'  =>$this->input->get('gstin'),
-			'created_at'  => date('Y-m-d H:i:s'),
-			);
-			//echo '<pre>';print_r($data);exit;
-			$store_details=$this->mobile_model->seller_store_details($id,$data);
-			
-			if(count($store_details)>0)
-			{
-			// $message = array
-			// 	(
-			// 		'status'=>1,
-			// 		'seller_store_details'=>$data,							
-			// 	);
-				$data['status']=1;
-				$this->response($data, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Faild'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-		}
-
-		
-
-
-		//seller_personal_details
-		public function seller_personal_details_post()
-		{
-			$id = $this->input->get('seller_id');
-			$data = array
-			(
-				'seller_id' => $id,
-			    'seller_bank_account' => $this->input->get('bank_account'), 
-			    'seller_adhar' => $this->input->get('aadhaar_card'),
-			    'seller_pan_card' => $this->input->get('pan_card'),    
-			    'created_at'  => date('Y-m-d H:i:s'),
-			    'updated_at'  => date('Y-m-d H:i:s')
-			  
-			  );
-			//echo print_r($data);exit;
-			$seller_personal_details=$this->mobile_model->seller_personal_details($data,$id);
-
-		    if(count($seller_personal_details)>0)
-		      {
-		  //     $message = array
-				// (
-				// 	'status'=>1,
-				// 	'seller_personal_details'=>$data,							
-				// );
-				$data['status']=1;
-				$this->response($message, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Faild'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-		}
-		/* End seller register Apis */
-
-
-		/* start seller Update Profile Apis */
-
-		public function update_stepone_details_post()
-		{
-			$id = $this->input->get('seller_id');
-			//echo $id;
-			$stepone = array(					
-					'seller_name' => $this->input->get('seller_name'),
-					'seller_mobile' => $this->input->get('seller_mobile_number'),
-					'seller_email' => $this->input->get('seller_email'),
-					'seller_address' => $this->input->get('seller_address'),
-					'created_at'  => date('Y-m-d H:i:s'),
-					'updated_at'  => date('Y-m-d H:i:s')
-					);
-			$update_stepone=$this->mobile_model->update_step_one($id,$stepone);
-
-		    if(count($update_stepone)>0)
-		      {
-		  //     $message = array
-				// (
-				// 	'status'=>1,
-				// 	'Seller_update_stepone'=>$stepone,
-				// 	'message'=>'Successfully Updated Stepone'						
-				// );
-				$stepone['status']=1;
-				$stepone['message']='Successfully Updated Stepone';
-				$this->response($stepone, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Faild'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-
-		}
-
-		//update seller_steptwo
-		public function update_steptwo_details_post()
-		{
-			$id = $this->get('seller_id'); 
-			$seller_cat_id =explode(',',$this->input->get('seller_cat_id'));
-			//$adresses = implode(',' , $seller_cat_id->result());
-			//echo '<pre>';print_r($adresses);exit;
-			$seller_cat_names =explode(',',$this->input->get('seller_cat_name'));
-			//echo '<pre>';print_r($seller_cat_names);exit;
-
-			foreach($seller_cat_id->result_array() as $adr)
-			{
-				$adresses .= $adr['seller_cat_id'] . ',' ;
-			}
-			$steptwo = array(
-			'seller_id' => $id,
-			'seller_category_id'=> $seller_cat_id,
-			'category_name'=> $seller_cat_names,
+			'store_name' => $this->input->get('businessname'),
+			'addrees1'=> $this->input->get('address1'),
+			'addrees2'=>$this->input->get('address2'),
+			'area'=>$this->input->get('area'),
+			'pin_code'=>$this->input->get('pincode'),
+			'gstin'=>$this->input->get('gstin'),
+			'gstinimage'=>$gstimg,
+			'other_shops'=>$this->input->get('othershops'),
 			'created_at'=> date('Y-m-d h:i:s'),
-			'updated_at'=>  date('Y-m-d h:i:s'),
-			);
-			$seller_cats=$this->mobile_model->insertseller_cat($id,$steptwo);
-			if(count($seller_cats)>0)
-			{
-			// $message = array
-			// 	(
-			// 		'status'=>1,
-			// 		'Seller_update_stepone'=>$seller_category,
-			// 		'message'=>'Successfully Updated Steptwo'							
-			// 	);
-				$steptwo['status']=1;
-				$steptwo['message']='Successfully Updated Steptwo';
-				$this->response($steptwo, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Faild'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-
-		}
-
-
-		//update seller_stepthree
-
-		public function update_stepthree_details_post()
-		{
-			$id = $this->input->get('seller_id');
-			// $base64_str = $this->input->get('tanvat_image');
-			// $image = base64_decode($base64_str);
-			// $image_name= $image;
-			// $path ="/assets/sellerfile//" . $image_name;
-			// $tanvatimage= file_put_contents($path, $image);
-		
-		
-			$stepthree = array(
-			'seller_id' => $id, 	
-			'store_name' => $this->input->get('store_name'), 
-			'addrees1' => $this->input->get('addrees1'),    
-			'addrees2' => $this->input->get('addrees2'),    
-			'pin_code' => $this->input->get('pin_code'),    
-			'other_shops'  =>$this->input->get('other_shops'),
-			'other_shops_location'  =>$this->input->get('other_shops_location'),
-			'deliveryes'  =>$this->input->get('deliveryes'),
-			'weblink'  =>$this->input->get('weblink'),
-			'tin_vat'  =>$this->input->get('tin_vat'),
-			'tan'  =>$this->input->get('tan'),			
-			'cst'  =>$this->input->get('cst'),		
-			'gstin'  =>$this->input->get('gstin'),
-			'created_at'  => date('Y-m-d H:i:s'),
 			);
 			//echo '<pre>';print_r($data);exit;
-			$update_stepthree=$this->mobile_model->update_step_three($id,$stepthree);
-			
-			if(count($update_stepthree)>0)	
-			{
-			// $message = array
-			// 	(
-			// 		'status'=>1,
-			// 		'Seller_update_stepthree'=>$stepthree,
-			// 		'message'=>'Successfully Updated Stepthree'
-			// 	);
-				$stepthree['status']=1;
-				$stepthree['message']='Successfully Updated Stepthree';
+			$cate_store_details=$this->mobile_model->save_store_details($this->input->get('seller_id'),$data);
+			if(count($cate_store_details)>0){
+				$message = array('status'=>1,'seller_id'=>$this->input->get('seller_id'),'message'=>'Store details are successfully saved.');
 				$this->response($message, REST_Controller::HTTP_OK);
+			}else{
+				$message = array('status'=>0,'message'=>'some problem are in query');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Faild'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-		}
-
-		//update seller_stepthree
-		public function update_stepfour_details_post()
-		{
-			$id = $this->input->get('seller_id');
-
-			$stepfour =array
-			(
-				'seller_id' => $id,
-				'seller_bank_account' => $this->input->get('bank_account'),
-				'seller_pan_card ' => $this->input->get('pan_card'),
-				'seller_adhar' => $this->input->get('adhar_card')
-			);
-			$update_stepfour=$this->mobile_model->update_step_four($id,$stepfour);
 			
-			if(count($update_stepfour)>0)	
-			{
-			// $message = array
-			// 	(
-			// 		'status'=>1,
-			// 		'Seller_update_stepfour'=>$stepfour,
-			// 		'message'=>'Successfully Updated Stepfour'
-			// 	);
-				$stepfour['status']=1;
-				$stepfour['message']='Successfully Updated Stepfour';
-				$this->response($stepfour, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Faild'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-		}
-
-		/* End seller Update Profile Apis */
-
-
-
-
-		//seller_categorys
-		public function seller_category_get()
-		{
-			$seller_category = $this->mobile_model->get_seller_category();
-			if(count($seller_category)>0)
-            {
-				// $message = array
-				// (
-				// 	'status'=>1,
-				// 	'seller_category'=>$seller_category,							
-				// );
-				$seller_category['status']=1;
-				$this->response($seller_category, REST_Controller::HTTP_OK);
-			}	
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Empty categorys'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-		}
-
-		//seller_subcategory
-		public function seller_subcategory_get()
-		{
-			$seller_subcategory = $this->mobile_model->get_seller_subcategory();
-			if(count($seller_subcategory)>0){
-				// $message = array
-				// (
-				// 	'status'=>1,
-				// 	'seller_subcategory'=>$seller_subcategory,							
-				// );
-				$seller_subcategory['status']=1;
-				$this->response($seller_subcategory, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Empty subcategorys'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}	
-		}
-		//seller_subitems
-		public function seller_subitem_get()
-		{
-			$seller_subitem = $this->mobile_model->get_seller_subitem();	
-			if(count($seller_subitem)>0){
-				// $message = array
-				// (
-				// 	'status'=>1,
-				// 	'seller_subitems'=>$seller_subitem,							
-				// );
-				$seller_subitem['status']=1;
-				$this->response($seller_subitem, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Empty subitems'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-		}
-
-		//admin_notifications
-		public function admin_notifications_get()
-		{
-			$id = $this->get('seller_id');
-			//echo $id;exit;
-			$admin_notify = $this->mobile_model->getdata($id);	
-			if(count($admin_notify)>0){
-				// $message = array
-				// (
-				// 	'status'=>1,
-				// 	'admin_notifications'=>$admin_notify,							
-				// );
-				$admin_notify['status']=1;
-				$this->response($admin_notify, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Please Wait For Notifications'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-
-		}
-
-		//seller_ads
-		public function seller_ads_get()
-		{
-			$seller_notify = $this->mobile_model->seller_ads();	
-			if(count($seller_notify)>0){
-				// $message = array
-				// (
-				// 	'status'=>1,
-				// 	'admin_notifications'=>$seller_notify,							
-				// );
-				$seller_notify['status']=1;
-				$this->response($seller_notify, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'Please Wait For Notifications'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-		}
-
-
-
-		//new_orders
-		public function seller_new_orders_get()
-		{
-			$id = $this->input->get('seller_id');
-			$new_order=$this->mobile_model->new_orders($id);
-			//echo print_r($result);exit;
-			if(count($new_order)>0){
-				// $message = array
-				// (
-				// 	'status'=>1,
-				// 	'New Orders'=>$new_order,							
-				// );
-				$new_order['status']=1;
-				$this->response($new_order, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'No Oredrs'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-		}
-
-		//return _orders
-		public function seller_returns_orders_get()
-		{
-			$id = $this->input->get('seller_id');
-
-		}
-		//listing cats
-		public function listing_get()
-		{
-			$id = $this->input->get('seller_id');
-			$lists = $this->mobile_model->listing_category($id);
-			if(count($lists)>0){
-				// $message = array
-				// (
-				// 	'status'=>1,
-				// 	'my_listings'=>$lists,							
-				// );
-				$lists['status']=1;
-				$this->response($lists, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'No Listings'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-
-		}
-
-		//my_listing
-		public function seller_listing_get()
-		{
-			$id = $this->input->get('seller_id');
-			$list = $this->mobile_model->listing_sub_all($id);
-			if(count($list)>0){
-				// $message = array
-				// (
-				// 	'status'=>1,
-				// 	'my_listings'=>$list,							
-				// );
-				$list['status']=1;
-				$this->response($list, REST_Controller::HTTP_OK);
-			}
-			else
-			{
-				$message = array
-				(
-					'status'=>0,
-					'message'=>'No Listings'
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-
-		}
-
-		//Track Approval Requests
-
-		public function track_approval_request_get()
-		{
-			$id = $this->input->get('seller_id');
-			$track =$this->mobile_model->track_approval($id);
-			//print_r($track);
+	}
+	
+	/* get location list */
+	public function  get_location_list_get()
+	{
+		
+		$locations=$this->mobile_model->get_location_list();
+		//echo '<pre>';print_r($category);exit;
+		if(count($locations)>0){
+			$message = array('status'=>1,'category_list'=>$locations,'message'=>'location list are found.');
+			$this->response($message, REST_Controller::HTTP_OK);	
 			
-  				if(count($track)>0)
-  			{
-				// $message = array
-		 	// 	(
-		 	// 		'status'=>1,
-		 	// 		'track_approvals'=>$track,		 			
-					
-		 	// 	);
-  				$track['status']=1;
-	 				$this->response($track, REST_Controller::HTTP_OK);
-		 	}
-		 	else
-		 	{
-		 		$message = array
-		 		(
-		 			'status'=>0,
-		 			'message'=>'No track_approvals'
-		 		);
-	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-		 	}
+		}else{
+			$message = array('status'=>0,'message'=>'location list are not found.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
-		//Total Orders
-		public function total_orders_get()
-		{
-			$id = $this->input->get('seller_id');
-			$total_orders = $this->mobile_model->get_total($id);
-			//print_r($total_orders);
-			if(count($total_orders)>0)
-  			{
-				// $message = array
-		 	// 	(
-		 	// 		'status'=>1,
-		 	// 		'total_orders'=>$total_orders,		 			
-					
-		 	// 	);
-  				$total_orders['status']=1;
-	 			$this->response($message, REST_Controller::HTTP_OK);
-		 	}
-		 	else
-		 	{
-		 		$message = array
-		 		(
-		 			'status'=>0,
-		 			'message'=>'No Orders'
-		 		);
-	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-		 	}
-		}
-
-		//assigned orders
-		public function assigned_orders_get()
-		{
-			$id = $this->input->get('seller_id');
-			$assigned_orders = $this->mobile_model->assigned_Orders($id);
-			//print_r($assigned_orders);
-			if(count($assigned_orders)>0)
-  			{
-				// $message = array
-		 	// 	(
-		 	// 		'status'=>1,
-		 	// 		'Assigned_orders'=>$assigned_orders,		 			
-					
-		 	// 	);
-  					$assigned_orders['status']=1;
-	 				$this->response($assigned_orders, REST_Controller::HTTP_OK);
-		 	}
-		 	else
-		 	{
-		 		$message = array
-		 		(
-		 			'status'=>0,
-		 			'message'=>'No Assigned_orders'
-		 		);
-	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-		 	}
-		}
+<<<<<<< HEAD
 
 		//inprogress_orders
 		public function inprogress_orders_get()
@@ -918,9 +460,30 @@ class Mobile extends REST_Controller {
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
+=======
+		
+	}
+	public function save_personal_details_post()
+	{
+	
+		$details = array(
+			'seller_bank_account'=> $this->input->get('accountnumber'),
+			'seller_account_name'=> $this->input->get('accountname'),
+			'seller_aaccount_ifsc_code'=> $this->input->get('ifsccode'),
+			);	
+		$save_personal_details=$this->mobile_model->save_personal_details($this->input->get('seller_id'),$details);
+		
+		if(count($save_personal_details)>0){
+			
+			$message = array('status'=>1,'seller_id'=>$this->input->get('seller_id'),'message'=>'personal Details are saved.');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>0,'message'=>'some problem are in query.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+>>>>>>> 821a9d99844e45e111cfcc245a7f7c66964049e8
 		}
-
-
+	}
+		
 
 
 }

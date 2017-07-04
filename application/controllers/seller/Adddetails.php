@@ -29,11 +29,34 @@ class Adddetails extends Seller_adddetails{
 	{  
 		
 		$post=$this->input->post();
-		
+		//echo "<pre>";print_r($post);
 		$editform=$this->adddetails_model->check_email_editing($this->session->userdata('seller_id'));
-		if($editform['seller_email']==''){
+		//echo "<pre>";print_r($editform);exit;
+		if($editform['seller_email']==$post['seller_email']){
+			$data = array(
+
+				'seller_id' => $this->session->userdata('seller_id'),
+				'seller_name' => $post['seller_name'],
+				'seller_email' => $post['seller_email'],
+				//'seller_address' => $this->input->post('seller_address'),
+				'created_at'  => date('Y-m-d H:i:s'),
+				'updated_at'  => date('Y-m-d H:i:s')
+
+				);
+				$res=$this->adddetails_model->insertseller_basic($data);
+				if(count($res)>0)
+				{
+				$this->session->set_flashdata('sucess','personal data successfully added');
+				redirect('seller/adddetails/categories');
+				}else{
+
+				$this->session->set_flashdata('error','Some error are occured.');
+				redirect('seller/adddetails/updatebasicdetails'); 
+				}	
+			
+		}else{
 				$checkemail=$this->adddetails_model->check_email_exits($post['seller_email']);
-				if(count($checkemail)==0){
+				if(count($checkemail)==''){
 				$data = array(
 
 				'seller_id' => $this->session->userdata('seller_id'),
@@ -59,30 +82,11 @@ class Adddetails extends Seller_adddetails{
 				$this->session->set_flashdata('error','Email Id Aready Exits. Please use another Email Id');
 				redirect('seller/adddetails'); 
 				}
-			
-		}else{
-		$data = array(
-		'seller_id' => $this->session->userdata('seller_id'),
-		'seller_name' => $post['seller_name'],
-		'seller_email' => $post['seller_email'],
-		//'seller_address' => $this->input->post('seller_address'),
-		'created_at'  => date('Y-m-d H:i:s'),
-		'updated_at'  => date('Y-m-d H:i:s')
-
-		);
-		$res=$this->adddetails_model->insertseller_basic($data);
-		if(count($res)>0)
-		  {
-			$this->session->set_flashdata('sucess','personal data successfully added');
-			redirect('seller/adddetails/categories');
-		  }else{
-			  
-			 $this->session->set_flashdata('error','Some error are occured.');
-			redirect('seller/adddetails/updatebasicdetails'); 
-		  }
 		}
 		
-    }
+			
+		
+	}
 
 	public function categories() {	 
 

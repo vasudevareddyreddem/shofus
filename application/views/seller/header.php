@@ -25,6 +25,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 
+
 <!--javascript end here -->
 
 
@@ -105,11 +106,15 @@
             <div class="innter-form">
               <form method="post"  name="login_form" id="login_submit">
               <div id="login-response"></div>
-                <div id="EmptyforError"></div>
+                <div id="EmptyforError"></div><div id="forgot-response1"></div>
+			<div class="form-group">
               <label >Email Address / Mobile Number</label>
               <input  name="login_email" id="login_email" class="form-control" type="text" name="username" autofocus>
+			</div>
+			<div class="form-group">
               <label>Password</label>
               <input  id="login_password" name="login_password" class="form-control" type="password" name="password">
+			  </div>
 			  <div class="col-md-6 paddingRightZero">
 				<div class="pswrd ">
 					<a href="#" tabindex="5" class="forgot-password" class="btn btn-info " data-toggle="modal" data-target="#myModal1">Unable to Login?</a>
@@ -220,88 +225,6 @@
     </div>
   </div>
   
-  <!--register  Modal -->
-
-   <!-- <div class="modal fade" id="myModa3" role="dialog">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-header" style="background-color:#39b9f9;color:#fff; border-radius: 5px 5px 0px 0px;">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Register</h4>
-        </div>
-       <div class="modal-body">
-            <form action="<?php echo base_url(); ?>seller/login/insert" method="post" enctype="multipart/form-data" onSubmit="return sellerinfvalidateof();">
-              <div class="form-group">
-        <?php echo $this->session->flashdata('msg1'); ?>
-                <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                  <label for="ex1">Name</label>
-                  <input class="form-control" id="seller_fullname" name="seller_fullname" type="text" autofocus>
-          <span id="errorname1" style="color:red; font-size: 13px;"></span>
-                </div>
-                <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                  <label for="ex2">Email Id</label>
-                  <input class="form-control" id="seller_email" name="seller_email" type="text">
-          <span id="erroremail" style="color:red; font-size: 13px;"></span>
-                </div>
-                
-                <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                  <label for="ex4">Mobile Number</label>
-                  <input class="form-control" id="seller_mobile" name="seller_mobile" maxlength="10" type="text">
-          <span id="errorphone" style="color:red; font-size: 13px;"></span>
-                </div>
-                <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                  <label for="ex5">Shop Name</label>
-                  <input class="form-control" id="seller_shop" name="seller_shop" type="text">
-          <span id="errorshop" style="color:red; font-size: 13px;"></span>
-                </div>
-                <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                  <label for="ex6">Shop Location</label>
-                  <select class="form-control" id="location_name" name="location_name">
-                         <option value="">-Select Location-</option>
-             <?php foreach($locationdata as $location_data)  { ?>
-                         <option value="<?php echo $location_data->location_name;?>"><?php echo $location_data->location_name;?></option>
-                         
-             <?php } ?>
-                      </select>
-            <span id="errorlocation" style="color:red; font-size: 13px;"></span>
-                </div>
-                <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                  <label for="ex7">VAT/TIN Number</label>
-                  <input class="form-control" id="seller_license" name="seller_license" type="text">
-          <span id="errorlicense" style="color:red; font-size: 13px;"></span>
-                </div>
-                <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                  <label for="ex8">Aadhar Number</label>
-                  <input class="form-control" id="seller_adhar" name="seller_adhar" maxlength="12"  type="text">
-          <span id="erroradhar" style="color:red; font-size: 13px;"></span>
-                </div>
-                <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                  <label for="ex9">Bank Acc Number</label>
-                  <input class="form-control" id="seller_bank" name="seller_bank" type="text">
-          <span id="errorbank" style="color:red; font-size: 13px;"></span>
-                </div>
-               
-                <div class="col-xs-12 col-md-12 nopaddingright reginput">
-                  <label for="ex12">Address</label>
-                  <textarea class="form-control" id="seller_address" name="seller_address"></textarea>
-          <span id="erroraddress" style="color:red; font-size: 13px;"></span>
-                </div>
-              </div>
-              <div class="clearfix"></div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="checkbox" value="check" id="terms_condition">
-                  If you have read and agree to the <a href="#">Terms and Conditions,</a> please continue</label>
-         <div id="errorterms" style="color:red; font-size: 13px;"></div> 
-              </div>
-        
-              <input type="submit" class="btn btn-primary" value="Submit" onclick="if(!this.form.checkbox.checked){alert('You must agree to the Terms and Conditions first.');return false}">
-            </form>
-          </div>
-          
-      </div>
-    </div>
-  </div> -->
   
   
   <!--Just fill form to Select plan modal -->
@@ -437,12 +360,12 @@
 						<input type="radio" name="unable_login" id="unable_login" value="1" > E-Mail 
 						<input type="radio" name="unable_login" id="unable_login" value="0" > Mobile
 						<div id="forgoterror"></div>
-            <div id="forgot-response"></div>
+						<div id="forgot-response"></div>
                         <input type="text" class="form-control" id="forgot_mobile" name="forgot_mobile">
                          <span id="MobileforErr"></span>
                       
                       <br>
-                      <a href="javascript:void(0)"  onclick="validationcheckings();"  class="btn btn-success">Submit</a>
+                      <a href="javascript:void(0)"  onclick="validationcheckings();"   id="unableloginfield" class="btn btn-success">Submit</a>
 				</div>
 				     </form>           
 				 </div>
@@ -464,16 +387,21 @@ function emailchecking(reasontype) {
 }
  function validationcheckings (){
 	 
-	 
+	 $("#forgot-response").html("");
 	  var radiovalue=$('input[name="unable_login"]:checked').val();
 	  //alert(radiovalue);
 	  if(radiovalue==1 || radiovalue==0){
 		
 	  if(radiovalue==0){
 		  var mobile = document.getElementById('forgot_mobile').value;
+		  
 		  if(mobile==''){
+			  
 			  $("#forgoterror").html("Please Enter Mobile Number").css("color", "red");
+			  return false;
 		  }else{
+			  
+			 
 			 var mobile = document.getElementById('forgot_mobile').value;
 			if (!IsMobile(mobile)) {
 			$("#forgoterror").html("Please Enter Correct Mobile Number").css("color", "red");
@@ -483,7 +411,8 @@ function emailchecking(reasontype) {
 		  }
 		  $("#forgoterror").html("");
 			$("#forgot_submit").html("");
-		  $.ajax({
+			//document.getElementById("unableloginfield").disabled = true;
+			$.ajax({
 			  
 					type: 'post',
 					data: {
@@ -497,10 +426,12 @@ function emailchecking(reasontype) {
 					success:function(data)
 					{
 					//alert(data);
+					//document.getElementById("unableloginfield").disabled = false;
 					if(data.sendmsg==1){
+					
 							$("#myModal1").fadeOut(1);
 							$("#forgot_mobile").val('');
-							$("#forgot-response").html("Temporary Password Successfully Sent").css("color", "Green");
+							$("#forgot-response1").html("Temporary Password Successfully Sent").css("color", "Green");
 							
 							return true;
 						}if(data.sendmsg==0){
@@ -515,6 +446,7 @@ function emailchecking(reasontype) {
 					}
 					
 			});
+		
 		  
 	  }
 		
@@ -522,6 +454,7 @@ function emailchecking(reasontype) {
 		  var email = document.getElementById('forgot_mobile').value;
 		  if(email==''){
 			  $("#forgoterror").html("Please Enter Email").css("color", "red");
+			  return false;
 		  }else{
 			  
 			  if (!emailchecking(email)) {
@@ -531,6 +464,7 @@ function emailchecking(reasontype) {
 			}
 		  }
 			$("#forgoterror").html("");
+			$("#forgot_submit").html("");
 			$("#forgot_submit").html("");
 				$.ajax({
 					type: 'post',
@@ -544,7 +478,6 @@ function emailchecking(reasontype) {
 					url: '<?php echo base_url("seller/login/forgot"); ?>',
 					success:function(data)
 					{
-						//alert(data.mailsend);return false;
 						if(data.mailsend==1){
 							$("#myModal1").fadeOut(1);
 							$("#forgot_mobile").val('');
@@ -574,7 +507,7 @@ function emailchecking(reasontype) {
 
 //jQuery to collapse the navbar on scroll
 $(window).scroll(function() {
-    if ($(".navbar").offset().top > 50) {
+    if ($(".navbar").offset().top > 500) {
         $(".navbar-fixed-top").addClass("top-nav-collapse");
     } else {
         $(".navbar-fixed-top").removeClass("top-nav-collapse");
@@ -599,7 +532,7 @@ $(function() {
    
   
    $(window).scroll(function() {
-if ($(this).scrollTop() > 650) {
+if ($(this).scrollTop() > 400) {
 $('.hm_nav').addClass('affix');
 $('.hm_nav').addClass('animated fadeInDown');
 }
@@ -627,7 +560,7 @@ $(document).ready(function(){
       // Using jQuery's animate() method to add smooth page scroll
       // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
       $('html, body').animate({
-        scrollTop: $(hash).offset().top -100
+        scrollTop: $(hash).offset().top -120
       }, 1500, function(){
    
         // Add hash (#) to URL when done scrolling (default click behavior)
@@ -650,12 +583,22 @@ $(document).ready(function(){
     var login_email = $("#login_email").val();
   var login_password = $("#login_password").val();
    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-   if(login_email == "" && login_password == "" )
-  {
-  $("#EmptyforError").html("Please Enter email and password").css("color", "red");
-        $("#login_email").focus();
-        return false;
-  }
+	if(login_email == "" && login_password == "" )
+	{
+	$("#EmptyforError").html("Please Enter email and password").css("color", "red");
+	$("#login_email").focus();
+	return false;
+	}
+	if(login_email == ""){
+	$("#EmptyforError").html("Please Enter email").css("color", "red");
+	$("#login_email").focus();
+	return false;	
+	}
+	if(login_password == ""){
+	$("#EmptyforError").html("Please Enter Password").css("color", "red");
+	$("#login_email").focus();
+	return false;	
+	}
   else{
   $("#EmptyforError").html(""); 
   }

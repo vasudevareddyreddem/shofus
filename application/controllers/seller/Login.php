@@ -31,12 +31,31 @@ class Login extends CI_Controller {
 }
 
  public function index() {
-	 $data['cihcatdata']  = $this->login_model->getcihcatedata();
-	 $this->load->view('seller/header');
-  $this->load->view('seller/login',$data);
-   $this->load->view('seller/footer');
-
-        //$this->template->render(); 
+	 
+	$seller_id=$this->session->userdata('seller_id');
+	if($seller_id!=''){
+		redirect('seller/dashboard');
+	}else{
+		$data['cihcatdata']  = $this->login_model->getcihcatedata();
+		$this->load->view('seller/header');
+		$this->load->view('seller/login',$data);
+		$this->load->view('seller/footer');
+	}
+	
+  }
+  public function aboutus() {
+	 
+		$this->load->view('seller/header');
+		$this->load->view('seller/aboutus');
+		$this->load->view('seller/footer');
+	
+  }
+  public function contactus() {
+	 
+		$this->load->view('seller/header');
+		$this->load->view('seller/contactus');
+		$this->load->view('seller/footer');
+	
   }
 
 
@@ -56,9 +75,9 @@ class Login extends CI_Controller {
 
 // Terms and Conditions
     public function termsandconditions() {
-  $this->load->view('seller/header');
-  $this->load->view('seller/termsandconditions');
-$this->load->view('seller/footer');
+	$this->load->view('seller/header');
+	$this->load->view('seller/termsandconditions');
+	$this->load->view('seller/footer');
     }
 
 public function insert() {

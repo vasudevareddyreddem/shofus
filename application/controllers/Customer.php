@@ -19,10 +19,66 @@ class Customer extends Front_Controller
 	 if($this->session->userdata('userdetails'))
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
-		$data['profile_details']= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		$data['profile_details']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
 
 		$this->template->write_view('content', 'customer/profile', $data);
 		$this->template->render();
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	} 
+	 
+ } 
+ public function editprofile(){
+	 
+	 if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		$data['locationdata'] = $this->home_model->getlocations();
+		$data['profile_details']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
+
+		$this->template->write_view('content', 'customer/editprofile', $data);
+		$this->template->render();
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	} 
+	 
+ }
+ public function updateprofilepost(){
+	 
+	 if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		$post=$this->input->post();
+		//echo '<pre>';print_r($_FILES);
+		
+		$cust_upload_file= $this->customer_model->get_profile_details($customerdetails['customer_id']);
+		if($_FILES['profile']['name']!=''){
+			$profilepic=$_FILES['profile']['name'];
+			move_uploaded_file($_FILES['profile']['tmp_name'], "uploads/profile/" . $_FILES['profile']['name']);
+
+			}else{
+			$profilepic=$cust_upload_file['cust_propic'];
+			}
+		$details=array(
+		'cust_firstname'=>$post['fname'],
+		'cust_lastname'=>$post['lname'],
+		//'cust_email'=>$post['email'],
+		'cust_mobile'=>$post['mobile'],
+		'cust_propic'=>$profilepic,
+		'address1'=>$post['address1'],
+		'address2'=>$post['address2'],
+		'area'=>$post['area'],
+		);
+		//echo '<pre>';print_r($details);exit;
+		$updatedetails= $this->customer_model->update_deails($customerdetails['customer_id'],$details);
+		if(count($updatedetails)>0){
+			$this->session->set_flashdata('success','Profile Successfully updated');
+			redirect('customer/account');
+		}
+
+		//echo '<pre>';print_r($post);exit;
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('customer');
@@ -168,12 +224,15 @@ class Customer extends Front_Controller
 	}
 	 
  }
- public function checkout(){
+ public function billing(){
 	 
 	
 	if($this->session->userdata('userdetails'))
 	 {
-		$this->template->write_view('content', 'customer/billingadrres');
+		$customerdetails=$this->session->userdata('userdetails');
+		$data['locationdata'] = $this->home_model->getlocations();
+		$data['customerdetail']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
+		$this->template->write_view('content', 'customer/billingadrres',$data);
 		$this->template->render();
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
@@ -181,6 +240,40 @@ class Customer extends Front_Controller
 	}
 	 
  } 
+ public function billingaddresspost(){
+	 
+	
+	if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		$post=$this->input->post();
+		$details=array(
+		'cust_id'=>$customerdetails['customer_id'],
+		'name'=>$post['name'],
+		'mobile'=>$post['mobile'],
+		'address1'=>$post['address1'],
+		'address2'=>$post['address2'],
+		'area'=>$post['area'],
+		'create-at'=>date('Y-m-d H:i:s'),
+		);
+		//echo '<pre>';print_r($details);exit;
+		$this->session->set_userdata('billingaddress',$details);		
+		$this->session->set_flashdata('success','Billing address successfully saved!');
+		redirect('customer/orderpayment');
+			
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	}
+	 
+ } 
+ public function orderpayment(){
+		$this->template->write_view('content', 'customer/payment');
+		$this->template->render();
+	 
+	 
+ }
  public function addwhishlist(){
 	 
 	
@@ -236,19 +329,19 @@ class Customer extends Front_Controller
 	
 	 $test=$this->session->userdata('userdetails');
 	 //echo '<pre>';print_r($test);exit;
-	 // if($this->session->userdata('userdetails'))
-	 // {
-		// redirect('');
-	 //}else{
+	 if($this->session->userdata('userdetails'))
+	  {
+		redirect('');
+	 }else{
 		$this->load->view( 'customer/register'); 
-	 //}	
+	 }	
 
 	
  } 
  public function registerpost(){
 	
 	$post=$this->input->post();
-	///echo '<pre>';print_r($post);exit;
+	//echo '<pre>';print_r($post);exit;
 	$emailcheck = $this->customer_model->email_check($post['email']);
 	if(count($emailcheck)==0){
 		$password=md5($post['password']);
@@ -261,11 +354,13 @@ class Customer extends Front_Controller
 			'cust_email'=>$post['email'],
 			'cust_password'=>$password,
 			'cust_mobile'=>$post['mobile'],
+			'area'=>$this->session->userdata('location_area'),
 			);
 			$customerdetails = $this->customer_model->save_customer($details);
 			
 			if(count($customerdetails)>0){
-			$this->session->set_userdata('userdetails',$details);
+			$getdetails = $this->customer_model->get_customer_details($customerdetails);	
+			$this->session->set_userdata('userdetails',$getdetails);
 			$this->session->set_flashdata('sucesss',"Successfully registered");
 			redirect('');
 			}
@@ -285,14 +380,25 @@ class Customer extends Front_Controller
  } 
  public function loginpost(){
 	 
-	 	$post=$this->input->post();
-	//echo '<pre>';print_r($post);
+	 $post=$this->input->post();
+	//echo '<pre>';print_r($post);exit;
 	$pass=md5($post['password']);
 	$logindetails = $this->customer_model->login_details($post['email'],$pass);
-	//echo '<pre>';print_r($logindetails);exit;
+	//echo '<pre>';print_r($logindetails);
 		if(count($logindetails)>0)
 		{
-			$this->session->set_userdata('userdetails',$logindetails);
+			
+			if($this->session->userdata('location_area')!=''){
+			$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$this->session->userdata('location_area'));	
+				if(count($updatearea)>0){
+					$details = $this->customer_model->get_profile_details($logindetails['customer_id']);
+					$this->session->set_userdata('userdetails',$details);
+				}
+			}else{
+				$logindetails = $this->customer_model->login_details($post['email'],$pass);
+				$this->session->set_userdata('userdetails',$logindetails);				
+			}
+			//echo '<pre>';print_r($logindetails);exit;
 			$this->session->set_flashdata('sucesss',"Successfully Login");
 			redirect('');
 		}else{
@@ -428,7 +534,16 @@ class Customer extends Front_Controller
 		}
 	}  	
  
-
+	public function logout(){
+		
+		$userinfo = $this->session->userdata('userdetails');
+		//echo '<pre>';print_r($userinfo );exit;
+        $this->session->unset_userdata($userinfo);
+        $this->session->unset_userdata('location_area');
+		$this->session->sess_destroy('userdetails');
+		$this->session->unset_userdata('userdetails');
+        redirect('');
+	}
 	
 	
 }

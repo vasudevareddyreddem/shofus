@@ -9,12 +9,67 @@ class Mobile_model extends MY_Model
 	parent::__construct();
 
 	}
+	public function get_location_list(){
+		$this->db->select('*')->from('locations');
+		return $this->db->get()->result_array();
+	}
 	public function seller_register($data){
 		$this->db->insert('sellers', $data);
 	 return $insert_id = $this->db->insert_id();
 	}
+	public function get_seller_details($sid){
+		
+		$this->db->select('*')->from('sellers');
+		$this->db->where('seller_id',$sid);
+		return $this->db->get()->row_array();
+	}
+	public function insert_seller_cat($data){
+		$this->db->insert('seller_categories', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function seller_id_nsert($data){
+		$this->db->insert('seller_store_details', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function save_store_details($sid,$data){
+		$this->db->where('seller_id',$sid);
+		return $this->db->update('seller_store_details', $data);
+	}
+	public function save_personal_details($sid,$data){
+		$this->db->where('seller_id',$sid);
+		return $this->db->update('sellers', $data);
+	}
+	function get_upload_file($seller_id)
+	{
+	$this->db->select('*')->from('seller_store_details');
+	$this->db->where('seller_id',$seller_id);
+	return $this->db->get()->row_array();
+	}
+	function get_old_seller_categories($seller_id)
+	{
+	$this->db->select('*')->from('seller_categories');
+	$this->db->where('seller_id',$seller_id);
+	return $this->db->get()->result_array();
+	}
+	function delet_get_old_seller_categories($catid)
+	{
+		$sql1="DELETE FROM seller_categories WHERE seller_cat_id = '".$catid."'";
+		return $this->db->query($sql1);
+	}
+	
+	function get_categories_name($cat_id)
+	{
+	$this->db->select('category.category_name')->from('category');
+	$this->db->where('category_id',$cat_id);
+	return $this->db->get()->row_array();
+	}
+	public function verifing_mobile($sid,$otp){
+		
+		$sql1="UPDATE sellers SET verifiation_yes ='".$otp."' WHERE seller_id = '".$sid."'";
+       	return $this->db->query($sql1);
+	}
 	public function seller_mobile_check($mobile){
-		 $sql = "SELECT * FROM sellers WHERE seller_mobile ='".$mobile."'";
+		 $sql = "SELECT seller_mobile FROM sellers WHERE seller_mobile ='".$mobile."'";
         return $this->db->query($sql)->row_array();
 		
 	}
@@ -24,15 +79,14 @@ class Mobile_model extends MY_Model
 		
 	 }
 
-	public function seller_login($username, $password) {
-	 	$sql = "SELECT seller_id,seller_name,seller_rand_id FROM sellers WHERE (seller_email ='".$username."' AND seller_password ='".$password."') OR (seller_mobile ='".$username."' AND seller_password ='".$password."')";
+	public function seller_login_check($username, $password) {
+	 	$sql = "SELECT * FROM sellers WHERE (seller_email ='".$username."' AND seller_password ='".$password."') OR (seller_mobile ='".$username."' AND seller_password ='".$password."')";
 	 		return $this->db->query($sql)->row_array();
 	}
-	public function get_seller_category()
+	public function get_category_list()
 	{
-		
-		$query=$this->db->get('category');
-		return $query->result();	
+		$this->db->select('*')->from('category');
+		return $this->db->get()->result_array();	
 	}
 	public function get_seller_subcategory()
 	{
@@ -66,21 +120,11 @@ class Mobile_model extends MY_Model
 
 	}
 
-	function get_categories_name($cat_id)
-{
-	$this->db->select('category.category_name')->from('category');
-	$this->db->where('category_id',$cat_id);
-	return $this->db->get()->row_array();
-}
+	
 
 
 //store details 
-	function get_upload_file($id)
-	{
-		$this->db->select('*')->from('seller_store_details');
-		$this->db->where('seller_id',$id);
-		return $this->db->get()->row_array();
-	}
+	
 	function seller_store_details($id,$data){
 		
 		

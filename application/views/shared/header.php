@@ -65,7 +65,7 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
           <a class="navbar-brand" href="<?php echo base_url(); ?>"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="row">
             <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
@@ -87,7 +87,8 @@
 		  
 		  <?php if($this->session->userdata('userdetails')){ ?>
 		  <span class="medias user_log">
-				<a ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+				<a ><i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+				</a>
 						
 			</span>
 			<div id="user_sow" style="display:none;">
@@ -97,26 +98,39 @@
 								<li class="font_list"><a href="<?php echo base_url('customer/cart');?>">  <span >My Cart</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/wishlist');?>">  <span >My Wishlist</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/changepassword');?>">  <span >Change Password</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/logout');?>">  <span >Logout</span> </a></li>
 							</ul>
 			</div>
 		  <?php }else{ ?>
-			<span class="medias user_log">
-			<a href="<?php echo base_url('customer'); ?>" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+			<span class="medias user_log text-center">
+			<a href="<?php echo base_url('customer'); ?>" ><i class="" aria-hidden="true">
+			</i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" />
+			<p>Sign in/login</p></a>
 			</span>
 		  <?php } ?>
 			
-			<span class="medias"><a onclick="openpopup();"  ><i class="glyphicon glyphicon-map-marker" aria-hidden="true" data-toggle="tooltip" title="Location" ></i></a></span>
+			<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
+				<p>Location</p></a>
+			</span></a></span>
+			
 			<?php if($this->session->userdata('userdetails')){ ?>
 			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup">
 			<?php if(count($cartitemcount)>0){ ?>
 				<?php echo count($cartitemcount); ?>
+				</sup>
 				<div class="sprinkle"></div>
 			<?php } ?>
-			</sup></span>
-			<?php } else{ ?>
-			<span class="medias"><a href="<?php echo base_url('customer');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>&nbsp;<sup class="sup"></sup></span>
-			<?php } ?>
 			
+			</span>
+			<?php } else{ ?>
+			<span class="medias text-center"><a href="<?php echo base_url('customer');?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+				<p >Cart</p></a>
+			</span>
+			</a>&nbsp;<sup class="sup"></sup></span>
+			<?php } ?>
+			<span class="medias text-center"><a href=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></i>
+				<p>Track</p></a>
+			</span>
 		 </div>
 	</div>
 	  <div class="top-navbar1">
@@ -323,14 +337,74 @@
 </div>
 
 <div class="md-overlay"></div>
+<a href="javascript:void(0)"  style="text-decoration:none;" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup">
+</a>
+<div class="modal fade" id="locationsearchpopup" role="dialog">
+    <div class="modal-dialog">
+		<div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id="hidebutton" class="close" data-dismiss="modal">&times;</button>
+       </div>
+        <div class="newsletter-form" style="padding:0px 20px 15px 20px;">
+          <h3>Select Your Delivery Location</h3>
+			<div class="input-box">
+				<select name="location_name" id="location_name" class="validate-select sel_are">
+				<option value="">Select Area </option>
+				<?php foreach($locationdata as $location_data) {?>
+				<?php if($this->session->userdata('location_area')== $location_data['location_id']){ ?>
+						<option value="<?php echo $location_data['location_id']; ?>" selected><?php echo $location_data['location_name']; ?></option>
+				<?php }else{ ?>
+						<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
+				<?php } } ?>
+				</select>
+				<div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
 
+            <button type="button" onclick="searchlocationpopup();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
+          </div>
+          <!--input-box--> 
+        </div>
+      </div>
+	</div>
+  </div>
+ 
 
 <!-- the overlay element --> 
 
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">
+
+function searchlocationpopup(){
+	 jQuery('#address1errormsg').show();
 	
+		 var area=jQuery('#location_name').val();
+		 if(area==''){
+				jQuery('#address1errormsg').html('Please Select Area');
+				return false;
+		 }
+		jQuery('#address1errormsg').html(''); 
+		jQuery('#address1errormsg').hide();
+		$("#location_seacrh_result").empty();
+		jQuery.ajax({
+				url: "<?php echo site_url('home/search_location_offers');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					address1: jQuery("#address1").val(),
+					area: jQuery("#location_name").val(),
+					},
+				dataType: 'html',
+				success: function (data) {
+					//$('#locationsearchpopup').hide('');
+					$('#hidebutton').click();
+					$("#location_seacrh").hide();
+					$("#location_seacrh_result").show();
+					$("#location_seacrh_result").append(data);
+
+				}
+			});
+
+ }
 function searchfunction(val){
 	$('#addingdropdown').hide();
 	$('#addingdropdown').empty();
@@ -357,9 +431,7 @@ function searchfunction(val){
 	
 }
 
-function openpopup(val){
-	$("#location").fadeIn();
-}
+
 
  
     $(document).ready(function(){
@@ -386,7 +458,7 @@ function registershow(){
 $("#modal-8").show();	
 } 
 </script>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	
 
 <script type="text/javascript" language="javascript">
       $(document).ready(function(){

@@ -72,7 +72,7 @@
 </section>
 
 <div class="clearfix"></div>
-<div style=" height:90vh;"></div>
+<div style=" height:43em;"></div>
 <section>
   <div class="container" >
   <div class=' animated bounceInLeft slower'   data-id='3'>
@@ -724,7 +724,7 @@
                   <p>Developer PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class="child_round_circle child_round_circle_img2  ">
+                  <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -737,7 +737,7 @@
                   <p>CEO</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img3 ">
+                 <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -754,7 +754,7 @@
                   <p>DESIGNER PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img4 ">
+                 <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -767,7 +767,7 @@
                   <p>Developer PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img5">
+                <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -780,7 +780,7 @@
                   <p>DESIGNER PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img6">
+                  <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -1154,6 +1154,7 @@
     </div>
   </div>
   </section>
+  <div class="clearfix"></div>
   <!--  start contact us-->
 <section id="contact_sc">
 <div class="srvices_main1">
@@ -1161,7 +1162,13 @@
  <h3 class="text-center wow bounceInRight animated"  id="contact_sc" data-spy="scroll"><span class="span_bg_g">CONTACT US</span></h3>
   <div class="title_lines"></div>
 	
-			<div class=" col-md-6 ">	  
+			<div class=" col-md-6 ">
+			<?php if($this->session->flashdata('msgsuccess')){ ?>
+					<div class="alert dark alert-success alert-dismissible" id="infoMessage">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>							
+					 </button><?php echo $this->session->flashdata('msgsuccess');?></div>
+					<?php } ?>			
 				<form  class=""id="ajax-contact"  method="post" action="<?php echo base_url(); ?>seller/contact/login_contact" role="form">
 					<div class="messages" id="form-messages"></div>
 					<?php echo $this->session->flashdata('msg1'); ?>
@@ -1283,6 +1290,7 @@
   <!--body end here --> 
 
 <script>
+
 function myFunction() {
     var x = document.getElementById('myDIV');
     if (x.style.display === 'none') {
@@ -1419,9 +1427,8 @@ $("#cihfee1").html(data);
     data: {product_price:product_price,cih_fee1:cih_fee1},
     success:function(data)
     {
-    
-  $("#refclose").html(data);
-  $('#demo3').show();
+	$("#refclose").html(data);
+	$('#demo3').show();
     $('#demoki').show();
   
     }
@@ -1465,7 +1472,7 @@ $("#cihfee1").html(data);
   var actual_price = $("#actual_price").val();
 
   var less = youmake <=  actual_price;
-  alert(less);
+  //alert(less);
    
     //var product_price = $("#product_price").val(); TermsErr15
   
@@ -1487,7 +1494,7 @@ $("#cihfee1").html(data);
     }
     if (less == true)
     {
-    $("#TermsErr15").html("Please Enter hogh value Of you make").css("color", "#006a99").fadeIn().fadeOut(5000);
+    $("#TermsErr15").html("Please Enter high value").css("color", "#006a99").fadeIn().fadeOut(5000);
     return false;
     }
     else{

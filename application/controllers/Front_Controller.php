@@ -21,8 +21,11 @@ class Front_Controller extends MY_Controller {
 					$data['cnt']= count($data['catitemdata1']);
 					$data['catdata'] = $this->home_model->getcatsubcat();
 					$data['locationdata'] = $this->home_model->getlocations();
+					
+					//echo '<pre>';print_r($customerdetails);exit;
 					if($this->session->userdata('userdetails')){
 					$customerdetails=$this->session->userdata('userdetails');
+
 					$data['cartitemcount'] = $this->home_model->cart_item_count($customerdetails['customer_id']);
 					}else{
 					$data['cartitemcount'] =0;	

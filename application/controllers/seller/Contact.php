@@ -8,7 +8,9 @@ class Contact extends CI_Controller {
 		parent::__construct();
     $this->load->library('email');
     $this->load->model('users_model');
-
+	$this->load->helper(array('url', 'html'));
+	$this->load->library('encrypt');
+	$this->load->library('session');
     //$this->load->library('email');
     //$this->load->library('encrypt');
     //$this->load->model('seller/login_model');
@@ -44,14 +46,13 @@ $this->load->view('seller/footer');
 
       {
 
-        $this->session->set_flashdata('msg1','<div class="alert alert-success text-center" style="color: green;font-size:13px;">Thank You! Our team will contact you shortly..</div>');
-
-                  return redirect(base_url('seller/login'));
+        $this->session->set_flashdata('msgsuccess','Thank You! Our team will contact you shortly..');
+		redirect(base_url('seller/login#contact_sc'));
 
       }
       else{
-        $this->session->set_flashdata('msg1','<div class="alert alert-danger text-center" style="color: green;font-size:13px;">Whoops!</div>');
-
+		$this->session->set_flashdata('msgsuccess','Whoops!');
+		redirect(base_url('seller/login#contact_sc'));
       }
   }
 

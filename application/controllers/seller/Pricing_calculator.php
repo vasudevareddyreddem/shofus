@@ -93,11 +93,17 @@ class Pricing_calculator extends CI_Controller {
   {
 	  
 	$cih=$this->input->post('cih1_id');
-		   $result=$this->login_model->getcihfeedata($cih);
+	
+	//echo "<pre>";print_r($cih);exit;
+	if($cih!=''){
+		$result=$this->login_model->getcihfeedata($cih);
 			
 			echo  '<div class="form-group san_sle">';
               echo '<input class="form-control" type="text" id="cih_fee1" name="cih_fee1" value="' .$result->cih_fee. '"    disabled>';
               echo '</div>';
+		
+	}
+		   
               
 		 exit;  
   }
@@ -112,8 +118,10 @@ public function getreferalfee()
 	$serv_tax = 15;	
 	
 	$cih =  ($disc * $serv_tax) / 100;
+	$addin= $disc+ $cih ;
 	$you_get = $sell - $cih;
-	
+	$amount= ($sell) - ($addin );
+	//echo $amount;exit;
 // 	$ref = str_replace("%", "", $cih_fee1);
 	
 // 	$result12 = ($product_price * $ref)/100;
@@ -131,10 +139,10 @@ public function getreferalfee()
          echo '<h5>CIH Commision: '.$cih_fee.'</h5>';
           echo  '<h5>Service Tax: '.$serv_tax.'% </h5>';
           echo  '<h5>CIH Fee: '.$cih.' </h5>';
-          echo  '<h5>You Make: '.$you_get.' </h5>';
+          echo  '<h5>You Make: '.$amount.' </h5>';
 		  echo '<input type="hidden" id="productcih_fee" name="productcih_fee" value="'.$cih_fee.'">';
 		  echo '<input type="hidden" id="closing_fee" name="closing_fee" value="'.$serv_tax.'">';
-		  echo '<input type="hidden" id="you_make" name="you_make" value="'.$you_get.'">';
+		  echo '<input type="hidden" id="you_make" name="you_make" value="'.$amount.'">';
 		  echo '<div class="line">&nbsp;</div>';
 		  
 exit;  
@@ -143,14 +151,21 @@ exit;
   public function getajaxprofit()
   
   {
-  	$you_make=$this->input->post('you_make');
-  	$actual_price=$this->input->post('actual_price');
-	//echo '<pre>';print_r($you_make);exit;
-$result =   $you_make - $actual_price; 
-//echo '<pre>';print_r($result);exit;
-echo '<h5>Your Profit: '.$result.'</h5>';
-	  
-	  exit;
+		$you_make=$this->input->post('you_make');
+		$actual_price=$this->input->post('actual_price');
+		//echo '<pre>';print_r($you_make);exit;
+		$result =   $you_make - $actual_price; 
+		
+		if($result > 0){
+		echo '<h5>Your Profit: '.$result.'</h5>';	
+			
+		}else{
+		echo '<h5>Your Loss: '.$result.'</h5>';		
+			
+		}
+		
+
+		exit;
   }
   
 }

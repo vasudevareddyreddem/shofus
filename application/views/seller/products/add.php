@@ -37,6 +37,11 @@
     <section class="wrapper">
    
      <div class="row">
+	   <?php if($this->session->flashdata('addsuccess')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('addsuccess');?></div>
+			<?php endif; ?>
 	<div class="col-xs-12 col-sm-12 col-md-12 m-b-20">
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs">
@@ -159,7 +164,7 @@
 				<div>
 					Please Select your Category and Download sample file then filling  the data then again upload your products &nbsp;&nbsp;<a href="" id="documentfilelink"><span id="documentfilename"></span></a>
 				</div>
-				 <div class="form-group nopaddingRight col-md-8 ">
+				 <!--<div class="form-group nopaddingRight col-md-8 ">
                   <label for="exampleInputEmail1">Select Category</label>
 				  <?php //echo '<pre>';print_r($sub_cat_data);exit;?>
 				  <select class="form-control " onchange="documentid(this.value);"  id="category_id" name="category_id">
@@ -174,7 +179,8 @@
 				<input type="file" name="categoryes" id="categoryes" class="form-control" >
 				 <button type="submit" class="btn btn-primary" >Submit</button>
 				</form>
-				</div>
+				</div> -->
+				<div> <h2>We will implement later</h2></div>
 				</div>
       
 			</div>

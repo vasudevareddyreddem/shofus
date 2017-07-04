@@ -1,65 +1,3 @@
-<style>
-
-.panel.with-nav-tabs .panel-heading{
-    padding: 5px 5px 0 5px;
-}
-.panel.with-nav-tabs .nav-tabs{
-	border-bottom: none;
-}
-.panel.with-nav-tabs .nav-justified{
-	margin-bottom: -1px;
-}
-.with-nav-tabs.panel-primary .nav-tabs > li > a,
-.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
-.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
-    color: #fff;
-}
-.with-nav-tabs.panel-primary .nav-tabs > .open > a,
-.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
-.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
-.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
-.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
-	color: #fff;
-	background-color: #3071a9;
-	border-color: transparent;
-}
-.with-nav-tabs.panel-primary .nav-tabs > li.active > a,
-.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
-.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
-	color: #428bca;
-	background-color: #fff;
-	border-raidus:5px !important;
-	border-color: #428bca;
-	border-bottom-color: transparent;
-}
-.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
-    background-color: #428bca;
-    border-color: #3071a9;
-}
-.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
-    color: #fff;   
-	
-}
-.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
-.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
-    background-color: #3071a9;
-}
-.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
-.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
-.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
-    background-color: #4a9fe9;
-}
-.panel-body {
-	font-size:16px;
-	padding:5px 15px;
-}
-.nav>.active {
-    text-decoration: none;
-    border-top: 2px solid #006a99;
-    background: transparent;
-	border-raidus:5px;
-</style>
-<div class="faq_main">
 <section id="about_sc">
   
  
@@ -181,7 +119,7 @@
                   <p>Developer PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class="child_round_circle child_round_circle_img2  ">
+                  <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -194,7 +132,7 @@
                   <p>CEO</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img3 ">
+                 <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -207,11 +145,11 @@
               <div class="col-md-4 padtop30">
                 <center><div class="parent_circle">
                   <div class="parent_circle_contain">
-                  <p>VINITA</p>
+                  <p>Vasudeva</p>
                   <p>DESIGNER PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img4 ">
+                 <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -224,7 +162,7 @@
                   <p>Developer PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img5">
+                <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -237,7 +175,7 @@
                   <p>DESIGNER PROFILE</p>
                   <a href="#">Know More...</a>
                 </div>
-                <div class=" child_round_circle child_round_circle_img6">
+                  <div class=" child_round_circle child_round_circle_img1">
                   
                 </div>
                 </div>
@@ -247,71 +185,18 @@
           </div>
           
         </div>
-        <!--<a data-slide="prev" href="#media1" class="left carousel-control">‹</a>
-        <a data-slide="next" href="#media1" class="right carousel-control">›</a>-->
+     
       </div>                          
     </div>
   </div>
 </div>
 </div>
-</section>	
-	<!--<div class="container">
-        <div class="col-md-12">
-            <div class="panel with-nav-tabs panel-primary">
-                <div class="panel-heading">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab1primary " data-toggle="tab">Who are we</a></li>
-                            <li><a href="#tab2primary" data-toggle="tab">What we are doing</a></li>
-                            <li><a href="#tab3primary" data-toggle="tab">How we are doing</a></li>
-							<li><a href="#tab4primary" data-toggle="tab">Our vision</a></li>
-                           
-                        </ul>
-                </div>
-                <div class="panel-body ">
-                    <div class="tab-content mar_t15">
-						<div class="tab-pane fade in active text-left" id="tab1primary">
-							<ul>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li><br>
-							</ul>
-						</div>
-                        <div class="tab-pane fade text-left" id="tab2primary">
-							<ul>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li><br>
-							</ul>
-						</div>
-                        <div class="tab-pane fade text-left" id="tab3primary">
-							<ul>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li><br>
-							</ul>
-						</div>
-                        <div class="tab-pane fade text-left" id="tab4primary">
-								<ul>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li>
-								<li>Cartin hour is a platform where customer meets their local stores in online.</li>
-								<li>Complete new era of shopping begins here</li><br>
-							</ul>
-						</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-</div>-->
-</div>
+</section>		<!--endteam members-->
+
+
+
+
+
+<!-- end our services -->
+
+<div class="clearfix"></div>
