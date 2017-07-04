@@ -376,163 +376,13 @@
       
       
 
-<script>
-function IsMobile(reasontype) {
-        var regex = /^[0-9]{10}$/;
-        return regex.test(reasontype);
-		}
-function emailchecking(reasontype) {
-	var regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-	return regex.test(reasontype);
-}
- function validationcheckings (){
-	 
-	 $("#forgot-response").html("");
-	  var radiovalue=$('input[name="unable_login"]:checked').val();
-	  //alert(radiovalue);
-	  if(radiovalue==1 || radiovalue==0){
-		
-	  if(radiovalue==0){
-		  var mobile = document.getElementById('forgot_mobile').value;
-		  
-		  if(mobile==''){
-			  
-			  $("#forgoterror").html("Please Enter Mobile Number").css("color", "red");
-			  return false;
-		  }else{
-			  
-			 
-			 var mobile = document.getElementById('forgot_mobile').value;
-			if (!IsMobile(mobile)) {
-			$("#forgoterror").html("Please Enter Correct Mobile Number").css("color", "red");
-			jQuery('#seller_mobile').focus();
-			return false;
-			} 
-		  }
-		  $("#forgoterror").html("");
-			$("#forgot_submit").html("");
-			//document.getElementById("unableloginfield").disabled = true;
-			$.ajax({
-			  
-					type: 'post',
-					data: {
-					form_key : window.FORM_KEY,
-					mobile_number: jQuery('#forgot_mobile').val(),
-					option: 0,
-					},
-					
-					dataType: 'json',
-					url: '<?php echo base_url("seller/login/forgot"); ?>',
-					success:function(data)
-					{
-					//alert(data);
-					//document.getElementById("unableloginfield").disabled = false;
-					if(data.sendmsg==1){
-					
-							$("#myModal1").fadeOut(1);
-							$("#forgot_mobile").val('');
-							$("#forgot-response1").html("Temporary Password Successfully Sent").css("color", "Green");
-							
-							return true;
-						}if(data.sendmsg==0){
-							$("#forgot-response").html("Some technical problem are occured").css("color", "red");
-							$('#forgot_submit')[0].reset();
-						}
-						if(data.nomobile==0){
-							$("#forgoterror").html("The Mobile you entered is not a registered Mobile. Please try again").css("color", "red");
-							$('#forgot_submit')[0].reset();
-							return false;
-						}
-					}
-					
-			});
-		
-		  
-	  }
-		
-	  if(radiovalue==1){
-		  var email = document.getElementById('forgot_mobile').value;
-		  if(email==''){
-			  $("#forgoterror").html("Please Enter Email").css("color", "red");
-			  return false;
-		  }else{
-			  
-			  if (!emailchecking(email)) {
-			$("#forgoterror").html("Please enter a valid email address. For example johndoe@domain.com").css("color", "red");
-			jQuery('#seller_mobile').focus();
-			return false;
-			}
-		  }
-			$("#forgoterror").html("");
-			$("#forgot_submit").html("");
-			$("#forgot_submit").html("");
-				$.ajax({
-					type: 'post',
-					data: {
-					form_key : window.FORM_KEY,
-					mobile_number: jQuery('#forgot_mobile').val(),
-					option: 1,
-					},
-					
-					dataType: 'json',
-					url: '<?php echo base_url("seller/login/forgot"); ?>',
-					success:function(data)
-					{
-						if(data.mailsend==1){
-							$("#myModal1").fadeOut(1);
-							$("#forgot_mobile").val('');
-							$("#forgot-response").html("Temporary Password Successfully Sent").css("color", "Green");
-							$('#forgot_submit')[0].reset();
-							
-							return true;
-						}
-						if(data.noemail==0){
-							$("#forgot-response").html("The Email you entered is not a registered email. Please try again").css("color", "red");
-							$('#forgot_submit')[0].reset();
-							return false;
-						}
-					}
-			});
-	  
-	  }
-	 	
-		  
-	
- }else{
-	 $("#forgoterror").html("Please select one option").css("color", "red");
-	 return false;
- }
- 
- }
 
-//jQuery to collapse the navbar on scroll
-$(window).scroll(function() {
-    if ($(".navbar").offset().top > 500) {
-        $(".navbar-fixed-top").addClass("top-nav-collapse");
-    } else {
-        $(".navbar-fixed-top").removeClass("top-nav-collapse");
-        $(".navbar-fixed-top").addClass("mar_t50");
-    }
-});
-
-//jQuery for page scrolling feature - requires jQuery Easing plugin
-$(function() {
-    $(document).on('click', 'a.page-scroll', function(event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top
-        }, 1500, 'easeInOutExpo');
-        event.preventDefault();
-    });
-});
-
-</script>
-<script type="text/javascript" language="javascript">
+<script >
 
    
   
    $(window).scroll(function() {
-if ($(this).scrollTop() > 400) {
+if ($(this).scrollTop() > 500) {
 $('.hm_nav').addClass('affix');
 $('.hm_nav').addClass('animated fadeInDown');
 }
@@ -541,37 +391,11 @@ $('.hm_nav').removeClass('affix');
 $('.hm_nav').removeClass('animated fadeInDown');
 }
  });
+ 
+ 
 </script>
 
-<!--script for scrolling pages-->
-  <script>
-$(document).ready(function(){
-  // Add smooth scrolling to all links
-  $("a").on('click', function(event) {
 
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top -120
-      }, 1500, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-});
-
-
-</script>
 
 
 
