@@ -19,6 +19,11 @@
             <div class="">
             </div>
             <div class="panel-body">
+			<?php if($this->session->flashdata('success')): ?>
+					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('success');?></div>	
+					<?php endif; ?>
               <div class="row">
 			  <?php 
 			  if($profile_details['cust_propic']!=''){ ?>
@@ -39,7 +44,7 @@
                       </tr>
                       <tr>
                         <td>Mobile</td>
-                          <td><?php echo $profile_details['cust_email']; ?></td>
+                          <td><?php echo $profile_details['cust_mobile']; ?></td>
                       </tr>
                    
                         

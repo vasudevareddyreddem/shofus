@@ -42,10 +42,10 @@
            <?php //echo '<pre>';print_r($profile_details);exit; ?>
                 <div class="tab-content">
                    
-					<?php if($this->session->flashdata('passworderror')): ?>
+					<?php if($this->session->flashdata('errormsg')): ?>
 					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('passworderror');?></div>	
+					</button><?php echo $this->session->flashdata('errormsg');?></div>	
 					<?php endif; ?>
                    <form id="editprofile" name="editprofile" method="post" action="<?php echo base_url('customer/updateprofilepost');?>" class="form-horizontal" enctype="multipart/form-data" role="form">
                         <div class=" form-group">
@@ -59,7 +59,7 @@
 
                         <div  class=" form-group">
                            <label class="control-label">Email Address</label>
-                            <input id="email" type="text" readonly="true" class="form-control"  name="email" value="<?php echo $profile_details['cust_email']; ?>" >
+                            <input id="email" type="text"  class="form-control"  name="email" value="<?php echo $profile_details['cust_email']; ?>" >
                         </div> 
 						<div  class=" form-group">
                            <label class="control-label">Mobile</label>
