@@ -41,7 +41,6 @@ class Mobile extends REST_Controller {
 	public function  seller_register_post()
 	{
 			$this->input->post();
-<<<<<<< HEAD
 			$mobile_number=$this->input->get('seller_mobile');
 			$email=$this->input->get('seller_email');
 			$mobile_check=$this->mobile_model->seller_mobile_check($mobile_number);
@@ -81,7 +80,6 @@ class Mobile extends REST_Controller {
 				
 			}
 		}
-=======
 			$mobile=$this->input->get('mobile');
 			$email=$this->input->get('email');
 			
@@ -140,7 +138,6 @@ class Mobile extends REST_Controller {
 			}
 		
 	}
->>>>>>> 821a9d99844e45e111cfcc245a7f7c66964049e8
 	
 	/*mobile otp verification*/
 	public function  otp_verification_post()
@@ -280,7 +277,6 @@ class Mobile extends REST_Controller {
 			$message = array('status'=>0,'message'=>'location list are not found.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
-<<<<<<< HEAD
 
 		//inprogress_orders
 		public function inprogress_orders_get()
@@ -460,7 +456,7 @@ class Mobile extends REST_Controller {
 				);
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
-=======
+
 		
 	}
 	public function save_personal_details_post()
@@ -480,7 +476,6 @@ class Mobile extends REST_Controller {
 		}else{
 			$message = array('status'=>0,'message'=>'some problem are in query.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
->>>>>>> 821a9d99844e45e111cfcc245a7f7c66964049e8
 		}
 	}
 		

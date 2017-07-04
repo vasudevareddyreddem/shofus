@@ -131,6 +131,14 @@ class Home_model extends CI_Model
 		return $this->db->get()->result_array();
 
 	}
+	//compare
+	// public function getcompare($id)
+	// {
+	// 	$this->db->select('*')->from('products');
+ //        $this->db->where('admin_status','0');
+	// 	 $this->db->where('item_id', $id);
+	// 	return $this->db->get()->result_array();	
+	// }
 	public function get_season_sales()
 	{
 		$this->db->select('*')->from('products');
