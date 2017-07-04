@@ -72,7 +72,7 @@
 								</div>
 							</div>
 							<div class="col-md-12">
-								<input type="submit" class="btn btn-primary " value="Send message">
+								<input id="but" type="submit" class="btn btn-primary " value="Send message">
 							</div>
 						</div>
 						<div class="row">

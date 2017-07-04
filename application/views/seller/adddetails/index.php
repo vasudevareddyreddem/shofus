@@ -182,7 +182,7 @@ $('.window').hide();
 			<?php }?>
           </div>
 
-             <button type="submit" class="btn btn-primary pull-right" value="Next">Next</button>
+             <input id="butt" button type="submit" class="btn btn-primary pull-right" ></button>
               </form>
         </div>
       </div>
