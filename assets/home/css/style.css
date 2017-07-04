@@ -3645,14 +3645,14 @@ table#cart tfoot td .btn {
 
 
  .sprinkle {
-    position: absolute;
-    top: 50px;;
-	right:102px;
-	height:30px;
-	width:30px;
+       position: absolute;
+    top: 40px;
+    right: 182px;
+    height: 30px;
+    width: 30px;
     z-index: 10;
     border: 4px solid;
-    border-color: #3d4c5a;
+    border-color: #21aaaf;
     border-radius: 70px;
     -moz-animation: sprinkle 1s ease-out;
     -moz-animation-iteration-count: infinite;
@@ -3710,6 +3710,11 @@ table#cart tfoot td .btn {
 	color:#222;
 	font-size:16px;
 	margin-top:-10px;
+}
+.sup_log{
+	color:#264d58;
+	font-size:16px;
+	margin-left:-8px;
 }	
 .qucik_menu{
 	position:absolute;

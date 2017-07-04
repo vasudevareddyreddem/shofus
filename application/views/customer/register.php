@@ -228,19 +228,12 @@ $(document).ready(function() {
 				}
 			},
 			confirm_password: {
-					validators: {
-					notEmpty: {
-						message: 'Confirm Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'Confirm Password  must be greater than 6 characters'
-                    },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Confirm Password wont allow <>[]'
-					}
-				}
+					 validators: {
+                identical: {
+                    field: 'password',
+                    message: 'The New password and its confirm Password are not the same'
+                }
+            }
 			}
         }
     });
