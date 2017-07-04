@@ -176,6 +176,13 @@ class Adddetails extends Seller_adddetails{
 			}else{
 			$cetimg=$seller_upload_file['cstimage'];
 			}
+			if($_FILES['gstimag']['name']!=''){
+			$gstimg=$_FILES['gstimag']['name'];
+				move_uploaded_file($_FILES['gstimag']['tmp_name'], "assets/sellerfile/" . $_FILES['gstimag']['name']);
+
+			}else{
+			$gstimg=$seller_upload_file['gstinimage'];
+			}
 		
 		//echo '<pre>';print_r($post);exit;
 			$data = array(
@@ -195,6 +202,7 @@ class Adddetails extends Seller_adddetails{
 			'cst'  =>$post['cst'],
 			'cstimage'  =>$cetimg,
 			'gstin'  =>$post['gstin'],
+			'gstinimage'  =>$gstimg,
 			'created_at'  => date('Y-m-d H:i:s'),
 			);
 			//echo '<pre>';print_r($data);exit;
@@ -217,8 +225,8 @@ class Adddetails extends Seller_adddetails{
  
    $data = array(
     'seller_bank_account' => $post['bank_account'], 
-    'seller_adhar' => $post['aadhaar_card'],
-    'seller_pan_card' => $post['pan_card'],    
+    'seller_account_name' => $post['account_name'],
+    'seller_aaccount_ifsc_code' => $post['ifsccode'],    
     'created_at'  => date('Y-m-d H:i:s'),
     'updated_at'  => date('Y-m-d H:i:s')
   

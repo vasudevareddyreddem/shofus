@@ -71,7 +71,7 @@
                             </div>
 							<div class="pull-right">
                                 <label>
-                                    <a href="<?php echo base_url('customer/forgotpassword');?>" >forget password?</a>
+                                    <a href="<?php echo base_url('customer/forgotpassword');?>" >Forgot Password?</a>
                                 </label>
                             </div>
                         </div>
@@ -208,7 +208,7 @@ $(document).ready(function() {
 					},
                     regexp: {
 					regexp:  /^[0-9]{10}$/,
-					message:'Mobile Number must be 10 to 14 digits'
+					message:'Mobile Number must be 10 digits'
 					}
                 }
             },
@@ -228,19 +228,12 @@ $(document).ready(function() {
 				}
 			},
 			confirm_password: {
-					validators: {
-					notEmpty: {
-						message: 'Confirm Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'Confirm Password  must be greater than 6 characters'
-                    },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Confirm Password wont allow <>[]'
-					}
-				}
+					 validators: {
+                identical: {
+                    field: 'password',
+                    message: 'The New password and its confirm Password are not the same'
+                }
+            }
 			}
         }
     });

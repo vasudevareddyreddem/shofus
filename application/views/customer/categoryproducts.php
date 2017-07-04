@@ -67,26 +67,27 @@
 		  <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $catlist['item_id']; ?>" >
 			<input type="hidden" name="category_id" id="category_id" value="<?php echo $this->uri->segment(3); ?>" >
-		 <div class="col-sm-4 col-md-3 box-product-outer">
+		 <div class="col-sm-4 col-md-3 box-product-outer" style="border:1px solid #e5e5e5;margin:0 5px;">
             <div class="box-product">
               <div class="img-wrapper  ">
+			  
 				
-						<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+						<div id='carousel-custom' class='carousel slide' data-ride=''>
 							<div class='carousel-outer'>
 								<!-- me art lab slider -->
 								<div class='carousel-inner '>
 									<div class='item active'>
-										<img src="<?php echo base_url('uploads/products/'.$catlist['item_image']); ?>" alt=''id="zoom_05"  data-zoom-image="<?php echo base_url('uploads/products/'.$catlist['item_image']); ?>"/>
+										<img class="img-responsive thumbnail" src="<?php echo base_url('uploads/products/'.$catlist['item_image']); ?>" alt=''id="zoom_05"  data-zoom-image="<?php echo base_url('uploads/products/'.$catlist['item_image']); ?>"/>
 									</div>
 									<div class='item'  id="zoom_05">
-										<img src="<?php echo base_url('uploads/products/'.$catlist['item_image1']); ?>" alt='' data-zoom-image="<?php echo base_url('uploads/products/'.$catlist['item_image1']); ?>" />
+										<img class="img-responsive thumbnail" src="<?php echo base_url('uploads/products/'.$catlist['item_image1']); ?>" alt='' data-zoom-image="<?php echo base_url('uploads/products/'.$catlist['item_image1']); ?>" />
 									</div>
 									<div class='item'>
-										<img src="<?php echo base_url('uploads/products/'.$catlist['item_image2']); ?>" alt='' data-zoom-image="<?php echo base_url('uploads/products/'.$catlist['item_image2']); ?>" />
+										<img class="img-responsive thumbnail" src="<?php echo base_url('uploads/products/'.$catlist['item_image2']); ?>" alt='' data-zoom-image="<?php echo base_url('uploads/products/'.$catlist['item_image2']); ?>" />
 									</div>
 										
 									<div class='item'>
-										<img src="<?php echo base_url('uploads/products/'.$catlist['item_image3']); ?>" alt='' data-zoom-image="<?php echo base_url('uploads/products/'.$catlist['item_image3']); ?>" id="zoom_05"/>
+										<img class="img-responsive thumbnail" src="<?php echo base_url('uploads/products/'.$catlist['item_image3']); ?>" alt='' data-zoom-image="<?php echo base_url('uploads/products/'.$catlist['item_image3']); ?>" id="zoom_05"/>
 									</div>
 								
 								</div>
@@ -101,7 +102,8 @@
 							</div>
 						</div>
                 <div class="option">
-                  <button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>
+                  <button  style="background-color:transparent;border: none;cursor:pointer;color:#fff;font-size:20px;
+           "type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>
                   <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
                 
 				<?php if($catlist['yes']==1){ ?>
@@ -111,7 +113,7 @@
 					<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($catlist['item_id'])); ?>"><?php echo $catlist['item_name']; ?></a></h6>
+              <h4><a href="<?php echo base_url('category/productview/'.base64_encode($catlist['item_id'])); ?>"><?php echo $catlist['item_name']; ?></a></h4>
               <div class="price">
 			  
 			  <?php if(isset($catlist['offer_amount']) && $catlist['offer_percentage']!=''){ ?>
@@ -122,14 +124,14 @@
               
 				<?php } ?>
               
-				  <div class="input-qty">
+				  <div style="width:40%" class="input-qty">
 						<div class="input-group number-spinner">
 							<span class="input-group-btn data-dwn">
-								<a class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
+								<a style="padding:9px 5px" class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
 							</span>
-							<input type="text" name="qty" id="qty" class="form-control text-center" value="1" min="1" max="20">
+							<input  type="text" name="qty" id="qty" class="form-control text-center" value="1" min="1" max="20">
 							<span class="input-group-btn data-up">
-								<a class="btn btn-primary " data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
+								<a  style="padding:9px 5px" class="btn btn-primary " data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
 							</span>
 						</div>
                   </div>

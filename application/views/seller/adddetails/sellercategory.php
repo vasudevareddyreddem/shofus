@@ -123,7 +123,7 @@ $(document).ready(function(){
 			<div class="col-md-6" style="padding-right:30px;">	
 					 <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails'); ?>">Back</a>
 
-				<input type="submit" class="btn btn-info pull-right" value="Next">
+				<input id="bnt" type="submit" class="btn btn-info pull-right" value="Next">
 			</div>
 
 

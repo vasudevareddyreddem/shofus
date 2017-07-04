@@ -67,13 +67,13 @@ class Mobile extends REST_Controller {
 				$seller_rand_id = mt_rand(100000, 999999);
 
 				$user_id="cartin"; 
-        		$pwd="9494422779";    
-        		$sender_id = "CARTIN";          
-        		$mobile_num = $mobile_number;  
-        		$message = "Your Temporary Password is : " .$six_digit_random_number;               
-        // Sending with PHP CURL
-       	$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
-			$ret = file($url);
+				$pwd="9494422779";    
+				$sender_id = "CARTIN";          
+				$mobile_num = $mobile_number;  
+				$message = "Your Temporary Password is : " .$six_digit_random_number;               
+				// Sending with PHP CURL
+				$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
+				$ret = file($url);
 					$data = array(
 					'seller_rand_id' => $seller.''.$seller_rand_id,
 					'seller_password' => md5($six_digit_random_number),

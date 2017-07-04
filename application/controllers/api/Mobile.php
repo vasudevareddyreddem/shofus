@@ -232,8 +232,32 @@ class Mobile extends REST_Controller {
 	public function save_store_details_post()
 	{
 		
+		$tinvatimages=base64_decode($this->input->get('tinvatimage'));
+		$tanimages=base64_decode($this->input->get('tanimage'));
+		$cstimages=base64_decode($this->input->get('cstimage'));
+		$gstimg=base64_decode($this->input->get('gstinimage'));
 		$seller_upload_file=$this->mobile_model->get_upload_file($this->input->get('seller_id'));
-		if($this->input->get('gstinimage')!=''){
+		if($this->input->get('tinvatimage')!=''){
+			move_uploaded_file($tinvatimages['tmp_name'], "assets/sellerfile/" . $tinvatimages);
+
+			}else{
+			$tinvatimage=$seller_upload_file['tinvatimage'];
+			}
+			if($this->input->get('tanimage')!=''){
+			$tanimg=base64_decode($this->input->get('tanimage'));
+			move_uploaded_file($tanimages['tmp_name'], "assets/sellerfile/" . $tanimages);
+
+			}else{
+			$tanimg=$seller_upload_file['tanimage'];
+			}
+			if($this->input->get('gstinimage')!=''){
+			$cstimages=base64_decode($this->input->get('cstimage'));
+			move_uploaded_file($cstimages['tmp_name'], "assets/sellerfile/" . $cstimages);
+
+			}else{
+			$cstimg=$seller_upload_file['cstimage'];
+			}
+			if($this->input->get('gstinimage')!=''){
 			$gstimg=base64_decode($this->input->get('gstinimage'));
 			move_uploaded_file($gstimg['tmp_name'], "assets/sellerfile/" . $gstimg);
 
@@ -246,9 +270,18 @@ class Mobile extends REST_Controller {
 			'addrees2'=>$this->input->get('address2'),
 			'area'=>$this->input->get('area'),
 			'pin_code'=>$this->input->get('pincode'),
+			'other_shops'=>$this->input->get('othershops'),
+			'other_shops_location'=>$this->input->get('othershoplocation'),
+			'weblink'=>$this->input->get('weblink'),
+			'tin_vat'=>$this->input->get('tinvat'),
+			'tinvatimage'=>$this->input->get('tinvatimage'),
+			'tan'=>$this->input->get('tan'),
+			'tanimage'=>$this->input->get('tanimage'),
+			'cst'=>$this->input->get('cst'),
+			'cstimage'=>$this->input->get('cstimage'),
 			'gstin'=>$this->input->get('gstin'),
 			'gstinimage'=>$gstimg,
-			'other_shops'=>$this->input->get('othershops'),
+			
 			'created_at'=> date('Y-m-d h:i:s'),
 			);
 			//echo '<pre>';print_r($data);exit;

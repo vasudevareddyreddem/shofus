@@ -76,15 +76,15 @@
             <input class="form-control" maxlength="16" placeholder="Enter your Bank Account" type="text" id="bank_account" name="bank_account" value="<?php echo isset($sellerdata['seller_bank_account'])?$sellerdata['seller_bank_account']:''; ?>"  >
           </div>         
           <div class="form-group">
-            <label class="control-label">Aadhaar Card</label>
-            <input maxlength="100" type="text" maxlength="12" name="aadhaar_card" class="form-control" placeholder="Enter Your Aadhaar Card" value="<?php echo isset($sellerdata['seller_adhar'])?$sellerdata['seller_adhar']:''; ?>" />
+            <label class="control-label">Bank Account Name</label>
+            <input maxlength="100" type="text" maxlength="12" id="account_name" name="account_name" class="form-control"  value="<?php echo isset($sellerdata['seller_account_name'])?$sellerdata['seller_account_name']:''; ?>" />
           </div>
           <div class="form-group">
-            <label class="control-label">Personal Pan card</label>
-            <input maxlength="100" type="text"  name="pan_card" class="form-control" placeholder="Enter your Pan Card" value="<?php echo isset($sellerdata['seller_pan_card'])?$sellerdata['seller_pan_card']:''; ?>" />
+            <label class="control-label">Bank Account IFSC Code</label>
+            <input maxlength="100" type="text"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($sellerdata['seller_aaccount_ifsc_code'])?$sellerdata['seller_aaccount_ifsc_code']:''; ?>" />
           </div>
              <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/storedetails'); ?>">Back</a>
-			<input type="submit" class="btn btn-primary " value="Submit">
+			<input id="new" type="submit" class="btn btn-primary " value="Submit">
               </form>
 			  <br>
 			  <div class="" style="margin-bottom:30px;">&nbsp;</div>
@@ -124,38 +124,30 @@ $(document).ready(function() {
 					    }
             }
           },
-          aadhaar_card:
-          {
-            validators: 
-            {
-              notEmpty: 
-              {
-                message: 'Aadhar Number is required'
-              },
-              regexp: 
-              {
-               regexp:  /^[0-9]{12}$/,
-               message:'Aadhar Number must be 12 digits'
-              }
-            }
-          },
+         account_name: {
+          validators: {
+					notEmpty: {
+						message: 'Account Name is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Account Name can only consist of alphanumaric, space and dot'
+					}
+				}
+        }, 
+		ifsccode: {
+          validators: {
+					notEmpty: {
+						message: 'IFCS Code is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'IFCS Code can only consist of alphanumaric, space and dot'
+					}
+				}
+        }
 
-			pan_card: 
-      {
-        validators:
-        {
-				  notEmpty: 
-          {
-					 message: 'Pan Card Number is required'
-				  },
-				  regexp: 
-          {
-					 regexp: /^[a-zA-Z0-9. ]+$/,
-					 message: ' Pan Card Number can only consist of alphanumaric, space and dot'
-				  }     
-			  }
-      }
-            
+	   
 		
         }
     });

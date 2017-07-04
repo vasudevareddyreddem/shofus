@@ -115,23 +115,7 @@
             <label class="control-label">Other Shop Locations</label>
             <input  type="text"  name="other_shops_location" id="other_shops_location" value="<?php echo isset($sellerdata['other_shops_location'])?$sellerdata['other_shops_location']:''; ?>" class="form-control"  />
           </div>
-		 <div class="form-group">
-            <label class="control-label">Delivery service on your Own ?</label>
-				<select class="form-control" required="required" name = "deliveryes" id = "deliveryes">
-					<option value ="">Select</option>
-				
-					<?php if($sellerdata['deliveryes']==1) {?>
-					<option value ="1" selected>YES</option> 
-					<?php } else {?>
-					<option value ="1">YES</option>
-					<?php }if($sellerdata['deliveryes']==0) {?>
-					<option value ="0" selected>No</option>
-					<?php }else{ ?>
-					<option value ="0">No</option>						
-					<?php } ?>					
-				</select>
-       
-          </div>
+		
 		 <div class="form-group">
             <label class="control-label">Any web link </label>
             <input type="text" id="weblink"  name="weblink" value="<?php echo isset($sellerdata['weblink'])?$sellerdata['weblink']:''; ?>" class="form-control"/>
@@ -146,7 +130,7 @@
 		
           </div>
 		  <div class="form-group">
-            <label class="control-label">Tan </label>
+            <label class="control-label">TAN </label>
             <input  type="text"  name="tan" id="tan" value="<?php echo isset($sellerdata['tan'])?$sellerdata['tan']:''; ?>" class="form-control"/>
 			<input type="file" name="tanimages" id="tanimages"  onchange="tanimageuload(this.value)">
 			<a onclick="deactive1();" href="javascript:void(0)" >Upload</a><span id="backid2"><?php echo isset($sellerdata['tanimage'])?$sellerdata['tanimage']:''; ?></span>
@@ -154,7 +138,7 @@
 			<span style="color:red" id="tanimgserror"></span>
           </div>
 		<div class="form-group">
-            <label class="control-label">Cst </label>
+            <label class="control-label">CST </label>
             <input  type="text" id="cst"  name="cst" value="<?php echo isset($sellerdata['cst'])?$sellerdata['cst']:''; ?>" class="form-control"/>
 			<input type="file" id="cstimag" name="cstimag"  onchange="cstimageuload(this.value)">
 			<a onclick="deactive2();" href="javascript:void(0)" >Upload</a><span id="backid3"><?php echo isset($sellerdata['cstimage'])?$sellerdata['cstimage']:''; ?></span>
@@ -163,9 +147,14 @@
           </div>
 		
 		 <div class="form-group">
-            <label class="control-label">GSTIN</label>
+            <label class="control-label">GST</label>
             <input  type="text"  name="gstin" id="gstin" value="<?php echo isset($sellerdata['gstin'])?$sellerdata['gstin']:''; ?>" class="form-control"  />
-          </div>
+			<input type="file" id="gstimag" name="gstimag"  onchange="gstimageuload(this.value)">
+			<a onclick="deactive3();" href="javascript:void(0)" >Upload</a><span id="backid3"><?php echo isset($sellerdata['gstinimage'])?$sellerdata['gstinimage']:''; ?></span>
+			<span id="gstimages"></span>
+			<span style="color:red" id="gstimageserror"></span>         
+
+		 </div>
 		
 		 
 	
@@ -213,6 +202,7 @@
 $('#timimages').hide();
 $('#tanimages').hide();
 $('#cstimag').hide();
+$('#gstimag').hide();
 
 
 
@@ -257,6 +247,20 @@ function cstuploadOnChange() {
 	document.getElementById("resubmit").disabled = false; 
 	
 }
+document.getElementById('gstimag').onchange = gstuploadOnChange;
+function gstuploadOnChange() {
+    var filename = this.value;
+    var lastIndex = filename.lastIndexOf("\\");
+    if (lastIndex >= 0) {
+        filename = filename.substring(lastIndex + 1);
+    }
+	jQuery('#backid3').hide();
+	$('#editcstimage').hide();
+	jQuery('#gstimageserror').html('');
+    document.getElementById("gstimages").innerHTML  = filename;
+	document.getElementById("resubmit").disabled = false; 
+	
+}
 
 function deactive(id){
 	$('#timimages').trigger("click");	
@@ -267,6 +271,9 @@ function deactive1(id){
 function deactive2(id){
 	$('#cstimag').trigger("click");	
 }
+function deactive3(id){
+	$('#gstimag').trigger("click");	
+}
 
  function validation(){
 	 
@@ -275,13 +282,13 @@ function deactive2(id){
 		var ext1 = fileName.substring(fileName.lastIndexOf('.') + 1);
 
 		if(ext1 !=''){
-		if(ext1 == "docx" || ext1 == "doc" || ext1 == "pdf" || ext1 == "xlsx" || ext1 == "xls")
+		if(ext1 == "png" || ext1 == "gif" || ext1 == "jpg" || ext1 == "jpe?g")
 		{
 		jQuery('#timimageserrormsg').val(1);
 		jQuery(tinimageerror).html('');
 		} else{
 		jQuery('#timimageserrormsg').val(0);
-		jQuery('#tinimageerror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
+		jQuery('#tinimageerror').html('Uploaded file is not a valid. png,gif,jpg files are allowed');
 		return false;
 		}
 		}
@@ -290,13 +297,13 @@ function deactive2(id){
 		var ext2 = fileName1.substring(fileName1.lastIndexOf('.') + 1);
 
 		if(ext2 !=''){
-		if(ext2 == "docx" || ext2 == "doc" || ext2 == "pdf" || ext2 == "xlsx" || ext2 == "xls")
+		if(ext2 == "png" || ext2 == "gif" || ext2 == "jpg" || ext2 == "jpe?g")
 		{
 		jQuery('#timimageserrormsg').val(1);
 		jQuery('#tanimgserror').html('');
 		} else{
 		jQuery('#timimageserrormsg').val(0);
-		jQuery('#tanimgserror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
+		jQuery('#tanimgserror').html('Uploaded file is not a valid. Only png,gif,jpg files are allowed');
 		return false;
 		}
 		}
@@ -305,13 +312,28 @@ function deactive2(id){
 		var ext3 = fileName2.substring(fileName2.lastIndexOf('.') + 1);
 
 		if(ext3 !=''){
-		if(ext3 == "docx" || ext3 == "doc" || ext3 == "pdf" || ext3 == "xlsx" || ext3 == "xls")
+		if(ext3 == "png" || ext3 == "gif" || ext3 == "jpg" || ext3 == "jpe?g")
 		{
 		jQuery('#timimageserrormsg').val(1);
 		jQuery('#cstimageserror').html('');
 		} else{
 		jQuery('#timimageserrormsg').val(0);
-		jQuery('#cstimageserror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
+		jQuery('#cstimageserror').html('Uploaded file is not a valid. Only png,gif,jpg files are allowed');
+		return false;
+		}
+		}
+		var fup4 = document.getElementById('gstimag');
+		var fileName3 = fup4.value;
+		var ext4 = fileName3.substring(fileName3.lastIndexOf('.') + 1);
+
+		if(ext4 !=''){
+		if(ext4 == "png" || ext4 == "gif" || ext4 == "jpg" || ext4 == "jpe?g")
+		{
+		jQuery('#timimageserrormsg').val(1);
+		jQuery('#gstimageserror').html('');
+		} else{
+		jQuery('#timimageserrormsg').val(0);
+		jQuery('#gstimageserror').html('Uploaded file is not a valid. Only png,gif,jpg files are allowed');
 		return false;
 		}
 		}
@@ -379,19 +401,9 @@ $(document).ready(function() {
 			   }
             
 			},
-			deliveryes: {
-               validators: {
-				notEmpty: {
-					message: 'Please select a Delivery service'
-				}
-			   }
-            
-			},
 			weblink: {
                validators: {
-				notEmpty: {
-					message: 'Weblink is required'
-				},
+			
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' Weblink can only consist of alphanumaric, space and dot'
@@ -401,9 +413,7 @@ $(document).ready(function() {
             },
 			tin: {
                validators: {
-				notEmpty: {
-					message: 'Tin is required'
-				},
+				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' Tin can only consist of alphanumaric, space and dot'
@@ -413,9 +423,7 @@ $(document).ready(function() {
             },
 			tan: {
                validators: {
-				notEmpty: {
-					message: 'Tin is required'
-				},
+				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' Tin can only consist of alphanumaric, space and dot'
@@ -425,9 +433,7 @@ $(document).ready(function() {
             },
 			cst: {
                validators: {
-				notEmpty: {
-					message: 'Cst is required'
-				},
+				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' Cst can only consist of alphanumaric, space and dot'
@@ -437,9 +443,7 @@ $(document).ready(function() {
             },
 			gstin: {
                validators: {
-				notEmpty: {
-					message: 'GSTIN is required'
-				},
+				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' GSTIN can only consist of alphanumaric, space and dot'

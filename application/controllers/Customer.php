@@ -51,7 +51,16 @@ class Customer extends Front_Controller
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
 		$post=$this->input->post();
-		//echo '<pre>';print_r($_FILES);
+		
+		if($post['email']!=$customerdetails['cust_email']){
+			$emailcheck= $this->customer_model->email_unique_check($post['email']);
+			if(count($emailcheck)>0){
+				$this->session->set_flashdata('errormsg','Email id already exits.please use another Email id');
+				redirect('customer/editprofile');
+			}
+			
+		}
+		
 		
 		$cust_upload_file= $this->customer_model->get_profile_details($customerdetails['customer_id']);
 		if($_FILES['profile']['name']!=''){
@@ -64,7 +73,7 @@ class Customer extends Front_Controller
 		$details=array(
 		'cust_firstname'=>$post['fname'],
 		'cust_lastname'=>$post['lname'],
-		//'cust_email'=>$post['email'],
+		'cust_email'=>$post['email'],
 		'cust_mobile'=>$post['mobile'],
 		'cust_propic'=>$profilepic,
 		'address1'=>$post['address1'],
@@ -365,7 +374,7 @@ class Customer extends Front_Controller
 			redirect('');
 			}
 		}else{
-			$this->session->set_flashdata('error',"Password and confirm password was not matching");
+			$this->session->set_flashdata('error',"Password and confirm password do not match");
 			redirect('customer');
 		}
 		
@@ -523,7 +532,7 @@ class Customer extends Front_Controller
 					redirect('customer/changepassword');
 				}
 			}else{
-					$this->session->set_flashdata('passworderror',"Your current password is incorrect. Please try again.");
+					$this->session->set_flashdata('passworderror',"Your Old password is incorrect. Please try again.");
 					redirect('customer/changepassword');
 				}
 			
