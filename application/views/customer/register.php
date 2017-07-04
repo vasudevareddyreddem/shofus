@@ -208,7 +208,7 @@ $(document).ready(function() {
 					},
                     regexp: {
 					regexp:  /^[0-9]{10}$/,
-					message:'Mobile Number must be 10 to 14 digits'
+					message:'Mobile Number must be 10 digits'
 					}
                 }
             },
