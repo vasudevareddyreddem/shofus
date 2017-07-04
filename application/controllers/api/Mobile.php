@@ -158,14 +158,19 @@ class Mobile extends REST_Controller {
 	{
 		
 		
-		$categories=array_unique($this->input->get('seller_category_id[]'));
+		$categories=$this->input->get('seller_category_id');
+		//$values=implode('',$categorie);
+		//echo "<pre>";print_r($categories);exit;
+		
+		$catdetails=explode(",",$categories);
+		
 		$seller_id=$this->input->get('seller_id');
 		$catresult=$this->mobile_model->get_old_seller_categories($this->input->get('seller_id'));
 			foreach($catresult as $delcats){
 				
 				$this->mobile_model->delet_get_old_seller_categories($delcats['seller_cat_id']);
 			}
-		foreach($categories as $lists){
+		foreach($catdetails as $lists){
 			$catname=$this->mobile_model->get_categories_name($lists);
 			
 		$data = array(
@@ -192,6 +197,7 @@ class Mobile extends REST_Controller {
 	/* store details saving puepose*/
 	public function save_store_details_post()
 	{
+		
 		
 		$tinvatimages=base64_decode($this->input->get('tinvatimage'));
 		$tanimages=base64_decode($this->input->get('tanimage'));

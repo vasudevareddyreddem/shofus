@@ -14,6 +14,7 @@ class Customer extends Front_Controller
 			
  }
  
+
   public function account(){
 	 
 	 if($this->session->userdata('userdetails'))
