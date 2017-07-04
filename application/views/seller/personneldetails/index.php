@@ -263,15 +263,15 @@ $(function(){
                                                             <input class="form-control" placeholder="Name" type="text" id="bank_account" name="bank_account" value="<?php echo $seller_storedetails['seller_bank_account']?>">
                                                         </div>
                                                         <div class="form-group nopaddingRight col-md-6 san-lg">
-                                                            <label for="exampleInputEmail1">Pan Card</label>
-                                                            <input class="form-control" placeholder="Email" type="text" id="pan_card" name="pan_card" value="<?php echo $seller_storedetails['seller_pan_card'];   ?>">
+                                                            <label for="exampleInputEmail1">Bank Account Name</label>
+															<input maxlength="100" type="text" maxlength="12" id="account_name" name="account_name" class="form-control"  value="<?php echo isset($seller_storedetails['seller_account_name'])?$seller_storedetails['seller_account_name']:''; ?>" />
 
                                                         </div>
 
 
                                                         <div class="form-group nopaddingRight col-md-6 san-lg">
-                                                            <label for="exampleInputEmail1">Adhar Number</label>
-                                                            <input class="form-control" placeholder="Adhar Number" type="text" name="seller_adhar" id="seller_adhar" value="<?php echo $seller_storedetails['seller_adhar']; ?>">
+                                                            <label for="exampleInputEmail1">Bank Account IFSC Code</label>
+															<input maxlength="100" type="text"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($seller_storedetails['seller_aaccount_ifsc_code'])?$seller_storedetails['seller_aaccount_ifsc_code']:''; ?>" />
                                                         </div>
 															 <div class="clearfix"></div>
                                                         <div style="margin-top: 20px; margin-left: 15px;">
@@ -624,48 +624,46 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#personalidetails').bootstrapValidator({
        
-        fields: {
-			bank_account: {
-              validators: {
-					notEmpty: {
-						message: 'Bank Account is required'
-					},
-                   regexp: {
-					regexp:  /^[0-9]{9,16}$/,
-					message:'Bank Account  must be 9 to 16 digits'
-					}
-                }
-            },
-            seller_adhar: {
-               validators: {
-				notEmpty: {
-					message: 'Aadhar Number is required'
-				},
-				
-				regexp: {
-				regexp: /^[0-9]{12}$/,
-				message: ' Aadhar Number can only consist of digits'
-				},
-				stringLength: {
-					min: 12,
-					message: 'Aadhar Number must be 12 digits'
-				}
-            
-			}
-            },
-			pan_card: {
-               validators: {
-				notEmpty: {
-					message: 'Pan Card Number is required'
-				},
-				regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: ' Pan Card Number can only consist of alphanumaric, space and dot'
-				}
-            
-			}
+         fields: {
+			bank_account:
+          {
+            validators: 
+            {
+					    notEmpty: 
+              {
+						    message: 'Bank Account is required'
+					    },
+              regexp: 
+              {
+					     regexp:  /^[0-9]{9,16}$/,
+					     message:'Bank Account  must be 9 to 16 digits'
+					    }
             }
-            
+          },
+         account_name: {
+          validators: {
+					notEmpty: {
+						message: 'Account Name is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Account Name can only consist of alphanumaric, space and dot'
+					}
+				}
+        }, 
+		ifsccode: {
+          validators: {
+					notEmpty: {
+						message: 'IFCS Code is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'IFCS Code can only consist of alphanumaric, space and dot'
+					}
+				}
+        }
+
+	   
 		
         }
     });

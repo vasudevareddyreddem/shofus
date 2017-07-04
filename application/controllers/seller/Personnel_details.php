@@ -260,8 +260,8 @@ public function personal_details_updatebd()
 	//ECHO '<pre>';print_r($post);exit;
 	$data = array(
 	'seller_bank_account' => $post['bank_account'],
-	'seller_pan_card' =>  $post['pan_card'],
-	'seller_adhar' =>  $post['seller_adhar'],
+	'seller_account_name' => $post['account_name'],
+    'seller_aaccount_ifsc_code' => $post['ifsccode'],
 	);
 	$result=$this->Personnel_details_model->updatebd($sid,$data);
 	if(count($result)>0)
