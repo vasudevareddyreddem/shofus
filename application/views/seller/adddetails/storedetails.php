@@ -115,23 +115,7 @@
             <label class="control-label">Other Shop Locations</label>
             <input  type="text"  name="other_shops_location" id="other_shops_location" value="<?php echo isset($sellerdata['other_shops_location'])?$sellerdata['other_shops_location']:''; ?>" class="form-control"  />
           </div>
-		 <div class="form-group">
-            <label class="control-label">Delivery service on your Own ?</label>
-				<select class="form-control" required="required" name = "deliveryes" id = "deliveryes">
-					<option value ="">Select</option>
-				
-					<?php if($sellerdata['deliveryes']==1) {?>
-					<option value ="1" selected>YES</option> 
-					<?php } else {?>
-					<option value ="1">YES</option>
-					<?php }if($sellerdata['deliveryes']==0) {?>
-					<option value ="0" selected>No</option>
-					<?php }else{ ?>
-					<option value ="0">No</option>						
-					<?php } ?>					
-				</select>
-       
-          </div>
+		
 		 <div class="form-group">
             <label class="control-label">Any web link </label>
             <input type="text" id="weblink"  name="weblink" value="<?php echo isset($sellerdata['weblink'])?$sellerdata['weblink']:''; ?>" class="form-control"/>
@@ -146,7 +130,7 @@
 		
           </div>
 		  <div class="form-group">
-            <label class="control-label">Tan </label>
+            <label class="control-label">TAN </label>
             <input  type="text"  name="tan" id="tan" value="<?php echo isset($sellerdata['tan'])?$sellerdata['tan']:''; ?>" class="form-control"/>
 			<input type="file" name="tanimages" id="tanimages"  onchange="tanimageuload(this.value)">
 			<a onclick="deactive1();" href="javascript:void(0)" >Upload</a><span id="backid2"><?php echo isset($sellerdata['tanimage'])?$sellerdata['tanimage']:''; ?></span>
@@ -154,7 +138,7 @@
 			<span style="color:red" id="tanimgserror"></span>
           </div>
 		<div class="form-group">
-            <label class="control-label">Cst </label>
+            <label class="control-label">CST </label>
             <input  type="text" id="cst"  name="cst" value="<?php echo isset($sellerdata['cst'])?$sellerdata['cst']:''; ?>" class="form-control"/>
 			<input type="file" id="cstimag" name="cstimag"  onchange="cstimageuload(this.value)">
 			<a onclick="deactive2();" href="javascript:void(0)" >Upload</a><span id="backid3"><?php echo isset($sellerdata['cstimage'])?$sellerdata['cstimage']:''; ?></span>
@@ -163,7 +147,7 @@
           </div>
 		
 		 <div class="form-group">
-            <label class="control-label">GSTIN</label>
+            <label class="control-label">GST</label>
             <input  type="text"  name="gstin" id="gstin" value="<?php echo isset($sellerdata['gstin'])?$sellerdata['gstin']:''; ?>" class="form-control"  />
           </div>
 		
@@ -379,19 +363,9 @@ $(document).ready(function() {
 			   }
             
 			},
-			deliveryes: {
-               validators: {
-				notEmpty: {
-					message: 'Please select a Delivery service'
-				}
-			   }
-            
-			},
 			weblink: {
                validators: {
-				notEmpty: {
-					message: 'Weblink is required'
-				},
+			
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' Weblink can only consist of alphanumaric, space and dot'
@@ -401,9 +375,7 @@ $(document).ready(function() {
             },
 			tin: {
                validators: {
-				notEmpty: {
-					message: 'Tin is required'
-				},
+				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' Tin can only consist of alphanumaric, space and dot'
@@ -413,9 +385,7 @@ $(document).ready(function() {
             },
 			tan: {
                validators: {
-				notEmpty: {
-					message: 'Tin is required'
-				},
+				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' Tin can only consist of alphanumaric, space and dot'
@@ -425,9 +395,7 @@ $(document).ready(function() {
             },
 			cst: {
                validators: {
-				notEmpty: {
-					message: 'Cst is required'
-				},
+				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' Cst can only consist of alphanumaric, space and dot'
@@ -437,9 +405,7 @@ $(document).ready(function() {
             },
 			gstin: {
                validators: {
-				notEmpty: {
-					message: 'GSTIN is required'
-				},
+				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' GSTIN can only consist of alphanumaric, space and dot'
