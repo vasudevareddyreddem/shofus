@@ -71,7 +71,7 @@
                             </div>
 							<div class="pull-right">
                                 <label>
-                                    <a href="<?php echo base_url('customer/forgotpassword');?>" >forget password?</a>
+                                    <a href="<?php echo base_url('customer/forgotpassword');?>" >Forgot Password?</a>
                                 </label>
                             </div>
                         </div>
@@ -208,7 +208,7 @@ $(document).ready(function() {
 					},
                     regexp: {
 					regexp:  /^[0-9]{10}$/,
-					message:'Mobile Number must be 10 to 14 digits'
+					message:'Mobile Number must be 10 digits'
 					}
                 }
             },

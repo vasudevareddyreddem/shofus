@@ -87,7 +87,8 @@
 		  
 		  <?php if($this->session->userdata('userdetails')){ ?>
 		  <span class="medias user_log">
-				<a ><i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+				<a ><i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" /></i>
+				<p>Account</p>
 				</a>
 						
 			</span>
@@ -114,10 +115,11 @@
 			</span></a></span>
 			
 			<?php if($this->session->userdata('userdetails')){ ?>
-			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i class="glyphicon glyphicon-shopping-cart " aria-hidden="true"></i></a>	<p >Cart</p></a>&nbsp;<sup class="sup">
+			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i></a>&nbsp;<sup class="sup_log">
 			<?php if(count($cartitemcount)>0){ ?>
 				<?php echo count($cartitemcount); ?>
 				</sup>
+				<p >Cart</p>
 				<div class="sprinkle"></div>
 			<?php } ?>
 			
