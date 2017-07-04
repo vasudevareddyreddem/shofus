@@ -23,25 +23,25 @@
 			<ul id="bzoom">
 					<li>
 				
-						<img class="bzoom_thumb_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>" title="<?php echo $products_list['item_image']; ?>" />
+						<img  class="bzoom_thumb_image img_prod" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>" title="<?php echo $products_list['item_image']; ?>" />
 						<img class="bzoom_big_image"  src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>"/>
 					</li>
 					
 					<?php if(isset($products_list['item_image1']) && $products_list['item_image1'] ){  ?>
 					<li>
-						<img class="bzoom_thumb_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image1']); ?>"/>
+						<img class="bzoom_thumb_image img_prod" src="<?php echo base_url('uploads/products/'.$products_list['item_image1']); ?>"/>
 						<img class="bzoom_big_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image1']); ?>"/>
 					</li>
 					<?php } ?>
 					<?php if(isset($products_list['item_image2']) && $products_list['item_image2']!='' ){  ?>
 					<li>
-						<img class="bzoom_thumb_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image2']); ?>"/>
+						<img class="bzoom_thumb_image img_prod" src="<?php echo base_url('uploads/products/'.$products_list['item_image2']); ?>"/>
 						<img class="bzoom_big_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image2']); ?>"/>
 					</li>
 					<?php } ?>
 					<?php if(isset($products_list['item_image3']) && $products_list['item_image3']!='' ){  ?>
 					<li>
-						<img class="bzoom_thumb_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image3']); ?>"/>
+						<img class="bzoom_thumb_image img_prod" src="<?php echo base_url('uploads/products/'.$products_list['item_image3']); ?>"/>
 						<img class="bzoom_big_image" src="<?php echo base_url('uploads/products/'.$products_list['item_image3']); ?>"/>
 					</li>
 					<?php } ?>
