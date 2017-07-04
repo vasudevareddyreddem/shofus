@@ -532,7 +532,7 @@ class Customer extends Front_Controller
 					redirect('customer/changepassword');
 				}
 			}else{
-					$this->session->set_flashdata('passworderror',"Your current password is incorrect. Please try again.");
+					$this->session->set_flashdata('passworderror',"Your Old password is incorrect. Please try again.");
 					redirect('customer/changepassword');
 				}
 			
