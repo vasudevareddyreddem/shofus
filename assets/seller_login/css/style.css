@@ -2391,3 +2391,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
 	 cursor:pointer;
  }
  /* contact us btn end */
+@-moz-document url-prefix() { 
+  .selector {
+     color:lime;
+  }
+} 
