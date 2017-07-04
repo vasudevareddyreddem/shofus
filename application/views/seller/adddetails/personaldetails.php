@@ -84,7 +84,7 @@
             <input maxlength="100" type="text"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($sellerdata['seller_aaccount_ifsc_code'])?$sellerdata['seller_aaccount_ifsc_code']:''; ?>" />
           </div>
              <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/storedetails'); ?>">Back</a>
-			<input type="submit" class="btn btn-primary " value="Submit">
+			<input id="new" type="submit" class="btn btn-primary " value="Submit">
               </form>
 			  <br>
 			  <div class="" style="margin-bottom:30px;">&nbsp;</div>
