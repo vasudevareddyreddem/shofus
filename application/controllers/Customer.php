@@ -374,7 +374,7 @@ class Customer extends Front_Controller
 			redirect('');
 			}
 		}else{
-			$this->session->set_flashdata('error',"Password and confirm password was not matching");
+			$this->session->set_flashdata('error',"Password and confirm password do not match");
 			redirect('customer');
 		}
 		
