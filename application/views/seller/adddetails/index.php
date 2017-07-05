@@ -166,7 +166,7 @@ $('.window').hide();
 				<?php //echo '<pre>';print_r($sellerdata);exit; ?>
   <form  id="basicdetails" name="basicdetails" action="<?php echo base_url('seller/adddetails/updatebasicdetails'); ?>" method="post" >
     <div class="row setup-content">
-      <div class="col-xs-6 col-md-offset-3">
+      <div class="col-xs-6 col-md-offset-3 well">
         <div class="col-md-12">
           <h3>Basic Details</h3><br>
           <div class="form-group">

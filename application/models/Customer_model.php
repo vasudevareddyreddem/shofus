@@ -72,6 +72,11 @@ class Customer_model extends MY_Model
 		$this->db->insert('customers', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	public function get_product_details($itemid){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_id', $itemid);
+        return $this->db->get()->row_array();
+	}
 	public function cart_products_save($data){
 		$this->db->insert('cart', $data);
 		return $insert_id = $this->db->insert_id();
@@ -95,15 +100,21 @@ class Customer_model extends MY_Model
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
+	public function get_cart_total_amount($cust_id){
+		$sql="SELECT SUM(total_price) as pricetotalvalue ,SUM(delivery_amount) as delivertamount FROM cart  WHERE cust_id ='".$cust_id."'";
+        return $this->db->query($sql)->row_array();
+	}
 	public function get_whishlist_products($cust_id){
 		$this->db->select('item_wishlist.*,products.*')->from('item_wishlist');
 		$this->db->join('products', 'products.item_id = item_wishlist.item_id', 'left');
 		$this->db->where('item_wishlist.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
-	public function update_cart_qty($cust_id,$pid,$qty){
-		$sql1="UPDATE cart SET qty ='".$qty."' WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."'";
-		return $this->db->query($sql1);
+	public function update_cart_qty($cust_id,$pid,$data){
+	
+		 $this->db->where('cust_id',$cust_id);
+		 $this->db->where('item_id',$pid);
+    	return $this->db->update("cart",$data);
 	}
 	public function delete_cart_item($cust_id,$pid,$id){
 		$sql1="DELETE FROM cart WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."' AND id ='".$id."'";

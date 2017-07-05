@@ -170,7 +170,7 @@ $(document).ready(function() {
              firstname: {
               validators: {
 					notEmpty: {
-						message: 'Last Name is required'
+						message: 'First Name is required'
 					},
                    regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
@@ -231,7 +231,7 @@ $(document).ready(function() {
 					 validators: {
                 identical: {
                     field: 'password',
-                    message: 'The New password and its confirm Password are not the same'
+                    message: 'password and confirm Password do not match'
                 }
             }
 			}

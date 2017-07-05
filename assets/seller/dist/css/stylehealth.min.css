@@ -2153,10 +2153,10 @@ small,
         left: -44px
     }
 }
-.well {
-    height: 135px;
-    box-shadow: none
-}
+/* .well { */
+    /* height: 135px; */
+    /* box-shadow: none */
+/* } */
 .tree,
 .tree ul {
     margin: 0;

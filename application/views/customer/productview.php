@@ -15,7 +15,7 @@
 <div class="" style="margin-top:150px;">
 	
 </div>
-<div class="pad_bod">
+<div class="pad_bod" style="margin-bottom:220px;">
 		<div class="row">
 		<div id="sticky-anchor"></div>
 		<div class="col-md-4 z_ind " id="sticky">
@@ -252,7 +252,8 @@
           </div>
           </div>
           </div>
-          <div class="compar_btn" id="compar_btn">
+		  <div class="clearfix"></div>
+          <div class="compar_btn" id="compar_btn" >
 	 <div class="btn-group show-on-hover">
           <a href="<?php echo base_url('category/productscompare/'.base64_encode($products_list['item_id'])); ?>" class="btn btn-primary" ><?php echo $products_list['item_name'];?>&nbsp;<span><?php echo count($products_list['item_id']) ?></span> 
           </a>
