@@ -108,7 +108,7 @@
 		<div style="position: absolute;top:50%;color:#ddd;right:36%; background:#ed4916;border-radius:5px;padding:15px;">
 			<p style="font-size:30px;"><b>Limited period offer</b></p>		
 			<p style="font-size:20px;margin-left:72px;">Free for 1 month</p>		<br>
-			<span style="background:#006a99;padding:5px 10px ;border-radius:5px;font-size:18px;margin-left: 85px;cursor: pointer;" class="" data-dismiss="modal"  data-toggle="modal"
+			<span id="bntt" style="background:#006a99;padding:5px 10px ;border-radius:5px;font-size:18px;margin-left: 85px;cursor: pointer;" class="" data-dismiss="modal"  data-toggle="modal"
 			data-target="#myModal_sel_mod_en">Enquiry form</span>
 		</div>
      
@@ -136,9 +136,9 @@
                 
 <div class=" orm-horizontal" >
   <div class="form-group">
-      <label class="control-label col-sm-4" for="">Mobile/Phone No:</label>
+      <label class="control-label col-sm-4" for="">Mobile Number</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" maxlength="10" id="phone_number" placeholder="Enter Mobile/Phone No" name="phone_number" reqired>
+        <input type="text" class="form-control" maxlength="10" id="phone_number" placeholder="Enter Mobile Number" name="Mobile_number" required>
 	<span id="Emptyforregister"></span>     
 	 </div>
 	  

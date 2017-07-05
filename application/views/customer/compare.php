@@ -69,7 +69,7 @@
 
 	  
 	  </div>
-       <!-- <div class="col-xs-12">
+       <div class="col-xs-12">
           
           <div class="table-responsive">
             <table class="table table-bordered table-compare">
@@ -111,8 +111,8 @@
                   </select>
                 </div>
                   </td>
-                   <td id="compare_item">
-                    <p><?php echo $compare_item['item_name']; ?></p>
+                   <td id="compare_item" style="display: none;">
+                    <p><?php echo $compare_list['item_name'] ?></p>
                   </td> 
                   <td >
                     
@@ -126,7 +126,7 @@
                     <div><?php echo ($compore_products['item_cost'])-($compore_products['offer_amount']); ?></div>
                     <!-- <span class="price-old"><?php echo $compore_products['item_cost']; ?></span> -->
                   </div>
-                  <!-- <div class="price">
+                   <div class="price">
                     <span class="price-old"><?php echo $compore_products['item_cost']; ?></span>
                   </div> 				  
 
@@ -248,18 +248,26 @@
     ({
     type: "POST",
     url: "<?php echo base_url();?>category/compare_items_list",
-    data: {item_id:item_id},
-    cache: false,
-    dataType:'json',
-    success: function(data)
-    {
-      alert(data);
-      alert(item_name);
-      $("compare_items").html(data);
-      //alert(data.details);
-    //$("#compare_items").html(data);
-    //$('#compare_items').show();
-    } 
+     data: {item_id:item_id},
+     cache: false,
+    dataType:'html',
+    success: function (data) {
+
+    
+      // $("#compare_items").show();
+       $('#compare_items').append(data);
+      // },error: function ( data ) {
+      //   console.log('error');
+      // }
+    // success: function(data)
+    // {
+    //   alert(data);
+    //   alert(item_name);
+    //   $("compare_items").html(data);
+    //   //alert(data.details);
+    // //$("#compare_items").html(data);
+    // //$('#compare_items').show();
+     } 
     });
     
     });
