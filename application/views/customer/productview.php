@@ -123,8 +123,9 @@
                 <td></td>
                 <td>
                   <button class="btn btn-theme m-b-1" type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-				  <a href="" id="compare" class="btn btn-theme m-b-1" type="button"><i class="fa fa-align-left"></i> Add to Compare</a>
-                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>"> 
+				  <a href="" id="compare" class="btn btn-theme m-b-1" type="button" ><i class="fa fa-align-left"></i> Add to Compare</a>
+                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>">
+                  <input type="hidden" name="category_id" id="category_id"  value="<?php echo $products_list['category_id']; ?>"> 
 					<?php if($products_list['yes']==1){ ?>
 					<a href="javascript:void(0);" style="color:yellow;" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" id="addwhish" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
 					<?php }else{ ?>	
@@ -224,7 +225,6 @@
                   <hr/>
                   <h4 class="m-b-2">Add your review</h4>
                   <form role="form" name="addreview" id="addreview" action="<?php echo base_url('category/productreview'); ?>" method="post">
-                    <input type="hidden" name="product_id" id="product_id"  value="<?php echo $products_list['item_id']; ?>">
 					<div class="form-group">
                       <label for="Name">Name</label>
                       <input type="text" id="name" name="name" class="form-control" placeholder="Name">
@@ -253,18 +253,20 @@
           </div>
           </div>
 		  <div class="clearfix"></div>
-          <div class="compar_btn" id="compar_btn" >
-	 <div class="btn-group show-on-hover">
-          <a href="<?php echo base_url('category/productscompare/'.base64_encode($products_list['item_id'])); ?>" class="btn btn-primary" ><?php echo $products_list['item_name'];?>&nbsp;<span><?php echo count($products_list['item_id']) ?></span> 
+		  <div class="compar_btn" id="compar_btn" >
+	 		<div class="btn-group show-on-hover">
+          <a href="<?php echo base_url('category/productscompare/'.base64_encode($products_list['item_id'])); ?>" onclick="category(<?php echo $products_list['category_id']; ?>);"  class="btn btn-primary" ><?php echo $products_list['item_name'];?>&nbsp;<span><?php echo count($products_list['item_id']) ?></span> 
           </a>
-          <!-- <ul class="dropdown-menu" role="menu" style="position: absolute;top:-100px;height:150px;width:10px;left:-50px;opacity: 0.8;">
+          <input type="hidden" name="category_id" id="category_id"  value="<?php echo $products_list['category_id']; ?>"> 
+          <!--  <ul class="dropdown-menu" role="menu" style="position: absolute;top:-100px;height:150px;width:10px;left:-50px;opacity: 0.8;">
 				<li>
 					<img src="<?php echo base_url('uploads/products/'.$products_list['item_image3']); ?>" style="width: 80%;height: 80%">
 				</li>
-          </ul> -->
+          </ul> --> 
         </div>
 			
 	  </div>
+          
 
 
 
@@ -296,6 +298,26 @@ jQuery.ajax({
 	
 	
 }
+
+
+function category(id){
+	//alert('hello');
+jQuery.ajax({
+			url: "<?php echo site_url('customer/show_compare');?>",
+			type: 'post',
+			data: {category_id: id,},				
+			success: function (data) {
+				//jQuery('#sucessmsg').show();
+				alert(data);
+			}
+			
+		});
+alert(data);
+	
+	
+// }
+
+
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
@@ -590,14 +612,25 @@ $(document).ready(function() {
     });
 });
 
-      $(document).ready(function(){
+    $(document).ready(function(){
     $('#compare').click(function(e){
     e.preventDefault();
     $("#compar_btn").css("display", "block");
     //alert('hello');
     var item_id =  $("#compare_id").val();
+    var category_id =  $("#category_id").val();
     
-    //alert(item_name);
+    alert(category_id);
+    $.ajax
+    ({
+    type: "POST",
+    url: "<?php echo base_url();?>category/productscompare",
+     data: {category_id:category_id},
+     //   success: function (data) {
+    	// alert(data);
+     // } 
+    });
+    
   
     
     });
