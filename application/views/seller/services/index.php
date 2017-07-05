@@ -63,7 +63,7 @@
  <div class="clearfix">   </div>  
 
 
- <button type="button" class="btn btn-primary btn-md pull-right" data-toggle="modal" data-target="#myModal_ser">Pricing details</button>
+ <button id ="bnt" type="button" class="btn btn-primary btn-md pull-right" data-toggle="modal" data-target="#myModal_ser">Pricing details</button>
 
 
                             
