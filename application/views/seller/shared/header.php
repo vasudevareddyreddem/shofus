@@ -108,7 +108,7 @@
 		<div style="position: absolute;top:50%;color:#ddd;right:36%; background:#ed4916;border-radius:5px;padding:15px;">
 			<p style="font-size:30px;"><b>Limited period offer</b></p>		
 			<p style="font-size:20px;margin-left:72px;">Free for 1 month</p>		<br>
-			<span style="background:#006a99;padding:5px 10px ;border-radius:5px;font-size:18px;margin-left: 85px;cursor: pointer;" class="" data-dismiss="modal"  data-toggle="modal"
+			<span id="bntt" style="background:#006a99;padding:5px 10px ;border-radius:5px;font-size:18px;margin-left: 85px;cursor: pointer;" class="" data-dismiss="modal"  data-toggle="modal"
 			data-target="#myModal_sel_mod_en">Enquiry form</span>
 		</div>
      
