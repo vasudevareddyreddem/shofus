@@ -1,5 +1,6 @@
 <!--wrapper start here -->
-
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/customer/multi-list.css">
 <div class="sidebar_right" >
 			
 			<ul style="padding:0 ">
@@ -347,13 +348,16 @@
         <div class="modal-header">
           <button type="button" id="hidebutton" class="close" data-dismiss="modal">&times;</button>
        </div>
-            <div class="newsletter-form" style="padding:0px 20px 15px 20px;">
+        <div class="newsletter-form" style="padding:0px 20px 15px 20px;">
           <h3>Select Your products Location</h3>
 		 <form action="<?php echo base_url('customer/test'); ?>" method="post">
 			<div class="input-box">
+				
 					<?php foreach($locationdata as $location_data) {?>
 					<input type="checkbox" name="check_list[]" value="<?php echo $location_data['location_id']; ?>"><label><?php echo $location_data['location_name']; ?></label><br/>
+
 					<?php }  ?>
+				
 				
 			<div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
 
@@ -362,6 +366,10 @@
 		  </form>
           <!--input-box--> 
         </div>
+		
+		<div>
+		
+		</div>
       </div>
 	</div>
   </div>
@@ -371,6 +379,57 @@
 
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/customer/multi-list.js"></script>
+
+		<script>
+		function getlocationselectlist(){
+			var ids=$('#locationsids[]').val();
+			alert(ids);
+		}
+
+			$(document).ready(function() {
+				$("#list").multiList();
+
+				// elementChecked
+				// "value" (the "value" attr from the li items) and "text (the full text)
+				$("#list").on("multiList.elementChecked", function(event, value, text) {
+					set_li();
+				});
+
+				// elementUnchecked
+				// "value" (the "value" attr from the li items) and "text (the full text)
+				$("#list").on("multiList.elementUnchecked", function(event, value, text) {
+					set_li();
+				});
+
+				$("#list").trigger("multiList.elementChecked");
+
+			});
+
+			function set_li() {
+				var selected_text = "";
+				var selected_elements = $("#list").multiList("getSelectedFull");
+				if (selected_elements.length > 0) {
+					for (var i = 0; i < selected_elements.length; i++) {
+						selected_text += selected_elements[i][1] + " (<i>" + selected_elements[i][0] + "</i>)";
+						if (i < selected_elements.length - 1) selected_text += ", ";
+					}
+				}
+				$("#selected_elements").html(selected_text);
+
+				var unselected_text = "";
+				var unselected_elements = $("#list").multiList("getUnselected");
+				if (unselected_elements.length > 0) {
+					for (var i = 0; i < unselected_elements.length; i++) {
+						unselected_text += "<i>" + unselected_elements[i] + "</i>";
+						if (i < unselected_elements.length - 1) unselected_text += ", ";
+					}
+				}
+				$("#unselected_elements").html(unselected_text);
+			}
+
+		</script>
 <script type="text/javascript">
 
 function searchfunction(val){

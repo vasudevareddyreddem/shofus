@@ -322,7 +322,7 @@
          
 
 		  <div class="input-box">
-				<select name="location_name" id="location_name" class="validate-select sel_are">
+				<select name="locationid" id="locationid" class="validate-select sel_are">
 				<option value="">Select Area </option>
 				<?php foreach($locationdata as $location_data) {?>
 				<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
@@ -349,13 +349,12 @@
 	<?php } ?>
 </body>
 <script type="text/javascript" language="javascript">
-$("#location_seacrh").show();
 
  function searchlocation(){
 	 
 	 jQuery('#address1errormsg').show();
 	
-		 var area=jQuery('#location_name').val();
+		 var area=jQuery('#locationid').val();
 		 if(area==''){
 				jQuery('#address1errormsg').html('Please Select Area');
 				return false;
@@ -369,7 +368,7 @@ $("#location_seacrh").show();
 				data: {
 					form_key : window.FORM_KEY,
 					address1: jQuery("#address1").val(),
-					area: jQuery("#location_name").val(),
+					area: jQuery("#locationid").val(),
 					},
 				dataType: 'html',
 				success: function (data) {
