@@ -136,9 +136,9 @@
                 
 <div class=" orm-horizontal" >
   <div class="form-group">
-      <label class="control-label col-sm-4" for="">Mobile/Phone No:</label>
+      <label class="control-label col-sm-4" for="">Mobile Number</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" maxlength="10" id="phone_number" placeholder="Enter Mobile/Phone No" name="phone_number" reqired>
+        <input type="text" class="form-control" maxlength="10" id="phone_number" placeholder="Enter Mobile Number" name="Mobile_number" required>
 	<span id="Emptyforregister"></span>     
 	 </div>
 	  
