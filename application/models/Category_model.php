@@ -197,28 +197,34 @@ class Category_model extends MY_Model
 		return $query->result();
 		
 	}	
-	public function getsubitemdata($subcat_id)
+	// public function getsubitemdata($subcat_id)
+ // {
+  
+ //  $this->db->select('*');
+ // $this->db->from('products');
+ // $this->db->where('products.subcategory_id', $subcat_id);
+ //  $query=$this->db->get();
+ //  return $query->result();
+  
+ // }
+	public function getsubitemdata()
  {
   
   $this->db->select('*');
  $this->db->from('products');
- $this->db->where('products.subcategory_id', $subcat_id);
+ //$this->db->where('products.subcategory_id', $subcat_id);
   $query=$this->db->get();
   return $query->result();
   
  }
 
 
- public function getcompare_item()
+ public function getcompare_item_details($itemid)
  {
- 	$item=$this->input->post('item_id');
- 	$this->db->select('products.item_name');
- 	$this->db->from('products');
- 	//$this->db->where('products.subcategory_id', $sub_id);
- 	$this->db->where('products.item_id',$item);
-  	$query=$this->db->get();
-  	//print_r($query);exit;
-  	return $query->result();	
+  	$this->db->select('*');
+  	$this->db->from('products');
+	$this->db->where('products.item_id',$itemid);
+	return $this->db->get()->result();
  }
 	
 }

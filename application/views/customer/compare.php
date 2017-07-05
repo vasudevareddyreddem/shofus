@@ -56,10 +56,10 @@
                 <tr>
                   <td>Image</td>
                   <td>
-                    <a href="detail.html"><img src="<?php echo base_url('uploads/products/'.$compore_products['item_image3']); ?>"></a>
+                    <img src="<?php echo base_url('uploads/products/'.$compore_products['item_image3']); ?>">
                   </td>
                   <td>
-                       <div class="form-group nopaddingRight col-md-6 san-lg">
+                       <!-- <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputPassword1">Select Subcategory</label>
                   <select class="form-control" id="subcategory_id" name="subcategory_id">
                       <option>Select Subcategory</option> 
@@ -67,21 +67,21 @@
                       <option value="<?php echo $subcat_data->subcategory_id; ?>"><?php echo $subcat_data->subcategory_name; ?></option>
                     <?php } ?> 
                   </select>
-                </div> 
+                </div>  -->
                 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputPassword1">Select Item</label>
                   <select class="form-control" id="item_id" name="item_id">
                       <option>Select item</option> 
                         <?php foreach($item as $item_data){ ?>
-                      <option value="<?php echo $item_dta->item_name; ?>"><?php echo $item_data->item_name; ?></option>
+                      <option value="<?php echo $item_data->item_id; ?>"><?php echo $item_data->item_name; ?></option>
                     <?php } ?> 
                   </select>
                 </div>
                   </td>
-                  <td id="compare_items">
-                    <p><?php echo $compare_item->item_name; ?></p>
-                  </td>
-                  <td>
+                   <td id="compare_item">
+                    <p><?php echo $compare_item['item_name']; ?></p>
+                  </td> 
+                  <td >
                     
                   </td>
                 </tr>
@@ -176,28 +176,28 @@
 	 
 
 <script type="text/javascript">
-    $(document).ready(function()
-    {
-    $("#subcategory_id").change(function()
-    {
-    var id=$(this).val();
-    //alert(id);
-    var dataString = 'subcategory_id='+ id;
-    //alert(dataString);
-    $.ajax
-    ({
-    type: "POST",
-    url: "<?php echo base_url();?>category/getitems",
-    data: dataString,
-    cache: false,
-    success: function(data)
-    {
-    $("#item_id").html(data);
-    } 
-    });
+    // $(document).ready(function()
+    // {
+    // $("#subcategory_id").change(function()
+    // {
+    // var id=$(this).val();
+    // //alert(id);
+    // var dataString = 'subcategory_id='+ id;
+    // //alert(dataString);
+    // $.ajax
+    // ({
+    // type: "POST",
+    // url: "<?php echo base_url();?>category/getitems",
+    // data: dataString,
+    // cache: false,
+    // success: function(data)
+    // {
+    // $("#item_id").html(data);
+    // } 
+    // });
     
-    });
-    });
+    // });
+    // });
 
 
 
@@ -207,17 +207,24 @@
     {
     var id=$(this).val();
     //alert(id);
-    var dataString = 'item_id='+ id;
-    //alert(dataString);
+    //var dataString = 'item_id='+ id;
+    var item_id = $("#item_id").val();
+    //var item_name = $("#item_id").val();
+    //alert(item_id);exit;
     $.ajax
     ({
     type: "POST",
-    url: "<?php echo base_url();?>category/compare_items",
-    data: dataString,
+    url: "<?php echo base_url();?>category/compare_items_list",
+    data: {item_id:item_id},
     cache: false,
+    dataType:'json',
     success: function(data)
     {
-    $("#compare_items").html(data);
+      alert(data);
+      alert(item_name);
+      $("compare_items").html(data);
+      //alert(data.details);
+    //$("#compare_items").html(data);
     //$('#compare_items').show();
     } 
     });

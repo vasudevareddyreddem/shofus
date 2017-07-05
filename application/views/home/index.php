@@ -298,18 +298,18 @@
       </div>
     </section>
   </div>
-  <div class="compar_btn" id="compar_btn">
+  <!-- <div class="compar_btn" id="compar_btn">
    <div class="btn-group show-on-hover">
           <a href="" class="btn btn-primary" ><?php echo $topslist['item_name'];?>&nbsp;<span><?php echo count($topslist['item_id']) ?></span> 
           </a>
-          <!-- <ul class="dropdown-menu" role="menu" style="position: absolute;top:-100px;height:150px;width:10px;left:-50px;opacity: 0.8;">
+          <ul class="dropdown-menu" role="menu" style="position: absolute;top:-100px;height:150px;width:10px;left:-50px;opacity: 0.8;">
         <li>
           <img src="<?php echo base_url('uploads/products/'.$products_list['item_image3']); ?>" style="width: 80%;height: 80%">
         </li>
-          </ul> -->
+          </ul>
         </div>
       
-    </div>
+    </div> -->
   
     <?php if($this->session->userdata('location_area') == "")   {?>
 
