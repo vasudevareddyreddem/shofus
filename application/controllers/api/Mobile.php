@@ -41,6 +41,45 @@ class Mobile extends REST_Controller {
 	public function  seller_register_post()
 	{
 			$this->input->post();
+			$mobile_number=$this->input->get('seller_mobile');
+			$email=$this->input->get('seller_email');
+			$mobile_check=$this->mobile_model->seller_mobile_check($mobile_number);
+			//print_r($mobile_check);exit;
+			$email_check =$this->mobile_model->seller_email_check($email);
+			 //print_r($email_check);exit;
+			if($mobile_check==0){
+					$mobile = 0;//fail
+				}else{
+					$mobile = 1;//success
+				}
+				if($email_check==0){
+					$email = 0;
+				}else{
+					$email = 1;
+				}
+
+			 if($mobile_check==1 || $email_check==1)
+			 {
+				
+				echo "hello";exit;
+			}else{
+				
+				
+				echo $mobile;
+				echo $email; exit;
+			}
+
+			if($mobile==0)
+			{
+				print_r($mobile);exit;
+			
+			}
+			else
+			{
+
+				
+			}
+		}
 			$mobile=$this->input->get('mobile');
 			$email=$this->input->get('email');
 			
@@ -251,7 +290,7 @@ class Mobile extends REST_Controller {
 			
 			'created_at'=> date('Y-m-d h:i:s'),
 			);
-			//echo '<pre>';print_r($data);exit;
+			echo '<pre>';print_r($data);exit;
 			$cate_store_details=$this->mobile_model->save_store_details($this->input->get('seller_id'),$data);
 			if(count($cate_store_details)>0){
 				$message = array('status'=>1,'seller_id'=>$this->input->get('seller_id'),'message'=>'Store details are successfully saved.');
@@ -277,6 +316,186 @@ class Mobile extends REST_Controller {
 			$message = array('status'=>0,'message'=>'location list are not found.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
+
+		//inprogress_orders
+		public function inprogress_orders_get()
+		{
+			$id = $this->input->get('seller_id');
+			$inprogress_orders = $this->mobile_model->inprogress_orders($id);
+			//print_r($inprogress_orders);
+			if(count($inprogress_orders)>0)
+  			{
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		'Inprogress_orders'=>$inprogress_orders,		 			
+					
+		 	// 	);
+  				$inprogress_orders['status']=1;
+	 			$this->response($message, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'No Inprogress_orders'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+		}
+
+		//delivery_orders
+		public function delivery_orders_get()
+		{
+			$id = $this->input->get('seller_id');
+			$delivery_orders = $this->mobile_model->delivery_orders($id);
+			//print_r($delivery_orders);
+			if(count($delivery_orders)>0)
+  			{
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		'Delivery_orders'=>$delivery_orders,		 			
+					
+		 	// 	);
+  				$delivery_orders['status']=1;
+	 				$this->response($delivery_orders, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'No Delivery_orders'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+		}
+
+		//cancel_orders
+		public function cancel_orders_get()
+		{
+			$id = $this->input->get('seller_id');
+			$cancel_orders = $this->mobile_model->cancel_orders($id);
+			if(count($cancel_orders)>0)
+  			{
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		'Cancel_orders'=>$cancel_orders,		 			
+					
+		 	// 	);
+  				$cancel_orders['cancel_orders']=1;
+	 			$this->response($cancel_orders, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'No Cancel_orders'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+		}
+
+		//Seller Payments
+		public function seller_payments_get()
+		{
+			$id = $this->input->get('seller_id');
+			$payments = $this->mobile_model->payment_details($id);
+			if(count($payments)>0)
+  			{
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		'Seller_Payments'=>$payments,		 			
+					
+		 	// 	);
+  				$payments['status']=1;
+	 			$this->response($payments, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'No Payments'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+		}
+
+		//seller_request_service
+		public function seller_request_service_post()
+		{
+			$id = $this->input->get('seller_id');
+			$seller_name_get = $this->mobile_model->seller_name($id);
+			foreach ($seller_name_get as $seller_name) {
+				$name =$seller_name['seller_name'];
+			}
+			//print_r($name);exit;
+			//print_r($seller_name);exit;
+			$service = array(
+  			'seller_id' => $id,
+  			'seller_name'=>$name,
+  	  		'phone_number' => $this->input->get('phone_number'),
+  	  		'select_plan' => $this->input->get('plan'),
+  	    	'created_at'  => date('Y-m-d H:i:s'),
+			'updated_at'  => date('Y-m-d H:i:s'),
+  	  	);
+			//print_r($service);exit;
+			$service_save = $this->mobile_model->services_save($service);
+			//print_r($service_save);exit;
+			if(count($service_save)>0)
+  			{
+				// $message = array
+		 	// 	(
+		 	// 		'status'=>1,
+		 	// 		//'Request Service'=>$service_save,
+		 	// 		'message'=> 'Wait For Replay!!'		 			
+					
+		 	// 	);
+  				$service['status']=1;
+	 			$this->response($service, REST_Controller::HTTP_OK);
+		 	}
+		 	else
+		 	{
+		 		$message = array
+		 		(
+		 			'status'=>0,
+		 			'message'=>'Empty'
+		 		);
+	 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		 	}
+
+		}
+
+		//seller_offers
+		public function seller_offers_get()
+		{
+			$id = $this->input->get('seller_id');
+			$offers = $this->mobile_model->listing_category($id);
+			 if(count($offers)>0){
+			// 	$message = array
+			// 	(
+			// 		'status'=>1,
+			// 		'Offers'=>$offers,							
+			// 	);
+				$offers['status']=1;
+				$this->response($offers, REST_Controller::HTTP_OK);
+			}
+			else
+			{
+				$message = array
+				(
+					'status'=>0,
+					'message'=>'No Listings'
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+
 		
 	}
 	public function save_personal_details_post()

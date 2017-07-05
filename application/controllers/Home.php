@@ -535,13 +535,52 @@ public function single_product()
 	$data['singleproduct']=$this->home_model->getsingleproduct($id);
 	$data['mutiimages']=$this->home_model->getmultipleimag($id);
 	$data['similarproducts']=$this->home_model->getsimilarproducts($result->subcategory_id);
-$this->template->write_view('content', 'home/single_product', $data);
-$this->template->render();	
+	$this->template->write_view('content', 'home/single_product', $data);
+	$this->template->render();	
 	
 	
 	
 	
 	
+}
+
+public function addtocompare()
+{
+
+//echo "<pre>";print_r($id);exit;
+	$id = $this->input->post('id');
+	//echo "<pre>";print_r($id);exit;
+	// $_SESSION['id'] = array();
+	// $test =array_push($_SESSION['id'],$id);
+	// print_r($test);exit;	
+	// $old_ary =array();
+
+	$old_compare =  $this->session->userdata('id');
+	array_push($old_compare, $id[$_POST['id']]);
+	$tests = $this->session->set_userdata('id', $old_compare);
+	foreach ($tests as $test) {
+		$test_id =$test['item_id'];
+	}
+
+	print_r($test_id);exit;	
+
+
+
+	// $old_compare =  $this->session->userdata($this->input->post('id'));
+	// $old_compare =array();
+	// $test =array_push($_SESSION['id'],$id);	
+	// //echo "<pre>";print_r($old_compare);exit;
+	//  // array_push($old_compare, $old_ary);
+	//  // $total =$this->session->set_userdata('id', $old_compare);
+	//  echo "<pre>";print_r($test);exit;
+
+	// $this->db->select('*')->from('products');
+ 	//$this->db->where('admin_status','0');
+	// $this->db->where('item_id', $id);
+	// return $this->db->get()->result_array();
+	//echo "<pre>";print_r($id);exit;	
+	
+
 }
 
 

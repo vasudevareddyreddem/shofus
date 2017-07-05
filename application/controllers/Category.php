@@ -61,12 +61,46 @@ class Category extends Front_Controller
  public function productscompare(){
  	$pid=base64_decode($this->uri->segment(3));
 	$data['compore_products']= $this->category_model->get_products($pid);
+	$data['subcatdata']=$this->category_model->getsubcatdata();
+
+	 // $subcat=$this->input->post('subcategory_id');
+		//$item=$this->input->post('item_id');
+		 //print_r($item);
+		$data['compare_item']=$this->category_model->getcompare_item();
+		//echo "<pre>";print_r($result);exit;
+	 //$data['item']=$this->category_model->getsubitemdata($subcat);
+	 //print_r($data);exit;
+	
 	$this->template->write_view('content', 'customer/compare',$data);
 	$this->template->render();
 	
  }
+ public function getitems()
+	{
+	$subcat=$this->input->post('subcategory_id');
+	$result=$this->category_model->getsubitemdata($subcat);
+	//print_r($result);exit;
+	
+	echo '<option value="">Select item</option>';
+	foreach($result as $alldata)
+	{
+	echo '<option value="'.$alldata->item_name.'">'.$alldata->item_name.'</option>';
+	}
+	exit;	
+	}
 
-	
-	
+	public function compare_items()
+	{
+		$item=$this->input->post('item_id');
+		//print_r($item);exit;
+		//$result=$this->category_model->getcompare_item($item);
+		//return $result;
+		$this->db->select('*');
+ 		$this->db->from('products');
+ 		$this->db->where('products.item_id', $item);
+  		$query=$this->db->get();
+  		//print_r($query);exit;
+  		return $query->result_array();
+	}	
 }
 ?>

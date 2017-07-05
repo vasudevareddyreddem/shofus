@@ -73,7 +73,7 @@
                   <select class="form-control" id="item_id" name="item_id">
                       <option>Select item</option> 
                         <?php foreach($item as $item_data){ ?>
-                      <option value="<?php echo $item_dta->item_name; ?>"><?php echo $item_data->item_name; ?></option>
+                      <option value="<?php echo $item_data->item_name; ?>"><?php echo $item_data->item_name; ?></option>
                     <?php } ?> 
                   </select>
                 </div>
@@ -206,7 +206,7 @@
     $("#item_id").change(function()
     {
     var id=$(this).val();
-    //alert(id);
+    alert(id);
     var dataString = 'item_id='+ id;
     //alert(dataString);
     $.ajax
