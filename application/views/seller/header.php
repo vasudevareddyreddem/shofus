@@ -246,7 +246,7 @@
     <div class="col-md-6">
    <form class="form-horizontal" action="/action_page.php">
     <div class="form-group">
-      <label class="control-label col-sm-4" for="">Business Name:</label>
+      <label class="control-label col-sm-4" for="">Businessiness Name:</label>
       <div class="col-sm-8">
         <input type="text" class="form-control" id="" placeholder="Enter Buiness Name" name="" reqired>
       </div>
@@ -335,7 +335,7 @@
 		<div style="position: absolute;top:50%;color:#ddd;right:42%;">
 			<p style="font-size:20px;"><b>Limited period offer</b></p>		
 			<p style="font-size:20px;margin-left: 25px;">Free for 1 month</p>		<br>
-			<span style="background:#006a99;padding:5px 10px ;border-radius:5px;font-size:18px;margin-left: 50px;cursor: pointer;" class="" data-dismiss="modal"  data-toggle="modal"
+			<span id="bnt" style="background:#006a99;padding:5px 10px ;border-radius:5px;font-size:18px;margin-left: 50px;cursor: pointer;" class="" data-dismiss="modal"  data-toggle="modal"
 			data-target="#myModa2">Register Now</span>
 		</div>
      
