@@ -93,10 +93,13 @@ class Category extends Front_Controller
 	public function compare_items_list()
 	{
 		$items=$this->input->post('item_id');
-		$data=$this->category_model->getcompare_item_details($items);
+		$data['deials']=$this->category_model->getcompare_item_details($items);
+		$this->load->view();
 		//echo json_encode($data);
-		$this->template->write_view('content', 'customer/compare',$data);
-		$this->template->render();
+		//$data['html'] = $this->load->view( 'customer/compare', $data, TRUE ); //3rd parameter TRUE to return view instead of immediately outputtig it
+		echo json_encode($data); 
+		//$this->template->write_view('content', 'customer/compare',$data);
+		//$this->template->render();
 		//echo '<pre>';print_r($data);exit;
   		
 

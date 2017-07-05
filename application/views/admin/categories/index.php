@@ -19,6 +19,9 @@
         </div>
       </div>
       <div class="row">
+
+
+      
 	   <?php if($this->session->flashdata('success')): ?>
 					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
