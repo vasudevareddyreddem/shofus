@@ -51,7 +51,7 @@
                 <tr>
                   <th>Product</th>
                   <th>Product Name</th>
-				  <th>Quantity</th>
+				          <th>Quantity</th>
                   <th>Unit price</th>
                   <th>Action</th>
                 </tr>
@@ -94,8 +94,6 @@
 						echo $items['item_cost'];
 
 						} ?>
-				  
-				  
 				  </td>
 				    <td class="action">
                    <button style="background:transprent;" type="submit" ><i class="fa fa-refresh"></i></button>&nbsp;

@@ -91,7 +91,7 @@
                 </div>
                 <div class="option">
                   <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" id="compare" onclick="compare(<?php echo $topslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare" value="<?php echo $topslist['item_name']; ?>"><i class="fa fa-align-left"></i></a>
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
@@ -149,7 +149,7 @@
                 </div>
                 <div class="option">
                   <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" id="compare" onclick="compare(<?php echo $topslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
@@ -211,7 +211,8 @@
                 </div>
                 <div class="option">
                   <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  
+                  <a href="#" id="compare" onclick="compare(<?php echo $topslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
@@ -257,7 +258,6 @@
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
                    <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$topslist['item_image']); ?>">
-				   
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
@@ -266,8 +266,8 @@
                   <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
                 </div>
                 <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>                  
+                  <a href="#" id="compare" onclick="compare(<?php echo $topslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left" ></i></a>
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
@@ -298,6 +298,18 @@
       </div>
     </section>
   </div>
+  <div class="compar_btn" id="compar_btn">
+   <div class="btn-group show-on-hover">
+          <a href="" class="btn btn-primary" ><?php echo $topslist['item_name'];?>&nbsp;<span><?php echo count($topslist['item_id']) ?></span> 
+          </a>
+          <!-- <ul class="dropdown-menu" role="menu" style="position: absolute;top:-100px;height:150px;width:10px;left:-50px;opacity: 0.8;">
+        <li>
+          <img src="<?php echo base_url('uploads/products/'.$products_list['item_image3']); ?>" style="width: 80%;height: 80%">
+        </li>
+          </ul> -->
+        </div>
+      
+    </div>
   
     <?php if($this->session->userdata('location_area') == "")   {?>
 
@@ -310,7 +322,7 @@
          
 
 		  <div class="input-box">
-				<select name="location_name" id="location_name" class="validate-select sel_are">
+				<select name="locationid" id="locationid" class="validate-select sel_are">
 				<option value="">Select Area </option>
 				<?php foreach($locationdata as $location_data) {?>
 				<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
@@ -337,13 +349,12 @@
 	<?php } ?>
 </body>
 <script type="text/javascript" language="javascript">
-$("#location_seacrh").show();
 
  function searchlocation(){
 	 
 	 jQuery('#address1errormsg').show();
 	
-		 var area=jQuery('#location_name').val();
+		 var area=jQuery('#locationid').val();
 		 if(area==''){
 				jQuery('#address1errormsg').html('Please Select Area');
 				return false;
@@ -357,7 +368,7 @@ $("#location_seacrh").show();
 				data: {
 					form_key : window.FORM_KEY,
 					address1: jQuery("#address1").val(),
-					area: jQuery("#location_name").val(),
+					area: jQuery("#locationid").val(),
 					},
 				dataType: 'html',
 				success: function (data) {
@@ -374,3 +385,27 @@ $("#location_seacrh").show();
 	
 	
 </script>
+<script type="text/javascript">
+
+ function compare(id){
+   //alert(id);
+   //$("#compar_btn").css("display", "block");
+     $.ajax({
+        type: "POST",
+        url: "<?php echo site_url('home/addtocompare/');?>",
+        data: {id:id},
+        dataType: 'html',
+        success: function(data){
+          //alert(data);
+          $("#compar_btn").show();
+          //alert( "Data Saved: " + msg );
+        }
+      });
+     
+   
+ }
+ $(document).ready(compare);
+
+</script>
+
+

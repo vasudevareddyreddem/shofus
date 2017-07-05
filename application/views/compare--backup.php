@@ -1,75 +1,42 @@
 
 <html lang="en">
-<style>
-.col-md-3{
-	padding-left:0px;
-	padding-right:0px;
-}
-</style>
+
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>::CART IN HOUR::</title>
+<link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico" >
+<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/font-awesome.min.css">
+<!--Style start here -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/style.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/animate.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl_002.css">
+
+<!--Style end here -->
+<!--for image zooming -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.simpleLens.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.simpleGallery.css">
+<!--for image zooming -->
+<!-- pop up plugins -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/default.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/component.css" />
+<script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
+
+<script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
+
+</head>
+<header>
 <!--wrapper start here -->
 
-<div class="container" style="margin-top:180px">
+<div class="container" style="margin-top:150px">
       <div class="row">
-	  <div class="col-md-12">
-			<h4>Product Details</h4>
-	  </div>
-	  <div class="col-md-12">
-		<div class="col-md-3">
-			<table class="table table-bordered table-compare">
-				<tr>
-					<th>hdfsdafg</th>
-				</tr>
-				<tr>
-					<th>hdfsdafg</th>
-				</tr>
-				<tr>
-					<th>hdfsdafg</th>
-				</tr>
-			</table>
-		</div>
-			<div class="col-md-3">
-			<table class="table table-bordered table-compare">
-				<tr>
-					<td>hdfsdafg</td>
-				</tr>
-				<tr>
-					<td>hdfsdafg</td>
-				</tr>
-				<tr>
-					<td>hdfsdafg</td>
-				</tr>
-			</table>
-			</div>
-			<div class="col-md-3">
-			<table class="table table-bordered table-compare">
-				<tr>
-					<td>hdfsdafg</td>
-				</tr>
-				<tr>
-					<td>hdfsdafg</td>
-				</tr>
-				<tr>
-					<td>hdfsdafg</td>
-				</tr>
-			</table>
-			</div>
-			<div class="col-md-3">
-			<table class="table table-bordered table-compare">
-				<tr>
-					<td>hdfsdafg</td>
-				</tr>
-				<tr>
-					<td>hdfsdafg</td>
-				</tr>
-				<tr>
-					<td>hdfsdafg</td>
-				</tr>
-			</table>
-			</div>
-
-	  
-	  </div>
-       <!-- <div class="col-xs-12">
+        <div class="col-xs-12">
           
           <div class="table-responsive">
             <table class="table table-bordered table-compare">
@@ -106,7 +73,7 @@
                   <select class="form-control" id="item_id" name="item_id">
                       <option>Select item</option> 
                         <?php foreach($item as $item_data){ ?>
-                      <option value="<?php echo $item_dta->item_name; ?>"><?php echo $item_data->item_name; ?></option>
+                      <option value="<?php echo $item_data->item_name; ?>"><?php echo $item_data->item_name; ?></option>
                     <?php } ?> 
                   </select>
                 </div>
@@ -128,7 +95,7 @@
                   </div>
                   <!-- <div class="price">
                     <span class="price-old"><?php echo $compore_products['item_cost']; ?></span>
-                  </div> 				  
+                  </div> -->				  
 
                 </td>
                   <td>
@@ -202,7 +169,7 @@
               <li class="next"><a href="cart.html">My Shopping Cart <span aria-hidden="true">&rarr;</span></a></li>
             </ul>
           </nav>
-        </div>-->
+        </div>
       </div>
 	  
     </div>
@@ -239,7 +206,7 @@
     $("#item_id").change(function()
     {
     var id=$(this).val();
-    //alert(id);
+    alert(id);
     var dataString = 'item_id='+ id;
     //alert(dataString);
     $.ajax

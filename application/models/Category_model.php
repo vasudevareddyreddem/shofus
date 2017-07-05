@@ -186,6 +186,40 @@ class Category_model extends MY_Model
 		$this->db->insert('reviews', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+
+
+	public function getsubcatdata()
+	{
+	$this->db->select('*');
+	$this->db->from('subcategories');
+	//$this->db->where('subcategories.category_id', $cat_id);
+		$query=$this->db->get();
+		return $query->result();
+		
+	}	
+	public function getsubitemdata($subcat_id)
+ {
+  
+  $this->db->select('*');
+ $this->db->from('products');
+ $this->db->where('products.subcategory_id', $subcat_id);
+  $query=$this->db->get();
+  return $query->result();
+  
+ }
+
+
+ public function getcompare_item()
+ {
+ 	$item=$this->input->post('item_id');
+ 	$this->db->select('products.item_name');
+ 	$this->db->from('products');
+ 	//$this->db->where('products.subcategory_id', $sub_id);
+ 	$this->db->where('products.item_id',$item);
+  	$query=$this->db->get();
+  	//print_r($query);exit;
+  	return $query->result();	
+ }
 	
 }
 ?>

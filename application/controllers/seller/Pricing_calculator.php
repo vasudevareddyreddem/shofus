@@ -112,8 +112,9 @@ public function getreferalfee()
 {
 
 	$product_price=$this->input->post('product_price');
-	$cih_fee=$this->input->post('cih_fee1');
+	$cih_fee=$this->input->post('cih_fee1');	
 	$sell = $this->input->post('product_price');//input value
+	$comm = ($cih_fee * $sell) / 100;
 	$disc = ($sell * $cih_fee) / 100;
 	$serv_tax = 15;	
 	
@@ -136,9 +137,9 @@ public function getreferalfee()
 	
 	
 // }
-         echo '<h5>CIH Commision: '.$cih_fee.'</h5>';
+         echo '<h5>CIH Commision: '.$comm.'('.$cih_fee.')</h5>';
           echo  '<h5>Service Tax: '.$serv_tax.'% </h5>';
-          echo  '<h5>CIH Fee: '.$cih.' </h5>';
+          echo  '<h5>Total Fee: '.$cih.' </h5>';
           echo  '<h5>You Make: '.$amount.' </h5>';
 		  echo '<input type="hidden" id="productcih_fee" name="productcih_fee" value="'.$cih_fee.'">';
 		  echo '<input type="hidden" id="closing_fee" name="closing_fee" value="'.$serv_tax.'">';

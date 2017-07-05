@@ -27,10 +27,10 @@
 			<div class="panel-heading ">Price details</div>
 			<div class="panel-body">
 				<div class="pull-left">
-					Price (8 item)
+					Price (<?php if($carttotal_amount >0){  echo count($carttotal_amount).'  '.'items';}else{  echo "item";  }?>)
 				</div>
 				<div class="pull-right">
-					<i class="fa fa-inr" aria-hidden="true"></i>4800
+					<i class="fa fa-inr" aria-hidden="true"></i><?php echo isset($carttotal_amount['pricetotalvalue'])?$carttotal_amount['pricetotalvalue']:''; ?>
 				</div>
 				
 				<div class="clearfix"></div>
@@ -39,7 +39,7 @@
 					Delivery Charges
 				</div>
 				<div class="pull-right">
-					<i class="fa fa-inr" aria-hidden="true"></i>84
+					<i class="fa fa-inr" aria-hidden="true"></i><?php echo isset($carttotal_amount['delivertamount'])?$carttotal_amount['delivertamount']:''; ?>
 				</div>
 				</div>
 				<div class="clearfix"></div>
@@ -49,7 +49,11 @@
 					<b>Amount Payable</b>
 				</div>
 				<div class="pull-right">
-					<i class="fa fa-inr" aria-hidden="true"></i><b>4884</b>
+					<i class="fa fa-inr" aria-hidden="true"></i><b>
+				<?php 	$totalpayamount=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
+					echo $totalpayamount;
+				?>
+				</b>
 				</div>
 				</div>
 				
@@ -199,6 +203,10 @@
                 <tr>
                   <td colspan="4" class="text-right">Total</td>
                   <td colspan="2"><b><?php echo $total; ?></b></td>
+                </tr> 
+				<tr>
+                  <td colspan="4" class="text-right">grand Total</td>
+                  <td colspan="2"><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></td>
                 </tr>
 				
               </tbody>
