@@ -53,9 +53,10 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo validation_errors(); ?></div>	
 				<?php  endif;?>
-				<div class="row setup-content">
+				<div class="row setup-content ">
 					<div class="col-xs-12 ">
-					  <div class="col-md-6 col-md-offset-3 mar_t50">
+					  <div class="col-md-4 col-md-offset-4 mar_t50 ">
+					  <div class="well">
 					  <form id="setpassword" name="setpassword" action="<?php echo base_url('seller/adddetails/setpasswordpost'); ?>" method="post" >
 
 							<div class="form-group">
@@ -69,6 +70,8 @@
 							  <button type="submit" id="resubmit" class="btn btn-primary btn-info" value="Next"> Set Password</button>
 
 						</form>
+						
+					  </div>
 					  </div>
 					</div>
 				</div>
