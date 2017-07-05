@@ -347,22 +347,19 @@
         <div class="modal-header">
           <button type="button" id="hidebutton" class="close" data-dismiss="modal">&times;</button>
        </div>
-        <div class="newsletter-form" style="padding:0px 20px 15px 20px;">
-          <h3>Select Your Delivery Location</h3>
+            <div class="newsletter-form" style="padding:0px 20px 15px 20px;">
+          <h3>Select Your products Location</h3>
+		 <form action="<?php echo base_url('customer/test'); ?>" method="post">
 			<div class="input-box">
-				<select name="location_name" id="location_name" class="validate-select sel_are">
-				<option value="">Select Area </option>
-				<?php foreach($locationdata as $location_data) {?>
-				<?php if($this->session->userdata('location_area')== $location_data['location_id']){ ?>
-						<option value="<?php echo $location_data['location_id']; ?>" selected><?php echo $location_data['location_name']; ?></option>
-				<?php }else{ ?>
-						<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
-				<?php } } ?>
-				</select>
-				<div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
+					<?php foreach($locationdata as $location_data) {?>
+					<input type="checkbox" name="check_list[]" value="<?php echo $location_data['location_id']; ?>"><label><?php echo $location_data['location_name']; ?></label><br/>
+					<?php }  ?>
+				
+			<div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
 
-            <button type="button" onclick="searchlocationpopup();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
+            <button type="submit"  class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
           </div>
+		  </form>
           <!--input-box--> 
         </div>
       </div>

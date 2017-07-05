@@ -15,6 +15,11 @@ class Customer extends Front_Controller
  }
  
 
+  public function test(){
+	  $post=$this->input->post();
+	  echo "<pre>";print_r($post);exit;
+	  
+  }
   public function account(){
 	 
 	 if($this->session->userdata('userdetails'))
