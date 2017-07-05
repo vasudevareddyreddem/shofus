@@ -96,11 +96,12 @@ $(document).ready(function(){
 <div class="container" >
   <?php echo $this->session->flashdata('msg2'); ?>
   <form id="categories" name="categories" action="<?php echo base_url('seller/adddetails/updateseeler_details'); ?>" enctype="multipart/form-data"ss method="post" >
+    <div class="col-md-8 col-md-offset-2 well">
     <div class="row setup-content">
       <div class="col-xs-12 ">
         <div class="col-md-12">
-          <h3>Select Your Category</h3>
-          <div class="field_wrapper nopaddingRight col-md-5 san-lg pos_r form-group" id="CenterForm" >
+          <h3>Select Your Category</h3><br>
+          <div class="field_wrapper nopaddingRight col-md-8 san-lg pos_r form-group" id="CenterForm" >
 		
                  <select class="form-control"  id="seller_cat[]" name="seller_cat[]" onchange="categoryid(this.value);" required="required">
                     <option value="">Select Category</option>
@@ -109,9 +110,13 @@ $(document).ready(function(){
                     <?php }?>
                   </select>
 		</div>
-			<div class="form-group">
+					<div class="form-group col-md-1">
 						<input type="hidden" name="centerCount" id="centerCount" value="0" />
 						<button class="btn btn-primary" type="button" onclick="addCenter();"><span>Add </span></button>
+					</div>
+					<div class="form-group col-md-3">
+						<input type="hidden" name="centerCount" id="centerCount" value="0" />
+						<button class="btn btn-primary" type="button" ><span>Add Own Category</span></button>
 					</div>
       
      
@@ -120,7 +125,7 @@ $(document).ready(function(){
 			 
                 </div>
 		</form>
-			<div class="col-md-6" style="padding-right:30px;">	
+			<div class="" style="padding-right:40px;">	
 					 <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails'); ?>">Back</a>
 
 				<input id="bnt" type="submit" class="btn btn-info pull-right" value="Next">
@@ -129,6 +134,7 @@ $(document).ready(function(){
 
         </div>
       </div>
+    </div>
     </div>
 </div>
 <footer class="foot_add_d " style="margin-top: 8%">

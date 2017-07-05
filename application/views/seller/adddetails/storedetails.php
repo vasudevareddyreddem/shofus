@@ -70,7 +70,9 @@
   <form id="storedetails" name="storedetails" onsubmit="return validation();" action="<?php echo base_url('seller/adddetails/seller_storedetails'); ?>" enctype="multipart/form-data" method="post" >
     <div class="row setup-content">
 		<div class="col-xs-12 ">
-        <div class="col-md-6 col-md-offset-3">
+			<h3 class="col-md-offset-3">Store details</h3>
+        <div class="col-md-6 col-md-offset-3 well">
+	
 		<input type="hidden" name="timimageserrormsg" id="timimageserrormsg" value="1">
 		<input type="hidden" name="cstimageserrormsg" id="cstimageserrormsg" value="1">
 		<input type="hidden" name="tanimgesserrormsg" id="tanimgesserrormsg" value="1">
