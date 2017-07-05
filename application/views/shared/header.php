@@ -110,7 +110,10 @@
 			</span>
 		  <?php } ?>
 			
-			<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
+			<!--<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
+				<p>Location</p></a>
+			</span></a></span>-->
+			<span class="medias text-center"><a href=""  id="show_loc"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
 				<p>Location</p></a>
 			</span></a></span>
 			
@@ -338,9 +341,39 @@
   </div>
 </div>
 
-<div class="md-overlay"></div>
+<div id="hide_loc"  style="position: absolute;top: 100px;z-index: 1050;">
+	<div class="container">
+	<div class="row">
+	  <div class="col-md-6 col-md-offset-4 well" style="-webkit-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);
+box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);">
+	  <form>
+	  <span id="hide_btn" class="glyphicon glyphicon-remove pull-right"></span>
+          <h3 style="margin-top:5px">Select Location</h3>
+			
+            <select data-placeholder="Your Favorite Types of Bear" multiple class="chosen-select" tabindex="8">
+              <option value=""></option>
+              <option>American Black Bear</option>
+              <option>Asiatic Black Bear</option>
+              <option>Brown Bear</option>
+              <option>Giant Panda</option>
+              <option>Sloth Bear</option>
+              <option disabled>Sun Bear</option>
+              <option selected>Polar Bear</option>
+              <option disabled>Spectacled Bear</option>
+            </select>
+			<div class="mar_t10" style="padding:20px 0px;">
+			<button type="button" class="btn btn-primary pull-right">Submit</button>
+			</form>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+<!--<div class="md-overlay"></div>
 <a href="javascript:void(0)"  style="text-decoration:none;" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup">
 </a>
+
 <div class="modal fade" id="locationsearchpopup" role="dialog">
     <div class="modal-dialog">
 		<div class="modal-content">
@@ -360,15 +393,21 @@
             <button type="submit"  class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
           </div>
 		  </form>
-          <!--input-box--> 
+          
         </div>
       </div>
 	</div>
-  </div>
+  </div>-->
  
 
 <!-- the overlay element --> 
-
+<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+    <script>
+      $(function() {
+        $('.chosen-select').chosen();
+        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+      });
+    </script>
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">
@@ -631,6 +670,16 @@ $("#modal-8").show();
 $(document).ready(function(){
     $(".user_log").click(function(){
         $("#user_sow").toggle();
+    });
+});
+</script>
+<script>
+$(document).ready(function(){
+    $("#hide_btn").click(function(){
+        $("#hide_loc").hide();
+    });
+    $("#show_loc").click(function(){
+        $("#show_loc").show();
     });
 });
 </script>
