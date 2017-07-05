@@ -246,7 +246,7 @@
     <div class="col-md-6">
    <form class="form-horizontal" action="/action_page.php">
     <div class="form-group">
-      <label class="control-label col-sm-4" for="">Buiness Name:</label>
+      <label class="control-label col-sm-4" for="">Business Name:</label>
       <div class="col-sm-8">
         <input type="text" class="form-control" id="" placeholder="Enter Buiness Name" name="" reqired>
       </div>
