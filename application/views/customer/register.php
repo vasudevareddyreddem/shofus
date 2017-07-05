@@ -170,7 +170,7 @@ $(document).ready(function() {
              firstname: {
               validators: {
 					notEmpty: {
-						message: 'Last Name is required'
+						message: 'First Name is required'
 					},
                    regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,

@@ -3450,6 +3450,7 @@ table#cart tfoot td .btn {
 	padding:0px 16px;
 	font-size:24px;
 	float:right;
+	text-align:center;
 }
 .medias p{
 	font-size:13px;
@@ -5657,6 +5658,9 @@ position: fixed;
     background-color: #fff;
     color: #000;
     border-radius: 8px;
+	-webkit-box-shadow: 0px 6px 31px -8px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 6px 31px -8px rgba(0,0,0,0.75);
+box-shadow: 0px 6px 31px -8px rgba(0,0,0,0.75);
  } 
  .log_list li{
 	display:block !important;
@@ -5670,7 +5674,7 @@ position: fixed;
  }
  .top_fix_niv{
 	position: absolute;
-    top: -28px;
+    top: -17px;
     right: 10px;
     color: #fff !important; 
  }
