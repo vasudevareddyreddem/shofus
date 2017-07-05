@@ -245,7 +245,7 @@ class Mobile extends REST_Controller {
 			
 			'created_at'=> date('Y-m-d h:i:s'),
 			);
-			//echo '<pre>';print_r($data);exit;
+			echo '<pre>';print_r($data);exit;
 			$cate_store_details=$this->mobile_model->save_store_details($this->input->get('seller_id'),$data);
 			if(count($cate_store_details)>0){
 				$message = array('status'=>1,'seller_id'=>$this->input->get('seller_id'),'message'=>'Store details are successfully saved.');
