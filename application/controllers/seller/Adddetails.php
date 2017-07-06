@@ -98,7 +98,7 @@ class Adddetails extends Seller_adddetails{
 	public function updateseeler_details()
 	{  
 			$post=$this->input->post();
-		echo "<pre>";print_r($post); exit;
+		//echo "<pre>";print_r($post); exit;
 			/*for add category purpose*/
 			
 			if($post['caregoryname']!=''){
@@ -111,7 +111,8 @@ class Adddetails extends Seller_adddetails{
 			
 			foreach($post['caregoryname'] as $decatid){
 				
-				$addcat= array(
+				if($decatid!=''){
+					$addcat= array(
 						'seller_id'=>$this->session->userdata('seller_id'),
 						'category_name'=>$decatid,
 						'status'=>0,
@@ -119,6 +120,8 @@ class Adddetails extends Seller_adddetails{
 						'updated_at'=>date('Y-m-d H:i:s'),
 						);
 						$save_catrgore=$this->adddetails_model->save_catrgore($addcat);
+						
+				}
 				//echo "<pre>";print_r($delcatid); 
 			}
 			
