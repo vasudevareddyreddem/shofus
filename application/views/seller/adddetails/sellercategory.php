@@ -343,17 +343,12 @@ $(document).ready(function(){
 	<form>
 	<div class="col-md-6  ">
 			<div class="form-group ">
-				<label>Select Location</label>
-				<select data-placeholder="Your Favorite Types of Bear" multiple class="chosen-select" tabindex="8">
+				<label>Select Category</label>
+				<select data-placeholder="Select your Category" multiple class="chosen-select" tabindex="8">
 				  <option value=""></option>
-				  <option>American Black Bear</option>
-				  <option>Asiatic Black Bear</option>
-				  <option>Brown Bear</option>
-				  <option>Giant Panda</option>
-				  <option>Sloth Bear</option>
-				  <option disabled>Sun Bear</option>
-				  <option selected>Polar Bear</option>
-				  <option disabled>Spectacled Bear</option>
+				  <?php foreach($getcat as $cat_data){ ?>
+                    <option value="<?php echo $cat_data['category_id']; ?>"><?php echo $cat_data['category_name']; ?></option>                  
+                    <?php }?>
 				</select>
 			</div>
    
@@ -361,18 +356,18 @@ $(document).ready(function(){
 	<div class="col-md-6 ">
     <div class="row setup-content">
       <div class="col-xs-12 ">
-        <div class="col-md-12">
+        <div class="col-md-12" id="CenterForm">
 					<div class="col-md-5">
 						<div class="form-group ">
 							<label> Add Your Own Category</label>
-							<input type="text" class="form-control" />
+							<input type="text" id="caregoryname" name="caregoryname[]" class="form-control" />
 							
 						</div>
 					</div>
 					<div class="col-md-5">
 						<div class="form-group ">
-							<label> Add Your Own Category</label>
-							<input type="file" class="form-control" />
+							<label> Add Category File</label>
+							<input type="file" id="caregoryfile" name="caregoryfile[]" class="form-control" />
 							
 						</div>
 					</div>
@@ -383,24 +378,7 @@ $(document).ready(function(){
 						<button class="btn btn-primary" type="button" onclick="addCenter();"><span>Add </span></button>
 					</div>
 					</div>
-         <!-- <h3>Select Your Category</h3>
-          <div class="field_wrapper nopaddingRight col-md-8 san-lg pos_r form-group" id="CenterForm" >
-		
-                 <select class="form-control"  id="seller_cat[]" name="seller_cat[]" onchange="categoryid(this.value);" required="required">
-                    <option value="">Select Category</option>
-                    <?php foreach($getcat as $cat_data){ ?>
-                    <option value="<?php echo $cat_data['category_id']; ?>"><?php echo $cat_data['category_name']; ?></option>                  
-                    <?php }?>
-                  </select>
-		</div>-->
-					
-					
-      
-     
-	
-
-			 
-                </div>
+			</div>
 				
 		
 		
@@ -456,11 +434,11 @@ function addCenter()
 		var cCount = document.getElementById('centerCount').value;
         var val = Number(cCount) + 1;
         document.getElementById('centerCount').value= val;
-        //alert(val);
+        alert(val);
         var toDiv = document.getElementById("CenterForm");
         var div = document.createElement('div');
         div.id = 'mainForms'+val;
-        div.innerHTML = '<div style="" class="form-group" id="CenterForm"><div style="width:100%" class="field_wrapper nopaddingRight col-md-5 san-lg pos_r" data-plugin="inputGroupFile"><select class="form-control"  id="seller_cat[]" name="seller_cat[]" required="required"><option value="">Select Category</option><?php foreach($getcat as $cat_data){ ?><option value="<?php echo $cat_data['category_id']; ?>"><?php echo $cat_data['category_name']; ?></option><?php }?></select></div></div><button class="btn btn-primary pos_re" type="button" onclick="removeCenterRow(this);"><span>Remove </span></button>';
+        div.innerHTML = '<div style="" class="form-group" id="CenterForm"><div style="width:100%" class="field_wrapper nopaddingRight col-md-5 san-lg pos_r" data-plugin="inputGroupFile"><div class="col-md-5"><div class="form-group "><label> Add Your Own Category</label><input type="text" id="caregoryname" name="caregoryname[]" class="form-control" /></div></div><div class="col-md-5"><div class="form-group "><label> Add Category File</label><input type="file" id="caregoryfile" name="caregoryfile[]" class="form-control" /></div></div></div></div><button class="btn btn-primary pos_re" type="button" onclick="removeCenterRow(this);"><span>Remove </span></button>';
         toDiv.appendChild(div);
         var divclear = document.createElement('div');
         divclear.className = 'clear';
