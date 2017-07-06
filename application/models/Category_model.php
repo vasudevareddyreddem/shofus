@@ -190,15 +190,20 @@ class Category_model extends MY_Model
 
 		
 	
-	public function getsubitemdata()
+	public function getsubitemdata($cat_id)
  {
   
-  	$this->db->select('*');
- 	$this->db->from('products');
- 	//$this->db->where('products.caterory_id',$caterory_id);
-
+  	$this->db->select('*')->from('products');
+ 	$this->db->where('products.category_id',$cat_id);
   	return $query=$this->db->get()->result();  
  }
+ // public function getsubitem_one($category_ld)
+ // {
+  
+ //  	$this->db->select('products.item_name')->from('products');
+ // 	$this->db->where('products.category_id',$category_ld);
+ //  	return $query=$this->db->get()->result();  
+ // }
 
 
  public function getcompare_item_details($itemid)

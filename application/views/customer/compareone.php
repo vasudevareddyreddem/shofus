@@ -1,8 +1,5 @@
-
-      <div class="row">
-<div class="col-md-12">
-    <div class="col-md-3" id="compare_items" style="display: block;"></div>
-			
+<!-- 
+<div class="row">
 			<div class="col-md-3">
 			<table class="table table-bordered table-compare">
 				<tr>
@@ -20,19 +17,61 @@
 			</table>
 			</div>
 			<div class="col-md-3" id="compare_items_two" ></div>
+      
 			<div class="col-md-3" id="item_hide_one">
 			<div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputPassword1">Select One Item</label>
                   <select class="form-control" id="item_id_one" name="item_id_one">
                       <option>Select item</option> 
-                        <?php foreach($item as $item_data){ ?>
+                        <?php foreach($items as $item_data){ ?>
                       <option value="<?php echo $item_data->item_id; ?>"><?php echo $item_data->item_name; ?></option>
                     <?php } ?> 
                   </select>
                 </div>
 			</div>
-	  </div>
-	  </div>
+	  </div> -->
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <div class="panel panel-default panel-pricing">
+                <div class="panel-heading">
+
+                    <img class="img-responsive" src="<?php echo base_url('uploads/products/'.$compare_one['item_image']); ?>">
+                   <!-- <button id="close_product">Close</button>  -->
+                </div>
+
+                <ul class="list-group text-center">
+                    <li class="list-group-item">Product Name:
+                        <?php echo $compare_one[ 'item_name'];?>
+                    </li>
+                    <li class="list-group-item">Product Price:
+                        <?php echo $compare_one[ 'item_cost']; ?>
+                    </li>
+                    <li class="list-group-item">Product Code:
+                        <?php echo $compare_one[ 'item_code']; ?>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+<!-- <button id="btnTimeextend_one">ADD</button> -->        
+        <div class="col-md-3" id="item_hide_one">
+            <div class="form-group nopaddingRight col-md-6 san-lg">
+                <label for="exampleInputPassword1">Select Compare Productsss</label>
+                <select class="form-control" id="item_id_one" name="item_id_one">
+                    <option>Select item</option>
+                    <?php foreach($items as $item_data){ ?>
+                    <option value="<?php echo $item_data->item_id; ?>">
+                        <?php echo $item_data->item_name; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3" id="compare_items_two"></div>
+    </div>
+</div>
 
 	  <script type="text/javascript">
     $(document).ready(function()
@@ -43,8 +82,7 @@
     //alert(id);
     //var dataString = 'item_id='+ id;
     var item_id = $("#item_id_one").val();
-    //var item_name = $("#item_id").val();
-    //alert(item_id);exit;
+      
     $.ajax
     ({
     type: "POST",
@@ -61,4 +99,22 @@
     
     });
     });
+
+//  var count =0;
+// $('#btnTimeextend_one').on('click',function(){
+//     $('#item_hide_one').show();
+//   count = count +1;
+//   if(count == 3){
+//   $('#btnTimeextend').hide();
+//   }
+// })
+
+// var myEl = document.getElementById('close_product');
+
+// myEl.addEventListener('click', function() {
+//   //$('#item_hide_one').show();
+//     $('#hide_div').hide();
+    
+// }, false);
+
     </script> 

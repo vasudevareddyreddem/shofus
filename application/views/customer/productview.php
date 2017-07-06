@@ -124,8 +124,7 @@
                 <td>
                   <button class="btn btn-theme m-b-1" type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 				  <a href="" id="compare" class="btn btn-theme m-b-1" type="button" ><i class="fa fa-align-left"></i> Add to Compare</a>
-                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>">
-                  <input type="hidden" name="category_id" id="category_id"  value="<?php echo $products_list['category_id']; ?>"> 
+                  <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>"> 
 					<?php if($products_list['yes']==1){ ?>
 					<a href="javascript:void(0);" style="color:yellow;" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" id="addwhish" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
 					<?php }else{ ?>	
@@ -255,7 +254,9 @@
 		  <div class="clearfix"></div>
 		  <div class="compar_btn" id="compar_btn" >
 	 		<div class="btn-group show-on-hover">
-          <a href="<?php echo base_url('category/productscompare/'.base64_encode($products_list['item_id'])); ?>" onclick="category(<?php echo $products_list['category_id']; ?>);"  class="btn btn-primary" ><?php echo $products_list['item_name'];?>&nbsp;<span><?php echo count($products_list['item_id']) ?></span> 
+	 		<!-- <a href="javascript:void(0);" onclick="getcategoryid(<?php echo $products_list['category_id']; ?>);"  class="btn btn-primary" ><?php echo $products_list['item_name'];?>&nbsp;<span><?php echo count($products_list['item_id']) ?></span> 
+          </a> -->
+          <a href="<?php echo base_url('category/productscompare/'.base64_encode($products_list['item_id']).'/'.base64_encode($products_list['category_id'])); ?>"  class="btn btn-primary" >Click Here To Compare<!-- <?php echo $products_list['item_name'];?>&nbsp;<span><?php echo count($products_list['item_id']) ?> --></span> 
           </a>
           <input type="hidden" name="category_id" id="category_id"  value="<?php echo $products_list['category_id']; ?>"> 
           <!--  <ul class="dropdown-menu" role="menu" style="position: absolute;top:-100px;height:150px;width:10px;left:-50px;opacity: 0.8;">
@@ -300,22 +301,26 @@ jQuery.ajax({
 }
 
 
-function category(id){
-	//alert('hello');
-jQuery.ajax({
-			url: "<?php echo site_url('customer/show_compare');?>",
-			type: 'post',
-			data: {category_id: id,},				
-			success: function (data) {
-				//jQuery('#sucessmsg').show();
-				alert(data);
-			}
+// function getcategoryid(id){
+// 	//alert(id);
+// 	//var category_id =  $("#category_id").val();
+// 	//alert(category_id);
+// jQuery.ajax({
+// 			url: "<?php echo site_url('category/productscompare');?>",
+// 			type: 'post',
+// 			data: {category_id:id},
+//  			//dataType:"json",
+// 			//data: {category_id: category_id},				
+// 			success: function (data) {
+// 				//alert('hello');
+// 				alert(data);
+// 			}
 			
-		});
-alert(data);
+// 		});
+// //alert(data);
 	
 	
-// }
+//  }
 
 
 $(document).ready(function(){
@@ -620,16 +625,16 @@ $(document).ready(function() {
     var item_id =  $("#compare_id").val();
     var category_id =  $("#category_id").val();
     
-    alert(category_id);
-    $.ajax
-    ({
-    type: "POST",
-    url: "<?php echo base_url();?>category/productscompare",
-     data: {category_id:category_id},
-     //   success: function (data) {
-    	// alert(data);
-     // } 
-    });
+    //alert(category_id);
+    // $.ajax
+    // ({
+    // type: "POST",
+    // url: "<?php echo base_url();?>category/productscompare",
+    //  data: {category_id:category_id},
+    //  //   success: function (data) {
+    // 	// alert(data);
+    //  // } 
+    // });
     
   
     

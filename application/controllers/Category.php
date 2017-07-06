@@ -60,21 +60,21 @@ class Category extends Front_Controller
 
 	//echo '<pre>';print_r($data);exit;
  }
- public function show_compare(){
- 	$pid=base64_decode($this->uri->segment(3));
-	$data['compore_products']= $this->category_model->get_products($pid);
-	$this->load->view('customer/show_compare',$data);
+ // public function show_compare(){
+ // 	$pid=base64_decode($this->uri->segment(3));
+	// $data['compore_products']= $this->category_model->get_products($pid);
+	// $this->load->view('customer/show_compare',$data);
 
- }
+ // }
  
- public function productscompare(){
- 	$category_ld = $this->input->get('category_id');
- 	//print_r($category_ld);exit;
+ public function productscompare()
+ {
+
  	$pid=base64_decode($this->uri->segment(3));
- 	//print_r($pid);exit;
- 	//$caterory_id=base64_decode($this->uri->segment(3));
+ 	$category_ld =base64_decode($this->uri->segment(4));
+ 	//print_r($category_ld);exit;
 	$data['compore_products']= $this->category_model->get_products($pid);
-	$data['item']=$this->category_model->getsubitemdata();
+	$data['item']=$this->category_model->getsubitemdata($category_ld);
 	$this->template->write_view('content', 'customer/compare',$data);
 	$this->template->render();
 	
@@ -84,8 +84,10 @@ class Category extends Front_Controller
 	public function compare_items_list()
 	{
 		$items=$this->input->post('item_id');
+		$category =$this->input->post('category_id');
+		//print_r($category_ld);exit;
 		$data['compare_one']=$this->category_model->getcompare_item_details($items);
-		$data['item']=$this->category_model->getsubitemdata();
+		$data['items']=$this->category_model->getsubitemdata($category);
 		//print_r($data);exit;
 		$this->load->view('customer/compareone',$data);
 
