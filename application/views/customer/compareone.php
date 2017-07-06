@@ -34,10 +34,11 @@
   <div class="container">
     <div class="row">
         <div class="col-md-4 text-center">
-            <div class="panel panel-danger panel-pricing">
+            <div class="panel panel-default panel-pricing">
                 <div class="panel-heading">
 
                     <img class="img-responsive" src="<?php echo base_url('uploads/products/'.$compare_one['item_image']); ?>">
+                   <!-- <button id="close_product">Close</button>  -->
                 </div>
 
                 <ul class="list-group text-center">
@@ -55,10 +56,10 @@
 
             </div>
         </div>
-        <div class="col-md-3" id="compare_items_two"></div>
+<!-- <button id="btnTimeextend_one">ADD</button> -->        
         <div class="col-md-3" id="item_hide_one">
             <div class="form-group nopaddingRight col-md-6 san-lg">
-                <label for="exampleInputPassword1">Add One More</label>
+                <label for="exampleInputPassword1">Select Compare Productsss</label>
                 <select class="form-control" id="item_id_one" name="item_id_one">
                     <option>Select item</option>
                     <?php foreach($items as $item_data){ ?>
@@ -68,7 +69,7 @@
                 </select>
             </div>
         </div>
-
+        <div class="col-md-3" id="compare_items_two"></div>
     </div>
 </div>
 
@@ -81,7 +82,7 @@
     //alert(id);
     //var dataString = 'item_id='+ id;
     var item_id = $("#item_id_one").val();
-    
+      
     $.ajax
     ({
     type: "POST",
@@ -98,4 +99,22 @@
     
     });
     });
+
+//  var count =0;
+// $('#btnTimeextend_one').on('click',function(){
+//     $('#item_hide_one').show();
+//   count = count +1;
+//   if(count == 3){
+//   $('#btnTimeextend').hide();
+//   }
+// })
+
+// var myEl = document.getElementById('close_product');
+
+// myEl.addEventListener('click', function() {
+//   //$('#item_hide_one').show();
+//     $('#hide_div').hide();
+    
+// }, false);
+
     </script> 

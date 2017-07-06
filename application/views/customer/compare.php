@@ -5,7 +5,6 @@
 	padding-left:0px;
 	padding-right:0px;
 }
-@import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
 
 .panel-pricing {
   -moz-transition: all .3s ease;
@@ -41,7 +40,7 @@
   padding: 20px;
   margin: 0px;
 }
-.panel-heading span
+/*.panel-heading span
 {
     margin-top: -26px;
     font-size: 15px;
@@ -54,15 +53,23 @@
     padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
-}
+}*/
+
 
 </style>
 <!--wrapper start here -->
  
 <div class="container" style="margin-top:180px">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div><h3>Compare Products</h3></div>
+    </div>
+  </div>
+
     <div class="row">
         <div class="col-md-4 text-center">
-            <div class="panel panel-danger panel-pricing">
+            <div class="panel panel-default panel-pricing">
                 <div class="panel-heading">
                     <img class="img-responsive" src="<?php echo base_url('uploads/products/'.$compore_products['item_image']); ?>">                   
                 </div>
@@ -77,16 +84,13 @@
                     <li class="list-group-item">Product Code:
                         <?php echo $compore_products[ 'item_code']; ?>
                     </li>
-
                 </ul>
-
             </div>
         </div>
-        <div class="col-md-3" id="compare_items"></div>
-
+        <!-- <button id="btnTimeextend">ADD</button> -->
         <div class="col-md-3" id="item_hide">
             <div class="form-group nopaddingRight col-md-6 san-lg">
-                <label for="exampleInputPassword1">Select Item</label>
+                <label for="exampleInputPassword1">Select Compare Product</label>
                 <select class="form-control" id="item_id" name="item_id">
                     <option>Select item</option>
                     <?php foreach($item as $item_data){ ?>
@@ -96,6 +100,7 @@
                 </select>
             </div>
         </div>
+        <div class="col-md-3" id="compare_items"></div>
 
     </div>
 </div>
@@ -183,10 +188,22 @@
     success: function (data) {
 
        $('#compare_items').append(data);
+       //$('#compare_items')..css("display", "block");
        $('#item_hide').hide();
      } 
     });
     
     });
     });
+
+//     var count =0;
+// $('#btnTimeextend').on('click',function(){
+//     $('#item_hide').show();
+//   count = count +1;
+//   if(count == 3){
+//   $('#btnTimeextend').hide();
+//   }
+// })
+
+
     </script>   

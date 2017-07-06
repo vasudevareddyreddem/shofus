@@ -24,7 +24,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 text-center">
-            <div class="panel panel-danger panel-pricing">
+            <div class="panel panel-default panel-pricing">
                 <div class="panel-heading">
 
                     <img class="img-responsive" src="<?php echo base_url('uploads/products/'.$compare_two['item_image']); ?>">
