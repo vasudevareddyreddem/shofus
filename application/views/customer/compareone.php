@@ -33,7 +33,7 @@
 
   <div class="container">
     <div class="row">
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center" id="div_hide">
             <div class="panel panel-default panel-pricing">
                 <div class="panel-heading">
 
@@ -101,12 +101,15 @@
     });
 
 //  var count =0;
-// $('#btnTimeextend_one').on('click',function(){
+// $('#close_product').on('change',function(){
 //     $('#item_hide_one').show();
-//   count = count +1;
+//     $('#div_hide').hide();
+//     count = count +1;
 //   if(count == 3){
-//   $('#btnTimeextend').hide();
+//   $('#item_hide_one').hide();
 //   }
+
+ 
 // })
 
 // var myEl = document.getElementById('close_product');
