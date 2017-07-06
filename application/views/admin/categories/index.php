@@ -44,7 +44,6 @@
                       <th>Category</th>
                       <th>Status</th>
                       <th>Edit</th>
-                      <th>Delete</th>
                     </tr>
                   </thead>
                   <?php if(!empty($categoriesdata)): ?>
@@ -58,7 +57,6 @@
       <td><?php  echo $categories_data->category_name; ?></td>
       <td><a href="<?php echo base_url('admin/categories/status/'.$categories_data->category_id.'/'.$categories_data->status); ?>"><?php if($categories_data->status ==1){ echo "Active"; }else{ echo "Pending";} ?></a></td>
       <td><a href="<?php echo base_url(); ?>admin/categories/edit/<?php  echo $categories_data->category_id; ?>"><i class="fa fa-pencil-square-o" style="font-size:18px"></i></a></td>
-      <td><a href="<?php echo base_url(); ?>admin/categories/delete/<?php  echo $categories_data->category_id; ?>" onclick="return checkDelete('<?php  echo $categories_data->category_name; ?>')"><i class="fa fa-trash-o" style="font-size:18px"></i></a></td>
     </tr>
     <?php $i++; } ?>
 
