@@ -265,6 +265,11 @@ class Mobile extends REST_Controller {
 			
 	}
 	
+	function add_category(){
+		
+		
+	}
+	
 	/* get location list */
 	public function  get_location_list_get()
 	{

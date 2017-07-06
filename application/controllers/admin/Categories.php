@@ -168,6 +168,31 @@ public function update()
        
 
  }
+ public function status()
+	{
+		$id = $this->uri->segment(4); 
+		$status = $this->uri->segment(5);
+		if($status==1){
+		$status=0;
+		}else{
+		$status=1;
+		}
+		
+		$data=array('status'=>$status);
+		//echo "<pre>";print_r($data);exit;
+		$updatestatus=$this->categories_model->update_cat_status($id,$data);
+		
+		if(count($updatestatus)>0){
+			if($status==1){
+				$this->session->set_flashdata('success'," Category activation successful");
+			}else{
+				$this->session->set_flashdata('success',"Category deactivation successful");
+			}
+			redirect('admin/categories');
+		}
+		
+		
+	}
 
 
 public function search()

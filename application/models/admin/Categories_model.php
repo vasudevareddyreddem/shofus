@@ -37,6 +37,10 @@ class Categories_model extends MY_Model
 		$this->db->where('category_id', $catid);
 		return $this->db->update('category', $data);
 	}
+	public function update_cat_status($catid,$data){
+		$this->db->where('category_id', $catid);
+		return $this->db->update('category', $data);
+	}
 }
 
 
