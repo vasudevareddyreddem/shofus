@@ -15,7 +15,25 @@ class Adddetails_model extends MY_Model
 		return $query->result();
 		
 	  }
-  public function insertseller_cat($data)
+	public function save_catrgore($data)
+	{
+		
+		$this->db->insert('category', $data);
+		return $insert_id = $this->db->insert_id();
+	} 
+	public function get_oldcategoreis_seller_categories($sid)
+	{
+	
+	$this->db->select('*')->from('category');
+	$this->db->where('seller_id',$sid);
+	return $this->db->get()->result_array();
+	} 
+	function delet_get_cat_seller_categories($catid)
+{
+		$sql1="DELETE FROM category WHERE category_id = '".$catid."'";
+		return $this->db->query($sql1);
+}
+	public function insertseller_cat($data)
 	{
 		
 		$sid= $this->session->userdata('seller_id');	

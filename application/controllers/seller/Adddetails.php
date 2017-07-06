@@ -98,10 +98,34 @@ class Adddetails extends Seller_adddetails{
 	public function updateseeler_details()
 	{  
 			$post=$this->input->post();
+		
+			/*for add category purpose*/
 			
-			echo "<pre>";print_r($_FILES);
-			echo "<pre>";print_r($post);exit;
+			if($post['caregoryname']!=''){
+			$categorys=$this->adddetails_model->get_oldcategoreis_seller_categories($this->session->userdata('seller_id'));
+			
+			foreach($categorys as $delcatid){
+				
+				$this->adddetails_model->delet_get_cat_seller_categories($delcatid['category_id']);
+			}
+			
+			foreach($post['caregoryname'] as $decatid){
+				
+				$addcat= array(
+						'seller_id'=>$this->session->userdata('seller_id'),
+						'category_name'=>$decatid,
+						'status'=>0,
+						'created_at'=>date('Y-m-d H:i:s'),
+						'updated_at'=>date('Y-m-d H:i:s'),
+						);
+						$save_catrgore=$this->adddetails_model->save_catrgore($addcat);
+				//echo "<pre>";print_r($delcatid); 
+			}
+			
+		}
+			/*--------------*/
 			$result = array_unique($post['seller_cat']);
+			
 			$catresult=$this->Personnel_details_model->get_old_seller_categories($this->session->userdata('seller_id'));
 			foreach($catresult as $delcats){
 				

@@ -265,8 +265,7 @@ class Mobile extends REST_Controller {
 			
 	}
 	
-	function add_category(){
-		
+	function add_category_post(){
 		
 	}
 	

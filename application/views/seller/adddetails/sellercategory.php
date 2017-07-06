@@ -338,19 +338,21 @@ $(document).ready(function(){
 <div class="" style="margin-bottom:50px;">&nbsp;</div>
 <div class="container" >
   <?php echo $this->session->flashdata('msg2'); ?>
-  <form id="categories" name="categories" action="<?php echo base_url('seller/adddetails/updateseeler_details'); ?>" enctype="multipart/form-data" method="post" >
+  <form id="categories" onsubmit="return validations();" name="categories" action="<?php echo base_url('seller/adddetails/updateseeler_details'); ?>" enctype="multipart/form-data" method="post" >
     <div class="row well">
 
 	<div class="col-md-6  ">
 			<div class="form-group ">
 				<label>Select Category</label>
-				<select data-placeholder="Select your Category" name="seller_cat[]" id="seller_cat" multiple class="chosen-select" tabindex="8">
+				<select id="seller_cat" onchange="removemsg(this.value);" name="seller_cat[]"   multiple class="chosen-select" tabindex="8">
 				  <option value=""></option>
 				  <?php foreach($getcat as $cat_data){ ?>
                     <option value="<?php echo $cat_data['category_id']; ?>"><?php echo $cat_data['category_name']; ?></option>                  
                     <?php }?>
 				</select>
+
 			</div>
+				<span id="locationmsg"></span>
    
 	</div>
 	<div class="col-md-6 ">
@@ -366,13 +368,7 @@ $(document).ready(function(){
 							
 						</div>
 					</div>
-					<div class="col-md-5">
-						<div class="form-group ">
-							<label> Add Category File</label>
-							<input type="file" id="caregoryfile" name="caregoryfile[]" class="form-control" />
-							
-						</div>
-					</div>
+					
 					<div class="col-md-2">
 						<div class="form-group ">
 						<label> &nbsp;</label>
@@ -415,15 +411,37 @@ $(document).ready(function(){
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 	
 <script type="text/javascript">
+
+function validations(){
+	
+	var areaids=document.getElementById('seller_cat').value;
+	if(areaids==''){
+		$("#locationmsg").html("Please select a category").css("color", "red");
+		return false;
+	}else{
+		$("#locationmsg").html("");
+		return true;
+	}
+}
+function removemsg(id){
+	if(id!=''){
+		$("#locationmsg").hide();
+		document.getElementById("bnt").disabled = false; 
+	}else{
+	$("#locationmsg").show();	
+	}
+}
+
 $(document).ready(function() {
     $('#categories').bootstrapValidator({
        
         fields: {
-			  'seller_cat[]': {
+			'caregoryname[]': {
               validators: {
-					 notEmpty: {
-                        message: 'Please select a Category'
-                    }
+				regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Name can only consist of alphanumaric, space and dot'
+					}
                 }
             }
             
@@ -440,7 +458,7 @@ function addCenter()
         var toDiv = document.getElementById("CenterForm");
         var div = document.createElement('div');
         div.id = 'mainForms'+val;
-        div.innerHTML = '<div style="" class="form-group" id="CenterForm"><div style="width:100%" class="field_wrapper nopaddingRight col-md-5 san-lg pos_r" data-plugin="inputGroupFile"><div class="col-md-5"><div class="form-group "><label> Add Your Own Category</label><input type="text" id="caregoryname" name="caregoryname[]" class="form-control" /></div></div><div class="col-md-5"><div class="form-group "><label> Add Category File</label><input type="file" id="caregoryfile" name="caregoryfile[]" class="form-control" /></div></div></div></div><button   class="btn btn-primary pos_re" type="button" onclick="removeCenterRow(this);"><span>Remove </span></button>';
+        div.innerHTML = '<div style="" class="form-group" id="CenterForm"><div style="width:100%" class="field_wrapper nopaddingRight col-md-5 san-lg pos_r" data-plugin="inputGroupFile"><div class="col-md-5"><div class="form-group "><label> Add Your Own Category</label><input type="text" id="caregoryname" name="caregoryname[]" class="form-control" /></div></div></div></div><button   class="btn btn-primary pos_re" type="button" onclick="removeCenterRow(this);"><span>Remove </span></button>';
         toDiv.appendChild(div);
         var divclear = document.createElement('div');
         divclear.className = 'clear';
