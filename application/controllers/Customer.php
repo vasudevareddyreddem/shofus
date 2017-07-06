@@ -15,9 +15,12 @@ class Customer extends Front_Controller
  }
  
 
-  public function test(){
-	  $post=$this->input->post();
-	  echo "<pre>";print_r($post);exit;
+  public function locationsearch(){
+		$post=$this->input->post();
+	  	$data['product_search']= $this->customer_model->get_product_search_location($post['locationarea']);
+		//echo '<pre>';print_r($data);exit;
+		$this->template->write_view('content', 'customer/productsearch', $data);
+		$this->template->render();
 	  
   }
   public function account(){

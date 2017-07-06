@@ -22,8 +22,9 @@ class Products_model extends MY_Model
 	public function getcatdata()
 	{
 		
-		$query=$this->db->get('category');
-		return $query->result_array();
+		$this->db->select('*')->from('category');
+		$this->db->where('status',1);
+        return $this->db->get()->result_array();
 
 		
 	}

@@ -203,6 +203,8 @@ class Mobile extends REST_Controller {
 		$tanimages=base64_decode($this->input->get('tanimage'));
 		$cstimages=base64_decode($this->input->get('cstimage'));
 		$gstimg=base64_decode($this->input->get('gstinimage'));
+		
+		
 		$seller_upload_file=$this->mobile_model->get_upload_file($this->input->get('seller_id'));
 		if($this->input->get('tinvatimage')!=''){
 			move_uploaded_file($tinvatimages['tmp_name'], "assets/sellerfile/" . $tinvatimages);
@@ -261,6 +263,11 @@ class Mobile extends REST_Controller {
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 			}
 			
+	}
+	
+	function add_category(){
+		
+		
 	}
 	
 	/* get location list */

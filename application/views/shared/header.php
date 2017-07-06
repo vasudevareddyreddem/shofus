@@ -113,7 +113,7 @@
 			<!--<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
 				<p>Location</p></a>
 			</span></a></span>-->
-			<span class="medias text-center"><a href=""  id="show_loc"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
+			<span class="medias text-center"><a href="javascript:void(0);" onclick="openpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
 				<p>Location</p></a>
 			</span></a></span>
 			
@@ -341,67 +341,38 @@
   </div>
 </div>
 
-<div id="hide_loc"  style="position: absolute;top: 100px;z-index: 1050;">
+<div id="locationdiv"  style="position: absolute;top: 100px;z-index: 1050;">
 	<div class="container">
 	<div class="row">
 	  <div class="col-md-6 col-md-offset-4 well" style="-webkit-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);
 -moz-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);
 box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);">
-	  <form>
-	  <span id="hide_btn" class="glyphicon glyphicon-remove pull-right"></span>
-          <h3 style="margin-top:5px">Select Location</h3>
-			
-            <select data-placeholder="Your Favorite Types of Bear" multiple class="chosen-select" tabindex="8">
+	  <span id="hide_btn" onclick="closepopup();" class="glyphicon glyphicon-remove pull-right"></span>
+		 <form  onSubmit="return validations();" action="<?php echo base_url('customer/locationsearch'); ?>" method="post">
+	      <h3 style="margin-top:5px">Select Location</h3>
+			 
+			 <span id="locationmsg"></span>
+			 <select data-placeholder="select your nearest area" name="locationarea[]" id="locationarea" multiple class="chosen-select" tabindex="8">
               <option value=""></option>
-              <option>American Black Bear</option>
-              <option>Asiatic Black Bear</option>
-              <option>Brown Bear</option>
-              <option>Giant Panda</option>
-              <option>Sloth Bear</option>
-              <option disabled>Sun Bear</option>
-              <option selected>Polar Bear</option>
-              <option disabled>Spectacled Bear</option>
+              <?php foreach($locationdata as $location_data) {?>
+			  <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
+          
+			  <?php }  ?>
             </select>
+			
 			<div class="mar_t10" style="padding:20px 0px;">
-			<button type="button" class="btn btn-primary pull-right">Submit</button>
+			<button type="submit" class="btn btn-primary pull-right">Submit</button>
 			</form>
         </div>
       </div>
     </div>
 </div>
 </div>
-<!--<div class="md-overlay"></div>
-<a href="javascript:void(0)"  style="text-decoration:none;" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup">
-</a>
 
-<div class="modal fade" id="locationsearchpopup" role="dialog">
-    <div class="modal-dialog">
-		<div class="modal-content">
-        <div class="modal-header">
-          <button type="button" id="hidebutton" class="close" data-dismiss="modal">&times;</button>
-       </div>
-            <div class="newsletter-form" style="padding:0px 20px 15px 20px;">
-          <h3>Select Your products Location</h3>
-		 <form action="<?php echo base_url('customer/test'); ?>" method="post">
-			<div class="input-box">
-					<?php foreach($locationdata as $location_data) {?>
-					<input type="checkbox" name="check_list[]" value="<?php echo $location_data['location_id']; ?>"><label><?php echo $location_data['location_name']; ?></label><br/>
-					<?php }  ?>
-				
-			<div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
-
-            <button type="submit"  class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
-          </div>
-		  </form>
-          
-        </div>
-      </div>
-	</div>
-  </div>-->
  
 
 <!-- the overlay element --> 
-<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+<script src="<?php echo base_url(); ?>assets/customer/js/select.js"></script>
     <script>
       $(function() {
         $('.chosen-select').chosen();
@@ -411,7 +382,29 @@ box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);">
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">
+function openpopup (){
+$('#locationdiv').show();
+}
+ $(document).ready(function(){
+	closepopup (); 
+ });
+function closepopup (){
+	$('#locationdiv').hide();
+}
+function validations(){
+	
+	
+	var areaids=document.getElementById('locationarea').value;
+	
+	if(areaids==''){
+		$("#locationmsg").html("Please select a value").css("color", "red");
+		return false;
+	}else{
+		$("#locationmsg").html("");
+		return true;
+	}
 
+}
 function searchfunction(val){
 	$('#addingdropdown').hide();
 	$('#addingdropdown').empty();

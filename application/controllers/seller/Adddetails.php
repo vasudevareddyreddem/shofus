@@ -98,6 +98,9 @@ class Adddetails extends Seller_adddetails{
 	public function updateseeler_details()
 	{  
 			$post=$this->input->post();
+			
+			echo "<pre>";print_r($_FILES);
+			echo "<pre>";print_r($post);exit;
 			$result = array_unique($post['seller_cat']);
 			$catresult=$this->Personnel_details_model->get_old_seller_categories($this->session->userdata('seller_id'));
 			foreach($catresult as $delcats){
