@@ -98,7 +98,7 @@ class Adddetails extends Seller_adddetails{
 	public function updateseeler_details()
 	{  
 			$post=$this->input->post();
-		
+		echo "<pre>";print_r($post); exit;
 			/*for add category purpose*/
 			
 			if($post['caregoryname']!=''){

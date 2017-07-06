@@ -360,30 +360,33 @@ $(document).ready(function(){
 	
       <div class="col-xs-12">
 
-        <div class="col-md-12" id="CenterForm" >
-					<div class="col-md-5">
-						<div class="form-group ">
-							<label> Add Your Own Category</label>
-							<input type="text" id="caregoryname" name="caregoryname[]" class="form-control" />
-							
-						</div>
-					</div>
-					
-					<div class="col-md-2">
-						<div class="form-group ">
-						<label> &nbsp;</label>
-						<input type="hidden" name="centerCount" id="centerCount" value="0" />
-						<button class="btn btn-primary" type="button" onclick="addCenter();"><span>Add </span></button>
-					</div>
-					</div>
-			</div>
-			
-				
-		
-		
-
-
-        </div>
+       <div class="container">
+    <div class="row clearfix">
+		<div class="col-md-6 column">
+			<table class="table" id="tab_logic">
+				<thead>
+					<tr >
+						<th class="text-center">
+						Add your own Category
+						</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr id='addr0'>
+						
+						<td>
+						<input type="text" name='caregoryname[]' id="" class="form-control"/>
+						</td>
+					</tr>
+                    <tr id='addr1'></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="btn btn-default">Delete Row</a>
+</div>
+ </div>
       </div>
     </div>
 	<div class="clearfix"></div>
@@ -411,7 +414,22 @@ $(document).ready(function(){
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 	
 <script type="text/javascript">
+  $(document).ready(function(){
+      var i=1;
+     $("#add_row").click(function(){
+      $('#addr'+i).html("<td><input  name='caregoryname[]' type='text' class='form-control input-md'></td>");
 
+      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      i++; 
+  });
+     $("#delete_row").click(function(){
+    	 if(i>1){
+		 $("#addr"+(i-1)).html('');
+		 i--;
+		 }
+	 });
+
+});
 function validations(){
 	
 	var areaids=document.getElementById('seller_cat').value;
@@ -450,24 +468,6 @@ $(document).ready(function() {
     });
 });
 
-function addCenter() 
-    {
-		var cCount = document.getElementById('centerCount').value;
-        var val = Number(cCount) + 1;
-        document.getElementById('centerCount').value= val;
-        var toDiv = document.getElementById("CenterForm");
-        var div = document.createElement('div');
-        div.id = 'mainForms'+val;
-        div.innerHTML = '<div style="" class="form-group" id="CenterForm"><div style="width:100%" class="field_wrapper nopaddingRight col-md-5 san-lg pos_r" data-plugin="inputGroupFile"><div class="col-md-5"><div class="form-group "><label> Add Your Own Category</label><input type="text" id="caregoryname" name="caregoryname[]" class="form-control" /></div></div></div></div><button   class="btn btn-primary pos_re" type="button" onclick="removeCenterRow(this);"><span>Remove </span></button>';
-        toDiv.appendChild(div);
-        var divclear = document.createElement('div');
-        divclear.className = 'clear';
-        divclear.innerHTML = '&nbsp;';
-        div.appendChild(divclear);
-    }
-	function removeCenterRow(input) {
-    document.getElementById('CenterForm').removeChild( input.parentNode );
-}
 function savecat(val){
 	
 	
