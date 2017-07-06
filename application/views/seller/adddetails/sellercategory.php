@@ -347,6 +347,7 @@ $(document).ready(function(){
 	<div class="col-md-6  ">
 			<div class="form-group ">
 				<label>Select Category</label>
+				
 				<select id="seller_cat" onchange="removemsg(this.value);" name="seller_cat[]"   multiple class="chosen-select" tabindex="8">
 				  <option value=""></option>
 				  <?php foreach($getcat as $cat_data){ ?>
@@ -368,7 +369,7 @@ $(document).ready(function(){
 									<tr id='addr0'>
 										
 										<td>
-										<input type="f" name='caregoryname[]' id="" class="form-control"/>
+										<input type="text" name='caregoryname[]' id="" class="form-control"/>
 										</td>
 									</tr>
 									<tr id='addr1'></tr>
