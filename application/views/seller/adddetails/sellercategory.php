@@ -285,6 +285,9 @@ $(document).ready(function(){
       top: 7px;
       width: 12px;
       cursor: pointer; }
+	  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+		border:none;
+	}
 
  /* multiselect css end */
 }
@@ -355,46 +358,40 @@ $(document).ready(function(){
 				<span id="locationmsg"></span>
    
 	</div>
-	<div class="col-md-6 ">
-    <div class="row setup-content">
 	
-      <div class="col-xs-12">
+	<div class="container">
+					<div class="row ">
+						<div class="col-md-6 ">
+							<label>Add your own Category</label>
+							<table class="table" id="tab_logic">
+								<tbody>
+									<tr id='addr0'>
+										
+										<td>
+										<input type="f" name='caregoryname[]' id="" class="form-control"/>
+										</td>
+									</tr>
+									<tr id='addr1'></tr>
+								</tbody>
+							</table>
+					
+					</div>
+					<div class="clearfix"></div>
+					<div  class="col-md-6 col-md-offset-6" >
+						<div class="pull-left">
+							<a id="add_row" class="btn btn-default pull-left">Add Row</a>
+						</div>
+						<div class="pull-right" style="padding-right:30px;">
+							<a id='delete_row' class="btn btn-default">Delete Row</a>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="" style="padding-right:40px;margin-top:20px;">	
+					 <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails'); ?>">Back</a>
 
-       <div class="container">
-    <div class="row clearfix">
-		<div class="col-md-6 column">
-			<table class="table" id="tab_logic">
-				<thead>
-					<tr >
-						<th class="text-center">
-						Add your own Category
-						</th>
-						
-					</tr>
-				</thead>
-				<tbody>
-					<tr id='addr0'>
-						
-						<td>
-						<input type="text" name='caregoryname[]' id="" class="form-control"/>
-						</td>
-					</tr>
-                    <tr id='addr1'></tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="btn btn-default">Delete Row</a>
-</div>
- </div>
-      </div>
-    </div>
-	<div class="clearfix"></div>
-	<div class="" style="padding-right:40px;margin-top:20px;">	
-		 <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails'); ?>">Back</a>
-
-		<input id="bnt" type="submit" class="btn btn-info pull-right" value="Next">
-	</div>
+					<input id="bnt" type="submit" class="btn btn-info pull-right" value="Next">
+				</div>
 	</form>
     </div>
 </div>
