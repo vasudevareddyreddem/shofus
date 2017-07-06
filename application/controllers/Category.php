@@ -26,11 +26,14 @@ class Category extends Front_Controller
  }
   
  public function productview(){
+
 	 
 	$pid=base64_decode($this->uri->segment(3));
+
 	//echo '<pre>';print_r($caterory_id);exit;
 	$data['products_list']= $this->category_model->get_products($pid);
 	$data['products_reviews']= $this->category_model->get_products_reviews($pid);
+	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'customer/productview', $data);
 	$this->template->render();
 	//echo '<pre>';print_r($data);exit;
@@ -57,51 +60,42 @@ class Category extends Front_Controller
 
 	//echo '<pre>';print_r($data);exit;
  }
- 
- public function productscompare(){
+ public function show_compare(){
  	$pid=base64_decode($this->uri->segment(3));
 	$data['compore_products']= $this->category_model->get_products($pid);
-	$data['subcatdata']=$this->category_model->getsubcatdata();
+	$this->load->view('customer/show_compare',$data);
+
+ }
+ 
+ public function productscompare(){
+ 	$category_ld = $this->input->get('category_id');
+ 	//print_r($category_ld);exit;
+ 	$pid=base64_decode($this->uri->segment(3));
+ 	//print_r($pid);exit;
+ 	//$caterory_id=base64_decode($this->uri->segment(3));
+	$data['compore_products']= $this->category_model->get_products($pid);
 	$data['item']=$this->category_model->getsubitemdata();
-	//$data['compare_item']=$this->category_model->getcompare_item();
-		//echo "<pre>";print_r($result);exit;
-	 //$data['item']=$this->category_model->getsubitemdata($subcat);
-	 //print_r($data);exit;
-	
 	$this->template->write_view('content', 'customer/compare',$data);
 	$this->template->render();
 	
  }
 
 
-
-
- // public function getitems()
-	// {
-	// $subcat=$this->input->post('subcategory_id');
-	// $result=$this->category_model->getsubitemdata($subcat);
-	// //print_r($result);exit;
-	
-	// echo '<option value="">Select item</option>';
-	// foreach($result as $alldata)
-	// {
-	// echo '<option value="'.$alldata->item_id.'">'.$alldata->item_name.'</option>';
-	// }
-	// exit;	
-	// }
-
 	public function compare_items_list()
 	{
 		$items=$this->input->post('item_id');
-		$data['deials']=$this->category_model->getcompare_item_details($items);
-		$this->template->write_view('content', 'customer/compareone',$data);
-	$this->template->render();
-		//echo json_encode($data);
-		//$data['html'] = $this->load->view( 'customer/compare', $data, TRUE ); //3rd parameter TRUE to return view instead of immediately outputtig it
-		echo json_encode($data); 
-		//$this->template->write_view('content', 'customer/compare',$data);
-		//$this->template->render();
-		//echo '<pre>';print_r($data);exit;
+		$data['compare_one']=$this->category_model->getcompare_item_details($items);
+		$data['item']=$this->category_model->getsubitemdata();
+		//print_r($data);exit;
+		$this->load->view('customer/compareone',$data);
+
+	}
+	public function compare_items_list_two()
+	{
+		$items=$this->input->post('item_id');
+		$data['compare_two']=$this->category_model->getcompare_item_details($items);
+		//print_r($data);exit;
+		$this->load->view('customer/comparetwo',$data);
   		
 
 	}	
