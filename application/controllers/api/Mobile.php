@@ -99,7 +99,38 @@ class Mobile extends REST_Controller {
 			}
 		
 	}
+	public function  resend_otp_verification_post()
+	{	
+			
+			$sellerdetails=$this->mobile_model->get_seller_details($this->input->get('seller_id'));
+			if(count($sellerdetails)>0){
+			//echo "<pre>";print_r($sellerdetails);exit;
+				echo $six_digit_random_number = mt_rand(100000, 999999);
+				$user_id="cartin"; 
+				$pwd="9494422779";    
+				$sender_id = "CARTIN";          
+				$mobile_num = $sellerdetails['seller_mobile'];  
+				$message = "Your Temporary Password is : " .$six_digit_random_number;               
+				// Sending with PHP CURL
+				$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
+				$ret = file($url);
+				/*-- */
+					$details = array(
+						'mobile_verification' => $six_digit_random_number,
+						);
+
+			$resend_otp=$this->mobile_model->resend_otp($this->input->get('seller_id'),$details);
+			if(count($resend_otp)>0){
+				
+				$message = array('status'=>1,'seller_id'=>$this->input->get('seller_id'),'message'=>'verification Code send to your Mobile number');
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+		}else{
+				$message = array('status'=>0,'message'=>'Invalid sellerId. Please try again.');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
 	
+	}
 	/*mobile otp verification*/
 	public function  otp_verification_post()
 	{	
