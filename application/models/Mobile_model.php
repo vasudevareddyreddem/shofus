@@ -31,6 +31,10 @@ class Mobile_model extends MY_Model
 			$sql1="DELETE FROM category WHERE category_id = '".$catid."'";
 		return $this->db->query($sql1);
 	}
+	public function resend_otp($sid,$data){
+		$this->db->where('seller_id',$sid);
+		return $this->db->update('sellers', $data);
+	}
 	public function seller_register($data){
 		$this->db->insert('sellers', $data);
 	 return $insert_id = $this->db->insert_id();
