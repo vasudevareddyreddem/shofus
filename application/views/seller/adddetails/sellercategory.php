@@ -440,7 +440,7 @@ function addCenter()
         var toDiv = document.getElementById("CenterForm");
         var div = document.createElement('div');
         div.id = 'mainForms'+val;
-        div.innerHTML = '<div style="" class="form-group" id="CenterForm"><div style="width:100%" class="field_wrapper nopaddingRight col-md-5 san-lg pos_r" data-plugin="inputGroupFile"><div class="col-md-5"><div class="form-group "><label> Add Your Own Category</label><input type="text" id="caregoryname" name="caregoryname[]" class="form-control" /></div></div><div class="col-md-5"><div class="form-group "><label> Add Category File</label><input type="file" id="caregoryfile" name="caregoryfile[]" class="form-control" /></div></div></div></div><button  style="position: absolute;right:-15px;top:100px;" class="btn btn-primary pos_re" type="button" onclick="removeCenterRow(this);"><span>Remove </span></button>';
+        div.innerHTML = '<div style="" class="form-group" id="CenterForm"><div style="width:100%" class="field_wrapper nopaddingRight col-md-5 san-lg pos_r" data-plugin="inputGroupFile"><div class="col-md-5"><div class="form-group "><label> Add Your Own Category</label><input type="text" id="caregoryname" name="caregoryname[]" class="form-control" /></div></div><div class="col-md-5"><div class="form-group "><label> Add Category File</label><input type="file" id="caregoryfile" name="caregoryfile[]" class="form-control" /></div></div></div></div><button   class="btn btn-primary pos_re" type="button" onclick="removeCenterRow(this);"><span>Remove </span></button>';
         toDiv.appendChild(div);
         var divclear = document.createElement('div');
         divclear.className = 'clear';
