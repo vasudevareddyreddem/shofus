@@ -153,6 +153,40 @@ class Mobile extends REST_Controller {
 		}
 		
 	}
+	
+	
+	/*add owncategories*/
+	function add_category_post(){
+		$categories=$this->input->get('categoryname');
+		$catdetails=explode(",",$categories);
+		$categorys=$this->mobile_model->get_oldcategoreis_seller_categories($this->input->get('seller_id'));
+			
+			foreach($categorys as $delcatid){
+				
+				$this->mobile_model->delet_get_cat_seller_categories($delcatid['category_id']);
+			}
+		foreach($catdetails as $lists){
+			$addcat= array(
+						'seller_id'=>$this->input->get('seller_id'),
+						'category_name'=>$lists,
+						'status'=>0,
+						'created_at'=>date('Y-m-d H:i:s'),
+						'updated_at'=>date('Y-m-d H:i:s'),
+						);
+				$save_catrgore=$this->mobile_model->save_catrgore($addcat);
+			//echo "<pre>";print_r($addcat);
+		}
+		if(count($save_catrgore)>0){
+			
+			$message = array('status'=>1,'seller_id'=>$this->input->get('seller_id'),'message'=>'categories are successfully saved.');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+				$message = array('status'=>0,'message'=>'some problem are in query');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	
+	
+	}
 	/* save category List*/
 	public function  get_categorylist_save_post()
 	{
@@ -265,9 +299,7 @@ class Mobile extends REST_Controller {
 			
 	}
 	
-	function add_category_post(){
-		
-	}
+
 	
 	/* get location list */
 	public function  get_location_list_get()

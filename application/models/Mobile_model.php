@@ -13,6 +13,24 @@ class Mobile_model extends MY_Model
 		$this->db->select('*')->from('locations');
 		return $this->db->get()->result_array();
 	}
+	public function save_catrgore($data)
+	{
+		
+		$this->db->insert('category', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function get_oldcategoreis_seller_categories($sid)
+	{
+	
+	$this->db->select('*')->from('category');
+	$this->db->where('seller_id',$sid);
+	return $this->db->get()->result_array();
+	}
+	function delet_get_cat_seller_categories($catid)
+	{
+			$sql1="DELETE FROM category WHERE category_id = '".$catid."'";
+		return $this->db->query($sql1);
+	}
 	public function seller_register($data){
 		$this->db->insert('sellers', $data);
 	 return $insert_id = $this->db->insert_id();
