@@ -142,19 +142,11 @@
     <div class="container">
       <div class=" row">
 		  <ul class="navbar_1"><li><span style="color:#555">Qucik Jump to </span></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			
-		  </ul>
+			<li><a href="<?php echo base_url('category/views/'.base64_encode(1));?>">Grocery</a></li>
+			<li><a href="<?php echo base_url('category/views/'.base64_encode(1));?>">Food</a></li>
+			<li><a href="<?php echo base_url('category/views/'.base64_encode(2));?>">Fashion</a></li>
+			<li><a href="<?php echo base_url('category/views/'.base64_encode(17));?>">Electronics</a></li>
+		 </ul>
 	  </div>
 	 
     </nav>

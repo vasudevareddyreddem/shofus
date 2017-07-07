@@ -15,6 +15,13 @@ class Customer extends Front_Controller
  }
  
 
+  public function inve(){
+	  $this->load->view('customer/inventry/header');
+	  $this->load->view('customer/inventry/sidebar');
+	  $this->load->view('customer/inventry/index');
+	  $this->load->view('customer/inventry/footer');
+	
+  }
   public function locationsearch(){
 		$post=$this->input->post();
 	  	$data['product_search']= $this->customer_model->get_product_search_location($post['locationarea']);

@@ -15,13 +15,44 @@ class Category extends Front_Controller
  
  public function view(){
 	 
-	echo $caterory_id=base64_decode($this->uri->segment(3));
+	$caterory_id=base64_decode($this->uri->segment(3));
 	$data['category_list']= $this->category_model->get_all_products($caterory_id);
+	//echo $this->db->last_query();exit;
 	$data['category_name']= $this->category_model->get_category($caterory_id);
 	$data['stock']= $this->category_model->get_product_stock($caterory_id);
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'customer/categoryproducts', $data);
 	$this->template->render();
+	
+ }
+ public function views(){
+	 
+	$caterory_id=base64_decode($this->uri->segment(3));
+	$data['category_list']= $this->category_model->get_list_products($caterory_id);
+	$data['listcategory']= $this->category_model->get_list_categories($caterory_id);
+	//echo $this->db->last_query();exit;
+//echo '<pre>';print_r($data);exit;
+	$this->template->write_view('content', 'customer/categoryview', $data);
+	$this->template->render();
+	
+ }
+ public function categorysearch(){
+	 
+
+	$post = $this->input->post();
+	//echo '<pre>';print_r($post);exit;
+	$stack = $post['sub_cat_id'];
+	$uniqueid=array(0,1);
+	  array_push($stack, $uniqueid);
+	//$this->session->set_userdata('sessiontag',$stack);
+	$this->session->set_userdata('billingaddress',$stack); 
+	$dd=$this->session->userdata('billingaddress')	;
+	echo '<pre>';print_r($dd);exit;
+	
+	array_push($stack, "0");
+	print_r($stack);
+	exit;
+
 	
  }
   
