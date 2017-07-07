@@ -59,9 +59,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('adderror');?></div>
 			<?php endif; ?>
-		<?php 
-		//echo '<pre>';print_r($category_list);exit;
-		foreach ($category_list as $catlist){ 
+		<?php foreach ($category_list as $catlist){ 
 		
 		//echo '<pre>';print_r($catlist);exit;
 		?>

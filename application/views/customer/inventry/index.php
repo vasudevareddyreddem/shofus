@@ -7,15 +7,19 @@
 				 <!-- Main content -->
       <div class="row">
         <!-- left column -->
+<<<<<<< HEAD
         <div class="col-md-8">
         <div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('dashboard');?></div>
+=======
+        <div class="col-md-8 col-md-offset-2" style="margin-top:100px">
+>>>>>>> 4613a2caa388758127768559a672a4a885dc35a8
           <!-- general form elements -->
           <div class="box box-primary">
           
             <div class="box-header with-border">
-              <h3 class="box-title">Quick Example</h3>
+              <h3 class="box-title">Login</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
