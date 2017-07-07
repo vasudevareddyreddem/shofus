@@ -39,14 +39,16 @@ class Users extends Admin_Controller {
 		$success=$this->user_model->insert_users($data);
 				if(count($success)>0)
 				{
-					$this->session->set_userdata('customer_id',$success);
-					//echo '<pre>';print_r($success);exit;
+					
+					$details = $this->user_model->get_user_details($success);	
+					$this->session->set_userdata('user_details',$details);
+					//echo '<pre>';print_r($details);exit;
 					//$from_email = 'mails@cartinhour.com';
 		 			//$subject = 'User Registraion';
 		 			//$message = "dummy Content";
 		 			$email = $this->input->post('email_id');
 		 			//print_r($email);exit;
-		 			$link = 'Click on this link - <a href="http://localhost/cartinhour/admin/users/set_password/'.base64_encode($success).'">http://localhost/cartinhour/admin/users/set_password/'.base64_encode($success).'</a>';
+		 			$link = 'Click on this link - <a href="http://localhost/cartinhour/customer/password/'.base64_encode($details['cust_email']).'/'.base64_encode($details['customer_id']).'">http://localhost/cartinhour/customer/password/'.base64_encode($details['cust_email']).'/'.base64_encode($details['customer_id']).'</a>';
 		 			echo '<pre>';print_r($link);exit;
 		 			//send mail
 		 			$this->email->from($from_email, 'CartinHour');
@@ -66,23 +68,22 @@ class Users extends Admin_Controller {
 	}
 
 
-	public function set_password($code)
-	{
-		$cst_id = $this->uri->segment(4);
-		//print_r($cst_id);exit;
-		$this->load->view('admin/users/setpassword',$cst_id);
-		//$this->template->render();
-	}
+	// public function set_password($code)
+	// {
+	// 	//$cst_id = $this->uri->segment(4);
+	// 	//print_r($cst_id);exit;
+	// 	$this->load->view('admin/users/setpassword');
+	// }
 
-	public function updatepassword()
-	{
-		$cst_id = $this->uri->segment(4);
-		$post=$this->input->post();
-		$data = array(
-			'customer_id'=>$cst_id,
-			'cust_password'=>$post['password'],
-		);
-		print_r($data);exit;
+	// public function updatepassword()
+	// {
+	// 	$cst_id = $this->uri->segment(4);
+	// 	$post=$this->input->post();
+	// 	$data = array(
+	// 		'customer_id'=>$cst_id,
+	// 		'cust_password'=>$post['password'],
+	// 	);
+	// 	print_r($data);exit;
 		 
-	}
+	// }
 }

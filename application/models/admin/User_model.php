@@ -27,5 +27,11 @@ class User_model extends MY_Model
 		$this->db->insert('customers', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	public function get_user_details($userid)
+	{
+		$this->db->select('*')->from('customers');
+		$this->db->where('customer_id',$userid);
+		return $this->db->get()->row_array();
+	}
 
 }

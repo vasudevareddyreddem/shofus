@@ -8,8 +8,12 @@
       <div class="row">
         <!-- left column -->
         <div class="col-md-8">
+        <div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('dashboard');?></div>
           <!-- general form elements -->
           <div class="box box-primary">
+          
             <div class="box-header with-border">
               <h3 class="box-title">Quick Example</h3>
             </div>

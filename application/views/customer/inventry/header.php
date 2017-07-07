@@ -232,7 +232,7 @@
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">Admin	</span>
             </a><ul class="dropdown-menu pad_prof" >
-              <a><li class="user-body">profile</li></a>
+              <a href="<?php echo base_url('customer/changepassword_inve');?>"><li class="user-body">Change Password</li></a>
               <a><li class="user-body">profile</li></a>
               <a><li class="user-body">profile</li></a>
             </ul>
