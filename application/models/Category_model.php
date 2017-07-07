@@ -144,12 +144,33 @@ class Category_model extends MY_Model
 	
 	public function get_all_products($catid){
 		
+		
+		//echo "<pre>";print_r($catid);exit;
 		$this->db->select('products.*,category.category_name,item_wishlist.yes')->from('products');
 		$this->db->join('category', 'category.category_id = products.category_id', 'left');
-		$this->db->join('reviews', 'reviews.item_id = products.item_id', 'left'); //		//
+		//$this->db->join('reviews', 'reviews.item_id = products.item_id', 'left'); //		//
 		$this->db->join('item_wishlist', 'item_wishlist.item_id = products.item_id', 'left'); //		//
 		$this->db->where('products.subcategory_id',$catid);
 		$this->db->where('products.admin_status',0);
+		return $this->db->get()->result_array();
+	}
+	public function get_list_products($catid){
+		
+		
+		//echo "<pre>";print_r($catid);exit;
+		$this->db->select('products.*,category.category_name,item_wishlist.yes')->from('products');
+		$this->db->join('category', 'category.category_id = products.category_id', 'left');
+		//$this->db->join('reviews', 'reviews.item_id = products.item_id', 'left'); //		//
+		$this->db->join('item_wishlist', 'item_wishlist.item_id = products.item_id', 'left'); //		//
+		$this->db->where('products.category_id',$catid);
+		$this->db->where('products.admin_status',0);
+		return $this->db->get()->result_array();
+	}
+	public function get_list_categories($catid){
+		
+		$this->db->select('subcategories.*')->from('subcategories');
+		$this->db->where('category_id',$catid);
+		//$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
 	public function get_product_stock($catid){
