@@ -36,11 +36,9 @@
         <div class="col-md-4 text-center" id="div_hide">
             <div class="panel panel-default panel-pricing">
                 <div class="panel-heading">
-
                     <img class="img-responsive" src="<?php echo base_url('uploads/products/'.$compare_one['item_image']); ?>">
                    <!-- <button id="close_product">Close</button>  -->
                 </div>
-
                 <ul class="list-group text-center">
                     <li class="list-group-item">Product Name:
                         <?php echo $compare_one[ 'item_name'];?>

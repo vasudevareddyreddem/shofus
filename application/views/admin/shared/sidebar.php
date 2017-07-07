@@ -49,6 +49,7 @@
         <li> <a class="" href="<?php echo base_url();?>admin/promotions"> <i class="fa fa-bell-o"></i> <span>Promotion Requests</span> </a> </li>
         <li> <a class="" href="<?php echo base_url();?>admin/service"> <i class="fa fa-bell-o"></i> <span>Service Requests</span> </a> </li>
         <li> <a class="" href="<?php echo base_url();?>admin/sellerads"> <i class="fa fa-angle-right"></i> <span>Service Ads</span> </a> </li>
+        <li> <a class="" href="<?php echo base_url();?>admin/users"> <i class="fa fa-users"></i> <span> Users</span> </a> </li>
 
        <!-- <li class="sub-menu"> <a href="javascript:;" class=""> <i class="fa fa-cutlery" aria-hidden="true"></i> <span>Food</span> <span class="menu-arrow arrow_carrot-right"></span> </a>
           <ul class="sub">
