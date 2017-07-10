@@ -15,17 +15,17 @@
          
         </li>
         <li class="">
-          <a href="<?php echo base_url('customer/category_wise_sellers'); ?>">
+          <a href="<?php echo base_url('customer/categories'); ?>">
              <i class="fa fa-dashboard"></i> <span>Category wise sellers</span>
           </a>
         </li>
 		<li class="">
-          <a href="#">
+          <a href="<?php echo base_url('customer/seller_id_database'); ?>">
              <i class="fa fa-dashboard"></i> <span>Seller ID database</span>
           </a>
         </li>
 		<li class="">
-          <a href="#">
+          <a href="<?php echo base_url('customer/seller_payments'); ?>">
              <i class="fa fa-dashboard"></i> <span>Seller payments</span>
           </a>
         </li>
@@ -39,13 +39,13 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a><i class="fa fa-circle-o"></i> Inventory management</a></li>
-            <li><a><i class="fa fa-circle-o"></i> Catalogue management</a></li>
-            <li><a><i class="fa fa-circle-o"></i> Both</a></li>
+            <li><a href="<?php echo base_url('customer/inventory_management'); ?>"><i class="fa fa-circle-o"></i> Inventory management</a></li>
+            <li><a href="<?php echo base_url('customer/catalog_management'); ?>"><i class="fa fa-circle-o"></i> Catalogue management</a></li>
+            <li><a href="<?php echo base_url('customer/both'); ?>"><i class="fa fa-circle-o"></i> Both</a></li>
           </ul>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="">
            <i class="fa fa-dashboard"></i> <span>Show ups :</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>

@@ -712,17 +712,78 @@ class Customer extends Front_Controller
 		}
 	}
 
-
-
-	public function category_wise_sellers()
+	public function categories()
 	{
-		$data['seller_category'] = $this->customer_model->get_seller_categories();
+		$data['category'] = $this->customer_model->get_seller_categories();
 		//echo "<pre>";print_r($data);exit;
 		$this->load->view('customer/inventry/header');
 	  	$this->load->view('customer/inventry/sidebar');
-	  	$this->load->view('customer/inventry/category_wisesellers',$data);
+	  	$this->load->view('customer/inventry/categories',$data);
 	  	$this->load->view('customer/inventry/footer');
 		
+	}
+
+	public function category_wise_sellers()
+	{
+		$cid = base64_decode($this->uri->segment(3));
+		//print_r($data);exit;
+		$data['seller_category'] = $this->customer_model->get_seller_names($cid);
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/header');
+	  	$this->load->view('customer/inventry/sidebar');
+	  	$this->load->view('customer/inventry/category_wise_sellers',$data);
+	  	$this->load->view('customer/inventry/footer');
+		
+	}
+
+	public function seller_id_database()
+	{
+		$data['database_id'] = $this->customer_model->get_seller_databaseid();
+		//echo "<pre>";print_r($data);exit;
+		 $this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/seller_databaseid',$data);
+	   	$this->load->view('customer/inventry/footer');
+	}
+
+
+	public function seller_payments()
+	{
+		$data['seller_payment'] = $this->customer_model->get_seller_payments();
+		//echo "<pre>";print_r($data);exit;
+		 $this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/seller_payments',$data);
+	   	$this->load->view('customer/inventry/footer');
+	}
+
+	public function inventory_management()
+	{
+		$data['inventory_management'] = $this->customer_model->get_inventory_management();
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/inventory_management',$data);
+	   	$this->load->view('customer/inventry/footer');
+	}
+	public function catalog_management()
+	{
+		$data['catalog_management'] = $this->customer_model->get_catalog_management();
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/catalog_management',$data);
+	   	$this->load->view('customer/inventry/footer');
+	}
+
+	public function both()
+	{
+		$data['both'] = $this->customer_model->get_both();
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/both',$data);
+	   	$this->load->view('customer/inventry/footer');
 	}
 
 
