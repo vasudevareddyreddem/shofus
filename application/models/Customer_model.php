@@ -45,12 +45,12 @@ class Customer_model extends MY_Model
 		$sql1="UPDATE customers SET area ='".$areaid."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
 	}
-	public function set_password($custid,$pass){
-		$sql1="UPDATE customers SET cust_password ='".$pass."' WHERE customer_id = '".$custid."'";
+	public function set_password($custid,$roleid,$pass){
+		$sql1="UPDATE customers SET cust_password ='".$pass."' WHERE customer_id = '".$custid."' AND role_id ='".$roleid."'";
        	return $this->db->query($sql1);
 	}
-	public function getcustomer_oldpassword($cusid){
-		$sql="SELECT * FROM customers WHERE customer_id ='".$cusid."'";
+	public function getcustomer_oldpassword($cusid,$roleid){
+		$sql="SELECT * FROM customers WHERE customer_id ='".$cusid."' AND role_id ='".$roleid."'";
         return $this->db->query($sql)->row_array(); 
 	}
 	public function update_password($pass,$cust_id,$email){
@@ -133,7 +133,10 @@ class Customer_model extends MY_Model
 		$sql1="DELETE FROM item_wishlist WHERE cust_id = '".$cust_id."' AND  id = '".$wishlistid."'";
 		return $this->db->query($sql1);
 	}
-	
+	public function setpassword_user($custid,$pass){
+		$sql1="UPDATE customers SET cust_password ='".$pass."' WHERE customer_id = '".$custid."'";
+       	return $this->db->query($sql1);
+	}
 	
 }
 ?>
