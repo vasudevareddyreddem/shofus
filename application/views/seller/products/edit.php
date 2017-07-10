@@ -137,8 +137,11 @@ document.getElementById('item_status').options[i].selected=true
 				
                 <div class="clearfix"></div>
 				<div style="margin-top: 20px; margin-left: 15px;">
-                <input id= "bttn" button type="submit" class="btn btn-primary" name="submit" >Submit</button>
-                <button type="submit" class="btn btn-danger" onclick="window.location='<?php echo base_url(); ?>seller/products';return false;">Cancel</button>
+                <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
+                
+               
+
+			   <button type="submit" class="btn btn-danger" onclick="window.location='<?php echo base_url(); ?>seller/products';return false;">Cancel</button>
 				</div>
               </form>
             </div>
