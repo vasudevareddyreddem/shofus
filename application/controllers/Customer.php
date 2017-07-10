@@ -687,7 +687,6 @@ class Customer extends Front_Controller
 	{
 		if($this->session->userdata('user_details'))
 		{
-			
 		$customerdetail=$this->session->userdata('user_details');
 		$pass_post = $this->input->post();		
 		$newpassword=md5($pass_post['password']);
@@ -701,20 +700,34 @@ class Customer extends Front_Controller
 								redirect('customer/inve');
 							}else{
 								$this->session->set_flashdata('passworderror',"Something went wrong in set password process!");
-								redirect('customer/password/'.$pass_post['email'].'/'.$pass_post['cust_id']');
+								redirect('customer/password/'.$pass_post['email'].'/'.$pass_post['cust_id']);
 							}
 				}else{
 					$this->session->set_flashdata('passworderror',"New password and confirm password was not matching");
 					redirect('customer/password');
 				}
 		}else{
-			$this->session->set_flashdata('loginerror','Please login to continue');
+			$this->session->set_flashdata('loginerror','Please Ask Admin');
 		 	redirect('customer');
 		}
 	}
 
-	}		
-	
-	
 
+
+	public function category_wise_sellers()
+	{
+		$data['seller_category'] = $this->customer_model->get_seller_categories();
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/header');
+	  	$this->load->view('customer/inventry/sidebar');
+	  	$this->load->view('customer/inventry/category_wisesellers',$data);
+	  	$this->load->view('customer/inventry/footer');
+		
+	}
+
+
+
+
+
+}		
 ?>

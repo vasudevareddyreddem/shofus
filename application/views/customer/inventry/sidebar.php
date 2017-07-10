@@ -15,7 +15,7 @@
          
         </li>
         <li class="">
-          <a href="#">
+          <a href="<?php echo base_url('customer/category_wise_sellers'); ?>">
              <i class="fa fa-dashboard"></i> <span>Category wise sellers</span>
           </a>
         </li>

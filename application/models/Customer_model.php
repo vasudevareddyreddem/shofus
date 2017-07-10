@@ -137,6 +137,14 @@ class Customer_model extends MY_Model
 		$sql1="UPDATE customers SET cust_password ='".$pass."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
 	}
+
+	public function get_seller_categories()
+	{
+		$this->db->select('seller_categories.*,sellers.seller_name')->from('seller_categories');
+		$this->db->join('sellers', 'sellers.seller_id = seller_categories.seller_id', 'left');
+		//$this->db->where('item_wishlist.cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
 	
 }
 ?>
