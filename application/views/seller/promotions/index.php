@@ -9,6 +9,23 @@ tfoot input {
         padding: 3px;
         box-sizing: border-box;
     }
+	.ui-datepicker-calendar{
+		padding:10px !important;
+		width:300px;
+		background:#fff;
+	}
+	tr{
+		padding:10px !important;
+	
+	}td{
+		padding:10px !important;
+	
+	}
+	.ui-icon  {
+		padding-right:20px !important;
+		cursor: pointer;
+		margin:10px 0px;
+	}
 </style>
 <div class="content-wrapper mar_t_con" >
 	<section class="content-header">
@@ -75,13 +92,14 @@ tfoot input {
         <thead>
             <tr>
                 <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">
-				</th><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Select All</a>
+				</th>
+				<div style="padding:15px 0px"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Select All</a></div>
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
                 <th>Affer Amount</th>
                 <th>Offer combo Item Name</th>
-                <th>Offer expairydate and Time</th>
+                <th>Offer expiry Date and Time</th>
                 
             </tr>
         </thead>
@@ -105,10 +123,11 @@ tfoot input {
 				  <?php $k++; } ?>
 				  </tbody>
     </table>
+	
 	<div class="modal fade" id="offerspopup<?php echo $subcategory->subcategory_id;?>" role="dialog">
     <div class="modal-dialog">
 		<div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header" style="background-color: #00354d;color:#fff;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 id="title" class="modal-title">Confirmation</h4>	
         </div>
@@ -147,15 +166,18 @@ tfoot input {
 	
 		<div class="row">
 			<div class="form-group">
-			<label class="control-label ">Enter your offer expair date and time: </label> 
-			</div>
-			<div class="col-md-6">			
-			<input type="text" class="form-control"   name="expairdate" id="datepicker<?php echo $subcategory->subcategory_id;?>" >					
+			
+			
+			<div class="col-md-6">	
+			<label class="control-label ">Enter your Offer Expiry  Date and Time: </label> 			
+			<input type="text" class="form-control"   name="expairdate" id="datepicker<?php echo $subcategory->subcategory_id;?>" style="background:#fff" >					
 			<span style="color:red" id="offertdate<?php echo $subcategory->subcategory_id;?>"></span>	
+			</div>
 			</div>
 					
 			
-			<div class="col-md-6">		
+			<div class="col-md-6">	
+			<label class="control-label ">&nbsp;&nbsp;</label> 			
 			<select class="form-control" id="offertime<?php echo $subcategory->subcategory_id;?>" name ="offertime">
 			<option value="">select</option>
 			<?php $time = array('12:00 am','12:30am','01:00am','01:30am','02:00am','02:30am','03:00am','03:30am','04:00am','04:30am','05:00am','05:30am','06:00am','06:30am','07:00am','07:30am','08:00am','08:30am','09:00am','09:30am','10:00am','10:30am','11:00am','11:30am','12:00pm','12:30pm','01:00pm','01:30pm','02:00pm','02:30pm','03:00pm','03:30pm','04:00pm','04:30pm','05:00pm','05:30pm','06:00pm','06:30pm','07:00pm','07:30pm','08:00pm','08:30pm','09:00pm','09:30pm','10:00pm','10:30pm','11:00pm','11:30pm');?>
@@ -169,14 +191,16 @@ tfoot input {
 		</div>		
 	
 		
-        <div class="modal-footer">
+        <div class="modal-footer" style="border:none;">
           <button type="submit" class="btn btn-default">Submit</button>
         </div>
       </div>
      </div>
-  </div>
-   </form>
+ 
+ 
+    </div>
    </div>
+     </form>
 	<script type="text/javascript">
 	function IsMobile<?php echo $subcategory->subcategory_id;?>(reasontype) {
         var regex = /^[0-9]+$/;
