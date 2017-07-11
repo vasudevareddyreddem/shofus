@@ -7,6 +7,38 @@ class Customer_model extends MY_Model
 		$this->load->database("default");
 	}
 	
+	/* save orders purpose*/
+	public function order_list($cust_id){
+		$this->db->select('order_items.*,products.item_name,products.item_description,products.item_image')->from('order_items');
+		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+		$this->db->where('order_items.customer_id', $cust_id);
+		return $this->db->get()->result_array();
+	}
+	public function get_order_items($order_id){
+		$this->db->select('order_items.*,products.item_name,products.item_description,products.item_image')->from('order_items');
+		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+		$this->db->where('order_items.order_id', $order_id);
+		return $this->db->get()->result_array();
+	}
+	public function save_order_success($data){
+		$this->db->insert('orders', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function save_order_items_list($data){
+		$this->db->insert('order_items', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function after_payment_cart_item($cust_id,$pid,$id){
+		$sql1="DELETE FROM cart WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."' AND id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function get_successorder_total_amount($order_id){
+		$sql="SELECT SUM(total_price) as pricetotalvalue ,SUM(delivery_amount) as delivertamount FROM order_items  WHERE order_id ='".$order_id."'";
+        return $this->db->query($sql)->row_array();
+	}
+	
+	/* save orders purpose*/
+	
 	public function save_billing_deails($data){
 		$this->db->insert('billing_address', $data);
 		return $insert_id = $this->db->insert_id();
@@ -110,7 +142,7 @@ class Customer_model extends MY_Model
         return $this->db->get()->result_array();
 	}
 	public function get_cart_total_amount($cust_id){
-		$sql="SELECT SUM(total_price) as pricetotalvalue ,SUM(delivery_amount) as delivertamount FROM cart  WHERE cust_id ='".$cust_id."'";
+		$sql="SELECT count(item_id) as itemcount ,SUM(total_price) as pricetotalvalue ,SUM(delivery_amount) as delivertamount FROM cart  WHERE cust_id ='".$cust_id."'";
         return $this->db->query($sql)->row_array();
 	}
 	public function get_whishlist_products($cust_id){
