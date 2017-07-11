@@ -4,7 +4,7 @@
  * Example usage of Authorize.net's
  * Advanced Integration Method (AIM)
  */
-class Example extends CI_Controller
+class Payment extends CI_Controller
 {
 	// Example auth & capture of a credit card
 	public function index()

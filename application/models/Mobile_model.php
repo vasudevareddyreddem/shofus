@@ -29,8 +29,7 @@ class Mobile_model extends MY_Model
 	public function get_categories_list($sid)
 	{
 	
-	$this->db->select('*')->from('seller_categories');
-	$this->db->where('seller_id',$sid);
+	$this->db->select('*')->from('category');
 	return $this->db->get()->result_array();
 	}
 	public function get_subcategories_list($categoryid)
