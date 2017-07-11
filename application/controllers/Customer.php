@@ -798,9 +798,11 @@ class Customer extends Front_Controller
  public function inve_changepassword()
 	{		
 		$this->load->view('customer/inventry/header');
+			$this->load->view('customer/inventry/changepassword');
+		$this->load->view('customer/inventry/footer');
 	  	$this->load->view('customer/inventry/sidebar');
-	  	$this->load->view('customer/inventry/changepassword');
-	  	$this->load->view('customer/inventry/footer');
+	  
+	  
 		
 	}
 	public function inve_changepasswordpost(){
