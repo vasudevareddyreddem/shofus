@@ -18,7 +18,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <header class="main-header">
+  <header class="main-header" style="position:fixed;top:0px;width:100%">
 
     <a href="index2.html" class="logo">
 	  
