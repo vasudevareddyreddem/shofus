@@ -8,8 +8,8 @@ class Customer extends Front_Controller
 
 		parent::__construct();	
 			$this->load->helper(array('url','html','form'));
-			$this->load->library('session');
-				$this->load->library('email');
+			$this->load->library('session','form_validation');
+			$this->load->library('email');
 			$this->load->model('customer_model'); 
 			
  }
@@ -490,7 +490,7 @@ class Customer extends Front_Controller
  } 
  public function loginpost(){
 	 
-	 $post=$this->input->post();
+	$post=$this->input->post();
 	//echo '<pre>';print_r($post);exit;
 	$pass=md5($post['password']);
 	$logindetails = $this->customer_model->login_details($post['email'],$pass);
@@ -568,8 +568,6 @@ class Customer extends Front_Controller
 						//echo '<pre>';print_r($users);exit;
 						if(count($users)>0)
 						{
-							
-							
 						$this->load->library('email');
 						$this->email->from('admin@cartinhour.com', 'CartInHour');
 						$this->email->to(base64_decode($post['email']));
@@ -602,6 +600,27 @@ class Customer extends Front_Controller
 		 redirect('customer');
 		}
 	} 
+
+
+	public function changepassword_inve(){
+	
+		
+		if($this->session->userdata('userdetails'))
+		{
+		$this->load->view('customer/inventry/header');
+	  	$this->load->view('customer/inventry/sidebar');
+	  	$this->load->view('customer/inventry/changepassword');
+	  	$this->load->view('customer/inventry/footer');
+				//$this->template->render();
+		}
+		 else{
+		  $this->session->set_flashdata('loginerror','Please login to continue');
+		  redirect('customer');
+		 }
+	}
+
+
+
 	public function changepasswordpost(){
 		if($this->session->userdata('userdetails'))
 		{
@@ -612,13 +631,15 @@ class Customer extends Front_Controller
 		$newpassword=md5($changepasword['newpassword']);
 		$conpassword=md5($changepasword['confirmpassword']);
 		$this->load->model('users_model');
-			$userdetails = $this->customer_model->getcustomer_oldpassword($customerdetail['customer_id']);
+			$userdetails = $this->customer_model->getcustomer_oldpassword($customerdetail['customer_id'],$customerdetail['role_id']);
+			//print_r($userdetails);exit;
 			
 			$currentpasswords=$userdetails['cust_password'];
+			//print_r($currentpasswords);exit;
 			if($currentpostpassword == $currentpasswords ){
 				if($newpassword == $conpassword){
 						$this->load->model('users_model');
-						$passwordchange = $this->customer_model->set_password($customerdetail['customer_id'],$conpassword);
+						$passwordchange = $this->customer_model->set_password($customerdetail['customer_id'],$customerdetail['role_id'],$conpassword);
 						//echo $this->db->last_query();exit;
 						if (count($passwordchange)>0)
 							{
@@ -654,7 +675,120 @@ class Customer extends Front_Controller
 		$this->session->unset_userdata('userdetails');
         redirect('');
 	}
-	
-	
-}
+
+	public function password()
+	{
+		$data['cust_id'] = $this->uri->segment(4);
+		$data['email']= $this->uri->segment(3);
+		$this->load->view('customer/setpassword',$data);
+	}
+
+	public function set_password()
+	{
+		if($this->session->userdata('user_details'))
+		{
+		$customerdetail=$this->session->userdata('user_details');
+		$pass_post = $this->input->post();		
+		$newpassword=md5($pass_post['password']);
+		$conpassword=md5($pass_post['confirmpassword']);
+		if($newpassword == $conpassword){
+						$this->load->model('users_model');
+						$passwordset = $this->customer_model->setpassword_user($customerdetail['customer_id'],$conpassword);
+						if (count($passwordset)>0)
+							{
+								$this->session->set_flashdata('dashboard',"Welcone To Inventory Management!");
+								redirect('customer/inve');
+							}else{
+								$this->session->set_flashdata('passworderror',"Something went wrong in set password process!");
+								redirect('customer/password/'.$pass_post['email'].'/'.$pass_post['cust_id']);
+							}
+				}else{
+					$this->session->set_flashdata('passworderror',"New password and confirm password was not matching");
+					redirect('customer/password');
+				}
+		}else{
+			$this->session->set_flashdata('loginerror','Please Ask Admin');
+		 	redirect('customer');
+		}
+	}
+
+	public function categories()
+	{
+		$data['category'] = $this->customer_model->get_seller_categories();
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/header');
+	  	$this->load->view('customer/inventry/sidebar');
+	  	$this->load->view('customer/inventry/categories',$data);
+	  	$this->load->view('customer/inventry/footer');
+		
+	}
+
+	public function category_wise_sellers()
+	{
+		$cid = base64_decode($this->uri->segment(3));
+		//print_r($data);exit;
+		$data['seller_category'] = $this->customer_model->get_seller_names($cid);
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/header');
+	  	$this->load->view('customer/inventry/sidebar');
+	  	$this->load->view('customer/inventry/category_wise_sellers',$data);
+	  	$this->load->view('customer/inventry/footer');
+		
+	}
+
+	public function seller_id_database()
+	{
+		$data['database_id'] = $this->customer_model->get_seller_databaseid();
+		//echo "<pre>";print_r($data);exit;
+		 $this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/seller_databaseid',$data);
+	   	$this->load->view('customer/inventry/footer');
+	}
+
+
+	public function seller_payments()
+	{
+		$data['seller_payment'] = $this->customer_model->get_seller_payments();
+		//echo "<pre>";print_r($data);exit;
+		 $this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/seller_payments',$data);
+	   	$this->load->view('customer/inventry/footer');
+	}
+
+	public function inventory_management()
+	{
+		$data['inventory_management'] = $this->customer_model->get_inventory_management();
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/inventory_management',$data);
+	   	$this->load->view('customer/inventry/footer');
+	}
+	public function catalog_management()
+	{
+		$data['catalog_management'] = $this->customer_model->get_catalog_management();
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/catalog_management',$data);
+	   	$this->load->view('customer/inventry/footer');
+	}
+
+	public function both()
+	{
+		$data['both'] = $this->customer_model->get_both();
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/both',$data);
+	   	$this->load->view('customer/inventry/footer');
+	}
+
+
+
+
+
+}		
 ?>

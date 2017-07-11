@@ -23,40 +23,36 @@
 
 </header>
 <div class="" style="margin-top:130px;">
+	
 </div>
 <body >
 <div class="pad_bod">
 		<div class="row">
-		
-		<?php //echo '<pre>';print_r($cart_items);exit; ?>
 		<div class="container">
 		<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-primary">
-			<div class="panel-heading ">Change Password</div>
-			
+			<div class="panel-heading ">Set Password</div>
 			<div class="panel-body">
 			<div  style="padding:10px 15px;">
 			<section>
-        <div class="wizard">
-                <div class="tab-content">
-                    <?php if($this->session->flashdata('updatpassword')): ?>
-					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('updatpassword');?></div>
-					<?php endif; ?>
+        <div class="wizard">           
+                <div class="tab-content">     
+                <input type="hidden" id="cust_id" name="cust_id" value="<?php echo $cust_id; ?>">
+			<input type="hidden" id="email" name="email" value="<?php echo $email; ?>">               
 					<?php if($this->session->flashdata('passworderror')): ?>
 					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('passworderror');?></div>	
 					<?php endif; ?>
-                   <form id="chanagepassword" name="chanagepassword" method="post" action="<?php echo base_url('customer/changepasswordpost');?>" class="form-horizontal" role="form">
-                        <div class=" form-group">
-                            <label class="control-label">Old Password</label>
-                            <input type="password" class="form-control" id="oldpassword" name="oldpassword">
-                        </div>
+					<?php if(validation_errors()):?>
+					<!-- <div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo validation_errors(); ?></div> -->	
+				<?php  endif;?>
+                   <form id="chanagepassword" name="chanagepassword" method="post" action="<?php echo base_url('customer/set_password');?>" class="form-horizontal" role="form">
 						<div class=" form-group">
                             <label class="control-label">New Password</label>
-                            <input type="password" class="form-control" id="newpassword" name="newpassword">
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div  class=" form-group">
                            <label class="control-label">Confirm Password</label>
@@ -66,12 +62,13 @@
                             <!-- Button -->
                             <div class="col-sm-12 controls">
                                 <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
-                                    Change password</button>
-
+                                    Set password</button>
                             </div>
                         </div>
-				</form>                
-                </div>          
+				</form>
+                
+                </div>
+          
         </div>
     </section>
 	   </div>
@@ -90,22 +87,8 @@ $(document).ready(function() {
     $('#chanagepassword').bootstrapValidator({
        
         fields: {
-            oldpassword: {
-					validators: {
-					notEmpty: {
-						message: 'Old Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'Old Password  must be greater than 6 characters'
-                    },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Old Password wont allow <>[]'
-					}
-				}
-			},
-			newpassword: {
+          
+			password: {
 					validators: {
 					notEmpty: {
 						message: 'New Password is required'
