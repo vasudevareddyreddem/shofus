@@ -20,6 +20,14 @@ class User_model extends MY_Model
 	$data=$this->db->get();
 	return $d=$data->result();
 	}
+	public function get_all_customers()
+	{
+
+     $this->db->select('*');
+	$this->db->from('customers');
+	$data=$this->db->get();
+	return $d=$data->result();
+	}
 
 	public function insert_users($data)
 	{
