@@ -1,4 +1,4 @@
-<footer class="main-footer">
+<footer class="main-footer ">
     <div class="pull-right hidden-xs">
     </div>
     <?php function auto_copyright($year = 'auto'){ ?>
