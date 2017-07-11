@@ -5,7 +5,7 @@
         <div class="col-lg-12">
       <div class="row">
        <div class="col-md-7">
-           <h3 class="page-header"><i class="fa fa-users" aria-hidden="true"></i>Admin Users</h3></div>
+           <h3 class="page-header"><i class="fa fa-users" aria-hidden="true"></i>Users</h3></div>
           <div class="col-md-5 pull-right">
          <form class="navbar-form" action="<?php echo base_url(); ?>admin/admin_users/search" method="post">
           <input class="form-control" placeholder="Search" name="search" type="text">
@@ -22,38 +22,30 @@
         <div class="col-md-12">
           <section class="panel">
             <header class="panel-heading">
-              <h3>Admin Users</h3>
+              <h3>Users</h3>
             </header>
-
             <div class="panel-body">
               <div><?php echo $this->session->flashdata('message');?></div>
-   <a href="<?php echo base_url(); ?>admin/users/create"  class="add_item"><button class="btn btn-primary" type="submit">Add Users</button></a>
+   <a href="<?php echo base_url(); ?>admin/users/create"  class="add_item"><button class="btn btn-primary" type="submit">Add User</button></a>
              <div class="clearfix"></div>
+             <?php if(!empty($users)): ?>
               <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>S.NO</th>
-                      <th>Admin Name</th>
-                      <th>Admin Email</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      <th>User Name</th>
+                      <th>User Email</th>                      
                     </tr>
-                  </thead>
-                  <?php if(!empty($users)): ?>
+                  </thead>                  
                   <tbody>
                     <?php $i=1;
-   foreach($users as $admin_users_data){?>
+    foreach($users as $user){?>
     <tr>
       <td><?=$i;?></td>
-      <td><?php  echo $admin_users_data->admin_name; ?></td>
-      <td><?php  echo $admin_users_data->admin_email; ?></td>
-      <td><a href="<?php echo base_url(); ?>admin/admin_users/edit/<?php  echo $admin_users_data->admin_id; ?>"><i class="fa fa-pencil-square-o" style="font-size:18px"></i></a></td>
-     <!-- <td><a href="<?php // echo base_url(); ?>admin/admin_users/delete/<?php  echo $admin_users_data->admin_id; ?>" onclick="return checkDelete('<?php // echo $admin_users_data->admin_name; ?>')"><i class="fa fa-trash-o" style="font-size:18px"></i></a></td>-->
- <td class="text-center" > <?php if($admin_users_data->admin_id!=1){ ?> <a href="<?php echo base_url(); ?>admin/admin_users/delete/<?php  echo $admin_users_data->admin_id; ?>" onclick="return checkDelete('<?php  echo $admin_users_data->admin_name; ?>')"><i class="fa fa-trash-o" style="font-size:18px"></i></a><?php }else{?> No Action <?php } ?></td>
-    </tr>
+      <td><?php echo $user->cust_firstname; ?></td>
+      <td><?php echo $user->cust_email; ?></td>      
     <?php $i++; } ?>
-
                   </tbody>
                    <?php else: ?>
               <center>
@@ -62,7 +54,7 @@
 
               <?php endif; ?>
                 </table>
-                <center><?= $this->pagination->create_links(); ?></center>
+                
               </div>
             </div>
             </div>
@@ -82,6 +74,17 @@ function checkDelete(id)
 return confirm('Are you sure want to delete "'+id +'" admin user?');
 }
 
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
 </script>
 
 

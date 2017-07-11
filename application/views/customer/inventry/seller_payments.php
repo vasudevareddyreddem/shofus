@@ -10,7 +10,7 @@
             <!-- /.box-header -->
             <div class="box-body">
             <?php if(!empty($seller_payment)): ?>
-              <table id="example2" class="table table-bordered table-hover">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Order ID</th>
@@ -65,3 +65,16 @@
 </div>
 </div>
 </div>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>

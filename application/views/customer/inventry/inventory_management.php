@@ -10,7 +10,7 @@
             <!-- /.box-header -->
             <div class="box-body">
             <?php if(!empty($inventory_management)): ?>
-              <table id="example2" class="table table-bordered table-hover">
+              <table id="example1" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>Seller Id</th>
@@ -41,3 +41,16 @@
 </div>
 </div>
 </div>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
