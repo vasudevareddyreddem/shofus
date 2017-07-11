@@ -153,8 +153,7 @@
 			<li><a href="">Grocery</a></li>
 			<li><a href="">Food</a></li>
 			<li><a href="">Fashion</a></li>
-			
-		  </ul>
+		</ul>
 	  </div>
 	 
     </nav>

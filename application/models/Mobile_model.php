@@ -26,6 +26,27 @@ class Mobile_model extends MY_Model
 	$this->db->where('seller_id',$sid);
 	return $this->db->get()->result_array();
 	}
+	public function get_categories_list($sid)
+	{
+	
+	$this->db->select('*')->from('seller_categories');
+	$this->db->where('seller_id',$sid);
+	return $this->db->get()->result_array();
+	}
+	public function get_subcategories_list($categoryid)
+	{
+	
+	$this->db->select('*')->from('subcategories');
+	$this->db->where('category_id',$categoryid);
+	return $this->db->get()->result_array();
+	}
+	public function get_subcategory_product_list($sid,$subcategory_id)
+	{ 
+		$this->db->select('*')->from('products');
+		$this->db->where('seller_id',$sid);
+		$this->db->where('subcategory_id',$subcategory_id);
+		return $this->db->get()->result_array();
+	}
 	function delet_get_cat_seller_categories($catid)
 	{
 			$sql1="DELETE FROM category WHERE category_id = '".$catid."'";
