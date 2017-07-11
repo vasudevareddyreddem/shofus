@@ -135,7 +135,7 @@ class Mobile extends REST_Controller {
 	public function  otp_verification_post()
 	{	
 			$otp_verifing=$this->mobile_model->get_seller_details($this->input->get('seller_id'));
-			//echo '<pre>';print_r($otp_verifing);exit;
+			//
 			
 			if($otp_verifing['mobile_verification']== $this->input->get('otp'))
 			{
@@ -366,6 +366,48 @@ class Mobile extends REST_Controller {
 			$message = array('status'=>0,'message'=>'some problem are in query.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
+	}
+	/*get seller category list*/
+	public function get_category_get(){
+		$categorie_list=$this->mobile_model->get_categories_list($this->input->get('seller_id'));
+		echo '<pre>';print_r($categorie_list);exit;
+		if(count($categorie_list)>0){
+			$message = array('status'=>1,'category_list'=>$categorie_list,'message'=>'categories list are found.');
+			$this->response($message, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'category list are not found.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+		
+	}
+	/*get seller subcategory list*/
+	public function get_subcategory_get(){
+		$categorie_list=$this->mobile_model->get_subcategories_list($this->input->get('category_id'));
+		//echo '<pre>';print_r($category);exit;
+		if(count($categorie_list)>0){
+			$message = array('status'=>1,'category_list'=>$categorie_list,'message'=>'Subcategory list are found.');
+			$this->response($message, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Subcategory list are not found.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+		
+	}
+	/* seller subcategory product list */
+	public function get_subcategory_product_get(){
+		$categorie_list=$this->mobile_model->get_subcategory_product_list($this->input->get('seller_id'),$this->input->get('subcategory_id'));
+		//echo '<pre>';print_r($category);exit;
+		if(count($categorie_list)>0){
+			$message = array('status'=>1,'category_list'=>$categorie_list,'message'=>'products list are found.');
+			$this->response($message, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'products list are not found.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+		
 	}
 		
 

@@ -1,5 +1,19 @@
 <!--wrapper start here -->
-
+<style>
+#locationarea_chosen{
+	width:500px !important;
+}
+ .chosen-container-multi .chosen-choices .search-choice .search-choice-close {
+     background: url("<?php echo base_url();?>assets/home/images/close.png") right top no-repeat;
+      display: block;
+      font-size: 1px;
+      height: 10px;
+      position: absolute;
+      right: 4px;
+      top: 7px;
+      width: 12px;
+      cursor: pointer; }
+</style>
 <div class="sidebar_right" >
 			
 			<ul style="padding:0 ">
@@ -97,6 +111,7 @@
 								<span class="top_fix_niv glyphicon glyphicon-triangle-top"></span>
 								<li class="font_list"><a href="<?php echo base_url('customer/account');?>">  <span >My Account</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/cart');?>">  <span >My Cart</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/orders');?>">  <span >My Orders</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/wishlist');?>">  <span >My Wishlist</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/changepassword');?>">  <span >Change Password</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/logout');?>">  <span >Logout</span> </a></li>
@@ -153,8 +168,7 @@
 			<li><a href="">Grocery</a></li>
 			<li><a href="">Food</a></li>
 			<li><a href="">Fashion</a></li>
-			
-		  </ul>
+		</ul>
 	  </div>
 	 
     </nav>
@@ -341,7 +355,7 @@
   </div>
 </div>
 
-<div id="locationdiv"  style="position: absolute;top: 100px;z-index: 1050;">
+<div id="locationdiv"  style="position: absolute;top: 100px;z-index: 1050; display:none">
 	<div class="container">
 	<div class="row">
 	  <div class="col-md-6 col-md-offset-4 well" style="-webkit-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);

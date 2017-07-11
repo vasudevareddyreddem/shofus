@@ -27,7 +27,7 @@
 			<div class="panel-heading ">Price details</div>
 			<div class="panel-body">
 				<div class="pull-left">
-					Price (<?php if(count($carttotal_amount['itemcount']) >0){  echo $carttotal_amount['itemcount'].'  '.'items';}else{  echo "item";  }?>)
+					Price (<?php if($carttotal_amount >0){  echo count($carttotal_amount).'  '.'items';}else{  echo "item";  }?>)
 				</div>
 				<div class="pull-right">
 					<i class="fa fa-inr" aria-hidden="true"></i><?php echo isset($carttotal_amount['pricetotalvalue'])?$carttotal_amount['pricetotalvalue']:''; ?>
@@ -63,7 +63,7 @@
 		
 		<div class="col-md-offset-3 col-md-8 col-md-offset-right-1">
 		<div class="panel panel-primary">
-			<div class="panel-heading ">Payment</div>
+			<div class="panel-heading ">Success</div>
 			<div class="panel-body">
 			<section>
         <div class="wizard">
@@ -81,8 +81,8 @@
                         </a>
 						<p class="text-center"><b>Check Cart</b> </p>
                     </li>  
-					<li role="presentation" class="active" >
-						   <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+					<li role="presentation" class="" >
+						   <a href="javascript:void(0);" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-folder-open"></i>
                             </span>
@@ -91,16 +91,16 @@
 						<p class="text-center"><b>Billing Address</b> </p>
                     </li>
 
-                    <li role="presentation" class="disabled">
-                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                    <li role="presentation" class="">
+                        <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-credit-card"></i>
                             </span>
                         </a>
 						<p class="text-center"><b>Payment mode </b></p>
                     </li>
-                    <li role="presentation" class="disabled">
-                        <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4">
+                    <li role="presentation" class="active">
+                        <a href="javascript:void(0);" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-ok"></i>
                             </span>
@@ -112,46 +112,71 @@
 
          
        <div class="tab-content">
-					<div class="title"><span>Billing Address</span></div>
-					  <div class="table-responsive">
-						<?php //echo '<pre>';print_r($billingaddress);//exit; ?>
-						
-						<form action="<?php echo base_url('customer/billingaddresspost'); ?>" method="post" name="billingaddress" id="billingaddress">
-										<div class="form-group">
-										  <label>Name:</label>
-										  <input type="text" id="name" name="name" class="form-control" value="<?php echo $customerdetail['cust_firstname'].''.$customerdetail['cust_lastname']; ?>">
-										</div>
-										<div class="form-group">
-										  <label >Mobile:</label>
-										  <input type="text" id="mobile" name="mobile" class="form-control" value="<?php echo $customerdetail['cust_mobile'];?>" >
-										</div>
-										<div class="form-group">
-										 <label class="control-label">Delivery Location Area</label>
-											<select class="form-control" id="area" name="area">
-											<option value="">Select</option>
-											<?php foreach($locationdata as $localarea){ ?>
-											<?php if($customerdetail['area']==$localarea['location_id']){	?>
-												<option value="<?php echo $localarea['location_id']; ?>" selected><?php echo $localarea['location_name']; ?></option>
-											<?php }else{ ?>
-											<option value="<?php echo $localarea['location_id']; ?>"><?php echo $localarea['location_name']; ?></option>
-											<?php } ?>
-											<?php } ?>
-											</select> 
-										</div>
-										<div class="form-group">
-										  <label >Address 1:</label>
-										  <input type="text" id="address1" name="address1" class="form-control" value="<?php echo $customerdetail['address1']; ?>"  >
-										</div>
-										<div class="form-group">
-										  <label >Address 2:</label>
-										  <input type="text" id="address2" name="address2" class="form-control"  value="<?php echo $customerdetail['address2']; ?>" >
-										</div> 
-					
-						<button style="float:right;" type="submit">Proceed to Checkout</span></button>
-					</form>
-				
-					
-				</div>
+					<div class="title"><span>Thanks for Shoping</span></div>
+					 <?php if($this->session->flashdata('paymentsucess')): ?>
+						<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('paymentsucess');?></div>
+			<?php endif; ?>
+						<div class="row">
+							<div class="col-md-6">
+								<h3 class="site_co"> </h3>
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
+							</div>
+							<div class="col-md-6">
+								<div class="table-responsive">
+								<table class="table table-bordered table-cart">
+								  <thead>
+									<tr>
+									  <th>Product</th>
+									  <th>Description</th>
+									  <th>Status</th>
+									  <th>Price</th>
+									</tr>
+								  </thead>
+								  <tbody>
+								  
+								  <?php 
+								  //echo '<pre>';print_r($order_items);exit;
+								  $total='';
+								  foreach ($order_items as $items_list){ ?>
+									<tr>
+									
+									
+									  <td class="img-cart">
+										<a href="<?php echo base_url('category/productview/'.base64_encode($items_list['item_id'])); ?>">
+										  <img src="<?php echo base_url('uploads/products/'.$items_list['item_image']); ?>" class="img-thumbnail">
+										</a>
+									  </td>
+									  <td>
+										<p><?php echo $items_list['item_description']; ?></p>
+									  </td>
+									  <td class="input-qty">Confirmed</td>
+									 
+									  <td class="sub"><?php echo $items_list['total_price']; ?></td>
+									 
+									</tr>
+									
+									<?php $total +=$items_list['total_price']; ?>
+									<?php } ?>
+									
+									<tr>
+									  <td colspan="3" class="text-right">Total</td>
+									  <td colspan="1"><b><?php echo $total; ?></b></td>
+									</tr>
+									<tr>
+									<td colspan="3" class="text-right">Grand Total</td>
+									<td colspan="1"><b><?php echo $totalpayamount=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></td>
+									</tr>
+								  </tbody>
+								</table>
+							  </div>
+							</div>
+							<div class="clearfix"></div>
+							
+						</div>
+       
+                    
     </section>
 	
 	   </div>

@@ -191,6 +191,22 @@ class Customer extends Front_Controller
 	} 
 	 
  }
+ public function orders(){
+	 
+	 if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		$data['orders_list']= $this->customer_model->order_list($customerdetails['customer_id']);
+		
+		//echo '<pre>';print_r($data);exit;
+		$this->template->write_view('content', 'customer/orders', $data);
+		$this->template->render();
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	} 
+	 
+ } 
  public function cart(){
 	 
 	 if($this->session->userdata('userdetails'))
@@ -330,6 +346,8 @@ class Customer extends Front_Controller
 		$data['locationdata'] = $this->home_model->getlocations();
 		$data['customerdetail']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
 		$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+		
+		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/billingadrres',$data);
 		$this->template->render();
 	}else{
@@ -371,7 +389,34 @@ class Customer extends Front_Controller
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
 		$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+		
+		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/payment',$data);
+		$this->template->render();
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	}
+	 
+	 
+ }
+ public function ordersuccess(){
+	 if($this->session->userdata('userdetails'))
+	 {
+
+	$order_id=base64_decode($this->uri->segment(3));
+	//echo '<pre>';print_r($order_id);exit;
+	  $customerdetails=$this->session->userdata('userdetails');
+		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		//echo '<pre>';print_r($cart_items);exit;
+		foreach($cart_items as $items){
+		$delete= $this->customer_model->after_payment_cart_item($customerdetails['customer_id'],$items['item_id'],$items['id']);
+		}
+		$data['order_items']= $this->customer_model->get_order_items($order_id);
+		$data['carttotal_amount']= $this->customer_model->get_successorder_total_amount($order_id);
+
+		//echo '<pre>';print_r($data);exit;
+		$this->template->write_view('content', 'customer/success',$data);
 		$this->template->render();
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');

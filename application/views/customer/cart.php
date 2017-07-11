@@ -27,7 +27,7 @@
 			<div class="panel-heading ">Price details</div>
 			<div class="panel-body">
 				<div class="pull-left">
-					Price (<?php if($carttotal_amount >0){  echo count($carttotal_amount).'  '.'items';}else{  echo "item";  }?>)
+					Price (<?php if(count($cart_items) >0){  echo count($cart_items).'  '.'items';}else{  echo "item";  }?>)
 				</div>
 				<div class="pull-right">
 					<i class="fa fa-inr" aria-hidden="true"></i><?php echo isset($carttotal_amount['pricetotalvalue'])?$carttotal_amount['pricetotalvalue']:''; ?>

@@ -1,83 +1,22 @@
-<!--<div class="content-wrapper">
-  
-      <div class="container">
-       
-      <div class="row">
-      <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Seller Id's In Database</h3>
-            </div>
-            
-            <div class="box-body">
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>Seller ID</th>
-                  <th>Seller Name</th>
-                  <th>Seller Mobile Number</th>                  
-                  <th>Seller Store Details</th>
-                  <th>Seller Categories</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php  
-                  foreach($database_id as $id) {?>
-                <tr>                  
-                  <td><?php echo $id['seller_id']; ?></td>
-                  <td><?php echo $id['seller_name']; ?></td>
-                  <td><?php echo $id['seller_mobile']; ?></td>
-                  <td>
-                    <table class="table table-bordered qtytable">
-                    <tbody>
-                      <tr>
-                        <th>Shop name</th>
-                        <td><?php echo $id['store_name']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>Address1</th>
-                        <td><?php echo $id['addrees1']; ?></td>
-                      </tr>
-                      <tr>
-                        <th>Address2</th>
-                        <td><?php echo $id['addrees2']; ?></td>
-                      </tr>
-                      
-                    </tbody>
-                  </table>                   
-                  </td> 
-                        <td><?php echo $id['categoryname']; ?>.</td>               
-                </tr>
-                 <?php }?>
-                </tbody>
-                </tbody>                
-              </table>
-            </div>
 
-            
-          </div>
-</div>
-</div>
-</div>-->
- <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Data Tables
-        <small>advanced tables</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
-      </ol>
-    </section>
- <section class="content">
+
+
+<!--wrapper start here -->
+
+<div class="wrapper"> 
+  <!--header part start here -->
+  <div class="jain_container">
+			<div class="" style="margin-top:180px;">
+				
+			</div>
+		<body >
+		<div class="container">
+			<div class="row">
+				<section class="content">
       <div class="row">
         <div class="col-xs-12">
 			<div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
-            </div>
+        
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
@@ -528,3 +467,23 @@
     });
   });
 </script>
+			</div>
+		</div>
+	</div>
+
+	
+
+
+
+
+		
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/common.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/owl.carousel.min.js"></script> 
+
+<!-- the overlay element --> 
+
+<script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
+<script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
+
+ 
