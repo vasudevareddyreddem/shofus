@@ -18,9 +18,16 @@ class Users extends Admin_Controller {
 
 	public function index()
 	{
-		$data['roles'] = $this->user_model->roles_get();
+		$data['users'] = $this->users_model->get_all();
 		//echo "<pre>";print_r($data);exit;
 		$this->template->write_view('content', 'admin/users/index',$data);
+		$this->template->render();
+	}
+	public function create()
+
+	{
+		$data['roles'] = $this->user_model->roles_get();
+		$this->template->write_view('content', 'admin/users/add' ,$data);
 		$this->template->render();
 	}
 

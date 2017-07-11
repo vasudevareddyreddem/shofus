@@ -77,7 +77,9 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url();?>seller/orders">Total Orders</a></li>
+                            <li>
+                            <a href="<?php echo base_url();?>seller/orders">Total Orders</a>
+                            </li>
                                 <li><a href="<?php echo base_url();?>seller/orders/new_orders">New Orders</a></li>
                                 <li><a href="<?php echo base_url();?>seller/orders/assigned_orders">Assigned Orders</a></li>
                                 <li><a href="<?php echo base_url();?>seller/orders/inprogress_orders">In-progress Orders</a></li>
@@ -94,6 +96,21 @@
                             </a>
                             
                         </li> -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-pencil-square-o"></i><span>Show Ups</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">                            
+                                <li><a href="<?php echo base_url();?>seller/showups/home_page_banner">Home Page Banners</a></li>
+                                <li><a href="<?php echo base_url();?>seller/">Top Offers</a></li>
+                                <li><a href="<?php echo base_url();?>seller/">Deals Of the Day</a></li>
+                                <li><a href="<?php echo base_url();?>seller/">Season Sales</a></li>
+                                
+                            </ul>
+                        </li>
                         <li class="treeview">
                             <a href="<?php echo base_url();?>seller/payments">
                                 <i class="fa fa-credit-card"></i> <span>Payments Overview</span>    
@@ -113,7 +130,8 @@
                         <a href="<?php echo base_url();?>seller/services">
                             <i class="fa fa-envelope-open-o"></i><span>Request For Services</span>
                         </a>                        
-                    </li>       
+                    </li>
+                           
             </ul>
         </div> <!-- /.sidebar -->
     </aside>

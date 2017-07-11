@@ -94,6 +94,27 @@ class Customer_model extends MY_Model
 		$sql="SELECT * FROM customers WHERE cust_email ='".$email."'";
         return $this->db->query($sql)->row_array(); 
 	}
+	public function get_user($cid,$email){
+		$this->db->select('*')->from('customers');		
+		$this->db->where('customer_id', $cid);
+		$this->db->where('cust_email', $email);
+		return $this->db->get()->row_array();
+	}
+
+	public function role_ids($email){
+		$this->db->select('customers.role_id')->from('customers');
+		$this->db->join('roles', 'roles.role_id = customers.role_id', 'left');		
+		$this->db->where('cust_email', $email);	
+        return $this->db->get()->row_array();
+	}
+	public function inve_login_details($email,$pass,$role_id){
+		$this->db->select('*')->from('customers');		
+		$this->db->where('cust_email', $email);
+		$this->db->where('cust_password', $pass);
+		$this->db->where('role_id', $role_id);
+        return $this->db->get()->row_array();
+	}
+
 	public function login_details($email,$pass){
 		$this->db->select('*')->from('customers');
 		$this->db->where('cust_email', $email);
