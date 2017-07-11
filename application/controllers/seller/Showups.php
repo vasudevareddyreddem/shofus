@@ -25,7 +25,7 @@ class Showups extends Admin_Controller {
 	public function save_banner(){
 		if(isset($_POST)){
 			if(!empty($_FILES['picture_one']['name'])){
-				$config['upload_path'] = 'uploads/products/';
+				$config['upload_path'] = 'uploads/banners/';
 				$config['allowed_types'] = 'jpg|jpeg|png|gif';
 				$config['file_name'] = $_FILES['picture_one']['name'];
                 //Load upload library and initialize configuration
