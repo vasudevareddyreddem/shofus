@@ -37,19 +37,16 @@
 			<section>
         <div class="wizard">           
                 <div class="tab-content">     
-                <input type="hidden" id="cust_id" name="cust_id" value="<?php echo $cust_id; ?>">
-			<input type="hidden" id="email" name="email" value="<?php echo $email; ?>">               
+                               
 					<?php if($this->session->flashdata('passworderror')): ?>
 					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('passworderror');?></div>	
+					</button><?php echo $this->session->flashdata('passworderror');?></div>
 					<?php endif; ?>
-					<?php if(validation_errors()):?>
-					<!-- <div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo validation_errors(); ?></div> -->	
-				<?php  endif;?>
+					
                    <form id="chanagepassword" name="chanagepassword" method="post" action="<?php echo base_url('customer/set_password');?>" class="form-horizontal" role="form">
+                   <input type="hidden" id="cust_id" name="cust_id" value="<?php echo $cust_id; ?>">
+				<input type="hidden" id="cust_email" name="cust_email" value="<?php echo $cust_email; ?>">
 						<div class=" form-group">
                             <label class="control-label">New Password</label>
                             <input type="password" class="form-control" id="password" name="password">

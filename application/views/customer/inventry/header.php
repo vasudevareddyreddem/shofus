@@ -19,7 +19,7 @@
 
   <header class="main-header">
 
-    <a href="index2.html" class="logo">
+    <a href="" class="logo">
 	  
       <span class="logo-mini"><img style="width:75%" src="<?php echo base_url(); ?>assets/vendor/inventry/dist/img/mini-logo.png" class="img-responsive" ></span>
       <span class="logo-lg"><img style="width:75%" src="<?php echo base_url(); ?>assets/vendor/inventry/dist/img/logo.png" class="img-responsive" ></span>
@@ -232,9 +232,9 @@
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">Admin	</span>
             </a><ul class="dropdown-menu pad_prof" >
-              <a href="<?php echo base_url('customer/changepassword_inve');?>"><li class="user-body">Change Password</li></a>
-              <a><li class="user-body">profile</li></a>
-              <a><li class="user-body">profile</li></a>
+              <a href="<?php echo base_url('customer/inve_changepassword');?>"><li class="user-body">Change Password</li></a>
+              <a><li class="user-body">update profile</li></a>
+              <a href="<?php echo base_url('customer/inve_logout');?>"><li class="user-body">Logout</li></a>
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->

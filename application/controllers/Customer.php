@@ -7,21 +7,17 @@ class Customer extends Front_Controller
   {
 
 		parent::__construct();	
-			$this->load->helper(array('url','html','form'));
-			$this->load->library('session','form_validation');
-			$this->load->library('email');
-			$this->load->model('customer_model'); 
+		$this->load->helper(array('url','html','form'));
+		$this->load->library('session','form_validation');
+		$this->load->library('email');
+		$this->load->model('customer_model'); 
 			
  }
  
 
-  public function inve(){
-	  $this->load->view('customer/inventry/header');
-	  $this->load->view('customer/inventry/sidebar');
-	  $this->load->view('customer/inventry/index');
-	  $this->load->view('customer/inventry/footer');
-	
-  }
+  
+  
+
   public function locationsearch(){
 		$post=$this->input->post();
 	  	$data['product_search']= $this->customer_model->get_product_search_location($post['locationarea']);
@@ -496,8 +492,7 @@ class Customer extends Front_Controller
 	$logindetails = $this->customer_model->login_details($post['email'],$pass);
 	//echo '<pre>';print_r($logindetails);
 		if(count($logindetails)>0)
-		{
-			
+		{			
 			if($this->session->userdata('location_area')!=''){
 			$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$this->session->userdata('location_area'));	
 				if(count($updatearea)>0){
@@ -529,8 +524,7 @@ class Customer extends Front_Controller
 	$forgotpass = $this->customer_model->forgot_login($post['emailaddress']);
 	//echo '<pre>';print_r($forgotpass);exit;
 		if(count($forgotpass)>0)
-		{
-			
+		{			
 			$this->load->library('email');
 			$this->email->from('admin@cartinhour.com', 'CartInHour');
 			$this->email->to($post['emailaddress']);
@@ -576,7 +570,7 @@ class Customer extends Front_Controller
 						//echo $html;exit;
 						$this->email->message($html);
 						$this->email->send();
-							
+						
 							$this->session->set_flashdata("forsuccess","Password successfully changed!");
 							redirect('customer');
 						}
@@ -602,22 +596,7 @@ class Customer extends Front_Controller
 	} 
 
 
-	public function changepassword_inve(){
 	
-		
-		if($this->session->userdata('userdetails'))
-		{
-		$this->load->view('customer/inventry/header');
-	  	$this->load->view('customer/inventry/sidebar');
-	  	$this->load->view('customer/inventry/changepassword');
-	  	$this->load->view('customer/inventry/footer');
-				//$this->template->render();
-		}
-		 else{
-		  $this->session->set_flashdata('loginerror','Please login to continue');
-		  redirect('customer');
-		 }
-	}
 
 
 
@@ -632,8 +611,7 @@ class Customer extends Front_Controller
 		$conpassword=md5($changepasword['confirmpassword']);
 		$this->load->model('users_model');
 			$userdetails = $this->customer_model->getcustomer_oldpassword($customerdetail['customer_id'],$customerdetail['role_id']);
-			//print_r($userdetails);exit;
-			
+			//print_r($userdetails);exit;			
 			$currentpasswords=$userdetails['cust_password'];
 			//print_r($currentpasswords);exit;
 			if($currentpostpassword == $currentpasswords ){
@@ -645,7 +623,9 @@ class Customer extends Front_Controller
 							{
 								$this->session->set_flashdata('updatpassword',"Password successfully changed!");
 								redirect('customer/changepassword');
-							}else{
+							}
+							else
+							{
 								$this->session->set_flashdata('passworderror',"Something went wrong in change password process!");
 								redirect('customer/changepassword');
 							}
@@ -657,8 +637,6 @@ class Customer extends Front_Controller
 					$this->session->set_flashdata('passworderror',"Your Old password is incorrect. Please try again.");
 					redirect('customer/changepassword');
 				}
-			
-		
 		}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('customer');
@@ -676,41 +654,227 @@ class Customer extends Front_Controller
         redirect('');
 	}
 
+
+
+	/* Inventory managent*/
+
+	public function inve(){
+	  //$this->load->view('customer/inventry/header');
+	  //$this->load->view('customer/inventry/sidebar');
+	  $this->load->view('customer/inventry/login');
+	  //$this->load->view('customer/inventry/footer');
+	
+  }
+  public function inve_dashboard(){
+  	$data['users'] = $this->session->userdata('userdetails');
+  	//echo "<pre>";print_r($data);exit;
+	  $this->load->view('customer/inventry/header');
+	  $this->load->view('customer/inventry/sidebar');
+	  $this->load->view('customer/inventry/index',$data);
+	  $this->load->view('customer/inventry/footer');
+	
+  }
+
 	public function password()
 	{
-		$data['cust_id'] = $this->uri->segment(4);
-		$data['email']= $this->uri->segment(3);
+		$data['cust_id'] = base64_decode($this->uri->segment(4));
+		//echo "<pre>";print_r($data);exit;
+		$data['cust_email']= base64_decode($this->uri->segment(3));
 		$this->load->view('customer/setpassword',$data);
 	}
 
 	public function set_password()
 	{
-		if($this->session->userdata('user_details'))
-		{
-		$customerdetail=$this->session->userdata('user_details');
-		$pass_post = $this->input->post();		
+
+		
+		$pass_post = $this->input->post();	
+		//echo "<pre>";print_r($pass_post);exit;	
 		$newpassword=md5($pass_post['password']);
 		$conpassword=md5($pass_post['confirmpassword']);
-		if($newpassword == $conpassword){
+		$cust_email = $pass_post['cust_email'];
+		$cust_id = $pass_post['cust_id'];
+		//$cust_email = $this->input->post('cust_email');
+		//echo "<pre>";print_r($cust_email);exit;
+		if($newpassword == $conpassword)
+		{
+			$test  = $this->customer_model->get_user($pass_post['cust_id'],$pass_post['cust_email']);
+			//echo "<pre>";print_r($test);exit;
+			if($cust_email=$test['cust_email'] && $cust_id=$test['customer_id'])
+			{
+				$passwordset = $this->customer_model->setpassword_user($pass_post['cust_id'],$conpassword);
+				//echo "<pre>";print_r($passwordset);exit;
+				if (count($passwordset)>0)
+				{
+					$this->session->set_flashdata('dashboard',"Welcone To Inventory Management!");
+					redirect('customer/inve');
+				}
+				else
+				{
+					$this->session->set_flashdata('passworderror',"Something went wrong in set password process!");
+					redirect('customer/password/'.base64_encode($pass_post['cust_email']).'/'.base64_encode($pass_post['cust_id']
+					));
+				}					
+			}
+			else
+			{	
+			$this->session->set_flashdata('passworderror',"Your Email Id Is Worng");
+				redirect('customer/password/'.base64_encode($pass_post['cust_email']).'/'.base64_encode($pass_post['cust_id']));			
+								
+			}				
+		}
+		else
+		{
+			$this->session->set_flashdata('passworderror',"New password and confirm password was not matching");
+			redirect('customer/password/'.base64_encode($pass_post['cust_email']).'/'.base64_encode($pass_post['cust_id']));
+		}
+		
+	}
+	
+	public function inventery_loginpost(){
+	 
+	$post=$this->input->post();
+	//echo '<pre>';print_r($post);exit;	
+	$pass=md5($post['password']);
+	$role_id =$this->customer_model->role_ids($post['email']);
+	//echo '<pre>';print_r($role_id);exit;
+	$logindetails = $this->customer_model->inve_login_details($post['email'],$pass,$role_id['role_id']);
+	//echo '<pre>';print_r($logindetails);exit;
+		if(count($logindetails)>0)
+		{
+			$this->session->set_userdata('userdetails',$logindetails);		
+			$this->session->set_flashdata('sucesss',"Successfully Login");
+			redirect('customer/inve_dashboard');
+		}else{
+			$this->session->set_flashdata('login_error',"Invalid Email Address or Password!");
+			redirect('customer/inve');
+		}
+ }
+
+ public function inve_changepassword()
+	{		
+		$this->load->view('customer/inventry/header');
+	  	$this->load->view('customer/inventry/sidebar');
+	  	$this->load->view('customer/inventry/changepassword');
+	  	$this->load->view('customer/inventry/footer');
+		
+	}
+	public function inve_changepasswordpost(){
+		if($this->session->userdata('userdetails'))
+		{
+		$customerdetail=$this->session->userdata('userdetails');
+		$changepasword = $this->input->post();
+		//echo '<pre>';print_r($changepasword);
+		$currentpostpassword=md5($changepasword['oldpassword']);
+		$newpassword=md5($changepasword['newpassword']);
+		$conpassword=md5($changepasword['confirmpassword']);
+		$this->load->model('users_model');
+			$userdetails = $this->customer_model->getcustomer_oldpassword($customerdetail['customer_id'],$customerdetail['role_id']);
+			//print_r($userdetails);exit;			
+			$currentpasswords=$userdetails['cust_password'];
+			//print_r($currentpasswords);exit;
+			if($currentpostpassword == $currentpasswords ){
+				if($newpassword == $conpassword){
 						$this->load->model('users_model');
-						$passwordset = $this->customer_model->setpassword_user($customerdetail['customer_id'],$conpassword);
-						if (count($passwordset)>0)
+						$passwordchange = $this->customer_model->set_password($customerdetail['customer_id'],$customerdetail['role_id'],$conpassword);
+						//echo $this->db->last_query();exit;
+						if (count($passwordchange)>0)
 							{
-								$this->session->set_flashdata('dashboard',"Welcone To Inventory Management!");
-								redirect('customer/inve');
-							}else{
-								$this->session->set_flashdata('passworderror',"Something went wrong in set password process!");
-								redirect('customer/password/'.$pass_post['email'].'/'.$pass_post['cust_id']);
+								$this->session->set_flashdata('updatpassword',"Password successfully changed!");
+								redirect('customer/inve_changepassword');
+							}
+							else
+							{
+								$this->session->set_flashdata('passworderror',"Something went wrong in change password process!");
+								redirect('customer/inve_changepassword');
 							}
 				}else{
 					$this->session->set_flashdata('passworderror',"New password and confirm password was not matching");
-					redirect('customer/password');
+					redirect('customer/inve_changepassword');
+				}
+			}else{
+					$this->session->set_flashdata('passworderror',"Your Old password is incorrect. Please try again.");
+					redirect('customer/inve_changepassword');
 				}
 		}else{
-			$this->session->set_flashdata('loginerror','Please Ask Admin');
-		 	redirect('customer');
+		 $this->session->set_flashdata('login_error','Please login to continue');
+		 redirect('customer/inve');
 		}
 	}
+
+
+
+
+ public function inve_forgotpassword(){
+	  
+	$this->load->view( 'customer/inventry/forgotpassword'); 
+	} 
+	public function inve_forgotpasswordpost(){
+	  
+		$post=$this->input->post();
+	//echo '<pre>';print_r($post);
+	$forgotpass = $this->customer_model->forgot_login($post['emailaddress']);
+	//echo '<pre>';print_r($forgotpass);exit;
+		if(count($forgotpass)>0)
+		{			
+			$this->load->library('email');
+			$this->email->from('admin@cartinhour.com', 'CartInHour');
+			$this->email->to($post['emailaddress']);
+			$this->email->subject('CartInHour - Forgot Password');
+			$html = "Click this link to reset your password. ".site_url('customer/inve_resetpassword/'.base64_encode($forgotpass['cust_email']).'/'.base64_encode($forgotpass['customer_id']));
+			echo $html;exit;
+			$this->email->message($html);
+			$this->email->send();
+			$this->session->set_flashdata('forsuccess','Check Your Email to reset your password!');
+			redirect('customer/inve_forgotpasswordpost');
+		}else{
+			$this->session->set_flashdata('error',"Invalid Email Address!");
+			redirect('customer/inve_forgotpassword');
+		}
+	}
+	public function inve_resetpassword(){
+	
+		$data['cust_id'] = $this->uri->segment(4);
+		$data['email']= $this->uri->segment(3);
+	$this->load->view( 'customer/resetpassword',$data); 
+	} 
+	
+	
+	public function inve_resetpasswordpost(){
+	
+			$post=$this->input->post();
+		//echo '<pre>';print_r($post);exit;
+			if(isset($post['newpassword']) && $post['confirmpassword'] !='' )
+				{
+					if(md5($post['newpassword'])== md5($post['confirmpassword']))
+					{
+						$users = $this->customer_model->update_password($post['newpassword'],base64_decode($post['cust_id']),base64_decode($post['email']));
+						
+						//echo '<pre>';print_r($users);exit;
+						if(count($users)>0)
+						{
+						$this->load->library('email');
+						$this->email->from('admin@cartinhour.com', 'CartInHour');
+						$this->email->to(base64_decode($post['email']));
+						$this->email->subject('CartInHour - Forgot Password');
+						$html = "Pasword Successfully changed";
+						//echo $html;exit;
+						$this->email->message($html);
+						$this->email->send();
+						
+							$this->session->set_flashdata("forsuccess","Password successfully changed!");
+							redirect('customer/inve');
+						}
+					}
+					else
+					{
+						$this->session->set_flashdata("error","Passwords are Not matched!");
+						redirect('customer/inve_resetpassword/'.$post['email'].'/'.$post['cust_id']);
+					}
+		}
+	}
+
+
+
 
 	public function categories()
 	{
@@ -733,7 +897,6 @@ class Customer extends Front_Controller
 	  	$this->load->view('customer/inventry/sidebar');
 	  	$this->load->view('customer/inventry/category_wise_sellers',$data);
 	  	$this->load->view('customer/inventry/footer');
-		
 	}
 
 	public function seller_id_database()
@@ -784,6 +947,57 @@ class Customer extends Front_Controller
 	   	$this->load->view('customer/inventry/sidebar');
 	   	$this->load->view('customer/inventry/both',$data);
 	   	$this->load->view('customer/inventry/footer');
+	}
+
+
+	public function home_page_banner()
+	{
+		$this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/home_page_banner');
+	   	$this->load->view('customer/inventry/footer');
+	}
+	public function top_offers()
+	{
+		$this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/top_offers');
+	   	$this->load->view('customer/inventry/footer');
+	}
+	public function deals_of_day()
+	{
+		$this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/deals_of_day');
+	   	$this->load->view('customer/inventry/footer');
+	}
+	public function season_sales()
+	{
+		$this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/season_sales');
+	   	$this->load->view('customer/inventry/footer');
+	}
+	public function others()
+	{
+		$this->load->view('customer/inventry/header');
+	   	$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/others');
+	   	$this->load->view('customer/inventry/footer');
+	}
+	
+	
+	
+
+
+	public function inve_logout(){
+		
+		$userinfo = $this->session->userdata('userdetails');
+		//echo '<pre>';print_r($userinfo );exit;
+        $this->session->unset_userdata($userinfo);
+		$this->session->sess_destroy('userdetails');
+		$this->session->unset_userdata('userdetails');
+        redirect('customer/inve');
 	}
 
 

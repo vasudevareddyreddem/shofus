@@ -1,47 +1,3 @@
-<!-- <div class="row setup-content ">
-	<div class="col-xs-12 ">
-		<div class="col-md-4 col-md-offset-4 mar_t50 ">
-			<div class="well">
-
-					<?php if($this->session->flashdata('passworderror')): ?>
-					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('passworderror');?></div>	
-					<?php endif; ?>
-			<input type="hidden" id="cust_id" name="cust_id" value="<?php echo $cust_id; ?>">
-			<input type="hidden" id="email" name="email" value="<?php echo $email; ?>">
-				 <form id="setpassword" name="setpassword" action="<?php echo base_url('customer/set_password'); ?>" method="post" >
-					<div class="form-group">
-					<label class="control-label">Password</label>
-					<input type="password" id="password" name="password" class="form-control"/>
-					</div>
-					<div class="form-group">
-					<label class="control-label">Confirm Password</label>
-					<input type="password" id="confirmpassword"  name="confirmpassword" class="form-control"  />
-					</div>
-					<button type="submit" id="resubmit" class="btn btn-primary btn-info" value="Next"> Set Password</button>
-				</form>
-			</div>
-		</div>
-	</div>
-</div> -->
-
-
-
-<style>
-.panel-title > a:before {
-    float: left !important;
-    font-family: FontAwesome;
-    content:"\f1db";
-    padding-right: 5px;
-}
-
-.panel-title > a:hover, 
-.panel-title > a:active, 
-.panel-title > a:focus  {
-    text-decoration:none;
-}
-</style>
 <header>
 <!--wrapper start here -->
 
@@ -57,8 +13,6 @@
 <body >
 <div class="pad_bod">
 		<div class="row">
-		
-		<?php //echo '<pre>';print_r($cart_items);exit; ?>
 		<div class="container">
 		<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-primary">
