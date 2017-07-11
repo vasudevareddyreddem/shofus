@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/plugins/datatables/dataTables.bootstrap.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/dist/css/style.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/dist/css/cartin.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/dist/css/skins/_all-skins.min.css">
