@@ -1,5 +1,9 @@
 <!--wrapper start here -->
-
+<style>
+#locationarea_chosen{
+	width:500px !important;
+}
+</style>
 <div class="sidebar_right" >
 			
 			<ul style="padding:0 ">
@@ -341,7 +345,7 @@
   </div>
 </div>
 
-<div id="locationdiv"  style="position: absolute;top: 100px;z-index: 1050;">
+<div id="locationdiv"  style="position: absolute;top: 100px;z-index: 1050; display:none">
 	<div class="container">
 	<div class="row">
 	  <div class="col-md-6 col-md-offset-4 well" style="-webkit-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);
