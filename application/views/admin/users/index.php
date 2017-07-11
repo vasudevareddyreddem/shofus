@@ -28,27 +28,27 @@
               <div><?php echo $this->session->flashdata('message');?></div>
               <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">First Name</label>
-                  <input type="text" name="first_name" id="first_name" class="form-control">
+                  <input type="text" name="first_name" placeholder="Enter  First Name" id="first_name" class="form-control">
                   <span style="color:red"> <?php echo form_error('first_name'); ?> </span>
                   <span id="fst_msg" style="color:red"> </span>
                 </div>
                
                 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Last Name</label>
-                  <input type="text" name="last_name" id="last_name" class="form-control">
+                  <input type="text" name="last_name" placeholder="Enter  Last Name" id="last_name" class="form-control">
                   <span style="color:red"> <?php echo form_error('last_name'); ?> </span>
                   <span id="lst_msg" style="color:red"> </span>
                 </div>
                 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Email</label>
-                  <input type="text" name="email_id" id="email_id"  class="form-control">
+                  <input type="text" name="email_id" placeholder="Enter  Email Address" id="email_id"  class="form-control">
                    <span style="color:red"> <?php echo form_error('email_id'); ?> </span>
                   <span id="email_msg" style="color:red"> </span>            
                 </div>
                 <div class="form-group nopaddingRight col-md-7">
                   <label for="exampleInputPassword1">Select Role</label>
                   <select class="form-control m-bot15" id="role_id" name="role_id">
-                    <option value="">Select Category</option>
+                    <option value="">Select Role</option>
                     <?php foreach($roles as $role){ ?>
                     <option value="<?php echo $role->role_id ?>"><?php echo $role->role ?></option>
                      <?php } ?>

@@ -126,14 +126,14 @@
 			<?php if(count($cartitemcount)>0){ ?>
 				<?php echo count($cartitemcount); ?>
 				</sup>
-				<p >Cart</p>
+				<p>Cart</p>
 				<div class="sprinkle"></div>
 			<?php } ?>
 			
 			</span>
 			<?php } else{ ?>
 			<span class="medias text-center"><a href="<?php echo base_url('customer');?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
-				<p >Cart</p></a>
+				<p>Cart</p></a>
 			</span>
 			</a>&nbsp;<sup class="sup"></sup></span>
 			<?php } ?>
@@ -157,8 +157,7 @@
 			<li><a href="">Grocery</a></li>
 			<li><a href="">Food</a></li>
 			<li><a href="">Fashion</a></li>
-			
-		  </ul>
+		</ul>
 	  </div>
 	 
     </nav>

@@ -19,7 +19,7 @@ class Promotions_model extends MY_Model
 	function get_seller_products_data($sid){
 		$this->db->select('products.*,category.category_name')->from('products');
 		$this->db->join('category', 'category.category_id = products.category_id', 'left'); //
-		$this->db->where('seller_id', $sid);
+		$this->db->where('products.seller_id', $sid);
 		return $this->db->get()->result_array();
 	}
 	function get_seller_subcat_products_data($subcat_id){

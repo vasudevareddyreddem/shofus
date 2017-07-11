@@ -221,7 +221,7 @@
           </nav>
 		  
 		<?php }else{ ?>
-		</tr> No Itema  are In cart </tr>
+		</tr> No Item In the cart </tr>
 		<?php } ?>
 		<div class="clearfix"></div>
                 </div>
