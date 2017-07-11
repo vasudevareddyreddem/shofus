@@ -5938,15 +5938,7 @@ box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
     margin: 6px 0 3px 5px;
     padding: 3px 20px 3px 5px;
     position: relative; }
-    .chosen-container-multi .chosen-choices .search-choice .search-choice-close {
-      background: url("chosen-sprite.png") right top no-repeat;
-      display: block;
-      font-size: 1px;
-      height: 10px;
-      position: absolute;
-      right: 4px;
-      top: 5px;
-      width: 12px;
-      cursor: pointer; }
+   
+	 
 
  /* multiselect css end */

@@ -3,6 +3,16 @@
 #locationarea_chosen{
 	width:500px !important;
 }
+ .chosen-container-multi .chosen-choices .search-choice .search-choice-close {
+     background: url("<?php echo base_url();?>assets/home/images/close.png") right top no-repeat;
+      display: block;
+      font-size: 1px;
+      height: 10px;
+      position: absolute;
+      right: 4px;
+      top: 7px;
+      width: 12px;
+      cursor: pointer; }
 </style>
 <div class="sidebar_right" >
 			
