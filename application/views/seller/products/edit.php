@@ -141,7 +141,7 @@ document.getElementById('item_status').options[i].selected=true
                 
                
 
-			   <button type="submit" class="btn btn-danger" onclick="window.location='<?php echo base_url(); ?>seller/products';return false;">Cancel</button>
+			   <button type="submit" class="btn btn-danger" onclick="window.location='<?php echo base_url(); ?>seller/products';return false;">  Cancel</button>
 				</div>
               </form>
             </div>

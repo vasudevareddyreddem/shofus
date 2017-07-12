@@ -1,9 +1,9 @@
-<div class="content-wrapper">
+<div class="content-wrapper pad_t100">
     <!-- Content Header (Page header) -->
       <div class="container">
          <!-- Main content -->
       <div class="row">
-      <div class="box">
+      <div class="box data_box_wid">
             <div class="box-header">
               <h3 class="box-title">Seller List</h3>
             </div>
