@@ -384,7 +384,7 @@ class Mobile extends REST_Controller {
 		/*get seller category list*/
 	public function get_category_get(){
 		$categorie_list=$this->mobile_model->get_categories_list($this->input->get('seller_id'));
-		echo '<pre>';print_r($categorie_list);exit;
+		//echo '<pre>';print_r($categorie_list);exit;
 		if(count($categorie_list)>0){
 			$message = array('status'=>1,'category_list'=>$categorie_list,'message'=>'categories list are found.');
 			$this->response($message, REST_Controller::HTTP_OK);	

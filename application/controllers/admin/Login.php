@@ -22,57 +22,26 @@ class Login extends CI_Controller {
 
   }
 
-public function do_login()
+public function loginpost()
 
 {
 
-       $this->form_validation->set_rules('admin_name', 'Username', 'trim|required'); 
-        $this->form_validation->set_rules('admin_password', 'Password', 'trim|required'); 
-        if ($this->form_validation->run() == TRUE) {
+       $post = $this->input->post();
+	    $this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('password', 'password', 'required|min_length[6]');
+		if ($this->form_validation->run() == FALSE) {
+		$data['change_errors'] = validation_errors();
+		$this->load->view('admin/login');
+		}else{
+		echo '<pre>';print_r($post);exit;
 
-            $username   = $this->input->post('admin_name');
-            $password = $this->input->post('admin_password');
-            $result   = $this->login_model->authenticate($username, $password);
-
-//print_r($result); exit;
-
-       if ($result) {
-
-
-                $data                   = array(
-
-                    'admin_id'    => $result->admin_id,
-                    'admin_name'  => $result->admin_name,
-                    'admin_email' => $result->admin_email,
-                    'loggedin'   => TRUE,
-
-                );
+           
+            $result   = $this->login_model->user_login($post['email'],$post['password']);
+			
+		}
 
 
-
-                $this->session->set_userdata($data);
-
-               return redirect(base_url('admin/dashboard')); 
-
-            } else {
-
-
-            //$this->data['message'] = alert_message('Invalid Username/Password', 'danger');
-
-
-
-                $this->session->set_flashdata('msg','<div class="alert alert-success text-center" style="color: red;font-size:13px;">Invalid username or password.</div>');
-
-
-                  return redirect(base_url('admin/login'));
-
-
-                }
-
-            }
-
-       $this->load->view('admin/login');
-
+			
 
 }
 
