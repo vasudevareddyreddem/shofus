@@ -40,7 +40,8 @@ class Customer extends Front_Controller
 		 redirect('customer');
 	} 
 	 
- } 
+ }
+ 
  public function editprofile(){
 	 
 	 if($this->session->userdata('userdetails'))
