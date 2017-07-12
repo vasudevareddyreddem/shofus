@@ -31,8 +31,7 @@
                   <input type="text" name="first_name" placeholder="Enter  First Name" id="first_name" class="form-control">
                   <span style="color:red"> <?php echo form_error('first_name'); ?> </span>
                   <span id="fst_msg" style="color:red"> </span>
-                </div>
-               
+              </div>               
                 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Last Name</label>
                   <input type="text" name="last_name" placeholder="Enter  Last Name" id="last_name" class="form-control">
