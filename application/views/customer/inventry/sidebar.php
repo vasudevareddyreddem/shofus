@@ -7,7 +7,7 @@
       
       <ul class="sidebar-menu">
         <li class="active ">
-          <a href="<?php echo base_url('customer/inve_dashboard'); ?>">
+          <a href="<?php echo base_url('inventory/dashboard'); ?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <span class="pull-right-container">
             </span>
@@ -15,17 +15,17 @@
          
         </li>
         <li class="">
-          <a href="<?php echo base_url('customer/categories'); ?>">
+          <a href="<?php echo base_url('inventory/categories'); ?>">
              <i class="fa fa-dashboard"></i> <span>Category wise sellers</span>
           </a>
         </li>
 		<li class="">
-          <a href="<?php echo base_url('customer/seller_id_database'); ?>">
+          <a href="<?php echo base_url('inventory/seller_id_database'); ?>">
              <i class="fa fa-dashboard"></i> <span>Seller ID database</span>
           </a>
         </li>
 		<li class="">
-          <a href="<?php echo base_url('customer/seller_payments'); ?>">
+          <a href="<?php echo base_url('inventory/seller_payments'); ?>">
              <i class="fa fa-dashboard"></i> <span>Seller payments</span>
           </a>
         </li>
@@ -39,9 +39,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('customer/inventory_management'); ?>"><i class="fa fa-circle-o"></i> Inventory management</a></li>
-            <li><a href="<?php echo base_url('customer/catalog_management'); ?>"><i class="fa fa-circle-o"></i> Catalogue management</a></li>
-            <li><a href="<?php echo base_url('customer/both'); ?>"><i class="fa fa-circle-o"></i> Both</a></li>
+            <li><a href="<?php echo base_url('inventory/inventory_management'); ?>"><i class="fa fa-circle-o"></i> Inventory management</a></li>
+            <li><a href="<?php echo base_url('inventory/catalog_management'); ?>"><i class="fa fa-circle-o"></i> Catalogue management</a></li>
+            <li><a href="<?php echo base_url('inventory/both'); ?>"><i class="fa fa-circle-o"></i> Both</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -52,11 +52,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('customer/home_page_banner'); ?>"><i class="fa fa-circle-o"></i> Home page banner </a></li>
-            <li><a href="<?php echo base_url('customer/top_offers'); ?>"><i class="fa fa-circle-o"></i> Top offers</a></li>
-            <li><a href="<?php echo base_url('customer/deals_of_day'); ?>"><i class="fa fa-circle-o"></i> Deals of the day</a></li>
-            <li><a href="<?php echo base_url('customer/season_sales'); ?>"><i class="fa fa-circle-o"></i> Season sales</a></li>
-            <li><a href="<?php echo base_url('customer/others'); ?>"><i class="fa fa-circle-o"></i> Others</a></li>
+            <li><a href="<?php echo base_url('inventory/home_page_banner'); ?>"><i class="fa fa-circle-o"></i> Home page banner </a></li>
+            <li><a href="<?php echo base_url('inventory/top_offers'); ?>"><i class="fa fa-circle-o"></i> Top offers</a></li>
+            <li><a href="<?php echo base_url('inventory/deals_of_day'); ?>"><i class="fa fa-circle-o"></i> Deals of the day</a></li>
+            <li><a href="<?php echo base_url('inventory/season_sales'); ?>"><i class="fa fa-circle-o"></i> Season sales</a></li>
+            <li><a href="<?php echo base_url('inventory/others'); ?>"><i class="fa fa-circle-o"></i> Others</a></li>
           </ul>
         </li>
 		<li class="">

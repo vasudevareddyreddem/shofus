@@ -27,7 +27,7 @@
     <div class="container" style="width:100%">
     <div class="panel-body">
 				 <div id="categoryiddoc" class="form-group nopaddingRight "></div>
-				 <form name="addbanner" id="addbanner" action="<?php echo base_url(); ?>seller/showups/save_banner?>" method="post" enctype="multipart/form-data">
+				 <form name="addbanner" id="addbanner" action="<?php echo base_url(); ?>seller/showups/save_banner" method="post" enctype="multipart/form-data">
     
 				<div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputFile">Banner</label>
