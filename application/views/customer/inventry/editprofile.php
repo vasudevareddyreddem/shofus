@@ -69,30 +69,8 @@
                            <label class="control-label">Address 1</label>
                             <input id="address1" type="text" class="form-control"  name="address1" value="<?php echo $profile_details['address1']; ?>" >
                         </div>
-						<div  class=" form-group">
-                           <label class="control-label">Address 2</label>
-                            <input id="address2" type="text" class="form-control"  name="address2" value="<?php echo $profile_details['address2']; ?>" >
-                        </div>
-						<?php //echo '<pre>';print_r($profile_details); ?>
-						<?php //echo '<pre>';print_r($locationdata);exit; ?>
-						<div  class=" form-group">
-							<label class="control-label">Delivery Location Area</label>
-							<select class="form-control" id="area" name="area">
-							<option>Select</option>
-							
-							<?php foreach($locationdata as $localarea){ ?>
-							<?php if($profile_details['area']==$localarea['location_id']){
-
-				?>
-								<option value="<?php echo $localarea['location_id']; ?>" selected><?php echo $localarea['location_name']; ?></option>
-
-							<?php }else{ ?>
-							<option value="<?php echo $localarea['location_id']; ?>"><?php echo $localarea['location_name']; ?></option>
-
-							<?php } ?>
-								<?php } ?>
-							</select>  
-						</div>
+					
+					
 						<div  class=" form-group">
                            <label class="control-label">Profile Pic</label>
                             <input id="profile" type="file" class="form-control"  name="profile" value="" >
