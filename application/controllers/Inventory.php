@@ -315,11 +315,12 @@ public function servicerequestview(){
 				$this->email->to($seller_details['seller_email']);
 				$this->email->subject('Cartinhour - Notification reply');
 				//$html = "Your profile successfully Updated!";
-				$html = "Hello <b>".$seller_details['seller_name']." </b><br />".$post['noticationreplay']."";
+				$html = "Hello <b>".$seller_details['seller_name']." </b><br />".$post['serivcerequest']."";
 				$this->email->message($html);
 				$this->email->send();
-				$data=array('status'=>1,'replymsg'=>$post['noticationreplay']);
+				$data=array('status'=>1,'replymsg'=>$post['serivcerequest']);
 				 $emailsendcus=$this->inventory_model->notification_statuschanges($sevice_id,$data);
+				// echo $this->db->last_query();exit;
 				 if(count($emailsendcus)>0){
 					$this->session->set_flashdata('success','Notification replay Successfully send!');
 					redirect('inventory/sellerservicerequests'); 
