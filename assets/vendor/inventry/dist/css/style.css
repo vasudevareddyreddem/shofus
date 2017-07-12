@@ -14,3 +14,9 @@
     .pad_prof li:hover{
      background:#f5f5f5;
     }
+.pad_t100{
+	padding-top:52px !important;
+}
+.mar_t10{
+	margin-top:10px;
+}

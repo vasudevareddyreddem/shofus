@@ -1,39 +1,25 @@
-
-<style>
-.panel-title > a:before {
-    float: left !important;
-    font-family: FontAwesome;
-    content:"\f1db";
-    padding-right: 5px;
-}
-
-.panel-title > a:hover, 
-.panel-title > a:active, 
-.panel-title > a:focus  {
-    text-decoration:none;
-}
-</style>
-<header>
-<!--wrapper start here -->
-
-<div class="wrapper"> 
-  <!--header part start here -->
-  <div class="jain_container">
-    
-
-</header>
-<div class="" style="margin-top:130px;">
-	
-</div>
-<body >
-<div class="pad_bod">
+<div class="content-wrapper pad_t100">
+<div class="panel-heading panel-primary">
+ <section class="content-header">
+      <h1>
+       Update profile
+        <small>Control panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Update Profile</li>
+      </ol>
+    </section>
+	</div>
+	<div class="clearfix"></div>
+	<div class="pad_bod mar_t10">
 		<div class="row">
 		
 		<?php //echo '<pre>';print_r($cart_items);exit; ?>
 		<div class="container">
 		<div class="col-md-8 col-md-offset-2">
-		<div class="panel panel-primary">
-			<div class="panel-heading ">Update profile</div>
+		<div class="panel ">
+		
 			
 			<div class="panel-body">
 			<div  style="padding:10px 15px;">
@@ -100,98 +86,4 @@
 	   
 	   </div>
 	   </div>
-	</div>
-
-	<script type="text/javascript">
-
-$(document).ready(function() {
-    $('#editprofile').bootstrapValidator({
-       
-        fields: {
-            fname: {
-              validators: {
-					notEmpty: {
-						message: 'First Name is required'
-					},
-                   regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: ' Last Name can only consist of alphanumaric, space and dot'
-					}
-                }
-            },
-			lname: {
-              validators: {
-					notEmpty: {
-						message: 'Last Name is required'
-					},
-                   regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: ' Last Name can only consist of alphanumaric, space and dot'
-					}
-                }
-            },
-			
-			email: {
-             validators: {
-					notEmpty: {
-						message: 'Email is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-					message: 'Please enter a valid email address. For example johndoe@domain.com.'
-					}
-				}
-            },
-			mobile: {
-              validators: {
-					 notEmpty: {
-						message: 'Mobile Number is required'
-					},
-                    regexp: {
-					regexp:  /^[0-9]{10}$/,
-					message:'Mobile Number must be 10 digits'
-					}
-                }
-            },
-			area: {
-              validators: {
-					notEmpty: {
-						message: 'Please select an area'
-					}
-                }
-            },
-			address1: {
-				validators: {
-					notEmpty: {
-						message: 'Address1 is required'
-					},
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message: 'Address1 wont allow <> [] = % '
-					}
-				
-				}
-			},
-			address2: {
-				validators: {
-					
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message: 'Address2 wont allow <> [] = % '
-					}
-				
-				}
-			},
-			profile: {
-				validators: {
-					  
-					regexp: {
-					regexp: /\.(jpe?g|png|gif)$/i,
-					message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-        }
-    });
-});
-</script>
+</div>

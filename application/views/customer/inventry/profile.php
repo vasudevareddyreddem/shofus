@@ -1,19 +1,17 @@
-
-<header>
-<!--wrapper start here -->
-
-<div class="wrapper"> 
-  <!--header part start here -->
-  <div class="jain_container">
-    
-
-</header>
-<div class="" style="margin-top:130px;">
-	
-</div>
-
-<div class="pad_bod">
-		<div class="row">
+<div class="content-wrapper pad_t100">
+<div class="panel-heading panel-primary">
+ <section class="content-header">
+      <h1>
+        Dashboard
+        <small>Control panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Update Profile</li>
+      </ol>
+    </section>
+	</div>
+	<div class="row">
 		<?php //echo '<pre>';print_r($profile_details);exit; ?>
 			 <div class="panel panel-info">
             <div class="">
@@ -69,5 +67,3 @@
           </div>
 	   </div>
 </div>
-
-	
