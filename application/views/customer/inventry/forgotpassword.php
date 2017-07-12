@@ -32,7 +32,7 @@
     }
 </style>
 
-<body style="background-color:#45b1b5;">
+<body style="background-color:#f59171;">
     <div class="container mar_t10per" style="position:relative" >
         <div class="row ">
 		<div class="col-md-6 col-md-offset-3" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
@@ -58,7 +58,7 @@
 							
                     </div>
 
-                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+                    <button class="btn btn-lg  btn-block signup-btn" style="background-color:#c33c12;color:#fff;" type="submit">
                         Submit</button>
                 </form>
 
@@ -66,7 +66,7 @@
             </div>
         </div>
 		<a  href="<?php echo base_url(); ?>" class="" style="position: absolute;top:-100px;right:43%">
-			<img src="<?php echo base_url(); ?>assets/home/images/logo_login.png" />
+			<img src="<?php echo base_url(); ?>assets/images/inv_logo.png" />
 		</a>
     </div>
 

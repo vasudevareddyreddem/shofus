@@ -264,7 +264,6 @@ class Mobile extends REST_Controller {
 	public function save_store_details_post()
 	{
 		
-		
 		$tinvatimages=base64_decode($this->input->get('tinvatimage'));
 		$tanimages=base64_decode($this->input->get('tanimage'));
 		$cstimages=base64_decode($this->input->get('cstimage'));
@@ -370,8 +369,8 @@ class Mobile extends REST_Controller {
 	}
 	/*get overall seller category list*/
 	public function get_overall_category_get(){
-		$seller_prducts=$this->mobile_model->getcatsubcatpro($this->input->get('seller_id'));
-		echo '<pre>';print_r($seller_prducts);exit;
+		$categorie_list=$this->mobile_model->getcatsubcatpro($this->input->get('seller_id'));
+		//echo '<pre>';print_r($seller_prducts);exit;
 		if(count($categorie_list)>0){
 			$message = array('status'=>1,'category_list'=>$categorie_list,'message'=>'categories list are found.');
 			$this->response($message, REST_Controller::HTTP_OK);	
@@ -385,7 +384,7 @@ class Mobile extends REST_Controller {
 		/*get seller category list*/
 	public function get_category_get(){
 		$categorie_list=$this->mobile_model->get_categories_list($this->input->get('seller_id'));
-		echo '<pre>';print_r($categorie_list);exit;
+		//echo '<pre>';print_r($categorie_list);exit;
 		if(count($categorie_list)>0){
 			$message = array('status'=>1,'category_list'=>$categorie_list,'message'=>'categories list are found.');
 			$this->response($message, REST_Controller::HTTP_OK);	
