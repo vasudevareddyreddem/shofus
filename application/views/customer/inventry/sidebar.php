@@ -30,19 +30,10 @@
           </a>
         </li>
      
-        <li class="treeview">
-          <a href="#">
+		<li class="treeview">
+          <a href="<?php echo base_url('inventory/sellerservicerequests'); ?>">
 		  <i class="fa fa-dashboard"></i> <span>Service requests</span>
-           
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('inventory/inventory_management'); ?>"><i class="fa fa-circle-o"></i> Inventory management</a></li>
-            <li><a href="<?php echo base_url('inventory/catalog_management'); ?>"><i class="fa fa-circle-o"></i> Catalogue management</a></li>
-            <li><a href="<?php echo base_url('inventory/both'); ?>"><i class="fa fa-circle-o"></i> Both</a></li>
-          </ul>
         </li>
         <li class="treeview">
           <a href="">
@@ -65,7 +56,7 @@
           </a>
         </li>
 		<li class="">
-          <a href="<?php echo base_url('inventory/sellernotifications'); ?>">
+          <a href="#">
              <i class="fa fa-dashboard"></i> <span>Seller notification</span>
           </a>
         </li>

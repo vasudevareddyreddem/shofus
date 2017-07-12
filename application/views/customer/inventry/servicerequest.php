@@ -2,12 +2,12 @@
 <div class="panel-heading panel-primary">
  <section class="content-header">
       <h1>
-       Notification replay
-        <small>Notification replay</small>
+       Service Request replay
+        <small>Service Request replay</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('inventory/dashboard'); ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Notification replay</li>
+        <li class="active">Service Request replay</li>
       </ol>
     </section>
 	</div>
@@ -33,12 +33,12 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('errormsg');?></div>	
 					<?php endif; ?>
-                   <form id="notificationpost" name="notificationpost" method="post" action="<?php echo base_url('inventory/notificationpost');?>" class="form-horizontal" enctype="multipart/form-data" role="form">
+                   <form id="notificationpost" name="notificationpost" method="post" action="<?php echo base_url('inventory/servicerequestpost');?>" class="form-horizontal" enctype="multipart/form-data" role="form">
                         <input type="hidden" name="seller_id" id="seller_id" value="<?php echo $seller_id ?>">
                         <input type="hidden" name="serviceid" id="serviceid" value="<?php echo $serviceid; ?>">
 
                         <div  class=" form-group">
-                           <label class="control-label">Notification replay</label>
+                           <label class="control-label">Service Request replay</label>
                             <textarea rows="5" cols="70" name="noticationreplay" id="noticationreplay"></textarea>
                         </div> 
 						
@@ -50,7 +50,7 @@
                             <!-- Button -->
 
                             <div class="col-sm-12 controls">
-                                <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">Send</button>
+                                <button type="submit" class="btn btn-lg btn-primary btn-block signup-btn" type="submit">Send</button>
 
                             </div>
                         </div>

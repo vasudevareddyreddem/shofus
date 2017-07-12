@@ -219,7 +219,7 @@ public function changepasswordpost(){
 		 redirect('admin/login	');
 	} 
   } 
-  public function sellernotifications(){
+  public function sellerservicerequests(){
   	
 	 
 	if($this->session->userdata('userdetails'))
@@ -229,7 +229,7 @@ public function changepasswordpost(){
 				$data['seller_details'] = $this->inventory_model->get_all_seller_notifications();
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
-				$this->load->view('customer/inventry/notificationslist',$data);
+				$this->load->view('customer/inventry/servicerequestlist',$data);
 				$this->load->view('customer/inventry/footer');	
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -243,17 +243,17 @@ public function changepasswordpost(){
 		 redirect('admin/login	');
 	} 
   }
-public function notificationview(){
+public function servicerequestview(){
   	
 	 
 	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
-				$data['notification_details'] = $this->inventory_model->get_notification_details(base64_decode($this->uri->segment(3)));
+				$data['request_details'] = $this->inventory_model->get_notification_details(base64_decode($this->uri->segment(3)));
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
-				$this->load->view('customer/inventry/notificationview',$data);
+				$this->load->view('customer/inventry/servicerequestview',$data);
 				$this->load->view('customer/inventry/footer');	
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -267,7 +267,7 @@ public function notificationview(){
 		 redirect('admin/login	');
 	} 
   }  
-  public function notificationreply(){
+  public function servicerequestreply(){
   	
 	 
 	if($this->session->userdata('userdetails'))
@@ -280,7 +280,7 @@ public function notificationview(){
 				$data['seller_details'] = $this->inventory_model->get_all_seller_notifications();
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
-				$this->load->view('customer/inventry/notifications',$data);
+				$this->load->view('customer/inventry/servicerequest',$data);
 				$this->load->view('customer/inventry/footer');	
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -294,7 +294,7 @@ public function notificationview(){
 		 redirect('admin/login	');
 	} 
   } 
-  public function notificationpost(){
+  public function servicerequestpost(){
   	
 	 
 	if($this->session->userdata('userdetails'))
@@ -313,15 +313,15 @@ public function notificationview(){
 				$this->email->set_mailtype("html");
 				$this->email->from('cartinhor@gmail.com');
 				$this->email->to($seller_details['seller_email']);
-				$this->email->subject('Cartinhour - Notification reply');
+				$this->email->subject('Cartinhour - Request reply');
 				//$html = "Your profile successfully Updated!";
-				$html = "Hello <b>".$seller_details['seller_name']." </b><br />".$post['noticationreplay']."";
+				$html = "Hello <b>".$seller_details['seller_name']." </b><br />".$post['serivcerequest']."";
 				$this->email->message($html);
 				$this->email->send();
 				 $emailsendcus=$this->inventory_model->notification_statuschanges($sevice_id,1);
 				 if(count($emailsendcus)>0){
 					$this->session->set_flashdata('success','Notification replay Successfully send!');
-					redirect('inventory/sellernotifications'); 
+					redirect('inventory/sellerservicerequests'); 
 				 }
 
 				
