@@ -22,6 +22,16 @@ class Inventory_model extends MY_Model
 		$this->db->select('*')->from('sellers');		
 		return $this->db->get()->result_array();
 	}
+	public function get_all_seller_notifications(){
+		$this->db->select('request_for_services.*,sellers.*')->from('request_for_services');
+		$this->db->join('sellers', 'sellers.seller_id = request_for_services.seller_id', 'left');
+		return $this->db->get()->result_array();
+	}
+	function notification_statuschanges($servoceid,$data){
+	
+		$sql1="UPDATE customers SET request_for_services ='".$data."'WHERE service_id = '".$servoceid."'";
+		return $this->db->query($sql1);
+	}
 	
 
 
@@ -29,16 +39,7 @@ class Inventory_model extends MY_Model
 	{
 		$this->db->select('*')->from('category');
 		return $this->db->get()->result_array();
-		// $sqll = $this->db->query("SELECT s.seller_name AS `seller`, 
-		// GROUP_CONCAT(sc.category_name ORDER BY sc.category_name SEPARATOR ', ') AS categoryname,count(sc.seller_id) as seller_count
-		// FROM sellers s, seller_categories sc 
-		// WHERE sc.seller_id = s.seller_id  
-		// GROUP BY s.seller_id");
-		// return $sqll->result_array();
-		// $this->db->select('sellers.seller_name,GROUP_CONCAT(DISTINCT seller_categories.category_name ORDER BY seller_categories.category_name) as categoryname')->from('seller_categories');
-		// $this->db->join('sellers', 'sellers.seller_id = seller_categories.seller_id', 'LEFT');
-		// //$this->db->where('sellers.seller_id = seller_categories.seller_id');
-  //       return $this->db->get()->result();
+	
 	}
 
 	public function get_seller_names($cid){

@@ -65,7 +65,7 @@
           </a>
         </li>
 		<li class="">
-          <a href="#">
+          <a href="<?php echo base_url('inventory/sellernotifications'); ?>">
              <i class="fa fa-dashboard"></i> <span>Seller notification</span>
           </a>
         </li>
