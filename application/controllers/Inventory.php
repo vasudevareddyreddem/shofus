@@ -17,12 +17,19 @@ class inventory extends CI_Controller
 	 
 	if($this->session->userdata('userdetails'))
 	 {		
-		$data['seller_details'] = $this->inventory_model->get_all_seller_details();
-		//echo '<pre>';print_r($data);exit;
-		$this->load->view('customer/inventry/header');
-		$this->load->view('customer/inventry/sidebar');
-		$this->load->view('customer/inventry/index',$data);
-		$this->load->view('customer/inventry/footer');
+		
+		$logindetail=$this->session->userdata('userdetails');
+		if($logindetail['role_id']==5){
+			$data['seller_details'] = $this->inventory_model->get_all_seller_details();
+			//echo '<pre>';print_r($data);exit;
+			$this->load->view('customer/inventry/header');
+			$this->load->view('customer/inventry/sidebar');
+			$this->load->view('customer/inventry/index',$data);
+			$this->load->view('customer/inventry/footer');
+		}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
 	  
 	  }
 	  else{

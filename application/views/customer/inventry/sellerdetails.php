@@ -9,31 +9,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Seller Id</th>
-                  <th>Seller Name</th>
-                  <th>Seller Email</th>
-                  <th>Seller mobile</th>
-                  <th>Action</th>
-				  
-                </tr>
-                </thead>
-                <tbody>
-                <?php  
-                  foreach($seller_details as $details) {?>
-                <tr>                  
-                  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>"><?php echo $details['seller_rand_id']; ?></a></td>
-                  <td><?php echo $details['seller_name']; ?></td>
-                  <td><?php echo $details['seller_email']; ?></td>                  
-                  <td><?php echo $details['seller_mobile']; ?></td>                  
-                  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>">View</a></td>
-                
-                </tr>
-                 <?php }?>
-                </tbody>              
-              </table>
+              seller details  page
              
             </div>
             <!-- /.box-body -->
@@ -42,15 +18,3 @@
 </div>
 </div>
 </div>
-<script>
-  $(function () {
-    $('#example1').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-</script>
