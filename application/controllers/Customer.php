@@ -842,15 +842,7 @@ class Customer extends Front_Controller
 	
 
 
-	public function inve_logout(){
-		
-		$userinfo = $this->session->userdata('userdetails');
-		//echo '<pre>';print_r($userinfo );exit;
-        $this->session->unset_userdata($userinfo);
-		$this->session->sess_destroy('userdetails');
-		$this->session->unset_userdata('userdetails');
-        redirect('customer/inve');
-	}
+
 
 
 
