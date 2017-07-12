@@ -230,12 +230,18 @@
           </li>
           <!-- User Account: style can be found in dropdown.less -->
          <li class="dropdown user user-menu">
+		  
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Admin	</span>
+			<?php 
+			if($customerdetails['cust_propic']!=''){ ?>
+			<img  src="<?php echo base_url('uploads/profile/'.$customerdetails['cust_propic']); ?>" class="user-image" alt="<?php echo $customerdetails['cust_propic']; ?>">
+			<?php }else{ ?>
+			<img  src="<?php echo base_url(); ?>uploads/profile/default.jpg" class="user-image" alt="Logo">
+			<?php } ?>
+			  <span class="hidden-xs"><?php echo $customerdetails['cust_firstname'].'/'.$customerdetails['cust_lastname'] ?>	</span>
             </a><ul class="dropdown-menu pad_prof" >
               <a href="<?php echo base_url('customer/inve_changepassword');?>"><li class="user-body">Change Password</li></a>
-              <a><li class="user-body">update profile</li></a>
+              <a href="<?php echo base_url('inventory/account');?>"><li class="user-body">update profile</li></a>
               <a href="<?php echo base_url('customer/inve_logout');?>"><li class="user-body">Logout</li></a>
             </ul>
           </li>
