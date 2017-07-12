@@ -15,6 +15,7 @@
 </div>
 <!-- core functionality purpose-->
 
+<script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
 
 <script src="<?php echo base_url(); ?>assets/vendor/inventry/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/vendor/inventry/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -31,7 +32,7 @@
 <script src="<?php echo base_url(); ?>assets/vendor/inventry/plugins/datatables/dataTables.bootstrap.min.js
 "></script>
 <script src="<?php echo base_url(); ?>assets/vendor/inventry/plugins/datatables/jquery.dataTables.min.js"></script>
-
+<script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 
 <script>
   $(function () {

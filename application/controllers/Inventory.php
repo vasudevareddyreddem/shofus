@@ -52,30 +52,37 @@ class inventory extends CI_Controller
 	} 
 	 
  }
-	 public function changepassword(){
-		
+ public function changepassword(){
+	
+	if($this->session->userdata('userdetails'))
+		{
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/changepassword');
+		$this->load->view('customer/inventry/footer');
+		}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+		}
+} 
+
+
+public function changepasswordpost(){
 		if($this->session->userdata('userdetails'))
-			{
+		{
+			
+		$post = $this->input->post();
+		$this->form_validation->set_rules('oldpassword', 'oldpassword', 'required|min_length[6]');
+		$this->form_validation->set_rules('newpassword', 'newpassword', 'required|min_length[6]');
+		$this->form_validation->set_rules('confirmpassword', 'confirm password', 'required|min_length[6]');
+		if ($this->form_validation->run() == FALSE) {
+		$data['change_errors'] = validation_errors();
 			$this->load->view('customer/inventry/sidebar');
 			$this->load->view('customer/inventry/changepassword');
 			$this->load->view('customer/inventry/footer');
-			}else{
-			 $this->session->set_flashdata('loginerror','Please login to continue');
-			 redirect('admin/login');
-			}
-	} 
-
-
-	
-
-
-
-	public function changepasswordpost(){
-		if($this->session->userdata('userdetails'))
-		{
-			$customerdetail=$this->session->userdata('userdetails');
+		}else{
+		$customerdetail=$this->session->userdata('userdetails');
 		$changepasword = $this->input->post();
-		//echo '<pre>';print_r($changepasword);
+		//echo '<pre>';print_r($changepasword);exit;
 		$currentpostpassword=md5($changepasword['oldpassword']);
 		$newpassword=md5($changepasword['newpassword']);
 		$conpassword=md5($changepasword['confirmpassword']);
@@ -92,24 +99,26 @@ class inventory extends CI_Controller
 						if (count($passwordchange)>0)
 							{
 								$this->session->set_flashdata('updatpassword',"Password successfully changed!");
-								redirect('customer/changepassword');
+								redirect('inventory/changepassword');
 							}
 							else
 							{
 								$this->session->set_flashdata('passworderror',"Something went wrong in change password process!");
-								redirect('customer/changepassword');
+								redirect('inventory/changepassword');
 							}
 				}else{
 					$this->session->set_flashdata('passworderror',"New password and confirm password was not matching");
-					redirect('customer/changepassword');
+					redirect('inventory/changepassword');
 				}
 			}else{
 					$this->session->set_flashdata('passworderror',"Your Old password is incorrect. Please try again.");
-					redirect('customer/changepassword');
+					redirect('inventory/changepassword');
 				}
+		
+		 }
 		}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('customer');
+		 redirect('admin/login');
 		}
 	}
  public function updateprofilepost(){
@@ -352,7 +361,15 @@ class inventory extends CI_Controller
 	}
 
 	
-	
+		public function logout(){
+		
+		$userinfo = $this->session->userdata('userdetails');
+		//echo '<pre>';print_r($userinfo );exit;
+        $this->session->unset_userdata($userinfo);
+		$this->session->sess_destroy('userdetails');
+		$this->session->unset_userdata('userdetails');
+        redirect('admin/login');
+	}
   
  
 
