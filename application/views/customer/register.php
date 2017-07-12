@@ -32,87 +32,247 @@
     }
 </style>
 
-<body style="background-color:#f59171;">
+<body style="background-color:#45b1b5;">
     <div class="container mar_t10per" style="position:relative" >
         <div class="row ">
-		<div class="col-md-6 col-md-offset-3" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
-           
-
-            <div class="col-md-10 col-md-offset-1 ">
-			<h3 class="">Forget Password</h3>
+		<div class="col-md-10 col-md-offset-1" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
+            <div class="col-md-6 " style="border-right:1px solid #ddd">
+			<div class="" style="padding:0px 15px;">
+			<h3 class="text-center">Sign in</h3>
 			<hr>
-				<?php if($this->session->flashdata('error')): ?>	
+                <div id="loginbox" class="mainbox ">
+					<?php if($this->session->flashdata('loginerror')): ?>	
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('loginerror');?></div>
+			<?php endif; ?>	
+			<?php if($this->session->flashdata('forsuccess')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('forsuccess');?></div>
+			<?php endif; ?>
+			
+                    <form id="loginform" name="loginform" method="post" action="<?php echo base_url('customer/loginpost');?>" class="form-horizontal" role="form">
+                        <div class=" form-group">
+                            <label class="control-label">Email</label>
+                            <input type="text" class="form-control" id="email" name="email"  placeholder="Email">
+                        </div>
+
+                        <div  class=" form-group">
+                           <label class="control-label">Password</label>
+                            <input id="password" type="password" class="form-control" name="password" placeholder="password">
+                        </div>
+
+                        <div class="">
+                            <div class="checkbox pull-left">
+                                <label>
+                                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                                </label>
+                            </div>
+							<div class="pull-right">
+                                <label>
+                                    <a href="<?php echo base_url('customer/forgotpassword');?>" >Forgot Password?</a>
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div style="margin-top:10px" class="form-group">
+                            <!-- Button -->
+
+                            <div class="col-sm-12 controls">
+                                <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+                                    login</button>
+
+                            </div>
+                        </div>
+				</form>
+  
+
+
+                </div>
+
+            </div>
+            </div>
+
+
+
+            <div class="col-md-6 ">
+			<h3 class="text-center">Sign up</h3>
+			<hr>
+			<?php if($this->session->flashdata('addcus')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('addcus');?></div>
+			<?php endif; ?>
+			<?php if($this->session->flashdata('error')): ?>	
 			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
-			<?php endif; ?>	
-			<form action="<?php echo base_url('admin/login/changepassword'); ?>" method="post" name="forgotpass" id="forgotpass">
-			 <input type="hidden" name="email" id="email" value="<?php echo $email; ?>">
-			  <input type="hidden" name="userid" id="userid" value="<?php echo $userid; ?>">
-			<div class="row">
-                        <div class=" col-md-12">
-							<div class="form-group">
-								<label class="control-label">New Password</label>
-								<input type="password" id="npassword" name="npassword" value="" class="form-control" />
+			<?php endif; ?>
+				<form id="customerregister" name="customerregister" action="<?php echo base_url('customer/registerpost');?>" method="post" accept-charset="utf-8" class="form" role="form" style="padding:0px 15px;">
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+						<div class="form-group">
+							<label class="control-label">First Name</label>
+                            <input type="text" id="firstname" name="firstname" value="" class="form-control" placeholder="First Name" />
 							</div>
-						</div> 
-						<div class=" col-md-12">
-							<div class="form-group">
-								<label class="control-label">Confirm Password</label>
-								<input type="password" id="cpassword" name="cpassword" value="" class="form-control"  />
 							</div>
-						</div>
-                        
+                        <div class="col-xs-6 col-md-6">
+							<div class="form-group">
+							<label class="control-label">Last Name</label>
+							<input type="text" id="lastname" name="lastname" value="" class="form-control" placeholder="Last Name" />
+							</div> 
+							</div>
 							
                     </div>
+					<div class="form-group">
+					<label class="control-label">Email Address</label>
+					<input type="text" id="email" name="email" value="" class="form-control " placeholder="Your Email" />
+					</div>
+					<div class="form-group">
+					<label class="control-label">Mobile Number</label>
+					<input type="text" id="mobile" name="mobile" value="" class="form-control " placeholder="Your Mobile Number" />
+					</div>         
+					<div class="form-group">
+					<label class="control-label">Password</label>
+                    <input type="password" id="password" name="password" value="" class="form-control" placeholder="Password" />
+					</div>
+					<div class="form-group">
+					<label class="control-label">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" value="" class="form-control" placeholder="Confirm Password" />
+					</div>
+					<div class="row">
+					<div>
 
-                    <button class="btn btn-lg  btn-block signup-btn" style="background-color:#c33c12;color:#fff;" type="submit">
-                        Submit</button>
+                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+                        Create my account</button>
                 </form>
-				<a  href="<?php echo base_url('admin/login'); ?>"class="btn btn-lg  btn-block signup-btn" style="background-color:#c33c12;color:#fff;" type="submit">
-                  Cancel</a>
 
             </div>
             </div>
         </div>
 		<a  href="<?php echo base_url(); ?>" class="" style="position: absolute;top:-100px;right:43%">
-			<img src="<?php echo base_url(); ?>assets/images/inv_logo.png" />
+			<img src="<?php echo base_url(); ?>assets/home/images/logo_login.png" />
 		</a>
     </div>
 
 </body>
 
 </html>
-<script type="text/javascript">
+	<script type="text/javascript">
 $(document).ready(function() {
-    $('#forgotpass').bootstrapValidator({
+    $('#customerregister').bootstrapValidator({
        
         fields: {
-			        npassword: {
+            
+             firstname: {
+              validators: {
+					notEmpty: {
+						message: 'First Name is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: ' Last Name can only consist of alphanumaric, space and dot'
+					}
+                }
+            },
+			lastname: {
+              validators: {
+					notEmpty: {
+						message: 'Last Name is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: ' Last Name can only consist of alphanumaric, space and dot'
+					}
+                }
+            },
+			
+			email: {
+             validators: {
+					notEmpty: {
+						message: 'Email is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+					message: 'Please enter a valid email address. For example johndoe@domain.com.'
+					}
+				}
+            },
+			mobile: {
+              validators: {
+					 notEmpty: {
+						message: 'Mobile Number is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]{10}$/,
+					message:'Mobile Number must be 10 digits'
+					}
+                }
+            },
+			password: {
 					validators: {
 					notEmpty: {
-						message: 'New Password is required'
+						message: 'Password is required'
 					},
 					stringLength: {
                         min: 6,
-                        message: 'New Password  must be greater than 6 characters'
+                        message: 'Password  must be greater than 6 characters'
                     },
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'New Password wont allow <>[]'
+					message: 'Password wont allow <>[]'
 					}
 				}
-        },
-		 cpassword: {
-          validators: {
+			},
+			confirm_password: {
+					 validators: {
                 identical: {
-                    field: 'npassword',
-                    message: 'New password and confirm Password do not match'
+                    field: 'password',
+                    message: 'password and confirm Password do not match'
                 }
             }
+			}
         }
+    });
+});
+
+$(document).ready(function() {
+    $('#loginform').bootstrapValidator({
+       
+        fields: {
             
-		
+           
+			
+			email: {
+             validators: {
+					notEmpty: {
+						message: 'Email is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+					message: 'Please enter a valid email address. For example johndoe@domain.com.'
+					}
+				}
+            },
+			
+			password: {
+					validators: {
+					notEmpty: {
+						message: 'Password is required'
+					},
+					stringLength: {
+                        min: 6,
+                        message: 'Password  must be greater than 6 characters'
+                    },
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
+					message: 'Password wont allow <>[]'
+					}
+				}
+			}
         }
     });
 });
