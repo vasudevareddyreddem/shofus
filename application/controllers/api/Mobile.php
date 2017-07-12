@@ -264,7 +264,6 @@ class Mobile extends REST_Controller {
 	public function save_store_details_post()
 	{
 		
-		
 		$tinvatimages=base64_decode($this->input->get('tinvatimage'));
 		$tanimages=base64_decode($this->input->get('tanimage'));
 		$cstimages=base64_decode($this->input->get('cstimage'));
