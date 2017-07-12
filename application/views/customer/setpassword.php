@@ -1,91 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>::CART IN HOUR::</title>
+    <link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css" />
+
+
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/component.css" />
+    <script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
+
+    <script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+
+</head>
 <style>
-.panel-title > a:before {
-    float: left !important;
-    font-family: FontAwesome;
-    content:"\f1db";
-    padding-right: 5px;
-}
-
-.panel-title > a:hover, 
-.panel-title > a:active, 
-.panel-title > a:focus  {
-    text-decoration:none;
-}
+    .mar_t10per {
+        margin-top: 10%;
+    }
+    .form .form-control {
+        margin-bottom: 10px;
+    }
 </style>
-<header>
-<!--wrapper start here -->
 
-<div class="wrapper"> 
-  <!--header part start here -->
-  <div class="jain_container">
-    
+<body style="background-color:#f59171;">
+    <div class="container mar_t10per" style="position:relative" >
+        <div class="row ">
+		<div class="col-md-6 col-md-offset-3" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
+           
 
-</header>
-<div class="" style="margin-top:130px;">
-	
-</div>
-<body >
-<div class="pad_bod">
-		<div class="row">
-		<div class="container">
-		<div class="col-md-8 col-md-offset-2">
-		<div class="panel panel-primary">
-			<div class="panel-heading ">Set Password</div>
-			<div class="panel-body">
-			<div  style="padding:10px 15px;">
-			<section>
-        <div class="wizard">           
-                <div class="tab-content">     
-                               
-					<?php if($this->session->flashdata('passworderror')): ?>
-					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('passworderror');?></div>
-					<?php endif; ?>
-					
-                   <form id="chanagepassword" name="chanagepassword" method="post" action="<?php echo base_url('customer/setpassword');?>" class="form-horizontal" role="form">
-                   <input type="hidden" id="cust_id" name="cust_id" value="<?php echo $cust_id; ?>">
+            <div class="col-md-10 col-md-offset-1 ">
+			<h3 class="">Set Password</h3>
+			<hr>
+				<?php if($this->session->flashdata('passworderror')): ?>	
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('passworderror');?></div>
+			<?php endif; ?>	
+			<form action="<?php echo base_url('customer/setpassword'); ?>" method="post" name="chanagepassword" id="chanagepassword">
+		  <input type="hidden" id="cust_id" name="cust_id" value="<?php echo $cust_id; ?>">
 					<input type="hidden" id="cust_email" name="cust_email" value="<?php echo $cust_email; ?>">
-						<div class=" form-group">
-                            <label class="control-label">New Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
-                        </div>
-                        <div  class=" form-group">
-                           <label class="control-label">Confirm Password</label>
-                            <input  type="password" class="form-control" id="confirmpassword" name="confirmpassword" >
-                        </div>
-                        <div style="margin-top:10px" class="form-group">
-                            <!-- Button -->
-                            <div class="col-sm-12 controls">
-                                <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
-                                    Set password</button>
-                            </div>
-                        </div>
-				</form>
-                
-                </div>
-          
+			<div class="row">
+                        <div class=" col-md-12">
+							<div class="form-group">
+								<label class="control-label">New Password</label>
+								<input type="password" id="password" name="password" value="" class="form-control" />
+							</div>
+						</div> 
+						<div class=" col-md-12">
+							<div class="form-group">
+								<label class="control-label">Confirm Password</label>
+								<input type="password" id="confirmpassword" name="confirmpassword" value="" class="form-control"  />
+							</div>
+						</div>
+                        
+							
+                    </div>
+
+                    <button class="btn btn-lg  btn-block signup-btn" style="background-color:#c33c12;color:#fff;" type="submit">
+                        Submit</button>
+                </form>
+				<a  href="<?php echo base_url('admin/login'); ?>"class="btn btn-lg  btn-block signup-btn" style="background-color:#c33c12;color:#fff;" type="submit">
+                  Cancel</a>
+
+            </div>
+            </div>
         </div>
-    </section>
-	   </div>
-	   </div>
-	   </div>
-	   </div>
-	   </div>
-	   
-	   </div>
-	   </div>
-	</div>
+		<a  href="<?php echo base_url(); ?>" class="" style="position: absolute;top:-100px;right:43%">
+			<img src="<?php echo base_url(); ?>assets/images/inv_logo.png" />
+		</a>
+    </div>
 
-	<script type="text/javascript">
+</body>
 
+</html>
+<script type="text/javascript">
 $(document).ready(function() {
     $('#chanagepassword').bootstrapValidator({
        
         fields: {
-          
-			password: {
+			        password: {
 					validators: {
 					notEmpty: {
 						message: 'New Password is required'
@@ -99,15 +102,17 @@ $(document).ready(function() {
 					message: 'New Password wont allow <>[]'
 					}
 				}
-			},
-			confirmpassword: {
-					 validators: {
+        },
+		 confirmpassword: {
+          validators: {
                 identical: {
-                    field: 'newpassword',
-                    message: 'The New password and its confirm Password are not the same'
+                    field: 'password',
+                    message: 'New password and confirm Password do not match'
                 }
             }
-			},
+        }
+            
+		
         }
     });
 });
