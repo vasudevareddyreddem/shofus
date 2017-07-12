@@ -23,6 +23,10 @@ class Login_model extends CI_Model
 		$this->db->where('cust_email',$email);
         return $this->db->get()->row_array();
     }
+	function update_password($reset_pass){
+		$sql1="UPDATE customers SET cust_password ='".md5($reset_pass['cpassword'])."'WHERE customer_id = '".$reset_pass['userid']."' AND cust_email='".$reset_pass['email']."'";
+		return $this->db->query($sql1);
+	}
 
 public function get_data($username, $password)
 

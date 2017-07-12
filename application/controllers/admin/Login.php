@@ -174,13 +174,13 @@ public function changepassword()
 				$users = $this->login_model->update_password($reset_pass);
 				if(count($users)>0)
 				{
-					$this->session->set_flashdata("success","Your password changed successfully!");
+					$this->session->set_flashdata("success","Your password changed successfully. please login and continue");
 					redirect('admin/login');
 				}
 			}
 			else
 			{
-				$this->session->set_flashdata("error","Passwords are Not matched!");
+				$this->session->set_flashdata("error","New Password and confirm password are Not matched!");
 				redirect('admin/login/changepwd?code='.base64_encode($reset_pass['email']).'__'.base64_encode($reset_pass['userid']));
 			}
 		}else{
