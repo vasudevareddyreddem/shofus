@@ -746,7 +746,7 @@ class Customer extends Front_Controller
 				if (count($passwordset)>0)
 				{
 					$customer = $this->customer_model->get_customers_details($pass_post['cust_id']);
-					echo "<pre>";print_r($customer);exit;
+					//echo "<pre>";print_r($customer);exit;
 					if($customer['role_id']==5){
 					$this->session->set_userdata('userdetails',$customer);	
 					$this->session->set_flashdata('dashboard',"Welcone To Inventory Management!");
@@ -842,15 +842,7 @@ class Customer extends Front_Controller
 	
 
 
-	public function inve_logout(){
-		
-		$userinfo = $this->session->userdata('userdetails');
-		//echo '<pre>';print_r($userinfo );exit;
-        $this->session->unset_userdata($userinfo);
-		$this->session->sess_destroy('userdetails');
-		$this->session->unset_userdata('userdetails');
-        redirect('customer/inve');
-	}
+
 
 
 

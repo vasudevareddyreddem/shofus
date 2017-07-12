@@ -5,6 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Inventory</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -14,7 +16,11 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/dist/css/style.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/dist/css/cartin.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/dist/css/skins/_all-skins.min.css">
-
+   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css" />
+<<<<<<< HEAD
+=======
+    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
+>>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -242,7 +248,9 @@
             </a><ul class="dropdown-menu pad_prof" >
               <a href="<?php echo base_url('customer/inve_changepassword');?>"><li class="user-body">Change Password</li></a>
               <a href="<?php echo base_url('inventory/account');?>"><li class="user-body">update profile</li></a>
-              <a href="<?php echo base_url('customer/inve_logout');?>"><li class="user-body">Logout</li></a>
+              <a href="<?php echo base_url('inventory/logout');?>"><li class="user-body">Logout</li></a>
+
+
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->

@@ -14,84 +14,41 @@
       <div class="row">
 		<div class="col-md-6 well detail_ta col-md-offset-3">
 			<div class="pull-left"><h3 style="padding-bottom:10px;margin:0;color:#c33c12;">Seller Details</h3></div>
-			<div class="pull-right"><button type="button" class="btn btn-warning btn-xs">Back</button></div>
+			<div class="pull-right"><a href="<?php echo base_url('inventory/dashboard'); ?>" type="button" class="btn btn-warning btn-xs">Back</a></div>
 			 <table class="table table-bordered">
 					<tbody>
 					  <tr>
+						<th >Seller Id</th>
+						<td><?php echo isset($seller_details['seller_rand_id'])?$seller_details['seller_rand_id']:''; ?></td>
+						
+					  </tr>
+					   <tr>
 						<th >Seller Name</th>
-						<td>Bayapu</td>
+						<td><?php echo isset($seller_details['seller_name'])?$seller_details['seller_name']:''; ?></td>
 						
 					  </tr>
 					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
+						<th >Seller Email</th>
+						<td><?php echo isset($seller_details['seller_email'])?$seller_details['seller_email']:''; ?></td>
 						
-					  </tr>
+					  </tr> 
 					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
+						<th >Seller Mobile</th>
+						<td><?php echo isset($seller_details['seller_mobile'])?$seller_details['seller_mobile']:''; ?></td>
 						
-					  </tr>
+					  </tr> 
 					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
+						<th >Created date</th>
+						<td><?php echo isset($seller_details['created_at'])?$seller_details['created_at']:''; ?></td>
 						
-					  </tr>
+					  </tr> 
 					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
+						<th >Status</th>
+						<td><?php if($seller_details['status']==1){ echo "Active";}else{echo "Dective";} ?></td>
 						
 					  </tr>
-					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
-						
-					  </tr>
-					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
-						
-					  </tr>
-					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
-						
-					  </tr>
-					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
-						
-					  </tr>
-					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
-						
-					  </tr>
-					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
-						
-					  </tr>
-					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
-						
-					  </tr>
-					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
-						
-					  </tr>
-					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
-						
-					  </tr>
-					  <tr>
-						<th>Name</th>
-						<td>Bayapu</td>
-						
-					  </tr>
+					
+					 
 					
 					</tbody>
 			</table>

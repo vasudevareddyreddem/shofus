@@ -1,13 +1,8 @@
 <footer class="main-footer ">
     <div class="pull-right hidden-xs">
     </div>
-    <?php function auto_copyright($year = 'auto'){ ?>
-   <?php if(intval($year) == 'auto'){ $year = date('Y'); } ?>
-   <?php if(intval($year) == date('Y')){ echo intval($year); } ?>
-   <?php if(intval($year) < date('Y')){ echo intval($year) . ' - ' . date('Y'); } ?>
-   <?php if(intval($year) > date('Y')){ echo date('Y'); } ?>
-<?php } ?>
-    <strong>Copyright &copy; <?php auto_copyright("2016");?><a href="#">cartinhour</a>.</strong> All rights
+    
+    <strong>Copyright &copy; 2016- <?php echo date('Y');?><a href="#">cartinhour</a>.</strong> All rights
     reserved.
   </footer>
  <div class="control-sidebar-bg"></div>
@@ -15,6 +10,7 @@
 </div>
 <!-- core functionality purpose-->
 
+<script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
 
 <script src="<?php echo base_url(); ?>assets/vendor/inventry/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/vendor/inventry/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -31,7 +27,7 @@
 <script src="<?php echo base_url(); ?>assets/vendor/inventry/plugins/datatables/dataTables.bootstrap.min.js
 "></script>
 <script src="<?php echo base_url(); ?>assets/vendor/inventry/plugins/datatables/jquery.dataTables.min.js"></script>
-
+<script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 
 <script>
   $(function () {

@@ -47,7 +47,9 @@ class Showups extends Admin_Controller {
 		//echo '<pre>';print_r($seller_location);exit;
 		$data=array(         
 			'seller_id' => $this->session->userdata('seller_id'),   
-			'file_name'=>$home_banner			
+			'file_name'=>$home_banner,
+			'created_at'=>date('Y-m-d H:i:s'),
+			'updated_at'=>date('Y-m-d H:i:s')		
 			);
 		//echo '<pre>';print_r($data);exit;
 			$banner=$this->showups_model->save_banner_image($data);

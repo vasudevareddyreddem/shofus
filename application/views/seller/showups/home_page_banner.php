@@ -15,32 +15,30 @@
 			</ol>
 		</div>
 	</section>
-  <section class="content ">
-  <div class="faq_main">
-  <?php if($this->session->flashdata('message')): ?>
+  	<section class="content ">
+  		<div class="faq_main">
+  				<?php if($this->session->flashdata('message')): ?>
 				<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button><?php echo $this->session->flashdata('message');?></div>
 				<?php endif; ?>
   
-    <div class="container" style="width:100%">    
-    <div class="panel-body">
-				 <form name="addbanner" id="addbanner" action="<?php echo base_url('seller/showups/save_banner'); ?>" method="post" enctype="multipart/form-data" >
+    		<div class="container" style="width:100%">    
+    		<div class="well col-md-6 col-md-offset-3">
+			<form name="addbanner" id="addbanner" action="<?php echo base_url('seller/showups/save_banner'); ?>" method="post" enctype="multipart/form-data" >
 				<div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputFile">Banner</label>
+                  <label for="exampleInputFile">Home Page Banner</label>
                   <input type="file" name="home_banner" id="home_banner">
-				 </div>
+				</div>
                 <div class="clearfix"></div>
 				<div style="margin-top: 20px; margin-left: 15px;">
                 <button type="submit" class="btn btn-primary" >Submit</button>
                 <button type="submit" class="btn btn-danger" onclick="window.location='<?php echo base_url(); ?>seller/dashboard';return false;">Cancel</button>
 				</div>
-              </form>
+            </form>
 				</div>
 				</div>
 			</div>
-    </div>
-    </div>
     </section>
     </div>
 
