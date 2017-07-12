@@ -11,6 +11,7 @@ class Services extends Admin_Controller {
 		
 		$this->load->library('email');
 		$this->load->model('seller/login_model');
+		$this->load->model('seller/adddetails_model');
 	}
 
 	public function index()
@@ -21,6 +22,28 @@ class Services extends Admin_Controller {
 		$this->template->render();
 
 
+	}
+	public function notications()
+	{
+		$this->template->write_view('content', 'seller/services/notications');
+		$this->template->render();
+	}
+	
+	public function notificationpost()
+	{
+		$post=$this->input->post();
+		$addnotifications = array(
+  		'seller_id' => $this->session->userdata('seller_id'),
+  		'subject'=>$post['subject'],
+  		'seller_message'=>$post['message'],
+  	  	'message_type' =>'REPLY',
+  	  	'created_at' => date('Y-m-d H:i:s'),
+		);
+		$contact = $this->adddetails_model->save_notifciations($addnotifications);
+		if(count($contact)>0){
+			$this->session->set_flashdata('sucess','Notification successfully send!');
+			redirect('seller/services/notications');	
+		}
 	}
 	
 

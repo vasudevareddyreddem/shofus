@@ -131,6 +131,11 @@
                             <i class="fa fa-envelope-open-o"></i><span>Request For Services</span>
                         </a>                        
                     </li>
+					<li class="treeview">
+                        <a href="<?php echo base_url('seller/services/notications');?>">
+                            <i class="fa fa-envelope-open-o"></i><span>seller support</span>
+                        </a>                        
+                    </li>
                            
             </ul>
         </div> <!-- /.sidebar -->

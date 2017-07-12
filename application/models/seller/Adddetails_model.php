@@ -15,6 +15,12 @@ class Adddetails_model extends MY_Model
 		return $query->result();
 		
 	  }
+	public function save_notifciations($data)
+	{
+		
+		$this->db->insert('notifications', $data);
+		return $insert_id = $this->db->insert_id();
+	}
 	public function save_catrgore($data)
 	{
 		
