@@ -9,7 +9,8 @@ $(document).ready(function(){
   var maxField = 10; //Input fields increment limitation
   var addButton = $('.add_button'); //Add button selector
   var wrapper = $('.field_wrapper'); //Input field wrapper
-  var fieldHTML = '<div class="field_wrapper nopaddingRight col-md-13 san-lg" ><select class="form-control" onchange="savecat(this.value);"  id="category_id" name="seller_cat[]"><option value="">Select Category</option><?php foreach($getcat as $cat_data){ ?><option value="<?php echo $cat_data->category_id; ?>"><?php echo $cat_data->category_name; ?></option><?php }?></select><a href="javascript:void(0);" class="remove_button" title="Remove field"><img src="<?php echo site_url(); ?>assets/seller/images/remove-icon.png"/></a></div>'; //New input field html 
+  var fieldHTML = '<div class="field_wrapper nopaddingRight col-md-13 san-lg" ><select class="form-control" onchange="savecat(this.value);"  id="category_id" name="seller_cat[]"><option value="">
+</option><?php foreach($getcat as $cat_data){ ?><option value="<?php echo $cat_data->category_id; ?>"><?php echo $cat_data->category_name; ?></option><?php }?></select><a href="javascript:void(0);" class="remove_button" title="Remove field"><img src="<?php echo site_url(); ?>assets/seller/images/remove-icon.png"/></a></div>'; //New input field html 
   var x = 1; //Initial field counter is 1
   $(addButton).click(function(){ //Once add button is clicked
     if(x < maxField){ //Check maximum number of input fields
@@ -369,7 +370,7 @@ $(document).ready(function(){
 									<tr id='addr0'>
 										
 										<td>
-										<input type="text" name='caregoryname[]' id="" class="form-control"/>
+										<input type="text" name='caregoryname[]' id="uff" class="form-control"/>
 										</td>
 									</tr>
 									<tr id='addr1'></tr>
