@@ -526,7 +526,31 @@ public function servicerequestview(){
 	   	$this->load->view('customer/inventry/footer');
 	}
 
-	
+	 public function categorieslist(){
+  	
+	 
+	if($this->session->userdata('userdetails'))
+	 {		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5){
+				
+				$data['category_list'] = $this->inventory_model->get_all_categories_list();
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+				$this->load->view('customer/inventry/category_list',$data);
+				$this->load->view('customer/inventry/footer');	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+		
+	  
+	  }
+	  else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+	} 
+  }
 		public function logout(){
 		
 		$userinfo = $this->session->userdata('userdetails');

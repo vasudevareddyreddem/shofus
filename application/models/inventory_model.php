@@ -8,6 +8,11 @@ class Inventory_model extends MY_Model
 	}
 	
 	
+	public function get_all_categories_list()
+	{
+		$this->db->select('*')->from('category');
+		return $this->db->get()->result_array();
+	}
 	public function get_seller_details($sid)
 	{
 		$this->db->select('*')->from('sellers');
@@ -54,15 +59,9 @@ class Inventory_model extends MY_Model
     return $this->db->get()->result_array();
 
 	}
-
-	
-
 	public function get_seller_databaseid()
 	{
-		 // 	$this->db->select('sellers.*,seller_store_details.*,GROUP_CONCAT(seller_categories.category_name ORDER BY seller_categories.category_name SEPARATOR ', ') AS categoryname ')->from('seller_categories');
-		 // 	$this->db->join('sellers', 'sellers.seller_id =seller_categories.seller_id' , 'left');
-		 // 	$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left');
-		 // return $this->db->get()->result_array();
+	
 		 $sqll = $this->db->query("SELECT sellers.*,seller_store_details.*,GROUP_CONCAT(seller_categories.category_name ORDER BY seller_categories.category_name SEPARATOR ', ') AS categoryname 
 		 FROM seller_categories LEFT JOIN sellers ON seller_categories.seller_id =sellers.seller_id LEFT JOIN seller_store_details ON 
 		 	seller_store_details.seller_id = sellers.seller_id GROUP BY sellers.seller_id");
