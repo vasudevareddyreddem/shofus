@@ -7,6 +7,7 @@
       <div class="box data_box_wid">
             <div class="box-header">
               <h3 class="box-title">Category List</h3>
+              <a href="<?php echo base_url('inventory/categoryadd'); ?>" class="box-title">Add</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -14,6 +15,7 @@
                 <thead>
                 <tr>
 					<th>Category Name</th>
+					<th>Commission</th>
 					<th>Created Date</th>
 					<th>Status</th>
 					<th>Action</th>
@@ -23,14 +25,16 @@
                 <?php  
                   foreach($category_list as $catlist) {?>
                 <tr>                  
-                  <td><?php echo $catlist['category_name']; ?></td>
+                  <td><a href="<?php echo base_url('inventory/categoryview/'.base64_encode($catlist['category_id'])); ?>"><?php echo $catlist['category_name']; ?></a></td>
+                  <td><?php if($catlist['commission']!=0 && $catlist['commission']!='' ){ echo $catlist['commission']; } else { echo "";} ?></td>
 				  <td><?php echo $catlist['created_at']; ?></td>    
                   <td><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
 				<td>
-					<a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($catlist['category_id'])); ?>">View</a> |&nbsp;
-					<a href="<?php echo base_url('inventory/status/'.base64_encode($catlist['category_id']).'/'.base64_encode($catlist['status'])); ?>"><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
+				<a href="<?php echo base_url('inventory/categoryview/'.base64_encode($catlist['category_id'])); ?>">View</a> | &nbsp;
+				<a href="<?php echo base_url('inventory/categoryedit/'.base64_encode($catlist['category_id'])); ?>">Edit</a> | &nbsp;
+					<a href="<?php echo base_url('inventory/categorystatus/'.base64_encode($catlist['category_id']).'/'.base64_encode($catlist['status'])); ?>"><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
 				</td>
-                                </tr>
+                 </tr>
                  <?php }?>
                 </tbody>              
               </table>

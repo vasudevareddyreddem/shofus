@@ -384,6 +384,175 @@ public function servicerequestview(){
 		 redirect('admin/login	');
 		} 
   }
+  public function categorystatus(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$id = base64_decode($this->uri->segment(3)); 
+					$status = base64_decode($this->uri->segment(4));
+					if($status==1){
+					$status=0;
+					}else{
+					$status=1;
+					}
+					$data=array('status'=>$status);
+					$updatestatus=$this->inventory_model->update_category_status($id,$data);
+					//echo $this->db->last_query();exit;
+					
+					if(count($updatestatus)>0){
+						if($status==1){
+							$this->session->set_flashdata('success'," Category activation successful");
+						}else{
+							$this->session->set_flashdata('success',"Category deactivation successful");
+						}
+						redirect('inventory/categorieslist');
+					}
+		}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  public function categoryedit(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['category_details'] = $this->inventory_model->get_categort_details(base64_decode($this->uri->segment(3)));
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+				$this->load->view('customer/inventry/editcategory',$data);
+				$this->load->view('customer/inventry/footer');	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  } 
+ 
+  public function categoryadd(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$this->load->view('customer/inventry/sidebar');
+					$this->load->view('customer/inventry/addcategory');
+					$this->load->view('customer/inventry/footer');
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  public function addcategorypost(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$post=$this->input->post();
+					//echo "<pre>";print_r($_FILES);
+					//echo "<pre>";print_r($post);exit;
+					move_uploaded_file($_FILES['categoryfile']['tmp_name'], "assets/sellerfile/category/" . trim($_FILES['categoryfile']['name']));
+					$data = array(
+					'category_name' => $post['categoryname'], 
+					'commission' => $post['commission'], 
+					'documetfile' => trim($_FILES['categoryfile']['name']),    
+					'status' => 1,    
+					'created_at' => date('Y-m-d H:i:s'),    
+					'updated_at' => date('Y-m-d H:i:s'),
+					);
+					$result=$this->inventory_model->insert_cat_data($data);
+					if(count($result)>0){
+
+					$this->session->set_flashdata('success',"Category Successfully Added");
+					redirect('inventory/categorieslist');
+					}
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  
+  public function categoryview(){
+  	
+	 
+	if($this->session->userdata('userdetails'))
+	 {		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5){
+				$data['category_details'] = $this->inventory_model->get_categort_details(base64_decode($this->uri->segment(3)));
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+				$this->load->view('customer/inventry/categoryview',$data);
+				$this->load->view('customer/inventry/footer');	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+		
+	  
+	  }
+	  else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+	} 
+  } 
+  
+   public function updatecategorypost(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$post=$this->input->post();
+				$category_details = $this->inventory_model->get_categort_details($post['catid']);
+					if($_FILES['categoryfile']['name']!=''){
+						$imgname=$_FILES['categoryfile']['name'];
+						move_uploaded_file($_FILES['categoryfile']['tmp_name'], "assets/sellerfile/category/" . trim($_FILES['categoryfile']['name']));
+
+					}else{
+						$imgname=$category_details['documetfile'];
+					}
+					$updatedata = array(
+					'category_name' => $post['categoryname'], 
+					'commission' => $post['commission'], 
+					'documetfile' => $imgname,
+					'created_at' => date('Y-m-d H:i:s'),    
+					'updated_at' => date('Y-m-d H:i:s'),
+					);
+					$details=$this->inventory_model->update_category_details($post['catid'],$updatedata);
+					if(count($details)>0){
+
+					$this->session->set_flashdata('success',"Category Successfully Updated!");
+					redirect('inventory/categorieslist');
+					}	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
 
 	public function categories()
 	{
@@ -395,7 +564,6 @@ public function servicerequestview(){
 				{
 					$data['category'] = $this->inventory_model->get_seller_categories();
 					//echo "<pre>";print_r($data);exit;
-					$this->load->view('customer/inventry/header');
 					$this->load->view('customer/inventry/sidebar');
 					$this->load->view('customer/inventry/categories',$data);
 					$this->load->view('customer/inventry/footer');

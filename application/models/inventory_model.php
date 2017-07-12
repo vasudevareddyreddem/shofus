@@ -13,6 +13,17 @@ class Inventory_model extends MY_Model
 		$this->db->select('*')->from('category');
 		return $this->db->get()->result_array();
 	}
+	public function get_categort_details($catid)
+	{
+		$this->db->select('*')->from('category');
+		$this->db->where('category_id',$catid);
+		return $this->db->get()->row_array();
+	}
+	public function update_category_details($catid,$data)
+	{
+		$this->db->where('category_id', $catid);
+		return $this->db->update('category', $data);
+	}
 	public function get_seller_details($sid)
 	{
 		$this->db->select('*')->from('sellers');
@@ -22,6 +33,14 @@ class Inventory_model extends MY_Model
 	public function update_seller_status($sellerid,$data){
 		$this->db->where('seller_id', $sellerid);
 		return $this->db->update('sellers', $data);
+	}
+	public function update_category_status($catid,$data){
+		$this->db->where('category_id', $catid);
+		return $this->db->update('category', $data);
+	}
+	function insert_cat_data($data){
+		$this->db->insert('category', $data);
+		return $insert_id = $this->db->insert_id();
 	}
 	public function get_all_seller_details(){
 		$this->db->select('*')->from('sellers');		
