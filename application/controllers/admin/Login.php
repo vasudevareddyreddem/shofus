@@ -8,7 +8,9 @@ class Login extends CI_Controller {
 	public function __construct() {
 
 		parent::__construct();
-
+		$this->load->helper(array('url','html','form'));
+		$this->load->library('session','form_validation');
+		$this->load->library('email');
 		$this->load->model('admin/login_model');
 }
 
@@ -16,9 +18,21 @@ class Login extends CI_Controller {
  public function index() {
 
 
-    $this->load->view('admin/login');
+	if($this->session->userdata('userdetails')){
+		$customerdetails=$this->session->userdata('userdetails');
+		if($customerdetails['role_id']==5){
+			redirect('inventory/dashboard');
+		}else if($customerdetails['role_id']==2){
+			redirect('admin/dashboard');
+			
+		}else if($customerdetails['role_id']==6){
+			
+			redirect('deliveryboy/dashboard');
+		}
+	}else{
+	   $this->load->view('admin/login'); 
+   }
 
-    //$this->template->render(); 
 
   }
 
@@ -67,47 +81,21 @@ public function loginpost()
 
  public function logout() {
 
-        $data = array(
-
-            'admin_id'        => '',
-
-            'admin_name'  => '',
-
-            'user_email'     => '',
-
-            'loggedin'  => FALSE,
-
-
-
-        );
-
-
-
-        $this->session->set_userdata($data);
-
-
-
-        $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
-
-
-
-        $this->output->set_header("Pragma: no-cache");
-
-
-
-        $this->session->sess_regenerate(TRUE);
-
-
-
-        //flash_message('Successfully Logged Out', 'success');
-
-
-
-        return redirect(base_url('admin/login'));
-
-
-
-    }
+	$data = array(
+	'admin_id'        => '',
+	'admin_name'  => '',
+	'user_email'     => '',
+	'loggedin'  => FALSE,
+	);
+	$userinfo = $this->session->userdata('userdetails');
+	$this->session->set_userdata($data);
+	$this->session->unset_userdata($userinfo);
+	$this->session->sess_destroy('userdetails');
+	$this->session->unset_userdata('userdetails');
+	$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+	$this->output->set_header("Pragma: no-cache");
+	redirect('admin/login');
+ }
 
 
 public function forgot()
