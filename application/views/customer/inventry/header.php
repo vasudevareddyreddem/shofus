@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/dist/css/cartin.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/dist/css/skins/_all-skins.min.css">
    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css" />
+    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
