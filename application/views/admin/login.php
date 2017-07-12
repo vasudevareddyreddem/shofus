@@ -41,15 +41,15 @@
 			<h3 class="">Sign in</h3>
 			<hr>
                 <div id="loginbox" class="mainbox ">
-					<?php if($this->session->flashdata('login_error')): ?>	
+					<?php if($this->session->flashdata('loginerror')): ?>	
 			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('login_error');?></div>
+                    </button><?php echo $this->session->flashdata('loginerror');?></div>
 			<?php endif; ?>	
-            <?php if($this->session->flashdata('forsuccess')): ?>  
+            <?php if($this->session->flashdata('success')): ?>  
             <div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('forsuccess');?></div>
+                    </button><?php echo $this->session->flashdata('success');?></div>
             <?php endif; ?>	
                     <form id="loginform" name="loginform" method="post" action="<?php echo base_url('admin/login/loginpost');?>" class="form-horizontal" role="form">
                         <div class=" form-group">
