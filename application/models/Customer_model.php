@@ -100,6 +100,11 @@ class Customer_model extends MY_Model
 		$this->db->where('cust_email', $email);
 		return $this->db->get()->row_array();
 	}
+	public function get_customers_details($cid){
+		$this->db->select('*')->from('customers');		
+		$this->db->where('customer_id', $cid);
+		return $this->db->get()->row_array();
+	}
 
 	public function role_ids($email){
 		$this->db->select('customers.role_id')->from('customers');

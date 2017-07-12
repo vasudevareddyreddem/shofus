@@ -140,7 +140,7 @@
 				<p>Cart</p>
 				<div class="sprinkle"></div>
 			<?php }else{  ?>
-			<p>Cart</p>	
+			<sup class="sup_log"></sup><p>Cart</p>	
 			<?php } ?>
 			
 			</span>

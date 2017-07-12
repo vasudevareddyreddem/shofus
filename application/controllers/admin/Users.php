@@ -24,9 +24,9 @@ class Users extends Admin_Controller {
 		$this->template->render();
 	}
 	public function create()
-
 	{
 		$data['roles'] = $this->user_model->roles_get();
+		//echo "<pre>";print_r($data);exit;
 		$this->template->write_view('content', 'admin/users/add' ,$data);
 		$this->template->render();
 	}
@@ -34,13 +34,13 @@ class Users extends Admin_Controller {
 	public function insert()
 	{
 		$post=$this->input->post();
-
 		$data = array(
 			'cust_firstname'=>$post['first_name'],
 			'cust_lastname'=>$post['last_name'],
 			'cust_email'=>$post['email_id'],
 			'role_id'=>$post['role_id'],
-
+			'status'=>1,
+			'create_at'=>date('Y-m-d H:i:s'),
 		);
 		//echo "<pre>";print_r($data);exit;
 		$success=$this->user_model->insert_users($data);
@@ -73,6 +73,33 @@ class Users extends Admin_Controller {
 				}
 
 	}
+	
+	public function delemp()
+	{
+		
+		$code = $_GET['id'];
+		$arr = explode('__',$code);
+		$cid = base64_decode($arr[0]);
+		$status = base64_decode($arr[1]);
+		if($status==1){
+		$status=0;
+		}else{
+		$status=1;
+		}
+		$customerstatus= $this->user_model->deletecustomerdata($cid,$status);
+		if(count($success)>0)
+				{
+					if($status==1){
+						$this->session->set_flashdata('sucesmsg',"Employee successfully Activate");
+					}else{
+						$this->session->set_flashdata('sucesmsg',"Employee successfully deactivated.");
+					}
+					redirect('admin/users');
+				}else{
+					$this->session->set_flashdata('errormsg',"Employee successfully deactivated.");
+					redirect('admin/users');
+				}
+	 }
 
 
 	// public function set_password($code)

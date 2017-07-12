@@ -50,7 +50,7 @@
                   <select class="form-control m-bot15" id="role_id" name="role_id">
                     <option value="">Select Role</option>
                     <?php foreach($roles as $role){ ?>
-                    <option value="<?php echo $role->role_id ?>"><?php echo $role->role ?></option>
+                    <option value="<?php echo $role['role_id'] ?>"><?php echo $role['role'] ?></option>
                      <?php } ?>
                   </select>
                   <span style="color:red"> <?php echo form_error('role_id'); ?> </span>

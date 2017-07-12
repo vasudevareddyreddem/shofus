@@ -506,6 +506,9 @@ class Customer extends Front_Controller
 			'cust_password'=>$password,
 			'cust_mobile'=>$post['mobile'],
 			'area'=>$this->session->userdata('location_area'),
+			'role_id'=>1,
+			'status'=>1,
+			'create_at'=>date('Y-m-d H:i:s'),
 			);
 			$customerdetails = $this->customer_model->save_customer($details);
 			
@@ -710,25 +713,16 @@ class Customer extends Front_Controller
 	  //$this->load->view('customer/inventry/footer');
 	
   }
-  public function inve_dashboard(){
-  	$data['users'] = $this->session->userdata('userdetails');
-  	//echo "<pre>";print_r($data);exit;
-	  $this->load->view('customer/inventry/header');
-	  $this->load->view('customer/inventry/sidebar');
-	  $this->load->view('customer/inventry/index',$data);
-	  $this->load->view('customer/inventry/footer');
-	
-  }
+ 
 
 	public function password()
 	{
 		$data['cust_id'] = base64_decode($this->uri->segment(4));
-		//echo "<pre>";print_r($data);exit;
 		$data['cust_email']= base64_decode($this->uri->segment(3));
 		$this->load->view('customer/setpassword',$data);
 	}
 
-	public function set_password()
+	public function setpassword()
 	{
 
 		
@@ -742,16 +736,22 @@ class Customer extends Front_Controller
 		//echo "<pre>";print_r($cust_email);exit;
 		if($newpassword == $conpassword)
 		{
-			$test  = $this->customer_model->get_user($pass_post['cust_id'],$pass_post['cust_email']);
+			$customerdetails  = $this->customer_model->get_user($pass_post['cust_id'],$pass_post['cust_email']);
 			//echo "<pre>";print_r($test);exit;
-			if($cust_email=$test['cust_email'] && $cust_id=$test['customer_id'])
+			if(count($customerdetails)>0)
 			{
 				$passwordset = $this->customer_model->setpassword_user($pass_post['cust_id'],$conpassword);
-				//echo "<pre>";print_r($passwordset);exit;
+				
 				if (count($passwordset)>0)
 				{
+					$customer = $this->customer_model->get_customers_details($pass_post['cust_id']);
+					//echo "<pre>";print_r($customer);exit;
+					if($customer['role_id']==5){
+					$this->session->set_userdata('userdetails',$customer);	
 					$this->session->set_flashdata('dashboard',"Welcone To Inventory Management!");
-					redirect('customer/inve');
+					redirect('inventory/dashboard');	
+					}
+				
 				}
 				else
 				{
@@ -759,11 +759,9 @@ class Customer extends Front_Controller
 					redirect('customer/password/'.base64_encode($pass_post['cust_email']).'/'.base64_encode($pass_post['cust_id']
 					));
 				}					
-			}
-			else
-			{	
-			$this->session->set_flashdata('passworderror',"Your Email Id Is Worng");
-				redirect('customer/password/'.base64_encode($pass_post['cust_email']).'/'.base64_encode($pass_post['cust_id']));			
+			}else{	
+			$this->session->set_flashdata('passworderror',"Enter wrong details.please tru again!");
+			redirect('customer/password/'.base64_encode($pass_post['cust_email']).'/'.base64_encode($pass_post['cust_id']));			
 								
 			}				
 		}
@@ -788,7 +786,7 @@ class Customer extends Front_Controller
 		{
 			$this->session->set_userdata('userdetails',$logindetails);		
 			$this->session->set_flashdata('sucesss',"Successfully Login");
-			redirect('customer/inve_dashboard');
+			redirect('inventory/dashboard');
 		}else{
 			$this->session->set_flashdata('login_error',"Invalid Email Address or Password!");
 			redirect('customer/inve');

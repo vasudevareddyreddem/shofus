@@ -1,33 +1,54 @@
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
-			<div class="container">
-				 <!-- Main content -->
+      <div class="container">
+         <!-- Main content -->
       <div class="row">
-        <!-- left column -->
-        <div class="col-md-8">
-        <?php if($this->session->flashdata('dashboard')): ?>  
-      <div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('dashboard');?></div>
-      <?php endif; ?>
-      <?php if($this->session->flashdata('sucesss')): ?>  
-      <div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('sucesss');?></div>
-      <?php endif; ?>
-        
-        <div class="col-md-8 col-md-offset-2" style="margin-top:100px">
-          <!-- general form elements -->
-          <h1>Dashboard</h1>  
+      <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Seller List</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Seller Id</th>
+                  <th>Seller Name</th>
+                  <th>Seller Email</th>
+                  <th>Seller mobile</th>
+				  
+                </tr>
+                </thead>
+                <tbody>
+                <?php  
+                  foreach($seller_details as $details) {?>
+                <tr>                  
+                  <td><?php echo $details['seller_rand_id']; ?></td>
+                  <td><?php echo $details['seller_name']; ?></td>
+                  <td><?php echo $details['seller_email']; ?></td>                  
+                  <td><?php echo $details['seller_mobile']; ?></td>                  
+                
+                </tr>
+                 <?php }?>
+                </tbody>              
+              </table>
+             
+            </div>
+            <!-- /.box-body -->
           </div>
-          </div>
-		  
-		
-			</div>
 
-  </div>
-  </div>
-  <!-- /.content-wrapper -->
-
-  
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+    $('#example1').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
