@@ -80,7 +80,8 @@ class Inventory_model extends MY_Model
 
 	public function get_seller_banners()
 	{
-		$this->db->select('*')->from('home_banner');		
+		$this->db->select('home_banner.*,sellers.seller_name')->from('home_banner');
+		$this->db->join('sellers','sellers.seller_id = home_banner.seller_id', 'left');	
 		return $this->db->get()->result_array();
 	}
 	function banner_status_update($id,$status)
