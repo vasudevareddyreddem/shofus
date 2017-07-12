@@ -240,7 +240,7 @@
 			<?php } ?>
 			  <span class="hidden-xs"><?php echo $customerdetails['cust_firstname'].'/'.$customerdetails['cust_lastname'] ?>	</span>
             </a><ul class="dropdown-menu pad_prof" >
-              <a href="<?php echo base_url('customer/inve_changepassword');?>"><li class="user-body">Change Password</li></a>
+              <a href="<?php echo base_url('inventory/changepassword');?>"><li class="user-body">Change Password</li></a>
               <a href="<?php echo base_url('inventory/account');?>"><li class="user-body">update profile</li></a>
               <a href="<?php echo base_url('customer/inve_logout');?>"><li class="user-body">Logout</li></a>
             </ul>

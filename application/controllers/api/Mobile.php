@@ -264,36 +264,27 @@ class Mobile extends REST_Controller {
 	public function save_store_details_post()
 	{
 		
-		$tinvatimages=base64_decode($this->input->get('tinvatimage'));
-		$tanimages=base64_decode($this->input->get('tanimage'));
-		$cstimages=base64_decode($this->input->get('cstimage'));
-		$gstimg=base64_decode($this->input->get('gstinimage'));
-		
 		
 		$seller_upload_file=$this->mobile_model->get_upload_file($this->input->get('seller_id'));
 		if($this->input->get('tinvatimage')!=''){
-			move_uploaded_file($tinvatimages['tmp_name'], "assets/sellerfile/" . $tinvatimages);
-
+			$tinvatimage=$this->input->get('tinvatimage');
 			}else{
 			$tinvatimage=$seller_upload_file['tinvatimage'];
 			}
 			if($this->input->get('tanimage')!=''){
-			$tanimg=base64_decode($this->input->get('tanimage'));
-			move_uploaded_file($tanimages['tmp_name'], "assets/sellerfile/" . $tanimages);
+			$tanimg=$this->input->get('tanimage');
 
 			}else{
 			$tanimg=$seller_upload_file['tanimage'];
 			}
 			if($this->input->get('gstinimage')!=''){
-			$cstimages=base64_decode($this->input->get('cstimage'));
-			move_uploaded_file($cstimages['tmp_name'], "assets/sellerfile/" . $cstimages);
+			$cstimg=$this->input->get('cstimage');
 
 			}else{
 			$cstimg=$seller_upload_file['cstimage'];
 			}
 			if($this->input->get('gstinimage')!=''){
-			$gstimg=base64_decode($this->input->get('gstinimage'));
-			move_uploaded_file($gstimg['tmp_name'], "assets/sellerfile/" . $gstimg);
+			$gstimg=$this->input->get('gstinimage');
 
 			}else{
 			$gstimg=$seller_upload_file['gstinimage'];
@@ -397,8 +388,8 @@ class Mobile extends REST_Controller {
 	}
 	/*get seller subcategory list*/
 	public function get_subcategory_get(){
-		$categorie_list=$this->mobile_model->get_subcategories_list($this->input->get('category_id'));
-		//echo '<pre>';print_r($category);exit;
+		$categorie_list=$this->mobile_model->get_subcategories_list($this->input->get('category_id'),$this->input->get('seller_id'));
+		echo '<pre>';print_r($categorie_list);exit;
 		if(count($categorie_list)>0){
 			$message = array('status'=>1,'category_list'=>$categorie_list,'message'=>'Subcategory list are found.');
 			$this->response($message, REST_Controller::HTTP_OK);	
@@ -411,7 +402,7 @@ class Mobile extends REST_Controller {
 	}
 	/* seller subcategory product list */
 	public function get_subcategory_product_get(){
-		$categorie_list=$this->mobile_model->get_subcategory_product_list($this->input->get('seller_id'),$this->input->get('subcategory_id'));
+		$categorie_list=$this->mobile_model->get_subcategory_product_list($this->input->get('seller_id'),$this->input->get('subcategory_id'),$this->input->get('category_id'));
 		//echo '<pre>';print_r($category);exit;
 		if(count($categorie_list)>0){
 			$message = array('status'=>1,'category_list'=>$categorie_list,'message'=>'products list are found.');
