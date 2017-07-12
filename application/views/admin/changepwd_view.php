@@ -1,170 +1,115 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<style>
-.forgot {
-	    margin-left: 17px;
-	
-}
-.footerdown {
-    background: #333333 none repeat scroll 0 0;
-    color: #adadad;
-    float: left;
-    font-size: 14px;
-    line-height: 18px;
-    padding: 16px 0;
-    width: 100%;
-    position: absolute;
-    bottom: 0px;
-}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>::CART IN HOUR::</title>
+    <link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/font-awesome.min.css">
 
-</style>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>::Infinity Seller::</title>
-<link rel="icon" href="<?php echo base_url(); ?>assets/images/fav.png" type="image/x-icon" />
-<!--css start here -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,600i,700,800" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/responsive.css" />
-<!--java script start here -->
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
-<!--java script end here -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css" />
 
-<!--css end here -->
+
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/component.css" />
+    <script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
+
+    <script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 
 </head>
+<style>
+    .mar_t10per {
+        margin-top: 10%;
+    }
+    .form .form-control {
+        margin-bottom: 10px;
+    }
+</style>
 
-<body>
-<!--header part start here -->
-<div class="nav-wrapper">
-  <div class="container">
-    <div class="header">
-      <div class="col-md-6 col-xs-12">
-        <div class="logo">
-          <h3><a href="<?php echo base_url('admin/login'); ?>">CART IN HOUR<span> Admin</span></a></h3>
-        </div>
-      </div>
-      <div class="col-md-6 col-xs-12 hidden-xs">
-   
-      </div>
-    </div>
-  </div>
-</div>
+<body style="background-color:#f59171;">
+    <div class="container mar_t10per" style="position:relative" >
+        <div class="row ">
+		<div class="col-md-6 col-md-offset-3" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
+           
 
-<!--header part end here --> 
-<!--navigation start here -->
-<div class="header_main">
-  <div class="container">
-    <nav class="navbar navbar-default san_menu"> 
-      
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-        <a class="navbar-brand hidden-md hidden-sm hidden-lg" href="#">Infinity Seller</a> </div>
-      
-     
-    </nav>
-  </div>
-</div>
-<!--navigation part end here --> 
-
-<!--banners start here -->
-<div class="banner">
-  <div class="container">
-   <div class="col-md-4">&nbsp</div>
-    <div class="col-md-5">
-      <div class="bnr_rgt">
-        <h1 align="center"> Change Password </h1>
-        
-          <div class="form-group">
-		  <form  name="resetpassword" id="resetpassword" action="<?php echo base_url('admin/login/changepassword');?>" method="post" enctype="multipart/form-data">
-            <div class="col-md-12">
-              <div class="row">
-			  	<?php if($this->session->flashdata('error')): ?>
-				<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <div class="col-md-10 col-md-offset-1 ">
+			<h3 class="">Forget Password</h3>
+			<hr>
+				<?php if($this->session->flashdata('error')): ?>	
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
-				<?php endif; ?>
-              <div class="col-xs-12 inf_cmpy">
-			  <input type="hidden" name="email" id="email" value="<?php echo $email; ?>">
+			<?php endif; ?>	
+			<form action="<?php echo base_url('admin/login/changepassword'); ?>" method="post" name="forgotpass" id="forgotpass">
+			 <input type="hidden" name="email" id="email" value="<?php echo $email; ?>">
 			  <input type="hidden" name="userid" id="userid" value="<?php echo $userid; ?>">
-                  <label for="ex1"><strong>Password</strong></label>
-                    <input type="password" name="npassword" id="npassword" class="form-control" placeholder="Password" />
-                </div>
-				
-				  <div class="col-xs-12 inf_cmpy">
-                  <label for="ex1"><strong>Confirm Password</strong></label>
-                    <input type="password" name="cpassword" id="cpassword" class="form-control" placeholder="Confirm Password" />
-                </div>
-              
-                <div class="col-xs-12 inf_cmpy">
-                  <input type="submit" class="btn btn-block" value="Submit">
-                </div>
-              </div>
-            </div>
-			 </form>
-			 
-          </div>
-       
-		
-      </div>
-    </div>
-	<div class="col-md-4">&nbsp</div>
-  </div>
-</div>
-<!--banners end here --> 
-<!--header section start here -->
+			<div class="row">
+                        <div class=" col-md-12">
+							<div class="form-group">
+								<label class="control-label">New Password</label>
+								<input type="password" id="npassword" name="npassword" value="" class="form-control" />
+							</div>
+						</div> 
+						<div class=" col-md-12">
+							<div class="form-group">
+								<label class="control-label">Confirm Password</label>
+								<input type="password" id="cpassword" name="cpassword" value="" class="form-control"  />
+							</div>
+						</div>
+                        
+							
+                    </div>
 
-<!--footer part end here -->
-<div class="footerdown">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">&copy; <span class="year">2017</span> Cart In Hour Seller. All rights reserved.</div>
+                    <button class="btn btn-lg  btn-block signup-btn" style="background-color:#c33c12;color:#fff;" type="submit">
+                        Submit</button>
+                </form>
+				<a  href="<?php echo base_url('admin/login'); ?>"class="btn btn-lg  btn-block signup-btn" style="background-color:#c33c12;color:#fff;" type="submit">
+                  Cancel</a>
+
+            </div>
+            </div>
+        </div>
+		<a  href="<?php echo base_url(); ?>" class="" style="position: absolute;top:-100px;right:43%">
+			<img src="<?php echo base_url(); ?>assets/images/inv_logo.png" />
+		</a>
     </div>
-  </div>
-</div>
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
-    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+
+</body>
+
+</html>
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#resetpassword').bootstrapValidator({
+    $('#forgotpass').bootstrapValidator({
        
         fields: {
 			        npassword: {
 					validators: {
 					notEmpty: {
-						message: 'Password is required'
+						message: 'New Password is required'
 					},
 					stringLength: {
                         min: 6,
-                        message: 'Password  must be greater than 6 characters'
+                        message: 'New Password  must be greater than 6 characters'
                     },
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Password wont allow <>[]'
+					message: 'New Password wont allow <>[]'
 					}
 				}
         },
 		 cpassword: {
           validators: {
-					notEmpty: {
-						message: 'Confirm Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'Confirm Password  must be greater than 6 characters'
-                    },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Confirm Password wont allow <>[]'
-					}
-				}
+                identical: {
+                    field: 'npassword',
+                    message: 'New password and confirm Password do not match'
+                }
+            }
         }
             
 		
@@ -172,5 +117,3 @@ $(document).ready(function() {
     });
 });
 </script>
-</body>
-</html>

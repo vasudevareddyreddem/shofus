@@ -33,10 +33,30 @@ public function loginpost()
 		$data['change_errors'] = validation_errors();
 		$this->load->view('admin/login');
 		}else{
-		echo '<pre>';print_r($post);exit;
-
-           
-            $result   = $this->login_model->user_login($post['email'],$post['password']);
+			 $result   = $this->login_model->authenticate($post['email'],$post['password']);
+			 if(count($result)>0){
+				 
+				 $data = array(
+				'admin_id'    => $result['admin_id'],
+				'admin_id'    => $result['admin_id'],
+				'admin_name'  => $result['admin_name'],
+				'admin_email' => $result['admin_email'],
+				'loggedin'   => TRUE,
+				);
+				$this->session->set_userdata($data);
+				$this->session->set_userdata('userdetails',$result);
+				if( $result['role_id']==2){
+				redirect('admin/dashboard');	
+				}else if($result['role_id']==5){
+					redirect('inventory/dashboard');
+				}else if($result['role_id']==6){
+					redirect('deliveryboy/dashboard');
+				}
+				 
+			}else{
+				$this->session->set_flashdata('loginerror',"Invalid Email Address or Password!");
+				redirect('admin/login');
+			}
 			
 		}
 
@@ -97,11 +117,11 @@ $this->load->view('admin/forgot_view');
 
 }
 
-public function doforget()
+public function forgotpassword()
 {		
 	$post=$this->input->post();
 	//echo '<pre>';print_r($post);exit;
-	$email=$post['admin_email'];
+	$email=$post['emailaddress'];
 	$users = $this->login_model->forgot_password($email);
 	//echo '<pre>';print_r($users);exit;
 	if(count($users)>0)
@@ -110,21 +130,21 @@ public function doforget()
 		$this->email->from('admin@cartinhour.com', 'CartInHour');
 		$this->email->to($email);
 		$this->email->subject('CartInHour - Forgot Password');
-		$html = "Click this link to reset your password. ".site_url('admin/login/changepwd?code='.base64_encode($email).'__'.base64_encode($users['admin_id']));
+		$html = "Click this link to reset your password. ".site_url('admin/login/changepwd?code='.base64_encode($email).'__'.base64_encode($users['customer_id']));
 		//echo $html;exit;
 		$this->email->message($html);
 		if($this->email->send())
 		{	
 		$this->session->set_flashdata('success','Check Your Email to reset your password!');
-		redirect('user/forgotpassword');
+		redirect('admin/login');
 		}else{
-		$this->session->set_flashdata('emailinvalid','Your  email not send!');
-		redirect('user/forgotpassword');
+		$this->session->set_flashdata('loginerror','Your  email not send!');
+		redirect('admin/login');
 		}			
 	}else{
 		
-		$this->session->set_flashdata('emailinvalid','The email you entered is not a registered email. Please try again. ');
-		redirect('user/forgotpassword');
+		$this->session->set_flashdata('error','The email you entered is not a registered email. Please try again. ');
+		redirect('admin/login/forgot');
 	}
 	
 
@@ -154,13 +174,13 @@ public function changepassword()
 				$users = $this->login_model->update_password($reset_pass);
 				if(count($users)>0)
 				{
-					$this->session->set_flashdata("success","Your password changed successfully!");
+					$this->session->set_flashdata("success","Your password changed successfully. please login and continue");
 					redirect('admin/login');
 				}
 			}
 			else
 			{
-				$this->session->set_flashdata("error","Passwords are Not matched!");
+				$this->session->set_flashdata("error","New Password and confirm password are Not matched!");
 				redirect('admin/login/changepwd?code='.base64_encode($reset_pass['email']).'__'.base64_encode($reset_pass['userid']));
 			}
 		}else{

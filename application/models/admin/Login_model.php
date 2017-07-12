@@ -14,16 +14,19 @@ class Login_model extends CI_Model
 
  public function authenticate($username, $password) {
 
-        //$encrypted_password = ($password);
- 	        $this->db->where('admin_name',$username);
-			$this->db->where('admin_password',$password);
-			 $user=$this->db->get('admin_users');
-       //print_r($user->result()); exit;
-        if (!is_null($user)) {
-            return $user->row();
-        }
-        return FALSE;
+       $sql="SELECT * FROM customers WHERE cust_email ='".$username."' AND cust_password ='".md5($password)."'";
+        return $this->db->query($sql)->row_array(); 
     }
+	public function forgot_password($email) {
+
+      $this->db->select('*')->from('customers');
+		$this->db->where('cust_email',$email);
+        return $this->db->get()->row_array();
+    }
+	function update_password($reset_pass){
+		$sql1="UPDATE customers SET cust_password ='".md5($reset_pass['cpassword'])."'WHERE customer_id = '".$reset_pass['userid']."' AND cust_email='".$reset_pass['email']."'";
+		return $this->db->query($sql1);
+	}
 
 public function get_data($username, $password)
 

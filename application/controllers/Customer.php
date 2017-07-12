@@ -737,19 +737,22 @@ class Customer extends Front_Controller
 		if($newpassword == $conpassword)
 		{
 			$customerdetails  = $this->customer_model->get_user($pass_post['cust_id'],$pass_post['cust_email']);
-			//echo "<pre>";print_r($test);exit;
+			//echo "<pre>";print_r($customerdetails);exit;
 			if(count($customerdetails)>0)
 			{
 				$passwordset = $this->customer_model->setpassword_user($pass_post['cust_id'],$conpassword);
-				
+		//echo "<pre>";print_r($passwordset);exit;
 				if (count($passwordset)>0)
 				{
 					$customer = $this->customer_model->get_customers_details($pass_post['cust_id']);
-					//echo "<pre>";print_r($customer);exit;
+					echo "<pre>";print_r($customer);exit;
 					if($customer['role_id']==5){
 					$this->session->set_userdata('userdetails',$customer);	
 					$this->session->set_flashdata('dashboard',"Welcone To Inventory Management!");
 					redirect('inventory/dashboard');	
+					}else if($customer['role_id']==6){
+					$this->session->set_userdata('userdetails',$customer);	
+					redirect('deliveryboy/dashboard');	
 					}
 				
 				}
@@ -773,25 +776,7 @@ class Customer extends Front_Controller
 		
 	}
 	
-	public function inventery_loginpost(){
-	 
-	$post=$this->input->post();
-	//echo '<pre>';print_r($post);exit;	
-	$pass=md5($post['password']);
-	$role_id =$this->customer_model->role_ids($post['email']);
-	//echo '<pre>';print_r($role_id);exit;
-	$logindetails = $this->customer_model->inve_login_details($post['email'],$pass,$role_id['role_id']);
-	//echo '<pre>';print_r($logindetails);exit;
-		if(count($logindetails)>0)
-		{
-			$this->session->set_userdata('userdetails',$logindetails);		
-			$this->session->set_flashdata('sucesss',"Successfully Login");
-			redirect('inventory/dashboard');
-		}else{
-			$this->session->set_flashdata('login_error',"Invalid Email Address or Password!");
-			redirect('customer/inve');
-		}
- }
+	
 
  public function inve_changepassword()
 	{		
