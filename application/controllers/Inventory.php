@@ -242,6 +242,30 @@ public function changepasswordpost(){
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
+  }
+public function notificationview(){
+  	
+	 
+	if($this->session->userdata('userdetails'))
+	 {		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5){
+				$data['notification_details'] = $this->inventory_model->get_notification_details(base64_decode($this->uri->segment(3)));
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+				$this->load->view('customer/inventry/notificationview',$data);
+				$this->load->view('customer/inventry/footer');	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+		
+	  
+	  }
+	  else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+	} 
   }  
   public function notificationreply(){
   	
@@ -282,8 +306,8 @@ public function changepasswordpost(){
 				$seller_id=base64_decode($post['seller_id']);
 				$sevice_id=base64_decode($post['serviceid']);
 				$seller_details = $this->inventory_model->get_seller_details($seller_id);
-				echo '<pre>';print_r($post);
-				echo '<pre>';print_r($seller_details);exit;
+				//echo '<pre>';print_r($post);
+				//echo '<pre>';print_r($seller_details);exit;
 				$this->load->library('email');
 				$this->email->set_newline("\r\n");
 				$this->email->set_mailtype("html");
@@ -297,8 +321,7 @@ public function changepasswordpost(){
 				 $emailsendcus=$this->inventory_model->notification_statuschanges($sevice_id,1);
 				 if(count($emailsendcus)>0){
 					$this->session->set_flashdata('success','Notification replay Successfully send!');
-					redirect('admin/login'); 
-					 
+					redirect('inventory/sellernotifications'); 
 				 }
 
 				
