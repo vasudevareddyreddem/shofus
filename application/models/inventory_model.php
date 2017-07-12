@@ -23,6 +23,7 @@ class Inventory_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_all_seller_notifications(){
+<<<<<<< HEAD
 D
 		$this->db->select('request_for_services.*,sellers.*')->from('request_for_services');
 		$this->db->join('sellers', 'sellers.seller_id = request_for_services.seller_id', 'left');
@@ -32,6 +33,8 @@ D
 	
 		$sql1="UPDATE customers SET request_for_services ='".$data."'WHERE service_id = '".$servoceid."'";
 
+=======
+>>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
 		$this->db->select('request_for_services.*,sellers.seller_id,sellers.seller_name,sellers.seller_email,sellers.seller_mobile,')->from('request_for_services');
 		$this->db->join('sellers', 'sellers.seller_id = request_for_services.seller_id', 'left');
 		return $this->db->get()->result_array();
