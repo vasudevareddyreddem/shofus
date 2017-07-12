@@ -46,14 +46,6 @@
    
 	<script type="text/javascript">
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<script type="text/javascript">
-
-=======
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
-=======
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
 $(document).ready(function() {
     $('#chanagepassword').bootstrapValidator({
        
@@ -90,6 +82,9 @@ $(document).ready(function() {
 			},
 			confirmpassword: {
 					 validators: {
+						 notEmpty: {
+						message: 'Confirm Password is required'
+					},
                 identical: {
                     field: 'newpassword',
                     message: 'The New password and its confirm Password are not the same'

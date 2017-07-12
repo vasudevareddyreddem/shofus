@@ -33,13 +33,13 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('errormsg');?></div>	
 					<?php endif; ?>
-                   <form id="notificationpost" name="notificationpost" method="post" action="<?php echo base_url('inventory/servicerequestpost');?>" class="form-horizontal" enctype="multipart/form-data" role="form">
+                   <form id="servicespost" name="servicespost" method="post" action="<?php echo base_url('inventory/servicerequestpost');?>" class="form-horizontal" enctype="multipart/form-data" role="form">
                         <input type="hidden" name="seller_id" id="seller_id" value="<?php echo $seller_id ?>">
                         <input type="hidden" name="serviceid" id="serviceid" value="<?php echo $serviceid; ?>">
 
                         <div  class=" form-group">
                            <label class="control-label">Service Request replay</label>
-                            <textarea rows="5" cols="70" name="noticationreplay" id="noticationreplay"></textarea>
+                            <textarea rows="5" cols="70" name="serivcerequest" id="serivcerequest"></textarea>
                         </div> 
 						
 						
@@ -69,3 +69,21 @@
 	   </div>
 	   </div>
 </div>
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#servicespost').bootstrapValidator({
+       
+        fields: {
+            serivcerequest: {
+					validators: {
+					notEmpty: {
+						message: 'Service request is required'
+					}
+				}
+			}
+			
+        }
+    });
+});
+</script>

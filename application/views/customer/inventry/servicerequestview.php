@@ -27,6 +27,13 @@
 						<td><?php echo isset($request_details['select_plan'])?$request_details['select_plan']:''; ?></td>
 						
 					  </tr>
+					  <?php if(isset($request_details['replymsg']) && $request_details['replymsg']!=''){  ?><tr>
+						<th >Service Request Response</th>
+						<td><?php echo isset($request_details['replymsg'])?$request_details['replymsg']:''; ?></td>
+						
+					  </tr>
+					  
+					  <?php } ?>
 					   <tr>
 						<th >Seller Name</th>
 						<td><?php echo isset($request_details['seller_name'])?$request_details['seller_name']:''; ?></td>
@@ -48,7 +55,7 @@
 						
 					  </tr> 
 					  <tr>
-						<th >Status</th>
+						<th>Status</th>
 						<td><?php if($request_details['status']==1){ echo "Replied";}else{ echo "Replay";} ?></td>
 						
 					  </tr>

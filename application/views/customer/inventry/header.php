@@ -17,14 +17,8 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/dist/css/cartin.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/inventry/dist/css/skins/_all-skins.min.css">
    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
-=======
-    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
+	<script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -250,17 +244,10 @@
 			<?php } ?>
 			  <span class="hidden-xs"><?php echo $customerdetails['cust_firstname'].'/'.$customerdetails['cust_lastname'] ?>	</span>
             </a><ul class="dropdown-menu pad_prof" >
-<<<<<<< HEAD
-              <a href="<?php echo base_url('customer/inve_changepassword');?>"><li class="user-body">Change Password</li></a>
-              <a href="<?php echo base_url('inventory/account');?>"><li class="user-body">update profile</li></a>
-              <a href="<?php echo base_url('inventory/logout');?>"><li class="user-body">Logout</li></a>
-
-
-=======
 			<a href="<?php echo base_url('inventory/account');?>"><li class="user-body">My Account</li></a>
               <a href="<?php echo base_url('inventory/changepassword');?>"><li class="user-body">Change Password</li></a>
                <a href="<?php echo base_url('inventory/logout');?>"><li class="user-body">Logout</li></a>
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
+
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->

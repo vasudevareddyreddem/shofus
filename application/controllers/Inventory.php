@@ -9,8 +9,9 @@ class inventory extends CI_Controller
 		$this->load->library('email');	
 		$this->load->helper(array('url','html','form'));
 		$this->load->library('session','form_validation');
+		$this->load->library('email');
 		$this->load->model('inventory_model');
-		$this->load->model('customer_model');
+		$this->load->model('customer_model'); 
 		if($this->session->userdata('userdetails'))
 		{
 		$logindetail=$this->session->userdata('userdetails');
@@ -174,10 +175,6 @@ public function changepasswordpost(){
 	 
 	if($this->session->userdata('userdetails'))
 	 {		
-<<<<<<< HEAD
-
-=======
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
 	 	$check = $this->session->userdata('userdetails');
 	 	//print_r($that);exit;
 	 	if($check['role_id']==5){
@@ -190,8 +187,6 @@ public function changepasswordpost(){
 	 	}else{
 	 		redirect('admin/login');
 	 	}
-<<<<<<< HEAD
-
 		
 	 }else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -213,43 +208,16 @@ public function changepasswordpost(){
 				$this->load->view('customer/inventry/sellerdetails',$data);
 				$this->load->view('customer/inventry/footer');	
 			}else{
-=======
-		
-	 }else{
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
 		
-<<<<<<< HEAD
-=======
-
-  } 
-  public function sellerdetails(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
-	 {		
-			$logindetail=$this->session->userdata('userdetails');
-			if($logindetail['role_id']==5){
-				$data['seller_details'] = $this->inventory_model->get_seller_details(base64_decode($this->uri->segment(3)));
-				//echo '<pre>';print_r($data);exit;
-				$this->load->view('customer/inventry/sidebar');
-				$this->load->view('customer/inventry/sellerdetails',$data);
-				$this->load->view('customer/inventry/footer');	
-			}else{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
-		}
-		
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
 	  
 	  }
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
-
   } 
   public function sellerservicerequests(){
   	
@@ -258,45 +226,10 @@ public function changepasswordpost(){
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
-<<<<<<< HEAD
-
-				$data['seller_details'] = $this->inventory_model->get_seller_details(base64_decode($this->uri->segment(3)));
-
-				$data['seller_details'] = $this->inventory_model->get_all_seller_notifications();
-
-				//echo '<pre>';print_r($data);exit;
-				$this->load->view('customer/inventry/sidebar');
-				$this->load->view('customer/inventry/servicerequestlist',$data);
-				$this->load->view('customer/inventry/footer');	
-			}else{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
-		}
-		
-	  
-
-  } 
-  } 
-  public function notificationreply(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
-	 {		
-			$logindetail=$this->session->userdata('userdetails');
-			if($logindetail['role_id']==5){
-				
-				$data['serviceid']=$this->uri->segment(3);
-				$data['seller_id']=$this->uri->segment(4);
-				$data['seller_details'] = $this->inventory_model->get_all_seller_notifications();
-				//echo '<pre>';print_r($data);exit;
-				$this->load->view('customer/inventry/sidebar');
-				$this->load->view('customer/inventry/notifications',$data);
-=======
 				$data['seller_details'] = $this->inventory_model->get_all_seller_notifications();
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
 				$this->load->view('customer/inventry/servicerequestlist',$data);
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
 				$this->load->view('customer/inventry/footer');	
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -308,8 +241,6 @@ public function changepasswordpost(){
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
-<<<<<<< HEAD
-
 	} 
   }
 public function servicerequestview(){
@@ -377,50 +308,6 @@ public function servicerequestview(){
 				$seller_details = $this->inventory_model->get_seller_details($seller_id);
 				//echo '<pre>';print_r($post);
 				//echo '<pre>';print_r($seller_details);exit;
-				$this->load->library('email');
-				$this->email->set_newline("\r\n");
-				$this->email->set_mailtype("html");
-				$this->email->from('cartinhor@gmail.com');
-				$this->email->to($seller_details['seller_email']);
-				$this->email->subject('Cartinhour - Request reply');
-				//$html = "Your profile successfully Updated!";
-				$html = "Hello <b>".$seller_details['seller_name']." </b><br />".$post['serivcerequest']."";
-				$this->email->message($html);
-				$this->email->send();
-				 $emailsendcus=$this->inventory_model->notification_statuschanges($sevice_id,1);
-				 if(count($emailsendcus)>0){
-					$this->session->set_flashdata('success','Notification replay Successfully send!');
-					redirect('inventory/sellerservicerequests'); 
-				 }
-
-				
-			}else{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
-		}
-		
-	  
-	  }
-	  else{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('admin/login	');
-
-	} 
-  } 
-  public function notificationpost(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
-	 {		
-			$logindetail=$this->session->userdata('userdetails');
-			if($logindetail['role_id']==5){
-				
-				$post=$this->input->post();
-				$seller_id=base64_decode($post['seller_id']);
-				$sevice_id=base64_decode($post['serviceid']);
-				$seller_details = $this->inventory_model->get_seller_details($seller_id);
-				echo '<pre>';print_r($post);
-				echo '<pre>';print_r($seller_details);exit;
 				$this->load->library('email');
 				$this->email->set_newline("\r\n");
 				$this->email->set_mailtype("html");
@@ -431,150 +318,8 @@ public function servicerequestview(){
 				$html = "Hello <b>".$seller_details['seller_name']." </b><br />".$post['noticationreplay']."";
 				$this->email->message($html);
 				$this->email->send();
-				 $emailsendcus=$this->inventory_model->notification_statuschanges($sevice_id,1);
-				 if(count($emailsendcus)>0){
-					$this->session->set_flashdata('success','Notification replay Successfully send!');
-					redirect('admin/login'); 
-					 
-				 }
-
-				
-			}else{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
-		}
-		
-	  
-	  }
-	  else{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('admin/login	');
-	} 
-  }
-  public function status(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
-	 {		
-		
-		$logindetail=$this->session->userdata('userdetails');
-			if($logindetail['role_id']==5)
-			{
-					$id = base64_decode($this->uri->segment(3)); 
-					$status = base64_decode($this->uri->segment(4));
-					if($status==1){
-					$status=0;
-					}else{
-					$status=1;
-					}
-					
-					$data=array('status'=>$status);
-					
-					$updatestatus=$this->inventory_model->update_seller_status($id,$data);
-					//echo $this->db->last_query();exit;
-					
-					if(count($updatestatus)>0){
-						if($status==1){
-							$this->session->set_flashdata('success'," Category activation successful");
-						}else{
-							$this->session->set_flashdata('success',"Category deactivation successful");
-						}
-						redirect('inventory/dashboard');
-					}
-		}else{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
-		}
-		
-		
-	
-		
-	  
-	  }
-	  else{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('admin/login	');
-		} 
-  }
-=======
-	} 
-  }
-public function servicerequestview(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
-	 {		
-			$logindetail=$this->session->userdata('userdetails');
-			if($logindetail['role_id']==5){
-				$data['request_details'] = $this->inventory_model->get_notification_details(base64_decode($this->uri->segment(3)));
-				//echo '<pre>';print_r($data);exit;
-				$this->load->view('customer/inventry/sidebar');
-				$this->load->view('customer/inventry/servicerequestview',$data);
-				$this->load->view('customer/inventry/footer');	
-			}else{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
-		}
-		
-	  
-	  }
-	  else{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('admin/login	');
-	} 
-  }  
-  public function servicerequestreply(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
-	 {		
-			$logindetail=$this->session->userdata('userdetails');
-			if($logindetail['role_id']==5){
-				
-				$data['serviceid']=$this->uri->segment(3);
-				$data['seller_id']=$this->uri->segment(4);
-				$data['seller_details'] = $this->inventory_model->get_all_seller_notifications();
-				//echo '<pre>';print_r($data);exit;
-				$this->load->view('customer/inventry/sidebar');
-				$this->load->view('customer/inventry/servicerequest',$data);
-				$this->load->view('customer/inventry/footer');	
-			}else{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
-		}
-		
-	  
-	  }
-	  else{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('admin/login	');
-	} 
-  } 
-  public function servicerequestpost(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
-	 {		
-			$logindetail=$this->session->userdata('userdetails');
-			if($logindetail['role_id']==5){
-				
-				$post=$this->input->post();
-				$seller_id=base64_decode($post['seller_id']);
-				$sevice_id=base64_decode($post['serviceid']);
-				$seller_details = $this->inventory_model->get_seller_details($seller_id);
-				//echo '<pre>';print_r($post);
-				//echo '<pre>';print_r($seller_details);exit;
-				$this->load->library('email');
-				$this->email->set_newline("\r\n");
-				$this->email->set_mailtype("html");
-				$this->email->from('cartinhor@gmail.com');
-				$this->email->to($seller_details['seller_email']);
-				$this->email->subject('Cartinhour - Request reply');
-				//$html = "Your profile successfully Updated!";
-				$html = "Hello <b>".$seller_details['seller_name']." </b><br />".$post['serivcerequest']."";
-				$this->email->message($html);
-				$this->email->send();
-				 $emailsendcus=$this->inventory_model->notification_statuschanges($sevice_id,1);
+				$data=array('status'=>1,'replymsg'=>$post['noticationreplay']);
+				 $emailsendcus=$this->inventory_model->notification_statuschanges($sevice_id,$data);
 				 if(count($emailsendcus)>0){
 					$this->session->set_flashdata('success','Notification replay Successfully send!');
 					redirect('inventory/sellerservicerequests'); 
@@ -593,7 +338,6 @@ public function servicerequestview(){
 		 redirect('admin/login	');
 	} 
   }
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
   public function status(){
   	
 	 
@@ -642,26 +386,6 @@ public function servicerequestview(){
 
 	public function categories()
 	{
-<<<<<<< HEAD
-
-
-
-		$check = $this->session->userdata('userdetails');
-		if($check['role_id']==5)
-		{
-			$data['category'] = $this->inventory_model->get_seller_categories();
-			//echo "<pre>";print_r($data);exit;
-			$this->load->view('customer/inventry/header');
-		  	$this->load->view('customer/inventry/sidebar');
-		  	$this->load->view('customer/inventry/categories',$data);
-		  	$this->load->view('customer/inventry/footer');
-	  	}else
-	  	{
-	 		redirect('admin/login');
-	  	}
-
-=======
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
 		
 		if($this->session->userdata('userdetails'))
 		{	
@@ -744,43 +468,34 @@ public function servicerequestview(){
 
 	public function home_page_banner()
 	{
-		$check = $this->session->userdata('userdetails');
-	 	//print_r($that);exit;
-	 	if($check['role_id']==5){
 		$data['home_banner'] = $this->inventory_model->get_seller_banners();
 		//echo "<pre>";print_r($data);exit;
 	   	$this->load->view('customer/inventry/sidebar');
 	   	$this->load->view('customer/inventry/home_page_banner',$data);
 	   	$this->load->view('customer/inventry/footer');
-	   
-	   }else{
-	 		redirect('admin/login');
-	 	}
 	}
 	public function banner_active(){
 		$code = $_GET['id'];
 		$arr = explode('__',$code);
-		$id = base64_decode($arr[0]);		
-		//echo "<pre>";print_r($id);exit;
-		$sid = base64_decode($arr[1]);
-		$status = base64_decode($arr[2]);
+		$cid = base64_decode($arr[0]);
+		$status = base64_decode($arr[1]);
 		if($status==1){
 		$status=0;
 		}else{
 		$status=1;
 		}
-		$bannerstatus= $this->inventory_model->banner_status_update($id,$sid,$status);
-		//echo "<pre>";print_r($bannerstatus);exit;
-		if(count($bannerstatus)>0)
+		$bannerstatus= $this->inventory_model->banner_status_update($cid,$status);
+		//echo "<pre>";print_r($customerstatus);exit;
+		if(count($success)>0)
 				{
 					if($status==1){
-						$this->session->set_flashdata('active',"Banner successfully Activate");
+						$this->session->set_flashdata('sucesmsg',"Banner successfully Activate");
 					}else{
-						$this->session->set_flashdata('deactive',"Banner successfully deactivated.");
+						$this->session->set_flashdata('sucesmsg',"Banner successfully deactivated.");
 					}
 					redirect('inventory/home_page_banner');
 				}else{
-					$this->session->set_flashdata('errormsg',"Opps !.!!");
+					$this->session->set_flashdata('errormsg',"Banner successfully deactivated.");
 					redirect('inventory/home_page_banner');
 				}
 	}

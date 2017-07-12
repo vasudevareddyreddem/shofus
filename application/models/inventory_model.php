@@ -23,18 +23,6 @@ class Inventory_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_all_seller_notifications(){
-<<<<<<< HEAD
-D
-		$this->db->select('request_for_services.*,sellers.*')->from('request_for_services');
-		$this->db->join('sellers', 'sellers.seller_id = request_for_services.seller_id', 'left');
-		return $this->db->get()->result_array();
-	}
-	function notification_statuschanges($servoceid,$data){
-	
-		$sql1="UPDATE customers SET request_for_services ='".$data."'WHERE service_id = '".$servoceid."'";
-
-=======
->>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
 		$this->db->select('request_for_services.*,sellers.seller_id,sellers.seller_name,sellers.seller_email,sellers.seller_mobile,')->from('request_for_services');
 		$this->db->join('sellers', 'sellers.seller_id = request_for_services.seller_id', 'left');
 		return $this->db->get()->result_array();
@@ -46,9 +34,8 @@ D
 		return $this->db->get()->row_array();
 	}
 	function notification_statuschanges($servoceid,$data){
-	
-		$sql1="UPDATE request_for_services SET status ='".$data."'WHERE service_id = '".$servoceid."'";
-		return $this->db->query($sql1);
+		$this->db->where('service_id', $servoceid);
+		return $this->db->update('request_for_services', $data);
 	}
 	
 
@@ -72,11 +59,14 @@ D
 
 	public function get_seller_databaseid()
 	{
-	$this->db->select('sellers.*,seller_store_details.*,GROUP_CONCAT(seller_categories.category_name ORDER BY seller_categories.category_name SEPARATOR ",") AS categoryname')->from('seller_categories');
-	$this->db->join('sellers', 'sellers.seller_id = seller_categories.seller_id' , 'left');
-		  	$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left');
-	$this->db->group_by('sellers.seller_id');
-	return $this->db->get()->result_array();
+		 // 	$this->db->select('sellers.*,seller_store_details.*,GROUP_CONCAT(seller_categories.category_name ORDER BY seller_categories.category_name SEPARATOR ', ') AS categoryname ')->from('seller_categories');
+		 // 	$this->db->join('sellers', 'sellers.seller_id =seller_categories.seller_id' , 'left');
+		 // 	$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left');
+		 // return $this->db->get()->result_array();
+		 $sqll = $this->db->query("SELECT sellers.*,seller_store_details.*,GROUP_CONCAT(seller_categories.category_name ORDER BY seller_categories.category_name SEPARATOR ', ') AS categoryname 
+		 FROM seller_categories LEFT JOIN sellers ON seller_categories.seller_id =sellers.seller_id LEFT JOIN seller_store_details ON 
+		 	seller_store_details.seller_id = sellers.seller_id GROUP BY sellers.seller_id");
+		 return $sqll->result_array();
 		
 	}
 
@@ -111,9 +101,9 @@ D
 		$this->db->join('sellers','sellers.seller_id = home_banner.seller_id', 'left');	
 		return $this->db->get()->result_array();
 	}
-	function banner_status_update($id,$sid,$status)
+	function banner_status_update($id,$status)
 	{
-		$sql1="UPDATE home_banner SET status ='".$status."'WHERE id ='".$id."' AND seller_id = '".$sid."'";
+		$sql1="UPDATE home_banner SET status ='".$status."'WHERE seller_id = '".$id."'";
 		return $this->db->query($sql1);
 	}
 }
