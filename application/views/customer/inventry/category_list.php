@@ -26,10 +26,11 @@
                   <td><?php echo $catlist['category_name']; ?></td>
 				  <td><?php echo $catlist['created_at']; ?></td>    
                   <td><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
-                  <td><?php echo $catlist['status']; ?></td>                  
-                                
-                
-                </tr>
+				<td>
+					<a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($catlist['category_id'])); ?>">View</a> |&nbsp;
+					<a href="<?php echo base_url('inventory/status/'.base64_encode($catlist['category_id']).'/'.base64_encode($catlist['status'])); ?>"><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
+				</td>
+                                </tr>
                  <?php }?>
                 </tbody>              
               </table>

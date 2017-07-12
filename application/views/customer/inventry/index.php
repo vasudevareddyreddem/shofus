@@ -17,8 +17,7 @@
                   <th>Seller Email</th>
                   <th>Seller mobile</th>
                   <th>Action</th>
-				  
-                </tr>
+				</tr>
                 </thead>
                 <tbody>
                 <?php  
