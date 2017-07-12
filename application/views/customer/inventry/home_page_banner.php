@@ -35,7 +35,8 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Seller ID</th>                  
+                  <th>Seller ID</th> 
+                  <th>Seller Name</th>                 
                   <th>Banner</th>
                   <th>Action</th>              
                 </tr>
@@ -44,18 +45,14 @@
                 <?php foreach($home_banner as $banners) {?> 
                 <tr>                  
                   	<td><?php echo $banners['seller_id']; ?></td>
-              		<td><?php echo $banners['file_name']; ?></td>
+                  	<td><?php echo $banners['seller_name']; ?></td>
+              		<td><img src="<?php echo base_url();?>uploads/banners/<?php  echo $banners['file_name']; ?>" width="80" height="50" /></td>
               		<td><a onclick="deactive('<?php echo base64_encode(htmlentities($banners['seller_id'])).'__'.base64_encode(htmlentities($banners['status']));?>');" href="javascript:void(0)" style="text-decoration:none;" id="view" data-toggle="modal"  data-target="#exampleFormModal"><?php if(htmlentities($banners['status'])==0){ echo "Deactivate";}else{ echo "Activate";} ?></a>
 				</td>
                 </tr>
                   <?php } ?>        
                 </tbody>                
-              </table>
-              
-                <center>
-                <strong>No Sellers In Db</strong>
-              </center>
-              
+              </table>  
             </div>
             <!-- /.box-body -->
           </div>
@@ -86,7 +83,6 @@
 	</div>
 </div>
 
-	
 </div>
 
 

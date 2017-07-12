@@ -34,8 +34,7 @@ public function loginpost()
 		$this->load->view('admin/login');
 		}else{
 			 $result   = $this->login_model->authenticate($post['email'],$post['password']);
-			 if(count($result)>0){
-				 
+			 if(count($result)>0){				 
 				 $data = array(
 				'admin_id'    => $result['admin_id'],
 				'admin_id'    => $result['admin_id'],

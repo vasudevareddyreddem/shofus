@@ -105,6 +105,20 @@ class inventory extends CI_Controller
 	 
 	if($this->session->userdata('userdetails'))
 	 {		
+<<<<<<< HEAD
+	 	$check = $this->session->userdata('userdetails');
+	 	//print_r($that);exit;
+	 	if($check['role_id']==5){
+	 	$data['seller_details'] = $this->inventory_model->get_all_seller_details();
+		//echo '<pre>';print_r($data);exit;
+		$this->load->view('customer/inventry/header');
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/index',$data);
+		$this->load->view('customer/inventry/footer');
+	 	}else{
+	 		redirect('admin/login');
+	 	}
+=======
 		
 		$logindetail=$this->session->userdata('userdetails');
 		if($logindetail['role_id']==5){
@@ -118,6 +132,7 @@ class inventory extends CI_Controller
 				redirect('admin/login');
 		}
 	  
+>>>>>>> 8ebff85c14beebec402c49d2d8310aae9beb81cb
 	  }
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
@@ -151,12 +166,28 @@ class inventory extends CI_Controller
 
 	public function categories()
 	{
+<<<<<<< HEAD
+		$check = $this->session->userdata('userdetails');
+		if($check['role_id']==5)
+		{
+			$data['category'] = $this->inventory_model->get_seller_categories();
+			//echo "<pre>";print_r($data);exit;
+			$this->load->view('customer/inventry/header');
+		  	$this->load->view('customer/inventry/sidebar');
+		  	$this->load->view('customer/inventry/categories',$data);
+		  	$this->load->view('customer/inventry/footer');
+	  	}else
+	  	{
+	 		redirect('admin/login');
+	  	}
+=======
 		$data['category'] = $this->inventory_model->get_seller_categories();
 		//echo "<pre>";print_r($data);exit;
 	  	$this->load->view('customer/inventry/sidebar');
 	  	$this->load->view('customer/inventry/categories',$data);
 	  	$this->load->view('customer/inventry/footer');
 		
+>>>>>>> 8ebff85c14beebec402c49d2d8310aae9beb81cb
 	}
 
 	public function category_wise_sellers()
@@ -234,7 +265,7 @@ class inventory extends CI_Controller
 		}else{
 		$status=1;
 		}
-		$customerstatus= $this->inventory_model->banner_status_update($cid,$status);
+		$bannerstatus= $this->inventory_model->banner_status_update($cid,$status);
 		//echo "<pre>";print_r($customerstatus);exit;
 		if(count($success)>0)
 				{
