@@ -5160,8 +5160,10 @@ a.thumbnail:hover {
 }
 .alert-success {
     color: #3c763d;
+	text-align:center;
     background-color: #dff0d8;
-    border-color: #d6e9c6
+    border-color: #d6e9c6;
+	
 }
 .alert-success hr {
     border-top-color: #c9e2b3
@@ -5183,7 +5185,8 @@ a.thumbnail:hover {
 .alert-warning {
     color: #8a6d3b;
     background-color: #fcf8e3;
-    border-color: #faebcc
+    border-color: #faebcc;
+	text-align:center;
 }
 .alert-warning hr {
     border-top-color: #f7e1b5
@@ -5194,7 +5197,8 @@ a.thumbnail:hover {
 .alert-danger {
     color: #a94442;
     background-color: #f2dede;
-    border-color: #ebccd1
+    border-color: #ebccd1;
+	text-align:center;
 }
 .alert-danger hr {
     border-top-color: #e4b9c0
