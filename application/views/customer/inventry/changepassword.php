@@ -43,9 +43,17 @@
     
 		</section>
  </div>
-
+   
 	<script type="text/javascript">
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+	<script type="text/javascript">
+
+=======
+>>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
+=======
+>>>>>>> 944516ea390301ffb8a65730c3fe6d705526dccd
 $(document).ready(function() {
     $('#chanagepassword').bootstrapValidator({
        

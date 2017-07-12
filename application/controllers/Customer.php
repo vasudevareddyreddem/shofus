@@ -746,7 +746,7 @@ class Customer extends Front_Controller
 				if (count($passwordset)>0)
 				{
 					$customer = $this->customer_model->get_customers_details($pass_post['cust_id']);
-					echo "<pre>";print_r($customer);exit;
+					//echo "<pre>";print_r($customer);exit;
 					if($customer['role_id']==5){
 					$this->session->set_userdata('userdetails',$customer);	
 					$this->session->set_flashdata('dashboard',"Welcone To Inventory Management!");
