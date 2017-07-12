@@ -7,9 +7,19 @@ class Inventory_model extends MY_Model
 		$this->load->database("default");
 	}
 	
+	
+	public function get_seller_details($sid)
+	{
+		$this->db->select('*')->from('sellers');
+		$this->db->where('seller_id',$sid);
+		return $this->db->get()->row_array();
+	}
+	public function update_seller_status($sellerid,$data){
+		$this->db->where('seller_id', $sellerid);
+		return $this->db->update('sellers', $data);
+	}
 	public function get_all_seller_details(){
 		$this->db->select('*')->from('sellers');		
-		$this->db->where('status', 1);
 		return $this->db->get()->result_array();
 	}
 	
@@ -77,6 +87,7 @@ class Inventory_model extends MY_Model
 		$this->db->where('request_for_services.select_plan','Both');
 		return $this->db->get()->result();
 	}
+	
 
 	public function get_seller_banners()
 	{

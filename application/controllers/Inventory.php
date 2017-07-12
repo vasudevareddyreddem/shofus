@@ -201,7 +201,7 @@ public function changepasswordpost(){
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
-				$data['seller_details'] = $this->inventory_model->get_all_seller_details();
+				$data['seller_details'] = $this->inventory_model->get_seller_details(base64_decode($this->uri->segment(3)));
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
 				$this->load->view('customer/inventry/sellerdetails',$data);
@@ -217,6 +217,51 @@ public function changepasswordpost(){
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
+  }
+  public function status(){
+  	
+	 
+	if($this->session->userdata('userdetails'))
+	 {		
+		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$id = base64_decode($this->uri->segment(3)); 
+					$status = base64_decode($this->uri->segment(4));
+					if($status==1){
+					$status=0;
+					}else{
+					$status=1;
+					}
+					
+					$data=array('status'=>$status);
+					
+					$updatestatus=$this->inventory_model->update_seller_status($id,$data);
+					//echo $this->db->last_query();exit;
+					
+					if(count($updatestatus)>0){
+						if($status==1){
+							$this->session->set_flashdata('success'," Category activation successful");
+						}else{
+							$this->session->set_flashdata('success',"Category deactivation successful");
+						}
+						redirect('inventory/dashboard');
+					}
+		}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+		
+		
+	
+		
+	  
+	  }
+	  else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
   }
 
 	public function categories()

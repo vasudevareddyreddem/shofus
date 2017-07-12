@@ -28,7 +28,8 @@
                   <td><?php echo $details['seller_name']; ?></td>
                   <td><?php echo $details['seller_email']; ?></td>                  
                   <td><?php echo $details['seller_mobile']; ?></td>                  
-                  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>">View</a></td>
+                  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>">View</a> |&nbsp;
+					<a href="<?php echo base_url('inventory/status/'.base64_encode($details['seller_id']).'/'.base64_encode($details['status'])); ?>"><?php if($details['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a></td>
                 
                 </tr>
                  <?php }?>
