@@ -22,57 +22,46 @@ class Login extends CI_Controller {
 
   }
 
-public function do_login()
+public function loginpost()
 
 {
 
-       $this->form_validation->set_rules('admin_name', 'Username', 'trim|required'); 
-        $this->form_validation->set_rules('admin_password', 'Password', 'trim|required'); 
-        if ($this->form_validation->run() == TRUE) {
-
-            $username   = $this->input->post('admin_name');
-            $password = $this->input->post('admin_password');
-            $result   = $this->login_model->authenticate($username, $password);
-
-//print_r($result); exit;
-
-       if ($result) {
-
-
-                $data                   = array(
-
-                    'admin_id'    => $result->admin_id,
-                    'admin_name'  => $result->admin_name,
-                    'admin_email' => $result->admin_email,
-                    'loggedin'   => TRUE,
-
-                );
-
-
-
-                $this->session->set_userdata($data);
-
-               return redirect(base_url('admin/dashboard')); 
-
-            } else {
-
-
-            //$this->data['message'] = alert_message('Invalid Username/Password', 'danger');
-
-
-
-                $this->session->set_flashdata('msg','<div class="alert alert-success text-center" style="color: red;font-size:13px;">Invalid username or password.</div>');
+       $post = $this->input->post();
+	    $this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('password', 'password', 'required|min_length[6]');
+		if ($this->form_validation->run() == FALSE) {
+		$data['change_errors'] = validation_errors();
+		$this->load->view('admin/login');
+		}else{
+			 $result   = $this->login_model->authenticate($post['email'],$post['password']);
+			 if(count($result)>0){
+				 
+				 $data = array(
+				'admin_id'    => $result['admin_id'],
+				'admin_id'    => $result['admin_id'],
+				'admin_name'  => $result['admin_name'],
+				'admin_email' => $result['admin_email'],
+				'loggedin'   => TRUE,
+				);
+				$this->session->set_userdata($data);
+				$this->session->set_userdata('userdetails',$result);
+				if( $result['role_id']==2){
+				redirect('admin/dashboard');	
+				}else if($result['role_id']==5){
+					redirect('inventory/dashboard');
+				}else if($result['role_id']==6){
+					redirect('deliveryboy/dashboard');
+				}
+				 
+			}else{
+				$this->session->set_flashdata('loginerror',"Invalid Email Address or Password!");
+				redirect('admin/login');
+			}
+			
+		}
 
 
-                  return redirect(base_url('admin/login'));
-
-
-                }
-
-            }
-
-       $this->load->view('admin/login');
-
+			
 
 }
 
@@ -128,11 +117,11 @@ $this->load->view('admin/forgot_view');
 
 }
 
-public function doforget()
+public function forgotpassword()
 {		
 	$post=$this->input->post();
 	//echo '<pre>';print_r($post);exit;
-	$email=$post['admin_email'];
+	$email=$post['emailaddress'];
 	$users = $this->login_model->forgot_password($email);
 	//echo '<pre>';print_r($users);exit;
 	if(count($users)>0)
@@ -141,21 +130,21 @@ public function doforget()
 		$this->email->from('admin@cartinhour.com', 'CartInHour');
 		$this->email->to($email);
 		$this->email->subject('CartInHour - Forgot Password');
-		$html = "Click this link to reset your password. ".site_url('admin/login/changepwd?code='.base64_encode($email).'__'.base64_encode($users['admin_id']));
+		$html = "Click this link to reset your password. ".site_url('admin/login/changepwd?code='.base64_encode($email).'__'.base64_encode($users['customer_id']));
 		//echo $html;exit;
 		$this->email->message($html);
 		if($this->email->send())
 		{	
 		$this->session->set_flashdata('success','Check Your Email to reset your password!');
-		redirect('user/forgotpassword');
+		redirect('admin/login');
 		}else{
-		$this->session->set_flashdata('emailinvalid','Your  email not send!');
-		redirect('user/forgotpassword');
+		$this->session->set_flashdata('loginerror','Your  email not send!');
+		redirect('admin/login');
 		}			
 	}else{
 		
-		$this->session->set_flashdata('emailinvalid','The email you entered is not a registered email. Please try again. ');
-		redirect('user/forgotpassword');
+		$this->session->set_flashdata('error','The email you entered is not a registered email. Please try again. ');
+		redirect('admin/login/forgot');
 	}
 	
 
@@ -185,13 +174,13 @@ public function changepassword()
 				$users = $this->login_model->update_password($reset_pass);
 				if(count($users)>0)
 				{
-					$this->session->set_flashdata("success","Your password changed successfully!");
+					$this->session->set_flashdata("success","Your password changed successfully. please login and continue");
 					redirect('admin/login');
 				}
 			}
 			else
 			{
-				$this->session->set_flashdata("error","Passwords are Not matched!");
+				$this->session->set_flashdata("error","New Password and confirm password are Not matched!");
 				redirect('admin/login/changepwd?code='.base64_encode($reset_pass['email']).'__'.base64_encode($reset_pass['userid']));
 			}
 		}else{
