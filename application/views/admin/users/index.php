@@ -46,7 +46,8 @@
 						<td><?php echo $user['cust_email']; ?></td>
 						<td><?php echo $user['role']; ?></td>
 						<td><a onclick="deactive('<?php echo base64_encode(htmlentities($user['customer_id'])).'__'.base64_encode(htmlentities($user['status']));?>');" href="javascript:void(0)" style="text-decoration:none;" id="view" data-toggle="modal"  data-target="#exampleFormModal"><?php if(htmlentities($user['status'])==0){ echo "Deactivate";}else{ echo "Activate";} ?></a>
-</td>					</tr>
+</td>					
+</tr>
 						<?php } ?>
                   </tbody>
 			 
@@ -92,8 +93,6 @@
 function deactive(id){
 	$(".popid").attr("href","<?php echo base_url('admin/users/delemp'); ?>"+"?id="+id);
 }
-
-
 </script>
 
 

@@ -77,5 +77,16 @@ class Inventory_model extends MY_Model
 		$this->db->where('request_for_services.select_plan','Both');
 		return $this->db->get()->result();
 	}
+
+	public function get_seller_banners()
+	{
+		$this->db->select('*')->from('home_banner');		
+		return $this->db->get()->result_array();
+	}
+	function banner_status_update($id,$status)
+	{
+		$sql1="UPDATE home_banner SET status ='".$status."'WHERE seller_id = '".$id."'";
+		return $this->db->query($sql1);
+	}
 }
 ?>

@@ -107,10 +107,37 @@ class inventory extends CI_Controller
 
 	public function home_page_banner()
 	{
+		$data['home_banner'] = $this->inventory_model->get_seller_banners();
+		//echo "<pre>";print_r($data);exit;
 		$this->load->view('customer/inventry/header');
 	   	$this->load->view('customer/inventry/sidebar');
-	   	$this->load->view('customer/inventry/home_page_banner');
+	   	$this->load->view('customer/inventry/home_page_banner',$data);
 	   	$this->load->view('customer/inventry/footer');
+	}
+	public function banner_active(){
+		$code = $_GET['id'];
+		$arr = explode('__',$code);
+		$cid = base64_decode($arr[0]);
+		$status = base64_decode($arr[1]);
+		if($status==1){
+		$status=0;
+		}else{
+		$status=1;
+		}
+		$customerstatus= $this->inventory_model->banner_status_update($cid,$status);
+		//echo "<pre>";print_r($customerstatus);exit;
+		if(count($success)>0)
+				{
+					if($status==1){
+						$this->session->set_flashdata('sucesmsg',"Banner successfully Activate");
+					}else{
+						$this->session->set_flashdata('sucesmsg',"Banner successfully deactivated.");
+					}
+					redirect('inventory/home_page_banner');
+				}else{
+					$this->session->set_flashdata('errormsg',"Banner successfully deactivated.");
+					redirect('inventory/home_page_banner');
+				}
 	}
 	public function top_offers()
 	{

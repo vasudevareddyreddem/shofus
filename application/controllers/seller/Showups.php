@@ -11,9 +11,8 @@ class Showups extends Admin_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->helper('security');
-		$this->load->library(array('form_validation','session'));
-		$this->load->model('seller/Promotions_model');
-		$this->load->model('seller/products_model');
+		$this->load->library(array('form_validation','session'));		
+		$this->load->model('seller/showups_model');
 	}
 
 	public function home_page_banner()
@@ -24,40 +23,42 @@ class Showups extends Admin_Controller {
 
 	public function save_banner(){
 		if(isset($_POST)){
-			if(!empty($_FILES['picture_one']['name'])){
+			if(!empty($_FILES['home_banner']['name'])){
 				$config['upload_path'] = 'uploads/banners/';
 				$config['allowed_types'] = 'jpg|jpeg|png|gif';
-				$config['file_name'] = $_FILES['picture_one']['name'];
+				$config['file_name'] = $_FILES['home_banner']['name'];
                 //Load upload library and initialize configuration
 				$this->load->library('upload',$config);
 				$this->upload->initialize($config);
-				if($this->upload->do_upload('picture_one')){
+				if($this->upload->do_upload('home_banner')){
 					$uploadData = $this->upload->data();
-					$picture_one = $uploadData['file_name'];
+					$home_banner = $uploadData['file_name'];
 				}else{
 			$this->prepare_flashmessage("Image format Invalid..", 1);
 				//return redirect('admin/fooditems');
 				echo "<script>window.location='".base_url()."seller/showups/home_page_banner';</script>";
 				}
 			}else{
-				$picture_one = '';
+				$home_banner = '';
 			}			
 		}
 
-		$banner=$this->showups_model->save_banner_image($this->session->userdata('seller_id'));
+		
 		//echo '<pre>';print_r($seller_location);exit;
 		$data=array(         
 			'seller_id' => $this->session->userdata('seller_id'),   
-			'item_image'=>$picture_one			
-			
-
+			'file_name'=>$home_banner			
 			);
-
-			$res=$this->products_model->insert($data);
-
-
-
-
+		//echo '<pre>';print_r($data);exit;
+			$banner=$this->showups_model->save_banner_image($data);
+			if(count($banner)>0)
+				{
+				$this->session->set_flashdata('message','Banner successfully added');
+				redirect('seller/showups/home_page_banner');
+				}else{
+				$this->session->set_flashdata('message','Some error are occured.');
+				redirect('seller/showups/home_page_banner'); 
+				}
 
 	}
 

@@ -6,14 +6,7 @@
 			<i class="pe-7s-note2"></i>
 		</div>
 		<div class="header-title">
-			<form action="#" method="get" class="sidebar-form search-box pull-right hidden-md hidden-lg hidden-sm">
-				<div class="input-group">
-					<input type="text" name="q" class="form-control" placeholder="Search...">
-					<span class="input-group-btn">
-						<button type="submit" name="search" id="search-btn" class="btn"><i class="fa fa-search"></i></button>
-					</span>
-				</div>
-			</form>  
+			  
 			<h1>Show Ups</h1>
 			<small>Home Page banner</small>
 			<ol class="breadcrumb hidden-xs">
@@ -24,16 +17,19 @@
 	</section>
   <section class="content ">
   <div class="faq_main">
-    <div class="container" style="width:100%">
+  <?php if($this->session->flashdata('message')): ?>
+				<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button><?php echo $this->session->flashdata('message');?></div>
+				<?php endif; ?>
+  
+    <div class="container" style="width:100%">    
     <div class="panel-body">
-				 <div id="categoryiddoc" class="form-group nopaddingRight "></div>
-				 <form name="addbanner" id="addbanner" action="<?php echo base_url(); ?>seller/showups/save_banner" method="post" enctype="multipart/form-data">
-    
+				 <form name="addbanner" id="addbanner" action="<?php echo base_url('seller/showups/save_banner'); ?>" method="post" enctype="multipart/form-data" >
 				<div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputFile">Banner</label>
-                  <input type="file" name="picture_one" id="picture_one">
+                  <input type="file" name="home_banner" id="home_banner">
 				 </div>
-                </div>                          
                 <div class="clearfix"></div>
 				<div style="margin-top: 20px; margin-left: 15px;">
                 <button type="submit" class="btn btn-primary" >Submit</button>
@@ -41,20 +37,19 @@
 				</div>
               </form>
 				</div>
+				</div>
 			</div>
     </div>
     </div>
     </section>
     </div>
 
-
 <script type="text/javascript">
 $(document).ready(function() {
     $('#addbanner').bootstrapValidator({
        
         fields: {
-           
-			picture_one: {
+			home_banner: {
 				validators: {
 					 notEmpty: {
 						message: 'Banner is required'
