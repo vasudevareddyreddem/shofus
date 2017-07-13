@@ -21,11 +21,13 @@
                 <thead>
                 <tr>
 					<th>Seller Id</th>
+					<th>Seller Name</th>
 					<th>Item id</th>
 					<th>Item Name</th>
 					<th>Item Code</th>
-					<th>Item Image</th>
+					<th>Item Cost</th>					
 					<th>Offer type</th>	
+					<th>Item Image</th>
 					<th>Action</th>
 				 </tr>
                 </thead>
@@ -33,12 +35,36 @@
                 <?php  
                   foreach($top_offers as $top_offer) {?>
                 <tr>                  
-                  <td><?php echo $top_offer['seller_id'] ?></td>
+                  <td><?php echo $top_offer['seller_rand_id'] ?></td>
+                  <td><?php echo $top_offer['seller_name'] ?></td>
+                  <td><?php echo $top_offer['item_id'] ?></td>
+                  <td><?php echo $top_offer['item_name'] ?></td>
+                  <td><?php echo $top_offer['item_code'] ?></td>                  
+                  <td><?php echo $top_offer['item_cost'] ?></td>                  
+                  <td><?php if($top_offer['offer_type']=='1' ){echo "Listing Discount";}
+        elseif($top_offer['offer_type']=='2' ){ ?><?php echo "Cart Discount"; ?> <?php } 
+        elseif($top_offer['offer_type']=='3'){ ?><?php echo "Flat Price Offer";  ?> <?php }
+        elseif($top_offer['offer_type']=='4'){ ?><?php echo "Combo Disoucnt";  ?> <?php }
+        else{
+          echo "NULL";
+        } ?>                  	
+                  </td>
+                  <td><img src="<?php echo base_url();?>uploads/products/<?php  echo $top_offer['item_image']; ?>" width="80" height="50" /></td>
+            <td>
+                <a style="color: 
+		              <?php 
+		              	if($top_offer['item_status']=='0')
+		              	{echo "Blue";} 
+		              	else{echo "Red";}
+		              ?>" 
+		            href="<?php echo base_url('inventory/topoffersstatus/'.base64_encode($top_offer['item_id']).'/'.base64_encode($top_offer['seller_id']).'/'.base64_encode($top_offer['item_status'])); ?>">
+		            <?php if($top_offer['item_status']== '0'){echo "Active";}else{echo "Deactive";} ?>     	
+		        </a>
+		    </td>
                  </tr>
-                 <?php }?>
+                 <?php }?>                 
                 </tbody>              
               </table>
-             
             </div>
             <!-- /.box-body -->
           </div>

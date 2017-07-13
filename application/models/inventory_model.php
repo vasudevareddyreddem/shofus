@@ -159,8 +159,15 @@ class Inventory_model extends MY_Model
 
 	public function get_top_offers_list()
 	{
-		$this->db->select('*')->from('products');
+		$this->db->select('*,sellers.*')->from('products');
+		$this->db->join('sellers','sellers.seller_id = products.seller_id', 'left');
+		$this->db->order_by("offer_percentage", "desc");
 		return $this->db->get()->result_array();
+	}
+	public function update_topoffers_status($id,$sid,$data){
+		$this->db->where('item_id', $id);
+		$this->db->where('seller_id',$sid);
+		return $this->db->update('products', $data);
 	}
 }
 ?>
