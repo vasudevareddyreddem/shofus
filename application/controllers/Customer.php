@@ -115,15 +115,17 @@ class Customer extends Front_Controller
 		//echo '<pre>';print_r($post);
 		$customerdetails=$this->session->userdata('userdetails');
 		$details= $this->customer_model->get_product_details($post['producr_id']);
-		
+		//echo '<pre>';print_r($details);
 		if($details['offer_percentage']!='' && $details['offer_type']!=4){
 			$item_price= ($details['item_cost']-$details['offer_amount']);
 			
-			$price	=(($post['qty']) * ($item_price));		
+			$price	=(($post['qty']) * ($item_price));
 		}else{
 			$price= (($post['qty']) * ($details['item_cost']));
 			$item_price=$details['item_cost'];
+			
 		}
+		$commission_price=(($price)*($details['commission'])/100);
 		if($details['category_id']==1){
 			if($price <500){
 				$delivery_charges=35;
@@ -140,7 +142,7 @@ class Customer extends Front_Controller
 				$delivery_charges=0;
 			}
 		}
-		//echo '<pre>';print_r($details);exit;
+		
 		
 		
 		$adddata=array(
@@ -149,6 +151,7 @@ class Customer extends Front_Controller
 		'qty'=>$post['qty'],
 		'item_price'=>$item_price,
 		'total_price'=>$price,
+		'commission_price'=>$commission_price,
 		'delivery_amount'=>$delivery_charges,
 		'seller_id'=>$details['seller_id'],
 		'category_id'=>$details['category_id'],
@@ -258,6 +261,7 @@ class Customer extends Front_Controller
 			$price= (($post['qty']) * ($details['item_cost']));
 			$item_price=$details['item_cost'];
 		}
+		$commission_price=(($price)*($details['commission'])/100);
 		if($details['category_id']==1){
 			if($price <500){
 				$delivery_charges=35;
@@ -278,6 +282,7 @@ class Customer extends Front_Controller
 		$updatedata=array(
 		'qty'=>$post['qty'],
 		'item_price'=>$item_price,
+		'commission_price'=>$commission_price,
 		'total_price'=>$price,
 		'delivery_amount'=>$delivery_charges,
 		);
