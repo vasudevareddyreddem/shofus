@@ -108,6 +108,7 @@ class Payment extends CI_Controller
 						'item_price'=>$items['item_price'],
 						'total_price'=>$items['total_price'],
 						'delivery_amount'=>$items['delivery_amount'],
+						'commission_price'=>$items['commission_price'],
 						'customer_email'=>$customerdetails['cust_email'],
 						'customer_phone'=>$billingaddress['mobile'],
 						'customer_address'=>$billingaddress['address1'],
