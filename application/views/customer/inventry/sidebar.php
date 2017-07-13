@@ -69,9 +69,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a><i class="fa fa-circle-o"></i> Category & commission</a></li>
-            <li><a href="<?php echo base_url('inventory/categorieslist'); ?>"><i class="fa fa-circle-o"></i> Add category requests (seller)</a></li>
-            <li><a><i class="fa fa-circle-o"></i> Add category, sub category, <br>sub item & its commission</a></li>
+            <li><a href="<?php echo base_url('inventory/categorieslist'); ?>"><i class="fa fa-circle-o"></i> Category & commission</a></li>
+            <li><a href="<?php echo base_url('inventory/addsubcategorieslist'); ?>"><i class="fa fa-circle-o"></i> Add category, sub category, <br>sub item & its commission</a></li>
           </ul>
         </li>
       </ul>

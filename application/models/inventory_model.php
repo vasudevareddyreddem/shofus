@@ -19,6 +19,18 @@ class Inventory_model extends MY_Model
 		$this->db->where('category_id',$catid);
 		return $this->db->get()->row_array();
 	}
+	public function get_all_categort()
+	{
+		$this->db->select('*')->from('category');
+		$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategort_details()
+	{
+		$this->db->select('subcategories.*,category.category_name')->from('subcategories');
+		$this->db->join('category', 'category.category_id = subcategories.category_id', 'left');
+		return $this->db->get()->result_array();
+	}
 	public function update_category_details($catid,$data)
 	{
 		$this->db->where('category_id', $catid);

@@ -457,6 +457,26 @@ public function servicerequestview(){
 		 redirect('admin/login	');
 		} 
   }
+   public function addsubcategory(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$data['category_list'] = $this->inventory_model->get_all_categort();
+					//echo '<pre>';print_r($data);exit;
+					$this->load->view('customer/inventry/sidebar');
+					$this->load->view('customer/inventry/addsubcategory',$data);
+					$this->load->view('customer/inventry/footer');
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
   public function addcategorypost(){
   	if($this->session->userdata('userdetails'))
 	 {		
@@ -502,6 +522,30 @@ public function servicerequestview(){
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
 				$this->load->view('customer/inventry/categoryview',$data);
+				$this->load->view('customer/inventry/footer');	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+		
+	  
+	  }
+	  else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+	} 
+  }
+  public function addsubcategorieslist(){
+  	
+	 
+	if($this->session->userdata('userdetails'))
+	 {		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5){
+				$data['subcategory_details'] = $this->inventory_model->get_subcategort_details();
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+				$this->load->view('customer/inventry/subcategory_list',$data);
 				$this->load->view('customer/inventry/footer');	
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
