@@ -278,6 +278,57 @@ public function changepasswordpost(){
 		 redirect('admin/login	');
 	} 
   }
+  
+  /* notification purpose*/
+  public function sellernitificationlist(){
+  	
+	 
+	if($this->session->userdata('userdetails'))
+	 {		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5){
+				$data['notification_details'] = $this->inventory_model->get_sellernotification_list();
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+				$this->load->view('customer/inventry/notificationslist',$data);
+				$this->load->view('customer/inventry/footer');	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+		
+	  
+	  }
+	  else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+	} 
+  }
+  
+    public function notificationview(){
+  	
+	 
+	if($this->session->userdata('userdetails'))
+	 {		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5){
+				$data['seller_notification_details'] = $this->inventory_model->get_seller_all_notifications_details(base64_decode($this->uri->segment(3)));
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+				$this->load->view('customer/inventry/adminnotificationview',$data);
+				$this->load->view('customer/inventry/footer');	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+		
+	  
+	  }
+	  else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+	} 
+  }
 public function servicerequestview(){
   	
 	 

@@ -1,43 +1,48 @@
-<div class="content-wrapper">
+<div class="content-wrapper pad_t100">
     <!-- Content Header (Page header) -->
       <div class="container">
          <!-- Main content -->
       <div class="row">
-      <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Seller List</h3>
+	  <?php //echo '<pre>';print_r($category_list);exit; ?>
+      <div class="box data_box_wid">
+            <div class="box-header" style="border-bottom:1px solid #ddd;">
+              <h3 class="box-title" >Notification List</h3>
+              <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/dashboard'); ?>" class="box-title">Back</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+			<?php if($this->session->flashdata('success')): ?>
+					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('success');?></div>	
+					<?php endif; ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Notication Id</th>
-                  <th>Notication Purpose</th>
+                  <th>Seller Id</th>
                   <th>Seller Name</th>
-                  <th>Seller Email</th>
-                  <th>Seller mobile</th>
+                  <th>Subject</th>
+                  <th>Message</th>
+                  <th>Date</th>
                   <th>Action</th>
 				  
                 </tr>
                 </thead>
                 <tbody>
                 <?php  
-                  foreach($seller_details as $details) {?>
+                  foreach($notification_details as $details) {?>
                 <tr>                  
-                  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>"><?php echo $details['service_id']; ?></a></td>
-                  <td><?php echo $details['select_plan']; ?></td>
-                  <td><?php echo $details['seller_name']; ?></td>
-                  <td><?php echo $details['seller_email']; ?></td>                  
-                  <td><?php echo $details['seller_mobile']; ?></td>                  
-                  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>">View</a> |&nbsp;
-					<a href="<?php echo base_url('inventory/notificationreply/'.base64_encode($details['service_id']).'/'.base64_encode($details['seller_id'])); ?>">Reply</a></td>
+                <td><?php echo $details['seller_rand_id']; ?></td>
+                <td><?php echo $details['seller_name']; ?></td>
+                <td><?php echo $details['subject']; ?></td>
+                <td><?php echo $details['seller_message']; ?></td>
+                <td><?php echo $details['created_at']; ?></td>
+                <td><a href="<?php echo base_url('inventory/notificationview/'.base64_encode($details['seller_id'])); ?>"><?php echo $details['message_type']; ?></a></td>
                 
                 </tr>
                  <?php }?>
                 </tbody>              
-              </table>
-             
+                </table> <br><br><br>
             </div>
             <!-- /.box-body -->
           </div>
@@ -45,15 +50,3 @@
 </div>
 </div>
 </div>
-<script>
-  $(function () {
-    $('#example1').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-</script>
