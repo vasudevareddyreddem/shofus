@@ -106,8 +106,8 @@
                             <ul class="treeview-menu">                            
                                 <li><a href="<?php echo base_url();?>seller/showups/homepagebanner">Home Page Banners</a></li>
                                 <li><a href="<?php echo base_url('seller/showups/topoffers');?>">Top Offers</a></li>
-                                <li><a href="<?php echo base_url();?>seller/">Deals Of the Day</a></li>
-                                <li><a href="<?php echo base_url();?>seller/">Season Sales</a></li>
+                                <li><a href="<?php echo base_url('seller/showups/dealsofday');?>">Deals Of the Day</a></li>
+                                <li><a href="<?php echo base_url('seller/showups/seasonsale');?>">Season Sales</a></li>
                                 
                             </ul>
                         </li>

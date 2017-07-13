@@ -902,11 +902,27 @@ public function servicerequestview(){
 
 	public function homepagebanner()
 	{
-		$data['home_banner'] = $this->inventory_model->get_seller_banners();
-		//echo "<pre>";print_r($data);exit;
-	   	$this->load->view('customer/inventry/sidebar');
-	   	$this->load->view('customer/inventry/home_page_banner',$data);
-	   	$this->load->view('customer/inventry/footer');
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['home_banner'] = $this->inventory_model->get_seller_banners();
+				//echo "<pre>";print_r($data);exit;
+			   	$this->load->view('customer/inventry/sidebar');
+			   	$this->load->view('customer/inventry/home_page_banner',$data);
+			   	$this->load->view('customer/inventry/footer');
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+		
 	}
 	public function banner_active(){
 		$code = $_GET['id'];
@@ -934,9 +950,25 @@ public function servicerequestview(){
 				}
 	}
 	public function bannerpreview(){
-		$this->load->view('customer/inventry/sidebar');
-	   	$this->load->view('customer/inventry/bannerpreview');
-	   	$this->load->view('customer/inventry/footer');
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$this->load->view('customer/inventry/sidebar');
+	   			$this->load->view('customer/inventry/bannerpreview');
+	   			$this->load->view('customer/inventry/footer');
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+		
 	}
 	public function topoffers()
 	{

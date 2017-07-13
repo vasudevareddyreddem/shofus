@@ -8,17 +8,17 @@
 		<div class="header-title">
 			  
 			<h1>Show Ups</h1>
-			<small>Top Offers</small>
+			<small>Deals Of the Day</small>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard');?>"><i class="pe-7s-home"></i> Home</a></li>
-				<li class="active">Top Offers</li>
+				<li class="active">Deals Of the Day</li>
 			</ol>
 		</div>
 	</section>
   	<section class="content ">
   		<div class="faq_main">
-  				<a href="<?php echo base_url('seller/showups/activetopoffers');?>" class="btn btn-success">Active</a>
-  				<a href="<?php echo base_url('seller/showups/addtopoffers');?>" class="btn btn-primary">Add</a>
+  				<a href="<?php echo base_url('seller/showups/activedealsofday');?>" class="btn btn-success">Active</a>
+  				<a href="<?php echo base_url('seller/showups/adddealsofday');?>" class="btn btn-primary">Add</a>
 			</div>
     </section>
     </div>

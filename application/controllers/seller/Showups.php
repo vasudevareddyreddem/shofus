@@ -93,4 +93,52 @@ class Showups extends Admin_Controller {
 		$this->template->render();
 	}
 
+	public function dealsofday()
+	{
+		$this->template->write_view('content', 'seller/showups/dealsofday');
+		$this->template->render();
+	}
+	public function activedealsofday(){
+		$data['seller_prducts']=$this->showups_model->get_seller_products_data($this->session->userdata('seller_id'));
+		 $data['catitemdata'] = $this->showups_model->getcatsubcatpro();
+	   $data['catitemdata1'] = $this->showups_model->getcatsubcatpro();
+		$data['cnt']= count($data['catitemdata1']);
+		$this->template->write_view('content', 'seller/showups/active_dealsofday',$data);
+		$this->template->render();
+	}
+
+	public function adddealsofday()
+	{
+		$data['seller_prducts']=$this->Promotions_model->get_seller_products_data($this->session->userdata('seller_id'));
+		 $data['catitemdata'] = $this->products_model->getcatsubcatpro();
+	   $data['catitemdata1'] = $this->products_model->getcatsubcatpro();
+		$data['cnt']= count($data['catitemdata1']);
+		$this->template->write_view('content', 'seller/showups/adddealsofday',$data);
+		$this->template->render();
+	}
+
+	public function seasonsale()
+	{
+		$this->template->write_view('content', 'seller/showups/seasonsale');
+		$this->template->render();
+	}
+	public function activeseasonsale(){
+		$data['seller_prducts']=$this->showups_model->get_seller_products_data($this->session->userdata('seller_id'));
+		 $data['catitemdata'] = $this->showups_model->getcatsubcatpro();
+	   $data['catitemdata1'] = $this->showups_model->getcatsubcatpro();
+		$data['cnt']= count($data['catitemdata1']);
+		$this->template->write_view('content', 'seller/showups/active_seasonsale',$data);
+		$this->template->render();
+	}
+
+	public function addseasonsale()
+	{
+		$data['seller_prducts']=$this->Promotions_model->get_seller_products_data($this->session->userdata('seller_id'));
+		 $data['catitemdata'] = $this->products_model->getcatsubcatpro();
+	   $data['catitemdata1'] = $this->products_model->getcatsubcatpro();
+		$data['cnt']= count($data['catitemdata1']);
+		$this->template->write_view('content', 'seller/showups/addseasonsale',$data);
+		$this->template->render();
+	}
+
 }
