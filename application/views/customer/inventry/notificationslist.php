@@ -6,7 +6,7 @@
 	  <?php //echo '<pre>';print_r($category_list);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
-              <h3 class="box-title" >Notification List</h3>
+              <h3 class="box-title" >Messages List</h3>
               <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/dashboard'); ?>" class="box-title">Back</a>
             </div>
             <!-- /.box-header -->
@@ -30,14 +30,14 @@
                 </thead>
                 <tbody>
                 <?php  
-                  foreach($notification_details as $details) {?>
+                  foreach($notification_details as $details) { ?>
                 <tr>                  
                 <td><?php echo $details['seller_rand_id']; ?></td>
-                <td><?php echo $details['seller_name']; ?></td>
-                <td><?php echo $details['subject']; ?></td>
-                <td><?php echo $details['seller_message']; ?></td>
+                <td><?php echo $details['seller_name']; ?><?php if($details['count'][0]['unreadcount']!=0){ ?>&nbsp;(<?php  echo $details['count'][0]['unreadcount'];  ?>)<?php }  ?></td>
+                <td><?php echo $details['lastone']['subject']; ?></td>
+                <td><?php echo $details['lastone']['seller_message']; ?></td>
 				<td><?php echo Date('d-M-Y',strtotime(htmlentities($details['created_at'])));?></td>
-                <td><a href="<?php echo base_url('inventory/notificationview/'.base64_encode($details['seller_id'])); ?>"><?php echo $details['message_type']; ?></a></td>
+                <td><a href="<?php echo base_url('inventory/notificationview/'.base64_encode($details['seller_id'])); ?>"><?php echo $details['lastone']['message_type']; ?></a></td>
                 
                 </tr>
                  <?php }?>

@@ -183,21 +183,66 @@ class Inventory_model extends MY_Model
 		$this->db->select('notifications.*,sellers.seller_id,sellers.seller_rand_id,sellers.seller_name')->from('notifications');
 		$this->db->join('sellers','sellers.seller_id = notifications.seller_id', 'left');	
 		$this->db->group_by('notifications.seller_id');
-		$this->db->order_by('notifications.created_at', 'DESC'); 
+		$this->db->order_by('notifications.notification_id', 'DESC'); 
+		$query= $this->db->get()->result_array();
+		 foreach ($query as $category)
+        {
+      //echo "<pre>";print_r($category);exit;
+			$return[$category['seller_id']] = $category;
+
+			$return[$category['seller_id']]['count'] = $this->get_unreadcount($category['seller_id']);
+			$return[$category['seller_id']]['lastone'] = $this->get_latestmessage($category['seller_id']);
+        
+		}
+		return $return;
+	}
+	public function get_unreadcount($sid)
+	{
+		$this->db->select('count(read_count) as unreadcount')->from('notifications');
+		$this->db->where('seller_id',$sid);
+		$this->db->where('read_count',1);
 		return $this->db->get()->result_array();
+	}
+	public function get_latestmessage($sid)
+	{
+		$sql = "SELECT * FROM notifications where seller_id='".$sid."' ORDER BY notification_id DESC LIMIT 1";
+		return $this->db->query($sql)->row_array(); 
 	}
 	public function get_seller_all_notifications_details($sid)
 	{
 		$this->db->select('notifications.*,sellers.seller_id,sellers.seller_name')->from('notifications');
 		$this->db->join('sellers','sellers.seller_id = notifications.seller_id', 'left');	
 		$this->db->where('notifications.seller_id',$sid);
-		$this->db->order_by('notifications.created_at', 'DESC'); 
+		$this->db->order_by('notifications.created_at', 'ASC'); 
 		return $this->db->get()->result_array();
 	}
-	public function save_notifciations($sid)
+	public function notifciations_read_count($notification_id,$data)
+	{
+		$sql1="UPDATE notifications SET read_count ='".$data."' WHERE notification_id = '".$notification_id."'";
+		return $this->db->query($sql1);
+	}
+	public function save_notifciations($data)
 	{
 		$this->db->insert('notifications', $data);
 		return $insert_id = $this->db->insert_id();
+	}
+	public function get_all_notifciations_subject($sid)
+	{
+		$this->db->select('*')->from('notifications');
+		$this->db->where('seller_id',$sid);
+		$this->db->where('read_count',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_Unread_notification_count()
+	{
+		$this->db->select('*')->from('notifications');
+		$this->db->where('read_count',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_notifciations_subject($sid)
+	{
+		$sql = "SELECT * FROM notifications where seller_id='".$sid."' AND message_type='REPLY' ORDER BY notification_id DESC LIMIT 1";
+		return $this->db->query($sql)->row_array(); 
 	}
 	/*notification puroose*/
 	
