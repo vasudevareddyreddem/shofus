@@ -917,12 +917,71 @@ public function servicerequestview(){
 	}
 	public function topoffers()
 	{
-		$data['top_offers'] = $this->inventory_model->get_top_offers_list();
-		//echo "<pre>";print_r($data);exit;
-	   	$this->load->view('customer/inventry/sidebar');
-	   	$this->load->view('customer/inventry/top_offers',$data);
-	   	$this->load->view('customer/inventry/footer');
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['top_offers'] = $this->inventory_model->get_top_offers_list();
+				//echo "<pre>";print_r($data);exit;
+			   	$this->load->view('customer/inventry/sidebar');
+			   	$this->load->view('customer/inventry/top_offers',$data);
+			   	$this->load->view('customer/inventry/footer');
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
 	}
+
+	public function topoffersstatus()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$id = base64_decode($this->uri->segment(3));
+				$seller_id = base64_decode($this->uri->segment(4));
+				$status = base64_decode($this->uri->segment(5));
+				//echo "<pre>";print_r($status);exit;
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				$data=array('item_status'=>$status);
+				$updatestatus=$this->inventory_model->update_topoffers_status($id,$seller_id,$data);
+
+				if(count($updatestatus)>0)
+				{
+					if($status==1)
+					{
+						$this->session->set_flashdata('success'," Product activation successful");
+					}else{
+						$this->session->set_flashdata('success',"Product deactivation successful");
+					}
+					redirect('inventory/topoffers');
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
+	}
+
+
 	public function dealsofday()
 	{
 		$this->load->view('customer/inventry/header');
