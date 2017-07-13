@@ -857,9 +857,9 @@ public function servicerequestview(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
 				$data['seller_order_items'] = $this->inventory_model->get_seller_all_payment_details(base64_decode($this->uri->segment(3)));
-				echo '<pre>';print_r($data);exit;
+				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
-				$this->load->view('customer/inventry/adminnotificationview',$data);
+				$this->load->view('customer/inventry/seller_order_item_details',$data);
 				$this->load->view('customer/inventry/footer');	
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
