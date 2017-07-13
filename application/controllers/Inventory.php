@@ -178,12 +178,11 @@ public function changepasswordpost(){
 	 	$check = $this->session->userdata('userdetails');
 	 	//print_r($that);exit;
 	 	if($check['role_id']==5){
-	 	$data['seller_details'] = $this->inventory_model->get_all_seller_details();
-		//echo '<pre>';print_r($data);exit;
-		$this->load->view('customer/inventry/header');
-		$this->load->view('customer/inventry/sidebar');
-		$this->load->view('customer/inventry/index',$data);
-		$this->load->view('customer/inventry/footer');
+	 	$data['category'] = $this->inventory_model->get_seller_categories();
+					//echo "<pre>";print_r($data);exit;
+					$this->load->view('customer/inventry/sidebar');
+					$this->load->view('customer/inventry/categories',$data);
+					$this->load->view('customer/inventry/footer');
 	 	}else{
 	 		redirect('admin/login');
 	 	}
@@ -194,7 +193,43 @@ public function changepasswordpost(){
 		}
 		
 
-  } 
+  }
+  
+  public function sellerlist()
+	{
+		
+		if($this->session->userdata('userdetails'))
+		{	
+			$check = $this->session->userdata('userdetails');
+				if($check['role_id']==5)
+				{
+					$data['seller_details'] = $this->inventory_model->get_all_seller_details();
+					//echo '<pre>';print_r($data);exit;
+					$this->load->view('customer/inventry/header');
+					$this->load->view('customer/inventry/sidebar');
+					$this->load->view('customer/inventry/index',$data);
+					$this->load->view('customer/inventry/footer');
+				}else
+				{
+					redirect('admin/login');
+				}
+		} else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+			} 
+
+	}
+  public function categorywisesellers()
+	{
+		$cid = base64_decode($this->uri->segment(3));
+		$data['seller_category'] = $this->inventory_model->get_categorywiseseller_list($cid);
+		$data['category_name'] = $this->inventory_model->get_categort_details($cid);
+		//echo "<pre>";print_r($data);exit;
+	  	$this->load->view('customer/inventry/sidebar');
+	  	$this->load->view('customer/inventry/category_wise_sellers',$data);
+	  	$this->load->view('customer/inventry/footer');
+	}
+  
   public function sellerdetails(){
   	
 	 
@@ -363,11 +398,11 @@ public function servicerequestview(){
 					
 					if(count($updatestatus)>0){
 						if($status==1){
-							$this->session->set_flashdata('success'," Category activation successful");
+							$this->session->set_flashdata('success'," Seller activation successful");
 						}else{
-							$this->session->set_flashdata('success',"Category deactivation successful");
+							$this->session->set_flashdata('success',"Seller deactivation successful");
 						}
-						redirect('inventory/dashboard');
+						redirect('inventory/sellerlist');
 					}
 		}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -741,40 +776,9 @@ public function servicerequestview(){
 		} 
   }
 
-	public function categories()
-	{
-		
-		if($this->session->userdata('userdetails'))
-		{	
-			$check = $this->session->userdata('userdetails');
-				if($check['role_id']==5)
-				{
-					$data['category'] = $this->inventory_model->get_seller_categories();
-					//echo "<pre>";print_r($data);exit;
-					$this->load->view('customer/inventry/sidebar');
-					$this->load->view('customer/inventry/categories',$data);
-					$this->load->view('customer/inventry/footer');
-				}else
-				{
-					redirect('admin/login');
-				}
-		} else{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('admin/login');
-			} 
+	
 
-	}
-
-	public function category_wise_sellers()
-	{
-		$cid = base64_decode($this->uri->segment(3));
-		//print_r($data);exit;
-		$data['seller_category'] = $this->inventory_model->get_seller_names($cid);
-		//echo "<pre>";print_r($data);exit;
-	  	$this->load->view('customer/inventry/sidebar');
-	  	$this->load->view('customer/inventry/category_wise_sellers',$data);
-	  	$this->load->view('customer/inventry/footer');
-	}
+	
 
 	public function seller_id_database()
 	{
