@@ -120,7 +120,7 @@ class Inventory_model extends MY_Model
 	}
 	public function get_seller_payments()
 	{
-		$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(order_items.order_item_id) AS orderscount, SUM(order_items.item_price) AS totalamount')->from('order_items');
+		$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(order_items.order_item_id) AS orderscount, SUM(order_items.item_price) AS totalamount, SUM(order_items.commission_price) AS commissionamount')->from('order_items');
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
 		 $this->db->group_by('order_items.seller_id');
 		 $this->db->where('sellers.status', 1);

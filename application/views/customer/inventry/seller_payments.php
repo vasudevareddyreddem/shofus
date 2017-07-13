@@ -17,6 +17,7 @@
                   <th>Seller Name</th>
 				  <th>Orders Count</th>
                   <th>Transaction Amount</th>                  
+                  <th>Commission Amount</th>                  
                   <th>Amount to be deposited</th>                  
                   <th>Action</th>
                 </tr>
@@ -27,10 +28,10 @@
                 <tr>                  
                   <td><?php echo $payment['seller_rand_id']; ?></td>
                   <td><?php echo $payment['seller_name']; ?></td>
-                  <td><?php echo $payment['orderscount']; ?></td>
+                  <td><a href="#" ><?php echo $payment['orderscount']; ?></a></td>
                   <td><?php echo $payment['totalamount']; ?></td>
-                  <td><?php echo $payment['totalamount']; ?></td>
-                  
+                  <td><?php echo $payment['commissionamount']; ?></td>
+                  <td><?php echo ($payment['totalamount']) - ($payment['commissionamount']); ?></td>
                   <td><a href="" class="btn btn-primary">Pay</td>
                 </tr>
                  <?php }?>
