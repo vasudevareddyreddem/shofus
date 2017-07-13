@@ -160,7 +160,7 @@ class Inventory_model extends MY_Model
 
 	public function get_seller_banners()
 	{
-		$this->db->select('home_banner.*,sellers.seller_name')->from('home_banner');
+		$this->db->select('home_banner.*,sellers.seller_name,seller_rand_id')->from('home_banner');
 		$this->db->join('sellers','sellers.seller_id = home_banner.seller_id', 'left');	
 		return $this->db->get()->result_array();
 	}
@@ -181,8 +181,9 @@ class Inventory_model extends MY_Model
 	public function get_banner_preview()
 	{
 		$this->db->select('*')->from('home_banner');		
-		$this->db->order_by("created_at", "Asc");
-		return $this->db->get()->result_array();
+		$this->db->order_by("created_at", "ASC");
+		$this->db->limit(3);
+		return $this->db->get()->result();
 	}
 
 	public function get_top_offers_list()

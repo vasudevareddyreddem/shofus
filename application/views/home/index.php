@@ -3,17 +3,15 @@
      
       <div id="myCarousel" class="carousel slide"> 
         <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
+        
         <div class="carousel-inner">
+
           <div class="item active"> <img src="<?php echo base_url(); ?>assets/home/images/food_bnr.jpg" class="img-responsive">
             <div class="container">
               <div class="carousel-caption"> </div>
             </div>
           </div>
+          
           <div class="item"> <img src="<?php echo base_url(); ?>assets/home/images/slide-img2.jpg" class="img-responsive">
             <div class="container">
               <div class="carousel-caption"> </div>

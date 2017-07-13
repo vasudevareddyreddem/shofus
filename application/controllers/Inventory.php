@@ -498,7 +498,7 @@ public function servicerequestview(){
 		
 	
 		
-	  
+
 	  }
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
@@ -960,7 +960,14 @@ public function servicerequestview(){
 		
 	}
 	public function banner_active(){
-		$code = $_GET['id'];
+
+
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$code = $_GET['id'];
 		$arr = explode('__',$code);
 		$id = base64_decode($arr[0]);		
 		//echo "<pre>";print_r($id);exit;
@@ -985,10 +992,27 @@ public function servicerequestview(){
 					$this->session->set_flashdata('errormsg',"Opps !.!!");
 					redirect('inventory/homepagebanner');
 				}
+				
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+		
 	}
 
 	public function banner_delete(){
-		$code = $_GET['id'];
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$code = $_GET['id'];
 		$arr = explode('__',$code);
 		$id = base64_decode($arr[0]);		
 		//echo "<pre>";print_r($id);exit;
@@ -996,10 +1020,10 @@ public function servicerequestview(){
 		$status = base64_decode($arr[2]);
 		//echo "<pre>";print_r($status);exit;
 		if($status==0){
-			$bannerdelete= $this->inventory_model->delete_banner($id,$sid);
+			$bannerdelete= $this->inventory_model->delete_banner($id,$sid);			
 			//echo $this->db->last_query();exit;
 		}else{
-			$this->session->set_flashdata('errormsg',"This Banner Is Active Ask Admin!!");
+			$this->session->set_flashdata('errormsg',"This Banner Is Active Please Ask Admin!!");
 			redirect('inventory/homepagebanner');
 		}
 		if(count($bannerdelete)>0)
@@ -1014,6 +1038,18 @@ public function servicerequestview(){
 				$this->session->set_flashdata('errormsg',"Opps !.!!");
 				redirect('inventory/homepagebanner');
 			}
+				
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+		
 	}
 	public function bannerpreview(){
 		if($this->session->userdata('userdetails'))
@@ -1153,12 +1189,7 @@ public function servicerequestview(){
 		}
 	   	
 	}
-	public function others()
-	{
-	   	$this->load->view('customer/inventry/sidebar');
-	   	$this->load->view('customer/inventry/others');
-	   	$this->load->view('customer/inventry/footer');
-	}
+	
 
 	 public function categorieslist(){
   	
