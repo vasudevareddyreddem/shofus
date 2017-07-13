@@ -18,25 +18,31 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo validation_errors(); ?></div>	
 					<?php  endif;?>
-				<form enctype="multipart/form-data" method="post" name="addcategory" id="addcategory"  action="<?php echo base_url('inventory/addsubcategorypost'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
-				<div class=""  style="font-size:20px;font-weight:600;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Add Subcategory</div>
-				
+				<form enctype="multipart/form-data" method="post" name="addcategory" id="addcategory"  action="<?php echo base_url('inventory/editsubcategorypost'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
+				<div class=""  style="font-size:20px;font-weight:600;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Edit Subcategory</div>
+				<input type="hidden" name="subcategoryid" id="subcategoryid" value="<?php echo $subcategory_details['subcategory_id']; ?>">
 				<div class="form-group">
 				<label for="category">Subcategory Name</label>
-				<input type="text"  class="form-control" id="categoryname"  name="categoryname"/>
+				<input type="text"  class="form-control" id="subcategoryname"  name="subcategoryname" value="<?php echo isset($subcategory_details['subcategory_name'])?$subcategory_details['subcategory_name']:''; ?>"/>
 				</div>
 				<div class="form-group">
 				<label for="category">category Name</label>
 				<select class="form-control" name="category_list" id="category_list">
 				<option value="">Select</option>
 				<?php foreach($category_list as $list){ ?>
+				
+				<?php if($list['category_id']==$subcategory_details['category_id']){  ?>
+					<option value="<?php echo $list['category_id'];?>" selected><?php echo $list['category_name'];?></option>
+
+				<?php }else{ ?>
 				<option value="<?php echo $list['category_id'];?>"><?php echo $list['category_name'];?></option>
+				 <?php } ?>
 				<?php } ?>
 				</select>
 				</div>
 				
 				<div class="btn-group-vertical btn-block text-center" role="group">
-				<button type="submit" class="btn btn-danger btn-lg">Add</button>
+				<button type="submit" class="btn btn-danger btn-lg">Update</button>
 				
 				</div>
 				</form>
@@ -52,31 +58,21 @@ $(document).ready(function() {
     $('#addcategory').bootstrapValidator({
        
         fields: {
-            categoryname: {
+            subcategoryname: {
 					validators: {
 					notEmpty: {
-						message: 'Category Name is required'
+						message: 'Subcategory Name is required'
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: ' Category Name can only consist of alphanumaric, space and dot'
+					message: ' Subcategory Name can only consist of alphanumaric, space and dot'
 					}
 				}
 			}, 
-			commission: {
+			category_list: {
 					validators: {
-					between: {
-                    min: 0,
-                    max: 100,
-                    message: 'The Commission percentage must be between 0 and 100'
-					}
-				}
-			},
-			categoryfile: {
-					validators: {
-					regexp: {
-					regexp: /\.(xlsx|xls)$/i,
-					message: 'Uploaded file is not a valid image. Only xl files are allowed'
+					notEmpty: {
+						message: 'Please select a catehory'
 					}
 				}
 			}

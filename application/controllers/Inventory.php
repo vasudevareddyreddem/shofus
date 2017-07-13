@@ -418,6 +418,40 @@ public function servicerequestview(){
 		 redirect('admin/login	');
 		} 
   }
+  public function subcategorystatus(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$id = base64_decode($this->uri->segment(3)); 
+					$status = base64_decode($this->uri->segment(4));
+					if($status==1){
+					$status=0;
+					}else{
+					$status=1;
+					}
+					$data=array('status'=>$status);
+					$updatestatus=$this->inventory_model->update_subcategory_status($id,$data);
+					//echo $this->db->last_query();exit;
+					
+					if(count($updatestatus)>0){
+						if($status==1){
+							$this->session->set_flashdata('success'," Subcategory activation successful");
+						}else{
+							$this->session->set_flashdata('success',"Subcategory deactivation successful");
+						}
+						redirect('inventory/subcategorieslist');
+					}
+		}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
   public function categoryedit(){
   	if($this->session->userdata('userdetails'))
 	 {		
@@ -428,6 +462,27 @@ public function servicerequestview(){
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
 				$this->load->view('customer/inventry/editcategory',$data);
+				$this->load->view('customer/inventry/footer');	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  } 
+  public function subcategoryedit(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['subcategory_details'] = $this->inventory_model->get_subcategore_details(base64_decode($this->uri->segment(3)));
+				$data['category_list'] = $this->inventory_model->get_all_categort();
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+				$this->load->view('customer/inventry/editsubcategory',$data);
 				$this->load->view('customer/inventry/footer');	
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -509,8 +564,64 @@ public function servicerequestview(){
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 		} 
+  } 
+  public function addsubcategorypost(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$post=$this->input->post();
+					//echo "<pre>";print_r($post);exit;
+					$addsubcat = array(
+					'category_id' => $post['category_list'], 
+					'subcategory_name' => $post['categoryname'], 
+					'status' => 1,    
+					'created_at' => date('Y-m-d H:i:s'),    
+					'updated_at' => date('Y-m-d H:i:s'),
+					'created_by' =>$logindetail['customer_id'], 
+					);
+					$results=$this->inventory_model->save_sub_categories($addsubcat);
+					//echo "<pre>";print_r($post);exit;
+					if(count($results)>0){
+
+					$this->session->set_flashdata('success',"subCategory Successfully Added");
+					redirect('inventory/subcategorieslist');
+					}
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
   }
   
+  public function subcategoryview(){
+  	
+	 
+	if($this->session->userdata('userdetails'))
+	 {		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5){
+				$data['subcategory_details'] = $this->inventory_model->get_subcategore_details(base64_decode($this->uri->segment(3)));
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+				$this->load->view('customer/inventry/subcategoryview',$data);
+				$this->load->view('customer/inventry/footer');	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+		
+	  
+	  }
+	  else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+	} 
+  }
   public function categoryview(){
   	
 	 
@@ -535,7 +646,7 @@ public function servicerequestview(){
 		 redirect('admin/login	');
 	} 
   }
-  public function addsubcategorieslist(){
+  public function subcategorieslist(){
   	
 	 
 	if($this->session->userdata('userdetails'))
@@ -587,6 +698,38 @@ public function servicerequestview(){
 
 					$this->session->set_flashdata('success',"Category Successfully Updated!");
 					redirect('inventory/categorieslist');
+					}	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  } 
+  public function editsubcategorypost(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$post=$this->input->post();
+				//echo '<pre>';print_r($post);exit;
+					$updatedata = array(
+					'category_id' => $post['category_list'], 
+					'subcategory_name' => $post['subcategoryname'], 
+					'created_at' => date('Y-m-d H:i:s'),    
+					'updated_at' => date('Y-m-d H:i:s'),
+					);
+					//echo '<pre>';print_r($updatedata);exit;
+					$details=$this->inventory_model->update_subcategory_details($post['subcategoryid'],$updatedata);
+					
+					//echo $this->db->last_query();exit;
+					if(count($details)>0){
+
+					$this->session->set_flashdata('success',"Subcategory Successfully Updated!");
+					redirect('inventory/subcategorieslist');
 					}	
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');

@@ -10,10 +10,14 @@
               <a href="<?php echo base_url('inventory/addsubcategory'); ?>" class="box-title">Add</a>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body"><?php if($this->session->flashdata('success')): ?>
+					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('success');?></div>	
+					<?php endif; ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
+				  <tr>
 					<th>SubCategory Name</th>
 					<th>Category Name</th>
 					<th>Created Date</th>
@@ -25,13 +29,14 @@
                 <?php  
                   foreach($subcategory_details as $subcatlist) {?>
                 <tr>                  
-                  <td><a href="<?php echo base_url('inventory/categoryview/'.base64_encode($subcatlist['subcategory_id'])); ?>"><?php echo $subcatlist['subcategory_name']; ?></a></td>
+                  <td><a href="<?php echo base_url('inventory/subcategoryview/'.base64_encode($subcatlist['subcategory_id'])); ?>"><?php echo $subcatlist['subcategory_name']; ?></a></td>
+				  <td><?php echo $subcatlist['category_name']; ?></td>    
 				  <td><?php echo $subcatlist['created_at']; ?></td>    
                   <td><?php if($subcatlist['status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
 				<td>
-				<a href="<?php echo base_url('inventory/categoryview/'.base64_encode($subcatlist['subcategory_id'])); ?>">View</a> | &nbsp;
-				<a href="<?php echo base_url('inventory/categoryedit/'.base64_encode($subcatlist['subcategory_id'])); ?>">Edit</a> | &nbsp;
-				<a href="<?php echo base_url('inventory/categorystatus/'.base64_encode($subcatlist['subcategory_id']).'/'.base64_encode($subcatlist['status'])); ?>"><?php if($subcatlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
+				<a href="<?php echo base_url('inventory/subcategoryview/'.base64_encode($subcatlist['subcategory_id'])); ?>">View</a> | &nbsp;
+				<a href="<?php echo base_url('inventory/subcategoryedit/'.base64_encode($subcatlist['subcategory_id'])); ?>">Edit</a> | &nbsp;
+				<a href="<?php echo base_url('inventory/subcategorystatus/'.base64_encode($subcatlist['subcategory_id']).'/'.base64_encode($subcatlist['status'])); ?>"><?php if($subcatlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
 				</td>
                  </tr>
                  <?php }?>
