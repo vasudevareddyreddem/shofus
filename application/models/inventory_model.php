@@ -117,13 +117,15 @@ class Inventory_model extends MY_Model
 		 FROM seller_categories LEFT JOIN sellers ON seller_categories.seller_id =sellers.seller_id LEFT JOIN seller_store_details ON 
 		 	seller_store_details.seller_id = sellers.seller_id GROUP BY sellers.seller_id");
 		 return $sqll->result_array();
-		
 	}
-
 	public function get_seller_payments()
 	{
-		$this->db->select('*')->from('orders');
-		return $this->db->get()->result();
+		$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(order_items.order_item_id) AS orderscount, SUM(order_items.item_price) AS totalamount')->from('order_items');
+		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
+		 $this->db->group_by('order_items.seller_id');
+		 $this->db->where('sellers.status', 1);
+		//$this->db->order_by('order_items.seller_id', 'ASC'); 
+		return $this->db->get()->result_array();
 	}
 	public function get_inventory_management()
 	{

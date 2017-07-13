@@ -790,7 +790,7 @@ public function servicerequestview(){
 	}
 
 
-	public function seller_payments()
+	public function sellerpayments()
 	{
 		$data['seller_payment'] = $this->inventory_model->get_seller_payments();
 		//echo "<pre>";print_r($data);exit;

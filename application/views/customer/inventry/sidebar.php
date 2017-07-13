@@ -21,7 +21,7 @@
           </a>
         </li>
 		<li class="">
-          <a href="<?php echo base_url('inventory/seller_payments'); ?>">
+          <a href="<?php echo base_url('inventory/sellerpayments'); ?>">
              <i class="fa fa-dashboard"></i> <span>Seller payments</span>
           </a>
         </li>
