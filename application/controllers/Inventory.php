@@ -17,6 +17,7 @@ class inventory extends CI_Controller
 		$logindetail=$this->session->userdata('userdetails');
 		
 		$data['customerdetails'] = $this->customer_model->get_profile_details($logindetail['customer_id']);
+		$data['unreadcount'] = $this->inventory_model->get_Unread_notification_count();
 		//echo '<pre>';print_r($data);exit;
 		$this->load->view('customer/inventry/header',$data);
 		} 
@@ -313,20 +314,24 @@ public function changepasswordpost(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
 				$post=$this->input->post();
-				echo '<pre>';print_r($post);
-				$replaynotification = array(
-				'replyed_id' => $logindetail['customer_id'],	
-				'seller_id' => $post['seller_id'],
-				'seller_message'=>$post['message'],
-				'message_type' =>'REPLIED',
-				'created_at' => date('Y-m-d H:i:s'),
-				);
+				//echo '<pre>';print_r($post);
+					$lastestnotication = $this->inventory_model->get_notifciations_subject($post['seller_id']);
+					$replaynotification = array(
+					'replyed_id' => $logindetail['customer_id'],	
+					'subject' => $lastestnotication['subject'],	
+					'seller_id' => $post['seller_id'],
+					'seller_message'=>$post['message'],
+					'message_type' =>'REPLIED',
+					'read_count' =>0,
+					'created_at' => date('Y-m-d H:i:s'),
+					);
+			//echo '<pre>';print_r($replaynotification);exit;
 			$notificationreply = $this->inventory_model->save_notifciations($replaynotification);
 			if(count($notificationreply)>0){
 			$this->session->set_flashdata('sucess','Notification successfully send!');
 			redirect('inventory/sellernitificationlist');	
 			}
-				echo '<pre>';print_r($replaynotification);exit;
+				
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
@@ -349,6 +354,13 @@ public function changepasswordpost(){
 			if($logindetail['role_id']==5){
 				$data['seller_notification_details'] = $this->inventory_model->get_seller_all_notifications_details(base64_decode($this->uri->segment(3)));
 				//echo '<pre>';print_r($data);exit;
+				$allnitiyes = $this->inventory_model->get_all_notifciations_subject(base64_decode($this->uri->segment(3)));
+					//echo '<pre>';print_r($lastestnotication);
+					foreach($allnitiyes as $notify){
+						$this->inventory_model->notifciations_read_count($notify['notification_id'],0);
+						
+					}
+				
 				$this->load->view('customer/inventry/sidebar');
 				$this->load->view('customer/inventry/adminnotificationview',$data);
 				$this->load->view('customer/inventry/footer');	
