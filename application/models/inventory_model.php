@@ -157,5 +157,11 @@ class Inventory_model extends MY_Model
 		$sql1="UPDATE home_banner SET status ='".$status."'WHERE seller_id = '".$id."'";
 		return $this->db->query($sql1);
 	}
+
+	public function get_top_offers_list()
+	{
+		$this->db->select('*')->from('products');
+		return $this->db->get()->result_array();
+	}
 }
 ?>

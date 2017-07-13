@@ -233,15 +233,7 @@ public function get_catedata($category_id)
      if(!empty($return))
     {
     return $return;
-}
-	
-	
-	
-	
-	
-	
-	
-	
+}	
 }
 
 
@@ -254,7 +246,7 @@ public function get_subcatedata($subcategory_id)
     $this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
    $this->db->join('category', 'category.category_id =products.category_id');
    $this->db->where('products.subcategory_id', $subcategory_id);
-    $this->db->where('products.seller_id', $sid);
+    $this->db->where('products.seller_id', $sid);    
 	//$this->db->group_by('subcategories.subcategory_name');
     $query = $this->db->get();
     

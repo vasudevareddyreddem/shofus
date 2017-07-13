@@ -860,20 +860,22 @@ public function servicerequestview(){
 	   	$this->load->view('customer/inventry/bannerpreview');
 	   	$this->load->view('customer/inventry/footer');
 	}
-	public function top_offers()
+	public function topoffers()
 	{
+		$data['top_offers'] = $this->inventory_model->get_top_offers_list();
+		//echo "<pre>";print_r($data);exit;
 	   	$this->load->view('customer/inventry/sidebar');
-	   	$this->load->view('customer/inventry/top_offers');
+	   	$this->load->view('customer/inventry/top_offers',$data);
 	   	$this->load->view('customer/inventry/footer');
 	}
-	public function deals_of_day()
+	public function dealsofday()
 	{
 		$this->load->view('customer/inventry/header');
 	   	$this->load->view('customer/inventry/sidebar');
 	   	$this->load->view('customer/inventry/deals_of_day');
 	   	$this->load->view('customer/inventry/footer');
 	}
-	public function season_sales()
+	public function seasonsales()
 	{
 	   	$this->load->view('customer/inventry/sidebar');
 	   	$this->load->view('customer/inventry/season_sales');
