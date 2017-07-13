@@ -11,6 +11,11 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+			<?php if($this->session->flashdata('success')): ?>
+					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('success');?></div>	
+					<?php endif; ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>

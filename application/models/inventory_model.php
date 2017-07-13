@@ -19,6 +19,14 @@ class Inventory_model extends MY_Model
 		$this->db->where('category_id',$catid);
 		return $this->db->get()->row_array();
 	}
+	public function get_subcategore_details($subcatid)
+	{
+		$this->db->select('subcategories.*,category.category_name,customers.cust_firstname,customers.cust_lastname')->from('subcategories');
+		$this->db->join('category', 'category.category_id = subcategories.category_id', 'left');
+		$this->db->join('customers', 'customers.customer_id = subcategories.created_by', 'left');
+		$this->db->where('subcategory_id',$subcatid);
+		return $this->db->get()->row_array();
+	}
 	public function get_all_categort()
 	{
 		$this->db->select('*')->from('category');
@@ -36,6 +44,11 @@ class Inventory_model extends MY_Model
 		$this->db->where('category_id', $catid);
 		return $this->db->update('category', $data);
 	}
+	public function update_subcategory_details($subcatid,$data)
+	{
+		$this->db->where('subcategory_id', $subcatid);
+		return $this->db->update('subcategories', $data);
+	}
 	public function get_seller_details($sid)
 	{
 		$this->db->select('*')->from('sellers');
@@ -46,9 +59,17 @@ class Inventory_model extends MY_Model
 		$this->db->where('seller_id', $sellerid);
 		return $this->db->update('sellers', $data);
 	}
+	public function update_subcategory_status($catid,$data){
+		$this->db->where('subcategory_id', $catid);
+		return $this->db->update('subcategories', $data);
+	}
 	public function update_category_status($catid,$data){
 		$this->db->where('category_id', $catid);
 		return $this->db->update('category', $data);
+	}
+	function save_sub_categories($data){
+		$this->db->insert('subcategories', $data);
+		return $insert_id = $this->db->insert_id();
 	}
 	function insert_cat_data($data){
 		$this->db->insert('category', $data);
