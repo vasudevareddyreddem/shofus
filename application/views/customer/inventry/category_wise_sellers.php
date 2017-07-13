@@ -13,40 +13,43 @@
  <section class="content">
       <div class="row">
         <div class="col-xs-12">
-        <a class="btn btn-primary" href="<?php echo base_url('customer/categories');?>">BAck</a>
+        <a class="btn btn-primary" href="<?php echo base_url('inventory/dashboard');?>">BAck</a>
       <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Seller ID Database</h3>
+              <h3 class="box-title"><?php echo isset($category_name['category_name'])?$category_name['category_name']:''; ?> &nbsp; category Wise Sellers lists</h3>
             </div>
 
             <!-- /.box-header -->
             <div class="box-body">
-
-            <?php if(!empty($seller_category)): ?>
+			<?php //echo '<pre>';print_r($seller_category);exit; ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>Categoty Name</th>
                   <th>Seller ID</th>
                   <th>Seller Name</th>              
+                  <th>Seller Email</th>              
+                  <th>Seller Mobile</th>              
+                  <th>Status</th>              
+                  <th>Action</th>              
                 </tr>
                 </thead>
                 <tbody>
-                <?php $count = $this->uri->segment(4, 0); 
-                foreach($seller_category as $sellers) { ?>
-                <tr>                  
-                  <td><?php echo ++$count ?></td>
-              <td>
-                <?php echo $sellers['seller_name']; ?>
-              </td>
-                </tr>
-                 <?php } ?>                
+                <?php foreach($seller_category as $sellers) { ?>
+               <tr>                  
+                  <td><?php echo $sellers['category_name']; ?></td> 
+				  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($sellers['seller_id']).'/'.base64_encode($sellers['seller_category_id']).'/'.'direct'); ?>"><?php echo $sellers['seller_rand_id']; ?></a></td>    
+				  <td><?php echo $sellers['seller_name']; ?></td>    
+				  <td><?php echo $sellers['seller_email']; ?></td>    
+				  <td><?php echo $sellers['seller_mobile']; ?></td>    
+                  <td><?php if($sellers['status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
+                  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($sellers['seller_id']).'/'.base64_encode($sellers['seller_category_id']).'/'.'direct'); ?>">View</a></td>                  
+				
+                 </tr>  
+				<?php } ?>
                 </tbody>                
               </table>
-              <?php else: ?>
-                <center>
-                <strong>No Sellers In Db</strong>
-              </center>
-              <?php endif; ?>
+         
             </div>
             <!-- /.box-body -->
           </div>
