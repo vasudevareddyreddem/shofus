@@ -28,7 +28,7 @@
                 <tr>                  
                   <td><?php echo $payment['seller_rand_id']; ?></td>
                   <td><?php echo $payment['seller_name']; ?></td>
-                  <td><a href="#" ><?php echo $payment['orderscount']; ?></a></td>
+                  <td><a href="<?php echo base_url('inventory/sellerpaymentdetails/'.base64_encode($payment['seller_id'])); ?>"><?php echo $payment['orderscount']; ?></a></td>
                   <td><?php echo $payment['totalamount']; ?></td>
                   <td><?php echo $payment['commissionamount']; ?></td>
                   <td><?php echo ($payment['totalamount']) - ($payment['commissionamount']); ?></td>

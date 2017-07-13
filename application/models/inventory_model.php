@@ -127,6 +127,14 @@ class Inventory_model extends MY_Model
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		return $this->db->get()->result_array();
 	}
+	public function get_seller_all_payment_details($sid)
+	{
+		$this->db->select('order_items.*,sellers.seller_name,sellers.seller_id,sellers.seller_rand_id')->from('order_items');
+		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
+		 $this->db->where('order_items.seller_id',$sid);
+		//$this->db->order_by('order_items.seller_id', 'ASC'); 
+		return $this->db->get()->result_array();
+	}
 	public function get_inventory_management()
 	{
 		$this->db->select('*')->from('request_for_services');
