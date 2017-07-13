@@ -61,10 +61,10 @@ class Showups extends Admin_Controller {
 			if(count($banner)>0)
 				{
 				$this->session->set_flashdata('message','Banner successfully added');
-				redirect('seller/showups/home_page_banner');
+				redirect('seller/showups/homepagebanner');
 				}else{
 				$this->session->set_flashdata('message','Some error are occured.');
-				redirect('seller/showups/home_page_banner'); 
+				redirect('seller/showups/homepagebanner'); 
 				}
 
 	}

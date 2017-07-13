@@ -164,10 +164,25 @@ class Inventory_model extends MY_Model
 		$this->db->join('sellers','sellers.seller_id = home_banner.seller_id', 'left');	
 		return $this->db->get()->result_array();
 	}
-	function banner_status_update($id,$status)
+	function banner_status_update($id,$sid,$status)
 	{
-		$sql1="UPDATE home_banner SET status ='".$status."'WHERE seller_id = '".$id."'";
+		$sql1="UPDATE home_banner SET status ='".$status."'WHERE id  = '".$id."' AND 
+		seller_id = '".$sid."'";
 		return $this->db->query($sql1);
+	}
+
+	public function delete_banner($id,$sid)
+	{
+		$sql1="DELETE FROM home_banner WHERE id  = '".$id."' AND 
+		seller_id = '".$sid."'";
+		return $this->db->query($sql1);
+	}
+
+	public function get_banner_preview()
+	{
+		$this->db->select('*')->from('home_banner');		
+		$this->db->order_by("created_at", "Asc");
+		return $this->db->get()->result_array();
 	}
 
 	public function get_top_offers_list()

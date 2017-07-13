@@ -974,27 +974,58 @@ public function servicerequestview(){
 	public function banner_active(){
 		$code = $_GET['id'];
 		$arr = explode('__',$code);
-		$cid = base64_decode($arr[0]);
-		$status = base64_decode($arr[1]);
+		$id = base64_decode($arr[0]);		
+		//echo "<pre>";print_r($id);exit;
+		$sid = base64_decode($arr[1]);
+		$status = base64_decode($arr[2]);
 		if($status==1){
 		$status=0;
 		}else{
 		$status=1;
 		}
-		$bannerstatus= $this->inventory_model->banner_status_update($cid,$status);
-		//echo "<pre>";print_r($customerstatus);exit;
-		if(count($success)>0)
+		$bannerstatus= $this->inventory_model->banner_status_update($id,$sid,$status);
+		//echo "<pre>";print_r($bannerstatus);exit;
+		if(count($bannerstatus)>0)
 				{
 					if($status==1){
-						$this->session->set_flashdata('sucesmsg',"Banner successfully Activate");
+						$this->session->set_flashdata('active',"Banner successfully Activate");
 					}else{
-						$this->session->set_flashdata('sucesmsg',"Banner successfully deactivated.");
+						$this->session->set_flashdata('deactive',"Banner successfully deactivated.");
 					}
-					redirect('inventory/home_page_banner');
+					redirect('inventory/homepagebanner');
 				}else{
-					$this->session->set_flashdata('errormsg',"Banner successfully deactivated.");
-					redirect('inventory/home_page_banner');
+					$this->session->set_flashdata('errormsg',"Opps !.!!");
+					redirect('inventory/homepagebanner');
 				}
+	}
+
+	public function banner_delete(){
+		$code = $_GET['id'];
+		$arr = explode('__',$code);
+		$id = base64_decode($arr[0]);		
+		//echo "<pre>";print_r($id);exit;
+		$sid = base64_decode($arr[1]);
+		$status = base64_decode($arr[2]);
+		//echo "<pre>";print_r($status);exit;
+		if($status==0){
+			$bannerdelete= $this->inventory_model->delete_banner($id,$sid);
+			//echo $this->db->last_query();exit;
+		}else{
+			$this->session->set_flashdata('errormsg',"This Banner Is Active Ask Admin!!");
+			redirect('inventory/homepagebanner');
+		}
+		if(count($bannerdelete)>0)
+			{
+				if($status==0){
+					$this->session->set_flashdata('active',"Banner successfully Delete");
+				}else{
+					$this->session->set_flashdata('deactive',"Banner Not deleted.");
+				}
+				redirect('inventory/homepagebanner');
+			}else{
+				$this->session->set_flashdata('errormsg',"Opps !.!!");
+				redirect('inventory/homepagebanner');
+			}
 	}
 	public function bannerpreview(){
 		if($this->session->userdata('userdetails'))
@@ -1002,8 +1033,10 @@ public function servicerequestview(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
+				$data['preview'] = $this->inventory_model->get_banner_preview();
+				//echo "<pre>";print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
-	   			$this->load->view('customer/inventry/bannerpreview');
+	   			$this->load->view('customer/inventry/bannerpreview',$data);
 	   			$this->load->view('customer/inventry/footer');
 			}else
 			{
@@ -1065,9 +1098,9 @@ public function servicerequestview(){
 				{
 					if($status==1)
 					{
-						$this->session->set_flashdata('success'," Product activation successful");
+						$this->session->set_flashdata('active'," Product activation successful");
 					}else{
-						$this->session->set_flashdata('success',"Product deactivation successful");
+						$this->session->set_flashdata('deactive',"Product deactivation successful");
 					}
 					redirect('inventory/topoffers');
 				}
@@ -1086,16 +1119,51 @@ public function servicerequestview(){
 
 	public function dealsofday()
 	{
-		$this->load->view('customer/inventry/header');
-	   	$this->load->view('customer/inventry/sidebar');
-	   	$this->load->view('customer/inventry/deals_of_day');
-	   	$this->load->view('customer/inventry/footer');
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['top_offers'] = $this->inventory_model->get_top_offers_list();
+				$this->load->view('customer/inventry/header');
+			   	$this->load->view('customer/inventry/sidebar');
+			   	$this->load->view('customer/inventry/deals_of_day',$data);
+			   	$this->load->view('customer/inventry/footer');
+				
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+		
 	}
 	public function seasonsales()
 	{
-	   	$this->load->view('customer/inventry/sidebar');
-	   	$this->load->view('customer/inventry/season_sales');
-	   	$this->load->view('customer/inventry/footer');
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['top_offers'] = $this->inventory_model->get_top_offers_list();
+				$this->load->view('customer/inventry/sidebar');
+	   			$this->load->view('customer/inventry/season_sales',$data);
+	   			$this->load->view('customer/inventry/footer');
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+	   	
 	}
 	public function others()
 	{

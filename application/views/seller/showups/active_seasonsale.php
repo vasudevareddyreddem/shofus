@@ -41,11 +41,11 @@ tfoot input {
 					</span>
 				</div>
 			</form>  
-			<h1>Top Offers</h1>
-			<small>Active Deals Of the Day</small>
+			<h1>Season sale</h1>
+			<small>Active Season sale</small>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard');?>"><i class="pe-7s-home"></i> Home</a></li>
-				<li class="active">Active Deals Of the Day</li>
+				<li class="active">Active Season sale</li>
 			</ol>
 		</div>
 	</section>
