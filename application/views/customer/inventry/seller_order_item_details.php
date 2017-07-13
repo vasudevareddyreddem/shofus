@@ -3,7 +3,7 @@
       <div class="container">
          <!-- Main content -->
       <div class="row">
-	  <?php //echo '<pre>';print_r($category_list);exit; ?>
+	  <?php //echo '<pre>';print_r($seller_order_items);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
               <h3 class="box-title" >Seller Odered Items List</h3>
@@ -18,26 +18,29 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
 				  <tr>
-					<th>SubCategory Name</th>
-					<th>Category Name</th>
+					<th>Order Id</th>
+					<th>Order Transaction Number</th>
+					<th>payment Mode</th>
+					<th>Customer Name</th>
+					<th>Item Name</th>
+					<th>Amount</th>
 					<th>Created Date</th>
 					<th>Status</th>
-					<th>Action</th>
 				 </tr>
                 </thead>
                 <tbody>
                 <?php  
-                  foreach($subcategory_details as $subcatlist) {?>
+                  foreach($seller_order_items as $items) {?>
                 <tr>                  
-                  <td><a href="<?php echo base_url('inventory/subcategoryview/'.base64_encode($subcatlist['subcategory_id'])); ?>"><?php echo $subcatlist['subcategory_name']; ?></a></td>
-				  <td><?php echo $subcatlist['category_name']; ?></td>    
-				  <td><?php echo $subcatlist['created_at']; ?></td>    
-                  <td><?php if($subcatlist['status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
-				<td>
-				<a href="<?php echo base_url('inventory/subcategoryview/'.base64_encode($subcatlist['subcategory_id'])); ?>">View</a> | &nbsp;
-				<a href="<?php echo base_url('inventory/subcategoryedit/'.base64_encode($subcatlist['subcategory_id'])); ?>">Edit</a> | &nbsp;
-				<a href="<?php echo base_url('inventory/subcategorystatus/'.base64_encode($subcatlist['subcategory_id']).'/'.base64_encode($subcatlist['status'])); ?>"><?php if($subcatlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
-				</td>
+                  <td><?php echo $items['order_id']; ?></td>
+                  <td><?php echo $items['transaction_id']; ?></td>
+                  <td><?php echo $items['payment_mode']; ?></td>
+				  <td><?php echo $items['cust_firstname'].' '.$items['cust_lastname']; ?></td>    
+				  <td><?php echo $items['item_name']; ?></td>    
+				  <td><?php echo (($items['total_price']) +($items['delivery_amount'])); ?></td>    
+				  <td><?php echo Date('d-M-Y',strtotime(htmlentities($items['create_at'])));?></td> 				  
+                  <td><?php if($items['order_status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
+				
                  </tr>
                  <?php }?>
                 </tbody>              
@@ -50,15 +53,3 @@
 </div>
 </div>
 </div>
-<script>
-  $(function () {
-    $('#example1').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-</script>

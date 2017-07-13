@@ -31,7 +31,7 @@
                 <tr>                  
                   <td><a href="<?php echo base_url('inventory/subcategoryview/'.base64_encode($subcatlist['subcategory_id'])); ?>"><?php echo $subcatlist['subcategory_name']; ?></a></td>
 				  <td><?php echo $subcatlist['category_name']; ?></td>    
-				  <td><?php echo $subcatlist['created_at']; ?></td>    
+				<td><?php echo Date('d-M-Y',strtotime(htmlentities($subcatlist['created_at'])));?></td> 				  
                   <td><?php if($subcatlist['status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
 				<td>
 				<a href="<?php echo base_url('inventory/subcategoryview/'.base64_encode($subcatlist['subcategory_id'])); ?>">View</a> | &nbsp;

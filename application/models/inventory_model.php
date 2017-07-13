@@ -129,8 +129,11 @@ class Inventory_model extends MY_Model
 	}
 	public function get_seller_all_payment_details($sid)
 	{
-		$this->db->select('order_items.*,sellers.seller_name,sellers.seller_id,sellers.seller_rand_id')->from('order_items');
+		$this->db->select('products.item_name,orders.transaction_id,orders.payment_mode,orders.order_status,order_items.*,sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,customers.cust_firstname,customers.cust_lastname')->from('order_items');
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
+		$this->db->join('customers', 'customers.customer_id = order_items.customer_id', 'left');
+		$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
+		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 		 $this->db->where('order_items.seller_id',$sid);
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		return $this->db->get()->result_array();
@@ -205,6 +208,11 @@ class Inventory_model extends MY_Model
 		$this->db->where('notifications.seller_id',$sid);
 		$this->db->order_by('notifications.created_at', 'DESC'); 
 		return $this->db->get()->result_array();
+	}
+	public function save_notifciations($sid)
+	{
+		$this->db->insert('notifications', $data);
+		return $insert_id = $this->db->insert_id();
 	}
 	/*notification puroose*/
 	

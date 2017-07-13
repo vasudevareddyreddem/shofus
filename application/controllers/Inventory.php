@@ -305,7 +305,42 @@ public function changepasswordpost(){
 	} 
   }
   
-    public function notificationview(){
+    public function adminnotificationreply(){
+  	
+	 
+	if($this->session->userdata('userdetails'))
+	 {		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5){
+				$post=$this->input->post();
+				echo '<pre>';print_r($post);
+				$replaynotification = array(
+				'replyed_id' => $logindetail['customer_id'],	
+				'seller_id' => $post['seller_id'],
+				'seller_message'=>$post['message'],
+				'message_type' =>'REPLIED',
+				'created_at' => date('Y-m-d H:i:s'),
+				);
+			$notificationreply = $this->inventory_model->save_notifciations($replaynotification);
+			if(count($notificationreply)>0){
+			$this->session->set_flashdata('sucess','Notification successfully send!');
+			redirect('inventory/sellernitificationlist');	
+			}
+				echo '<pre>';print_r($replaynotification);exit;
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+		
+	  
+	  }
+	  else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+	} 
+  }
+
+  public function notificationview(){
   	
 	 
 	if($this->session->userdata('userdetails'))
@@ -857,9 +892,9 @@ public function servicerequestview(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
 				$data['seller_order_items'] = $this->inventory_model->get_seller_all_payment_details(base64_decode($this->uri->segment(3)));
-				echo '<pre>';print_r($data);exit;
+				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
-				$this->load->view('customer/inventry/adminnotificationview',$data);
+				$this->load->view('customer/inventry/seller_order_item_details',$data);
 				$this->load->view('customer/inventry/footer');	
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
