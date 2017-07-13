@@ -98,7 +98,7 @@ tfoot input {
                 <th>Item Code</th>
                 <th>Item Cost</th>
                 <th>Affer Amount</th>
-                <th>Offer combo Item Name</th>
+                <th>Offer Type</th>
                 <th>Offer expiry Date and Time</th>
                 
             </tr>

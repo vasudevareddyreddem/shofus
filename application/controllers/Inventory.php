@@ -826,7 +826,7 @@ public function servicerequestview(){
 	}
 
 
-	public function home_page_banner()
+	public function homepagebanner()
 	{
 		$data['home_banner'] = $this->inventory_model->get_seller_banners();
 		//echo "<pre>";print_r($data);exit;
@@ -858,6 +858,11 @@ public function servicerequestview(){
 					$this->session->set_flashdata('errormsg',"Banner successfully deactivated.");
 					redirect('inventory/home_page_banner');
 				}
+	}
+	public function bannerpreview(){
+		$this->load->view('customer/inventry/sidebar');
+	   	$this->load->view('customer/inventry/bannerpreview');
+	   	$this->load->view('customer/inventry/footer');
 	}
 	public function top_offers()
 	{

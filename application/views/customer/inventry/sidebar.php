@@ -39,7 +39,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('inventory/home_page_banner'); ?>"><i class="fa fa-circle-o"></i> Home page banner </a></li>
+            <li><a href="<?php echo base_url('inventory/homepagebanner'); ?>"><i class="fa fa-circle-o"></i> Home page banner </a></li>
             <li><a href="<?php echo base_url('inventory/top_offers'); ?>"><i class="fa fa-circle-o"></i> Top offers</a></li>
             <li><a href="<?php echo base_url('inventory/deals_of_day'); ?>"><i class="fa fa-circle-o"></i> Deals of the day</a></li>
             <li><a href="<?php echo base_url('inventory/season_sales'); ?>"><i class="fa fa-circle-o"></i> Season sales</a></li>

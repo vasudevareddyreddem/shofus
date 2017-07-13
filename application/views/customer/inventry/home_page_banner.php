@@ -1,20 +1,19 @@
-<div class="content-wrapper" >
-   	<section class="content-header">
-      <h1>Sellers</h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Seller Names</a></li>
-      </ol>
-    </section>
-    <section class="content">
-      	<div class="row">
-        	<div class="col-xs-12">        
-	      		<div class="box">
-	            	<div class="box-header">
-	              	<h3 class="box-title">Home Banners</h3>
-	            	</div>            
-	            	<div class="box-body">
-	            		<?php if($this->session->flashdata('active')): ?>
+<div class="content-wrapper pad_t100">
+    <!-- Content Header (Page header) -->
+      <div class="container">
+         <!-- Main content -->
+      <div class="row">
+	  <?php //echo '<pre>';print_r($category_list);exit; ?>
+      <div class="box data_box_wid">
+            <div class="box-header" style="border-bottom:1px solid #ddd;">
+              <h3 class="box-title">Category List</h3>
+              <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/bannerpreview'); ?>" class="box-title">Preview</a>
+            </div>
+			
+            <!-- /.box-header -->
+            <div class="box-body">
+				
+             <?php if($this->session->flashdata('active')): ?>
 						<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button><?php echo $this->session->flashdata('active');?></div>
@@ -50,15 +49,14 @@
 		                </tr>                
 		                  <?php } ?>        
 		                </tbody>                
-		              </table>  
-	            	</div>            
-	          	</div>
-        	</div>
-        </div>
-    </section>
+		              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
 </div>
-
-
+</div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
