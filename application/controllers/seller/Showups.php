@@ -13,11 +13,16 @@ class Showups extends Admin_Controller {
 		$this->load->helper('security');
 		$this->load->library(array('form_validation','session'));		
 		$this->load->model('seller/showups_model');
+		$this->load->model('seller/Promotions_model');
+		$this->load->model('seller/products_model');
+		
+		
+		
 	}
 
-	public function home_page_banner()
+	public function homepagebanner()
 	{
-		$this->template->write_view('content', 'seller/showups/home_page_banner');
+		$this->template->write_view('content', 'seller/showups/homepagebanner');
 		$this->template->render();
 	}
 
@@ -62,6 +67,30 @@ class Showups extends Admin_Controller {
 				redirect('seller/showups/home_page_banner'); 
 				}
 
+	}
+
+	public function topoffers()
+	{
+		$this->template->write_view('content', 'seller/showups/topoffers');
+		$this->template->render();
+	}
+	public function activetopoffers(){
+		$data['seller_prducts']=$this->showups_model->get_seller_products_data($this->session->userdata('seller_id'));
+		 $data['catitemdata'] = $this->showups_model->getcatsubcatpro();
+	   $data['catitemdata1'] = $this->showups_model->getcatsubcatpro();
+		$data['cnt']= count($data['catitemdata1']);
+		$this->template->write_view('content', 'seller/showups/active_topoffers',$data);
+		$this->template->render();
+	}
+
+	public function addtopoffers()
+	{
+		$data['seller_prducts']=$this->Promotions_model->get_seller_products_data($this->session->userdata('seller_id'));
+		 $data['catitemdata'] = $this->products_model->getcatsubcatpro();
+	   $data['catitemdata1'] = $this->products_model->getcatsubcatpro();
+		$data['cnt']= count($data['catitemdata1']);
+		$this->template->write_view('content', 'seller/showups/addtopoffers',$data);
+		$this->template->render();
 	}
 
 }
