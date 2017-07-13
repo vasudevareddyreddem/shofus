@@ -36,7 +36,7 @@
                 <td><?php echo $details['seller_name']; ?></td>
                 <td><?php echo $details['subject']; ?></td>
                 <td><?php echo $details['seller_message']; ?></td>
-                <td><?php echo $details['created_at']; ?></td>
+				<td><?php echo Date('d-M-Y',strtotime(htmlentities($details['created_at'])));?></td>
                 <td><a href="<?php echo base_url('inventory/notificationview/'.base64_encode($details['seller_id'])); ?>"><?php echo $details['message_type']; ?></a></td>
                 
                 </tr>
