@@ -164,5 +164,24 @@ class Inventory_model extends MY_Model
 		$this->db->select('*')->from('products');
 		return $this->db->get()->result_array();
 	}
+	/*notification puroose*/
+	public function get_sellernotification_list()
+	{
+		$this->db->select('notifications.*,sellers.seller_id,sellers.seller_rand_id,sellers.seller_name')->from('notifications');
+		$this->db->join('sellers','sellers.seller_id = notifications.seller_id', 'left');	
+		$this->db->group_by('notifications.seller_id');
+		$this->db->order_by('notifications.created_at', 'DESC'); 
+		return $this->db->get()->result_array();
+	}
+	public function get_seller_all_notifications_details($sid)
+	{
+		$this->db->select('notifications.*,sellers.seller_id,sellers.seller_name')->from('notifications');
+		$this->db->join('sellers','sellers.seller_id = notifications.seller_id', 'left');	
+		$this->db->where('notifications.seller_id',$sid);
+		$this->db->order_by('notifications.created_at', 'DESC'); 
+		return $this->db->get()->result_array();
+	}
+	/*notification puroose*/
+	
 }
 ?>
