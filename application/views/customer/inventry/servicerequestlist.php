@@ -7,7 +7,7 @@
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
               <h3 class="box-title" >Service Request List</h3>
-              <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/dashboard'); ?>" class="box-title">Add</a>
+              <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/dashboard'); ?>" class="box-title">Back</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
