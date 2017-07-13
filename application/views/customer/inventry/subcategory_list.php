@@ -5,9 +5,9 @@
       <div class="row">
 	  <?php //echo '<pre>';print_r($category_list);exit; ?>
       <div class="box data_box_wid">
-            <div class="box-header">
-              <h3 class="box-title">SubCategory List</h3>
-              <a href="<?php echo base_url('inventory/addsubcategory'); ?>" class="box-title">Add</a>
+            <div class="box-header" style="border-bottom:1px solid #ddd;">
+              <h3 class="box-title" >SubCategory List</h3>
+              <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/addsubcategory'); ?>" class="box-title">Add</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body"><?php if($this->session->flashdata('success')): ?>
