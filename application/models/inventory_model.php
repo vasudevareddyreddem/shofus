@@ -194,6 +194,11 @@ class Inventory_model extends MY_Model
 		$this->db->order_by('notifications.created_at', 'DESC'); 
 		return $this->db->get()->result_array();
 	}
+	public function save_notifciations($sid)
+	{
+		$this->db->insert('notifications', $data);
+		return $insert_id = $this->db->insert_id();
+	}
 	/*notification puroose*/
 	
 	public function update_topoffers_status($id,$sid,$data){
