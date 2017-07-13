@@ -20,8 +20,8 @@
           </a>
         </li>
 		<li class="">
-          <a href="<?php echo base_url('inventory/seller_id_database'); ?>">
-             <i class="fa fa-dashboard"></i> <span>Seller ID database</span>
+          <a href="<?php echo base_url('inventory/dashboard'); ?>">
+             <i class="fa fa-dashboard"></i> <span>Seller Lists</span>
           </a>
         </li>
 		<li class="">
@@ -69,8 +69,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('inventory/categorieslist'); ?>"><i class="fa fa-circle-o"></i> Category & commission</a></li>
-            <li><a href="<?php echo base_url('inventory/subcategorieslist'); ?>"><i class="fa fa-circle-o"></i> Add category, sub category, <br>sub item & its commission</a></li>
+            <li><a href="<?php echo base_url('inventory/categorieslist'); ?>"><i class="fa fa-circle-o"></i> Add Category & commission</a></li>
+            <li><a href="<?php echo base_url('inventory/subcategorieslist'); ?>"><i class="fa fa-circle-o"></i> Add sub category</a></li>
           </ul>
         </li>
       </ul>
