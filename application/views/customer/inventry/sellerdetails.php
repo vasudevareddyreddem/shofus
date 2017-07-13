@@ -12,9 +12,16 @@
       <div class="container">
          <!-- Main content -->
       <div class="row">
+	  <?php //echo '<pre>';print_r($seller_details);exit; ?>
 		<div class="col-md-6 well detail_ta col-md-offset-3">
 			<div class="pull-left"><h3 style="padding-bottom:10px;margin:0;color:#c33c12;">Seller Details</h3></div>
-			<div class="pull-right"><a href="<?php echo base_url('inventory/dashboard'); ?>" type="button" class="btn btn-warning btn-xs">Back</a></div>
+			
+			<?php if($this->uri->segment(5)=='direct') { ?> 
+			<div class="pull-right"><a href="<?php echo base_url('inventory/categorywisesellers/'.$this->uri->segment(4)); ?>" type="button" class="btn btn-warning btn-xs">Back</a></div>
+			 <?php }else{ ?>
+			 <div class="pull-right"><a href="<?php echo base_url('inventory/sellerlist'); ?>" type="button" class="btn btn-warning btn-xs">Back</a></div>
+
+			 <?php } ?>
 			 <table class="table table-bordered">
 					<tbody>
 					  <tr>

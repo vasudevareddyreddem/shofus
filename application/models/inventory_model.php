@@ -95,19 +95,18 @@ class Inventory_model extends MY_Model
 		return $this->db->update('request_for_services', $data);
 	}
 	
-
-
 	public function get_seller_categories()
 	{
 		$this->db->select('*')->from('category');
+		$this->db->where('status',1);
 		return $this->db->get()->result_array();
-	
 	}
 
-	public function get_seller_names($cid){
-	$this->db->select('sellers.*,seller_categories.*')->from('sellers');
-	$this->db->join('seller_categories', 'seller_categories.seller_id = sellers.seller_id', 'left');
-	$this->db->where('seller_categories.seller_category_id', $cid);
+	public function get_categorywiseseller_list($cid){
+	$this->db->select('seller_categories.*,sellers.*')->from('seller_categories');
+	$this->db->join('sellers', 'sellers.seller_id = seller_categories.seller_id', 'left');
+	$this->db->where('seller_category_id', $cid);
+	$this->db->where('sellers.status', 1);
     return $this->db->get()->result_array();
 
 	}

@@ -14,13 +14,9 @@
           </a>
          
         </li>
-        <li class="">
-          <a href="<?php echo base_url('inventory/categories'); ?>">
-             <i class="fa fa-dashboard"></i> <span>Category wise sellers</span>
-          </a>
-        </li>
+     
 		<li class="">
-          <a href="<?php echo base_url('inventory/dashboard'); ?>">
+          <a href="<?php echo base_url('inventory/sellerlist'); ?>">
              <i class="fa fa-dashboard"></i> <span>Seller Lists</span>
           </a>
         </li>

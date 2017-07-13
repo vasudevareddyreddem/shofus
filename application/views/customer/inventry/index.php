@@ -9,6 +9,11 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+				<?php if($this->session->flashdata('success')): ?>
+					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('success');?></div>	
+					<?php endif; ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -16,6 +21,7 @@
                   <th>Seller Name</th>
                   <th>Seller Email</th>
                   <th>Seller mobile</th>
+                  <th>Status</th>
                   <th>Action</th>
 				</tr>
                 </thead>
@@ -27,6 +33,7 @@
                   <td><?php echo $details['seller_name']; ?></td>
                   <td><?php echo $details['seller_email']; ?></td>                  
                   <td><?php echo $details['seller_mobile']; ?></td>                  
+                  <td><?php if($details['status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                
                   <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>">View</a> |&nbsp;
 					<a href="<?php echo base_url('inventory/status/'.base64_encode($details['seller_id']).'/'.base64_encode($details['status'])); ?>"><?php if($details['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a></td>
                 
@@ -42,15 +49,3 @@
 </div>
 </div>
 </div>
-<script>
-  $(function () {
-    $('#example1').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-</script>
