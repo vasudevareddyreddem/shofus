@@ -13,14 +13,12 @@
                   <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
                 </ol>
                 <div class="carousel-inner">
+                <?php foreach($preview as $pre) {?>
                   <div class="item active">
-                    <img src="http://localhost/cartinhour/assets/home/images/food_bnr.jpg" alt="First slide">
-
-                    <div class="carousel-caption">
-                      First Slide
-                    </div>
+                    <img src="<?php echo base_url();?>uploads/banners/<?php  echo $pre['file_name']; ?>" alt="First slide">
                   </div>
-                  <div class="item">
+                  <?php } ?>
+                  <!-- <div class="item">
                     <img src="http://localhost/cartinhour/assets/home/images/food_bnr.jpg" alt="Second slide">
 
                     <div class="carousel-caption">
@@ -33,7 +31,7 @@
                     <div class="carousel-caption">
                       Third Slide
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                   <span class="fa fa-angle-left"></span>
