@@ -37,7 +37,7 @@
                   <td><?php echo $items['payment_mode']; ?></td>
 				  <td><?php echo $items['cust_firstname'].' '.$items['cust_lastname']; ?></td>    
 				  <td><?php echo $items['item_name']; ?></td>    
-				  <td><?php echo (($items['total_price']) +($items['delivery_amount'])); ?></td>    
+				  <td><?php echo $items['total_price']; ?></td>    
 				  <td><?php echo Date('d-M-Y',strtotime(htmlentities($items['create_at'])));?></td> 				  
                   <td><?php if($items['order_status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
 				
@@ -53,3 +53,10 @@
 </div>
 </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#example1').DataTable( {
+        "order": [[ 1, "desc" ]]
+    } );
+} );
+</script>

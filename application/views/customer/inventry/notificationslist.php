@@ -31,15 +31,28 @@
                 <tbody>
                 <?php  
                   foreach($notification_details as $details) { ?>
-                <tr>                  
+				  
+				  <?php if($details['count'][0]['unreadcount']!=0){ ?>
+                <tr style="background: darkseagreen none repeat scroll 0% 0%; color: white;">                   
                 <td><?php echo $details['seller_rand_id']; ?></td>
-                <td><?php echo $details['seller_name']; ?><?php if($details['count'][0]['unreadcount']!=0){ ?>&nbsp;(<?php  echo $details['count'][0]['unreadcount'];  ?>)<?php }  ?></td>
+                <td><?php echo $details['seller_name']; ?><?php if($details['count'][0]['unreadcount']!=0){ ?>&nbsp;<span style="color:darkslateblue;">(<?php  echo $details['count'][0]['unreadcount'];  ?>)</span><?php }  ?></td>
                 <td><?php echo $details['lastone']['subject']; ?></td>
                 <td><?php echo $details['lastone']['seller_message']; ?></td>
 				<td><?php echo Date('d-M-Y',strtotime(htmlentities($details['created_at'])));?></td>
                 <td><a href="<?php echo base_url('inventory/notificationview/'.base64_encode($details['seller_id'])); ?>"><?php echo $details['lastone']['message_type']; ?></a></td>
                 
                 </tr>
+				  <?php }else{ ?>
+						<tr>                 
+						<td><?php echo $details['seller_rand_id']; ?></td>
+						<td><?php echo $details['seller_name']; ?><?php if($details['count'][0]['unreadcount']!=0){ ?>&nbsp;(<?php  echo $details['count'][0]['unreadcount'];  ?>)<?php }  ?></td>
+						<td><?php echo $details['lastone']['subject']; ?></td>
+						<td><?php echo $details['lastone']['seller_message']; ?></td>
+						<td><?php echo Date('d-M-Y',strtotime(htmlentities($details['created_at'])));?></td>
+						<td><a href="<?php echo base_url('inventory/notificationview/'.base64_encode($details['seller_id'])); ?>"><?php echo $details['lastone']['message_type']; ?></a></td>
+
+						</tr>
+				  <?php } ?>
                  <?php }?>
                 </tbody>              
                 </table> <br><br><br>
@@ -50,3 +63,10 @@
 </div>
 </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#example1').DataTable( {
+        "order": [[ 5, "desc" ]]
+    } );
+} );
+</script>

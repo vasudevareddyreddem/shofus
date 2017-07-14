@@ -328,7 +328,7 @@ public function changepasswordpost(){
 			//echo '<pre>';print_r($replaynotification);exit;
 			$notificationreply = $this->inventory_model->save_notifciations($replaynotification);
 			if(count($notificationreply)>0){
-			$this->session->set_flashdata('sucess','Notification successfully send!');
+			$this->session->set_flashdata('success','Notification replay successfully send!');
 			redirect('inventory/sellernitificationlist');	
 			}
 				
@@ -360,7 +360,6 @@ public function changepasswordpost(){
 						$this->inventory_model->notifciations_read_count($notify['notification_id'],0);
 						
 					}
-				
 				$this->load->view('customer/inventry/sidebar');
 				$this->load->view('customer/inventry/adminnotificationview',$data);
 				$this->load->view('customer/inventry/footer');	
