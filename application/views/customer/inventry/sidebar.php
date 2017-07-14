@@ -47,7 +47,7 @@
           </ul>
         </li>
 		<li class="">
-          <a href="#">
+          <a href="<?php echo base_url('inventory/homepagepreview'); ?>">
              <i class="fa fa-dashboard"></i> <span>Customer Home page preview</span>
           </a>
         </li>

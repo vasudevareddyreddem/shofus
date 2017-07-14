@@ -1085,6 +1085,31 @@ public function servicerequestview(){
 		}
 		
 	}
+
+	public function homepagepreview()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['topoffers'] = $this->inventory_model->get_top_offers();
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+	   			$this->load->view('customer/inventry/home_preview',$data);
+	   			$this->load->view('customer/inventry/footer');
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+		
+	}
 	public function topoffers()
 	{
 		if($this->session->userdata('userdetails'))
@@ -1092,10 +1117,33 @@ public function servicerequestview(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
-				$data['top_offers'] = $this->inventory_model->get_top_offers_list();
+				$data['top_offers'] = $this->inventory_model->get_top_offers();
 				//echo "<pre>";print_r($data);exit;
 			   	$this->load->view('customer/inventry/sidebar');
 			   	$this->load->view('customer/inventry/top_offers',$data);
+			   	$this->load->view('customer/inventry/footer');
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+	}
+	public function topofferslist()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['top_offerslist'] = $this->inventory_model->get_top_offers_list(base64_decode($this->uri->segment(3)));
+				//echo "<pre>";print_r($data);exit;
+			   	$this->load->view('customer/inventry/sidebar');
+			   	$this->load->view('customer/inventry/top_offerslist',$data);
 			   	$this->load->view('customer/inventry/footer');
 			}else
 			{
@@ -1126,9 +1174,8 @@ public function servicerequestview(){
 				}else{
 					$status=1;
 				}
-				$data=array('item_status'=>$status);
+				$data=array('status'=>$status);
 				$updatestatus=$this->inventory_model->update_topoffers_status($id,$seller_id,$data);
-
 				if(count($updatestatus)>0)
 				{
 					if($status==1)
@@ -1137,7 +1184,7 @@ public function servicerequestview(){
 					}else{
 						$this->session->set_flashdata('deactive',"Product deactivation successful");
 					}
-					redirect('inventory/topoffers');
+					redirect('inventory/');
 				}
 			}else
 			{

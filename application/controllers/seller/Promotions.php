@@ -38,9 +38,7 @@ class Promotions extends Admin_Controller {
 			$int[] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
 		}
 		foreach (array_unique($int) as $cat_ida) {
-			
-			
-			$itemcheck=$this->Promotions_model->item_already_exits($cat_ida);
+		$itemcheck=$this->Promotions_model->item_already_exits($cat_ida);
 			/* same item add again */
 			if(($itemcheck['seller_id'] == $this->session->userdata('seller_id')) && ($itemcheck['expairdate'] >= date('Y-m-d')) ){
 				$status=2;
@@ -74,9 +72,7 @@ class Promotions extends Admin_Controller {
 							$update=$this->Promotions_model->add_offer_to_products($data);
 							$status=1;
 					}
-			}
-			//echo "<pre>";print_r($itemcheck);exit;
-			
+
 			
 			echo $status;
 			

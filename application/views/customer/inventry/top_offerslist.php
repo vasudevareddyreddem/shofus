@@ -6,9 +6,10 @@
 	  <?php //echo '<pre>';print_r($category_list);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
-              <h3 class="box-title">Top Offers</h3>
+              <h3 class="box-title">Season Sales</h3>
               <!-- <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/categoryadd'); ?>" class="box-title">Add</a> -->
             </div>
+			
             <!-- /.box-header -->
             <div class="box-body">
 			<?php if($this->session->flashdata('active')): ?>
@@ -26,19 +27,44 @@
                 <tr>
 					<th>Seller Id</th>
 					<th>Seller Name</th>
-          <th>Item Id</th>
-					<th>Count</th>
+					<th>Item id</th>
+					<th>Item Name</th>
+					<th>Item Code</th>
+					<th>Item Cost</th>
+					<th>Offer percentage </th>					
+					<th>Item Image</th>
+					<th>Action</th>
 				 </tr>
                 </thead>
                 <tbody>
                 <?php  
-                  foreach($top_offers as $top_offer) {?>
+                  foreach($top_offerslist as $top_offer) {?>
                 <tr>                  
                   <td><?php echo $top_offer['seller_rand_id']; ?></td>
                   <td><?php echo $top_offer['seller_name']; ?></td>
                   <td><?php echo $top_offer['item_id']; ?></td>
-                  <td><a href="<?php echo base_url('inventory/topofferslist/'.base64_encode($top_offer['seller_id'])); ?>"><?php echo $top_offer['topcount']; ?></td>
-                  
+                  <td><?php echo $top_offer['item_name']; ?></td>
+                  <td><?php echo $top_offer['item_code']; ?></td>                  
+                  <td><?php echo $top_offer['item_cost']; ?></td>
+                  <td><?php echo $top_offer['offer_percentage']; ?>%</td>                  
+                  <td>
+                  <?php if($top_offer['item_image']=='') {?>
+                  <img src="<?php echo base_url();?>uploads/profile/default.jpg" width="80" height="50" />                  			
+                  <?php }else{ ?>
+                  			<img src="<?php echo base_url();?>uploads/products/<?php  echo $top_offer['item_image']; ?>" width="80" height="50" />
+                  	<?php } ?>                  	
+                  </td>
+            		<td>
+		                <a style="color: 
+				              <?php 
+				              	if($top_offer['status']=='0')
+				              	{echo "Blue";} 
+				              	else{echo "Red";}
+				              ?>" 
+				            href="<?php echo base_url('inventory/topoffersstatus/'.base64_encode($top_offer['item_id']).'/'.base64_encode($top_offer['seller_id']).'/'.base64_encode($top_offer['status'])); ?>">
+				            <?php if($top_offer['status']== '0'){echo "Active";}else{echo "Deactive";} ?>     	
+				        </a>
+		    		</td>
                 </tr>
                  <?php }?>                 
                 </tbody>              

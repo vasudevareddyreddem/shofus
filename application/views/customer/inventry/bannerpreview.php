@@ -13,11 +13,13 @@
                   <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
                 </ol>
                 <div class="carousel-inner">
+                <?php $firstMarked = false; ?>
                 <?php foreach($preview as $pre) {?>
-                  <div class="item">
+                  <div class="item <?php echo !$firstMarked ? "active":"";?>">
                     <img src="<?php echo base_url();?>uploads/banners/<?php  echo 
                     $pre->file_name; ?>" alt="First slide">
                   </div>
+                  <?php $firstMarked = true;?>
                   <?php } ?>
                   <!-- <div class="item">
                     <img src="http://localhost/cartinhour/assets/home/images/food_bnr.jpg" alt="Second slide">
