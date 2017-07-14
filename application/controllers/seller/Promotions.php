@@ -197,7 +197,7 @@ public function dealsoftheday()
 							'create_at'=>date("Y-m-d H:i:s") 
 							);			
 							//echo '<pre>';print_r($data);
-							$update=$this->Promotions_model->add_topoffer_to_products($data);
+							$update=$this->Promotions_model->add_dealsoftheday_to_products($data);
 							$status=1;
 					}
 
