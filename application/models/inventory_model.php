@@ -225,8 +225,9 @@ class Inventory_model extends MY_Model
 	}
 	public function get_seller_all_notifications_details($sid)
 	{
-		$this->db->select('notifications.*,sellers.seller_id,sellers.seller_name')->from('notifications');
-		$this->db->join('sellers','sellers.seller_id = notifications.seller_id', 'left');	
+		$this->db->select('notifications.*,sellers.seller_id,sellers.seller_name,sellers.profile_pic,customers.cust_propic,customers.cust_firstname,customers.cust_lastname')->from('notifications');
+		$this->db->join('sellers','sellers.seller_id = notifications.seller_id', 'left');
+		$this->db->join('customers','customers.customer_id = notifications.replyed_id', 'left');		
 		$this->db->where('notifications.seller_id',$sid);
 		$this->db->order_by('notifications.created_at', 'ASC'); 
 		return $this->db->get()->result_array();
