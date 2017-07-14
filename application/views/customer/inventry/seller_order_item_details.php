@@ -53,3 +53,10 @@
 </div>
 </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#example1').DataTable( {
+        "order": [[ 1, "desc" ]]
+    } );
+} );
+</script>

@@ -68,5 +68,5 @@ $(document).ready(function() {
     $('#example1').DataTable( {
         "order": [[ 5, "desc" ]]
     } );
-} );s
+} );
 </script>
