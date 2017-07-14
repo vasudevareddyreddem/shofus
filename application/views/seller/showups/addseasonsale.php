@@ -322,7 +322,6 @@ tfoot input {
 	jQuery("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html('');
 	  
 	
-	  $("#offeramounterror").html('');
 	  if(jQuery("#offertype<?php echo $subcategory->subcategory_id;?>").val()!=''){
       jQuery.ajax({
 			url: "<?php echo base_url('/seller/promotions/seansonsalesoffer');?>",

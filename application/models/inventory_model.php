@@ -196,15 +196,7 @@ class Inventory_model extends MY_Model
 		$this->db->where('top_offers.status', 0);
 		return $this->db->get()->result_array();
 	}
-	public function get_top_offers_list($id)
-	{
-		$this->db->select('top_offers.*,products.*')->from('top_offers');
-		$this->db->join('sellers','sellers.seller_id = top_offers.seller_id', 'left');
-		$this->db->join('products','products.seller_id = top_offers.seller_id AND products.item_id = top_offers.item_id','left');
-		//$this->db->join('products','products.item_id = top_offers.item_id','left');
-		$this->db->where('top_offers.item_id', $id);
-		return $this->db->get()->result_array();
-	}
+	
 	/*notification puroose*/
 	public function get_sellernotification_list()
 	{
@@ -280,6 +272,51 @@ class Inventory_model extends MY_Model
 		$this->db->where('item_id', $id);
 		$this->db->where('seller_id',$sid);
 		return $this->db->update('top_offers', $data);
+	}
+	
+	
+	/* offer list purpose*/
+			//$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(order_items.order_item_id) AS orderscount, SUM(order_items.item_price) AS totalamount, SUM(order_items.commission_price) AS commissionamount')->from('order_items');
+
+	public function get_season_offers_list(){
+	$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(season_sales.item_id) AS itemscount,')->from('season_sales');
+		$this->db->join('sellers', 'sellers.seller_id = season_sales.seller_id', 'left');
+		 $this->db->group_by('season_sales.seller_id');
+		 $this->db->where('sellers.status', 1);
+		//$this->db->order_by('order_items.seller_id', 'ASC'); 
+		$query=$this->db->get()->result_array();
+		 foreach ($query as $offers)
+        {
+      //echo "<pre>";print_r($offers);exit;
+			$return[$offers['seller_id']] = $offers;
+
+			$return[$offers['seller_id']]['count'] = $this->get_homepage_active_count($offers['seller_id']);
+        
+		}
+		return $return;
+	}
+	
+	public function get_homepage_active_count($sid)
+	{
+		$this->db->select('count(home_page_status) as activecount')->from('season_sales');
+		$this->db->where('seller_id',$sid);
+		$this->db->where('home_page_status',1);
+		return $this->db->get()->result_array();
+	}
+	
+	public function get_season_sales_details_list($sid){
+		$this->db->select('season_sales.*,products.item_name,category.category_name,sellers.seller_rand_id')->from('season_sales');
+		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = season_sales.seller_id', 'left');
+		$this->db->join('category', 'category.category_id = season_sales.category_id', 'left');
+		 $this->db->where('season_sales.seller_id',$sid);
+		//$this->db->order_by('order_items.seller_id', 'ASC'); 
+		return $this->db->get()->result_array();
+	}
+	public function update_seasonsales_status($sid,$pid,$data)
+	{
+		$sql1="UPDATE season_sales SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
+		return $this->db->query($sql1);
 	}
 }
 ?>
