@@ -1200,31 +1200,7 @@ public function servicerequestview(){
 	}
 
 
-	public function dealsofday()
-	{
-		if($this->session->userdata('userdetails'))
-	 	{		
-			$logindetail=$this->session->userdata('userdetails');
-			if($logindetail['role_id']==5)
-			{
-				$data['top_offers'] = $this->inventory_model->get_top_offers_list();
-				$this->load->view('customer/inventry/header');
-			   	$this->load->view('customer/inventry/sidebar');
-			   	$this->load->view('customer/inventry/deals_of_day',$data);
-			   	$this->load->view('customer/inventry/footer');
-				
-			}else
-			{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
-			}
-	 	}else
-	 	{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('admin/login	');
-		}
-		
-	}
+	/* season sales */
 	public function seasonsales()
 	{
 		if($this->session->userdata('userdetails'))
@@ -1232,7 +1208,8 @@ public function servicerequestview(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
-				$data['top_offers'] = $this->inventory_model->get_top_offers_list();
+				$data['season_sales'] = $this->inventory_model->get_season_offers_list();
+				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
 	   			$this->load->view('customer/inventry/season_sales',$data);
 	   			$this->load->view('customer/inventry/footer');
@@ -1247,6 +1224,114 @@ public function servicerequestview(){
 		 redirect('admin/login	');
 		}
 	   	
+	}
+	public function sellerseasonsalesdetails()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['season_sales_details'] = $this->inventory_model->get_season_sales_details_list(base64_decode($this->uri->segment(3)));
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+	   			$this->load->view('customer/inventry/season_sales_details',$data);
+	   			$this->load->view('customer/inventry/footer');
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+	   	
+	}
+	public function seasonsale_home_page_status()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$seller_id = base64_decode($this->uri->segment(3));
+				$itemid = base64_decode($this->uri->segment(4));
+				$status = base64_decode($this->uri->segment(5));
+				//echo "<pre>";print_r($offerid);exit;
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				$updatestatus=$this->inventory_model->update_seasonsales_status($seller_id,$itemid,$status);
+				//echo $this->db->last_query();exit;
+				if(count($updatestatus)>0)
+				{
+					if($status==1)
+					{
+						$this->session->set_flashdata('success'," Item added home page banner successful");
+					}else{
+						$this->session->set_flashdata('success',"Item removed home page banner  successful");
+					}
+					redirect('inventory/sellerseasonsalesdetails'.'/'.base64_encode($seller_id));
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
+	}
+	public function overaall_seasonsale_home_page_status()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$seller_id = base64_decode($this->uri->segment(3));
+				$status = base64_decode($this->uri->segment(4));
+				$overall_tems = $this->inventory_model->get_season_sales_details_list(base64_decode($this->uri->segment(3)));
+				//echo "<pre>";print_r($overall_tems);exit;
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				foreach ($overall_tems as $items){
+				
+				$updatestatus=$this->inventory_model->update_seasonsales_status($seller_id,$items['item_id'],$status);
+				//echo $this->db->last_query();exit;
+				}
+				//echo $this->db->last_query();exit;
+				if(count($updatestatus)>0)
+				{
+					if($status==1)
+					{
+						$this->session->set_flashdata('success'," Items added home page banner successful");
+					}else{
+						$this->session->set_flashdata('success',"Items removed home page banner  successful");
+					}
+					redirect('inventory/seasonsales');
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
 	}
 	
 

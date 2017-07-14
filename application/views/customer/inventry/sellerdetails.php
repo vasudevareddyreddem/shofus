@@ -15,9 +15,13 @@
 	  <?php //echo '<pre>';print_r($seller_details);exit; ?>
 		<div class="col-md-6 well detail_ta col-md-offset-3">
 			<div class="pull-left"><h3 style="padding-bottom:10px;margin:0;color:#c33c12;">Seller Details</h3></div>
-			
+		
 			<?php if($this->uri->segment(5)=='direct') { ?> 
 			<div class="pull-right"><a href="<?php echo base_url('inventory/categorywisesellers/'.$this->uri->segment(4)); ?>" type="button" class="btn btn-warning btn-xs">Back</a></div>
+			 <?php }else if($this->uri->segment(4)=='season') { ?> 
+				<div class="pull-right"><a href="<?php echo base_url('inventory/seasonsales'); ?>" type="button" class="btn btn-warning btn-xs">Back</a></div>
+
+				 
 			 <?php }else{ ?>
 			 <div class="pull-right"><a href="<?php echo base_url('inventory/sellerlist'); ?>" type="button" class="btn btn-warning btn-xs">Back</a></div>
 

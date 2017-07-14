@@ -6,74 +6,36 @@
 	  <?php //echo '<pre>';print_r($category_list);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
-              <h3 class="box-title">Season Sales</h3>
+              <h3 class="box-title">Season Sales Item</h3>
               <!-- <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/categoryadd'); ?>" class="box-title">Add</a> -->
             </div>
 			
             <!-- /.box-header -->
             <div class="box-body">
-			<?php if($this->session->flashdata('active')): ?>
+			<?php if($this->session->flashdata('success')): ?>
 					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('active');?></div>	
+					</button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
-          <?php if($this->session->flashdata('deactive')): ?>
-          <div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button><?php echo $this->session->flashdata('deactive');?></div>  
-          <?php endif; ?>
+          <?php   //echo '<pre>';print_r($season_sales);exit; ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
 					<th>Seller Id</th>
 					<th>Seller Name</th>
-					<th>Item id</th>
-					<th>Item Name</th>
-					<th>Item Code</th>
-					<th>Item Cost</th>
-					<th>Offer percentage </th>					
-					<th>Offer type</th>	
-					<th>Item Image</th>
+					<th>ItemsCount</th>
 					<th>Action</th>
 				 </tr>
                 </thead>
                 <tbody>
-                <?php  
-                  foreach($top_offers as $top_offer) {?>
+                <?php   foreach($season_sales as $offer) {?>
                 <tr>                  
-                  <td><?php echo $top_offer['seller_rand_id']; ?></td>
-                  <td><?php echo $top_offer['seller_name']; ?></td>
-                  <td><?php echo $top_offer['item_id']; ?></td>
-                  <td><?php echo $top_offer['item_name']; ?></td>
-                  <td><?php echo $top_offer['item_code']; ?></td>                  
-                  <td><?php echo $top_offer['item_cost']; ?></td>
-                  <td><?php echo $top_offer['offer_percentage']; ?>%</td>                  
-                  <td><?php if($top_offer['offer_type']=='1' ){echo "Listing Discount";}
-				        elseif($top_offer['offer_type']=='2' ){ ?><?php echo "Cart Discount"; ?> <?php } 
-				        elseif($top_offer['offer_type']=='3'){ ?><?php echo "Flat Price Offer";  ?> <?php }
-				        elseif($top_offer['offer_type']=='4'){ ?><?php echo "Combo Disoucnt";  ?> <?php }
-				        else{
-				          echo "NULL";
-				        } ?>                  	
-                  </td>
-                  <td>
-                  <?php if($top_offer['item_image']=='') {?>
-                  <img src="<?php echo base_url();?>uploads/profile/default.jpg" width="80" height="50" />                  			
-                  <?php }else{ ?>
-                  			<img src="<?php echo base_url();?>uploads/products/<?php  echo $top_offer['item_image']; ?>" width="80" height="50" />
-                  	<?php } ?>                  	
-                  </td>
-            		<td>
-		                <a style="color: 
-				              <?php 
-				              	if($top_offer['item_status']=='0')
-				              	{echo "Blue";} 
-				              	else{echo "Red";}
-				              ?>" 
-				            href="<?php echo base_url('inventory/topoffersstatus/'.base64_encode($top_offer['item_id']).'/'.base64_encode($top_offer['seller_id']).'/'.base64_encode($top_offer['item_status'])); ?>">
-				            <?php if($top_offer['item_status']== '0'){echo "Active";}else{echo "Deactive";} ?>     	
-				        </a>
-		    		</td>
+				  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($offer['seller_id']).'/'.'season'); ?>"><?php echo $offer['seller_rand_id']; ?></a></td>    
+                  <td><?php echo $offer['seller_name']; ?></td>
+                  <td><a href="<?php echo base_url('inventory/sellerseasonsalesdetails/'.base64_encode($offer['seller_id'])); ?>"><?php echo $offer['itemscount']; ?><?php if($offer['count'][0]['activecount']!=0){ ?>&nbsp;<span style="color:darkslateblue;">(<?php  echo $offer['count'][0]['activecount'];  ?> &nbsp; Item active)</span><?php }  ?></a></td>
+				  <td><a href="<?php echo base_url('inventory/overaall_seasonsale_home_page_status/'.base64_encode($offer['seller_id']).'/'.base64_encode(0)); ?>">All ACtive</a> &nbsp; | &nbsp;
+				  <a href="<?php echo base_url('inventory/overaall_seasonsale_home_page_status/'.base64_encode($offer['seller_id']).'/'.base64_encode(1)); ?>">All Deactive</a></td>
+                 
                 </tr>
                  <?php }?>                 
                 </tbody>              
