@@ -83,8 +83,8 @@ class Showups extends Admin_Controller {
 	}
 	public function activetopoffers(){
 		$data['seller_prducts']=$this->showups_model->get_seller_products_data($this->session->userdata('seller_id'));
-		 $data['catitemdata'] = $this->showups_model->getcatsubcatpro();
-	   $data['catitemdata1'] = $this->showups_model->getcatsubcatpro();
+		$data['catitemdata'] = $this->showups_model->getcatsubcatpro();
+		$data['catitemdata1'] = $this->showups_model->getcatsubcatpro();
 		$data['cnt']= count($data['catitemdata1']);
 		$this->template->write_view('content', 'seller/showups/active_topoffers',$data);
 		$this->template->render();
