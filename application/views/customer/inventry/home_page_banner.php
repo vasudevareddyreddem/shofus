@@ -6,7 +6,7 @@
 	  <?php //echo '<pre>';print_r($category_list);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
-              <h3 class="box-title">Category List</h3>
+              <h3 class="box-title">Home Page Banner</h3>
               <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/bannerpreview'); ?>" class="box-title">Preview</a>
             </div>
 			
@@ -34,17 +34,21 @@
 		                  <th>Seller ID</th> 
 		                  <th>Seller Name</th>                 
 		                  <th>Banner</th>
+                      <th>Status</th>
 		                  <th>Action</th>              
 		                </tr>
 		                </thead>
 		                <tbody>
 		                <?php foreach($home_banner as $banners) {?> 
 		                <tr>                  
-		                  	<td><?php echo $banners['seller_id']; ?></td>
+		                  	<td><?php echo $banners['seller_rand_id']; ?></td>
 		                  	<td><?php echo $banners['seller_name']; ?></td>
 		              		<td><img src="<?php echo base_url();?>uploads/banners/<?php  echo $banners['file_name']; ?>" width="80" height="50" /></td>
+                      <td>
+                        <?php if($banners['status']==0){ echo "Deactive";}else{ echo "Active";} ?>
+                      </td>
 		              		<td><a  style="color: 
-		              		<?php if( $banners['status']=='' || $banners['status']=='0' ){echo "Red";} else{echo "Blue";}?>" data-toggle="modal" data-target="#myModal" onclick="deactive('<?php echo base64_encode(htmlentities($banners['id'])).'__'.base64_encode(htmlentities($banners['seller_id'])).'__'.base64_encode(htmlentities($banners['status']));?>');" href="javascript:void(0)" style="text-decoration:none;" id="view" ><?php if(htmlentities($banners['status'])==0){ echo "Deactive";}else{ echo "Active";} ?></a> &nbsp;| &nbsp;
+		              		<?php if( $banners['status']=='' || $banners['status']=='0' ){echo "Blue";} else{echo "Red";}?>" data-toggle="modal" data-target="#myModal" onclick="deactive('<?php echo base64_encode(htmlentities($banners['id'])).'__'.base64_encode(htmlentities($banners['seller_id'])).'__'.base64_encode(htmlentities($banners['status']));?>');" href="javascript:void(0)" style="text-decoration:none;" id="view" ><?php if(htmlentities($banners['status'])==0){ echo "Active";}else{ echo "Deactive";} ?></a> &nbsp;| &nbsp;
 
 		              			<a href="javascript:void(0)" class="glyphicon glyphicon-trash"  data-toggle="modal" data-target="#myModal1" onclick="deletebanner('<?php echo base64_encode(htmlentities($banners['id'])).'__'.base64_encode(htmlentities($banners['seller_id'])).'__'.base64_encode(htmlentities($banners['status']));?>');"></a>
 						</td>

@@ -14,8 +14,9 @@
                 </ol>
                 <div class="carousel-inner">
                 <?php foreach($preview as $pre) {?>
-                  <div class="item active">
-                    <img src="<?php echo base_url();?>uploads/banners/<?php  echo $pre['file_name']; ?>" alt="First slide">
+                  <div class="item">
+                    <img src="<?php echo base_url();?>uploads/banners/<?php  echo 
+                    $pre->file_name; ?>" alt="First slide">
                   </div>
                   <?php } ?>
                   <!-- <div class="item">
