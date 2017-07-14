@@ -73,21 +73,19 @@ class Promotions extends Admin_Controller {
 							$status=1;
 					}
 
-			
-			echo $status;
-			
+				}
 		}
+		echo $status;
 		exit;
+		if($status==1){
+			$this->session->set_flashdata('success',"Offer successfully Updated!");
+		}else if()
 		// if(count($update)>0){
 			// $data=array('msg'=>1);
 			// echo json_encode($data);
 			// $this->session->set_flashdata('success',"Offer successfully Updated!");
 			// redirect('seller/promotions');
 		// }
-	
-		
-		
-		
 	}
 	
 	
