@@ -11,6 +11,7 @@ class Showups extends Admin_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->helper('security');
+		$this->load->helper(array('url','html','form'));
 		$this->load->library(array('form_validation','session'));		
 		$this->load->model('seller/showups_model');
 		$this->load->model('seller/Promotions_model');
@@ -83,11 +84,53 @@ class Showups extends Admin_Controller {
 	}
 	public function activetopoffers(){
 		$data['seller_prducts']=$this->showups_model->get_seller_products_data($this->session->userdata('seller_id'));
-		$data['catitemdata'] = $this->showups_model->getcatsubcatpro();
+		//echo "<pre>";print_r($data);exit;
+		$data['catitemdata'] = $this->showups_model->getcatsubcatpro();		
 		$data['catitemdata1'] = $this->showups_model->getcatsubcatpro();
-		$data['cnt']= count($data['catitemdata1']);
+		//echo "<pre>";print_r($data);exit;
 		$this->template->write_view('content', 'seller/showups/active_topoffers',$data);
 		$this->template->render();
+	}
+
+
+	public function offeractive(){
+		$itemid = base64_decode($this->uri->segment(4));
+		$status = base64_decode($this->uri->segment(5));
+		//echo "<pre>";print_r($status);exit;
+		if($status==1)
+		{
+			$status=0;
+		}else{
+			$status=1;
+		}
+
+		$data=array
+		(
+			'status'=>$status
+		);
+		//echo "<pre>";print_r($data);exit;
+		if($status==0){
+			$this->session->set_flashdata('not'," No premition");
+			redirect('seller/showups/activetopoffers');
+			//echo 'No premition';
+		}else{
+			$updatestatus=$this->showups_model->update_topoffers_status($itemid,$data);
+		}
+		//$updatestatus=$this->showups_model->update_topoffers_status($itemid,$data);
+		//echo "<pre>";print_r($updatestatus);exit;
+		if(count($updatestatus)>0)
+				{
+					if($status==1)
+					{
+						$this->session->set_flashdata('active'," offer activation successful");
+					}else{
+						$this->session->set_flashdata('deactive',"offer deactivation successful");
+					}
+					redirect('seller/showups/activetopoffers');
+				}
+		
+
+
 	}
 
 	public function addtopoffers()

@@ -94,41 +94,37 @@ tfoot input {
                 
 				
 				<th>Item Name</th>
-                <th>Item Code</th>
-                <th>Item Cost</th>
-                <th>Affer Amount</th>
-                <th>Offer Type</th>
-                <th>Offer expiry Date and Time</th>                
+                <th>Item Price</th>
+                <th>Offer percentage</th>
+                <th>offer Amount</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>               
             </tr>
         </thead>
       
              <tbody>
-					<?php $k=1; 
+					<?php  
 					foreach($subcategory->docs12 as $item_data){
-					//echo '<pre>';print_r($item_data);exit;	
-						
+					//echo '<pre>';print_r($item_data);exit;							
 						?>
-					<tr>
-						
+					<tr>						
 						<td><?php echo $item_data->item_name;?></td>
-						<td><?php echo $item_data->item_code;?></td>
-						<td><?php echo $item_data->item_cost;?></td>
+						<td><?php echo $item_data->item_price;?></td>
+						<td><?php echo $item_data->offer_percentage;?></td>
 						<td><?php echo $item_data->offer_amount;?></td>
-						<td>
-					<?php if($item_data->offer_type=='1' ){echo "Listing Discount";}
-        elseif($item_data->offer_type=='2' ){ ?><?php echo "Cart Discount"; ?> <?php } 
-        elseif($item_data->offer_type=='3'){ ?><?php echo "Flat Price Offer";  ?> <?php }
-        elseif($item_data->offer_type=='4'){ ?><?php echo "Combo Disoucnt";  ?> <?php }
-        else{
-          echo "NULL";
-        } ?>
-						</td>
-						
-						
-						<td><?php echo $item_data->offer_expairdate;?>,&nbsp;<?php echo $item_data->offer_time;?></td>
+						<td><?php echo $item_data->intialdate;?></td>
+						<td><?php echo $item_data->expairdate;?></td>	
+						<td><a href="<?php echo base_url('seller/showups/offeractive/'
+						.base64_encode($item_data->top_offer_id).'/'
+						.base64_encode($item_data->status)); ?>">
+						<?php if($item_data->status== 0)
+						{echo 'Deactive';}
+						else{echo "Active";}
+						?></a></td>
 
 					</tr>
-				  <?php $k++; } ?>
+				  <?php  } ?>
 				  </tbody>
     </table>
 
