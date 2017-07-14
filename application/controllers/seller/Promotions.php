@@ -41,11 +41,13 @@ class Promotions extends Admin_Controller {
 			
 			
 			$itemcheck=$this->Promotions_model->item_already_exits($cat_ida);
+			/* same item add again */
 			if(($itemcheck['seller_id'] == $this->session->userdata('seller_id')) && ($itemcheck['expairdate'] >= date('Y-m-d')) ){
 				$status=2;
 			}else{
 					$productprice=$this->Promotions_model->get_offer_product_price($cat_ida);
 					$itemscount=$this->Promotions_model->items_counts_in_topoffers(date('Y-m-d'));
+					/*  item ccount checking purpose */
 					if(count($itemscount)>100){
 					$status=1;
 					}else{
