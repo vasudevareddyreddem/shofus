@@ -41,6 +41,45 @@ class Promotions_model extends MY_Model
 	}
 	function items_counts_in_topoffers($date){
 		//echo $date;exit;
+		$this->db->select('*')->from('top_offers');
+		$this->db->where('expairdate',$date);
+		$this->db->where('status',1);
+		return $this->db->get()->result_array();
+
+	}
+	function add_topoffer_to_products($data){
+		$this->db->insert('top_offers', $data);
+        return $insert_id = $this->db->insert_id();
+	}
+	function dealsoftheday_item_already_exits($pid){
+		//echo $date;exit;
+		$this->db->select('*')->from('deals_ofthe_day');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->row_array();
+
+	}
+	
+	function dealsoftheday_items_counts_in_topoffers($date){
+		//echo $date;exit;
+		$this->db->select('*')->from('deals_ofthe_day');
+		$this->db->where('expairdate',$date);
+		$this->db->where('status',1);
+		return $this->db->get()->result_array();
+
+	}
+	function add_dealsoftheday_to_products($data){
+		$this->db->insert('deals_ofthe_day', $data);
+        return $insert_id = $this->db->insert_id();
+	}
+	function topoffer_item_already_exits($pid){
+		//echo $date;exit;
+		$this->db->select('*')->from('top_offers');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->row_array();
+
+	}
+	function topoffer_items_counts_in_topoffers($date){
+		//echo $date;exit;
 		$this->db->select('*')->from('season_sales');
 		$this->db->where('expairdate',$date);
 		$this->db->where('status',1);
