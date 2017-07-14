@@ -27,17 +27,23 @@
 					<th>Seller Id</th>
 					<th>Seller Name</th>
           <th>Item Id</th>
-					<th>Count</th>
+          <td>Date</td>
+          <td>Status</td>
+					<th>Total Products</th>
+          <th>Action</th>
 				 </tr>
                 </thead>
                 <tbody>
                 <?php  
                   foreach($top_offers as $top_offer) {?>
                 <tr>                  
-                  <td><?php echo $top_offer['seller_rand_id']; ?></td>
+                  <td><a href="<?php echo base_url('inventory/topofferslist/'.base64_encode($top_offer['item_id'])); ?>"><?php echo $top_offer['seller_rand_id']; ?></a></td>
                   <td><?php echo $top_offer['seller_name']; ?></td>
                   <td><?php echo $top_offer['item_id']; ?></td>
-                  <td><a href="<?php echo base_url('inventory/topofferslist/'.base64_encode($top_offer['seller_id'])); ?>"><?php echo $top_offer['topcount']; ?></td>
+                  <td><?php echo $top_offer['create_at']; ?></td>
+                  <td><?php echo $top_offer['status']; ?></td>
+                  <td><a href="<?php echo base_url('inventory/topofferslist/'.base64_encode($top_offer['item_id'])); ?>"><?php echo $top_offer['topcount']; ?></a></td>
+                  <td></td>
                   
                 </tr>
                  <?php }?>                 

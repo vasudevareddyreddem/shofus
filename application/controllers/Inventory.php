@@ -1164,10 +1164,11 @@ public function servicerequestview(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
-				$id = base64_decode($this->uri->segment(3));
-				$seller_id = base64_decode($this->uri->segment(4));
-				$status = base64_decode($this->uri->segment(5));
-				//echo "<pre>";print_r($status);exit;
+				$offerid = base64_decode($this->uri->segment(3));
+				$itemid = base64_decode($this->uri->segment(4));
+				$seller_id = base64_decode($this->uri->segment(5));
+				$status = base64_decode($this->uri->segment(6));
+				//echo "<pre>";print_r($offerid);exit;
 				if($status==1)
 				{
 					$status=0;
@@ -1175,7 +1176,7 @@ public function servicerequestview(){
 					$status=1;
 				}
 				$data=array('status'=>$status);
-				$updatestatus=$this->inventory_model->update_topoffers_status($id,$seller_id,$data);
+				$updatestatus=$this->inventory_model->update_topoffers_status($offerid,$itemid,$seller_id,$data);
 				if(count($updatestatus)>0)
 				{
 					if($status==1)
@@ -1184,7 +1185,7 @@ public function servicerequestview(){
 					}else{
 						$this->session->set_flashdata('deactive',"Product deactivation successful");
 					}
-					redirect('inventory/');
+					redirect('inventory/topofferslist'.'/'.base64_encode($itemid));
 				}
 			}else
 			{

@@ -6,8 +6,8 @@
 	  <?php //echo '<pre>';print_r($category_list);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
-              <h3 class="box-title">Season Sales</h3>
-              <!-- <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/categoryadd'); ?>" class="box-title">Add</a> -->
+              <h3 class="box-title">Top offers List</h3>
+              <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/topoffers'); ?>" class="box-title">Back</a>
             </div>
 			
             <!-- /.box-header -->
@@ -25,28 +25,29 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-					<th>Seller Id</th>
-					<th>Seller Name</th>
-					<th>Item id</th>
-					<th>Item Name</th>
-					<th>Item Code</th>
-					<th>Item Cost</th>
-					<th>Offer percentage </th>					
-					<th>Item Image</th>
-					<th>Action</th>
-				 </tr>
+        					<th>Item id</th>
+        					<th>Item Name</th>
+        					<th>Item Price</th>
+        					<th>Offer amount</th>
+        					<th>Offer percentage</th>
+                  <th>Start Date</th>	
+                  <th>End Date</th>				
+        					<th>Item Image</th>
+                  <th>Status</th>
+        					<th>Action</th>
+        				</tr>
                 </thead>
                 <tbody>
                 <?php  
                   foreach($top_offerslist as $top_offer) {?>
-                <tr>                  
-                  <td><?php echo $top_offer['seller_rand_id']; ?></td>
-                  <td><?php echo $top_offer['seller_name']; ?></td>
+                <tr>                                    
                   <td><?php echo $top_offer['item_id']; ?></td>
                   <td><?php echo $top_offer['item_name']; ?></td>
-                  <td><?php echo $top_offer['item_code']; ?></td>                  
-                  <td><?php echo $top_offer['item_cost']; ?></td>
-                  <td><?php echo $top_offer['offer_percentage']; ?>%</td>                  
+                  <td><?php echo $top_offer['item_pirce']; ?></td>                  
+                  <td><?php echo $top_offer['offer_amount']; ?></td>
+                  <td><?php echo $top_offer['offer_percentage']; ?>%</td>
+                  <td><?php echo $top_offer['intialdate'];?></td> 
+                  <td><?php echo $top_offer['expairdate'];?></td>                 
                   <td>
                   <?php if($top_offer['item_image']=='') {?>
                   <img src="<?php echo base_url();?>uploads/profile/default.jpg" width="80" height="50" />                  			
@@ -54,6 +55,7 @@
                   			<img src="<?php echo base_url();?>uploads/products/<?php  echo $top_offer['item_image']; ?>" width="80" height="50" />
                   	<?php } ?>                  	
                   </td>
+                  <td><?php if($top_offer['status']==0){ echo "Deactive";}else{ echo "Active";} ?></td>                  
             		<td>
 		                <a style="color: 
 				              <?php 
@@ -61,7 +63,11 @@
 				              	{echo "Blue";} 
 				              	else{echo "Red";}
 				              ?>" 
-				            href="<?php echo base_url('inventory/topoffersstatus/'.base64_encode($top_offer['item_id']).'/'.base64_encode($top_offer['seller_id']).'/'.base64_encode($top_offer['status'])); ?>">
+				            href="<?php echo base_url('inventory/topoffersstatus/'
+                    .base64_encode($top_offer['top_offer_id']).'/'
+                    .base64_encode($top_offer['item_id']).'/'
+                    .base64_encode($top_offer['seller_id']).'/'
+                    .base64_encode($top_offer['status'])); ?>">
 				            <?php if($top_offer['status']== '0'){echo "Active";}else{echo "Deactive";} ?>     	
 				        </a>
 		    		</td>

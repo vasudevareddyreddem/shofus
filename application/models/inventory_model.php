@@ -189,19 +189,20 @@ class Inventory_model extends MY_Model
 	public function get_top_offers()
 	{
 
-		$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(top_offers.top_offer_id) AS topcount,top_offers.*')->from('top_offers');
+		$this->db->select('top_offers.*,sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(top_offers.top_offer_id) AS topcount')->from('top_offers');
 		$this->db->join('sellers', 'sellers.seller_id = top_offers.seller_id', 'left');
+		//$this->db->join('products', 'products.seller_id = top_offers.seller_id', 'left');
 		$this->db->group_by('top_offers.seller_id');
 		$this->db->where('top_offers.status', 0);
 		return $this->db->get()->result_array();
 	}
 	public function get_top_offers_list($id)
 	{
-		$this->db->select('*,products.*')->from('top_offers');
+		$this->db->select('top_offers.*,products.*')->from('top_offers');
 		$this->db->join('sellers','sellers.seller_id = top_offers.seller_id', 'left');
 		$this->db->join('products','products.seller_id = top_offers.seller_id AND products.item_id = top_offers.item_id','left');
 		//$this->db->join('products','products.item_id = top_offers.item_id','left');
-		$this->db->where('top_offers.seller_id', $id);
+		$this->db->where('top_offers.item_id', $id);
 		return $this->db->get()->result_array();
 	}
 	/*notification puroose*/
@@ -274,7 +275,8 @@ class Inventory_model extends MY_Model
 	}
 	/*notification puroose*/
 	
-	public function update_topoffers_status($id,$sid,$data){
+	public function update_topoffers_status($oid,$id,$sid,$data){
+		$this->db->where('top_offer_id', $oid);
 		$this->db->where('item_id', $id);
 		$this->db->where('seller_id',$sid);
 		return $this->db->update('top_offers', $data);
