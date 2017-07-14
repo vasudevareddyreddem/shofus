@@ -37,10 +37,6 @@ function get_seller_products_data($sid){
 	$this->db->group_by('category.category_name');
 	$query = $this->db->get();
 	//echo '<pre>';print_r($query);exit;
-	
-	
-	
-	
 	 foreach ($query->result() as $category)
         {
             $return[$category->category_id] = $category;

@@ -30,8 +30,11 @@ class Showups extends Admin_Controller {
 		if(isset($_POST)){
 			if(!empty($_FILES['home_banner']['name'])){
 				$config['upload_path'] = 'uploads/banners/';
-				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['allowed_types'] = 'jpg|jpeg|png';
 				$config['file_name'] = $_FILES['home_banner']['name'];
+				$config['max_size']             = 100;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
                 //Load upload library and initialize configuration
 				$this->load->library('upload',$config);
 				$this->upload->initialize($config);
@@ -39,11 +42,15 @@ class Showups extends Admin_Controller {
 					$uploadData = $this->upload->data();
 					$home_banner = $uploadData['file_name'];
 				}else{
-			$this->prepare_flashmessage("Image format Invalid..", 1);
+				$this->prepare_flashmessage("Image format Invalid..", 1);
 				//return redirect('admin/fooditems');
-				echo "<script>window.location='".base_url()."seller/showups/home_page_banner';</script>";
+				echo "<script>window.location='".base_url()."seller/showups/homepagebanner';</script>";
 				}
 			}else{
+				$error = array('message' => $this->upload->display_errors());
+
+                $this->load->view('', $error);
+				
 				$home_banner = '';
 			}			
 		}
@@ -134,8 +141,8 @@ class Showups extends Admin_Controller {
 	public function addseasonsale()
 	{
 		$data['seller_prducts']=$this->Promotions_model->get_seller_products_data($this->session->userdata('seller_id'));
-		 $data['catitemdata'] = $this->products_model->getcatsubcatpro();
-	   $data['catitemdata1'] = $this->products_model->getcatsubcatpro();
+		$data['catitemdata'] = $this->products_model->getcatsubcatpro();
+	    $data['catitemdata1'] = $this->products_model->getcatsubcatpro();
 		$data['cnt']= count($data['catitemdata1']);
 		$this->template->write_view('content', 'seller/showups/addseasonsale',$data);
 		$this->template->render();

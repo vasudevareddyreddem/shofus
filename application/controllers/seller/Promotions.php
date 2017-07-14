@@ -44,7 +44,6 @@ class Promotions extends Admin_Controller {
 				//echo "ddd";exit;
 			$data1=array('offer_combo_item_id'=>'');
 			$delete=$this->Promotions_model->delete_combo_offer_to_products($cat_ida,$data1);
-	
 			}
 			$productprice=$this->Promotions_model->get_offer_product_price($cat_ida);
 			$offer_price=($productprice['item_cost'] * $post['offeramount']);

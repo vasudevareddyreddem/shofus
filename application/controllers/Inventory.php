@@ -1086,6 +1086,31 @@ public function servicerequestview(){
 		}
 		
 	}
+
+	public function homepagepreview()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['topoffers'] = $this->inventory_model->get_top_offers();
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+	   			$this->load->view('customer/inventry/home_preview',$data);
+	   			$this->load->view('customer/inventry/footer');
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+		
+	}
 	public function topoffers()
 	{
 		if($this->session->userdata('userdetails'))

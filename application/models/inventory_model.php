@@ -180,12 +180,20 @@ class Inventory_model extends MY_Model
 
 	public function get_banner_preview()
 	{
-		$this->db->select('*')->from('home_banner');		
+		$this->db->select('*')->from('home_banner');
+		$this->db->where('status',1);
 		$this->db->order_by("created_at", "ASC");
 		$this->db->limit(3);
 		return $this->db->get()->result();
 	}
-
+	public function get_top_offers()
+	{
+		$this->db->select('*')->from('products');        
+        $this->db->where('item_status','1');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(8);
+		return $this->db->get()->result_array();
+	}
 	public function get_top_offers_list()
 	{
 		$this->db->select('*,sellers.*')->from('products');
