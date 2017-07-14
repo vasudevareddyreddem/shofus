@@ -32,7 +32,7 @@ class Promotions extends Admin_Controller {
 	public function storepromotions()
 	{
 		$post=$this->input->post();
-		//echo '<pre>';print_r($post);exit;
+		//echo '<pre>';print_r($post);
 		$var=array_values($post['cat_id']);
 		foreach ($var as $value) {
 			$int[] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
@@ -40,31 +40,52 @@ class Promotions extends Admin_Controller {
 		foreach (array_unique($int) as $cat_ida) {
 			
 			
-			if($post['offertype']==1 || $post['offertype']==2 || $post['offertype']==3){
-				//echo "ddd";exit;
-			$data1=array('offer_combo_item_id'=>'');
-			$delete=$this->Promotions_model->delete_combo_offer_to_products($cat_ida,$data1);
-	
+			$itemcheck=$this->Promotions_model->item_already_exits($cat_ida);
+			if(($itemcheck['seller_id'] == $this->session->userdata('seller_id')) && ($itemcheck['expairdate'] >= date('Y-m-d')) ){
+				$status=2;
+			}else{
+					$productprice=$this->Promotions_model->get_offer_product_price($cat_ida);
+					$itemscount=$this->Promotions_model->items_counts_in_topoffers(date('Y-m-d'));
+					if(count($itemscount)>100){
+					$status=1;
+					}else{
+							$offer_price=($productprice['item_cost'] * $post['offeramount']);
+							$offer_amount=($offer_price / 100);
+							$date = date('Y-m-d h:i:s');
+							$date1 = strtotime($date);
+							$date2 = strtotime("+7 day", $date1);
+							$data=array(
+							'item_id'=>$cat_ida,
+							'seller_id'=>$this->session->userdata('seller_id'),
+							'category_id'=>$productprice['category_id'],
+							'subcategory_id'=>$productprice['subcategory_id'],
+							'offer_percentage'=>$post['offeramount'],
+							'item_pirce'=>$productprice['item_cost'],
+							'offer_amount'=>$offer_amount,
+							'intialdate'=>date("Y-m-d H:i:s"),  
+							'expairdate'=>date('Y-m-d h:i:s', $date2),
+							'status'=>1,
+							'area'=>$productprice['seller_location_area'],
+							'create_at'=>date("Y-m-d H:i:s") 
+							);			
+							echo '<pre>';print_r($data);
+							$update=$this->Promotions_model->add_offer_to_products($data);
+							$status=1;
+					}
 			}
-			$productprice=$this->Promotions_model->get_offer_product_price($cat_ida);
-			$offer_price=($productprice['item_cost'] * $post['offeramount']);
-			$offer_price_pertange=($offer_price / 100);
-			//echo $offer_price;
-			//echo '--';
-			//echo $offer_price_pertange;
-			//	echo '<pre>';print_r($productprice);exit;
-			$data=array('offer_percentage'=>$post['offeramount'],'offer_amount'=>$offer_price_pertange,'offer_combo_item_id'=>$post['combo'],'offer_type'=>$post['offertype'],'offer_time'=>$post['offertime'],'offer_expairdate'=>$post['expairdate']);
-			//echo '<pre>';print_r($data);
-			$update=$this->Promotions_model->add_offer_to_products($cat_ida,$data);
-
+			//echo "<pre>";print_r($itemcheck);exit;
+			
+			
+			echo $status;
 			
 		}
-		if(count($update)>0){
-			$data=array('msg'=>1);
-			echo json_encode($data);
-			$this->session->set_flashdata('success',"Offer successfully Updated!");
-			redirect('seller/promotions');
-		}
+		exit;
+		// if(count($update)>0){
+			// $data=array('msg'=>1);
+			// echo json_encode($data);
+			// $this->session->set_flashdata('success',"Offer successfully Updated!");
+			// redirect('seller/promotions');
+		// }
 	
 		
 		
