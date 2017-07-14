@@ -50,8 +50,20 @@ tfoot input {
 		</div>
 	</section>
   <section class="content ">
-  <div class="faq_main">
-  	
+  <div class="faq_main">		<div style="display:none;" class="alert dark alert-warning alert-dismissible" id="errormessage">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>							
+					 </button></div>
+			<?php if($this->session->flashdata('success')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button><?php echo $this->session->flashdata('success');?></div>	
+			<?php endif; ?>
+			<?php if($this->session->flashdata('error')): ?>
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button><?php echo $this->session->flashdata('error');?></div>	
+			<?php endif; ?>
    <?php if(!empty($catitemdata))  { ?>
     <div class="container" style="width:100%">
 	
@@ -59,12 +71,7 @@ tfoot input {
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
 	 <div><?php echo $this->session->flashdata('message');?></div>
       <div class="faq">
-	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
- <?php if($this->session->flashdata('success')): ?>
-					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('success');?></div>	
-					<?php endif; ?>
+	  
 	   <?php  foreach($catitemdata1 as $catitem_data1 )  {  ?> 
 		
 		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
@@ -323,10 +330,21 @@ tfoot input {
 			type: "POST",
 			format:"html",
 					success:function(data){
-					if(data.msg=1){
-
-					//location.reload();
+				
+						location.reload();
+						if(data.msg==1){
+							$('#successmessage').show();
+							$("#successmessage").append("Offer successfully Added!");
+							
+						}if(data.msg==2){
+							$('#errormessage').show();
+							$("#errormessage").append("while adding it should come like 3 of 100 , 4 of 100...once limit completes, limit for top offers for this week has completed. add for next week.limit of top offers for this week has completed");
+						
+						}if(data.msg==3){
+							$('#errormessage').show();
+							$("#errormessage").append("Item already added");
 						}
+				
 					}
         });
 	  }

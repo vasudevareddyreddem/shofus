@@ -41,13 +41,15 @@ class Promotions extends Admin_Controller {
 		$itemcheck=$this->Promotions_model->item_already_exits($cat_ida);
 			/* same item add again */
 			if(($itemcheck['seller_id'] == $this->session->userdata('seller_id')) && ($itemcheck['expairdate'] >= date('Y-m-d')) ){
-				$status=2;
+				$status=3;
 			}else{
 					$productprice=$this->Promotions_model->get_offer_product_price($cat_ida);
 					$itemscount=$this->Promotions_model->items_counts_in_topoffers(date('Y-m-d'));
+					
+					//echo count($itemscount);exit;
 					/*  item ccount checking purpose */
 					if(count($itemscount)>100){
-					$status=1;
+					$status=2;
 					}else{
 							$offer_price=($productprice['item_cost'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
@@ -68,25 +70,28 @@ class Promotions extends Admin_Controller {
 							'area'=>$productprice['seller_location_area'],
 							'create_at'=>date("Y-m-d H:i:s") 
 							);			
-							echo '<pre>';print_r($data);
+							//echo '<pre>';print_r($data);
 							$update=$this->Promotions_model->add_offer_to_products($data);
 							$status=1;
 					}
 
 				}
 		}
-		echo $status;
-		exit;
+	
 		if($status==1){
-			$this->session->set_flashdata('success',"Offer successfully Updated!");
-		}else if()
-		// if(count($update)>0){
-			// $data=array('msg'=>1);
-			// echo json_encode($data);
-			// $this->session->set_flashdata('success',"Offer successfully Updated!");
-			// redirect('seller/promotions');
-		// }
-	}
+			$this->session->set_flashdata('success',"Offer successfully Added!");
+		}else if($status==2){
+			
+		 $this->session->set_flashdata('error',"while adding it should come like 3 of 100 , 4 of 100...once limit completes, limit for top offers for this week has completed. add for next week.limit of top offers for this week has completed");	
+		}else if($status==3){
+		$this->session->set_flashdata('error',"Item already added.");	
+			
+		}
+		$messages=array('msg'=>$status);
+		echo json_encode($messages);
+			
+	//redirect('showups/addseasonsale');
+}
 	
 	
 }
