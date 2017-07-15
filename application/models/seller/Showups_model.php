@@ -34,15 +34,16 @@ class Showups_model extends MY_Model
   public function banner_count($date){
     //echo $date;exit;
     $this->db->select('*')->from('home_banner');
-    $this->db->where('expairydate',$date);
+    $this->db->where('intialdate',$date);
     $this->db->where('status',1);
     return $this->db->get()->result_array();
 
   }
-  public function banner_exits($id){
+  public function banner_exits($name){
     //echo $date;exit;
     $this->db->select('home_banner.*')->from('home_banner');
-    $this->db->where('file_name',$id);
+    $this->db->where('file_name',$name);
+    //$this->db->where('image_id',$id);
     return $this->db->get()->row_array();
 
   }

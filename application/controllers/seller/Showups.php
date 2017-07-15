@@ -72,14 +72,13 @@ class Showups extends Admin_Controller {
 		$date2 = strtotime("+1 day", $date1);
 		$bannercheck=$this->showups_model->banner_exits($home_banner);
 		//echo "<pre>";print_r($bannercheck);exit;
-		echo $this->db->last_query();exit;
-		if(($bannercheck['seller_id'] == $this->session->userdata('seller_id')) && ($bannercheck['expairdate'] >= date('Y-m-d')) ){
+		//echo $this->db->last_query();exit;
+		if(($bannercheck['seller_id'] == $this->session->userdata('seller_id')) && ($bannercheck['expairydate'] >= date('Y-m-d')) ){
 				$status=3;
 			}else{
 				$bannercount=$this->showups_model->banner_count(date('Y-m-d'));
-
 				//echo $this->db->last_query();exit;
-				if(count($bannercount)>6)
+				if(count($bannercount)>5)
 				{
 					$status=2;
 					}else

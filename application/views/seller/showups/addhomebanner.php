@@ -24,11 +24,16 @@
 	</section>
   	<section class="content ">
 <div class="faq_main">
-<?php if($this->session->flashdata('message')): ?>
-				<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button><?php echo $this->session->flashdata('message');?></div>
-				<?php endif; ?>
+<?php if($this->session->flashdata('active')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button><?php echo $this->session->flashdata('active');?></div>	
+			<?php endif; ?>
+			<?php if($this->session->flashdata('deactive')): ?>
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button><?php echo $this->session->flashdata('deactive');?></div>	
+			<?php endif; ?>
   			<!-- <div class="alert alert-danger" role="alert">
   				<h3>Note</h3>
   				<p>Image Height :500px,width:1000px;</p>
@@ -47,7 +52,7 @@
         			</div>
 				</div>
                   	
-				</div>
+				
                 <div class="clearfix"></div>
 				<div style="margin-top: 20px; margin-left: 15px;">				
                 <button type="submit" class="btn btn-primary pull-right" >Submit</button>
