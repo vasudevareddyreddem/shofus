@@ -97,10 +97,10 @@ class Home_model extends CI_Model
 	}
 	public function get_top_offers()
 	{
-		$this->db->select('*')->from('products');
-        $this->db->where('admin_status','0');
-		$this->db->order_by('products.offer_percentage desc');
-		$this->db->limit(8);
+		$this->db->select('top_offers.top_offer_id,products.*')->from('top_offers');
+		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
+		$this->db->order_by('top_offers.offer_percentage desc');
+		 $this->db->where('top_offers.preview_ok',1);
 		return $this->db->get()->result_array();
 
 	}
@@ -124,27 +124,20 @@ class Home_model extends CI_Model
 	}
 	public function get_deals_of_the_day()
 	{
-		$this->db->select('*')->from('products');
-        $this->db->where('admin_status','0');
-		$this->db->order_by('products.offer_percentage desc');
-		$this->db->limit(5);
+		$this->db->select('deals_ofthe_day.deal_offer_id,products.*')->from('deals_ofthe_day');
+		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
+		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
+		 $this->db->where('deals_ofthe_day.preview_ok',1);
 		return $this->db->get()->result_array();
 
 	}
-	//compare
-	// public function getcompare($id)
-	// {
-	// 	$this->db->select('*')->from('products');
- //        $this->db->where('admin_status','0');
-	// 	 $this->db->where('item_id', $id);
-	// 	return $this->db->get()->result_array();	
-	// }
+
 	public function get_season_sales()
 	{
-		$this->db->select('*')->from('products');
-        $this->db->where('admin_status','0');
-		$this->db->order_by('products.offer_percentage desc');
-		$this->db->limit(5);
+		$this->db->select('season_sales.season_sales_id,products.*')->from('season_sales');
+		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
+		$this->db->order_by('season_sales.offer_percentage desc');
+		$this->db->where('season_sales.preview_ok',1);
 		return $this->db->get()->result_array();
 
 	}

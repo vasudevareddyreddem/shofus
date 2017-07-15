@@ -236,7 +236,9 @@
   </div>
   </div>
    </section>
-   <button type="submit" class="box-title">preview ok</button>
+   <button type="submit" class="box-title btn btn-primary pull-right" style="margin-right:50px;"> preview ok</button>
+   <div class="clearfix"></div>
+   <br>
    </form>
   </div>
  

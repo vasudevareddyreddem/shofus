@@ -43,10 +43,10 @@
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
+              <i class="fa fa-envelope-o" style="margin-top:5px;font-size:16px;"></i>
               <span class="label label-warning"><?php if($unreadcount >0){ echo count($unreadcount);} ?></span>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" style="padding:2px 10px;">
               <li class="header">You have <?php if($unreadcount >0){ echo count($unreadcount);} ?> Messages</li>
               
 			  <?php if($unreadcount >0){ ?>

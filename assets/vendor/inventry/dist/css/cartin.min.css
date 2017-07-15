@@ -257,13 +257,14 @@ a:focus {
     margin-right: 5px
 }
 .main-header .navbar .nav>li>a>.label {
-    position: absolute;
-    top: 9px;
+       position: absolute;
+    top: 3px;
     right: 7px;
     text-align: center;
     font-size: 9px;
     padding: 2px 3px;
-    line-height: .9
+    line-height: .9;
+    height: 12px;
 }
 .main-header .logo {
     -webkit-transition: width .3s ease-in-out;
