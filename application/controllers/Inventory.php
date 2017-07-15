@@ -978,6 +978,7 @@ public function servicerequestview(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
+				$data['homebanners'] = $this->inventory_model->get_banner_preview_display();
 				$data['topoffers'] = $this->inventory_model->get_top_offers_preview();
 				$data['deals_of_the_day'] = $this->inventory_model->get_deals_of_the_day_preview();
 				$data['season_sales'] = $this->inventory_model->get_season_sales_preview();

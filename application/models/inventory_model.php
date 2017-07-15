@@ -440,6 +440,14 @@ class Inventory_model extends MY_Model
 		return $this->db->get()->result_array();
 
 	}
+	public function get_banner_preview_display()
+	{
+		$this->db->select('home_banner.*')->from('home_banner');
+		$this->db->where('home_page_status',1);
+		$this->db->order_by('home_banner.created_at desc');
+		return $this->db->get()->result_array();
+
+	}
 	/* home page preview purpose*/
 	
 	

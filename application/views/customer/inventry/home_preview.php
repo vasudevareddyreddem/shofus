@@ -9,26 +9,35 @@
       <div id="myCarousel" class="carousel slide"> 
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
+         
+		  	  <?php  $i=0;foreach($homebanners as $list){ ?>
+			   <?php if($i==0){ ?>
+			    <li data-target="#myCarousel" data-slide-to="<?php echo $i; ?>" class="active"></li>
+			     <?php }else{?>
+				 <li data-target="#myCarousel" data-slide-to="<?php echo $i; ?>"></li>
+				 <?php } ?>
+          
+		   <?php $i++;} ?>
         </ol>
         <div class="carousel-inner">
-          <div class="item active"> <img src="<?php echo base_url(); ?>assets/home/images/food_bnr.jpg" class="img-responsive">
+         <?php  $k=0;foreach($homebanners as $list){ ?>
+		  <?php if($k==0){ ?>
+		  <div class="item active"><img src="<?php echo base_url('uploads/banners/'.$list['file_name']);?>" class="img-responsive">
             <div class="container">
               <div class="carousel-caption"> </div>
             </div>
-          </div>
-          <div class="item"> <img src="<?php echo base_url(); ?>assets/home/images/slide-img2.jpg" class="img-responsive">
+           </div>
+		  <?php }else{?>
+		   <div class="item"> <img src="<?php echo base_url('uploads/banners/'.$list['file_name']);?>" class="img-responsive">
             <div class="container">
               <div class="carousel-caption"> </div>
             </div>
-          </div>
-          <div class="item"> <img src="<?php echo base_url(); ?>assets/home/images/slide-img1.jpg" class="img-responsive">
-            <div class="container">
-              <div class="carousel-caption"> </div>
-            </div>
-          </div>
+           </div>
+		  <?php }?>
+		  
+		  <?php $k ++;} ?>
+       
+	   
         </div>
         
         <!-- Controls --> 
