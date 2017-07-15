@@ -186,16 +186,7 @@ class Inventory_model extends MY_Model
 		$this->db->limit(3);
 		return $this->db->get()->result();
 	}
-	public function get_top_offers()
-	{
-
-		$this->db->select('top_offers.*,sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(top_offers.top_offer_id) AS topcount')->from('top_offers');
-		$this->db->join('sellers', 'sellers.seller_id = top_offers.seller_id', 'left');
-		//$this->db->join('products', 'products.seller_id = top_offers.seller_id', 'left');
-		$this->db->group_by('top_offers.seller_id');
-		$this->db->where('top_offers.status', 0);
-		return $this->db->get()->result_array();
-	}
+	
 	
 	/*notification puroose*/
 	public function get_sellernotification_list()
@@ -267,11 +258,44 @@ class Inventory_model extends MY_Model
 	}
 	/*notification puroose*/
 	
-	public function update_topoffers_status($oid,$id,$sid,$data){
-		$this->db->where('top_offer_id', $oid);
-		$this->db->where('item_id', $id);
+	/* top offers */
+	public function get_top_offers_list(){
+	$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(top_offers.item_id) AS itemscount,')->from('top_offers');
+		$this->db->join('sellers', 'sellers.seller_id = top_offers.seller_id', 'left');
+		 $this->db->group_by('top_offers.seller_id');
+		 $this->db->where('sellers.status', 1);
+		//$this->db->order_by('order_items.seller_id', 'ASC'); 
+		$query=$this->db->get()->result_array();
+		 foreach ($query as $offers)
+        {
+      //echo "<pre>";print_r($offers);exit;
+			$return[$offers['seller_id']] = $offers;
+
+			$return[$offers['seller_id']]['count'] = $this->get_tophomepage_active_count($offers['seller_id']);
+        
+		}
+		return $return;
+	}
+	public function get_tophomepage_active_count($sid)
+	{
+		$this->db->select('count(home_page_status) as activecount')->from('top_offers');
 		$this->db->where('seller_id',$sid);
-		return $this->db->update('top_offers', $data);
+		$this->db->where('home_page_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_top_offers_details_list($sid){
+		$this->db->select('top_offers.*,products.item_name,category.category_name,sellers.seller_rand_id')->from('top_offers');
+		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = top_offers.seller_id', 'left');
+		$this->db->join('category', 'category.category_id = top_offers.category_id', 'left');
+		 $this->db->where('top_offers.seller_id',$sid);
+		//$this->db->order_by('order_items.seller_id', 'ASC'); 
+		return $this->db->get()->result_array();
+	}
+	public function update_topoffers_status($sid,$pid,$data)
+	{
+		$sql1="UPDATE top_offers SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
+		return $this->db->query($sql1);
 	}
 	
 	

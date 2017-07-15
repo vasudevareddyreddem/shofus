@@ -1110,6 +1110,8 @@ public function servicerequestview(){
 		}
 		
 	}
+
+	/*top offers*/
 	public function topoffers()
 	{
 		if($this->session->userdata('userdetails'))
@@ -1117,7 +1119,7 @@ public function servicerequestview(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
-				$data['top_offers'] = $this->inventory_model->get_top_offers();
+				$data['top_offers'] = $this->inventory_model->get_top_offers_list();
 				//echo "<pre>";print_r($data);exit;
 			   	$this->load->view('customer/inventry/sidebar');
 			   	$this->load->view('customer/inventry/top_offers',$data);
@@ -1133,18 +1135,18 @@ public function servicerequestview(){
 		 redirect('admin/login	');
 		}
 	}
-	public function topofferslist()
+	public function sellertopoffresdetails()
 	{
 		if($this->session->userdata('userdetails'))
 	 	{		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
-				$data['top_offerslist'] = $this->inventory_model->get_top_offers_list(base64_decode($this->uri->segment(3)));
-				//echo "<pre>";print_r($data);exit;
-			   	$this->load->view('customer/inventry/sidebar');
-			   	$this->load->view('customer/inventry/top_offerslist',$data);
-			   	$this->load->view('customer/inventry/footer');
+				$data['top_offers_details'] = $this->inventory_model->get_top_offers_details_list(base64_decode($this->uri->segment(3)));
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+	   			$this->load->view('customer/inventry/top_offers_details',$data);
+	   			$this->load->view('customer/inventry/footer');
 			}else
 			{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -1155,19 +1157,18 @@ public function servicerequestview(){
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 		}
+	   	
 	}
-
-	public function topoffersstatus()
+	public function topoffers_home_page_status()
 	{
 		if($this->session->userdata('userdetails'))
 	 	{		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
-				$offerid = base64_decode($this->uri->segment(3));
+				$seller_id = base64_decode($this->uri->segment(3));
 				$itemid = base64_decode($this->uri->segment(4));
-				$seller_id = base64_decode($this->uri->segment(5));
-				$status = base64_decode($this->uri->segment(6));
+				$status = base64_decode($this->uri->segment(5));
 				//echo "<pre>";print_r($offerid);exit;
 				if($status==1)
 				{
@@ -1175,17 +1176,17 @@ public function servicerequestview(){
 				}else{
 					$status=1;
 				}
-				$data=array('status'=>$status);
-				$updatestatus=$this->inventory_model->update_topoffers_status($offerid,$itemid,$seller_id,$data);
+				$updatestatus=$this->inventory_model->update_topoffers_status($seller_id,$itemid,$status);
+				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
 					if($status==1)
 					{
-						$this->session->set_flashdata('active'," Product activation successful");
+						$this->session->set_flashdata('success'," Item added home page banner successful");
 					}else{
-						$this->session->set_flashdata('deactive',"Product deactivation successful");
+						$this->session->set_flashdata('success',"Item removed home page banner  successful");
 					}
-					redirect('inventory/topofferslist'.'/'.base64_encode($itemid));
+					redirect('inventory/sellertopoffresdetails'.'/'.base64_encode($seller_id));
 				}
 			}else
 			{
@@ -1199,6 +1200,53 @@ public function servicerequestview(){
 		} 	
 	}
 
+
+
+	public function overaall_topoffers_home_page_status()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$seller_id = base64_decode($this->uri->segment(3));
+				$status = base64_decode($this->uri->segment(4));
+				$overall_tems = $this->inventory_model->get_top_offers_details_list(base64_decode($this->uri->segment(3)));
+				//echo "<pre>";print_r($overall_tems);exit;
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				foreach ($overall_tems as $items){
+				
+				$updatestatus=$this->inventory_model->update_topoffers_status($seller_id,$items['item_id'],$status);
+				//echo $this->db->last_query();exit;
+				}
+				//echo $this->db->last_query();exit;
+				if(count($updatestatus)>0)
+				{
+					if($status==1)
+					{
+						$this->session->set_flashdata('success'," Items added home page banner successful");
+					}else{
+						$this->session->set_flashdata('success',"Items removed home page banner  successful");
+					}
+					redirect('inventory/topoffers');
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
+	}
+	
 
 	/* season sales */
 	public function seasonsales()

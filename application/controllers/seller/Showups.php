@@ -103,17 +103,18 @@ class Showups extends Admin_Controller {
 		}else{
 			$status=1;
 		}
-
-		$data=array
-		(
-			'status'=>$status
-		);
+		//echo "<pre>";print_r($status);exit;
+		
 		//echo "<pre>";print_r($data);exit;
-		if($status==0){
-			$this->session->set_flashdata('not'," No premition");
+		if($status==1){
+			$this->session->set_flashdata('message'," No premition");
 			redirect('seller/showups/activetopoffers');
 			//echo 'No premition';
 		}else{
+			$data=array
+		(
+			'status'=>$status
+		);
 			$updatestatus=$this->showups_model->update_topoffers_status($itemid,$data);
 		}
 		//$updatestatus=$this->showups_model->update_topoffers_status($itemid,$data);

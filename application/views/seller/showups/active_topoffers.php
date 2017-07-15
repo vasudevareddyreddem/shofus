@@ -60,11 +60,16 @@ tfoot input {
 	 <div><?php echo $this->session->flashdata('message');?></div>
       <div class="faq">
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
- <?php if($this->session->flashdata('success')): ?>
-					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('success');?></div>	
-					<?php endif; ?>
+ <?php if($this->session->flashdata('active')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button><?php echo $this->session->flashdata('active');?></div>	
+			<?php endif; ?>
+			<?php if($this->session->flashdata('deactive')): ?>
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button><?php echo $this->session->flashdata('deactive');?></div>	
+			<?php endif; ?>
 	   <?php  foreach($catitemdata1 as $catitem_data1 )  {  ?> 
 		
 		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
