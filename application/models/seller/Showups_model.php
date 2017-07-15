@@ -11,6 +11,42 @@ class Showups_model extends MY_Model
 
 	}
 
+  public function seller_homebanners()
+  {
+    $sid = $this->session->userdata('seller_id');
+    $this->db->select('home_banner.*,sellers.seller_rand_id,seller_name')->from('home_banner');
+    $this->db->join('sellers', 'sellers.seller_id = home_banner.seller_id', 'left');
+    $this->db->where('home_banner.seller_id',$sid);
+    $this->db->order_by('home_banner.created_at','desc');
+    return $this->db->get()->result_array();
+  }
+
+  public function update_banner_status($id,$sid,$data)
+  {
+    $this->db->where('image_id', $id);
+    $this->db->where('seller_id',$sid);
+    return $this->db->update('home_banner', $data);
+  }
+  public function delete_banner($id,$sid){
+    $sql1="DELETE FROM home_banner WHERE image_id = '".$id."' AND  seller_id = '".$sid."'";
+    return $this->db->query($sql1);
+  }
+  public function banner_count($date){
+    //echo $date;exit;
+    $this->db->select('*')->from('home_banner');
+    $this->db->where('expairydate',$date);
+    $this->db->where('status',1);
+    return $this->db->get()->result_array();
+
+  }
+  public function banner_exits($id){
+    //echo $date;exit;
+    $this->db->select('home_banner.*')->from('home_banner');
+    $this->db->where('file_name',$id);
+    return $this->db->get()->row_array();
+
+  }
+
   public function save_banner_image($data)
 {
 	$this->db->insert('home_banner',$data);

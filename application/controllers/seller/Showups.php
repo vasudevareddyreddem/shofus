@@ -26,6 +26,19 @@ class Showups extends Admin_Controller {
 		$this->template->write_view('content', 'seller/showups/homepagebanner');
 		$this->template->render();
 	}
+	public function addhomebanner()
+	{
+		$this->template->write_view('content', 'seller/showups/addhomebanner');
+		$this->template->render();
+	}
+
+	public function activehomebanner()
+	{
+		$data['seller_banner'] = $this->showups_model->seller_homebanners();
+		//echo "<pre>";print_r($data);exit;
+		$this->template->write_view('content', 'seller/showups/active_homebanner',$data);
+		$this->template->render();
+	}
 
 	public function save_banner(){
 		if(isset($_POST)){
@@ -33,9 +46,9 @@ class Showups extends Admin_Controller {
 				$config['upload_path'] = 'uploads/banners/';
 				$config['allowed_types'] = 'jpg|jpeg|png';
 				$config['file_name'] = $_FILES['home_banner']['name'];
-				$config['max_size']             = 100;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
+				//$config['max_size']             = 100;
+                //$config['max_width']            = 1024;
+                //$config['max_height']           = 768;
                 //Load upload library and initialize configuration
 				$this->load->library('upload',$config);
 				$this->upload->initialize($config);
@@ -43,38 +56,125 @@ class Showups extends Admin_Controller {
 					$uploadData = $this->upload->data();
 					$home_banner = $uploadData['file_name'];
 				}else{
-				$this->prepare_flashmessage("Image format Invalid..", 1);
+					$this->session->set_flashdata('message','Image format Invalid..');
+				//$this->prepare_flashmessage("Image format Invalid..", 1);
 				//return redirect('admin/fooditems');
-				echo "<script>window.location='".base_url()."seller/showups/homepagebanner';</script>";
+				echo "<script>window.location='".base_url()."seller/showups/addhomebanner';</script>";
 				}
 			}else{
-				$error = array('message' => $this->upload->display_errors());
-
-                $this->load->view('', $error);
 				
 				$home_banner = '';
 			}			
 		}
 
+		$date = date('Y-m-d h:i:s');
+		$date1 = strtotime($date);
+		$date2 = strtotime("+1 day", $date1);
+		$bannercheck=$this->showups_model->banner_exits($home_banner);
+		//echo "<pre>";print_r($bannercheck);exit;
+		echo $this->db->last_query();exit;
+		if(($bannercheck['seller_id'] == $this->session->userdata('seller_id')) && ($bannercheck['expairdate'] >= date('Y-m-d')) ){
+				$status=3;
+			}else{
+				$bannercount=$this->showups_model->banner_count(date('Y-m-d'));
+
+				//echo $this->db->last_query();exit;
+				if(count($bannercount)>6)
+				{
+					$status=2;
+					}else
+					{
+						$data=array(         
+						'seller_id' => $this->session->userdata('seller_id'),
+						'intialdate'=>date("Y-m-d H:i:s"),  
+						'expairydate'=>date('Y-m-d h:i:s', $date2),   
+						'file_name'=>$home_banner,
+						'created_at'=>date('Y-m-d H:i:s'),
+						'updated_at'=>date('Y-m-d H:i:s')		
+						);
+						//echo '<pre>';print_r($data);exit;
+						$banner=$this->showups_model->save_banner_image($data);
+						$status=1;
+
+					}
+			}
+			if($status==1){
+			$this->session->set_flashdata('active',"Banner successfully Added!");
+			redirect('seller/showups/addhomebanner');
+
+		}else if($status==2){
+			
+		 $this->session->set_flashdata('deactive',"only 6 Images Per Day");
+		 redirect('seller/showups/addhomebanner');	
+		}else if($status==3){
+		$this->session->set_flashdata('deactive',"Item already added.");
+		redirect('seller/showups/addhomebanner');	
+			
+		}
+		
+		
+
 		
 		//echo '<pre>';print_r($seller_location);exit;
-		$data=array(         
-			'seller_id' => $this->session->userdata('seller_id'),   
-			'file_name'=>$home_banner,
-			'created_at'=>date('Y-m-d H:i:s'),
-			'updated_at'=>date('Y-m-d H:i:s')		
-			);
-		//echo '<pre>';print_r($data);exit;
-			$banner=$this->showups_model->save_banner_image($data);
-			if(count($banner)>0)
+		
+			// if(count($banner)>0)
+			// 	{
+			// 	$this->session->set_flashdata('message','Banner successfully added');
+			// 	redirect('seller/showups/addhomebanner');
+			// 	}else{
+			// 	$this->session->set_flashdata('message','Some error are occured.');
+			// 	redirect('seller/showups/addhomebanner'); 
+			// 	}
+
+	}
+	public function banner_status()
+	{
+		$id = base64_decode($this->uri->segment(4));
+		$sellerid = base64_decode($this->uri->segment(5));
+		$status = base64_decode($this->uri->segment(6));
+		//echo "<pre>";print_r($status);exit;
+		if($status==1)
+		{
+			$status=0;
+		}else{
+			$status=1;
+		}
+		
+			
+		$data=array
+		(
+			
+			'status'=>$status
+		);
+			$updatestatus=$this->showups_model->update_banner_status($id,$sellerid,$data);
+			//echo $this->db->last_query();exit;
+			if(count($updatestatus)>0)
 				{
-				$this->session->set_flashdata('message','Banner successfully added');
-				redirect('seller/showups/homepagebanner');
-				}else{
-				$this->session->set_flashdata('message','Some error are occured.');
-				redirect('seller/showups/homepagebanner'); 
+					if($status==1)
+					{
+						$this->session->set_flashdata('active'," Banner activation successful");
+					}else{
+						$this->session->set_flashdata('deactive',"Banner deactivation successful");
+					}
+					redirect('seller/showups/activehomebanner');
 				}
 
+
+	}
+
+	public function banner_delete()
+	{
+		$id = base64_decode($this->uri->segment(4));
+		$sellerid = base64_decode($this->uri->segment(5));
+		$status = base64_decode($this->uri->segment(6));
+		if($status == 1){
+			$this->session->set_flashdata('deactive'," Opps!! Your Banner Is active");
+			redirect('seller/showups/activehomebanner');
+		}else{
+			$updatestatus=$this->showups_model->delete_banner($id,$sellerid);
+			$this->session->set_flashdata('active'," Your Banner Delete successful");
+			redirect('seller/showups/activehomebanner');
+		}
 	}
 
 	public function topoffers()

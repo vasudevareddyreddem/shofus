@@ -17,8 +17,9 @@
 	</section>
   	<section class="content ">
   		<div class="faq_main">
-  				<a href="<?php echo base_url('seller/showups/activetopoffers');?>" class="btn btn-success">Active</a>
-  				<a href="<?php echo base_url('seller/showups/addtopoffers');?>" class="btn btn-primary">Add</a>
+  			<a href="<?php echo base_url('seller/showups/addtopoffers');?>" class="btn btn-primary">Add</a>
+  			<a href="<?php echo base_url('seller/showups/activetopoffers');?>" class="btn btn-success">Active</a>
+  				
 			</div>
     </section>
     </div>

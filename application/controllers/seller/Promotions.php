@@ -48,7 +48,7 @@ class Promotions extends Admin_Controller {
 					
 					//echo count($itemscount);exit;
 					/*  item ccount checking purpose */
-					if(count($itemscount)>100){
+						if(count($itemscount)>100){
 					$status=2;
 					}else{
 							$offer_price=($productprice['item_cost'] * $post['offeramount']);
