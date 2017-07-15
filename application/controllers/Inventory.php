@@ -978,9 +978,13 @@ public function servicerequestview(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
-				//echo "<pre>";print_r($data);exit;
+				$data['topoffers'] = $this->inventory_model->get_top_offers_preview();
+				$data['deals_of_the_day'] = $this->inventory_model->get_deals_of_the_day_preview();
+				$data['season_sales'] = $this->inventory_model->get_season_sales_preview();
+				
+				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
-	   			$this->load->view('customer/inventry/home_preview');
+	   			$this->load->view('customer/inventry/home_preview',$data);
 	   			$this->load->view('customer/inventry/footer');
 			}else
 			{

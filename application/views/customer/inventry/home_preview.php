@@ -47,78 +47,20 @@
             </div>
             <div id="top-categories" class="product-flexslider hidden-buttons">
               <div class="slider-items slider-width-col4 products-grid">
+               
+				 <!-- start Item --> 
+				<?php  foreach($topoffers as $list){ ?>
                 <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p1.jpg" alt="">
-                    <div class="pro-info">Soups</div>
+                  <div class="pro-img">
+				  <?php if($list['item_image']!=''){ ?>
+				  	<img src="<?php echo base_url('assets/home/images/'.$list['item_image']); ?>" alt="">
+				  <?php }else{ ?>
+				  	<img src="<?php echo base_url(); ?>assets/home/images/p2.jpg" alt="">
+				  <?php } ?>
+                    <div class="pro-info"><?php echo $list['item_name']; ?></div>
                   </div>
                 </div>
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p2.jpg" alt="">
-                    <div class="pro-info">Sandwiches</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p3.jpg" alt="">
-                    <div class="pro-info">Fast Food</div>
-                  </div>
-                </div>
-                <!-- End Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p4.jpg" alt="">
-                    <div class="pro-info">Vegetables</div>
-                  </div>
-                </div>
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p5.jpg" alt="">
-                    <div class="pro-info">Fruits</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p6.jpg" alt="">
-                    <div class="pro-info">Beans</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p7.jpg" alt="">
-                    <div class="pro-info">Salads‎</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p8.jpg" alt="">
-                    <div class="pro-info">Chinese</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p9.jpg" alt="">
-                    <div class="pro-info">South Indian</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p10.jpg" alt="">
-                    <div class="pro-info">Parath's</div>
-                  </div>
-                </div>
-                <!-- End Item --> 
-                <!-- Item -->
-                <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url(); ?>assets/home/images/p11.jpg" alt="">
-                    <div class="pro-info">Leafy Veg</div>
-                  </div>
-                </div>
+               <?php } ?>
                 <!-- End Item --> 
               </div>
             </div>
@@ -137,299 +79,130 @@
         <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"> <img src="<?php echo base_url(); ?>assets/home/images/p1.jpg" alt=""></a> </div>
-                </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             
+			
+			
+
             <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"> <img src="<?php echo base_url(); ?>assets/home/images/p2.jpg" alt=""></a> </div>
+			  <?php  foreach($deals_of_the_day as $list){ ?> 
+             <div class="item">
+          <div class=" box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper  img_hover">
+                <a href="javascript:void(0);">
+                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$list['item_image']); ?>">
+				   
+                </a>
+                <div class="tags">
+                  <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
                 </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
+                <div class="tags tags-left">
+                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
+                </div>
+                <div class="option">
+                  <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  
+                  <a href="javascript:void(0);" id="compare" onclick="compare(<?php echo $list['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
+              <h6><a href="javascript:void(0);"><?php echo $list['item_name']; ?></a></h6>
+              <div class="price">
+                <div class="pull-left" ><?php echo ($list['item_price'])-($list['offer_amount']); ?> 
+					<span class="label-tags"><span class="label label-default">-<?php echo $list['offer_percentage']; ?>%</span></span>
+				</div>
+				
+			
+                <span class="price-old"><?php echo $list['item_price']; ?></span>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="javascript:void(0);">(5 reviews)</a>
+              </div>
             </div>
+          </div>
+            </div>
+			 <?php } ?>
             <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"><img src="<?php echo base_url(); ?>assets/home/images/p3.jpg" alt=""></a> </div>
-                </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Item -->
-            
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"><img src="<?php echo base_url(); ?>assets/home/images/p4.jpg" alt=""></a> </div>
-                </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"><img src="<?php echo base_url(); ?>assets/home/images/p5.jpg"></a> </div>
-                </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"><img src="<?php echo base_url(); ?>assets/home/images/p6.jpg"></a> </div>
-                </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Item --> 
+              
+           
+		   
           </div>
         </div>
       </div>
-    </section>
-    <section>
+    </section> 
+<!--   deals_of_the_day  --->
+	<section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
-          <h2>Trading</h2>
+          <h2>Season Sales</h2>
         </div>
         <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"> <img src="<?php echo base_url(); ?>assets/home/images/p1.jpg" alt=""></a> </div>
-                </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             
+			
+			
+
             <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"> <img src="<?php echo base_url(); ?>assets/home/images/p2.jpg" alt=""></a> </div>
+			  <?php  foreach($season_sales as $list){ ?> 
+             <div class="item">
+          <div class=" box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper  img_hover">
+                <a href="javascript:void(0);">
+                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$list['item_image']); ?>">
+				   
+                </a>
+                <div class="tags">
+                  <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
                 </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
+                <div class="tags tags-left">
+                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
+                </div>
+                <div class="option">
+                  <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  
+                  <a href="javascript:void(0);" id="compare" onclick="compare(<?php echo $list['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
+              <h6><a href="javascript:void(0);"><?php echo $list['item_name']; ?></a></h6>
+              <div class="price">
+                <div class="pull-left" ><?php echo ($list['item_price'])-($list['offer_amount']); ?> 
+					<span class="label-tags"><span class="label label-default">-<?php echo $list['offer_percentage']; ?>%</span></span>
+				</div>
+				
+			
+                <span class="price-old"><?php echo $list['item_price']; ?></span>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="javascript:void(0);">(5 reviews)</a>
+              </div>
             </div>
+          </div>
+            </div>
+			 <?php } ?>
             <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"><img src="<?php echo base_url(); ?>assets/home/images/p3.jpg" alt=""></a> </div>
-                </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Item -->
-            
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"><img src="<?php echo base_url(); ?>assets/home/images/p4.jpg" alt=""></a> </div>
-                </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"><img src="<?php echo base_url(); ?>assets/home/images/p5.jpg"></a> </div>
-                </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item">
-              <div class="item-inner">
-                <div class="item-img">
-                  <div class="item-img-info"><a href="#" class="product-image"><img src="<?php echo base_url(); ?>assets/home/images/p6.jpg"></a> </div>
-                </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"><a href="#">Retis lapen casen</a> </div>
-                    <div class="item-content">
-                      <div class="item-price">
-                        <div class="price-box"><span class="regular-price" ><span class="price">$125.00</span> </span> </div>
-                      </div>
-                      <div class="add_cart">
-                        <button class="button btn-cart" type="button"><span>More Details</span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Item --> 
+              
+           
+		   
           </div>
         </div>
       </div>
     </section>
-
-     <section>
-      <div class="best-pro slider-items-products container_main">
-        <div class="new_title">
-          <h2>Recent</h2>
-        </div>
-        <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
-    
-        
-      </div>
-    </section>
+	
+	
+	
   </div>
   </div>
    </section>

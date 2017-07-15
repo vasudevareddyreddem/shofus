@@ -412,6 +412,35 @@ class Inventory_model extends MY_Model
 		return $this->db->query($sql1);
 	}
 	/* home page banner purpose*/
+	/* home page preview purpose*/
+	public function get_top_offers_preview()
+	{
+		$this->db->select('top_offers.*,products.item_name,products.item_image,')->from('top_offers');
+		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
+        $this->db->where('home_page_status',1);
+		$this->db->order_by('top_offers.offer_percentage desc');
+		return $this->db->get()->result_array();
+
+	}
+	public function get_deals_of_the_day_preview()
+	{
+		$this->db->select('deals_ofthe_day.*,products.item_name,products.item_image,')->from('deals_ofthe_day');
+		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
+        $this->db->where('home_page_status',1);
+		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
+		return $this->db->get()->result_array();
+
+	}
+	public function get_season_sales_preview()
+	{
+		$this->db->select('season_sales.*,products.item_name,products.item_image,')->from('season_sales');
+		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
+		$this->db->where('home_page_status',1);
+		$this->db->order_by('season_sales.offer_percentage desc');
+		return $this->db->get()->result_array();
+
+	}
+	/* home page preview purpose*/
 	
 	
 	public function update_seasonsales_status($sid,$pid,$data)
