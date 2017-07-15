@@ -69,7 +69,15 @@ class Promotions extends Admin_Controller {
 							'status'=>1,
 							'area'=>$productprice['seller_location_area'],
 							'create_at'=>date("Y-m-d H:i:s") 
-							);			
+							);
+							$data1=array(
+								'offer_percentage'=>$post['offeramount'],
+								'offer_amount'=>$offer_amount,
+								'offer_type'=>5,
+								'offer_expairdate'=>date("Y-m-d H:i:s"),  
+								);			
+								$productupdate=$this->Promotions_model->add_topoffer_to_products_inproducts($cat_ida,$data1);
+								
 							//echo '<pre>';print_r($data);
 							$update=$this->Promotions_model->add_offer_to_products($data);
 							$status=1;
@@ -201,7 +209,15 @@ public function dealsoftheday()
 							'status'=>1,
 							'area'=>$productprice['seller_location_area'],
 							'create_at'=>date("Y-m-d H:i:s") 
+							);
+							$data1=array(
+							'offer_percentage'=>$post['offeramount'],
+							'offer_amount'=>$offer_amount,
+							'offer_type'=>5,
+							'offer_expairdate'=>date("Y-m-d H:i:s"),  
 							);			
+							$productupdate=$this->Promotions_model->add_topoffer_to_products_inproducts($cat_ida,$data1);
+
 							//echo '<pre>';print_r($data);
 							$update=$this->Promotions_model->add_dealsoftheday_to_products($data);
 							$status=1;
