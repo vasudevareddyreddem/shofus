@@ -51,6 +51,10 @@ class Promotions_model extends MY_Model
 		$this->db->insert('top_offers', $data);
         return $insert_id = $this->db->insert_id();
 	}
+	function add_topoffer_to_products_inproducts($productid,$data){
+		$this->db->where('item_id', $productid);
+		return $this->db->update('products', $data);
+	}
 	function dealsoftheday_item_already_exits($pid){
 		//echo $date;exit;
 		$this->db->select('*')->from('deals_ofthe_day');

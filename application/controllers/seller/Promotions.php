@@ -132,8 +132,14 @@ public function addtopoffers()
 							'status'=>1,
 							'area'=>$productprice['seller_location_area'],
 							'create_at'=>date("Y-m-d H:i:s") 
+							);
+							$data1=array(
+							'offer_percentage'=>$post['offeramount'],
+							'offer_amount'=>$offer_amount,
+							'offer_type'=>5,
+							'offer_expairdate'=>date("Y-m-d H:i:s"),  
 							);			
-							//echo '<pre>';print_r($data);
+							$productupdate=$this->Promotions_model->add_topoffer_to_products_inproducts($cat_ida,$data1);
 							$update=$this->Promotions_model->add_topoffer_to_products($data);
 							$status=1;
 					}
