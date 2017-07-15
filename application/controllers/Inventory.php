@@ -1064,8 +1064,14 @@ public function servicerequestview(){
 					$status=0;
 				}else{
 					$status=1;
-				}
-				$updatestatus=$this->inventory_model->update_topoffers_status($seller_id,$itemid,$status);
+				} 
+				if($status==0){
+					$updatestatus=$this->inventory_model->update_topoffers_status_ok($seller_id,$itemid,$status,0);
+
+					}else{
+					$updatestatus=$this->inventory_model->update_topoffers_status($seller_id,$itemid,$status);
+
+					}
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
@@ -1108,11 +1114,18 @@ public function servicerequestview(){
 				}else{
 					$status=1;
 				}
-				foreach ($overall_tems as $items){
-				
-				$updatestatus=$this->inventory_model->update_topoffers_status($seller_id,$items['item_id'],$status);
-				//echo $this->db->last_query();exit;
+				if($status==0){
+						foreach ($overall_tems as $items){
+						$updatestatus=$this->inventory_model->update_topoffers_status_ok($seller_id,$items['item_id'],$status,0);
+						//echo $this->db->last_query();exit;
+						}
+				}else{
+					foreach ($overall_tems as $items){
+					$updatestatus=$this->inventory_model->update_topoffers_status($seller_id,$items['item_id'],$status);
+					//echo $this->db->last_query();exit;
+					}
 				}
+				
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
@@ -1203,7 +1216,11 @@ public function servicerequestview(){
 				}else{
 					$status=1;
 				}
+				if($status==0){
+				$updatestatus=$this->inventory_model->update_seasonsales_status_ok($seller_id,$itemid,$status,0);
+				}else{
 				$updatestatus=$this->inventory_model->update_seasonsales_status($seller_id,$itemid,$status);
+				}
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
@@ -1243,11 +1260,16 @@ public function servicerequestview(){
 				}else{
 					$status=1;
 				}
-				foreach ($overall_tems as $items){
-				
-				$updatestatus=$this->inventory_model->update_seasonsales_status($seller_id,$items['item_id'],$status);
-				//echo $this->db->last_query();exit;
+				if($status==0){
+						foreach ($overall_tems as $items){
+						$updatestatus=$this->inventory_model->update_seasonsales_status_ok($seller_id,$items['item_id'],$status,0);
+						}
+				}else{
+						foreach ($overall_tems as $items){
+						$updatestatus=$this->inventory_model->update_seasonsales_status($seller_id,$items['item_id'],$status);
+						}
 				}
+				
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
@@ -1338,7 +1360,12 @@ public function servicerequestview(){
 				}else{
 					$status=1;
 				}
-				$updatestatus=$this->inventory_model->update_dealsoftheday_status($seller_id,$itemid,$status);
+				if($status==0){
+					$updatestatus=$this->inventory_model->update_dealsoftheday_status_ok($seller_id,$itemid,$status,0);
+				}else{
+					$updatestatus=$this->inventory_model->update_dealsoftheday_status($seller_id,$itemid,$status);
+
+				}
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
@@ -1378,11 +1405,17 @@ public function servicerequestview(){
 				}else{
 					$status=1;
 				}
-				foreach ($overall_tems as $items){
 				
-				$updatestatus=$this->inventory_model->update_dealsoftheday_status($seller_id,$items['item_id'],$status);
-				//echo $this->db->last_query();exit;
+				if($status==0){
+					foreach ($overall_tems as $items){
+								$updatestatus=$this->inventory_model->update_dealsoftheday_status_ok($seller_id,$items['item_id'],$status,0);
+						}
+				}else{
+					foreach ($overall_tems as $items){
+					$updatestatus=$this->inventory_model->update_dealsoftheday_status($seller_id,$items['item_id'],$status);
+					}
 				}
+				
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
@@ -1473,7 +1506,12 @@ public function servicerequestview(){
 				}else{
 					$status=1;
 				}
-				$updatestatus=$this->inventory_model->update_banner_status($seller_id,$imageid,$status);
+				if($status==0){
+					$updatestatus=$this->inventory_model->update_banner_status_ok($seller_id,$imageid,$status,0);
+				}else{
+					$updatestatus=$this->inventory_model->update_banner_status($seller_id,$imageid,$status);
+				}
+				
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
@@ -1513,12 +1551,20 @@ public function servicerequestview(){
 				}else{
 					$status=1;
 				}
+				 if($status==0){
+					 
+					foreach ($overall_tems as $items){
+						$updatestatus=$this->inventory_model->update_banner_status_ok($seller_id,$items['id'],$status,0);
+					} 
+				 }else{
+					 
+					foreach ($overall_tems as $items){
+						$updatestatus=$this->inventory_model->update_banner_status($seller_id,$items['id'],$status);
+					}  
+				 }
+				//echo "<pre>";print_r($status);exit;
 				
-				foreach ($overall_tems as $items){
 				
-				$updatestatus=$this->inventory_model->update_banner_status($seller_id,$items['id'],$status);
-				//echo $this->db->last_query();exit;
-				}
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{

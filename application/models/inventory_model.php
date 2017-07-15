@@ -271,6 +271,11 @@ class Inventory_model extends MY_Model
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		return $this->db->get()->result_array();
 	}
+	public function update_topoffers_status_ok($sid,$pid,$data,$data1)
+	{
+		$sql1="UPDATE top_offers SET home_page_status ='".$data."',preview_ok ='".$data1."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
 	public function update_topoffers_status($sid,$pid,$data)
 	{
 		$sql1="UPDATE top_offers SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
@@ -352,6 +357,11 @@ class Inventory_model extends MY_Model
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		return $this->db->get()->result_array();
 	}
+	public function update_dealsoftheday_status_ok($sid,$pid,$data,$data1)
+	{
+		$sql1="UPDATE deals_ofthe_day SET home_page_status ='".$data."', preview_ok ='".$data1."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
 	public function update_dealsoftheday_status($sid,$pid,$data)
 	{
 		$sql1="UPDATE deals_ofthe_day SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
@@ -393,9 +403,15 @@ class Inventory_model extends MY_Model
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		return $this->db->get()->result_array();
 	}
+	
 	public function update_banner_status($sid,$imageid,$data)
 	{
 		$sql1="UPDATE home_banner SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND id='".$imageid."'";
+		return $this->db->query($sql1);
+	}
+	public function update_banner_status_ok($sid,$imageid,$data,$data1)
+	{
+		$sql1="UPDATE home_banner SET home_page_status ='".$data."', preview_ok ='".$data1."' WHERE seller_id = '".$sid."' AND id='".$imageid."'";
 		return $this->db->query($sql1);
 	}
 	function banner_status_update($id,$sid,$status)
@@ -451,6 +467,11 @@ class Inventory_model extends MY_Model
 	/* home page preview purpose*/
 	
 	
+	public function update_seasonsales_status_ok($sid,$pid,$data,$data1)
+	{
+		$sql1="UPDATE season_sales SET home_page_status ='".$data."',preview_ok ='".$data1."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
 	public function update_seasonsales_status($sid,$pid,$data)
 	{
 		$sql1="UPDATE season_sales SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
