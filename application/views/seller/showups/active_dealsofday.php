@@ -41,11 +41,11 @@ tfoot input {
 					</span>
 				</div>
 			</form>  
-			<h1>Top Offers</h1>
-			<small>Active Deals Of the Day</small>
+			<h1>Deals Of The Day</h1>
+			<small>Active Offers</small>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard');?>"><i class="pe-7s-home"></i> Home</a></li>
-				<li class="active">Active Deals Of the Day</li>
+				<li class="active">Active Offers</li>
 			</ol>
 		</div>
 	</section>
@@ -57,19 +57,24 @@ tfoot input {
 	
       <!--<h1 class="head_title">My Listings</h1>-->
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
-	 <div><?php echo $this->session->flashdata('message');?></div>
       <div class="faq">
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
- <?php if($this->session->flashdata('success')): ?>
-					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('success');?></div>	
-					<?php endif; ?>
+ <?php if($this->session->flashdata('active')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button><?php echo $this->session->flashdata('active');?></div>	
+			<?php endif; ?>
+			<?php if($this->session->flashdata('deactive')): ?>
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button><?php echo $this->session->flashdata('deactive');?></div>	
+			<?php endif; ?>
 	   <?php  foreach($catitemdata1 as $catitem_data1 )  {  ?> 
 		
 		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
 
 	<?php } ?>
+	<a href="<?php echo base_url('seller/showups/dealsofday');?> " class="pull-right btn btn-sm btn-primary">Back</a>
         <?php  foreach($catitemdata as $catitem_data )  {    ?>
         <!--<h1 onclick="document.getElementById('gry').style.display='block'">GETTING STARTED</h1>-->
         <div class="tab-content">
@@ -88,47 +93,43 @@ tfoot input {
                 <div id="collapseOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
 		
 	<form  id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
-		<table id="example<?php echo $subcategory->subcategory_id;  ?>" class="display" width="100%" cellspacing="0">
+		<table id="example1" id="example<?php echo $subcategory->subcategory_id;  ?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
                 
 				
 				<th>Item Name</th>
-                <th>Item Code</th>
-                <th>Item Cost</th>
-                <th>Affer Amount</th>
-                <th>Offer Type</th>
-                <th>Offer expiry Date and Time</th>                
+                <th>Item Price</th>
+                <th>Offer percentage</th>
+                <th>offer Amount</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>               
             </tr>
         </thead>
       
              <tbody>
-					<?php $k=1; 
+					<?php  
 					foreach($subcategory->docs12 as $item_data){
-					//echo '<pre>';print_r($item_data);exit;	
-						
+					//echo '<pre>';print_r($item_data);exit;							
 						?>
-					<tr>
-						
+					<tr>						
 						<td><?php echo $item_data->item_name;?></td>
-						<td><?php echo $item_data->item_code;?></td>
-						<td><?php echo $item_data->item_cost;?></td>
+						<td><?php echo $item_data->item_price;?></td>
+						<td><?php echo $item_data->offer_percentage;?></td>
 						<td><?php echo $item_data->offer_amount;?></td>
-						<td>
-					<?php if($item_data->offer_type=='1' ){echo "Listing Discount";}
-        elseif($item_data->offer_type=='2' ){ ?><?php echo "Cart Discount"; ?> <?php } 
-        elseif($item_data->offer_type=='3'){ ?><?php echo "Flat Price Offer";  ?> <?php }
-        elseif($item_data->offer_type=='4'){ ?><?php echo "Combo Disoucnt";  ?> <?php }
-        else{
-          echo "NULL";
-        } ?>
-						</td>
-						
-						
-						<td><?php echo $item_data->offer_expairdate;?>,&nbsp;<?php echo $item_data->offer_time;?></td>
+						<td><?php echo $item_data->intialdate;?></td>
+						<td><?php echo $item_data->expairdate;?></td>	
+						<td><a href="<?php echo base_url('seller/showups/dealsofdayactive/'
+						.base64_encode($item_data->deal_offer_id).'/'
+						.base64_encode($item_data->status)); ?>">
+						<?php if($item_data->status== 0)
+						{echo 'Deactive';}
+						else{echo "Active";}
+						?></a></td>
 
 					</tr>
-				  <?php $k++; } ?>
+				  <?php  } ?>
 				  </tbody>
     </table>
 
@@ -200,3 +201,10 @@ return confirm('Are you sure want to delete "'+id +'" product?');
 </section>
   </div> 
   </div>
+  <script>
+$(document).ready(function() {
+    $('#example1').DataTable( {
+        "order": [[ 2, "desc" ]]
+    } );
+} );
+</script>

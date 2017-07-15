@@ -82,18 +82,20 @@ class Showups extends Admin_Controller {
 		$this->template->write_view('content', 'seller/showups/topoffers');
 		$this->template->render();
 	}
-	public function activetopoffers(){
-		$data['seller_prducts']=$this->showups_model->get_seller_products_data($this->session->userdata('seller_id'));
+	public function activetopoffers()
+	{
+		$data['seller_prducts']=$this->showups_model->get_top_offers_data($this->session->userdata('seller_id'));
 		//echo "<pre>";print_r($data);exit;
-		$data['catitemdata'] = $this->showups_model->getcatsubcatpro();		
-		$data['catitemdata1'] = $this->showups_model->getcatsubcatpro();
+		$data['catitemdata'] = $this->showups_model->gettop_offers();		
+		$data['catitemdata1'] = $this->showups_model->gettop_offers();
+		$data['cnt']= count($data['catitemdata1']);
 		//echo "<pre>";print_r($data);exit;
 		$this->template->write_view('content', 'seller/showups/active_topoffers',$data);
 		$this->template->render();
 	}
 
 
-	public function offeractive(){
+	public function topofferactive(){
 		$itemid = base64_decode($this->uri->segment(4));
 		$status = base64_decode($this->uri->segment(5));
 		//echo "<pre>";print_r($status);exit;
@@ -103,21 +105,21 @@ class Showups extends Admin_Controller {
 		}else{
 			$status=1;
 		}
-		//echo "<pre>";print_r($status);exit;
-		
-		//echo "<pre>";print_r($data);exit;
-		if($status==1){
-			$this->session->set_flashdata('message'," No premition");
-			redirect('seller/showups/activetopoffers');
-			//echo 'No premition';
-		}else{
-			$data=array
+		$data=array
 		(
 			'status'=>$status
 		);
 			$updatestatus=$this->showups_model->update_topoffers_status($itemid,$data);
-		}
-		//$updatestatus=$this->showups_model->update_topoffers_status($itemid,$data);
+		//echo "<pre>";print_r($status);exit;
+		
+		//echo "<pre>";print_r($data);exit;
+		// if($status==1){
+		// 	$this->session->set_flashdata('deactive'," No premition");
+		// 	redirect('seller/showups/activetopoffers');
+		// 	//echo 'No premition';
+		// }else{
+			
+		// }
 		//echo "<pre>";print_r($updatestatus);exit;
 		if(count($updatestatus)>0)
 				{
@@ -150,12 +152,49 @@ class Showups extends Admin_Controller {
 		$this->template->render();
 	}
 	public function activedealsofday(){
-		$data['seller_prducts']=$this->showups_model->get_seller_products_data($this->session->userdata('seller_id'));
-		 $data['catitemdata'] = $this->showups_model->getcatsubcatpro();
-	   $data['catitemdata1'] = $this->showups_model->getcatsubcatpro();
+		$data['seller_prducts']=$this->showups_model->get_deals_of_day_data($this->session->userdata('seller_id'));
+		 $data['catitemdata'] = $this->showups_model->getdeals_ofthe_day();
+	   $data['catitemdata1'] = $this->showups_model->getdeals_ofthe_day();
 		$data['cnt']= count($data['catitemdata1']);
 		$this->template->write_view('content', 'seller/showups/active_dealsofday',$data);
 		$this->template->render();
+	}
+	public function dealsofdayactive(){
+		$itemid = base64_decode($this->uri->segment(4));
+		$status = base64_decode($this->uri->segment(5));
+		//echo "<pre>";print_r($status);exit;
+		if($status==1)
+		{
+			$status=0;
+		}else{
+			$status=1;
+		}
+		$data=array
+		(
+			'status'=>$status
+		);
+			$updatestatus=$this->showups_model->update_deals_ofthe_day_status($itemid,$data);
+		//echo "<pre>";print_r($status);exit;
+		
+		//echo "<pre>";print_r($data);exit;
+		// if($status==1){
+		// 	$this->session->set_flashdata('deactive'," No premition");
+		// 	redirect('seller/showups/activedealsofday');
+		// 	//echo 'No premition';
+		// }else{
+			
+		// }
+		//echo "<pre>";print_r($updatestatus);exit;
+		if(count($updatestatus)>0)
+				{
+					if($status==1)
+					{
+						$this->session->set_flashdata('active'," offer activation successful");
+					}else{
+						$this->session->set_flashdata('deactive',"offer deactivation successful");
+					}
+					redirect('seller/showups/activedealsofday');
+				}
 	}
 
 	public function adddealsofday()
@@ -174,12 +213,50 @@ class Showups extends Admin_Controller {
 		$this->template->render();
 	}
 	public function activeseasonsale(){
-		$data['seller_prducts']=$this->showups_model->get_seller_products_data($this->session->userdata('seller_id'));
-		 $data['catitemdata'] = $this->showups_model->getcatsubcatpro();
-	   $data['catitemdata1'] = $this->showups_model->getcatsubcatpro();
+		$data['seller_prducts']=$this->showups_model->get_season_sales_data($this->session->userdata('seller_id'));
+		 $data['catitemdata'] = $this->showups_model->getseason_sales();
+	   $data['catitemdata1'] = $this->showups_model->getseason_sales();
 		$data['cnt']= count($data['catitemdata1']);
 		$this->template->write_view('content', 'seller/showups/active_seasonsale',$data);
 		$this->template->render();
+	}
+
+	public function seasonsaleactive(){
+		$itemid = base64_decode($this->uri->segment(4));
+		$status = base64_decode($this->uri->segment(5));
+		//echo "<pre>";print_r($status);exit;
+		if($status==1)
+		{
+			$status=0;
+		}else{
+			$status=1;
+		}
+		$data=array
+		(
+			'status'=>$status
+		);
+			$updatestatus=$this->showups_model->update_season_sales_status($itemid,$data);
+		//echo "<pre>";print_r($status);exit;
+		
+		//echo "<pre>";print_r($data);exit;
+		// if($status==1){
+		// 	$this->session->set_flashdata('deactive'," No premition");
+		// 	redirect('seller/showups/activeseasonsale');
+		// 	//echo 'No premition';
+		// }else{
+			
+		// }
+		//echo "<pre>";print_r($updatestatus);exit;
+		if(count($updatestatus)>0)
+				{
+					if($status==1)
+					{
+						$this->session->set_flashdata('active'," offer activation successful");
+					}else{
+						$this->session->set_flashdata('deactive',"offer deactivation successful");
+					}
+					redirect('seller/showups/activeseasonsale');
+				}
 	}
 
 	public function addseasonsale()

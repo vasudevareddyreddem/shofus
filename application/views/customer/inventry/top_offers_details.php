@@ -6,7 +6,7 @@
 	  <?php //echo '<pre>';print_r($seller_order_items);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
-              <h3 class="box-title" >Seller Seanson sales Items List</h3>
+              <h3 class="box-title" >Seller </h3>
               <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/topoffers'); ?>" class="box-title">Back</a>
             </div>
             <!-- /.box-header -->

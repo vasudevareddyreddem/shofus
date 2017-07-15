@@ -27,7 +27,7 @@ tfoot input {
 		margin:10px 0px;
 	}
 </style>
-<div class="content-wrapper mar_t_con" >
+<div class="content-wrapper mar_t_con">
 	<section class="content-header">
 		<div class="header-icon">
 			<i class="pe-7s-note2"></i>
@@ -56,10 +56,9 @@ tfoot input {
     <div class="container" style="width:100%">
 	
       <!--<h1 class="head_title">My Listings</h1>-->
-	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
-	 <div><?php echo $this->session->flashdata('message');?></div>
+	  
       <div class="faq">
-	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
+	  
  <?php if($this->session->flashdata('active')): ?>
 			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
@@ -72,11 +71,11 @@ tfoot input {
 			<?php endif; ?>
 	   <?php  foreach($catitemdata1 as $catitem_data1 )  {  ?> 
 		
-		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
+		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;?></a>
 
 	<?php } ?>
-        <?php  foreach($catitemdata as $catitem_data )  {    ?>
-        <!--<h1 onclick="document.getElementById('gry').style.display='block'">GETTING STARTED</h1>-->
+	<a href="<?php echo base_url('seller/showups/topoffers');?> " class="pull-right btn btn-sm btn-primary">Back</a>
+        <?php  foreach($catitemdata as $catitem_data )  {    ?>						
         <div class="tab-content">
               <div class="tab-pane" id="gry<?php echo $catitem_data->category_id; ?>">
               <?php 
@@ -93,7 +92,7 @@ tfoot input {
                 <div id="collapseOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
 		
 	<form  id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
-		<table id="example<?php echo $subcategory->subcategory_id;  ?>" class="display" width="100%" cellspacing="0">
+		<table id="tables<?php echo $subcategory->subcategory_id;  ?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
                 
@@ -111,7 +110,7 @@ tfoot input {
              <tbody>
 					<?php  
 					foreach($subcategory->docs12 as $item_data){
-					//echo '<pre>';print_r($item_data);exit;							
+												
 						?>
 					<tr>						
 						<td><?php echo $item_data->item_name;?></td>
@@ -120,7 +119,7 @@ tfoot input {
 						<td><?php echo $item_data->offer_amount;?></td>
 						<td><?php echo $item_data->intialdate;?></td>
 						<td><?php echo $item_data->expairdate;?></td>	
-						<td><a href="<?php echo base_url('seller/showups/offeractive/'
+						<td><a href="<?php echo base_url('seller/showups/topofferactive/'
 						.base64_encode($item_data->top_offer_id).'/'
 						.base64_encode($item_data->status)); ?>">
 						<?php if($item_data->status== 0)
@@ -136,6 +135,11 @@ tfoot input {
 	
                 </div>
               </div>
+              <script type="text/javascript">
+              	$(document).ready(function(){
+    $('#tables<?php echo $subcategory->subcategory_id;  ?>').DataTable();
+});
+              </script>
 			<?php }?>
               </div>
              
@@ -161,7 +165,13 @@ tfoot input {
 
   <!--body end here --> 
   
-  <script language="JavaScript" type="text/javascript">
+  
+</section>
+  </div> 
+  </div>
+  <script>
+  
+
   function addtabactives(val)
 {
 	$("#btn_chang"+val).removeClass("btn-info");
@@ -180,6 +190,7 @@ tfoot input {
 }
 function addtabactive(id)
 {
+	//alert(id);exit;
 	$("#gry"+id).addClass("active");
 	var cnt;
     var nt =<?php echo $cnt;?>;
@@ -192,12 +203,4 @@ function addtabactive(id)
 			
 }
 
-function checkDelete(id)
-{
-  
-return confirm('Are you sure want to delete "'+id +'" product?');
-}
 </script>
-</section>
-  </div> 
-  </div>
