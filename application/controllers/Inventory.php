@@ -1381,7 +1381,143 @@ public function servicerequestview(){
 		 	redirect('admin/login	');
 		} 	
 	}
+	/*------*/
 	
+	/*deals of the day*/
+	public function dealsoftheday()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['season_sales'] = $this->inventory_model->get_delasoftheday_offers_list();
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+	   			$this->load->view('customer/inventry/deals_ofthe_day',$data);
+	   			$this->load->view('customer/inventry/footer');
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+	   	
+	}
+	public function sellerdelasofthedaydetails()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['dealsofthe_day_details'] = $this->inventory_model->get_dealsoftheday_details_list(base64_decode($this->uri->segment(3)));
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+	   			$this->load->view('customer/inventry/dealsofthe_day_details',$data);
+	   			$this->load->view('customer/inventry/footer');
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+	   	
+	}
+	public function dealsoftheday_home_page_status()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$seller_id = base64_decode($this->uri->segment(3));
+				$itemid = base64_decode($this->uri->segment(4));
+				$status = base64_decode($this->uri->segment(5));
+				//echo "<pre>";print_r($offerid);exit;
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				$updatestatus=$this->inventory_model->update_dealsoftheday_status($seller_id,$itemid,$status);
+				//echo $this->db->last_query();exit;
+				if(count($updatestatus)>0)
+				{
+					if($status==1)
+					{
+						$this->session->set_flashdata('success'," Item added home page banner successful");
+					}else{
+						$this->session->set_flashdata('success',"Item removed home page banner  successful");
+					}
+					redirect('inventory/sellerdelasofthedaydetails'.'/'.base64_encode($seller_id));
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
+	}
+	public function overaall_dealsoftheday_home_page_status()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$seller_id = base64_decode($this->uri->segment(3));
+				$status = base64_decode($this->uri->segment(4));
+				$overall_tems = $this->inventory_model->get_dealsoftheday_details_list(base64_decode($this->uri->segment(3)));
+				//echo "<pre>";print_r($overall_tems);exit;
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				foreach ($overall_tems as $items){
+				
+				$updatestatus=$this->inventory_model->update_dealsoftheday_status($seller_id,$items['item_id'],$status);
+				//echo $this->db->last_query();exit;
+				}
+				//echo $this->db->last_query();exit;
+				if(count($updatestatus)>0)
+				{
+					if($status==1)
+					{
+						$this->session->set_flashdata('success'," Items added home page banner successful");
+					}else{
+						$this->session->set_flashdata('success',"Items removed home page banner  successful");
+					}
+					redirect('inventory/dealsoftheday');
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
+	}
+	
+	/*----------------*/
 
 	 public function categorieslist(){
   	

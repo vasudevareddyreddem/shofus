@@ -300,8 +300,6 @@ class Inventory_model extends MY_Model
 	
 	
 	/* offer list purpose*/
-			//$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(order_items.order_item_id) AS orderscount, SUM(order_items.item_price) AS totalamount, SUM(order_items.commission_price) AS commissionamount')->from('order_items');
-
 	public function get_season_offers_list(){
 	$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(season_sales.item_id) AS itemscount,')->from('season_sales');
 		$this->db->join('sellers', 'sellers.seller_id = season_sales.seller_id', 'left');
@@ -337,6 +335,51 @@ class Inventory_model extends MY_Model
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		return $this->db->get()->result_array();
 	}
+	
+	/*---*/
+	/* dealsoffer list purpose*/
+	public function get_delasoftheday_offers_list(){
+	$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(deals_ofthe_day.item_id) AS itemscount,')->from('deals_ofthe_day');
+		$this->db->join('sellers', 'sellers.seller_id = deals_ofthe_day.seller_id', 'left');
+		 $this->db->group_by('deals_ofthe_day.seller_id');
+		 $this->db->where('sellers.status', 1);
+		//$this->db->order_by('order_items.seller_id', 'ASC'); 
+		$query=$this->db->get()->result_array();
+		 foreach ($query as $offers)
+        {
+      //echo "<pre>";print_r($offers);exit;
+			$return[$offers['seller_id']] = $offers;
+
+			$return[$offers['seller_id']]['count'] = $this->get_delasoftheday_homepage_active_count($offers['seller_id']);
+        
+		}
+		return $return;
+	}
+	
+	public function get_delasoftheday_homepage_active_count($sid)
+	{
+		$this->db->select('count(home_page_status) as activecount')->from('deals_ofthe_day');
+		$this->db->where('seller_id',$sid);
+		$this->db->where('home_page_status',1);
+		return $this->db->get()->result_array();
+	}
+	
+	public function get_dealsoftheday_details_list($sid){
+		$this->db->select('deals_ofthe_day.*,products.item_name,category.category_name,sellers.seller_rand_id')->from('deals_ofthe_day');
+		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = deals_ofthe_day.seller_id', 'left');
+		$this->db->join('category', 'category.category_id = deals_ofthe_day.category_id', 'left');
+		 $this->db->where('deals_ofthe_day.seller_id',$sid);
+		//$this->db->order_by('order_items.seller_id', 'ASC'); 
+		return $this->db->get()->result_array();
+	}
+	public function update_dealsoftheday_status($sid,$pid,$data)
+	{
+		$sql1="UPDATE deals_ofthe_day SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
+	
+	/*---*/
 	public function update_seasonsales_status($sid,$pid,$data)
 	{
 		$sql1="UPDATE season_sales SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
