@@ -1587,6 +1587,50 @@ public function servicerequestview(){
 		}
 		
 	}
+	
+	
+	
+	public function previewok(){
+		
+		$post=$this->input->post();
+		
+		$overrtopoffers=$this->inventory_model->get_topoffers_update_preview_ok();
+		foreach($overrtopoffers as $list){
+			$this->inventory_model->set_topoffers_update_preview_notok($list['top_offer_id'],0);
+		}
+		foreach($post['topoffers'] as $list){
+			$this->inventory_model->update_topoffers_preview_ok($list,1);
+		}
+		
+		$overrdeals_of_the_day=$this->inventory_model->get_deals_of_the_day_update_preview_ok();
+		foreach($overrdeals_of_the_day as $list){
+			$this->inventory_model->set_deals_of_the_day_update_preview_notok($list['deal_offer_id'],0);
+		}
+		foreach($post['deals_of_the_day'] as $list){
+			$this->inventory_model->update_deals_of_the_day_preview_ok($list,1);
+		}
+		
+		$overrseason_sales=$this->inventory_model->get_season_sales_update_preview_ok();
+		foreach($overrseason_sales as $list){
+			$this->inventory_model->set_season_sales_update_preview_notok($list['season_sales_id'],0);
+		}
+		foreach($post['season_sales'] as $list){
+			$this->inventory_model->update_season_sales_preview_ok($list,1);
+		}
+		
+		$overrbannerimage=$this->inventory_model->get_banner_update_preview_ok();
+		foreach($overrbannerimage as $list){
+			$this->inventory_model->set_banner_update_preview_notok($list['id'],0);
+		}
+		foreach($post['bannerimage'] as $list){
+			$this->inventory_model->update_banner_sales_preview_ok($list,1);
+		}
+		$this->session->set_flashdata('success','Successfully home page banner  and  items are added');
+		redirect('inventory/homepagepreview');
+
+		
+		//echo '<pre>';print_r($post);exit;
+	}
 	/* home page banner*/
 
 	 public function categorieslist(){

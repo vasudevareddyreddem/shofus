@@ -1,13 +1,27 @@
 
 <div class="content-wrapper" >
+
 <section class="content" style="padding-top:100px;">
-		<div class="container" >
-	
+<div class="container">
+	<?php if($this->session->flashdata('success')): ?>
+					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('success');?></div>	
+					<?php endif; ?>
 
 	<div class="banner_home">
-      
       <div id="myCarousel" class="carousel slide"> 
         <!-- Indicators -->
+		<form action="<?php echo base_url('inventory/previewok'); ?>" method="post">
+			<?php foreach($topoffers as $list){ ?>
+			<input type="hidden" name="topoffers[]" value="<?php echo $list['item_id']; ?>">
+			<?php } ?>
+			<?php foreach($deals_of_the_day as $list){ ?>
+			<input type="hidden" name="deals_of_the_day[]" value="<?php echo $list['item_id']; ?>">
+			<?php } ?>
+			<?php foreach($season_sales as $list){ ?>
+			<input type="hidden" name="season_sales[]" value="<?php echo $list['item_id']; ?>">
+			<?php } ?>
         <ol class="carousel-indicators">
          
 		  	  <?php  $i=0;foreach($homebanners as $list){ ?>
@@ -21,7 +35,9 @@
         </ol>
         <div class="carousel-inner">
          <?php  $k=0;foreach($homebanners as $list){ ?>
+		  	<input type="hidden" name="bannerimage[]" value="<?php echo $list['id']; ?>">
 		  <?php if($k==0){ ?>
+		 
 		  <div class="item active"><img src="<?php echo base_url('uploads/banners/'.$list['file_name']);?>" class="img-responsive">
             <div class="container">
               <div class="carousel-caption"> </div>
@@ -58,9 +74,11 @@
               <div class="slider-items slider-width-col4 products-grid">
                
 				 <!-- start Item --> 
-				<?php  foreach($topoffers as $list){ ?>
+				<?php foreach($topoffers as $list){ ?>
                 <div class="item">
                   <div class="pro-img">
+				 	
+
 				  <?php if($list['item_image']!=''){ ?>
 				  	<img src="<?php echo base_url('assets/home/images/'.$list['item_image']); ?>" alt="">
 				  <?php }else{ ?>
@@ -93,7 +111,8 @@
 			
 
             <!-- Item -->
-			  <?php  foreach($deals_of_the_day as $list){ ?> 
+			  <?php  foreach($deals_of_the_day as $list){ ?>
+			  
              <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
@@ -160,6 +179,8 @@
             <!-- Item -->
 			  <?php  foreach($season_sales as $list){ ?> 
              <div class="item">
+			  <input type="hidden" name="seasonsales[]" id="seasonsales[]"  value="<?php echo $list['item_id']; ?>">
+
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
@@ -215,6 +236,8 @@
   </div>
   </div>
    </section>
+   <button type="submit" class="box-title">preview ok</button>
+   </form>
   </div>
  
   
