@@ -39,7 +39,12 @@
   				<p>Image Height :500px,width:1000px;</p>
   			</div> -->
     		<div class="container" style="width:100%"> 
-    		   
+    		   <div> 
+    		   <?php foreach($banner_count as $count){ ?>
+
+    		   <?php echo $count['imagecount'];?>
+
+    		   	<?php }?></div>
     		<div class="well col-md-6 col-md-offset-3">
     		<a href="<?php echo base_url('seller/showups/homepagebanner');?> " class="pull-right btn btn-sm btn-primary">Back</a>
 			<form name="addbanner" id="addbanner" action="<?php echo base_url('seller/showups/save_banner'); ?>" method="post" enctype="multipart/form-data" >

@@ -48,6 +48,13 @@ class Showups_model extends MY_Model
 
   }
 
+  public function banner_limit()
+  {
+    $this->db->select('home_banner.*,count(home_banner.image_id) as imagecount')->from('home_banner');
+    $this->db->where('status',1);
+    return $this->db->get()->result();
+  }
+
   public function save_banner_image($data)
 {
 	$this->db->insert('home_banner',$data);

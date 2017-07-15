@@ -28,14 +28,16 @@ class Showups extends Admin_Controller {
 	}
 	public function addhomebanner()
 	{
-		$this->template->write_view('content', 'seller/showups/addhomebanner');
+		$data['banner_count'] = $this->showups_model->banner_limit();
+		//echo "<pre>";print_r($data);exit;
+		$this->template->write_view('content', 'seller/showups/addhomebanner',$data);
 		$this->template->render();
 	}
 
 	public function activehomebanner()
 	{
 		$data['seller_banner'] = $this->showups_model->seller_homebanners();
-		//echo "<pre>";print_r($data);exit;
+		//
 		$this->template->write_view('content', 'seller/showups/active_homebanner',$data);
 		$this->template->render();
 	}
