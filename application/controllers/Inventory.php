@@ -987,6 +987,7 @@ public function servicerequestview(){
 				$this->load->view('customer/inventry/sidebar');
 	   			$this->load->view('customer/inventry/home_preview',$data);
 	   			$this->load->view('customer/inventry/footer');
+	   			$this->load->view('customer/inventry/footerpriview');
 			}else
 			{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
