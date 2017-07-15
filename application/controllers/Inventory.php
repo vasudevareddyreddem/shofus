@@ -978,10 +978,9 @@ public function servicerequestview(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
-				$data['topoffers'] = $this->inventory_model->get_top_offers();
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
-	   			$this->load->view('customer/inventry/home_preview',$data);
+	   			$this->load->view('customer/inventry/home_preview');
 	   			$this->load->view('customer/inventry/footer');
 			}else
 			{
