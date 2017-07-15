@@ -24,6 +24,8 @@
 				<div class="pull-right"><a href="<?php echo base_url('inventory/topoffers'); ?>" type="button" class="btn btn-warning btn-xs">Back</a></div>
 				<?php }else if($this->uri->segment(4)=='deals') { ?> 
 				<div class="pull-right"><a href="<?php echo base_url('inventory/dealsoftheday'); ?>" type="button" class="btn btn-warning btn-xs">Back</a></div>
+				<?php }else if($this->uri->segment(4)=='banner') { ?> 
+				<div class="pull-right"><a href="<?php echo base_url('inventory/homepagebanner'); ?>" type="button" class="btn btn-warning btn-xs">Back</a></div>
 				<?php }else{ ?>
 			 <div class="pull-right"><a href="<?php echo base_url('inventory/sellerlist'); ?>" type="button" class="btn btn-warning btn-xs">Back</a></div>
 

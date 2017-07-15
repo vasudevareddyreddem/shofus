@@ -386,6 +386,18 @@ class Inventory_model extends MY_Model
 		$this->db->where('home_page_status',1);
 		return $this->db->get()->result_array();
 	}
+	public function get_homepage_banner_details_list($sid){
+		$this->db->select('home_banner.*,sellers.seller_rand_id')->from('home_banner');
+		$this->db->join('sellers', 'sellers.seller_id = home_banner.seller_id', 'left');
+		 $this->db->where('home_banner.seller_id',$sid);
+		//$this->db->order_by('order_items.seller_id', 'ASC'); 
+		return $this->db->get()->result_array();
+	}
+	public function update_banner_status($sid,$imageid,$data)
+	{
+		$sql1="UPDATE home_banner SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND id='".$imageid."'";
+		return $this->db->query($sql1);
+	}
 	function banner_status_update($id,$sid,$status)
 	{
 		$sql1="UPDATE home_banner SET status ='".$status."'WHERE id  = '".$id."' AND 

@@ -1428,40 +1428,18 @@ public function servicerequestview(){
 		}
 		
 	}
-	public function banner_active(){
-
-
+	public function sellerhomepagebannerdetails()
+	{
 		if($this->session->userdata('userdetails'))
 	 	{		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
-				$code = $_GET['id'];
-		$arr = explode('__',$code);
-		$id = base64_decode($arr[0]);		
-		//echo "<pre>";print_r($id);exit;
-		$sid = base64_decode($arr[1]);
-		$status = base64_decode($arr[2]);
-		if($status==1){
-		$status=0;
-		}else{
-		$status=1;
-		}
-		$bannerstatus= $this->inventory_model->banner_status_update($id,$sid,$status);
-		//echo "<pre>";print_r($bannerstatus);exit;
-		if(count($bannerstatus)>0)
-				{
-					if($status==1){
-						$this->session->set_flashdata('active',"Banner successfully Activate");
-					}else{
-						$this->session->set_flashdata('deactive',"Banner successfully deactivated.");
-					}
-					redirect('inventory/homepagebanner');
-				}else{
-					$this->session->set_flashdata('errormsg',"Opps !.!!");
-					redirect('inventory/homepagebanner');
-				}
-				
+				$data['homepage_banner_details'] = $this->inventory_model->get_homepage_banner_details_list(base64_decode($this->uri->segment(3)));
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('customer/inventry/sidebar');
+	   			$this->load->view('customer/inventry/homepage_banner_details',$data);
+	   			$this->load->view('customer/inventry/footer');
 			}else
 			{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -1472,7 +1450,92 @@ public function servicerequestview(){
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 		}
-		
+	   	
+	}
+		public function home_page_banner_status()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$seller_id = base64_decode($this->uri->segment(3));
+				$imageid = base64_decode($this->uri->segment(4));
+				$status = base64_decode($this->uri->segment(5));
+				//echo "<pre>";print_r($offerid);exit;
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				$updatestatus=$this->inventory_model->update_banner_status($seller_id,$imageid,$status);
+				//echo $this->db->last_query();exit;
+				if(count($updatestatus)>0)
+				{
+					if($status==1)
+					{
+						$this->session->set_flashdata('success'," Image added home page banner successful");
+					}else{
+						$this->session->set_flashdata('success',"Image removed home page banner  successful");
+					}
+					redirect('inventory/sellerhomepagebannerdetails'.'/'.base64_encode($seller_id));
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
+	}
+	public function overaall_home_page_banner_status()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$seller_id = base64_decode($this->uri->segment(3));
+				$status = base64_decode($this->uri->segment(4));
+				$overall_tems = $this->inventory_model->get_homepage_banner_details_list(base64_decode($this->uri->segment(3)));
+				//	echo "<pre>";print_r($overall_tems);exit;
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				
+				foreach ($overall_tems as $items){
+				
+				$updatestatus=$this->inventory_model->update_banner_status($seller_id,$items['id'],$status);
+				//echo $this->db->last_query();exit;
+				}
+				//echo $this->db->last_query();exit;
+				if(count($updatestatus)>0)
+				{
+					if($status==1)
+					{
+						$this->session->set_flashdata('success'," Images added home page banner successful");
+					}else{
+						$this->session->set_flashdata('success',"Images removed home page banner  successful");
+					}
+					redirect('inventory/homepagebanner');
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
 	}
 
 	public function banner_delete(){
