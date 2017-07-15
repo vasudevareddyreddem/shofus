@@ -47,7 +47,7 @@
 			  </div>
             </div>
 			<div class="clearfix"></div>
-			  <div class="text-center"><button class="btn btn-primary"> See More</button></div>
+			  <div class="text-center"><button class="btn btn-primary"><a href="<?php echo base_url('customer/seemore'); ?>"> See Morexxx</a></button></div>
               
           </div>
         </div>

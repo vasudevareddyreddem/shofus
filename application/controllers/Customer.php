@@ -710,17 +710,7 @@ class Customer extends Front_Controller
 
 
 
-	/* Inventory managent*/
-
-	public function inve(){
-	  //$this->load->view('customer/inventry/header');
-	  //$this->load->view('customer/inventry/sidebar');
-	  $this->load->view('customer/inventry/login');
-	  //$this->load->view('customer/inventry/footer');
 	
-  }
- 
-
 	public function password()
 	{
 		$data['cust_id'] = base64_decode($this->uri->segment(4));
@@ -784,57 +774,9 @@ class Customer extends Front_Controller
 	
 	
 
- public function inve_changepassword()
-	{		
-		$this->load->view('customer/inventry/header');
-			$this->load->view('customer/inventry/changepassword');
-		$this->load->view('customer/inventry/footer');
-	  	$this->load->view('customer/inventry/sidebar');
-	  
-	  
-		
-	}
-	public function inve_changepasswordpost(){
-		if($this->session->userdata('userdetails'))
-		{
-		$customerdetail=$this->session->userdata('userdetails');
-		$changepasword = $this->input->post();
-		//echo '<pre>';print_r($changepasword);
-		$currentpostpassword=md5($changepasword['oldpassword']);
-		$newpassword=md5($changepasword['newpassword']);
-		$conpassword=md5($changepasword['confirmpassword']);
-		$this->load->model('users_model');
-			$userdetails = $this->customer_model->getcustomer_oldpassword($customerdetail['customer_id'],$customerdetail['role_id']);
-			//print_r($userdetails);exit;			
-			$currentpasswords=$userdetails['cust_password'];
-			//print_r($currentpasswords);exit;
-			if($currentpostpassword == $currentpasswords ){
-				if($newpassword == $conpassword){
-						$this->load->model('users_model');
-						$passwordchange = $this->customer_model->set_password($customerdetail['customer_id'],$customerdetail['role_id'],$conpassword);
-						//echo $this->db->last_query();exit;
-						if (count($passwordchange)>0)
-							{
-								$this->session->set_flashdata('updatpassword',"Password successfully changed!");
-								redirect('customer/inve_changepassword');
-							}
-							else
-							{
-								$this->session->set_flashdata('passworderror',"Something went wrong in change password process!");
-								redirect('customer/inve_changepassword');
-							}
-				}else{
-					$this->session->set_flashdata('passworderror',"New password and confirm password was not matching");
-					redirect('customer/inve_changepassword');
-				}
-			}else{
-					$this->session->set_flashdata('passworderror',"Your Old password is incorrect. Please try again.");
-					redirect('customer/inve_changepassword');
-				}
-		}else{
-		 $this->session->set_flashdata('login_error','Please login to continue');
-		 redirect('customer/inve');
-		}
+	public function seemore(){
+		$this->template->write_view('content', 'customer/seemore');
+		$this->template->render();
 	}
 
 

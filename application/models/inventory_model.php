@@ -271,6 +271,11 @@ class Inventory_model extends MY_Model
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		return $this->db->get()->result_array();
 	}
+	public function update_topoffers_status_ok($sid,$pid,$data,$data1)
+	{
+		$sql1="UPDATE top_offers SET home_page_status ='".$data."',preview_ok ='".$data1."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
 	public function update_topoffers_status($sid,$pid,$data)
 	{
 		$sql1="UPDATE top_offers SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
@@ -352,6 +357,11 @@ class Inventory_model extends MY_Model
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		return $this->db->get()->result_array();
 	}
+	public function update_dealsoftheday_status_ok($sid,$pid,$data,$data1)
+	{
+		$sql1="UPDATE deals_ofthe_day SET home_page_status ='".$data."', preview_ok ='".$data1."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
 	public function update_dealsoftheday_status($sid,$pid,$data)
 	{
 		$sql1="UPDATE deals_ofthe_day SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
@@ -393,9 +403,15 @@ class Inventory_model extends MY_Model
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		return $this->db->get()->result_array();
 	}
+	
 	public function update_banner_status($sid,$imageid,$data)
 	{
 		$sql1="UPDATE home_banner SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND id='".$imageid."'";
+		return $this->db->query($sql1);
+	}
+	public function update_banner_status_ok($sid,$imageid,$data,$data1)
+	{
+		$sql1="UPDATE home_banner SET home_page_status ='".$data."', preview_ok ='".$data1."' WHERE seller_id = '".$sid."' AND id='".$imageid."'";
 		return $this->db->query($sql1);
 	}
 	function banner_status_update($id,$sid,$status)
@@ -412,12 +428,121 @@ class Inventory_model extends MY_Model
 		return $this->db->query($sql1);
 	}
 	/* home page banner purpose*/
+	/* home page preview purpose*/
+	public function get_top_offers_preview()
+	{
+		$this->db->select('top_offers.*,products.item_name,products.item_image,')->from('top_offers');
+		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
+        $this->db->where('home_page_status',1);
+		$this->db->order_by('top_offers.offer_percentage desc');
+		return $this->db->get()->result_array();
+
+	}
+	public function get_deals_of_the_day_preview()
+	{
+		$this->db->select('deals_ofthe_day.*,products.item_name,products.item_image,')->from('deals_ofthe_day');
+		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
+        $this->db->where('home_page_status',1);
+		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
+		return $this->db->get()->result_array();
+
+	}
+	public function get_season_sales_preview()
+	{
+		$this->db->select('season_sales.*,products.item_name,products.item_image,')->from('season_sales');
+		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
+		$this->db->where('home_page_status',1);
+		$this->db->order_by('season_sales.offer_percentage desc');
+		return $this->db->get()->result_array();
+
+	}
+	public function get_banner_preview_display()
+	{
+		$this->db->select('home_banner.*')->from('home_banner');
+		$this->db->where('home_page_status',1);
+		$this->db->order_by('home_banner.created_at desc');
+		return $this->db->get()->result_array();
+
+	}
+	/* home page preview purpose*/
 	
 	
+	public function update_seasonsales_status_ok($sid,$pid,$data,$data1)
+	{
+		$sql1="UPDATE season_sales SET home_page_status ='".$data."',preview_ok ='".$data1."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
 	public function update_seasonsales_status($sid,$pid,$data)
 	{
 		$sql1="UPDATE season_sales SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
 		return $this->db->query($sql1);
 	}
+	/* preview ok */
+	public function get_topoffers_update_preview_ok()
+	{
+		$this->db->select('*')->from('top_offers');
+		$this->db->where('home_page_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function set_topoffers_update_preview_notok($pid,$data)
+	{
+		$sql1="UPDATE top_offers SET preview_ok ='".$data."' WHERE top_offer_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
+	public function update_topoffers_preview_ok($pid,$data)
+	{
+		$sql1="UPDATE top_offers SET preview_ok ='".$data."' WHERE item_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
+	
+	public function get_deals_of_the_day_update_preview_ok()
+	{
+		$this->db->select('*')->from('deals_ofthe_day');
+		$this->db->where('home_page_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function set_deals_of_the_day_update_preview_notok($pid,$data)
+	{
+		$sql1="UPDATE deals_ofthe_day SET preview_ok ='".$data."' WHERE deal_offer_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
+	public function update_deals_of_the_day_preview_ok($pid,$data)
+	{
+		$sql1="UPDATE deals_ofthe_day SET preview_ok ='".$data."' WHERE item_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
+	public function get_season_sales_update_preview_ok()
+	{
+		$this->db->select('*')->from('season_sales');
+		$this->db->where('home_page_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function set_season_sales_update_preview_notok($pid,$data)
+	{
+		$sql1="UPDATE season_sales SET preview_ok ='".$data."' WHERE season_sales_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
+	public function update_season_sales_preview_ok($pid,$data)
+	{
+		$sql1="UPDATE season_sales SET preview_ok ='".$data."' WHERE item_id='".$pid."'";
+		return $this->db->query($sql1);
+	}
+	public function get_banner_update_preview_ok()
+	{
+		$this->db->select('*')->from('home_banner');
+		$this->db->where('home_page_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function set_banner_update_preview_notok($imageid,$data)
+	{
+		$sql1="UPDATE home_banner SET preview_ok ='".$data."' WHERE id='".$imageid."'";
+		return $this->db->query($sql1);
+	}
+	public function update_banner_sales_preview_ok($imageid,$data)
+	{
+		$sql1="UPDATE home_banner SET preview_ok ='".$data."' WHERE id='".$imageid."'";
+		return $this->db->query($sql1);
+	}
+	
 }
 ?>
