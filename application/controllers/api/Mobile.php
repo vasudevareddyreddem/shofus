@@ -143,7 +143,7 @@ class Mobile extends REST_Controller {
 					$verify=$this->mobile_model->verifing_mobile($this->input->get('seller_id'),1);
 					if(count($verify)>0){
 						
-						$message = array('status'=>1,'seller_id'=>$otp_verifing['seller_id'],'message'=>'Your mobile number is verified!');
+						$message = array('status'=>1,'seller_id'=>$this->input->get('seller_id'),'message'=>'Your mobile number is verified!');
 						$this->response($message, REST_Controller::HTTP_OK);
 					}
 			}else{
