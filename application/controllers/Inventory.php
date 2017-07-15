@@ -946,122 +946,7 @@ public function servicerequestview(){
 	}
 
 
-	public function homepagebanner()
-	{
-		if($this->session->userdata('userdetails'))
-	 	{		
-			$logindetail=$this->session->userdata('userdetails');
-			if($logindetail['role_id']==5)
-			{
-				$data['home_banner'] = $this->inventory_model->get_seller_banners();
-				//echo "<pre>";print_r($data);exit;
-			   	$this->load->view('customer/inventry/sidebar');
-			   	$this->load->view('customer/inventry/home_page_banner',$data);
-			   	$this->load->view('customer/inventry/footer');
-			}else
-			{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
-			}
-	 	}else
-	 	{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('admin/login	');
-		}
-		
-	}
-	public function banner_active(){
-
-
-		if($this->session->userdata('userdetails'))
-	 	{		
-			$logindetail=$this->session->userdata('userdetails');
-			if($logindetail['role_id']==5)
-			{
-				$code = $_GET['id'];
-		$arr = explode('__',$code);
-		$id = base64_decode($arr[0]);		
-		//echo "<pre>";print_r($id);exit;
-		$sid = base64_decode($arr[1]);
-		$status = base64_decode($arr[2]);
-		if($status==1){
-		$status=0;
-		}else{
-		$status=1;
-		}
-		$bannerstatus= $this->inventory_model->banner_status_update($id,$sid,$status);
-		//echo "<pre>";print_r($bannerstatus);exit;
-		if(count($bannerstatus)>0)
-				{
-					if($status==1){
-						$this->session->set_flashdata('active',"Banner successfully Activate");
-					}else{
-						$this->session->set_flashdata('deactive',"Banner successfully deactivated.");
-					}
-					redirect('inventory/homepagebanner');
-				}else{
-					$this->session->set_flashdata('errormsg',"Opps !.!!");
-					redirect('inventory/homepagebanner');
-				}
-				
-			}else
-			{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
-			}
-	 	}else
-	 	{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('admin/login	');
-		}
-		
-	}
-
-	public function banner_delete(){
-		if($this->session->userdata('userdetails'))
-	 	{		
-			$logindetail=$this->session->userdata('userdetails');
-			if($logindetail['role_id']==5)
-			{
-				$code = $_GET['id'];
-		$arr = explode('__',$code);
-		$id = base64_decode($arr[0]);		
-		//echo "<pre>";print_r($id);exit;
-		$sid = base64_decode($arr[1]);
-		$status = base64_decode($arr[2]);
-		//echo "<pre>";print_r($status);exit;
-		if($status==0){
-			$bannerdelete= $this->inventory_model->delete_banner($id,$sid);			
-			//echo $this->db->last_query();exit;
-		}else{
-			$this->session->set_flashdata('errormsg',"This Banner Is Active Please Ask Admin!!");
-			redirect('inventory/homepagebanner');
-		}
-		if(count($bannerdelete)>0)
-			{
-				if($status==0){
-					$this->session->set_flashdata('active',"Banner successfully Delete");
-				}else{
-					$this->session->set_flashdata('deactive',"Banner Not deleted.");
-				}
-				redirect('inventory/homepagebanner');
-			}else{
-				$this->session->set_flashdata('errormsg',"Opps !.!!");
-				redirect('inventory/homepagebanner');
-			}
-				
-			}else
-			{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
-			}
-	 	}else
-	 	{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('admin/login	');
-		}
-		
-	}
+	
 	public function bannerpreview(){
 		if($this->session->userdata('userdetails'))
 	 	{		
@@ -1518,6 +1403,124 @@ public function servicerequestview(){
 	}
 	
 	/*----------------*/
+	/* home page banner*/
+	public function homepagebanner()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$data['home_banner'] = $this->inventory_model->get_seller_banners();
+				//echo "<pre>";print_r($data);exit;
+			   	$this->load->view('customer/inventry/sidebar');
+			   	$this->load->view('customer/inventry/home_page_banner',$data);
+			   	$this->load->view('customer/inventry/footer');
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+		
+	}
+	public function banner_active(){
+
+
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$code = $_GET['id'];
+		$arr = explode('__',$code);
+		$id = base64_decode($arr[0]);		
+		//echo "<pre>";print_r($id);exit;
+		$sid = base64_decode($arr[1]);
+		$status = base64_decode($arr[2]);
+		if($status==1){
+		$status=0;
+		}else{
+		$status=1;
+		}
+		$bannerstatus= $this->inventory_model->banner_status_update($id,$sid,$status);
+		//echo "<pre>";print_r($bannerstatus);exit;
+		if(count($bannerstatus)>0)
+				{
+					if($status==1){
+						$this->session->set_flashdata('active',"Banner successfully Activate");
+					}else{
+						$this->session->set_flashdata('deactive',"Banner successfully deactivated.");
+					}
+					redirect('inventory/homepagebanner');
+				}else{
+					$this->session->set_flashdata('errormsg',"Opps !.!!");
+					redirect('inventory/homepagebanner');
+				}
+				
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+		
+	}
+
+	public function banner_delete(){
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$code = $_GET['id'];
+		$arr = explode('__',$code);
+		$id = base64_decode($arr[0]);		
+		//echo "<pre>";print_r($id);exit;
+		$sid = base64_decode($arr[1]);
+		$status = base64_decode($arr[2]);
+		//echo "<pre>";print_r($status);exit;
+		if($status==0){
+			$bannerdelete= $this->inventory_model->delete_banner($id,$sid);			
+			//echo $this->db->last_query();exit;
+		}else{
+			$this->session->set_flashdata('errormsg',"This Banner Is Active Please Ask Admin!!");
+			redirect('inventory/homepagebanner');
+		}
+		if(count($bannerdelete)>0)
+			{
+				if($status==0){
+					$this->session->set_flashdata('active',"Banner successfully Delete");
+				}else{
+					$this->session->set_flashdata('deactive',"Banner Not deleted.");
+				}
+				redirect('inventory/homepagebanner');
+			}else{
+				$this->session->set_flashdata('errormsg',"Opps !.!!");
+				redirect('inventory/homepagebanner');
+			}
+				
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 	}else
+	 	{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		}
+		
+	}
+	/* home page banner*/
 
 	 public function categorieslist(){
   	

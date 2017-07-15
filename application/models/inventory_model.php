@@ -157,27 +157,6 @@ class Inventory_model extends MY_Model
 		return $this->db->get()->result();
 	}
 	
-
-	public function get_seller_banners()
-	{
-		$this->db->select('home_banner.*,sellers.seller_name,seller_rand_id')->from('home_banner');
-		$this->db->join('sellers','sellers.seller_id = home_banner.seller_id', 'left');	
-		return $this->db->get()->result_array();
-	}
-	function banner_status_update($id,$sid,$status)
-	{
-		$sql1="UPDATE home_banner SET status ='".$status."'WHERE id  = '".$id."' AND 
-		seller_id = '".$sid."'";
-		return $this->db->query($sql1);
-	}
-
-	public function delete_banner($id,$sid)
-	{
-		$sql1="DELETE FROM home_banner WHERE id  = '".$id."' AND 
-		seller_id = '".$sid."'";
-		return $this->db->query($sql1);
-	}
-
 	public function get_banner_preview()
 	{
 		$this->db->select('*')->from('home_banner');
@@ -380,6 +359,49 @@ class Inventory_model extends MY_Model
 	}
 	
 	/*---*/
+	/* home page banner purpose*/
+	
+	public function get_seller_banners(){
+	$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(home_banner.id) AS itemscount,')->from('home_banner');
+		$this->db->join('sellers', 'sellers.seller_id = home_banner.seller_id', 'left');
+		 $this->db->group_by('home_banner.seller_id');
+		 $this->db->where('sellers.status', 1);
+		//$this->db->order_by('order_items.seller_id', 'ASC'); 
+		$query=$this->db->get()->result_array();
+		 foreach ($query as $offers)
+        {
+      //echo "<pre>";print_r($offers);exit;
+			$return[$offers['seller_id']] = $offers;
+
+			$return[$offers['seller_id']]['count'] = $this->get_homepage_banner_active_count($offers['seller_id']);
+        
+		}
+		return $return;
+	}
+	
+	public function get_homepage_banner_active_count($sid)
+	{
+		$this->db->select('count(home_page_status) as activecount')->from('home_banner');
+		$this->db->where('seller_id',$sid);
+		$this->db->where('home_page_status',1);
+		return $this->db->get()->result_array();
+	}
+	function banner_status_update($id,$sid,$status)
+	{
+		$sql1="UPDATE home_banner SET status ='".$status."'WHERE id  = '".$id."' AND 
+		seller_id = '".$sid."'";
+		return $this->db->query($sql1);
+	}
+
+	public function delete_banner($id,$sid)
+	{
+		$sql1="DELETE FROM home_banner WHERE id  = '".$id."' AND 
+		seller_id = '".$sid."'";
+		return $this->db->query($sql1);
+	}
+	/* home page banner purpose*/
+	
+	
 	public function update_seasonsales_status($sid,$pid,$data)
 	{
 		$sql1="UPDATE season_sales SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
