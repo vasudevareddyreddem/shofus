@@ -1,36 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>::CART IN HOUR::</title>
-<link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico" >
-<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/font-awesome.min.css">
-<!--Style start here -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/style.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/animate.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/responsive.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl_002.css">
 
-<!--Style end here -->
-<!--for image zooming -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.simpleLens.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.simpleGallery.css">
-<!--for image zooming -->
-<!-- pop up plugins -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/default.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/component.css" />
-<script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
+<div class="content-wrapper" >
+<section class="content" style="padding-top:100px;">
+		<div class="container" >
+	
 
-<script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
-
-</head>
-
-<div class="banner_home">
+	<div class="banner_home">
       
       <div id="myCarousel" class="carousel slide"> 
         <!-- Indicators -->
@@ -457,29 +431,16 @@
       </div>
     </section>
   </div>
+  </div>
+   </section>
+  </div>
+ 
+  
+<!--home page product scroller start here --> 
 
 </html>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/common.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/owl.carousel.min.js"></script> 
 
 
-<script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
-<script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 
 
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
-</script>
- <script>
-				var elementPosition = $('#sidebar').offset();
 
-		$(window).scroll(function(){
-				if($(window).scrollTop() > elementPosition.top){
-					  $('#sidebar').css('position','fixed').css('top','125px');
-				} else {
-					$('#sidebar').css('position','static');
-				}    
-		});
-</script>
