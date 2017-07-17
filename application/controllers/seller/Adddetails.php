@@ -228,9 +228,9 @@ class Adddetails extends Seller_adddetails{
 			//echo '<pre>';print_r($lock_string);exit;
 			$locations_list = explode(";",$lock_string);
 			$location_array = array();
-			foreach($locations_list as $ll)
+			foreach($locations_list as $store_locations)
 			{
-			    $location_array[] = array('other_shops_location' =>$ll);
+			    $location_array[] = array('other_shops_location' =>$store_locations);
 			}
 		
 		//echo '<pre>';print_r($location_array);exit;
@@ -241,8 +241,8 @@ class Adddetails extends Seller_adddetails{
 			'area' => $post['areacode'],    
 			'pin_code' => $post['pincode'],    
 			'other_shops'  =>$post['other_shops'],
-			'other_shops_location'  =>$location_array,
-			'deliveryes'  =>$post['deliveryes'],
+			'other_shops_location'  =>$store_locations,
+			//'deliveryes'  =>$post['deliveryes'],
 			'weblink'  =>$post['weblink'],
 			'tin_vat'  =>$post['tin'],
 			'tinvatimage'  =>$tinimg,

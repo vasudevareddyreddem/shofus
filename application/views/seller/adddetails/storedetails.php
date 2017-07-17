@@ -359,11 +359,10 @@
 					<option value ="yes">Yes</option>
 					<option value ="No">No</option>		
 				</select>
-            <!-- <input  type="text"  name="other_shops" id="other_shops" value="<?php echo isset($sellerdata['other_shops'])?$sellerdata['other_shops']:''; ?>" class="form-control"  /> -->
           </div>
 		 <div class="form-group">
             <label class="control-label">Other Shop Locations</label>
-            <select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location"   multiple class="chosen-select" tabindex="8">
+            <select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
 				  <option value=""></option>
 				  <?php foreach($select_areas as $area){ ?>
                     <option value="<?php echo $area->location_id; ?>"><?php echo $area->location_name; ?></option>                  
@@ -722,6 +721,14 @@ $(document).ready(function() {
         $('.chosen-select').chosen();
         $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
       });
+      function removemsg(id){
+	if(id!=''){
+		$("#locationmsg").hide();
+		document.getElementById("bnt").disabled = false; 
+	}else{
+	$("#locationmsg").show();	
+	}
+}
     </script>
 		
 </html>

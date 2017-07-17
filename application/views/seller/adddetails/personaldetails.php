@@ -84,7 +84,8 @@
             <input maxlength="100" type="text"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($sellerdata['seller_aaccount_ifsc_code'])?$sellerdata['seller_aaccount_ifsc_code']:''; ?>" />
           </div>
              <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/storedetails'); ?>">Back</a>
-			<input id="new" type="submit" class="btn btn-primary " value="Submit">
+             <input id="skip" type="submit" class="btn btn-primary text-center" value="Skip" >
+			 <input id="new" type="submit" class="btn btn-primary pull-right " value="Submit">
               </form>
 			  <br>
 			  <div class="" style="margin-bottom:30px;">&nbsp;</div>
@@ -104,7 +105,7 @@
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function() {
     $('#personalidetails').bootstrapValidator({
        
@@ -152,5 +153,5 @@ $(document).ready(function() {
         }
     });
 });
-</script>
+</script> -->
 		
