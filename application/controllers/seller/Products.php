@@ -40,7 +40,7 @@ class Products extends Admin_Controller {
 		//$data['subcatname'] = $this->products_model->getsubcatname($subcat_id);
        //$data['subcatdata'] = $this->products_model->getsubcatdata($cat_id);
 	   $sid = $this->session->userdata('seller_id'); 
-		$data['sub_cat_data'] = $this->products_model->getcatdata($sid);
+		$data['sub_cat_data'] = $this->products_model->get_seller_catdata($sid);
 		$data['items'] = $this->products_model->auto_items();
 		//echo $this->db->last-query();exit;
 		//echo '<pre>';print_r($data);exit;
@@ -65,6 +65,7 @@ class Products extends Admin_Controller {
 		
 	}else{
 		echo '<option value="">Select Subcategory</option>';	
+			
 	}
 	
 	exit;	
@@ -83,126 +84,71 @@ class Products extends Admin_Controller {
 	exit;	
 	}	
 
-	
+
+
 		
 	public function insert()
  		{
 
-			if(isset($_POST)){
-			if(!empty($_FILES['picture_one']['name'])){
-				$config['upload_path'] = 'uploads/products/';
-				$config['allowed_types'] = 'jpg|jpeg|png|gif';
-				$config['file_name'] = $_FILES['picture_one']['name'];
-                //Load upload library and initialize configuration
-				$this->load->library('upload',$config);
-				$this->upload->initialize($config);
-				if($this->upload->do_upload('picture_one')){
-					$uploadData = $this->upload->data();
-					$picture_one = $uploadData['file_name'];
-				}else{
-			$this->prepare_flashmessage("Image format Invalid..", 1);
-				//return redirect('admin/fooditems');
-				echo "<script>window.location='".base_url()."seller/products/create';</script>";
-				}
-			}else{
-				$picture_one = '';
-			}
+		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
+		$post=$this->input->post();
+			$i=0;
+			foreach($_FILES['picture_three']['name'] as $file){
+				if(!empty($file))
+				{ 
 
-			//item_image_two
-			if(!empty($_FILES['picture_two']['name'])){
-				$config['upload_path'] = 'uploads/products/';
-				$config['allowed_types'] = 'jpg|jpeg|png|gif';
-				$config['file_name'] = $_FILES['picture_two']['name'];
-                //Load upload library and initialize configuration
-				$this->load->library('upload',$config);
-				$this->upload->initialize($config);
-				if($this->upload->do_upload('picture_two')){
-					$uploadData = $this->upload->data();
-					$picture_two = $uploadData['file_name'];
-				}else{
-			$this->prepare_flashmessage("Image format Invalid..", 1);
-				//return redirect('admin/fooditems');
-				echo "<script>window.location='".base_url()."seller/products/create';</script>";
-				}
-			}else{
-				$picture_two = '';
-			}
+				$newfile1 = str_replace(' ','_',$_FILES["picture_three"]["name"][$i]);
+				//$newfile1 =  explode(".",$_FILES["picture_three"]["name"][$i]);
+				$newfilename = round(microtime(true)).$newfile1;
 
-			//item_image_three
-			if(!empty($_FILES['picture_three']['name'])){
-				$config['upload_path'] = 'uploads/products/';
-				$config['allowed_types'] = 'jpg|jpeg|png|gif';
-				$config['file_name'] = $_FILES['picture_three']['name'];
-                //Load upload library and initialize configuration
-				$this->load->library('upload',$config);
-				$this->upload->initialize($config);
-				if($this->upload->do_upload('picture_three')){
-					$uploadData = $this->upload->data();
-					$picture_three = $uploadData['file_name'];
-				}else{
-			$this->prepare_flashmessage("Image format Invalid..", 1);
-				//return redirect('admin/fooditems');
-				echo "<script>window.location='".base_url()."seller/products/create';</script>";
+			
+					if(move_uploaded_file($_FILES["picture_three"]["tmp_name"][$i], "uploads/products/" . $newfilename))
+					{
+					$images[]=$newfilename;
+					}
 				}
-			}else{
-				$picture_three = '';
+			$i++;
 			}
-			//item_image_four
-			if(!empty($_FILES['picture_four']['name'])){
-				$config['upload_path'] = 'uploads/products/';
-				$config['allowed_types'] = 'jpg|jpeg|png|gif';
-				$config['file_name'] = $_FILES['picture_four']['name'];
-                //Load upload library and initialize configuration
-				$this->load->library('upload',$config);
-				$this->upload->initialize($config);
-				if($this->upload->do_upload('picture_four')){
-					$uploadData = $this->upload->data();
-					$picture_four = $uploadData['file_name'];
-				}else{
-			$this->prepare_flashmessage("Image format Invalid..", 1);
-				//return redirect('admin/fooditems');
-				echo "<script>window.location='".base_url()."seller/products/create';</script>";
-				}
-			}else{
-				$picture_four = '';
-			}
-		}
+			
+	
+		//echo '<pre>';print_r($images);exit;
 		
-		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));
-		//echo '<pre>';print_r($seller_location);exit;
+		
 		$data=array(
 
             'category_id' => $this->input->post('category_id'),			
 			'subcategory_id' => $this->input->post('subcategory_id'),
 			'subitem_id' => $this->input->post('subitem_id'),
             'seller_id' => $this->session->userdata('seller_id'),             
+			'item_sub_name' => $this->input->post('sub_item_name'),
 			'item_name' => $this->input->post('item_name'),
 			'item_code' => $this->input->post('item_code'),
 			'item_quantity' => $this->input->post('item_quantity'),
 			'item_status' => $this->input->post('item_status'),
 			'item_description' => $this->input->post('item_description'),
 			'item_cost' => $this->input->post('item_cost'),
-			'item_image'=>$picture_one,
-			'item_image1'=>$picture_two,
-			'item_image2'=>$picture_three,
-			'item_image3'=>$picture_four,
+			'item_image'=>isset($images[0])?$images[0]:'',
+			'item_image1'=>isset($images[1])?$images[1]:'',
+			'item_image2'=>isset($images[2])?$images[2]:'',
+			'item_image3'=>isset($images[3])?$images[3]:'',
+			'item_image4'=>isset($images[4])?$images[4]:'',
+			'item_image5'=>isset($images[5])?$images[5]:'',
+			'item_image6'=>isset($images[6])?$images[6]:'',
+			'item_image7'=>isset($images[7])?$images[7]:'',
+			'item_image8'=>isset($images[8])?$images[8]:'',
+			'item_image9'=>isset($images[9])?$images[9]:'',
+			'item_image10'=>isset($images[10])?$images[10]:'',
+			'item_image11'=>isset($images[11])?$images[11]:'',
 			'seller_location_area'=>$seller_location['area'],
 
 			);
+			//echo '<pre>';print_r($data);exit;
 
 			$res=$this->products_model->insert($data);
-
 			if($res)
-
 			{
-
-               //$this->prepare_flashmessage("Successfully Inserted..", 0);
-               $this->session->set_flashdata('addsuccess',"Item Successfully added..", 0);
-
-				//return redirect('admin/fooditems');
-
-				echo "<script>window.location='".base_url()."seller/products/create';</script>";
-
+				$this->session->set_flashdata('addsuccess',"Item Successfully added..", 0);
+				redirect('seller/products/create');
 			}
 			else
 			{
@@ -390,11 +336,13 @@ public function returns()
 		$this->template->render();
 }
 public function uploadproducts(){
-	echo '<pre>';print_r($_FILES);
+	
+	$post=$this->input->post();
+	echo '<pre>';print_r($post);
 		
 	if((!empty($_FILES["categoryes"])) && ($_FILES['categoryes']['error'] == 0)) {
 				
-				$limitSize	= 100000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
+				$limitSize	= 1000000000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
 				$fileName	= basename($_FILES['categoryes']['name']);
 				$fileSize	= $_FILES["categoryes"]["size"];
 				$fileExt	= substr($fileName, strrpos($fileName, '.') + 1);
@@ -411,9 +359,44 @@ public function uploadproducts(){
 						$cnt=$xlsx->sheetsCount()-1;
 						$arry=$xlsx->rows($j);
 						unset($arry[0]);
-						unset($arry[1]);
 					
 						echo "<pre>";print_r($arry);
+						foreach($arry as $key=>$fields)
+							{
+							if(isset($fields[1]) && $fields[1]!='' && $fields[2]!='' && $fields[3]!='' && $fields[4]!='' && $fields[6]!='' && $fields[7]!=''){
+							
+								$totalfields[] = $fields;	
+								
+								if(empty($fields[0])) {
+									$data['errors'][]="Item is required. Row Id is :  ".$key.'<br>';
+									$error=1;
+								}else if($fields[0]!=''){
+									$regex ="/^[a-zA-Z0-9.-_ $&@!,. ]+$/"; 
+									if(!preg_match( $regex, $fields[0]))
+									{
+									$data['errors'][]="Item  can only consist of alphanumaric, space and dot. Row Id is :   ".$key.'<br>';
+									$error=1;
+									}
+								}
+								if(empty($fields[1])) {
+									$data['errors'][]="Iten Name is required. Row Id is :  ".$key.'<br>';
+									$error=1;
+								}else if($fields[1]!=''){
+									$regex ="/^[a-zA-Z0-9. ]+$/"; 
+									if(!preg_match( $regex, $fields[1]))
+									{
+									$data['errors'][]="Iten Name can only consist of alphanumaric, space and dot. Row Id is :  ".$key.'<br>';
+									$error=1;
+									}
+								}
+							
+							$image_link = $list[8];//Direct link to image
+							$split_image = pathinfo($image_link);
+							$imagename=$split_image['filename'].".".$split_image['extension'];
+						
+						}
+							}
+						
 						
 					}
 					
