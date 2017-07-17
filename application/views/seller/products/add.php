@@ -42,11 +42,24 @@
     <section class="wrapper">
    
      <div class="row">
-	   <?php if($this->session->flashdata('addsuccess')): ?>
+	 <?php if($this->session->flashdata('addcus')): ?>
 			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('addsuccess');?></div>
+                    </button><?php echo $this->session->flashdata('addcus');?></div>
 			<?php endif; ?>
+	 <?php //echo '<pre>';print_r($this->session->flashdata('addsuccess'));exit; ?>
+	  
+				   <?php if($this->session->flashdata('addsuccess')){ ?>
+
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+					 <?php foreach($this->session->flashdata('addsuccess') as $error){?>
+					
+					<?php echo $error.'<br/>'; ?>
+					
+					
+					<?php } ?></div><?php } ?>
 	<div class="col-xs-12 col-sm-12 col-md-12 m-b-20">
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs">
