@@ -134,6 +134,7 @@
                 <input   class="form-control" type="text" maxlength="10" id="seller_mobile" name="seller_mobile" autofocus>
                 <input type="checkbox" name="check_tac" id="check_tac" >
               <a href="<?php echo base_url('seller/login/termsandconditions'); ?>">Terms and Conditions</a>
+              <input   class="form-control" type="text" maxlength="6" id="any_ref" name="any_ref">
 			  </div>
               <div class="clearfix"></div>
               <input type="submit" class="btn btn-primary  btn-block btn-sm mar_t10" name="register_do" id="register_do" value="Register">
@@ -659,6 +660,9 @@ $(document).ready(function(){
     var register;
     register = $("#seller_mobile").val();
     var tac=$('input[name="check_tac"]:checked').val();
+    var any_refer;
+    any_refer = $('#any_ref').val();
+    //alert(any_refer);
     //var tac = $("#seller_mobile").val();
     //alert(tac);
     var phone =  /^(?=.*?[1-9])[0-9()-+]+$/;
@@ -688,7 +692,7 @@ return false;
 					$.ajax({
 						type: "POST",
 						   url: '<?php echo base_url(); ?>seller/login/insert',
-							data: {seller_mobile:register},
+							data: {seller_mobile:register,any_ref:any_refer},
 						success:function(data)
 						{
 						  //alert(data);

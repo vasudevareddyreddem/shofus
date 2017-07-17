@@ -136,6 +136,11 @@
                             <i class="fa fa-envelope-open-o"></i><span>seller support</span>
                         </a>                        
                     </li>
+                    <li class="treeview">
+                        <a href="<?php echo base_url('seller/services/linkaccout');?>">
+                            <i class="fa fa-credit-card"></i><span>Link your account</span>
+                        </a>                        
+                    </li>
                            
             </ul>
         </div> <!-- /.sidebar -->

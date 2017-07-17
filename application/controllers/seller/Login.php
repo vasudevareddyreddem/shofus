@@ -81,7 +81,8 @@ class Login extends CI_Controller {
     }
 
 public function insert() {
-
+	$post = $this->input->post();
+	//echo "<pre>";print_r($post);exit;
 	//echo "hi"; exit;
 	$six_digit_random_number = mt_rand(100000, 999999);
 	$seller = 'SEL';
@@ -92,11 +93,13 @@ public function insert() {
   		'seller_rand_id' => $seller.''.$seller_rand_id,
   		'password_status' => $password_status,
   	  	'seller_password' => md5($six_digit_random_number),
-  	  	'seller_mobile' => $this->input->post('seller_mobile'),
+  	  	'seller_mobile' => $post['seller_mobile'],
+  	  	'any_refer'=>$post['any_ref'],
    	    'created_at'  => date('Y-m-d H:i:s'),
 		'updated_at'  => date('Y-m-d H:i:s')
 
   	  	);
+  //echo "<pre>";print_r($data);exit;
    if(($this->login_model->checksellerEmail($this->input->post('seller_email'),$this->input->post('seller_mobile')))==0)
    {
 	$res=$this->login_model->insertseller($data);

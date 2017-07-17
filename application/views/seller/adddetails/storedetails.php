@@ -663,6 +663,7 @@ $(document).ready(function() {
 			},
 			weblink: {
                validators: {
+
 			
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
@@ -673,6 +674,9 @@ $(document).ready(function() {
             },
 			tin: {
                validators: {
+                notEmpty: {
+            message: 'Please Upload GSTIN'
+          },
 				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
@@ -683,6 +687,9 @@ $(document).ready(function() {
             },
 			tan: {
                validators: {
+                notEmpty: {
+            message: 'Please Upload TAN'
+          },
 				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
@@ -693,6 +700,9 @@ $(document).ready(function() {
             },
 			cst: {
                validators: {
+                notEmpty: {
+            message: 'Please Upload CIN'
+          },
 				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
@@ -703,6 +713,10 @@ $(document).ready(function() {
             },
 			gstin: {
                validators: {
+                 notEmpty: {
+            message: 'Please Upload Signature'
+          },
+        
 				
 				regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
