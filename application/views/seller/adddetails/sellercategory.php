@@ -415,10 +415,13 @@ $(document).ready(function(){
   $(document).ready(function(){
       var i=1;
      $("#add_row").click(function(){
+<<<<<<< HEAD
       $('#delshow').css("display", "block");
       $('#addr'+i).html("<td><input  name='caregoryname[]' id='uff' type='text' class='form-control input-md'></td>");
         if(i=2){
           $('#delshow').show();
+=======
+>>>>>>> 9b11cd27c9e75bd029e50222e52ec356c97e60cf
       $('#addr'+i).html("<td><input  name='caregoryname[]' typeSelect Some Options='text' class='form-control input-md'></td>");
 
         }
