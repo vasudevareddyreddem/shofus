@@ -59,7 +59,7 @@
 					  </tr> 
 					  <tr>
 						<th >Status</th>
-						<td><?php if($seller_details['status']==1){ echo "Active";}else{echo "Dective";} ?></td>
+						<td><?php if($seller_details['status']==1){ echo "Active";}else{echo "Deactive";} ?></td>
 						
 					  </tr>
 					

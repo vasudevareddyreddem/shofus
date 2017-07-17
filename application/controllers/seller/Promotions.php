@@ -167,7 +167,7 @@ public function addtopoffers()
 		$messages=array('msg'=>$status);
 		echo json_encode($messages);
 			
-	//redirect('showups/addseasonsale');
+	//redirect('showups/topoffers');
 }
 public function dealsoftheday()
 	{
@@ -179,6 +179,7 @@ public function dealsoftheday()
 		}
 		foreach (array_unique($int) as $cat_ida) {
 		$itemcheck=$this->Promotions_model->dealsoftheday_item_already_exits($cat_ida);
+		
 			/* same item add again */
 			if(($itemcheck['seller_id'] == $this->session->userdata('seller_id')) && ($itemcheck['expairdate'] >= date('Y-m-d')) ){
 				$status=3;

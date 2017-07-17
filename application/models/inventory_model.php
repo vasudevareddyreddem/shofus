@@ -372,7 +372,7 @@ class Inventory_model extends MY_Model
 	/* home page banner purpose*/
 	
 	public function get_seller_banners(){
-	$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(home_banner.id) AS itemscount,')->from('home_banner');
+	$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(home_banner.image_id) AS itemscount,')->from('home_banner');
 		$this->db->join('sellers', 'sellers.seller_id = home_banner.seller_id', 'left');
 		 $this->db->group_by('home_banner.seller_id');
 		 $this->db->where('sellers.status', 1);

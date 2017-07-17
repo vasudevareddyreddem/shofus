@@ -2,11 +2,11 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery-ui.js"></script>
 <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
-<!-- <style>
+ <style>
 	
 	.preview_box{clear: both; padding: 5px; margin-top: 10px; text-align: center;}
-	.preview_box img{width: 1000px; height: 500px;}
-</style> -->
+	.preview_box img{width: 900px; height: 500px;}
+</style> 
 <div class="content-wrapper mar_t_con" >
 	<section class="content-header">
 		<div class="header-icon">
@@ -24,7 +24,7 @@
 	</section>
   	<section class="content ">
 <div class="faq_main">
-<?php if($this->session->flashdata('active')): ?>
+		<?php if($this->session->flashdata('active')): ?>
 			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 			</button><?php echo $this->session->flashdata('active');?></div>	
@@ -39,13 +39,20 @@
   				<p>Image Height :500px,width:1000px;</p>
   			</div> -->
     		<div class="container" style="width:100%"> 
-    		   <div> 
-    		   <?php foreach($banner_count as $count){ ?>
-
-    		   <?php echo $count['imagecount'];?>
-
-    		   	<?php }?></div>
-    		<div class="well col-md-6 col-md-offset-3">
+    		<?php $total = 6; ?>
+    		<?php foreach($banner_count as $count){ ?>
+    			<?php if($total - $count['imagecount']) { ?>
+    			<button class="btn btn-info pull-right" type="button">
+  				Remaining <span class="badge"><?php echo $total - $count['imagecount'];?></span>
+  				</button>
+  				<?php } else{ ?>
+  				<button class="btn btn-danger pull-right" type="button">
+  				<?php echo date('Y-m-d')." Home Banners Over!"; ?>
+  				</button>
+  				<?php } ?>
+			
+			<?php }?>
+    		<div class="well col-md-12">
     		<a href="<?php echo base_url('seller/showups/homepagebanner');?> " class="pull-right btn btn-sm btn-primary">Back</a>
 			<form name="addbanner" id="addbanner" action="<?php echo base_url('seller/showups/save_banner'); ?>" method="post" enctype="multipart/form-data" >
 			 	<div class="form-group nopaddingRight col-md-6 san-lg">
@@ -61,7 +68,7 @@
                 <div class="clearfix"></div>
 				<div style="margin-top: 20px; margin-left: 15px;">				
                 <button type="submit" class="btn btn-primary pull-right" >Submit</button>
-                <button type="submit" class="btn btn-danger pull-right" onclick="window.location='<?php echo base_url(); ?>seller/dashboard';return false;">Cancel</button>
+                <button type="submit" class="btn btn-danger pull-right" onclick="window.location='<?php echo base_url(); ?>seller/showups/homepagebanner';return false;">Cancel</button>
                 
 				</div>
             </form>

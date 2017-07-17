@@ -54,9 +54,6 @@ tfoot input {
   	
    <?php if(!empty($catitemdata))  { ?>
     <div class="container" style="width:100%">
-	
-      <!--<h1 class="head_title">My Listings</h1>-->
-	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
 	 <div><?php echo $this->session->flashdata('message');?></div>
       <div class="faq">
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
@@ -75,6 +72,7 @@ tfoot input {
 		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
 
 	<?php } ?>
+  <a href="<?php echo base_url('seller/showups/dealsofday');?> " class="pull-right btn btn-sm btn-primary">Back</a>
         <?php  foreach($catitemdata as $catitem_data )  {    ?>
         <!--<h1 onclick="document.getElementById('gry').style.display='block'">GETTING STARTED</h1>-->
         <div class="tab-content">
@@ -98,7 +96,7 @@ tfoot input {
             <tr>
                 <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>"><span class="btn btn-primary">Selectall</span>
 				</th>
-				<div style="padding:15px 0px"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Select All</a></div>
+				<div style="padding:15px 0px"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
