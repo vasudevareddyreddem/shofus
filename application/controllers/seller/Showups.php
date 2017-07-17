@@ -23,24 +23,29 @@ class Showups extends Admin_Controller {
 
 	public function homepagebanner()
 	{
-		$this->template->write_view('content', 'seller/showups/homepagebanner');
+		$data['seller_banner'] = $this->showups_model->seller_homebanners();
+		//$data['auto'] = $this->showups_model->auto_update();
+		//echo "<pre>";print_r($data);exit;
+		$this->template->write_view('content', 'seller/showups/homepagebanner',$data);
 		$this->template->render();
 	}
 	public function addhomebanner()
 	{
 		$data['banner_count'] = $this->showups_model->banner_limit();
+		//$one = 0;
+		//$data['auto'] = $this->showups_model->auto_update();
 		//echo "<pre>";print_r($data);exit;
 		$this->template->write_view('content', 'seller/showups/addhomebanner',$data);
 		$this->template->render();
 	}
 
-	public function activehomebanner()
-	{
-		$data['seller_banner'] = $this->showups_model->seller_homebanners();
-		//
-		$this->template->write_view('content', 'seller/showups/active_homebanner',$data);
-		$this->template->render();
-	}
+	// public function activehomebanner()
+	// {
+	// 	$data['seller_banner'] = $this->showups_model->seller_homebanners();
+	// 	//
+	// 	$this->template->write_view('content', 'seller/showups/active_homebanner',$data);
+	// 	$this->template->render();
+	// }
 
 	public function save_banner(){
 		if(isset($_POST)){
@@ -61,7 +66,7 @@ class Showups extends Admin_Controller {
 					$this->session->set_flashdata('message','Image format Invalid..');
 				//$this->prepare_flashmessage("Image format Invalid..", 1);
 				//return redirect('admin/fooditems');
-				echo "<script>window.location='".base_url()."seller/showups/addhomebanner';</script>";
+				echo "<script>window.location='".base_url()."seller/showups/homepagebanner';</script>";
 				}
 			}else{
 				
@@ -101,31 +106,18 @@ class Showups extends Admin_Controller {
 			}
 			if($status==1){
 			$this->session->set_flashdata('active',"Banner successfully Added!");
-			redirect('seller/showups/addhomebanner');
+			redirect('seller/showups/homepagebanner');
 
 		}else if($status==2){
 			
 		 $this->session->set_flashdata('deactive',"only 6 Images Per Day");
-		 redirect('seller/showups/addhomebanner');	
+		 redirect('seller/showups/homepagebanner');	
 		}else if($status==3){
 		$this->session->set_flashdata('deactive',"Item already added.");
-		redirect('seller/showups/addhomebanner');	
+		redirect('seller/showups/homepagebanner');	
 			
 		}
 		
-		
-
-		
-		//echo '<pre>';print_r($seller_location);exit;
-		
-			// if(count($banner)>0)
-			// 	{
-			// 	$this->session->set_flashdata('message','Banner successfully added');
-			// 	redirect('seller/showups/addhomebanner');
-			// 	}else{
-			// 	$this->session->set_flashdata('message','Some error are occured.');
-			// 	redirect('seller/showups/addhomebanner'); 
-			// 	}
 
 	}
 	public function banner_status()
@@ -157,7 +149,7 @@ class Showups extends Admin_Controller {
 					}else{
 						$this->session->set_flashdata('deactive',"Banner deactivation successful");
 					}
-					redirect('seller/showups/activehomebanner');
+					redirect('seller/showups/homepagebanner');
 				}
 
 
@@ -170,17 +162,23 @@ class Showups extends Admin_Controller {
 		$status = base64_decode($this->uri->segment(6));
 		if($status == 1){
 			$this->session->set_flashdata('deactive'," Opps!! Your Banner Is active");
-			redirect('seller/showups/activehomebanner');
+			redirect('seller/showups/homepagebanner');
 		}else{
 			$updatestatus=$this->showups_model->delete_banner($id,$sellerid);
 			$this->session->set_flashdata('active'," Your Banner Delete successful");
-			redirect('seller/showups/activehomebanner');
+			redirect('seller/showups/homepagebanner');
 		}
 	}
 
 	public function topoffers()
 	{
-		$this->template->write_view('content', 'seller/showups/topoffers');
+		$data['seller_prducts']=$this->showups_model->get_top_offers_data($this->session->userdata('seller_id'));
+		//echo "<pre>";print_r($data);exit;
+		$data['catitemdata'] = $this->showups_model->gettop_offers();		
+		$data['catitemdata1'] = $this->showups_model->gettop_offers();
+		$data['cnt']= count($data['catitemdata1']);
+		//echo "<pre>";print_r($data);exit;
+		$this->template->write_view('content', 'seller/showups/topoffers',$data);
 		$this->template->render();
 	}
 	public function activetopoffers()
@@ -230,7 +228,7 @@ class Showups extends Admin_Controller {
 					}else{
 						$this->session->set_flashdata('deactive',"offer deactivation successful");
 					}
-					redirect('seller/showups/activetopoffers');
+					redirect('seller/showups/topoffers');
 				}
 		
 
@@ -249,17 +247,21 @@ class Showups extends Admin_Controller {
 
 	public function dealsofday()
 	{
-		$this->template->write_view('content', 'seller/showups/dealsofday');
-		$this->template->render();
-	}
-	public function activedealsofday(){
 		$data['seller_prducts']=$this->showups_model->get_deals_of_day_data($this->session->userdata('seller_id'));
 		 $data['catitemdata'] = $this->showups_model->getdeals_ofthe_day();
 	   $data['catitemdata1'] = $this->showups_model->getdeals_ofthe_day();
 		$data['cnt']= count($data['catitemdata1']);
-		$this->template->write_view('content', 'seller/showups/active_dealsofday',$data);
+		$this->template->write_view('content', 'seller/showups/dealsofday',$data);
 		$this->template->render();
 	}
+	// public function activedealsofday(){
+	// 	$data['seller_prducts']=$this->showups_model->get_deals_of_day_data($this->session->userdata('seller_id'));
+	// 	 $data['catitemdata'] = $this->showups_model->getdeals_ofthe_day();
+	//    $data['catitemdata1'] = $this->showups_model->getdeals_ofthe_day();
+	// 	$data['cnt']= count($data['catitemdata1']);
+	// 	$this->template->write_view('content', 'seller/showups/active_dealsofday',$data);
+	// 	$this->template->render();
+	// }
 	public function dealsofdayactive(){
 		$itemid = base64_decode($this->uri->segment(4));
 		$status = base64_decode($this->uri->segment(5));
@@ -294,7 +296,7 @@ class Showups extends Admin_Controller {
 					}else{
 						$this->session->set_flashdata('deactive',"offer deactivation successful");
 					}
-					redirect('seller/showups/activedealsofday');
+					redirect('seller/showups/dealsofday');
 				}
 	}
 
@@ -310,17 +312,21 @@ class Showups extends Admin_Controller {
 
 	public function seasonsale()
 	{
-		$this->template->write_view('content', 'seller/showups/seasonsale');
-		$this->template->render();
-	}
-	public function activeseasonsale(){
 		$data['seller_prducts']=$this->showups_model->get_season_sales_data($this->session->userdata('seller_id'));
 		 $data['catitemdata'] = $this->showups_model->getseason_sales();
 	   $data['catitemdata1'] = $this->showups_model->getseason_sales();
 		$data['cnt']= count($data['catitemdata1']);
-		$this->template->write_view('content', 'seller/showups/active_seasonsale',$data);
+		$this->template->write_view('content', 'seller/showups/seasonsale',$data);
 		$this->template->render();
 	}
+	// public function activeseasonsale(){
+	// 	$data['seller_prducts']=$this->showups_model->get_season_sales_data($this->session->userdata('seller_id'));
+	// 	 $data['catitemdata'] = $this->showups_model->getseason_sales();
+	//    $data['catitemdata1'] = $this->showups_model->getseason_sales();
+	// 	$data['cnt']= count($data['catitemdata1']);
+	// 	$this->template->write_view('content', 'seller/showups/active_seasonsale',$data);
+	// 	$this->template->render();
+	// }
 
 	public function seasonsaleactive(){
 		$itemid = base64_decode($this->uri->segment(4));
@@ -356,7 +362,7 @@ class Showups extends Admin_Controller {
 					}else{
 						$this->session->set_flashdata('deactive',"offer deactivation successful");
 					}
-					redirect('seller/showups/activeseasonsale');
+					redirect('seller/showups/seasonsale');
 				}
 	}
 

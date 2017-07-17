@@ -111,11 +111,23 @@
           </div>
 		  <div class="form-group">
             <label class="control-label">Other Shops (if any): </label>
-            <input  type="text"  name="other_shops" id="other_shops" value="<?php echo isset($sellerdata['other_shops'])?$sellerdata['other_shops']:''; ?>" class="form-control"  />
+            <select class="form-control"  name = "other_shops" id = "other_shops">
+					<option value ="">Select</option>
+					<option value ="yes">Yes</option>
+					<option value ="No">No</option>		
+				</select>
+            <!-- <input  type="text"  name="other_shops" id="other_shops" value="<?php echo isset($sellerdata['other_shops'])?$sellerdata['other_shops']:''; ?>" class="form-control"  /> -->
           </div>
 		 <div class="form-group">
             <label class="control-label">Other Shop Locations</label>
-            <input  type="text"  name="other_shops_location" id="other_shops_location" value="<?php echo isset($sellerdata['other_shops_location'])?$sellerdata['other_shops_location']:''; ?>" class="form-control"  />
+            <select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="form-control chosen-select" tabindex="8">
+				  <option value=""></option>
+				  <?php foreach($selectareas as $area){ ?>
+                    <option value="<?php echo $area['location_id']; ?>"><?php echo $area['location_name']; ?></option>                  
+                    <?php }?>
+				</select>
+
+            <!-- <input  type="text"  name="other_shops_location" id="other_shops_location" value="<?php echo isset($sellerdata['other_shops_location'])?$sellerdata['other_shops_location']:''; ?>" class="form-control"  /> -->
           </div>
 		
 		 <div class="form-group">
@@ -196,7 +208,10 @@
     </div>
   </footer>
 
-</html>
+
+
+	<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+    <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
@@ -460,3 +475,4 @@ $(document).ready(function() {
 });
 </script>
 		
+</html>

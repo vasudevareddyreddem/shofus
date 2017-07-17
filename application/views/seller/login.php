@@ -478,7 +478,7 @@
 </section>
 <div class="clearfix"></div>
 		<!--team members-->
-<section class=" mar_t15">
+<!-- <section class=" mar_t15">
 <div class="container">
 <div class="web_disigner_contain web_disigner">
   <center><h1  style=" display:inline;color:#fff;">Our Team</h1></center>
@@ -582,7 +582,7 @@
   </div>
 </div>
 </div>
-</section>		<!--endteam members-->
+</section> -->		<!--endteam members-->
 
 
 
@@ -779,8 +779,8 @@
                           <td>Rs:100&nbsp;(10%)</td>
                         </tr>
                         <tr>
-                          <td>Service Tax (15% of Marketplace Fee including Swachh Bharat&Krishi Kalyan cess)</td>
-                          <td>Rs:15&nbsp;(15%)</td>
+                          <td>Service Tax (18% of Marketplace Fee including Swachh Bharat&Krishi Kalyan cess)</td>
+                          <td>Rs:15&nbsp;(18%)</td>
                         </tr>
                         <tr>
                           <td>Total Fee</td>
