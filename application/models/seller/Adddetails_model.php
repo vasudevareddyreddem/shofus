@@ -72,6 +72,11 @@ function get_seleted_areas()
 	$this->db->select('*')->from('locations');
 	return $this->db->get()->result_array();
 }
+function get_seletedareas()
+{
+	$this->db->select('*')->from('locations');
+	return $this->db->get()->result();
+}
 function get_categories_name($cat_id)
 {
 	$this->db->select('category.category_name')->from('category');

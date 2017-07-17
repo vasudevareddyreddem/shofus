@@ -363,10 +363,10 @@
           </div>
 		 <div class="form-group">
             <label class="control-label">Other Shop Locations</label>
-            <select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
+            <select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location"   multiple class="chosen-select" tabindex="8">
 				  <option value=""></option>
-				  <?php foreach($selectareas as $area){ ?>
-                    <option value="<?php echo $area['location_id']; ?>"><?php echo $area['location_name']; ?></option>                  
+				  <?php foreach($select_areas as $area){ ?>
+                    <option value="<?php echo $area->location_id; ?>"><?php echo $area->location_name; ?></option>                  
                     <?php }?>
 				</select>
 
@@ -404,7 +404,7 @@
           </div>
 		
 		 <div class="form-group">
-            <label class="control-label">Signature</label>
+            <label class="control-label">Signature file</label>
             <input  type="text"  name="gstin" id="gstin" value="<?php echo isset($sellerdata['gstin'])?$sellerdata['gstin']:''; ?>" class="form-control"  />
 			<input type="file" id="gstimag" name="gstimag"  onchange="gstimageuload(this.value)">
 			<a onclick="deactive3();" href="javascript:void(0)" >Upload</a><span id="backid3"><?php echo isset($sellerdata['gstinimage'])?$sellerdata['gstinimage']:''; ?></span>

@@ -170,7 +170,7 @@ class Adddetails extends Seller_adddetails{
 	{  
 		$this->load->view('seller/layouts/header');
 		$data['selectareas']=$this->adddetails_model->get_seleted_areas();		 
-
+		$data['select_areas']=$this->adddetails_model->get_seletedareas();
 		$data['sellerdata']=$this->adddetails_model->get_seller_storedetails_data($this->session->userdata('seller_id'));		 
 		$this->load->view('seller/adddetails/storedetails',$data);
 
@@ -222,16 +222,18 @@ class Adddetails extends Seller_adddetails{
 			}else{
 			$gstimg=$seller_upload_file['gstinimage'];
 			}
-			$location_name = $this->input->post('other_shops_location[]');
-			$locations_list = explode(";",$location_name);
-
+			$location_name = $post['other_shops_location'];
+			//echo '<pre>';print_r($location_name);exit;
+			$lock_string = implode(",", $location_name);
+			//echo '<pre>';print_r($lock_string);exit;
+			$locations_list = explode(";",$lock_string);
 			$location_array = array();
 			foreach($locations_list as $ll)
 			{
 			    $location_array[] = array('other_shops_location' =>$ll);
 			}
 		
-		echo '<pre>';print_r($location_array);exit;
+		//echo '<pre>';print_r($location_array);exit;
 			$data = array(
 			'store_name' => $post['storename'], 
 			'addrees1' => $post['address1'],    
@@ -239,7 +241,7 @@ class Adddetails extends Seller_adddetails{
 			'area' => $post['areacode'],    
 			'pin_code' => $post['pincode'],    
 			'other_shops'  =>$post['other_shops'],
-			'other_shops_location'  =>$ll,
+			'other_shops_location'  =>$location_array,
 			'deliveryes'  =>$post['deliveryes'],
 			'weblink'  =>$post['weblink'],
 			'tin_vat'  =>$post['tin'],
