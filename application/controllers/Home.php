@@ -32,6 +32,7 @@ public function index()
 			$data['offer_for_you'] = $this->home_model->get_offer_for_you();
 			$data['deals_of_the_day'] = $this->home_model->get_deals_of_the_day();
 			$data['season_sales'] = $this->home_model->get_season_sales();
+			$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		}
 	
 	

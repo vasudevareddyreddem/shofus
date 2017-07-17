@@ -33,7 +33,7 @@
 				  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($offer['seller_id']).'/'.'season'); ?>"><?php echo $offer['seller_rand_id']; ?></a></td>    
                   <td><?php echo $offer['seller_name']; ?></td>
                   <td><a href="<?php echo base_url('inventory/sellerseasonsalesdetails/'.base64_encode($offer['seller_id'])); ?>"><?php echo $offer['itemscount']; ?><?php if($offer['count'][0]['activecount']!=0){ ?>&nbsp;<span style="color:darkslateblue;">(<?php  echo $offer['count'][0]['activecount'];  ?> &nbsp; Item active)</span><?php }  ?></a></td>
-				  <td><a href="<?php echo base_url('inventory/overaall_seasonsale_home_page_status/'.base64_encode($offer['seller_id']).'/'.base64_encode(0)); ?>">All ACtive</a> &nbsp; | &nbsp;
+				  <td><a href="<?php echo base_url('inventory/overaall_seasonsale_home_page_status/'.base64_encode($offer['seller_id']).'/'.base64_encode(0)); ?>">All Active</a> &nbsp; | &nbsp;
 				  <a href="<?php echo base_url('inventory/overaall_seasonsale_home_page_status/'.base64_encode($offer['seller_id']).'/'.base64_encode(1)); ?>">All Deactive</a></td>
                  
                 </tr>

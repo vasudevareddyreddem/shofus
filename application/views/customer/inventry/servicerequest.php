@@ -2,12 +2,12 @@
 <div class="panel-heading panel-primary">
  <section class="content-header">
       <h1>
-       Service Request replay
-        <small>Service Request replay</small>
+       Service Request reply
+        <small>Service Request reply</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('inventory/dashboard'); ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Service Request replay</li>
+        <li class="active">Service Request reply</li>
       </ol>
     </section>
 	</div>
@@ -38,7 +38,7 @@
                         <input type="hidden" name="serviceid" id="serviceid" value="<?php echo $serviceid; ?>">
 
                         <div  class=" form-group">
-                           <label class="control-label">Service Request replay</label>
+                           <label class="control-label">Service Request reply</label>
                             <textarea rows="5" cols="70" name="serivcerequest" id="serivcerequest"></textarea>
                         </div> 
 						

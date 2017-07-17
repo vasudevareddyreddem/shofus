@@ -52,7 +52,16 @@ class Showups_model extends MY_Model
   {
     $this->db->select('home_banner.*,count(home_banner.image_id) as imagecount')->from('home_banner');
     $this->db->where('status',1);
-    return $this->db->get()->result();
+    $this->db->where('intialdate', date('Y-m-d'));
+    return $this->db->get()->result_array();
+  }
+
+  public function auto_update()
+  {
+    $sid = $this->session->userdata('seller_id');
+    $this->db->where('expairydate >', date('Y-m-d'));
+    $this->db->where('seller_id', $sid);
+    $this->db->update('home_banner',array('status' => 0));
   }
 
   public function save_banner_image($data)

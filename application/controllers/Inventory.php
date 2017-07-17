@@ -316,7 +316,7 @@ public function changepasswordpost(){
 				$post=$this->input->post();
 				//echo '<pre>';print_r($post);
 					$lastestnotication = $this->inventory_model->get_notifciations_subject($post['seller_id']);
-					$replaynotification = array(
+					$replynotification = array(
 					'replyed_id' => $logindetail['customer_id'],	
 					'subject' => $lastestnotication['subject'],	
 					'seller_id' => $post['seller_id'],
@@ -325,10 +325,10 @@ public function changepasswordpost(){
 					'read_count' =>0,
 					'created_at' => date('Y-m-d H:i:s'),
 					);
-			//echo '<pre>';print_r($replaynotification);exit;
-			$notificationreply = $this->inventory_model->save_notifciations($replaynotification);
+			//echo '<pre>';print_r($replynotification);exit;
+			$notificationreply = $this->inventory_model->save_notifciations($replynotification);
 			if(count($notificationreply)>0){
-			$this->session->set_flashdata('success','Notification replay successfully send!');
+			$this->session->set_flashdata('success','Notification reply successfully send!');
 			redirect('inventory/sellernitificationlist');	
 			}
 				
@@ -454,7 +454,7 @@ public function servicerequestview(){
 				 $emailsendcus=$this->inventory_model->notification_statuschanges($sevice_id,$data);
 				// echo $this->db->last_query();exit;
 				 if(count($emailsendcus)>0){
-					$this->session->set_flashdata('success','Notification replay Successfully send!');
+					$this->session->set_flashdata('success','Notification reply Successfully send!');
 					redirect('inventory/sellerservicerequests'); 
 				 }
 
@@ -717,7 +717,7 @@ public function servicerequestview(){
 					//echo "<pre>";print_r($post);exit;
 					if(count($results)>0){
 
-					$this->session->set_flashdata('success',"subCategory Successfully Added");
+					$this->session->set_flashdata('success',"SubCategory Successfully Added");
 					redirect('inventory/subcategorieslist');
 					}
 			}else{

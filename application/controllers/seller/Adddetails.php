@@ -120,15 +120,18 @@ class Adddetails extends Seller_adddetails{
 						'updated_at'=>date('Y-m-d H:i:s'),
 						);
 						$save_catrgore=$this->adddetails_model->save_catrgore($addcat);
+						if(count($save_catrgore)>0)
+						{
+					$this->session->set_flashdata('success','category details updated');
+					return redirect('seller/adddetails/storedetails');
+					}
 						
 				}
 				//echo "<pre>";print_r($delcatid); 
 			}
 			
 		}
-			/*--------------*/
 			$result = array_unique($post['seller_cat']);
-			
 			$catresult=$this->Personnel_details_model->get_old_seller_categories($this->session->userdata('seller_id'));
 			foreach($catresult as $delcats){
 				
@@ -154,6 +157,10 @@ class Adddetails extends Seller_adddetails{
 			$this->session->set_flashdata('success','category details updated');
 			return redirect('seller/adddetails/storedetails');
 			}
+
+		
+			/*--------------*/
+			
 
 
     }
