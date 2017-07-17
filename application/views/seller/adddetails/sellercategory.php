@@ -382,9 +382,9 @@ $(document).ready(function(){
 						<div class="pull-left">
 							<a id="add_row" class="btn btn-default pull-left">Add Row</a>
 						</div>
-						<div class="pull-right" style="padding-right:30px;display: none;" id="delshow">
-							<a id='delete_row' class="btn btn-default">Delete Row</a>
-						</div>
+							<div class="pull-right" id="deletediv" style="padding-right:30px; display:none;">
+        <a id='delete_row' class="btn btn-default">Delete Row</a>
+        </div>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -415,27 +415,21 @@ $(document).ready(function(){
   $(document).ready(function(){
       var i=1;
      $("#add_row").click(function(){
-<<<<<<< HEAD
-      $('#delshow').css("display", "block");
       $('#addr'+i).html("<td><input  name='caregoryname[]' id='uff' type='text' class='form-control input-md'></td>");
-        if(i=2){
-          $('#delshow').show();
-=======
->>>>>>> 9b11cd27c9e75bd029e50222e52ec356c97e60cf
-      $('#addr'+i).html("<td><input  name='caregoryname[]' typeSelect Some Options='text' class='form-control input-md'></td>");
-
-        }
+        
       $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      $('#deletediv').show('');
       i++; 
   });
      $("#delete_row").click(function(){
-
-    	 if(i>1){
-
-		 $("#addr"+(i-1)).html('');
-		 i--;
-		 }
-	 });
+     if(i==2){
+      $('#deletediv').hide(''); 
+     }
+       if(i>1){
+     $("#addr"+(i-1)).html('');
+     i--;
+     }
+   });
 
 });
 function validations(){

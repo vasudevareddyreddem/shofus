@@ -119,6 +119,7 @@ class Adddetails extends Seller_adddetails{
 						'created_at'=>date('Y-m-d H:i:s'),
 						'updated_at'=>date('Y-m-d H:i:s'),
 						);
+					//echo "<pre>";print_r($addcat); exit;
 						$save_catrgore=$this->adddetails_model->save_catrgore($addcat);
 						if(count($save_catrgore)>0)
 						{
@@ -146,6 +147,7 @@ class Adddetails extends Seller_adddetails{
 			'created_at'=> date('Y-m-d h:i:s'),
 			'updated_at'=>  date('Y-m-d h:i:s'),
 			);
+			//echo "<pre>";print_r($data); exit;
 			if($subcats!=''){
 			$res=$this->adddetails_model->insertseller_cat($data);
 			}
@@ -220,8 +222,16 @@ class Adddetails extends Seller_adddetails{
 			}else{
 			$gstimg=$seller_upload_file['gstinimage'];
 			}
+			$location_name = $this->input->post('other_shops_location[]');
+			$locations_list = explode(";",$location_name);
+
+			$location_array = array();
+			foreach($locations_list as $ll)
+			{
+			    $location_array[] = array('other_shops_location' =>$ll);
+			}
 		
-		//echo '<pre>';print_r($post);exit;
+		echo '<pre>';print_r($location_array);exit;
 			$data = array(
 			'store_name' => $post['storename'], 
 			'addrees1' => $post['address1'],    
@@ -229,7 +239,7 @@ class Adddetails extends Seller_adddetails{
 			'area' => $post['areacode'],    
 			'pin_code' => $post['pincode'],    
 			'other_shops'  =>$post['other_shops'],
-			'other_shops_location'  =>$post['other_shops_location'],
+			'other_shops_location'  =>$ll,
 			'deliveryes'  =>$post['deliveryes'],
 			'weblink'  =>$post['weblink'],
 			'tin_vat'  =>$post['tin'],
