@@ -1,4 +1,8 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.css">
 
+<script src="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
+<script src="<?php echo base_url();?>assets/vendor/datatable/jquery-ui.js"></script>
 <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 <div class="content-wrapper mar_t_con" >
 	<section class="content-header">
@@ -16,10 +20,157 @@
 		</div>
 	</section>
   	<section class="content ">
-  		<div class="faq_main">
+  	<div class="faq_main">
+  	
+   <?php if(!empty($catitemdata))  { ?>
+    <div class="container" style="width:100%">
+	
+      <!--<h1 class="head_title">My Listings</h1>-->
+	  
+      <div class="faq">
+	  
+ <?php if($this->session->flashdata('active')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button><?php echo $this->session->flashdata('active');?></div>	
+			<?php endif; ?>
+			<?php if($this->session->flashdata('deactive')): ?>
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button><?php echo $this->session->flashdata('deactive');?></div>	
+			<?php endif; ?>
+	   <?php  foreach($catitemdata1 as $catitem_data1 )  {  ?> 
+		
+		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;?></a>
+
+	<?php } ?>
+	<a href="<?php echo base_url('seller/showups/addtopoffers');?>" class="btn btn-primary pull-right">Add</a>
+	
+        <?php  foreach($catitemdata as $catitem_data )  {    ?>						
+        <div class="tab-content">
+              <div class="tab-pane" id="gry<?php echo $catitem_data->category_id; ?>">
+              <?php 
+			foreach($catitem_data->docs as $subcategory){?>
+			<?php $space =  $subcategory->subcategory_name; 
+			
+			$nospace = str_replace(' ','',$space);
+			
+			?>
+              <div style="padding:10px;" class="panel panel-default mar_t10">
+                <div class="panel-heading" role="tab" id="headingOne<?php echo $nospace;  ?>">
+                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" onclick="sibcategoryproductlist(<?php echo $subcategory->subcategory_id;  ?>);" href="#collapseOne<?php echo $nospace;  ?>" aria-expanded="true" aria-controls="collapseOne<?php echo $nospace;  ?>"> <i class="more-less glyphicon glyphicon-plus"></i> <?php echo $subcategory->subcategory_name; ?> </a> </h4>
+                </div>
+                <div id="collapseOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
+		
+	<form  id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
+		<table id="tables<?php echo $subcategory->subcategory_id;  ?>" class="display" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                
+				
+				<th>Item Name</th>
+                <th>Item Price</th>
+                <th>Offer percentage</th>
+                <th>offer Amount</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>               
+            </tr>
+        </thead>
+      
+             <tbody>
+					<?php  
+					foreach($subcategory->docs12 as $item_data){
+												
+						?>
+					<tr>						
+						<td><?php echo $item_data->item_name;?></td>
+						<td><?php echo $item_data->item_price;?></td>
+						<td><?php echo $item_data->offer_percentage;?></td>
+						<td><?php echo $item_data->offer_amount;?></td>
+						<td><?php echo $item_data->intialdate;?></td>
+						<td><?php echo $item_data->expairdate;?></td>	
+						<td><a href="<?php echo base_url('seller/showups/topofferactive/'
+						.base64_encode($item_data->top_offer_id).'/'
+						.base64_encode($item_data->status)); ?>">
+						<?php if($item_data->status== 0)
+						{echo 'Deactive';}
+						else{echo "Active";}
+						?></a></td>
+
+					</tr>
+				  <?php  } ?>
+				  </tbody>
+    </table>
+
+	
+                </div>
+              </div>
+              <script type="text/javascript">
+              	$(document).ready(function(){
+    $('#tables<?php echo $subcategory->subcategory_id;  ?>').DataTable();
+});
+              </script>
+			<?php }?>
+              </div>
+             
+             
+              
+            </div>
+        <!-- container --> 
+	   <?php }?>
+      </div>
+    </div>
+   <?php } else {?>
+   
+   <div class="container">
+	
+      <h1 class="head_title">Your Top Offers List Is Empty Click add Button To Add Top Offers.Thank You!</h1>
+   
+   </div>
+   
+   <?php } ?>
+  </div>
+  		<!-- <div class="faq_main">
   			<a href="<?php echo base_url('seller/showups/addtopoffers');?>" class="btn btn-primary">Add</a>
   			<a href="<?php echo base_url('seller/showups/activetopoffers');?>" class="btn btn-success">Active</a>
   				
-			</div>
+			</div> -->
     </section>
     </div>
+
+    <script>
+  
+
+  function addtabactives(val)
+{
+	$("#btn_chang"+val).removeClass("btn-info");
+	$("#btn_chang"+val).addClass("btn-primary");
+	var cnt;
+    var count =<?php echo $cnt;?>;
+	//var cnt='';
+	for(cnt = 1; cnt <= count; cnt++){
+		if(cnt!=val){
+			$("#btn_chang"+cnt).removeClass("btn-primary");
+			$("#btn_chang"+cnt).addClass("btn-info");
+		}             
+	}
+			
+
+}
+function addtabactive(id)
+{
+	//alert(id);exit;
+	$("#gry"+id).addClass("active");
+	var cnt;
+    var nt =<?php echo $cnt;?>;
+	//var cnt='';
+	for(cnt = 1; cnt <= nt; cnt++){
+		if(cnt!=id){
+			$("#gry"+cnt).removeClass("active");
+		}             
+	}
+			
+}
+
+</script>

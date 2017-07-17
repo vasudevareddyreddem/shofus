@@ -13,7 +13,7 @@
  <section class="content">
       <div class="row">
         <div class="col-xs-12">
-        <a class="btn btn-primary" href="<?php echo base_url('inventory/dashboard');?>">BAck</a>
+        <a class="btn btn-primary" href="<?php echo base_url('inventory/dashboard');?>">Back</a>
       <div class="box">
             <div class="box-header">
               <h3 class="box-title"><?php echo isset($category_name['category_name'])?$category_name['category_name']:''; ?> &nbsp; category Wise Sellers lists</h3>
@@ -25,7 +25,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Categoty Name</th>
+                  <th>Category Name</th>
                   <th>Seller ID</th>
                   <th>Seller Name</th>              
                   <th>Seller Email</th>              

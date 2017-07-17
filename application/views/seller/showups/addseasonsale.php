@@ -50,7 +50,9 @@ tfoot input {
 		</div>
 	</section>
   <section class="content ">
-  <div class="faq_main">		<div style="display:none;" class="alert dark alert-warning alert-dismissible" id="errormessage">
+  <div class="faq_main">		
+  
+  <div style="display:none;" class="alert dark alert-warning alert-dismissible" id="errormessage">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>							
 					 </button></div>
@@ -71,12 +73,11 @@ tfoot input {
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
 	 <div><?php echo $this->session->flashdata('message');?></div>
       <div class="faq">
-	  
-	   <?php  foreach($catitemdata1 as $catitem_data1 )  {  ?> 
-		
+	   <?php  foreach($catitemdata1 as $catitem_data1 )  {  ?> 		
 		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
 
 	<?php } ?>
+	<a href="<?php echo base_url('seller/showups/seasonsale');?> " class="pull-right btn btn-sm btn-primary">Back</a>
         <?php  foreach($catitemdata as $catitem_data )  {    ?>
         <!--<h1 onclick="document.getElementById('gry').style.display='block'">GETTING STARTED</h1>-->
         <div class="tab-content">

@@ -9,8 +9,7 @@ $(document).ready(function(){
   var maxField = 10; //Input fields increment limitation
   var addButton = $('.add_button'); //Add button selector
   var wrapper = $('.field_wrapper'); //Input field wrapper
-  var fieldHTML = '<div class="field_wrapper nopaddingRight col-md-13 san-lg" ><select class="form-control" onchange="savecat(this.value);"  id="category_id" name="seller_cat[]"><option value="">
-</option><?php foreach($getcat as $cat_data){ ?><option value="<?php echo $cat_data->category_id; ?>"><?php echo $cat_data->category_name; ?></option><?php }?></select><a href="javascript:void(0);" class="remove_button" title="Remove field"><img src="<?php echo site_url(); ?>assets/seller/images/remove-icon.png"/></a></div>'; //New input field html 
+  var fieldHTML = '<div class="field_wrapper nopaddingRight col-md-13 san-lg" ><select class="form-control" onchange="savecat(this.value);"  id="category_id" name="seller_cat[]"><option value=""></option><?php foreach($getcat as $cat_data){ ?><option value="<?php echo $cat_data->category_id; ?>"><?php echo $cat_data->category_name; ?></option><?php }?></select><a href="javascript:void(0);" class="remove_button" title="Remove field"><img src="<?php echo site_url(); ?>assets/seller/images/remove-icon.png"/></a></div>'; //New input field html 
   var x = 1; //Initial field counter is 1
   $(addButton).click(function(){ //Once add button is clicked
     if(x < maxField){ //Check maximum number of input fields
@@ -383,7 +382,7 @@ $(document).ready(function(){
 						<div class="pull-left">
 							<a id="add_row" class="btn btn-default pull-left">Add Row</a>
 						</div>
-						<div class="pull-right" style="padding-right:30px;">
+						<div class="pull-right" style="padding-right:30px;display: none;" id="delshow">
 							<a id='delete_row' class="btn btn-default">Delete Row</a>
 						</div>
 					</div>
@@ -416,13 +415,20 @@ $(document).ready(function(){
   $(document).ready(function(){
       var i=1;
      $("#add_row").click(function(){
-      $('#addr'+i).html("<td><input  name='caregoryname[]' type='text' class='form-control input-md'></td>");
+      $('#delshow').css("display", "block");
+      $('#addr'+i).html("<td><input  name='caregoryname[]' id='uff' type='text' class='form-control input-md'></td>");
+        if(i=2){
+          $('#delshow').show();
+      $('#addr'+i).html("<td><input  name='caregoryname[]' typeSelect Some Options='text' class='form-control input-md'></td>");
 
+        }
       $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
       i++; 
   });
      $("#delete_row").click(function(){
+
     	 if(i>1){
+
 		 $("#addr"+(i-1)).html('');
 		 i--;
 		 }
@@ -432,8 +438,10 @@ $(document).ready(function(){
 function validations(){
 	
 	var areaids=document.getElementById('seller_cat').value;
-	if(areaids==''){
-		$("#locationmsg").html("Please select a category").css("color", "red");
+  var own=document.getElementById('uff').value;
+  //alert(own);
+	if(areaids=='' && own==''){
+		$("#locationmsg").html("Please select a category Or Write Your own category").css("color", "red");
 		return false;
 	}else{
 		$("#locationmsg").html("");

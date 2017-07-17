@@ -132,10 +132,11 @@
                 <form  name="register_form" id="register_submit" method="POST">
                 <label>Enter your Mobile Number</label>
                 <input   class="form-control" type="text" maxlength="10" id="seller_mobile" name="seller_mobile" autofocus>
+                <input type="checkbox" name="check_tac" id="check_tac" >
               <a href="<?php echo base_url('seller/login/termsandconditions'); ?>">Terms and Conditions</a>
 			  </div>
               <div class="clearfix"></div>
-              <input type="submit" class="btn btn-primary  btn-block btn-sm mar_t10" name="register_do" id="register_do" value="Get OTP">
+              <input type="submit" class="btn btn-primary  btn-block btn-sm mar_t10" name="register_do" id="register_do" value="Register">
               <!-- <button class="btn btn-primary btn-sm mar_t10" type="submit">Get OTP</button> -->
               </form>
             </div>
@@ -657,7 +658,9 @@ $(document).ready(function(){
 
     var register;
     register = $("#seller_mobile").val();
-    //alert(register);
+    var tac=$('input[name="check_tac"]:checked').val();
+    //var tac = $("#seller_mobile").val();
+    //alert(tac);
     var phone =  /^(?=.*?[1-9])[0-9()-+]+$/;
    
    if(register=="")
@@ -669,6 +672,12 @@ $(document).ready(function(){
   else{
   $("#Emptyforregister").html(""); 
   }
+ if ( ( register_form.check_tac.checked == false ) ) 
+{
+ $("#Emptyforregister").html("Please agree Terms and Conditions").css("color", "red");
+return false;
+}else{
+
     if(register!=''){
 		var lcemail = document.getElementById('seller_mobile').value;
 			if (!IsLcemail(lcemail)) {
@@ -695,7 +704,9 @@ $(document).ready(function(){
 						},
 						});
 				}
+        }
 			}
+      
     });
     });
 </script>
