@@ -1,4 +1,19 @@
-
+<style>
+.modal-body {
+    background-image: url("../assets/seller/images/welcome_sel.png ");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+	width: 100%;
+    height:250px;
+}
+.tit_welc{
+	color:#fff;
+	font-weight:600;
+	font-size:28px;
+	margin-top:16%;
+}
+</style>
 <?php $details=	$this->session->userdata('seller_firsttime');
 //echo $details;exit; 
  if($this->session->flashdata('updatpassword')=="Password successfully changed!"){
@@ -267,17 +282,18 @@
              
              </div>
              </div>
-         <div class="modal fade" id="dashboardpopup" role="dialog">
+			<div class="modal fade" id="dashboardpopup" role="dialog">
+  
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content bac_img">
         <div class="modal-header"  style="background-color:#5cb85c;color:#fff;padding:10px;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Successfully completed</h4>
         </div>
-        <div class="modal-body">
-          <h3 class="text-center">Welcome to Your Seller Portal.</h3>
+        <div class="modal-body ">
+          <h3 class="text-center tit_welc">Welcome to Your Seller Portal.</h3>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
