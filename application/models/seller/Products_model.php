@@ -19,6 +19,16 @@ class Products_model extends MY_Model
 
 	}
 
+	public function get_seller_catdata($sid)
+	{
+		
+		$this->db->select('seller_categories.*,category.documetfile')->from('seller_categories');
+		$this->db->join('category', 'category.category_id = seller_categories.seller_category_id', 'left');
+		$this->db->where('seller_categories.seller_id',$sid);
+        return $this->db->get()->result_array();
+
+		
+	}
 	public function getcatdata()
 	{
 		

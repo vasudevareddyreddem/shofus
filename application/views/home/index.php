@@ -6,22 +6,15 @@
         
         <div class="carousel-inner">
 
-          <div class="item active"> <img src="<?php echo base_url(); ?>assets/home/images/food_bnr.jpg" class="img-responsive">
-            <div class="container">
-              <div class="carousel-caption"> </div>
-            </div>
-          </div>
+         
+		  <?php foreach($homepage_banner as $images){  ?>
+			  <div class="item"> <img src="<?php echo base_url('uploads/banners/'.$images['file_name']);?>" class="img-responsive">
+				<div class="container">
+				  <div class="carousel-caption"> </div>
+				</div>
+			  </div>
+		  <?php } ?>
           
-          <div class="item"> <img src="<?php echo base_url(); ?>assets/home/images/slide-img2.jpg" class="img-responsive">
-            <div class="container">
-              <div class="carousel-caption"> </div>
-            </div>
-          </div>
-          <div class="item"> <img src="<?php echo base_url(); ?>assets/home/images/slide-img1.jpg" class="img-responsive">
-            <div class="container">
-              <div class="carousel-caption"> </div>
-            </div>
-          </div>
         </div>
         
         <!-- Controls --> 
