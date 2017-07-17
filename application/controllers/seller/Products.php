@@ -363,39 +363,51 @@ public function uploadproducts(){
 						echo "<pre>";print_r($arry);
 						foreach($arry as $key=>$fields)
 							{
-							if(isset($fields[1]) && $fields[1]!='' && $fields[2]!='' && $fields[3]!='' && $fields[4]!='' && $fields[6]!='' && $fields[7]!=''){
+							if(isset($fields[1]) && $fields[1]!='' ){
 							
 								$totalfields[] = $fields;	
 								
-								if(empty($fields[0])) {
+								if(empty($fields[1])) {
 									$data['errors'][]="Item is required. Row Id is :  ".$key.'<br>';
 									$error=1;
-								}else if($fields[0]!=''){
-									$regex ="/^[a-zA-Z0-9.-_ $&@!,. ]+$/"; 
-									if(!preg_match( $regex, $fields[0]))
+								}else if($fields[1]!=''){
+									$regex ="/^[a-zA-Z0-9]+$/";  
+									if(!preg_match( $regex, $fields[1]))
 									{
 									$data['errors'][]="Item  can only consist of alphanumaric, space and dot. Row Id is :   ".$key.'<br>';
 									$error=1;
 									}
 								}
-								if(empty($fields[1])) {
+								if(empty($fields[2])) {
 									$data['errors'][]="Iten Name is required. Row Id is :  ".$key.'<br>';
 									$error=1;
-								}else if($fields[1]!=''){
-									$regex ="/^[a-zA-Z0-9. ]+$/"; 
-									if(!preg_match( $regex, $fields[1]))
+								}else if($fields[2]!=''){
+									$regex ="/^[a-zA-Z0-9]+$/";  
+									if(!preg_match( $regex, $fields[2]))
+									{
+									$data['errors'][]="Iten Name can only consist of alphanumaric, space and dot. Row Id is :  ".$key.'<br>';
+									$error=1;
+									}
+								}
+								if(empty($fields[3])) {
+									$data['errors'][]="Iten Name is required. Row Id is :  ".$key.'<br>';
+									$error=1;
+								}else if($fields[3]!=''){
+									$regex ="/^[a-zA-Z0-9]+$/";  
+									if(!preg_match( $regex, $fields[3]))
 									{
 									$data['errors'][]="Iten Name can only consist of alphanumaric, space and dot. Row Id is :  ".$key.'<br>';
 									$error=1;
 									}
 								}
 							
-							$image_link = $list[8];//Direct link to image
-							$split_image = pathinfo($image_link);
-							$imagename=$split_image['filename'].".".$split_image['extension'];
+							// $image_link = $fields[8];//Direct link to image
+							// $split_image = pathinfo($image_link);
+							// $imagename=$split_image['filename'].".".$split_image['extension'];
 						
 						}
-							}
+					}
+					echo '<pre>';print_r($data['errors']);exit;
 						
 						
 					}
