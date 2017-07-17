@@ -92,7 +92,7 @@ $(document).ready(function() {
 					},
 					stringLength: {
                         min: 6,
-                        message: 'Password  must be greater than 6 characters'
+                        message: 'Password  must be atleast 6 characters'
                     },
 					regexp: {
 					regexp:/^[A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
@@ -107,7 +107,7 @@ $(document).ready(function() {
 					},
 					stringLength: {
                         min: 6,
-                        message: 'Confirm Password  must be greater than 6 characters'
+                        message: 'Confirm Password  must be atleast 6 characters'
                     },
 					regexp: {
 					regexp:/^[A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
