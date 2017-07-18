@@ -612,7 +612,7 @@
 				</div>
 			</form>  
 			<h1>Support</h1>
-			<small>seller support</small>
+			<small>Seller support</small>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard'); ?>"><i class="pe-7s-home"></i> Home</a></li>
 				<li class="active">Dashboard</li>
@@ -639,8 +639,8 @@
                 
 
 				 <div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputEmail1">subject</label>
-                  <input class="form-control" placeholder="Subject" type="text" id="subject" name="subject">
+                  <label for="exampleInputEmail1">Subject</label>
+                  <input class="form-control" placeholder="Subject" type="text" id="subject" name="Subject">
                 </div>
 				 <div class="form-group nopaddingRight col-md-12 san-lg">
                   <label for="exampleInputEmail1">Message</label>

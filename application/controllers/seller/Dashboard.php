@@ -138,6 +138,33 @@ class Dashboard extends Admin_Controller {
 	$this->template->render();  
  }
 
+ public function accountupdate()
+ {  
+
+   $post=$this->input->post();
+   //echo "<pre>";print_r($post);exit;
+ 
+   $data = array(
+    'seller_bank_account' => $post['bank_account'], 
+    'seller_account_name' => $post['account_name'],
+    'seller_aaccount_ifsc_code' => $post['ifsccode'],    
+    'created_at'  => date('Y-m-d H:i:s'),
+    'updated_at'  => date('Y-m-d H:i:s')
+  
+  );
+   //echo '<pre>';print_r($data);exit;
+    $result=$this->adddetails_model->seller_personal_details($data,$this->session->userdata('seller_id'));
+   
+    if(count($result)>0)
+      {
+		$this->session->set_flashdata('succes','Your Account Linked Successfully');
+		return redirect('seller/dashboard');
+
+      }
+
+
+    }
+
 	
 	
 	

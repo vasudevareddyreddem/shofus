@@ -21,7 +21,7 @@
 	</section>
   	<section class="content ">
   	<div class="faq_main">
-  	
+  	<a href="<?php echo base_url('seller/showups/addtopoffers');?>" class="btn btn-primary pull-right">Add</a>
    <?php if(!empty($catitemdata))  { ?>
     <div class="container" style="width:100%">
 	
@@ -44,7 +44,7 @@
 		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;?></a>
 
 	<?php } ?>
-	<a href="<?php echo base_url('seller/showups/addtopoffers');?>" class="btn btn-primary pull-right">Add</a>
+	
 	
         <?php  foreach($catitemdata as $catitem_data )  {    ?>						
         <div class="tab-content">

@@ -100,6 +100,12 @@ function get_seller_data($sid)
 		return $this->db->query($sql1);
 
 	}
+	function update_seller_account_link($sid,$status){
+		$sql1="UPDATE sellers SET bank_complete ='".$status."'WHERE seller_id = '".$sid."'";
+		return $this->db->query($sql1);
+
+	}
+	
 	function seller_personal_details($data,$sid){
 		$this->db->where('seller_id',$sid);
     	return $this->db->update("sellers",$data);

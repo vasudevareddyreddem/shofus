@@ -25,7 +25,7 @@
 
 
 
-<form id="personalidetails" name="personalidetails" action="<?php echo base_url('seller/adddetails/updatepersonaldetails'); ?>" method="post" >
+<form id="personalidetails" name="personalidetails" action="<?php echo base_url('seller/dashboard/accountupdate'); ?>" method="post" >
     <div class="row setup-content">
       <div class="col-xs-6 col-md-offset-3">
         <div class="col-md-12">

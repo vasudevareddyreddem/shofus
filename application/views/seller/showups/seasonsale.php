@@ -21,7 +21,7 @@
 	</section>
   	<section class="content ">
   		<div class="faq_main">
-  	
+  	<a href="<?php echo base_url('seller/showups/addseasonsale');?>" class="btn btn-primary pull-right">Add</a>
    <?php if(!empty($catitemdata))  { ?>
     <div class="container" style="width:100%">
 	
@@ -45,7 +45,7 @@
 
 	<?php } ?>
 
-	<a href="<?php echo base_url('seller/showups/addseasonsale');?>" class="btn btn-primary pull-right">Add</a>
+	
         <?php  foreach($catitemdata as $catitem_data )  {    ?>
         <!--<h1 onclick="document.getElementById('gry').style.display='block'">GETTING STARTED</h1>-->
         <div class="tab-content">

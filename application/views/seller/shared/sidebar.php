@@ -133,7 +133,7 @@
                     </li>
 					<li class="treeview">
                         <a href="<?php echo base_url('seller/services/notications');?>">
-                            <i class="fa fa-envelope-open-o"></i><span>seller support</span>
+                            <i class="fa fa-envelope-open-o"></i><span>Seller Support</span>
                         </a>                        
                     </li>
                     <li class="treeview">
