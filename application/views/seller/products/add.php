@@ -198,9 +198,9 @@
 				
 				<div class="panel-body">
 				<div>
-					Please Select your Category and Download sample file then filling  the data then again upload your products &nbsp;&nbsp;<a href="" id="documentfilelink"><span id="documentfilename"></span></a>
+					Please Select your Category and Download sample file then filling  the data then again upload your products &nbsp;&nbsp;<a href="<?php echo base_url('uploads'); ?>/Importproduct.xlsx" >Download sample Import File</a>
 				</div>
-				<form id="importproducts" name="importproducts" action="<?php echo base_url('seller/products/uploadproducts'); ?>" method="post" enctype="multipart/form-data" >
+				<form id="importproducts" onsubmit="return checkvalidation();" name="importproducts" action="<?php echo base_url('seller/products/uploadproducts'); ?>" method="post" enctype="multipart/form-data" >
 
 				 
 				 <div class="row">
@@ -216,8 +216,9 @@
 				 </div>
 				 <div class="form-group nopaddingRight col-md-6">
                   <label for="exampleInputPassword1">Select Subcategory</label>
-                  <select class="form-control" id="subcategory_id_import" name="subcategory_id_import">
+                  <select class="form-control" onchange="hidemsg(this.value);" id="subcategory_id_import" name="subcategory_id_import">
                    </select>
+				   <span id="errormsg" style="color:red"></span>
                 </div>
                 </div>
 				 <div class="row">
@@ -250,6 +251,25 @@
 		
   
   <script type="text/javascript">
+  
+  function hidemsg(id){
+	  if(id=''){
+		jQuery('#errormsg').html('Please select subcategory');  
+	  }else{
+		jQuery('#errormsg').html('');  
+	  }
+	  
+  }function checkvalidation(){
+		var e = document.getElementById("subcategory_id_import");
+		var strUser = e.options[e.selectedIndex].value;
+		if(strUser==''){
+		jQuery('#errormsg').html('Please select subcategory');
+		return false;
+		}
+		jQuery('#errormsg').html('');
+	  
+  }
+  
   $(document).ready(function(){
       var i=1;
      $("#add_row").click(function(){
@@ -275,12 +295,12 @@
   
 
   function documentid(ids){
-	  var cat=ids;
+	 /* var cat=ids;
 	 var myarr = cat.split("/");
 	
 	 var url='<?php echo base_url('assets/sellerfile/category/'); ?>'+myarr[1];
 	 document.getElementById("documentfilename").innerHTML  = myarr[1];
-	 $('a#documentfilelink').attr({target: '_blank', href  : url})
+	 $('a#documentfilelink').attr({target: '_blank', href  : url})*/
   } 
   function getsubcat(ids){
 	  var cat=ids;

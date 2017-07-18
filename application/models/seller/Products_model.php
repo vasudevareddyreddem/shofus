@@ -35,6 +35,12 @@ class Products_model extends MY_Model
 		$this->db->insert('products', $data);
 		return $insert_id = $this->db->insert_id();
 	} 
+	public function get_producr_details($id)
+	{
+		$this->db->select('*')->from('products');
+		$this->db->where('item_id',$id);
+        return $this->db->get()->row_array();
+	} 
 	public function getcatdata()
 	{
 		

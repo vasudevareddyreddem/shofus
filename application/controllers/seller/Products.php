@@ -165,16 +165,13 @@ public function edit()
 {
 	$id = $this->uri->segment(4);
 	$cat_id = $this->uri->segment(5);
-	//$subcat_id = $this->uri->segment(6);
-	
-	//$data['catname'] = $this->products_model->getcatname($cat_id);
-	//$data['subcatname'] = $this->products_model->getsubcatname($subcat_id);
-	
-	 	$data['subcatdata'] = $this->products_model->getsubcatdata($cat_id);
-		$data['getcat'] = $this->products_model->getcateditdata();
-		$data['productdata']=$this->products_model->getproductdata($id);
-		$this->template->write_view('content', 'seller/products/edit', $data);
-		$this->template->render();
+	$data['items'] = $this->products_model->auto_items();
+	$data['subcatdata'] = $this->products_model->getsubcatdata($cat_id);
+	$data['getcat'] = $this->products_model->getcateditdata();
+	$data['productdata']=$this->products_model->getproductdata($id);
+	//echo '<pre>';print_r($data['productdata']);exit;
+	$this->template->write_view('content', 'seller/products/edit', $data);
+	$this->template->render();
 	
 }
 
@@ -183,88 +180,72 @@ public function update()
 {
 	
 	$id = $this->uri->segment(4);
+	$post=$this->input->post();
+	echo '<pre>';print_r($post);
+	echo '<pre>';print_r($_FILES);
+	
+	
+	$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));
+	$product_details=$this->products_model->get_producr_details($this->uri->segment(4));
+//echo '<pre>';print_r($product_details);exit;	
+		
+		$post=$this->input->post();
+			$i=0;
+			foreach($_FILES['picture_three']['name'] as $file){
+				if(!empty($file))
+				{ 
+
+				$newfile1 = str_replace(' ','_',$_FILES["picture_three"]["name"][$i]);
+				//$newfile1 =  explode(".",$_FILES["picture_three"]["name"][$i]);
+				$newfilename = round(microtime(true)).$newfile1;
+
+			
+					if(move_uploaded_file($_FILES["picture_three"]["tmp_name"][$i], "uploads/products/" . $newfilename))
+					{
+					$images[]=$newfilename;
+					}
+				}
+			$i++;
+			}
 	//echo $id; exit;
-if(isset($_POST)){
-
-if(!empty($_FILES['picture']['name'])){
-
-                $config['upload_path'] = 'uploads/products/';
-
-                $config['allowed_types'] = 'jpg|jpeg|png|gif';
-
-                $config['file_name'] = $_FILES['picture']['name'];
-
-                
-
-                //Load upload library and initialize configuration
-
-                $this->load->library('upload',$config);
-
-                $this->upload->initialize($config);
-
-                
-
-                if($this->upload->do_upload('picture')){
-
-                    $uploadData = $this->upload->data();
-
-                    $picture = $uploadData['file_name'];
-
-                }else{
-
-                    $picture = $_POST['hdn_inner_banner'];
-
-                }
-
-            }else{
-
-                $picture = $_POST['hdn_inner_banner'];
-
-            }
-
-}
- 	
-$data=array(
-
-            'category_id' => $this->input->post('category_id'),
+		$data=array(
+			'category_id' => $this->input->post('category_id'),
 			'subcategory_id' => $this->input->post('subcategory_id'),
-            'seller_id' => $this->session->userdata('seller_id'),
+			'seller_id' => $this->session->userdata('seller_id'),
 			'item_name' => $this->input->post('item_name'),
 			'item_code' => $this->input->post('item_code'),
 			'item_quantity' => $this->input->post('item_quantity'),
 			'item_status' => $this->input->post('item_status'),
 			'item_description' => $this->input->post('item_description'),
 			'item_cost' => $this->input->post('item_cost'),
-			'item_image'=>$picture,
+			'item_image'=>isset($images[0])?$images[0]:$product_details['item_image'],
+			'item_image1'=>isset($images[1])?$images[1]:$product_details['item_image1'],
+			'item_image2'=>isset($images[2])?$images[2]:$product_details['item_image2'],
+			'item_image3'=>isset($images[3])?$images[3]:$product_details['item_image3'],
+			'item_image4'=>isset($images[4])?$images[4]:$product_details['item_image4'],
+			'item_image5'=>isset($images[5])?$images[5]:$product_details['item_image5'],
+			'item_image6'=>isset($images[6])?$images[6]:$product_details['item_image6'],
+			'item_image7'=>isset($images[7])?$images[7]:$product_details['item_image7'],
+			'item_image8'=>isset($images[8])?$images[8]:$product_details['item_image8'],
+			'item_image9'=>isset($images[9])?$images[9]:$product_details['item_image9'],
+			'item_image10'=>isset($images[10])?$images[10]:$product_details['item_image10'],
+			'item_image11'=>isset($images[11])?$images[11]:$product_details['item_image11'],
+			'seller_location_area'=>$seller_location['area'],
+			'created_at'=>date('Y-m-d H:i:s'),
 
-	);
-
+			);
+			
+			//echo '<pre>';print_r($data);exit;
 			$res=$this->products_model->update($id,$data);
-
-			if($res)
-
-
-
+			if(count($res)>0)
 			{
-
-                 $this->prepare_flashmessage("Successfully Updated..", 0);
+				$this->prepare_flashmessage("Successfully Updated..", 0);
 				return redirect('seller/products');
-
 				//echo "<script>window.location='".base_url()."seller/products/index</script>";
-
-
-			}
-
-			else
-
-			{
-
+			}else{
 				$this->prepare_flashmessage("Failed to Insert..", 1);
-
 				//return redirect(base_url('admin/fooditems'));
-return redirect('seller/products');
-
-
+				return redirect('seller/products');
 			}	
 		
 }
@@ -617,7 +598,7 @@ public function uploadproducts(){
 								curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 								$response= curl_exec ($ch);
 								curl_close($ch);
-								$file_name = "H:/xampp/htdocs/cartinhour/uploads/reports/".$imagename;
+								$file_name = "H:/xampp/htdocs/cartinhour/uploads/products/".$imagename;
 								$file = fopen($file_name , 'w') or die("X_x");
 								fwrite($file, $response);
 								fclose($file);
