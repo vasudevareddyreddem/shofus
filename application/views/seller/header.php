@@ -716,14 +716,14 @@ return false;
 						});
 				}
         }
-        var re = /[a-zA-Z0-9\\]$/;
-if (!re.test(any_refer)) {
-    $("#Emptyforregister").html("Alow Only Numbers And letters").css("color", "red");
-    return false;
-}
-else{
-  $("#Emptyforregister").html(""); 
-  }
+//         var re = /[a-zA-Z0-9\\]$/;
+// if (!re.test(any_refer)) {
+//     $("#Emptyforregister").html("Alow Only Numbers And letters").css("color", "red");
+//     return false;
+// }
+// else{
+//   $("#Emptyforregister").html(""); 
+//   }
 			}
 
 

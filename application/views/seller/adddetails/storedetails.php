@@ -365,7 +365,7 @@
             <select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
 				  <option value=""></option>
 				  <?php foreach($select_areas as $area){ ?>
-                    <option value="<?php echo $area->location_id; ?>"><?php echo $area->location_name; ?></option>                  
+                    <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
                     <?php }?>
 				</select>
 

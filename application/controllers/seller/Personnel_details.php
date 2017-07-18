@@ -11,6 +11,7 @@ class Personnel_details extends Admin_Controller {
 		
 		$this->load->model('seller/products_model');
 		$this->load->model('seller/Personnel_details_model');
+		$this->load->model('seller/adddetails_model');
 		$this->load->helper(array('url', 'html'));
 		$this->load->library('session');
        // $this->load->library('pagination');
@@ -24,8 +25,15 @@ class Personnel_details extends Admin_Controller {
 	   $data['getcat'] = $this->products_model->getcatdata();
 	   $data['seller_categorudetails'] = $this->Personnel_details_model->get_store_category_detail($sid);
 	   $data['seller_storedetails'] = $this->Personnel_details_model->get_all_storedetail($sid);
-	   
-		//echo '<pre>';print_r($data);exit;	   
+	   $data['select_areas']=$this->adddetails_model->get_seletedareas();
+	   $location = $this->Personnel_details_model->get_all_locations($sid);
+	   //echo '<pre>';print_r($location);exit;
+	   //$data = array();
+	   $data['orther_shops'] = explode(",",$location['other_shops_location']);
+	   //$locations_list = explode(";",$data['orther_shops']);
+			//$location_array = array();
+	   //echo '<pre>';print_r($data);exit;	
+			
 		$this->template->write_view('content', 'seller/personneldetails/index', $data);
 		$this->template->render();
 
@@ -155,6 +163,7 @@ public function updatebd()
 public function seller_storedetails()
 	{  
 		$post=$this->input->post();
+		//echo "<pre>";print_r($post);exit;
 		//echo '<pre>';print_r($_FILES);
 					$seller_upload_file=$this->Personnel_details_model->get_upload_file($this->session->userdata('seller_id'));
 		//echo '<pre>';print_r($seller_upload_file);
@@ -180,16 +189,35 @@ public function seller_storedetails()
 			}else{
 			$cetimg=$seller_upload_file['cstimage'];
 			}
+			
+			if($_FILES['gstinimage']['name']!=''){
+			$gstinimage=$_FILES['gstinimage']['name'];
+			move_uploaded_file($_FILES['gstinimage']['tmp_name'], "assets/sellerfile/" . $_FILES['gstinimage']['name']);
 
-		//echo '<pre>';print_r($post);
+			}else{
+			$gstinimage=$seller_upload_file['cstimage'];
+			}
+
+			$location_name = $post['other_shops_location'];
+			//echo '<pre>';print_r($location_name);exit;
+			$lock_string = implode(",", $location_name);
+			//echo '<pre>';print_r($lock_string);exit;
+			$locations_list = explode(";",$lock_string);
+			$location_array = array();
+			foreach($locations_list as $store_locations)
+			{
+			    $location_array[] = array('other_shops_location' =>$store_locations);
+			}
+
+		//echo '<pre>';print_r($location_array);exit;
 			$data = array(
 			'store_name' => $post['storename'], 
 			'addrees1' => $post['address1'],    
 			'addrees2' => $post['address2'],    
 			'pin_code' => $post['pincode'],    
 			'other_shops'  =>$post['other_shops'],
-			'other_shops_location'  =>$post['other_shops_location'],
-			'deliveryes'  =>$post['deliveryes'],
+			'other_shops_location'  =>$store_locations,
+			//'deliveryes'  =>$post['deliveryes'],
 			'weblink'  =>$post['weblink'],
 			'tin_vat'  =>$post['tin'],
 			'tinvatimage'  =>$tinimg,
@@ -197,7 +225,7 @@ public function seller_storedetails()
 			'tanimage'  =>$tanimg,
 			'cst'  =>$post['cst'],
 			'cstimage'  =>$cetimg,
-			'gstin'  =>$post['gstin'],
+			'gstinimage'  =>$gstinimage,
 			 'created_at'  => date('Y-m-d H:i:s'),
 			);
 			//echo '<pre>';print_r($data);exit;

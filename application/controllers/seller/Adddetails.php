@@ -285,6 +285,7 @@ class Adddetails extends Seller_adddetails{
    
     if(count($result)>0)
       {
+      	$bank_account = $this->adddetails_model->update_seller_account_link($seller_id,1);
 		$this->session->set_flashdata('succes','');
 		return redirect('seller/adddetails/setpassword');
 
