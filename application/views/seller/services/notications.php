@@ -639,8 +639,8 @@
                 
 
 				 <div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputEmail1">subject</label>
-                  <input class="form-control" placeholder="Subject" type="text" id="subject" name="subject">
+                  <label for="exampleInputEmail1">Subject</label>
+                  <input class="form-control" placeholder="Subject" type="text" id="subject" name="Subject">
                 </div>
 				 <div class="form-group nopaddingRight col-md-12 san-lg">
                   <label for="exampleInputEmail1">Message</label>
