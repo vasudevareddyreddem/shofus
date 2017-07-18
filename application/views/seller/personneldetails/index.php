@@ -1,4 +1,249 @@
+<style type="text/css">
+	
+	/* multiselect css start */
+ .chosen-select {
+  width: 100%; }
 
+.chosen-select-deselect {
+  width: 100%; }
+
+.chosen-container {
+  display: inline-block;
+  font-size: 14px;
+  position: relative;
+  vertical-align: middle; }
+  .chosen-container .chosen-drop {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+    margin-top: -1px;
+    position: absolute;
+    top: 100%;
+    left: -9000px;
+    z-index: 1060; }
+  .chosen-container.chosen-with-drop .chosen-drop {
+    left: 0;
+    right: 0; }
+  .chosen-container .chosen-results {
+    color: #555555;
+    margin: 0 4px 4px 0;
+    max-height: 240px;
+    padding: 0 0 0 4px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; }
+    .chosen-container .chosen-results li {
+      display: none;
+      line-height: 1.42857;
+      list-style: none;
+      margin: 0;
+      padding: 5px 6px; }
+      .chosen-container .chosen-results li em {
+        background: #feffde;
+        font-style: normal; }
+      .chosen-container .chosen-results li.group-result {
+        display: list-item;
+        cursor: default;
+        color: #999;
+        font-weight: bold; }
+      .chosen-container .chosen-results li.group-option {
+        padding-left: 15px; }
+      .chosen-container .chosen-results li.active-result {
+        cursor: pointer;
+        display: list-item; }
+      .chosen-container .chosen-results li.highlighted {
+        background-color: #337ab7;
+        background-image: none;
+        color: white; }
+        .chosen-container .chosen-results li.highlighted em {
+          background: transparent; }
+      .chosen-container .chosen-results li.disabled-result {
+        display: list-item;
+        color: #777777; }
+    .chosen-container .chosen-results .no-results {
+      background: #eeeeee;
+      display: list-item; }
+  .chosen-container .chosen-results-scroll {
+    background: white;
+    margin: 0 4px;
+    position: absolute;
+    text-align: center;
+    width: 321px;
+    z-index: 1; }
+    .chosen-container .chosen-results-scroll span {
+      display: inline-block;
+      height: 1.42857;
+      text-indent: -5000px;
+      width: 9px; }
+  .chosen-container .chosen-results-scroll-down {
+    bottom: 0; }
+    .chosen-container .chosen-results-scroll-down span {
+      background: url("chosen-sprite.png") no-repeat -4px -3px; }
+  .chosen-container .chosen-results-scroll-up span {
+    background: url("chosen-sprite.png") no-repeat -22px -3px; }
+
+.chosen-container-single .chosen-single {
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  color: #555555;
+  display: block;
+  height: 34px;
+  overflow: hidden;
+  line-height: 34px;
+  padding: 0 0 0 8px;
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap; }
+  .chosen-container-single .chosen-single span {
+    display: block;
+    margin-right: 26px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .chosen-container-single .chosen-single abbr {
+    background: url("chosen-sprite.png") right top no-repeat;
+    display: block;
+    font-size: 1px;
+    height: 10px;
+    position: absolute;
+    right: 26px;
+    top: 12px;
+    width: 12px; }
+    .chosen-container-single .chosen-single abbr:hover {
+      background-position: right -11px; }
+  .chosen-container-single .chosen-single.chosen-disabled .chosen-single abbr:hover {
+    background-position: right 2px; }
+  .chosen-container-single .chosen-single div {
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 18px; }
+    .chosen-container-single .chosen-single div b {
+      background: url("chosen-sprite.png") no-repeat 0 7px;
+      display: block;
+      height: 100%;
+      width: 100%; }
+.chosen-container-single .chosen-default {
+  color: #777777; }
+.chosen-container-single .chosen-search {
+  margin: 0;
+  padding: 3px 4px;
+  position: relative;
+  white-space: nowrap;
+  z-index: 1000; }
+  .chosen-container-single .chosen-search input[type="text"] {
+    background: url("chosen-sprite.png") no-repeat 100% -20px, #fff;
+    border: 1px solid #ccc;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    margin: 1px 0;
+    padding: 4px 20px 4px 4px;
+    width: 100%; }
+.chosen-container-single .chosen-drop {
+  margin-top: -1px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box; }
+
+.chosen-container-single-nosearch .chosen-search input[type="text"] {
+  position: absolute;
+  left: -9000px; }
+
+.chosen-container-multi .chosen-choices {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  cursor: text;
+  height: auto !important;
+  height: 1%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative; }
+  .chosen-container-multi .chosen-choices li {
+    float: left;
+    list-style: none; }
+  .chosen-container-multi .chosen-choices .search-field {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap; }
+    .chosen-container-multi .chosen-choices .search-field input[type="text"] {
+      background: transparent !important;
+      border: 0 !important;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #555555;
+      height: 32px;
+      margin: 0;
+      padding: 4px;
+      outline: 0; }
+    .chosen-container-multi .chosen-choices .search-field .default {
+      color: #999; }
+  .chosen-container-multi .chosen-choices .search-choice {
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background-image: -webkit-linear-gradient(top, white 0%, #eeeeee 100%);
+    background-image: -o-linear-gradient(top, white 0%, #eeeeee 100%);
+    background-image: linear-gradient(to bottom, white 0%, #eeeeee 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    color: #333333;
+    cursor: default;
+    line-height: 13px;
+    margin: 6px 0 3px 5px;
+    padding: 3px 20px 3px 5px;
+    position: relative; }
+    .chosen-container-multi .chosen-choices .search-choice .search-choice-close {
+      background: url("<?php echo base_url();?>assets/seller_login/images/close.png") right top no-repeat;
+      display: block;
+      font-size: 1px;
+      height: 10px;
+      position: absolute;
+      right: 4px;
+      top: 7px;
+      width: 12px;
+      cursor: pointer; }
+	  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+		border:none;
+	}
+
+ /* multiselect css end */
+</style>
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
 <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 <?php 
@@ -174,35 +419,46 @@ $(function(){
 														</div>
 														<div class="form-group nopaddingRight col-md-6 san-lg">
 														<label class="control-label">Other Shops (if any): </label>
-														<input  type="text"  name="other_shops" id="other_shops" value="<?php echo $seller_storedetails['other_shops'];   ?>"  class="form-control"  />
-														</div>
-														<div class="form-group nopaddingRight col-md-6 san-lg">
-														<label class="control-label">Other Shop Locations</label>
-														<input  type="text"  name="other_shops_location" id="other_shops_location" value="<?php echo $seller_storedetails['other_shops_location'];   ?>"  class="form-control"  />
-														</div>
-														<div class="form-group nopaddingRight col-md-6 san-lg">
-														<label class="control-label">Delivery service on your Own ?</label>
-														<select class="form-control" required="required" name ="deliveryes" id ="deliveryes">
+														<select class="form-control" required="required" name ="other_shops" id ="other_shops">
 														<option value=""></option>
-														<?php if($seller_storedetails['deliveryes']=="1") {?>
-														<option value="1" selected>YES</option>	
+														<?php if($seller_storedetails['other_shops']=="yes") {?>
+														<option value="yes" selected>YES</option>	
 														<?php }else{ ?>
-														<option value="1">YES</option>
+														<option value="yes">YES</option>
 														<?php } ?>
-														<?php if($seller_storedetails['deliveryes']=="0") {?> 
-														<option value="0" selected>No</option>	
+														<?php if($seller_storedetails['other_shops']=="no") {?> 
+														<option value="no" selected>No</option>	
 														<?php }else{ ?>
-														<option value="0">No</option>	
+														<option value="no">No</option>	
 														<?php } ?>
 														</select>
 														</div>
+														<div class="form-group nopaddingRight col-md-6 san-lg">
+														
+														
+				<select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
+				  <option value=""></option>
+				  <?php if($orther_shops=='') {?>		
+				  <?php foreach($orther_shops as $shops) {?>		  
+                    <option value="<?php echo $shops; ?>"><?php echo $shops; ?></option>
+                    <?php } ?>
+                    <?php }else{?>
+                    <?php foreach($select_areas as $area){ ?>
+                    <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
+                    <?php }?>
+                    <?php }?>
+				</select>
+
+
+														</div>
+														<!--  -->
 														<div class="form-group nopaddingRight col-md-6 san-lg">
 														
 														<label class="control-label">Any web link </label>
 														<input type="text" id="weblink"  name="weblink" value="<?php echo $seller_storedetails['weblink'];   ?>"  class="form-control"/>
 														</div>
 														<div class="form-group nopaddingRight col-md-6 san-lg">
-															<label class="control-label">TIN / VAT</label>
+															<label class="control-label">GSTIN</label>
 															<input type="text"  name="tin" id="tin"  value="<?php echo $seller_storedetails['tin_vat'];   ?>"  class="form-control" />
 															<input type="file" title="Upload" name="timimages" onchange="tinpopupimage();" id="timimages" class="form-control" />
 															<a onclick="deactive();" href="javascript:void(0)" >replace</a>
@@ -222,20 +478,29 @@ $(function(){
 															<span id="oldtanimg"><a target="_blank" href="<?php echo site_url('assets/sellerfile/'); ?><?php echo $seller_storedetails['tanimage'];?>" ><?php echo $seller_storedetails['tanimage'];?></a></span>
 
 														</div>
-														<div class="form-group nopaddingRight col-md-6 san-lg">
-															<label class="control-label">Cst </label>
-															<input  type="text" id="cst"  name="cst" value="<?php echo $seller_storedetails['cst'];   ?>" class="form-control"/>
-															<input type="file" id="cstimag" name="cstimag" onchange="cstimageuload(this.value)">
-															<a onclick="deactive2();" href="javascript:void(0)" >Replace</a>
-															<span id="cstimages"></span>
-															<span style="color:red" id="cstimageserror"></span>
-															<span id="editcstimage"><a target="_blank" href="<?php echo site_url('assets/sellerfile/'); ?><?php echo $seller_storedetails['cstimage'];?>" ><?php echo $seller_storedetails['cstimage'];?></a></span>
+		<div class="form-group nopaddingRight col-md-6 san-lg">
+			<label class="control-label">CIN </label>
+		<input  type="text" id="cst"  name="cst" value="<?php echo $seller_storedetails['cst'];   ?>" class="form-control"/>
+		<input type="file" id="cstimag" name="cstimag" onchange="cstimageuload(this.value)">
+		<a onclick="deactive2();" href="javascript:void(0)" >Replace</a>
+			<span id="cstimages"></span>
+		<span style="color:red" id="cstimageserror"></span>
+		<span id="editcstimage"><a target="_blank" href="<?php echo site_url('assets/sellerfile/'); ?><?php echo $seller_storedetails['cstimage'];?>" ><?php echo $seller_storedetails['cstimage'];?></a></span>
 
-														</div>
-														<div class="form-group nopaddingRight col-md-6 san-lg">
-														  <label class="control-label">GSTIN</label>
-															<input  type="text"  name="gstin" id="gstin" value="<?php echo $seller_storedetails['gstin'];   ?>" class="form-control"  />
-														</div>
+	</div>
+
+
+	<div class="form-group nopaddingRight col-md-6 san-lg">
+				<label class="control-label">Signature file</label>
+	<input type="file" id="gstinimage" name="gstinimage" onchange="gstinimageOnChange(this.value)">
+	<a onclick="deactive4();" href="javascript:void(0)" >Replace</a>
+	<span id="signimage"></span>
+		<span style="color:red" id="gstinimageeerror"></span>
+	<span id="editsignimage"><a target="_blank" href="<?php echo site_url('assets/sellerfile/'); ?><?php echo $seller_storedetails['gstinimage'];?>" ><?php echo $seller_storedetails['gstinimage'];?></a></span>
+
+	</div>
+
+								
 
 															 <div class="clearfix"></div>
                                                         <div style="margin-top: 20px; margin-left: 15px;">
@@ -299,6 +564,11 @@ $(function(){
 </div>
 
 <!--body end here -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
+    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
+	<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+    <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 
 
 <script type="text/javascript">
@@ -325,6 +595,7 @@ function addCenter()
 $('#timimages').hide();
 $('#tanimages').hide();
 $('#cstimag').hide();
+$('#gstinimage').hide();
 
 document.getElementById('timimages').onchange = uploadOnChange;
 
@@ -370,6 +641,21 @@ function cstuploadOnChange() {
 	
 }
 
+document.getElementById('gstinimage').onchange = gstinimageOnChange;
+
+function gstinimageOnChange() {
+    var filename = this.value;
+    var lastIndex = filename.lastIndexOf("\\");
+    if (lastIndex >= 0) {
+        filename = filename.substring(lastIndex + 1);
+    }
+	$('#editsignimage').hide();
+	jQuery('#').html('');
+    document.getElementById("signimage").innerHTML  = filename;
+	document.getElementById("resubmit").disabled = false; 
+	
+}
+
 
 function deactive(id){
 	$('#timimages').trigger("click");	
@@ -379,6 +665,10 @@ function deactive1(id){
 }
 function deactive2(id){
 	$('#cstimag').trigger("click");	
+}
+function deactive4(id){
+	//alert('hai');
+	$('#gstinimage').trigger("click");	
 }
 
 
@@ -428,8 +718,34 @@ function deactive2(id){
 		return false;
 		}
 		}
+		var fup4 = document.getElementById('gstinimage');
+		var fileName3 = fup4.value;
+		var ext4 = fileName3.substring(fileName3.lastIndexOf('.') + 1);
+
+		if(ext4 !=''){
+		if(ext4 == "png"  || ext4 == "jpg" || ext4 == "jpe?g")
+		{
+		jQuery('#timimageserrormsg').val(1);
+		jQuery('#gstinimageeerror').html('');
+		} else{
+		jQuery('#timimageserrormsg').val(0);
+		jQuery('#gstinimageeerror').html('Uploaded file is not a valid. Only jpeg,jpg,png  files are allowed');
+		return false;
+		}
+		}
+
+		
 		return true;
  }
+
+ function removemsg(id){
+	if(id!=''){
+		$("#locationmsg").hide();
+		document.getElementById("bnt").disabled = false; 
+	}else{
+	$("#locationmsg").show();	
+	}
+}
  $(document).ready(function() {
     $('#categories').bootstrapValidator({
        

@@ -25,6 +25,16 @@
 </script>
 
 <?php }?>
+<?php 
+if($this->session->flashdata('updatpassword')=="Password successfully changed!"){
+ ?>
+<script>
+  $(document).ready(function() {
+   $('#view1').trigger("click");
+});
+</script>
+
+<?php }?>
 <div class="card-header cover">
 <a href="javascript:void(0)"  style="text-decoration:none;" id="view1" data-toggle="modal"  data-target="#dashboardpopup">
 </a>
@@ -36,6 +46,11 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('welcome');?></div>
 					<?php endif; ?>
+          <?php if($this->session->flashdata('succes')): ?>
+          <div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button><?php echo $this->session->flashdata('succes');?></div>
+          <?php endif; ?>
 <section class="content-header">
 		<div class="header-icon">
 			<i class="pe-7s-note2"></i>
