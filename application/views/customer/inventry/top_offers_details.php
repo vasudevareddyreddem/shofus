@@ -24,7 +24,7 @@
 					<th>Item Amount</th>
 					<th>Offer Amount</th>
 					<th>Intial Date</th>
-					<th>Expairy Date</th>
+					<th>Expiry Date</th>
 					<th>Item Status</th>
 					<th>Home page Status</th>
 				 </tr>
