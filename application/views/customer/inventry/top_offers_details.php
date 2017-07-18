@@ -20,11 +20,11 @@
 				  <tr>
 					<th>Seller Id</th>
 					<th>Item Name</th>
-					<th>category Name</th>
+					<th>Category Name</th>
 					<th>Item Amount</th>
 					<th>Offer Amount</th>
 					<th>Intial Date</th>
-					<th>Expairy Date</th>
+					<th>Expiry Date</th>
 					<th>Item Status</th>
 					<th>Home page Status</th>
 				 </tr>

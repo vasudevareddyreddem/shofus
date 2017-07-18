@@ -26,7 +26,7 @@
 				<input type="text"  class="form-control" id="categoryname"  name="categoryname"/>
 				</div>
 				<div class="form-group">
-				<label for="category">category Name</label>
+				<label for="category">Category Name</label>
 				<select class="form-control" name="category_list" id="category_list">
 				<option value="">Select</option>
 				<?php foreach($category_list as $list){ ?>
