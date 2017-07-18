@@ -34,7 +34,7 @@
                   <td><a href="<?php echo base_url('inventory/categoryview/'.base64_encode($catlist['category_id'])); ?>"><?php echo $catlist['category_name']; ?></a></td>
                   <td><?php if($catlist['commission']!=0 && $catlist['commission']!='' ){ echo $catlist['commission']; } else { echo "";} ?></td>
 				  <td><?php echo $catlist['created_at']; ?></td>    
-                  <td><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
+                  <td><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
 				<td>
 				<a href="<?php echo base_url('inventory/categoryview/'.base64_encode($catlist['category_id'])); ?>">View</a> | &nbsp;
 				<a href="<?php echo base_url('inventory/categoryedit/'.base64_encode($catlist['category_id'])); ?>">Edit</a> | &nbsp;

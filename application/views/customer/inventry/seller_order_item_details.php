@@ -39,7 +39,7 @@
 				  <td><?php echo $items['item_name']; ?></td>    
 				  <td><?php echo $items['total_price']; ?></td>    
 				  <td><?php echo Date('d-M-Y',strtotime(htmlentities($items['create_at'])));?></td> 				  
-                  <td><?php if($items['order_status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
+                  <td><?php if($items['order_status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
 				
                  </tr>
                  <?php }?>

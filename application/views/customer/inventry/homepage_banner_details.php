@@ -32,7 +32,7 @@
                   <td><?php echo $items['seller_rand_id']; ?></td>
                   <td><?php echo $items['file_name']; ?></td>
 		          <td><img src="<?php echo base_url();?>uploads/banners/<?php  echo $items['file_name']; ?>" width="80" height="50" /></td>
-                  <td><?php if($items['status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
+                  <td><?php if($items['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
                   <td>
 				  <a href="<?php echo base_url('inventory/home_page_banner_status/'.base64_encode($items['seller_id']).'/'.base64_encode($items['id']).'/'.base64_encode($items['home_page_status'])); ?>"><?php if($items['home_page_status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
 				 </td>                  
