@@ -545,7 +545,7 @@
   </div>
 </div>
 </div>
-</section> -->		<!--endteam members-->
+</section> 		<!--endteam members-->
 
 
 
