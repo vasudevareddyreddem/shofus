@@ -200,8 +200,10 @@
 				<div>
 					Please Select your Category and Download sample file then filling  the data then again upload your products &nbsp;&nbsp;<a href="" id="documentfilelink"><span id="documentfilename"></span></a>
 				</div>
-				<form action="<?php echo base_url('seller/products/uploadproducts'); ?>" method="post" enctype="multipart/form-data" >
+				<form id="importproducts" name="importproducts" action="<?php echo base_url('seller/products/uploadproducts'); ?>" method="post" enctype="multipart/form-data" >
 
+				 
+				 <div class="row">
 				 <div class="form-group nopaddingRight col-md-6 ">
                   <label for="exampleInputEmail1">Select Category</label>
 				  <?php //echo '<pre>';print_r($sub_cat_data);exit;?>
@@ -217,10 +219,16 @@
                   <select class="form-control" id="subcategory_id_import" name="subcategory_id_import">
                    </select>
                 </div>
-				<div class="form-group nopaddingRight col-md-8">
+                </div>
+				 <div class="row">
+				<div class="form-group nopaddingRight col-md-6">
+				<label for="exampleInputPassword1">Import File</label>
 				<input type="file" name="categoryes" id="categoryes" class="form-control" >
+				</div>
+				<div class="form-group nopaddingRight col-md-12">
 				 <button type="submit" class="btn btn-primary" >Submit</button>
 				</form>
+				</div>
 				</div>
 				
 				</div>
@@ -361,6 +369,39 @@ function getsubcaregories(id){
     </script>   
 	
 	<script type="text/javascript">
+$(document).ready(function() {
+    $('#importproducts').bootstrapValidator({
+       
+        fields: {
+            category_id_import: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a Category'
+					}
+				}
+            },
+			subcategory_id_import: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a SubCategory'
+					}
+				}
+            },
+			
+			categoryes: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a value'
+					},
+					regexp: {
+						regexp: /\.(xlsx|xls|xlsm)$/i,
+					message: 'Uploaded file is not a valid. Only xlsx,xls,xlsm files are allowed'
+					}
+				}
+            }
+        }
+    });
+});
 $(document).ready(function() {
     $('#addprodustc').bootstrapValidator({
        

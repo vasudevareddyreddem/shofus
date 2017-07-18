@@ -366,7 +366,7 @@ public function uploadproducts(){
 						//echo "<pre>";print_r($arry);exit;
 						foreach($arry as $key=>$fields)
 							{
-								if(isset($fields[1]) && $fields[1]!='' ){
+								if(isset($fields[1]) && $fields[1]!='' && $fields[2]!='' && $fields[3]!='' && $fields[4]!='' && $fields[5]!=''  && $fields[6]!='' && $fields[7]!=''  && $fields[8]!='' ){
 								
 									$totalfields[] = $fields;	
 									
@@ -589,11 +589,17 @@ public function uploadproducts(){
 								// $split_image = pathinfo($image_link);
 								// $imagename=$split_image['filename'].".".$split_image['extension'];
 							
+							}else{
+								$data['errors'][]='Please Fillout all Fields';
+								$this->session->set_flashdata('addsuccess',$data['errors']);
+								redirect('/seller/products/create');
 							}
 					}
-					echo '<pre>';print_r($data['errors']);
-					//$this->session->set_flashdata('addsuccess',$data['errors']);
-					//redirect('/seller/products/create');
+					//echo '<pre>';print_r($data['errors']);exit;
+					if(count($data['errors'])>0){
+					$this->session->set_flashdata('addsuccess',$data['errors']);
+					redirect('/seller/products/create');
+					}
 						
 						
 					}
@@ -798,16 +804,19 @@ public function uploadproducts(){
 							
 							);
 							//echo '<pre>';print_r($adddetails);exit;
-						$res=$this->products_model->insert($adddetails);							
+						$results=$this->products_model->save_prodcts($adddetails);
+						//echo $this->db->last_query();exit;						
 						}
 					}
+					if(count($results)>0){
 					$this->session->set_flashdata('addcus','Items are successfully added');
-					//redirect('/seller/products/create');
+					redirect('/seller/products/create');	
+					}
+					
 						//echo '<pre>';print_r($adddetails);exit;
 					
 						
 					} 
-					echo "hello";exit;
 }	
 
 }

@@ -29,6 +29,12 @@ class Products_model extends MY_Model
 
 		
 	}
+	public function save_prodcts($data)
+	{
+		
+		$this->db->insert('products', $data);
+		return $insert_id = $this->db->insert_id();
+	} 
 	public function getcatdata()
 	{
 		
