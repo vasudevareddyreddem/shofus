@@ -181,8 +181,8 @@ public function update()
 	
 	$id = $this->uri->segment(4);
 	$post=$this->input->post();
-	echo '<pre>';print_r($post);
-	echo '<pre>';print_r($_FILES);
+	//echo '<pre>';print_r($post);
+	//echo '<pre>';print_r($_FILES);
 	
 	
 	$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));
