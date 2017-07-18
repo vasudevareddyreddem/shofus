@@ -5,53 +5,15 @@
 }
 
 </style>
+
 <html>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
   <!--banenr start here -->
   <section id="home_scr">
-  <!--
-  <div class="banner">
-    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1500px;height:450px;overflow:hidden;visibility:hidden;"> 
-     
-      <div data-u="loading" class="jssorl-oval" style="position:absolute;top:0px;left:0px;text-align:center;background-color:rgba(0,0,0,0.7);"> <img style="margin-top:-19.0px;position:relative;top:50%;width:38px;height:38px;" src="<?php echo base_url();?>assets/seller_login/images/oval.svg" /> </div>
-      <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1500px;height:450px;overflow:hidden;">
-        <div> <img data-u="image" src="<?php echo base_url();?>assets/seller_login/images/pacban1.png " />
-          <div class="bnr_title">
-            <h3><a class="" href="<?php echo base_url(); ?>seller/login/register">Register Now</a></h3>
-          </div>
-        </div>
-        <div> <img data-u="image" src="<?php echo base_url();?>assets/seller_login/images/Bnr_1.jpg" />
-          <div class="bnr_title">
-            <h3><a href="<?php echo base_url(); ?>seller/login/register">Register Now</a></h3>
-          </div>
-        </div>
-        <div> <img data-u="image" src="<?php echo base_url();?>assets/seller_login/images/Bnr_3.jpg" />
-          <div class="bnr_title">
-            <h3><a href="<?php echo base_url(); ?>seller/login/register">Register Now</a></h3>
-          </div>
-        </div>
-        <div> <img data-u="image" src="<?php echo base_url();?>assets/seller_login/images/Bnr_4.jpg" />
-          <div class="bnr_title">
-            <h3><a href="<?php echo base_url(); ?>seller/login/register">Register Now</a></h3>
-          </div>
-        </div>
-        <a data-u="any" href="#" style="display:none">Full Width Slider</a> </div>
-    
-      <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1"> 
-      
-        <div data-u="prototype" style="width:16px;height:16px;"></div>
-      </div>
-    
-      <span data-u="arrowleft" class="jssora22l" style="top:0px;left:8px;width:40px;height:58px;" data-autocenter="2"></span> <span data-u="arrowright" class="jssora22r" style="top:0px;right:8px;width:40px;height:58px;" data-autocenter="2"></span> </div>
-  </div>
-  <div class="clearfix"></div>
-  <!--banenr end here -->
+  
 <div class="  bac_img" style="position:absolute;top:0">
-
-
-	<!--<img class="img-responsive "  src="<?php echo base_url();?>assets/seller_login/images/pacban1.png " />-->
-
-<div class=" " style="position: absolute;bottom:10%; right:28%;left:25%">
+</div>
+<div class="sel_cat_Sty " >
  <h1 class="rw-sentence">
  <span class="font_si_ban">Build your hyperlocal store <br>where you can sell</span> 
 	 <div class="rw-words rw-words-1"> 
@@ -69,11 +31,12 @@
 	 </div> 
  </h1>
 </div>
-</div>
+
 </section>
 
 <div class="clearfix"></div>
-<div style=" height:43em;"></div>
+<div class="sm_hide" style=" height:43em;"></div>
+<img class="img-responsive md_hide"  src="<?php echo base_url();?>assets/seller_login/images/pacban1.png " />
 <section>
   <div class="container" >
   <div class=' animated bounceInLeft slower'   data-id='3'>

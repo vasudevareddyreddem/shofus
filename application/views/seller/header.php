@@ -31,6 +31,7 @@
 
 </head>
 
+
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 <!--<div class="loader"></div>-->
 <div class="main_wrapper"> 
@@ -46,14 +47,33 @@
     <div class="">
    <div class="navbar-header">
       <a class="navbar-brand" href="#">
-            <p><a href="<?php echo base_url(); ?>seller/login"><img style="width:57%;" class="img-responsive" src="<?php echo base_url();?>assets/seller_login/images/logo.png" /></a>
+            <p><a href="<?php echo base_url(); ?>seller/login"><img  class="img-responsive widt_img_lo" src="<?php echo base_url();?>assets/seller_login/images/logo.png" /></a>
       </p>
           </a>
     </div>
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <button type="button" class="navbar-toggle collapsed" id="togg_menu" > <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
         <!--<a class="navbar-brand" href="#">Brand</a>--> 
       </div>
+	 <!-- customise toogle start-->
+	  <div class=" cust_togg_menu" style="display:none">
+		   <ul class=" ">
+          <li class="active"><a href="<?php echo base_url('seller/login');?>#home_scr">HOME <span class="sr-only">(current)</span></a></li>
+         <!-- <li><a href="#benifits_sc">BENIFITS</a></li>-->
+      <li><a href="#how_its_w">HOW IT WORKS</a></li>
+         
+          <li><a href="#pricing_scr">PRICING</a></li>
+         
+          <!--<li><a href="#ourservices_scr">OUR SERVICES</a></li>-->
+            <li><a href="#about_sc">ABOUT US</a></li>
+       <li><a href="#faq_sc">FAQ's</a></li>
+        <li><a href="#contact_sc">CONTACT US</a></li>
+		 <li class="point_h"><a id="sign_log" data-toggle="modal" data-target="#myModa2">SIGN UP / LOGIN</a></li>
+         
+     
+        </ul>
+	  </div>
+	   <!-- customise toogle end-->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 myNavbar">
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="<?php echo base_url('seller/login');?>#home_scr">HOME <span class="sr-only">(current)</span></a></li>
@@ -143,83 +163,7 @@
               </form>
             </div>
             </div>
-            <div class="clearfix"></div>
-            <!--  <div class="social-login">
-              <p>- - - - - - - - - - - - - Sign In With - - - - - - - - - - - - - </p>
-              <ul>
-              <li><a href=""><i class="fa fa-facebook"></i> Facebook</a></li>
-              <li><a href=""><i class="fa fa-google-plus"></i> Google+</a></li>
-              <li><a href=""><i class="fa fa-twitter"></i> Twitter</a></li>
-              </ul>
-              </div>-->
-              <div class="clearfix"></div>
-            </div>
-            <!--<div id="" class="tab-pane fade">
-              <div class="innter-form">
-              <form class="sa-innate-form" method="post">
-                <div class="form-group">
-                  <?php echo $this->session->flashdata('msg1'); ?>
-                  <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                    <label for="ex1">Name</label>
-                    <input class="form-control" id="seller_fullname" name="seller_fullname" type="text" autofocus>
-                    <span id="errorname1" style="color:red; font-size: 13px;"></span>
-                  </div>
-                  <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                    <label for="ex2">Email Id</label>
-                    <input class="form-control" id="seller_email" name="seller_email" type="text">
-                    <span id="erroremail" style="color:red; font-size: 13px;"></span>
-                  </div>
-                  
-                  <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                    <label for="ex4">Mobile Number</label>
-                    <input class="form-control" id="seller_mobile" name="seller_mobile" maxlength="10" type="text">
-                    <span id="errorphone" style="color:red; font-size: 13px;"></span>
-                  </div>
-                  <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                    <label for="ex5">Shop Name</label>
-                    <input class="form-control" id="seller_shop" name="seller_shop" type="text">
-                    <span id="errorshop" style="color:red; font-size: 13px;"></span>
-                  </div>
-                  <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                    <label for="ex6">Shop Location</label>
-                    <select class="form-control" id="location_name" name="location_name">
-                       <option value="">-Select Location-</option>
-                       <?php //foreach($locationdata as $location_data)  { ?>
-                       <option value="<?php //echo $location_data->location_name;?>"><?php //echo $location_data->location_name;?></option>
-                       
-                       <?php //} ?>
-                      </select>
-                      <span id="errorlocation" style="color:red; font-size: 13px;"></span>
-                  </div>
-                  <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                    <label for="ex7">VAT/TIN Number</label>
-                    <input class="form-control" id="seller_license" name="seller_license" type="text">
-                    <span id="errorlicense" style="color:red; font-size: 13px;"></span>
-                  </div>
-                  
-                   
-                  <div class="col-xs-12 col-md-6 nopaddingright reginput">
-                    <label for="ex12">Address</label>
-                    <textarea class="form-control" id="seller_address" name="seller_address"></textarea>
-                    <span id="erroraddress" style="color:red; font-size: 13px;"></span>
-                  </div>
-                  <div class="col-xs-12 col-md-6 " style="margin-top:30px">
-                    <label for="ex12"></label><br>
-                    <button class="btn btn-primary">Detect my Location</button>
-                   
-                   
-                  </div>
-                  </div>
-                   <label>
-                  <input type="checkbox" name="checkbox" value="check" id="terms_condition">
-                  If you have read and agree to the <a href="#">Terms and Conditions,</a> please continue</label>
-              <button type="submit">Register now</button>
-              
-              </form>
-              </div>
-            
-              <div class="clearfix"></div>
-            </div>-->
+           
           </div>
         </div>
           </div>
@@ -334,7 +278,7 @@
         </div>-->
         <div class="modal-body" style="padding:0px">
 		<button type="button" class="close" data-dismiss="modal">&times;</button>
-		<img style="width:100%;" class="img-responsive" src="<?php echo base_url();?>assets/seller_login/images/price_hide.png" />
+		<img style="width:100%;" class="img-responsive" src="<?php echo base_url();?>assets/seller_login/images/pacban1.png" />
 		<div style="position: absolute;top:50%;color:#ddd;right:42%;">
 			<p style="font-size:20px;"><b>Limited period offer</b></p>		
 			<p style="font-size:20px;margin-left: 25px;">Free for 1 month</p>		<br>
@@ -731,4 +675,13 @@ else{
       
     });
     });
+</script>
+
+<script>
+$(document).ready(function(){
+    $("#togg_menu").click(function(){
+        $(".cust_togg_menu").toggle();
+    });
+  
+});
 </script>
