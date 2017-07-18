@@ -3,19 +3,29 @@
      
       <div id="myCarousel" class="carousel slide"> 
         <!-- Indicators -->
-        
-        <div class="carousel-inner">
 
-         
-		  <?php foreach($homepage_banner as $images){  ?>
+			<div class="carousel-inner">
+
+				
+				<?php //echo '<pre>';print_r($homepage_banner);exit; ?>
+				<?php $c=0;foreach($homepage_banner as $images){  ?>
+				
+				<?php if($c==0){  ?>
+					<div class="item active"> <img src="<?php echo base_url('uploads/banners/'.$images['file_name']);?>" class="img-responsive">
+					<div class="container">
+						<div class="carousel-caption"> </div>
+					</div>
+				</div>
+				<?php }else{ ?>
 			  <div class="item"> <img src="<?php echo base_url('uploads/banners/'.$images['file_name']);?>" class="img-responsive">
 				<div class="container">
 				  <div class="carousel-caption"> </div>
 				</div>
 			  </div>
-		  <?php } ?>
-          
-        </div>
+				<?php } $c++;} ?>
+
+				
+		</div>
         
         <!-- Controls --> 
         <a class="left carousel-control" href="#myCarousel" data-slide="prev"> <i class="glyphicon glyphicon-chevron-left"></i> </a> <a class="right carousel-control" href="#myCarousel" data-slide="next"> <i class="glyphicon glyphicon-chevron-right"></i> </a> </div>
@@ -27,7 +37,7 @@
   <!--body part start here -->
   
   <div class="cart_bdy" style="display:none;" id="location_seacrh_result"></div>
-  <div class="cart_bdy" id="location_seacrh">
+  <div class="" id="location_seacrh">
     <!--Top Category slider Start-->
     <div class="top-cate">
       <div class="featured-pro container_main">

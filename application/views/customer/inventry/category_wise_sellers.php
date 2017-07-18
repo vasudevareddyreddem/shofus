@@ -42,7 +42,7 @@
 				  <td><?php echo $sellers['seller_name']; ?></td>    
 				  <td><?php echo $sellers['seller_email']; ?></td>    
 				  <td><?php echo $sellers['seller_mobile']; ?></td>    
-                  <td><?php if($sellers['status']==1){ echo "Active";}else{ echo "Deactivae";} ?></td>                  
+                  <td><?php if($sellers['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
                   <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($sellers['seller_id']).'/'.base64_encode($sellers['seller_category_id']).'/'.'direct'); ?>">View</a></td>                  
 				
                  </tr>  

@@ -301,19 +301,19 @@ $db['default'] = array(
 
 
 
-	'hostname' => 'localhost',
+	'hostname' => 'cartinhour.com',
 
 
 
-	'username' => 'root',
+	'username' => 'cartinho_cart',
 
 
 
-	'password' => '',
+	'password' => 'cartinhour@99',
 
 
 
-	'database' => 'cart_new',
+	'database' => 'cartinho_cart',
 
 
 

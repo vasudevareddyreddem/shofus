@@ -158,9 +158,13 @@ class Dashboard extends Admin_Controller {
    
     if(count($result)>0)
       {
+
         $bank_account = $this->adddetails_model->update_seller_account_link($this->session->userdata('seller_id'),1);
         //echo '<pre>';print_r($bank_account);exit;
 		$this->session->set_flashdata('succes','Your Account Link Successfully');
+
+		
+
 		return redirect('seller/dashboard');
 
       }
