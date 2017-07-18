@@ -612,7 +612,7 @@
 				</div>
 			</form>  
 			<h1>Support</h1>
-			<small>seller support</small>
+			<small>Seller support</small>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard'); ?>"><i class="pe-7s-home"></i> Home</a></li>
 				<li class="active">Dashboard</li>
