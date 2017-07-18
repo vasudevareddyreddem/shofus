@@ -137,7 +137,7 @@
                         </a>                        
                     </li>
                     <li class="treeview">
-                        <a href="<?php echo base_url('seller/services/linkaccout');?>">
+                        <a href="<?php echo base_url('seller/dashboard/linkaccout');?>">
                             <i class="fa fa-credit-card"></i><span>Link your account</span>
                         </a>                        
                     </li>

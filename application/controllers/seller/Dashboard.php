@@ -131,6 +131,13 @@ class Dashboard extends Admin_Controller {
   }
 }
 
+
+ public function linkaccout()
+ {
+ 	$this->template->write_view('content', 'seller/dashboard/link_youraccount');
+	$this->template->render();  
+ }
+
 	
 	
 	
