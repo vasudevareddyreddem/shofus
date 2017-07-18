@@ -134,6 +134,7 @@
                 <input   class="form-control" type="text" maxlength="10" id="seller_mobile" name="seller_mobile" autofocus>
                 <input type="checkbox" name="check_tac" id="check_tac" >
               <a href="<?php echo base_url('seller/login/termsandconditions'); ?>">Terms and Conditions</a>
+              <label>Enter Refer Code</label>
               <input   class="form-control" type="text" maxlength="6" id="any_ref" name="any_ref">
 			  </div>
               <div class="clearfix"></div>
@@ -649,7 +650,7 @@ function register(){
 
 }
 
-function IsLcemail(reasontype) {
+function IcsLemail(reasontype) {
         var regex = /^[0-9]{10}$/;
         return regex.test(reasontype);
 		}
@@ -676,6 +677,12 @@ $(document).ready(function(){
   else{
   $("#Emptyforregister").html(""); 
   }
+  
+
+
+ 
+
+
  if ( ( register_form.check_tac.checked == false ) ) 
 {
  $("#Emptyforregister").html("Please agree Terms and Conditions").css("color", "red");
@@ -684,7 +691,7 @@ return false;
 
     if(register!=''){
 		var lcemail = document.getElementById('seller_mobile').value;
-			if (!IsLcemail(lcemail)) {
+			if (!IcsLemail(lcemail)) {
 			$("#Emptyforregister").html("Please Enter Correct Mobile Number").css("color", "red");
 			jQuery('#seller_mobile').focus();
 			return;
@@ -709,7 +716,18 @@ return false;
 						});
 				}
         }
+        var re = /[a-zA-Z0-9\\]$/;
+if (!re.test(any_refer)) {
+    $("#Emptyforregister").html("Alow Only Numbers And letters").css("color", "red");
+    return false;
+}
+else{
+  $("#Emptyforregister").html(""); 
+  }
 			}
+
+
+
       
     });
     });
