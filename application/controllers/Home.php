@@ -26,6 +26,7 @@ public function index()
 			$data['offer_for_you'] = $this->home_model->get_search_offer_for_you($details['area']);
 			$data['deals_of_the_day'] = $this->home_model->get_search_deals_of_the_day($details['area']);
 			$data['season_sales'] = $this->home_model->get_search_season_sales($details['area']);
+			$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		}else{
 			$data['topoffers'] = $this->home_model->get_top_offers();
 			$data['trending_products'] = $this->home_model->get_trending_products();
