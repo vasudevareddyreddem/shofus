@@ -157,7 +157,7 @@ class Dashboard extends Admin_Controller {
    
     if(count($result)>0)
       {
-		$this->session->set_flashdata('succes','Your Account Link Successfully');
+		$this->session->set_flashdata('succes','Your Account Linked Successfully');
 		return redirect('seller/dashboard');
 
       }
