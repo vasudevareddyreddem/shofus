@@ -181,8 +181,8 @@ $('.window').hide();
             <input class="form-control" placeholder="Email Address" type="Email" id="seller_email" name="seller_email" value="<?php echo isset($sellerdata['seller_email'])?$sellerdata['seller_email']:''; ?>">
 			<?php }?>
           </div>
-
-             <input id="butt" button type="submit" class="btn btn-primary pull-right" ></button>
+          <input id="butt" type="submit" class="btn btn-info pull-right" value="Next">
+             
               </form>
         </div>
       </div>

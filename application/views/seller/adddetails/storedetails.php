@@ -404,7 +404,7 @@
 		
 		 <div class="form-group">
             <label class="control-label">Signature file</label>
-            <input  type="text"  name="gstin" id="gstin" value="<?php echo isset($sellerdata['gstin'])?$sellerdata['gstin']:''; ?>" class="form-control"  />
+            <!-- <input  type="text"  name="gstin" id="gstin" value="<?php echo isset($sellerdata['gstin'])?$sellerdata['gstin']:''; ?>" class="form-control"  /> -->
 			<input type="file" id="gstimag" name="gstimag"  onchange="gstimageuload(this.value)">
 			<a onclick="deactive3();" href="javascript:void(0)" >Upload</a><span id="backid3"><?php echo isset($sellerdata['gstinimage'])?$sellerdata['gstinimage']:''; ?></span>
 			<span id="gstimages"></span>

@@ -83,6 +83,10 @@
             <label class="control-label">Bank Account IFSC Code</label>
             <input maxlength="100" type="text"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($sellerdata['seller_aaccount_ifsc_code'])?$sellerdata['seller_aaccount_ifsc_code']:''; ?>" />
           </div>
+          <div class="" style="padding-right:40px;margin-top:20px;">  
+     <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/storedetails'); ?>">Back</a>
+     <input id="bnt" type="submit" class="btn btn-info " value="Skip">
+    <input id="bnt" type="submit" class="btn btn-info pull-right" value="Next">
 		
       <div class="row">
                 <strong>Copyright &copy; 2017 Cartinhour.</strong> All rights reserved.

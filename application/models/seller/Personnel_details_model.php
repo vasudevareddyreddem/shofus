@@ -30,7 +30,7 @@ public function get_all_storedetail($sid)
 public function get_all_locations($sid)
 {
 		$this->db->select("seller_store_details.other_shops_location")->from('sellers');
-		$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left');		
 		$this->db->where('sellers.seller_id',$sid);
 		return $this->db->get()->row_array();
 

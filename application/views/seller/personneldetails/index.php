@@ -438,10 +438,15 @@ $(function(){
 														
 				<select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
 				  <option value=""></option>
-				  <?php if($orther_shops=='') {?>		
+				  <?php if($orther_shops) { ?>		
 				  <?php foreach($orther_shops as $shops) {?>		  
                     <option value="<?php echo $shops; ?>"><?php echo $shops; ?></option>
-                    <?php } ?>
+                  <?php } ?>
+                    <?php foreach($select_areas as $area){ ?>
+                    <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
+                    <?php }?>
+                    
+
                     <?php }else{?>
                     <?php foreach($select_areas as $area){ ?>
                     <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
@@ -986,4 +991,7 @@ $(document).ready(function() {
 });
 
 
-</script>
+
+    </script>
+
+    

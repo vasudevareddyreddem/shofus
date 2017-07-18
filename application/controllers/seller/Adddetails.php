@@ -250,7 +250,7 @@ class Adddetails extends Seller_adddetails{
 			'tanimage'  =>$tanimg,
 			'cst'  =>$post['cst'],
 			'cstimage'  =>$cetimg,
-			'gstin'  =>$post['gstin'],
+			//'gstin'  =>$post['gstin'],
 			'gstinimage'  =>$gstimg,
 			'created_at'  => date('Y-m-d H:i:s'),
 			);
@@ -285,7 +285,7 @@ class Adddetails extends Seller_adddetails{
    
     if(count($result)>0)
       {
-      	$bank_account = $this->adddetails_model->update_seller_account_link($seller_id,1);
+      	$bank_account = $this->adddetails_model->update_seller_account_link($this->session->userdata('seller_id'),1);
 		$this->session->set_flashdata('succes','');
 		return redirect('seller/adddetails/setpassword');
 

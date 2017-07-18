@@ -688,6 +688,7 @@ $(document).ready(function(){
  $("#Emptyforregister").html("Please agree Terms and Conditions").css("color", "red");
 return false;
 }else{
+    //$('#register_do').css("display", "block");
 
     if(register!=''){
 		var lcemail = document.getElementById('seller_mobile').value;
