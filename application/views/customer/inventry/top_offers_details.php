@@ -20,7 +20,7 @@
 				  <tr>
 					<th>Seller Id</th>
 					<th>Item Name</th>
-					<th>category Name</th>
+					<th>Category Name</th>
 					<th>Item Amount</th>
 					<th>Offer Amount</th>
 					<th>Intial Date</th>

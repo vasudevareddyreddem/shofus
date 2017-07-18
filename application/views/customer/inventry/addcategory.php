@@ -22,7 +22,7 @@
 				<div class=""  style="font-size:20px;font-weight:600;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Add category</div>
 				
 				<div class="form-group">
-				<label for="category">category Name</label>
+				<label for="category">Category Name</label>
 				<input type="text"  class="form-control" id="categoryname"  name="categoryname"/>
 				</div>
 				<div class="form-group">
