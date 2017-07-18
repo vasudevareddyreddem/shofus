@@ -7,6 +7,7 @@
 			<div class="carousel-inner">
 
 				
+				<?php //echo '<pre>';print_r($homepage_banner);exit; ?>
 				<?php $c=0;foreach($homepage_banner as $images){  ?>
 				
 				<?php if($c==0){  ?>
