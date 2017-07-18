@@ -1,3 +1,19 @@
+   <style>
+   .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+		border:none;
+	}
+   </style>
+   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrap-chosen.css"/>
+    <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+    
+    <script src="<?php echo base_url(); ?>assets/dist/js/autocomplete.js"></script>
+    <script>
+      $(function() {
+        $('.chosen-select').chosen();
+        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+      });
+    </script>
  <div class="content-wrapper mar_t_con" >
   <section class="content ">
   <section id="main-content">
@@ -24,21 +40,21 @@
 				
 				<script type="text/javascript">
 
-for(var i=0;i<document.getElementById('category_id').length;i++)
+				for(var i=0;i<document.getElementById('category_id').length;i++)
 
-{
+				{
 
-if(document.getElementById('category_id').options[i].value=="<?php echo $productdata->category_id; ?>")
+				if(document.getElementById('category_id').options[i].value=="<?php echo $productdata->category_id; ?>")
 
-{
+				{
 
-document.getElementById('category_id').options[i].selected=true
+				document.getElementById('category_id').options[i].selected=true
 
-}
+				}
 
-}     
+				}     
 
-</script>
+				</script>
                 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputPassword1">Select Subcategory</label>
                   <select class="form-control" onchange="displayingmsg(this.value);"  id="subcategory_id" name="subcategory_id">
@@ -67,7 +83,20 @@ document.getElementById('category_id').options[i].selected=true
 				}     
 
 			</script>
-                
+                <div class="form-group nopaddingRight col-md-6 san-lg">
+                  <label for="exampleInputEmail1">Select Item</label>
+                 <select class="form-control chosen-select" id="sub_item_name" name="sub_item_name">
+                  <option value="">Select Item</option>
+				<?php foreach($items as $item){ 
+				//echo '<pre>';print_r($orglist);exit;
+				if(($item['item_name'])== $productdata->item_sub_name){?>
+                    <option selected="selected" value="<?php echo $item['item_name']; ?>"><?php echo $item['item_name']; ?></option>                   
+				<?php } else{ ?>
+                    <option value="<?php echo $item['item_name']; ?>"><?php echo $item['item_name']; ?></option>                   
+				<?php } ?>
+				<?php } ?>
+				</select>				 
+                </div> 
 				 <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputEmail1">Item Name</label>
                   <input class="form-control" placeholder="Food Item Charges" type="text" name="item_name" name="item_name" value="<?php echo $productdata->item_name; ?>">
@@ -90,9 +119,7 @@ document.getElementById('category_id').options[i].selected=true
                   <input class="form-control" placeholder="Food Item Charges" type="text" name="item_cost" id="item_cost" value="<?php echo $productdata->item_cost; ?>">
                 <span style="color:red" id="errorcost"></span>
 				</div>
-               
-                <div class="clearfix"></div>
-				<div class="form-group nopaddingRight col-md-6 san-lg">
+               <div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputPassword1">Status</label>
                   <select class="form-control" id="item_status" name="item_status">
                     <option value="">Select Status</option>
@@ -102,46 +129,55 @@ document.getElementById('category_id').options[i].selected=true
 				  <span style="color:red" id="errorstatus"></span>
                 </div>
 				<script type="text/javascript">
-
-for(var i=0;i<document.getElementById('item_status').length;i++)
-
-{
-
-if(document.getElementById('item_status').options[i].value=="<?php echo $productdata->item_status; ?>")
-
-{
-
-document.getElementById('item_status').options[i].selected=true
-
-}
-
-}     
-
-</script>
-
- <div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputFile">Image</label>
-                  <input type="file" name="picture" id="picture">
-				  <input type="hidden" value="<?php echo $productdata->item_image; ?>" name="hdn_inner_banner"  />
-				  <span style="color:red" id="errorpicture"></span>
-                </div>
-
-<div class="clearfix"></div>
-
-
-                <div class="form-group nopaddingRight col-md-6 san-lg">
+				for(var i=0;i<document.getElementById('item_status').length;i++)
+				{
+				if(document.getElementById('item_status').options[i].value=="<?php echo $productdata->item_status; ?>")
+				{
+				document.getElementById('item_status').options[i].selected=true
+				}
+				}     
+				</script>
+                <div class="clearfix"></div>
+				<div class="form-group nopaddingRight col-md-12 san-lg">
                   <label for="exampleInputEmail1">Description</label>
                   <textarea class="form-control" rows="3" id="item_description" name="item_description" ><?php echo $productdata->item_description; ?></textarea>
                 </div>
-              
 				
-                <div class="clearfix"></div>
+			
+				<div class="container">
+				<div class="row ">
+				<div class="form-group nopaddingRight  col-md-5 san-lg ">
+				<label>Item Image</label>
+				<table class="table" id="tab_logic">
+				<tbody>
+					<tr id='addr0'>
+						<td>
+						<input type="file" name='picture_three[]' id="picture_three" class="form-control">
+						</td>
+					</tr>
+					<tr id='addr1'></tr>
+				</tbody>
+				</table>
+				</div>
+				<div class="clearfix"></div>
+				<div  class="col-md-5 san-lg" >
+				<div class="pull-left">
+				<a id="add_row" class="btn btn-default pull-left">Add Row</a>
+				</div>
+				<div class="pull-right" id="deletediv" style="padding-right:30px; display:none;">
+				<a id='delete_row' class="btn btn-default">Delete Row</a>
+				</div>
+				</div>
+				</div>
+				<div class="clearfix"></div>
+
+
+				</div>
+				
+				<div class="clearfix"></div>
 				<div style="margin-top: 20px; margin-left: 15px;">
                 <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
-                
-               
-
-			   <button type="submit" class="btn btn-danger" onclick="window.location='<?php echo base_url(); ?>seller/products';return false;">  Cancel</button>
+                <button type="submit" class="btn btn-danger" onclick="window.location='<?php echo base_url(); ?>seller/products';return false;">  Cancel</button>
 				</div>
               </form>
             </div>
@@ -161,7 +197,28 @@ document.getElementById('item_status').options[i].selected=true
 		
   
   <script type="text/javascript">
-  
+   $(document).ready(function(){
+      var i=1;
+     $("#add_row").click(function(){
+      $('#addr'+i).html("<td><input  name='picture_three[]'  type='file' class='form-control input-md' data-fv-notempty='true' data-fv-notempty-message='Please select an image' data-fv-file='true' data-fv-file-extension='jpeg,jpg,png' data-fv-file-type='image/jpeg,image/png' data-fv-file-maxsize='2097152' data-fv-file-message='The selected file is not valid'></td>");
+	
+				
+      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      $('#deletediv').show('');
+	  
+      i++; 
+  });
+     $("#delete_row").click(function(){
+		 if(i==2){
+			$('#deletediv').hide(''); 
+		 }
+    	 if(i>1){
+		 $("#addr"+(i-1)).html('');
+		 i--;
+		 }
+	 });
+
+});
   function displayingmsg(val){
 	  if(val!=''){
 		 $('#errorsubcategory').hide(); 
