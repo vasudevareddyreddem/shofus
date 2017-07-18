@@ -37,7 +37,7 @@
   <!--body part start here -->
   
   <div class="cart_bdy" style="display:none;" id="location_seacrh_result"></div>
-  <div class="cart_bdy" id="location_seacrh">
+  <div class="" id="location_seacrh">
     <!--Top Category slider Start-->
     <div class="top-cate">
       <div class="featured-pro container_main">
