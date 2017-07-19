@@ -301,15 +301,15 @@ $db['default'] = array(
 
 
 
-	'hostname' => 'cartinhour.com',
+	'hostname' => 'localhost',
 
 
 
-	'username' => 'cartinho_cart',
+	'username' => 'root',
 
 
 
-	'password' => 'cartinhour@99',
+	'password' => '',
 
 
 

@@ -1,262 +1,13 @@
 <style>
-.process-step .btn:focus{outline:none}
-.process{display:table;width:100%;position:relative}
-.process-row{display:table-row}
-.process-step button[disabled]{opacity:1 !important;filter: alpha(opacity=100) !important}
-.process-row:before{top:40px;bottom:0;position:absolute;content:" ";width:100%;height:1px;background-color:#ccc;z-order:0}
-.process-step{display:table-cell;text-align:center;position:relative}
-.process-step p{margin-top:4px}
-.btn-circle{width:80px;height:80px;text-align:center;font-size:12px;border-radius:50%}
-.pos_re{
-	top:44;
-	right:-80px;
-	position: absolute;
-}
-	 /* multiselect css start */
- .chosen-select {
-  width: 100%; }
+.label-info{
+	border: 1px solid #ddd !important;
+	 background-color: #fafafa !important;
+	 color:#555 !important;
+ }
 
-.chosen-select-deselect {
-  width: 100%; }
-
-.chosen-container {
-  display: inline-block;
-  font-size: 14px;
-  position: relative;
-  vertical-align: middle; }
-  .chosen-container .chosen-drop {
-    background: #fff;
-    border: 1px solid #ccc;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-    -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
-    margin-top: -1px;
-    position: absolute;
-    top: 100%;
-    left: -9000px;
-    z-index: 1060; }
-  .chosen-container.chosen-with-drop .chosen-drop {
-    left: 0;
-    right: 0; }
-  .chosen-container .chosen-results {
-    color: #555555;
-    margin: 0 4px 4px 0;
-    max-height: 240px;
-    padding: 0 0 0 4px;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch; }
-    .chosen-container .chosen-results li {
-      display: none;
-      line-height: 1.42857;
-      list-style: none;
-      margin: 0;
-      padding: 5px 6px; }
-      .chosen-container .chosen-results li em {
-        background: #feffde;
-        font-style: normal; }
-      .chosen-container .chosen-results li.group-result {
-        display: list-item;
-        cursor: default;
-        color: #999;
-        font-weight: bold; }
-      .chosen-container .chosen-results li.group-option {
-        padding-left: 15px; }
-      .chosen-container .chosen-results li.active-result {
-        cursor: pointer;
-        display: list-item; }
-      .chosen-container .chosen-results li.highlighted {
-        background-color: #337ab7;
-        background-image: none;
-        color: white; }
-        .chosen-container .chosen-results li.highlighted em {
-          background: transparent; }
-      .chosen-container .chosen-results li.disabled-result {
-        display: list-item;
-        color: #777777; }
-    .chosen-container .chosen-results .no-results {
-      background: #eeeeee;
-      display: list-item; }
-  .chosen-container .chosen-results-scroll {
-    background: white;
-    margin: 0 4px;
-    position: absolute;
-    text-align: center;
-    width: 321px;
-    z-index: 1; }
-    .chosen-container .chosen-results-scroll span {
-      display: inline-block;
-      height: 1.42857;
-      text-indent: -5000px;
-      width: 9px; }
-  .chosen-container .chosen-results-scroll-down {
-    bottom: 0; }
-    .chosen-container .chosen-results-scroll-down span {
-      background: url("chosen-sprite.png") no-repeat -4px -3px; }
-  .chosen-container .chosen-results-scroll-up span {
-    background: url("chosen-sprite.png") no-repeat -22px -3px; }
-
-.chosen-container-single .chosen-single {
-  background-color: #fff;
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding;
-  background-clip: padding-box;
-  border: 1px solid #ccc;
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  color: #555555;
-  display: block;
-  height: 34px;
-  overflow: hidden;
-  line-height: 34px;
-  padding: 0 0 0 8px;
-  position: relative;
-  text-decoration: none;
-  white-space: nowrap; }
-  .chosen-container-single .chosen-single span {
-    display: block;
-    margin-right: 26px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; }
-  .chosen-container-single .chosen-single abbr {
-    background: url("chosen-sprite.png") right top no-repeat;
-    display: block;
-    font-size: 1px;
-    height: 10px;
-    position: absolute;
-    right: 26px;
-    top: 12px;
-    width: 12px; }
-    .chosen-container-single .chosen-single abbr:hover {
-      background-position: right -11px; }
-  .chosen-container-single .chosen-single.chosen-disabled .chosen-single abbr:hover {
-    background-position: right 2px; }
-  .chosen-container-single .chosen-single div {
-    display: block;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 18px; }
-    .chosen-container-single .chosen-single div b {
-      background: url("chosen-sprite.png") no-repeat 0 7px;
-      display: block;
-      height: 100%;
-      width: 100%; }
-.chosen-container-single .chosen-default {
-  color: #777777; }
-.chosen-container-single .chosen-search {
-  margin: 0;
-  padding: 3px 4px;
-  position: relative;
-  white-space: nowrap;
-  z-index: 1000; }
-  .chosen-container-single .chosen-search input[type="text"] {
-    background: url("chosen-sprite.png") no-repeat 100% -20px, #fff;
-    border: 1px solid #ccc;
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    margin: 1px 0;
-    padding: 4px 20px 4px 4px;
-    width: 100%; }
-.chosen-container-single .chosen-drop {
-  margin-top: -1px;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding;
-  background-clip: padding-box; }
-
-.chosen-container-single-nosearch .chosen-search input[type="text"] {
-  position: absolute;
-  left: -9000px; }
-
-.chosen-container-multi .chosen-choices {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  cursor: text;
-  height: auto !important;
-  height: 1%;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-  position: relative; }
-  .chosen-container-multi .chosen-choices li {
-    float: left;
-    list-style: none; }
-  .chosen-container-multi .chosen-choices .search-field {
-    margin: 0;
-    padding: 0;
-    white-space: nowrap; }
-    .chosen-container-multi .chosen-choices .search-field input[type="text"] {
-      background: transparent !important;
-      border: 0 !important;
-      -webkit-box-shadow: none;
-      box-shadow: none;
-      color: #555555;
-      height: 32px;
-      margin: 0;
-      padding: 4px;
-      outline: 0; }
-    .chosen-container-multi .chosen-choices .search-field .default {
-      color: #999; }
-  .chosen-container-multi .chosen-choices .search-choice {
-    -webkit-background-clip: padding-box;
-    -moz-background-clip: padding;
-    background-clip: padding-box;
-    background-color: #eeeeee;
-    border: 1px solid #ccc;
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-    background-image: -webkit-linear-gradient(top, white 0%, #eeeeee 100%);
-    background-image: -o-linear-gradient(top, white 0%, #eeeeee 100%);
-    background-image: linear-gradient(to bottom, white 0%, #eeeeee 100%);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0);
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    color: #333333;
-    cursor: default;
-    line-height: 13px;
-    margin: 6px 0 3px 5px;
-    padding: 3px 20px 3px 5px;
-    position: relative; }
-    .chosen-container-multi .chosen-choices .search-choice .search-choice-close {
-      background: url("<?php echo base_url();?>assets/seller_login/images/close.png") right top no-repeat;
-      display: block;
-      font-size: 1px;
-      height: 10px;
-      position: absolute;
-      right: 4px;
-      top: 7px;
-      width: 12px;
-      cursor: pointer; }
-	  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-		border:none;
-	}
-
- /* multiselect css end */
-}
 </style>
+<head>
+</head>
 <div class="content-wrapper mar_t_con" >
 	<section class="content-header">
 		<div class="header-icon">
@@ -345,16 +96,13 @@
 											<div class="col-md-6  ">
 												<div class="form-group ">
 												<label>Size</label>
+													<div class="example example_typeahead">
+														<div class="bs-example">
+															<input type="text" value="XL,XX,XXX,SM" />
+														</div>
+													</div>
 
-												<select id="product_size"  name="product_size[]"  multiple class="chosen-select" tabindex="8">
-												<option value="">Select multiple size </option>
-												<?php foreach($size_details as $list){ ?>
-												<option value="<?php echo $list['size_id']; ?>"><?php echo $list['size_name']; ?></option>
-												<?php } ?>
-												</select>
 												</div>
-												<span id="locationmsg"></span>
-
 											</div>
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Weight</label>
@@ -363,15 +111,13 @@
 											<div class="col-md-6  ">
 												<div class="form-group ">
 												<label>Color</label>
-												<select id="color" name="product_color[]"  multiple class="chosen-select" tabindex="8">
-												<option value="">Select multiple colors </option>
-												<?php foreach($color_details as $list){ ?>
-												<option value="<?php echo $list['color_id']; ?>"><?php echo $list['color_name']; ?></option>
-												<?php } ?>
-												</select>
+													<div class="example example_typeahead">
+														<div class="bs-example">
+															<input type="text" value="Bayapu,Chinna" />
+														</div>
+													</div>
 												</div>
-												<span id="locationmsg"></span>
-
+												
 											</div>
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Season</label>
@@ -514,8 +260,9 @@
 	</section>
 </div>
   <!--main content end--> 
-
-     <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+	 
   <script>
    $(document).ready(function(){
       var i=1;
@@ -571,10 +318,7 @@ $(document).ready(function(){
 
 
 
-  $(function() {
-	$('.chosen-select').chosen();
-	$('.chosen-select-deselect').chosen({ allow_single_deselect: true });
-  });
+
   
   function getsubcategory(id){
 	  if(id!=''){

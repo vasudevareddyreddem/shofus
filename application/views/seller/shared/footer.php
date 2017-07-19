@@ -28,3 +28,5 @@
 <script src="<?php echo base_url(); ?>assets/dist/js/jquery.bootstrap.newsbox.js"></script>
     </script>
     <script src="<?php echo base_url(); ?>assets/dist/js/jquery.bootstrap.newsbox.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/seller/dist/js/bootstrap-tagsinput.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/seller/dist/js/app_bs3.js"></script>
