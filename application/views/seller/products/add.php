@@ -414,9 +414,21 @@
 											    <label for="exampleInputEmail1">Product description</label>
 												<textarea  placeholder="product Description" class="form-control" rows="3" id="product_description" name="product_description"></textarea>
 											</div>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">Product specifications </label>
-												<input type="text" class="form-control" id="specification" name="specification" >
+											<div  class="form-group nopaddingRight col-md-6 san-lg">
+												<div id="tab_sep">
+													<div class="col-md-6" style="padding:0">
+														<label for="exampleInputEmail1">Product specifications </label>
+														<input style="border-radius:5px 0px 0px 5px" type="text" class="form-control" id="specification" name="specification" >
+													</div>
+													<div class="col-md-6" style="padding:0">
+														<label for="exampleInputEmail1">&nbsp; </label>
+														<input style="border-radius:0px 5px 5px 0px" type="text" class="form-control" id="specification" name="specification" >
+													</div>
+												</div>
+												
+												<div class="pull-right" style="padding-top:10px;">
+													<a id="add_sep" class="btn btn-default btn-xs pull-left">Add Row</a>
+												</div>
 											</div>
 											 <div class="container">
 											<div class="row ">
@@ -507,6 +519,32 @@
 	
 				
       $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      $('#deletediv').show('');
+	  
+      i++; 
+	   }
+  });
+ 
+     $("#delete_row").click(function(){
+		 if(i==2){
+			$('#deletediv').hide(''); 
+		 }
+    	 if(i>1){
+		 $("#addr"+(i-1)).html('');
+		 i--;
+		 }
+	 });
+
+});
+$(document).ready(function(){
+      var i=1;
+	 
+     $("#add_sep").click(function(){
+		  if(i <=11){
+      $('#addr'+i).html("<td><input  name='picture_three[]'  type='file' class='form-control input-md' data-fv-notempty='true' data-fv-notempty-message='Please select an image' data-fv-file='true' data-fv-file-extension='jpeg,jpg,png' data-fv-file-type='image/jpeg,image/png' data-fv-file-maxsize='2097152' data-fv-file-message='The selected file is not valid'></td>");
+	
+				
+      $('#tab_sep').append('<tr id="addr'+(i+1)+'"></tr>');
       $('#deletediv').show('');
 	  
       i++; 
