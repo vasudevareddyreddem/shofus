@@ -98,6 +98,7 @@ class Products extends Admin_Controller {
 
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
+		echo '<pre>';print_r($post);exit;
 			$i=0;
 			foreach($_FILES['picture_three']['name'] as $file){
 				if(!empty($file))

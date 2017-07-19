@@ -346,7 +346,7 @@
 												<div class="form-group ">
 												<label>Size</label>
 
-												<select id="seller_cat"   multiple class="chosen-select" tabindex="8">
+												<select id="product_size"  name="product_size[]"  multiple class="chosen-select" tabindex="8">
 												<option value="">Select multiple size </option>
 												<?php foreach($size_details as $list){ ?>
 												<option value="<?php echo $list['size_id']; ?>"><?php echo $list['size_name']; ?></option>
@@ -363,7 +363,7 @@
 											<div class="col-md-6  ">
 												<div class="form-group ">
 												<label>Color</label>
-												<select id="color" name="color"  multiple class="chosen-select" tabindex="8">
+												<select id="color" name="product_color[]"  multiple class="chosen-select" tabindex="8">
 												<option value="">Select multiple colors </option>
 												<?php foreach($color_details as $list){ ?>
 												<option value="<?php echo $list['color_id']; ?>"><?php echo $list['color_name']; ?></option>
@@ -418,11 +418,11 @@
 												<div id="tab_sep">
 													<div class="col-md-6" style="padding:0">
 														<label for="exampleInputEmail1">Product specifications </label>
-														<input style="border-radius:5px 0px 0px 5px" type="text" class="form-control" id="specificationname[]" name="specificationvalue[]" >
+														<input style="border-radius:5px 0px 0px 5px" type="text" class="form-control" id="specificationvalueid" name="specificationvalue[]" >
 													</div>
 													<div class="col-md-6" style="padding:0">
 														<label for="exampleInputEmail1">&nbsp; </label>
-														<input style="border-radius:0px 5px 5px 0px" type="text" class="form-control" id="specificationname[]" name="specificationvalue[]" >
+														<input style="border-radius:0px 5px 5px 0px" type="text" class="form-control" id="specificationnameid" name="specificationname[]" >
 													</div>
 												</div>
 												
@@ -463,7 +463,10 @@
 
 
 											</div>
-											
+											<div style="margin-top: 20px; margin-left: 15px;">
+											<button type="submit" class="btn btn-primary" >Submit</button>
+											<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/products'); ?>">Cancel</a>
+											</div>
 										</form>
                                     </div>
                                 </div>
@@ -544,7 +547,7 @@ $(document).ready(function(){
   
 	 var k=1;
      $("#add_sep").click(function(){
-      $('#addrs'+k).html("<div class='col-md-6' style='padding:0'><input style='border-radius:5px 0px 0px 5px' type='text' class='form-control' id='specificationname[]' name='specificationvalue[]' ></div><div class='col-md-6' style='padding:0'><input style='border-radius:0px 5px 5px 0px' type='text' class='form-control' id='specificationname[]' name='specificationvalue[]' ></div>");
+      $('#addrs'+k).html("<div class='col-md-6' style='padding:0'><input style='border-radius:5px 0px 0px 5px' type='text' class='form-control' id='specificationvalueid[]' name='specificationvalue[]' ></div><div class='col-md-6' style='padding:0'><input style='border-radius:0px 5px 5px 0px' type='text' class='form-control' id='specificationnameid[]' name='specificationname[]' ></div>");
 		$('#tab_sep').append('<div id="addrs'+(k+1)+'"></div>');
 		if(k >=2){
 			$('#delbtn').show();
