@@ -44,7 +44,7 @@
 				
 				<div class="form-group">
 				<label for="category">Import File File</label>
-				<input type="file" placeholder="" class="form-control" id="categoryfile" name="categoryfile" />
+				<input type="file" placeholder="" class="form-control" id="importcategoryfile" name="importcategoryfile" />
 				</div>
 				<div class="btn-group-vertical btn-block text-center" role="group">
 				<button type="submit" class="btn btn-danger btn-lg">Import</button>

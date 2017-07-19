@@ -418,48 +418,52 @@
 												<div id="tab_sep">
 													<div class="col-md-6" style="padding:0">
 														<label for="exampleInputEmail1">Product specifications </label>
-														<input style="border-radius:5px 0px 0px 5px" type="text" class="form-control" id="specification" name="specification" >
+														<input style="border-radius:5px 0px 0px 5px" type="text" class="form-control" id="specificationname[]" name="specificationvalue[]" >
 													</div>
 													<div class="col-md-6" style="padding:0">
 														<label for="exampleInputEmail1">&nbsp; </label>
-														<input style="border-radius:0px 5px 5px 0px" type="text" class="form-control" id="specification" name="specification" >
+														<input style="border-radius:0px 5px 5px 0px" type="text" class="form-control" id="specificationname[]" name="specificationvalue[]" >
 													</div>
 												</div>
 												
+												<div class="pull-right" id="delbtn" style="padding-top:10px;display:none">
+													<a id="tab_delet" class="btn btn-default btn-xs pull-left">Delete Row</a>
+												</div>
 												<div class="pull-right" style="padding-top:10px;">
 													<a id="add_sep" class="btn btn-default btn-xs pull-left">Add Row</a>
 												</div>
 											</div>
-											 <div class="container">
-											<div class="row ">
-											<div class="form-group nopaddingRight  col-md-5 san-lg ">
-											<label>Item Image</label>
-											<table class="table" id="tab_logic">
-											<tbody>
-												<tr id='addr0'>
-													<td>
-													<input type="file" name='picture_three[]' id="picture_three" class="form-control" data-fv-notempty="true"
-										   ` />
-													</td>
-												</tr>
-												<tr id='addr1'></tr>
-											</tbody>
-											</table>
-											</div>
 											<div class="clearfix"></div>
-											<div  class="col-md-10 san-lg" >
-											<div class="pull-right">
-											<a id="add_row" class="btn btn-default pull-left">Add Row</a>
-											</div>
-											<div class="pull-right" id="deletediv" style="padding-right:30px; display:none;">
-											<a id='delete_row' class="btn btn-default">Delete Row</a>
-											</div>
-											</div>
-											</div>
-				<div class="clearfix"></div>
+											<div class="container">
+												<div class="row ">
+												<div class="form-group nopaddingRight  col-md-5 san-lg ">
+												<label>Item Image</label>
+												<table class="table" id="tab_logic">
+												<tbody>
+													<tr id='addr0'>
+														<td>
+														<input type="file" name='picture_three[]' id="picture_three" class="form-control"/>
+														</td>
+													</tr>
+													<tr id='addr1'></tr>
+												</tbody>
+												</table>
+												</div>
+												<div class="clearfix"></div>
+												<div  class="col-md-5 san-lg" >
+												<div class="pull-left">
+												<a id="add_row" class="btn btn-default pull-left">Add Row</a>
+												</div>
+												<div class="pull-right" id="deletediv" style="padding-right:30px; display:none;">
+												<a id='delete_row' class="btn btn-default">Delete Row</a>
+												</div>
+												</div>
+												</div>
+												<div class="clearfix"></div>
 
 
-				</div>
+											</div>
+											
 										</form>
                                     </div>
                                 </div>
@@ -537,31 +541,33 @@
 
 });
 $(document).ready(function(){
-      var i=1;
-	 
+  
+	 var k=1;
      $("#add_sep").click(function(){
-		  if(i <=11){
-      $('#addr'+i).html("<td><input  name='picture_three[]'  type='file' class='form-control input-md' data-fv-notempty='true' data-fv-notempty-message='Please select an image' data-fv-file='true' data-fv-file-extension='jpeg,jpg,png' data-fv-file-type='image/jpeg,image/png' data-fv-file-maxsize='2097152' data-fv-file-message='The selected file is not valid'></td>");
+      $('#addrs'+k).html("<div class='col-md-6' style='padding:0'><input style='border-radius:5px 0px 0px 5px' type='text' class='form-control' id='specificationname[]' name='specificationvalue[]' ></div><div class='col-md-6' style='padding:0'><input style='border-radius:0px 5px 5px 0px' type='text' class='form-control' id='specificationname[]' name='specificationvalue[]' ></div>");
+		$('#tab_sep').append('<div id="addrs'+(k+1)+'"></div>');
+		if(k >=2){
+			$('#delbtn').show();
+		}
+	  k++; 
 	
-				
-      $('#tab_sep').append('<tr id="addr'+(i+1)+'"></tr>');
-      $('#deletediv').show('');
-	  
-      i++; 
-	   }
   });
  
-     $("#delete_row").click(function(){
-		 if(i==2){
-			$('#deletediv').hide(''); 
+     $("#tab_delet").click(function(){
+		if(k==2){
+			$('#delbtn').hide(''); 
 		 }
-    	 if(i>1){
-		 $("#addr"+(i-1)).html('');
-		 i--;
+    	 if(k>1){
+		 $("#addrs"+(k-1)).html('');
+		 k--;
 		 }
+		
 	 });
 
 });
+
+
+
   $(function() {
 	$('.chosen-select').chosen();
 	$('.chosen-select-deselect').chosen({ allow_single_deselect: true });

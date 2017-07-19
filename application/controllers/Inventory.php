@@ -1718,15 +1718,14 @@ public function servicerequestview(){
 		public function importcategory(){
 			
 		$post=$this->input->post();
-	$cat_id=explode("/",$post['category_id_import']);
-	$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
-	//echo '<pre>';print_r($post);
+	
+	echo '<pre>';print_r($_FILES);
 		
-	if((!empty($_FILES["categoryes"])) && ($_FILES['categoryes']['error'] == 0)) {
+	if((!empty($_FILES["importcategoryfile"])) && ($_FILES['importcategoryfile']['error'] == 0)) {
 				
 				$limitSize	= 1000000000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
-				$fileName	= basename($_FILES['categoryes']['name']);
-				$fileSize	= $_FILES["categoryes"]["size"];
+				$fileName	= basename($_FILES['importcategoryfile']['name']);
+				$fileSize	= $_FILES["importcategoryfile"]["size"];
 				$fileExt	= substr($fileName, strrpos($fileName, '.') + 1);
 				
 				if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
@@ -1734,7 +1733,7 @@ public function servicerequestview(){
 						include( 'simplexlsx.class.php');
 
 					$getWorksheetName = array();
-					$xlsx = new SimpleXLSX( $_FILES['categoryes']['tmp_name'] );
+					$xlsx = new SimpleXLSX( $_FILES['importcategoryfile']['tmp_name'] );
 					$getWorksheetName = $xlsx->getWorksheetName();
 					//echo $xlsx->sheetsCount();exit;
 					for($j=1;$j <= $xlsx->sheetsCount();$j++){
