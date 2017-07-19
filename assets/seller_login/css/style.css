@@ -2450,7 +2450,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
 .cust_togg_menu{
 	display:block;
 	background-color:#fff;
-	    position: absolute;
+	    /* position: absolute; */
     width: 100%;
 	-webkit-box-shadow: -1px 3px 5px -2px rgba(0,0,0,0.75);
 -moz-box-shadow: -1px 3px 5px -2px rgba(0,0,0,0.75);
@@ -2466,5 +2466,11 @@ box-shadow: -1px 3px 5px -2px rgba(0,0,0,0.75);
 	/* color:#222; */
 	text-decoration:none;
 	
+}.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: -13px;
+    border: 1px solid transparent;
 }
+
 /* Responsive css end */

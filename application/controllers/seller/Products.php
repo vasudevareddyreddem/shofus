@@ -33,19 +33,37 @@ class Products extends Admin_Controller {
 	
 	public function create()
 	{
-	
-		//$cat_id = $this->uri->segment('4');
-		//$subcat_id = $this->uri->segment('5');
-		//$data['catname'] = $this->products_model->getcatname($cat_id);
-		//$data['subcatname'] = $this->products_model->getsubcatname($subcat_id);
-       //$data['subcatdata'] = $this->products_model->getsubcatdata($cat_id);
-	   $sid = $this->session->userdata('seller_id'); 
-		$data['sub_cat_data'] = $this->products_model->get_seller_catdata($sid);
+		$sid = $this->session->userdata('seller_id'); 
+		$data['category_details'] = $this->products_model->get_seller_catdata($sid);
+		$color_details = $this->products_model->get_colores();
+		$size_details = $this->products_model->get_sizes_list();
 		$data['items'] = $this->products_model->auto_items();
 		//echo $this->db->last-query();exit;
-		//echo '<pre>';print_r($data);exit;
+		//echo '<pre>';print_r($size_details);exit;
+		foreach($color_details  as $colors){
+			
+			$color_list[]=$colors['color_name'];
+		}
+		foreach($size_details  as $sizes){
+			
+			$sizes_list[]=$sizes['size_name'];
+		}
+		
+		$data['color_lists']=implode(", ",$color_list);
+		$data['sizes_lists']=implode(", ",$sizes_list);
+		
 		$this->template->write_view('content', 'seller/products/add', $data);
 		$this->template->render();
+
+	}
+	public function get_subcaregories_list()
+	{
+		$sid = $this->session->userdata('seller_id'); 
+		$post=$this->input->post();
+		//echo '<pre>';print_r($post);exit;
+		$data['subcategory_details'] = $this->products_model->get_subcategoies($post['catid']);
+		$this->load->view('seller/products/subcategorylist',$data);
+		
 
 	}
 	
@@ -92,6 +110,43 @@ class Products extends Admin_Controller {
 
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
+		
+			foreach ($post['product_size'] as $sizes){
+
+			$addsizesdata=array(
+			'item_id' =>1,
+			'p_size_name' => $sizes,
+			'create_at' => date('Y-m-d H:i:s'),
+			);
+			//$this->products_model->insert_product_sizes($addsizesdata);
+			//echo '<pre>';print_r($sizes);	
+			}
+			foreach ($post['product_color'] as $colors){
+
+			$addcolorsdata=array(
+			'item_id' =>1,
+			'color_name' => $colors,
+			'create_at' => date('Y-m-d H:i:s'),
+			);
+			//$this->products_model->insert_product_colors($addcolorsdata);
+			//echo '<pre>';print_r($sizes);	
+			}
+			
+			
+			$productspecificationlist= array_combine($post['specificationname'],$post['specificationvalue']);
+			foreach ($productspecificationlist as $key=>$list){
+
+			$addspc=array(
+			'item_id' =>1,
+			'spc_name' => $key,
+			'spc_value' => $list,
+			'create_at' => date('Y-m-d H:i:s'),
+			);
+			//$this->products_model->insert_product_colors($addcolorsdata);
+			echo '<pre>';print_r($addspc);	
+			}
+			echo '<pre>';print_r($productspecificationlist);exit;
+			echo '<pre>';print_r($post);exit;
 			$i=0;
 			foreach($_FILES['picture_three']['name'] as $file){
 				if(!empty($file))
@@ -115,17 +170,25 @@ class Products extends Admin_Controller {
 		
 		
 		$data=array(
-
-            'category_id' => $this->input->post('category_id'),			
-			'subcategory_id' => $this->input->post('subcategory_id'),
-			'subitem_id' => $this->input->post('subitem_id'),
-            'seller_id' => $this->session->userdata('seller_id'),             
-			'item_sub_name' => $this->input->post('sub_item_name'),
-			'item_name' => $this->input->post('item_name'),
-			'item_code' => $this->input->post('item_code'),
-			'item_quantity' => $this->input->post('item_quantity'),
-			'item_status' => $this->input->post('item_status'),
-			'item_description' => $this->input->post('item_description'),
+			'category_id' => $post['category_id'],			
+			'subcategory_id' => $post['subcategorylist'],
+			//'item_sub_name' =>$post['sub_item_name'],
+			'skuid' => $post['skuid'],
+			'item_code' => $post['otherunique'],
+			'item_name' => $post['productname'],
+			'item_cost' => $post['product_price'],
+			'special_price' => $post['specialprice'],
+			'producttype' => $post['producttype'],
+			'material' => $post['material'],
+			'weight' => $post['weight'],
+			'season' => $post['season'],
+			'brand' => $post['brand'],
+			'gender' => $post['gender'],
+			'item_quantity' =>$post['qty'],
+			'keywords' =>$post['keywords'],
+			'title' =>$post['title'],
+			'item_status' => $post['status'],
+			'item_description' =>$post['product_description'],
 			'item_cost' => $this->input->post('item_cost'),
 			'item_image'=>isset($images[0])?$images[0]:'',
 			'item_image1'=>isset($images[1])?$images[1]:'',
@@ -141,13 +204,20 @@ class Products extends Admin_Controller {
 			'item_image11'=>isset($images[11])?$images[11]:'',
 			'seller_location_area'=>$seller_location['area'],
 			'created_at'=>date('Y-m-d H:i:s'),
+			'seller_id' => $this->session->userdata('seller_id'),             
+
 
 			);
-			//echo '<pre>';print_r($data);exit;
+			echo '<pre>';print_r($data);exit;
 
-			$res=$this->products_model->insert($data);
-			if($res)
-			{
+			$results=$this->products_model->insert($data);
+			if(count($product_price)>0)
+			{	
+				
+				
+				
+				
+				
 				$this->session->set_flashdata('addsuccess',"Item Successfully added..", 0);
 				redirect('seller/products/create');
 			}

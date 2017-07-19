@@ -17,6 +17,13 @@ class Dashboard_model extends CI_Model
 	return $this->db->get()->row_array();	
 		
 	}
+
+	public function bank_status()
+	{
+		$this->db->select('sellers.bank_complete')->from('sellers');
+		$this->db->where('seller_id', $this->session->userdata('seller_id'));
+		return $this->db->get()->result_array();
+	}
 	public function getcatsubcat()
 	{
 		

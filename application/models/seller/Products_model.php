@@ -21,18 +21,46 @@ class Products_model extends MY_Model
 
 	public function get_seller_catdata($sid)
 	{
-		
 		$this->db->select('seller_categories.*,category.documetfile')->from('seller_categories');
 		$this->db->join('category', 'category.category_id = seller_categories.seller_category_id', 'left');
 		$this->db->where('seller_categories.seller_id',$sid);
         return $this->db->get()->result_array();
-
-		
+	}
+	public function get_subcategoies($cid)
+	{
+		$this->db->select('*')->from('subcategories');
+		$this->db->where('category_id',$cid);
+		$this->db->where('status',1);
+        return $this->db->get()->result_array();
+	}
+	public function get_colores()
+	{
+		$this->db->select('*')->from('colorslist');
+		$this->db->where('status',1);
+        return $this->db->get()->result_array();
+	}
+	public function get_sizes_list()
+	{
+		$this->db->select('*')->from('sizes_list');
+		$this->db->where('status',1);
+        return $this->db->get()->result_array();
 	}
 	public function save_prodcts($data)
 	{
 		
 		$this->db->insert('products', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function insert_product_sizes($data)
+	{
+		
+		$this->db->insert('product_size_list', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function insert_product_colors($data)
+	{
+		
+		$this->db->insert('product_color_list', $data);
 		return $insert_id = $this->db->insert_id();
 	} 
 	public function get_producr_details($id)

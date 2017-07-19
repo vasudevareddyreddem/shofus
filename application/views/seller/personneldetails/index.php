@@ -244,8 +244,7 @@
 
  /* multiselect css end */
 </style>
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
-<script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+
 <?php 
 if($this->session->flashdata('updatemessage')=="Store details updated"){
 ?>
@@ -314,6 +313,7 @@ $(function(){
 				<li><a href="#tab2" data-toggle="tab" role="tab">your Category</a></li>
 				<li ><a href="#tab3" aria-controls="tab3" data-toggle="tab" role="tab">Store details</a></li>
 				<li><a href="#tab4" data-toggle="tab">Personal details</a></li>
+				<li><a href="#tab5" data-toggle="tab">Change password</a></li>
 			</ul>
 			<!-- Tab panels -->
 			<div class="tab-content">
@@ -341,6 +341,11 @@ $(function(){
 			<label for="exampleInputEmail1">Seller Email</label>
 			<input class="form-control" placeholder="Email" type="text" id="seller_email" name="seller_email" value="<?php echo $seller_storedetails['seller_email']   ?>">
 			</div>
+			<div class="form-group nopaddingRight col-md-6 san-lg">
+			<label for="exampleInputEmail1">Mobile Number</label>
+			<input class="form-control" placeholder="Name" type="text" id="seller_mobile" name="seller_mobile" value="<?php echo $seller_storedetails['seller_mobile'];   ?>">
+			</div>
+		
 			
 			<div class="clearfix"></div>
 
@@ -438,10 +443,15 @@ $(function(){
 														
 				<select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
 				  <option value=""></option>
-				  <?php if($orther_shops=='') {?>		
+				  <?php if($orther_shops) { ?>		
 				  <?php foreach($orther_shops as $shops) {?>		  
                     <option value="<?php echo $shops; ?>"><?php echo $shops; ?></option>
-                    <?php } ?>
+                  <?php } ?>
+                    <?php foreach($select_areas as $area){ ?>
+                    <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
+                    <?php }?>
+                    
+
                     <?php }else{?>
                     <?php foreach($select_areas as $area){ ?>
                     <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
@@ -546,8 +556,52 @@ $(function(){
 													<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/dashboard'); ?>">Cancel</a>
 												</div>
 												</div>
-                                                </div>
+                                            
                                             </section>
+											    </div>
+
+									<div class="tab-pane fade" id="tab5">
+										<section class="panel">
+										<?php if($this->session->flashdata('updatpassword')): ?>
+										<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+										</button><?php echo $this->session->flashdata('updatpassword');?></div>
+										<?php endif; ?>
+										<?php if($this->session->flashdata('passworderror')): ?>
+										<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+										</button><?php echo $this->session->flashdata('passworderror');?></div>
+										<?php endif; ?>
+										<div class="panel-body">
+										<form id="changepassword"  name="changepassword" action="<?php echo base_url('seller/personnel_details/changepassword'); ?>" method="post" enctype="multipart/form-data">
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label for="exampleInputEmail1">old passwod</label>
+											<input class="form-control"  type="password" id="oldpassword" name="oldpassword" value="">
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label for="exampleInputEmail1">New Password</label>
+											<input maxlength="100" type="password" maxlength="12" id="newpassword" name="newpassword" class="form-control"  value="" />
+
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label for="exampleInputEmail1">Confirm Password</label>
+											<input maxlength="100" type="password" maxlength="12" id="confirmpassword" name="confirmpassword" class="form-control"  value="" />
+
+											</div>
+
+
+										
+										<div class="clearfix"></div>
+										<div style="margin-top: 20px; margin-left: 15px;">
+										<button type="submit" class="btn btn-primary">Submit</button>
+
+										</form> 
+										<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/dashboard'); ?>">Cancel</a>
+										</div>
+										</div>
+
+										</section>
+									</div>
 				</div>
 			</div>
 		</div>
@@ -565,9 +619,7 @@ $(function(){
 
 <!--body end here -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
-    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
 	<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
-    <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 
 
@@ -919,15 +971,16 @@ $(document).ready(function() {
             
 			}
             },
-			seller_address: {
+			seller_mobile: {
                validators: {
-				notEmpty: {
-					message: 'Address Line is required'
-				},
-				regexp: {
-				regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-				message: 'Address Line wont allow <>[]'
-				}
+					 notEmpty: {
+						message: 'Mobile Number is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]{10}$/,
+					message:'Mobile Number must be 10 digits'
+					}
+               
             
 			}
             }
@@ -986,4 +1039,56 @@ $(document).ready(function() {
 });
 
 
-</script>
+$(document).ready(function() {
+    $('#changepassword').bootstrapValidator({
+       
+        fields: {
+            oldpassword: {
+					validators: {
+					notEmpty: {
+						message: 'Old Password is required'
+					},
+					stringLength: {
+                        min: 6,
+                        message: 'Old Password  must be greater than 6 characters'
+                    },
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
+					message: 'Old Password wont allow <>[]'
+					}
+				}
+			},
+			newpassword: {
+					validators: {
+					notEmpty: {
+						message: 'New Password is required'
+					},
+					stringLength: {
+                        min: 6,
+                        message: 'New Password  must be greater than 6 characters'
+                    },
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
+					message: 'New Password wont allow <>[]'
+					}
+				}
+			},
+			confirmpassword: {
+					 validators: {
+						 notEmpty: {
+						message: 'confirm Password is required'
+					},
+                identical: {
+                    field: 'newpassword',
+                    message: 'The New password and its confirm Password are not the same'
+                }
+            }
+			},
+        }
+    });
+});
+
+
+    </script>
+
+    

@@ -27,6 +27,7 @@ class Dashboard extends Admin_Controller {
 		$data['returnitemdata'] = $this->products_model->returns();
 		$data['seller_ad'] = $this->dashboard_model->seller_ads();
 		$data['sellerscats'] = $this->dashboard_model->seller_cats();
+    $data['bank_link'] = $this->dashboard_model->bank_status();
 		//echo '<pre>';print_r($data);exit;
 		
 		$this->template->write_view('content', 'seller/dashboard/index', $data);
@@ -157,7 +158,13 @@ class Dashboard extends Admin_Controller {
    
     if(count($result)>0)
       {
-		$this->session->set_flashdata('succes','Your Account Linked Successfully');
+
+        $bank_account = $this->adddetails_model->update_seller_account_link($this->session->userdata('seller_id'),1);
+        //echo '<pre>';print_r($bank_account);exit;
+		$this->session->set_flashdata('succes','Your Account Link Successfully');
+
+		
+
 		return redirect('seller/dashboard');
 
       }

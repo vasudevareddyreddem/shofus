@@ -30,7 +30,7 @@ public function get_all_storedetail($sid)
 public function get_all_locations($sid)
 {
 		$this->db->select("seller_store_details.other_shops_location")->from('sellers');
-		$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left');		
 		$this->db->where('sellers.seller_id',$sid);
 		return $this->db->get()->row_array();
 
@@ -108,12 +108,16 @@ function get_seller_details($seller_id)
 	$this->db->where('seller_id',$seller_id);
 	return $this->db->get()->row_array();
 }
-function get_seller_email_check($email)
+function get_seller_mobile_check($email)
 {
 	$this->db->select('*')->from('sellers');
-	$this->db->where('seller_email',$email);
+	$this->db->where('seller_mobile',$email);
 	return $this->db->get()->row_array();
 }
+public function set_password($sid,$pass){
+		$sql1="UPDATE sellers SET seller_password ='".$pass."' WHERE seller_id = '".$sid."'";
+       	return $this->db->query($sql1);
+	}
 
 function get_upload_file($seller_id)
 {

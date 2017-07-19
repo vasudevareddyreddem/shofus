@@ -1714,6 +1714,43 @@ public function servicerequestview(){
 		$this->session->unset_userdata('userdetails');
         redirect('admin/login');
 	}
+	
+		public function importcategory(){
+			
+		$post=$this->input->post();
+	
+	echo '<pre>';print_r($_FILES);
+		
+	if((!empty($_FILES["importcategoryfile"])) && ($_FILES['importcategoryfile']['error'] == 0)) {
+				
+				$limitSize	= 1000000000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
+				$fileName	= basename($_FILES['importcategoryfile']['name']);
+				$fileSize	= $_FILES["importcategoryfile"]["size"];
+				$fileExt	= substr($fileName, strrpos($fileName, '.') + 1);
+				
+				if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
+					
+						include( 'simplexlsx.class.php');
+
+					$getWorksheetName = array();
+					$xlsx = new SimpleXLSX( $_FILES['importcategoryfile']['tmp_name'] );
+					$getWorksheetName = $xlsx->getWorksheetName();
+					//echo $xlsx->sheetsCount();exit;
+					for($j=1;$j <= $xlsx->sheetsCount();$j++){
+						$cnt=$xlsx->sheetsCount()-1;
+						$arry=$xlsx->rows($j);
+						unset($arry[0]);
+					
+						echo "<pre>";print_r($arry);exit;
+						foreach($arry as $key=>$fields)
+							{
+								
+						}
+					} 
+				}
+				
+	       }
+       }	
   
  
 

@@ -38,6 +38,18 @@
 				
 				</div>
 				</form>
+				
+				<form enctype="multipart/form-data" method="post" name="importcategory" id="importcategory"  action="<?php echo base_url('inventory/importcategory'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
+				<div class=""  style="font-size:20px;font-weight:600;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Import category</div>
+				
+				<div class="form-group">
+				<label for="category">Import File File</label>
+				<input type="file" placeholder="" class="form-control" id="importcategoryfile" name="importcategoryfile" />
+				</div>
+				<div class="btn-group-vertical btn-block text-center" role="group">
+				<button type="submit" class="btn btn-danger btn-lg">Import</button>
+				</div>
+				</form>
 			</div>
 		</div>
     

@@ -24,19 +24,31 @@
 });
 </script>
 
-<?php }?>
+<?php
+ //$bank= $this->session->userdata('bank_complete');
+ }?>
 <?php 
-if($this->session->flashdata('updatpassword')=="Password successfully changed!"){
+foreach ($bank_link as $bank) { ?>
+<?php if($bank['bank_complete']==0){
  ?>
 <script>
   $(document).ready(function() {
-   $('#view1').trigger("click");
+    setTimeout( function(){ 
+    $('#view2').trigger("click");
+  }  , 5000 );
+   
 });
 </script>
 
 <?php }?>
+ <?php }?>
+
 <div class="card-header cover">
 <a href="javascript:void(0)"  style="text-decoration:none;" id="view1" data-toggle="modal"  data-target="#dashboardpopup">
+</a>
+</div>
+<div class="card-header cover">
+<a href="javascript:void(0)"  style="text-decoration:none;" id="view2" data-toggle="modal"  data-target="#bankpopup">
 </a>
 </div>
 	
@@ -318,6 +330,26 @@ if($this->session->flashdata('updatpassword')=="Password successfully changed!")
       
     </div>
   </div>
+
+  
+
+
+   <div class="modal fade" id="bankpopup" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Please Link your Account</h4>
+        </div>
+        <div class="modal-body">
+          <h3 class="text-center">Go to Link your Account Tab</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      </div>
+  </div> 
 <script type="text/javascript">
     $(function () {
     $(".demo2").bootstrapNews({

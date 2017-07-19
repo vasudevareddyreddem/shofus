@@ -397,6 +397,7 @@ box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);">
     </script>
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
+<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
 <script type="text/javascript">
 function openpopup (){
 $('#locationdiv').show();
