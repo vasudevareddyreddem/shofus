@@ -1,22 +1,264 @@
-   <style>
-   .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+<style>
+.process-step .btn:focus{outline:none}
+.process{display:table;width:100%;position:relative}
+.process-row{display:table-row}
+.process-step button[disabled]{opacity:1 !important;filter: alpha(opacity=100) !important}
+.process-row:before{top:40px;bottom:0;position:absolute;content:" ";width:100%;height:1px;background-color:#ccc;z-order:0}
+.process-step{display:table-cell;text-align:center;position:relative}
+.process-step p{margin-top:4px}
+.btn-circle{width:80px;height:80px;text-align:center;font-size:12px;border-radius:50%}
+.pos_re{
+	top:44;
+	right:-80px;
+	position: absolute;
+}
+	 /* multiselect css start */
+ .chosen-select {
+  width: 100%; }
+
+.chosen-select-deselect {
+  width: 100%; }
+
+.chosen-container {
+  display: inline-block;
+  font-size: 14px;
+  position: relative;
+  vertical-align: middle; }
+  .chosen-container .chosen-drop {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+    margin-top: -1px;
+    position: absolute;
+    top: 100%;
+    left: -9000px;
+    z-index: 1060; }
+  .chosen-container.chosen-with-drop .chosen-drop {
+    left: 0;
+    right: 0; }
+  .chosen-container .chosen-results {
+    color: #555555;
+    margin: 0 4px 4px 0;
+    max-height: 240px;
+    padding: 0 0 0 4px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; }
+    .chosen-container .chosen-results li {
+      display: none;
+      line-height: 1.42857;
+      list-style: none;
+      margin: 0;
+      padding: 5px 6px; }
+      .chosen-container .chosen-results li em {
+        background: #feffde;
+        font-style: normal; }
+      .chosen-container .chosen-results li.group-result {
+        display: list-item;
+        cursor: default;
+        color: #999;
+        font-weight: bold; }
+      .chosen-container .chosen-results li.group-option {
+        padding-left: 15px; }
+      .chosen-container .chosen-results li.active-result {
+        cursor: pointer;
+        display: list-item; }
+      .chosen-container .chosen-results li.highlighted {
+        background-color: #337ab7;
+        background-image: none;
+        color: white; }
+        .chosen-container .chosen-results li.highlighted em {
+          background: transparent; }
+      .chosen-container .chosen-results li.disabled-result {
+        display: list-item;
+        color: #777777; }
+    .chosen-container .chosen-results .no-results {
+      background: #eeeeee;
+      display: list-item; }
+  .chosen-container .chosen-results-scroll {
+    background: white;
+    margin: 0 4px;
+    position: absolute;
+    text-align: center;
+    width: 321px;
+    z-index: 1; }
+    .chosen-container .chosen-results-scroll span {
+      display: inline-block;
+      height: 1.42857;
+      text-indent: -5000px;
+      width: 9px; }
+  .chosen-container .chosen-results-scroll-down {
+    bottom: 0; }
+    .chosen-container .chosen-results-scroll-down span {
+      background: url("chosen-sprite.png") no-repeat -4px -3px; }
+  .chosen-container .chosen-results-scroll-up span {
+    background: url("chosen-sprite.png") no-repeat -22px -3px; }
+
+.chosen-container-single .chosen-single {
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  color: #555555;
+  display: block;
+  height: 34px;
+  overflow: hidden;
+  line-height: 34px;
+  padding: 0 0 0 8px;
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap; }
+  .chosen-container-single .chosen-single span {
+    display: block;
+    margin-right: 26px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .chosen-container-single .chosen-single abbr {
+    background: url("chosen-sprite.png") right top no-repeat;
+    display: block;
+    font-size: 1px;
+    height: 10px;
+    position: absolute;
+    right: 26px;
+    top: 12px;
+    width: 12px; }
+    .chosen-container-single .chosen-single abbr:hover {
+      background-position: right -11px; }
+  .chosen-container-single .chosen-single.chosen-disabled .chosen-single abbr:hover {
+    background-position: right 2px; }
+  .chosen-container-single .chosen-single div {
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 18px; }
+    .chosen-container-single .chosen-single div b {
+      background: url("chosen-sprite.png") no-repeat 0 7px;
+      display: block;
+      height: 100%;
+      width: 100%; }
+.chosen-container-single .chosen-default {
+  color: #777777; }
+.chosen-container-single .chosen-search {
+  margin: 0;
+  padding: 3px 4px;
+  position: relative;
+  white-space: nowrap;
+  z-index: 1000; }
+  .chosen-container-single .chosen-search input[type="text"] {
+    background: url("chosen-sprite.png") no-repeat 100% -20px, #fff;
+    border: 1px solid #ccc;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    margin: 1px 0;
+    padding: 4px 20px 4px 4px;
+    width: 100%; }
+.chosen-container-single .chosen-drop {
+  margin-top: -1px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box; }
+
+.chosen-container-single-nosearch .chosen-search input[type="text"] {
+  position: absolute;
+  left: -9000px; }
+
+.chosen-container-multi .chosen-choices {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  cursor: text;
+  height: auto !important;
+  height: 1%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative; }
+  .chosen-container-multi .chosen-choices li {
+    float: left;
+    list-style: none; }
+  .chosen-container-multi .chosen-choices .search-field {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap; }
+    .chosen-container-multi .chosen-choices .search-field input[type="text"] {
+      background: transparent !important;
+      border: 0 !important;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #555555;
+      height: 32px;
+      margin: 0;
+      padding: 4px;
+      outline: 0; }
+    .chosen-container-multi .chosen-choices .search-field .default {
+      color: #999; }
+  .chosen-container-multi .chosen-choices .search-choice {
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background-image: -webkit-linear-gradient(top, white 0%, #eeeeee 100%);
+    background-image: -o-linear-gradient(top, white 0%, #eeeeee 100%);
+    background-image: linear-gradient(to bottom, white 0%, #eeeeee 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    color: #333333;
+    cursor: default;
+    line-height: 13px;
+    margin: 6px 0 3px 5px;
+    padding: 3px 20px 3px 5px;
+    position: relative; }
+    .chosen-container-multi .chosen-choices .search-choice .search-choice-close {
+      background: url("<?php echo base_url();?>assets/seller_login/images/close.png") right top no-repeat;
+      display: block;
+      font-size: 1px;
+      height: 10px;
+      position: absolute;
+      right: 4px;
+      top: 7px;
+      width: 12px;
+      cursor: pointer; }
+	  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 		border:none;
 	}
-   </style>
-   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrap-chosen.css"/>
-    <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
-    
-    <script src="<?php echo base_url(); ?>assets/dist/js/autocomplete.js"></script>
-    <script>
-      $(function() {
-        $('.chosen-select').chosen();
-        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
-      });
-    </script>
 
+ /* multiselect css end */
+}
+</style>
 <div class="content-wrapper mar_t_con" >
-<section class="content-header">
+	<section class="content-header">
 		<div class="header-icon">
 			<i class="pe-7s-note2"></i>
 		</div>
@@ -36,170 +278,88 @@
 				<li class="active">Dashboard</li>
 			</ol>
 		</div>
-	</section>
-  <section class="content ">
-  <section id="main-content">
-    <section class="wrapper">
-   
-     <div class="row">
-	 <?php if($this->session->flashdata('addcus')): ?>
-			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('addcus');?></div>
-			<?php endif; ?>
-	 <?php //echo '<pre>';print_r($this->session->flashdata('addsuccess'));exit; ?>
-	  
-				   <?php if($this->session->flashdata('addsuccess')){ ?>
+	</section>	
+	<section class="content">
+		<div class="col-xs-12 col-sm-12 col-md-12 m-b-20">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab1" data-toggle="tab">Add Single Product</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Add Multipule Products</a></li>
+                            </ul>
+                            <!-- Tab panels -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="tab1">
+                                    <div class="panel-body">
+                                        <form>
+											<div class="form-group nopaddingRight col-md-12 san-lg">
+											    <label for="exampleInputEmail1">Select Category</label>
+												<select class="form-control " >
+												<option value="">Select 1</option>
+												<option value="">Select 2</option>
+												<option value="">Select 3</option>
+												<option value="">Select 4</option>
+												<option value="">Select 5</option>
+												<option value="">Select 6</option>
+											  </select>
+											 
+											</div>
+											<div class="clear-fix"></div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Sub Category </label>
+												<select class="form-control " >
+												<option value="">Select 1</option>
+												<option value="">Select 2</option>
+												<option value="">Select 3</option>
+												<option value="">Select 4</option>
+												<option value="">Select 5</option>
+												<option value="">Select 6</option>
+												</select>
+											 
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Group</label>
+												<input type="text" class="form-control " >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Sku code</label>
+												<input type="text" class="form-control " >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Other Unique code</label>
+												<input type="text" class="form-control " >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Product name</label>
+												<input type="text" class="form-control " >
+											</div>
+											<div class="col-md-6  ">
+												<div class="form-group ">
+												<label>Select Category</label>
 
-					<div class="alert dark alert-warning alert-dismissible" id="infoMessage">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span></button>
-					 <?php foreach($this->session->flashdata('addsuccess') as $error){?>
-					
-					<?php echo $error.'<br/>'; ?>
-					
-					
-					<?php } ?></div><?php } ?>
-	<div class="col-xs-12 col-sm-12 col-md-12 m-b-20">
-		<!-- Nav tabs -->
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#tab1" data-toggle="tab">Add Single Product</a></li>
-			<li><a href="#tab2" data-toggle="tab">Add Multipule Products</a></li>
-		</ul>
-		<!-- Tab panels -->
-		<div class="tab-content">
-		<?php echo $this->session->flashdata('sucess'); ?>
-			<div class="tab-pane fade in active" id="tab1">
-				<div class="panel-body">
-				 <div id="categoryiddoc" class="form-group nopaddingRight "></div>
-				 <form name="addprodustc" id="addprodustc" action="<?php echo base_url(); ?>seller/products/insert/<?php echo $this->uri->segment(4); ?>/<?php echo $this->uri->segment(5); ?>" method="post" enctype="multipart/form-data">
-                
-				<div class="row">
-				<div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputEmail1">Select Category</label>
-				  <?php //echo '<pre>';print_r($sub_cat_data);exit;?>
-                 <select class="form-control " id="category_id" name="category_id">
-                    <option value="">Select Category</option>					
-					 <?php foreach($sub_cat_data as $single_cat_data){ ?>
-					
-                    <option value="<?php echo $single_cat_data['seller_category_id']; ?>"><?php echo $single_cat_data['category_name']; ?></option>
-                   
-					 <?php }?>
-                  </select>
-				 
-                </div>
-				
-				
-                <div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputPassword1">Select Subcategory</label>
-                  <select class="form-control" id="subcategory_id" name="subcategory_id">
-                   </select>
-                </div>
-				
-				</div>
-				<div class="row">
-				<div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputEmail1">Select Item</label>
-                 <select class="form-control chosen-select" id="sub_item_name" name="sub_item_name">
-                    <option value=""></option>					
-					 <?php foreach($items as $item){ ?>				
-                    <option value="<?php echo $item['item_name']; ?>"><?php echo $item['item_name']; ?></option>                   
-					 <?php }?>
-                  </select>				 
-                </div> 
-				<div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputPassword1">Item Name</label>
-                     <input class="form-control" placeholder="Item Code" type="text" id="item_name" name="item_name">
+												<select id="seller_cat"   multiple class="chosen-select" tabindex="8">
+												<option value="">GGSFD </option>
+												<option value="">BAYAPU </option>
+												<option value="">BAYAPURE </option>
+												<option value="">BAYAPUREDDY </option>
+												<option value="">BAYAPUREDDY </option>
+												<option value="">BAYAPUREDDY </option>
+												<option value="">VASU </option>
+												
+												</select>
 
-                </div>
-				</div>
-				<div class="row">
-                <div class="form-group nopaddingRight col-md-6 san-lg">
-					<label for="exampleInputEmail1">Item Code</label>
-					<input class="form-control" placeholder="Item Code" type="text" id="item_code" name="item_code">
-				</div>
+												</div>
+											<span id="locationmsg"></span>
 
-				 <div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputEmail1">Item Quantity</label>
-                  <input class="form-control" placeholder="Item Quantity" type="text" id="item_quantity" name="item_quantity">
-                </div>
+											</div>
+										</form>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab2">
+                                    <div class="panel-body">
+                <div >
+					<p class="pull-left"><strong>Note:</strong> &nbsp;Please Select your Category and Download sample file then filling  the data then again upload your products </p>&nbsp;&nbsp;<span class="pull-right"><a href="<?php echo base_url('uploads'); ?>/Importproduct.xlsx" >Download sample Import File</a></span>
 				</div>
-				<div class="row">
-				 <div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputEmail1">Item Charges</label>
-                  <input class="form-control" placeholder="Item Charges" type="text" name="item_cost" id="item_cost">
-                </div>
-                
-				<div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputPassword1">Status</label>
-                  <select class="form-control" id="item_status" name="item_status">
-                    <option value="">Select Status</option>
-                    <option value="1">Available</option>
-                    <option value="2">Unavailable</option>
-                  </select>
-                </div>
-				</div>
-			
-				
-				  <div class="form-group nopaddingRight col-md-12 san-lg">
-                  <label for="exampleInputEmail1">Description</label>
-                  <textarea  placeholder="Item Description" class="form-control" rows="3" id="item_description" name="item_description"></textarea>
-                </div>
-
-				<div class="container">
-				<div class="row ">
-				<div class="form-group nopaddingRight  col-md-5 san-lg ">
-				<label>Item Image</label>
-				<table class="table" id="tab_logic">
-				<tbody>
-					<tr id='addr0'>
-						<td>
-						<input type="file" name='picture_three[]' id="picture_three" class="form-control" data-fv-notempty="true"
-                data-fv-notempty-message="Please select an image"
-
-                data-fv-file="true"
-                data-fv-file-extension="jpeg,jpg,png"
-                data-fv-file-type="image/jpeg,image/png"
-                data-fv-file-maxsize="2097152"
-                data-fv-file-message="The selected file is not valid" />
-						</td>
-					</tr>
-					<tr id='addr1'></tr>
-				</tbody>
-				</table>
-				</div>
-				<div class="clearfix"></div>
-				<div  class="col-md-5 san-lg" >
-				<div class="pull-left">
-				<a id="add_row" class="btn btn-default pull-left">Add Row</a>
-				</div>
-				<div class="pull-right" id="deletediv" style="padding-right:30px; display:none;">
-				<a id='delete_row' class="btn btn-default">Delete Row</a>
-				</div>
-				</div>
-				</div>
-				<div class="clearfix"></div>
-
-
-				</div>
-               
-                
-               
-				
-                <div class="clearfix"></div>
-				<div style="margin-top: 20px; margin-left: 15px;">
-                <button type="submit" class="btn btn-primary" >Submit</button>
-                <button type="submit" class="btn btn-danger" onclick="window.location='<?php echo base_url(); ?>seller/products';return false;">Cancel</button>
-				</div>
-              </form>
-				</div>
-			</div>
-			<div class="tab-pane fade" id="tab2">
-				
-				<div class="panel-body">
-				<div>
-					Please Select your Category and Download sample file then filling  the data then again upload your products &nbsp;&nbsp;<a href="<?php echo base_url('uploads'); ?>/Importproduct.xlsx" >Download sample Import File</a>
-				</div>
+				<hr>
 				<form id="importproducts" onsubmit="return checkvalidation();" name="importproducts" action="<?php echo base_url('seller/products/uploadproducts'); ?>" method="post" enctype="multipart/form-data" >
 
 				 
@@ -231,298 +391,22 @@
 				</form>
 				</div>
 				</div>
-				
-				</div>
-      
-			</div>
-		</div>
-	</div>
-	
-
-		</div>
- 
-    </section>
-  </section>
-  </section>
-  </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+	</section>
+</div>
   <!--main content end--> 
 
-     
-		
-  
-  <script type="text/javascript">
-  
-  function hidemsg(id){
-	  if(id=''){
-		jQuery('#errormsg').html('Please select subcategory');  
-	  }else{
-		jQuery('#errormsg').html('');  
-	  }
-	  
-  }function checkvalidation(){
-		var e = document.getElementById("subcategory_id_import");
-		var strUser = e.options[e.selectedIndex].value;
-		if(strUser==''){
-		jQuery('#errormsg').html('Please select subcategory');
-		return false;
-		}
-		jQuery('#errormsg').html('');
-	  
-  }
-  
-  $(document).ready(function(){
-      var i=1;
-     $("#add_row").click(function(){
-      $('#addr'+i).html("<td><input  name='picture_three[]'  type='file' class='form-control input-md' data-fv-notempty='true' data-fv-notempty-message='Please select an image' data-fv-file='true' data-fv-file-extension='jpeg,jpg,png' data-fv-file-type='image/jpeg,image/png' data-fv-file-maxsize='2097152' data-fv-file-message='The selected file is not valid'></td>");
-	
-				
-      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
-      $('#deletediv').show('');
-	  
-      i++; 
+     <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+  <script>
+  $(function() {
+	$('.chosen-select').chosen();
+	$('.chosen-select-deselect').chosen({ allow_single_deselect: true });
   });
-     $("#delete_row").click(function(){
-		 if(i==2){
-			$('#deletediv').hide(''); 
-		 }
-    	 if(i>1){
-		 $("#addr"+(i-1)).html('');
-		 i--;
-		 }
-	 });
-
-});
-  
-
-  function documentid(ids){
-	 /* var cat=ids;
-	 var myarr = cat.split("/");
-	
-	 var url='<?php echo base_url('assets/sellerfile/category/'); ?>'+myarr[1];
-	 document.getElementById("documentfilename").innerHTML  = myarr[1];
-	 $('a#documentfilelink').attr({target: '_blank', href  : url})*/
-  } 
-  function getsubcat(ids){
-	  var cat=ids;
-	 var myarr = cat.split("/");
-	var dataString = 'category_id='+myarr[0];
-	$.ajax
-		({
-		type: "POST",
-		url: "<?php echo base_url();?>seller/products/getajaxsubcat",
-		data: dataString,
-		cache: false,
-		success: function(data)
-		{
-		$("#subcategory_id_import").html(data);
-		} 
-		});
-  }
-		$(document).ready(function()
-		{
-		$("#category_id").change(function()
-		{
-		var id=$(this).val();
-		//alert(id);
-		var dataString = 'category_id='+ id;
-		$.ajax
-		({
-		type: "POST",
-		url: "<?php echo base_url();?>seller/products/getajaxsubcat",
-		data: dataString,
-		cache: false,
-		success: function(data)
-		{
-		$("#subcategory_id").html(data);
-		} 
-		});
-		
-		});
-		});
-function getsubcaregories(id){
-	alert(id);return false;
-		$("#category_id_import").change(function()
-		{
-		var id=$(this).val();
-		//alert(id);
-		var dataString = 'category_id='+ id;
-		$.ajax
-		({
-		type: "POST",
-		url: "<?php echo base_url();?>seller/products/getajaxsubcat",
-		data: dataString,
-		cache: false,
-		success: function(data)
-		{
-		$("#subcategory_id").html(data);
-		} 
-		});
-		
-		});
-		}
-		</script>
-		
-
-    <script type="text/javascript">
-    $(document).ready(function()
-    {
-    $("#subcategory_id").change(function()
-    {
-    var id=$(this).val();
-    //alert(id);
-    var dataString = 'subcategory_id='+ id;
-    //alert(dataString);
-    $.ajax
-    ({
-    type: "POST",
-    url: "<?php echo base_url();?>seller/products/getajaxsubitem",
-    data: dataString,
-    cache: false,
-    success: function(data)
-    {
-    $("#subitem_id").html(data);
-    } 
-    });
-    
-    });
-    });
-    </script>   
-	
-	<script type="text/javascript">
-$(document).ready(function() {
-    $('#importproducts').bootstrapValidator({
-       
-        fields: {
-            category_id_import: {
-               validators: {
-					notEmpty: {
-						message: 'Please select a Category'
-					}
-				}
-            },
-			subcategory_id_import: {
-               validators: {
-					notEmpty: {
-						message: 'Please select a SubCategory'
-					}
-				}
-            },
-			
-			categoryes: {
-               validators: {
-					notEmpty: {
-						message: 'Please select a value'
-					},
-					regexp: {
-						regexp: /\.(xlsx|xls|xlsm)$/i,
-					message: 'Uploaded file is not a valid. Only xlsx,xls,xlsm files are allowed'
-					}
-				}
-            }
-        }
-    });
-});
-$(document).ready(function() {
-    $('#addprodustc').bootstrapValidator({
-       
-        fields: {
-            category_id: {
-               validators: {
-					notEmpty: {
-						message: 'Please select a Category'
-					}
-				}
-            },
-			subcategory_id: {
-               validators: {
-					notEmpty: {
-						message: 'Please select a Subcategory'
-					}
-				}
-            },
-			sub_item_name: {
-               validators: {
-					notEmpty: {
-						message: 'Please select an Item'
-					}
-				}
-            },
-            item_name: {
-              validators: {
-					notEmpty: {
-						message: 'Item Name is required'
-					},
-                   regexp: {
-					regexp: /^[a-zA-Z0-9. -_@,.&]+$/,
-					message: ' Item Name can only consist of alphanumaric, space and dot'
-					}
-                }
-            },
-			item_code: {
-              validators: {
-					notEmpty: {
-						message: 'Item Code is required'
-					},
-                   regexp: {
-					regexp: /^[a-zA-Z0-9. -_@,.&]+$/,
-					message: ' Item Code can only consist of alphanumaric, space and dot'
-					}
-                }
-            },
-			item_quantity: {
-              validators: {
-					notEmpty: {
-						message: 'Item Quantity is required'
-					},
-                   regexp: {
-					regexp: /^[0-9]+$/,
-					message: ' Item Quantity can only consist of digits'
-					}
-                }
-            },
-			item_cost: {
-              validators: {
-					notEmpty: {
-						message: 'Item Cost is required'
-					},
-                   regexp: {
-					regexp: /^[0-9. ]+$/,
-					message: ' Item Cost can only consist of Numbers, space and dot'
-					}
-                }
-            },
-			item_description: {
-              validators: {
-					notEmpty: {
-						message: 'Description is required'
-					}
-                }
-            },
-			'picture_three[]': {
-				validators: {
-					 notEmpty: {
-                        message: 'Please select an image'
-                    },
-                    file: {
-                        extension: 'jpeg,jpg,png',
-                        type: 'image/jpeg,image/png',
-                        maxSize: 2097152,   // 2048 * 1024
-                        message: 'Uploaded file is not a valid image. Only JPG PNG and GIF files are allowed'
-                    }
-                    }
-			},
-			
-			item_status: {
-               validators: {
-					notEmpty: {
-						message: 'Please select a Status'
-					}
-				}
-            }
-        }
-    });
-});
 </script>
+
 
 
 

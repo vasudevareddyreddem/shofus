@@ -977,13 +977,11 @@
 				</form>
 			</div>
 					<div class="col-md-6 pad_10">
-					<!-- <div class="thumbnail">
+				 <div class="thumbnail">
 						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1902.603941571986!2d78.38998466067792!3d17.49758717711942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1494410712406" width="100%" height="300px" frameborder="0" style="border:0" allowfullscreen></iframe>
-				   </div> -->
+				   </div> 
 
-				   <div class="thumbnail">
-						
-					</div>
+				 
 					<div class="clearfix"></div>
 					<div class="pad_10">
 						<div class="row col1">
