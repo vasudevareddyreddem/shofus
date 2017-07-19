@@ -290,67 +290,164 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="tab1">
                                     <div class="panel-body">
-                                        <form>
+										<form name="addprodustc" id="addprodustc" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data">
 											<div class="form-group nopaddingRight col-md-12 san-lg">
 											    <label for="exampleInputEmail1">Select Category</label>
-												<select class="form-control " >
-												<option value="">Select 1</option>
-												<option value="">Select 2</option>
-												<option value="">Select 3</option>
-												<option value="">Select 4</option>
-												<option value="">Select 5</option>
-												<option value="">Select 6</option>
+												<select class="form-control " onchange="getsubcategory(this.value);" id="category_id" name="category_id">
+												<option value="">Select Category</option>
+												<?php foreach($category_details as $list){ ?>
+												<option value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
+												<?php } ?>
+												
 											  </select>
 											 
 											</div>
 											<div class="clear-fix"></div>
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Sub Category </label>
-												<select class="form-control " >
-												<option value="">Select 1</option>
-												<option value="">Select 2</option>
-												<option value="">Select 3</option>
-												<option value="">Select 4</option>
-												<option value="">Select 5</option>
-												<option value="">Select 6</option>
+												<select class="form-control " id="subcategorylist" name="subcategorylist" >
+												<option value="">Select Subcategory </option>
+
 												</select>
 											 
 											</div>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">Group</label>
-												<input type="text" class="form-control " >
-											</div>
+										
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Sku code</label>
-												<input type="text" class="form-control " >
+												<input type="text" class="form-control" name="skuid" id="skuid" >
 											</div>
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Other Unique code</label>
-												<input type="text" class="form-control " >
+												<input type="text" class="form-control" name="otherunique" id="otherunique" >
 											</div>
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Product name</label>
-												<input type="text" class="form-control " >
+												<input type="text" class="form-control" id="productname" name="productname" >
+											</div>
+											
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">price</label>
+												<input type="text" class="form-control" id="price" name="price" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Special price</label>
+												<input type="text" class="form-control" id="specialprice" name="specialprice" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label for="exampleInputEmail1">Sleeve / Fitting type </label>
+											<input type="text" class="form-control" id="producttype" name="producttype" >
+
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Material</label>
+												<input type="text" class="form-control" id="material" name="material" >
 											</div>
 											<div class="col-md-6  ">
 												<div class="form-group ">
-												<label>Select Category</label>
+												<label>Size</label>
 
 												<select id="seller_cat"   multiple class="chosen-select" tabindex="8">
-												<option value="">GGSFD </option>
-												<option value="">BAYAPU </option>
-												<option value="">BAYAPURE </option>
-												<option value="">BAYAPUREDDY </option>
-												<option value="">BAYAPUREDDY </option>
-												<option value="">BAYAPUREDDY </option>
-												<option value="">VASU </option>
-												
+												<option value="">Select multiple size </option>
+												<?php foreach($size_details as $list){ ?>
+												<option value="<?php echo $list['size_id']; ?>"><?php echo $list['size_name']; ?></option>
+												<?php } ?>
 												</select>
-
 												</div>
-											<span id="locationmsg"></span>
+												<span id="locationmsg"></span>
 
 											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Weight</label>
+												<input type="text" class="form-control" id="weight" name="weight" >
+											</div>
+											<div class="col-md-6  ">
+												<div class="form-group ">
+												<label>Color</label>
+												<select id="color" name="color"  multiple class="chosen-select" tabindex="8">
+												<option value="">Select multiple colors </option>
+												<?php foreach($color_details as $list){ ?>
+												<option value="<?php echo $list['color_id']; ?>"><?php echo $list['color_name']; ?></option>
+												<?php } ?>
+												</select>
+												</div>
+												<span id="locationmsg"></span>
+
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Season</label>
+												<input type="text" class="form-control" id="season" name="season" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Brand </label>
+												<input type="text" class="form-control" id="brand " name="brand" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Gender</label>
+												<select class="form-control " id="producttype" name="producttype" >
+												<option value="">Select </option>
+												<option value="0">Male</option>
+												<option value="1">Female</option>
+												<option value="2">Both</option>
+												</select>
+											 </div>
+											 <div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Qty</label>
+												<input type="text" class="form-control" id="qty" name="qty" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Meta keywords</label>
+												<input type="text" class="form-control" id="keywords" name="keywords" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Meta title</label>
+												<input type="text" class="form-control" id="title" name="title" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Status</label>
+												<select class="form-control " id="producttype" name="producttype" >
+												<option value="">Select </option>
+												<option value="0">Available</option>
+												<option value="1">Unavailable</option>
+												</select>
+											 </div>
+											 <div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Product description</label>
+												<textarea  placeholder="product Description" class="form-control" rows="3" id="product_description" name="product_description"></textarea>
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Product specifications </label>
+												<input type="text" class="form-control" id="specification" name="specification" >
+											</div>
+											 <div class="container">
+											<div class="row ">
+											<div class="form-group nopaddingRight  col-md-5 san-lg ">
+											<label>Item Image</label>
+											<table class="table" id="tab_logic">
+											<tbody>
+												<tr id='addr0'>
+													<td>
+													<input type="file" name='picture_three[]' id="picture_three" class="form-control" data-fv-notempty="true"
+										   ` />
+													</td>
+												</tr>
+												<tr id='addr1'></tr>
+											</tbody>
+											</table>
+											</div>
+											<div class="clearfix"></div>
+											<div  class="col-md-10 san-lg" >
+											<div class="pull-right">
+											<a id="add_row" class="btn btn-default pull-left">Add Row</a>
+											</div>
+											<div class="pull-right" id="deletediv" style="padding-right:30px; display:none;">
+											<a id='delete_row' class="btn btn-default">Delete Row</a>
+											</div>
+											</div>
+											</div>
+				<div class="clearfix"></div>
+
+
+				</div>
 										</form>
                                     </div>
                                 </div>
@@ -401,10 +498,59 @@
 
      <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
   <script>
+   $(document).ready(function(){
+      var i=1;
+	 
+     $("#add_row").click(function(){
+		  if(i <=11){
+      $('#addr'+i).html("<td><input  name='picture_three[]'  type='file' class='form-control input-md' data-fv-notempty='true' data-fv-notempty-message='Please select an image' data-fv-file='true' data-fv-file-extension='jpeg,jpg,png' data-fv-file-type='image/jpeg,image/png' data-fv-file-maxsize='2097152' data-fv-file-message='The selected file is not valid'></td>");
+	
+				
+      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      $('#deletediv').show('');
+	  
+      i++; 
+	   }
+  });
+ 
+     $("#delete_row").click(function(){
+		 if(i==2){
+			$('#deletediv').hide(''); 
+		 }
+    	 if(i>1){
+		 $("#addr"+(i-1)).html('');
+		 i--;
+		 }
+	 });
+
+});
   $(function() {
 	$('.chosen-select').chosen();
 	$('.chosen-select-deselect').chosen({ allow_single_deselect: true });
   });
+  
+  function getsubcategory(id){
+	  if(id!=''){
+		$('#subcategorylist').empty();
+		jQuery.ajax({
+				url: "<?php echo site_url('seller/products/get_subcaregories_list');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					catid: id,
+					},
+				dataType: 'html',
+				success: function (data) {
+					$("#subcategorylist").append(data);	
+
+				}
+			});
+			
+	  }
+	  
+  }
+	  
+	  
 </script>
 
 

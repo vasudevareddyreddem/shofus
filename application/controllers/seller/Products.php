@@ -33,19 +33,25 @@ class Products extends Admin_Controller {
 	
 	public function create()
 	{
-	
-		//$cat_id = $this->uri->segment('4');
-		//$subcat_id = $this->uri->segment('5');
-		//$data['catname'] = $this->products_model->getcatname($cat_id);
-		//$data['subcatname'] = $this->products_model->getsubcatname($subcat_id);
-       //$data['subcatdata'] = $this->products_model->getsubcatdata($cat_id);
-	   $sid = $this->session->userdata('seller_id'); 
-		$data['sub_cat_data'] = $this->products_model->get_seller_catdata($sid);
+		$sid = $this->session->userdata('seller_id'); 
+		$data['category_details'] = $this->products_model->get_seller_catdata($sid);
+		$data['color_details'] = $this->products_model->get_colores();
+		$data['size_details'] = $this->products_model->get_sizes_list();
 		$data['items'] = $this->products_model->auto_items();
 		//echo $this->db->last-query();exit;
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'seller/products/add', $data);
 		$this->template->render();
+
+	}
+	public function get_subcaregories_list()
+	{
+		$sid = $this->session->userdata('seller_id'); 
+		$post=$this->input->post();
+		//echo '<pre>';print_r($post);exit;
+		$data['subcategory_details'] = $this->products_model->get_subcategoies($post['catid']);
+		$this->load->view('seller/products/subcategorylist',$data);
+		
 
 	}
 	

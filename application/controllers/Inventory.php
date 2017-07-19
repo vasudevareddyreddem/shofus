@@ -1714,6 +1714,44 @@ public function servicerequestview(){
 		$this->session->unset_userdata('userdetails');
         redirect('admin/login');
 	}
+	
+		public function importcategory(){
+			
+		$post=$this->input->post();
+	$cat_id=explode("/",$post['category_id_import']);
+	$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
+	//echo '<pre>';print_r($post);
+		
+	if((!empty($_FILES["categoryes"])) && ($_FILES['categoryes']['error'] == 0)) {
+				
+				$limitSize	= 1000000000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
+				$fileName	= basename($_FILES['categoryes']['name']);
+				$fileSize	= $_FILES["categoryes"]["size"];
+				$fileExt	= substr($fileName, strrpos($fileName, '.') + 1);
+				
+				if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
+					
+						include( 'simplexlsx.class.php');
+
+					$getWorksheetName = array();
+					$xlsx = new SimpleXLSX( $_FILES['categoryes']['tmp_name'] );
+					$getWorksheetName = $xlsx->getWorksheetName();
+					//echo $xlsx->sheetsCount();exit;
+					for($j=1;$j <= $xlsx->sheetsCount();$j++){
+						$cnt=$xlsx->sheetsCount()-1;
+						$arry=$xlsx->rows($j);
+						unset($arry[0]);
+					
+						echo "<pre>";print_r($arry);exit;
+						foreach($arry as $key=>$fields)
+							{
+								
+						}
+					} 
+				}
+				
+	       }
+       }	
   
  
 
