@@ -72,7 +72,7 @@
                         <div style="margin-top:10px" class="form-group">
                             <!-- Button -->
                             <div class="col-sm-12 controls">
-                                <button class="btn btn-lg btn-block signup-btn" style="background-color:#c33c12;color:#fff;" type="submit">
+                                <button class="btn btn-lg btn-block signup-btn" id="clk" style="background-color:#c33c12;color:#fff;" type="submit">
                                     login</button>
 
                             </div>
