@@ -163,11 +163,11 @@
 												<div id="tab_sep">
 													<div class="col-md-6" style="padding:0">
 														<label for="exampleInputEmail1">Product specifications </label>
-														<input style="border-radius:5px 0px 0px 5px" type="text" class="form-control" id="specificationvalueid" name="specificationvalue[]" >
+														<input style="border-radius:5px 0px 0px 5px" type="text" class="form-control" id="specificationnameid" name="specificationname[]" >
 													</div>
 													<div class="col-md-6" style="padding:0">
 														<label for="exampleInputEmail1">&nbsp; </label>
-														<input style="border-radius:0px 5px 5px 0px" type="text" class="form-control" id="specificationnameid" name="specificationname[]" >
+														<input style="border-radius:0px 5px 5px 0px" type="text" class="form-control" id="specificationvalueid" name="specificationvalue[]" >
 													</div>
 												</div>
 												
@@ -264,24 +264,24 @@
     $(document).ready(function() {
             var jsonData = [];
             var fruits = '<?php echo $color_lists; ?>'.split(',');
-            for(var i=0;i<fruits.length;i++) jsonData.push({id:i,name:fruits[i]});
-            var sizes = $('#sizes').tagSuggest({
+            for(var i=0;i<fruits.length;i++) jsonData.push({id:fruits[i],name:fruits[i]});
+            var colors = $('#colors').tagSuggest({
                 data: jsonData,
                 sortOrder: 'name',
                 maxDropHeight: 200,
-                name: 'sizes'
+                name: 'colors'
             });
         });
 		
 		$(document).ready(function() {
             var jsonData = [];
             var fruits = '<?php echo $sizes_lists; ?>'.split(',');
-            for(var i=0;i<fruits.length;i++) jsonData.push({id:i,name:fruits[i]});
-            var colors = $('#colors').tagSuggest({
+            for(var i=0;i<fruits.length;i++) jsonData.push({id:fruits[i],name:fruits[i]});
+            var sizes = $('#sizes').tagSuggest({
                 data: jsonData,
                 sortOrder: 'name',
                 maxDropHeight: 200,
-                name: 'colors'
+                name: 'sizes'
             });
         });
    $(document).ready(function(){
@@ -314,7 +314,7 @@ $(document).ready(function(){
   
 	 var k=1;
      $("#add_sep").click(function(){
-      $('#addrs'+k).html("<div class='col-md-6' style='padding:0'><input style='border-radius:5px 0px 0px 5px' type='text' class='form-control' id='specificationvalueid[]' name='specificationvalue[]' ></div><div class='col-md-6' style='padding:0'><input style='border-radius:0px 5px 5px 0px' type='text' class='form-control' id='specificationnameid[]' name='specificationname[]' ></div>");
+      $('#addrs'+k).html("<div class='col-md-6' style='padding:0'><input style='border-radius:5px 0px 0px 5px' type='text' class='form-control' id='specificationnameid[]' name='specificationname[]' ></div><div class='col-md-6' style='padding:0'><input style='border-radius:0px 5px 5px 0px' type='text' class='form-control' id='specificationvalueid[]' name='specificationvalue[]' ></div>");
 		$('#tab_sep').append('<div id="addrs'+(k+1)+'"></div>');
 		if(k >=2){
 			$('#delbtn').show();

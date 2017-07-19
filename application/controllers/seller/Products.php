@@ -110,8 +110,11 @@ class Products extends Admin_Controller {
 
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
+			echo '<pre>';print_r($post);
+			$col=implode("" ,$post['sizes']);
+			echo '<pre>';print_r($col);		
 		
-			foreach ($post['product_size'] as $sizes){
+			foreach ($post['sizes'] as $sizes){
 
 			$addsizesdata=array(
 			'item_id' =>1,
@@ -121,7 +124,7 @@ class Products extends Admin_Controller {
 			//$this->products_model->insert_product_sizes($addsizesdata);
 			//echo '<pre>';print_r($sizes);	
 			}
-			foreach ($post['product_color'] as $colors){
+			foreach ($post['colors'] as $colors){
 
 			$addcolorsdata=array(
 			'item_id' =>1,
