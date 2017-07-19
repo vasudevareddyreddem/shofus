@@ -383,7 +383,7 @@
 											</div>
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Gender</label>
-												<select class="form-control " id="producttype" name="producttype" >
+												<select class="form-control " id="gender" name="gender" >
 												<option value="">Select </option>
 												<option value="0">Male</option>
 												<option value="1">Female</option>
@@ -404,7 +404,7 @@
 											</div>
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Status</label>
-												<select class="form-control " id="producttype" name="producttype" >
+												<select class="form-control " id="status" name="status" >
 												<option value="">Select </option>
 												<option value="0">Available</option>
 												<option value="1">Unavailable</option>
