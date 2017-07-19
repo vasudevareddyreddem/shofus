@@ -4,6 +4,11 @@
 	 background-color: #fafafa !important;
 	 color:#555 !important;
  }
+ #ms2{
+	width:100% !important;
+} #ms1{
+	width:100% !important;
+}
 
 </style>
 <head>

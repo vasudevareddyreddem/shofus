@@ -1,3 +1,4 @@
+
 .tag-ctn{
     position: relative;
     /* height: 28px; */
@@ -186,7 +187,8 @@
     color: #FFF;
 }
 .tag-sel-ctn .tag-sel-item:hover{
-    background: #565656;
+    background: #006a99;
+	color:#fff;
 }
 .tag-sel-ctn .tag-sel-text:hover{
     background: #FFF;
