@@ -108,12 +108,16 @@ function get_seller_details($seller_id)
 	$this->db->where('seller_id',$seller_id);
 	return $this->db->get()->row_array();
 }
-function get_seller_email_check($email)
+function get_seller_mobile_check($email)
 {
 	$this->db->select('*')->from('sellers');
-	$this->db->where('seller_email',$email);
+	$this->db->where('seller_mobile',$email);
 	return $this->db->get()->row_array();
 }
+public function set_password($sid,$pass){
+		$sql1="UPDATE sellers SET seller_password ='".$pass."' WHERE seller_id = '".$sid."'";
+       	return $this->db->query($sql1);
+	}
 
 function get_upload_file($seller_id)
 {
