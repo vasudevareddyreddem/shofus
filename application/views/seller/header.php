@@ -1,6 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
+<style>
+.cust_togg_menu {
+    display:none;
+}
+</style>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,20 +63,14 @@
                                 <!-- customise toogle start-->
                                 <div class=" cust_togg_menu" style="display:none">
                                     <ul class=" ">
-                                        <li class="active"><a href="<?php echo base_url('seller/login');?>#home_scr">HOME <span class="sr-only">(current)</span></a>
-                                        </li>
-                                        <li><a href="#how_its_w">HOW IT WORKS</a>
-                                        </li>
-                                        <li><a href="#pricing_scr">PRICING</a>
-                                        </li>
-                                        <li><a href="#about_sc">ABOUT US</a>
-                                        </li>
-                                        <li><a href="#faq_sc">FAQ's</a>
-                                        </li>
-                                        <li><a href="#contact_sc">CONTACT US</a>
-                                        </li>
-                                        <li class="point_h"><a id="sign_log" data-toggle="modal" data-target="#myModa2">SIGN UP / LOGIN</a>
-                                        </li>
+                                        <a href="<?php echo base_url('seller/login');?>#home_scr"><li class="active">HOME <span class="sr-only">(current)</span>
+                                        </li></a>
+                                       <a href="#how_its_w"> <li>HOW IT WORKS</li></a>
+                                      <a href="#pricing_scr">  <li>PRICING</li></a>
+                                       <a href="#about_sc"> <li>ABOUT US</li></a>
+                                       <a href="#faq_sc"> <li>FAQ's</li></a>
+                                       <a href="#contact_sc"> <li>CONTACT US</li></a>
+                                        <a id="sign_log" data-toggle="modal" data-target="#myModa2"><li class="point_h">SIGN UP / LOGINs</li></a>
 
 
                                     </ul>
@@ -666,10 +664,16 @@
         });
     </script>
 
+
 <script> 
 $(document).ready(function(){
     $("#togg_menu").click(function(){
         $(".cust_togg_menu").slideToggle("slow");
+    });
+	 $(document).click(function (e) {
+        if (!$(e.target).closest('#togg_menu, .cust_togg_menu').length) {
+            $('.cust_togg_menu').stop(true).slideUp();
+        }
     });
 });
 </script>
