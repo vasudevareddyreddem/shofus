@@ -96,11 +96,8 @@
 											<div class="col-md-6  ">
 												<div class="form-group ">
 												<label>Size</label>
-													<div class="example example_typeahead">
-														<div class="bs-example">
-															<input type="text" value="XL,XX,XXX,SM" />
-														</div>
-													</div>
+													<input class="form-control" id="ms2"  type="text" name="ms1"/>
+													
 
 												</div>
 											</div>
@@ -111,11 +108,8 @@
 											<div class="col-md-6  ">
 												<div class="form-group ">
 												<label>Color</label>
-													<div class="example example_typeahead">
-														<div class="bs-example">
-															<input type="text" value="Bayapu,Chinna" />
-														</div>
-													</div>
+													<input class="form-control" id="ms1"  type="text" name="ms1"/>
+													
 												</div>
 												
 											</div>
@@ -260,10 +254,31 @@
 	</section>
 </div>
   <!--main content end--> 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
 	 
   <script>
+    $(document).ready(function() {
+            var jsonData = [];
+            var fruits = 'Apple,Orange,Banana,Strawberry'.split(',');
+            for(var i=0;i<fruits.length;i++) jsonData.push({id:i,name:fruits[i]});
+            var ms1 = $('#ms1').tagSuggest({
+                data: jsonData,
+                sortOrder: 'name',
+                maxDropHeight: 200,
+                name: 'ms1'
+            });
+        });
+		
+		$(document).ready(function() {
+            var jsonData = [];
+            var fruits = 'Apple,Orange,Banana,Strawberry'.split(',');
+            for(var i=0;i<fruits.length;i++) jsonData.push({id:i,name:fruits[i]});
+            var ms2 = $('#ms2').tagSuggest({
+                data: jsonData,
+                sortOrder: 'name',
+                maxDropHeight: 200,
+                name: 'ms2'
+            });
+        });
    $(document).ready(function(){
       var i=1;
 	 
