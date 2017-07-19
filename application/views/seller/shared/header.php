@@ -13,6 +13,10 @@
     margin-right: 70px;
 }
 </style>
+<head>
+<link href="<?php echo base_url(); ?>assets/seller/dist/css/app.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url(); ?>assets/seller/dist/css/bootstrap-tagsinput.css" rel="stylesheet" type="text/css"/>
+</head>
 
   <body class="hold-transition sidebar-mini " >
         <!-- Site wrapper -->
