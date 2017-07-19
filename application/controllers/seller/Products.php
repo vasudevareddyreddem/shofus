@@ -49,8 +49,9 @@ class Products extends Admin_Controller {
 			$sizes_list[]=$sizes['size_name'];
 		}
 		
-		$data['color_lists']=implode(", ",$color_list);
-		$data['sizes_lists']=implode(", ",$sizes_list);
+		$data['color_lists']=implode(",",$color_list);
+		$data['sizes_lists']=implode(",",$sizes_list);
+		//echo '<pre>';print_r($data);exit;
 		
 		$this->template->write_view('content', 'seller/products/add', $data);
 		$this->template->render();
@@ -111,28 +112,34 @@ class Products extends Admin_Controller {
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
 			echo '<pre>';print_r($post);
-			$col=implode("" ,$post['sizes']);
-			echo '<pre>';print_r($col);		
+			//$col=implode("" ,$post['sizes']);
+			$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
+			$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
+			echo '<pre>';print_r($colordata);
+			//$string = str_replace (" ", "-", $$post['sizes']);
+			//$replace=
+
+			//echo '<pre>';print_r($col);		
 		
-			foreach ($post['sizes'] as $sizes){
+			foreach (explode(",",$sizesdata) as $sizess){
 
 			$addsizesdata=array(
 			'item_id' =>1,
-			'p_size_name' => $sizes,
+			'p_size_name' => $sizess,
 			'create_at' => date('Y-m-d H:i:s'),
 			);
 			//$this->products_model->insert_product_sizes($addsizesdata);
-			//echo '<pre>';print_r($sizes);	
+			echo '<pre>';print_r($addsizesdata);	
 			}
-			foreach ($post['colors'] as $colors){
+			foreach (explode(",",$colordata) as $colorss){
 
 			$addcolorsdata=array(
 			'item_id' =>1,
-			'color_name' => $colors,
+			'color_name' => $colorss,
 			'create_at' => date('Y-m-d H:i:s'),
 			);
 			//$this->products_model->insert_product_colors($addcolorsdata);
-			//echo '<pre>';print_r($sizes);	
+			echo '<pre>';print_r($addcolorsdata);	
 			}
 			
 			
