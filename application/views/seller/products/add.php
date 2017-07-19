@@ -4,9 +4,9 @@
 	 background-color: #fafafa !important;
 	 color:#555 !important;
  }
- #ms2{
+ #colors{
 	width:100% !important;
-} #ms1{
+} #sizes{
 	width:100% !important;
 }
 
@@ -101,7 +101,7 @@
 											<div class="col-md-6  ">
 												<div class="form-group ">
 												<label>Size</label>
-													<input class="form-control" id="ms2"  type="text" name="ms1"/>
+													<input class="form-control" id="sizes"  type="text" name="sizes"/>
 													
 
 												</div>
@@ -113,7 +113,7 @@
 											<div class="col-md-6  ">
 												<div class="form-group ">
 												<label>Color</label>
-													<input class="form-control" id="ms1"  type="text" name="ms1"/>
+													<input class="form-control" id="colors"  type="text" name="colors"/>
 													
 												</div>
 												
@@ -263,25 +263,25 @@
   <script>
     $(document).ready(function() {
             var jsonData = [];
-            var fruits = 'Apple,Orange,Banana,Strawberry'.split(',');
+            var fruits = '<?php echo $color_lists; ?>'.split(',');
             for(var i=0;i<fruits.length;i++) jsonData.push({id:i,name:fruits[i]});
-            var ms1 = $('#ms1').tagSuggest({
+            var sizes = $('#sizes').tagSuggest({
                 data: jsonData,
                 sortOrder: 'name',
                 maxDropHeight: 200,
-                name: 'ms1'
+                name: 'sizes'
             });
         });
 		
 		$(document).ready(function() {
             var jsonData = [];
-            var fruits = 'Apple,Orange,Banana,Strawberry'.split(',');
+            var fruits = '<?php echo $sizes_lists; ?>'.split(',');
             for(var i=0;i<fruits.length;i++) jsonData.push({id:i,name:fruits[i]});
-            var ms2 = $('#ms2').tagSuggest({
+            var colors = $('#colors').tagSuggest({
                 data: jsonData,
                 sortOrder: 'name',
                 maxDropHeight: 200,
-                name: 'ms2'
+                name: 'colors'
             });
         });
    $(document).ready(function(){

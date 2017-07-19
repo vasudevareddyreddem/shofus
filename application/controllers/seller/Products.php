@@ -35,11 +35,23 @@ class Products extends Admin_Controller {
 	{
 		$sid = $this->session->userdata('seller_id'); 
 		$data['category_details'] = $this->products_model->get_seller_catdata($sid);
-		$data['color_details'] = $this->products_model->get_colores();
-		$data['size_details'] = $this->products_model->get_sizes_list();
+		$color_details = $this->products_model->get_colores();
+		$size_details = $this->products_model->get_sizes_list();
 		$data['items'] = $this->products_model->auto_items();
 		//echo $this->db->last-query();exit;
-		//echo '<pre>';print_r($data);exit;
+		//echo '<pre>';print_r($size_details);exit;
+		foreach($color_details  as $colors){
+			
+			$color_list[]=$colors['color_name'];
+		}
+		foreach($size_details  as $sizes){
+			
+			$sizes_list[]=$sizes['size_name'];
+		}
+		
+		$data['color_lists']=implode(", ",$color_list);
+		$data['sizes_lists']=implode(", ",$sizes_list);
+		
 		$this->template->write_view('content', 'seller/products/add', $data);
 		$this->template->render();
 
