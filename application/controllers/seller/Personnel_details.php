@@ -154,7 +154,7 @@ public function updatebd()
 	$data = array(
 	'seller_name' => $post['seller_name'],
 	'seller_email' =>  $post['seller_email'],
-	'seller_address' =>  $post['seller_address'],
+	'seller_mobile' =>  $post['seller_mobile'],
 	);
 	$result=$this->Personnel_details_model->updatebd($sid,$data);
 	if(count($result)>0)
