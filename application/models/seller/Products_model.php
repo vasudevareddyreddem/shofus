@@ -62,6 +62,12 @@ class Products_model extends MY_Model
 		
 		$this->db->insert('product_color_list', $data);
 		return $insert_id = $this->db->insert_id();
+	}
+	public function insert_product_spcifications($data)
+	{
+		
+		$this->db->insert('product_spcifications', $data);
+		return $insert_id = $this->db->insert_id();
 	} 
 	public function get_producr_details($id)
 	{
