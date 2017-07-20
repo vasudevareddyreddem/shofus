@@ -156,7 +156,6 @@ class Products extends Admin_Controller {
 			'title' =>$post['title'],
 			'item_status' => $post['status'],
 			'item_description' =>$post['product_description'],
-			'item_cost' => $this->input->post('item_cost'),
 			'item_image'=>isset($images[0])?$images[0]:'',
 			'item_image1'=>isset($images[1])?$images[1]:'',
 			'item_image2'=>isset($images[2])?$images[2]:'',
@@ -239,12 +238,12 @@ public function edit()
 	$data['subcatdata'] = $this->products_model->getsubcatdata($cat_id);
 	$data['getcat'] = $this->products_model->getcateditdata();
 	$data['productdetails']=$this->products_model->getproductdata($id);
-	$productcolors=$this->products_model->get_product_colors($id);
-	$productsizes=$this->products_model->get_product_sizes($id);
+	$data['productcolors']=$this->products_model->get_product_colors($id);
+	$data['productsizes']=$this->products_model->get_product_sizes($id);
 	$data['productspcification']=$this->products_model->get_product_spc($id);
-	//echo '<pre>';print_r($data['productspcification']);exit;
+	//echo '<pre>';print_r($data['productcolors']);exit;
 	//echo count($productcolors);exit;
-		if(count($productcolors)>0){
+		/*if(count($productcolors)>0){
 		foreach($productcolors  as $pcolors){
 			
 			$pcolor_list[]=$pcolors['color_name'];
@@ -266,7 +265,7 @@ public function edit()
 		}else{
 			$data['psizes_lists'] ='';
 		}
-		
+		*/
 		//echo '<pre>';print_r($data);exit;
 		$sid = $this->session->userdata('seller_id'); 
 		$data['category_details'] = $this->products_model->get_seller_catdata($sid);
@@ -303,6 +302,32 @@ public function removespciciations(){
 				}
 		
 	}
+	public function removecolors(){
+		
+	$post = $this->input->post();
+	//echo '<pre>';print_r($post);exit; 
+			
+				$removecolor=$this->products_model->delete_product_colors($post['colid']);
+				if(count($removecolor) > 0)
+				{
+				$data['msg']=1;
+				echo json_encode($data);	
+				}
+		
+	}
+	public function removesizes(){
+		
+	$post = $this->input->post();
+	//echo '<pre>';print_r($post);exit; 
+			
+				$removesizes=$this->products_model->delete_product_sizes($post['sizeid']);
+				if(count($removesizes) > 0)
+				{
+				$data['msg']=1;
+				echo json_encode($data);	
+				}
+		
+	}
 
 public function update()
 
@@ -311,40 +336,181 @@ public function update()
 	$id = $this->uri->segment(4);
 	$post=$this->input->post();
 	
-	$productcolors=$this->products_model->get_product_colors($post['product_id']);
-	foreach ($productcolors as $colorss){
-		//$this->products_model->delete_product_colors($colorss['p_color_id']);
-	}
-	$productsizes=$this->products_model->get_product_sizes($post['product_id']);
-	foreach ($productsizes as $sizes){
-		//$this->products_model->delete_product_sizes($sizes['p_size_id']);
-	}
-	$productspcification=$this->products_model->get_product_spc($post['product_id']);
-	foreach ($productspcification as $spc){
-		//$this->products_model->delete_product_spc($spc['specification_id']);
-	}
-	$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
+		
+	//echo '<pre>';print_r($_FILES);
+	//echo '<pre>';print_r($post);exit;
+	$productdetails=$this->products_model->getproductdata($post['product_id']);
+		if($_FILES['img1']['name']!=''){
+		$image1=$_FILES['img1']['name'];
+		move_uploaded_file($_FILES['img1']['tmp_name'], "uploads/products/" . $_FILES['img1']['name']);
+
+		}else{
+		$image1=$productdetails['item_image'];
+		}
+		if($_FILES['img2']['name']!=''){
+		$image2=$_FILES['img2']['name'];
+		move_uploaded_file($_FILES['img2']['tmp_name'], "uploads/products/" . $image1);
+
+		}else{
+		$image2=$productdetails['item_image1'];
+		}
+		if($_FILES['img3']['name']!=''){
+		$image3=$_FILES['img3']['name'];
+		move_uploaded_file($_FILES['img3']['tmp_name'], "uploads/products/" . $image3);
+
+		}else{
+		$image3=$productdetails['item_image2'];
+		}
+		if($_FILES['img4']['name']!=''){
+		$image4=$_FILES['img4']['name'];
+		move_uploaded_file($_FILES['img4']['tmp_name'], "uploads/products/" . $image4);
+
+		}else{
+		$image4=$productdetails['item_image3'];
+		}
+		if($_FILES['img5']['name']!=''){
+		$image5=$_FILES['img5']['name'];
+		move_uploaded_file($_FILES['img5']['tmp_name'], "uploads/products/" . $image5);
+		}else{
+		$image5=$productdetails['item_image4'];
+		}
+		if($_FILES['img6']['name']!=''){
+		$image6=$_FILES['img6']['name'];
+		move_uploaded_file($_FILES['img6']['tmp_name'], "uploads/products/" . $image6);
+		}else{
+		$image6=$productdetails['item_image5'];
+		}
+		if($_FILES['img7']['name']!=''){
+		$image7=$_FILES['img7']['name'];
+		move_uploaded_file($_FILES['img7']['tmp_name'], "uploads/products/" . $image7);
+		}else{
+		$image7=$productdetails['item_image6'];
+		}
+		if($_FILES['img8']['name']!=''){
+		$image8=$_FILES['img8']['name'];
+		move_uploaded_file($_FILES['img8']['tmp_name'], "uploads/products/" . $image8);
+		}else{
+		$image8=$productdetails['item_image7'];
+		}
+		if($_FILES['img9']['name']!=''){
+		$image9=$_FILES['img9']['name'];
+		move_uploaded_file($_FILES['img9']['tmp_name'], "uploads/products/" . $image9);
+		}else{
+		$image9=$productdetails['item_image8'];
+		}
+		if($_FILES['img10']['name']!=''){
+		$image10=$_FILES['img10']['name'];
+		move_uploaded_file($_FILES['img10']['tmp_name'], "uploads/products/" . $image10);
+		}else{
+		$image10=$productdetails['item_image9'];
+		}
+		if($_FILES['img11']['name']!=''){
+		$image11=$_FILES['img11']['name'];
+		move_uploaded_file($_FILES['img11']['tmp_name'], "uploads/products/" . $image11);
+		}else{
+		$image11=$productdetails['item_image10'];
+		}
+		if($_FILES['img12']['name']!=''){
+		$image12=$_FILES['img12']['name'];
+		move_uploaded_file($_FILES['img12']['tmp_name'], "uploads/products/" . $image12);
+		}else{
+		$image12=$productdetails['item_image11'];
+		}
+	
+	
+	$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));
+	$product_details=$this->products_model->get_producr_details($this->uri->segment(4));
+//echo '<pre>';print_r($product_details);exit;	
+		
+		$post=$this->input->post();
+		
+	//echo $id; exit;
+		if($post['subcategorylist']==''){
+			$subcatid=$post['editsubcategorylist'];
+		}else{
+			$subcatid=$post['subcategorylist'];
+		}
+		$updatedata=array(
+			'category_id' => $post['category_id'],			
+			'subcategory_id' => $subcatid,
+			'skuid' => $post['skuid'],
+			'item_code' => $post['otherunique'],
+			'item_name' => $post['productname'],
+			'item_cost' => $post['product_price'],
+			'special_price' => $post['specialprice'],
+			'producttype' => $post['producttype'],
+			'material' => $post['material'],
+			'weight' => $post['weight'],
+			'season' => $post['season'],
+			'brand' => $post['brand'],
+			'gender' => $post['gender'],
+			'item_quantity' =>$post['qty'],
+			'keywords' =>$post['keywords'],
+			'title' =>$post['title'],
+			'item_status' => $post['status'],
+			'item_description' =>$post['product_description'],
+			'item_image'=>$image1,
+			'item_image1'=>$image2,
+			'item_image2'=>$image3,
+			'item_image3'=>$image4,
+			'item_image4'=>$image5,
+			'item_image5'=>$image6,
+			'item_image6'=>$image7,
+			'item_image7'=>$image8,
+			'item_image8'=>$image9,
+			'item_image9'=>$image10,
+			'item_image10'=>$image11,
+			'item_image11'=>$image12,
+			'seller_location_area'=>$seller_location['area'],
+			'created_at'=>date('Y-m-d H:i:s'),
+
+			);
+			
+			//echo '<pre>';print_r($updatedata);exit;
+			$result=$this->products_model->update_deails($post['product_id'],$updatedata);
+			if(count($result)>0)
+			{
+				$data['productcolors']=$this->products_model->get_product_colors($post['product_id']);
+				$data['productsizes']=$this->products_model->get_product_sizes($post['product_id']);	
+					/* delete old details*/
+						$productcolors=$this->products_model->get_product_colors($post['product_id']);
+						foreach ($productcolors as $colorss){
+						$listcolors[]=$colorss['color_name'];
+						}
+						foreach ($productcolors as $colorss){
+						$this->products_model->delete_product_colors($colorss['p_color_id']);
+						}
+						$productsizes=$this->products_model->get_product_sizes($post['product_id']);
+						foreach ($productsizes as $sizes){
+						$listsizes[]=$sizes['p_size_name'];
+						}
+						foreach ($productsizes as $sizes){
+						$this->products_model->delete_product_sizes($sizes['p_size_id']);
+						}
+						$productspcification=$this->products_model->get_product_spc($post['product_id']);
+						foreach ($productspcification as $spc){
+						$this->products_model->delete_product_spc($spc['specification_id']);
+						}
+						
+						$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
 						$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
-						foreach (explode(",",$sizesdata) as $sizess){
+						foreach (array_merge($listcolors,explode(",",$sizesdata)) as $sizess){
 
 						$addsizesdata=array(
 						'item_id' =>$post['product_id'],
 						'p_size_name' => $sizess,
 						'create_at' => date('Y-m-d H:i:s'),
 						);
-							echo '<pre>';print_r($addsizesdata);
-						//$this->products_model->insert_product_sizes($addsizesdata);
+						$this->products_model->insert_product_sizes($addsizesdata);
 						}
-						foreach (explode(",",$colordata) as $colorss){
+						foreach (array_merge($listsizes,explode(",",$colordata)) as $colorss){
 
 						$addcolorsdata=array(
 						'item_id' =>$post['product_id'],
 						'color_name' => $colorss,
 						'create_at' => date('Y-m-d H:i:s'),
 						);
-						
-						echo '<pre>';print_r($addcolorsdata);
-						//$this->products_model->insert_product_colors($addcolorsdata);
+						$this->products_model->insert_product_colors($addcolorsdata);
 						}
 
 
@@ -358,76 +524,18 @@ public function update()
 								'spc_value' => $key,
 								'create_at' => date('Y-m-d H:i:s'),
 								);
-								echo '<pre>';print_r($addspc);
-								//$this->products_model->insert_product_spcifications($addspc);
+								$this->products_model->insert_product_spcifications($addspc);
 								
 							}
 						}
-	echo '<pre>';print_r($post);exit;
-	//echo '<pre>';print_r($_FILES);
-	
-	
-	$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));
-	$product_details=$this->products_model->get_producr_details($this->uri->segment(4));
-//echo '<pre>';print_r($product_details);exit;	
-		
-		$post=$this->input->post();
-			$i=0;
-			foreach($_FILES['picture_three']['name'] as $file){
-				if(!empty($file))
-				{ 
-
-				$newfile1 = str_replace(' ','_',$_FILES["picture_three"]["name"][$i]);
-				//$newfile1 =  explode(".",$_FILES["picture_three"]["name"][$i]);
-				$newfilename = round(microtime(true)).$newfile1;
-
-			
-					if(move_uploaded_file($_FILES["picture_three"]["tmp_name"][$i], "uploads/products/" . $newfilename))
-					{
-					$images[]=$newfilename;
-					}
-				}
-			$i++;
-			}
-	//echo $id; exit;
-		$data=array(
-			'category_id' => $this->input->post('category_id'),
-			'subcategory_id' => $this->input->post('subcategory_id'),
-			'seller_id' => $this->session->userdata('seller_id'),
-			'item_name' => $this->input->post('item_name'),
-			'item_code' => $this->input->post('item_code'),
-			'item_quantity' => $this->input->post('item_quantity'),
-			'item_status' => $this->input->post('item_status'),
-			'item_description' => $this->input->post('item_description'),
-			'item_cost' => $this->input->post('item_cost'),
-			'item_image'=>isset($images[0])?$images[0]:$product_details['item_image'],
-			'item_image1'=>isset($images[1])?$images[1]:$product_details['item_image1'],
-			'item_image2'=>isset($images[2])?$images[2]:$product_details['item_image2'],
-			'item_image3'=>isset($images[3])?$images[3]:$product_details['item_image3'],
-			'item_image4'=>isset($images[4])?$images[4]:$product_details['item_image4'],
-			'item_image5'=>isset($images[5])?$images[5]:$product_details['item_image5'],
-			'item_image6'=>isset($images[6])?$images[6]:$product_details['item_image6'],
-			'item_image7'=>isset($images[7])?$images[7]:$product_details['item_image7'],
-			'item_image8'=>isset($images[8])?$images[8]:$product_details['item_image8'],
-			'item_image9'=>isset($images[9])?$images[9]:$product_details['item_image9'],
-			'item_image10'=>isset($images[10])?$images[10]:$product_details['item_image10'],
-			'item_image11'=>isset($images[11])?$images[11]:$product_details['item_image11'],
-			'seller_location_area'=>$seller_location['area'],
-			'created_at'=>date('Y-m-d H:i:s'),
-
-			);
-			
-			//echo '<pre>';print_r($data);exit;
-			$res=$this->products_model->update($id,$data);
-			if(count($res)>0)
-			{
+				
+				
+				
 				$this->prepare_flashmessage("Successfully Updated..", 0);
-				return redirect('seller/products');
-				//echo "<script>window.location='".base_url()."seller/products/index</script>";
+				redirect('seller/products');
 			}else{
 				$this->prepare_flashmessage("Failed to Insert..", 1);
-				//return redirect(base_url('admin/fooditems'));
-				return redirect('seller/products');
+				redirect('seller/products');
 			}	
 		
 }

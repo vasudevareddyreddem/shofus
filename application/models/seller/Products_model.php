@@ -51,6 +51,10 @@ class Products_model extends MY_Model
 		$this->db->insert('products', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	public function update_deails($pid,$data){
+		$this->db->where('item_id', $pid);
+		return $this->db->update('products', $data);
+	}
 	public function insert_product_sizes($data)
 	{
 		

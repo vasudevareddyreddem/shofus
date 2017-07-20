@@ -96,21 +96,40 @@
 												<input type="text" class="form-control" id="material" name="material" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
 											</div>
 											</div>
-											[<?php echo isset($psizes_lists)?$psizes_lists:''; ?>]
-											<div class="col-md-6  ">
+											<?php 
+											
+											//echo '<pre>';print_r($productcolors);exit;
+											foreach($productsizes as $sizeslist){ 
+											
+											?> 
+											<input type="hidden" name="oldsizes[]" value="<?php echo $sizeslist['p_size_name']; ?>">
+												<a href="javascript:void(0);" id="sizes_<?php echo $sizeslist['p_size_id'] ;?>" onclick="removesizes(<?php echo $sizeslist['p_size_id']?>);"><?php echo $sizeslist['p_size_name']; ?>
+												<span aria-hidden="true">×</span>
+												</a></span>
+											<?php }; ?>
+											<div class="col-md-6">
 												<div class="form-group ">
 												<label>Size</label>
-													<input class="form-control" id="sizes"  type="text" value='gfdgf' name="sizes" value=""/>
+													<input class="form-control" id="sizes"  type="text"  name="sizes">
 												</div>
 											</div>
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Weight</label>
 												<input type="text" class="form-control" id="weight" name="weight" value="<?php echo isset($productdetails['weight'])?$productdetails['weight']:''; ?>" >
-											</div><?php echo $pcolor_lists; ?>
+											</div>
+											<?php 
+											
+											//echo '<pre>';print_r($productcolors);exit;
+											foreach($productcolors as $colors_name){ ?> 
+												<input type="hidden" name="oldcolors[]" value="<?php echo $colors_name['color_name']; ?>">
+												<a href="javascript:void(0);" id="colord_<?php echo $colors_name['p_color_id'] ;?>" onclick="removecolor(<?php echo $colors_name['p_color_id']?>);"><?php echo $colors_name['color_name']; ?>
+												<span aria-hidden="true">×</span>
+												</a></span>
+											<?php }; ?>
 											<div class="col-md-6  ">
 												<div class="form-group ">
 												<label>Color</label>
-													<input class="form-control" id="colors"  type="text" name="colors" value="fgfdgdf">
+													<input class="form-control" id="colors"  type="text" name="colors" value="">
 													
 												</div>
 												
@@ -214,36 +233,130 @@
 													<a id="add_sep" class="btn btn-default btn-xs pull-left">Add Row</a>
 												</div>
 											</div>
-											<div class="clearfix"></div>
-											<div class="container">
-												<div class="row ">
-												<div class="form-group nopaddingRight  col-md-5 san-lg ">
-												<label>Product Image</label>
-												<table class="table" id="tab_logic">
-												<tbody>
-													<tr id='addr0'>
-														<td>
-														<input type="file" name='picture_three[]' id="picture_three" class="form-control"/>
-														</td>
-													</tr>
-													<tr id='addr1'></tr>
-												</tbody>
-												</table>
-												</div>
-												<div class="clearfix"></div>
-												<div  class="col-md-5 san-lg" >
-												<div class="pull-left">
-												<a id="add_row" class="btn btn-default pull-left">Add Row</a>
-												</div>
-												<div class="pull-right" id="deletediv" style="padding-right:30px; display:none;">
-												<a id='delete_row' class="btn btn-default">Delete Row</a>
-												</div>
-												</div>
-												</div>
-												<div class="clearfix"></div>
-
-
+											<div class="col-md-12"></div>
+											<?php  if($productdetails['item_image'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image1</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image'];?>" <?php echo $productdetails['item_image'];?>>
 											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image1</label>
+												<input type="file" class="form-control" id="img1" name="img1"  >
+											</div>
+											<?php  if($productdetails['item_image1'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image2</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image1'];?>" <?php echo $productdetails['item_image1'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image2</label>
+												<input type="file" class="form-control" id="img2" name="img2"  >
+											</div>
+											<?php  if($productdetails['item_image2'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image3</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image2'];?>" <?php echo $productdetails['item_image2'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image3</label>
+												<input type="file" class="form-control" id="img3" name="img3"  >
+											</div>
+											<?php  if($productdetails['item_image3'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image4</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image3'];?>" <?php echo $productdetails['item_image3'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image4</label>
+												<input type="file" class="form-control" id="img4" name="img4"  >
+											</div>
+											<?php  if($productdetails['item_image4'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image5</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image4'];?>" <?php echo $productdetails['item_image4'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image5</label>
+												<input type="file" class="form-control" id="img5" name="img5"  >
+											</div>
+											<?php  if($productdetails['item_image5'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image6</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image5'];?>" <?php echo $productdetails['item_image5'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image6</label>
+												<input type="file" class="form-control" id="img6" name="img6"  >
+											</div>
+											<?php  if($productdetails['item_image6'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image7</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image6'];?>" <?php echo $productdetails['item_image6'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image7</label>
+												<input type="file" class="form-control" id="img7" name="img7"  >
+											</div>
+											<?php  if($productdetails['item_image7'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image8</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image7'];?>" <?php echo $productdetails['item_image7'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image8</label>
+												<input type="file" class="form-control" id="img8" name="img8"  >
+											</div>
+											<?php  if($productdetails['item_image8'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image9</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image8'];?>" <?php echo $productdetails['item_image8'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image9</label>
+												<input type="file" class="form-control" id="img9" name="img9"  >
+											</div>
+											<?php  if($productdetails['item_image9'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image10</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image9'];?>" <?php echo $productdetails['item_image9'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image10</label>
+												<input type="file" class="form-control" id="img10" name="img10"  >
+											</div>
+											<?php  if($productdetails['item_image10'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image11</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image10'];?>" <?php echo $productdetails['item_image10'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image11</label>
+												<input type="file" class="form-control" id="img11" name="img11"  >
+											</div>
+											<?php  if($productdetails['item_image11'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image12</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image11'];?>" <?php echo $productdetails['item_image11'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image12</label>
+												<input type="file" class="form-control" id="img12" name="img12"  >
+											</div>
+											<div class="clearfix"></div>
+											
+											
 											<div style="margin-top: 20px; margin-left: 15px;">
 											<button type="submit" class="btn btn-primary" >Submit</button>
 											<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/products'); ?>">Cancel</a>
@@ -266,10 +379,31 @@
    </script>
   <?php } ?>
 	  
-  
+   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
+    <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
   <!--main content end--> 
   <script>
-  function removeattachment(id){
+  function removesizes(id){
+
+	if(id!=''){
+		 jQuery.ajax({
+					url: "<?php echo site_url('seller/products/removesizes');?>",
+					data: {
+						sizeid: id,
+					},
+					dataType: 'json',
+					type: 'POST',
+					success: function (data) {
+					if(data.msg==1){
+						jQuery('#sizes_'+id).hide();
+					}
+				 }
+				});
+			}
+			
+		}
+
+	function removeattachment(id){
 	if(id!=''){
 		 jQuery.ajax({
 					url: "<?php echo site_url('seller/products/removespciciations');?>",
@@ -281,6 +415,24 @@
 					success: function (data) {
 					if(data.msg==1){
 						jQuery('#tab_sep11_'+id).hide();
+					}
+				 }
+				});
+			}
+			
+		}
+	function removecolor(id){
+	if(id!=''){
+		 jQuery.ajax({
+					url: "<?php echo site_url('seller/products/removecolors');?>",
+					data: {
+						colid: id,
+					},
+					dataType: 'json',
+					type: 'POST',
+					success: function (data) {
+					if(data.msg==1){
+						jQuery('#colord_'+id).hide();
 					}
 				 }
 				});
@@ -583,11 +735,97 @@ $(document).ready(function(){
 					}
 				}
 			},
-			'picture_three[]': {
+			img2: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img3: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img4: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img5: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img6: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img7: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img8: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img9: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img10: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img11: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img12: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img1: {
 					 validators: {
-						 notEmpty: {
-						message: 'product Image is required'
-					},
+						
 					regexp: {
 					regexp: /\.(jpe?g|png|gif)$/i,
 					message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
