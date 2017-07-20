@@ -198,13 +198,13 @@
   border-left-color: #3c8dbc;
 }
 .direct-chat-warning .right > .direct-chat-text {
-  background: #f39c12;
-  border-color: #f39c12;
+  background: #f006a99;
+  border-color: #006a99;
   color: #ffffff;
 }
 .direct-chat-warning .right > .direct-chat-text:after,
 .direct-chat-warning .right > .direct-chat-text:before {
-  border-left-color: #f39c12;
+  border-left-color: #006a99;
 }
 .direct-chat-info .right > .direct-chat-text {
   background: #00c0ef;
@@ -278,7 +278,7 @@
   border-top-color: #dd4b39;
 }
 .box.box-warning {
-  border-top-color: #f39c12;
+  border-top-color: #006a99;
 }
 .box.box-success {
   border-top-color: #00a65a;
@@ -366,12 +366,12 @@
   color: #ffffff;
 }
 .box.box-solid.box-warning {
-  border: 1px solid #f39c12;
+  border: 1px solid #006a99;
 }
 .box.box-solid.box-warning > .box-header {
   color: #ffffff;
-  background: #f39c12;
-  background-color: #f39c12;
+  background: #006a99;
+  background-color: #006a99;
 }
 .box.box-solid.box-warning > .box-header a,
 .box.box-solid.box-warning > .box-header .btn {
@@ -629,7 +629,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('sucess');?></div>
 			<?php endif; ?>
-	<div class="col-xs-12 col-sm-12 col-md-12 m-b-20">
+	<div class=" col-md-10 m-b-20 col-md-offset-1">
 	
 		<div class="tab-content">
 				<div class="panel-body">
@@ -673,7 +673,7 @@
 <!--zmain content end--> 
 
  <div class="row container">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-1">
               <!-- DIRECT CHAT -->
               <div class="box box-warning direct-chat direct-chat-primary">
                 <div class="box-header with-border">
@@ -692,7 +692,7 @@
                         <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
                       </div>
                       <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image"><!-- /.direct-chat-img -->
+                      <img class="direct-chat-img" src="<?php echo base_url();?>uploads/profile/default.jpg" alt="message user image"><!-- /.direct-chat-img -->
                       <div class="direct-chat-text">
                         Is this template really for free? That's unbelievable!
                       </div>
@@ -707,7 +707,7 @@
                         <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
                       </div>
                       <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image"><!-- /.direct-chat-img -->
+                      <img class="direct-chat-img" src="<?php echo base_url();?>uploads/profile/default.jpg" alt="message user image"><!-- /.direct-chat-img -->
                       <div class="direct-chat-text">
                         You better believe it!
                       </div>
@@ -722,7 +722,7 @@
                         <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span>
                       </div>
                       <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image"><!-- /.direct-chat-img -->
+                      <img class="direct-chat-img" src="<?php echo base_url();?>uploads/profile/default.jpg" alt="message user image"><!-- /.direct-chat-img -->
                       <div class="direct-chat-text">
                         Working with AdminLTE on a great new app! Wanna join?
                       </div>
@@ -737,7 +737,7 @@
                         <span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span>
                       </div>
                       <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image"><!-- /.direct-chat-img -->
+                      <img class="direct-chat-img" src="<?php echo base_url();?>uploads/profile/default.jpg" alt="message user image"><!-- /.direct-chat-img -->
                       <div class="direct-chat-text">
                         I would love to.
                       </div>
@@ -757,7 +757,7 @@
                       <span class="col-md-6"><input type="text" name="message" placeholder="Subject ..." class="form-control"></span>
                       <span class="col-md-6"><input type="text" name="message" placeholder="Message ..." class="form-control"></span>
                           <span class="input-group-btn">
-                            <button type="button" class="btn btn-warning btn-flat">Send</button>
+                            <button type="button" class="btn btn-g btn-flat btn-primary">Send</button>
                           </span>
                     </div>
                   </form>
