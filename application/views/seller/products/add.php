@@ -86,7 +86,7 @@
 											
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">price</label>
-												<input type="text" class="form-control" id="price" name="product_price" >
+												<input type="text" class="form-control" id="product_price" name="product_price" >
 											</div>
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Special price</label>
@@ -159,8 +159,8 @@
 											    <label for="exampleInputEmail1">Status</label>
 												<select class="form-control " id="status" name="status" >
 												<option value="">Select </option>
-												<option value="0">Available</option>
-												<option value="1">Unavailable</option>
+												<option value="1">Available</option>
+												<option value="0">Unavailable</option>
 												</select>
 											 </div>
 											 <div class="form-group nopaddingRight col-md-6 san-lg">

@@ -9,19 +9,18 @@
             <a href="#" class="googleApp" target="_blank"><img src="<?php echo base_url();?>assets/seller_login/images/google.png" class="img-responsive" /></a> <!--<a href="#" class="googleApp" target="_blank"><img src="<?php //echo base_url();?>assets/seller_login/images/play.png" class="img-responsive" /></a>--> </div>
         </div>
         <div class="col-md-2"> &nbsp;</div>
-        <div class="col-md-2">
+        <div class="col-md-3">
           <div class="siteMap">
             <p>Site Map</p>
-            <ul>
+            <ul class="">
               <li><a href="<?php echo base_url();?>seller/login">Home</a></li>
               <li><a href="#">Cart in Hour </a></li>
-              <li><a href="#">Resources</a></li>
-              <li><a href="#">Seller Diaries</a></li>
+             
               <li><a href="<?php echo base_url();?>seller/faq">FAQs</a></li>
             </ul>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3s">
           <div class="siteMap">
             <p>Social</p>
             <ul class="social-network social-circle">
