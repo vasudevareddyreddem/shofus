@@ -111,52 +111,9 @@ class Products extends Admin_Controller {
 
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
-			echo '<pre>';print_r($post);
+			//echo '<pre>';print_r($post);
 			//$col=implode("" ,$post['sizes']);
-			$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
-			$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
-			echo '<pre>';print_r($colordata);
-			//$string = str_replace (" ", "-", $$post['sizes']);
-			//$replace=
-
-			//echo '<pre>';print_r($col);		
-		
-			foreach (explode(",",$sizesdata) as $sizess){
-
-			$addsizesdata=array(
-			'item_id' =>1,
-			'p_size_name' => $sizess,
-			'create_at' => date('Y-m-d H:i:s'),
-			);
-			//$this->products_model->insert_product_sizes($addsizesdata);
-			echo '<pre>';print_r($addsizesdata);	
-			}
-			foreach (explode(",",$colordata) as $colorss){
-
-			$addcolorsdata=array(
-			'item_id' =>1,
-			'color_name' => $colorss,
-			'create_at' => date('Y-m-d H:i:s'),
-			);
-			//$this->products_model->insert_product_colors($addcolorsdata);
-			echo '<pre>';print_r($addcolorsdata);	
-			}
 			
-			
-			$productspecificationlist= array_combine($post['specificationname'],$post['specificationvalue']);
-			foreach ($productspecificationlist as $key=>$list){
-
-			$addspc=array(
-			'item_id' =>1,
-			'spc_name' => $key,
-			'spc_value' => $list,
-			'create_at' => date('Y-m-d H:i:s'),
-			);
-			//$this->products_model->insert_product_colors($addcolorsdata);
-			echo '<pre>';print_r($addspc);	
-			}
-			echo '<pre>';print_r($productspecificationlist);exit;
-			echo '<pre>';print_r($post);exit;
 			$i=0;
 			foreach($_FILES['picture_three']['name'] as $file){
 				if(!empty($file))
@@ -218,14 +175,44 @@ class Products extends Admin_Controller {
 
 
 			);
-			echo '<pre>';print_r($data);exit;
+			//echo '<pre>';print_r($data);exit;
 
 			$results=$this->products_model->insert($data);
-			if(count($product_price)>0)
+			if(count($results)>0)
 			{	
-				
-				
-				
+						$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
+						$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
+						foreach (explode(",",$sizesdata) as $sizess){
+
+						$addsizesdata=array(
+						'item_id' =>$results,
+						'p_size_name' => $sizess,
+						'create_at' => date('Y-m-d H:i:s'),
+						);
+						//$this->products_model->insert_product_sizes($addsizesdata);
+						}
+						foreach (explode(",",$colordata) as $colorss){
+
+						$addcolorsdata=array(
+						'item_id' =>$results,
+						'color_name' => $colorss,
+						'create_at' => date('Y-m-d H:i:s'),
+						);
+						$this->products_model->insert_product_colors($addcolorsdata);
+						}
+
+
+						$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
+						foreach ($productspecificationlist as $key=>$list){
+
+						$addspc=array(
+						'item_id' =>$results,
+						'spc_name' => $list,
+						'spc_value' => $key,
+						'create_at' => date('Y-m-d H:i:s'),
+						);
+						$this->products_model->insert_product_spcifications($addspc);
+						}
 				
 				
 				$this->session->set_flashdata('addsuccess',"Item Successfully added..", 0);
