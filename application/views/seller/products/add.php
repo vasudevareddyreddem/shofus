@@ -9,6 +9,9 @@
 } #sizes{
 	width:100% !important;
 }
+ .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+		border:none;
+	}
 
 </style>
 <head>
@@ -46,7 +49,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="tab1">
                                     <div class="panel-body">
-										<form name="addprodustc" id="addprodustc" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data">
+										<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data">
 											<div class="form-group nopaddingRight col-md-12 san-lg">
 											    <label for="exampleInputEmail1">Select Category</label>
 												<select class="form-control " onchange="getsubcategory(this.value);" id="category_id" name="category_id">
@@ -89,6 +92,7 @@
 											    <label for="exampleInputEmail1">Special price</label>
 												<input type="text" class="form-control" id="specialprice" name="specialprice" >
 											</div>
+											<div id="materialpurose" style="display:none;">
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											<label for="exampleInputEmail1">Sleeve / Fitting type </label>
 											<input type="text" class="form-control" id="producttype" name="producttype" >
@@ -97,6 +101,7 @@
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Material</label>
 												<input type="text" class="form-control" id="material" name="material" >
+											</div>
 											</div>
 											<div class="col-md-6  ">
 												<div class="form-group ">
@@ -118,6 +123,7 @@
 												</div>
 												
 											</div>
+											<div id="seasonpurpose" style="display:none;">
 											<div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Season</label>
 												<input type="text" class="form-control" id="season" name="season" >
@@ -134,6 +140,8 @@
 												<option value="1">Female</option>
 												<option value="2">Both</option>
 												</select>
+											 </div>
+											 
 											 </div>
 											 <div class="form-group nopaddingRight col-md-6 san-lg">
 											    <label for="exampleInputEmail1">Qty</label>
@@ -163,11 +171,11 @@
 												<div id="tab_sep">
 													<div class="col-md-6" style="padding:0">
 														<label for="exampleInputEmail1">Product specifications </label>
-														<input style="border-radius:5px 0px 0px 5px" type="text" class="form-control" id="specificationnameid" name="specificationname[]" >
+														<input style="border-radius:5px 0px 0px 5px" type="text" placeholder="Specification Name" class="form-control" id="specificationnameid" name="specificationname[]" >
 													</div>
 													<div class="col-md-6" style="padding:0">
 														<label for="exampleInputEmail1">&nbsp; </label>
-														<input style="border-radius:0px 5px 5px 0px" type="text" class="form-control" id="specificationvalueid" name="specificationvalue[]" >
+														<input style="border-radius:0px 5px 5px 0px" type="text" placeholder="Specification Value"  class="form-control" id="specificationvalueid" name="specificationvalue[]" >
 													</div>
 												</div>
 												
@@ -182,7 +190,7 @@
 											<div class="container">
 												<div class="row ">
 												<div class="form-group nopaddingRight  col-md-5 san-lg ">
-												<label>Item Image</label>
+												<label>Product Image</label>
 												<table class="table" id="tab_logic">
 												<tbody>
 													<tr id='addr0'>
@@ -259,7 +267,8 @@
 	</section>
 </div>
   <!--main content end--> 
-	 
+	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
+    <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
   <script>
     $(document).ready(function() {
             var jsonData = [];
@@ -341,6 +350,13 @@ $(document).ready(function(){
 
   
   function getsubcategory(id){
+	  if(id==2){
+		  $('#materialpurose').show();
+		  $('#seasonpurpose').show();
+	  }else{
+		  $('#materialpurose').hide(); 
+		  $('#seasonpurpose').hide(); 
+	  }
 	  if(id!=''){
 		$('#subcategorylist').empty();
 		jQuery.ajax({
@@ -360,7 +376,209 @@ $(document).ready(function(){
 	  }
 	  
   }
-	  
+	$(document).ready(function() {
+    $('#addproduct').bootstrapValidator({
+       
+        fields: {
+            category_id: {
+					validators: {
+					notEmpty: {
+					message: 'Please select a category'
+					}
+				}
+			},
+			subcategorylist: {
+					validators: {
+					notEmpty: {
+					message: 'Please select a subcategory'
+					}
+				}
+			},
+			skuid: {
+					validators: {
+					notEmpty: {
+						message: 'Sku id is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. -_&]+$/,
+					message: 'Sku id can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			otherunique: {
+					validators: {
+					notEmpty: {
+						message: 'Other Unique code is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. -_&]+$/,
+					message: 'Other Unique can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			productname: {
+					validators: {
+					notEmpty: {
+						message: 'Product name is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. -_&]+$/,
+					message: 'Product name can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_price: {
+					validators: {
+					notEmpty: {
+						message: 'Price is required'
+					},
+                   regexp: {
+					regexp: /^[0-9.]+$/,
+					message: 'Price  can only consist of digits'
+					}
+				}
+			},
+			specialprice: {
+					validators: {
+					notEmpty: {
+						message: 'Special price is required'
+					},
+                   regexp: {
+					regexp: /^[0-9.]+$/,
+					message: 'Special price can only consist of digits'
+					}
+				}
+			},
+			producttype: {
+					validators: {
+					notEmpty: {
+						message: 'Sleeve / Fitting type  is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. -_&]+$/,
+					message: 'Sleeve / Fitting type  can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			material: {
+					validators: {
+					notEmpty: {
+						message: 'Material is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. -_&]+$/,
+					message: 'Material  can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			sizes: {
+					validators: {
+					notEmpty: {
+						message: 'please select a Size'
+					}
+				}
+			},
+			colors: {
+					validators: {
+					notEmpty: {
+						message: 'please select a color'
+					}
+				}
+			},
+			weight: {
+					validators: {
+					notEmpty: {
+						message: 'Weight is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. -_&]+$/,
+					message: 'Weight can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			qty: {
+					validators: {
+					notEmpty: {
+						message: 'Qty is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'Qty can only consist of digits'
+					}
+				}
+			},
+			keywords: {
+					validators: {
+					notEmpty: {
+						message: 'Meta keywords is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. -_&]+$/,
+					message: 'Meta keywords can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			title: {
+					validators: {
+					notEmpty: {
+						message: 'Meta title is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. -_&]+$/,
+					message: 'Meta title can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			status: {
+					validators: {
+					notEmpty: {
+						message: 'please select a status'
+					}
+				}
+			},
+			product_description: {
+					validators: {
+					notEmpty: {
+						message: 'Product description is required'
+					},
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message: 'Product description wont allow <> [] = % '
+					}
+				}
+			},
+			'specificationname[]': {
+					validators: {
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message: 'Specification Name wont allow <> [] = % '
+					}
+				}
+			},
+			'specificationvalue[]': {
+					validators: {
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message: 'Specification value wont allow <> [] = % '
+					}
+				}
+			},
+			'picture_three[]': {
+					 validators: {
+						 notEmpty: {
+						message: 'product Image is required'
+					},
+					regexp: {
+					regexp: /\.(jpe?g|png|gif)$/i,
+					message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+            }
+			},
+        }
+    });
+});
+
+  
 	  
 </script>
 
