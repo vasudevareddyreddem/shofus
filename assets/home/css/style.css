@@ -6,6 +6,9 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	background: #f5f5f5;
 }
+.user_log{
+	cursor:pointer;
+}
 .wrapper {
 	width: 100%;
 	height: auto;
@@ -1649,6 +1652,8 @@ footer .newsletter-row {
 	width: 100%;
 	padding: 35px 0px;
 	background: #1b1e24;
+	position:absolute;
+	z-index:1024;
 }
 .footer-inner .container {
 	padding: 0px;
@@ -3472,14 +3477,14 @@ table#cart tfoot td .btn {
 .sidebar_right{
 	position:fixed;
 	 top:132px; 
-	right: -96px;
-	z-index:1024;
+	right: -70px;
+	z-index:1025;
 	    background: rgba(255,255,255, 0.8);
 	box-shadow: 3px 2px 10px grey;
 	transition: all 0.5s ease-in-out;
    cursor: pointer;
    /* text-align:center; */
-   padding:10px;
+   padding:2px;
    height:100%;
    
 }
@@ -5664,7 +5669,8 @@ box-shadow: 0px 6px 31px -8px rgba(0,0,0,0.75);
  } 
  .log_list li{
 	display:block !important;
-	padding:10px !important;
+	padding:15px  !important;
+	
 
  } 
  .log_list  a{
@@ -5690,6 +5696,7 @@ box-shadow: 0px 6px 31px -8px rgba(0,0,0,0.75);
 	 color:#45b1b5 !important;
 	 
  }
+ 
  .search_fun{
 	 position:absolute;
 	 top:75px;
