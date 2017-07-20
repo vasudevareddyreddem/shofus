@@ -123,7 +123,7 @@ public function getreferalfee()
 	$cih =  ($disc * $serv_tax) / 100;
 	$addin= $disc+ $cih ;
 	$you_get = $sell - $cih;
-	$amount= ($sell) - ($addin );
+	$amount= ($sell) - ($tax);
 	//echo $amount;exit;
 // 	$ref = str_replace("%", "", $cih_fee1);
 	

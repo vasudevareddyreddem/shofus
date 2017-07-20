@@ -743,15 +743,15 @@
                         </tr>
                         <tr>
                           <td>Service Tax (18% of Marketplace Fee including Swachh Bharat&Krishi Kalyan cess)</td>
-                          <td>Rs:15&nbsp;(18%)</td>
+                          <td>Rs:18&nbsp;(18%)</td>
                         </tr>
                         <tr>
                           <td>Total Fee</td>
-                          <td>Rs:115</td>
+                          <td>Rs:118</td>
                         </tr>
                                             
                           <td>Settlement Value (Amount credited to you)</td>
-                          <td>Rs:885</td>
+                          <td>Rs:882</td>
                         </tr>
                       </tbody>
                     </table>
@@ -1217,7 +1217,7 @@ $("#cihfee1").html(data);
   
   var actual_price = $("#actual_price").val();
 
-  var less = youmake <=  actual_price;
+  //var less = youmake <=  actual_price;
   //alert(less);
    
     //var product_price = $("#product_price").val(); TermsErr15
@@ -1238,14 +1238,14 @@ $("#cihfee1").html(data);
     else{
       $("#TermsErr15").html("");
     }
-    if (less == true)
-    {
-    $("#TermsErr15").html("Please Enter high value").css("color", "#006a99").fadeIn().fadeOut(5000);
-    return false;
-    }
-    else{
-      $("#TermsErr15").html("");
-    }
+    // if (less == true)
+    // {
+    // $("#TermsErr15").html("Please Enter high value").css("color", "#006a99").fadeIn().fadeOut(5000);
+    // return false;
+    // }
+    // else{
+    //   $("#TermsErr15").html("");
+    // }
   
  
     $.ajax({

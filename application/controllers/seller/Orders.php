@@ -8,6 +8,7 @@ class Orders extends Admin_Controller {
 
 		parent::__construct();
 		$this->load->model('seller/Orders_model');
+		$this->load->model('seller/dashboard_model');
   }
 
 public function index()
@@ -41,11 +42,17 @@ public function index()
 
 		  // ];
 		//$this->pagination->initialize($config);
+		$data = $this->dashboard_model->bank_status();
+  //echo "<pre>";print_r($data);exit;
+  if($data['0']['bank_complete']==0){
+    redirect('seller/dashboard');
+  }else{
 		$result=$this->Orders_model->order_by('created_at',$order = 'DESC')->total();
 		$data['ordersdata'] =  $result;
 		//echo "<pre>";print_r($data);exit;
 		$this->template->write_view('content', 'seller/orders/index', $data);
 		$this->template->render();
+	}
 
 }
 

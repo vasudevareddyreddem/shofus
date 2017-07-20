@@ -22,6 +22,7 @@ class Dashboard extends Admin_Controller {
 
 	public function index()
 	{
+  
 		
 		$data['sellersubcatdata'] = $this->dashboard_model->getsellersubcatdata();		
 		$data['returnitemdata'] = $this->products_model->returns();
@@ -32,6 +33,7 @@ class Dashboard extends Admin_Controller {
 		
 		$this->template->write_view('content', 'seller/dashboard/index', $data);
 		$this->template->render();
+  
 	}
 	
 	public function subcategoryview()
@@ -142,7 +144,7 @@ class Dashboard extends Admin_Controller {
   }else{
    $this->template->write_view('content', 'seller/dashboard/link_youraccount');
   $this->template->render(); 
-  }  
+  }
  }
 
  public function accountupdate()

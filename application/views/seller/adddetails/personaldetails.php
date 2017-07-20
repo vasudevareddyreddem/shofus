@@ -73,32 +73,41 @@
           <h3>Personal Details</h3>
           <div class="form-group">
             <label class="control-label">Bank Account</label>
-            <input class="form-control" maxlength="16" placeholder="Enter your Bank Account" type="text" id="bank_account" name="bank_account" value="<?php echo isset($sellerdata['seller_bank_account'])?$sellerdata['seller_bank_account']:''; ?>"  >
+            <input class="form-control" maxlength="16" placeholder="Enter your Bank Account Number" type="text" id="bank_account" name="bank_account" value="<?php echo isset($sellerdata['seller_bank_account'])?$sellerdata['seller_bank_account']:''; ?>">
           </div>         
           <div class="form-group">
             <label class="control-label">Bank Account Name</label>
-            <input maxlength="100" type="text" maxlength="12" id="account_name" name="account_name" class="form-control"  value="<?php echo isset($sellerdata['seller_account_name'])?$sellerdata['seller_account_name']:''; ?>" />
+            <input maxlength="100" type="text" maxlength="12" placeholder="Enter your Bank Account Name" id="account_name" name="account_name" class="form-control"  value="<?php echo isset($sellerdata['seller_account_name'])?$sellerdata['seller_account_name']:''; ?>" />
           </div>
           <div class="form-group">
             <label class="control-label">Bank Account IFSC Code</label>
-            <input maxlength="100" type="text"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($sellerdata['seller_aaccount_ifsc_code'])?$sellerdata['seller_aaccount_ifsc_code']:''; ?>" />
+            <input maxlength="100" type="text" placeholder="Enter your Bank Account IFSCcode"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($sellerdata['seller_aaccount_ifsc_code'])?$sellerdata['seller_aaccount_ifsc_code']:''; ?>" />
           </div>
 			<div class="" style="padding-right:40px;margin-top:20px;">  
 			<a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/storedetails'); ?>">Back</a>
-			<input id="bnt" type="submit" class="btn btn-info " value="Skip">
+      <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/setpassword'); ?>">Skip This Step</a>
+			<!-- <input id="bnt" type="submit" class="btn btn-info " value="Skip"> -->
 			<input id="bnt" type="submit" class="btn btn-info pull-right" value="Next">
+			</div>
+      </div>
+      </div>
+      </div>
+      </form>
+      </div>
 
-			<div class="row">
-			<strong>Copyright &copy; 2017 Cartinhour.</strong> All rights reserved.
-			</div>
-			</div>
-  </footer>
+  <footer class="foot_add_d " style="margin-top: 8%">
+    <div class="container">
+      <div class="row">
+                <strong>Copyright &copy; 2017 Cartinhour.</strong> All rights reserved.
+      </div>
+    </div>
+  </footer> 
 </html>
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
-<!-- <script type="text/javascript">
+     <script type="text/javascript">
 $(document).ready(function() {
     $('#personalidetails').bootstrapValidator({
        
@@ -146,5 +155,5 @@ $(document).ready(function() {
         }
     });
 });
-</script> -->
+</script> 
 		

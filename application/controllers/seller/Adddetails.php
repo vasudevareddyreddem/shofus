@@ -281,12 +281,14 @@ class Adddetails extends Seller_adddetails{
   );
    //echo '<pre>';print_r($data);exit;
     $result=$this->adddetails_model->seller_personal_details($data,$this->session->userdata('seller_id'));
-   
+   //echo '<pre>';print_r($result);exit;
     if(count($result)>0)
       {
-      	$bank_account = $this->adddetails_model->update_seller_account_link($this->session->userdata('seller_id'),1);
-		$this->session->set_flashdata('succes','');
-		return redirect('seller/adddetails/setpassword');
+      	$status =1;
+       	$bank_account = $this->adddetails_model->update_seller_account_link($this->session->userdata('seller_id'),$status);
+
+		 $this->session->set_flashdata('succes','');
+		 return redirect('seller/adddetails/setpassword');
 
       }
 
