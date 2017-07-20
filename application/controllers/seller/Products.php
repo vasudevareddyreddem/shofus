@@ -1151,22 +1151,16 @@ public function uploadproducts(){
 							'category_id' => $cat_id[0],			
 							'subcategory_id' =>$post['subcategory_id_import'],
 							'seller_id' =>$this->session->userdata('seller_id'), 
-							'skuid' => $data[6],
-							'item_code' => $data[6],
-							'item_name' => $data[6],
-							'item_cost' => $data[6],
-							'special_price' => $data[6],
-							'producttype' => $data[6],
-							'material' => $data[6],
-							'weight' => $data[6],
-							'season' => $data[6],
-							'brand' => $data[6],
-							'gender' => $data[6],
-							'item_quantity' =>$data[6],
-							'keywords' =>$$data[6],
-							'title' =>$data[6],
-							'item_status' => $data[6],
-							'item_description' =>$post['product_description'],
+							'skuid' => $data[1],
+							'item_code' => $data[2],
+							'item_name' => $data[3],
+							'item_cost' => $data[4],
+							'special_price' => $data[5],
+							'item_quantity' =>$data[9],
+							'keywords' =>$$data[10],
+							'title' =>$data[11],
+							'item_status' => $data[12],
+							'item_description' =>$data[13],
 							'item_image'=>isset($imagename)?$imagename:'',
 							'item_image1'=>isset($imagename1)?$imagename1:'',
 							'item_image2'=>isset($imagename2)?$imagename2:'',
@@ -1184,7 +1178,12 @@ public function uploadproducts(){
 							
 							);
 							//echo '<pre>';print_r($adddetails);exit;
-						$results=$this->products_model->save_prodcts($adddetails);
+								$results=$this->products_model->save_prodcts($adddetails);
+								
+								if(count($results)>0){
+									
+									
+								}
 						//echo $this->db->last_query();exit;						
 						}
 					}
