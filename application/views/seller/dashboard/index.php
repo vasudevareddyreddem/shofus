@@ -1,5 +1,5 @@
 <style>
-.modal-body {
+.body_img {
     background-image: url("../assets/seller/images/welcome_sel.png ");
     background-repeat: no-repeat;
     background-position: center;
@@ -318,7 +318,7 @@ foreach ($bank_link as $bank) { ?>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Successfully completed</h4>
         </div>
-        <div class="modal-body ">
+        <div class="modal-body  body_img">
           <h3 class="text-center tit_welc">Welcome to Your Seller Portal.</h3>
         </div>
         <div class="modal-footer">
