@@ -360,9 +360,9 @@
 <div id="locationdiv"  style="position: absolute;top: 100px;z-index: 1050; display:none">
 	<div class="container">
 	<div class="row">
-	  <div class="col-md-6 col-md-offset-4 well" style="-webkit-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);
+	  <div class="col-md-6 col-md-offset-3 well" style="-webkit-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);
 -moz-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);
-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);">
+box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);position:fixed">
 	  <span id="hide_btn" onclick="closepopup();" class="glyphicon glyphicon-remove pull-right"></span>
 		 <form  onSubmit="return validations();" action="<?php echo base_url('customer/locationsearch'); ?>" method="post">
 	      <h3 style="margin-top:5px">Select Location</h3>
@@ -679,7 +679,7 @@ $("#modal-8").show();
 
 $(document).ready(function(){
     $(".user_log").click(function(){
-        $("#user_sow").toggle();
+        $("#user_sow").fadeToggle(500);
     });
 });
 </script>

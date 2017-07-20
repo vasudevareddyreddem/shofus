@@ -47,6 +47,7 @@
         <link href="<?php echo base_url(); ?>assets/seller/plugins/monthly/monthly.css" rel="stylesheet" type="text/css"/>
 
 		<link href="<?php echo base_url(); ?>assets/seller/dist/css/stylehealth.min.css" rel="stylesheet" type="text/css"/>
+		
 
 
 		<!--style start here -->

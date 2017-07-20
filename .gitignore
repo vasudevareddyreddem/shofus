@@ -5,3 +5,7 @@ application/config/config.php
 application/views/layout/_home.php
 uploads/products/1.jpg
 uploads/products/11.jpg
+application/views/customer/inventry/addcategory.php
+application/controllers/Inventory.php
+application/config/database.php
+application/config/database.php

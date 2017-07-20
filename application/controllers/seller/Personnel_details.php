@@ -131,12 +131,22 @@ public function updatebd()
 	$post = $this->input->post();
 	$sid = $this->session->userdata('seller_id');
 	$details=$this->Personnel_details_model->get_seller_details($sid);
+	///echo '<pre>';print_r($details);exit;
 	if($details['seller_email']!= $post['seller_email']){
 		
 		$email_check=$this->Personnel_details_model->get_seller_email_check($post['seller_email']);
-		ECHO '<pre>';print_r($email_check);
+		//ECHO '<pre>';print_r($email_check);
 		if(count($email_check)>0){
 		$this->session->set_flashdata('errormessage',"Email ID already exits. Please use another Email id!");
+		redirect('seller/Personnel_details');
+		}
+	}
+	if($details['seller_mobile']!= $post['seller_mobile']){
+		
+		$mobile_check=$this->Personnel_details_model->get_seller_mobile_check($post['seller_mobile']);
+		//ECHO '<pre>';print_r($mobile_check);
+		if(count($mobile_check)>0){
+		$this->session->set_flashdata('errormessage',"Mobile NUmber already exits. Please use another Another Mobile number!");
 		redirect('seller/Personnel_details');
 		}
 	}
@@ -144,7 +154,7 @@ public function updatebd()
 	$data = array(
 	'seller_name' => $post['seller_name'],
 	'seller_email' =>  $post['seller_email'],
-	'seller_address' =>  $post['seller_address'],
+	'seller_mobile' =>  $post['seller_mobile'],
 	);
 	$result=$this->Personnel_details_model->updatebd($sid,$data);
 	if(count($result)>0)
@@ -159,6 +169,49 @@ public function updatebd()
 			}	
 	
 }
+
+public function changepassword(){
+	$sid = $this->session->userdata('seller_id');
+	$customerdetail=$this->session->userdata('userdetails');
+		$changepasword = $this->input->post();
+		//echo '<pre>';print_r($changepasword);
+		$currentpostpassword=md5($changepasword['oldpassword']);
+		$newpassword=md5($changepasword['newpassword']);
+		$conpassword=md5($changepasword['confirmpassword']);
+		$this->load->model('users_model');
+			$userdetails=$this->Personnel_details_model->get_seller_details($sid);
+
+			//echo '<pre>';print_r($userdetails);exit;			
+			$currentpasswords=$userdetails['seller_password'];
+			//print_r($currentpasswords);exit;
+			if($currentpostpassword == $currentpasswords ){
+				if($newpassword == $conpassword){
+						$this->load->model('users_model');
+						$passwordchange = $this->Personnel_details_model->set_password($sid,$conpassword);
+						//echo $this->db->last_query();exit;
+						if (count($passwordchange)>0)
+							{
+								$this->session->set_flashdata('updatpassword',"Password successfully changed!");
+								redirect('seller/Personnel_details');
+							}
+							else
+							{
+								$this->session->set_flashdata('passworderror',"Something went wrong in change password process!");
+								redirect('seller/Personnel_details');
+							}
+				}else{
+					$this->session->set_flashdata('passworderror',"New password and confirm password was not matching");
+					redirect('seller/Personnel_details');
+				}
+			}else{
+					$this->session->set_flashdata('passworderror',"Your Old password is incorrect. Please try again.");
+					redirect('seller/Personnel_details');
+				}
+		
+	} 
+
+
+
 
 public function seller_storedetails()
 	{  
