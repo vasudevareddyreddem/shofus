@@ -21,6 +21,17 @@ class Adddetails_model extends MY_Model
 		$this->db->insert('notifications', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	
+	public function get_notofication_list($sid)
+	{
+	
+		$this->db->select('notifications.*,sellers.seller_id,sellers.seller_name,sellers.profile_pic,customers.cust_propic,customers.cust_firstname,customers.cust_lastname')->from('notifications');
+		$this->db->join('sellers','sellers.seller_id = notifications.seller_id', 'left');
+		$this->db->join('customers','customers.customer_id = notifications.replyed_id', 'left');		
+		$this->db->where('notifications.seller_id',$sid);
+		$this->db->order_by('notifications.created_at', 'ASC'); 
+		return $this->db->get()->result_array();
+	} 
 	public function save_catrgore($data)
 	{
 		

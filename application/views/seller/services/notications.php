@@ -629,39 +629,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('sucess');?></div>
 			<?php endif; ?>
-	<div class=" col-md-10 m-b-20 col-md-offset-1">
 	
-		<div class="tab-content">
-				<div class="panel-body">
-				 <div id="categoryiddoc" class="form-group nopaddingRight "></div>
-				 <form name="notifications" id="notifications" action="<?php echo base_url('seller/services/notificationpost'); ?>" method="post" enctype="multipart/form-data">
-                
-                
-
-				 <div class="form-group nopaddingRight col-md-6 san-lg">
-                  <label for="exampleInputEmail1">Subject</label>
-                  <input class="form-control" placeholder="Subject" type="text" id="subject" name="Subject">
-                </div>
-				 <div class="form-group nopaddingRight col-md-12 san-lg">
-                  <label for="exampleInputEmail1">Message</label>
-                  <textarea  placeholder="Message" class="form-control" rows="3" id="message" name="message"></textarea>
-                </div>
-                
-               
-               
-                
-               
-				
-                <div class="clearfix"></div>
-				<div style="margin-top: 20px; margin-left: 15px;">
-                <button type="submit" class="btn btn-primary" >Submit</button>
-				</div>
-              </form>
-				</div>
-			
-			
-		</div>
-	</div>
 	
 
 		</div>
@@ -681,68 +649,54 @@
 
                  
                 </div>
+				<?php //echo '<pre>';print_r($notificationlist);exit; ?>
                 <!-- /.box-header -->
                 <div class="box-body">
                   <!-- Conversations are loaded here -->
                   <div class="direct-chat-messages">
                     <!-- Message. Default to the left -->
-                    <div class="direct-chat-msg">
+				  <?php foreach ($notificationlist as $notification){ ?>
+				<?php if($notification['message_type']=='REPLIED'){ ?>
+                      <div class="direct-chat-msg">
                       <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                        <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                        <span class="direct-chat-name pull-left"><?php echo isset($notification['seller_name'])?$notification['seller_name']:''; ?> </span>
+                        <span class="direct-chat-timestamp pull-right"><?php echo date('M j h:i A',strtotime(htmlentities($notification['created_at'])));?></span>
                       </div>
                       <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="<?php echo base_url();?>uploads/profile/default.jpg" alt="message user image"><!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        Is this template really for free? That's unbelievable!
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
+					  <?php if($notification['profile_pic']!=''){ ?>
+					       <img class="direct-chat-img" src="<?php echo base_url('uploads/profile/'.$notification['profile_pic']); ?>" alt="<?php echo $notification['profile_pic']; ?>"><!-- /.direct-chat-img -->
+					  <?php }else{ ?>
+					   <img class="direct-chat-img" src="<?php echo base_url('uploads/profile/'); ?>/default.jpg" alt="Logo"><!-- /.direct-chat-img -->
 
-                    <!-- Message to the right -->
-                    <div class="direct-chat-msg right">
+					  <?php } ?>
+                      <div class="direct-chat-text">
+                        <?php echo $notification['seller_message']; ?>
+                      </div>
+                    </div>
+					<?php } ?>
+					
+					
+					<?php if($notification['message_type']=='REPLY'){ ?>
+					
+					<div class="direct-chat-msg right">
                       <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                        <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+                        <span class="direct-chat-name pull-right"><?php echo isset($notification['cust_firstname'])?$notification['cust_firstname']:''; ?>&nbsp;<?php echo isset($notification['cust_lastname'])?$notification['cust_lastname']:''; ?></span>
+                        <span class="direct-chat-timestamp pull-left"><?php echo date('M j h:i A',strtotime(htmlentities($notification['created_at'])));?></span>
                       </div>
                       <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="<?php echo base_url();?>uploads/profile/default.jpg" alt="message user image"><!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        You better believe it!
+						<?php if($notification['cust_propic']!=''){ ?>
+					   <img class="direct-chat-img" src="<?php echo base_url('uploads/profile/'.$notification['cust_propic']); ?>" alt="<?php echo $notification['cust_propic']; ?>"><!-- /.direct-chat-img -->
+						<?php }else{ ?>
+					   <img class="direct-chat-img" src="<?php echo base_url('uploads/profile/'); ?>/default.jpg" alt="Logo"><!-- /.direct-chat-img -->
+						<?php } ?>  
+						<div class="direct-chat-text">
+                        <?php echo $notification['seller_message']; ?>
                       </div>
-                      <!-- /.direct-chat-text -->
                     </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message. Default to the left -->
-                    <div class="direct-chat-msg">
-                      <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                        <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span>
-                      </div>
-                      <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="<?php echo base_url();?>uploads/profile/default.jpg" alt="message user image"><!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        Working with AdminLTE on a great new app! Wanna join?
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
-                    <!-- /.direct-chat-msg -->
-
-                    <!-- Message to the right -->
-                    <div class="direct-chat-msg right">
-                      <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                        <span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span>
-                      </div>
-                      <!-- /.direct-chat-info -->
-                      <img class="direct-chat-img" src="<?php echo base_url();?>uploads/profile/default.jpg" alt="message user image"><!-- /.direct-chat-img -->
-                      <div class="direct-chat-text">
-                        I would love to.
-                      </div>
-                      <!-- /.direct-chat-text -->
-                    </div>
+					<?php } ?>
+					
+					<?php } ?>
+                    
                     <!-- /.direct-chat-msg -->
 
                   </div>
@@ -752,12 +706,12 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                  <form action="#" method="post">
+				 <form name="notifications" id="notifications" action="<?php echo base_url('seller/services/notificationpost'); ?>" method="post" enctype="multipart/form-data">
                     <div class="input-group">
-                      <span class="col-md-6"><input type="text" name="message" placeholder="Subject ..." class="form-control"></span>
-                      <span class="col-md-6"><input type="text" name="message" placeholder="Message ..." class="form-control"></span>
+                      <span class="col-md-6"><input type="text"  id="subject" name="subject" placeholder="Subject ..." class="form-control"></span>
+                      <span class="col-md-6"><input type="text"  id="message" name="message" placeholder="Message ..." class="form-control"></span>
                           <span class="input-group-btn">
-                            <button type="button" class="btn btn-g btn-flat btn-primary">Send</button>
+                            <button type="submit" class="btn btn-g btn-flat btn-primary">Send</button>
                           </span>
                     </div>
                   </form>
