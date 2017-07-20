@@ -47,9 +47,9 @@
 								
 								<!--<li><a href="<?php echo base_url();?>seller/aboutus">About Us</a></li>-->
 							   <li><a href="<?php echo base_url();?>seller/faqs">FAQ's</a></li>
-                 <?php if($bank_link['0']['bank_complete']==1) {?>
+                 
 							    <li><a href="<?php echo base_url();?>seller/products/create" class="pull-right">Add Listing</a>  </li>
-                  <?php }?>
+                  
 								<!--<li><a href="#">Help</a></li>-->
 								<li><a href="<?php echo base_url();?>seller/contactus">Contact Us</a></li>
 								</ul>

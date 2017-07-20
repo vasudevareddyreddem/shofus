@@ -16,7 +16,7 @@
                             <a href="<?php echo base_url(); ?>seller/dashboard"><i class="fa fa-tachometer"></i><span>Dashboard</span>
                             </a>
                         </li>
-                        <?php if($bank_link['0']['bank_complete']==1) {?>
+                        
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-list"></i><span>Listings</span>
@@ -97,13 +97,13 @@
                             <i class="fa fa-envelope-open-o"></i><span>Seller Support</span>
                         </a>                        
                     </li>
-                    
+                    <!-- <?php if($bank_link['0']['bank_complete']==1) {?> -->
                     <!-- <li class="treeview">
                         <a href="<?php echo base_url('seller/dashboard/linkaccout');?>">
                             <i class="fa fa-credit-card"></i><span>Link your account</span>
                         </a>                        
                     </li> -->
-                    <?php }?>
+                    <!-- <?php }?> -->
                            
             </ul>
         </div> <!-- /.sidebar -->
