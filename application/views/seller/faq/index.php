@@ -68,7 +68,7 @@
                       <li>Register yourself at seller.CARTINHOUR.com.</li>
                       <li>List your products under specific product categories.</li>
                       <li>Once an order is received, pack the product and mark it as ‘Ready to go’. Our delivery boy will pick up the product and deliver it to the customer.</li>
-                      <li>Once an order is successfully dispatched, CARTINHOUR will settle your payment within 7-14 business days. </li>
+                      <li>Once an order is successfully dispatched, CARTINHOUR will settle your payment within 4-7 business days. </li>
                     </ul>
                   </div>
                 </div>
@@ -140,7 +140,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapeleven" aria-expanded="false" aria-controls="collapeleven"> <i class="more-less glyphicon glyphicon-plus"></i> How and when will I get paid?</a> </h4>
                 </div>
                 <div id="collapeleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="eleven">
-                  <div class="panel-body">The payment will be made directly to your bank account through NEFT transactions within 7-14 business days of dispatching an order. The actual payment period will vary depending on how long you have been selling at CARTINHOUR, your customer ratings and number of orders fulfilled.</div>
+                  <div class="panel-body">The payment will be made directly to your bank account through NEFT transactions within 4-7 business days of dispatching an order. The actual payment period will vary depending on how long you have been selling at CARTINHOUR, your customer ratings and number of orders fulfilled.</div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -222,7 +222,7 @@
                           <td>219.5</td>
                         </tr>
                         <tr>
-                          <td>Service Tax (15% of Marketplace Fee including Swachh Bharat &Krishi Kalyan cess)</td>
+                          <td>Service Tax (18% of Marketplace Fee including Swachh Bharat &Krishi Kalyan cess)</td>
                           <td>32.925</td>
                         </tr>
                         <tr>
@@ -243,7 +243,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapprice4" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>How and when do I get paid?</a> </h4>
                 </div>
                 <div id="collapprice4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="price4">
-                  <div class="panel-body">All payments are made through NEFT transactions (online banking). The payment is made directly to your bank account within the next 7-15 business days from the date of order dispatch. </div>
+                  <div class="panel-body">All payments are made through NEFT transactions (online banking). The payment is made directly to your bank account within the next 4-7 business days from the date of order dispatch. </div>
                 </div>
               </div>
             </div>

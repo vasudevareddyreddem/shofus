@@ -47,7 +47,7 @@ foreach ($bank_link as $bank) { ?>
 </a>
 </div>
 <div class="cover">
-<a href="javascript:void(0)"  style="text-decoration:none;" id="view2" data-toggle="modal"  data-target="#bankpopup" data-backdrop="static" data-keyboard="false">
+<a href="javascript:void(0)"  style="text-decoration:none;" id="view2" data-toggle="modal"  data-target="#bankpopup" >
 </a>
 </div>
 	
