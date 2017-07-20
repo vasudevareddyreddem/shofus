@@ -96,20 +96,34 @@
 												<input type="text" class="form-control" id="material" name="material" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
 											</div>
 											</div>
-											<?php 
 											
-											//echo '<pre>';print_r($productcolors);exit;
-											foreach($productsizes as $sizeslist){ 
-											
-											?> 
-											<input type="hidden" name="oldsizes[]" value="<?php echo $sizeslist['p_size_name']; ?>">
-												<a href="javascript:void(0);" id="sizes_<?php echo $sizeslist['p_size_id'] ;?>" onclick="removesizes(<?php echo $sizeslist['p_size_id']?>);"><?php echo $sizeslist['p_size_name']; ?>
-												<span aria-hidden="true">×</span>
-												</a></span>
-											<?php }; ?>
 											<div class="col-md-6">
+											
 												<div class="form-group ">
-												<label>Size</label>
+												<label class="col-md-2">Size 
+												</label><span class="pull-right col-md-10">
+													<a class="btn btn-primary btn-xs">xl</a>
+													<a class="btn btn-primary btn-xs">xl</a>
+													<a class="btn btn-primary btn-xs">xl</a>
+													<a class="btn btn-primary btn-xs">xl</a>
+													<a class="btn btn-primary btn-xs">xl</a>
+													<a class="btn btn-primary btn-xs">xl</a>
+													<a class="btn btn-primary btn-xs">xl</a>
+													<a class="btn btn-primary btn-xs">xl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+												</span>
+											<div class="clearfix"></div>
 													<input class="form-control" id="sizes"  type="text"  name="sizes">
 												</div>
 											</div>
@@ -117,18 +131,21 @@
 											    <label for="exampleInputEmail1">Weight</label>
 												<input type="text" class="form-control" id="weight" name="weight" value="<?php echo isset($productdetails['weight'])?$productdetails['weight']:''; ?>" >
 											</div>
-											<?php 
 											
-											//echo '<pre>';print_r($productcolors);exit;
-											foreach($productcolors as $colors_name){ ?> 
-												<input type="hidden" name="oldcolors[]" value="<?php echo $colors_name['color_name']; ?>">
-												<a href="javascript:void(0);" id="colord_<?php echo $colors_name['p_color_id'] ;?>" onclick="removecolor(<?php echo $colors_name['p_color_id']?>);"><?php echo $colors_name['color_name']; ?>
-												<span aria-hidden="true">×</span>
-												</a></span>
-											<?php }; ?>
 											<div class="col-md-6  ">
 												<div class="form-group ">
 												<label>Color</label>
+												<span class="pull-right">
+													<?php 
+													//echo '<pre>';print_r($productcolors);exit;
+													foreach($productcolors as $colors_name){ ?> 
+														<input type="hidden" name="oldcolors[]" value="<?php echo $colors_name['color_name']; ?>">
+														<a class="btn btn-primary btn-xs" href="javascript:void(0);" id="colord_<?php echo $colors_name['p_color_id'] ;?>" onclick="removecolor(<?php echo $colors_name['p_color_id']?>);"><?php echo $colors_name['color_name']; ?>
+														<span aria-hidden="true">×</span>
+														</a>
+												</span>
+											<?php }; ?>
+												</span>
 													<input class="form-control" id="colors"  type="text" name="colors" value="">
 													
 												</div>
