@@ -173,7 +173,6 @@ class Adddetails extends Seller_adddetails{
 		$data['select_areas']=$this->adddetails_model->get_seletedareas();
 		$data['sellerdata']=$this->adddetails_model->get_seller_storedetails_data($this->session->userdata('seller_id'));		 
 		$this->load->view('seller/adddetails/storedetails',$data);
-
 	}
 	public function personaldetails()
 	{  

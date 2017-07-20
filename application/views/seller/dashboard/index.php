@@ -35,20 +35,19 @@ foreach ($bank_link as $bank) { ?>
   $(document).ready(function() {
     setTimeout( function(){ 
     $('#view2').trigger("click");
-  }  , 5000 );
-   
+  }  , 2000 );
 });
 </script>
 
 <?php }?>
- <?php }?>
+<?php }?>
 
-<div class="card-header cover">
+<div class="cover">
 <a href="javascript:void(0)"  style="text-decoration:none;" id="view1" data-toggle="modal"  data-target="#dashboardpopup">
 </a>
 </div>
-<div class="card-header cover">
-<a href="javascript:void(0)"  style="text-decoration:none;" id="view2" data-toggle="modal"  data-target="#bankpopup">
+<div class="cover">
+<a href="javascript:void(0)"  style="text-decoration:none;" id="view2" data-toggle="modal"  data-target="#bankpopup" data-backdrop="static" data-keyboard="false">
 </a>
 </div>
 	
@@ -334,21 +333,17 @@ foreach ($bank_link as $bank) { ?>
   
 
 
-   <div class="modal fade" id="bankpopup" role="dialog">
+  <div class="modal fade" id="bankpopup" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Please Link your Account</h4>
         </div>
         <div class="modal-body">
-          <h3 class="text-center">Go to Link your Account Tab</h3>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <h3 class="text-center">Click Here <a href="<?php echo base_url('seller/dashboard/linkaccout');?>"> Link your Account</a></h3>
         </div>
       </div>
-      </div>
+    </div>
   </div> 
 <script type="text/javascript">
     $(function () {

@@ -136,11 +136,13 @@
                             <i class="fa fa-envelope-open-o"></i><span>Seller Support</span>
                         </a>                        
                     </li>
+                    <?php if($bank_link['0']['bank_complete']==0) {?>
                     <li class="treeview">
                         <a href="<?php echo base_url('seller/dashboard/linkaccout');?>">
                             <i class="fa fa-credit-card"></i><span>Link your account</span>
                         </a>                        
                     </li>
+                    <?php }?>
                            
             </ul>
         </div> <!-- /.sidebar -->

@@ -16,8 +16,9 @@ class Admin_Controller extends MY_Controller {
 			$data['ordersdata'] =  $result;
 			$result['sellernotify'] =  $this->request_model->getdata();		
        		$data['catdata'] = $this->dashboard_model->getcatsubcat();
+       		$data['bank_link'] = $this->dashboard_model->bank_status();
        		$result['profiles'] = $this->user_profile_model->profile_pic_get();
-       		//print_r($pic);exit;
+       		//echo "<pre>";print_r($data);exit;
 			$this->template->set_template('seller');
 			$this->template->write_view('header', 'seller/shared/header',$result);
 			$this->template->write_view('sidebar', 'seller/shared/sidebar',$data);
