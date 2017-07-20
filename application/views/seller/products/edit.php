@@ -96,32 +96,20 @@
 												<input type="text" class="form-control" id="material" name="material" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
 											</div>
 											</div>
-											
+											<div >
 											<div class="col-md-6">
 											
 												<div class="form-group ">
 												<label class="col-md-2">Size 
-												</label><span class="pull-right col-md-10">
-													<a class="btn btn-primary btn-xs">xl</a>
-													<a class="btn btn-primary btn-xs">xl</a>
-													<a class="btn btn-primary btn-xs">xl</a>
-													<a class="btn btn-primary btn-xs">xl</a>
-													<a class="btn btn-primary btn-xs">xl</a>
-													<a class="btn btn-primary btn-xs">xl</a>
-													<a class="btn btn-primary btn-xs">xl</a>
-													<a class="btn btn-primary btn-xs">xl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
-													<a class="btn btn-primary btn-xs">xxgsfdfdl</a>
+												</label>
+												<span class="pull-right col-md-10">
+
+												<?php  //echo '<pre>';print_r($productcolors);exit;
+												foreach($productsizes as $sizeslist){ ?> 
+												<input type="hidden" name="oldsizes[]" value="<?php echo $sizeslist['p_size_name']; ?>">
+												<a id="sizes_<?php echo $sizeslist['p_size_id'] ;?>" onclick="removesizes(<?php echo $sizeslist['p_size_id']?>);"class="btn btn-primary btn-xs"><?php echo $sizeslist['p_size_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
+												<?php } ?>
+
 												</span>
 											<div class="clearfix"></div>
 													<input class="form-control" id="sizes"  type="text"  name="sizes">
@@ -131,21 +119,21 @@
 											    <label for="exampleInputEmail1">Weight</label>
 												<input type="text" class="form-control" id="weight" name="weight" value="<?php echo isset($productdetails['weight'])?$productdetails['weight']:''; ?>" >
 											</div>
+											</div>
 											
 											<div class="col-md-6  ">
 												<div class="form-group ">
 												<label>Color</label>
-												<span class="pull-right">
-													<?php 
-													//echo '<pre>';print_r($productcolors);exit;
-													foreach($productcolors as $colors_name){ ?> 
-														<input type="hidden" name="oldcolors[]" value="<?php echo $colors_name['color_name']; ?>">
-														<a class="btn btn-primary btn-xs" href="javascript:void(0);" id="colord_<?php echo $colors_name['p_color_id'] ;?>" onclick="removecolor(<?php echo $colors_name['p_color_id']?>);"><?php echo $colors_name['color_name']; ?>
-														<span aria-hidden="true">×</span>
-														</a>
+												<span class="pull-right col-md-10">
+
+												<?php  //echo '<pre>';print_r($productcolors);exit;
+												foreach($productcolors as $colors_name){ ?> 
+												<input type="hidden" name="oldcolors[]" value="<?php echo $colors_name['color_name']; ?>">
+												<a id="colord_<?php echo $colors_name['p_color_id'] ;?>" onclick="removecolor(<?php echo $colors_name['p_color_id']?>);" class="btn btn-primary btn-xs"><?php echo $colors_name['color_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
+												<?php } ?>
+
 												</span>
-											<?php }; ?>
-												</span>
+												<div class="clearfix"></div>
 													<input class="form-control" id="colors"  type="text" name="colors" value="">
 													
 												</div>

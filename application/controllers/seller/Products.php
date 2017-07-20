@@ -336,7 +336,7 @@ public function update()
 	$id = $this->uri->segment(4);
 	$post=$this->input->post();
 	
-		
+	echo '<pre>';print_r($post);
 	//echo '<pre>';print_r($_FILES);
 	//echo '<pre>';print_r($post);exit;
 	$productdetails=$this->products_model->getproductdata($post['product_id']);
@@ -470,50 +470,60 @@ public function update()
 			$result=$this->products_model->update_deails($post['product_id'],$updatedata);
 			if(count($result)>0)
 			{
-				$data['productcolors']=$this->products_model->get_product_colors($post['product_id']);
-				$data['productsizes']=$this->products_model->get_product_sizes($post['product_id']);	
-					/* delete old details*/
+					/* colors purpose*/
+					$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
 						$productcolors=$this->products_model->get_product_colors($post['product_id']);
-						foreach ($productcolors as $colorss){
-						$listcolors[]=$colorss['color_name'];
+						foreach ($productcolors as $colorsslist){
+						$listcolors[]=$colorsslist['color_name'];
 						}
 						foreach ($productcolors as $colorss){
 						$this->products_model->delete_product_colors($colorss['p_color_id']);
 						}
-						$productsizes=$this->products_model->get_product_sizes($post['product_id']);
-						foreach ($productsizes as $sizes){
-						$listsizes[]=$sizes['p_size_name'];
+						foreach (array_merge($listcolors,explode(",",$colordata)) as $colorslist){
+
+							if($colorslist!=''){
+								$addcolorsdata=array(
+								'item_id' =>$post['product_id'],
+								'color_name' => $colorslist,
+								'create_at' => date('Y-m-d H:i:s'),
+								);
+								$this->products_model->insert_product_colors($addcolorsdata);
+							}
+							
+							
 						}
-						foreach ($productsizes as $sizes){
-						$this->products_model->delete_product_sizes($sizes['p_size_id']);
-						}
+						
+						/*-----*/
+						
+						/* sizes puepos*/
+							$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
+							$productsizes=$this->products_model->get_product_sizes($post['product_id']);
+							foreach ($productsizes as $sizeslist){
+							$listsizes[]=$sizeslist['p_size_name'];
+							}
+							foreach ($productsizes as $sizes){
+							$this->products_model->delete_product_sizes($sizes['p_size_id']);
+							}
+							foreach (array_merge($listsizes,explode(",",$sizesdata)) as $sizeslist){
+
+							if($sizeslist !=''){
+							$addsizesdata=array(
+							'item_id' =>$post['product_id'],
+							'p_size_name' => $sizeslist,
+							'create_at' => date('Y-m-d H:i:s'),
+							);
+							$this->products_model->insert_product_sizes($addsizesdata);
+							}
+						
+							}
+						
+						/*----*/
+						
+						/* pecification purpose*/
 						$productspcification=$this->products_model->get_product_spc($post['product_id']);
 						foreach ($productspcification as $spc){
 						$this->products_model->delete_product_spc($spc['specification_id']);
 						}
-						
-						$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
-						$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
-						foreach (array_merge($listcolors,explode(",",$sizesdata)) as $sizess){
-
-						$addsizesdata=array(
-						'item_id' =>$post['product_id'],
-						'p_size_name' => $sizess,
-						'create_at' => date('Y-m-d H:i:s'),
-						);
-						$this->products_model->insert_product_sizes($addsizesdata);
-						}
-						foreach (array_merge($listsizes,explode(",",$colordata)) as $colorss){
-
-						$addcolorsdata=array(
-						'item_id' =>$post['product_id'],
-						'color_name' => $colorss,
-						'create_at' => date('Y-m-d H:i:s'),
-						);
-						$this->products_model->insert_product_colors($addcolorsdata);
-						}
-
-
 						$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
 						foreach ($productspecificationlist as $key=>$list){
 
@@ -528,7 +538,9 @@ public function update()
 								
 							}
 						}
-				
+						/* -----*/
+					
+					
 				
 				
 				$this->prepare_flashmessage("Successfully Updated..", 0);
