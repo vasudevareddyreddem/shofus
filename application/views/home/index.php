@@ -39,7 +39,7 @@
   <div class="cart_bdy" style="display:none;" id="location_seacrh_result"></div>
   <div class="" id="location_seacrh">
     <!--Top Category slider Start-->
-    <div class="top-cate">
+    <div class="top-cate" style="margin-top:30px;">
       <div class="featured-pro container_main">
         <div class="row">
           <div class="slider-items-products">
