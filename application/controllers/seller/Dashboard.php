@@ -135,8 +135,14 @@ class Dashboard extends Admin_Controller {
 
  public function linkaccout()
  {
- 	$this->template->write_view('content', 'seller/dashboard/link_youraccount');
-	$this->template->render();  
+  $data = $this->dashboard_model->bank_status();
+  //echo "<pre>";print_r($data);exit;
+  if($data['0']['bank_complete']==1){
+    redirect('seller/dashboard');
+  }else{
+   $this->template->write_view('content', 'seller/dashboard/link_youraccount');
+  $this->template->render(); 
+  }  
  }
 
  public function accountupdate()

@@ -654,9 +654,9 @@ return false;
                          $('#login_submit')[0].reset(); 
                         }
                         else if(data == 1)
-                                {
-                                document.location.href='<?php echo base_url('seller/adddetails'); ?>'; 
-                             }
+                        {
+                            document.location.href='<?php echo base_url('seller/adddetails'); ?>'; 
+                        }
                         },
                         });
                 }
