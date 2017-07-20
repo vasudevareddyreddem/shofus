@@ -189,7 +189,7 @@ class Products extends Admin_Controller {
 						'p_size_name' => $sizess,
 						'create_at' => date('Y-m-d H:i:s'),
 						);
-						//$this->products_model->insert_product_sizes($addsizesdata);
+						$this->products_model->insert_product_sizes($addsizesdata);
 						}
 						foreach (explode(",",$colordata) as $colorss){
 
@@ -205,13 +205,16 @@ class Products extends Admin_Controller {
 						$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
 						foreach ($productspecificationlist as $key=>$list){
 
-						$addspc=array(
-						'item_id' =>$results,
-						'spc_name' => $list,
-						'spc_value' => $key,
-						'create_at' => date('Y-m-d H:i:s'),
-						);
-						$this->products_model->insert_product_spcifications($addspc);
+							if($list!=''){
+								$addspc=array(
+								'item_id' =>$results,
+								'spc_name' => $list,
+								'spc_value' => $key,
+								'create_at' => date('Y-m-d H:i:s'),
+								);
+								$this->products_model->insert_product_spcifications($addspc);
+								
+							}
 						}
 				
 				
@@ -235,12 +238,71 @@ public function edit()
 	$data['items'] = $this->products_model->auto_items();
 	$data['subcatdata'] = $this->products_model->getsubcatdata($cat_id);
 	$data['getcat'] = $this->products_model->getcateditdata();
-	$data['productdata']=$this->products_model->getproductdata($id);
-	//echo '<pre>';print_r($data['productdata']);exit;
+	$data['productdetails']=$this->products_model->getproductdata($id);
+	$productcolors=$this->products_model->get_product_colors($id);
+	$productsizes=$this->products_model->get_product_sizes($id);
+	$data['productspcification']=$this->products_model->get_product_spc($id);
+	//echo '<pre>';print_r($data['productspcification']);exit;
+	//echo count($productcolors);exit;
+		if(count($productcolors)>0){
+		foreach($productcolors  as $pcolors){
+			
+			$pcolor_list[]=$pcolors['color_name'];
+		}
+		$pcolor_lists=implode('","',$pcolor_list);
+		$data['pcolor_lists'] = '"'.$pcolor_lists.'"';
+		}else{
+			$data['pcolor_lists']='';
+		}
+
+		if(count($productsizes)>0){
+		foreach($productsizes  as $psizes){
+			
+			$psizes_list[]=$psizes['p_size_name'];
+		}
+		
+		$psizes_lists=implode('", "',$psizes_list);
+		$data['psizes_lists'] = '"'.$psizes_lists.'"';
+		}else{
+			$data['psizes_lists'] ='';
+		}
+		
+		//echo '<pre>';print_r($data);exit;
+		$sid = $this->session->userdata('seller_id'); 
+		$data['category_details'] = $this->products_model->get_seller_catdata($sid);
+		$color_details = $this->products_model->get_colores();
+		$size_details = $this->products_model->get_sizes_list();
+		$data['items'] = $this->products_model->auto_items();
+		//echo $this->db->last-query();exit;
+		//echo '<pre>';print_r($size_details);exit;
+		foreach($color_details  as $colors){
+			
+			$color_list[]=$colors['color_name'];
+		}
+		foreach($size_details  as $sizes){
+			
+			$sizes_list[]=$sizes['size_name'];
+		}
+		
+		$data['color_lists']=implode(",",$color_list);
+		$data['sizes_lists']=implode(",",$sizes_list);
 	$this->template->write_view('content', 'seller/products/edit', $data);
 	$this->template->render();
 	
 }
+public function removespciciations(){
+		
+	$post = $this->input->post();
+	//echo '<pre>';print_r($post);exit; 
+			
+				$removedattch=$this->products_model->remove_spcification($post['specification']);
+				if(count($removedattch) > 0)
+				{
+				$data['msg']=1;
+				echo json_encode($data);	
+				}
+		
+	}
 
 public function update()
 
@@ -248,7 +310,60 @@ public function update()
 	
 	$id = $this->uri->segment(4);
 	$post=$this->input->post();
-	//echo '<pre>';print_r($post);
+	
+	$productcolors=$this->products_model->get_product_colors($post['product_id']);
+	foreach ($productcolors as $colorss){
+		//$this->products_model->delete_product_colors($colorss['p_color_id']);
+	}
+	$productsizes=$this->products_model->get_product_sizes($post['product_id']);
+	foreach ($productsizes as $sizes){
+		//$this->products_model->delete_product_sizes($sizes['p_size_id']);
+	}
+	$productspcification=$this->products_model->get_product_spc($post['product_id']);
+	foreach ($productspcification as $spc){
+		//$this->products_model->delete_product_spc($spc['specification_id']);
+	}
+	$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
+						$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
+						foreach (explode(",",$sizesdata) as $sizess){
+
+						$addsizesdata=array(
+						'item_id' =>$post['product_id'],
+						'p_size_name' => $sizess,
+						'create_at' => date('Y-m-d H:i:s'),
+						);
+							echo '<pre>';print_r($addsizesdata);
+						//$this->products_model->insert_product_sizes($addsizesdata);
+						}
+						foreach (explode(",",$colordata) as $colorss){
+
+						$addcolorsdata=array(
+						'item_id' =>$post['product_id'],
+						'color_name' => $colorss,
+						'create_at' => date('Y-m-d H:i:s'),
+						);
+						
+						echo '<pre>';print_r($addcolorsdata);
+						//$this->products_model->insert_product_colors($addcolorsdata);
+						}
+
+
+						$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
+						foreach ($productspecificationlist as $key=>$list){
+
+							if($list!=''){
+								$addspc=array(
+								'item_id' =>$post['product_id'],
+								'spc_name' => $list,
+								'spc_value' => $key,
+								'create_at' => date('Y-m-d H:i:s'),
+								);
+								echo '<pre>';print_r($addspc);
+								//$this->products_model->insert_product_spcifications($addspc);
+								
+							}
+						}
+	echo '<pre>';print_r($post);exit;
 	//echo '<pre>';print_r($_FILES);
 	
 	

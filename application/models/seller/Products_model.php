@@ -160,22 +160,47 @@ public function getsubcatdata($cat_id)
 public function getproductdata($id)
 {
 	$sid = $this->session->userdata('seller_id');
-	$this->db->select('*');
+	$this->db->select('products.*,subcategories.subcategory_name');
 	$this->db->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
-   $this->db->join('category', 'category.category_id =products.category_id');
+	$this->db->join('category', 'category.category_id =products.category_id');
 	$this->db->where('products.item_id', $id);
-	
 	$this->db->where('products.seller_id', $sid);
-		$query=$this->db->get();
-		return $query->row();
-	
-	
-	
-	
+	$query=$this->db->get();
+	return $query->row_array();
 	
 }
-
+function remove_spcification($id){
+		$sql1="DELETE FROM product_spcifications WHERE specification_id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	function delete_product_colors($id){
+		$sql1="DELETE FROM product_color_list WHERE p_color_id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	function delete_product_sizes($id){
+		$sql1="DELETE FROM product_size_list WHERE p_size_id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	function delete_product_spc($id){
+		$sql1="DELETE FROM product_spcifications WHERE specification_id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+public function get_product_colors($pid){
+		$this->db->select('*')->from('product_color_list');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->result_array();
+	}
+	public function get_product_sizes($pid){
+		$this->db->select('*')->from('product_size_list');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->result_array();
+	}
+	public function get_product_spc($pid){
+		$this->db->select('*')->from('product_spcifications');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->result_array();
+	}
 
 public function getcatname($cat_id)
 {
