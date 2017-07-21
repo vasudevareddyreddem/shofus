@@ -57,12 +57,15 @@
                         
 							
                     </div>
-
-                    <button class="btn btn-lg  btn-block signup-btn" style="background-color:#c33c12;color:#fff;" type="submit">
+					<div class="col-md-6">
+                    <button class="btn btn-lg  btn-block signup-btn" style="background-color:#5cb85c;color:#fff;border-radius:6px;" type="submit">
                         Submit</button>
+						</div>
                 </form>
-				<a  href="<?php echo base_url('admin/login'); ?>"class="btn btn-lg  btn-block signup-btn" style="background-color:#c33c12;color:#fff;" type="submit">
+				<div class="col-md-6">
+				<a  href="<?php echo base_url('admin/login'); ?>"class="btn btn-lg  btn-block signup-btn" style="background-color:#c33c12;color:#fff;border-radius:6px;" type="submit">
                   Cancel</a>
+				  </div>
 
             </div>
             </div>

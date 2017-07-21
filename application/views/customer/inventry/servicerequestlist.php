@@ -1,4 +1,4 @@
-<div class="content-wrapper pad_t100">
+<div class="content-wrapper pad_t100" >
     <!-- Content Header (Page header) -->
       <div class="container">
          <!-- Main content -->
@@ -21,7 +21,7 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped table-responsive" >
                 <thead>
                 <tr>
                   <th>Service Request Id</th>
