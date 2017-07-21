@@ -328,7 +328,7 @@ public function changepasswordpost(){
 			//echo '<pre>';print_r($replynotification);exit;
 			$notificationreply = $this->inventory_model->save_notifciations($replynotification);
 			if(count($notificationreply)>0){
-			$this->session->set_flashdata('success','Notification reply successfully send!');
+			$this->session->set_flashdata('success','Notification reply successfully sent!');
 			redirect('inventory/sellernitificationlist');	
 			}
 				
@@ -454,7 +454,7 @@ public function servicerequestview(){
 				 $emailsendcus=$this->inventory_model->notification_statuschanges($sevice_id,$data);
 				// echo $this->db->last_query();exit;
 				 if(count($emailsendcus)>0){
-					$this->session->set_flashdata('success','Notification reply Successfully send!');
+					$this->session->set_flashdata('success','Notification reply Successfully sent!');
 					redirect('inventory/sellerservicerequests'); 
 				 }
 
