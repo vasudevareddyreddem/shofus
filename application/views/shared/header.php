@@ -29,7 +29,7 @@
 					</a>
 					<ul class="dropdown-menu " role="menu">
 						<div class="row">
-						<?php foreach($catitem_data['subcat'] as $subcat ) { ?>
+						<?php $k=1;foreach($catitem_data['subcat'] as $subcat ) { ?>
 							<div class="col-md-3">
 								<ul class="list_cat">
 									<li><a href="<?php echo base_url('category/view/'.base64_encode($subcat['subcategory_id'])); ?>" style="color:#666;"><?php echo $subcat['subcategory_name']; ?></a></li>
@@ -39,7 +39,11 @@
 							
 								</ul>
 							</div>
-								<?php } ?>
+							<?php if($k==4){ ?>
+								<div class="clearfix"></div>
+							<?php } ?>
+								<?php $k++;} ?>
+								<div class="clearfix"></div>
 						</div>
 						
 					</ul>
