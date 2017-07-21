@@ -16,13 +16,24 @@ class Front_Controller extends MY_Controller {
 				$this->load->library('cart');
 				$this->load->model('home_model');
 				
-					$data['catitemdata'] = $this->home_model->getcatsubcatpro();
-					$data['catitemdata1'] = $this->home_model->getcatsubcatpro();
-					$data['cnt']= count($data['catitemdata1']);
-					$data['catdata'] = $this->home_model->getcatsubcat();
-					$data['locationdata'] = $this->home_model->getlocations();
 					
-					//echo '<pre>';print_r($customerdetails);exit;
+					//$data['catitemdata1'] = $this->home_model->getcatsubcatpro();
+					//$data['cnt']= count($data['catitemdata1']);
+					//$data['catdata'] = $this->home_model->getcatsubcat();
+					$data['category'] = $this->home_model->categories();
+					// foreach($data['catdata'] as $cats){
+					// 	$cats['category_id'] = $categorys;
+					// 	
+					// }
+
+
+
+					//echo '<pre>';print_r($data);exit;
+					//$data['subcat'] = $this->home_model->subcategories();
+					//$data['catitemdata'] = $this->home_model->getcatsubcatpro();
+					//$data['locationdata'] = $this->home_model->getlocations();
+					
+					echo '<pre>';print_r($data);exit;
 					if($this->session->userdata('userdetails')){
 					$customerdetails=$this->session->userdata('userdetails');
 

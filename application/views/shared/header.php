@@ -18,7 +18,7 @@
 			
 			<ul style="padding:0 ">
 			
-			<?php  foreach($catitemdata as $catitem_data )  {  
+			<?php  foreach($catdata as $catitem_data )  {  
 			?>
 				<li class="spin btn-group show-on-hover">
 					<a  class=" dropdown-toggle" data-toggle="dropdown">
@@ -29,14 +29,14 @@
 						<div class="row">
 							
 								<?php 
-								foreach($catitem_data->docs as $subcategory){
+								foreach($catitem_data->subcat as $subcategory){
 									//echo '<pre>';print_r($subcategory);exit;
 									?>
 									<div class="col-md-3">
 											<ul class="list_cat">
 												<li><a href="<?php echo base_url('category/view/'.base64_encode($subcategory->subcategory_id)); ?>" style="color:#666;"><?php echo $subcategory->subcategory_name; ?></a></li>
 													<?php 
-													foreach($subcategory->docs12 as $item_data){?>
+													foreach($subcategory as $item_data){?>
 													<li><a href="<?php echo base_url('category/productview/'.base64_encode($item_data->item_id)); ?>"><?php echo $item_data->item_name; ?></a></li>
 													<?php } ?>
 											</ul>
