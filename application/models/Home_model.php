@@ -272,8 +272,10 @@ public function getproducts($subid)
 	
 		$this->db->select('category.category_name,category.category_id,')->from('category');
 		$this->db->group_by('category.category_id');
-		$this->db->order_by('category.category_id', 'ASC'); 
+		$this->db->order_by('category.category_id', 'ASC');
+		$this->db->where('category.status', 1);		
 		$query=$this->db->get()->result_array();
+		
 		//echo '<pre>';print_r($query);exit;
 		 foreach($query as $category)
         {
