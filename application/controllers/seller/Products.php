@@ -39,7 +39,7 @@ class Products extends Admin_Controller {
   //echo "<pre>";print_r($data);exit;
 	  if($data['bank_complete']==0){
 	  	//echo "<pre>";print_r($data);exit;
-	    redirect('seller/dashboard/linkaccout');
+	    redirect('seller/dashboard/');
 	  }else{
 		$sid = $this->session->userdata('seller_id');
 		$data['category_details'] = $this->products_model->get_seller_catdata($sid);
