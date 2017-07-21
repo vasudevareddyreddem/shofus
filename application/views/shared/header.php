@@ -18,26 +18,23 @@
 			
 			<ul style="padding:0 ">
 			
-			<?php  foreach($catitemdata as $catitem_data )  {  
-			?>
+			<?php  
+			//echo '<pre>';print_r($catitemdata);exit;
+			foreach($catitemdata as $catitem_data) { ?>
 				<li class="spin btn-group show-on-hover">
 					<a  class=" dropdown-toggle" data-toggle="dropdown">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit"><?php echo $catitem_data->category_name; ?></span>
+						<span class="menu_tit"><?php echo $catitem_data['category_name']; ?></span>
 					</a>
 					<ul class="dropdown-menu " role="menu">
 						<div class="row">
 							
-								<?php 
-								foreach($catitem_data->docs as $subcategory){
-									//echo '<pre>';print_r($subcategory);exit;
-									?>
+								<?php foreach($catitem_data['subcat'] as $subcat ) { ?>
 									<div class="col-md-3">
 											<ul class="list_cat">
-												<li><a href="<?php echo base_url('category/view/'.base64_encode($subcategory->subcategory_id)); ?>" style="color:#666;"><?php echo $subcategory->subcategory_name; ?></a></li>
-													<?php 
-													foreach($subcategory->docs12 as $item_data){?>
-													<li><a href="<?php echo base_url('category/productview/'.base64_encode($item_data->item_id)); ?>"><?php echo $item_data->item_name; ?></a></li>
+												<li><a href="<?php echo base_url('category/view/'.base64_encode($subcat['subcategory_id'])); ?>" style="color:#666;"><?php echo $subcat['subcategory_name']; ?></a></li>
+													<?php foreach($subcat['product_list'] as $product_list ) {?>
+													<li><a href="<?php echo base_url('category/productview/'.base64_encode($product_list['item_id'])); ?>"><?php echo $product_list['item_name']; ?></a></li>
 													<?php } ?>
 											</ul>
 							

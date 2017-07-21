@@ -58,7 +58,7 @@ $(document).ready(function() {
 						message: 'Category Name is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
+					regexp: /^[a-zA-Z0-9. &$-_ ]+$/,
 					message: ' Category Name can only consist of alphanumaric, space and dot'
 					}
 				}

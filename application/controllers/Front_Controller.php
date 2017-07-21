@@ -22,7 +22,7 @@ class Front_Controller extends MY_Controller {
 					$data['catdata'] = $this->home_model->getcatsubcat();
 					$data['locationdata'] = $this->home_model->getlocations();
 					
-					//echo '<pre>';print_r($customerdetails);exit;
+					//echo '<pre>';print_r($data);exit;
 					if($this->session->userdata('userdetails')){
 					$customerdetails=$this->session->userdata('userdetails');
 

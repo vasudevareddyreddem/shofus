@@ -226,7 +226,7 @@ class Products extends Admin_Controller {
 						}
 				
 				
-				$this->session->set_flashdata('addsuccess',"Item Successfully added..", 0);
+				$this->session->set_flashdata('addcus',"Item Successfully added..", 0);
 				redirect('seller/products/create');
 			}
 			else
@@ -1139,7 +1139,7 @@ public function returns()
 												);
 										$this->products_model->insert_product_colors($addcolorsdata);
 										}
-									echo '<pre>';print_r($addcolorsdata);
+									//echo '<pre>';print_r($addcolorsdata);
 									}
 									/* for color purpose*/
 									/* for spcification purpose*/

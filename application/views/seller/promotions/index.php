@@ -83,12 +83,12 @@ tfoot input {
 			?>
               <div style="padding:10px;" class="panel panel-default mar_t10">
                 <div class="panel-heading" role="tab" id="headingOne<?php echo $nospace;  ?>">
-                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" onclick="sibcategoryproductlist(<?php echo $subcategory->subcategory_id;  ?>);" href="#collapseOne<?php echo $nospace;  ?>" aria-expanded="true" aria-controls="collapseOne<?php echo $nospace;  ?>"> <i class="more-less glyphicon glyphicon-plus"></i> <?php echo $subcategory->subcategory_name; ?> </a> </h4>
+                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion"  href="#collapseOne<?php echo $nospace;  ?>" aria-expanded="true" aria-controls="collapseOne<?php echo $nospace;  ?>"> <i class="more-less glyphicon glyphicon-plus"></i> <?php echo $subcategory->subcategory_name; ?> </a> </h4>
                 </div>
                 <div id="collapseOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
 		
 	<form  id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
-		<table id="example<?php echo $subcategory->subcategory_id;  ?>" class="display" width="100%" cellspacing="0">
+		<table id="example<?php echo $subcategory->subcategory_id;?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">
@@ -231,7 +231,7 @@ tfoot input {
 	$(document).ready(function (){
    // Array holding selected row IDs
    var rows_selected = [];
-   var table = $('#example<?php echo $subcategory->subcategory_id;  ?>').DataTable({
+   var table = $('#example<?php echo $subcategory->subcategory_id;?>').DataTable({
       'columnDefs': [{
          'targets': 0,
          'searchable':false,
@@ -311,7 +311,7 @@ tfoot input {
    });
     
    // Handle form submission event 
-  $('#frm-example<?php echo $subcategory->subcategory_id;  ?>').on('submit', function(e){
+  $('#frm-example<?php echo $subcategory->subcategory_id;?>').on('submit', function(e){
       var form = this;
 
       // Iterate over all selected checkboxes
@@ -328,7 +328,6 @@ tfoot input {
       // FOR DEMONSTRATION ONLY     
       
       // Output form data to a console     
-      $('#example<?php echo $subcategory->subcategory_id;  ?>-console').text($(form).serialize()); 
       console.log("Form submission", $(form).serialize()); 
       var $data = $(form).serialize();
 	  var offertpes=document.getElementById('offertype<?php echo $subcategory->subcategory_id;?>').value;
@@ -410,7 +409,7 @@ tfoot input {
    
    <div class="container">
 	
-      <h1 class="head_title">Welcome to the Cart In Hour</h1>
+      <h1 class="head_title">You have no Products. Please add products</h1>
    
    </div>
    
