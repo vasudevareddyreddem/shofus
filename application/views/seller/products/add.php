@@ -39,6 +39,29 @@
 		</div>
 	</section>	
 	<section class="content">
+	<?php if($this->session->flashdata('addcus')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('addcus');?></div>
+			<?php endif; ?>
+			<?php if($this->session->flashdata('error')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('error');?></div>
+			<?php endif; ?>
+	 <?php //echo '<pre>';print_r($this->session->flashdata('addsuccess'));exit; ?>
+	  
+				   <?php if($this->session->flashdata('addsuccess')){ ?>
+
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+					 <?php foreach($this->session->flashdata('addsuccess') as $error){?>
+					
+					<?php echo $error.'<br/>'; ?>
+					
+					
+					<?php } ?></div><?php } ?>
 		<div class="col-xs-12 col-sm-12 col-md-12 m-b-20">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -226,7 +249,7 @@
                                 <div class="tab-pane fade" id="tab2">
                                     <div class="panel-body">
                 <div >
-					<p class="pull-left"><strong>Note:</strong> &nbsp;Please Select your Category and Download sample file then filling  the data then again upload your products </p>&nbsp;&nbsp;<span class="pull-right"><a href="<?php echo base_url('uploads'); ?>/Importproduct.xlsx" >Download sample Import File</a></span>
+					<p class="pull-left"><strong>Note: </strong> &nbsp;Please download sample file then filling  the data then again upload your products </p>&nbsp;&nbsp;<span class="pull-right"> For Fashion <a id="fashionproducts" href="<?php echo base_url('uploads'); ?>/fashionproducts.xlsx" >Download sample Import File</a> (or) For Other categores  <a id="otherproducts" href="<?php echo base_url('uploads'); ?>/otherproducts.xlsx" >Download sample Import File</a></span>
 				</div>
 				<hr>
 				<form id="importproducts" onsubmit="return checkvalidation();" name="importproducts" action="<?php echo base_url('seller/products/uploadproducts'); ?>" method="post" enctype="multipart/form-data" >
@@ -600,9 +623,57 @@ $(document).ready(function(){
         }
     });
 });
-
-  
+$(document).ready(function() {
+    $('#importproducts').bootstrapValidator({
+       
+        fields: {
+            category_id_import: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a Category'
+					}
+				}
+            },
+			subcategory_id_import: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a SubCategory'
+					}
+				}
+            },
+			
+			categoryes: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a value'
+					},
+					regexp: {
+						regexp: /\.(xlsx|xls|xlsm)$/i,
+					message: 'Uploaded file is not a valid. Only xlsx,xls,xlsm files are allowed'
+					}
+				}
+            }
+        }
+    });
+});
+ function hidemsg(id){
+	  if(id=''){
+		jQuery('#errormsg').html('Please select subcategory');  
+	  }else{
+		jQuery('#errormsg').html('');  
+	  }
 	  
+  } 
+function checkvalidation(){
+		var e = document.getElementById("subcategory_id_import");
+		var strUser = e.options[e.selectedIndex].value;
+		if(strUser==''){
+		jQuery('#errormsg').html('Please select subcategory');
+		return false;
+		}
+		jQuery('#errormsg').html('');
+	  
+  }	  
 </script>
 
 
