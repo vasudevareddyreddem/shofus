@@ -374,7 +374,7 @@
 		
 		 <div class="form-group">
             <label class="control-label">Any web link </label>
-            <input type="text" id="weblink"  name="weblink" value="<?php echo isset($sellerdata['weblink'])?$sellerdata['weblink']:''; ?>" class="form-control"/>
+            <input type="text" id="weblink"  name="weblink" placeholder="www.sample.com" value="<?php echo isset($sellerdata['weblink'])?$sellerdata['weblink']:''; ?>" class="form-control"/>
           </div>
 		   <div class="form-group">
             <label class="control-label">GSTIN</label>
@@ -404,11 +404,13 @@
 		
 		 <div class="form-group">
             <label class="control-label">Signature file</label>
-            <!-- <input  type="text"  name="gstin" id="gstin" value="<?php echo isset($sellerdata['gstin'])?$sellerdata['gstin']:''; ?>" class="form-control"  /> -->
-			<input type="file" id="gstimag" name="gstimag"  onchange="gstimageuload(this.value)">
+            <input type="file" name='gstimag' id="gstimag" class="form-control"/>
+            <span><?php echo isset($sellerdata['gstinimage'])?$sellerdata['gstinimage']:''; ?></span>
+  
+			<!-- <input type="file" id="gstimag" name="gstimag"  onchange="gstimageuload(this.value)">
 			<a onclick="deactive3();" href="javascript:void(0)" >Upload</a><span id="backid3"><?php echo isset($sellerdata['gstinimage'])?$sellerdata['gstinimage']:''; ?></span>
 			<span id="gstimages"></span>
-			<span style="color:red" id="gstimageserror"></span>         
+			<span style="color:red" id="gstimageserror"></span> -->         
 
 		 </div>
 		
@@ -462,7 +464,6 @@
 $('#timimages').hide();
 $('#tanimages').hide();
 $('#cstimag').hide();
-$('#gstimag').hide();
 
 
 
@@ -507,20 +508,7 @@ function cstuploadOnChange() {
 	document.getElementById("resubmit").disabled = false; 
 	
 }
-document.getElementById('gstimag').onchange = gstuploadOnChange;
-function gstuploadOnChange() {
-    var filename = this.value;
-    var lastIndex = filename.lastIndexOf("\\");
-    if (lastIndex >= 0) {
-        filename = filename.substring(lastIndex + 1);
-    }
-	jQuery('#backid3').hide();
-	$('#editcstimage').hide();
-	jQuery('#gstimageserror').html('');
-    document.getElementById("gstimages").innerHTML  = filename;
-	document.getElementById("resubmit").disabled = false; 
-	
-}
+
 
 function deactive(id){
 	$('#timimages').trigger("click");	
@@ -531,9 +519,7 @@ function deactive1(id){
 function deactive2(id){
 	$('#cstimag').trigger("click");	
 }
-function deactive3(id){
-	$('#gstimag').trigger("click");	
-}
+
 
  function validation(){
 	 
@@ -582,21 +568,7 @@ function deactive3(id){
 		return false;
 		}
 		}
-		var fup4 = document.getElementById('gstimag');
-		var fileName3 = fup4.value;
-		var ext4 = fileName3.substring(fileName3.lastIndexOf('.') + 1);
-
-		if(ext4 !=''){
-		if(ext4 == "png" || ext4 == "gif" || ext4 == "jpg" || ext4 == "jpe?g")
-		{
-		jQuery('#timimageserrormsg').val(1);
-		jQuery('#gstimageserror').html('');
-		} else{
-		jQuery('#timimageserrormsg').val(0);
-		jQuery('#gstimageserror').html('Uploaded file is not a valid. Only png,gif,jpg files are allowed');
-		return false;
-		}
-		}
+		
 		return true; 
 	
 	 
@@ -666,8 +638,8 @@ $(document).ready(function() {
 
 			
 				regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: ' Weblink can only consist of alphanumaric, space and dot'
+					regexp: /^(www\.)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/,
+					message: ' Invalid Weblink Formate..   Eg:www.sample.com'
 				}
             
 			}
@@ -724,7 +696,18 @@ $(document).ready(function() {
 				}
             
 			}
+            },
+            gstimag: {
+           validators: {
+             notEmpty: {
+            message: 'Signature Image is required'
+          },
+          regexp: {
+          regexp: /\.(jpe?g|png)$/i,
+          message: 'Uploaded file is not a valid image. Only JPG, PNG and Jpeg files are allowed'
+          }
             }
+      }
             
 		
         }

@@ -22,6 +22,10 @@
             </ol>
         </div>
     </section>
+    <!-- <?php foreach($bank_link as $bank) { ?> -->
+
+<!-- <?php }?> -->
+  
 
 
 
@@ -30,6 +34,14 @@
       <div class="col-xs-6 col-md-offset-3">
         <div class="col-md-12">
           <h3>Link Your Account</h3>
+          <!-- <?php if($bank_link['bank_complete']==0) { ?>
+          <p>success</p>
+
+          <?php  } else {?>
+          <p>fail</p>
+          <?php } ?> -->
+          
+
           <div class="form-group">
             <label class="control-label">Bank Account</label>
             <input class="form-control" maxlength="16" placeholder="Enter your Bank Account" type="text" id="bank_account" name="bank_account" >
@@ -50,8 +62,12 @@
               </form>
 
               </div>
-              <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
+
+              
+              
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/seller/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 

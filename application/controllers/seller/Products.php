@@ -22,6 +22,7 @@ class Products extends Admin_Controller {
 	public function index()
 	{
 		
+		
 	   
 	   $data['catitemdata'] = $this->products_model->getcatsubcatpro();
 	   $data['catitemdata1'] = $this->products_model->getcatsubcatpro();
@@ -29,11 +30,18 @@ class Products extends Admin_Controller {
 		
 		$this->template->write_view('content', 'seller/products/index', $data);
 		$this->template->render();
+
 	}
 	
 	public function create()
 	{
-		$sid = $this->session->userdata('seller_id'); 
+		$data = $this->dashboard_model->bank_status();
+  //echo "<pre>";print_r($data);exit;
+	  if($data['bank_complete']==0){
+	  	//echo "<pre>";print_r($data);exit;
+	    redirect('seller/dashboard/linkaccout');
+	  }else{
+		$sid = $this->session->userdata('seller_id');
 		$data['category_details'] = $this->products_model->get_seller_catdata($sid);
 		$color_details = $this->products_model->get_colores();
 		$size_details = $this->products_model->get_sizes_list();
@@ -55,6 +63,7 @@ class Products extends Admin_Controller {
 		
 		$this->template->write_view('content', 'seller/products/add', $data);
 		$this->template->render();
+	}
 
 	}
 	public function get_subcaregories_list()
