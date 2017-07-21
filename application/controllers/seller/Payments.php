@@ -41,17 +41,13 @@ class Payments extends Admin_Controller {
 
        $this->pagination->initialize($config);
 
-       $data = $this->dashboard_model->bank_status();
-  //echo "<pre>";print_r($data);exit;
-  if($data['0']['bank_complete']==0){
-    redirect('seller/dashboard');
-  }else{
+       
 				
        $data['paymentsdata'] = $this->payments_model->limit($config['per_page'], $this->uri->segment(4) )->getpaymentdetails();
 		
 		$this->template->write_view('content', 'seller/payments/index', $data);
 		$this->template->render();
-	}
+	
 
 
 	}

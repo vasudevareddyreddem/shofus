@@ -39,6 +39,8 @@
 		</div>
 	</section>	
 	<section class="content">
+
+	
 		<div class="col-xs-12 col-sm-12 col-md-12 m-b-20">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -266,6 +268,7 @@
                         </div>
 	</section>
 </div>
+
   <!--main content end--> 
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
@@ -577,11 +580,8 @@ $(document).ready(function(){
         }
     });
 });
-
-  
-	  
 </script>
-
+  
 
 
 

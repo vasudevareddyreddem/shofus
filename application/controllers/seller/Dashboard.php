@@ -28,7 +28,7 @@ class Dashboard extends Admin_Controller {
 		$data['returnitemdata'] = $this->products_model->returns();
 		$data['seller_ad'] = $this->dashboard_model->seller_ads();
 		$data['sellerscats'] = $this->dashboard_model->seller_cats();
-    $data['bank_link'] = $this->dashboard_model->bank_status();
+    //$data['bank_link'] = $this->dashboard_model->bank_status();
 		//echo '<pre>';print_r($data);exit;
 		
 		$this->template->write_view('content', 'seller/dashboard/index', $data);
@@ -137,14 +137,11 @@ class Dashboard extends Admin_Controller {
 
  public function linkaccout()
  {
-  $data = $this->dashboard_model->bank_status();
+  $data['bank_link'] = $this->dashboard_model->bank_status();
   //echo "<pre>";print_r($data);exit;
-  if($data['0']['bank_complete']==1){
-    redirect('seller/dashboard');
-  }else{
-   $this->template->write_view('content', 'seller/dashboard/link_youraccount');
+  
+   $this->template->write_view('content', 'seller/dashboard/link_youraccount',$data);
   $this->template->render(); 
-  }
  }
 
  public function accountupdate()

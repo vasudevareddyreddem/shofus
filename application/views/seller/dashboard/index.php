@@ -27,29 +27,14 @@
 <?php
  //$bank= $this->session->userdata('bank_complete');
  }?>
-<?php 
-foreach ($bank_link as $bank) { ?>
-<?php if($bank['bank_complete']==0){
- ?>
-<script>
-  $(document).ready(function() {
-    setTimeout( function(){ 
-    $('#view2').trigger("click");
-  }  , 2000 );
-});
-</script>
+ 
 
-<?php }?>
-<?php }?>
 
 <div class="cover">
 <a href="javascript:void(0)"  style="text-decoration:none;" id="view1" data-toggle="modal"  data-target="#dashboardpopup">
 </a>
 </div>
-<div class="cover">
-<a href="javascript:void(0)"  style="text-decoration:none;" id="view2" data-toggle="modal"  data-target="#bankpopup" >
-</a>
-</div>
+
 	
 	<div class="content-wrapper mar_t_con">
 	<?php if($this->session->flashdata('welcome')): ?>
@@ -333,18 +318,10 @@ foreach ($bank_link as $bank) { ?>
   
 
 
-  <div class="modal fade" id="bankpopup" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Please Link your Account</h4>
-        </div>
-        <div class="modal-body">
-          <h3 class="text-center">Click Here <a href="<?php echo base_url('seller/dashboard/linkaccout');?>"> Link your Account</a></h3>
-        </div>
-      </div>
-    </div>
-  </div> 
+  
+
+
+   
 <script type="text/javascript">
     $(function () {
     $(".demo2").bootstrapNews({
