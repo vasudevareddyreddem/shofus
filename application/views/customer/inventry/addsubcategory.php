@@ -40,6 +40,26 @@
 				
 				</div>
 				</form>
+				
+				<form enctype="multipart/form-data" method="post" name="importsubcategory" id="importsubcategory"  action="<?php echo base_url('inventory/subimportcategory'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
+				<div class=""  style="font-size:20px;font-weight:600;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Import subcategory</div>
+				<div class="form-group">
+				<label for="category">Category Name</label>
+				<select class="form-control" name="category_list" id="category_list">
+				<option value="">Select</option>
+				<?php foreach($category_list as $list){ ?>
+				<option value="<?php echo $list['category_id'];?>"><?php echo $list['category_name'];?></option>
+				<?php } ?>
+				</select>
+				</div>
+				<div class="form-group">
+				<label for="category">Import File File</label>
+				<input type="file" placeholder="" class="form-control" id="importcategoryfile" name="importcategoryfile" />
+				</div>
+				<div class="btn-group-vertical btn-block text-center" role="group">
+				<button type="submit" class="btn btn-danger btn-lg">Import</button>
+				</div>
+				</form>
 			</div>
 		</div>
     
@@ -47,6 +67,33 @@
  </div>
    
 	<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#importsubcategory').bootstrapValidator({
+       
+        fields: {
+            category_list: {
+					validators: {
+					notEmpty: {
+						message: 'Pease select subCategory'
+					}
+				}
+			}, 
+			
+			importcategoryfile: {
+					validators: {
+						notEmpty: {
+						message: 'Pease select subCategory'
+					},
+					regexp: {
+					regexp: /\.(xlsx|xls)$/i,
+					message: 'Uploaded file is not a valid image. Only xl files are allowed'
+					}
+				}
+			}
+        }
+    });
+});
 
 $(document).ready(function() {
     $('#addcategory').bootstrapValidator({

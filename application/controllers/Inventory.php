@@ -1702,7 +1702,7 @@ public function servicerequestview(){
 	  }
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('admin/login	');
+		 redirect('admin/login');
 	} 
   }
 		public function logout(){
@@ -1715,12 +1715,12 @@ public function servicerequestview(){
         redirect('admin/login');
 	}
 	
-		public function importcategory(){
+		public function subimportcategory(){
 			
 		$post=$this->input->post();
-	
-	echo '<pre>';print_r($_FILES);
-		
+		$logindetail=$this->session->userdata('userdetails');
+
+			
 	if((!empty($_FILES["importcategoryfile"])) && ($_FILES['importcategoryfile']['error'] == 0)) {
 				
 				$limitSize	= 1000000000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
@@ -1740,17 +1740,69 @@ public function servicerequestview(){
 						$cnt=$xlsx->sheetsCount()-1;
 						$arry=$xlsx->rows($j);
 						unset($arry[0]);
-					
-						echo "<pre>";print_r($arry);exit;
+						//echo "<pre>";print_r($arry);exit;
 						foreach($arry as $key=>$fields)
 							{
+								if(isset($fields[0]) && $fields[0]!=''){
 								
+									$totalfields[] = $fields;	
+									
+									if(empty($fields[0])) {
+										$data['errors'][]="Subcategory Name is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[0]!=''){
+										$regex ="/^[ A-Za-z0-9_@.,}{@#&$*)(_+-]*$/"; 
+										if(!preg_match( $regex, $fields[0]))	  	
+										{
+										$data['errors'][]='Subcategory Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
+										$error=1;
+										}
+									}
+									
+								}else{
+									$data['errors'][]='Please Fillout all Fields';
+									$this->session->set_flashdata('addsuccess',$data['errors']);
+									redirect('inventory/subcategorieslist');	
+								}
+							}
+								if(count($data['errors'])>0){
+								$this->session->set_flashdata('addsuccess',$data['errors']);
+								redirect('inventory/subcategorieslist');	
+								}
+						
+						
 						}
-					} 
+						
+						
+					}
+	}
+					
+					if(count($data['errors'])<=0){
+						foreach($totalfields as $data){
+							
+							//echo "<pre>";print_r($fieldss);
+							$addsubcat = array(
+							'category_id' => $post['category_list'], 
+							'subcategory_name' =>$data[0], 
+							'status' => 1,    
+							'created_at' => date('Y-m-d H:i:s'),    
+							'updated_at' => date('Y-m-d H:i:s'),
+							'created_by' =>$logindetail['customer_id'], 
+							);
+							//echo "<pre>";print_r($addsubcat);
+							$results=$this->inventory_model->save_sub_categories($addsubcat);
+							//echo $this->db->last_query();exit;
+						}
+						if(count($results)>0){
+							$this->session->set_flashdata('success','Successfully Added');
+							redirect('inventory/subcategorieslist');	
+						}
+					
+					
 				}
 				
 	       }
-       }	
+    	
   
  
 
