@@ -47,9 +47,14 @@
 								
 								<!--<li><a href="<?php echo base_url();?>seller/aboutus">About Us</a></li>-->
 							   <li><a href="<?php echo base_url();?>seller/faqs">FAQ's</a></li>
-                 
+                 <?php if($bank_link['bank_complete']==0) { ?>
+                 <li>
+                 <a href="javascript:void(0)" class="pull-right"   id="view2" data-toggle="modal"  data-target="#bankpopup" >Add Listing
+                  </a>
+                  <?php }else{  ?>
+                 </li>
 							    <li><a href="<?php echo base_url();?>seller/products/create" class="pull-right">Add Listing</a>  </li>
-                  
+                  <?php }?>
 								<!--<li><a href="#">Help</a></li>-->
 								<li><a href="<?php echo base_url();?>seller/contactus">Contact Us</a></li>
 								</ul>
@@ -185,6 +190,22 @@
         </div>
       </div>
       
+    </div>
+  </div>
+
+  <div class="modal fade" id="bankpopup" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Please Link your Account</h4>
+        </div>
+        <div class="modal-body">
+          <h3 class="text-center">Click Here <a href="<?php echo base_url('seller/dashboard/linkaccout');?>"> Link your Account</a></h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
   </div>
   <!--end Just fill form to Select plan Modal -->

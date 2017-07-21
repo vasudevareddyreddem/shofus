@@ -117,7 +117,7 @@
    
    <div class="container">
 	
-      <h1 class="head_title">Welcome to the Cart In Hour</h1>
+      <h1 class="head_title">You have no products. please add products</h1>
    
    </div>
    

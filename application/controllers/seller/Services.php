@@ -25,7 +25,10 @@ class Services extends Admin_Controller {
 	}
 	public function notications()
 	{
-		$this->template->write_view('content', 'seller/services/notications');
+		$sid = $this->session->userdata('seller_id');
+  	  	$data['notificationlist'] = $this->adddetails_model->get_notofication_list($sid);
+		//echo '<pre>';print_r($d);exit;
+		$this->template->write_view('content', 'seller/services/notications',$data);
 		$this->template->render();
 	}
 	

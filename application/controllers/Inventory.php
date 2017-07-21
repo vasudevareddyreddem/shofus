@@ -1667,7 +1667,7 @@ public function servicerequestview(){
 		
 		$overrbannerimage=$this->inventory_model->get_banner_update_preview_ok();
 		foreach($overrbannerimage as $list){
-			$this->inventory_model->set_banner_update_preview_notok($list['id'],0);
+			$this->inventory_model->set_banner_update_preview_notok($list['image_id'],0);
 		}
 		foreach($post['bannerimage'] as $list){
 			$this->inventory_model->update_banner_sales_preview_ok($list,1);

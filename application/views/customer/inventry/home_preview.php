@@ -35,7 +35,7 @@
         </ol>
         <div class="carousel-inner">
          <?php  $k=0;foreach($homebanners as $list){ ?>
-		  	<input type="hidden" name="bannerimage[]" value="<?php echo $list['id']; ?>">
+		  	<input type="hidden" name="bannerimage[]" value="<?php echo $list['image_id']; ?>">
 		  <?php if($k==0){ ?>
 		 
 		  <div class="item active"><img src="<?php echo base_url('uploads/banners/'.$list['file_name']);?>" class="img-responsive">

@@ -135,7 +135,7 @@ class Home_model extends CI_Model
 	public function get_home_pag_banner()
 	{
 		$this->db->select('*')->from('home_banner');
-		$this->db->order_by('home_banner.id desc');
+		$this->db->order_by('home_banner.image_id desc');
 		$this->db->where('home_banner.home_page_status',1);
 		$this->db->where('home_banner.preview_ok',1);
 		return $this->db->get()->result_array();
