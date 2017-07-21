@@ -345,7 +345,7 @@ public function update()
 	$id = $this->uri->segment(4);
 	$post=$this->input->post();
 	
-		
+	echo '<pre>';print_r($post);
 	//echo '<pre>';print_r($_FILES);
 	//echo '<pre>';print_r($post);exit;
 	$productdetails=$this->products_model->getproductdata($post['product_id']);
@@ -479,50 +479,60 @@ public function update()
 			$result=$this->products_model->update_deails($post['product_id'],$updatedata);
 			if(count($result)>0)
 			{
-				$data['productcolors']=$this->products_model->get_product_colors($post['product_id']);
-				$data['productsizes']=$this->products_model->get_product_sizes($post['product_id']);	
-					/* delete old details*/
+					/* colors purpose*/
+					$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
 						$productcolors=$this->products_model->get_product_colors($post['product_id']);
-						foreach ($productcolors as $colorss){
-						$listcolors[]=$colorss['color_name'];
+						foreach ($productcolors as $colorsslist){
+						$listcolors[]=$colorsslist['color_name'];
 						}
 						foreach ($productcolors as $colorss){
 						$this->products_model->delete_product_colors($colorss['p_color_id']);
 						}
-						$productsizes=$this->products_model->get_product_sizes($post['product_id']);
-						foreach ($productsizes as $sizes){
-						$listsizes[]=$sizes['p_size_name'];
+						foreach (array_merge($listcolors,explode(",",$colordata)) as $colorslist){
+
+							if($colorslist!=''){
+								$addcolorsdata=array(
+								'item_id' =>$post['product_id'],
+								'color_name' => $colorslist,
+								'create_at' => date('Y-m-d H:i:s'),
+								);
+								$this->products_model->insert_product_colors($addcolorsdata);
+							}
+							
+							
 						}
-						foreach ($productsizes as $sizes){
-						$this->products_model->delete_product_sizes($sizes['p_size_id']);
-						}
+						
+						/*-----*/
+						
+						/* sizes puepos*/
+							$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
+							$productsizes=$this->products_model->get_product_sizes($post['product_id']);
+							foreach ($productsizes as $sizeslist){
+							$listsizes[]=$sizeslist['p_size_name'];
+							}
+							foreach ($productsizes as $sizes){
+							$this->products_model->delete_product_sizes($sizes['p_size_id']);
+							}
+							foreach (array_merge($listsizes,explode(",",$sizesdata)) as $sizeslist){
+
+							if($sizeslist !=''){
+							$addsizesdata=array(
+							'item_id' =>$post['product_id'],
+							'p_size_name' => $sizeslist,
+							'create_at' => date('Y-m-d H:i:s'),
+							);
+							$this->products_model->insert_product_sizes($addsizesdata);
+							}
+						
+							}
+						
+						/*----*/
+						
+						/* pecification purpose*/
 						$productspcification=$this->products_model->get_product_spc($post['product_id']);
 						foreach ($productspcification as $spc){
 						$this->products_model->delete_product_spc($spc['specification_id']);
 						}
-						
-						$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
-						$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
-						foreach (array_merge($listcolors,explode(",",$sizesdata)) as $sizess){
-
-						$addsizesdata=array(
-						'item_id' =>$post['product_id'],
-						'p_size_name' => $sizess,
-						'create_at' => date('Y-m-d H:i:s'),
-						);
-						$this->products_model->insert_product_sizes($addsizesdata);
-						}
-						foreach (array_merge($listsizes,explode(",",$colordata)) as $colorss){
-
-						$addcolorsdata=array(
-						'item_id' =>$post['product_id'],
-						'color_name' => $colorss,
-						'create_at' => date('Y-m-d H:i:s'),
-						);
-						$this->products_model->insert_product_colors($addcolorsdata);
-						}
-
-
 						$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
 						foreach ($productspecificationlist as $key=>$list){
 
@@ -537,7 +547,9 @@ public function update()
 								
 							}
 						}
-				
+						/* -----*/
+					
+					
 				
 				
 				$this->prepare_flashmessage("Successfully Updated..", 0);
@@ -651,87 +663,175 @@ public function uploadproducts(){
 									$totalfields[] = $fields;	
 									
 									if(empty($fields[1])) {
-										$data['errors'][]="Item is required. Row Id is :  ".$key.'<br>';
+										$data['errors'][]="Sku code is required. Row Id is :  ".$key.'<br>';
 										$error=1;
 									}else if($fields[1]!=''){
 										$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 										if(!preg_match( $regex, $fields[1]))	  	
 										{
-										$data['errors'][]='item wont allow "  <> []. Row Id is :  '.$key.'<br>';
+										$data['errors'][]='Sku code wont allow "  <> []. Row Id is :  '.$key.'<br>';
 										$error=1;
 										}
 									}
 									if(empty($fields[2])) {
-										$data['errors'][]="Iten Name is required. Row Id is :  ".$key.'<br>';
+										$data['errors'][]="Other Unique code is required. Row Id is :  ".$key.'<br>';
 										$error=1;
 									}else if($fields[2]!=''){
 										$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 										if(!preg_match( $regex, $fields[2]))	  	
 										{
-										$data['errors'][]='Item Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
+										$data['errors'][]='Other Unique code wont allow "  <> []. Row Id is :  '.$key.'<br>';
 										$error=1;
 										}
 									}
 									if(empty($fields[3])) {
-										$data['errors'][]="Iten Code is required. Row Id is :  ".$key.'<br>';
+										$data['errors'][]="Product name is required. Row Id is :  ".$key.'<br>';
 										$error=1;
 									}else if($fields[3]!=''){
 										$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 										if(!preg_match( $regex, $fields[3]))	  	
 										{
-										$data['errors'][]='Item Code wont allow "  <> []. Row Id is :  '.$key.'<br>';
+										$data['errors'][]='Product name wont allow "  <> []. Row Id is :  '.$key.'<br>';
 										$error=1;
 										}
 									}
 									if(empty($fields[4])) {
-										$data['errors'][]="Item Quantity is required. Row Id is :  ".$key;
-									$error=1;
+										$data['errors'][]="Price is required. Row Id is :  ".$key.'<br>';
+										$error=1;
 									}else if($fields[4]!=''){
-										$regex ="/^[0-9]+$/"; 
-										if(!preg_match( $regex, $fields[4]))
+										$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
+										if(!preg_match( $regex, $fields[4]))	  	
 										{
-										$data['errors'][]="Item Quantity must be digits. Row Id is :  ".$key.'<br>';
+										$data['errors'][]='Price wont allow "  <> []. Row Id is :  '.$key.'<br>';
 										$error=1;
 										}
 									}
 									if(empty($fields[5])) {
-										$data['errors'][]="Item Charges is required. Row Id is :  ".$key;
-									$error=1;
+										$data['errors'][]="Special price is required. Row Id is :  ".$key.'<br>';
+										$error=1;
 									}else if($fields[5]!=''){
-										$regex ="/^[0-9]+$/"; 
-										if(!preg_match( $regex, $fields[5]))
+										$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
+										if(!preg_match( $regex, $fields[5]))	  	
 										{
-										$data['errors'][]="Item Charges must be digits. Row Id is :  ".$key.'<br>';
+										$data['errors'][]='Special price wont allow "  <> []. Row Id is :  '.$key.'<br>';
 										$error=1;
 										}
 									}
 									if(empty($fields[6])) {
+										$data['errors'][]="Size is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[6]!=''){
+										$regex ="/^[a-zA-Z0-9.-_&, ]+$/"; 
+										if(!preg_match( $regex, $fields[6]))	  	
+										{
+										$data['errors'][]='Size can only consist of alphanumaric, space and dot. Row Id is :  '.$key.'<br>';
+										$error=1;
+										}
+									}
+									if(empty($fields[7])) {
+										$data['errors'][]="Color is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[7]!=''){
+										$regex ="/^[a-zA-Z0-9.-_& ,]+$/"; 
+										if(!preg_match( $regex, $fields[7]))	  	
+										{
+										$data['errors'][]='Color can only consist of alphanumaric, space and dot. Row Id is :  '.$key.'<br>';
+										$error=1;
+										}
+									}
+									if(empty($fields[8])) {
+										$data['errors'][]="Weight is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[8]!=''){
+										$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
+										if(!preg_match( $regex, $fields[8]))	  	
+										{
+										$data['errors'][]='Weight can only consist of alphanumaric, space and dot. Row Id is :  '.$key.'<br>';
+										$error=1;
+										}
+									}
+									if(empty($fields[9])) {
+										$data['errors'][]="Qty is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[9]!=''){
+										$regex ="/^[0-9]+$/"; 
+										if(!preg_match( $regex, $fields[9]))
+										{
+										$data['errors'][]="Qty must be digits. Row Id is :  ".$key.'<br>';
+										$error=1;
+										}
+									}
+									if(empty($fields[10])) {
+										$data['errors'][]="Meta keywords is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[10]!=''){
+										$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
+										if(!preg_match( $regex, $fields[10]))	  	
+										{
+										$data['errors'][]='Meta keywords can only consist of alphanumaric, space and dot. Row Id is :  '.$key.'<br>';
+										$error=1;
+										}
+									}
+									if(empty($fields[11])) {
+										$data['errors'][]="Meta title is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[11]!=''){
+										$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
+										if(!preg_match( $regex, $fields[11]))	  	
+										{
+										$data['errors'][]='Meta title can only consist of alphanumaric, space and dot. Row Id is :  '.$key.'<br>';
+										$error=1;
+										}
+									}
+									if(empty($fields[12])) {
 										$data['errors'][]="Status is required. Row Id is :  ".$key;
 									$error=1;
-									}else if($fields[6]!=''){
+									}else if($fields[12]!=''){
 										$regex ="/^[0-1]+$/"; 
-										if(!preg_match( $regex, $fields[6]))
+										if(!preg_match( $regex, $fields[12]))
 										{
 										$data['errors'][]="Status must be  0 or 1. Row Id is :  ".$key.'<br>';
 										$error=1;
 										}
 									}
-									if(empty($fields[7])) {
-										$data['errors'][]="Description is required. Row Id is :  ".$key;
+									if(empty($fields[13])) {
+										$data['errors'][]="Product description is required. Row Id is :  ".$key;
 									$error=1;
-									}else if($fields[7]!=''){
+									}else if($fields[13]!=''){
 										$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
-										if(!preg_match( $regex, $fields[3]))	  	
+										if(!preg_match( $regex, $fields[13]))	  	
 										{
-										$data['errors'][]='Description wont allow "  <> []. Row Id is :  '.$key.'<br>';
+										$data['errors'][]='Product description wont allow "  <> []. Row Id is :  '.$key.'<br>';
 										$error=1;
 										}
 									}
-									if(empty($fields[8])) {
+									if(empty($fields[14])) {
+										$data['errors'][]="Product specifications name is required. Row Id is :  ".$key;
+									$error=1;
+									}else if($fields[14]!=''){
+										$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
+										if(!preg_match( $regex, $fields[14]))	  	
+										{
+										$data['errors'][]='Product specifications name wont allow "  <> []. Row Id is :  '.$key.'<br>';
+										$error=1;
+										}
+									}
+									if(empty($fields[15])) {
+										$data['errors'][]="Product specifications name is required. Row Id is :  ".$key;
+									$error=1;
+									}else if($fields[15]!=''){
+										$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
+										if(!preg_match( $regex, $fields[15]))	  	
+										{
+										$data['errors'][]='Product specifications name wont allow "  <> []. Row Id is :  '.$key.'<br>';
+										$error=1;
+										}
+									}
+									if(empty($fields[16])) {
 										$data['errors'][]="Image is required. Row Id is :  ".$key;
 									$error=1;
-									}else if($fields[8]!=''){
-											$image_link = $fields[8];
+									}else if($fields[16]!=''){
+											$image_link = $fields[16];
 											$split_image1 = pathinfo($image_link);
 											$imagename=$split_image1['filename'].".".$split_image1['extension'];
 											$split_image = pathinfo($imagename,PATHINFO_EXTENSION);;
@@ -741,8 +841,8 @@ public function uploadproducts(){
 											}
 										
 									}
-									if(isset($fields[9])&& $fields[9]!=''){
-											$img1 = $fields[9];
+									if(isset($fields[17])&& $fields[17]!=''){
+											$img1 = $fields[17];
 											$img12 = pathinfo($img1);
 											$imagename22=$img12['filename'].".".$img12['extension'];
 											$split_image212 = pathinfo($imagename22,PATHINFO_EXTENSION);;
@@ -752,8 +852,8 @@ public function uploadproducts(){
 											}
 										
 									}
-									if(isset($fields[10])&& $fields[10]!=''){
-											$img2 = $fields[10];
+									if(isset($fields[18])&& $fields[18]!=''){
+											$img2 = $fields[18];
 											$img122 = pathinfo($img2);
 											$imagename2233=$img122['filename'].".".$img122['extension'];
 											$image3 = pathinfo($imagename2233,PATHINFO_EXTENSION);;
@@ -763,8 +863,8 @@ public function uploadproducts(){
 											}
 										
 									}
-									if(isset($fields[11])&& $fields[11]!=''){
-											$img4 = $fields[11];
+									if(isset($fields[19])&& $fields[19]!=''){
+											$img4 = $fields[19];
 											$img133 = pathinfo($img4);
 											$imagename5656=$img133['filename'].".".$img133['extension'];
 											$image4 = pathinfo($imagename5656,PATHINFO_EXTENSION);;
@@ -774,8 +874,8 @@ public function uploadproducts(){
 											}
 										
 									}
-									if(isset($fields[12])&& $fields[12]!=''){
-											$image5 = $fields[12];
+									if(isset($fields[20])&& $fields[20]!=''){
+											$image5 = $fields[20];
 											$image55 = pathinfo($image5);
 											$imagename555=$image55['filename'].".".$image55['extension'];
 											$image5555 = pathinfo($imagename555,PATHINFO_EXTENSION);;
@@ -785,8 +885,8 @@ public function uploadproducts(){
 											}
 										
 									}
-									if(isset($fields[13])&& $fields[13]!=''){
-											$image6 = $fields[13];
+									if(isset($fields[21])&& $fields[21]!=''){
+											$image6 = $fields[21];
 											$image66 = pathinfo($image6);
 											$imagename666=$image66['filename'].".".$image66['extension'];
 											$image6666 = pathinfo($imagename666,PATHINFO_EXTENSION);;
@@ -796,8 +896,8 @@ public function uploadproducts(){
 											}
 										
 									}
-									if(isset($fields[14])&& $fields[14]!=''){
-											$image7 = $fields[14];
+									if(isset($fields[22])&& $fields[22]!=''){
+											$image7 = $fields[22];
 											$image77 = pathinfo($image7);
 											$imagename777=$image77['filename'].".".$image77['extension'];
 											$image7777 = pathinfo($imagename777,PATHINFO_EXTENSION);;
@@ -807,8 +907,8 @@ public function uploadproducts(){
 											}
 										
 									}
-									if(isset($fields[15])&& $fields[15]!=''){
-											$image8 = $fields[15];
+									if(isset($fields[23])&& $fields[23]!=''){
+											$image8 = $fields[23];
 											$image88 = pathinfo($image8);
 											$imagename888=$image88['filename'].".".$image88['extension'];
 											$image8888 = pathinfo($imagename888,PATHINFO_EXTENSION);;
@@ -818,8 +918,8 @@ public function uploadproducts(){
 											}
 										
 									}
-									if(isset($fields[16])&& $fields[16]!=''){
-											$image9 = $fields[16];
+									if(isset($fields[24])&& $fields[24]!=''){
+											$image9 = $fields[24];
 											$image99 = pathinfo($image9);
 											$imagename999=$image99['filename'].".".$image99['extension'];
 											$image9999 = pathinfo($imagename999,PATHINFO_EXTENSION);;
@@ -829,8 +929,8 @@ public function uploadproducts(){
 											}
 										
 									}
-									if(isset($fields[17])&& $fields[17]!=''){
-											$image01 = $fields[17];
+									if(isset($fields[25])&& $fields[25]!=''){
+											$image01 = $fields[25];
 											$image001 = pathinfo($image01);
 											$imagename0001=$image001['filename'].".".$image001['extension'];
 											$image00001 = pathinfo($imagename0001,PATHINFO_EXTENSION);;
@@ -840,8 +940,8 @@ public function uploadproducts(){
 											}
 										
 									}
-									if(isset($fields[18])&& $fields[18]!=''){
-											$image11 = $fields[18];
+									if(isset($fields[26])&& $fields[26]!=''){
+											$image11 = $fields[26];
 											$image111 = pathinfo($image11);
 											$imagename1111=$image111['filename'].".".$image111['extension'];
 											$image11111 = pathinfo($imagename1111,PATHINFO_EXTENSION);;
@@ -851,8 +951,8 @@ public function uploadproducts(){
 											}
 										
 									}
-									if(isset($fields[19])&& $fields[19]!=''){
-											$image12 = $fields[19];
+									if(isset($fields[27])&& $fields[27]!=''){
+											$image12 = $fields[27];
 											$image112 = pathinfo($image12);
 											$imagename1112=$image112['filename'].".".$image112['extension'];
 											$image11112 = pathinfo($imagename1112,PATHINFO_EXTENSION);;
@@ -872,13 +972,13 @@ public function uploadproducts(){
 							}else{
 								$data['errors'][]='Please Fillout all Fields';
 								$this->session->set_flashdata('addsuccess',$data['errors']);
-								redirect('/seller/products/create');
+								//redirect('/seller/products/create');
 							}
 					}
 					//echo '<pre>';print_r($data['errors']);exit;
 					if(count($data['errors'])>0){
 					$this->session->set_flashdata('addsuccess',$data['errors']);
-					redirect('/seller/products/create');
+					//redirect('/seller/products/create');
 					}
 						
 						
@@ -888,8 +988,8 @@ public function uploadproducts(){
 				
 					if(count($data['errors'])<=0){
 						foreach($totalfields as $data){
-						//echo '<pre>';print_r($data);
-								$image_link = $data[8];
+						echo '<pre>';print_r($data);exit;
+								$image_link = $data[16];
 								$split_image = pathinfo($image_link);
 								$imagename=round(microtime(true)).$split_image['filename'].".".$split_image['extension'];
 								$ch = curl_init();
@@ -901,8 +1001,8 @@ public function uploadproducts(){
 								$file = fopen($file_name , 'w') or die("X_x");
 								fwrite($file, $response);
 								fclose($file);
-								if(isset($data[9])&& $data[9]!=''){
-									$image_link1 = $data[9];
+								if(isset($data[17])&& $data[17]!=''){
+									$image_link1 = $data[17];
 									$split_image1 = pathinfo($image_link1);
 									$imagename1=round(microtime(true)).$split_image1['filename'].".".$split_image1['extension'];
 									$ch = curl_init();
@@ -915,8 +1015,8 @@ public function uploadproducts(){
 									fwrite($file, $response);
 									fclose($file);
 								}
-								if(isset($data[10])&& $data[10]!=''){
-										$image_link2 = $data[10];
+								if(isset($data[18])&& $data[18]!=''){
+										$image_link2 = $data[18];
 										$split_image2 = pathinfo($image_link2);
 										$imagename2=round(microtime(true)).$split_image2['filename'].".".$split_image2['extension'];
 										$ch = curl_init();
@@ -929,8 +1029,8 @@ public function uploadproducts(){
 										fwrite($file, $response);
 										fclose($file);
 								}
-								if(isset($data[11])&& $data[11]!=''){
-										$image_link3 = $data[11];
+								if(isset($data[19])&& $data[19]!=''){
+										$image_link3 = $data[19];
 										$split_image3 = pathinfo($image_link3);
 										$imagename3=round(microtime(true)).$split_image3['filename'].".".$split_image3['extension'];
 										
@@ -944,8 +1044,8 @@ public function uploadproducts(){
 										fwrite($file, $response);
 										fclose($file);
 								}
-								if(isset($data[12])&& $data[12]!=''){
-										$image_link4 = $data[12];
+								if(isset($data[20])&& $data[20]!=''){
+										$image_link4 = $data[20];
 										$split_image4 = pathinfo($image_link4);
 										$imagename4=round(microtime(true)).$split_image4['filename'].".".$split_image4['extension'];
 										$ch = curl_init();
@@ -958,8 +1058,8 @@ public function uploadproducts(){
 										fwrite($file, $response);
 										fclose($file);
 								}
-								if(isset($data[13])&& $data[13]!=''){
-										$image_link5 = $data[13];
+								if(isset($data[21])&& $data[21]!=''){
+										$image_link5 = $data[21];
 										$split_image5 = pathinfo($image_link5);
 										$imagename5=round(microtime(true)).$split_image5['filename'].".".$split_image5['extension'];
 										$ch = curl_init();
@@ -972,8 +1072,8 @@ public function uploadproducts(){
 										fwrite($file, $response);
 										fclose($file);
 								}
-								if(isset($data[14])&& $data[14]!=''){
-									$image_link6 = $data[14];
+								if(isset($data[22])&& $data[22]!=''){
+									$image_link6 = $data[22];
 									$split_image6 = pathinfo($image_link6);
 									$imagename6=round(microtime(true)).$split_image6['filename'].".".$split_image6['extension'];
 									$ch = curl_init();
@@ -986,8 +1086,8 @@ public function uploadproducts(){
 									fwrite($file, $response);
 									fclose($file);
 								}
-								if(isset($data[15])&& $data[15]!=''){
-									$image_link7 = $data[15];
+								if(isset($data[23])&& $data[23]!=''){
+									$image_link7 = $data[23];
 									$split_image7 = pathinfo($image_link7);
 									$imagename7=round(microtime(true)).$split_image7['filename'].".".$split_image7['extension'];
 									$ch = curl_init();
@@ -1000,8 +1100,8 @@ public function uploadproducts(){
 									fwrite($file, $response);
 									fclose($file);
 								}
-								if(isset($data[16])&& $data[16]!=''){
-										$image_link8 = $data[16];
+								if(isset($data[24])&& $data[24]!=''){
+										$image_link8 = $data[24];
 										$split_image8 = pathinfo($image_link8);
 										$imagename8=round(microtime(true)).$split_image8['filename'].".".$split_image8['extension'];
 										$ch = curl_init();
@@ -1014,8 +1114,8 @@ public function uploadproducts(){
 										fwrite($file, $response);
 										fclose($file);
 								}
-								if(isset($data[17])&& $data[17]!=''){
-									$image_link9 = $data[17];
+								if(isset($data[25])&& $data[25]!=''){
+									$image_link9 = $data[25];
 									$split_image9 = pathinfo($image_link9);
 									$imagename9=round(microtime(true)).$split_image9['filename'].".".$split_image9['extension'];
 									$ch = curl_init();
@@ -1028,8 +1128,8 @@ public function uploadproducts(){
 									fwrite($file, $response);
 									fclose($file);
 								}
-								if(isset($data[18])&& $data[18]!=''){
-									$image_link10 = $data[18];
+								if(isset($data[26])&& $data[26]!=''){
+									$image_link10 = $data[26];
 									$split_image10 = pathinfo($image_link10);
 									$imagename10=round(microtime(true)).$split_image10['filename'].".".$split_image10['extension'];
 									$ch = curl_init();
@@ -1042,8 +1142,8 @@ public function uploadproducts(){
 									fwrite($file, $response);
 									fclose($file);
 								}
-								if(isset($data[19])&& $data[19]!=''){
-									$image_link11 = $data[19];
+								if(isset($data[27])&& $data[27]!=''){
+									$image_link11 = $data[27];
 									$split_image11 = pathinfo($image_link11);
 									$imagename11=round(microtime(true)).$split_image11['filename'].".".$split_image11['extension'];
 									$ch = curl_init();
@@ -1059,14 +1159,17 @@ public function uploadproducts(){
 							$adddetails=array(
 							'category_id' => $cat_id[0],			
 							'subcategory_id' =>$post['subcategory_id_import'],
-							'seller_id' =>$this->session->userdata('seller_id'),            
-							'item_sub_name' => $data[1],
-							'item_name' =>$data[2],
-							'item_code' => $data[3],
-							'item_quantity' => $data[4],
-							'item_cost' =>$data[5],
-							'item_status' => $data[6],
-							'item_description' => $data[7],
+							'seller_id' =>$this->session->userdata('seller_id'), 
+							'skuid' => $data[1],
+							'item_code' => $data[2],
+							'item_name' => $data[3],
+							'item_cost' => $data[4],
+							'special_price' => $data[5],
+							'item_quantity' =>$data[9],
+							'keywords' =>$$data[10],
+							'title' =>$data[11],
+							'item_status' => $data[12],
+							'item_description' =>$data[13],
 							'item_image'=>isset($imagename)?$imagename:'',
 							'item_image1'=>isset($imagename1)?$imagename1:'',
 							'item_image2'=>isset($imagename2)?$imagename2:'',
@@ -1084,7 +1187,12 @@ public function uploadproducts(){
 							
 							);
 							//echo '<pre>';print_r($adddetails);exit;
-						$results=$this->products_model->save_prodcts($adddetails);
+								$results=$this->products_model->save_prodcts($adddetails);
+								
+								if(count($results)>0){
+									
+									
+								}
 						//echo $this->db->last_query();exit;						
 						}
 					}

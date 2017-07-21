@@ -406,25 +406,23 @@ class Inventory_model extends MY_Model
 	
 	public function update_banner_status($sid,$imageid,$data)
 	{
-		$sql1="UPDATE home_banner SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND id='".$imageid."'";
+		$sql1="UPDATE home_banner SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND image_id='".$imageid."'";
 		return $this->db->query($sql1);
 	}
 	public function update_banner_status_ok($sid,$imageid,$data,$data1)
 	{
-		$sql1="UPDATE home_banner SET home_page_status ='".$data."', preview_ok ='".$data1."' WHERE seller_id = '".$sid."' AND id='".$imageid."'";
+		$sql1="UPDATE home_banner SET home_page_status ='".$data."', preview_ok ='".$data1."' WHERE seller_id = '".$sid."' AND image_id='".$imageid."'";
 		return $this->db->query($sql1);
 	}
 	function banner_status_update($id,$sid,$status)
 	{
-		$sql1="UPDATE home_banner SET status ='".$status."'WHERE id  = '".$id."' AND 
-		seller_id = '".$sid."'";
+		$sql1="UPDATE home_banner SET status ='".$status."'WHERE image_id  = '".$id."' AND seller_id = '".$sid."'";
 		return $this->db->query($sql1);
 	}
 
 	public function delete_banner($id,$sid)
 	{
-		$sql1="DELETE FROM home_banner WHERE id  = '".$id."' AND 
-		seller_id = '".$sid."'";
+		$sql1="DELETE FROM home_banner WHERE image_id  = '".$id."' AND seller_id = '".$sid."'";
 		return $this->db->query($sql1);
 	}
 	/* home page banner purpose*/
@@ -535,14 +533,14 @@ class Inventory_model extends MY_Model
 	}
 	public function set_banner_update_preview_notok($imageid,$data)
 	{
-		$sql1="UPDATE home_banner SET preview_ok ='".$data."' WHERE id='".$imageid."'";
+		$sql1="UPDATE home_banner SET preview_ok ='".$data."' WHERE image_id='".$imageid."'";
 		return $this->db->query($sql1);
 	}
 	public function update_banner_sales_preview_ok($imageid,$data)
 	{
-		$sql1="UPDATE home_banner SET preview_ok ='".$data."' WHERE id='".$imageid."'";
+		$sql1="UPDATE home_banner SET preview_ok ='".$data."' WHERE image_id='".$imageid."'";
 		return $this->db->query($sql1);
 	}
 	
 }
-?>
+?>	

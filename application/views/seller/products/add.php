@@ -232,15 +232,13 @@
 				</div>
 				<hr>
 				<form id="importproducts" onsubmit="return checkvalidation();" name="importproducts" action="<?php echo base_url('seller/products/uploadproducts'); ?>" method="post" enctype="multipart/form-data" >
-
-				 
-				 <div class="row">
+					<div class="row">
 				 <div class="form-group nopaddingRight col-md-6 ">
                   <label for="exampleInputEmail1">Select Category</label>
 				  <?php //echo '<pre>';print_r($sub_cat_data);exit;?>
 				  <select class="form-control " onchange="documentid(this.value);getsubcat(this.value);"  id="category_id_import" name="category_id_import">
                     <option value="">Select Category</option>
-					<?php foreach($sub_cat_data as $single_cat_data){ ?>
+					<?php foreach($category_details as $single_cat_data){ ?>
 					<option value="<?php echo $single_cat_data['seller_category_id'].'/'.$single_cat_data['documetfile']; ?>"><?php echo $single_cat_data['category_name']; ?></option>
                    <?php }?>
                   </select>
@@ -273,6 +271,31 @@
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
   <script>
+  
+   function documentid(ids){
+	 /* var cat=ids;
+	 var myarr = cat.split("/");
+	
+	 var url='<?php echo base_url('assets/sellerfile/category/'); ?>'+myarr[1];
+	 document.getElementById("documentfilename").innerHTML  = myarr[1];
+	 $('a#documentfilelink').attr({target: '_blank', href  : url})*/
+  } 
+  function getsubcat(ids){
+	  var cat=ids;
+	 var myarr = cat.split("/");
+	var dataString = 'category_id='+myarr[0];
+	$.ajax
+		({
+		type: "POST",
+		url: "<?php echo base_url();?>seller/products/getajaxsubcat",
+		data: dataString,
+		cache: false,
+		success: function(data)
+		{
+		$("#subcategory_id_import").html(data);
+		} 
+		});
+  }
     $(document).ready(function() {
             var jsonData = [];
             var fruits = '<?php echo $color_lists; ?>'.split(',');
