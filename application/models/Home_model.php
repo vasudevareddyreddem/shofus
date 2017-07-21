@@ -284,7 +284,10 @@ public function getproducts($subid)
 
         
 		}
-		return $return;
+		if(!empty($return))
+    {
+    return $return;
+}
 	
 	}
 public function get_catedata($category_id)
@@ -303,7 +306,10 @@ public function get_catedata($category_id)
 	 $return[$subcategory['subcategory_name']]['product_list'] = $this->get_subcatedata($subcategory['subcategory_id']);
 
 	}
-	return $return;
+	if(!empty($return))
+    {
+    return $return;
+}
 }
 
 public function get_subcatedata($subcategory_id)
