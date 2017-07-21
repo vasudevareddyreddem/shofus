@@ -121,6 +121,11 @@ class Adddetails extends Seller_adddetails{
 						);
 					//echo "<pre>";print_r($addcat); exit;
 						$save_catrgore=$this->adddetails_model->save_catrgore($addcat);
+					if(count($save_catrgore)>0 && $post['seller_cat']=='')
+					{
+					$this->session->set_flashdata('success','category details updated');
+					return redirect('seller/adddetails/storedetails');
+					}
 						
 						
 				}

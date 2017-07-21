@@ -64,7 +64,7 @@ $(document).ready(function() {
 						message: 'Subcategory Name is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
+					regexp: /^[a-zA-Z0-9.&$-_ ]+$/,
 					message: ' Subcategory Name can only consist of alphanumaric, space and dot'
 					}
 				}

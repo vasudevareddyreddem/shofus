@@ -17,6 +17,7 @@ class Front_Controller extends MY_Controller {
 				$this->load->model('home_model');
 				
 					
+<<<<<<< HEAD
 					//$data['catitemdata1'] = $this->home_model->getcatsubcatpro();
 					//$data['cnt']= count($data['catitemdata1']);
 					//$data['catdata'] = $this->home_model->getcatsubcat();
@@ -34,6 +35,9 @@ class Front_Controller extends MY_Controller {
 					//$data['locationdata'] = $this->home_model->getlocations();
 					
 					echo '<pre>';print_r($data);exit;
+=======
+					//echo '<pre>';print_r($data);exit;
+>>>>>>> e834314c1a0cfe6d80ada4fedabbbe4ae5b11c66
 					if($this->session->userdata('userdetails')){
 					$customerdetails=$this->session->userdata('userdetails');
 

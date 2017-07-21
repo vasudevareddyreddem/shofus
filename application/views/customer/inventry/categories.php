@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+<div class="content-wrapper pad_t100">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -25,5 +25,7 @@
         <?php } ?>
       </div>
 	  </section>
+	  
 	  </div>
 
+	
