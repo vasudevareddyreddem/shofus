@@ -329,7 +329,6 @@ class Adddetails extends Seller_adddetails{
 					'seller_id'    => $sellerdetails['seller_id'],
 					'seller_name'  => $sellerdetails['seller_name'],
 					'seller_email' => $sellerdetails['seller_email'],
-					'seller_firsttime' => $sellerdetails['first_time'],
 					'loggedin'   => TRUE,
 					);
 					//echo '<pre>';print_r($sellerlogindetails);exit;
