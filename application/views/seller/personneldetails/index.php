@@ -440,33 +440,29 @@ $(function(){
 														</div>
 			<div class="form-group nopaddingRight col-md-6 san-lg">
 														
-														<?php 
-                            //echo "<pre>";print_r($orther_shops);exit;
-                             $store = $seller_storedetails['other_shops_location'];
-                            $arr=explode(",",$store);
-                            foreach($arr as $equall)
-                            {
-                              $equall;
-                            }
-                            
 
-                            ?>
-
-
+														
 				<select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
-				  <!-- <option value=""></option> -->
-          <?php foreach($orther_shops as $shops){?>   
-           <option <?php if($shops == $equall){ echo 'selected="selected"'; } ?> value="<?php echo $shops; ?>"><?php echo $shops; ?></option>
-           <?php }?>
-           <?php foreach($select_areas as $area){ ?>
+				  <option value=""></option>
+				  <?php if($orther_shops) { ?>		
+				  <?php foreach($orther_shops as $shops) {?>		  
+                    <option value="<?php echo $shops; ?>"><?php echo $shops; ?></option>
+                  <?php } ?>
+                    <?php foreach($select_areas as $area){ ?>
                     <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
                     <?php }?>
-                  
-        </select>
+                    
+
+                    <?php }else{?>
+                    <?php foreach($select_areas as $area){ ?>
+                    <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
+                    <?php }?>
+                    <?php }?>
+				</select>
 
 
-			</div>
-
+														</div>
+														
 														<div class="form-group nopaddingRight col-md-6 san-lg">
 														
 														<label class="control-label">Any web link </label>
@@ -507,8 +503,11 @@ $(function(){
 
 	<div class="form-group nopaddingRight col-md-6 san-lg">
 				<label class="control-label">Signature file</label>
-	<input type="file" name='gstimag' id="gstimag" class="form-control"/>
-	<a target="_blank" href="<?php echo site_url('assets/sellerfile/'); ?><?php echo $seller_storedetails['gstinimage'];?>" ><span><?php echo isset($seller_storedetails['gstinimage'])?$seller_storedetails['gstinimage']:''; ?></span></a>
+	<input type="file" id="gstinimage" name="gstinimage" onchange="gstinimageOnChange(this.value)">
+	<a onclick="deactive4();" href="javascript:void(0)" >Replace</a>
+	<span id="signimage"></span>
+		<span style="color:red" id="gstinimageeerror"></span>
+	<span id="editsignimage"><a target="_blank" href="<?php echo site_url('assets/sellerfile/'); ?><?php echo $seller_storedetails['gstinimage'];?>" ><?php echo $seller_storedetails['gstinimage'];?></a></span>
 
 	</div>
 
@@ -621,9 +620,7 @@ $(function(){
 
 <!--body end here -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
-    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
-  <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
-    <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 
 
@@ -651,6 +648,7 @@ function addCenter()
 $('#timimages').hide();
 $('#tanimages').hide();
 $('#cstimag').hide();
+$('#gstinimage').hide();
 
 document.getElementById('timimages').onchange = uploadOnChange;
 
@@ -696,7 +694,20 @@ function cstuploadOnChange() {
 	
 }
 
+document.getElementById('gstinimage').onchange = gstinimageOnChange;
 
+function gstinimageOnChange() {
+    var filename = this.value;
+    var lastIndex = filename.lastIndexOf("\\");
+    if (lastIndex >= 0) {
+        filename = filename.substring(lastIndex + 1);
+    }
+	$('#editsignimage').hide();
+	jQuery('#').html('');
+    document.getElementById("signimage").innerHTML  = filename;
+	document.getElementById("resubmit").disabled = false; 
+	
+}
 
 
 function deactive(id){
@@ -708,7 +719,10 @@ function deactive1(id){
 function deactive2(id){
 	$('#cstimag').trigger("click");	
 }
-
+function deactive4(id){
+	//alert('hai');
+	$('#gstinimage').trigger("click");	
+}
 
 
  function checkvalidations(){
@@ -757,7 +771,21 @@ function deactive2(id){
 		return false;
 		}
 		}
-		
+		var fup4 = document.getElementById('gstinimage');
+		var fileName3 = fup4.value;
+		var ext4 = fileName3.substring(fileName3.lastIndexOf('.') + 1);
+
+		if(ext4 !=''){
+		if(ext4 == "png"  || ext4 == "jpg" || ext4 == "jpe?g")
+		{
+		jQuery('#timimageserrormsg').val(1);
+		jQuery('#gstinimageeerror').html('');
+		} else{
+		jQuery('#timimageserrormsg').val(0);
+		jQuery('#gstinimageeerror').html('Uploaded file is not a valid. Only jpeg,jpg,png  files are allowed');
+		return false;
+		}
+		}
 
 		
 		return true;
@@ -771,10 +799,6 @@ function deactive2(id){
 	$("#locationmsg").show();	
 	}
 }
-
-      
-
-
  $(document).ready(function() {
     $('#categories').bootstrapValidator({
        
@@ -842,14 +866,22 @@ $(document).ready(function() {
             
 			}
             },
+			deliveryes: {
+               validators: {
+				notEmpty: {
+					message: 'Please select a Delivery service'
+				}
+			   }
+            
+			},
 			weblink: {
                validators: {
 				notEmpty: {
 					message: 'Weblink is required'
 				},
 				regexp: {
-					regexp: /^(www\.)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/,
-					message: ' Invalid Weblink Formate..   Eg:www.sample.com'
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: ' Weblink can only consist of alphanumaric, space and dot'
 				}
             
 			}
@@ -901,28 +933,12 @@ $(document).ready(function() {
 				}
             
 			}
-            },
-            gstimag: {
-           validators: {
-             notEmpty: {
-            message: 'Signature Image is required'
-          },
-          regexp: {
-          regexp: /\.(jpe?g|png)$/i,
-          message: 'Uploaded file is not a valid image. Only JPG, PNG and Jpeg files are allowed'
-          }
             }
-      }
             
 		
         }
     });
 });
-
-$(function() {
-        $('.chosen-select').chosen();
-        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
-      });
 </script>
   
 <script type="text/javascript">
