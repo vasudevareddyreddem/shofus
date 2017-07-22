@@ -297,16 +297,19 @@ class Adddetails extends Seller_adddetails{
     }
 	public function setpassword()
 	{  
+		$this->load->library('session');
+		$data['seller_id'] = $this->session->userdata('seller_id');
+		//echo '<pre>';print_r($seller_id);exit;
 		$this->load->view('seller/layouts/header');
-		$this->load->view('seller/adddetails/setpassword');
+		$this->load->view('seller/adddetails/setpassword',$data);
 
 
     }
 	public function setpasswordpost()
 	{  
 		$post = $this->input->post();
-		$seller_id = $this->session->userdata('seller_id');
-		//echo '<pre>';print_r($seller_id);exit;
+		$seller_id = base64_decode($post['seller_id']);
+		//echo '<pre>';print_r($post);exit;
 		$this->form_validation->set_rules('password', 'New password', 'required|min_length[6]');
 		$this->form_validation->set_rules('confirmpassword', 'conformpassword', 'required|min_length[6]');
 

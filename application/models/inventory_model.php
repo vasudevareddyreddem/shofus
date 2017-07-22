@@ -33,6 +33,16 @@ class Inventory_model extends MY_Model
 		$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
+	 function get_name_existss($name)
+    {
+	   $sql = "SELECT * FROM category WHERE category_name ='".$name."' AND status='1'";
+        return $this->db->query($sql)->row_array();
+     }
+	 function get_subname_existss($name)
+    {
+	   $sql = "SELECT * FROM subcategories WHERE subcategory_name ='".$name."' AND status='1'";
+        return $this->db->query($sql)->row_array();
+     }
 	public function get_subcategort_details()
 	{
 		$this->db->select('subcategories.*,category.category_name')->from('subcategories');

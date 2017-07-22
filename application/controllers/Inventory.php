@@ -1756,18 +1756,25 @@ public function servicerequestview(){
 										{
 										$data['errors'][]='Subcategory Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
 										$error=1;
+										}else{
+											$result = $this->inventory_model->get_subname_existss($fields[0]);
+											if(count($result)>0){
+											$data['errors'][]="Subcategory Name already exits .please use another Subcategory Name. Row Id is :  ".$key.'<br>';
+											$error=1;	
+											}
+
 										}
 									}
 									
 								}else{
 									$data['errors'][]='Please Fillout all Fields';
 									$this->session->set_flashdata('addsuccess',$data['errors']);
-									redirect('inventory/subcategorieslist');	
+									redirect('inventory/addsubcategory');	
 								}
 							}
 								if(count($data['errors'])>0){
 								$this->session->set_flashdata('addsuccess',$data['errors']);
-								redirect('inventory/subcategorieslist');	
+								redirect('inventory/addsubcategory');	
 								}
 						
 						
@@ -1796,6 +1803,116 @@ public function servicerequestview(){
 						if(count($results)>0){
 							$this->session->set_flashdata('success','Successfully Added');
 							redirect('inventory/subcategorieslist');	
+						}
+					
+					
+				}
+				
+	       }
+		   
+		   
+		   
+		   	public function importcategory(){
+			
+		$post=$this->input->post();
+		//echo '<pre>';print_r($_FILES);exit;
+		$logindetail=$this->session->userdata('userdetails');
+
+			
+	if((!empty($_FILES["importaegoryfile"])) && ($_FILES['importaegoryfile']['error'] == 0)) {
+				
+				$limitSize	= 1000000000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
+				$fileName	= basename($_FILES['importaegoryfile']['name']);
+				$fileSize	= $_FILES["importaegoryfile"]["size"];
+				$fileExt	= substr($fileName, strrpos($fileName, '.') + 1);
+				
+				if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
+					
+						include( 'simplexlsx.class.php');
+
+					$getWorksheetName = array();
+					$xlsx = new SimpleXLSX( $_FILES['importaegoryfile']['tmp_name'] );
+					$getWorksheetName = $xlsx->getWorksheetName();
+					//echo $xlsx->sheetsCount();exit;
+					for($j=1;$j <= $xlsx->sheetsCount();$j++){
+						$cnt=$xlsx->sheetsCount()-1;
+						$arry=$xlsx->rows($j);
+						unset($arry[0]);
+						//echo "<pre>";print_r($arry);exit;
+						foreach($arry as $key=>$fields)
+							{
+								if(isset($fields[0]) && $fields[0]!=''){
+								
+									$totalfields[] = $fields;	
+									
+									
+									
+									if(empty($fields[0])) {
+										$data['errors'][]="category Name is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[0]!=''){
+										$regex ="/^[ A-Za-z0-9_@.,}{@#&$*)(_+-]*$/"; 
+										if(!preg_match( $regex, $fields[0]))	  	
+										{
+										$data['errors'][]='category Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
+										$error=1;
+										}else{
+											$result = $this->inventory_model->get_name_existss($fields[0]);
+											if(count($result)>0){
+											$data['errors'][]="category Name already exits .please use another category Name. Row Id is :  ".$key.'<br>';
+											$error=1;	
+											}
+
+										}
+									}
+									if(empty($fields[1])) {
+										$data['errors'][]="Commision is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[1]!=''){
+										$regex ="/^[0-9]+$/"; 
+										if(!preg_match( $regex, $fields[1]))
+										{
+										$data['errors'][]="Commision must be digits. Row Id is :  ".$key.'<br>';
+										$error=1;
+										}
+									}
+									
+								}else{
+									$data['errors'][]='Please Fillout all Fields';
+									$this->session->set_flashdata('addsuccess',$data['errors']);
+									redirect('inventory/categoryadd');	
+								}
+							}
+								if(count($data['errors'])>0){
+								$this->session->set_flashdata('addsuccess',$data['errors']);
+								redirect('inventory/categoryadd');	
+								}
+						
+						
+						}
+						
+						
+					}
+	}
+					
+					if(count($data['errors'])<=0){
+						foreach($totalfields as $data){
+
+						//echo "<pre>";print_r($fieldss);
+						$data = array(
+						'category_name' => $data[0], 
+						'commission' => $data[1], 
+						'documetfile' => '',
+						'status' => 1,    
+						'created_at' => date('Y-m-d H:i:s'),    
+						'updated_at' => date('Y-m-d H:i:s'),
+						);
+						$results=$this->inventory_model->insert_cat_data($data);
+						//echo "<pre>";print_r($addsubcat);
+						}
+						if(count($results)>0){
+							$this->session->set_flashdata('success','Successfully Added');
+							redirect('inventory/categorieslist');	
 						}
 					
 					

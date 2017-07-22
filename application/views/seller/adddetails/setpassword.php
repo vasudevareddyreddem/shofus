@@ -58,7 +58,7 @@
 					  <div class="col-md-4 col-md-offset-4 mar_t50 ">
 					  <div class="well">
 					  <form id="setpassword" name="setpassword" action="<?php echo base_url('seller/adddetails/setpasswordpost'); ?>" method="post" >
-
+							<input type="hidden" name="seller_id" id="seller_id" value="<?php echo base64_encode($seller_id); ?>">
 							<div class="form-group">
 							<label class="control-label">New Password</label>
 							<input type="password"id="password" name="password" class="form-control" />
