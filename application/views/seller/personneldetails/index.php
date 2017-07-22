@@ -1,6 +1,6 @@
 <style type="text/css">
   
-  /* multiselect css start */
+ /* multiselect css start */
  .chosen-select {
   width: 100%; }
 
@@ -11,7 +11,12 @@
   display: inline-block;
   font-size: 14px;
   position: relative;
-  vertical-align: middle; }
+  vertical-align: middle;
+  width:100% !important;
+  }
+  .chosen-search-input{
+	  width:100% !important;
+  }
   .chosen-container .chosen-drop {
     background: #fff;
     border: 1px solid #ccc;
@@ -238,9 +243,9 @@
       top: 7px;
       width: 12px;
       cursor: pointer; }
-    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-    border:none;
-  }
+	  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+		border:none;
+	}
 
  /* multiselect css end */
 </style>
@@ -439,6 +444,7 @@ $(function(){
                             </select>
                             </div>
       <div class="form-group nopaddingRight col-md-6 san-lg">
+	   <label class="control-label">Other Locations </label>
                             
                             <?php 
                             //echo "<pre>";print_r($orther_shops);exit;
@@ -1075,5 +1081,10 @@ $(document).ready(function() {
 
 
     </script>
-
+    <script>
+      $(function() {
+        $('.chosen-select').chosen();
+        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+      });
+    </script>
     
