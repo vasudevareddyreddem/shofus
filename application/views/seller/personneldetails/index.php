@@ -447,23 +447,50 @@ $(function(){
 	   <label class="control-label">Other Locations </label>
                             
                             <?php 
-                            //echo "<pre>";print_r($orther_shops);exit;
-                             $store = $seller_storedetails['other_shops_location'];
-                            $arr=explode(",",$store);
-                            foreach($arr as $equall)
-                            {
-                              $equall;
-                            }
                             
+
+                            // foreach($orther_shops as $some){
+                              
+                            // }
+
+                            
+                            $comma_separated = implode("\n", $orther_shops);
+
+                            //echo "<pre>";print_r($comma_separated);exit; 
+                            $iputfield = $seller_storedetails['other_shops_location'];
+                            $arr['orther']=explode(",",$iputfield);
+                              foreach($arr as $some){
+                                  $some;
+                              }
+                             $gole = implode("\n",$some);
+
+                             // foreach($gole as $gol)
+                             // {
+                             //  $gol;
+                             // }
+                            //echo "<pre>";print_r($gol);exit;
+                            //echo "<pre>";print_r($gole);exit;
+                            // for($i=0; $i<count($arr); $i++)
+                            // { 
+                            // $ids = $arr[$i];
+                            // $arr.= $ids.", ";
+                            // }
+                            // $arr = substr(trim($arr), 0, -1);
+                            
+                            //$select = array();
+                            
+                            
+                            //echo "<pre>";print_r($store);exit;
 
                             ?>
 
 
-        <select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
+        <select id="other_shops_location"  name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
           <!-- <option value=""></option> -->
-          <?php foreach($orther_shops as $shops){?>   
-           <option <?php if($shops == $equall){ echo 'selected="selected"'; } ?> value="<?php echo $shops; ?>"><?php echo $shops; ?></option>
-           <?php }?>
+          
+          
+           <option <?php if($comma_separated == $gole){ echo 'selected="selected"'; } ?> value="<?php echo $gole; ?>"><?php echo $gole; ?></option>
+           
            <?php foreach($select_areas as $area){ ?>
                     <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
                     <?php }?>
