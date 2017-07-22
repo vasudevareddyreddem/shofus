@@ -84,7 +84,7 @@
             <input maxlength="100" type="text" placeholder="Enter your Bank Account IFSCcode"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($sellerdata['seller_aaccount_ifsc_code'])?$sellerdata['seller_aaccount_ifsc_code']:''; ?>" />
           </div>
 			<div class="" style="padding-right:40px;margin-top:20px;">  
-			<a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/storedetails'); ?>">Back</a>
+			<a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/storedetails'); ?>">Back</a>
       <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/setpassword'); ?>">Skip This Step</a>
 			<!-- <input id="bnt" type="submit" class="btn btn-info " value="Skip"> -->
 			<input id="bnt" type="submit" class="btn btn-info pull-right" value="Next">

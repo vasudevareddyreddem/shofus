@@ -257,7 +257,8 @@ public function getcatsubcatpro()
 {
 	
 	$sid = $this->session->userdata('seller_id');
-	$this->db->from('products');
+	$this->db->select('category.*');
+    $this->db->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
 	$this->db->join('category', 'category.category_id =products.category_id');
 	$this->db->where('products.seller_id',$sid);
@@ -291,7 +292,7 @@ public function getcatsubcatpro()
 public function get_catedata($category_id)
 {
   $sid = $this->session->userdata('seller_id');
-    $this->db->select('*');
+    $this->db->select('subcategories.*');
     $this->db->from('products');
     $this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
    $this->db->join('category', 'category.category_id =products.category_id');

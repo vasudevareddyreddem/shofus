@@ -23,6 +23,7 @@
 	</section>
   <section class="content ">
   <div class="faq_main">
+   <?php if(!empty($catitemdata))  { ?>
     <div class="container" style="width:100%">
 	
       <!--<h1 class="head_title">My Listings</h1>-->
@@ -112,13 +113,58 @@
 	   <?php }?>
       </div>
     </div>
+   <?php } else {?>
    
+   <div class="container">
+	
+      <h1 class="head_title">You have no products. please add products</h1>
+   
+   </div>
+   
+   <?php } ?>
   </div>
   
      
 
   <!--body end here --> 
- 
+  <script language="JavaScript" type="text/javascript">
+  function addtabactives(val)
+{
+	$("#btn_chang"+val).removeClass("btn-info");
+	$("#btn_chang"+val).addClass("btn-primary");
+	var cnt;
+    var count =<?php echo $cnt;?>;
+	//var cnt='';
+	for(cnt = 1; cnt <= count; cnt++){
+		if(cnt!=val){
+			$("#btn_chang"+cnt).removeClass("btn-primary");
+			$("#btn_chang"+cnt).addClass("btn-info");
+		}             
+	}
+			
+
+}
+function addtabactive(id)
+{
+	$("#gry"+id).addClass("active");
+	var cnt;
+    var nt =<?php echo $cnt;?>;
+	//var cnt='';
+	for(cnt = 1; cnt <= nt; cnt++){
+		if(cnt!=id){
+			$("#gry"+cnt).removeClass("active");
+		}             
+	}
+			
+
+}
+
+function checkDelete(id)
+{
+  
+return confirm('Are you sure want to delete "'+id +'" product?');
+}
+</script>
 </section>
   </div> 
   </div>

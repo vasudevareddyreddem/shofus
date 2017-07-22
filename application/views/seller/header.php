@@ -560,7 +560,7 @@ $(document).ready(function(){
     //     }
     $.ajax({
     type: "POST",
-    url: '<?php echo base_url(); ?>seller/login/do_login',
+    url: '<?php echo base_url('seller/login/do_login'); ?>',
     data: {login_email:login_email,login_password:login_password},
     success:function(data)
     {
