@@ -438,35 +438,34 @@ $(function(){
 														<?php } ?>
 														</select>
 														</div>
-														<div class="form-group nopaddingRight col-md-6 san-lg">
+			<div class="form-group nopaddingRight col-md-6 san-lg">
 														
 														<?php 
                             //echo "<pre>";print_r($orther_shops);exit;
-           $store = $seller_storedetails['other_shops_location'];
-          $arr=explode(",",$store); 
-          foreach($arr as $equall)
-          {
-            $equall;
-          }
-          //echo "<pre>";print_r($equall);exit;
-          ?>
+                             $store = $seller_storedetails['other_shops_location'];
+                            $arr=explode(",",$store);
+                            foreach($arr as $equall)
+                            {
+                              $equall;
+                            }
+                            
+
+                            ?>
 
 
 				<select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
 				  <!-- <option value=""></option> -->
           <?php foreach($orther_shops as $shops){?>   
            <option <?php if($shops == $equall){ echo 'selected="selected"'; } ?> value="<?php echo $shops; ?>"><?php echo $shops; ?></option>
+           <?php }?>
            <?php foreach($select_areas as $area){ ?>
                     <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
                     <?php }?>
-                  <?php }?>
-                    
-          
-				  
-                    </select>
+                  
+        </select>
 
 
-														</div>
+			</div>
 
 														<div class="form-group nopaddingRight col-md-6 san-lg">
 														
