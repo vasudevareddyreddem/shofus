@@ -243,12 +243,12 @@ public function seller_storedetails()
 			$cetimg=$seller_upload_file['cstimage'];
 			}
 			
-			if($_FILES['gstinimage']['name']!=''){
-			$gstinimage=$_FILES['gstinimage']['name'];
-			move_uploaded_file($_FILES['gstinimage']['tmp_name'], "assets/sellerfile/" . $_FILES['gstinimage']['name']);
+			if($_FILES['gstimag']['name']!=''){
+			$gstinimage=$_FILES['gstimag']['name'];
+			move_uploaded_file($_FILES['gstimag']['tmp_name'], "assets/sellerfile/" . $_FILES['gstimag']['name']);
 
 			}else{
-			$gstinimage=$seller_upload_file['cstimage'];
+			$gstinimage=$seller_upload_file['gstimag'];
 			}
 
 			$location_name = $post['other_shops_location'];
