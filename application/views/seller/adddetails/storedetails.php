@@ -406,13 +406,7 @@
             <label class="control-label">Signature file</label>
             <input type="file" name='gstimag' id="gstimag" class="form-control"/>
             <span><?php echo isset($sellerdata['gstinimage'])?$sellerdata['gstinimage']:''; ?></span>
-  
-			<!-- <input type="file" id="gstimag" name="gstimag"  onchange="gstimageuload(this.value)">
-			<a onclick="deactive3();" href="javascript:void(0)" >Upload</a><span id="backid3"><?php echo isset($sellerdata['gstinimage'])?$sellerdata['gstinimage']:''; ?></span>
-			<span id="gstimages"></span>
-			<span style="color:red" id="gstimageserror"></span> -->         
-
-		 </div>
+            </div>
 		
 		 
 	
