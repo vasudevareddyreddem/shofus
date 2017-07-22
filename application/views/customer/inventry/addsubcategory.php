@@ -3,6 +3,17 @@
 		<section class="content" style="padding-top:100px;">
 		<div class="container">
 			<div class="row">
+				<?php if($this->session->flashdata('addsuccess')){ ?>
+
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+					 <?php foreach($this->session->flashdata('addsuccess') as $error){?>
+					
+					<?php echo $error.'<br/>'; ?>
+					
+					
+					<?php } ?></div><?php } ?>
 				<?php if($this->session->flashdata('passworderror')): ?>
 					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>

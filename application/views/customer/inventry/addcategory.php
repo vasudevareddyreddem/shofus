@@ -13,6 +13,17 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('updatpassword');?></div>	
 					<?php endif; ?>
+					<?php if($this->session->flashdata('addsuccess')){ ?>
+
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+					 <?php foreach($this->session->flashdata('addsuccess') as $error){?>
+					
+					<?php echo $error.'<br/>'; ?>
+					
+					
+					<?php } ?></div><?php } ?>
 					<?php if(validation_errors()):?>
 					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -38,6 +49,17 @@
 				
 				</div>
 				</form>
+				<form enctype="multipart/form-data" method="post" name="importcategory" id="importcategory"  action="<?php echo base_url('inventory/importcategory'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
+				<div class=""  style="font-size:20px;font-weight:600;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Import category</div>
+				
+				<div class="form-group">
+				<label for="category">Import File File</label>
+				<input type="file" placeholder="" class="form-control" id="importaegoryfile" name="importaegoryfile" />
+				</div>
+				<div class="btn-group-vertical btn-block text-center" role="group">
+				<button type="submit" class="btn btn-danger btn-lg">Import</button>
+				</div>
+				</form>
 				
 				
 			</div>
@@ -47,6 +69,27 @@
  </div>
    
 	<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#importcategory').bootstrapValidator({
+       
+        fields: {
+            
+			
+			importaegoryfile: {
+					validators: {
+					notEmpty: {
+						message: 'Category Name is required'
+					},
+					regexp: {
+					regexp: /\.(xlsx|xls)$/i,
+					message: 'Uploaded file is not a valid image. Only xl files are allowed'
+					}
+				}
+			}
+        }
+    });
+});
 
 $(document).ready(function() {
     $('#addcategory').bootstrapValidator({

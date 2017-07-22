@@ -297,6 +297,7 @@ class Adddetails extends Seller_adddetails{
     }
 	public function setpassword()
 	{  
+		$this->load->library('session');
 		$data['seller_id'] = $this->session->userdata('seller_id');
 		//echo '<pre>';print_r($seller_id);exit;
 		$this->load->view('seller/layouts/header');
