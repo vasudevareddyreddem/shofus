@@ -11,7 +11,12 @@
   display: inline-block;
   font-size: 14px;
   position: relative;
-  vertical-align: middle; }
+  vertical-align: middle;
+  width:100% !important;
+  }
+  .chosen-search-input{
+	  width:100% !important;
+  }
   .chosen-container .chosen-drop {
     background: #fff;
     border: 1px solid #ccc;
@@ -439,6 +444,7 @@ $(function(){
 														</select>
 														</div>
 														<div class="form-group nopaddingRight col-md-6 san-lg">
+														<label class="control-label">Other Locations </label>
 														
 														
 				<select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
@@ -1090,5 +1096,10 @@ $(document).ready(function() {
 
 
     </script>
-
+  <script>
+      $(function() {
+        $('.chosen-select').chosen();
+        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+      });
+    </script>
     
