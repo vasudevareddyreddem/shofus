@@ -248,7 +248,7 @@ public function seller_storedetails()
 			move_uploaded_file($_FILES['gstimag']['tmp_name'], "assets/sellerfile/" . $_FILES['gstimag']['name']);
 
 			}else{
-			$gstinimage=$seller_upload_file['gstimag'];
+			$gstinimage=$seller_upload_file['gstinimage'];
 			}
 
 			$location_name = $post['other_shops_location'];

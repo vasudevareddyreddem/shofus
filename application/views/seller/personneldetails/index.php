@@ -940,9 +940,7 @@ $(document).ready(function() {
             },
             gstimag: {
            validators: {
-             notEmpty: {
-            message: 'Signature Image is required'
-          },
+            
           regexp: {
           regexp: /\.(jpe?g|png)$/i,
           message: 'Uploaded file is not a valid image. Only JPG, PNG and Jpeg files are allowed'
