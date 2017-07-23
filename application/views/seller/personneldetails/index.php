@@ -454,21 +454,21 @@ $(function(){
                             // }
 
                             
-                            $comma_separated = implode("\n", $orther_shops);
+                            //$comma_separated = implode("\n", $orther_shops);
 
                             //echo "<pre>";print_r($comma_separated);exit; 
-                            $iputfield = $seller_storedetails['other_shops_location'];
-                            $arr['orther']=explode(",",$iputfield);
-                              foreach($arr as $some){
-                                  $some;
-                              }
-                             $gole = implode("\n",$some);
+                            // $iputfield = $seller_storedetails['other_shops_location'];
+                            // $arr['orther']=explode(",",$iputfield);
+                             //  foreach($arr as $some){
+                             //      $some;
+                             //  }
+                             // $gole = implode("\n",$some);
 
                              // foreach($gole as $gol)
                              // {
                              //  $gol;
                              // }
-                            //echo "<pre>";print_r($gol);exit;
+                            //echo "<pre>";print_r($arr);exit;
                             //echo "<pre>";print_r($gole);exit;
                             // for($i=0; $i<count($arr); $i++)
                             // { 
@@ -487,9 +487,12 @@ $(function(){
 
         <select id="other_shops_location"  name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
           <!-- <option value=""></option> -->
+          <?php $iputfield = $seller_storedetails['other_shops_location'];
+          $arr=explode(",",$iputfield); ?>
           
-          
-           <option <?php if($comma_separated == $gole){ echo 'selected="selected"'; } ?> value="<?php echo $gole; ?>"><?php echo $gole; ?></option>
+          <?php foreach($arr as $orders){ ?>
+          <option value="<?php echo $orders; ?>" selected="selected"><?php echo $orders; ?></option>
+          <?php } ?>
            
            <?php foreach($select_areas as $area){ ?>
                     <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
