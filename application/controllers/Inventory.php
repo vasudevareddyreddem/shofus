@@ -12,6 +12,7 @@ class inventory extends CI_Controller
 		$this->load->library('email');
 		$this->load->model('inventory_model');
 		$this->load->model('customer_model'); 
+		$this->load->model('seller/adddetails_model'); 
 		if($this->session->userdata('userdetails'))
 		{
 		$logindetail=$this->session->userdata('userdetails');
@@ -530,14 +531,38 @@ public function servicerequestview(){
 					$status=1;
 					}
 					$data=array('status'=>$status);
+					//echo '<pre>';print_r(base64_decode($this->uri->segment(5)));exit;
 					$updatestatus=$this->inventory_model->update_category_status($id,$data);
 					//echo $this->db->last_query();exit;
 					
 					if(count($updatestatus)>0){
-						if($status==1){
-							$this->session->set_flashdata('success'," Category activation successful");
+						
+						if($this->uri->segment(5)!=''){
+							if($status==1){
+							$sub='Category activation successfully';
 						}else{
-							$this->session->set_flashdata('success',"Category deactivation successful");
+							$sub='Category deactivation successfully';
+						}	
+						if($status==1){
+							$submsg='Category activation successfully. Please UPdate Your categorieslist';
+						}else{
+							$submsg='Category deactivation successfully';
+						}
+						$addnotifications = array(
+						'seller_id' =>base64_decode($this->uri->segment(5)),
+						'subject'=>$sub,
+						'seller_message'=>$sub,
+						'message_type' =>'REPLY',
+						'category_status' =>1,
+						'created_at' => date('Y-m-d H:i:s'),
+						);
+						$contact = $this->adddetails_model->save_notifciations($addnotifications);
+						
+						}
+						if($status==1){
+							$this->session->set_flashdata('success'," Category activation successfully");
+						}else{
+							$this->session->set_flashdata('success',"Category deactivation successfully");
 						}
 						redirect('inventory/categorieslist');
 					}
@@ -1078,9 +1103,9 @@ public function servicerequestview(){
 				{
 					if($status==1)
 					{
-						$this->session->set_flashdata('success'," Item added home page banner successful");
+						$this->session->set_flashdata('success'," Item added from home page banner successfully");
 					}else{
-						$this->session->set_flashdata('success',"Item removed home page banner  successful");
+						$this->session->set_flashdata('success',"Item removed from home page banner  successfully");
 					}
 					redirect('inventory/sellertopoffresdetails'.'/'.base64_encode($seller_id));
 				}

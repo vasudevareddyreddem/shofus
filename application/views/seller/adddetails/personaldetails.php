@@ -85,7 +85,7 @@
           </div>
 			<div class="" style="padding-right:40px;margin-top:20px;">  
 			<a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/storedetails'); ?>">Back</a>
-      <a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/setpassword'); ?>">Skip This Step</a>
+			<a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/setpassword'); ?>">Skip This Step</a>
 			<!-- <input id="bnt" type="submit" class="btn btn-info " value="Skip"> -->
 			<input id="bnt" type="submit" class="btn btn-info pull-right" value="Next">
 			</div>
@@ -144,8 +144,8 @@ $(document).ready(function() {
 						message: 'IFCS Code is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'IFCS Code can only consist of alphanumaric, space and dot'
+					 regexp: /^[A-Za-z0-9]{4}\d{7}$/,
+					 message: 'IFCS Code must be alphanumaric'
 					}
 				}
         }

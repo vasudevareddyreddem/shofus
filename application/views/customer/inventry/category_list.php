@@ -11,6 +11,7 @@
             </div>
 			
             <!-- /.box-header -->
+			<?php //echo '<pre>';print_r($category_list);exit;  ?>
             <div class="box-body">
 			<?php if($this->session->flashdata('success')): ?>
 					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -33,12 +34,17 @@
                 <tr>                  
                   <td><a href="<?php echo base_url('inventory/categoryview/'.base64_encode($catlist['category_id'])); ?>"><?php echo $catlist['category_name']; ?></a></td>
                   <td><?php if($catlist['commission']!=0 && $catlist['commission']!='' ){ echo $catlist['commission']; } else { echo "";} ?></td>
-				  <td><?php echo $catlist['created_at']; ?></td>    
+					<td><?php echo Date('d-M-Y',strtotime(htmlentities($catlist['created_at'])));?></td>
                   <td><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
 				<td>
 				<a href="<?php echo base_url('inventory/categoryview/'.base64_encode($catlist['category_id'])); ?>">View</a> | &nbsp;
 				<a href="<?php echo base_url('inventory/categoryedit/'.base64_encode($catlist['category_id'])); ?>">Edit</a> | &nbsp;
-					<a href="<?php echo base_url('inventory/categorystatus/'.base64_encode($catlist['category_id']).'/'.base64_encode($catlist['status'])); ?>"><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
+				<?php if($catlist['seller_id']!=''){ ?>
+				<a href="<?php echo base_url('inventory/categorystatus/'.base64_encode($catlist['category_id']).'/'.base64_encode($catlist['status']).'/'.base64_encode($catlist['seller_id'])); ?>"><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
+				<?php } else{ ?>
+				<a href="<?php echo base_url('inventory/categorystatus/'.base64_encode($catlist['category_id']).'/'.base64_encode($catlist['status'])); ?>"><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
+
+				<?php } ?>
 				</td>
                  </tr>
                  <?php }?>
@@ -52,3 +58,11 @@
 </div>
 </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#example1').DataTable( {
+        "order": [[ 2, "desc" ]]
+    } );
+} );
+</script>
+

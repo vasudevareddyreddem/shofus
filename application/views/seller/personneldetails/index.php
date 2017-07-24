@@ -405,32 +405,26 @@ $(function(){
             <?php endif; ?>
           <div class="panel-body">
               <form id="categories"  name="categories" action="<?php echo base_url('seller/personnel_details/seller_categories'); ?>" method="post" onsubmit="return checkvalidations();" enctype="multipart/form-data">
-                <?php //echo '<pre>';print_r($getcat);exit; ?>
-                <div><?php //echo '<pre>';print_r($seller_categorudetails);exit; ?>
-                    <option value="">Select Category</option>
+                <label class="control-label">Select Categories</label>
+                  <select id="seller_cat[]"  name="seller_cat[]"   multiple class="chosen-select" tabindex="8">
+          
                     <?php foreach($seller_categorudetails as $cat_data){ ?>
-                    <select class="form-control"  id="seller_cat[]" name="seller_cat[]" onchange="categoryid(this.value);" required="required">
-                    <option value="<?php echo $cat_data['seller_category_id']; ?>"><?php echo $cat_data['category_name']; ?></option>                  
-                      <?php foreach($getcat as $cat_details){ ?>
-                      <option value="<?php echo $cat_details['category_id']; ?>"><?php echo $cat_details['category_name']; ?></option>                  
-
-                        
+                    <option value="<?php echo $cat_data['seller_category_id']; ?>" selected="selected"><?php echo $cat_data['category_name']; ?></option>
+                    <?php } ?>
+                     
+                     <?php foreach($getcat as $cat_details){ ?>
+                        <option value="<?php echo $cat_details['category_id']; ?>"><?php echo $cat_details['category_name']; ?></option>  
                       <?php } ?>
-                    </select><br>
-                    <?php }?>
-                
-                </div>
-                <div id="CenterForm"></div>
-                <div class="form-group">
-                  <input type="hidden" name="centerCount" id="centerCount" value="0" />
-                  <button class="btn btn-primary" type="button" onclick="addCenter();"><span>Add More</span></button>
-                </div>
-                <div>
+                            
+                  </select>
+                  <div>
+                <div class="clearfix"></div>
+                <br>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form> 
               <a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/dashboard'); ?>">Cancel</a>
               </div>
-          </div>
+          
           </section>
       </div>
         <div class="tab-pane fade" id="tab3">
@@ -482,20 +476,20 @@ $(function(){
                           
 
 
-        <select id="other_shops_location"  name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
-          <!-- <option value=""></option> -->
-          <?php $iputfield = $seller_storedetails['other_shops_location'];
-          $arr=explode(",",$iputfield); ?>
-          
-          <?php foreach($arr as $orders){ ?>
-          <option value="<?php echo $orders; ?>" selected="selected"><?php echo $orders; ?></option>
-          <?php } ?>
-           
-           <?php foreach($select_areas as $area){ ?>
-                    <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
-                    <?php }?>
-                  
-        </select>
+          <select id="other_shops_location"  name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
+            <!-- <option value=""></option> -->
+            <?php $iputfield = $seller_storedetails['other_shops_location'];
+            $arr=explode(",",$iputfield); ?>
+            
+            <?php foreach($arr as $orders){ ?>
+            <option value="<?php echo $orders; ?>" selected="selected"><?php echo $orders; ?></option>
+            <?php } ?>
+             
+             <?php foreach($select_areas as $area){ ?>
+                      <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
+                      <?php }?>
+                    
+          </select>
 
 
       </div>

@@ -29,7 +29,9 @@
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
 	 <div><?php echo $this->session->flashdata('message');?></div>
       <div class="faq">
-	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
+	  <?php //echo '<pre>';print_r($catitemdata1);exit;
+
+if(count($catitemdata1)>0) {	  ?>
 
 	   <?php  foreach($catitemdata1 as $catitem_data1 )  {  ?> 
 		
@@ -44,7 +46,7 @@
 			foreach($catitem_data->docs as $subcategory){?>
 			<?php $space =  $subcategory->subcategory_name; 
 			
-			$nospace = str_replace(' ','',$space);
+			$nospace = str_replace(array(' ', '<', '>', '&', '{', '}','(', ')', '*'), array('_'), $space);
 			
 			?>
               <div class="panel panel-default mar_t10">
@@ -110,6 +112,10 @@
             </div>
         <!-- container --> 
 	   <?php }?>
+	   
+<?php } else{ ?>
+You have no products right now. Please add products
+<?php } ?>
       </div>
     </div>
    

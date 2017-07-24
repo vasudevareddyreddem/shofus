@@ -61,21 +61,26 @@
 								
                             <!-- Admin Notifications -->
                             <li class="dropdown notifications-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="pe-7s-bell"></i>
+                                <a href="#" onclick="getnotifycount();" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="pe-7s-bell"></i><span id="notify"><?php if($notification[0]['unreadcouont']>0){ echo $notification[0]['unreadcouont']; } ?></span>
                                     <span class="label label-warning"></span>
                                 </a>
                                 <ul class="dropdown-menu">
+								<?php 
+								
+								//echo $notification[0]['unreadcouont'];
+								//echo '<pre>';print_r($notification);exit; ?>
                                     <li class="header"><i class="fa fa-bell"></i>Admin Notifications</li>
                                     <li>
                                         <ul class="menu">
-                                        <?php foreach($sellernotify as $cat_data){ ?>
+                                        <?php foreach($allnotification as $list){ ?>
                                             <li>
-                                            <a href="#" class="border-gray"><i class="fa fa-inbox"></i><?php  echo $cat_data->message; ?> <span class=" label-success label label-default pull-right">ADMIN</span></a></li>  <?php } ?>                                           
+                                            <a href="#" class="border-gray"><i class="fa fa-inbox"></i><?php  echo $list['seller_message']; ?></a></li>
+											<?php } ?>                                           
                                         </ul>
                                     </li>
                                    <li class="footer">
-                                   <a href="#"> See all Notifications <i class=" fa fa-arrow-right"></i></a>
+                                   <a href="<?php echo base_url('seller/services/notications'); ?>"> See all Notifications <i class=" fa fa-arrow-right"></i></a>
                                     </li>
                                 </ul>
                             </li>
@@ -209,7 +214,28 @@
     </div>
   </div>
   <!--end Just fill form to Select plan Modal -->
+  <?php if($notification[0]['unreadcouont']>0){ ?>
+  <script>
+  function getnotifycount(){
+	  
+	  jQuery.ajax({
+			   url: "<?php echo base_url('seller/dashboard/readcount'); ?>",
+			   data:'',
+			   type: "POST",
+			   dataType:"JSON",
+			   success:function(data){
+				   if(data.msg==1){
+					   $('#notify').hide();
+					   
+				   }
+			    }
+		 }); 
+  }
+  </script>
+  <?php } ?>
   <script type="text/javascript">
+  
+  
   function IsLcemail(reasontype) {
         var regex = /^[0-9]{10}$/;
         return regex.test(reasontype);

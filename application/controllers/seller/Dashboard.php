@@ -20,6 +20,17 @@ class Dashboard extends Admin_Controller {
 		
 	}
 
+	function readcount(){
+		$details = $this->dashboard_model->get_all_notification_details($this->session->userdata('seller_id'));	
+		foreach ($details as $data){
+			$detailss=$this->dashboard_model->update_unnread_count_data($data['notification_id'],0);	
+		}
+		if(count($detailss)>0){
+			$dataa['msg']=1;	
+			echo json_encode($dataa); 
+			
+		}
+	}
 	public function index()
 	{
   
