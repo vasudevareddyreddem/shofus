@@ -42,7 +42,7 @@
 				</div>
 				<div class="form-group">
 				<label for="category">Category File</label>
-				<input type="file" placeholder="" class="form-control" id="categoryfile" name="categoryfile" />
+				<input style="height:auto;" type="file" class="form-control" id="categoryfile" name="categoryfile" />
 				</div>
 				<div class="btn-group-vertical btn-block text-center" role="group">
 				<button type="submit" class="btn btn-danger btn-lg">Add</button>
@@ -53,8 +53,8 @@
 				<div class=""  style="font-size:20px;font-weight:600;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Import category</div>
 				
 				<div class="form-group">
-				<label for="category">Import File File</label>
-				<input type="file" placeholder="" class="form-control" id="importaegoryfile" name="importaegoryfile" />
+				<label for="category">Import File</label>
+				<input style="height:auto;" type="file" placeholder="" class="form-control" id="importaegoryfile" name="importaegoryfile" />
 				</div>
 				<div class="btn-group-vertical btn-block text-center" role="group">
 				<button type="submit" class="btn btn-danger btn-lg">Import</button>
