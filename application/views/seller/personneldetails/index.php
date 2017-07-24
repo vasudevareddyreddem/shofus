@@ -282,6 +282,39 @@ $(function(){
 });
 </script>
 <?php  } ?>
+<?php 
+if($this->session->flashdata('tab')==3){
+?>
+<script>
+$(function(){
+  $('#tab3').trigger("click");  
+  var hash = '#tab3';
+  hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+});
+</script>
+<?php  } ?>
+<?php 
+if($this->session->flashdata('tab')==4){
+?>
+<script>
+$(function(){
+  $('#tab4').trigger("click");  
+  var hash = '#tab4';
+  hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+});
+</script>
+<?php  } ?>
+<?php 
+if($this->session->flashdata('tab')==5){
+?>
+<script>
+$(function(){
+  $('#tab5').trigger("click");  
+  var hash = '#tab5';
+  hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+});
+</script>
+<?php  } ?>
 <div class="content-wrapper mar_t_con">
 
     <section class="content-header">
@@ -317,7 +350,7 @@ $(function(){
         <li class="active"><a href="#tab1" data-toggle="tab">Basic details</a></li>
         <li><a href="#tab2" data-toggle="tab" role="tab">your Category</a></li>
         <li ><a href="#tab3" aria-controls="tab3" data-toggle="tab" role="tab">Store details</a></li>
-        <li><a href="#tab4" data-toggle="tab">Personal details</a></li>
+        <li><a href="#tab4" data-toggle="tab">Bank details</a></li>
         <li><a href="#tab5" data-toggle="tab">Change password</a></li>
       </ul>
       <!-- Tab panels -->
@@ -446,43 +479,7 @@ $(function(){
       <div class="form-group nopaddingRight col-md-6 san-lg">
 	   <label class="control-label">Other Locations </label>
                             
-                            <?php 
-                            
-
-                            // foreach($orther_shops as $some){
-                              
-                            // }
-
-                            
-                            //$comma_separated = implode("\n", $orther_shops);
-
-                            //echo "<pre>";print_r($comma_separated);exit; 
-                            // $iputfield = $seller_storedetails['other_shops_location'];
-                            // $arr['orther']=explode(",",$iputfield);
-                             //  foreach($arr as $some){
-                             //      $some;
-                             //  }
-                             // $gole = implode("\n",$some);
-
-                             // foreach($gole as $gol)
-                             // {
-                             //  $gol;
-                             // }
-                            //echo "<pre>";print_r($arr);exit;
-                            //echo "<pre>";print_r($gole);exit;
-                            // for($i=0; $i<count($arr); $i++)
-                            // { 
-                            // $ids = $arr[$i];
-                            // $arr.= $ids.", ";
-                            // }
-                            // $arr = substr(trim($arr), 0, -1);
-                            
-                            //$select = array();
-                            
-                            
-                            //echo "<pre>";print_r($store);exit;
-
-                            ?>
+                          
 
 
         <select id="other_shops_location"  name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
@@ -571,22 +568,24 @@ $(function(){
                 <?php endif; ?>
                                                 <div class="panel-body">
                                                     <form id="personalidetails"  name="personalidetails" action="<?php echo base_url('seller/personnel_details/personal_details_updatebd'); ?>" method="post" enctype="multipart/form-data">
-                                                        <div class="form-group nopaddingRight col-md-6 san-lg">
+                                                        <div class="row">
+														<div class="form-group nopaddingRight col-md-6 san-lg">
                                                             <label for="exampleInputEmail1">Bank account</label>
                                                             <input class="form-control" placeholder="Name" type="text" id="bank_account" name="bank_account" value="<?php echo $seller_storedetails['seller_bank_account']?>">
                                                         </div>
                                                         <div class="form-group nopaddingRight col-md-6 san-lg">
                                                             <label for="exampleInputEmail1">Bank Account Name</label>
-                              <input maxlength="100" type="text" maxlength="12" id="account_name" name="account_name" class="form-control"  value="<?php echo isset($seller_storedetails['seller_account_name'])?$seller_storedetails['seller_account_name']:''; ?>" />
-
+															<input maxlength="100" type="text" maxlength="12" id="account_name" name="account_name" class="form-control"  value="<?php echo isset($seller_storedetails['seller_account_name'])?$seller_storedetails['seller_account_name']:''; ?>" />
                                                         </div>
+														</div>
 
-
-                                                        <div class="form-group nopaddingRight col-md-6 san-lg">
-                                                            <label for="exampleInputEmail1">Bank Account IFSC Code</label>
-                              <input maxlength="100" type="text"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($seller_storedetails['seller_aaccount_ifsc_code'])?$seller_storedetails['seller_aaccount_ifsc_code']:''; ?>" />
-                                                        </div>
-                               <div class="clearfix"></div>
+														<div class="row">
+														<div class="form-group nopaddingRight col-md-6 san-lg">
+														<label for="exampleInputEmail1">Bank Account IFSC Code</label>
+														<input maxlength="100" type="text"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($seller_storedetails['seller_aaccount_ifsc_code'])?$seller_storedetails['seller_aaccount_ifsc_code']:''; ?>" />
+														</div>
+														</div>
+														<div class="clearfix"></div>
                                                         <div style="margin-top: 20px; margin-left: 15px;">
                                                             <button type="submit" class="btn btn-primary">Submit</button>
                                                      
@@ -657,9 +656,7 @@ $(function(){
 
 <!--body end here -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
-    <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
   <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
-    <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 
 
@@ -1045,7 +1042,8 @@ $(document).ready(function() {
             message: 'IFCS Code is required'
           },
           regexp: {
-          regexp: /^[a-zA-Z0-9. ]+$/,
+          //regexp: /^[a-zA-Z0-9. ]+$/,
+          regexp: /^[A-Za-z0-9]{4}\d{7}$/,
           message: 'IFCS Code can only consist of alphanumaric, space and dot'
           }
         }

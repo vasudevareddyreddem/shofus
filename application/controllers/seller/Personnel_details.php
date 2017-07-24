@@ -191,19 +191,23 @@ public function changepassword(){
 						//echo $this->db->last_query();exit;
 						if (count($passwordchange)>0)
 							{
+								$this->session->set_flashdata('tab',5);
 								$this->session->set_flashdata('updatpassword',"Password successfully changed!");
 								redirect('seller/Personnel_details');
 							}
 							else
 							{
+								$this->session->set_flashdata('tab',5);
 								$this->session->set_flashdata('passworderror',"Something went wrong in change password process!");
 								redirect('seller/Personnel_details');
 							}
 				}else{
+					$this->session->set_flashdata('tab',5);
 					$this->session->set_flashdata('passworderror',"New password and confirm password was not matching");
 					redirect('seller/Personnel_details');
 				}
 			}else{
+					$this->session->set_flashdata('tab',5);
 					$this->session->set_flashdata('passworderror',"Your Old password is incorrect. Please try again.");
 					redirect('seller/Personnel_details');
 				}
@@ -286,6 +290,7 @@ public function seller_storedetails()
 			
 			if(count($addstoredetails)>0)
 			{
+			$this->session->set_flashdata('tab',3);
 			$this->session->set_flashdata('storeupdatemessage','Store details updated');
 			return redirect('seller/Personnel_details');
 			}
@@ -348,10 +353,13 @@ public function personal_details_updatebd()
 	if(count($result)>0)
 		{
 		$this->prepare_flashmessage("Personal Details are Updated Successfully..", 0);
-		$this->session->set_flashdata('perupdatemessage',"Personal Details are Updated Successfully!");
+		$this->session->set_flashdata('tab',4);
+
+		$this->session->set_flashdata('perupdatemessage',"Bank Details are Updated Successfully!");
 		return redirect('seller/Personnel_details');
 		}else
 			{
+			$this->session->set_flashdata('tab',4);
 			$this->prepare_flashmessage("Failed to Insert..", 1);
 			return redirect('seller/Personnel_details');
 			}	

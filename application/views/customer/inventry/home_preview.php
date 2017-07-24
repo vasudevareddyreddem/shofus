@@ -1,7 +1,5 @@
-
-<div class="content-wrapper" >
-
-<section class="content" style="padding-top:100px;">
+<div class="content-wrapper pad_t100" >
+<section class="content" ">
 <div class="container">
 	<?php if($this->session->flashdata('success')): ?>
 					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -234,13 +232,15 @@
 	
 	
   </div>
-  </div>
    </section>
-   <button type="submit" class="box-title btn btn-primary pull-right" style="margin-right:50px;"> preview ok</button>
+     <button type="submit" class="box-title btn btn-primary pull-right" style="margin-right:50px;"> preview ok</button>
    <div class="clearfix"></div>
    <br>
    </form>
   </div>
+
+  
+ 
  
   
 <!--home page product scroller start here --> 

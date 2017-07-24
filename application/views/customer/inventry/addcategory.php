@@ -108,6 +108,9 @@ $(document).ready(function() {
 			}, 
 			commission: {
 					validators: {
+						notEmpty: {
+						message: 'Commission is required'
+					},
 					between: {
                     min: 0,
                     max: 100,

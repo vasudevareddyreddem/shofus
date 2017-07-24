@@ -113,28 +113,19 @@ $(document).ready(function() {
             categoryname: {
 					validators: {
 					notEmpty: {
-						message: 'Category Name is required'
+						message: 'SubCategory Name is required'
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: ' Category Name can only consist of alphanumaric, space and dot'
+					message: ' subCategory Name can only consist of alphanumaric, space and dot'
 					}
 				}
 			}, 
-			commission: {
+		
+			category_list: {
 					validators: {
-					between: {
-                    min: 0,
-                    max: 100,
-                    message: 'The Commission percentage must be between 0 and 100'
-					}
-				}
-			},
-			categoryfile: {
-					validators: {
-					regexp: {
-					regexp: /\.(xlsx|xls)$/i,
-					message: 'Uploaded file is not a valid image. Only xl files are allowed'
+					notEmpty: {
+						message: 'Please select Category '
 					}
 				}
 			}

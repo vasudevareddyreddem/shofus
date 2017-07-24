@@ -263,7 +263,10 @@ class Inventory_model extends MY_Model
 			$return[$offers['seller_id']]['count'] = $this->get_tophomepage_active_count($offers['seller_id']);
         
 		}
+		if(!empty($return))
+		{
 		return $return;
+		}
 	}
 	public function get_tophomepage_active_count($sid)
 	{
@@ -309,7 +312,10 @@ class Inventory_model extends MY_Model
 			$return[$offers['seller_id']]['count'] = $this->get_homepage_active_count($offers['seller_id']);
         
 		}
+		if(!empty($return))
+		{
 		return $return;
+		}
 	}
 	
 	public function get_homepage_active_count($sid)
@@ -347,7 +353,10 @@ class Inventory_model extends MY_Model
 			$return[$offers['seller_id']]['count'] = $this->get_delasoftheday_homepage_active_count($offers['seller_id']);
         
 		}
+		if(!empty($return))
+		{
 		return $return;
+		}
 	}
 	
 	public function get_delasoftheday_homepage_active_count($sid)
@@ -396,8 +405,11 @@ class Inventory_model extends MY_Model
 			$return[$offers['seller_id']]['count'] = $this->get_homepage_banner_active_count($offers['seller_id']);
         
 		}
-		return $return;
-	}
+		if(!empty($return))
+			{
+			return $return;
+		}
+		}
 	
 	public function get_homepage_banner_active_count($sid)
 	{

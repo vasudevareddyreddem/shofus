@@ -17,7 +17,10 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
-          <?php   //echo '<pre>';print_r($season_sales);exit; ?>
+          <?php   //echo '<pre>';print_r($season_sales);exit;
+
+
+if(count($season_sales)>0){		  ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -40,6 +43,9 @@
                  <?php }?>                 
                 </tbody>              
               </table>
+<?php } else{ ?>
+No Season Sales Item
+<?php } ?>
             </div>
             <!-- /.box-body -->
           </div>
