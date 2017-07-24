@@ -77,23 +77,26 @@ tfoot input {
               <?php 
 			foreach($catitem_data->docs as $subcategory){?>
 			<?php $space =  $subcategory->subcategory_name; 
-			
-			$nospace = str_replace(' ','',$space);
+			 
+			$nospace = str_replace(' ','_',$space);
+			//$base =base64_encode($nospace);
+
+			//$replay = base64_decode($nospace);
 			
 			?>
               <div style="padding:10px;" class="panel panel-default mar_t10">
                 <div class="panel-heading" role="tab" id="headingOne<?php echo $nospace;  ?>">
-                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion"  href="#collapseOne<?php echo $nospace;  ?>" aria-expanded="true" aria-controls="collapseOne<?php echo $nospace;  ?>"> <i class="more-less glyphicon glyphicon-plus"></i> <?php echo $subcategory->subcategory_name; ?> </a> </h4>
+                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion"  href="#collapOne<?php echo $nospace;  ?>" aria-expanded="true" aria-controls="collapOne<?php echo $nospace;  ?>"> <i class="more-less glyphicon glyphicon-plus"></i> <?php echo $subcategory->subcategory_name; ?> </a> </h4>
                 </div>
-                <div id="collapseOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
+                <div id="collapOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
 		
 	<form  id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
 		<table id="example<?php echo $subcategory->subcategory_id;?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">
+                <th>Select All<input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">
 				</th>
-				<div style="padding:15px 0px"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Select All</a></div>
+				<div style="padding:15px 0px"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
