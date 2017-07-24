@@ -17,7 +17,9 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
-          <?php   //echo '<pre>';print_r($season_sales);exit; ?>
+          <?php   //echo '<pre>';print_r($season_sales);exit; 
+		  
+				if(count($home_banner)>0){  ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -28,7 +30,9 @@
 				 </tr>
                 </thead>
                 <tbody>
-                <?php   foreach($home_banner as $offer) {?>
+                <?php   
+				
+					foreach($home_banner as $offer) {?>
                 <tr>                  
 				  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($offer['seller_id']).'/'.'banner'); ?>"><?php echo $offer['seller_rand_id']; ?></a></td>    
                   <td><?php echo $offer['seller_name']; ?></td>
@@ -37,9 +41,12 @@
 				  <a href="<?php echo base_url('inventory/overaall_home_page_banner_status/'.base64_encode($offer['seller_id']).'/'.base64_encode(1)); ?>">All Deactive</a></td>
                  
                 </tr>
-                 <?php }?>                 
+				<?php } ?>				
                 </tbody>              
               </table>
+			  <?php }else{?>
+				No Home page Banner Images List
+				<?php } ?>
             </div>
             <!-- /.box-body -->
           </div>
