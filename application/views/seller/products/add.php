@@ -193,7 +193,7 @@
 												<textarea  placeholder="product Description" class="form-control" rows="3" id="product_description" name="product_description"></textarea>
 											</div>
 											<div  class="form-group nopaddingRight col-md-6 san-lg">
-												<div id="tab_sep13">
+												<div id="tab_sep">
 													<div class="col-md-6" style="padding:0">
 														<label for="exampleInputEmail1">Product specifications </label>
 														<input style="border-radius:5px 0px 0px 5px" type="text" placeholder="Specification Name" class="form-control" id="specificationnameid" name="specificationname[]" >
@@ -203,7 +203,6 @@
 														<input style="border-radius:0px 5px 5px 0px" type="text" placeholder="Specification Value"  class="form-control" id="specificationvalueid" name="specificationvalue[]" >
 													</div>
 												</div>
-												<div id="tab_sep"></div>
 												
 												<div class="pull-right" id="delbtn" style="padding-top:10px;display:none">
 													<a id="tab_delet" class="btn btn-default btn-xs pull-left">Delete Row</a>
@@ -239,6 +238,8 @@
 												</div>
 												</div>
 												<div class="clearfix"></div>
+
+
 											</div>
 											<div style="margin-top: 20px; margin-left: 15px;">
 											<button type="submit" class="btn btn-primary" >Submit</button>
@@ -379,7 +380,6 @@ $(document).ready(function(){
 	  k++; 
 	
   });
-  
  
      $("#tab_delet").click(function(){
 		if(k==2){
