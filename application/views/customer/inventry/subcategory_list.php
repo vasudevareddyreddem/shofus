@@ -51,14 +51,9 @@
 </div>
 </div>
 <script>
-  $(function () {
-    $('#example1').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
+$(document).ready(function() {
+    $('#example1').DataTable( {
+        "order": [[ 2, "desc" ]]
+    } );
+} );
 </script>
