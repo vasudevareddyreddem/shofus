@@ -40,7 +40,7 @@
 				  <td><?php echo $items['offer_amount']; ?></td>    
 				  <td><?php echo Date('d-M-Y',strtotime(htmlentities($items['intialdate'])));?></td> 				  
 				  <td><?php echo Date('d-M-Y',strtotime(htmlentities($items['expairdate'])));?></td> 				  
-                  <td><?php if($items['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
+                  <td><?php if($items['status']==1){ echo "Active";}else{ echo "Deactivate";} ?></td>                  
                   <td>
 				  <a href="<?php echo base_url('inventory/seasonsale_home_page_status/'.base64_encode($items['seller_id']).'/'.base64_encode($items['item_id']).'/'.base64_encode($items['home_page_status'])); ?>"><?php if($items['home_page_status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
 				 </td>                  
