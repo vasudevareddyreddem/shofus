@@ -84,7 +84,7 @@ tfoot input {
 			foreach($catitem_data->docs as $subcategory){?>
 			<?php $space =  $subcategory->subcategory_name; 
 			
-			$nospace = str_replace(' ','',$space);
+			$nospace = str_replace(array(' ', '<', '>','(', ')', '&', '{', '}', '*'), array('_'), $space);
 			
 			?>
               <div style="padding:10px;" class="panel panel-default mar_t10">
@@ -97,7 +97,7 @@ tfoot input {
 		<table id="example<?php echo $subcategory->subcategory_id;  ?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>"><span class="btn btn-primary">Selectall</span>
+                <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
 				</th>
 				<div style="padding:15px 0px"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">submit</a></div>
 				<th>Item Name</th>
@@ -153,7 +153,7 @@ tfoot input {
 		</div><span style="color:red" id="offeramounterror<?php echo $subcategory->subcategory_id;?>"></span>
 		<div class="modal-footer" style="border:none;">
 		<div class="form-group">
-		<label class="control-label pull-left">Offer Expairt Date:  
+		<label class="control-label pull-left">Offer Expairy Date:  
 		<?php 
 		$date = date('Y-m-d h:i:s');
 		$date1 = strtotime($date);
