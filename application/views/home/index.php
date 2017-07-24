@@ -58,8 +58,7 @@
 			  </div>
             </div>
 			<div class="clearfix"></div>
-			 <a href="<?php echo base_url('customer/seemore'); ?>"> <div class="text-center"><button class="btn btn-primary"> See More</button></div></a>
-              
+				<a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary " style="position:absolute;top:15px;right:10px"> See More</button></a>
           </div>
         </div>
       </div>

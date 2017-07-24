@@ -3623,17 +3623,7 @@ table#cart tfoot td .btn {
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 	 overflow-y: scroll;
 }
-/* .pos_ab { */
-	/* position:absolute; */
-	/* right:-20px; */
-	/* font-size:25px; */
-	/* color:#fff; */
-/* } */
-/* .pos_ab span{ */
-	/* position:absolute; */
-	/* right:0px; */
-	/* color:#fff; */
-/* } */
+
 .list_cat li>a{
 	color:#bbb ;
 	font-size:16px ;
