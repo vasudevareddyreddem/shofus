@@ -38,8 +38,8 @@
                         <input type="hidden" name="serviceid" id="serviceid" value="<?php echo $serviceid; ?>">
 
                         <div  class=" form-group">
-                           <label class="control-label">Service Request reply</label>
-                            <textarea rows="5" cols="70" name="serivcerequest" id="serivcerequest"></textarea>
+                           <label class="control-label"><h3>Service Request reply</h3></label>
+                            <textarea class="form-control" rows="5" cols="70" name="serivcerequest" id="serivcerequest"></textarea>
                         </div> 
 						
 						
@@ -68,6 +68,7 @@
 	   
 	   </div>
 	   </div>
+	   
 </div>
 <script type="text/javascript">
 

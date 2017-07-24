@@ -1,13 +1,10 @@
-<footer class="main-footer ">
-    <div class="pull-right hidden-xs">
-    </div>
-    
+<footer class="footer ">
     <strong>Copyright &copy; 2016- <?php echo date('Y');?><a href="#">cartinhour</a>.</strong> All rights
     reserved.
-  </footer>
- <div class="control-sidebar-bg"></div>
+</footer>
 
-</div>
+
+
 <!-- core functionality purpose-->
 
 <script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
