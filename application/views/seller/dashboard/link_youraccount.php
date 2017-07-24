@@ -105,11 +105,11 @@ $(document).ready(function() {
     ifsccode: {
           validators: {
           notEmpty: {
-            message: 'IFCS Code is required'
+            message: 'IFSC Code is required'
           },
           regexp: {
           regexp: /^[A-Za-z0-9]{4}\d{7}$/,
-          message: 'IFCS Code must be alphanumaric'
+          message: 'IFSC Code must be alphanumaric'
           }
         }
         }
