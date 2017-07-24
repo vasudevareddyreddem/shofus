@@ -34,7 +34,7 @@
 				<input type="password" placeholder="" class="form-control" id="confirmpassword" name="confirmpassword"  />
 				</div>
 				<div class="btn-group-vertical btn-block text-center" role="group">
-				<button class="btn btn-danger btn-lg">Change Password</button>
+				<button type="submit" class="btn btn-danger btn-lg">Change Password</button>
 				
 				</div>
 				</form>
