@@ -1033,12 +1033,12 @@ $(document).ready(function() {
     ifsccode: {
           validators: {
           notEmpty: {
-            message: 'IFCS Code is required'
+            message: 'IFSC Code is required'
           },
           regexp: {
           //regexp: /^[a-zA-Z0-9. ]+$/,
           regexp: /^[A-Za-z0-9]{4}\d{7}$/,
-          message: 'IFCS Code can only consist of alphanumaric, space and dot'
+          message: 'IFSC Code can only consist of alphanumaric, space and dot'
           }
         }
         }
