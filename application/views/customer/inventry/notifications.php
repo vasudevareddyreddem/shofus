@@ -2,12 +2,12 @@
 <div class="panel-heading panel-primary">
  <section class="content-header">
       <h1>
-       Notification replay
-        <small>Notification replay</small>
+       Notification reply
+        <small>Notification reply</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('inventory/dashboard'); ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Notification replay</li>
+        <li class="active">Notification reply</li>
       </ol>
     </section>
 	</div>
@@ -38,8 +38,8 @@
                         <input type="hidden" name="serviceid" id="serviceid" value="<?php echo $serviceid; ?>">
 
                         <div  class=" form-group">
-                           <label class="control-label">Notification replay</label>
-                            <textarea rows="5" cols="70" name="noticationreplay" id="noticationreplay"></textarea>
+                           <label class="control-label">Notification reply</label>
+                            <textarea rows="5" cols="70" name="noticationreply" id="noticationreply"></textarea>
                         </div> 
 						
 						
