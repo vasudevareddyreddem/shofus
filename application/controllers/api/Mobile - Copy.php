@@ -916,7 +916,7 @@ class Mobile extends REST_Controller {
 		 	// 	(
 		 	// 		'status'=>1,
 		 	// 		//'Request Service'=>$service_save,
-		 	// 		'message'=> 'Wait For Replay!!'		 			
+		 	// 		'message'=> 'Wait For Reply!!'		 			
 					
 		 	// 	);
   				$service['status']=1;
