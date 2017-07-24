@@ -78,7 +78,9 @@ tfoot input {
 			foreach($catitem_data->docs as $subcategory){?>
 			<?php $space =  $subcategory->subcategory_name; 
 			 
-			$nospace = str_replace(' ','_',$space);
+			//$nospace = str_replace(' ','_',$space);
+			$nospace = str_replace(array(' ', '<', '>', '&', '{', '}', '*'), array('_'), $space);
+			
 			//$base =base64_encode($nospace);
 
 			//$replay = base64_decode($nospace);
