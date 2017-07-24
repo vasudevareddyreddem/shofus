@@ -79,7 +79,7 @@ tfoot input {
 			<?php $space =  $subcategory->subcategory_name; 
 			 
 			//$nospace = str_replace(' ','_',$space);
-			$nospace = str_replace(array(' ', '<', '>', '&', '{', '}', '*'), array('_'), $space);
+			$nospace = str_replace(array(' ', '<', '>', '&','(', ')', '{', '}', '*'), array('_'), $space);
 			
 			//$base =base64_encode($nospace);
 
@@ -96,7 +96,7 @@ tfoot input {
 		<table id="example<?php echo $subcategory->subcategory_id;?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th>Select All<input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">
+                <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
 				</th>
 				<div style="padding:15px 0px"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
 				<th>Item Name</th>
