@@ -1078,9 +1078,9 @@ public function servicerequestview(){
 				{
 					if($status==1)
 					{
-						$this->session->set_flashdata('success'," Item added home page banner successful");
+						$this->session->set_flashdata('success'," Item added from home page banner successfully");
 					}else{
-						$this->session->set_flashdata('success',"Item removed home page banner  successful");
+						$this->session->set_flashdata('success',"Item removed from home page banner  successfully");
 					}
 					redirect('inventory/sellertopoffresdetails'.'/'.base64_encode($seller_id));
 				}
