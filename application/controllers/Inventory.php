@@ -542,6 +542,11 @@ public function servicerequestview(){
 							$sub='Category activation successfully';
 						}else{
 							$sub='Category deactivation successfully';
+						}	
+						if($status==1){
+							$submsg='Category activation successfully. Please UPdate Your categorieslist';
+						}else{
+							$submsg='Category deactivation successfully';
 						}
 						$addnotifications = array(
 						'seller_id' =>base64_decode($this->uri->segment(5)),
