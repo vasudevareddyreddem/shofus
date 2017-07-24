@@ -116,6 +116,7 @@ class Adddetails extends Seller_adddetails{
 						'seller_id'=>$this->session->userdata('seller_id'),
 						'category_name'=>$decatid,
 						'status'=>0,
+						'first_time'=>1,
 						'created_at'=>date('Y-m-d H:i:s'),
 						'updated_at'=>date('Y-m-d H:i:s'),
 						);

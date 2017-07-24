@@ -39,8 +39,8 @@
 				<td>
 				<a href="<?php echo base_url('inventory/categoryview/'.base64_encode($catlist['category_id'])); ?>">View</a> | &nbsp;
 				<a href="<?php echo base_url('inventory/categoryedit/'.base64_encode($catlist['category_id'])); ?>">Edit</a> | &nbsp;
-				<?php if($catlist['seller_id']!=''){ ?>
-				<a href="<?php echo base_url('inventory/categorystatus/'.base64_encode($catlist['category_id']).'/'.base64_encode($catlist['status']).'/'.base64_encode($catlist['seller_id'])); ?>"><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
+				<?php if($catlist['first_time']==1){ ?>
+				<a href="<?php echo base_url('inventory/categorystatus/'.base64_encode($catlist['category_id']).'/'.base64_encode($catlist['status']).'/'.base64_encode($catlist['first_time'])); ?>"><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
 				<?php } else{ ?>
 				<a href="<?php echo base_url('inventory/categorystatus/'.base64_encode($catlist['category_id']).'/'.base64_encode($catlist['status'])); ?>"><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
 
