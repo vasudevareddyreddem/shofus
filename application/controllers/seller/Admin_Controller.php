@@ -19,6 +19,8 @@ class Admin_Controller extends MY_Controller {
        		$data['bank_link'] = $this->dashboard_model->bank_status();
        		$result['profiles'] = $this->user_profile_model->profile_pic_get();
        		$result['bank_link'] = $this->dashboard_model->bank_status();
+			$result['notification'] = $this->dashboard_model->get_notification_details($seller_id);
+			$result['allnotification'] = $this->dashboard_model->get_all_notification_details($seller_id);
        		//echo "<pre>";print_r($result);exit;
 			$this->template->set_template('seller');
 			$this->template->write_view('header', 'seller/shared/header',$result);
@@ -30,4 +32,5 @@ class Admin_Controller extends MY_Controller {
 
         
 	}
+	
 }

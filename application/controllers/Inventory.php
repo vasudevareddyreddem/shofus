@@ -553,6 +553,7 @@ public function servicerequestview(){
 						'subject'=>$sub,
 						'seller_message'=>$sub,
 						'message_type' =>'REPLY',
+						'category_status' =>1,
 						'created_at' => date('Y-m-d H:i:s'),
 						);
 						$contact = $this->adddetails_model->save_notifciations($addnotifications);
