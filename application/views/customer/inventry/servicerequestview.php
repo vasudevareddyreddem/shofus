@@ -56,7 +56,7 @@
 					  </tr> 
 					  <tr>
 						<th>Status</th>
-						<td><?php if($request_details['status']==1){ echo "Replied";}else{ echo "Replay";} ?></td>
+						<td><?php if($request_details['status']==1){ echo "Replied";}else{ echo "Reply";} ?></td>
 						
 					  </tr>
 					
@@ -65,7 +65,7 @@
 					</tbody>
 			</table> 
 			<?php if($request_details['status']==0) { ?>
-			<div class="pull-right"><a href="<?php echo base_url('inventory/servicerequestreply/'.base64_encode($request_details['service_id']).'/'.base64_encode($request_details['seller_id'])); ?>" type="button" class="btn btn-warning btn-xs">Replay</a></div>
+			<div class="pull-right"><a href="<?php echo base_url('inventory/servicerequestreply/'.base64_encode($request_details['service_id']).'/'.base64_encode($request_details['seller_id'])); ?>" type="button" class="btn btn-warning btn-xs">Reply</a></div>
 			<?php }  ?>
 			
 		</div>

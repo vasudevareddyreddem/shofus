@@ -405,7 +405,6 @@
 		 <div class="form-group">
             <label class="control-label">Signature file</label>
             <input type="file" name='gstimag' id="gstimag" class="form-control"/>
-            <span><?php echo isset($sellerdata['gstinimage'])?$sellerdata['gstinimage']:''; ?></span>
             </div>
 		
 		 

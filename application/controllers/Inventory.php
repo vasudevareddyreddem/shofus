@@ -537,7 +537,8 @@ public function servicerequestview(){
 					
 					if(count($updatestatus)>0){
 						
-						if($this->uri->segment(5)!=''){
+						if($this->uri->segment(5)!='' && base64_decode($this->uri->segment(5))==1){
+							$catdata=$this->inventory_model->get_category_details($id);
 							if($status==1){
 							$sub='Category activation successfully';
 						}else{
@@ -548,15 +549,28 @@ public function servicerequestview(){
 						}else{
 							$submsg='Category deactivation successfully';
 						}
+						
+						$data = array(
+						'seller_id' => $catdata['seller_id'],
+						'seller_category_id'=> $catdata['category_id'],
+						'category_name'=> $catdata['category_name'],
+						'created_at'=> date('Y-m-d h:i:s'),
+						'updated_at'=>  date('Y-m-d h:i:s'),
+						);
+						//echo "<pre>";print_r($data); exit;
+						$res=$this->inventory_model->save_categorydata($data);
 						$addnotifications = array(
-						'seller_id' =>base64_decode($this->uri->segment(5)),
+						'seller_id' =>$catdata['seller_id'],
 						'subject'=>$sub,
 						'seller_message'=>$sub,
 						'message_type' =>'REPLY',
+						'category_status' =>1,
 						'created_at' => date('Y-m-d H:i:s'),
 						);
 						$contact = $this->adddetails_model->save_notifciations($addnotifications);
-						
+						$data=array('first_time'=>0);
+						$this->inventory_model->update_category_status($id,$data);
+
 						}
 						if($status==1){
 							$this->session->set_flashdata('success'," Category activation successfully");

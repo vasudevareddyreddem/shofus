@@ -26,7 +26,7 @@
 
   <header class="main-header" style="position:fixed;top:0px;width:100%">
 
-    <a href="" class="logo">
+    <a href="<?php echo base_url('inventory/dashboard'); ?>" class="logo">
 	  
       <span class="logo-mini"><img style="width:75%" src="<?php echo base_url(); ?>assets/vendor/inventry/dist/img/mini-logo.png" class="img-responsive" ></span>
       <span class="logo-lg"><img style="width:75%" src="<?php echo base_url(); ?>assets/vendor/inventry/dist/img/logo.png" class="img-responsive" ></span>

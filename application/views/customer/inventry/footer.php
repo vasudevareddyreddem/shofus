@@ -1,5 +1,5 @@
 <footer class="footer ">
-    <strong>Copyright &copy; 2016- <?php echo date('Y');?><a href="#">cartinhour</a>.</strong> All rights
+    <strong>Copyright &copy; 2016- <?php echo date('Y');?> &nbsp;<strong >cartinhour &nbsp;</strong> All rights
     reserved.
 </footer>
 

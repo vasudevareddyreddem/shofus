@@ -77,6 +77,11 @@ class Inventory_model extends MY_Model
 		$this->db->where('category_id', $catid);
 		return $this->db->update('category', $data);
 	}
+	public function get_category_details($catid){
+		$this->db->select('*')->from('category');
+		$this->db->where('category_id',$catid);
+		return $this->db->get()->row_array();
+	}
 	function save_sub_categories($data){
 		$this->db->insert('subcategories', $data);
 		return $insert_id = $this->db->insert_id();
@@ -221,6 +226,11 @@ class Inventory_model extends MY_Model
 	{
 		$sql1="UPDATE notifications SET read_count ='".$data."' WHERE notification_id = '".$notification_id."'";
 		return $this->db->query($sql1);
+	}
+	public function save_categorydata($data)
+	{
+		$this->db->insert('seller_categories', $data);
+		return $insert_id = $this->db->insert_id();
 	}
 	public function save_notifciations($data)
 	{
