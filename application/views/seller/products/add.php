@@ -202,6 +202,7 @@
 														<label for="exampleInputEmail1">&nbsp; </label>
 														<input style="border-radius:0px 5px 5px 0px" type="text" placeholder="Specification Value"  class="form-control" id="specificationvalueid" name="specificationvalue[]" >
 													</div>
+													<div id="addrs1"></div>
 												</div>
 												
 												<div class="pull-right" id="delbtn" style="padding-top:10px;display:none">
@@ -374,7 +375,7 @@ $(document).ready(function(){
      $("#add_sep").click(function(){
       $('#addrs'+k).html("<div class='col-md-6' style='padding:0'><input style='border-radius:5px 0px 0px 5px' type='text' class='form-control' id='specificationnameid[]' name='specificationname[]' ></div><div class='col-md-6' style='padding:0'><input style='border-radius:0px 5px 5px 0px' type='text' class='form-control' id='specificationvalueid[]' name='specificationvalue[]' ></div>");
 		$('#tab_sep').append('<div id="addrs'+(k+1)+'"></div>');
-		if(k >=2){
+		if(k >=1){
 			$('#delbtn').show();
 		}
 	  k++; 
