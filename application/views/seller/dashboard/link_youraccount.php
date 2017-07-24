@@ -108,8 +108,8 @@ $(document).ready(function() {
             message: 'IFCS Code is required'
           },
           regexp: {
-          regexp: /^[a-zA-Z0-9. ]+$/,
-          message: 'IFCS Code can only consist of alphanumaric, space and dot'
+          regexp: /^[A-Za-z0-9]{4}\d{7}$/,
+          message: 'IFCS Code must be alphanumaric'
           }
         }
         }
