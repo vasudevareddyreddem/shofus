@@ -1474,7 +1474,7 @@ $config['encryption_key'] = '';
 
 
 
-$config['sess_driver'] = 'files';
+$config['sess_driver'] = 'database';
 
 
 
@@ -1486,7 +1486,7 @@ $config['sess_expiration'] = 7200;
 
 
 
-$config['sess_save_path'] = NULL;
+$config['sess_save_path'] = 'ci_sessions';
 
 
 
