@@ -11,7 +11,9 @@
             </div>
 			
             <!-- /.box-header -->
-			<?php //echo '<pre>';print_r($category_list);exit;  ?>
+			<?php //echo '<pre>';print_r($category_list);exit;
+
+			?>
             <div class="box-body">
 			<?php if($this->session->flashdata('success')): ?>
 					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -22,6 +24,7 @@
                 <thead>
                 <tr>
 					<th>Category Name</th>
+					<th>Subcategory Count</th>
 					<th>Commission</th>
 					<th>Created Date</th>
 					<th>Status</th>
@@ -30,9 +33,10 @@
                 </thead>
                 <tbody>
                 <?php  
-                  foreach($category_list as $catlist) {?>
+                  foreach($category_list as $catlist) { ?>
                 <tr>                  
                   <td><a href="<?php echo base_url('inventory/categoryview/'.base64_encode($catlist['category_id'])); ?>"><?php echo $catlist['category_name']; ?></a></td>
+                  <td><a href="<?php echo base_url('inventory/subcategorylistview/'.base64_encode($catlist['category_id'])); ?>"><?php echo 'Active'.'('.$catlist['activecount'][0]['count'].')'.''; ?>&nbsp;<?php echo 'Inactive'.'('.$catlist['inactivecount'][0]['count'].')'.'';  ?></a></td>
                   <td><?php if($catlist['commission']!=0 && $catlist['commission']!='' ){ echo $catlist['commission']; } else { echo "";} ?></td>
 					<td><?php echo Date('d-M-Y',strtotime(htmlentities($catlist['created_at'])));?></td>
                   <td><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
