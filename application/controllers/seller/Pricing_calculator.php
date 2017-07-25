@@ -119,11 +119,11 @@ public function getreferalfee()
 	$disc = ($sell * $cih_fee) / 100;
 	$serv_tax = 18;	
 	$tax = ($comm * $serv_tax) / 100;
-
+	$total = $comm + $tax;
 	$cih =  ($disc * $serv_tax) / 100;
 	$addin= $disc+ $cih ;
 	$you_get = $sell - $cih;
-	$amount= ($sell) - ($tax);
+	$amount= ($sell) - ($total);
 	//echo $amount;exit;
 // 	$ref = str_replace("%", "", $cih_fee1);
 	
@@ -141,7 +141,7 @@ public function getreferalfee()
 // }
          echo '<h5>CIH Commision: '.$comm.'@'.$cih_fee.'</h5>';
           echo  '<h5>Service Tax: '.$tax.'@'.$serv_tax.'% </h5>';
-          echo  '<h5>Total Fee: '.$cih.' </h5>';
+          echo  '<h5>Total Fee: '.$total.' </h5>';
           echo  '<h5>You Make: '.$amount.' </h5>';
 		  echo '<input type="hidden" id="productcih_fee" name="productcih_fee" value="'.$cih_fee.'">';
 		  echo '<input type="hidden" id="closing_fee" name="closing_fee" value="'.$serv_tax.'">';

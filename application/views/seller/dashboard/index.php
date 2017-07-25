@@ -137,16 +137,19 @@
 	  <?php if(count($returnitemdata)>0){ ?>
 		    <?php  foreach($returnitemdata as $returncatitem_data )  {    ?>
         <!--<h1 onclick="document.getElementById('gry').style.display='block'">GETTING STARTED</h1>-->
-        <h1 data-toggle="collapse" data-target="#gry<?php echo $returncatitem_data->category_name;   ?>"><?php echo $returncatitem_data->category_name;   ?></h1>
+        <?php $catspace =  $returncatitem_data->category_name; 
+            
+            $catnospace = str_replace(array(' ', '<', '>', '&','(', ')', '{', '}', '*'), array('_'), $catspace);?>
+        <h1 data-toggle="collapse" data-target="#gry<?php echo $catnospace;  ?>"><?php echo $returncatitem_data->category_name;   ?></h1>
         <div class="demo"> 
           <!--<div id="gry" style="display:none">-->
-          <div id="gry<?php echo $returncatitem_data->category_name;   ?>" class="collapse">
+          <div id="gry<?php echo $catnospace;   ?>" class="collapse">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <?php 
             foreach($returncatitem_data->returndocs as $subcategory){?>
             <?php $space =  $subcategory->subcategory_name; 
             
-            $nospace = str_replace(' ','',$space);
+            $nospace = str_replace(array(' ', '<', '>', '&','(', ')', '{', '}', '*'), array('_'), $space);
             
             ?>
               <div class="panel panel-default">
