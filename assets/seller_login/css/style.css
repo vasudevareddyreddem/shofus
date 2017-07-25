@@ -494,7 +494,7 @@ height: 470px;
 	line-height: 24px;
 }
 .hm_nav {
-	margin-bottom: 0px;
+	margin-bottom: 10px;
 	z-index: 999;
 	background:#fff;
 	box-shadow: 3px 5px 10px grey;

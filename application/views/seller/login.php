@@ -80,8 +80,8 @@
  
   </section>
 	<div class="clearfix"></div>	
-		
-<section id="how_its_w" class="home-section bg-gray ">
+		<div id="how_its_w" style="height:50px;" ></div>
+<section  class="home-section bg-gray ">
 <div class="pricing_main">
     <div class="container">
 	 <h3 class="text-center wow fadeInDown animated"  data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInDown;"  id="" data-spy="scroll"><span class="span_bg_g"> HOW IT WORKS</span></h3>
@@ -173,7 +173,8 @@
 </section>  
  <div class="clearfix"></div>
   <!--pricing -->
- <section id="pricing_scr">
+  <div id="pricing_scr" style="height:50px;" ></div>
+ <section >
  
   <!--header part end here --> 
   <!--pricing start here -->
@@ -290,7 +291,8 @@
 </div>
 </section>
 <div class="clearfix"></div>
-<section id="about_sc">
+ <div id="about_sc" style="height:60px;" ></div>
+<section >
   
  
 <div class="container ">
@@ -396,7 +398,8 @@
 <div class="clearfix"></div>
 
 	<!--  faq contact us-->
-<section id="faq_sc">
+	<div id="faq_sc" style="height:50px;" ></div>
+<section >
 
   <!--faq start here -->
   <div class="faq_main">
@@ -741,7 +744,9 @@
   </div>
   </section>
   <div class="clearfix"></div>
+  <div id="contact_sc" style="height:50px;" ></div>
   <!--  start contact us-->
+  
 <section id="contact_sc">
 <div class="srvices_main1">
  <div class="container ">
