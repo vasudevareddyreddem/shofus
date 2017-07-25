@@ -23,7 +23,7 @@
 			//echo '<pre>';print_r($catitemdata);exit;
 			foreach($catitemdata as $catitem_data) { ?>		
 				<li class="spin btn-group show-on-hover">
-					<a  class=" dropdown-toggle" data-toggle="dropdown">
+					<a  class="menu_tit2  dropdown-toggle" data-toggle="dropdown">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
 						<span class="menu_tit"><?php echo $catitem_data['category_name']; ?></span>
 					</a>
