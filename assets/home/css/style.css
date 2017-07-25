@@ -3476,7 +3476,7 @@ table#cart tfoot td .btn {
 /* side bar start */
 .sidebar_right{
 	position:absolute;
-	 top:132px; 
+	 top:145px; 
 	right: -170px;
 	z-index:1025;
 	    background: rgba(255,255,255, 0.8);
@@ -3488,12 +3488,6 @@ table#cart tfoot td .btn {
    text-overflow: ellipsis !important;
     white-space: nowrap;
    width:220px;
-   
-   
-   
-  
-  
-   
 }
 .circ_icon{
 	background:#45b1b5;
@@ -3547,6 +3541,11 @@ table#cart tfoot td .btn {
 	font-weight:600;
 	margin:5px ;
 	line-height:50px;
+}
+.menu_tit2:hover{
+	background: #45b1b5; 
+	width:220px;
+	color:#fff;
 }
 
 /* top menu header  start */
