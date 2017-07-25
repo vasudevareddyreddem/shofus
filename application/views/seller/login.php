@@ -1050,6 +1050,14 @@ $("#cihfee1").html(data);
     else{
       $("#TermsErr15").html("");
     }
+    if (isValid)
+    {
+    $("#TermsErr15").html("Please Enter Price only +ve Numbers").css("color", "#006a99").fadeIn().fadeOut(5000);
+    return false;
+    }
+    else{
+      $("#TermsErr15").html("");
+    }
     
   
  
