@@ -963,7 +963,7 @@ $("#cihfee1").html(data);
 
    var cih1_id =  $("#cih1_id").val();
      var product_price = $("#product_price").val();
-     var re = /^[+]?([0-9 .]+)$/;
+     var re = /^[+]?([0-9]+)$/;
     var text = $("#product_price").val();
   var isValid = (text.match(re) == null);
   //alert(isValid);
@@ -1026,7 +1026,7 @@ $("#cihfee1").html(data);
 
     var youmake = $("#you_make").val();
     //alert(youmake);
-    var re = /^[+]?([0-9 .]+)$/;
+    var re = /^[+]?([0-9]+)$/;
     var text = $("#actual_price").val();
   var isValid = (text.match(re) == null);
     //alert(isValid);
