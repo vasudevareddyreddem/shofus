@@ -194,17 +194,6 @@
               <li class="wow shake animated" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: rubberBand;"><img src="<?php echo base_url();?>assets/seller_login/images/service.png" /><br>
                 <h4 align="center">Service Tax</h4>
               </li>
-        <!--<li><img src="<?php echo base_url();?>assets/seller_login/images/closing.png" /><br>
-                <h4 align="center">Closing Fee</h4>
-              </li>
-          <li><span class="plus_fon">+</span></li>
-              <li><img src="<?php echo base_url();?>assets/seller_login/images/shipping.png" /><br>
-                <h4 align="center">Shipping Fee</h4>
-              </li>
-          <li><span class="plus_fon">+</span></li>
-              <li><img src="<?php echo base_url();?>assets/seller_login/images/delivery.png" /><br>
-                <h4 align="center">Delivery Services Fee</h4>
-              </li>-->
             </ul>
             <h4 align="center" style="font-size:24px;">Find CIH Fee for your Product</h4>
             <div class="price_lt">
@@ -288,63 +277,13 @@
   </div>
   </section>
 <div class="clearfix"></div>
-  <!--pricing end here --> 
-  <!--our services -->
- <!--<section id="ourservices_scr">
-    <h3 class="text-center  wow fadeInDown animated"  id="" data-spy="scroll"><span class="span_bg_g"> OUR SERVICES</span></h3>
-  <div class="title_lines"></div>
-<div class="srvices_main1 ">
-<div class="container">
-		<div class="col-lg-6  col-md-6 col-sm-4">
-			<div class="service_first wow fadeInLeft animated" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
-			<img  class="img-responsive thumbnail" src="<?php echo base_url();?>assets/seller_login/images/inv_m.png" />
-					<h1 class="heading">Inventory management</h1>
-					<p>We provide complete product listing to inventory update & order process</p>
-				  
-			
-				   <br>
-				   <p class="lin_read"> <a href="<?php echo base_url();?>seller/marketplace_solutions" >Know more</a></p>
-			</div>
-		</div>
-                            
-		 <div class="col-lg-6  col-md-6 col-sm-4">
-			<div class="service_first wow fadeInRight animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">
-				<img  class="img-responsive thumbnail" src="<?php echo base_url();?>assets/seller_login/images/cat_m.png" />
-			<h1 class="heading">Catalog Management</h1>
-			
-				<p>We have expert team to make proper product digital catalog which provide good customer experience increase </p><br>
-			  
-			   <p class="lin_read"><a href="<?php echo base_url();?>seller/catalog_management" >Know more</a></p>
-			   
-		</div>
-		</div>-->
-							<!--<div class="col-lg-4  col-md-4 col-sm-4">
-                                <div class="service_first wow fadeInRight animated" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInRight;">
-                                
-                                <h1 class="heading">Product Photoshoot</h1>
-                                    <p>We do Model  and Table top Photo Shoot which enhance and enrich your product image help to generate more sale and to grow your business online. </p>
-                                  
-                                  
-                                   <p class="lin_read"><a  href="<?php echo base_url();?>seller/product_photoshoot" >Know more</a></p>
-                            </div>
-                            </div>-->
-							<div class="clearfix"></div>
-					<!--	<div class="container">
-							<div class="panel panel-default pad_10 mar_t10">
-							  <h4>Pricing</h4>
-							  
-							</div>
-						</div>--><p>&nbsp;</p>
 	
 	<div class="clearfix"></div>
 	
 
        
  <div class="clearfix">   </div>  
-<!--<p class="note_st">	Note: Photoshoot Charges will applicable extra depend on your product abd quanity Services Tax applicable</p>-->
 
- <!--<button type="button" class="btn btn-primary btn-md pull-left" data-toggle="modal" data-target="#myModal_ser">Pricing details</button>
- <button type="button" class="btn btn-warning btn-md pull-right" data-toggle="modal" data-target="#myModal_sel_mod">Enquiry</button>-->
 
                             
 </div>
@@ -440,106 +379,7 @@
 
 </section>
 <div class="clearfix"></div>
-		<!--team members-->
-<!-- <section class=" mar_t15">
-<div class="container">
-<div class="web_disigner_contain web_disigner">
-  <center><h1  style=" display:inline;color:#fff;">Our Team</h1></center>
-  
-  <div class='row'>
-    <div class='col-md-12'>
-      <div class="carousel slide media-carousel" id="media1" data-ride="carousel" data-interval="3000">
-        <div class="carousel-inner">
-          <div class="item  active">
-            <div class="row">
-              <div class="col-md-4 padtop30">
-                <center><div class="parent_circle">
-                  <div class="parent_circle_contain">
-                  <p>Bayapureddy </p>
-                  <p> DESIGNER PROFILE</p>
-                  <a href="#">Know More...</a>
-                </div>
-                <div class=" child_round_circle child_round_circle_img1">
-                  
-                </div>
-                </div>
-                </center>
-              </div>          
-              <div class="col-md-4 padtop30">
-               <center><div class="parent_circle">
-               <div class="parent_circle_contain">
-                  <p>Raghava</p>
-                  <p>Developer PROFILE</p>
-                  <a href="#">Know More...</a>
-                </div>
-                  <div class=" child_round_circle child_round_circle_img1">
-                  
-                </div>
-                </div>
-                </center>
-              </div>
-              <div class="col-md-4 padtop30">
-            <center> <div class="parent_circle">
-                  <div class="parent_circle_contain">
-                  <p>Pushkar</p>
-                  <p>CEO</p>
-                  <a href="#">Know More...</a>
-                </div>
-                 <div class=" child_round_circle child_round_circle_img1">
-                  
-                </div>
-                </div>
-                </center> 
-              </div>        
-            </div>
-          </div>
-          <div class="item">
-            <div class="row">
-              <div class="col-md-4 padtop30">
-                <center><div class="parent_circle">
-                  <div class="parent_circle_contain">
-                  <p>Vasudeva</p>
-                  <p>DESIGNER PROFILE</p>
-                  <a href="#">Know More...</a>
-                </div>
-                 <div class=" child_round_circle child_round_circle_img1">
-                  
-                </div>
-                </div>
-                </center>
-              </div>              
-              <div class="col-md-4 padtop30">
-                <center><div class="parent_circle">
-                  <div class="parent_circle_contain">
-                  <p>M . KHAN</p>
-                  <p>Developer PROFILE</p>
-                  <a href="#">Know More...</a>
-                </div>
-                <div class=" child_round_circle child_round_circle_img1">
-                  
-                </div>
-                </div>
-                </center>
-              </div>    
-               <div class="col-md-4 padtop30">
-                <center><div class="parent_circle">
-                  <div class="parent_circle_contain">
-                  <p>BRIJESH</p>
-                  <p>DESIGNER PROFILE</p>
-                  <a href="#">Know More...</a>
-                </div>
-                  <div class=" child_round_circle child_round_circle_img1">
-                  
-                </div>
-                </div>
-                </center>
-              </div>            
-            </div>
-          </div>
-          
-        </div>
-        <!--<a data-slide="prev" href="#media1" class="left carousel-control">‹</a>
-        <a data-slide="next" href="#media1" class="right carousel-control">›</a>-->
+		
       </div>                          
     </div>
   </div>
@@ -709,9 +549,7 @@
                   <div class="panel-body">The following deductions are made from the order item value:
                     <ul class="checkmark">
                       <li>CIH fee: A percentage of the order item value vary based on vertical/sub-category. Check your CIH fee for your product here.</li>
-                      <!-- <li>Shipping fee (calculated on the basis of the product weight, shipping location and)</li>
-                      <li>Collection fee: This will vary based on order item value and customer payment mode (Prepaid/Cash on Delivery) </li>
-                      <li>selling fee: A slab wise Fixed fee. This vary based on Order item value</li> -->
+                      
                       <li>Service tax (applicable on all the above components)</li>
                     </ul>
                   </div>
@@ -917,7 +755,7 @@
 					<span aria-hidden="true">&times;</span>							
 					 </button><?php echo $this->session->flashdata('msgsuccess');?></div>
 					<?php } ?>			
-				<form  class=""id="ajax-contact"  method="post" action="<?php echo base_url(); ?>seller/contact/login_contact" role="form">
+				<form  class="" id="contact" name="contact" method="post" action="<?php echo base_url(); ?>seller/contact/login_contact" role="form">
 					<div class="messages" id="form-messages"></div>
 					<?php echo $this->session->flashdata('msg1'); ?>
 					<div class="controls">
@@ -925,31 +763,30 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="form_name">Firstname *</label>
-									<input id="form_name" type="text" name="fname" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
-									<div class="help-block with-errors"></div>
+									<input id="form_name" type="text" name="fname" class="form-control" placeholder="Please enter your firstname *">
+									
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="form_lastname">Lastname </label>
-									<input id="form_lastname" type="text" name="lname" class="form-control" placeholder="Please enter your lastname *"  data-error="Lastname is required.">
-									<div class="help-block with-errors"></div>
+									<label for="form_lastname">Lastname *</label>
+									<input id="form_lastname" type="text" name="lname" class="form-control" placeholder="Please enter your lastname *" >
+									
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="form_email">Email *</label>
-									<input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
-									<div class="help-block with-errors"></div>
+									<label>Email *</label>
+									<input type="Email" name="email" class="form-control" placeholder="Please enter your email *">
+									
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="form_phone">Phone*</label>
-									<input id="form_phone" type="tel" name="phone"  class="form-control" placeholder="Please enter your phone*" required="required" oninvalid="setCustomValidity('Plz enter your correct phone number ')"
-								onchange="try{setCustomValidity('')}catch(e){}">
+									<input id="form_phone" type="tel" name="phone"  class="form-control" placeholder="Please enter your phone*">
 									
 								</div>
 							</div>
@@ -958,20 +795,15 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="form_message">Message *</label>
-									<textarea id="form_message" name="message" class="form-control" placeholder="Message for me *" rows="4" required="" ="required" data-error="Please,leave us a message."></textarea>
-									<div class="help-block with-errors"></div>
+									<textarea id="form_message" name="message" class="form-control" placeholder="Message Here *" rows="4" ></textarea>
+									
 								</div>
 							</div>
 							<div class="col-md-12">
 								<input type="submit" class="btn btn-primary ">
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-12">
-							   <br>
-								<small class="text-muted"><strong>*</strong> These fields are requied.</small>
-							</div>
-						</div>
+						
 					</div>
 
 				</form>
@@ -1128,7 +960,7 @@ $("#cihfee1").html(data);
     $('#calfee_submit').click(function(e){
     e.preventDefault();
  
-    //if ($('#chkterms2').is(':checked')) {
+
    var cih1_id =  $("#cih1_id").val();
      var product_price = $("#product_price").val();
      var re = /^[+]?([0-9]+)$/;
@@ -1136,10 +968,7 @@ $("#cihfee1").html(data);
   var isValid = (text.match(re) == null);
   //alert(isValid);
    var cih_fee1 = $("#cih_fee1").val();
-     //var subcatname = $("#subcatname").val();
-   //alert(cih1_id);
- //alert(product_price);
-  
+
   
   if (cih1_id == "")
     {
@@ -1185,19 +1014,6 @@ $("#cihfee1").html(data);
   
 
 </script>
-<!-- <script type="text/javascript">
-  
-  $(function(){
-
-  $('#product_price').keypress(function(e) {
-  if(isNaN(this.value+""+String.fromCharCode(e.charCode))) return false;
-  })
-  .on("cut copy paste",function(e){
-  e.preventDefault();
-  });
-
-});
-</script> -->
 
 
 
@@ -1207,7 +1023,7 @@ $("#cihfee1").html(data);
       $(document).ready(function(){
     $('#profit_submit').click(function(e){
     e.preventDefault();
-    //if ($('#chkterms2').is(':checked')) {  
+
     var youmake = $("#you_make").val();
     //alert(youmake);
     var re = /^[+]?([0-9]+)$/;
@@ -1217,10 +1033,6 @@ $("#cihfee1").html(data);
   
   var actual_price = $("#actual_price").val();
 
-  //var less = youmake <=  actual_price;
-  //alert(less);
-   
-    //var product_price = $("#product_price").val(); TermsErr15
   
   if (actual_price == "")
     {
@@ -1238,14 +1050,7 @@ $("#cihfee1").html(data);
     else{
       $("#TermsErr15").html("");
     }
-    // if (less == true)
-    // {
-    // $("#TermsErr15").html("Please Enter high value").css("color", "#006a99").fadeIn().fadeOut(5000);
-    // return false;
-    // }
-    // else{
-    //   $("#TermsErr15").html("");
-    // }
+    
   
  
     $.ajax({
@@ -1268,7 +1073,68 @@ $("#cihfee1").html(data);
 <script>
 	new WOW().init();
 </script>
-  <!--team --> 
- 
-  <!--end team --> 
- 
+
+<script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#contact').bootstrapValidator({
+            fields: {
+                fname: {
+                    validators: {
+                        notEmpty: {
+                            message: 'First Name is required'
+                        },
+                        regexp: {
+                            regexp:/^[a-zA-Z. ]+$/,
+                            message: 'First Name can only consist of alphanumaric, space and dot'
+                        }
+                    }
+                },
+                lname: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Last Name is required'
+                        },
+                        regexp: {
+                            regexp:/^[a-zA-Z. ]+$/,
+                            message: 'Last Name can only consist of alphanumaric, space and dot'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Email is required'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                            message: 'Please enter a valid email address. For example johndoe@domain.com.'
+                        }
+                    }
+                },
+                phone: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Phone Number is required'
+                        },
+                        regexp: {
+                            regexp: /^[0-9]{10}$/,
+                            message: 'Phone Number consist only Numbers and must be 10 digits'
+                        }
+                    }
+                },
+                message: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Message is required'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9. ]{6,250}$/,
+                            message: 'Message Between 6 to 250 Characters'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
