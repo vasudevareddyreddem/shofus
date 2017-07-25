@@ -81,7 +81,7 @@
           </div>
           <div class="form-group">
             <label class="control-label">Bank Account IFSC Code</label>
-            <input maxlength="100" type="text" placeholder="Enter your Bank Account IFSCcode"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($sellerdata['seller_aaccount_ifsc_code'])?$sellerdata['seller_aaccount_ifsc_code']:''; ?>" />
+            <input maxlength="100" type="text" placeholder="Enter your Bank Account IFSC code"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($sellerdata['seller_aaccount_ifsc_code'])?$sellerdata['seller_aaccount_ifsc_code']:''; ?>" />
           </div>
 			<div class="" style="padding-right:40px;margin-top:20px;">  
 			<a type="submit" class="btn btn-primary" href="<?php echo base_url('seller/adddetails/storedetails'); ?>">Back</a>

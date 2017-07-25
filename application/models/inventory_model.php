@@ -11,8 +11,37 @@ class Inventory_model extends MY_Model
 	public function get_all_categories_list()
 	{
 		$this->db->select('*')->from('category');
+	
+	$query= $this->db->get()->result_array();
+		 foreach ($query as $category)
+        {
+      //echo "<pre>";print_r($category);exit;
+			$return[$category['category_id']] = $category;
+
+			$return[$category['category_id']]['activecount'] = $this->get_activeunreadcounts($category['category_id']);
+			$return[$category['category_id']]['inactivecount'] = $this->get_inactiveunreadcounts($category['category_id']);
+        
+		}
+		return $return;
+	}
+	public function get_activeunreadcounts($catid)
+	{
+		$this->db->select('count(subcategory_id) as count')->from('subcategories');
+		$this->db->where('category_id',$catid);
+		$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
+	public function get_inactiveunreadcounts($catid)
+	{
+		$this->db->select('count(subcategory_id) as count')->from('subcategories');
+		$this->db->where('category_id',$catid);
+		$this->db->where('status',0);
+		return $this->db->get()->result_array();
+	}
+	
+	
+	
+	
 	public function get_categort_details($catid)
 	{
 		$this->db->select('*')->from('category');
@@ -47,6 +76,13 @@ class Inventory_model extends MY_Model
 	{
 		$this->db->select('subcategories.*,category.category_name')->from('subcategories');
 		$this->db->join('category', 'category.category_id = subcategories.category_id', 'left');
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategort_details_list($cat)
+	{
+		$this->db->select('subcategories.*,category.category_name')->from('subcategories');
+		$this->db->join('category', 'category.category_id = subcategories.category_id', 'left');
+		$this->db->where('subcategories.category_id', $cat);
 		return $this->db->get()->result_array();
 	}
 	public function update_category_details($catid,$data)
