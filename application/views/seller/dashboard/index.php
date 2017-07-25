@@ -146,7 +146,7 @@
             foreach($returncatitem_data->returndocs as $subcategory){?>
             <?php $space =  $subcategory->subcategory_name; 
             
-            $nospace = str_replace(' ','',$space);
+            $nospace = str_replace(array(' ', '<', '>', '&','(', ')', '{', '}', '*'), array('_'), $space);
             
             ?>
               <div class="panel panel-default">
