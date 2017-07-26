@@ -17,55 +17,54 @@
 <div class="sidebar_right" >
 			<ul style="padding:0 ">
 			
+			<?php $i=0; foreach($categorys as $fashcast){
+
+			?>
 				<li id="hover_li" class=" spin ">
-					<a  class="menu_ti2  ">
+					
+						<?php if($i==0){ ?>
+						<a  class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">Electronics</span>
-					</a>
+						<span class="menu_tit">
+						Fashion
+						</span>
+					</a>						
+						<?php  }else if($i==1){    ?>
+							<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">
+						Fashion
+						</span>
+					</a>	
+						<?php  }	 ?>
+						
+						
+						
 					<ul id="left_box" class="right_cust" style="display:none">
-						<div class="row">
+							<div class="row">
+						<?php foreach($fashcast as $fashcat){  ?>
+						<?php $k=0;foreach($fashcat as $sbu){ ?>	
+						
 							<div class="col-md-3">
 								<ul class="list_cat">
-									<li><a style="color:#666;">Electronics</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
+									<li><a style="color:#666;word-wrap: break-word;"><?php echo $sbu['subcategory_name']; ?></a></li>
+									<?php foreach($sbu['product_list'] as $list){ ?>
+									<li><a href=""><?php echo $list['item_name']; ?></a></li>
+									<?php } ?>
 								</ul>
 							</div>
-						</div>
+							<?php if($k==4){ ?>
+								<div class="clearfix"></div>
+							<?php } ?>
+					
+						<?php $k++;} ?>
 						
+						<?php } ?></div>
 					</ul>
 				</li>
-				<div class="clearfix"></div>
-				<li id="hover_li1" class=" spin ">
-					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">Electronicsfdsafsaffs</span>
-					</a>
-					<ul id="left_box1" class="right_cust" style="display:none">
-						<div class="row">
-							<div class="col-md-3">
-								<ul class="list_cat">
-									<li><a style="color:#666;">dsfdsfsa</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
-								</ul>
-							</div>
-						</div>
-						
-					</ul>
-				</li>
+		
+			<?php $i++;	} ?>
+				
 					<div class="clearfix"></div>
 					<li class=" spin ">
 					<a  class="menu_ti2  ">
@@ -726,9 +725,14 @@ $(document).ready(function(){
 $("#hover_li").hover(function(){
     $('#left_box').fadeToggle();
 });
-</script>
-<script>
+
 $("#hover_li1").hover(function(){
+    $('#left_box1').fadeToggle();
+});
+$("#hover_li2").hover(function(){
+    $('#left_box1').fadeToggle();
+});
+$("#hover_li3").hover(function(){
     $('#left_box1').fadeToggle();
 });
 </script>

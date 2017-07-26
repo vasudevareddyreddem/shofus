@@ -327,8 +327,7 @@ public function get_subcatedata($subcategory_id)
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
     $this->db->where('products.subcategory_id', $subcategory_id);
-    $this->db->where('products.item_status', 1);		
-
+    $this->db->where('products.item_status', 1);
 	 return $this->db->get()->result_array();
 }
 	
