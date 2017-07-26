@@ -1,70 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-// Merchant key here as provided by Payu
-$MERCHANT_KEY = "gtKFFx"; //Please change this value with live key for production
+$MERCHANT_KEY = "gtKFFx"; 
    $hash_string = '';
-// Merchant Salt as provided by Payu
-$SALT = "eCwWELxi"; //Please change this value with live salt for production
 
-// End point - change to https://secure.payu.in for LIVE mode
 
 $PAYU_BASE_URL = "https://test.payu.in";
 
-$action = '';
+	$hash = strtolower(hash('sha512', $hash_string));
+  $hash = $hash;
+  $action = "https://test.payu.in_payment";
 
-$posted = array();
-if(!empty($_POST)) {
-    //print_r($_POST);
-  foreach($_POST as $key => $value) {    
-    $posted[$key] = $value; 
-	
-  }
-}
-
-$formError = 0;
-
-if(empty($posted['txnid'])) {
-   // Generate random transaction id
-  $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
-} else {
-  $txnid = $posted['txnid'];
-}
-$hash = '';
-// Hash Sequence
-$hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10";
-if(empty($posted['hash']) && sizeof($posted) > 0) {
-  if(
-          empty($posted['key'])
-          || empty($posted['txnid'])
-          || empty($posted['amount'])
-          || empty($posted['firstname'])
-          || empty($posted['email'])
-          || empty($posted['phone'])
-          || empty($posted['productinfo'])
-         
-  ) {
-    $formError = 1;
-  } else {
-    
-	$hashVarsSeq = explode('|', $hashSequence);
- 
-	foreach($hashVarsSeq as $hash_var) {
-      $hash_string .= isset($posted[$hash_var]) ? $posted[$hash_var] : '';
-      $hash_string .= '|';
-    }
-
-    $hash_string .= $SALT;
-	echo '<pre>';print_r($hash_string);exit;
-
-
-    $hash = strtolower(hash('sha512', $hash_string));
-    $action = $PAYU_BASE_URL . '/_payment';
-  }
-} elseif(!empty($posted['hash'])) {
-  $hash = $posted['hash'];
-  $action = $PAYU_BASE_URL . '/_payment';
-}
 ?>
 <html>
   <head>
@@ -152,7 +98,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation">
-						 <a href="<?php echo base_url('customer/cart'); ?>" aria-controls="step1" role="tab" title="Step 1">
+						 <a href="<?php echo $action; ?>" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-shopping-cart"></i>
                             </span>
@@ -199,14 +145,14 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
 			<?php endif; ?>
 						<div class="container">
 						<div class="row">
-						<form action="https://test.payu.in/_payment/" method="POST" >
+						<form action="<?php echo base_url('payment/debit_credit_post');?>" method="POST" >
 						<input type="hidden" name="key" value="<?php echo $this->config->item('MERCHANTKEY'); ?>" />
 						<input type="hidden" name="salt" value="<?php echo $this->config->item('salt'); ?>" />
 						<input type="hidden" name="url" value="<?php echo $this->config->item('paymentbaseurl'); ?>" />
 						<input type="hidden" name="txnid" value="<?php echo $txnid; ?>" >
 						<input type="hidden" name="hash" value="<?php echo $hashvalue; ?>"/>
-						<input type="hidden" name="surl" value="<?php echo $this->config->item('paymentbaseurl'); ?>" />   <!--Please change this parameter value with your success page absolute url like http://mywebsite.com/response.php. -->
-						<input type="hidden" name="furl" value="<?php echo $this->config->item('paymentbaseurl'); ?>" /><!--Please change this parameter value with your failure page absolute url like http://mywebsite.com/response.php. -->
+						<input type="hidden" name="surl" value="<?php echo base_url('customer/ordersuccess'); ?>" />   <!--Please change this parameter value with your success page absolute url like http://mywebsite.com/response.php. -->
+						<input type="hidden" name="furl" value="<?php echo base_url('customer/ordersuccess'); ?>" /><!--Please change this parameter value with your failure page absolute url like http://mywebsite.com/response.php. -->
 						<input type="hidden" name="amount" value="<?php echo $carttotal_amount['pricetotalvalue']; ?>" />
 						<input type="hidden" name="firstname" id="firstname" value="<?php echo $billimgdetails['name']; ?>" />
 						<input name="email" type="hidden" id="email" value="<?php echo $emailid; ?>" /></td>

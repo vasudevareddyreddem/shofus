@@ -61,8 +61,24 @@ class Payment extends CI_Controller
 
     $hash_string .= $post['salt'];
 	$hash = strtolower(hash('sha512', $hash_string));
-	//echo '<pre>';print_r($hash);exit;
-//echo '<pre>';print_r($post);exit;	
+	
+	
+	
+	
+	$ch = curl_init();                    // initiate curl
+$url = "https://test.payu.in/merchant/postservice.php?form=1"; // where you want to post data
+curl_setopt($ch, CURLOPT_URL,$url);
+curl_setopt($ch, CURLOPT_POST, true);  // tell curl you want to post something
+curl_setopt($ch, CURLOPT_POSTFIELDS, "key='Ibibo'&command=verify_payment&hash=ajh84ba8abvav"); // define what you want to post
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // return the output in string format
+$output = curl_exec ($ch); // execute
+ 
+curl_close ($ch); // close curl handle
+ 
+var_dump($output); // show output
+	//echo '<pre>';print_r($post);exit;
+//echo '<pre>';print_r($post);exit;
+exit;
 
 redirect($post['url'] . '/_payment');	
 	
