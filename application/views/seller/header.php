@@ -344,14 +344,14 @@ function emailchecking(reasontype) {
           
           if(mobile==''){
               
-              $("#forgoterror").html("Please Enter Mobile Number").css("color", "red");
+              $("#forgoterror").html("Please Enter Mobile Number").css("color", "red").fadeIn().fadeOut(5000);
               return false;
           }else{
               
              
              var mobile = document.getElementById('forgot_mobile').value;
             if (!IsMobile(mobile)) {
-            $("#forgoterror").html("Please Enter Correct Mobile Number").css("color", "red");
+            $("#forgoterror").html("Please Enter Correct Mobile Number").css("color", "red").fadeIn().fadeOut(5000);
             jQuery('#seller_mobile').focus();
             return false;
             } 
@@ -378,11 +378,11 @@ function emailchecking(reasontype) {
                     
                             $("#myModal1").fadeOut(1);
                             $("#forgot_mobile").val('');
-                            $("#forgot-response1").html("Temporary Password Successfully Sent").css("color", "Green");
+                            $("#forgot-response1").html("Temporary Password Successfully Sent").css("color", "Green").fadeIn().fadeOut(5000);
                             
                             return true;
                         }if(data.sendmsg==0){
-                            $("#forgot-response").html("Some technical problem are occured").css("color", "red");
+                            $("#forgot-response").html("Some technical problem are occured").css("color", "red").fadeIn().fadeOut(5000);
                             $('#forgot_submit')[0].reset();
                         }
                         if(data.nomobile==0){
@@ -400,12 +400,12 @@ function emailchecking(reasontype) {
       if(radiovalue==1){
           var email = document.getElementById('forgot_mobile').value;
           if(email==''){
-              $("#forgoterror").html("Please Enter Email").css("color", "red");
+              $("#forgoterror").html("Please Enter Email").css("color", "red").fadeIn().fadeOut(5000);
               return false;
           }else{
               
               if (!emailchecking(email)) {
-            $("#forgoterror").html("Please enter a valid email address. For example johndoe@domain.com").css("color", "red");
+            $("#forgoterror").html("Please enter a valid email address. For example johndoe@domain.com").css("color", "red").fadeIn().fadeOut(5000);
             jQuery('#seller_mobile').focus();
             return false;
             }
@@ -428,13 +428,13 @@ function emailchecking(reasontype) {
                         if(data.mailsend==1){
                             $("#myModal1").fadeOut(1);
                             $("#forgot_mobile").val('');
-                            $("#forgot-response").html("Temporary Password Successfully Sent").css("color", "Green");
+                            $("#forgot-response1").html("Temporary Password Successfully Sent").css("color", "Green").fadeIn().fadeOut(5000);
                             $('#forgot_submit')[0].reset();
                             
                             return true;
                         }
                         if(data.noemail==0){
-                            $("#forgot-response").html("The Email you entered is not a registered email. Please try again").css("color", "red");
+                            $("#forgot-response").html("The Email you entered is not a registered email. Please try again").css("color", "red").fadeIn().fadeOut(5000);
                             $('#forgot_submit')[0].reset();
                             return false;
                         }
@@ -532,17 +532,17 @@ $(document).ready(function(){
    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if(login_email == "" && login_password == "" )
     {
-    $("#EmptyforError").html("Please Enter email and password").css("color", "red");
+    $("#EmptyforError").html("Please Enter email and password").css("color", "red").fadeIn().fadeOut(5000);
     $("#login_email").focus();
     return false;
     }
     if(login_email == ""){
-    $("#EmptyforError").html("Please Enter email").css("color", "red");
+    $("#EmptyforError").html("Please Enter email").css("color", "red").fadeIn().fadeOut(5000);
     $("#login_email").focus();
     return false;   
     }
     if(login_password == ""){
-    $("#EmptyforError").html("Please Enter Password").css("color", "red");
+    $("#EmptyforError").html("Please Enter Password").css("color", "red").fadeIn().fadeOut(5000);
     $("#login_email").focus();
     return false;   
     }
@@ -566,7 +566,7 @@ $(document).ready(function(){
     {
     if(data == 1)
     {
-   $("#login-response").html("Invalid Email / Mobile Number  or password.").css("color", "red");
+   $("#login-response").html("Invalid Email / Mobile Number  or password.").css("color", "red").fadeIn().fadeOut(5000);
      $('#login_submit')[0].reset(); 
     }
     else if(data == 0)
@@ -576,7 +576,7 @@ $(document).ready(function(){
     },
     error:function()
     {
-    $("#login-response").html("Oops! Error.  Please try again later!!");
+    $("#login-response").html("Oops! Error.  Please try again later!!").fadeIn().fadeOut(5000);
     }
     });
     });
