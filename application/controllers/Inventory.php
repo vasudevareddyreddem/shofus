@@ -1617,12 +1617,12 @@ public function servicerequestview(){
 				 if($status==0){
 					 
 					foreach ($overall_tems as $items){
-						$updatestatus=$this->inventory_model->update_banner_status_ok($seller_id,$items['id'],$status,0);
+						$updatestatus=$this->inventory_model->update_banner_status_ok($seller_id,$items['image_id'],$status,0);
 					} 
 				 }else{
 					 
 					foreach ($overall_tems as $items){
-						$updatestatus=$this->inventory_model->update_banner_status($seller_id,$items['id'],$status);
+						$updatestatus=$this->inventory_model->update_banner_status($seller_id,$items['image_id'],$status);
 					}  
 				 }
 				//echo "<pre>";print_r($status);exit;
