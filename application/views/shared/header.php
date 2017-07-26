@@ -16,36 +16,68 @@
 </style>
 <div class="sidebar_right" >
 			<ul style="padding:0 ">
+				<li  class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">food</span>
+					</a>
 			
+				</li>
+				<div class="clearfix"></div>
+				<li  class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">food</span>
+					</a>
 			
+				</li>
+				<div class="clearfix"></div>
+					<li  class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">food</span>
+					</a>
+			
+				</li>
+				<div class="clearfix"></div>
+					<li  class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">food</span>
+					</a>
+			
+					</li>
+				<div class="clearfix"></div>
+				<li  class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">food</span>
+					</a>
+			
+					</li>
+				<div class="clearfix"></div>
 				<li id="hover_li" class=" spin ">
 					<a  class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">Fashion</span>
+						<span class="menu_tit">More Categories</span>
 					</a>
 					<ul id="left_box" class="right_cust" style="display:none">
-							<div class="row">
-						<?php //echo '<pre>';print_r($fashion);exit; ?>
-						<?php foreach($fashion as $fashcat){  ?>
-					
-					<?php $k=0;foreach($fashcat as $sbu){ ?>	
+						
 						
 							<div class="col-md-3">
 								<ul class="list_cat">
-									<li><a style="color:#666;word-wrap: break-word;"><?php echo $sbu['subcategory_name']; ?></a></li>
-									<?php foreach($sbu['product_list'] as $list){ ?>
-									<li><a href=""><?php echo $list['item_name']; ?></a></li>
+									<li><a style="color:#666;">Mobiles</a></li>
+									<li><a href="">Samsung</a></li>
 									<li><a href="">Apple</a></li>
-									<?php } ?>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
 								</ul>
 							</div>
-							<?php if($k==4){ ?>
-								<div class="clearfix"></div>
-							<?php } ?>
-					
-						<?php $k++;} ?>
-						
-						<?php } ?></div>
+						</div>
 					</ul>
 				</li>
 				<div class="clearfix"></div>
