@@ -86,7 +86,7 @@ tfoot input {
 			foreach($catitem_data->docs as $subcategory){?>
 			<?php $space =  $subcategory->subcategory_name; 
 			
-			$nospace = str_replace(array(' ', '<', '>', '&','(', ')', '{', '}', '*'), array('_'), $space);
+			$nospace = str_replace(array(' ',';','/','_', '<','@','+','-','$',':','.','^','|','?','!','#','~', ',', '>', '&', '{', '}','(', ')', '*'), array('_'), $space);
 			
 			?>
               <div style="padding:10px;" class="panel panel-default mar_t10">

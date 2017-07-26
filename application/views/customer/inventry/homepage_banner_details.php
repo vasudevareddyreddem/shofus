@@ -3,7 +3,7 @@
       <div class="container">
          <!-- Main content -->
       <div class="row">
-	  <?php //echo '<pre>';print_r($seller_order_items);exit; ?>
+	  <?php //echo '<pre>';print_r($homepage_banner_details);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
               <h3 class="box-title" >Home page banner images List</h3>
@@ -34,7 +34,7 @@
 		          <td><img src="<?php echo base_url();?>uploads/banners/<?php  echo $items['file_name']; ?>" width="80" height="50" /></td>
                   <td><?php if($items['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
                   <td>
-				  <a href="<?php echo base_url('inventory/home_page_banner_status/'.base64_encode($items['seller_id']).'/'.base64_encode($items['id']).'/'.base64_encode($items['home_page_status'])); ?>"><?php if($items['home_page_status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
+				  <a href="<?php echo base_url('inventory/home_page_banner_status/'.base64_encode($items['seller_id']).'/'.base64_encode($items['image_id']).'/'.base64_encode($items['home_page_status'])); ?>"><?php if($items['home_page_status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
 				 </td>                  
 				
                  </tr>

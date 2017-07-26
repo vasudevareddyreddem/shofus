@@ -9,3 +9,5 @@ application/views/customer/inventry/addcategory.php
 application/controllers/Inventory.php
 application/config/database.php
 application/config/database.php
+application/config/database.php
+application/config/database.php

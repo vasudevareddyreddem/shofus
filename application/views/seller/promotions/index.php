@@ -79,7 +79,7 @@ tfoot input {
 			<?php $space =  $subcategory->subcategory_name; 
 			 
 			//$nospace = str_replace(' ','_',$space);
-			$nospace = str_replace(array(' ', '<', '>', '&','(', ')', '{', '}', '*'), array('_'), $space);
+			$nospace = str_replace(array(' ',';','/','_', '<','@','+','-','$',':','.','^','|','?','!','#','~', ',', '>', '&', '{', '}','(', ')', '*'), array('_'), $space);
 			
 			//$base =base64_encode($nospace);
 
