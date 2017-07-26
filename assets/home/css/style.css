@@ -5967,7 +5967,25 @@ box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
     margin: 6px 0 3px 5px;
     padding: 3px 20px 3px 5px;
     position: relative; }
-   
-	 
+	/* multiselect css end */
+/* subcategoryview css start */
+.mar_t10{
+	margin-top:10px;
+}
+.catg_sty{
+	border:1px solid #ddd;
+	padding:10px 5px;
+	text-align:center;
+	color:#222;
+	}
+	.catg_sty:hover{
+		background:#45b1b5;
+		color:#fff;
+		cursor:pointer;
+	}
+.gir_alg .col-md-2 {
+	margin:4px 0px !important;
+	padding:0px 5px !important;
+} 
 
- /* multiselect css end */
+/* subcategoryview css end */
