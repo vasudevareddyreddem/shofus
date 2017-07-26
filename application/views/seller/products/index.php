@@ -46,7 +46,7 @@ if(count($catitemdata1)>0) {	  ?>
 			foreach($catitem_data->docs as $subcategory){?>
 			<?php $space =  $subcategory->subcategory_name; 
 			
-			$nospace = str_replace(array(' ', '<', '>', '&', '{', '}','(', ')', '*'), array('_'), $space);
+			$nospace = str_replace(array(' ',';','/','_', '<','@','+','-','$',':','.','^','|','?','!','#','~', ',', '>', '&', '{', '}','(', ')', '*'), array('_'), $space);
 			
 			?>
               <div class="panel panel-default mar_t10">
