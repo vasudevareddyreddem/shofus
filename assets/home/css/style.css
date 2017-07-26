@@ -3475,8 +3475,8 @@ table#cart tfoot td .btn {
 }
 /* side bar start */
 .sidebar_right{
-	position:absolute;
-	 top:1px; 
+	position:fixed;
+	 top:150px; 
 	right: -170px;
 	z-index:1025;
 	    background: rgba(255,255,255, 0.8);
@@ -3548,7 +3548,7 @@ table#cart tfoot td .btn {
 	margin:5px ;
 	line-height:50px;
 }
-.menu_tit2:hover{
+.menu_ti2:hover{
 	background: #45b1b5; 
 	width:220px;
 	color:#fff;
