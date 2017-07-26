@@ -1,3 +1,8 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.css">
+
+<script src="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
+<script src="<?php echo base_url();?>assets/vendor/datatable/jquery-ui.js"></script>
 <div class="content-wrapper mar_t_con" >
 <section class="content-header">
 		<div class="header-icon">
@@ -23,23 +28,7 @@
   <section class="content ">
   <section id="main-content">
     <section class="wrapper">
-        <!--<div class="row">
-        <div class="col-lg-12">
-      <div class="row">
-       <div class="col-md-7">
-           <h3 class="page-header"><i class="fa fa-credit-card" aria-hidden="true"></i>Seller Payments</h3></div>
-          <div class="col-md-5 pull-right">
-         <form class="navbar-form" action="<?php echo base_url(); ?>seller/payments/seller_search" method="post">
-          <input class="form-control" placeholder="Search" name="search" type="text">
-         <button class="btn btn-default" type="submit">Go!</button>
-          </form>
-            </div></div>
-          <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="<?php echo base_url();?>seller/dashboard">Home</a></li>
-            <li><i class="fa fa-credit-card" aria-hidden="true"></i>Seller Payments</li>
-          </ol>
-        </div>
-      </div>-->
+        
      <div class="row">
         <div class="col-md-12">
           <section class="panel">
@@ -51,7 +40,7 @@
              <div class="clearfix"></div>
               <div><?php echo $this->session->flashdata('message');?></div>
               <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" id="example1">
                   <thead>
                     <tr>
                  <th>S.No</th>
@@ -133,7 +122,12 @@ function checkDelete(id)
 return confirm('Are you sure want to delete "'+id +'" payment?');
 }
 
-</script>
+    $(document).ready(function() {
+    $('#example1').DataTable( {
+        "order": [[ 2, "desc" ]]
+    } );
+} );
+  </script> 
 
 
 
