@@ -17,7 +17,7 @@
 <div class="sidebar_right" >
 			<ul style="padding:0 ">
 				<li  class=" spin ">
-					<a  class="menu_ti2  ">
+					<a  href="<?php echo base_url('category/subcategoryview'); ?>" class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
 						<span class="menu_tit">food</span>
 					</a>
@@ -48,7 +48,7 @@
 			
 					</li>
 				<div class="clearfix"></div>
-				ss<li  class=" spin ">
+				<li  class=" spin ">
 					<a  class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
 						<span class="menu_tit">food</span>

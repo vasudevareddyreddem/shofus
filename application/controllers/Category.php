@@ -13,6 +13,13 @@ class Category extends Front_Controller
 			
  }
  
+ public function subcategoryview(){
+	 
+	$caterory_id=base64_decode($this->uri->segment(3));
+	$this->template->write_view('content', 'customer/subcategoryview', $data);
+	$this->template->render();
+	
+ }
  public function view(){
 	 
 	$caterory_id=base64_decode($this->uri->segment(3));
