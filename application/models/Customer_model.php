@@ -169,6 +169,12 @@ class Customer_model extends MY_Model
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
+	public function get_cart_Items_names($cust_id){
+		$this->db->select('products.item_name')->from('cart');
+		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
+		$this->db->where('cart.cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
 	public function get_cart_total_amount($cust_id){
 		$sql="SELECT count(item_id) as itemcount ,SUM(total_price) as pricetotalvalue ,SUM(delivery_amount) as delivertamount FROM cart  WHERE cust_id ='".$cust_id."'";
         return $this->db->query($sql)->row_array();

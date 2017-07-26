@@ -1,6 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+// Merchant key here as provided by Payu
+$MERCHANT_KEY = "gtKFFx"; //Please change this value with live key for production
+   $hash_string = '';
+// Merchant Salt as provided by Payu
+$SALT = "eCwWELxi"; //Please change this value with live salt for production
 
+// End point - change to https://secure.payu.in for LIVE mode
+
+$PAYU_BASE_URL = "https://test.payu.in";
+
+$action = '';
+
+$posted = array();
+if(!empty($_POST)) {
+    //print_r($_POST);
+  foreach($_POST as $key => $value) {    
+    $posted[$key] = $value; 
+	
+  }
+}
+
+$formError = 0;
+
+if(empty($posted['txnid'])) {
+   // Generate random transaction id
+  $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
+} else {
+  $txnid = $posted['txnid'];
+}
+$hash = '';
+// Hash Sequence
+$hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10";
+if(empty($posted['hash']) && sizeof($posted) > 0) {
+  if(
+          empty($posted['key'])
+          || empty($posted['txnid'])
+          || empty($posted['amount'])
+          || empty($posted['firstname'])
+          || empty($posted['email'])
+          || empty($posted['phone'])
+          || empty($posted['productinfo'])
+         
+  ) {
+    $formError = 1;
+  } else {
+    
+	$hashVarsSeq = explode('|', $hashSequence);
+ 
+	foreach($hashVarsSeq as $hash_var) {
+      $hash_string .= isset($posted[$hash_var]) ? $posted[$hash_var] : '';
+      $hash_string .= '|';
+    }
+
+    $hash_string .= $SALT;
+	echo '<pre>';print_r($hash_string);exit;
+
+
+    $hash = strtolower(hash('sha512', $hash_string));
+    $action = $PAYU_BASE_URL . '/_payment';
+  }
+} elseif(!empty($posted['hash'])) {
+  $hash = $posted['hash'];
+  $action = $PAYU_BASE_URL . '/_payment';
+}
+?>
+<html>
+  <head>
+  <script>
+    var hash = '<?php echo $hash ?>';
+    function submitPayuForm() {
+      if(hash == '') {
+        return;
+      }
+      var payuForm = document.forms.payuForm;
+	  alert();return false;
+      payuForm.submit();
+    }
+  </script>
+  </head>
 <style>
 .panel-title > a:before {
     float: left !important;
@@ -111,7 +190,7 @@
             </div>
 
          
-       <div class="tab-content">
+			<div class="tab-content">
 					<div class="title"><span>Billing Address</span></div>
 					 <?php if($this->session->flashdata('paymenterror')): ?>
 						<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -120,231 +199,28 @@
 			<?php endif; ?>
 						<div class="container">
 						<div class="row">
-						<div class="col-md-8">
-						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="headingOne">
-									 <h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-										  HDFC Bank Creadit Card
-										</a>
-									  </h4>
+						<form action="https://test.payu.in/_payment/" method="POST" >
+						<input type="hidden" name="key" value="<?php echo $this->config->item('MERCHANTKEY'); ?>" />
+						<input type="hidden" name="salt" value="<?php echo $this->config->item('salt'); ?>" />
+						<input type="hidden" name="url" value="<?php echo $this->config->item('paymentbaseurl'); ?>" />
+						<input type="hidden" name="txnid" value="<?php echo $txnid; ?>" >
+						<input type="hidden" name="hash" value="<?php echo $hashvalue; ?>"/>
+						<input type="hidden" name="surl" value="<?php echo $this->config->item('paymentbaseurl'); ?>" />   <!--Please change this parameter value with your success page absolute url like http://mywebsite.com/response.php. -->
+						<input type="hidden" name="furl" value="<?php echo $this->config->item('paymentbaseurl'); ?>" /><!--Please change this parameter value with your failure page absolute url like http://mywebsite.com/response.php. -->
+						<input type="hidden" name="amount" value="<?php echo $carttotal_amount['pricetotalvalue']; ?>" />
+						<input type="hidden" name="firstname" id="firstname" value="<?php echo $billimgdetails['name']; ?>" />
+						<input name="email" type="hidden" id="email" value="<?php echo $emailid; ?>" /></td>
+						<input name="phone" type="hidden" value="<?php echo $billimgdetails['mobile']; ?>" /></td>
+						<input type="hidden" name="productinfo" value="<?php echo $productinfo; ?>">
 
-								</div>
-								<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-									<div class="panel-body">
-									<h4 class="site_col">Complete your payment using</h4>
-										<div class="mar_l20 row">
-											<div class="radio"><label><input type="radio" name="radio-product" checked="checked"><span> verify with OTP</span></label></div>
-											<div class="radio"><label><input type="radio" name="radio-product"><span>verify with Secure Password</span></label></div>
-												<div class="clearfix"></div>
-											<div class="col-md-2">
-												<input class="form-control" type="text" placeholder="CVV">
-											</div>
-											<div class="col-md-2 ">
-												 <button type="submit" class="btn btn-primary">PAY <i class="fa fa-inr" aria-hidden="true"></i>500</button>
-											</div>
-										</div>	
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="headingTwo">
-									 <h4 class="panel-title">
-								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-								   Wallet
-								</a>
-							  </h4>
-
-								</div>
-								<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-									<div class="panel-body"><p>You'll be redirected to PhonePe page, where you can pay using UPI, credit/debit card or any other VPA.</p>
-									<button type="submit " class="btn btn-primary pull-right">CONTINUE</button>
-									</div>
-									
-									<br>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="headingThree">
-									 <h4 class="panel-title">
-								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-								  Credit / Debit / ATM Card
-								</a>
-							  </h4>
-
-								</div>
-								<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-									<div class="panel-body">
-										<form action="<?php echo base_url('payment/debit_credit_post'); ?>" method="post" class="form-horizontal" role="form">
-											<fieldset >
-											  <legend>Payment</legend>
-											  <div class="form-group ">
-												<label class="col-sm-3 control-label inpu_pad" for="card-holder-name">Name on Card</label>
-												<div class="col-sm-9 inpu_pad">
-												  <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
-												</div>
-											  </div>
-											  
-											  <div class="form-group">
-												<label class="col-sm-3  inpu_pad control-label" for="card-number">Card Number</label>
-												<div class="col-sm-9 inpu_pad">
-												  <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
-												</div>
-											  </div>
-											  <?php $monthArray = array("01" => "January", "02" => "February", "03" => "March", "04" => "April", "05" => "May", "06" => "June", "07" => "July", "08" => "August","09" => "September", "10" => "October", "11" => "November", "12" => "December",);?> 
-											  <div class="form-group">
-												<label class="col-sm-3 inpu_pad control-label" for="expiry-month">Expiration Date</label>
-												<div class="col-sm-9 inpu_pad">
-												  <div class="row">
-													<div class="col-xs-3 ">
-													  <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-														<option>Month</option>
-														<?php
-														foreach ($monthArray as $key=>$month) { ?>
-															<option value="<?php echo $key ;?>"><?php echo $month;?></option>														}
-														
-														<?php }?>
-													  </select>
-													</div>
-													<div class="col-xs-3">
-														
-													<select class="form-control" name="expiry-year">
-													<?php for ($i = 2010; $i <= 2100; $i++) {  ?>
-													<option value="<?php echo substr($i, -2); ?>"><?php echo $i; ?></option>
-													<?php }  ?>
-													</select>
-													</div>
-												  </div>
-												</div>
-											  </div>
-											  <div class="form-group">
-												<label class="col-sm-3 control-label inpu_pad" for="cvv">Card CVV</label>
-												<div class="col-sm-3 inpu_pad">
-												  <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code">
-												</div>
-											  </div>
-											  <div class="clearfix"></div>
-											  <div class="form-group ">
-												<div class=" inpu_pad">
-												  <button type="submit" class="btn btn-primary pull-right">Pay Now</button>
-												</div>
-											  </div>
-											</fieldset>
-										</form>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="headingFour">
-									 <h4 class="panel-title">
-								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-								  Net Banking
-								</a>
-							  </h4>
-
-								</div>
-								<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-									<div class="panel-body">
-										<h4 class="site_co">Popular Banks</h4>
-											<div class="row">
-												<div class="col-sm-3">
-													<div class="radio">
-														<label>
-															<input type="radio" name="radio-product" checked="checked"><span><span><img src="<?php echo base_url(); ?>assets/home/images/axis.png" /> </span>Axis Bank</span>
-														</label>
-													</div>
-												</div>
-												<div class="col-sm-3">
-													<div class="radio">
-														<label>
-															<input type="radio" name="radio-product" checked="checked"><span><span><img src="<?php echo base_url(); ?>assets/home/images/sbi.png" /> </span>State Bank of India</span>
-														</label>
-													</div>
-												</div>
-												<div class="col-sm-3">
-													<div class="radio">
-													<label>
-														<input type="radio" name="radio-product" checked="checked"><span><span><img src="<?php echo base_url(); ?>assets/home/images/hdfc.png" /> </span>HDFC Bank</span>
-													</label>
-													</div>
-												</div>
-												<div class="col-sm-3">
-													<div class="radio">
-														<label>
-															<input type="radio" name="radio-product" checked="checked"><span><span><img src="<?php echo base_url(); ?>assets/home/images/icic.png" /> </span> ICICI Bank</span>
-														</label>
-													</div>
-												</div>
-											</div>
-												<div class="clearfix"></div>
-												<div class="row">
-												<h4 class="site_col pad_l15">Other Banks</h4>
-												<div class=" col-md-5 ">
-												<div class="form-group">
-												<label for="bank">Bank name</i></label>
-													<select type="text" class="form-control " id="bank">
-													<option selected>Choose</option>
-													<option value="access">Access Bank</option>
-													<option value="citibank">Citibank</option>
-													<option value="diamond">Diamond Bank</option>
-													<option value="ecobank">Ecobank</option>
-													<option value="fidelity">Fidelity Bank</option>
-													<option value="fcmb">First City Monument Bank (FCMB)</option>
-													<option value="fsdh">FSDH Merchant Bank</option>
-													<option value="gtb">Guarantee Trust Bank (GTB)</option>
-													<option value="heritage">Heritage Bank</option>
-													<option value="Keystone">Keystone Bank</option>
-													<option value="rand">Rand Merchant Bank</option>
-													<option value="skye">Skye Bank</option>
-													<option value="stanbic">Stanbic IBTC Bank</option>
-													<option value="standard">Standard Chartered Bank</option>
-													<option value="sterling">Sterling Bank</option>
-													<option value="suntrust">Suntrust Bank</option>
-													<option value="union">Union Bank</option>
-													<option value="uba">United Bank for Africa (UBA)</option>
-													<option value="unity">Unity Bank</option>
-													<option value="wema">Wema Bank</option>
-													<option value="zenith">Zenith Bank</option>
-													</select>
-													</div>
-												</div>
-											</div>
-											
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="headingFive">
-									<h4 class="panel-title">
-									<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-									  Cash on Delivery
-									</a>
-									</h4>
-								</div>
-								<div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-									<div class="panel-body">
-										<h4 class="site_col"> Order Confirmation</h4>
-										<div class="checkbox">
-											<label>
-												<input type="checkbox" value="">
-												
-													Please Click here to Confirm your Order 
-											</label>
-											<br>
-											<button type="button" class="btn btn-primary pull-right">Confirm Order</button>
-										</div>
-									</div>
-								</div>
-							</div>
+						<input type="radio" name="paymentmode" value="0" >Cash on Delivery<br>
+						<input type="radio" name="paymentmode" value="1"> Female<br>
+						<input type="radio" name="paymentmode" value="2"> Other 
+						<button type="submit">Pay</button>
+						
+						</form>
 						</div>
-						</div>
-						</div>
-						</div>
-                        <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-primary next-step">next</button></li>
-                        </ul>
+                       
                     
     </section>
 	
