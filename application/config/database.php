@@ -313,7 +313,7 @@ $db['default'] = array(
 
 
 
-	'database' => 'cartinho_live',
+	'database' => 'cartinho_cart',
 
 
 
