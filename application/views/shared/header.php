@@ -202,7 +202,7 @@
 	</div>
 	  <div class="top-navbar1">
     <div class="container">
-      <div class=" row">
+      <div class=" row qucik_jmp">
 		  <ul class="navbar_1"><li><span style="color:#555">Qucik Jump to </span></li>
 			<li><a href="">Grocery</a></li>
 			<li><a href="">Food</a></li>
