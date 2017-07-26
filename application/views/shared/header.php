@@ -16,6 +16,27 @@
 </style>
 <div class="sidebar_right" >
 			<ul style="padding:0 ">
+				<li  class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">food</span>
+					</a>
+			
+				</li>
+				<div class="clearfix"></div>
+				<li  class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">food</span>
+					</a>
+			
+				</li>
+				<div class="clearfix"></div>
+					<li  class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">food</span>
+					</a>
 			
 				<li id="hover_li" class=" spin ">
 					<a  class="menu_ti2  ">
@@ -27,6 +48,35 @@
 							<div class="col-md-3">
 								<ul class="list_cat">
 									<li><a style="color:#666;">Electronics</a></li>
+				</li>
+				<div class="clearfix"></div>
+					<li  class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">food</span>
+					</a>
+			
+					</li>
+				<div class="clearfix"></div>
+				<li  class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">food</span>
+					</a>
+			
+					</li>
+				<div class="clearfix"></div>
+				<li id="hover_li" class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">More Categories</span>
+					</a>
+					<ul id="left_box" class="right_cust" style="display:none">
+						
+						
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">Mobiles</a></li>
 									<li><a href="">Samsung</a></li>
 									<li><a href="">Apple</a></li>
 									<li><a href="">Microsoft</a></li>
@@ -38,7 +88,7 @@
 								</ul>
 							</div>
 						</div>
-						
+			
 					</ul>
 				</li>
 				<div class="clearfix"></div>
