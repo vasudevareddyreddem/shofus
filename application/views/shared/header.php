@@ -15,56 +15,69 @@
       cursor: pointer; }
 </style>
 <div class="sidebar_right" >
-			
 			<ul style="padding:0 ">
 			
-		
-			<?php  
-			//echo '<pre>';print_r($catitemdata);exit;
-			foreach($catitemdata as $catitem_data) { ?>		
-				<li class="spin btn-group show-on-hover">
-					<a  class="menu_ti2  dropdown-toggle" data-toggle="dropdown">
+				<li id="hover_li" class=" spin ">
+					<a  class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit"><?php echo $catitem_data['category_name']; ?></span>
+						<span class="menu_tit">Electronics</span>
 					</a>
-					<ul class="dropdown-menu " role="menu">
+					<ul id="left_box" class="right_cust" style="display:none">
 						<div class="row">
-						<?php $k=1;foreach($catitem_data['subcat'] as $subcat ) { ?>
 							<div class="col-md-3">
 								<ul class="list_cat">
-									<li><a href="<?php echo base_url('category/view/'.base64_encode($subcat['subcategory_id'])); ?>" style="color:#666;"><?php echo $subcat['subcategory_name']; ?></a></li>
-									<?php foreach($subcat['product_list'] as $product_list ) {?>
-									<li><a href="<?php echo base_url('category/productview/'.base64_encode($product_list['item_id'])); ?>"><?php echo $product_list['item_name']; ?></a></li>
-									<?php } ?>
-							
+									<li><a style="color:#666;">Electronics</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
 								</ul>
 							</div>
-							<?php if($k==4){ ?>
-								<div class="clearfix"></div>
-							<?php } ?>
-								<?php $k++;} ?>
-								<div class="clearfix"></div>
 						</div>
 						
 					</ul>
 				</li>
 				<div class="clearfix"></div>
-					<?php }?>
-				
-				
-				
-				
-			</ul>
-								
-							
-							
-						
-	</div>
+				<li id="hover_li1" class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit">Electronicsfdsafsaffs</span>
+					</a>
+					<ul id="left_box1" class="right_cust" style="display:none">
+						<div class="row">
+							<div class="col-md-3">
+								<ul class="list_cat">
+									<li><a style="color:#666;">dsfdsfsa</a></li>
+									<li><a href="">Samsung</a></li>
+									<li><a href="">Apple</a></li>
+									<li><a href="">Microsoft</a></li>
+									<li><a href="">Nokia</a></li>
+									<li><a href="">LG</a></li>
+									<li><a href="">HTC</a></li>
+									<li><a href="">Motorola</a></li>
+									<li><a href="">Samsung</a></li>
+								</ul>
+							</div>
+						</div>
 						
 					</ul>
-				</li><div class="clearfix"></div>
+				</li>
+					<div class="clearfix"></div>
+					<li class=" spin ">
+					<a  class="menu_ti2  ">
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span class="menu_tit"> More Categories</span>
+					</a>
+					
+				</li>
 			
-		
+				
+				
+				
 			</ul>
 </div>
 <div class="wrapper"> 
@@ -707,5 +720,15 @@ $(document).ready(function(){
     $("#show_loc").click(function(){
         $("#show_loc").show();
     });
+});
+</script>
+<script>
+$("#hover_li").hover(function(){
+    $('#left_box').fadeToggle();
+});
+</script>
+<script>
+$("#hover_li1").hover(function(){
+    $('#left_box1').fadeToggle();
 });
 </script>
