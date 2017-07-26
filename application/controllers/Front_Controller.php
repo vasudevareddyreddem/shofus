@@ -16,13 +16,27 @@ class Front_Controller extends MY_Controller {
 				$this->load->library('cart');
 				$this->load->model('home_model');
 				
-					$data['catitemdata'] = $this->home_model->getcatsubcatpro();
-					$data['catitemdata1'] = $this->home_model->getcatsubcatpro();
-					$data['cnt']= count($data['catitemdata1']);
-					$data['catdata'] = $this->home_model->getcatsubcat();
-					$data['locationdata'] = $this->home_model->getlocations();
+				//$data['catitemdata']= $this->home_model->getcatsubcatpro();	
+				$catitemdata= $this->home_model->getcatsubcatpro();
+				//echo '<pre>';print_r($catitemdata);exit;	
+				foreach ($catitemdata as $cats){
+					if($cats['category_name']=='APPAREL' || $cats['category_name']=='APPAREL ACCESSORIES, INNERWEAR, SLEEPWEAR'){
+						
+						$fashioncategory[]=$cats['subcat'];
+					}
 					
-					//echo '<pre>';print_r($data);exit;
+					
+				}
+				$data['fashion']=$fashioncategory;
+				//echo '<pre>';print_r($fashioncategory);
+				
+				//exit;
+				$data['catitemdata1'] = $this->home_model->getcatsubcatpro();
+				$data['cnt']= count($data['catitemdata1']);
+				$data['catdata'] = $this->home_model->getcatsubcat();
+				$data['locationdata'] = $this->home_model->getlocations();
+			
+					//echo '<pre>';print_r($data['catitemdata']);exit;
 					if($this->session->userdata('userdetails')){
 					$customerdetails=$this->session->userdata('userdetails');
 
