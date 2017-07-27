@@ -354,13 +354,13 @@
           </div>
 		  <div class="form-group">
             <label class="control-label">Other Shops (if any): </label>
-            <select class="form-control"  name = "other_shops" id = "other_shops">
+            <select class="form-control" onchange="shoplocation(this.value);"  name = "other_shops" id = "other_shops">
 					<option value ="">Select</option>
 					<option value ="yes">Yes</option>
 					<option value ="No">No</option>		
 				</select>
           </div>
-		 <div class="form-group">
+		 <div id="shoplocation" class="form-group">
             <label class="control-label">Other Shop Locations</label>
             <select id="other_shops_location" onchange="removemsg(this.value);" name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
 				  <option value=""></option>
@@ -454,6 +454,15 @@
 	
 	
 <script type="text/javascript">
+function shoplocation(val){
+	if(val=='No'){
+	$('#shoplocation').hide();	
+	}else{
+	$('#shoplocation').show();
+	}
+	
+	
+}
 $('#timimages').hide();
 $('#tanimages').hide();
 $('#cstimag').hide();
