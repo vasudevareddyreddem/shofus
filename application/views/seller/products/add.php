@@ -440,7 +440,7 @@ $(document).ready(function(){
 			subcategorylist: {
 					validators: {
 					notEmpty: {
-					message: 'Please select a subcategory'
+				message: 'Please select a subcategory'
 					}
 				}
 			},
@@ -641,7 +641,7 @@ $(document).ready(function() {
 			subcategory_id_import: {
                validators: {
 					notEmpty: {
-						message: 'Please select a SubCategory'
+					message: 'Please select a SubCategory'
 					}
 				}
             },
