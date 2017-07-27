@@ -16,9 +16,7 @@
 }
 </style>
 
-<div class="" style="margin-top:150px;">
-	
-</div>
+
 <body >
 <div class="pad_bod">
 		<div class="row">
