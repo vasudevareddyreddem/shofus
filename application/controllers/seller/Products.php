@@ -1047,7 +1047,7 @@ public function returns()
 				
 					if(count($data['errors'])<=0){
 						foreach($totalfields as $data){
-							$path='/public_html/uploads/products/';
+							$path='F:/xampp/htdocs/cartinhour/uploads/products/';
 						//echo '<pre>';print_r($data);
 								$image_link = $data[21];
 								$split_image = pathinfo($image_link);
@@ -1598,7 +1598,7 @@ public function returns()
 				
 					if(count($data['errors'])<=0){
 						foreach($totalfields as $data){
-							$path='/public_html/uploads/products/';
+							$path='F:/xampp/htdocs/cartinhour/uploads/products/';
 						//echo '<pre>';print_r($data);
 								$image_link = $data[16];
 								$split_image = pathinfo($image_link);

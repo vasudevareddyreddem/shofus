@@ -14,6 +14,11 @@
 	margin-top:16%;
 }
 </style>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.css">
+
+<script src="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
+<script src="<?php echo base_url();?>assets/vendor/datatable/jquery-ui.js"></script>
 <?php $details=	$this->session->userdata('seller_firsttime');
 //echo $details;exit; 
  if($this->session->flashdata('updatpassword')=="Password successfully changed!"){
@@ -27,6 +32,7 @@
 <?php
  //$bank= $this->session->userdata('bank_complete');
  }?>
+ 
  
 
 
@@ -97,7 +103,7 @@
 		<div class="tab-content">
 			<div class="tab-pane fade in active" id="tab1">
 				<div class="panel-body">
-					 <div class="table-responsive">
+					 <div class="table-responsive" id="example1">
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -160,7 +166,12 @@
                   <div class="panel-body">    
           <section class="panel">
                       <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" id="tables<?php echo $nospace;  ?>">
+                <script type="text/javascript">
+                $(document).ready(function(){
+                  $('#headingOne<?php echo $nospace;  ?>').DataTable();
+                });
+              </script>
                   <thead>
                     <tr>
                       <th>S.No</th>
@@ -340,4 +351,6 @@
         });
     
     });
+
+   
 </script>

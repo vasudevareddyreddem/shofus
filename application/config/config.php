@@ -1010,6 +1010,12 @@ $config['log_file_permissions'] = 0644;
 
 
 
+/* form payent purpose*/
+
+$config['MERCHANTKEY']	= 'gtKFFx';
+//$config['paymentbaseurl']	= "https://secure.payu.in";
+$config['salt']	= "eCwWELxi";
+$config['PAYU_BASE_URL']	= "https://test.payu.in";
 
 
 
