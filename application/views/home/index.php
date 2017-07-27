@@ -1,5 +1,5 @@
 <body class="bac_img">
-<div class="banner_home con_start">
+<div class="banner_home " style="margin-top:-20px;">
      
       <div id="myCarousel" class="carousel slide"> 
         <!-- Indicators -->

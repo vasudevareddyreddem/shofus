@@ -13,6 +13,15 @@
       top: 7px;
       width: 12px;
       cursor: pointer; }
+ .fixed {
+     position: fixed;
+    top: 0px;
+	width:100%;
+	z-index:1025;
+	background: #f5f5f5;
+	 -webkit-box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
+	-moz-box-shadow:    0px 3px 5px rgba(100, 100, 100, 0.49);
+	box-shadow:         0px 3px 5px rgba(100, 100, 100, 0.49);
 </style>
 <div class="sidebar_right" >
 			<ul style="padding:0 ">
@@ -82,15 +91,7 @@
 				</li>
 				<div class="clearfix"></div>
 			
-					<div class="clearfix"></div>
-					<li class=" spin ">
-					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit"> More Categories</span>
-					</a>
-					
-				</li>
-			
+				
 				
 				
 				
@@ -99,7 +100,7 @@
 <div class="wrapper"> 
   <!--header part start here -->
   <div class="jain_container">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default nav_cus" role="navigation">
 	<div class="top-navbar">
     <div class="container">
       <div class=" row">
@@ -120,8 +121,8 @@
       </div>
     </div>
   </div>
-      <div class="container1 container-fluid">
-        <div class="navbar-header">
+      <div class="container1 container-fluid sticky-header">
+        <div class="navbar-header ">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
           <a class="navbar-brand" href="<?php echo base_url(); ?>"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
         <div class="col-md-6">
@@ -747,4 +748,19 @@ $("#hover_li").hover(function(){
 $("#hover_li1").hover(function(){
     $('#left_box1').fadeToggle();
 });
+</script>
+<script>
+	var offset = $( ".sticky-header" ).offset();
+	var sticky = document.getElementById("sticky-header")
+
+	$(window).scroll(function() {
+		
+		if ( $('body').scrollTop() > offset.top){
+			$('.sticky-header').addClass('fixed');
+		} else {
+			 $('.sticky-header').removeClass('fixed');
+		}
+		
+
+	});
 </script>
