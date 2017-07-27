@@ -395,6 +395,30 @@ class Customer extends Front_Controller
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
 		$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+		$items_names= $this->customer_model->get_cart_Items_names($customerdetails['customer_id']);
+		$data['billimgdetails']=$this->session->userdata('billingaddress');
+		$data['emailid']=$customerdetails['cust_email'];
+		$data['productinfo']=$items_names[0]['item_name'];
+		$data['txnid']=substr(hash('sha256', mt_rand() . microtime()), 0, 20);
+		$txnid=substr(hash('sha256', mt_rand() . microtime()), 0, 20);
+		$amount=$data['carttotal_amount']['pricetotalvalue'];
+		//echo '<pre>';print_r($data);exit;
+		$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
+		//$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|'.$data['billimgdetails']['name'].'|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
+		//echo '<pre>';print_r($hashSequence);exit;
+		$hashVarsSeq = explode('|', $hashSequence);
+		$hash_string='';
+		foreach($hashVarsSeq as $hash_var) {
+		$hash_string .= $hash_var;
+		$hash_string .= '|';
+		}
+
+		
+		$data['hashvalue'] = strtolower(hash('sha512', $hash_string));
+		
+		
+		
+		
 		
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/payment',$data);
@@ -422,7 +446,7 @@ class Customer extends Front_Controller
 		$data['carttotal_amount']= $this->customer_model->get_successorder_total_amount($order_id);
 
 		//echo '<pre>';print_r($data);exit;
-		$this->template->write_view('content', 'customer/success',$data);
+		$this->template->write_view('content', 'customer/response',$data);
 		$this->template->render();
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');

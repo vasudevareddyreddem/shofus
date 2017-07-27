@@ -114,21 +114,9 @@
        <div class="tab-content">
 					<div class="title"><span>Billing Address</span></div>
 					  <div class="table-responsive">
-						<?php 
-						$MERCHANT_KEY=$this->config->item('merchantkey');
-						$PAYU_BASE_URL=$this->config->item('paymentbaseurl');
-						//echo '<pre>';print_r($MERCHANT_KEY);
-						//exit; ?>
+						<?php //echo '<pre>';print_r($billingaddress);//exit; ?>
 						
 						<form action="<?php echo base_url('customer/billingaddresspost'); ?>" method="post" name="billingaddress" id="billingaddress">
-								<input type="hidden" name="key" value="<?php echo $MERCHANT_KEY ?>" />
-								<input type="hidden" name="hash" value="<?php echo $hash ?>"/>
-								<input type="hidden" name="txnid" value="<?php echo $txnid ?>" />
-
-								<input type="hidden" name="surl" value="http://localhost/payment/response.php" />   <!--Please change this parameter value with your success page absolute url like http://mywebsite.com/response.php. -->
-								<input type="hidden" name="furl" value="http://localhost/payment/response.php" /><!--Please change this parameter value with your failure page absolute url like http://mywebsite.com/response.php. -->
-
-
 										<div class="form-group">
 										  <label>Name:</label>
 										  <input type="text" id="name" name="name" class="form-control" value="<?php echo $customerdetail['cust_firstname'].''.$customerdetail['cust_lastname']; ?>">
