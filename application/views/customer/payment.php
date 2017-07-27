@@ -9,7 +9,7 @@ $PAYU_BASE_URL = "https://test.payu.in";
 
 	$hash = strtolower(hash('sha512', $hash_string));
   $hash = $hash;
-  $action = "https://test.payu.in_payment";
+   $action = $PAYU_BASE_URL . '/_payment';
 
 ?>
 <html>
@@ -21,7 +21,6 @@ $PAYU_BASE_URL = "https://test.payu.in";
         return;
       }
       var payuForm = document.forms.payuForm;
-	  alert();return false;
       payuForm.submit();
     }
   </script>
@@ -145,7 +144,7 @@ $PAYU_BASE_URL = "https://test.payu.in";
 			<?php endif; ?>
 						<div class="container">
 						<div class="row">
-						<form action="<?php echo base_url('payment/debit_credit_post');?>" method="POST" >
+						<form action="<?php echo $action;?>" method="POST" >
 						<input type="hidden" name="key" value="<?php echo $this->config->item('MERCHANTKEY'); ?>" />
 						<input type="hidden" name="salt" value="<?php echo $this->config->item('salt'); ?>" />
 						<input type="hidden" name="url" value="<?php echo $this->config->item('paymentbaseurl'); ?>" />

@@ -32,6 +32,10 @@ class Promotions_model extends MY_Model
 		$this->db->insert('season_sales', $data);
         return $insert_id = $this->db->insert_id();
 	}
+	function add_offer_to_productss($productid,$data){
+		$this->db->where('item_id', $productid);
+		return $this->db->update('products', $data);
+	}
 	function item_already_exits($pid){
 		//echo $date;exit;
 		$this->db->select('*')->from('season_sales');

@@ -41,11 +41,11 @@ tfoot input {
 					</span>
 				</div>
 			</form>  
-			<h1>Add Offers</h1>
-			<small>Top Offers</small>
+			<h1>Offers</h1>
+			<small>My Offers</small>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard');?>"><i class="pe-7s-home"></i> Home</a></li>
-				<li class="active">Top Offers</li>
+				<li class="active">My Offers</li>
 			</ol>
 		</div>
 	</section>
@@ -60,41 +60,47 @@ tfoot input {
 	 <div><?php echo $this->session->flashdata('message');?></div>
       <div class="faq">
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
-			<?php if($this->session->flashdata('success')): ?>
-			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-			</button><?php echo $this->session->flashdata('success');?></div>	
-			<?php endif; ?>
-			<?php if($this->session->flashdata('error')): ?>
-			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-			</button><?php echo $this->session->flashdata('error');?></div>	
-			<?php endif; ?>
-	   <?php  foreach($catitemdata1 as $catitem_data1 )  {  ?> 
+ <?php if($this->session->flashdata('success')): ?>
+					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('success');?></div>	
+					<?php endif; ?>
+					<?php if($this->session->flashdata('error')): ?>
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('error');?></div>	
+					<?php endif; ?>
+	   <?php  $kk=1;foreach($catitemdata1 as $catitem_data1 )  {  ?> 
 		
-		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
+		 <a id="btn_chang<?php echo $kk;?>" onclick="addtabactive(<?php echo $kk;?>);addtabactives(<?php echo $kk;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
 
-	<?php } ?>
-	<a href="<?php echo base_url('seller/showups/topoffers');?> " class="pull-right btn btn-sm btn-primary">Back</a>
-        <?php  foreach($catitemdata as $catitem_data )  {    ?>
+	<?php $kk++;} ?>
+		<a href="<?php echo base_url('seller/showups/topoffers');?> " class="pull-right btn btn-sm btn-primary">Back</a>
+
+        <?php  $j=1;foreach($catitemdata as $catitem_data )  {    ?>
         <!--<h1 onclick="document.getElementById('gry').style.display='block'">GETTING STARTED</h1>-->
         <div class="tab-content">
-              <div class="tab-pane" id="gry<?php echo $catitem_data->category_id; ?>">
+              <div class="tab-pane" id="gry<?php echo $j; ?>">
               <?php 
 			foreach($catitem_data->docs as $subcategory){?>
 			<?php $space =  $subcategory->subcategory_name; 
-			
+			 
+			//$nospace = str_replace(' ','_',$space);
 			$nospace = str_replace(array(' ',';','/','_', '<','@','+','-','$',':','.','^','|','?','!','#','~', ',', '>', '&', '{', '}','(', ')', '*'), array('_'), $space);
+			
+			//$base =base64_encode($nospace);
+
+			//$replay = base64_decode($nospace);
 			
 			?>
               <div style="padding:10px;" class="panel panel-default mar_t10">
                 <div class="panel-heading" role="tab" id="headingOne<?php echo $nospace;  ?>">
-                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" onclick="sibcategoryproductlist(<?php echo $subcategory->subcategory_id;  ?>);" href="#collapseOne<?php echo $nospace;  ?>" aria-expanded="true" aria-controls="collapseOne<?php echo $nospace;  ?>"> <i class="more-less glyphicon glyphicon-plus"></i> <?php echo $subcategory->subcategory_name; ?> </a> </h4>
+                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion"  href="#collapOne<?php echo $nospace;  ?>" aria-expanded="true" aria-controls="collapOne<?php echo $nospace;  ?>"> <i class="more-less glyphicon glyphicon-plus"></i> <?php echo $subcategory->subcategory_name; ?> </a> </h4>
                 </div>
-                <div id="collapseOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
+                <div id="collapOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
 		
 	<form  id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
-		<table id="example<?php echo $subcategory->subcategory_id;  ?>" class="display" width="100%" cellspacing="0">
+		<table id="example<?php echo $subcategory->subcategory_id;?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
@@ -138,7 +144,7 @@ tfoot input {
     </table>
 	
 	<div class="modal fade" id="offerspopup<?php echo $subcategory->subcategory_id;?>" role="dialog">
-    <div class="modal-dialog">
+      <div class="modal-dialog">
 		<div class="modal-content">
         <div class="modal-header" style="background-color: #00354d;color:#fff;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -164,8 +170,6 @@ tfoot input {
           <button type="submit" class="btn btn-default">Submit</button>
         </div>
       </div>
-      </div>
-		
       </div>
      </div>
  
@@ -361,14 +365,14 @@ tfoot input {
               
             </div>
         <!-- container --> 
-	   <?php }?>
+	   <?php $j++;}?>
       </div>
     </div>
    <?php } else {?>
    
    <div class="container">
 	
-      <h1 class="head_title">Welcome to the Cart In Hour</h1>
+      <h1 class="head_title">You have no Products. Please add products</h1>
    
    </div>
    
@@ -410,8 +414,7 @@ function updateDataTableSelectAllCtrl(table){
    }
 }
 
-
-  function addtabactives(val)
+ function addtabactives(val)
 {
 	$("#btn_chang"+val).removeClass("btn-info");
 	$("#btn_chang"+val).addClass("btn-primary");
