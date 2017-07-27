@@ -28,7 +28,7 @@
 				<li  class=" spin ">
 					<a  href="<?php echo base_url('category/subcategoryview'); ?>" class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">food</span>
+						<span class="menu_tit">Food</span>
 					</a>
 			
 				</li>
@@ -36,7 +36,7 @@
 				<li  class=" spin ">
 					<a  class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">food</span>
+						<span class="menu_tit">Fashion</span>
 					</a>
 			
 				</li>
@@ -44,27 +44,11 @@
 					<li  class=" spin ">
 					<a  class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">food</span>
+						<span class="menu_tit">Electronics</span>
 					</a>
 			
 				</li>
-				<div class="clearfix"></div>
-					<li  class=" spin ">
-					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">food</span>
-					</a>
 			
-					</li>
-				<div class="clearfix"></div>
-				<li  class=" spin ">
-					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">food</span>
-					</a>
-			
-					</li>
-				<div class="clearfix"></div>
 				<li id="hover_li" class=" spin ">
 					<a  class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
@@ -75,15 +59,12 @@
 						
 							<div class="col-md-3">
 								<ul class="list_cat">
-									<li><a style="color:#666;">Mobiles</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
+								<?php foreach ($allcategories_list as $categories){ ?>
+								
+								<li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" style="color:#666;"><?php echo $categories['category_name'] ; ?></a></li>
+									
+								<?php } ?>
+									
 								</ul>
 							</div>
 						</div>

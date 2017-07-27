@@ -12,19 +12,7 @@ $PAYU_BASE_URL = "https://test.payu.in";
    $action = $PAYU_BASE_URL . '/_payment';
 
 ?>
-<html>
-  <head>
-  <script>
-    var hash = '<?php echo $hash ?>';
-    function submitPayuForm() {
-      if(hash == '') {
-        return;
-      }
-      var payuForm = document.forms.payuForm;
-      payuForm.submit();
-    }
-  </script>
-  </head>
+
 <style>
 .panel-title > a:before {
     float: left !important;
@@ -144,12 +132,12 @@ $PAYU_BASE_URL = "https://test.payu.in";
 			<?php endif; ?>
 						<div class="container">
 						<div class="row">
-						<form action="<?php echo $action;?>" method="POST" >
+						<form action="<?php echo $action;?>" method="POST">
 						<input type="hidden" name="key" value="<?php echo $this->config->item('MERCHANTKEY'); ?>" />
 						<input type="hidden" name="salt" value="<?php echo $this->config->item('salt'); ?>" />
 						<input type="hidden" name="url" value="<?php echo $this->config->item('paymentbaseurl'); ?>" />
 						<input type="hidden" name="txnid" value="<?php echo $txnid; ?>" >
-						<input type="hidden" name="hash" value="<?php echo $hashvalue; ?>"/>
+						<input type="hidden" name="hash" value="<?php echo $hash ?>"/>
 						<input type="hidden" name="surl" value="<?php echo base_url('customer/ordersuccess'); ?>" />   <!--Please change this parameter value with your success page absolute url like http://mywebsite.com/response.php. -->
 						<input type="hidden" name="furl" value="<?php echo base_url('customer/ordersuccess'); ?>" /><!--Please change this parameter value with your failure page absolute url like http://mywebsite.com/response.php. -->
 						<input type="hidden" name="amount" value="<?php echo $carttotal_amount['pricetotalvalue']; ?>" />
@@ -178,6 +166,15 @@ $PAYU_BASE_URL = "https://test.payu.in";
 	
 
 <script>
+
+    var hash = '<?php echo $hash ?>';
+    function submitPayuForm() {
+      if(hash == '') {
+        return;
+      }
+      var payuForm = document.forms.payuForm;
+      payuForm.submit();
+    }
 
 	$(document).ready(function() {
     $('#billingaddress').bootstrapValidator({

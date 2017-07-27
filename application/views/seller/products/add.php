@@ -1,14 +1,22 @@
 <style>
-.shad_down{
-	-webkit-box-shadow: -1px 1px 5px -1px rgba(0,0,0,0.75);
-	-moz-box-shadow: -1px 1px 5px -1px rgba(0,0,0,0.75);
-	box-shadow: -1px 1px 5px -1px rgba(0,0,0,0.75);
-	background-color:#fff;
-	padding:8px;
-	border-radius:5px;
+.label-info{
+	border: 1px solid #ddd !important;
+	 background-color: #fafafa !important;
+	 color:#555 !important;
+ }
+ #colors{
+	width:100% !important;
+} #sizes{
+	width:100% !important;
 }
+ .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+		border:none;
+	}
+
 </style>
-<div class="content-wrapper mar_t_con"  >
+<head>
+</head>
+<div class="content-wrapper mar_t_con" >
 	<section class="content-header">
 		<div class="header-icon">
 			<i class="pe-7s-note2"></i>
@@ -31,140 +39,255 @@
 		</div>
 	</section>	
 	<section class="content">
-	<div class="row">
-	<div class=" col-md-6 ">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Category </label>
-				<select class="form-control " id="subcategorylist" name="subcategorylist" >
-				<option value="">Select category </option>
-				</select>
-				<p class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Category</a> </p>
-			 
-			</div>
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Sub Category </label>
-				<select class="form-control " id="subcategorylist" name="subcategorylist" >
-				<option value="">Select Subcategory </option>
+	<?php if($this->session->flashdata('addcus')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('addcus');?></div>
+			<?php endif; ?>
+			<?php if($this->session->flashdata('error')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('error');?></div>
+			<?php endif; ?>
+	 <?php //echo '<pre>';print_r($this->session->flashdata('addsuccess'));exit; ?>
+	  
+				   <?php if($this->session->flashdata('addsuccess')){ ?>
 
-				</select>
-				<p class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Subcategory</a> </p>
-			 
-			</div>
-			
-			
-	</div>	
-	<div class=" col-md-6 ">
-	<label >&nbsp; </label>
-		<div  class=" shad_down " >
-			<h4 class="text-center" style="color:#006a99 ">Download this File to add Multiple Products</h4>
-			<p class="text-center">
-			<button type="button" class="btn btn-primary btn-xs">Download</button>
-			<button type="button" class="btn btn-warning btn-xs">Upload</button>
-			</p>
-			<p class="text-center">(for each Subcategory)</p>
-		</div >
-	</div>
-	</div>
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+					 <?php foreach($this->session->flashdata('addsuccess') as $error){?>
+					
+					<?php echo $error.'<br/>'; ?>
+					
+					
+					<?php } ?></div><?php } ?>
+
 	
-	<div class="clearfix"></div>
-	<hr>
-	
-	
-	<div class="row">
-			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Category </label>
-					<select class="form-control " id="subcategorylist" name="subcategorylist" >
-					<option value="">Select category </option>
+		<div class="col-xs-12 col-sm-12 col-md-12 m-b-20">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab1" data-toggle="tab">Add Single Product</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Add Multipule Products</a></li>
+                            </ul>
+                            <!-- Tab panels -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="tab1">
+                                    <div class="panel-body">
+										<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data">
+											<div class="form-group nopaddingRight col-md-12 san-lg">
+											    <label for="exampleInputEmail1">Select Category</label>
+												<select class="form-control " onchange="getsubcategory(this.value);" id="category_id" name="category_id">
+												<option value="">Select Category</option>
+												<?php foreach($category_details as $list){ ?>
+												<option value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
+												<?php } ?>
+												
+											  </select>
+											 
+											</div>
+											<div class="clear-fix"></div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Sub Category </label>
+												<select class="form-control " id="subcategorylist" name="subcategorylist" >
+												<option value="">Select Subcategory </option>
 
-					</select>
-				</div>
-			</div>	<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Category </label>
-					<select class="form-control " id="subcategorylist" name="subcategorylist" >
-					<option value="">Select category </option>
+												</select>
+											 
+											</div>
+										
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Sku code</label>
+												<input type="text" class="form-control" name="skuid" id="skuid" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Other Unique code</label>
+												<input type="text" class="form-control" name="otherunique" id="otherunique" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Product name</label>
+												<input type="text" class="form-control" id="productname" name="productname" >
+											</div>
+											
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">price</label>
+												<input type="text" class="form-control" id="product_price" name="product_price" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Special price</label>
+												<input type="text" class="form-control" id="specialprice" name="specialprice" >
+											</div>
+											<div id="materialpurose" style="display:none;">
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label for="exampleInputEmail1">Sleeve / Fitting type </label>
+											<input type="text" class="form-control" id="producttype" name="producttype" >
 
-					</select>
-				</div>
-			</div>
-	</div>
-	<div class="row">
-			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Category </label>
-					<select class="form-control " id="subcategorylist" name="subcategorylist" >
-					<option value="">Select category </option>
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Material</label>
+												<input type="text" class="form-control" id="material" name="material" >
+											</div>
+											</div>
+											<div class="col-md-6  ">
+												<div class="form-group ">
+												<label>Size</label>
+													<input class="form-control" id="sizes"  type="text" name="sizes"/>
+													
 
-					</select>
-				</div>
-			</div>	<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Category </label>
-					<select class="form-control " id="subcategorylist" name="subcategorylist" >
-					<option value="">Select category </option>
+												</div>
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Weight</label>
+												<input type="text" class="form-control" id="weight" name="weight" >
+											</div>
+											<div class="col-md-6  ">
+												<div class="form-group ">
+												<label>Color</label>
+													<input class="form-control" id="colors"  type="text" name="colors"/>
+													
+												</div>
+												
+											</div>
+											<div id="seasonpurpose" style="display:none;">
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Season</label>
+												<input type="text" class="form-control" id="season" name="season" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Brand </label>
+												<input type="text" class="form-control" id="brand " name="brand" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Gender</label>
+												<select class="form-control " id="gender" name="gender" >
+												<option value="">Select </option>
+												<option value="0">Male</option>
+												<option value="1">Female</option>
+												<option value="2">Both</option>
+												</select>
+											 </div>
+											 
+											 </div>
+											 <div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Qty</label>
+												<input type="text" class="form-control" id="qty" name="qty" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Meta keywords</label>
+												<input type="text" class="form-control" id="keywords" name="keywords" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Meta title</label>
+												<input type="text" class="form-control" id="title" name="title" >
+											</div>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Status</label>
+												<select class="form-control " id="status" name="status" >
+												<option value="">Select </option>
+												<option value="1">Available</option>
+												<option value="0">Unavailable</option>
+												</select>
+											 </div>
+											 <div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">Product description</label>
+												<textarea  placeholder="product Description" class="form-control" rows="3" id="product_description" name="product_description"></textarea>
+											</div>
+											<div  class="form-group nopaddingRight col-md-6 san-lg">
+												<div id="tab_sep">
+													<div class="col-md-6" style="padding:0">
+														<label for="exampleInputEmail1">Product specifications </label>
+														<input style="border-radius:5px 0px 0px 5px" type="text" placeholder="Specification Name" class="form-control" id="specificationnameid" name="specificationname[]" >
+													</div>
+													<div class="col-md-6" style="padding:0">
+														<label for="exampleInputEmail1">&nbsp; </label>
+														<input style="border-radius:0px 5px 5px 0px" type="text" placeholder="Specification Value"  class="form-control" id="specificationvalueid" name="specificationvalue[]" >
+													</div>
+													<div id="addrs1"></div>
+												</div>
+												
+												<div class="pull-right" id="delbtn" style="padding-top:10px;display:none">
+													<a id="tab_delet" class="btn btn-default btn-xs pull-left">Delete Row</a>
+												</div>
+												<div class="pull-right" style="padding-top:10px;">
+													<a id="add_sep" class="btn btn-default btn-xs pull-left">Add Row</a>
+												</div>
+											</div>
+											<div class="clearfix"></div>
+											<div class="container">
+												<div class="row ">
+												<div class="form-group nopaddingRight  col-md-5 san-lg ">
+												<label>Product Image</label>
+												<table class="table" id="tab_logic">
+												<tbody>
+													<tr id='addr0'>
+														<td>
+														<input type="file" name='picture_three[]' id="picture_three" class="form-control"/>
+														</td>
+													</tr>
+													<tr id='addr1'></tr>
+												</tbody>
+												</table>
+												</div>
+												<div class="clearfix"></div>
+												<div  class="col-md-5 san-lg" >
+												<div class="pull-left">
+												<a id="add_row" class="btn btn-default pull-left">Add Row</a>
+												</div>
+												<div class="pull-right" id="deletediv" style="padding-right:30px; display:none;">
+												<a id='delete_row' class="btn btn-default">Delete Row</a>
+												</div>
+												</div>
+												</div>
+												<div class="clearfix"></div>
 
-					</select>
-				</div>
-			</div>
-	</div>
-	<div class="row">
-			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Category </label>
-					<select class="form-control " id="subcategorylist" name="subcategorylist" >
-					<option value="">Select category </option>
 
-					</select>
+											</div>
+											<div style="margin-top: 20px; margin-left: 15px;">
+											<button type="submit" class="btn btn-primary" >Submit</button>
+											<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/products'); ?>">Cancel</a>
+											</div>
+										</form>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab2">
+                                    <div class="panel-body">
+                <div >
+					<p class="pull-left"><strong>Note: </strong> &nbsp;Please download sample file then filling  the data then again upload your products </p>&nbsp;&nbsp;<span class="pull-right"> For Fashion <a id="fashionproducts" href="<?php echo base_url('uploads'); ?>/fashionproducts.xlsx" >Download sample Import File</a> (or) For Other categores  <a id="otherproducts" href="<?php echo base_url('uploads'); ?>/otherproducts.xlsx" >Download sample Import File</a></span>
 				</div>
-			</div>	<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Category </label>
-					<select class="form-control " id="subcategorylist" name="subcategorylist" >
-					<option value="">Select category </option>
-
-					</select>
+				<hr>
+				<form id="importproducts" onsubmit="return checkvalidation();" name="importproducts" action="<?php echo base_url('seller/products/uploadproducts'); ?>" method="post" enctype="multipart/form-data" >
+					<div class="row">
+				 <div class="form-group nopaddingRight col-md-6 ">
+                  <label for="exampleInputEmail1">Select Category</label>
+				  <?php //echo '<pre>';print_r($sub_cat_data);exit;?>
+				  <select class="form-control " onchange="documentid(this.value);getsubcat(this.value);"  id="category_id_import" name="category_id_import">
+                    <option value="">Select Category</option>
+					<?php foreach($category_details as $single_cat_data){ ?>
+					<option value="<?php echo $single_cat_data['seller_category_id'].'/'.$single_cat_data['documetfile']; ?>"><?php echo $single_cat_data['category_name']; ?></option>
+                   <?php }?>
+                  </select>
+				 </div>
+				 <div class="form-group nopaddingRight col-md-6">
+                  <label for="exampleInputPassword1">Select Subcategory</label>
+                  <select class="form-control" onchange="hidemsg(this.value);" id="subcategory_id_import" name="subcategory_id_import">
+                   </select>
+				   <span id="errormsg" style="color:red"></span>
+                </div>
+                </div>
+				 <div class="row">
+				<div class="form-group nopaddingRight col-md-6">
+				<label for="exampleInputPassword1">Import File</label>
+				<input type="file" name="categoryes" id="categoryes" class="form-control" >
 				</div>
-			</div>
-	</div>
-	<div class="row">
-			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Category </label>
-					<select class="form-control " id="subcategorylist" name="subcategorylist" >
-					<option value="">Select category </option>
-
-					</select>
+				<div class="form-group nopaddingRight col-md-12">
+				 <button type="submit" class="btn btn-primary" >Submit</button>
+				</form>
 				</div>
-			</div>	<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Category </label>
-					<select class="form-control " id="subcategorylist" name="subcategorylist" >
-					<option value="">Select category </option>
-
-					</select>
 				</div>
-			</div>
-	</div>
-	<div class="row">
-			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Category </label>
-					<select class="form-control " id="subcategorylist" name="subcategorylist" >
-					<option value="">Select category </option>
-
-					</select>
-				</div>
-			</div>	<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Category </label>
-					<select class="form-control " id="subcategorylist" name="subcategorylist" >
-					<option value="">Select category </option>
-
-					</select>
-				</div>
-			</div>
-	</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 	</section>
 </div>
 

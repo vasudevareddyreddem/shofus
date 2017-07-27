@@ -412,9 +412,10 @@ class Customer extends Front_Controller
 		$hash_string .= $hash_var;
 		$hash_string .= '|';
 		}
+		//echo '<pre>';print_r($hash_string);exit;
 
-		
-		$data['hashvalue'] = strtolower(hash('sha512', $hash_string));
+		$hash_string1='gtKFFx|efc7afd5632da2bb7448|163331.7|prodctname|firstanme|vasu@gmail.com|||||||||||eCwWELxi';
+		$data['hashvalue'] = strtolower(hash('sha512', $hash_string1));
 		
 		
 		
