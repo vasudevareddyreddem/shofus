@@ -35,7 +35,7 @@
 	 <div class="row ">
 			<div class="col-md-12  ">
 			  
-			  <div class="col-md-12 gir_alg" >
+			  <div class="col-md-12 gir_alg" style="border-right:1px solid #45b1b5">
 			  <div class="title text-left mar_t10"><span>Sub Categoryview</span></div>
 				  <div class="col-md-2 ">
 					 <div class="catg_sty">
@@ -192,15 +192,20 @@
 					</div>
 					<div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body">
-							<div class="" ><input style="width:100%"  type="text"  placeholder="Search"></div>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox1"><span>&nbsp;Search Brand</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox2"><span>&nbsp;Samsung</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;Lenovo</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;Syska</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;Mi</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;Apple</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;Sony</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;4256 MORE</span></label></div>
+							<select class="test form-control" multiple="multiple" s>
+							
+									<option value="1">Search Brand</option>
+									<option value="2" selected>Samsung</option>
+									<option value="3">Lenovo</option>
+									<option value="4" disabled>Syska</option>
+									<option value="5">Mi</option>
+						
+									<option value="6" selected>Apple</option>
+									<option value="7">Sony</option>
+									<option value="7">Sony</option>
+									<option value="8">4256 MORE</option>
+							
+							</select>
 						</div>
 					</div>
 				</div>
@@ -533,6 +538,7 @@
           </div>
          
         </div>
+	
         <!-- End Product List -->
 
       
@@ -541,3 +547,10 @@
 	 <div class="clearfix"></div>
 	 <br>
 </body>
+<script>
+(function($) {
+    $(function() {
+        $('.test').fSelect();
+    });
+})(jQuery);
+</script>

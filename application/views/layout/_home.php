@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/responsive.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl_002.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/fSelect.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/dataTables.bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery.dataTables.min.css">
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
@@ -33,6 +34,7 @@
 <script src="<?php echo base_url(); ?>assets/home/js/dataTables.bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/dataTables.bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/home/js/fSelect.js"></script>
 
 </head>
 
