@@ -22,7 +22,10 @@ class Inventory_model extends MY_Model
 			$return[$category['category_id']]['inactivecount'] = $this->get_inactiveunreadcounts($category['category_id']);
         
 		}
+		if(!empty($return))
+		{
 		return $return;
+		}
 	}
 	public function get_activeunreadcounts($catid)
 	{

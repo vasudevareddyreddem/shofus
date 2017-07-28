@@ -22,11 +22,7 @@
 						<td><?php echo isset($category_details['category_name'])?$category_details['category_name']:''; ?></td>
 						
 					  </tr> 
-					  <tr>
-						<th>Commission</th>
-						<td><?php echo isset($category_details['commission'])?$category_details['commission']:''; ?></td>
-						
-					  </tr>
+					 
 					  <?php if(isset($category_details['documetfile']) && $category_details['documetfile']!=''){  ?><tr>
 						<th>Category File</th>
 						<td>

@@ -20,24 +20,24 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
+					<?php 	if(count($category_list)>0){ ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
 					<th>Category Name</th>
 					<th>Subcategory Count</th>
-					<th>Commission</th>
 					<th>Created Date</th>
 					<th>Status</th>
 					<th>Action</th>
 				 </tr>
                 </thead>
                 <tbody>
-                <?php  
+                <?php 
+							
                   foreach($category_list as $catlist) { ?>
                 <tr>                  
                   <td><a href="<?php echo base_url('inventory/categoryview/'.base64_encode($catlist['category_id'])); ?>"><?php echo $catlist['category_name']; ?></a></td>
                   <td><a href="<?php echo base_url('inventory/subcategorylistview/'.base64_encode($catlist['category_id'])); ?>"><?php echo 'Active'.'('.$catlist['activecount'][0]['count'].')'.''; ?>&nbsp;<?php echo 'Inactive'.'('.$catlist['inactivecount'][0]['count'].')'.'';  ?></a></td>
-                  <td><?php if($catlist['commission']!=0 && $catlist['commission']!='' ){ echo $catlist['commission']; } else { echo "";} ?></td>
 					<td><?php echo Date('d-M-Y',strtotime(htmlentities($catlist['created_at'])));?></td>
                   <td><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
 				<td>
@@ -51,9 +51,12 @@
 				<?php } ?>
 				</td>
                  </tr>
-                 <?php }?>
+				<?php } ?>
                 </tbody>              
               </table>
+			  <?php } else{?>
+				<p>No data available</p>
+				<?php } ?>
              
             </div>
             <!-- /.box-body -->

@@ -25,10 +25,7 @@
 				<label for="category">category Name</label>
 				<input type="text"  class="form-control" id="categoryname"  name="categoryname" value="<?php echo isset($category_details['category_name'])?$category_details['category_name']:''; ?>"/>
 				</div>
-				<div class="form-group">
-				<label for="category">Category Commission</label>
-				<input type="text"  class="form-control" id="commission"  name="commission" value="<?php echo isset($category_details['commission'])?$category_details['commission']:''; ?>"/>
-				</div>
+				
 				<div class="form-group">
 				<label for="category">Category File</label>
 				<input type="file"  class="form-control" id="categoryfile" name="categoryfile" />
@@ -37,7 +34,7 @@
 				<?php } ?>
 				</div>
 				<div class="btn-group-vertical btn-block text-center" role="group">
-				<button type="submit" class="btn btn-danger btn-lg">Add</button>
+				<button type="submit" class="btn btn-danger btn-lg">Update</button>
 				
 				</div>
 				</form>
@@ -64,15 +61,7 @@ $(document).ready(function() {
 					}
 				}
 			}, 
-			commission: {
-					validators: {
-					between: {
-                    min: 0,
-                    max: 100,
-                    message: 'The Commission percentage must be between 0 and 100'
-					}
-				}
-			},
+			
 			categoryfile: {
 					validators: {
 					regexp: {

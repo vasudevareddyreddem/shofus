@@ -22,6 +22,11 @@
 						<td><?php echo isset($subcategory_details['subcategory_name'])?$subcategory_details['subcategory_name']:''; ?></td>
 						
 					  </tr> 
+					   <tr>
+						<th>Commission</th>
+						<td><?php echo isset($subcategory_details['commission'])?$subcategory_details['commission']:''; ?></td>
+						
+					  </tr>
 					  <tr>
 						<th >Category Name</th>
 						<td><?php echo isset($subcategory_details['category_name'])?$subcategory_details['category_name']:''; ?></td>
