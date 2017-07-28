@@ -13,15 +13,10 @@
       top: 7px;
       width: 12px;
       cursor: pointer; }
- .fixed {
-     position: fixed;
-    top: 0px;
-	width:100%;
-	z-index:1025;
-	background: #f5f5f5;
-	 -webkit-box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
-	-moz-box-shadow:    0px 3px 5px rgba(100, 100, 100, 0.49);
-	box-shadow:         0px 3px 5px rgba(100, 100, 100, 0.49);
+	  .affix{
+	top:0;
+}
+
 </style>
 <div class="sidebar_right" >
 			<ul style="padding:0 ">
@@ -98,7 +93,7 @@
       </div>
     </div>
   </div>
-      <div class="container1 container-fluid sticky-header">
+      <div class="container1 container-fluid hm_nav">
         <div class="navbar-header ">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
           <a class="navbar-brand" href="<?php echo base_url(); ?>"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
@@ -726,18 +721,16 @@ $("#hover_li1").hover(function(){
     $('#left_box1').fadeToggle();
 });
 </script>
-<script>
-	var offset = $( ".sticky-header" ).offset();
-	var sticky = document.getElementById("sticky-header")
 
-	$(window).scroll(function() {
-		
-		if ( $('body').scrollTop() > offset.top){
-			$('.sticky-header').addClass('fixed');
-		} else {
-			 $('.sticky-header').removeClass('fixed');
-		}
-		
-
-	});
+<script type="text/javascript" language="javascript">
+   $(window).scroll(function() {
+if ($(this).scrollTop() > 10) {
+$('.hm_nav').addClass('affix');
+$('.hm_nav').addClass('animated fadeInDown');
+}
+else{
+$('.hm_nav').removeClass('affix');
+$('.hm_nav').removeClass('animated fadeInDown');
+}
+ });
 </script>

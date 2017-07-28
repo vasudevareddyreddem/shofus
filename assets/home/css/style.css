@@ -3665,10 +3665,10 @@ table#cart tfoot td .btn {
 	font-size:16px !important;
 }
 .hm_nav {
-	margin-bottom: 0px;
-	z-index: 999;
-	background:#fff;
-	box-shadow: 3px 5px 10px grey;
+	z-index: 1025;
+	background:#f5f5f5;
+	box-shadow: 3px 5px 6px grey;
+	width: 100%;
 }
 /* notification  */
 
