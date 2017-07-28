@@ -714,7 +714,6 @@ public function servicerequestview(){
 					move_uploaded_file($_FILES['categoryfile']['tmp_name'], "assets/sellerfile/category/" . trim($_FILES['categoryfile']['name']));
 					$data = array(
 					'category_name' => $post['categoryname'], 
-					'commission' => $post['commission'], 
 					'documetfile' => trim($_FILES['categoryfile']['name']),    
 					'status' => 1,    
 					'created_at' => date('Y-m-d H:i:s'),    
@@ -745,7 +744,8 @@ public function servicerequestview(){
 					//echo "<pre>";print_r($post);exit;
 					$addsubcat = array(
 					'category_id' => $post['category_list'], 
-					'subcategory_name' => $post['categoryname'], 
+					'subcategory_name' => $post['categoryname'],
+					'commission' => $post['commission'], 
 					'status' => 1,    
 					'created_at' => date('Y-m-d H:i:s'),    
 					'updated_at' => date('Y-m-d H:i:s'),
@@ -882,7 +882,6 @@ public function servicerequestview(){
 					}
 					$updatedata = array(
 					'category_name' => $post['categoryname'], 
-					'commission' => $post['commission'], 
 					'documetfile' => $imgname,
 					'created_at' => date('Y-m-d H:i:s'),    
 					'updated_at' => date('Y-m-d H:i:s'),
@@ -912,7 +911,8 @@ public function servicerequestview(){
 				//echo '<pre>';print_r($post);exit;
 					$updatedata = array(
 					'category_id' => $post['category_list'], 
-					'subcategory_name' => $post['subcategoryname'], 
+					'subcategory_name' => $post['subcategoryname'],
+					'commission' => $post['commission'], 
 					'created_at' => date('Y-m-d H:i:s'),    
 					'updated_at' => date('Y-m-d H:i:s'),
 					);
@@ -1826,6 +1826,18 @@ public function servicerequestview(){
 											}
 
 										}
+										
+									}
+									if(empty($fields[1])) {
+										$data['errors'][]="Commision is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[1]!=''){
+										$regex ="/^[0-9]+$/"; 
+										if(!preg_match( $regex, $fields[1]))
+										{
+										$data['errors'][]="Commision must be digits. Row Id is :  ".$key.'<br>';
+										$error=1;
+										}
 									}
 									
 								}else{
@@ -1852,7 +1864,8 @@ public function servicerequestview(){
 							//echo "<pre>";print_r($fieldss);
 							$addsubcat = array(
 							'category_id' => $post['category_list'], 
-							'subcategory_name' =>$data[0], 
+							'subcategory_name' =>$data[0],
+							'commission' => $data[1], 
 							'status' => 1,    
 							'created_at' => date('Y-m-d H:i:s'),    
 							'updated_at' => date('Y-m-d H:i:s'),
@@ -1927,17 +1940,7 @@ public function servicerequestview(){
 
 										}
 									}
-									if(empty($fields[1])) {
-										$data['errors'][]="Commision is required. Row Id is :  ".$key.'<br>';
-										$error=1;
-									}else if($fields[1]!=''){
-										$regex ="/^[0-9]+$/"; 
-										if(!preg_match( $regex, $fields[1]))
-										{
-										$data['errors'][]="Commision must be digits. Row Id is :  ".$key.'<br>';
-										$error=1;
-										}
-									}
+									
 									
 								}else{
 									$data['errors'][]='Please Fillout all Fields';
@@ -1963,7 +1966,6 @@ public function servicerequestview(){
 						//echo "<pre>";print_r($fieldss);
 						$data = array(
 						'category_name' => $data[0], 
-						'commission' => $data[1], 
 						'documetfile' => '',
 						'status' => 1,    
 						'created_at' => date('Y-m-d H:i:s'),    

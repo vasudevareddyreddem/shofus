@@ -37,10 +37,6 @@
 				<input type="text"  class="form-control" id="categoryname"  name="categoryname"/>
 				</div>
 				<div class="form-group">
-				<label for="category">Category Commission</label>
-				<input type="text"  class="form-control" id="commission"  name="commission"/>
-				</div>
-				<div class="form-group">
 				<label for="category">Category File</label>
 				<input style="height:auto;" type="file" class="form-control" id="categoryfile" name="categoryfile" />
 				</div>
@@ -106,20 +102,7 @@ $(document).ready(function() {
 					message: ' Category Name can only consist of alphanumaric, space and dot'
 					}
 				}
-			}, 
-			commission: {
-					validators: {
-						notEmpty: {
-						message: 'Commission is required'
-					},
-					between: {
-                    min: 0,
-                    max: 100,
-                    message: 'The Commission percentage must be between 0 and 100'
-					}
-				}
-			},
-			categoryfile: {
+			},categoryfile: {
 					validators: {
 					regexp: {
 					regexp: /\.(xlsx|xls)$/i,
