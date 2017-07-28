@@ -5689,6 +5689,7 @@ position: fixed;
 	-webkit-box-shadow: 0px 6px 31px -8px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 6px 31px -8px rgba(0,0,0,0.75);
 box-shadow: 0px 6px 31px -8px rgba(0,0,0,0.75);
+    z-index: 1025;
  } 
  .log_list li{
 	display:block !important;
