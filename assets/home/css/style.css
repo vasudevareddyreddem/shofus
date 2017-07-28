@@ -3477,7 +3477,7 @@ table#cart tfoot td .btn {
 /* side bar start */
 .sidebar_right{
 	position:fixed;
-	 top:150px; 
+	 top:200px; 
 	right: -170px;
 	z-index:1025;
 	    background: rgba(255,255,255, 0.8);
@@ -3485,14 +3485,16 @@ table#cart tfoot td .btn {
 	transition: all 0.5s ease-in-out;
    cursor: pointer;
    /* text-align:center; */
-   padding:0px 5px;
+   padding:5px 5px 10px 5px;
    text-overflow: ellipsis !important;
     white-space: nowrap;
    width:220px;
+    border-radius:35px 0px 0px 35px;
+	  
 }
 .right_cust{
 	 position: absolute;
-    top: 0;
+   
     left: -800px;
     z-index: 1000;
 
@@ -3513,6 +3515,8 @@ table#cart tfoot td .btn {
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 	 overflow-y: scroll;
+	 border-radius:35px 0px 0px 35px;
+	  top: 20px;
 	
 }
 .circ_icon{
@@ -3572,6 +3576,7 @@ table#cart tfoot td .btn {
 	background: #45b1b5; 
 	width:220px;
 	color:#fff;
+	border-radius:20px 0px 0px 20px;
 }
 
 /* top menu header  start */
