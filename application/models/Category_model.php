@@ -142,6 +142,68 @@ class Category_model extends MY_Model
 	}
 /* added by vasudevareddy */
 	
+	public function get_all_subcategory_products($category_ids)
+	{
+	
+	$this->db->select('products.*')->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
+	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
+    $this->db->where_in('products.category_id', $category_ids);
+    $this->db->where('products.item_status', 1);
+	return $this->db->get()->result_array();
+		
+	}
+	public function get_all_subcategory_product($category_ids)
+	{
+	
+	$this->db->select('products.*')->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
+	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
+    $this->db->where('products.category_id', $category_ids);
+    $this->db->where('products.item_status', 1);
+	return $this->db->get()->result_array();
+		
+	}
+	public function get_all_subcategory_products_list($subcatid)
+	{
+	
+	$this->db->select('products.*')->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
+	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
+    $this->db->where('subcategories.subcategory_id', $subcatid);
+    $this->db->where('products.item_status', 1);
+	return $this->db->get()->result_array();
+		
+	}
+	public function get_all_subcategorys($category_ids)
+	{
+	
+	$this->db->select('category.category_id,subcategories.subcategory_name,subcategories.subcategory_id')->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
+	$this->db->join('category', 'category.category_id =products.category_id', 'left');
+	$this->db->group_by('subcategories.subcategory_id');
+	$this->db->order_by('subcategories.subcategory_id', 'ASC'); 
+	$this->db->where('subcategories.status', 1);	
+	$this->db->where_in('subcategories.category_id', $category_ids);	
+	return $this->db->get()->result_array();
+		
+	
+	}
+	public function get_all_subcategory($category_id)
+	{
+	
+	$this->db->select('category.category_id,subcategories.subcategory_name,subcategories.subcategory_id')->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
+	$this->db->join('category', 'category.category_id =products.category_id', 'left');
+	$this->db->group_by('subcategories.subcategory_id');
+	$this->db->order_by('subcategories.subcategory_id', 'ASC'); 
+	$this->db->where('subcategories.status', 1);	
+	$this->db->where('subcategories.category_id', $category_id);	
+	return $this->db->get()->result_array();
+		
+	
+	}
+	
 	public function get_all_products($catid){
 		
 		

@@ -400,7 +400,7 @@ $(document).ready(function(){
 
   
   function getsubcategory(id){
-	  if(id==2){
+	  if(id==20){
 		  $('#materialpurose').show();
 		  $('#seasonpurpose').show();
 	  }else{

@@ -27,32 +27,10 @@
 }
 
 </style>
-<!--<div class="" style="margin-top:50px;">
-	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
-</div>-->
-<body >
-	 <div class="container-fluid fluid_mod ">
-	 <div class="row ">
-			<div class="col-md-12  ">
-			  
-			  <div class="col-md-12 gir_alg" style="border-right:1px solid #45b1b5">
-			  <div class="title text-left mar_t10"><span>Sub Categoryview</span></div>
-			  <?php foreach($subcategory_list as $list){ ?>
-				  <div class="col-md-2"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
-					 <div class="catg_sty">
-						<?php echo $list['subcategory_name']; ?>
-					  </div>
-				  </div> 
-			  <?php } ?>
-			</div>
-			</div>
-	 </div>
-	<br>
-	<hr>
+
+	
 	 <div class=" clearfix"></div>
 	 <!-- Filter Sidebar -->
-	 
-	 <div id="subcategorywise_products" style="">
 		<div class="col-sm-3">
 		 <div class="title"><span>Filters</span></div>
 
@@ -234,71 +212,18 @@
 		   
 		  <?php  $cnt++;} ?>
          
-       
-         
-          
-          <div class="col-sm-4 col-md-3 hidden-sm box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper">
-                <a href="detail.html">
-                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/polo1.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-success arrowed">New Arrivals</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="detail.html">IncultGeo Print Polo T-Shirt</a></h6>
-              <div class="price">
-                <div>$13.50 <span class="label-tags"><span class="label label-primary arrowed">-10%</span></span></div>
-                <span class="price-old">$15.00</span>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
          
         </div>
 	
         <!-- End Product List -->
-</div>
+
       
-    </div>
+   
 	 </div>
 	 <div class="clearfix"></div>
 	 <br>
 </body>
 <script>
-function getproduct(id){
-	if(id!=''){
-	
-	jQuery.ajax({
-				url: "<?php echo site_url('category/categorywiseproductslist');?>",
-				type: 'post',
-				data: {
-				subcategoryid: id,
-				},
-				dataType: 'html',
-				success: function (data) {
-					$("#subcategorywise_products").empty();
-					$("#subcategorywise_products").append(data);
-				}
-			});
-			
-	}
-	
-	
-}
 (function($) {
     $(function() {
         $('.test').fSelect();

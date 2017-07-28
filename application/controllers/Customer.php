@@ -403,25 +403,43 @@ class Customer extends Front_Controller
 		$txnid=substr(hash('sha256', mt_rand() . microtime()), 0, 20);
 		$amount=$data['carttotal_amount']['pricetotalvalue'];
 		//echo '<pre>';print_r($data);exit;
-		$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
+		//$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
 		//$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|'.$data['billimgdetails']['name'].'|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
 		//echo '<pre>';print_r($hashSequence);exit;
-		$hashVarsSeq = explode('|', $hashSequence);
-		$hash_string='';
-		foreach($hashVarsSeq as $hash_var) {
-		$hash_string .= $hash_var;
-		$hash_string .= '|';
-		}
+		// $hashVarsSeq = explode('|', $hashSequence);
+		// $hash_string='';
+		// foreach($hashVarsSeq as $hash_var) {
+		// $hash_string .= $hash_var;
+		// $hash_string .= '|';
+		// }
 		//echo '<pre>';print_r($hash_string);exit;
 
-		$hash_string1='gtKFFx|efc7afd5632da2bb7448|163331.7|prodctname|firstanme|vasu@gmail.com|||||||||||eCwWELxi';
-		$data['hashvalue'] = strtolower(hash('sha512', $hash_string1));
+		//$hash_string1='gtKFFx|efc7afd5632da2bb7448|163331.7|prodctname|firstanme|vasu@gmail.com|||||||||||eCwWELxi';
+		//$data['hashvalue'] = strtolower(hash('sha512', $hash_string1));
 		
 		
+		 $MERCHANT_KEY = $this->config->item('MERCHANTKEY');
+			$SALT='eCwWELxi';
+
+        $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
+
+        $udf1='';
+        $udf2='';
+        $udf3='';
+        $udf4='';
+        $udf5='';
+		$fname=$customerdetails['cust_email'];
+		$email=$customerdetails['cust_email'];
+		
+		$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
+
+         $hashstring = $MERCHANT_KEY . '|' . $txnid . '|' .$amount . '|' . $items_names[0]['item_name'] . '|'. $fname . '|' . $email .'|'.$udf1.'|' .$udf2.'|' .$udf3.'|'.$udf4.'|'.$udf5.'||||||'. $SALT;
+
+        $hash = strtolower(hash('sha512', $hashstring));
+        $data['hash'] = $hash;
 		
 		
-		
-		//echo '<pre>';print_r($data);exit;
+		//echo '<pre>';print_r($hashstring);exit;
 		$this->template->write_view('content', 'customer/payment',$data);
 		$this->template->render();
 	}else{
@@ -431,7 +449,7 @@ class Customer extends Front_Controller
 	 
 	 
  }
- public function ordersuccess(){
+ public function success(){
 	 if($this->session->userdata('userdetails'))
 	 {
 

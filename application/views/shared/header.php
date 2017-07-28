@@ -25,34 +25,30 @@
 </style>
 <div class="sidebar_right" >
 			<ul style="padding:0 ">
+				
+				<div class="clearfix"></div>
+				<?php foreach ($sidecaregory_list as $categories){ ?>
 				<li  class=" spin ">
-					<a  href="<?php echo base_url('category/subcategoryview'); ?>" class="menu_ti2  ">
+					<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">Food</span>
+						<?php  if($categories['category_id']==20){ ?>
+						<span class="menu_tit">FASHION</span>
+						<?php }else if($categories['category_id']==41){ ?>
+							<span class="menu_tit">ELECTRONIC</span>
+						<?php	}else{ ?>
+						<span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
+						<?php } ?>
+						
 					</a>
 			
 				</li>
 				<div class="clearfix"></div>
-				<li  class=" spin ">
-					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">Fashion</span>
-					</a>
-			
-				</li>
-				<div class="clearfix"></div>
-					<li  class=" spin ">
-					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">Electronics</span>
-					</a>
-			
-				</li>
-			
+				<?php } ?>
+				
 				<li id="hover_li" class=" spin ">
 					<a  class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">More Categories</span>
+						<span class="menu_tit">MORE CATEGORIES</span>
 					</a>
 					<ul id="left_box" class="right_cust" style="display:none">
 						

@@ -132,26 +132,38 @@ $PAYU_BASE_URL = "https://test.payu.in";
 			<?php endif; ?>
 						<div class="container">
 						<div class="row">
-						<form action="<?php echo $action;?>" method="POST">
-						<input type="hidden" name="key" value="<?php echo $this->config->item('MERCHANTKEY'); ?>" />
-						<input type="hidden" name="salt" value="<?php echo $this->config->item('salt'); ?>" />
-						<input type="hidden" name="url" value="<?php echo $this->config->item('paymentbaseurl'); ?>" />
-						<input type="hidden" name="txnid" value="<?php echo $txnid; ?>" >
-						<input type="hidden" name="hash" value="<?php echo $hash ?>"/>
-						<input type="hidden" name="surl" value="<?php echo base_url('customer/ordersuccess'); ?>" />   <!--Please change this parameter value with your success page absolute url like http://mywebsite.com/response.php. -->
-						<input type="hidden" name="furl" value="<?php echo base_url('customer/ordersuccess'); ?>" /><!--Please change this parameter value with your failure page absolute url like http://mywebsite.com/response.php. -->
-						<input type="hidden" name="amount" value="<?php echo $carttotal_amount['pricetotalvalue']; ?>" />
-						<input type="hidden" name="firstname" id="firstname" value="<?php echo $billimgdetails['name']; ?>" />
-						<input name="email" type="hidden" id="email" value="<?php echo $emailid; ?>" /></td>
-						<input name="phone" type="hidden" value="<?php echo $billimgdetails['mobile']; ?>" /></td>
-						<input type="hidden" name="productinfo" value="<?php echo $productinfo; ?>">
-
-						<input type="radio" name="paymentmode" value="0" >Cash on Delivery<br>
-						<input type="radio" name="paymentmode" value="1"> Female<br>
-						<input type="radio" name="paymentmode" value="2"> Other 
-						<button type="submit">Pay</button>
 						
-						</form>
+						
+						
+						
+		<form method="post" name="payuForm" action="https://test.payu.in/_payment">
+
+        <input name="key" type="hidden" value="<?php echo $this->config->item('MERCHANTKEY'); ?>" />
+        <input name="txnid" type="hidden"  value="<?php echo $txnid; ?>" />
+        <input type="hidden" name="hash" value="<?php echo $hash ?>"/>
+
+        <input name="amount" type="hidden" value="<?php echo $carttotal_amount['pricetotalvalue']; ?>" />
+
+        <input name="productinfo" type="hidden" value="<?php echo $productinfo; ?>">
+
+        <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
+        <input name="udf1" type="hidden" value="">
+        <input name="udf2" type="hidden" value="">
+        <input name="udf3" type="hidden" value="">
+        <input name="udf4" type="hidden" value="">
+        <input name="udf5" type="hidden" value="">
+
+        <input name="firstname" id="firstname" type="hidden" value="<?php echo $billimgdetails['name']; ?>"/>
+
+        <input name="email" id="email"  type="hidden"  value='<?php echo $emailid; ?>'>
+
+        <input name="phone"   type="hidden"  value="<?php echo $billimgdetails['mobile']; ?>">
+        <input name="surl" type="hidden" value="<?php echo base_url('customer/ordersuccess'); ?>" size="64" />
+        <input name="furl" type="hidden" value="<?php echo base_url('customer/ordersuccess'); ?>" size="64" />
+        <input name="curl" type="hidden" value="<?php echo base_url('payu/cancel'); ?>" />
+
+        <input type="submit" name="submit_form" value="Click Here for Payment" class="btn btn-info btn-block" >
+    </form>
 						</div>
                        
                     
