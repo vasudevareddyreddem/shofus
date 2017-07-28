@@ -13,6 +13,34 @@ class Category extends Front_Controller
 			
  }
  
+ public function cateegoryfilters(){
+	 
+	$post=$this->input->post();
+	$ip=$this->input->ip_address();
+	$data=array(
+	'Ip_address'=>$ip,
+	'category_id'=>base64_decode($post['category_id']),
+	'brand'=>$post['brand'][0],
+	'create'=>date('Y-m-d H:i:s'),
+	
+	);
+	//echo '<pre>';print_r($post);exit;
+	$brand= $this->category_model->save_searchdata($data);
+	if(count($brand)>0){
+		redirect('category/filtersearch');
+		
+	}
+
+}
+function filtersearch(){
+
+	$data['subcategory_list']= $this->category_model->get_all_subcategory_list();
+	//echo '<pre>';print_r($data);exit;
+	$this->template->write_view('content', 'customer/filters_search',$data);
+	$this->template->render();
+	
+
+}	
  public function categorywiseproductslist(){
 	 
 	$post=$this->input->post();
@@ -36,6 +64,7 @@ class Category extends Front_Controller
 		$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
 		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id);
 	}
+	$data['category_id']=$this->uri->segment(3);
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'customer/subcategoryview',$data);
 	$this->template->render();
