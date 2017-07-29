@@ -121,7 +121,7 @@ class Products extends Admin_Controller {
 
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
-			//echo '<pre>';print_r($post);exit;
+			//echo '<pre>';print_r($post);
 			//$col=implode("" ,$post['sizes']);
 			
 			$i=0;
@@ -147,71 +147,25 @@ class Products extends Admin_Controller {
 		
 		
 		$data=array(
-			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
-			'subcategory_id' => isset($post['subcategorylist'])?$post['subcategorylist']:'',
-			'item_name' => isset($post['productname'])?$post['productname']:'',
-			'skuid' => isset($post['skuid'])?$post['skuid']:'',
-			'item_code' => isset($post['otherunique'])?$post['otherunique']:'',
-			'item_cost' => isset($post['product_price'])?$post['product_price']:'',
-			'special_price' =>  isset($post['specialprice'])?$post['specialprice']:'',
-			'offers' =>  isset($post['offers'])?$post['offers']:'',
-			'discount' => isset($post['discount'])?$post['discount']:'',
-			'item_quantity' =>isset($post['qty'])?$post['qty']:'',
-			'keywords' =>isset($post['keywords'])?$post['keywords']:'',
-			'title' =>isset($post['title'])?$post['title']:'',
-			'item_status' => isset($post['status'])?$post['status']:'',
-			'item_description' =>isset($post['product_description'])?$post['product_description']:'',
-			'ideal_for' =>isset($post['ideal_for'])?$post['ideal_for']:'',
-			'item_sub_name' =>isset($post['sub_item_name'])?$post['sub_item_name']:'',
-			'sufficient_for' =>isset($post['product_sufficient'])?$post['product_sufficient']:'',
-			'producttype' => isset($post['product_type'])?$post['product_type']:'',
-			'theme' => isset($post['product_theme'])?$post['product_theme']:'',
-			'dial_shape' => isset($post['dial_shape'])?$post['dial_shape']:'',
-			'compatibleos' => isset($post['compatible_os'])?$post['compatible_os']:'',
-			'usage' =>isset($post['prouduct_usage'])?$post['prouduct_usage']:'',
-			'display_type' => isset($post['prouduct_display_type'])?$post['prouduct_display_type']:'',
-			'occasion' => isset($post['product_occasion'])?$post['product_occasion']:'',
-			'material' => isset($post['material'])?$post['material']:'',
-			'gemstones' => isset($post['product_gemstones'])?$post['product_gemstones']:'',
-			'strap_color' => isset($post['prouduct_strap_color'])?$post['prouduct_strap_color']:'',
-			'packof' => isset($post['product_packof'])?$post['product_packof']:'',
-			'dial_color' => isset($post['prouduct_dial_color'])?$post['prouduct_dial_color']:'',
-			'compatible_mobiles' => isset($post['product_compatible_mobiles'])?$post['product_compatible_mobiles']:'',
-			'mega_pixel' => isset($post['product_mega_pixel'])?$post['product_mega_pixel']:'',
-			'sensor_type' => isset($post['product_sensor_type'])?$post['product_sensor_type']:'',
-			'battery_type' => isset($post['product_battery_type'])?$post['product_battery_type']:'',
-			'wireless_speed' => isset($post['wireless_speed'])?$post['wireless_speed']:'',
-			'frequency_band' => isset($post['frequency_band'])?$post['frequency_band']:'',
-			'broadband_compatibility' => isset($post['broadband_compatibility'])?$post['broadband_compatibility']:'',
-			'usb_ports' => isset($post['usb_ports'])?$post['usb_ports']:'',
-			'frequency' => isset($post['product_frequency'])?$post['product_frequency']:'',
-			'antennae' => isset($post['product_antennae'])?$post['product_antennae']:'',
-			'display_size' => isset($post['product_display_size'])?$post['product_display_size']:'',
-			'connectivity' => isset($post['product_connectivity'])?$post['product_connectivity']:'',
-			'ram' => isset($post['product_ram'])?$post['product_ram']:'',
-			'ram_type' => isset($post['ram_type'])?$post['ram_type']:'',
-			'voice_calling_facility' => isset($post['voice_calling_facility'])?$post['voice_calling_facility']:'',
-			'operatingsystem' => isset($post['operating_system'])?$post['operating_system']:'',
-			'operating_system_version_name' => isset($post['operating_system_version_name'])?$post['operating_system_version_name']:'',
-			'battery_capacity' => isset($post['battery_capacity'])?$post['battery_capacity']:'',
-			'primary_camera' => isset($post['primary_camera'])?$post['primary_camera']:'',
-			'secondary_camera' => isset($post['secondary_camera'])?$post['secondary_camera']:'',
-			'processor_clock_speed' =>isset($post['processor_clock_speed'])?$post['processor_clock_speed']:'',
-			'processor' => isset($post['product_processor'])?$post['product_processor']:'',
-			'processor_brand' => isset($post['product_processor_brand'])?$post['product_processor_brand']:'',
-			'life_style' => isset($post['life_style'])?$post['life_style']:'',
-			'storage_type' => isset($post['storage_type'])?$post['storage_type']:'',
-			'graphics_memory' => isset($post['dedicated_graphics_memory'])?$post['dedicated_graphics_memory']:'',
-			'memory_type' =>  isset($post['graphics_memory_type'])?$post['graphics_memory_type']:'',
-			'touch_screen' => isset($post['touch_screen'])?$post['touch_screen']:'',
-			'weight' => isset($post['weight'])?$post['weight']:'',
-			'internal_storage' => isset($post['internal_storage'])?$post['internal_storage']:'',
-			'speciality' => isset($post['product_speciality'])?$post['product_speciality']:'',
-			'network_type' => isset($post['network_type'])?$post['network_type']:'',
-			'resolution_type' => isset($post['resolution_type'])?$post['resolution_type']:'',
-			'sim_type' => isset($post['sim_type'])?$post['sim_type']:'',
-			'clock_speed' => isset($post['clock_speed'])?$post['clock_speed']:'',
-			'cores' => isset($post['number_of_cores'])?$post['number_of_cores']:'',
+			'category_id' => $post['category_id'],			
+			'subcategory_id' => $post['subcategorylist'],
+			//'item_sub_name' =>$post['sub_item_name'],
+			'skuid' => $post['skuid'],
+			'item_code' => $post['otherunique'],
+			'item_name' => $post['productname'],
+			'item_cost' => $post['product_price'],
+			'special_price' => $post['specialprice'],
+			'producttype' => $post['producttype'],
+			'material' => $post['material'],
+			'weight' => $post['weight'],
+			'season' => $post['season'],
+			'brand' => $post['brand'],
+			'gender' => $post['gender'],
+			'item_quantity' =>$post['qty'],
+			'keywords' =>$post['keywords'],
+			'title' =>$post['title'],
+			'item_status' => $post['status'],
+			'item_description' =>$post['product_description'],
 			'item_image'=>isset($images[0])?$images[0]:'',
 			'item_image1'=>isset($images[1])?$images[1]:'',
 			'item_image2'=>isset($images[2])?$images[2]:'',
@@ -235,38 +189,30 @@ class Products extends Admin_Controller {
 			$results=$this->products_model->insert($data);
 			if(count($results)>0)
 			{	
-						
-						if(count($post['sizes'])>0){
-							$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
-						
-							foreach (explode(",",$sizesdata) as $sizess){
+						$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
+						$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
+						foreach (explode(",",$sizesdata) as $sizess){
 
-							$addsizesdata=array(
-							'item_id' =>$results,
-							'p_size_name' => $sizess,
-							'create_at' => date('Y-m-d H:i:s'),
-							);
-							$this->products_model->insert_product_sizes($addsizesdata);
-							}
+						$addsizesdata=array(
+						'item_id' =>$results,
+						'p_size_name' => $sizess,
+						'create_at' => date('Y-m-d H:i:s'),
+						);
+						$this->products_model->insert_product_sizes($addsizesdata);
 						}
-						
-						if(count($post['colors'])>0){
-							$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
-							foreach (explode(",",$colordata) as $colorss){
+						foreach (explode(",",$colordata) as $colorss){
 
-							$addcolorsdata=array(
-							'item_id' =>$results,
-							'color_name' => $colorss,
-							'create_at' => date('Y-m-d H:i:s'),
-							);
-							$this->products_model->insert_product_colors($addcolorsdata);
-							}
+						$addcolorsdata=array(
+						'item_id' =>$results,
+						'color_name' => $colorss,
+						'create_at' => date('Y-m-d H:i:s'),
+						);
+						$this->products_model->insert_product_colors($addcolorsdata);
 						}
 
-						
-						if(count($post['specificationname'])>0){
-							$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
-							foreach ($productspecificationlist as $key=>$list){
+
+						$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
+						foreach ($productspecificationlist as $key=>$list){
 
 							if($list!=''){
 								$addspc=array(
@@ -278,7 +224,6 @@ class Products extends Admin_Controller {
 								$this->products_model->insert_product_spcifications($addspc);
 								
 							}
-						}
 						}
 				
 				
