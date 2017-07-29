@@ -34,7 +34,8 @@
 	 <div class="container-fluid fluid_mod ">
 	 <div class="row ">
 			<div class="col-md-12  ">
-			  
+			
+			  <?php //echo '<pre>';print_r($subcategory_list);exit; ?>
 			  <div class="col-md-12 gir_alg" style="border-right:1px solid #45b1b5">
 			  <div class="title text-left mar_t10"><span>Sub Categoryview</span></div>
 			  <?php foreach($subcategory_list as $list){ ?>
@@ -159,7 +160,6 @@
 					</div>
 					<div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
 						<form id="discountform" name="discountform" action="<?php echo base_url('category/cateegoryfilters'); ?>" method="post">
-						<input type="hidden" name="category_id" id="category_id" value="<?php echo $category_id;?>">
 						<div class="panel-body">
 							<div class="checkbox"><label><input type="checkbox" name="brand[]"  onclick="discount();"  value="1" id="checkbox1"><span>&nbsp;50% or More</span></label></div>
 							<div class="checkbox"><label><input type="checkbox" name="brand[]" value="2" id="checkbox2"><span>&nbsp;40% or More</span></label></div>

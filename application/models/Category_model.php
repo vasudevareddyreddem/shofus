@@ -7,6 +7,38 @@ class Category_model extends MY_Model
 		$this->load->database("default");
 	}
 	
+	/* for search data*/
+	public function save_searchdata($data){
+		
+		$this->db->insert('fliter_search', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function get_all_subcategory_list()
+	{
+	
+	$this->db->select('category.category_id,subcategory_name,subcategories.subcategory_id')->from('fliter_search');
+	$this->db->join('category', 'category.category_id =fliter_search.category_id', 'left');
+	$this->db->join('subcategories', 'subcategories.category_id = category.category_id', 'left');
+	$this->db->group_by('fliter_search.category_id');
+	$query=$this->db->get()->result_array();
+	foreach($query as $subcategory)
+	{
+//echo '<pre>';print_r($subcategory);exit;	
+	$return = $this->get_all_subcategory($subcategory['category_id']);
+
+	}
+	if(!empty($return))
+    {
+    return $return;
+	}
+		
+	
+	}
+	
+	
+	/*------------------*/
+	
+	
 	public function getCategoryData($where = "")
 	{
 		

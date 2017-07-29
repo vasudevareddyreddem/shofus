@@ -1818,16 +1818,11 @@ public function servicerequestview(){
 										{
 										$data['errors'][]='Subcategory Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
 										$error=1;
-										}else{
-											$result = $this->inventory_model->get_subname_existss($fields[0]);
-											if(count($result)>0){
-											$data['errors'][]="Subcategory Name already exits .please use another Subcategory Name. Row Id is :  ".$key.'<br>';
-											$error=1;	
-											}
-
 										}
-										
+
 									}
+										
+									
 									if(empty($fields[1])) {
 										$data['errors'][]="Commision is required. Row Id is :  ".$key.'<br>';
 										$error=1;
@@ -1926,7 +1921,7 @@ public function servicerequestview(){
 										$data['errors'][]="category Name is required. Row Id is :  ".$key.'<br>';
 										$error=1;
 									}else if($fields[0]!=''){
-										$regex ="/^[ A-Za-z0-9_@.,}{@#&$*)(_+-]*$/"; 
+										$regex ="/^[ A-Za-z0-9_@.,}{@#&*)(_+-]*$/"; 
 										if(!preg_match( $regex, $fields[0]))	  	
 										{
 										$data['errors'][]='category Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
