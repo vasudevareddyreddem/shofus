@@ -155,16 +155,19 @@ class Customer_model extends MY_Model
         return $this->db->get()->result_array();
 	}
 	public function get_product_search_location($location_id){
+		//$date = new DateTime("now");
+		//$curr_date = $date->format('m/d/Y');
 		$this->db->select('products.*')->from('products');
 		$this->db->join('reviews', 'reviews.item_id = products.item_id', 'left');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where('admin_status','0');
+		//$this->db->where('offer_expairdate >=', $curr_date);
 		$this->db->order_by('products.offer_percentage desc');
 		$this->db->limit(8);
 		return $this->db->get()->result_array();
 	}
 	public function get_cart_products($cust_id){
-		$this->db->select('cart.*,products.item_name,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type')->from('cart');
+		$this->db->select('cart.*,products.item_name,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,,products.offer_expairdate')->from('cart');
 		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();

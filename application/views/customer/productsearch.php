@@ -1,5 +1,5 @@
 <body class="bac_img">
-<div class="banner_home con_start">
+<div class="banner_home con_start" style="margin-top:-20px;">
      
       <div id="myCarousel" class="carousel slide"> 
         <!-- Indicators -->
@@ -100,12 +100,14 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
+              <?php if(date('m/d/Y') <= $topslist['offer_expairdate']) {?>
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
-					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
-				</div>
-				
-			
+                 <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+                </div>
                 <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+                <?php }else { ?>
+                  <span><?php echo $topslist['item_cost']; ?></span>
+                <?php } ?>
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -158,13 +160,15 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
+              <?php if(date('m/d/Y') <= $topslist['offer_expairdate']) {?>
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
-					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
-				</div>
-				
-			
-                <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
-              </div>
+                   <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+                  </div>
+                  <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+                  <?php }else { ?>
+                  <span><?php echo $topslist['item_cost']; ?></span>
+                <?php } ?>
+                </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -221,12 +225,15 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
+                <?php if(date('m/d/Y') <= $topslist['offer_expairdate']) {?>
+                  
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
-					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
-				</div>
-				
-			
+                 <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+                </div>
                 <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+                <?php }else { ?>
+                  <span><?php echo $topslist['item_cost']; ?></span>
+                <?php } ?>
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -276,13 +283,15 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
+                <?php if(date('m/d/Y') <= $topslist['offer_expairdate']) {?>
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
-					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
-				</div>
-				
-			
+                 <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+                </div>
                 <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
-              </div>
+                <?php }else { ?>
+                  <span><?php echo $topslist['item_cost']; ?></span>
+                <?php } ?>
+                </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
