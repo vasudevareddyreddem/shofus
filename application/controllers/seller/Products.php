@@ -15,6 +15,8 @@ class Products extends Admin_Controller {
 		$this->load->library(array('form_validation','session'));
 		$this->load->model('seller/products_model');
 		$this->load->model('seller/dashboard_model');
+		$this->load->model('inventory_model');
+		
        // $this->load->library('pagination');
 		
 	}
@@ -46,6 +48,7 @@ class Products extends Admin_Controller {
 		$data['category_details'] = $this->products_model->get_seller_catdata($sid);
 		$color_details = $this->products_model->get_colores();
 		$size_details = $this->products_model->get_sizes_list();
+		$uksize_details = $this->products_model->get_uksizes_list();
 		$data['items'] = $this->products_model->auto_items();
 		//echo $this->db->last-query();exit;
 		//echo '<pre>';print_r($size_details);exit;
@@ -57,9 +60,14 @@ class Products extends Admin_Controller {
 			
 			$sizes_list[]=$sizes['size_name'];
 		}
+		foreach($uksize_details  as $sizes){
+			
+			$uksizes_list[]=$sizes['size_name'];
+		}
 		
 		$data['color_lists']=implode(",",$color_list);
 		$data['sizes_lists']=implode(",",$sizes_list);
+		$data['uksizes_lists']=implode(",",$uksizes_list);
 		//echo '<pre>';print_r($data);exit;
 		
 		$this->template->write_view('content', 'seller/products/add', $data);
@@ -121,7 +129,10 @@ class Products extends Admin_Controller {
 
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
-			//echo '<pre>';print_r($post);exit;
+		//echo '<pre>';print_r($post);
+		//echo '<pre>';print_r($_FILES);
+		
+		//exit;
 			//$col=implode("" ,$post['sizes']);
 			
 			$i=0;
@@ -162,7 +173,7 @@ class Products extends Admin_Controller {
 			'item_status' => isset($post['status'])?$post['status']:'',
 			'item_description' =>isset($post['product_description'])?$post['product_description']:'',
 			'ideal_for' =>isset($post['ideal_for'])?$post['ideal_for']:'',
-			'item_sub_name' =>isset($post['sub_item_name'])?$post['sub_item_name']:'',
+			'item_sub_name' =>isset($post['product_sub_tem'])?$post['product_sub_tem']:'',
 			'sufficient_for' =>isset($post['product_sufficient'])?$post['product_sufficient']:'',
 			'producttype' => isset($post['product_type'])?$post['product_type']:'',
 			'theme' => isset($post['product_theme'])?$post['product_theme']:'',
@@ -236,6 +247,46 @@ class Products extends Admin_Controller {
 			if(count($results)>0)
 			{	
 						
+						
+						if($post['addcategoryname']!=''){
+						$data = array(
+						'category_name' => $post['addcategoryname'], 
+						'seller_id' => $this->session->userdata('seller_id'), 
+						'documetfile' => '',
+						'status' => 0,    
+						'created_at' => date('Y-m-d H:i:s'),    
+						'updated_at' => date('Y-m-d H:i:s'),
+						);
+						$catresults=$this->inventory_model->insert_cat_data($data);
+						
+							if(count($results)>0){
+								
+								if($post['addsubcategoryname']!=''){
+									$addsubcat = array(
+								'category_id' => $catresults, 
+								'subcategory_name' =>$post['addsubcategoryname'], 
+								'commission' => '', 
+								'status' => 0,    
+								'created_at' => date('Y-m-d H:i:s'),    
+								'updated_at' => date('Y-m-d H:i:s'),
+								'created_by' =>$this->session->userdata('seller_id'),  
+								);
+								//echo "<pre>";print_r($addsubcat);
+								$results=$this->inventory_model->save_sub_categories($addsubcat);
+								}
+							}
+						}
+						if($post['addcategoryname']!=''){
+						$data = array(
+						'category_name' => $post['addcategoryname'], 
+						'seller_id' => $this->session->userdata('seller_id'), 
+						'documetfile' => '',
+						'status' => 0,    
+						'created_at' => date('Y-m-d H:i:s'),    
+						'updated_at' => date('Y-m-d H:i:s'),
+						);
+						$results=$this->inventory_model->insert_cat_data($data);
+						}
 						if(count($post['sizes'])>0){
 							$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
 						
@@ -247,6 +298,19 @@ class Products extends Admin_Controller {
 							'create_at' => date('Y-m-d H:i:s'),
 							);
 							$this->products_model->insert_product_sizes($addsizesdata);
+							}
+						}
+						if(count($post['sizes'])>0){
+							$uksizesdata = str_replace(array('[', ']','"'), array(''), $post['ussizes']);
+						
+							foreach (explode(",",$uksizesdata) as $uksizess){
+
+							$adduksizesdata=array(
+							'item_id' =>$results,
+							'p_size_name' => $uksizess,
+							'create_at' => date('Y-m-d H:i:s'),
+							);
+							$this->products_model->insert_product_uksizes($adduksizesdata);
 							}
 						}
 						

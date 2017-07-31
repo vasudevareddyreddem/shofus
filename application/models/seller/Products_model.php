@@ -45,6 +45,12 @@ class Products_model extends MY_Model
 		$this->db->where('status',1);
         return $this->db->get()->result_array();
 	}
+	public function get_uksizes_list()
+	{
+		$this->db->select('*')->from('uk_sizes_list');
+		$this->db->where('status',1);
+        return $this->db->get()->result_array();
+	}
 	public function save_prodcts($data)
 	{
 		
@@ -59,6 +65,12 @@ class Products_model extends MY_Model
 	{
 		
 		$this->db->insert('product_size_list', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function insert_product_uksizes($data)
+	{
+		
+		$this->db->insert('product_uksize_list', $data);
 		return $insert_id = $this->db->insert_id();
 	}
 	public function insert_product_colors($data)
