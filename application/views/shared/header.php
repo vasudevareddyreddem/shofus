@@ -726,11 +726,11 @@ $("#hover_li1").hover(function(){
    $(window).scroll(function() {
 if ($(this).scrollTop() > 10) {
 $('.hm_nav').addClass('affix');
-$('.hm_nav').addClass('animated fadeInDown');
+$('.hm_nav').addClass('animated zoomLeft');
 }
 else{
 $('.hm_nav').removeClass('affix');
-$('.hm_nav').removeClass('animated fadeInDown');
+$('.hm_nav').removeClass('animated zoomLeft');
 }
  });
 </script>
