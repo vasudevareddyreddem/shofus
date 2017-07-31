@@ -297,40 +297,17 @@ class Products extends Admin_Controller {
 
 public function edit()
 {
-	$id = $this->uri->segment(4);
-	$cat_id = $this->uri->segment(5);
+	$productid = base64_decode($this->uri->segment(4));
+	$cat_id = base64_decode($this->uri->segment(5));
 	$data['items'] = $this->products_model->auto_items();
 	$data['subcatdata'] = $this->products_model->getsubcatdata($cat_id);
 	$data['getcat'] = $this->products_model->getcateditdata();
-	$data['productdetails']=$this->products_model->getproductdata($id);
-	$data['productcolors']=$this->products_model->get_product_colors($id);
-	$data['productsizes']=$this->products_model->get_product_sizes($id);
-	$data['productspcification']=$this->products_model->get_product_spc($id);
-	//echo '<pre>';print_r($data['productcolors']);exit;
-	//echo count($productcolors);exit;
-		/*if(count($productcolors)>0){
-		foreach($productcolors  as $pcolors){
-			
-			$pcolor_list[]=$pcolors['color_name'];
-		}
-		$pcolor_lists=implode('","',$pcolor_list);
-		$data['pcolor_lists'] = '"'.$pcolor_lists.'"';
-		}else{
-			$data['pcolor_lists']='';
-		}
-
-		if(count($productsizes)>0){
-		foreach($productsizes  as $psizes){
-			
-			$psizes_list[]=$psizes['p_size_name'];
-		}
-		
-		$psizes_lists=implode('", "',$psizes_list);
-		$data['psizes_lists'] = '"'.$psizes_lists.'"';
-		}else{
-			$data['psizes_lists'] ='';
-		}
-		*/
+	$data['productdetails']=$this->products_model->getproductdata($productid);
+	$data['productcolors']=$this->products_model->get_product_colors($productid);
+	$data['productsizes']=$this->products_model->get_product_sizes($productid);
+	$data['productspcification']=$this->products_model->get_product_spc($productid);
+	//echo '<pre>';print_r($data['productdetails']);exit;
+	
 		//echo '<pre>';print_r($data);exit;
 		$sid = $this->session->userdata('seller_id'); 
 		$data['category_details'] = $this->products_model->get_seller_catdata($sid);

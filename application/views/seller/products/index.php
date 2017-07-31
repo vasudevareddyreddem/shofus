@@ -104,7 +104,9 @@ tfoot input {
                 <th>Item Cost</th>
                 <th>Affer Amount</th>
                 <th>Offer Type</th>
-                <th>Offer expiry Date and Time</th>                
+                <th>Offer expiry Date and Time</th>
+				<th>Status</th>
+                 <th>Action</th>                
             </tr>
         </thead>
       
@@ -122,7 +124,13 @@ tfoot input {
 						<td><?php echo $item_data->offer_amount;?></td>
 						<td><?php echo $item_data->offer_combo_item_id;?></td>
 						<td><?php echo $item_data->offer_expairdate;?>,&nbsp;<?php echo $item_data->offer_time;?></td>
-
+						<?php if($item_data->item_status == 1) {  ?>
+						<td>Available</td>
+						<?php } else {?>					 
+						<td>Unavailable</td>
+						<?php } ?>
+						<td><a href="<?php echo site_url('seller/products/edit/'.base64_encode($item_data->item_id).'/'.base64_encode($item_data->category_id)); ?>">Edit</a></td>
+                     
 					</tr>
 				  <?php $k++; } ?>
 				  </tbody>
