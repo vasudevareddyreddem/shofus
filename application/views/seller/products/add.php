@@ -205,12 +205,12 @@
 				</div>
 			</div>
 	</div>
-	<div class="row" class=" col-md-12">
-			<div class="form-group col-md-6"  >
+	<div class="row" id="" class="col-md-12" >
+			<div class="form-group col-md-6" id="sizeid" style="display:none;">
 			<label>Size</label>
 			<input class="form-control" id="sizes"  type="text" name="sizes"/>
 			</div>
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-6" id="colorid" style="display:none;">
 			<label>Color</label>
 			<input class="form-control" id="colors"  type="text" name="colors"/>
 			</div>			
@@ -652,7 +652,6 @@ $(document).ready(function(){
   
 });	
 
-  $('#sizecolor').show()
 function getspecialinputs(id){
 	  if(id==8 || id==19 || id==20 || id==28 || id==52 || id==29){
 		  $('#winterwaerinputs').show();
@@ -664,6 +663,7 @@ function getspecialinputs(id){
 	  }else{
 		  $('#personalcareappliancesinputs').show();
 	  }
+	 
 	  if(id==10){
 		  $('#smartwatchesinputs').show();
 	  }else{
@@ -721,11 +721,12 @@ function getspecialinputs(id){
 	  }
 	  if(id==36){
 		  $('#routersinputs').show();
-		   $('#sizecolor').hide();
+		   $('#sizeid').hide();
+		  $('#colorid').hide();
 	  }else{
-		  $('#routersinputs').hide();
-		   $('#sizecolor').hide();
-
+			$('#routersinputs').hide();
+			$('#sizeid').show();
+			$('#colorid').show();
 	  } 
 	  if(id==39){
 		  $('#laptopsinputs').show();
@@ -748,13 +749,13 @@ function getspecialinputs(id){
 	 if(id==18){
 		  $('#foodcategoryinputs').show();
 		  $('#idealfor').hide();
-		  $('#sizecolor').hide();
-	  }else if(id==19){  
-	  	    $('#sizecolor').show();
+		  $('#sizeid').hide();
+		  $('#colorid').hide();
 	  }else{
 		  $('#foodcategoryinputs').hide();
 		  $('#idealfor').show();
-		  $('#sizecolor').show();
+		  $('#sizeid').show();
+		  $('#colorid').show();
 	  }
 	 
 	  
