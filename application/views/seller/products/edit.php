@@ -309,7 +309,7 @@
 			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" />
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='11'){
+	<?php if($productdetails['subcategory_id']=='53'){
 		$footwareinputshide = '';
 		}else{
 		$footwareinputshide = 'display:none';
@@ -325,6 +325,15 @@
 			</div>
 			<div class="col-md-6 form-group">
 			<label>Size(UK)</label>
+			<span class="pull-right col-md-10">
+
+				<?php  //echo '<pre>';print_r($productcolors);exit;
+				foreach($productuksizes as $sizeslist){ ?> 
+				<input type="hidden" name="oldsizes[]" value="<?php echo $sizeslist['p_size_name']; ?>">
+				<a id="sizes_<?php echo $sizeslist['p_size_id'] ;?>" onclick="removeuksizes(<?php echo $sizeslist['p_size_id']?>);"class="btn btn-primary btn-xs"><?php echo $sizeslist['p_size_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
+				<?php } ?>
+
+				</span>
 			<input class="form-control" id="ussizes"  type="text" name="ussizes"  />
 			</div>
 	</div>
@@ -769,7 +778,7 @@
 	  }else{
 		  $('#smartwatchesinputs').hide();
 	  }
-	  if(id==11){
+	  if(id==53){
 		  $('#footwareinputs').show();
 		  $('#personalcareappliancesinputs').show();
 		  $('#size_color').show();
@@ -1713,7 +1722,7 @@ $(document).ready(function() {
         });
 $(document).ready(function() {
             var jsonData = [];
-            var fruits = '<?php echo $sizes_lists; ?>'.split(',');
+            var fruits = '<?php echo $uksizes_lists; ?>'.split(',');
             for(var i=0;i<fruits.length;i++) jsonData.push({id:fruits[i],name:fruits[i]});
             var ussizes = $('#ussizes').tagSuggest({
                 data: jsonData,

@@ -369,6 +369,7 @@ public function edit()
 	$data['productdetails']=$this->products_model->getproductdata($productid);
 	$data['productcolors']=$this->products_model->get_product_colors($productid);
 	$data['productsizes']=$this->products_model->get_product_sizes($productid);
+	$data['productuksizes']=$this->products_model->get_product_uksizes($productid);
 	$data['productspcification']=$this->products_model->get_product_spc($productid);
 	//echo '<pre>';print_r($data['productdetails']);exit;
 	
@@ -377,9 +378,10 @@ public function edit()
 		$data['category_details'] = $this->products_model->get_seller_catdata($sid);
 		$color_details = $this->products_model->get_colores();
 		$size_details = $this->products_model->get_sizes_list();
+		$uksize_details = $this->products_model->get_uksizes_list();
 		$data['items'] = $this->products_model->auto_items();
 		//echo $this->db->last-query();exit;
-		//echo '<pre>';print_r($size_details);exit;
+		//echo '<pre>';print_r($data);exit;
 		foreach($color_details  as $colors){
 			
 			$color_list[]=$colors['color_name'];
@@ -388,9 +390,14 @@ public function edit()
 			
 			$sizes_list[]=$sizes['size_name'];
 		}
+		foreach($uksize_details  as $uksizes){
+			
+			$uksizes_list[]=$uksizes['size_name'];
+		}
 		
 		$data['color_lists']=implode(",",$color_list);
 		$data['sizes_lists']=implode(",",$sizes_list);
+		$data['uksizes_lists']=implode(",",$uksizes_list);
 	$this->template->write_view('content', 'seller/products/edit', $data);
 	$this->template->render();
 	

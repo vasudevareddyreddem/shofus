@@ -212,6 +212,11 @@ public function get_product_colors($pid){
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->result_array();
 	}
+	public function get_product_uksizes($pid){
+		$this->db->select('*')->from('product_uksize_list');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->result_array();
+	}
 	public function get_product_spc($pid){
 		$this->db->select('*')->from('product_spcifications');
 		$this->db->where('item_id',$pid);
