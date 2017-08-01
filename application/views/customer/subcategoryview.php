@@ -199,7 +199,7 @@
           <div class="col-sm-4 col-md-3 box-product-outer">
             <div class="box-product">
               <div class="img-wrapper">
-                <a href="detail.html">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                   <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/p1-1.jpg">
                 </a>
                 <div class="tags">

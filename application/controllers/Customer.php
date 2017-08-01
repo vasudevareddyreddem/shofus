@@ -412,7 +412,6 @@ class Customer extends Front_Controller
 		$data['emailid']=$customerdetails['cust_email'];
 		$data['productinfo']=$items_names[0]['item_name'];
 		$data['txnid']=substr(hash('sha256', mt_rand() . microtime()), 0, 20);
-		$txnid=substr(hash('sha256', mt_rand() . microtime()), 0, 20);
 		$amount=$data['carttotal_amount']['pricetotalvalue'];
 		//echo '<pre>';print_r($data);exit;
 		//$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
@@ -433,25 +432,29 @@ class Customer extends Front_Controller
 		 $MERCHANT_KEY = $this->config->item('MERCHANTKEY');
 			$SALT='eCwWELxi';
 
-        $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
+        $txnid = substr(hash('sha256', mt_rand().microtime()), 0, 20);
 
         $udf1='';
         $udf2='';
         $udf3='';
         $udf4='';
         $udf5='';
-		$fname=$customerdetails['cust_email'];
+		$fname=$data['billimgdetails']['name'];
 		$email=$customerdetails['cust_email'];
 		
-		$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
+		//$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
 
-         $hashstring = $MERCHANT_KEY . '|' . $txnid . '|' .$amount . '|' . $items_names[0]['item_name'] . '|'. $fname . '|' . $email .'|'.$udf1.'|' .$udf2.'|' .$udf3.'|'.$udf4.'|'.$udf5.'||||||'. $SALT;
+         $hashstring = $MERCHANT_KEY.'|'.$data['txnid'].'|'.$amount. '|'.$items_names[0]['item_name'].'|'.$fname.'|'.$email.'|'.$udf1.'|'.$udf2.'|'.$udf3.'|'.$udf4.'|'.$udf5.'||||||'.$SALT;
+         //$hashstring = '';
 
-        $hash = strtolower(hash('sha512', $hashstring));
+        $hash = strtolower(hash('sha512',$hashstring));
         $data['hash'] = $hash;
 		
 		
-		//echo '<pre>';print_r($hashstring);exit;
+		//echo '<pre>';print_r($hashstring);
+		//echo '<pre>';print_r($data);
+//exit;
+		$data['hashstring']=$hashstring;
 		$this->template->write_view('content', 'customer/payment',$data);
 		$this->template->render();
 	}else{
@@ -466,7 +469,7 @@ class Customer extends Front_Controller
 	 {
 
 	$order_id=base64_decode($this->uri->segment(3));
-	//echo '<pre>';print_r($order_id);exit;
+	echo '<pre>';print_r($_POST);exit;
 	  $customerdetails=$this->session->userdata('userdetails');
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 		//echo '<pre>';print_r($cart_items);exit;

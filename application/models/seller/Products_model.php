@@ -26,6 +26,13 @@ class Products_model extends MY_Model
 		$this->db->where('seller_categories.seller_id',$sid);
         return $this->db->get()->result_array();
 	}
+	public function get_seller_products($sid)
+	{
+		$this->db->select('*')->from('products');
+		$this->db->where('seller_id',$sid);
+		$this->db->where('item_status',1);
+        return $this->db->get()->result_array();
+	}
 	public function get_subcategoies($cid)
 	{
 		$this->db->select('*')->from('subcategories');
@@ -45,6 +52,12 @@ class Products_model extends MY_Model
 		$this->db->where('status',1);
         return $this->db->get()->result_array();
 	}
+	public function get_uksizes_list()
+	{
+		$this->db->select('*')->from('uk_sizes_list');
+		$this->db->where('status',1);
+        return $this->db->get()->result_array();
+	}
 	public function save_prodcts($data)
 	{
 		
@@ -59,6 +72,12 @@ class Products_model extends MY_Model
 	{
 		
 		$this->db->insert('product_size_list', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function insert_product_uksizes($data)
+	{
+		
+		$this->db->insert('product_uksize_list', $data);
 		return $insert_id = $this->db->insert_id();
 	}
 	public function insert_product_colors($data)
@@ -186,6 +205,10 @@ function remove_spcification($id){
 		$sql1="DELETE FROM product_size_list WHERE p_size_id = '".$id."'";
 		return $this->db->query($sql1);
 	}
+	function product_uksize_list($id){
+		$sql1="DELETE FROM product_uksize_list WHERE p_size_id = '".$id."'";
+		return $this->db->query($sql1);
+	}
 	function delete_product_spc($id){
 		$sql1="DELETE FROM product_spcifications WHERE specification_id = '".$id."'";
 		return $this->db->query($sql1);
@@ -197,6 +220,11 @@ public function get_product_colors($pid){
 	}
 	public function get_product_sizes($pid){
 		$this->db->select('*')->from('product_size_list');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->result_array();
+	}
+	public function get_product_uksizes($pid){
+		$this->db->select('*')->from('product_uksize_list');
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->result_array();
 	}

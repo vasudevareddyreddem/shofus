@@ -299,14 +299,12 @@ public function getproducts($subid)
 	}
 	public function get_sidebar_category_list()
 	{
-		$data=array('41','20','40','16');
 		$this->db->select('category.category_name,category.category_id,')->from('products');
 		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 		$this->db->join('category', 'category.category_id =products.category_id', 'left');
 		$this->db->group_by('category.category_id');
 		$this->db->order_by('category.category_id', 'ASC');
 		$this->db->where('category.status', 1);		
-		$this->db->where_in('category.category_id', $data);		
 		return $this->db->get()->result_array();
 	}
 	

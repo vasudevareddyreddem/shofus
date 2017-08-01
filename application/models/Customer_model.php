@@ -132,8 +132,8 @@ class Customer_model extends MY_Model
 		return $insert_id = $this->db->insert_id();
 	}
 	public function get_product_details($itemid){
-		$this->db->select('products.*,category.commission')->from('products');
-		$this->db->join('category', 'category.category_id = products.category_id', 'left');
+		$this->db->select('products.*,subcategories.commission')->from('products');
+		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
 		$this->db->where('item_id', $itemid);
         return $this->db->get()->row_array();
 	}
