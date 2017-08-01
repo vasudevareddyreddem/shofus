@@ -11,6 +11,7 @@ class Customer extends Front_Controller
 		$this->load->library('session','form_validation');
 		$this->load->library('email');
 		$this->load->model('customer_model'); 
+		$this->load->model('home_model'); 
 			
  }
  
@@ -20,6 +21,7 @@ class Customer extends Front_Controller
 
   public function locationsearch(){
 		$post=$this->input->post();
+		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 	  	$data['product_search']= $this->customer_model->get_product_search_location($post['locationarea']);
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/productsearch', $data);
