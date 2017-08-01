@@ -26,16 +26,8 @@
 				<li  class=" spin ">
 					<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<?php  if($categories['category_id']==20){ ?>
-						<span class="menu_tit">FASHION</span>
-						<?php }else if($categories['category_id']==41){ ?>
-							<span class="menu_tit">ELECTRONIC</span>
-						<?php	}else{ ?>
-						<span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
-						<?php } ?>
-						
+					    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
 					</a>
-			
 				</li>
 				<div class="clearfix"></div>
 				<?php } ?>
