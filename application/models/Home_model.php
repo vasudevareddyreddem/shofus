@@ -94,13 +94,13 @@ class Home_model extends CI_Model
 	}
 	public function get_search_season_sales($areaid)
 	{
-		//$date = new DateTime("now");
-		//$curr_date = $date->format('m/d/Y');
+		$date = new DateTime("now");
+		$curr_date = $date->format('m/d/Y');
 		$this->db->select('*')->from('products');
         $this->db->where('seller_location_area',$areaid);
         $this->db->where('admin_status','0');
 		$this->db->order_by('products.offer_percentage desc');
-		//$this->db->where('offer_expairdate >=', $curr_date);
+		$this->db->where('offer_expairdate >=', $curr_date);
 		$this->db->limit(5);
 		return $this->db->get()->result_array();
 	}

@@ -12,8 +12,9 @@ class Admin_Controller extends MY_Controller {
       		$this->load->model('seller/user_profile_model');
 			$seller_id=$this->session->userdata('seller_id');
 			$data['sellerdetails'] = $this->dashboard_model->get_seller_details($seller_id);
-      		$result=$this->Orders_model->order_by('orders.created_at',$order = 'DESC')->new_orders();
+      		$result=$this->Orders_model->new_orders();
 			$data['ordersdata'] =  $result;
+			//echo "<pre>";print_r($data);exit;
 			$result['sellernotify'] =  $this->request_model->getdata();		
        		$data['catdata'] = $this->dashboard_model->getcatsubcat();
        		$data['bank_link'] = $this->dashboard_model->bank_status();

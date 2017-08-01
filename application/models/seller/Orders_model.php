@@ -4,15 +4,12 @@ class Orders_model extends MY_Model
 
 {
 
-	protected $_table="orders";
+	protected $_table="order_items";
 
-	protected $primary_key="order_id";
+	protected $primary_key="order_item__id";
 
 	protected $soft_delete = FALSE;
 
-    public $before_create = array( 'created_at', 'updated_at' );
-
-    public $before_update = array( 'updated_at' );
 
 	public function __construct()
 
@@ -22,10 +19,12 @@ class Orders_model extends MY_Model
 	}
 
 	public function total(){
-		$sid = $this->session->userdata('seller_id');
-	$this->db->select('*');
-	$this->db->from('orders');
-	$this->db->where('orders.seller_id',$sid);
+	$sid = $this->session->userdata('seller_id');
+	$this->db->select('order_items.*,products.*,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1');
+	$this->db->from('order_items');
+	$this->db->join('products', 'products.item_id = order_items.item_id','left');
+	$this->db->join('customers', 'customers.customer_id = order_items.customer_id','left');
+	$this->db->where('order_items.seller_id',$sid);
 	$query=$this->db->get();
 	return $query->result();
 	}
@@ -33,77 +32,66 @@ class Orders_model extends MY_Model
 public function new_orders()
 {
 
-     $id = $this->session->userdata('seller_id');
-
-    $this->db->select('*');
-	$this->db->from('orders');
-	 $this->db->join('sellers', 'sellers.seller_id = orders.seller_id');
-	$this->db->where('orders.order_status','0');
-	$this->db->where('orders.seller_id', $id);
-    $this->db->order_by("orders.order_id","desc"); 
-	$query = $this->db->get();
-	return $query->result();
+     $sid = $this->session->userdata('seller_id');
+     $this->db->select('order_items.*,products.*,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1');
+	$this->db->from('order_items');
+	$this->db->join('products', 'products.item_id = order_items.item_id','left');
+	$this->db->join('customers', 'customers.customer_id = order_items.customer_id','left');
+	$this->db->where('order_items.order_status','0');
+	$this->db->where('order_items.seller_id',$sid);
+	$this->db->order_by('order_items.create_at','desc');
+	return $query = $this->db->get()->result();
+	//return $query->result();
 }
 
 public function assigned_orders()
 {
-	$id = $this->session->userdata('seller_id');
-
-	$this->db->select('*');
-	$this->db->from('orders');
-	$this->db->join('assign_orders', 'orders.order_id = assign_orders.order_id');
-	$this->db->join('sellers', 'sellers.seller_id = orders.seller_id');
-	$this->db->where('orders.order_status','1');
-	$this->db->where('orders.seller_id', $id);
-	$this->db->order_by("orders.order_id","desc"); 
-	$query = $this->db->get();
-	return $query->result();
+	$sid = $this->session->userdata('seller_id');
+     $this->db->select('order_items.*,products.*,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1');
+	$this->db->from('order_items');
+	$this->db->join('products', 'products.item_id = order_items.item_id','left');
+	$this->db->join('customers', 'customers.customer_id = order_items.customer_id','left');
+	$this->db->where('order_items.order_status','1');
+	$this->db->where('order_items.seller_id',$sid);
+	return $query = $this->db->get()->result();
 }
 
 public function inprogress_orders()
 {
-    $id = $this->session->userdata('seller_id');
-    //return $id;
-	$this->db->select('*');
-	$this->db->from('orders');
-	$this->db->join('assign_orders', 'orders.order_id = assign_orders.order_id');
-	$this->db->join('sellers', 'sellers.seller_id = orders.seller_id');
-	$this->db->where('orders.order_status','2');
-	$this->db->where('orders.seller_id', $id);
-	  $this->db->order_by("orders.order_id","desc"); 
-	$query = $this->db->get();
-	//return $this->db->last_query(); exit;
-	return $query->result();
+    $sid = $this->session->userdata('seller_id');
+     $this->db->select('order_items.*,products.*,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1');
+	$this->db->from('order_items');
+	$this->db->join('products', 'products.item_id = order_items.item_id','left');
+	$this->db->join('customers', 'customers.customer_id = order_items.customer_id','left');
+	$this->db->where('order_items.order_status','2');
+	$this->db->where('order_items.seller_id',$sid);
+	return $query = $this->db->get()->result();
 }
 
 public function delivered_orders()
 {
-	$id = $this->session->userdata('seller_id');
-
-	$this->db->select('*');
-	$this->db->from('orders');
-	$this->db->join('assign_orders', 'orders.order_id = assign_orders.order_id');
-	$this->db->join('sellers', 'sellers.seller_id = orders.seller_id');
-	$this->db->where('orders.order_status','3');
-		$this->db->where('orders.seller_id', $id);
-	  $this->db->order_by("orders.order_id","desc"); 
-	$query = $this->db->get();
-	return $query->result();
+	$sid = $this->session->userdata('seller_id');
+     $this->db->select('order_items.*,products.*,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1');
+	$this->db->from('order_items');
+	$this->db->join('products', 'products.item_id = order_items.item_id','left');
+	$this->db->join('customers', 'customers.customer_id = order_items.customer_id','left');
+	$this->db->where('order_items.order_status','3');
+	$this->db->where('order_items.seller_id',$sid);
+	return $query = $this->db->get()->result();
 }
 
 
 public function rejected_orders()
 
 {
-	$id = $this->session->userdata('seller_id');
-    $this->db->select('*');
-	$this->db->from('orders');
-	$this->db->join('sellers', 'sellers.seller_id = orders.seller_id');
-	$this->db->where('orders.order_status','4');
-	$this->db->order_by("orders.order_id","desc"); 
-	$this->db->where('orders.seller_id', $id);
-	$query = $this->db->get();
-	return $query->result();
+	$sid = $this->session->userdata('seller_id');
+     $this->db->select('order_items.*,products.*,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1');
+	$this->db->from('order_items');
+	$this->db->join('products', 'products.item_id = order_items.item_id','left');
+	$this->db->join('customers', 'customers.customer_id = order_items.customer_id','left');
+	$this->db->where('order_items.order_status','4');
+	$this->db->where('order_items.seller_id',$sid);
+	return $query = $this->db->get()->result();
 
 }
 
@@ -138,11 +126,11 @@ public function getperformancedaily($month,$year)
 	} */
 	//echo $month; echo $year; exit;
 $query = $this->db->query("SELECT COUNT(*) AS orders, created_at
-FROM orders
+FROM order_items
 WHERE seller_id=$sid
-AND MONTH(created_at)=$month
-AND YEAR(created_at) =$year 
-GROUP BY EXTRACT(DAY FROM created_at) ");
+AND MONTH(create_at)=$month
+AND YEAR(create_at) =$year 
+GROUP BY EXTRACT(DAY FROM create_at) ");
 	
 //$this->db->where("MONTH(created_at)", $month);
 //$this->db->where("YEAR(created_at)", $year );

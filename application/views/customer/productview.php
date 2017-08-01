@@ -74,7 +74,7 @@
               <tr>
                 <td>Price</td>
                 <td>
-				<?php if(date('m/d/Y') <= $products_list['offer_expairdate']) {?>
+				<?php if(date('m/d/Y') <= $products_list['offer_expairdate'] && date('H:ia')<= $products_list['offer_time']) {?>
 				<div class="price">
                     <div><?php echo ($products_list['item_cost'])-($products_list['offer_amount']); ?><span class="label label-default arrowed">-<?php echo $products_list['offer_percentage']; ?>%</span></div>
                     <span class="price-old"><?php echo $products_list['item_cost']; ?></span>
@@ -169,7 +169,7 @@
                       </tr>
                       <tr>
                         <td>Item Cost</td>
-                        <?php if(date('m/d/Y') <= $products_list['offer_expairdate']) {?>
+                        <?php if(date('m/d/Y') <= $products_list['offer_expairdate'] && date('H:ia')<= $products_list['offer_time']) {?>
                         	<td><?php echo ($products_list['item_cost'])-($products_list['offer_amount']); ?></td>
                         	<?php }else{ ?>
                         		<td><?php echo $products_list['item_cost']; ?></td>

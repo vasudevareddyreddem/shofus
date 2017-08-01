@@ -169,7 +169,7 @@
 				  
 				  <?php if($items['offer_percentage']!==0 && $items['offer_percentage']!=='' ){ ?>
 					 
-					 <?php if(date('m/d/Y') <= $items['offer_expairdate']){
+					 <?php if(date('m/d/Y') <= $items['offer_expairdate'] && date('H:ia')<= $items['offer_time']){
 
             $offeramount=($items['item_cost'])-($items['offer_amount']);
             $amount=(($offeramount) * ($items['qty']));

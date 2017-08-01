@@ -63,10 +63,10 @@
                  <th>S.No</th>
                 <th>Order Id</th>
                 <th>Order Price</th>                
-                <th>Delivery Date</th>
-                <th>Delivery Time</th>
+                <!-- <th>Delivery Date</th>
+                 <th>Delivery Time</th>-->
                 <th>Customer Details</th>
-                <th>Delete</th>
+                <!-- <th>Delete</th> -->
                     </tr>
                   </thead>
                   <?php if(!empty($ordersdata)): ?>
@@ -80,31 +80,31 @@
                 <tr>
                   <td><?= ++$count ?></td>
                   <td><?php  echo $orders_data->order_id; ?></td>
-                  <td><?php  echo $orders_data->order_price; ?></td>
-                 <td><?php  echo $orders_data->delivery_date; ?></td>
-                  <td><?php  echo $orders_data->delivery_time; ?></td>
+                  <td><?php  echo $orders_data->total_price; ?></td>
+                 <!-- <td><?php  echo $orders_data->delivery_date; ?></td>
+                  <td><?php  echo $orders_data->delivery_time; ?></td> -->
 
                    <td><table class="table table-bordered qtytable">
                     <tbody>
                       <tr>
                         <th>Name</th>
-                        <td><?php  echo $orders_data->customer_name; ?></td>
+                        <td><?php  echo $orders_data->cust_firstname . $orders_data->cust_lastname; ?></td>
                       </tr>
                       <tr>
                         <th>Mobile</th>
-                        <td><?php  echo $orders_data->customer_phone; ?></td>
+                        <td><?php  echo $orders_data->cust_mobile; ?></td>
                       </tr>
                       <tr>
                         <th>Email</th>
-                        <td><?php  echo $orders_data->customer_email; ?></td>
+                        <td><?php  echo $orders_data->cust_email; ?></td>
                       </tr>
                       <tr>
                         <th>Address</th>
-                        <td><?php  echo $orders_data->customer_address; ?></td>
+                        <td><?php  echo $orders_data->address1; ?></td>
                       </tr>
                     </tbody>
                   </table></td>
-          <td>  <a href="<?php echo base_url(); ?>seller/orders/delete/<?php  echo $orders_data->order_id; ?>" onclick="return checkDelete('<?php  echo $orders_data->order_id; ?>')"><i class="fa fa-trash-o" style="font-size:18px"></i></a></td>
+          <!-- <td>  <a href="<?php echo base_url(); ?>seller/orders/delete/<?php  echo $orders_data->order_id; ?>" onclick="return checkDelete('<?php  echo $orders_data->order_id; ?>')"><i class="fa fa-trash-o" style="font-size:18px"></i></a></td> -->
 
                 
                 </tr>
@@ -123,7 +123,7 @@
 
               <?php endif; ?>
                 </table>
-                <center><?= $this->pagination->create_links(); ?></center>
+                
               </div>
             </div>
           </section>

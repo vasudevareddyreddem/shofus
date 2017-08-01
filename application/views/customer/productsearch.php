@@ -100,7 +100,7 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
-              <?php if(date('m/d/Y') <= $topslist['offer_expairdate']) {?>
+              <?php if(date('m/d/Y') <= $topslist['offer_expairdate'] && date('H:ia')<= $topslist['offer_time']) {?>
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
                  <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
                 </div>
@@ -160,7 +160,7 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
-              <?php if(date('m/d/Y') <= $topslist['offer_expairdate']) {?>
+              <?php if(date('m/d/Y') <= $topslist['offer_expairdate'] && date('H:ia')<= $topslist['offer_time']) {?>
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
                    <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
                   </div>
@@ -225,7 +225,7 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
-                <?php if(date('m/d/Y') <= $topslist['offer_expairdate']) {?>
+                <?php if(date('m/d/Y') <= $topslist['offer_expairdate'] && date('H:ia')<= $topslist['offer_time']) {?>
                   
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
                  <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
@@ -283,7 +283,7 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
-                <?php if(date('m/d/Y') <= $topslist['offer_expairdate']) {?>
+                <?php if(date('m/d/Y') <= $topslist['offer_expairdate'] && date('H:ia')<= $topslist['offer_time']) {?>
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
                  <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
                 </div>
