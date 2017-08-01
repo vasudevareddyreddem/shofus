@@ -233,11 +233,22 @@
 			<input class="form-control" id="colors"  type="text" name="colors"/>
 			</div>			
 	</div>
-	<div class="row" class=" col-md-12" id="idealfor" style="display:none;">
+	<?php if($productdetails['category_id']!='18'){
+		$idealforhide = '';
+		}else{
+		$idealforhide = 'display:none';
+		} ?>
+	<div class="row" class=" col-md-12" id="idealfor" style="<?php echo $idealforhide; ?>">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Ideal FOR</label>
 					<input type="text" class="form-control" id="ideal_for" name="ideal_for" value="<?php echo isset($productdetails['ideal_for'])?$productdetails['ideal_for']:''; ?>" >
+				</div>
+		</div>
+		<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Brand</label>
+					<input type="text" class="form-control" id="brand" name="brand" value="<?php echo isset($productdetails['brand'])?$productdetails['brand']:''; ?>" >
 				</div>
 		</div>
 						
@@ -247,7 +258,10 @@
 	
 	<!-- food category purpose-->
 	<div class="row" id="foodcategoryinputs" style="display:none;">
-			
+			<div class="col-md-6 form-group">
+			<label>Cuisine</label>
+			<input class="form-control" id="product_scusine"  type="text" name="product_scusine" value="<?php echo isset($productdetails['cusine'])?$productdetails['cusine']:''; ?>"/>
+			</div>
 			<div class="col-md-6 form-group">
 			<label>sufficient for?</label>
 			<input class="form-control" id="product_sufficient"  type="text" name="product_sufficient" value="<?php echo isset($productdetails['sufficient_for'])?$productdetails['sufficient_for']:''; ?>" />
@@ -1037,7 +1051,7 @@
   }
 	  
 	  
-  //getspecialinputs('<?php echo htmlentities($productdetails['category_id']);?>');
+  getspecialinputs('<?php echo htmlentities($productdetails['category_id']);?>');
   function getproductinputs(id){
 	 if(id==18){
 		  $('#foodcategoryinputs').show();

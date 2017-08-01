@@ -206,7 +206,7 @@
 			</div>
 	</div>
 	<div class="row" id="" class="col-md-12" >
-			<div class="form-group col-md-6" id="sizeid">
+			<div class="form-group col-md-6" id="sizeid" ">
 			<label>Size</label>
 			<input class="form-control" id="sizes"  type="text" name="sizes"/>
 			</div>
@@ -266,13 +266,6 @@
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
 			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
-			</div>
-	</div>
-	<div class="row" id="product_theme" style="display:none;">
-		
-			<div class="col-md-6 form-group">
-			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
 	<div class="row" id="smartwatchesinputs" style="display:none;">
@@ -384,7 +377,226 @@
 		</div>
 		
 	</div>
-	
+	<!-- electronice purpose-->
+	<div class="row" id="mobileaccessoriesinputs" style="display:none;">
+		<div class=" col-md-6 form-group">
+		<label>COMPATIBLE MOBILES</label>
+		<input class="form-control" id="product_compatible_mobiles"  type="text" name="product_compatible_mobiles"/>
+		</div>
+	</div>
+	<div class="row" id="camerainputs" style="display:none;">
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">Type</label>
+		<input type="text" class="form-control" id="product_type3" name="product_type3" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">MEGA PIXEL</label>
+		<input type="text" class="form-control" id="product_mega_pixel" name="product_mega_pixel" value="<?php echo isset($productdetails['mega_pixel'])?$productdetails['mega_pixel']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">SENSOR TYPE</label>
+		<input type="text" class="form-control" id="product_sensor_type" name="product_sensor_type" value="<?php echo isset($productdetails['sensor_type'])?$productdetails['sensor_type']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">BATTERY TYPE</label>
+		<input type="text" class="form-control" id="product_battery_type" name="product_battery_type" value="<?php echo isset($productdetails['battery_type'])?$productdetails['battery_type']:''; ?>" >
+		</div>
+	</div>
+	<div class="row" id="routersinputs" style="display:none;">
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">Type</label>
+		<input type="text" class="form-control" id="product_type2" name="product_type2" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">WIRELESS SPEED</label>
+		<input type="text" class="form-control" id="wireless_speed" name="wireless_speed" value="<?php echo isset($productdetails['wireless_speed'])?$productdetails['wireless_speed']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">FREQUENCY BAND</label>
+		<input type="text" class="form-control" id="frequency_band" name="frequency_band" value="<?php echo isset($productdetails['frequency_band'])?$productdetails['frequency_band']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">BROADBAND COMPATIBILITY</label>
+		<input type="text" class="form-control" id="broadband_compatibility" name="broadband_compatibility" value="<?php echo isset($productdetails['broadband_compatibility'])?$productdetails['broadband_compatibility']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">NO. OF USB PORTS</label>
+		<input type="text" class="form-control" id="usb_ports" name="usb_ports" value="<?php echo isset($productdetails['usb_ports'])?$productdetails['usb_ports']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">FREQUENCY</label>
+		<input type="text" class="form-control" id="product_frequency" name="product_frequency" value="<?php echo isset($productdetails['frequency'])?$productdetails['frequency']:''; ?>" >
+		</div>
+		<div class=" col-md-12 form-group">
+		 <label for="exampleInputEmail1">ANTENNAE</label>
+		<input type="text" class="form-control" id="product_antennae" name="product_antennae" value="<?php echo isset($productdetails['antennae'])?$productdetails['antennae']:''; ?>" >
+		</div>
+		
+	</div>
+	<div class="row" id="tabletsinputs" style="display:none;">
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">DISPLAY SIZE</label>
+		<input type="text" class="form-control" id="product_display_size3" name="product_display_size3" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">CONNECTIVITY</label>
+		<input type="text" class="form-control" id="product_connectivity" name="product_connectivity" value="<?php echo isset($productdetails['connectivity'])?$productdetails['connectivity']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">RAM</label>
+		<input type="text" class="form-control" id="product_ram3" name="product_ram3" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">VOICE CALLING FACILITY</label>
+		<input type="text" class="form-control" id="voice_calling_facility" name="voice_calling_facility" value="<?php echo isset($productdetails['voice_calling_facility'])?$productdetails['voice_calling_facility']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
+		<input type="text" class="form-control" id="operating_system3" name="operating_system3" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
+		<input type="text" class="form-control" id="internal_storage3" name="internal_storage3" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">BATTERY CAPACITY</label>
+		<input type="text" class="form-control" id="battery_capacity2" name="battery_capacity2" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">PRIMARY CAMERA</label>
+		<input type="text" class="form-control" id="primary_camera2" name="primary_camera2" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
+		</div>
+		<div class=" col-md-12 form-group">
+		 <label for="exampleInputEmail1">PROCESSOR CLOCK SPEED</label>
+		<input type="text" class="form-control" id="processor_clock_speed" name="processor_clock_speed" value="<?php echo isset($productdetails['clock_speed'])?$productdetails['clock_speed']:''; ?>" >
+		</div>
+	</div>
+	<div class="row" id="laptopsinputs" style="display:none;">
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">SCREEN SIZE</label>
+		<input type="text" class="form-control" id="product_display_size2" name="product_display_size2" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>"  >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">PROCESSOR</label>
+		<input type="text" class="form-control" id="product_processor" name="product_processor" value="<?php echo isset($productdetails['processor'])?$productdetails['processor']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">PROCESSOR BRAND</label>
+		<input type="text" class="form-control" id="product_processor_brand1" name="product_processor_brand1" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
+		<input type="text" class="form-control" id="operating_system2" name="operating_system2" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>">
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">RAM</label>
+		<input type="text" class="form-control" id="product_ram2" name="product_ram2" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">LIFESTYLE</label>
+		<input type="text" class="form-control" id="life_style" name="life_style" value="<?php echo isset($productdetails['life_style'])?$productdetails['life_style']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">STORAGE TYPE</label>
+		<input type="text" class="form-control" id="storage_type" name="storage_type" value="<?php echo isset($productdetails['storage_type'])?$productdetails['storage_type']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">DEDICATED GRAPHICS MEMORY</label>
+		<input type="text" class="form-control" id="dedicated_graphics_memory" name="dedicated_graphics_memory" value="<?php echo isset($productdetails['graphics_memory'])?$productdetails['graphics_memory']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">TOUCH SCREEN</label>
+		<input type="text" class="form-control" id="touch_screen" name="touch_screen" value="<?php echo isset($productdetails['touch_screen'])?$productdetails['touch_screen']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		<label for="exampleInputEmail1">Weight</label>
+		<input type="text" class="form-control" id="weight" name="weight" value="<?php echo isset($productdetails['weight'])?$productdetails['weight']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">HARD DISK CAPACITY</label>
+		<input type="text" class="form-control" id="internal_storage2" name="internal_storage2" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">GRAPHICS MEMORY TYPE</label>
+		<input type="text" class="form-control" id="graphics_memory_type" name="graphics_memory_type" value="<?php echo isset($productdetails['memory_type'])?$productdetails['memory_type']:''; ?>" >
+		</div>
+		<div class=" col-md-12 form-group">
+		 <label for="exampleInputEmail1">RAM TYPE</label>
+		<input type="text" class="form-control" id="ram_type" name="ram_type" value="<?php echo isset($productdetails['ram_type'])?$productdetails['ram_type']:''; ?>">
+		</div>
+		
+	</div>
+	<div class="row" id="mobilesinputs" style="display:none;">
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">RAM</label>
+		<input type="text" class="form-control" id="product_ram1" name="product_ram1" value="" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
+		<input type="text" class="form-control" id="operating_system1" name="operating_system1" value="" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
+		<input type="text" class="form-control" id="internal_storage4" name="internal_storage4" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">SCREEN SIZE</label>
+		<input type="text" class="form-control" id="product_display_size1" name="product_display_size1" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">NETWORK TYPE</label>
+		<input type="text" class="form-control" id="network_type" name="network_type" value="<?php echo isset($productdetails['network_type'])?$productdetails['network_type']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">BATTERY CAPACITY</label>
+		<input type="text" class="form-control" id="battery_capacity1" name="battery_capacity1" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">SPECIALITY</label>
+		<input type="text" class="form-control" id="product_speciality" name="product_speciality" value="<?php echo isset($productdetails['speciality'])?$productdetails['speciality']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">Type</label>
+		<input type="text" class="form-control" id="product_type1" name="product_type1" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">OPERATING SYSTEM VERSION NAME</label>
+		<input type="text" class="form-control" id="operating_system_version_name" name="operating_system_version_name" value="<?php echo isset($productdetails['operating_system_version_name'])?$productdetails['operating_system_version_name']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">PROCESSOR BRAND</label>
+		<input type="text" class="form-control" id="product_processor_brand2" name="product_processor_brand2" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">RESOLUTION TYPE</label>
+		<input type="text" class="form-control" id="resolution_type" name="resolution_type" value="<?php echo isset($productdetails['resolution_type'])?$productdetails['resolution_type']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">PRIMARY CAMERA</label>
+		<input type="text" class="form-control" id="primary_camera1" name="primary_camera1" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">SECONDARY CAMERA</label>
+		<input type="text" class="form-control" id="secondary_camera" name="secondary_camera" value="<?php echo isset($productdetails['secondary_camera'])?$productdetails['secondary_camera']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">SIM TYPE</label>
+		<input type="text" class="form-control" id="sim_type" name="sim_type" value="<?php echo isset($productdetails['sim_type'])?$productdetails['sim_type']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">CLOCK SPEED</label>
+		<input type="text" class="form-control" id="clock_speed" name="clock_speed" value="<?php echo isset($productdetails['clock_speed'])?$productdetails['clock_speed']:''; ?>" >
+		</div>
+		<div class=" col-md-6 form-group">
+		 <label for="exampleInputEmail1">NUMBER OF CORES</label>
+		<input type="text" class="form-control" id="number_of_cores" name="number_of_cores" value="<?php echo isset($productdetails['cores'])?$productdetails['cores']:''; ?>" >
+		</div>
+		<div class=" col-md-12 form-group">
+		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
+		<input type="text" class="form-control" id="internal_storage1" name="internal_storage1" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
+		</div>
+		
+	</div>
 	
 	
 	<div class="row">
@@ -449,126 +661,100 @@ $(document).ready(function(){
     });
   
 });	
-
-function getspecialinputs(ids){
-	if(ids==7 || ids==9){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}else{ 
+$('#sizeid').hide();
+$('#colorid').hide();	
+function getspecialinputs(id){
+	if(id==7){
+			$('#sizeid').hide();
+		  $('#colorid').hide();	
+	}else{
 		$('#sizeid').show();
-		$('#colorid').show();
+		  $('#colorid').show();
 	}
-	if(ids==8){
-	$('#winterwaerinputs').show();
-	}else{ 
-	$('#winterwaerinputs').hide();
-	}
-	if(ids==10){
+	  
+	  if(id==8){
+		  $('#winterwaerinputs').show();
+		  $('#sizeid').show();
+		  $('#colorid').show();
+		
+	  }else{
+		  $('#winterwaerinputs').hide();
+	
+	  }if(id==19 || id==20 || id==28 || id==52 || id==29){
+		  $('#winterwaerinputs').show();
+		  $('#sizeid').show();
+		  $('#colorid').show();
+		
+	  }else{
+		  $('#winterwaerinputs').hide();
+	
+	  }
+	  if(id==9){
+		  $('#personalcareappliancesinputs').hide();
+	  }else{
+		  $('#personalcareappliancesinputs').show();
+	  }
+	 
+	  if(id==10){
 		  $('#smartwatchesinputs').show();
 		  $('#colorid').show();
-		  $('#sizeid').hide();
 	  }else{
 		  $('#smartwatchesinputs').hide();
-		  $('#colorid').hide();
-		  $('#sizeid').show();
 	  }
-	  if(ids==53){
+	  if(id==53){
 		  $('#footwareinputs').show();
 		  $('#sizeid').show();
 			$('#colorid').show();
 	 }else{
 		  $('#footwareinputs').hide();
-		  $('#sizeid').hide();
-			$('#colorid').hide();
 	  }
-	  if(ids==12 || ids==13 || ids==14 || ids==16 || ids==17){
-		  $('#mensfabricsinputs').show();
+	  if(id==12 || id==13 || id==14 || id==16 || id==17){
+		  $('#womensaccessoriesinputs').show();
 		   $('#sizeid').show();
-		   $('#colorid').show();
 	  }else{
-		  $('#mensfabricsinputs').hide();
-		   $('#sizeid').hide();
-			$('#colorid').hide();
-	  }
-	  if(ids==19 || ids==20){
-		  $('#winterwaerinputs').show();
-		   $('#sizeid').show();
-		   $('#colorid').show();
-	  }else{
-		  $('#winterwaerinputs').hide();
-		  $('#sizeid').hide();
-		   $('#colorid').hide();
-	  }
-	  
-	 
-	  if(ids==21){
-		  $('#sizeid').hide();
-		   $('#colorid').hide();
-		   $('#product_theme').show();
-	  }else{
-		  $('#product_theme').hide();
-		  $('#sizeid').show();
-		   $('#colorid').show();
-	  }
-	  if(ids==22){
-		  $('#sizeid').show();
-		   $('#colorid').show();
-		   $('#mensaccessoriesinputs').show();
-	  }else{
-		  $('#mensaccessoriesinputs').hide();
-		 
-	  }
-	   if(ids==51){
-		   $('#sizeid').show();
-		   $('#colorid').show();
-		  $('#mensehinicwearinputs').show();
-	  }else{
-		  $('#mensehinicwearinputs').hide();
-		  	 $('#sizeid').hide();
-		   $('#colorid').hide();
-	  }
-	  if(ids==15){
+		  $('#womensaccessoriesinputs').hide();
+	  } 
+	  if(id==15){
 		  $('#jwelleryinputs').show();
 	  }else{
 		  $('#jwelleryinputs').hide();
 	  }
-	  if(ids==50){
+	  if(id==50){
 		  $('#womenswatchesinputs').show();
-		  $('#mensfabricsinputs').hide();
-		  $('#sizeid').hide();
-		  $('#colorid').hide();
-		  
 	  }else{
 		  $('#womenswatchesinputs').hide();
-		  $('#sizeid').show();
-		  $('#colorid').show();
 	  } 
-	 
-	 
-	  if(ids==23){
-		   $('#colorid').show();
-		   $('#mensfabricsinputs').show();
+	  if(id==22){
+		  $('#mensaccessoriesinputs').show();
 	  }else{
-		  $('#colorid').hide();
+		  $('#mensaccessoriesinputs').hide();
+	  }
+	  if(id==51){
+		  $('#mensehinicwearinputs').show();
+	  }else{
+		  $('#mensehinicwearinputs').hide();
+	  }
+	  if(id==23 || id==25){
+		  $('#mensfabricsinputs').show();
+	  }else{
 		  $('#mensfabricsinputs').hide();
 	  } 
-	  
-	  if(ids==30){
+	  if(id==30){
 		  $('#mobileaccessoriesinputs').show();
 	  }else{
 		  $('#mobileaccessoriesinputs').hide();
 	  } 
-	  if(ids==34){
+	  if(id==34){
 		  $('#camerainputs').show();
 	  }else{
 		  $('#camerainputs').hide();
 	  }
-	  if(ids==35){
+	  if(id==35){
 		  $('#tabletsinputs').show();
 	  }else{
 		  $('#tabletsinputs').hide();
 	  }
-	  if(ids==36){
+	  if(id==36){
 		  $('#routersinputs').show();
 		   $('#sizeid').hide();
 		  $('#colorid').hide();
@@ -577,14 +763,20 @@ function getspecialinputs(ids){
 			$('#sizeid').show();
 			$('#colorid').show();
 	  }
-	 
-	  if(ids==39){
+	  if(id==7){
+		   $('#sizeid').hide();
+		  	$('#colorid').hide();
+	  }else{
+			$('#sizeid').show();
+			$('#colorid').show();
+	  } 
+	  if(id==39){
 		  $('#laptopsinputs').show();
 	  }else{
 		  $('#laptopsinputs').hide();
 
 	  }
-	  if(ids==40){
+	  if(id==40){
 		  $('#mobilesinputs').show();
 		  $('#sizeid').hide();
 		  $('#colorid').hide();	
@@ -594,7 +786,6 @@ function getspecialinputs(ids){
 		  $('#colorid').hide();	
 
 	  } 
-	
 	   
 		  
   }
