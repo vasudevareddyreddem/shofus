@@ -727,6 +727,13 @@ function getspecialinputs(id){
 			$('#routersinputs').hide();
 			$('#sizeid').show();
 			$('#colorid').show();
+	  }
+	  if(id==7){
+		   $('#sizeid').hide();
+		  	$('#colorid').hide();
+	  }else{
+			$('#sizeid').show();
+			$('#colorid').show();
 	  } 
 	  if(id==39){
 		  $('#laptopsinputs').show();
