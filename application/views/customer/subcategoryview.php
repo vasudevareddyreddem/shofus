@@ -222,8 +222,8 @@
               </div>
               <h6><a href="detail.html"><?php echo $productslist['item_name']; ?></a></h6>
               <div class="price">
-                <div>$13.50 <span class="label-tags"><span class="label label-primary">-10%</span></span></div>
-                <span class="price-old">$15.00</span>
+                <div>$13.50 <span class="label-tags"><span class="label label-primary">-10%</span></span> &nbsp;<span class="price-old">$15.00</span></div>
+               
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
