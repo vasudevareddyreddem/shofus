@@ -78,7 +78,7 @@
 				 	
 
 				  <?php if($list['item_image']!=''){ ?>
-				  	<img src="<?php echo base_url('assets/home/images/'.$list['item_image']); ?>" alt="">
+				  	<img src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>" alt="">
 				  <?php }else{ ?>
 				  	<img src="<?php echo base_url(); ?>assets/home/images/p2.jpg" alt="">
 				  <?php } ?>
@@ -116,7 +116,7 @@
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="javascript:void(0);">
-                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$list['item_image']); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
 				   
                 </a>
                 <div class="tags">
@@ -183,7 +183,7 @@
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="javascript:void(0);">
-                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$list['item_image']); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
 				   
                 </a>
                 <div class="tags">
