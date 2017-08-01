@@ -21,8 +21,15 @@ class Customer extends Front_Controller
 
   public function locationsearch(){
 		$post=$this->input->post();
+
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
-	  	$data['product_search']= $this->customer_model->get_product_search_location($post['locationarea']);
+		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
+		$data['tredings']= $this->customer_model->get_product_search_location($post['locationarea']);
+		$data['offers']= $this->customer_model->get_product_search_location($post['locationarea']);
+
+	  	//echo '<pre>';print_r($data);exit;
+	  	$data['deals_of_day']= $this->customer_model->get_product_search_deals_day($post['locationarea']);
+	  	$data['season_sales']= $this->customer_model->get_product_search_seaaon_sales($post['locationarea']);
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/productsearch', $data);
 		$this->template->render();

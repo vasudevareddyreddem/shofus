@@ -57,10 +57,10 @@
             <div class="new_title">
               <h2>Top Offers </h2>
             </div>
-				<?php if(count($product_search)>0){ ?>
+				<?php if(count($top_offers)>0){ ?>
             <div id="top-categories" class="product-flexslider hidden-buttons">
 				<div class="slider-items slider-width-col4 products-grid">
-			  <?php foreach ($product_search as $tops){  ?>
+			  <?php foreach ($top_offers as $tops){  ?>
 				<div class="item">
                   <div class="pro-img"><img src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
                     <div class="pro-info"><?php echo $tops['item_name']; ?></div>
@@ -81,7 +81,7 @@
     <!--Top Category silder End--> 
     <!-- best Pro Slider -->
     
-    <section>
+     <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
           <h2>Treding Products</h2>
@@ -89,13 +89,13 @@
         <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-		   <?php foreach ($product_search as $topslist){  ?>
+		   <?php foreach ($tredings as $treding){  ?>
             <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$topslist['item_image']); ?>">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($treding['item_id'])); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$treding['item_image']); ?>">
 				   
                 </a>
                 <div class="tags">
@@ -106,19 +106,19 @@
                 </div>
                 <div class="option">
                   <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" id="compare" onclick="compare(<?php echo $topslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare" value="<?php echo $topslist['item_name']; ?>"><i class="fa fa-align-left"></i></a>
+                  <a href="#" id="compare" onclick="compare(<?php echo $treding['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare" value="<?php echo $treding['item_name']; ?>"><i class="fa fa-align-left"></i></a>
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($treding['item_id'])); ?>"><?php echo $treding['item_name']; ?></a></h6>
               <div class="price">
-              <?php if(date('m/d/Y') <= $topslist['offer_expairdate'] && date('H:ia')<= $topslist['offer_time']) {?>
-                <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
-                 <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+              <?php if(date('m/d/Y') <= $treding['offer_expairdate'] && date('H:ia')<= $treding['offer_time']) {?>
+                <div class="pull-left" ><?php echo ($treding['item_cost'])-($treding['offer_amount']); ?> 
+                 <span class="label-tags"><span class="label label-default">-<?php echo $treding['offer_percentage']; ?>%</span></span>
                 </div>
-                <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+                <span class="price-old"><?php echo $treding['item_cost']; ?></span>
                 <?php }else { ?>
-                  <span><?php echo $topslist['item_cost']; ?></span>
+                  <span><?php echo $treding['item_cost']; ?></span>
                 <?php } ?>
               </div>
               <div class="rating">
@@ -136,11 +136,11 @@
 		   <?php } ?>
             
            
-            <!-- End Item --> 
+          
           </div>
         </div>
       </div>
-    </section>
+    </section> 
     <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
@@ -149,7 +149,7 @@
         <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-            <?php foreach ($product_search as $topslist){  ?>
+            <?php foreach ($offers as $topslist){  ?>
             <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
@@ -213,13 +213,13 @@
           <div class="slider-items slider-width-col4 products-grid">
 		  
 		  <?php //echo '<pre>';print_r($recentproducts);exit; ?>
-      <?php foreach($product_search as $recent_products)  {    ?>
+      <?php foreach($deals_of_day as $deals_day)  {    ?>
            <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$topslist['item_image']); ?>">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($deals_day['item_id'])); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$deals_day['item_image']); ?>">
 				   
                 </a>
                 <div class="tags">
@@ -231,20 +231,20 @@
                 <div class="option">
                   <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
                   
-                  <a href="#" id="compare" onclick="compare(<?php echo $topslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" id="compare" onclick="compare(<?php echo $deals_day['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($deals_day['item_id'])); ?>"><?php echo $deals_day['item_name']; ?></a></h6>
               <div class="price">
-                <?php if(date('m/d/Y') <= $topslist['offer_expairdate'] && date('H:ia')<= $topslist['offer_time']) {?>
+                <?php if(date('m/d/Y') <= $deals_day['offer_expairdate'] && date('H:ia')<= $deals_day['offer_time']) {?>
                   
-                <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
-                 <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+                <div class="pull-left" ><?php echo ($deals_day['item_cost'])-($topslist['offer_amount']); ?> 
+                 <span class="label-tags"><span class="label label-default">-<?php echo $deals_day['offer_percentage']; ?>%</span></span>
                 </div>
-                <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+                <span class="price-old"><?php echo $deals_day['item_cost']; ?></span>
                 <?php }else { ?>
-                  <span><?php echo $topslist['item_cost']; ?></span>
+                  <span><?php echo $deals_day['item_cost']; ?></span>
                 <?php } ?>
               </div>
               <div class="rating">
@@ -273,13 +273,13 @@
     
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-      <?php foreach($product_search as $recent_products)  {    ?>
+      <?php foreach($season_sales as $season_sale)  {    ?>
                <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$topslist['item_image']); ?>">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($season_sale['item_id'])); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$season_sale['item_image']); ?>">
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
@@ -289,19 +289,19 @@
                 </div>
                 <div class="option">
                   <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>                  
-                  <a href="#" id="compare" onclick="compare(<?php echo $topslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left" ></i></a>
+                  <a href="#" id="compare" onclick="compare(<?php echo $season_sale['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left" ></i></a>
                   <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
                 </div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($season_sale['item_id'])); ?>"><?php echo $season_sale['item_name']; ?></a></h6>
               <div class="price">
-                <?php if(date('m/d/Y') <= $topslist['offer_expairdate'] && date('H:ia')<= $topslist['offer_time']) {?>
-                <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
-                 <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+                <?php if(date('m/d/Y') <= $season_sale['offer_expairdate'] && date('H:ia')<= $season_sale['offer_time']) {?>
+                <div class="pull-left" ><?php echo ($season_sale['item_cost'])-($season_sale['offer_amount']); ?> 
+                 <span class="label-tags"><span class="label label-default">-<?php echo $season_sale['offer_percentage']; ?>%</span></span>
                 </div>
-                <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+                <span class="price-old"><?php echo $season_sale['item_cost']; ?></span>
                 <?php }else { ?>
-                  <span><?php echo $topslist['item_cost']; ?></span>
+                  <span><?php echo $season_sale['item_cost']; ?></span>
                 <?php } ?>
                 </div>
               <div class="rating">

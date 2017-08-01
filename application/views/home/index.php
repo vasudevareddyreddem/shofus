@@ -97,7 +97,14 @@
                 <div class="option">
                   <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
                   <a href="#" id="compare" onclick="compare(<?php echo $topslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare" value="<?php echo $topslist['item_name']; ?>"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+          <?php if($topslist['yes']==1){ ?>
+          <a href="javascript:void(0);" data-toggle="tooltip" style="color:yellow;" title="Add to Wishlist" class="wishlist" onclick="addwhishlidt(<?php echo $topslist['item_id']; ?>);" id="addwhish" ><i class="fa fa-heart"></i></a>  
+          <?php }else{ ?> 
+          <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Wishlist" class="wishlist" onclick="addwhishlidt(<?php echo $topslist['item_id']; ?>);" id="addwhish"><i class="fa fa-heart"></i></a>  
+          <?php } ?>
+
+
+                  
                 </div>
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
@@ -404,6 +411,33 @@
   
 </script>
 <script type="text/javascript">
+function addwhishlidt(id){
+jQuery.ajax({
+      url: "<?php echo site_url('customer/addwhishlist');?>",
+      type: 'post',
+      data: {
+        form_key : window.FORM_KEY,
+        item_id: id,
+        },
+      dataType: 'JSON',
+      success: function (data) {
+        jQuery('#sucessmsg').show();
+        //alert(data.msg);
+        if(data.msg==2){
+        $('#addwhish').css("color", "");
+        $('#sucessmsg').html('Product Successfully removed to Whishlist');  
+        }
+        if(data.msg==1){
+        $('#addwhish').css("color", "yellow");
+        $('#sucessmsg').html('Product Successfully added to Whishlist');  
+        }
+      
+
+      }
+    });
+  
+  
+}
 
  function compare(id){
    //alert(id);
