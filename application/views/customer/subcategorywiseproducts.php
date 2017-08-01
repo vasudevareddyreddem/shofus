@@ -176,7 +176,7 @@
             <div class="box-product">
               <div class="img-wrapper">
                 <a href="detail.html">
-                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/p1-1.jpg">
+                  <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-primary arrowed">Featured</span></span>

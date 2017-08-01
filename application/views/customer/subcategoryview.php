@@ -200,7 +200,7 @@
             <div class="box-product">
               <div class="img-wrapper">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
-                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/p1-1.jpg">
+                  <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-primary arrowed">Featured</span></span>

@@ -53,7 +53,7 @@
               <div class="slider-items slider-width-col4 products-grid">
         <?php foreach ($topoffers as $tops){  ?>
         <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url('assets/home/images/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
+                  <div class="pro-img"><img src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
                     <div class="pro-info"><?php echo $tops['item_name']; ?></div>
           </div>
                   </div>
@@ -83,7 +83,7 @@
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$topslist['item_image']); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$topslist['item_image']); ?>">
            
                 </a>
                 <div class="tags">
@@ -147,7 +147,7 @@
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$topslist['item_image']); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$topslist['item_image']); ?>">
            
                 </a>
                 <div class="tags">
@@ -212,7 +212,7 @@
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$items['item_image']); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>">
            
                 </a>
                 <div class="tags">
@@ -271,7 +271,7 @@
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$items['item_image']); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>">
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
