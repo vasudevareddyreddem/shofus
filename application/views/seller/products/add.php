@@ -241,7 +241,7 @@
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Type</label>
-					<input type="text" class="form-control" id="product_type" name="product_type" >
+					<input type="text" class="form-control" id="product_type8" name="product_type8" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 				</div>
 			</div>
 	
@@ -250,42 +250,42 @@
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Type</label>
-					<input type="text" class="form-control" id="product_type" name="product_type" >
+					<input type="text" class="form-control" id="product_type7" name="product_type7" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 				</div>
 			</div>
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme"/>
+			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
 	<div class="row" id="smartwatchesinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">DIAL SHAPE</label>
-					<input type="text" class="form-control" id="dial_shape" name="dial_shape" >
+					<input type="text" class="form-control" id="dial_shape2" name="dial_shape2" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
 				</div>
 			</div>
 			<div class="col-md-6 form-group">
 			<label>COMPATIBLE OS</label>
-			<input class="form-control" id="compatible_os"  type="text" name="compatible_os"/>
+			<input class="form-control" id="compatible_os"  type="text" name="compatible_os" value="<?php echo isset($productdetails['compatibleos'])?$productdetails['compatibleos']:''; ?>" />
 			</div>
 			<div class="col-md-6 form-group">
 			<label>USAGE</label>
-			<input class="form-control" id="prouduct_usage"  type="text" name="prouduct_usage"/>
+			<input class="form-control" id="prouduct_usage"  type="text" name="prouduct_usage" value="<?php echo isset($productdetails['usage'])?$productdetails['usage']:''; ?>" />
 			</div>
 			<div class="col-md-6 form-group">
 			<label>DISPLAY TYPE</label>
-			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type"/>
+			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" />
 			</div>
 	</div>
 	<div class="row" id="footwareinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme"/>
+			<input class="form-control" id="product_theme5"  type="text" name="product_theme5" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 			<div class="col-md-6 form-group">
 			<label>OCCASION</label>
-			<input class="form-control" id="product_occasion"  type="text" name="product_occasion"/>
+			<input class="form-control" id="product_occasion2"  type="text" name="product_occasion2" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>" />
 			</div>
 			<div class="col-md-6 form-group">
 			<label>Size(UK)</label>
@@ -295,75 +295,75 @@
 	<div class="row" id="womensaccessoriesinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme"/>
+			<input class="form-control" id="product_theme4"  type="text" name="product_theme4" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
 	
 	<div class="row" id="jwelleryinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Material</label>
-		<input type="text" class="form-control" id="material" name="material" >
+		<input type="text" class="form-control" id="material1" name="material1" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Gemstones</label>
-		<input type="text" class="form-control" id="product_gemstones" name="product_gemstones" >
+		<input type="text" class="form-control" id="product_gemstones" name="product_gemstones" value="<?php echo isset($productdetails['gemstones'])?$productdetails['gemstones']:''; ?>" >
 		</div>
 	</div>
 	<div class="row" id="womenswatchesinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Material</label>
-		<input type="text" class="form-control" id="Material" name="Material" >
+		<input type="text" class="form-control" id="Material2" name="Material2" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" >
+		<input type="text" class="form-control" id="product_type6" name="product_type6" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">DIAL SHAPE</label>
-					<input type="text" class="form-control" id="dial_shape" name="dial_shape" >
+					<input type="text" class="form-control" id="dial_shape1" name="dial_shape1" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
 				</div>
 			</div>
 		<div class="col-md-6 form-group">
 			<label>STRAP COLOR</label>
-			<input class="form-control" id="prouduct_strap_color"  type="text" name="prouduct_strap_color"/>
+			<input class="form-control" id="prouduct_strap_color"  type="text" name="prouduct_strap_color"  value="<?php echo isset($productdetails['strap_color'])?$productdetails['strap_color']:''; ?>" />
 		</div>
 		<div class="col-md-12 form-group">
 			<label>DIAL COLOR</label>
-			<input class="form-control" id="prouduct_dial_color"  type="text" name="prouduct_dial_color"/>
+			<input class="form-control" id="prouduct_dial_color"  type="text" name="prouduct_dial_color" value="<?php echo isset($productdetails['dial_color'])?$productdetails['dial_color']:''; ?>"/>
 		</div>
 	</div>
 	<div class="row" id="mensaccessoriesinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" >
+		<input type="text" class="form-control" id="product_type5" name="product_type5" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme"/>
+			<input class="form-control" id="product_theme3"  type="text" name="product_theme3" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>"/>
 		</div>
 		<div class="col-md-12 form-group">
 		 <label for="exampleInputEmail1">PACK OF</label>
-		<input type="text" class="form-control" id="product_packof" name="product_packof" >
+		<input type="text" class="form-control" id="product_packof2" name="product_packof2" value="<?php echo isset($productdetails['packof'])?$productdetails['packof']:''; ?>" >
 		</div>
 		
 	</div>
 	<div class="row" id="mensehinicwearinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		<label>Theme</label>
-		<input class="form-control" id="product_theme"  type="text" name="product_theme"/>
+		<input class="form-control" id="product_theme2"  type="text" name="product_theme2" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 		</div>
 		<div class="col-md-6 form-group">
 		<label>OCCASION</label>
-		<input class="form-control" id="product_occasion"  type="text" name="product_occasion"/>
+		<input class="form-control" id="product_occasion1"  type="text" name="product_occasion1" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>"/>
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" >
+		<input type="text" class="form-control" id="product_type4" name="product_type4" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PACK OF</label>
-		<input type="text" class="form-control" id="product_packof" name="product_packof" >
+		<input type="text" class="form-control" id="product_packof1" name="product_packof1" value="<?php echo isset($productdetails['packof'])?$productdetails['packof']:''; ?>" >
 		</div>
 		
 	</div>
@@ -377,213 +377,213 @@
 	<div class="row" id="camerainputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" >
+		<input type="text" class="form-control" id="product_type3" name="product_type3" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">MEGA PIXEL</label>
-		<input type="text" class="form-control" id="product_mega_pixel" name="product_mega_pixel" >
+		<input type="text" class="form-control" id="product_mega_pixel" name="product_mega_pixel" value="<?php echo isset($productdetails['mega_pixel'])?$productdetails['mega_pixel']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SENSOR TYPE</label>
-		<input type="text" class="form-control" id="product_sensor_type" name="product_sensor_type" >
+		<input type="text" class="form-control" id="product_sensor_type" name="product_sensor_type" value="<?php echo isset($productdetails['sensor_type'])?$productdetails['sensor_type']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">BATTERY TYPE</label>
-		<input type="text" class="form-control" id="product_battery_type" name="product_battery_type" >
+		<input type="text" class="form-control" id="product_battery_type" name="product_battery_type" value="<?php echo isset($productdetails['battery_type'])?$productdetails['battery_type']:''; ?>" >
 		</div>
 	</div>
 	<div class="row" id="routersinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" >
+		<input type="text" class="form-control" id="product_type2" name="product_type2" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">WIRELESS SPEED</label>
-		<input type="text" class="form-control" id="wireless_speed" name="wireless_speed" >
+		<input type="text" class="form-control" id="wireless_speed" name="wireless_speed" value="<?php echo isset($productdetails['wireless_speed'])?$productdetails['wireless_speed']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">FREQUENCY BAND</label>
-		<input type="text" class="form-control" id="frequency_band" name="frequency_band" >
+		<input type="text" class="form-control" id="frequency_band" name="frequency_band" value="<?php echo isset($productdetails['frequency_band'])?$productdetails['frequency_band']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">BROADBAND COMPATIBILITY</label>
-		<input type="text" class="form-control" id="broadband_compatibility" name="broadband_compatibility" >
+		<input type="text" class="form-control" id="broadband_compatibility" name="broadband_compatibility" value="<?php echo isset($productdetails['broadband_compatibility'])?$productdetails['broadband_compatibility']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">NO. OF USB PORTS</label>
-		<input type="text" class="form-control" id="usb_ports" name="usb_ports" >
+		<input type="text" class="form-control" id="usb_ports" name="usb_ports" value="<?php echo isset($productdetails['usb_ports'])?$productdetails['usb_ports']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">FREQUENCY</label>
-		<input type="text" class="form-control" id="product_frequency" name="product_frequency" >
+		<input type="text" class="form-control" id="product_frequency" name="product_frequency" value="<?php echo isset($productdetails['frequency'])?$productdetails['frequency']:''; ?>" >
 		</div>
 		<div class=" col-md-12 form-group">
 		 <label for="exampleInputEmail1">ANTENNAE</label>
-		<input type="text" class="form-control" id="product_antennae" name="product_antennae" >
+		<input type="text" class="form-control" id="product_antennae" name="product_antennae" value="<?php echo isset($productdetails['antennae'])?$productdetails['antennae']:''; ?>" >
 		</div>
 		
 	</div>
 	<div class="row" id="tabletsinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">DISPLAY SIZE</label>
-		<input type="text" class="form-control" id="product_display_size" name="product_display_size" >
+		<input type="text" class="form-control" id="product_display_size3" name="product_display_size3" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">CONNECTIVITY</label>
-		<input type="text" class="form-control" id="product_connectivity" name="product_connectivity" >
+		<input type="text" class="form-control" id="product_connectivity" name="product_connectivity" value="<?php echo isset($productdetails['connectivity'])?$productdetails['connectivity']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RAM</label>
-		<input type="text" class="form-control" id="product_ram" name="product_ram" >
+		<input type="text" class="form-control" id="product_ram3" name="product_ram3" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">VOICE CALLING FACILITY</label>
-		<input type="text" class="form-control" id="voice_calling_facility" name="voice_calling_facility" >
+		<input type="text" class="form-control" id="voice_calling_facility" name="voice_calling_facility" value="<?php echo isset($productdetails['voice_calling_facility'])?$productdetails['voice_calling_facility']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
-		<input type="text" class="form-control" id="operating_system" name="operating_system" >
+		<input type="text" class="form-control" id="operating_system3" name="operating_system3" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" >
+		<input type="text" class="form-control" id="internal_storage3" name="internal_storage3" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">BATTERY CAPACITY</label>
-		<input type="text" class="form-control" id="battery_capacity" name="battery_capacity" >
+		<input type="text" class="form-control" id="battery_capacity2" name="battery_capacity2" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PRIMARY CAMERA</label>
-		<input type="text" class="form-control" id="primary_camera" name="primary_camera" >
+		<input type="text" class="form-control" id="primary_camera2" name="primary_camera2" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
 		</div>
 		<div class=" col-md-12 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR CLOCK SPEED</label>
-		<input type="text" class="form-control" id="processor_clock_speed" name="processor_clock_speed" >
+		<input type="text" class="form-control" id="processor_clock_speed" name="processor_clock_speed" value="<?php echo isset($productdetails['clock_speed'])?$productdetails['clock_speed']:''; ?>" >
 		</div>
 	</div>
 	<div class="row" id="laptopsinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SCREEN SIZE</label>
-		<input type="text" class="form-control" id="product_display_size" name="product_display_size" >
+		<input type="text" class="form-control" id="product_display_size2" name="product_display_size2" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>"  >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR</label>
-		<input type="text" class="form-control" id="product_processor" name="product_processor" >
+		<input type="text" class="form-control" id="product_processor" name="product_processor" value="<?php echo isset($productdetails['processor'])?$productdetails['processor']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR BRAND</label>
-		<input type="text" class="form-control" id="product_processor_brand" name="product_processor_brand" >
+		<input type="text" class="form-control" id="product_processor_brand1" name="product_processor_brand1" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
-		<input type="text" class="form-control" id="operating_system" name="operating_system" >
+		<input type="text" class="form-control" id="operating_system2" name="operating_system2" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>">
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RAM</label>
-		<input type="text" class="form-control" id="product_ram" name="product_ram" >
+		<input type="text" class="form-control" id="product_ram2" name="product_ram2" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">LIFESTYLE</label>
-		<input type="text" class="form-control" id="life_style" name="life_style" >
+		<input type="text" class="form-control" id="life_style" name="life_style" value="<?php echo isset($productdetails['life_style'])?$productdetails['life_style']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">STORAGE TYPE</label>
-		<input type="text" class="form-control" id="storage_type" name="storage_type" >
+		<input type="text" class="form-control" id="storage_type" name="storage_type" value="<?php echo isset($productdetails['storage_type'])?$productdetails['storage_type']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">DEDICATED GRAPHICS MEMORY</label>
-		<input type="text" class="form-control" id="dedicated_graphics_memory" name="dedicated_graphics_memory" >
+		<input type="text" class="form-control" id="dedicated_graphics_memory" name="dedicated_graphics_memory" value="<?php echo isset($productdetails['graphics_memory'])?$productdetails['graphics_memory']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">TOUCH SCREEN</label>
-		<input type="text" class="form-control" id="touch_screen" name="touch_screen" >
+		<input type="text" class="form-control" id="touch_screen" name="touch_screen" value="<?php echo isset($productdetails['touch_screen'])?$productdetails['touch_screen']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		<label for="exampleInputEmail1">Weight</label>
-		<input type="text" class="form-control" id="weight" name="weight" >
+		<input type="text" class="form-control" id="weight" name="weight" value="<?php echo isset($productdetails['weight'])?$productdetails['weight']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">HARD DISK CAPACITY</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" >
+		<input type="text" class="form-control" id="internal_storage2" name="internal_storage2" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">GRAPHICS MEMORY TYPE</label>
-		<input type="text" class="form-control" id="graphics_memory_type" name="graphics_memory_type" >
+		<input type="text" class="form-control" id="graphics_memory_type" name="graphics_memory_type" value="<?php echo isset($productdetails['memory_type'])?$productdetails['memory_type']:''; ?>" >
 		</div>
 		<div class=" col-md-12 form-group">
 		 <label for="exampleInputEmail1">RAM TYPE</label>
-		<input type="text" class="form-control" id="ram_type" name="ram_type" >
+		<input type="text" class="form-control" id="ram_type" name="ram_type" value="<?php echo isset($productdetails['ram_type'])?$productdetails['ram_type']:''; ?>">
 		</div>
 		
 	</div>
 	<div class="row" id="mobilesinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RAM</label>
-		<input type="text" class="form-control" id="product_ram" name="product_ram" >
+		<input type="text" class="form-control" id="product_ram1" name="product_ram1" value="" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
-		<input type="text" class="form-control" id="operating_system" name="operating_system" >
+		<input type="text" class="form-control" id="operating_system1" name="operating_system1" value="" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" >
+		<input type="text" class="form-control" id="internal_storage4" name="internal_storage4" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SCREEN SIZE</label>
-		<input type="text" class="form-control" id="product_display_size" name="product_display_size" >
+		<input type="text" class="form-control" id="product_display_size1" name="product_display_size1" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">NETWORK TYPE</label>
-		<input type="text" class="form-control" id="network_type" name="network_type" >
+		<input type="text" class="form-control" id="network_type" name="network_type" value="<?php echo isset($productdetails['network_type'])?$productdetails['network_type']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">BATTERY CAPACITY</label>
-		<input type="text" class="form-control" id="battery_capacity" name="battery_capacity" >
+		<input type="text" class="form-control" id="battery_capacity1" name="battery_capacity1" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SPECIALITY</label>
-		<input type="text" class="form-control" id="product_speciality" name="product_speciality" >
+		<input type="text" class="form-control" id="product_speciality" name="product_speciality" value="<?php echo isset($productdetails['speciality'])?$productdetails['speciality']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" >
+		<input type="text" class="form-control" id="product_type1" name="product_type1" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM VERSION NAME</label>
-		<input type="text" class="form-control" id="operating_system_version_name" name="operating_system_version_name" >
+		<input type="text" class="form-control" id="operating_system_version_name" name="operating_system_version_name" value="<?php echo isset($productdetails['operating_system_version_name'])?$productdetails['operating_system_version_name']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR BRAND</label>
-		<input type="text" class="form-control" id="product_processor_brand" name="product_processor_brand" >
+		<input type="text" class="form-control" id="product_processor_brand2" name="product_processor_brand2" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RESOLUTION TYPE</label>
-		<input type="text" class="form-control" id="resolution_type" name="resolution_type" >
+		<input type="text" class="form-control" id="resolution_type" name="resolution_type" value="<?php echo isset($productdetails['resolution_type'])?$productdetails['resolution_type']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PRIMARY CAMERA</label>
-		<input type="text" class="form-control" id="primary_camera" name="primary_camera" >
+		<input type="text" class="form-control" id="primary_camera1" name="primary_camera1" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SECONDARY CAMERA</label>
-		<input type="text" class="form-control" id="secondary_camera" name="secondary_camera" >
+		<input type="text" class="form-control" id="secondary_camera" name="secondary_camera" value="<?php echo isset($productdetails['secondary_camera'])?$productdetails['secondary_camera']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SIM TYPE</label>
-		<input type="text" class="form-control" id="sim_type" name="sim_type" >
+		<input type="text" class="form-control" id="sim_type" name="sim_type" value="<?php echo isset($productdetails['sim_type'])?$productdetails['sim_type']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">CLOCK SPEED</label>
-		<input type="text" class="form-control" id="clock_speed" name="clock_speed" >
+		<input type="text" class="form-control" id="clock_speed" name="clock_speed" value="<?php echo isset($productdetails['clock_speed'])?$productdetails['clock_speed']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">NUMBER OF CORES</label>
-		<input type="text" class="form-control" id="number_of_cores" name="number_of_cores" >
+		<input type="text" class="form-control" id="number_of_cores" name="number_of_cores" value="<?php echo isset($productdetails['cores'])?$productdetails['cores']:''; ?>" >
 		</div>
 		<div class=" col-md-12 form-group">
 		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" >
+		<input type="text" class="form-control" id="internal_storage1" name="internal_storage1" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
 		</div>
 		
 	</div>

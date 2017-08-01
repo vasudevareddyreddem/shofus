@@ -27,6 +27,7 @@ class Products extends Admin_Controller {
 		
 	   
 	   $data['catitemdata'] = $this->products_model->getcatsubcatpro();
+	   $data['seller_prducts'] = $this->products_model->get_seller_products($this->session->userdata('seller_id'));
 	   //echo '<pre>';print_r($data);exit;
 	   $data['catitemdata1'] = $this->products_model->getcatsubcatpro();
 		$data['cnt']= count($data['catitemdata1']);
@@ -155,7 +156,163 @@ class Products extends Admin_Controller {
 			
 	
 		//echo '<pre>';print_r($images);exit;
-		
+		if($post['product_theme1'] || $post['product_theme2'] || $post['product_theme3'] || $post['product_theme4'] || $post['product_theme5']){
+	
+	if($post['product_theme1']!=''){
+	$pthem=$post['product_theme1'];		
+	}
+	if($post['product_theme2']!=''){
+	$pthem=$post['product_theme2'];		
+	}if($post['product_theme3']!=''){
+	$pthem=$post['product_theme3'];		
+	}if($post['product_theme4']!=''){
+	$pthem=$post['product_theme4'];		
+	}if($post['product_theme5']!=''){
+	$pthem=$post['product_theme5'];		
+	}
+}
+if($post['product_type1'] || $post['product_type2'] || $post['product_type3'] || $post['product_type4'] || $post['product_type5'] || $post['product_type6'] || $post['product_type7'] || $post['product_type8']){
+	
+	if($post['product_type1']!=''){
+	$ptype=$post['product_type1'];		
+	}
+	if($post['product_type2']!=''){
+	$ptype=$post['product_type2'];		
+	}
+	if($post['product_type3']!=''){
+	$ptype=$post['product_type3'];		
+	}
+	if($post['product_type4']!=''){
+	$ptype=$post['product_type4'];		
+	}
+	if($post['product_type5']!=''){
+	$ptype=$post['product_type5'];		
+	}
+	if($post['product_type6']!=''){
+	$ptype=$post['product_type6'];		
+	}
+	if($post['product_type7']!=''){
+	$ptype=$post['product_type7'];		
+	}
+	if($post['product_type8']!=''){
+	$ptype=$post['product_type8'];		
+	}
+	
+}
+if($post['product_occasion1'] || $post['product_occasion2']){
+	
+	if($post['product_occasion1']!=''){
+	$poccasion=$post['product_occasion1'];		
+	}
+	if($post['product_occasion2']!=''){
+	$poccasion=$post['product_occasion2'];		
+	}
+}
+if($post['primary_camera1'] || $post['primary_camera2']){
+	
+	if($post['primary_camera1']!=''){
+	$primary=$post['primary_camera1'];		
+	}
+	if($post['primary_camera2']!=''){
+	$primary=$post['primary_camera2'];		
+	}
+}
+if($post['battery_capacity1'] || $post['battery_capacity2']){
+	
+	if($post['battery_capacity1']!=''){
+	$baterycapacity=$post['battery_capacity1'];		
+	}
+	if($post['battery_capacity2']!=''){
+	$baterycapacity=$post['battery_capacity2'];		
+	}
+}
+if($post['product_processor_brand1'] || $post['product_processor_brand2']){
+	
+	if($post['product_processor_brand1']!=''){
+	$processerband=$post['product_processor_brand1'];		
+	}
+	if($post['product_processor_brand2']!=''){
+	$processerband=$post['product_processor_brand2'];		
+	}
+}
+if($post['product_packof1'] || $post['product_packof2']){
+	
+	if($post['product_packof1']!=''){
+	$packof=$post['product_packof1'];		
+	}
+	if($post['product_packof2']!=''){
+	$packof=$post['product_packof2'];		
+	}
+}
+if($post['dial_shape1'] || $post['dial_shape2']){
+	
+	if($post['dial_shape1']!=''){
+	$dialshape=$post['dial_shape1'];		
+	}
+	if($post['dial_shape2']!=''){
+	$dialshape=$post['dial_shape2'];		
+	}
+}
+if($post['material1'] || $post['material2']){
+	
+	if($post['material1']!=''){
+	$material=$post['material1'];		
+	}
+	if($post['material2']!=''){
+	$material=$post['material2'];		
+	}
+}
+if($post['product_display_size1'] || $post['product_display_size2'] || $post['product_display_size3']){
+	
+	if($post['product_display_size1']!=''){
+	$display_sizes=$post['product_display_size1'];		
+	}
+	if($post['product_display_size2']!=''){
+	$display_sizes=$post['product_display_size2'];		
+	}
+	if($post['product_display_size3']!=''){
+	$display_sizes=$post['product_display_size3'];		
+	}
+}
+if($post['operating_system1'] || $post['operating_system2'] || $post['operating_system3']){
+	
+	if($post['operating_system1']!=''){
+	$os=$post['operating_system1'];		
+	}
+	if($post['operating_system2']!=''){
+	$os=$post['operating_system2'];		
+	}
+	if($post['operating_system3']!=''){
+	$os=$post['operating_system3'];		
+	}
+}
+if($post['product_ram1'] || $post['product_ram2'] || $post['product_ram3']){
+	
+	if($post['product_ram1']!=''){
+	$ram=$post['product_ram1'];		
+	}
+	if($post['product_ram2']!=''){
+	$ram=$post['product_ram2'];		
+	}
+	if($post['product_ram3']!=''){
+	$ram=$post['product_ram3'];		
+	}
+}
+if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_storage3'] || $post['internal_storage4']){
+	
+	if($post['internal_storage1']!=''){
+	$internalstorages=$post['internal_storage1'];		
+	}
+	if($post['internal_storage2']!=''){
+	$internalstorages=$post['internal_storage2'];		
+	}
+	if($post['internal_storage3']!=''){
+	$internalstorages=$post['internal_storage3'];		
+	}
+	if($post['internal_storage4']!=''){
+	$internalstorages=$post['internal_storage4'];		
+	}
+}
 		
 		$data=array(
 			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
@@ -175,17 +332,17 @@ class Products extends Admin_Controller {
 			'ideal_for' =>isset($post['ideal_for'])?$post['ideal_for']:'',
 			'item_sub_name' =>isset($post['product_sub_tem'])?$post['product_sub_tem']:'',
 			'sufficient_for' =>isset($post['product_sufficient'])?$post['product_sufficient']:'',
-			'producttype' => isset($post['product_type'])?$post['product_type']:'',
-			'theme' => isset($post['product_theme'])?$post['product_theme']:'',
-			'dial_shape' => isset($post['dial_shape'])?$post['dial_shape']:'',
+			'producttype' => isset($$ptype)?$$ptype:'',
+			'theme' => isset($pthem)?$pthem:'',
+			'dial_shape' => isset($dialshape)?$dialshape:'',
 			'compatibleos' => isset($post['compatible_os'])?$post['compatible_os']:'',
 			'usage' =>isset($post['prouduct_usage'])?$post['prouduct_usage']:'',
 			'display_type' => isset($post['prouduct_display_type'])?$post['prouduct_display_type']:'',
-			'occasion' => isset($post['product_occasion'])?$post['product_occasion']:'',
-			'material' => isset($post['material'])?$post['material']:'',
+			'occasion' => isset($poccasion)?$poccasion:'',
+			'material' => isset($material)?$material:'',
 			'gemstones' => isset($post['product_gemstones'])?$post['product_gemstones']:'',
 			'strap_color' => isset($post['prouduct_strap_color'])?$post['prouduct_strap_color']:'',
-			'packof' => isset($post['product_packof'])?$post['product_packof']:'',
+			'packof' => isset($packof)?$packof:'',
 			'dial_color' => isset($post['prouduct_dial_color'])?$post['prouduct_dial_color']:'',
 			'compatible_mobiles' => isset($post['product_compatible_mobiles'])?$post['product_compatible_mobiles']:'',
 			'mega_pixel' => isset($post['product_mega_pixel'])?$post['product_mega_pixel']:'',
@@ -197,26 +354,26 @@ class Products extends Admin_Controller {
 			'usb_ports' => isset($post['usb_ports'])?$post['usb_ports']:'',
 			'frequency' => isset($post['product_frequency'])?$post['product_frequency']:'',
 			'antennae' => isset($post['product_antennae'])?$post['product_antennae']:'',
-			'display_size' => isset($post['product_display_size'])?$post['product_display_size']:'',
+			'display_size' => isset($display_sizes)?$display_sizes:'',
 			'connectivity' => isset($post['product_connectivity'])?$post['product_connectivity']:'',
-			'ram' => isset($post['product_ram'])?$post['product_ram']:'',
+			'ram' => isset($ram)?$ram:'',
 			'ram_type' => isset($post['ram_type'])?$post['ram_type']:'',
 			'voice_calling_facility' => isset($post['voice_calling_facility'])?$post['voice_calling_facility']:'',
-			'operatingsystem' => isset($post['operating_system'])?$post['operating_system']:'',
+			'operatingsystem' => isset($os)?$os:'',
 			'operating_system_version_name' => isset($post['operating_system_version_name'])?$post['operating_system_version_name']:'',
-			'battery_capacity' => isset($post['battery_capacity'])?$post['battery_capacity']:'',
-			'primary_camera' => isset($post['primary_camera'])?$post['primary_camera']:'',
+			'battery_capacity' => isset($baterycapacity)?$baterycapacity:'',
+			'primary_camera' => isset($primary)?$primary:'',
 			'secondary_camera' => isset($post['secondary_camera'])?$post['secondary_camera']:'',
 			'processor_clock_speed' =>isset($post['processor_clock_speed'])?$post['processor_clock_speed']:'',
 			'processor' => isset($post['product_processor'])?$post['product_processor']:'',
-			'processor_brand' => isset($post['product_processor_brand'])?$post['product_processor_brand']:'',
+			'processor_brand' => isset($processerband)?$processerband:'',
 			'life_style' => isset($post['life_style'])?$post['life_style']:'',
 			'storage_type' => isset($post['storage_type'])?$post['storage_type']:'',
 			'graphics_memory' => isset($post['dedicated_graphics_memory'])?$post['dedicated_graphics_memory']:'',
 			'memory_type' =>  isset($post['graphics_memory_type'])?$post['graphics_memory_type']:'',
 			'touch_screen' => isset($post['touch_screen'])?$post['touch_screen']:'',
 			'weight' => isset($post['weight'])?$post['weight']:'',
-			'internal_storage' => isset($post['internal_storage'])?$post['internal_storage']:'',
+			'internal_storage' => isset($internalstorages)?$internalstorages:'',
 			'speciality' => isset($post['product_speciality'])?$post['product_speciality']:'',
 			'network_type' => isset($post['network_type'])?$post['network_type']:'',
 			'resolution_type' => isset($post['resolution_type'])?$post['resolution_type']:'',
@@ -440,13 +597,26 @@ public function removespciciations(){
 				echo json_encode($data);	
 				}
 		
+	}	
+	public function removeuksizes(){
+		
+	$post = $this->input->post();
+	//echo '<pre>';print_r($post);exit; 
+			
+				$removesizes=$this->products_model->product_uksize_list($post['sizeid']);
+				if(count($removesizes) > 0)
+				{
+				$data['msg']=1;
+				echo json_encode($data);	
+				}
+		
 	}
 
 public function update()
 
 {
 	
-	$id = $this->uri->segment(4);
+	//$id = $this->uri->segment(4);
 	$post=$this->input->post();
 	
 	//echo '<pre>';print_r($post);
@@ -538,30 +708,235 @@ public function update()
 		$post=$this->input->post();
 		
 	//echo $id; exit;
+if($post['product_theme1'] || $post['product_theme2'] || $post['product_theme3'] || $post['product_theme4'] || $post['product_theme5']){
+	
+	if($post['product_theme1']!=''){
+	$pthem=$post['product_theme1'];		
+	}
+	if($post['product_theme2']!=''){
+	$pthem=$post['product_theme2'];		
+	}if($post['product_theme3']!=''){
+	$pthem=$post['product_theme3'];		
+	}if($post['product_theme4']!=''){
+	$pthem=$post['product_theme4'];		
+	}if($post['product_theme5']!=''){
+	$pthem=$post['product_theme5'];		
+	}
+}
+if($post['product_type1'] || $post['product_type2'] || $post['product_type3'] || $post['product_type4'] || $post['product_type5'] || $post['product_type6'] || $post['product_type7'] || $post['product_type8']){
+	
+	if($post['product_type1']!=''){
+	$ptype=$post['product_type1'];		
+	}
+	if($post['product_type2']!=''){
+	$ptype=$post['product_type2'];		
+	}
+	if($post['product_type3']!=''){
+	$ptype=$post['product_type3'];		
+	}
+	if($post['product_type4']!=''){
+	$ptype=$post['product_type4'];		
+	}
+	if($post['product_type5']!=''){
+	$ptype=$post['product_type5'];		
+	}
+	if($post['product_type6']!=''){
+	$ptype=$post['product_type6'];		
+	}
+	if($post['product_type7']!=''){
+	$ptype=$post['product_type7'];		
+	}
+	if($post['product_type8']!=''){
+	$ptype=$post['product_type8'];		
+	}
+	
+}
+if($post['product_occasion1'] || $post['product_occasion2']){
+	
+	if($post['product_occasion1']!=''){
+	$poccasion=$post['product_occasion1'];		
+	}
+	if($post['product_occasion2']!=''){
+	$poccasion=$post['product_occasion2'];		
+	}
+}
+if($post['primary_camera1'] || $post['primary_camera2']){
+	
+	if($post['primary_camera1']!=''){
+	$primary=$post['primary_camera1'];		
+	}
+	if($post['primary_camera2']!=''){
+	$primary=$post['primary_camera2'];		
+	}
+}
+if($post['battery_capacity1'] || $post['battery_capacity2']){
+	
+	if($post['battery_capacity1']!=''){
+	$baterycapacity=$post['battery_capacity1'];		
+	}
+	if($post['battery_capacity2']!=''){
+	$baterycapacity=$post['battery_capacity2'];		
+	}
+}
+if($post['product_processor_brand1'] || $post['product_processor_brand2']){
+	
+	if($post['product_processor_brand1']!=''){
+	$processerband=$post['product_processor_brand1'];		
+	}
+	if($post['product_processor_brand2']!=''){
+	$processerband=$post['product_processor_brand2'];		
+	}
+}
+if($post['product_packof1'] || $post['product_packof2']){
+	
+	if($post['product_packof1']!=''){
+	$packof=$post['product_packof1'];		
+	}
+	if($post['product_packof2']!=''){
+	$packof=$post['product_packof2'];		
+	}
+}
+if($post['dial_shape1'] || $post['dial_shape2']){
+	
+	if($post['dial_shape1']!=''){
+	$dialshape=$post['dial_shape1'];		
+	}
+	if($post['dial_shape2']!=''){
+	$dialshape=$post['dial_shape2'];		
+	}
+}
+if($post['material1'] || $post['material2']){
+	
+	if($post['material1']!=''){
+	$material=$post['material1'];		
+	}
+	if($post['material2']!=''){
+	$material=$post['material2'];		
+	}
+}
+if($post['product_display_size1'] || $post['product_display_size2'] || $post['product_display_size3']){
+	
+	if($post['product_display_size1']!=''){
+	$display_sizes=$post['product_display_size1'];		
+	}
+	if($post['product_display_size2']!=''){
+	$display_sizes=$post['product_display_size2'];		
+	}
+	if($post['product_display_size3']!=''){
+	$display_sizes=$post['product_display_size3'];		
+	}
+}
+if($post['operating_system1'] || $post['operating_system2'] || $post['operating_system3']){
+	
+	if($post['operating_system1']!=''){
+	$os=$post['operating_system1'];		
+	}
+	if($post['operating_system2']!=''){
+	$os=$post['operating_system2'];		
+	}
+	if($post['operating_system3']!=''){
+	$os=$post['operating_system3'];		
+	}
+}
+if($post['product_ram1'] || $post['product_ram2'] || $post['product_ram3']){
+	
+	if($post['product_ram1']!=''){
+	$ram=$post['product_ram1'];		
+	}
+	if($post['product_ram2']!=''){
+	$ram=$post['product_ram2'];		
+	}
+	if($post['product_ram3']!=''){
+	$ram=$post['product_ram3'];		
+	}
+}
+if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_storage3'] || $post['internal_storage4']){
+	
+	if($post['internal_storage1']!=''){
+	$internalstorages=$post['internal_storage1'];		
+	}
+	if($post['internal_storage2']!=''){
+	$internalstorages=$post['internal_storage2'];		
+	}
+	if($post['internal_storage3']!=''){
+	$internalstorages=$post['internal_storage3'];		
+	}
+	if($post['internal_storage4']!=''){
+	$internalstorages=$post['internal_storage4'];		
+	}
+}
+	
 		if($post['subcategorylist']==''){
 			$subcatid=$post['editsubcategorylist'];
 		}else{
 			$subcatid=$post['subcategorylist'];
 		}
 		$updatedata=array(
-			'category_id' => $post['category_id'],			
+			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
 			'subcategory_id' => $subcatid,
-			'skuid' => $post['skuid'],
-			'item_code' => $post['otherunique'],
-			'item_name' => $post['productname'],
-			'item_cost' => $post['product_price'],
-			'special_price' => $post['specialprice'],
-			'producttype' => $post['producttype'],
-			'material' => $post['material'],
-			'weight' => $post['weight'],
-			'season' => $post['season'],
-			'brand' => $post['brand'],
-			'gender' => $post['gender'],
-			'item_quantity' =>$post['qty'],
-			'keywords' =>$post['keywords'],
-			'title' =>$post['title'],
-			'item_status' => $post['status'],
-			'item_description' =>$post['product_description'],
+			'item_name' => isset($post['productname'])?$post['productname']:'',
+			'skuid' => isset($post['skuid'])?$post['skuid']:'',
+			'item_code' => isset($post['otherunique'])?$post['otherunique']:'',
+			'item_cost' => isset($post['product_price'])?$post['product_price']:'',
+			'special_price' =>  isset($post['specialprice'])?$post['specialprice']:'',
+			'offers' =>  isset($post['offers'])?$post['offers']:'',
+			'discount' => isset($post['discount'])?$post['discount']:'',
+			'item_quantity' =>isset($post['qty'])?$post['qty']:'',
+			'keywords' =>isset($post['keywords'])?$post['keywords']:'',
+			'title' =>isset($post['title'])?$post['title']:'',
+			'item_status' => isset($post['status'])?$post['status']:'',
+			'item_description' =>isset($post['product_description'])?$post['product_description']:'',
+			'ideal_for' =>isset($post['ideal_for'])?$post['ideal_for']:'',
+			'item_sub_name' =>isset($post['product_sub_tem'])?$post['product_sub_tem']:'',
+			'sufficient_for' =>isset($post['product_sufficient'])?$post['product_sufficient']:'',
+			'producttype' => isset($$ptype)?$$ptype:'',
+			'theme' => isset($pthem)?$pthem:'',
+			'dial_shape' => isset($dialshape)?$dialshape:'',
+			'compatibleos' => isset($post['compatible_os'])?$post['compatible_os']:'',
+			'usage' =>isset($post['prouduct_usage'])?$post['prouduct_usage']:'',
+			'display_type' => isset($post['prouduct_display_type'])?$post['prouduct_display_type']:'',
+			'occasion' => isset($poccasion)?$poccasion:'',
+			'material' => isset($material)?$material:'',
+			'gemstones' => isset($post['product_gemstones'])?$post['product_gemstones']:'',
+			'strap_color' => isset($post['prouduct_strap_color'])?$post['prouduct_strap_color']:'',
+			'packof' => isset($packof)?$packof:'',
+			'dial_color' => isset($post['prouduct_dial_color'])?$post['prouduct_dial_color']:'',
+			'compatible_mobiles' => isset($post['product_compatible_mobiles'])?$post['product_compatible_mobiles']:'',
+			'mega_pixel' => isset($post['product_mega_pixel'])?$post['product_mega_pixel']:'',
+			'sensor_type' => isset($post['product_sensor_type'])?$post['product_sensor_type']:'',
+			'battery_type' => isset($post['product_battery_type'])?$post['product_battery_type']:'',
+			'wireless_speed' => isset($post['wireless_speed'])?$post['wireless_speed']:'',
+			'frequency_band' => isset($post['frequency_band'])?$post['frequency_band']:'',
+			'broadband_compatibility' => isset($post['broadband_compatibility'])?$post['broadband_compatibility']:'',
+			'usb_ports' => isset($post['usb_ports'])?$post['usb_ports']:'',
+			'frequency' => isset($post['product_frequency'])?$post['product_frequency']:'',
+			'antennae' => isset($post['product_antennae'])?$post['product_antennae']:'',
+			'display_size' => isset($display_sizes)?$display_sizes:'',
+			'connectivity' => isset($post['product_connectivity'])?$post['product_connectivity']:'',
+			'ram' => isset($ram)?$ram:'',
+			'ram_type' => isset($post['ram_type'])?$post['ram_type']:'',
+			'voice_calling_facility' => isset($post['voice_calling_facility'])?$post['voice_calling_facility']:'',
+			'operatingsystem' => isset($os)?$os:'',
+			'operating_system_version_name' => isset($post['operating_system_version_name'])?$post['operating_system_version_name']:'',
+			'battery_capacity' => isset($baterycapacity)?$baterycapacity:'',
+			'primary_camera' => isset($primary)?$primary:'',
+			'secondary_camera' => isset($post['secondary_camera'])?$post['secondary_camera']:'',
+			'processor_clock_speed' =>isset($post['processor_clock_speed'])?$post['processor_clock_speed']:'',
+			'processor' => isset($post['product_processor'])?$post['product_processor']:'',
+			'processor_brand' => isset($processerband)?$processerband:'',
+			'life_style' => isset($post['life_style'])?$post['life_style']:'',
+			'storage_type' => isset($post['storage_type'])?$post['storage_type']:'',
+			'graphics_memory' => isset($post['dedicated_graphics_memory'])?$post['dedicated_graphics_memory']:'',
+			'memory_type' =>  isset($post['graphics_memory_type'])?$post['graphics_memory_type']:'',
+			'touch_screen' => isset($post['touch_screen'])?$post['touch_screen']:'',
+			'weight' => isset($post['weight'])?$post['weight']:'',
+			'internal_storage' => isset($internalstorages)?$internalstorages:'',
+			'speciality' => isset($post['product_speciality'])?$post['product_speciality']:'',
+			'network_type' => isset($post['network_type'])?$post['network_type']:'',
+			'resolution_type' => isset($post['resolution_type'])?$post['resolution_type']:'',
+			'sim_type' => isset($post['sim_type'])?$post['sim_type']:'',
+			'clock_speed' => isset($post['clock_speed'])?$post['clock_speed']:'',
+			'cores' => isset($post['number_of_cores'])?$post['number_of_cores']:'',
 			'item_image'=>$image1,
 			'item_image1'=>$image2,
 			'item_image2'=>$image3,
@@ -592,7 +967,7 @@ public function update()
 						foreach ($productcolors as $colorss){
 						$this->products_model->delete_product_colors($colorss['p_color_id']);
 						}
-						foreach (array_merge($listcolors,explode(",",$colordata)) as $colorslist){
+						foreach (array_unique(array_merge($listcolors,explode(",",$colordata))) as $colorslist){
 
 							if($colorslist!=''){
 								$addcolorsdata=array(
@@ -617,7 +992,7 @@ public function update()
 							foreach ($productsizes as $sizes){
 							$this->products_model->delete_product_sizes($sizes['p_size_id']);
 							}
-							foreach (array_merge($listsizes,explode(",",$sizesdata)) as $sizeslist){
+							foreach (array_unique(array_merge($listsizes,explode(",",$sizesdata))) as $sizeslist){
 
 							if($sizeslist !=''){
 							$addsizesdata=array(
@@ -629,6 +1004,35 @@ public function update()
 							}
 						
 							}
+						
+						/*----*/
+						
+						/* uksizes puepos*/
+							if($post['ussizes']!=''){
+							
+							$uksizesdata = str_replace(array('[', ']','"'), array(''), $post['ussizes']);
+							$ukproductsizes=$this->products_model->get_product_uksizes($post['product_id']);
+							foreach ($ukproductsizes as $sizeslist){
+							$listsizes[]=$sizeslist['p_size_name'];
+							}
+							foreach ($ukproductsizes as $sizes){
+							$this->products_model->product_uksize_list($sizes['p_size_id']);
+							}
+							foreach (array_unique(array_merge($listsizes,explode(",",$uksizesdata))) as $sizeslist){
+
+							if($sizeslist !=''){
+							$ukaddsizesdata=array(
+							'item_id' =>$post['product_id'],
+							'p_size_name' => $sizeslist,
+							'create_at' => date('Y-m-d H:i:s'),
+							);
+							//echo '<pre>';print_r($addsizesdata);
+							$this->products_model->insert_product_uksizes($ukaddsizesdata);
+							}
+						
+							}
+							
+						}
 						
 						/*----*/
 						

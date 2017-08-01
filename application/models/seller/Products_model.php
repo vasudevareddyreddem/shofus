@@ -26,6 +26,13 @@ class Products_model extends MY_Model
 		$this->db->where('seller_categories.seller_id',$sid);
         return $this->db->get()->result_array();
 	}
+	public function get_seller_products($sid)
+	{
+		$this->db->select('*')->from('products');
+		$this->db->where('seller_id',$sid);
+		$this->db->where('item_status',1);
+        return $this->db->get()->result_array();
+	}
 	public function get_subcategoies($cid)
 	{
 		$this->db->select('*')->from('subcategories');
@@ -196,6 +203,10 @@ function remove_spcification($id){
 	}
 	function delete_product_sizes($id){
 		$sql1="DELETE FROM product_size_list WHERE p_size_id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	function product_uksize_list($id){
+		$sql1="DELETE FROM product_uksize_list WHERE p_size_id = '".$id."'";
 		return $this->db->query($sql1);
 	}
 	function delete_product_spc($id){

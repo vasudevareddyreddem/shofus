@@ -53,9 +53,11 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
-	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data" >
+	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/update/'); ?>" method="post" enctype="multipart/form-data" >
 <?php //echo '<pe>';print_r($productdetails['subcategory_id']);?>
 <?php //echo '<pe>';print_r($productdetails['category_id']);?>
+						<input type="hidden" name="product_id" id="product_id" value="<?php echo isset($productdetails['item_id'])?$productdetails['item_id']:''; ?>">				
+
 	<div class="row">
 			<div class="form-group col-md-6">
 				<label for="exampleInputEmail1">Category </label>
@@ -203,8 +205,8 @@
 				</div>
 			</div>
 	</div>
-	<div class="row" class=" col-md-12" id="size_color" style="display:none;">
-			<div class="form-group col-md-6" id="personalcareappliancesinputs" style="display:none">
+	<div class="row" class=" col-md-12">
+			<div class="form-group col-md-6" >
 			<label>Size</label>
 			<span class="pull-right col-md-10">
 
@@ -262,7 +264,7 @@
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Type</label>
-					<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+					<input type="text" class="form-control" id="product_type8" name="product_type8" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 				</div>
 			</div>
 	
@@ -276,12 +278,12 @@
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Type</label>
-					<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+					<input type="text" class="form-control" id="product_type7" name="product_type7" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 				</div>
 			</div>
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
 	<?php if($productdetails['subcategory_id']=='10'){
@@ -293,7 +295,7 @@
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">DIAL SHAPE</label>
-					<input type="text" class="form-control" id="dial_shape" name="dial_shape" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
+					<input type="text" class="form-control" id="dial_shape2" name="dial_shape2" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
 				</div>
 			</div>
 			<div class="col-md-6 form-group">
@@ -317,11 +319,11 @@
 	<div class="row" id="footwareinputs" style="<?php echo $footwareinputshide; ?>">
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			<input class="form-control" id="product_theme5"  type="text" name="product_theme5" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 			<div class="col-md-6 form-group">
 			<label>OCCASION</label>
-			<input class="form-control" id="product_occasion"  type="text" name="product_occasion" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>" />
+			<input class="form-control" id="product_occasion2"  type="text" name="product_occasion2" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>" />
 			</div>
 			<div class="col-md-6 form-group">
 			<label>Size(UK)</label>
@@ -329,8 +331,8 @@
 
 				<?php  //echo '<pre>';print_r($productcolors);exit;
 				foreach($productuksizes as $sizeslist){ ?> 
-				<input type="hidden" name="oldsizes[]" value="<?php echo $sizeslist['p_size_name']; ?>">
-				<a id="sizes_<?php echo $sizeslist['p_size_id'] ;?>" onclick="removeuksizes(<?php echo $sizeslist['p_size_id']?>);"class="btn btn-primary btn-xs"><?php echo $sizeslist['p_size_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
+				<input type="hidden" name="olduksizes[]" value="<?php echo $sizeslist['p_size_name']; ?>">
+				<a id="uksizes_<?php echo $sizeslist['p_size_id'] ;?>" onclick="removeuksizes(<?php echo $sizeslist['p_size_id']?>);"class="btn btn-primary btn-xs"><?php echo $sizeslist['p_size_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
 				<?php } ?>
 
 				</span>
@@ -345,7 +347,7 @@
 	<div class="row" id="womensaccessoriesinputs" style="<?php $womensaccessoriesinputshide; ?>">
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			<input class="form-control" id="product_theme4"  type="text" name="product_theme4" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
 	<?php if($productdetails['subcategory_id']=='15'){
@@ -356,7 +358,7 @@
 	<div class="row" id="jwelleryinputs" style="<?php echo $jwelleryinputshide ; ?>">
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Material</label>
-		<input type="text" class="form-control" id="material" name="material" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
+		<input type="text" class="form-control" id="material1" name="material1" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Gemstones</label>
@@ -371,16 +373,16 @@
 	<div class="row" id="womenswatchesinputs" style="<?php echo $womenswatchesinputshide; ?>"  >
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Material</label>
-		<input type="text" class="form-control" id="Material" name="Material" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
+		<input type="text" class="form-control" id="Material2" name="Material2" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type6" name="product_type6" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">DIAL SHAPE</label>
-					<input type="text" class="form-control" id="dial_shape" name="dial_shape" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
+					<input type="text" class="form-control" id="dial_shape1" name="dial_shape1" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
 				</div>
 			</div>
 		<div class="col-md-6 form-group">
@@ -400,15 +402,15 @@
 	<div class="row" id="mensaccessoriesinputs" style="<?php echo $mensaccessoriesinputshide; ?>">
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type5" name="product_type5" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>"/>
+			<input class="form-control" id="product_theme3"  type="text" name="product_theme3" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>"/>
 		</div>
 		<div class="col-md-12 form-group">
 		 <label for="exampleInputEmail1">PACK OF</label>
-		<input type="text" class="form-control" id="product_packof" name="product_packof" value="<?php echo isset($productdetails['packof'])?$productdetails['packof']:''; ?>" >
+		<input type="text" class="form-control" id="product_packof2" name="product_packof2" value="<?php echo isset($productdetails['packof'])?$productdetails['packof']:''; ?>" >
 		</div>
 		
 	</div>
@@ -420,19 +422,19 @@
 	<div class="row" id="mensehinicwearinputs" style="<?php echo $mensehinicwearinputshide; ?>">
 		<div class="col-md-6 form-group">
 		<label>Theme</label>
-		<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+		<input class="form-control" id="product_theme2"  type="text" name="product_theme2" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 		</div>
 		<div class="col-md-6 form-group">
 		<label>OCCASION</label>
-		<input class="form-control" id="product_occasion"  type="text" name="product_occasion" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>"/>
+		<input class="form-control" id="product_occasion1"  type="text" name="product_occasion1" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>"/>
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type4" name="product_type4" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PACK OF</label>
-		<input type="text" class="form-control" id="product_packof" name="product_packof" value="<?php echo isset($productdetails['packof'])?$productdetails['packof']:''; ?>" >
+		<input type="text" class="form-control" id="product_packof1" name="product_packof1" value="<?php echo isset($productdetails['packof'])?$productdetails['packof']:''; ?>" >
 		</div>
 		
 	</div>
@@ -456,7 +458,7 @@
 	<div class="row" id="camerainputs" style="<?php echo $camerainputshide; ?>">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type3" name="product_type3" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">MEGA PIXEL</label>
@@ -479,7 +481,7 @@
 	<div class="row" id="routersinputs" style="<?php echo $routersinputshide; ?>">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type2" name="product_type2" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">WIRELESS SPEED</label>
@@ -515,7 +517,7 @@
 	<div class="row" id="tabletsinputs" style="<?php echo $tabletsinputshide; ?>">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">DISPLAY SIZE</label>
-		<input type="text" class="form-control" id="product_display_size" name="product_display_size" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
+		<input type="text" class="form-control" id="product_display_size3" name="product_display_size3" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">CONNECTIVITY</label>
@@ -523,7 +525,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RAM</label>
-		<input type="text" class="form-control" id="product_ram" name="product_ram" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
+		<input type="text" class="form-control" id="product_ram3" name="product_ram3" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">VOICE CALLING FACILITY</label>
@@ -531,19 +533,19 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
-		<input type="text" class="form-control" id="operating_system" name="operating_system" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>" >
+		<input type="text" class="form-control" id="operating_system3" name="operating_system3" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
+		<input type="text" class="form-control" id="internal_storage3" name="internal_storage3" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">BATTERY CAPACITY</label>
-		<input type="text" class="form-control" id="battery_capacity" name="battery_capacity" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
+		<input type="text" class="form-control" id="battery_capacity2" name="battery_capacity2" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PRIMARY CAMERA</label>
-		<input type="text" class="form-control" id="primary_camera" name="primary_camera" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
+		<input type="text" class="form-control" id="primary_camera2" name="primary_camera2" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
 		</div>
 		<div class=" col-md-12 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR CLOCK SPEED</label>
@@ -558,7 +560,7 @@
 	<div class="row" id="laptopsinputs" style="<?php echo $laptopsinputshide; ?>">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SCREEN SIZE</label>
-		<input type="text" class="form-control" id="product_display_size" name="product_display_size" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>"  >
+		<input type="text" class="form-control" id="product_display_size2" name="product_display_size2" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>"  >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR</label>
@@ -566,15 +568,15 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR BRAND</label>
-		<input type="text" class="form-control" id="product_processor_brand" name="product_processor_brand" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
+		<input type="text" class="form-control" id="product_processor_brand1" name="product_processor_brand1" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
-		<input type="text" class="form-control" id="operating_system" name="operating_system" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>">
+		<input type="text" class="form-control" id="operating_system2" name="operating_system2" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>">
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RAM</label>
-		<input type="text" class="form-control" id="product_ram" name="product_ram" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
+		<input type="text" class="form-control" id="product_ram2" name="product_ram2" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">LIFESTYLE</label>
@@ -598,7 +600,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">HARD DISK CAPACITY</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
+		<input type="text" class="form-control" id="internal_storage2" name="internal_storage2" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">GRAPHICS MEMORY TYPE</label>
@@ -618,19 +620,19 @@
 	<div class="row" id="mobilesinputs" style="<?php echo $mobilesinputshide;?> ">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RAM</label>
-		<input type="text" class="form-control" id="product_ram" name="product_ram" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
+		<input type="text" class="form-control" id="product_ram1" name="product_ram1" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
-		<input type="text" class="form-control" id="operating_system" name="operating_system" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>" >
+		<input type="text" class="form-control" id="operating_system1" name="operating_system1" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
+		<input type="text" class="form-control" id="internal_storage4" name="internal_storage4" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SCREEN SIZE</label>
-		<input type="text" class="form-control" id="product_display_size" name="product_display_size" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
+		<input type="text" class="form-control" id="product_display_size1" name="product_display_size1" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">NETWORK TYPE</label>
@@ -638,7 +640,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">BATTERY CAPACITY</label>
-		<input type="text" class="form-control" id="battery_capacity" name="battery_capacity" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
+		<input type="text" class="form-control" id="battery_capacity1" name="battery_capacity1" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SPECIALITY</label>
@@ -646,7 +648,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type1" name="product_type1" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM VERSION NAME</label>
@@ -654,7 +656,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR BRAND</label>
-		<input type="text" class="form-control" id="product_processor_brand" name="product_processor_brand" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
+		<input type="text" class="form-control" id="product_processor_brand2" name="product_processor_brand2" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RESOLUTION TYPE</label>
@@ -662,7 +664,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PRIMARY CAMERA</label>
-		<input type="text" class="form-control" id="primary_camera" name="primary_camera" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
+		<input type="text" class="form-control" id="primary_camera1" name="primary_camera1" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SECONDARY CAMERA</label>
@@ -682,7 +684,7 @@
 		</div>
 		<div class=" col-md-12 form-group">
 		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
+		<input type="text" class="form-control" id="internal_storage1" name="internal_storage1" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
 		</div>
 		
 	</div>
@@ -725,21 +727,127 @@
 					<a id="add_sep" class="btn btn-default btn-xs pull-left">Add Row</a>
 				</div>
 			</div>
-			<div class=" col-md-6">
-				<div id="tab_file">
-					<div class="col-md-12 form-group" >
-					<label for="exampleInputEmail1">Product Image</label>
-						<input type="file" name='picture_three[]' id="picture_three"  class="form-control" >
-					</div>
-					<div  id="addfile1" style="padding:5px;;"></div>
-				</div>
-				<div class="pull-right" id="delbtnfile" style="padding-top:10px;display:none">
-					<a id="tab_delet_file" class="btn btn-default btn-xs pull-left">Delete File</a>
-				</div>
-				<div class="pull-right" style="padding-top:10px;">
-					<a id="add_file" class="btn btn-default btn-xs pull-left">Add File</a>
-				</div>
-			</div>
+			<div class="col-md-12"></div>
+											<?php  if($productdetails['item_image'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image1</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image'];?>" <?php echo $productdetails['item_image'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image1</label>
+												<input type="file" class="form-control" id="img1" name="img1"  >
+											</div>
+											<?php  if($productdetails['item_image1'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image2</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image1'];?>" <?php echo $productdetails['item_image1'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image2</label>
+												<input type="file" class="form-control" id="img2" name="img2"  >
+											</div>
+											<?php  if($productdetails['item_image2'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image3</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image2'];?>" <?php echo $productdetails['item_image2'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image3</label>
+												<input type="file" class="form-control" id="img3" name="img3"  >
+											</div>
+											<?php  if($productdetails['item_image3'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image4</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image3'];?>" <?php echo $productdetails['item_image3'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image4</label>
+												<input type="file" class="form-control" id="img4" name="img4"  >
+											</div>
+											<?php  if($productdetails['item_image4'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image5</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image4'];?>" <?php echo $productdetails['item_image4'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image5</label>
+												<input type="file" class="form-control" id="img5" name="img5"  >
+											</div>
+											<?php  if($productdetails['item_image5'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image6</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image5'];?>" <?php echo $productdetails['item_image5'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image6</label>
+												<input type="file" class="form-control" id="img6" name="img6"  >
+											</div>
+											<?php  if($productdetails['item_image6'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image7</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image6'];?>" <?php echo $productdetails['item_image6'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image7</label>
+												<input type="file" class="form-control" id="img7" name="img7"  >
+											</div>
+											<?php  if($productdetails['item_image7'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image8</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image7'];?>" <?php echo $productdetails['item_image7'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image8</label>
+												<input type="file" class="form-control" id="img8" name="img8"  >
+											</div>
+											<?php  if($productdetails['item_image8'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image9</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image8'];?>" <?php echo $productdetails['item_image8'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image9</label>
+												<input type="file" class="form-control" id="img9" name="img9"  >
+											</div>
+											<?php  if($productdetails['item_image9'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image10</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image9'];?>" <?php echo $productdetails['item_image9'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image10</label>
+												<input type="file" class="form-control" id="img10" name="img10"  >
+											</div>
+											<?php  if($productdetails['item_image10'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image11</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image10'];?>" <?php echo $productdetails['item_image10'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image11</label>
+												<input type="file" class="form-control" id="img11" name="img11"  >
+											</div>
+											<?php  if($productdetails['item_image11'] !=''){ ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											<label class="form-control-label" for="image">Product Image12</label>
+											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image11'];?>" <?php echo $productdetails['item_image11'];?>>
+											</div>
+											<?php }  ?>
+											<div class="form-group nopaddingRight col-md-6 san-lg">
+											    <label for="exampleInputEmail1">product Image12</label>
+												<input type="file" class="form-control" id="img12" name="img12"  >
+											</div>
 	</div>
 		<div >
 		<button type="submit" name="buttonSubmit" class="btn btn-primary" >Submit</button>
@@ -755,6 +863,80 @@
 	
 
   <script>
+  function removesizes(id){
+
+	if(id!=''){
+		 jQuery.ajax({
+					url: "<?php echo site_url('seller/products/removesizes');?>",
+					data: {
+						sizeid: id,
+					},
+					dataType: 'json',
+					type: 'POST',
+					success: function (data) {
+					if(data.msg==1){
+						jQuery('#sizes_'+id).hide();
+					}
+				 }
+				});
+			}
+			
+		}
+	function removeuksizes(id){
+	if(id!=''){
+		 jQuery.ajax({
+					url: "<?php echo site_url('seller/products/removeuksizes');?>",
+					data: {
+						sizeid: id,
+					},
+					dataType: 'json',
+					type: 'POST',
+					success: function (data) {
+					if(data.msg==1){
+						jQuery('#uksizes_'+id).hide();
+					}
+				 }
+				});
+			}
+			
+		}
+
+	function removeattachment(id){
+	if(id!=''){
+		 jQuery.ajax({
+					url: "<?php echo site_url('seller/products/removespciciations');?>",
+					data: {
+						specification: id,
+					},
+					dataType: 'json',
+					type: 'POST',
+					success: function (data) {
+					if(data.msg==1){
+						jQuery('#tab_sep11_'+id).hide();
+					}
+				 }
+				});
+			}
+			
+		}
+	function removecolor(id){
+	if(id!=''){
+		 jQuery.ajax({
+					url: "<?php echo site_url('seller/products/removecolors');?>",
+					data: {
+						colid: id,
+					},
+					dataType: 'json',
+					type: 'POST',
+					success: function (data) {
+					if(data.msg==1){
+						jQuery('#colord_'+id).hide();
+					}
+				 }				});
+			}
+			
+		}
+	
  
    $('#oldsubcat').show();
    $('#oldsubcat').show();
@@ -1097,7 +1279,7 @@
 					}
 				}
 			},
-			product_type: {
+			product_type1: {
 					validators: {
 					notEmpty: {
 						message: 'Type is required'
@@ -1108,7 +1290,80 @@
 					}
 				}
 			},
-			product_theme: {
+			product_type2: {
+					validators: {
+					notEmpty: {
+						message: 'Type is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Type can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_type3: {
+					validators: {
+					notEmpty: {
+						message: 'Type is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Type can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_type4: {
+					validators: {
+					notEmpty: {
+						message: 'Type is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Type can only consist of alphanumaric, space and dot'
+					}
+				}
+			},product_type5: {
+					validators: {
+					notEmpty: {
+						message: 'Type is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Type can only consist of alphanumaric, space and dot'
+					}
+				}
+			},product_type6: {
+					validators: {
+					notEmpty: {
+						message: 'Type is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Type can only consist of alphanumaric, space and dot'
+					}
+				}
+			},product_type7: {
+					validators: {
+					notEmpty: {
+						message: 'Type is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Type can only consist of alphanumaric, space and dot'
+					}
+				}
+			},product_type8: {
+					validators: {
+					notEmpty: {
+						message: 'Type is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Type can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_theme1: {
 					validators: {
 					notEmpty: {
 						message: 'Theme is required'
@@ -1119,7 +1374,51 @@
 					}
 				}
 			},
-			dial_shape: {
+			product_theme2: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_theme3: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_theme4: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_theme5: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			dial_shape2: {
 					validators: {
 					notEmpty: {
 						message: 'Dial shape is required'
@@ -1163,7 +1462,18 @@
 					}
 				}
 			},
-			product_occasion: {
+			product_occasion1: {
+					validators: {
+					notEmpty: {
+						message: 'Occasion is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Occasion can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_occasion2: {
 					validators: {
 					notEmpty: {
 						message: 'Occasion is required'
@@ -1181,7 +1491,18 @@
 					}
 				}
 			},
-			material: {
+			material1: {
+					validators: {
+					notEmpty: {
+						message: 'Material is required'
+					},
+                   regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Material  can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			material2: {
 					validators: {
 					notEmpty: {
 						message: 'Material is required'
@@ -1203,7 +1524,7 @@
 					}
 				}
 			},
-			dial_shape: {
+			dial_shape1: {
 					validators: {
 					notEmpty: {
 						message: 'Dial shape is required'
@@ -1236,7 +1557,18 @@
 					}
 				}
 			},
-			product_packof: {
+			product_packof1: {
+					validators: {
+					notEmpty: {
+						message: 'Pack of is required'
+					},
+                   regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Pack of can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_packof2: {
 					validators: {
 					notEmpty: {
 						message: 'Pack of is required'
@@ -1348,7 +1680,29 @@
 					}
 				}
 			},
-			product_display_size: {
+			product_display_size1: {
+					validators: {
+					notEmpty: {
+					message: 'DisPlay Size is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'DisPlay Size can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_display_size2: {
+					validators: {
+					notEmpty: {
+					message: 'DisPlay Size is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'DisPlay Size can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_display_size3: {
 					validators: {
 					notEmpty: {
 					message: 'DisPlay Size is required'
@@ -1370,7 +1724,29 @@
 					}
 				}
 			},
-			product_ram: {
+			product_ram1: {
+					validators: {
+					notEmpty: {
+					message: 'Ram is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Ram can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_ram2: {
+					validators: {
+					notEmpty: {
+					message: 'Ram is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Ram can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_ram3: {
 					validators: {
 					notEmpty: {
 					message: 'Ram is required'
@@ -1392,7 +1768,27 @@
 					}
 				}
 			},
-			operating_system: {
+			operating_system1: {
+					validators: {
+					notEmpty: {
+					message: 'Operating system is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Operating system can only consist of alphanumaric, space and dot'
+					}
+				}
+			},operating_system2: {
+					validators: {
+					notEmpty: {
+					message: 'Operating system is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Operating system can only consist of alphanumaric, space and dot'
+					}
+				}
+			},operating_system3: {
 					validators: {
 					notEmpty: {
 					message: 'Operating system is required'
@@ -1403,7 +1799,7 @@
 					}
 				}
 			},
-			internal_storage: {
+			internal_storage1: {
 					validators: {
 					notEmpty: {
 					message: 'Internal storage is required'
@@ -1414,7 +1810,40 @@
 					}
 				}
 			},
-			battery_capacity: {
+			internal_storage2: {
+					validators: {
+					notEmpty: {
+					message: 'Internal storage is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Internal storage can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			internal_storage3: {
+					validators: {
+					notEmpty: {
+					message: 'Internal storage is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Internal storage can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			internal_storage4: {
+					validators: {
+					notEmpty: {
+					message: 'Internal storage is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Internal storage can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			battery_capacity1: {
 					validators: {
 					notEmpty: {
 					message: 'Battery capacity is required'
@@ -1425,7 +1854,26 @@
 					}
 				}
 			},
-			primary_camera: {
+			battery_capacity2: {
+					validators: {
+					notEmpty: {
+					message: 'Battery capacity is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Battery capacity can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			primary_camera1: {
+					validators: {
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Primary camera can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			primary_camera2: {
 					validators: {
 					regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
@@ -1455,7 +1903,18 @@
 					}
 				}
 			},
-			product_processor_brand: {
+			product_processor_brand1: {
+					validators: {
+						notEmpty: {
+					message: 'Brand is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Brand can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_processor_brand2: {
 					validators: {
 						notEmpty: {
 					message: 'Brand is required'
@@ -1609,9 +2068,7 @@
 			
 			'specificationname[]': {
 					 validators: {
-						 notEmpty: {
-						message: 'specificationname is required'
-					},
+						
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
 					message: 'specificationname  wont allow <> [] = % '
@@ -1620,14 +2077,109 @@
 			},
 			'specificationvalue[]': {
 					 validators: {
-						 notEmpty: {
-						message: 'specificationvalue is required'
-					},
+					
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
 					message: 'specificationvalue value wont allow <> [] = % '
 					}
             }
+			},
+			img2: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img3: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img4: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img5: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img6: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img7: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img8: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img9: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img10: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img11: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img12: {
+				validators: {
+					regexp: {
+						regexp: /\.(jpe?g|png|gif)$/i,
+						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			img1: {
+					 validators: {
+						
+					regexp: {
+					regexp: /\.(jpe?g|png|gif)$/i,
+					message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+          }
 			},
 			
 			
