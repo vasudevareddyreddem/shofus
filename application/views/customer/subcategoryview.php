@@ -200,7 +200,7 @@
             <div class="box-product">
               <div class="img-wrapper">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
-                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/p1-1.jpg">
+                  <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-primary arrowed">Featured</span></span>
@@ -208,11 +208,17 @@
                 <div class="tags tags-left">
                   <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
                 </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
+				<div class="option">
+				<button  style="background-color:transparent;border: none;cursor:pointer;color:#fff;font-size:20px;
+				"type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>
+				<a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+
+				<?php if($productslist['yes']==1){ ?>
+				<a href="javascript:void(0);" style="color:#ef5350;" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+				<?php }else{ ?>	
+				<a href="javascript:void(0);"  onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+				<?php } ?>	
+				</div>
               </div>
               <h6><a href="detail.html"><?php echo $productslist['item_name']; ?></a></h6>
               <div class="price">
@@ -299,6 +305,33 @@ function discount(id){
 document.getElementById("discountform").addEventListener("click", function () {
   form.submit();
 });
+	
+}
+function addwhishlidts(id){
+jQuery.ajax({
+			url: "<?php echo site_url('customer/addwhishlist');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				item_id: id,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+				jQuery('#sucessmsg').show();
+				//alert(data.msg);
+				if(data.msg==2){
+				$('#addwhish').css("color", "");
+				$('#sucessmsg').html('Product Successfully removed to Whishlist');	
+				}
+				if(data.msg==1){
+				$('#addwhish').css("color", "#ef5350");
+				$('#sucessmsg').html('Product Successfully added to Whishlist');	
+				}
+			
+
+			}
+		});
+	
 	
 }
 function getproduct(id){
