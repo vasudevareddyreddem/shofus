@@ -570,7 +570,7 @@ function sticky_relocate() {
         $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
     else if (window_top > div_top) {
         $('#sticky').addClass('stick');
-        $('#sticky').css({top: 150})
+        $('#sticky').css({top: 90})
     } else {
         $('#sticky').removeClass('stick');
 		$('#sticky').css({top:0})
