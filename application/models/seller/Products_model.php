@@ -26,6 +26,11 @@ class Products_model extends MY_Model
 		$this->db->where('seller_categories.seller_id',$sid);
         return $this->db->get()->result_array();
 	}
+	
+	public function update_product_status($pid,$data){
+		$this->db->where('item_id', $pid);
+		return $this->db->update('products', $data);
+	}
 	public function get_seller_products($sid)
 	{
 		$this->db->select('*')->from('products');

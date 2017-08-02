@@ -123,7 +123,34 @@ class Products extends Admin_Controller {
 	}	
 
 
+public function item_status(){ 
 
+		$pid = base64_decode($this->uri->segment(4)); 
+		$status = base64_decode($this->uri->segment(5));
+			if($status==1){
+			$status=0;
+			}else{
+			$status=1;
+			}
+			
+			//echo '<pre>';print_r($status);exit; 
+			
+			$data=array('item_status'=>$status);
+			
+			$updatestatus=$this->products_model->update_product_status($pid,$data);
+			//echo $this->db->last_query();exit;
+			
+			if(count($updatestatus)>0){
+				if($status==1){
+					$this->session->set_flashdata('success'," Product activation successfully");
+				}else{
+					$this->session->set_flashdata('success',"Product deactivation successfully");
+				}
+				redirect('seller/products');
+			}
+
+
+ }
 		
 	public function insert()
  		{
@@ -462,7 +489,7 @@ if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_s
 							$this->products_model->insert_product_sizes($addsizesdata);
 							}
 						}
-						if(count($post['sizes'])>0){
+						if(count($post['ussizes'])>0){
 							$uksizesdata = str_replace(array('[', ']','"'), array(''), $post['ussizes']);
 						
 							foreach (explode(",",$uksizesdata) as $uksizess){
@@ -1112,7 +1139,7 @@ if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_s
 						/* pecification purpose*/
 						$productspcification=$this->products_model->get_product_spc($post['product_id']);
 						foreach ($productspcification as $spc){
-						//$this->products_model->delete_product_spc($spc['specification_id']);
+						$this->products_model->delete_product_spc($spc['specification_id']);
 						}
 						$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
 						foreach ($productspecificationlist as $key=>$list){
@@ -1124,8 +1151,8 @@ if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_s
 								'spc_value' => $key,
 								'create_at' => date('Y-m-d H:i:s'),
 								);
-								echo '<pre>';print_r($addspc);
-								//$this->products_model->insert_product_spcifications($addspc);
+								//echo '<pre>';print_r($addspc);
+								$this->products_model->insert_product_spcifications($addspc);
 								
 							}
 						}
