@@ -287,8 +287,6 @@
                 <div class="tags tags-left">
                   <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
                 </div>
-
-                
                 <div class="option">
                   <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>                  
                   <a href="#" id="compare" onclick="compare(<?php echo $season_sale['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left" ></i></a>

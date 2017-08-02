@@ -21,8 +21,15 @@ class Customer extends Front_Controller
 
   public function locationsearch(){
 		$post=$this->input->post();
+
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
-	  	$data['product_search']= $this->customer_model->get_product_search_location($post['locationarea']);
+		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
+		$data['tredings']= $this->customer_model->get_product_search_location($post['locationarea']);
+		$data['offers']= $this->customer_model->get_product_search_location($post['locationarea']);
+
+	  	//echo '<pre>';print_r($data);exit;
+	  	$data['deals_of_day']= $this->customer_model->get_product_search_deals_day($post['locationarea']);
+	  	$data['season_sales']= $this->customer_model->get_product_search_seaaon_sales($post['locationarea']);
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/productsearch', $data);
 		$this->template->render();
@@ -119,7 +126,7 @@ class Customer extends Front_Controller
 		$details= $this->customer_model->get_product_details($post['producr_id']);
 		//echo '<pre>';print_r($details);
 		if($details['offer_percentage']!='' && $details['offer_type']!=4){
-			if(date('m/d/Y') <= $details['offer_expairdate'] && date('H:ia')<= $details['offer_time']){
+			if(date('m/d/Y') <= $details['offer_expairdate']){
 				$item_price= ($details['item_cost']-$details['offer_amount']);
 				$price	=(($post['qty']) * ($item_price));
 			}else{
@@ -262,7 +269,7 @@ class Customer extends Front_Controller
 		//echo '<pre>';print_r($details);exit;
 		
 		if($details['offer_percentage']!='' && $details['offer_type']!=4){
-			if(date('m/d/Y') <= $details['offer_expairdate'] && date('H:ia')<= $details['offer_time']){
+			if(date('m/d/Y') <= $details['offer_expairdate']){
 				$item_price= ($details['item_cost']-$details['offer_amount']);
 				$price	=(($post['qty']) * ($item_price));
 			}else{
