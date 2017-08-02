@@ -1093,6 +1093,10 @@
 		  $('#idealfor').hide();
 		  $('#sizeid').hide();
 		  $('#colorid').hide();
+	   }else if(id==21){
+		$('#colorid').hide();  
+		$('#ideal_for').hide();  
+		  
 	  }else{
 		  $('#foodcategoryinputs').hide();
 		  $('#idealfor').show();
