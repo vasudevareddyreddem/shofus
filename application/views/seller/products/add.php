@@ -229,13 +229,13 @@
 			<input class="form-control" id="colors"  type="text" name="colors"/>
 					
 	</div>
-	<div class="row" class=" col-md-12" id="idealfor" style="display:none;">
-			<div class="col-md-6 form-group">
-				<div class="form-group nopaddingRight san-lg">
-					 <label for="exampleInputEmail1">Ideal FOR</label>
-					<input type="text" class="form-control" id="ideal_for" name="ideal_for" >
-				</div>
-		</div>
+	<div class="row" class=" col-md-12" >
+			<div class="col-md-6 form-group" id="idealfor"style="display:none;">
+			<div class="form-group nopaddingRight san-lg">
+			<label for="exampleInputEmail1">Ideal FOR</label>
+			<input type="text" class="form-control" id="ideal_for" name="ideal_for" >
+			</div>
+			</div>
 		<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Brand</label>
@@ -728,6 +728,14 @@ function getspecialinputs(ids){
 		$('#sizeid').hide();
 		$('#colorid').hide();
 	}
+	if(ids==40){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#mobilesinputs').show();
+	}else{
+		$('#mobilesinputs').hide();
+		$('#sizeid').show();		
+	}
 	if(ids==8){
 	$('#winterwaerinputs').show();
 	$('#sizeid').show();
@@ -923,13 +931,7 @@ function getspecialinputs(ids){
 	}else{
 		$('#laptopsinputs').hide();	
 	}
-	if(ids==40){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#mobilesinputs').show();
-	}else{
-		$('#mobilesinputs').hide();	
-	}
+	
 	
 	
 	   
@@ -945,6 +947,7 @@ function getspecialinputs(ids){
 		  $('#colorid').hide();
 	  }else if(id==21){
 		$('#colorid').hide();  
+		$('#sizeid').show();  
 		$('#ideal_for').hide();  
 		  
 	  }else{
