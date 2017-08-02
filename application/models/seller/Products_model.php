@@ -102,6 +102,12 @@ class Products_model extends MY_Model
 		$this->db->select('*')->from('products');
 		$this->db->where('item_id',$id);
         return $this->db->get()->row_array();
+	}
+	public function get_skuid_exists($skuid)
+	{
+		$this->db->select('*')->from('products');
+		$this->db->where('skuid',$skuid);
+        return $this->db->get()->row_array();
 	} 
 	public function getcatdata()
 	{

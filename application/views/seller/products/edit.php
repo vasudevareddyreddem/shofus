@@ -385,10 +385,11 @@
 	if($productdetails['subcategory_id']=='12' || $productdetails['subcategory_id']=='13' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17'){
 		$womensaccessoriesinputshide = '';
 		}else{
-
-		$womensaccessoriesinputshide = "display:none";
+			$womensaccessoriesinputshide = 'display:none;';
 		} ?>
-	<div class="row" id="womensaccessoriesinputs" style="<?php $womensaccessoriesinputshide; ?>">
+		
+		
+	<div class="row" id="womensaccessoriesinputs" style="<?php echo $womensaccessoriesinputshide; ?>">
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
 			<input class="form-control" id="product_theme4"  type="text" name="product_theme4" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />

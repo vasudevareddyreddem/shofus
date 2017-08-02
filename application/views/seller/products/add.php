@@ -53,11 +53,42 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
-	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data" >
+			<?php if($this->session->flashdata('addsuccess')){ ?>
 
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+					 <?php foreach($this->session->flashdata('addsuccess') as $error){?>
+					
+					<?php echo $error.'<br/>'; ?>
+					
+					
+					<?php } ?></div><?php } ?>
+	
+	<div class="col-md-6 ">
+	<label >&nbsp; </label>
+		<div  class=" shad_down " >
+			<h4 class="text-center" style="color:#006a99 ">Download this File to add Multiple Products</h4>
+				<form id="importproducts" name="importproducts" onsubmit="return validations();" action ="<?php echo base_url('seller/products/uploadproducts/');?>" method="post" enctype="multipart/form-data">
+				<input type="hidden" id="category_ids" name="category_ids">
+				<input type="hidden" id="subcategory_ids" name="subcategory_ids">
+				<p class="text-center">
+				<a type="button" class="btn btn-primary btn-xs">Download</a>
+				<button type="submit" class="btn btn-warning btn-xs">Upload</button>
+				</p>
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Add SubCategory Name</label>
+					<input type="file" class="form-control" name="categoryfile" id="categoryfile" >
+				</div>
+				</form>
+			<p class="text-center">(for each Subcategory)</p>
+		</div >
+	</div>
+	
+	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data" >
 	<div class="row">
-	<div class=" col-md-6 ">
-			<div class="form-group nopaddingRight san-lg">
+			<span id="errormsg"></span>
+			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Category </label>
 				<select class="form-control " onchange="getsubcategory(this.value);getproductinputs(this.value);" id="category_id" name="category_id">
 				<option value="">Select Category</option>
@@ -74,7 +105,7 @@
 				</div>
 				</div>
 			</div>
-			<div class="form-group nopaddingRight san-lg">
+			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Sub Category </label>
 				<select class="form-control" onchange="getspecialinputs(this.value);" id="subcategorylist" name="subcategorylist" >
 				<option value="">Select Subcategory </option>
@@ -91,23 +122,6 @@
 			
 			
 	</div>
-	
-	<div class=" col-md-6 ">
-	<label >&nbsp; </label>
-		<div  class=" shad_down " >
-			<h4 class="text-center" style="color:#006a99 ">Download this File to add Multiple Products</h4>
-			<p class="text-center">
-			<button type="button" class="btn btn-primary btn-xs">Download</button>
-			<button type="button" class="btn btn-warning btn-xs">Upload</button>
-			</p>
-			<p class="text-center">(for each Subcategory)</p>
-		</div >
-	</div>
-	</div>
-	
-	<div class="clearfix"></div>
-	<hr>
-	
 	
 	<div class="row">
 			<div class=" col-md-6 ">
@@ -656,7 +670,46 @@
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
   <script>
+  $(document).ready(function() {
+    $('#importproducts').bootstrapValidator({
+       
+        fields: {
+           categoryfile: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a File'
+					},
+					regexp: {
+						regexp: /\.(xlsx|xls|xlsm)$/i,
+					message: 'Uploaded file is not a valid. Only xlsx,xls,xlsm files are allowed'
+					}
+				}
+            }
+        }
+    });
+});
+function validations(){
+	
+	var catid= document.getElementById('category_id').value;
+	var subcatid= document.getElementById('subcategorylist').value;
+	document.getElementById('category_ids').value = catid;
+	document.getElementById('subcategory_ids').value = subcatid;
 
+	if(catid=='' && subcatid=='' ){
+		 $("#errormsg").html("Please select Ctaegory  and Subcategory").css("color", "red");
+		 return false;
+	}
+	if(catid=='' ){
+		 $("#errormsg").html("Please select Ctaegory").css("color", "red");
+		 return false;
+	}if(subcatid=='' ){
+		 $("#errormsg").html("Please select Subcategory").css("color", "red");
+		 return false;
+	}
+	$("#errormsg").html("");
+	return true;
+	
+}
 $(document).ready(function(){
     $("#categoryhideshow").click(function(){
         $("#addcat").toggle();
