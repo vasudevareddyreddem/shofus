@@ -205,7 +205,7 @@
 				</div>
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='8' ||$productdetails['subcategory_id']=='53' || $productdetails['subcategory_id']=='13' ||$productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='15' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='18' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22' || $productdetails['subcategory_id']=='51' || $productdetails['subcategory_id']=='23' || $productdetails['subcategory_id']=='25' || $productdetails['subcategory_id']=='52' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29'){
+	<?php if($productdetails['category_id']!='21' || $productdetails['subcategory_id']=='8' ||$productdetails['subcategory_id']=='53' || $productdetails['subcategory_id']=='13' ||$productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='15' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='18' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22' || $productdetails['subcategory_id']=='51' || $productdetails['subcategory_id']=='23' || $productdetails['subcategory_id']=='25' || $productdetails['subcategory_id']=='52' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29'){
 		$coloridhide = '';
 		}else{
 		$coloridhide = 'display:none';
@@ -229,6 +229,10 @@
 		}else{
 		$sizeidhide = 'display:none';
 		} ?>
+		<?php if($productdetails['category_id']=='21' || $productdetails['subcategory_id']=='1'){
+			$sizeidhide = '';
+		}
+		?>
 	<div class="row form-group col-md-12" id="sizeid" style="<?php echo $sizeidhide; ?>">
 			<label>Size</label>
 			<span class="pull-right col-md-10">
@@ -244,19 +248,24 @@
 		
 					
 	</div>
-	<?php if($productdetails['category_id']!='18'){
-		$idealforhide = '';
+	<?php if($productdetails['category_id']=='21'){
+		$idealforhide = 'display:none;';
 		}else{
-		$idealforhide = 'display:none';
+		$idealforhide = '';
 		} ?>
-	<div class="row" class=" col-md-12" id="idealfor" style="<?php echo $idealforhide; ?>">
-			<div class="col-md-6 form-group">
+		<?php if($productdetails['category_id']=='18'){
+		$brandhide = 'display:none;';
+		}else{
+		$brandhide = '';
+		} ?>
+	<div class="row" class=" col-md-12" >
+			<div class="col-md-6 form-group"   id="idealfor" style="<?php echo $idealforhide; ?>">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Ideal FOR</label>
 					<input type="text" class="form-control" id="ideal_for" name="ideal_for" value="<?php echo isset($productdetails['ideal_for'])?$productdetails['ideal_for']:''; ?>" >
 				</div>
 		</div>
-		<div class="col-md-6 form-group">
+		<div class="col-md-6 form-group" style="<?php echo $brandhide; ?>">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Brand</label>
 					<input type="text" class="form-control" id="brand" name="brand" value="<?php echo isset($productdetails['brand'])?$productdetails['brand']:''; ?>" >
@@ -1093,6 +1102,11 @@
 		  $('#idealfor').hide();
 		  $('#sizeid').hide();
 		  $('#colorid').hide();
+	   }else if(id==21){
+		$('#colorid').hide(); 
+		$('#sizeid').show();		
+		$('#ideal_for').hide();  
+		  
 	  }else{
 		  $('#foodcategoryinputs').hide();
 		  $('#idealfor').show();
@@ -1105,7 +1119,8 @@
   $('#personalcareappliancesinputs').show();
  getspecialinputs('<?php echo htmlentities($productdetails['subcategory_id']);?>');
 	function getspecialinputs(ids){
-	  if(ids==7){
+	
+	if(ids==7){
 		$('#sizeid').hide();
 		$('#colorid').hide();
 		$('#womensaccessoriesinputs').hide();
@@ -1310,8 +1325,14 @@
 		$('#colorid').hide();
 		$('#mobilesinputs').show();
 	}else{
-		$('#mobilesinputs').hide();	
+		$('#mobilesinputs').hide();
+		$('#sizeid').show();
 	}
+	if(ids==1){
+		$('#sizeid').hide();
+		$('#ideal_for').hide();
+	}
+	 
 	
 	   
 		  
