@@ -4542,9 +4542,9 @@ input[type=radio]:checked + span::before {
 }
 
 .box-product-outer {
-  margin-bottom: 5px;
+  margin: 5px;
   padding: 15px;
-  border: 1px solid transparent;
+  border: 1px solid #e4ebf3;
   border-radius: 0;
   /* &:hover {
     @include box-shadow(0 6px 12px rgba(0, 0, 0, .175));
@@ -4629,6 +4629,7 @@ input[type=radio]:checked + span::before {
   font-size: 13px;
   line-height: 1.4;
   display: block;
+  text-align:center;
 }
 .box-product:hover .img-wrapper > .option {
   bottom: 0;

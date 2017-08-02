@@ -15,6 +15,9 @@
 .modal-backdrop.in {
     opacity: 0 !important;
 }
+.navbar {
+	min-height: 75px;
+}
 </style>
 
 <div class="navigation_main ">
