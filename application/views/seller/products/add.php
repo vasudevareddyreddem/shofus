@@ -205,21 +205,27 @@
 				</div>
 			</div>
 	</div>
-	<div class="row" id="" class="col-md-12" >
-			<div class="form-group col-md-6" id="sizeid" style="display:none;">
+	<div class="row col-md-12 form-group" id="sizeid"  >
 			<label>Size</label>
 			<input class="form-control" id="sizes"  type="text" name="sizes"/>
-			</div>
-			<div class="form-group col-md-6" id="colorid" style="display:none;">
+					
+	</div>
+	<div class="row col-md-12 form-group" id="colorid">
 			<label>Color</label>
 			<input class="form-control" id="colors"  type="text" name="colors"/>
-			</div>			
+					
 	</div>
 	<div class="row" class=" col-md-12" id="idealfor" style="display:none;">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Ideal FOR</label>
 					<input type="text" class="form-control" id="ideal_for" name="ideal_for" >
+				</div>
+		</div>
+		<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Brand</label>
+					<input type="text" class="form-control" id="brand" name="brand" >
 				</div>
 		</div>
 						
@@ -230,6 +236,10 @@
 	<!-- food category purpose-->
 	<div class="row" id="foodcategoryinputs" style="display:none;">
 			
+			<div class="col-md-6 form-group">
+			<label>Cuisine</label>
+			<input class="form-control" id="product_scusine"  type="text" name="product_scusine"/>
+			</div>
 			<div class="col-md-6 form-group">
 			<label>sufficient for?</label>
 			<input class="form-control" id="product_sufficient"  type="text" name="product_sufficient"/>
@@ -256,6 +266,13 @@
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
 			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			</div>
+	</div>
+	<div class="row" id="product_theme" style="display:none;">
+		
+			<div class="col-md-6 form-group">
+			<label>Theme</label>
+			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
 	<div class="row" id="smartwatchesinputs" style="display:none;">
@@ -367,7 +384,7 @@
 		</div>
 		
 	</div>
-	<!-- electronice purpose-->
+	<!--- for electronic purpose-->
 	<div class="row" id="mobileaccessoriesinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		<label>COMPATIBLE MOBILES</label>
@@ -589,6 +606,7 @@
 	</div>
 	
 	
+	
 	<div class="row">
 			<div class=" col-md-6">
 				<div id="tab_sep">
@@ -652,101 +670,215 @@ $(document).ready(function(){
   
 });	
 
-function getspecialinputs(id){
-	  if(id==8 || id==19 || id==20 || id==28 || id==52 || id==29){
-		  $('#winterwaerinputs').show();
-	  }else{
-		  $('#winterwaerinputs').hide();
-	  }
-	  if(id==9){
-		  $('#personalcareappliancesinputs').hide();
-	  }else{
-		  $('#personalcareappliancesinputs').show();
-	  }
-	 
-	  if(id==10){
-		  $('#smartwatchesinputs').show();
-	  }else{
-		  $('#smartwatchesinputs').hide();
-	  }
-	  if(id==53){
-		  $('#footwareinputs').show();
-	 }else{
-		  $('#footwareinputs').hide();
-	  }
-	  if(id==12 || id==13 || id==14 || id==16 || id==17){
-		  $('#womensaccessoriesinputs').show();
-	  }else{
-		  $('#womensaccessoriesinputs').hide();
-	  } 
-	  if(id==15){
-		  $('#jwelleryinputs').show();
-	  }else{
-		  $('#jwelleryinputs').hide();
-	  }
-	  if(id==50){
-		  $('#womenswatchesinputs').show();
-	  }else{
-		  $('#womenswatchesinputs').hide();
-	  } 
-	  if(id==22){
-		  $('#mensaccessoriesinputs').show();
-	  }else{
-		  $('#mensaccessoriesinputs').hide();
-	  }
-	  if(id==51){
-		  $('#mensehinicwearinputs').show();
-	  }else{
-		  $('#mensehinicwearinputs').hide();
-	  }
-	  if(id==23 || id==25){
-		  $('#mensfabricsinputs').show();
-	  }else{
-		  $('#mensfabricsinputs').hide();
-	  } 
-	  if(id==30){
-		  $('#mobileaccessoriesinputs').show();
-	  }else{
-		  $('#mobileaccessoriesinputs').hide();
-	  } 
-	  if(id==34){
-		  $('#camerainputs').show();
-	  }else{
-		  $('#camerainputs').hide();
-	  }
-	  if(id==35){
-		  $('#tabletsinputs').show();
-	  }else{
-		  $('#tabletsinputs').hide();
-	  }
-	  if(id==36){
-		  $('#routersinputs').show();
-		   $('#sizeid').hide();
-		  $('#colorid').hide();
-	  }else{
-			$('#routersinputs').hide();
-			$('#sizeid').show();
-			$('#colorid').show();
-	  }
-	  if(id==7){
-		   $('#sizeid').hide();
-		  	$('#colorid').hide();
-	  }else{
-			$('#sizeid').show();
-			$('#colorid').show();
-	  } 
-	  if(id==39){
-		  $('#laptopsinputs').show();
-	  }else{
-		  $('#laptopsinputs').hide();
+function getspecialinputs(ids){
+	if(ids==7){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}
+	if(ids==8){
+	$('#winterwaerinputs').show();
+	$('#sizeid').show();
+	$('#colorid').show();
+	}else{ 
+	$('#winterwaerinputs').hide();
+	$('#sizeid').hide();
+	$('#colorid').hide();
+	}
+	if(ids==9){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}
+	if(ids==10){
+		$('#smartwatchesinputs').show();
+	}else{
+		$('#smartwatchesinputs').hide();
 
-	  }
-	  if(id==40){
-		  $('#mobilesinputs').show();
-	  }else{
-		  $('#mobilesinputs').hide();
+	}
+	if(ids==53){
+		$('#footwareinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#footwareinputs').hide();
 
-	  } 
+	}
+	if(ids==11){
+		$('#product_theme').show();
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}else{
+		$('#product_theme').hide();
+
+	}
+	if(ids==13){
+		$('#mensfabricsinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#mensfabricsinputs').hide();
+
+	}
+	if(ids==14){
+		$('#winterwaerinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#winterwaerinputs').hide();
+
+	}
+	if(ids==15){
+		$('#jwelleryinputs').show();
+		$('#colorid').show();
+	}else{
+		$('#jwelleryinputs').hide();
+
+	}
+	if(ids==16){
+		$('#mensfabricsinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#mensfabricsinputs').hide();
+
+	}
+	if(ids==17){
+		$('#mensfabricsinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#mensfabricsinputs').hide();
+
+	}
+	if(ids==18){
+		$('#sizeid').show();
+		$('#colorid').show();
+	}
+	if(ids==50){
+		$('#womenswatchesinputs').show();
+	}else{
+		$('#womenswatchesinputs').hide();
+	}
+	if(ids==19){
+		$('#winterwaerinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#winterwaerinputs').hide();
+	}
+	if(ids==20){
+		$('#winterwaerinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#winterwaerinputs').hide();
+	}
+	if(ids==21){
+		$('#product_theme').show();
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}else{
+		$('#product_theme').hide();
+	}
+	if(ids==22){
+		$('#winterwaerinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#winterwaerinputs').hide();
+	}
+	if(ids==51){
+		$('#mensehinicwearinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#mensehinicwearinputs').hide();
+	}
+	if(ids==23){
+		$('#mensfabricsinputs').show();
+		$('#colorid').show();
+	}else{
+		$('#mensfabricsinputs').hide();
+	}
+	if(ids==24){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}
+	if(ids==25){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#product_theme').show();
+	}else{
+		$('#product_theme').hide();	
+	}
+	if(ids==52){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#winterwaerinputs').show();
+	}else{
+		$('#winterwaerinputs').hide();	
+	}
+	if(ids==28){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#winterwaerinputs').show();
+	}else{
+		$('#winterwaerinputs').hide();	
+	}
+	if(ids==29){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#winterwaerinputs').show();
+	}else{
+		$('#winterwaerinputs').hide();	
+	}
+	if(ids==30){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#mobileaccessoriesinputs').show();
+	}else{
+		$('#mobileaccessoriesinputs').hide();	
+	}
+	if(ids==31 || ids==32  || ids==33){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}
+	if(ids==34){
+		$('#sizeid').hide();
+		$('#colorid').show();
+		$('#camerainputs').show();
+	}else{
+		$('#camerainputs').hide();	
+	}
+	if(ids==35){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#tabletsinputs').show();
+	}else{
+		$('#tabletsinputs').hide();	
+	}
+	if(ids==36){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#routersinputs').show();
+	}else{
+		$('#routersinputs').hide();	
+	}
+	if(ids==39){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#laptopsinputs').show();
+	}else{
+		$('#laptopsinputs').hide();	
+	}
+	if(ids==40){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#mobilesinputs').show();
+	}else{
+		$('#mobilesinputs').hide();	
+	}
+	
+	
 	   
 		  
   }
@@ -859,6 +991,28 @@ function getspecialinputs(id){
                     regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Offer  can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_scusine: {
+					validators: {
+					notEmpty: {
+						message: 'Cusine  is required'
+					},
+                   regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Cusine  can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			brand: {
+					validators: {
+					notEmpty: {
+						message: 'Brand  is required'
+					},
+                   regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Brand  can only consist of alphanumaric, space and dot'
 					}
 				}
 			},
@@ -1006,6 +1160,59 @@ function getspecialinputs(id){
 				}
 			},
 			product_theme: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_theme1: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},product_theme2: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},product_theme3: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_theme4: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_theme5: {
 					validators: {
 					notEmpty: {
 						message: 'Theme is required'

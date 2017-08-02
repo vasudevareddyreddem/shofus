@@ -66,9 +66,9 @@
                   	
 				
                 <div class="clearfix"></div>
-				<div style="margin-top: 20px; margin-left: 15px;">				
-                <button type="submit" class="btn btn-primary pull-right" >Submit</button>
-                <button type="submit" class="btn btn-danger pull-right" onclick="window.location='<?php echo base_url(); ?>seller/showups/homepagebanner';return false;">Cancel</button>
+				<div  class="pull-right" style="margin-top: 20px; margin-left: 15px;">				
+                <button type="submit" class="btn btn-primary " >Submit</button>
+                <button type="submit" class="btn btn-danger " onclick="window.location='<?php echo base_url(); ?>seller/showups/homepagebanner';return false;">Cancel</button>
                 
 				</div>
             </form>

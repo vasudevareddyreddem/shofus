@@ -156,8 +156,11 @@ class Products extends Admin_Controller {
 			
 	
 		//echo '<pre>';print_r($images);exit;
-		if($post['product_theme1'] || $post['product_theme2'] || $post['product_theme3'] || $post['product_theme4'] || $post['product_theme5']){
+		if($post['product_theme'] ||$post['product_theme1'] || $post['product_theme2'] || $post['product_theme3'] || $post['product_theme4'] || $post['product_theme5']){
 	
+	if($post['product_theme']!=''){
+	$pthem=$post['product_theme'];		
+	}
 	if($post['product_theme1']!=''){
 	$pthem=$post['product_theme1'];		
 	}
@@ -332,6 +335,8 @@ if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_s
 			'ideal_for' =>isset($post['ideal_for'])?$post['ideal_for']:'',
 			'item_sub_name' =>isset($post['product_sub_tem'])?$post['product_sub_tem']:'',
 			'sufficient_for' =>isset($post['product_sufficient'])?$post['product_sufficient']:'',
+			'cusine' =>isset($post['product_scusine'])?$post['product_scusine']:'',
+			'brand' =>isset($post['brand'])?$post['brand']:'',
 			'producttype' => isset($$ptype)?$$ptype:'',
 			'theme' => isset($pthem)?$pthem:'',
 			'dial_shape' => isset($dialshape)?$dialshape:'',
@@ -621,7 +626,7 @@ public function update()
 	
 	//echo '<pre>';print_r($post);
 	//echo '<pre>';print_r($_FILES);
-	//echo '<pre>';print_r($post);exit;
+	
 	$productdetails=$this->products_model->getproductdata($post['product_id']);
 		if($_FILES['img1']['name']!=''){
 		$image1=$_FILES['img1']['name'];
@@ -708,10 +713,13 @@ public function update()
 		$post=$this->input->post();
 		
 	//echo $id; exit;
-if($post['product_theme1'] || $post['product_theme2'] || $post['product_theme3'] || $post['product_theme4'] || $post['product_theme5']){
+if($post['product_theme'] || $post['product_theme1'] || $post['product_theme2'] || $post['product_theme3'] || $post['product_theme4'] || $post['product_theme5']){
 	
 	if($post['product_theme1']!=''){
 	$pthem=$post['product_theme1'];		
+	}
+	if($post['product_theme']!=''){
+	$pthem=$post['product_theme'];		
 	}
 	if($post['product_theme2']!=''){
 	$pthem=$post['product_theme2'];		
@@ -889,6 +897,8 @@ if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_s
 			'ideal_for' =>isset($post['ideal_for'])?$post['ideal_for']:'',
 			'item_sub_name' =>isset($post['product_sub_tem'])?$post['product_sub_tem']:'',
 			'sufficient_for' =>isset($post['product_sufficient'])?$post['product_sufficient']:'',
+			'cusine' =>isset($post['product_scusine'])?$post['product_scusine']:'',
+			'brand' =>isset($post['brand'])?$post['brand']:'',
 			'producttype' => isset($$ptype)?$$ptype:'',
 			'theme' => isset($pthem)?$pthem:'',
 			'dial_shape' => isset($dialshape)?$dialshape:'',
@@ -954,12 +964,15 @@ if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_s
 
 			);
 			
-			//echo '<pre>';print_r($updatedata);exit;
+			//echo '<pre>';print_r($updatedata);
+			
 			$result=$this->products_model->update_deails($post['product_id'],$updatedata);
 			if(count($result)>0)
 			{
+					
 					/* colors purpose*/
 					$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
+					//echo '<pre>';print_r($post['colors']);exit;
 						$productcolors=$this->products_model->get_product_colors($post['product_id']);
 						foreach ($productcolors as $colorsslist){
 						$listcolors[]=$colorsslist['color_name'];
@@ -967,19 +980,36 @@ if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_s
 						foreach ($productcolors as $colorss){
 						$this->products_model->delete_product_colors($colorss['p_color_id']);
 						}
-						foreach (array_unique(array_merge($listcolors,explode(",",$colordata))) as $colorslist){
+						if(isset($listcolors) && count($listcolors)>0){
+							foreach (array_unique(array_merge($listcolors,explode(",",$colordata))) as $colorslist){
+								if($colorslist!=''){
+									$addcolorsdata=array(
+									'item_id' =>$post['product_id'],
+									'color_name' => $colorslist,
+									'create_at' => date('Y-m-d H:i:s'),
+									);
+									
+									//echo '<pre>';print_r($addcolorsdata);
+									$this->products_model->insert_product_colors($addcolorsdata);
+								}
 
-							if($colorslist!=''){
-								$addcolorsdata=array(
-								'item_id' =>$post['product_id'],
-								'color_name' => $colorslist,
-								'create_at' => date('Y-m-d H:i:s'),
-								);
-								$this->products_model->insert_product_colors($addcolorsdata);
+
 							}
-							
-							
-						}
+						}else{
+								foreach (array_unique(array_merge(explode(",",$colordata))) as $colorslist){
+					
+									if($colorslist!=''){
+										$addcolorsdata=array(
+										'item_id' =>$post['product_id'],
+										'color_name' => $colorslist,
+										'create_at' => date('Y-m-d H:i:s'),
+										);
+										
+										//echo '<pre>';print_r($addcolorsdata);
+										$this->products_model->insert_product_colors($addcolorsdata);
+									}
+								}
+							}
 						
 						/*-----*/
 						
@@ -992,45 +1022,88 @@ if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_s
 							foreach ($productsizes as $sizes){
 							$this->products_model->delete_product_sizes($sizes['p_size_id']);
 							}
-							foreach (array_unique(array_merge($listsizes,explode(",",$sizesdata))) as $sizeslist){
-
-							if($sizeslist !=''){
-							$addsizesdata=array(
-							'item_id' =>$post['product_id'],
-							'p_size_name' => $sizeslist,
-							'create_at' => date('Y-m-d H:i:s'),
-							);
-							$this->products_model->insert_product_sizes($addsizesdata);
+							
+							if(isset($listsizes) && count($listsizes)>0){
+									foreach (array_unique(array_merge($listsizes,explode(",",$sizesdata))) as $sizeslist){
+										if($sizeslist !=''){
+											$addsizesdata=array(
+											'item_id' =>$post['product_id'],
+											'p_size_name' => $sizeslist,
+											'create_at' => date('Y-m-d H:i:s'),
+											);
+											//echo '<pre>';print_r($addsizesdata);
+											$this->products_model->insert_product_sizes($addsizesdata);
+										}
+							
+									}
+							}else{
+								
+								foreach (array_unique(array_merge(explode(",",$sizesdata))) as $sizeslist){
+										if($sizeslist !=''){
+											$addsizesdata=array(
+											'item_id' =>$post['product_id'],
+											'p_size_name' => $sizeslist,
+											'create_at' => date('Y-m-d H:i:s'),
+											);
+											//echo '<pre>';print_r($addsizesdata);
+											$this->products_model->insert_product_sizes($addsizesdata);
+										}
+							
+									}
 							}
-						
-							}
+							
+							
+							
 						
 						/*----*/
 						
 						/* uksizes puepos*/
-							if($post['ussizes']!=''){
+							if(isset($post['ussizes']) && $post['ussizes']!=''){
 							
 							$uksizesdata = str_replace(array('[', ']','"'), array(''), $post['ussizes']);
 							$ukproductsizes=$this->products_model->get_product_uksizes($post['product_id']);
 							foreach ($ukproductsizes as $sizeslist){
-							$listsizes[]=$sizeslist['p_size_name'];
+							$ullistsizes[]=$sizeslist['p_size_name'];
 							}
 							foreach ($ukproductsizes as $sizes){
 							$this->products_model->product_uksize_list($sizes['p_size_id']);
 							}
-							foreach (array_unique(array_merge($listsizes,explode(",",$uksizesdata))) as $sizeslist){
+							
+							if(isset($ullistsizes) && count($ullistsizes)>0){
+								
+											foreach (array_unique(array_merge($ullistsizes,explode(",",$uksizesdata))) as $sizeslist){
 
-							if($sizeslist !=''){
-							$ukaddsizesdata=array(
-							'item_id' =>$post['product_id'],
-							'p_size_name' => $sizeslist,
-							'create_at' => date('Y-m-d H:i:s'),
-							);
-							//echo '<pre>';print_r($addsizesdata);
-							$this->products_model->insert_product_uksizes($ukaddsizesdata);
-							}
+												if($sizeslist !=''){
+													$ukaddsizesdata=array(
+													'item_id' =>$post['product_id'],
+													'p_size_name' => $sizeslist,
+													'create_at' => date('Y-m-d H:i:s'),
+													);
+														//echo '<pre>';print_r($ukaddsizesdata);
+														$this->products_model->insert_product_uksizes($ukaddsizesdata);
+												}
 						
+											}
+								
+							}else{
+								
+								foreach (array_unique(array_merge(explode(",",$uksizesdata))) as $sizeslist){
+
+												if($sizeslist !=''){
+													$ukaddsizesdata=array(
+													'item_id' =>$post['product_id'],
+													'p_size_name' => $sizeslist,
+													'create_at' => date('Y-m-d H:i:s'),
+													);
+														//echo '<pre>';print_r($ukaddsizesdata);
+														$this->products_model->insert_product_uksizes($ukaddsizesdata);
+												}
+						
+											}
+								
 							}
+
+							
 							
 						}
 						
@@ -1039,7 +1112,7 @@ if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_s
 						/* pecification purpose*/
 						$productspcification=$this->products_model->get_product_spc($post['product_id']);
 						foreach ($productspcification as $spc){
-						$this->products_model->delete_product_spc($spc['specification_id']);
+						//$this->products_model->delete_product_spc($spc['specification_id']);
 						}
 						$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
 						foreach ($productspecificationlist as $key=>$list){
@@ -1051,12 +1124,12 @@ if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_s
 								'spc_value' => $key,
 								'create_at' => date('Y-m-d H:i:s'),
 								);
-								$this->products_model->insert_product_spcifications($addspc);
+								echo '<pre>';print_r($addspc);
+								//$this->products_model->insert_product_spcifications($addspc);
 								
 							}
 						}
 						/* -----*/
-					
 					
 				
 				

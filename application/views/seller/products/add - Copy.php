@@ -16,11 +16,11 @@
 	width:100% !important;
 } #sizes{
 	width:100% !important;
-}#ussizes{
+}
+#ussizes{
 	width:100% !important;
 }
 </style>
-
 <div class="content-wrapper mar_t_con"  >
 	<section class="content-header">
 		<div class="header-icon">
@@ -36,7 +36,7 @@
 				</div>
 			</form>  
 			<h1>Listing</h1>
-			<small>Edit Product</small>
+			<small>Add Listing</small>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard'); ?>"><i class="pe-7s-home"></i> Home</a></li>
 				<li class="active">Dashboard</li>
@@ -53,65 +53,73 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
-	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/update/'); ?>" method="post" enctype="multipart/form-data" >
-<?php //echo '<pe>';print_r($productdetails['subcategory_id']);?>
-<?php //echo '<pe>';print_r($productdetails['category_id']);?>
-						<input type="hidden" name="product_id" id="product_id" value="<?php echo isset($productdetails['item_id'])?$productdetails['item_id']:''; ?>">				
+	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data" >
 
 	<div class="row">
-			<div class="form-group col-md-6">
+	<div class=" col-md-6 ">
+			<div class="form-group nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Category </label>
-				<select class="form-control " onchange="getsubcategory(this.value);getsubcategorylist(this.value);getproductinputs(this.value);" id="category_id" name="category_id">
-					<option value="">Select Category</option>
-					<?php foreach($category_details as $list){ ?>
-						<?php if($productdetails['category_id']==$list['seller_category_id']){ ?>
-						<option selected="selected" value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
-
-						<?php }else{ ?>
-							<option value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
-						<?php }} ?>
+				<select class="form-control " onchange="getsubcategory(this.value);getproductinputs(this.value);" id="category_id" name="category_id">
+				<option value="">Select Category</option>
+				<?php foreach($category_details as $list){ ?>
+				<option value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
+				<?php } ?>
 
 				</select>
+				<p  id="categoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Category</a> </p>
+				<div style="display:none;" id="addcat">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Add Category Name</label>
+					<input type="text" class="form-control" name="addcategoryname" id="addcategoryname" >
+				</div>
+				</div>
 			</div>
-			<div id="oldsubcat" class="form-group col-md-6" style="display:none;">
+			<div class="form-group nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Sub Category </label>
-				<select class="form-control " onchange="getspecialinputs(this.value);removeextrafields(this.value);" id="subcategorylistes" name="editsubcategorylist"  >
+				<select class="form-control" onchange="getspecialinputs(this.value);" id="subcategorylist" name="subcategorylist" >
 				<option value="">Select Subcategory </option>
+
+				</select>
+				<p id="subcategoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Subcategory</a> </p>
+				<div style="display:none;" id="addsubcat">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Add SubCategory Name</label>
+					<input type="text" class="form-control" name="addsubcategoryname" id="addsubcategoryname" >
+				</div>
+				</div>
+			</div>
 			
-				<?php foreach($subcatdata as $subcat_data){ ?>
-				<?php if($productdetails['subcategory_id']==$subcat_data->subcategory_id){ ?>
-				<option selected="selected" value="<?php echo $subcat_data->subcategory_id; ?>"><?php echo $subcat_data->subcategory_name; ?></option>
-				<?php } else{ ?>
-				<option value="<?php echo $subcat_data->subcategory_id; ?>"><?php echo $subcat_data->subcategory_name; ?></option>
-				<?php } } ?>
-				
-				</select>
-				
-			</div>
-			<div id="editsubcat" class="form-group col-md-6" style="display:none;">
-				<label for="exampleInputEmail1">Sub Category </label>
-				
-				<select class="form-control" onchange="getspecialinputs(this.value);removeextrafields(this.value);" id="subcategorylist" name="subcategorylist" >
-				<option value="">Select Subcategory </option>
-
-				</select>
-			</div>
-		
 			
 	</div>
+	
+	<div class=" col-md-6 ">
+	<label >&nbsp; </label>
+		<div  class=" shad_down " >
+			<h4 class="text-center" style="color:#006a99 ">Download this File to add Multiple Products</h4>
+			<p class="text-center">
+			<button type="button" class="btn btn-primary btn-xs">Download</button>
+			<button type="button" class="btn btn-warning btn-xs">Upload</button>
+			</p>
+			<p class="text-center">(for each Subcategory)</p>
+		</div >
+	</div>
+	</div>
+	
+	<div class="clearfix"></div>
+	<hr>
 	
 	
 	<div class="row">
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					    <label for="exampleInputEmail1">Product name</label>
-						<input type="text" class="form-control" id="productname" name="productname" value="<?php echo isset($productdetails['item_name'])?$productdetails['item_name']:''; ?>" >
+						<input type="text" class="form-control" id="productname" name="productname" >
 											
 				</div>
 			</div>	<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Sku code</label>
-					<input type="text" class="form-control" name="skuid" id="skuid" value="<?php echo isset($productdetails['skuid'])?$productdetails['skuid']:''; ?>" >
+					<input type="text" class="form-control" name="skuid" id="skuid" >
 				</div>
 			</div>
 	</div>
@@ -119,13 +127,13 @@
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					   <label for="exampleInputEmail1">Other Unique code</label>
-						<input type="text" class="form-control" name="otherunique" id="otherunique" value="<?php echo isset($productdetails['item_code'])?$productdetails['item_code']:''; ?>" >
+						<input type="text" class="form-control" name="otherunique" id="otherunique" >
 				</div>
 			</div>
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">price</label>
-					<input type="text" class="form-control" id="product_price" name="product_price" value="<?php echo isset($productdetails['item_cost'])?$productdetails['item_cost']:''; ?>" >
+					<input type="text" class="form-control" id="product_price" name="product_price" >
 			</div>
 		</div>
 	</div>
@@ -133,13 +141,13 @@
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Special price</label>
-					<input type="text" class="form-control" id="specialprice" name="specialprice" value="<?php echo isset($productdetails['special_price'])?$productdetails['special_price']:''; ?>" >
+					<input type="text" class="form-control" id="specialprice" name="specialprice" >
 				</div>
 			</div>
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Offers</label>
-					<input type="text" class="form-control" id="offers" name="offers" value="<?php echo isset($productdetails['offers'])?$productdetails['offers']:''; ?>" >
+					<input type="text" class="form-control" id="offers" name="offers" >
 				</div>
 			</div>
 	</div>
@@ -147,13 +155,13 @@
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Discount</label>
-					<input type="text" class="form-control" id="discount" name="discount" value="<?php echo isset($productdetails['discount'])?$productdetails['discount']:''; ?>" >
+					<input type="text" class="form-control" id="discount" name="discount" >
 				</div>
 			</div>
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Qty</label>
-					<input type="text" class="form-control" id="qty" name="qty" value="<?php echo isset($productdetails['item_quantity'])?$productdetails['item_quantity']:''; ?>" >
+					<input type="text" class="form-control" id="qty" name="qty" >
 				</div>
 			</div>
 	</div>
@@ -161,12 +169,12 @@
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					   <label for="exampleInputEmail1">Meta keywords</label>
-						<input type="text" class="form-control" id="keywords" name="keywords" value="<?php echo isset($productdetails['keywords'])?$productdetails['keywords']:''; ?>" >
+						<input type="text" class="form-control" id="keywords" name="keywords" >
 				</div>
 			</div>	<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Meta title</label>
-					<input type="text" class="form-control" id="title" name="title" value="<?php echo isset($productdetails['title'])?$productdetails['title']:''; ?>" >
+					<input type="text" class="form-control" id="title" name="title" >
 				</div>
 			</div>
 	</div>
@@ -176,23 +184,15 @@
 					<label for="exampleInputEmail1">Status</label>
 					<select class="form-control " id="status" name="status" >
 					<option value="">Select </option>
-					<?php if($productdetails['item_status']=="1") {?>
-						<option value="1" selected>Available</option>	
-							<?php }else{ ?>
-						<option value="1">Available</option>
-							<?php } ?>
-							<?php if($productdetails['item_status']=="0") {?> 
-						<option value="0" selected>Unavailable</option>	
-							<?php }else{ ?>
-						<option value="0">Unavailable</option>	
-					<?php } ?>
+					<option value="1">Available</option>
+					<option value="0">Unavailable</option>
 					</select>
 				</div>
 			</div>
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					    <label for="exampleInputEmail1">Product description</label>
-						<textarea  placeholder="product Description" style="width: 478px; height: 38px;" class="form-control" rows="3" id="product_description" name="product_description"><?php echo isset($productdetails['item_description'])?$productdetails['item_description']:''; ?></textarea>
+						<textarea  placeholder="product Description" style="width: 478px; height: 38px;" class="form-control" rows="3" id="product_description" name="product_description"></textarea>
 											
 				</div>
 			</div>
@@ -201,65 +201,31 @@
 		<div class=" col-md-6">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">sub item</label>
-					<input type="text" class="form-control" id="product_sub_tem" name="product_sub_tem" value="<?php echo isset($productdetails['item_sub_name'])?$productdetails['item_sub_name']:''; ?>" >
+					<input type="text" class="form-control" id="product_sub_tem" name="product_sub_tem" >
 				</div>
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='8' ||$productdetails['subcategory_id']=='53' || $productdetails['subcategory_id']=='13' ||$productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='15' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='18' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22' || $productdetails['subcategory_id']=='51' || $productdetails['subcategory_id']=='23' || $productdetails['subcategory_id']=='25' || $productdetails['subcategory_id']=='52' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29'){
-		$coloridhide = '';
-		}else{
-		$coloridhide = 'display:none';
-		} ?>
-	<div class="row form-group col-md-12" id="colorid" style="<?php echo $coloridhide; ?>">
-			<label>Color</label>
-			<span class="pull-right col-md-10">
-
-			<?php  //echo '<pre>';print_r($productcolors);exit;
-			foreach($productcolors as $colors_name){ ?> 
-			<input type="hidden" name="oldcolors[]" value="<?php echo $colors_name['color_name']; ?>">
-			<a id="colord_<?php echo $colors_name['p_color_id'] ;?>" onclick="removecolor(<?php echo $colors_name['p_color_id']?>);" class="btn btn-primary btn-xs"><?php echo $colors_name['color_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
-			<?php } ?>
-
-			</span>
-			<input class="form-control" id="colors"  type="text" name="colors"/>
-			
-	</div>
-	<?php if($productdetails['subcategory_id']=='8' ||$productdetails['subcategory_id']=='53' || $productdetails['subcategory_id']=='13' ||$productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='18' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22' || $productdetails['subcategory_id']=='51' || $productdetails['subcategory_id']=='25' || $productdetails['subcategory_id']=='52' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29'){
-		$sizeidhide = '';
-		}else{
-		$sizeidhide = 'display:none';
-		} ?>
-	<div class="row form-group col-md-12" id="sizeid" style="<?php echo $sizeidhide; ?>">
+	<div class="row" id="" class="col-md-12" >
+			<div class="form-group col-md-6" id="sizeid" ">
 			<label>Size</label>
-			<span class="pull-right col-md-10">
-
-				<?php  //echo '<pre>';print_r($productcolors);exit;
-				foreach($productsizes as $sizeslist){ ?> 
-				<input type="hidden" name="oldsizes[]" value="<?php echo $sizeslist['p_size_name']; ?>">
-				<a id="sizes_<?php echo $sizeslist['p_size_id'] ;?>" onclick="removesizes(<?php echo $sizeslist['p_size_id']?>);"class="btn btn-primary btn-xs"><?php echo $sizeslist['p_size_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
-				<?php } ?>
-
-				</span>
 			<input class="form-control" id="sizes"  type="text" name="sizes"/>
-		
-					
+			</div>
+			<div class="form-group col-md-6" id="colorid" >
+			<label>Color</label>
+			<input class="form-control" id="colors"  type="text" name="colors"/>
+			</div>			
 	</div>
-	<?php if($productdetails['category_id']!='18'){
-		$idealforhide = '';
-		}else{
-		$idealforhide = 'display:none';
-		} ?>
-	<div class="row" class=" col-md-12" id="idealfor" style="<?php echo $idealforhide; ?>">
+	<div class="row" class=" col-md-12" id="idealfor" style="display:none;">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Ideal FOR</label>
-					<input type="text" class="form-control" id="ideal_for" name="ideal_for" value="<?php echo isset($productdetails['ideal_for'])?$productdetails['ideal_for']:''; ?>" >
+					<input type="text" class="form-control" id="ideal_for" name="ideal_for" >
 				</div>
 		</div>
 		<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Brand</label>
-					<input type="text" class="form-control" id="brand" name="brand" value="<?php echo isset($productdetails['brand'])?$productdetails['brand']:''; ?>" >
+					<input type="text" class="form-control" id="brand" name="brand" >
 				</div>
 		</div>
 						
@@ -268,29 +234,20 @@
 	</div>
 	
 	<!-- food category purpose-->
-	<?php if($productdetails['category_id']=='18'){
-		$foodcategoryinputshide = '';
-		}else{
-		$foodcategoryinputshide = 'display:none';
-		} ?>
-	<div class="row" id="foodcategoryinputs" style="<?php echo $foodcategoryinputshide ; ?>">
+	<div class="row" id="foodcategoryinputs" style="display:none;">
+			
 			<div class="col-md-6 form-group">
 			<label>Cuisine</label>
-			<input class="form-control" id="product_scusine"  type="text" name="product_scusine" value="<?php echo isset($productdetails['cusine'])?$productdetails['cusine']:''; ?>"/>
+			<input class="form-control" id="product_scusine"  type="text" name="product_scusine"/>
 			</div>
 			<div class="col-md-6 form-group">
 			<label>sufficient for?</label>
-			<input class="form-control" id="product_sufficient"  type="text" name="product_sufficient" value="<?php echo isset($productdetails['sufficient_for'])?$productdetails['sufficient_for']:''; ?>" />
+			<input class="form-control" id="product_sufficient"  type="text" name="product_sufficient"/>
 			</div>
 	</div>
 	<!-- food category purpose-->
 	<!-- special inputs for subcategory  --->
-	<?php if($productdetails['subcategory_id']=='23' ||$productdetails['subcategory_id']=='25'){
-		$mensfabricsinputshide = '';
-		}else{
-		$mensfabricsinputshide = 'display:none';
-		} ?>
-	<div class="row" id="mensfabricsinputs" style="<?php echo $mensfabricsinputshide; ?>">
+	<div class="row" id="mensfabricsinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Type</label>
@@ -299,24 +256,7 @@
 			</div>
 	
 	</div>
-	<?php if($productdetails['subcategory_id']=='21' ||$productdetails['subcategory_id']=='11' ||$productdetails['subcategory_id']=='25'){
-		$product_themehide = '';
-		}else{
-		$product_themehide = 'display:none';
-		} ?>
-	<div class="row" id="product_theme" style="<?php echo $product_themehide; ?>">
-		
-			<div class="col-md-6 form-group">
-			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
-			</div>
-	</div>
-	<?php if($productdetails['subcategory_id']=='8' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29' || $productdetails['subcategory_id']=='52'){
-		$winterwaerinputshide = '';
-		}else{
-		$winterwaerinputshide = 'display:none';
-		} ?>
-	<div class="row" id="winterwaerinputs" style="<?php echo $winterwaerinputshide; ?>">
+	<div class="row" id="winterwaerinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Type</label>
@@ -328,12 +268,7 @@
 			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='10'){
-		$smartwatchesinputshide = '';
-		}else{
-		$smartwatchesinputshide = 'display:none';
-		} ?>
-	<div class="row" id="smartwatchesinputs" style="<?php echo $smartwatchesinputshide; ?>">
+	<div class="row" id="smartwatchesinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">DIAL SHAPE</label>
@@ -353,12 +288,7 @@
 			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" />
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='53'){
-		$footwareinputshide = '';
-		}else{
-		$footwareinputshide = 'display:none';
-		} ?>
-	<div class="row" id="footwareinputs" style="<?php echo $footwareinputshide; ?>">
+	<div class="row" id="footwareinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
 			<input class="form-control" id="product_theme5"  type="text" name="product_theme5" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
@@ -369,37 +299,17 @@
 			</div>
 			<div class="col-md-6 form-group">
 			<label>Size(UK)</label>
-			<span class="pull-right col-md-10">
-
-				<?php  //echo '<pre>';print_r($productcolors);exit;
-				foreach($productuksizes as $sizeslist){ ?> 
-				<input type="hidden" name="olduksizes[]" value="<?php echo $sizeslist['p_size_name']; ?>">
-				<a id="uksizes_<?php echo $sizeslist['p_size_id'] ;?>" onclick="removeuksizes(<?php echo $sizeslist['p_size_id']?>);"class="btn btn-primary btn-xs"><?php echo $sizeslist['p_size_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
-				<?php } ?>
-
-				</span>
-			<input class="form-control" id="ussizes"  type="text" name="ussizes"  />
+			<input class="form-control" id="ussizes"  type="text" name="ussizes"/>
 			</div>
 	</div>
-	<?php 
-	if($productdetails['subcategory_id']=='12' || $productdetails['subcategory_id']=='13' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17'){
-		$womensaccessoriesinputshide = '';
-		}else{
-
-		$womensaccessoriesinputshide = "display:none";
-		} ?>
-	<div class="row" id="womensaccessoriesinputs" style="<?php $womensaccessoriesinputshide; ?>">
+	<div class="row" id="womensaccessoriesinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
 			<input class="form-control" id="product_theme4"  type="text" name="product_theme4" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='15'){
-		$jwelleryinputshide = '';
-		}else{
-		$jwelleryinputshide = 'display:none';
-		} ?>
-	<div class="row" id="jwelleryinputs" style="<?php echo $jwelleryinputshide ; ?>">
+	
+	<div class="row" id="jwelleryinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Material</label>
 		<input type="text" class="form-control" id="material1" name="material1" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
@@ -409,12 +319,7 @@
 		<input type="text" class="form-control" id="product_gemstones" name="product_gemstones" value="<?php echo isset($productdetails['gemstones'])?$productdetails['gemstones']:''; ?>" >
 		</div>
 	</div>
-		<?php if($productdetails['subcategory_id']=='50'){
-		$womenswatchesinputshide = '';
-		}else{
-		$womenswatchesinputshide = 'display:none';
-		} ?>
-	<div class="row" id="womenswatchesinputs" style="<?php echo $womenswatchesinputshide; ?>"  >
+	<div class="row" id="womenswatchesinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Material</label>
 		<input type="text" class="form-control" id="Material2" name="Material2" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
@@ -438,12 +343,7 @@
 			<input class="form-control" id="prouduct_dial_color"  type="text" name="prouduct_dial_color" value="<?php echo isset($productdetails['dial_color'])?$productdetails['dial_color']:''; ?>"/>
 		</div>
 	</div>
-		<?php if($productdetails['subcategory_id']=='22'){
-		$mensaccessoriesinputshide = '';
-		}else{
-		$mensaccessoriesinputshide = 'display:none';
-		} ?>
-	<div class="row" id="mensaccessoriesinputs" style="<?php echo $mensaccessoriesinputshide; ?>">
+	<div class="row" id="mensaccessoriesinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
 		<input type="text" class="form-control" id="product_type5" name="product_type5" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
@@ -458,12 +358,7 @@
 		</div>
 		
 	</div>
-		<?php if($productdetails['subcategory_id']=='51'){
-		$mensehinicwearinputshide = '';
-		}else{
-		$mensehinicwearinputshide = 'display:none';
-		} ?>
-	<div class="row" id="mensehinicwearinputs" style="<?php echo $mensehinicwearinputshide; ?>">
+	<div class="row" id="mensehinicwearinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		<label>Theme</label>
 		<input class="form-control" id="product_theme2"  type="text" name="product_theme2" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
@@ -483,23 +378,13 @@
 		
 	</div>
 	<!-- electronice purpose-->
-		<?php if($productdetails['subcategory_id']=='30'){
-		$mobileaccessoriesinputshide = '';
-		}else{
-		$mobileaccessoriesinputshide = 'display:none';
-		} ?>
-	<div class="row" id="mobileaccessoriesinputs" style="<?php echo $mobileaccessoriesinputshide; ?>">
+	<div class="row" id="mobileaccessoriesinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		<label>COMPATIBLE MOBILES</label>
-		<input class="form-control" id="product_compatible_mobiles"  type="text" name="product_compatible_mobiles" value="<?php echo isset($productdetails['compatible_mobiles'])?$productdetails['compatible_mobiles']:''; ?>" />
+		<input class="form-control" id="product_compatible_mobiles"  type="text" name="product_compatible_mobiles"/>
 		</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='34'){
-		$camerainputshide = '';
-		}else{
-		$camerainputshide = 'display:none';
-		} ?>
-	<div class="row" id="camerainputs" style="<?php echo $camerainputshide; ?>">
+	<div class="row" id="camerainputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
 		<input type="text" class="form-control" id="product_type3" name="product_type3" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
@@ -517,12 +402,7 @@
 		<input type="text" class="form-control" id="product_battery_type" name="product_battery_type" value="<?php echo isset($productdetails['battery_type'])?$productdetails['battery_type']:''; ?>" >
 		</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='36'){
-		$routersinputshide = '';
-		}else{
-		$routersinputshide = 'display:none';
-		} ?>
-	<div class="row" id="routersinputs" style="<?php echo $routersinputshide; ?>">
+	<div class="row" id="routersinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
 		<input type="text" class="form-control" id="product_type2" name="product_type2" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
@@ -553,12 +433,7 @@
 		</div>
 		
 	</div>
-	<?php if($productdetails['subcategory_id']=='35'){
-		$tabletsinputshide = '';
-		}else{
-		$tabletsinputshide = 'display:none';
-		} ?>
-	<div class="row" id="tabletsinputs" style="<?php echo $tabletsinputshide; ?>">
+	<div class="row" id="tabletsinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">DISPLAY SIZE</label>
 		<input type="text" class="form-control" id="product_display_size3" name="product_display_size3" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
@@ -595,13 +470,8 @@
 		 <label for="exampleInputEmail1">PROCESSOR CLOCK SPEED</label>
 		<input type="text" class="form-control" id="processor_clock_speed" name="processor_clock_speed" value="<?php echo isset($productdetails['clock_speed'])?$productdetails['clock_speed']:''; ?>" >
 		</div>
-	</div>	
-	<?php if($productdetails['subcategory_id']=='39'){
-		$laptopsinputshide = '';
-		}else{
-		$laptopsinputshide = 'display:none';
-		} ?>
-	<div class="row" id="laptopsinputs" style="<?php echo $laptopsinputshide; ?>">
+	</div>
+	<div class="row" id="laptopsinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SCREEN SIZE</label>
 		<input type="text" class="form-control" id="product_display_size2" name="product_display_size2" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>"  >
@@ -656,19 +526,14 @@
 		</div>
 		
 	</div>
-		<?php if($productdetails['subcategory_id']=='40'){
-		$mobilesinputshide = '';
-		}else{
-		$mobilesinputshide = 'display:none';
-		} ?>
-	<div class="row" id="mobilesinputs" style="<?php echo $mobilesinputshide;?> ">
+	<div class="row" id="mobilesinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RAM</label>
-		<input type="text" class="form-control" id="product_ram1" name="product_ram1" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
+		<input type="text" class="form-control" id="product_ram1" name="product_ram1" value="" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
-		<input type="text" class="form-control" id="operating_system1" name="operating_system1" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>" >
+		<input type="text" class="form-control" id="operating_system1" name="operating_system1" value="" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
@@ -736,25 +601,9 @@
 	
 	<div class="row">
 			<div class=" col-md-6">
-			<label for="exampleInputEmail1">Product specifications </label>
-			<?php $i=0;foreach($productspcification as $spc){ ?>
-						<div id="tab_sep11_<?php echo $spc['specification_id']; ?>">
-						
-							<div class="col-md-6" style="padding:0">
-								<input style="border-radius:5px 0px 0px 5px" type="text" placeholder="Specification Name" class="form-control" id="specificationnameid" name="specificationname[]" value="<?php echo isset($spc['spc_name'])?$spc['spc_name']:''; ?>" >
-							</div>
-							<div class="col-md-6" style="padding:0">
-								<input style="border-radius:0px 5px 5px 0px" type="text" placeholder="Specification Value"  class="form-control" id="specificationvalueid" name="specificationvalue[]" value="<?php echo isset($spc['spc_value'])?$spc['spc_value']:''; ?>" >
-							</div>
-							<button type="button" onclick="removeattachment(<?php echo $spc['specification_id']?>);" >
-							<span aria-hidden="true">×</span>
-							</button>
-					
-						</div>
-				<?php $i++;} ?>
 				<div id="tab_sep">
 					<div class="col-md-6 form-group" style="padding:0">
-						<label for="exampleInputEmail1">&nbsp;</label>
+						<label for="exampleInputEmail1">Product specifications </label>
 						<input style="border-radius:5px 0px 0px 5px" type="text" placeholder="Specification Name" class="form-control" id="specificationnameid" name="specificationname[]" >
 					</div>
 					<div class="col-md-6 form-group" style="padding:0">
@@ -771,127 +620,21 @@
 					<a id="add_sep" class="btn btn-default btn-xs pull-left">Add Row</a>
 				</div>
 			</div>
-			<div class="col-md-12"></div>
-											<?php  if($productdetails['item_image'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image1</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image'];?>" <?php echo $productdetails['item_image'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image1</label>
-												<input type="file" class="form-control" id="img1" name="img1"  >
-											</div>
-											<?php  if($productdetails['item_image1'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image2</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image1'];?>" <?php echo $productdetails['item_image1'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image2</label>
-												<input type="file" class="form-control" id="img2" name="img2"  >
-											</div>
-											<?php  if($productdetails['item_image2'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image3</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image2'];?>" <?php echo $productdetails['item_image2'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image3</label>
-												<input type="file" class="form-control" id="img3" name="img3"  >
-											</div>
-											<?php  if($productdetails['item_image3'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image4</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image3'];?>" <?php echo $productdetails['item_image3'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image4</label>
-												<input type="file" class="form-control" id="img4" name="img4"  >
-											</div>
-											<?php  if($productdetails['item_image4'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image5</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image4'];?>" <?php echo $productdetails['item_image4'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image5</label>
-												<input type="file" class="form-control" id="img5" name="img5"  >
-											</div>
-											<?php  if($productdetails['item_image5'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image6</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image5'];?>" <?php echo $productdetails['item_image5'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image6</label>
-												<input type="file" class="form-control" id="img6" name="img6"  >
-											</div>
-											<?php  if($productdetails['item_image6'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image7</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image6'];?>" <?php echo $productdetails['item_image6'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image7</label>
-												<input type="file" class="form-control" id="img7" name="img7"  >
-											</div>
-											<?php  if($productdetails['item_image7'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image8</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image7'];?>" <?php echo $productdetails['item_image7'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image8</label>
-												<input type="file" class="form-control" id="img8" name="img8"  >
-											</div>
-											<?php  if($productdetails['item_image8'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image9</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image8'];?>" <?php echo $productdetails['item_image8'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image9</label>
-												<input type="file" class="form-control" id="img9" name="img9"  >
-											</div>
-											<?php  if($productdetails['item_image9'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image10</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image9'];?>" <?php echo $productdetails['item_image9'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image10</label>
-												<input type="file" class="form-control" id="img10" name="img10"  >
-											</div>
-											<?php  if($productdetails['item_image10'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image11</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image10'];?>" <?php echo $productdetails['item_image10'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image11</label>
-												<input type="file" class="form-control" id="img11" name="img11"  >
-											</div>
-											<?php  if($productdetails['item_image11'] !=''){ ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											<label class="form-control-label" for="image">Product Image12</label>
-											<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image11'];?>" <?php echo $productdetails['item_image11'];?>>
-											</div>
-											<?php }  ?>
-											<div class="form-group nopaddingRight col-md-6 san-lg">
-											    <label for="exampleInputEmail1">product Image12</label>
-												<input type="file" class="form-control" id="img12" name="img12"  >
-											</div>
+			<div class=" col-md-6">
+				<div id="tab_file">
+					<div class="col-md-12 form-group" >
+					<label for="exampleInputEmail1">Product Image</label>
+						<input type="file" name='picture_three[]' id="picture_three"  class="form-control" >
+					</div>
+					<div  id="addfile1" style="padding:5px;;"></div>
+				</div>
+				<div class="pull-right" id="delbtnfile" style="padding-top:10px;display:none">
+					<a id="tab_delet_file" class="btn btn-default btn-xs pull-left">Delete File</a>
+				</div>
+				<div class="pull-right" style="padding-top:10px;">
+					<a id="add_file" class="btn btn-default btn-xs pull-left">Add File</a>
+				</div>
+			</div>
 	</div>
 		<div >
 		<button type="submit" name="buttonSubmit" class="btn btn-primary" >Submit</button>
@@ -904,188 +647,150 @@
   <!--main content end--> 
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
-	
-
   <script>
+
+$(document).ready(function(){
+    $("#categoryhideshow").click(function(){
+        $("#addcat").toggle();
+    });
   
-  function removeextrafields(){
+});
+$(document).ready(function(){
+    $("#subcategoryhideshow").click(function(){
+        $("#addsubcat").toggle();
+    });
+  
+});	
+$('#sizeid').hide();
+$('#colorid').hide();	
+function getspecialinputs(id){
+	if(id==7){
+			$('#sizeid').hide();
+		  $('#colorid').hide();	
+	}else{
+		$('#sizeid').show();
+		  $('#colorid').show();
+	}
 	  
-	   $('#productname').val('');
-	   $('#skuid').val('');
-	   $('#otherunique').val('');
-	   $('#product_price').val('');
-	   $('#specialprice').val('');
-	   $('#offers').val('');
-	   $('#discount').val('');
-	   $('#qty').val('');
-	   $('#keywords').val('');
-	   $('#title').val('');
-	   $('#status').val('');
-	   $('#product_description').val('');
-	   $('#product_sub_tem').val('');
-	   $('#ideal_for').val('');
-	   $('#brand').val('');
-	   $('#product_scusine').val('');
-	   $('#product_sufficient').val('');
-	   $('#product_type8').val('');
-	   $('#product_type7').val('');
-	   $('#product_theme1').val('');
-	   $('#product_theme').val('');
-	   $('#dial_shape2').val('');
-	   $('#compatible_os').val('');
-	   $('#prouduct_usage').val('');
-	   $('#prouduct_display_type').val('');
-	   $('#product_theme5').val('');
-	   $('#product_occasion2').val('');
-	   $('#product_theme4').val('');
-	   $('#material1').val('');
-	   $('#product_gemstones').val('');
-	   $('#Material2').val('');
-	   $('#product_type6').val('');
-	   $('#dial_shape1').val('');
-	   $('#prouduct_strap_color').val('');
-	   $('#prouduct_dial_color').val('');
-	   $('#product_type5').val('');
-	   $('#product_theme3').val('');
-	   $('#product_packof2').val('');
-	   $('#product_theme2').val('');
-	   $('#product_occasion1').val('');
-	   $('#product_type4').val('');
-	   $('#product_packof1').val('');
-	   $('#product_compatible_mobiles').val('');
-	   $('#product_type3').val('');
-	   $('#product_mega_pixel').val('');
-	   $('#product_sensor_type').val('');
-	   $('#product_battery_type').val('');
-	   $('#product_type2').val('');
-	   $('#wireless_speed').val('');
-	   $('#frequency_band').val('');
-	   $('#broadband_compatibility').val('');
-	   $('#usb_ports').val('');
-	   $('#product_frequency').val('');
-	   $('#product_antennae').val('');
-	   $('#product_display_size3').val('');
-	   $('#product_connectivity').val('');
-	   $('#product_ram3').val('');
-	   $('#voice_calling_facility').val('');
-	   $('#operating_system3').val('');
-	   $('#internal_storage3').val('');
-	   $('#battery_capacity2').val('');
-	   $('#primary_camera2').val('');
-	   $('#processor_clock_speed').val('');
-	   $('#product_display_size2').val('');
-	   $('#product_processor').val('');
-	   $('#product_processor_brand1').val('');
-	   $('#operating_system2').val('');
-	   $('#product_ram2').val('');
-	   $('#life_style').val('');
-	   $('#storage_type').val('');
-	   $('#dedicated_graphics_memory').val('');
-	   $('#touch_screentouch_screen').val('');
-	   $('#weight').val('');
-	   $('#internal_storage2').val('');
-	   $('#graphics_memory_type').val('');
-	   $('#ram_type').val('');
-	   $('#product_ram1').val('');
-	   $('#operating_system1').val('');
-	   $('#internal_storage4').val('');
-	   $('#product_display_size1').val('');
-	   $('#network_type').val('');
-	   $('#battery_capacity1').val('');
-	   $('#product_speciality').val('');
-	   $('#product_type1').val('');
-	   $('#operating_system_version_name').val('');
-	   $('#product_processor_brand2').val('');
-	   $('#resolution_type').val('');
-	   $('#primary_camera1').val('');
-	   $('#secondary_camera').val('');
-	   $('#sim_type').val('');
-	   $('#clock_speed').val('');
-	   $('#number_of_cores').val('');
-	   $('#internal_storage1').val('');
-	   $('#specificationnameid').val('');
-	   $('#specificationvalueid').val('');
-	  
-  }
-  function removesizes(id){
-
-	if(id!=''){
-		 jQuery.ajax({
-					url: "<?php echo site_url('seller/products/removesizes');?>",
-					data: {
-						sizeid: id,
-					},
-					dataType: 'json',
-					type: 'POST',
-					success: function (data) {
-					if(data.msg==1){
-						jQuery('#sizes_'+id).hide();
-					}
-				 }
-				});
-			}
-			
-		}
-	function removeuksizes(id){
-	if(id!=''){
-		 jQuery.ajax({
-					url: "<?php echo site_url('seller/products/removeuksizes');?>",
-					data: {
-						sizeid: id,
-					},
-					dataType: 'json',
-					type: 'POST',
-					success: function (data) {
-					if(data.msg==1){
-						jQuery('#uksizes_'+id).hide();
-					}
-				 }
-				});
-			}
-			
-		}
-
-	function removeattachment(id){
-	if(id!=''){
-		 jQuery.ajax({
-					url: "<?php echo site_url('seller/products/removespciciations');?>",
-					data: {
-						specification: id,
-					},
-					dataType: 'json',
-					type: 'POST',
-					success: function (data) {
-					if(data.msg==1){
-						jQuery('#tab_sep11_'+id).hide();
-					}
-				 }
-				});
-			}
-			
-		}
-	function removecolor(id){
-	if(id!=''){
-		 jQuery.ajax({
-					url: "<?php echo site_url('seller/products/removecolors');?>",
-					data: {
-						colid: id,
-					},
-					dataType: 'json',
-					type: 'POST',
-					success: function (data) {
-					if(data.msg==1){
-						jQuery('#colord_'+id).hide();
-					}
-				 }				});
-			}
-			
-		}
+	  if(id==8){
+		  $('#winterwaerinputs').show();
+		  $('#sizeid').show();
+		  $('#colorid').show();
+		
+	  }else{
+		  $('#winterwaerinputs').hide();
 	
- 
-   $('#oldsubcat').show();
-   $('#oldsubcat').show();
- 	  
-  getspecialinputs('<?php echo htmlentities($productdetails['category_id']);?>');
+	  }if(id==19 || id==20 || id==28 || id==52 || id==29){
+		  $('#winterwaerinputs').show();
+		  $('#sizeid').show();
+		  $('#colorid').show();
+		
+	  }else{
+		  $('#winterwaerinputs').hide();
+	
+	  }
+	  if(id==9){
+		  $('#personalcareappliancesinputs').hide();
+	  }else{
+		  $('#personalcareappliancesinputs').show();
+	  }
+	 
+	  if(id==10){
+		  $('#smartwatchesinputs').show();
+		  $('#colorid').show();
+	  }else{
+		  $('#smartwatchesinputs').hide();
+	  }
+	  if(id==53){
+		  $('#footwareinputs').show();
+		  $('#sizeid').show();
+			$('#colorid').show();
+	 }else{
+		  $('#footwareinputs').hide();
+	  }
+	  if(id==12 || id==13 || id==14 || id==16 || id==17){
+		  $('#womensaccessoriesinputs').show();
+		   $('#sizeid').show();
+	  }else{
+		  $('#womensaccessoriesinputs').hide();
+	  } 
+	  if(id==15){
+		  $('#jwelleryinputs').show();
+	  }else{
+		  $('#jwelleryinputs').hide();
+	  }
+	  if(id==50){
+		  $('#womenswatchesinputs').show();
+	  }else{
+		  $('#womenswatchesinputs').hide();
+	  } 
+	  if(id==22){
+		  $('#mensaccessoriesinputs').show();
+	  }else{
+		  $('#mensaccessoriesinputs').hide();
+	  }
+	  if(id==51){
+		  $('#mensehinicwearinputs').show();
+	  }else{
+		  $('#mensehinicwearinputs').hide();
+	  }
+	  if(id==23 || id==25){
+		  $('#mensfabricsinputs').show();
+	  }else{
+		  $('#mensfabricsinputs').hide();
+	  } 
+	  if(id==30){
+		  $('#mobileaccessoriesinputs').show();
+	  }else{
+		  $('#mobileaccessoriesinputs').hide();
+	  } 
+	  if(id==34){
+		  $('#camerainputs').show();
+	  }else{
+		  $('#camerainputs').hide();
+	  }
+	  if(id==35){
+		  $('#tabletsinputs').show();
+	  }else{
+		  $('#tabletsinputs').hide();
+	  }
+	  if(id==36){
+		  $('#routersinputs').show();
+		   $('#sizeid').hide();
+		  $('#colorid').hide();
+	  }else{
+			$('#routersinputs').hide();
+			$('#sizeid').show();
+			$('#colorid').show();
+	  }
+	  if(id==7){
+		   $('#sizeid').hide();
+		  	$('#colorid').hide();
+	  }else{
+			$('#sizeid').show();
+			$('#colorid').show();
+	  } 
+	  if(id==39){
+		  $('#laptopsinputs').show();
+	  }else{
+		  $('#laptopsinputs').hide();
+
+	  }
+	  if(id==40){
+		  $('#mobilesinputs').show();
+		  $('#sizeid').hide();
+		  $('#colorid').hide();	
+	  }else{
+		  $('#mobilesinputs').hide();
+		  $('#sizeid').hide();
+		  $('#colorid').hide();	
+
+	  } 
+	   
+		  
+  }
+	  
+	  
   function getproductinputs(id){
 	 if(id==18){
 		  $('#foodcategoryinputs').show();
@@ -1101,226 +806,7 @@
 	 
 	  
 }
-  $('#personalcareappliancesinputs').show();
- getspecialinputs('<?php echo htmlentities($productdetails['subcategory_id']);?>');
-	function getspecialinputs(ids){
-	  if(ids==7){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#womensaccessoriesinputs').hide();
-	}
-	if(ids==8){
-	$('#winterwaerinputs').show();
-	$('#sizeid').show();
-	$('#colorid').show();
-	}else{ 
-	$('#winterwaerinputs').hide();
-	$('#sizeid').hide();
-	$('#colorid').hide();
-	}
-	if(ids==9){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}
-	if(ids==10){
-		$('#smartwatchesinputs').show();
-	}else{
-		$('#smartwatchesinputs').hide();
-
-	}
-	if(ids==53){
-		$('#footwareinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#footwareinputs').hide();
-
-	}
-	if(ids==11){
-		$('#product_theme').show();
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}else{
-		$('#product_theme').hide();
-
-	}
-	if(ids==13){
-		$('#mensfabricsinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-
-	}
-	if(ids==14){
-		$('#winterwaerinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs').hide();
-
-	}
-	if(ids==15){
-		$('#jwelleryinputs').show();
-		$('#colorid').show();
-	}else{
-		$('#jwelleryinputs').hide();
-
-	}
-	if(ids==16){
-		$('#mensfabricsinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-
-	}
-	if(ids==17){
-		$('#mensfabricsinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-
-	}
-	if(ids==18){
-		$('#sizeid').show();
-		$('#colorid').show();
-	}
-	if(ids==50){
-		$('#womenswatchesinputs').show();
-	}else{
-		$('#womenswatchesinputs').hide();
-	}
-	if(ids==19){
-		$('#winterwaerinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs').hide();
-	}
-	if(ids==20){
-		$('#winterwaerinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs').hide();
-	}
-	if(ids==21){
-		$('#product_theme').show();
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}else{
-		$('#product_theme').hide();
-	}
-	if(ids==22){
-		$('#winterwaerinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs').hide();
-	}
-	if(ids==51){
-		$('#mensehinicwearinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensehinicwearinputs').hide();
-	}
-	if(ids==23){
-		$('#mensfabricsinputs').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-	}
-	if(ids==24){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}
-	if(ids==25){
-		$('#sizeid').show();
-		$('#colorid').show();
-		$('#product_theme').show();
-	}else{
-		$('#product_theme').hide();	
-	}
-	if(ids==52){
-		$('#sizeid').show();
-		$('#colorid').show();
-		$('#winterwaerinputs').show();
-	}else{
-		$('#winterwaerinputs').hide();	
-	}
-	if(ids==28){
-		$('#sizeid').show();
-		$('#colorid').show();
-		$('#winterwaerinputs').show();
-	}else{
-		$('#winterwaerinputs').hide();	
-	}
-	if(ids==29){
-		$('#sizeid').show();
-		$('#colorid').show();
-		$('#winterwaerinputs').show();
-	}else{
-		$('#winterwaerinputs').hide();	
-	}
-	if(ids==30){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#mobileaccessoriesinputs').show();
-	}else{
-		$('#mobileaccessoriesinputs').hide();	
-	}
-	if(ids==31 || ids==32  || ids==33){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}
-	if(ids==34){
-		$('#sizeid').hide();
-		$('#colorid').show();
-		$('#camerainputs').show();
-	}else{
-		$('#camerainputs').hide();	
-	}
-	if(ids==35){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#tabletsinputs').show();
-	}else{
-		$('#tabletsinputs').hide();	
-	}
-	if(ids==36){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#routersinputs').show();
-	}else{
-		$('#routersinputs').hide();	
-	}
-	if(ids==39){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#laptopsinputs').show();
-	}else{
-		$('#laptopsinputs').hide();	
-	}
-	if(ids==40){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#mobilesinputs').show();
-	}else{
-		$('#mobilesinputs').hide();	
-	}
-	
-	   
-		  
-  }
-	  
-
-  	
-	
-	
-	$(document).ready(function() {
+  	$(document).ready(function() {
     $('#addproduct').bootstrapValidator({
        
         fields: {
@@ -1412,6 +898,28 @@
                     regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Offer  can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_scusine: {
+					validators: {
+					notEmpty: {
+						message: 'Cusine  is required'
+					},
+                   regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Cusine  can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			brand: {
+					validators: {
+					notEmpty: {
+						message: 'Brand  is required'
+					},
+                   regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Brand  can only consist of alphanumaric, space and dot'
 					}
 				}
 			},
@@ -1547,7 +1055,7 @@
 					}
 				}
 			},
-			product_type1: {
+			product_type: {
 					validators: {
 					notEmpty: {
 						message: 'Type is required'
@@ -1558,80 +1066,7 @@
 					}
 				}
 			},
-			product_type2: {
-					validators: {
-					notEmpty: {
-						message: 'Type is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Type can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_type3: {
-					validators: {
-					notEmpty: {
-						message: 'Type is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Type can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_type4: {
-					validators: {
-					notEmpty: {
-						message: 'Type is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Type can only consist of alphanumaric, space and dot'
-					}
-				}
-			},product_type5: {
-					validators: {
-					notEmpty: {
-						message: 'Type is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Type can only consist of alphanumaric, space and dot'
-					}
-				}
-			},product_type6: {
-					validators: {
-					notEmpty: {
-						message: 'Type is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Type can only consist of alphanumaric, space and dot'
-					}
-				}
-			},product_type7: {
-					validators: {
-					notEmpty: {
-						message: 'Type is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Type can only consist of alphanumaric, space and dot'
-					}
-				}
-			},product_type8: {
-					validators: {
-					notEmpty: {
-						message: 'Type is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Type can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_theme1: {
+			product_theme: {
 					validators: {
 					notEmpty: {
 						message: 'Theme is required'
@@ -1642,51 +1077,7 @@
 					}
 				}
 			},
-			product_theme2: {
-					validators: {
-					notEmpty: {
-						message: 'Theme is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Theme can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_theme3: {
-					validators: {
-					notEmpty: {
-						message: 'Theme is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Theme can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_theme4: {
-					validators: {
-					notEmpty: {
-						message: 'Theme is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Theme can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_theme5: {
-					validators: {
-					notEmpty: {
-						message: 'Theme is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Theme can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			dial_shape2: {
+			dial_shape: {
 					validators: {
 					notEmpty: {
 						message: 'Dial shape is required'
@@ -1730,18 +1121,7 @@
 					}
 				}
 			},
-			product_occasion1: {
-					validators: {
-					notEmpty: {
-						message: 'Occasion is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Occasion can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_occasion2: {
+			product_occasion: {
 					validators: {
 					notEmpty: {
 						message: 'Occasion is required'
@@ -1759,18 +1139,7 @@
 					}
 				}
 			},
-			material1: {
-					validators: {
-					notEmpty: {
-						message: 'Material is required'
-					},
-                   regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Material  can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			material2: {
+			material: {
 					validators: {
 					notEmpty: {
 						message: 'Material is required'
@@ -1792,7 +1161,7 @@
 					}
 				}
 			},
-			dial_shape1: {
+			dial_shape: {
 					validators: {
 					notEmpty: {
 						message: 'Dial shape is required'
@@ -1825,18 +1194,7 @@
 					}
 				}
 			},
-			product_packof1: {
-					validators: {
-					notEmpty: {
-						message: 'Pack of is required'
-					},
-                   regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Pack of can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_packof2: {
+			product_packof: {
 					validators: {
 					notEmpty: {
 						message: 'Pack of is required'
@@ -1948,29 +1306,7 @@
 					}
 				}
 			},
-			product_display_size1: {
-					validators: {
-					notEmpty: {
-					message: 'DisPlay Size is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'DisPlay Size can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_display_size2: {
-					validators: {
-					notEmpty: {
-					message: 'DisPlay Size is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'DisPlay Size can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_display_size3: {
+			product_display_size: {
 					validators: {
 					notEmpty: {
 					message: 'DisPlay Size is required'
@@ -1992,29 +1328,7 @@
 					}
 				}
 			},
-			product_ram1: {
-					validators: {
-					notEmpty: {
-					message: 'Ram is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Ram can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_ram2: {
-					validators: {
-					notEmpty: {
-					message: 'Ram is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Ram can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_ram3: {
+			product_ram: {
 					validators: {
 					notEmpty: {
 					message: 'Ram is required'
@@ -2036,27 +1350,7 @@
 					}
 				}
 			},
-			operating_system1: {
-					validators: {
-					notEmpty: {
-					message: 'Operating system is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Operating system can only consist of alphanumaric, space and dot'
-					}
-				}
-			},operating_system2: {
-					validators: {
-					notEmpty: {
-					message: 'Operating system is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Operating system can only consist of alphanumaric, space and dot'
-					}
-				}
-			},operating_system3: {
+			operating_system: {
 					validators: {
 					notEmpty: {
 					message: 'Operating system is required'
@@ -2067,7 +1361,7 @@
 					}
 				}
 			},
-			internal_storage1: {
+			internal_storage: {
 					validators: {
 					notEmpty: {
 					message: 'Internal storage is required'
@@ -2078,40 +1372,7 @@
 					}
 				}
 			},
-			internal_storage2: {
-					validators: {
-					notEmpty: {
-					message: 'Internal storage is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Internal storage can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			internal_storage3: {
-					validators: {
-					notEmpty: {
-					message: 'Internal storage is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Internal storage can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			internal_storage4: {
-					validators: {
-					notEmpty: {
-					message: 'Internal storage is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Internal storage can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			battery_capacity1: {
+			battery_capacity: {
 					validators: {
 					notEmpty: {
 					message: 'Battery capacity is required'
@@ -2122,26 +1383,7 @@
 					}
 				}
 			},
-			battery_capacity2: {
-					validators: {
-					notEmpty: {
-					message: 'Battery capacity is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Battery capacity can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			primary_camera1: {
-					validators: {
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Primary camera can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			primary_camera2: {
+			primary_camera: {
 					validators: {
 					regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
@@ -2171,18 +1413,7 @@
 					}
 				}
 			},
-			product_processor_brand1: {
-					validators: {
-						notEmpty: {
-					message: 'Brand is required'
-					},
-					regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Brand can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			product_processor_brand2: {
+			product_processor_brand: {
 					validators: {
 						notEmpty: {
 					message: 'Brand is required'
@@ -2336,7 +1567,9 @@
 			
 			'specificationname[]': {
 					 validators: {
-						
+						 notEmpty: {
+						message: 'specificationname is required'
+					},
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
 					message: 'specificationname  wont allow <> [] = % '
@@ -2345,109 +1578,14 @@
 			},
 			'specificationvalue[]': {
 					 validators: {
-					
+						 notEmpty: {
+						message: 'specificationvalue is required'
+					},
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
 					message: 'specificationvalue value wont allow <> [] = % '
 					}
             }
-			},
-			img2: {
-				validators: {
-					regexp: {
-						regexp: /\.(jpe?g|png|gif)$/i,
-						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-			img3: {
-				validators: {
-					regexp: {
-						regexp: /\.(jpe?g|png|gif)$/i,
-						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-			img4: {
-				validators: {
-					regexp: {
-						regexp: /\.(jpe?g|png|gif)$/i,
-						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-			img5: {
-				validators: {
-					regexp: {
-						regexp: /\.(jpe?g|png|gif)$/i,
-						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-			img6: {
-				validators: {
-					regexp: {
-						regexp: /\.(jpe?g|png|gif)$/i,
-						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-			img7: {
-				validators: {
-					regexp: {
-						regexp: /\.(jpe?g|png|gif)$/i,
-						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-			img8: {
-				validators: {
-					regexp: {
-						regexp: /\.(jpe?g|png|gif)$/i,
-						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-			img9: {
-				validators: {
-					regexp: {
-						regexp: /\.(jpe?g|png|gif)$/i,
-						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-			img10: {
-				validators: {
-					regexp: {
-						regexp: /\.(jpe?g|png|gif)$/i,
-						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-			img11: {
-				validators: {
-					regexp: {
-						regexp: /\.(jpe?g|png|gif)$/i,
-						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-			img12: {
-				validators: {
-					regexp: {
-						regexp: /\.(jpe?g|png|gif)$/i,
-						message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-				}
-			},
-			img1: {
-					 validators: {
-						
-					regexp: {
-					regexp: /\.(jpe?g|png|gif)$/i,
-					message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
-					}
-          }
 			},
 			
 			
@@ -2474,10 +1612,21 @@
 		});
   }
  
-function getsubcategory(id){
 
+
+
+
+  
+  function getsubcategory(id){
+	  if(id==2){
+		  $('#materialpurose').show();
+		  $('#seasonpurpose').show();
+	  }else{
+		  $('#materialpurose').hide(); 
+		  $('#seasonpurpose').hide(); 
+	  }
 	  if(id!=''){
-		
+		$('#subcategorylist').empty();
 		jQuery.ajax({
 				url: "<?php echo site_url('seller/products/get_subcaregories_list');?>",
 				type: 'post',
@@ -2487,9 +1636,6 @@ function getsubcategory(id){
 					},
 				dataType: 'html',
 				success: function (data) {
-					$("#oldsubcat").hide();	
-					$("#editsubcat").show();
-					$('#subcategorylist').empty();					
 					$("#subcategorylist").append(data);	
 
 				}
@@ -2557,7 +1703,7 @@ $(document).ready(function(){
   
 	 var k=1;
      $("#add_sep").click(function(){
-      $('#addrs'+k).html("<div class='col-md-6' style='padding:0'><input style='border-radius:5px 0px 0px 5px' type='text' class='form-control' id='specificationnameid' name='specificationname[]' ></div><div class='col-md-6' style='padding:0'><input style='border-radius:0px 5px 5px 0px' type='text' class='form-control' id='specificationvalueid[]' name='specificationvalue[]' ></div>");
+      $('#addrs'+k).html("<div class='col-md-6' style='padding:0'><input style='border-radius:5px 0px 0px 5px' type='text' class='form-control' id='specificationnameid[]' name='specificationname[]' ></div><div class='col-md-6' style='padding:0'><input style='border-radius:0px 5px 5px 0px' type='text' class='form-control' id='specificationvalueid[]' name='specificationvalue[]' ></div>");
 		$('#tab_sep').append('<div id="addrs'+(k+1)+'"></div>');
 		if(k >=1){
 			$('#delbtn').show();
