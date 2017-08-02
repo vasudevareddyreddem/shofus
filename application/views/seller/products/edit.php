@@ -75,7 +75,7 @@
 			</div>
 			<div id="oldsubcat" class="form-group col-md-6" style="display:none;">
 				<label for="exampleInputEmail1">Sub Category </label>
-				<select class="form-control " onchange="getspecialinputs(this.value);" id="subcategorylistes" name="editsubcategorylist"  >
+				<select class="form-control " onchange="getspecialinputs(this.value);removeextrafields(this.value);" id="subcategorylistes" name="editsubcategorylist"  >
 				<option value="">Select Subcategory </option>
 			
 				<?php foreach($subcatdata as $subcat_data){ ?>
@@ -91,7 +91,7 @@
 			<div id="editsubcat" class="form-group col-md-6" style="display:none;">
 				<label for="exampleInputEmail1">Sub Category </label>
 				
-				<select class="form-control" onchange="getspecialinputs(this.value);" id="subcategorylist" name="subcategorylist" >
+				<select class="form-control" onchange="getspecialinputs(this.value);removeextrafields(this.value);" id="subcategorylist" name="subcategorylist" >
 				<option value="">Select Subcategory </option>
 
 				</select>
@@ -205,21 +205,12 @@
 				</div>
 			</div>
 	</div>
-	<div class="row" class=" col-md-12">
-			<div class="form-group col-md-6" >
-			<label>Size</label>
-			<span class="pull-right col-md-10">
-
-				<?php  //echo '<pre>';print_r($productcolors);exit;
-				foreach($productsizes as $sizeslist){ ?> 
-				<input type="hidden" name="oldsizes[]" value="<?php echo $sizeslist['p_size_name']; ?>">
-				<a id="sizes_<?php echo $sizeslist['p_size_id'] ;?>" onclick="removesizes(<?php echo $sizeslist['p_size_id']?>);"class="btn btn-primary btn-xs"><?php echo $sizeslist['p_size_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
-				<?php } ?>
-
-				</span>
-			<input class="form-control" id="sizes"  type="text" name="sizes"/>
-			</div>
-			<div class="form-group col-md-6">
+	<?php if($productdetails['subcategory_id']=='8' ||$productdetails['subcategory_id']=='53' || $productdetails['subcategory_id']=='13' ||$productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='15' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='18' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22' || $productdetails['subcategory_id']=='51' || $productdetails['subcategory_id']=='23' || $productdetails['subcategory_id']=='25' || $productdetails['subcategory_id']=='52' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29'){
+		$coloridhide = '';
+		}else{
+		$coloridhide = 'display:none';
+		} ?>
+	<div class="row form-group col-md-12" id="colorid" style="<?php echo $coloridhide; ?>">
 			<label>Color</label>
 			<span class="pull-right col-md-10">
 
@@ -231,7 +222,27 @@
 
 			</span>
 			<input class="form-control" id="colors"  type="text" name="colors"/>
-			</div>			
+			
+	</div>
+	<?php if($productdetails['subcategory_id']=='8' ||$productdetails['subcategory_id']=='53' || $productdetails['subcategory_id']=='13' ||$productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='18' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22' || $productdetails['subcategory_id']=='51' || $productdetails['subcategory_id']=='25' || $productdetails['subcategory_id']=='52' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29'){
+		$sizeidhide = '';
+		}else{
+		$sizeidhide = 'display:none';
+		} ?>
+	<div class="row form-group col-md-12" id="sizeid" style="<?php echo $sizeidhide; ?>">
+			<label>Size</label>
+			<span class="pull-right col-md-10">
+
+				<?php  //echo '<pre>';print_r($productcolors);exit;
+				foreach($productsizes as $sizeslist){ ?> 
+				<input type="hidden" name="oldsizes[]" value="<?php echo $sizeslist['p_size_name']; ?>">
+				<a id="sizes_<?php echo $sizeslist['p_size_id'] ;?>" onclick="removesizes(<?php echo $sizeslist['p_size_id']?>);"class="btn btn-primary btn-xs"><?php echo $sizeslist['p_size_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
+				<?php } ?>
+
+				</span>
+			<input class="form-control" id="sizes"  type="text" name="sizes"/>
+		
+					
 	</div>
 	<?php if($productdetails['category_id']!='18'){
 		$idealforhide = '';
@@ -257,7 +268,12 @@
 	</div>
 	
 	<!-- food category purpose-->
-	<div class="row" id="foodcategoryinputs" style="display:none;">
+	<?php if($productdetails['category_id']=='18'){
+		$foodcategoryinputshide = '';
+		}else{
+		$foodcategoryinputshide = 'display:none';
+		} ?>
+	<div class="row" id="foodcategoryinputs" style="<?php echo $foodcategoryinputshide ; ?>">
 			<div class="col-md-6 form-group">
 			<label>Cuisine</label>
 			<input class="form-control" id="product_scusine"  type="text" name="product_scusine" value="<?php echo isset($productdetails['cusine'])?$productdetails['cusine']:''; ?>"/>
@@ -282,6 +298,18 @@
 				</div>
 			</div>
 	
+	</div>
+	<?php if($productdetails['subcategory_id']=='21' ||$productdetails['subcategory_id']=='11' ||$productdetails['subcategory_id']=='25'){
+		$product_themehide = '';
+		}else{
+		$product_themehide = 'display:none';
+		} ?>
+	<div class="row" id="product_theme" style="<?php echo $product_themehide; ?>">
+		
+			<div class="col-md-6 form-group">
+			<label>Theme</label>
+			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			</div>
 	</div>
 	<?php if($productdetails['subcategory_id']=='8' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29' || $productdetails['subcategory_id']=='52'){
 		$winterwaerinputshide = '';
@@ -353,10 +381,12 @@
 			<input class="form-control" id="ussizes"  type="text" name="ussizes"  />
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='12' || $productdetails['subcategory_id']=='13' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17'){
+	<?php 
+	if($productdetails['subcategory_id']=='12' || $productdetails['subcategory_id']=='13' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17'){
 		$womensaccessoriesinputshide = '';
 		}else{
-		$womensaccessoriesinputshide = 'display:none';
+
+		$womensaccessoriesinputshide = "display:none";
 		} ?>
 	<div class="row" id="womensaccessoriesinputs" style="<?php $womensaccessoriesinputshide; ?>">
 			<div class="col-md-6 form-group">
@@ -877,6 +907,106 @@
 	
 
   <script>
+  
+  function removeextrafields(){
+	  
+	   $('#productname').val('');
+	   $('#skuid').val('');
+	   $('#otherunique').val('');
+	   $('#product_price').val('');
+	   $('#specialprice').val('');
+	   $('#offers').val('');
+	   $('#discount').val('');
+	   $('#qty').val('');
+	   $('#keywords').val('');
+	   $('#title').val('');
+	   $('#status').val('');
+	   $('#product_description').val('');
+	   $('#product_sub_tem').val('');
+	   $('#ideal_for').val('');
+	   $('#brand').val('');
+	   $('#product_scusine').val('');
+	   $('#product_sufficient').val('');
+	   $('#product_type8').val('');
+	   $('#product_type7').val('');
+	   $('#product_theme1').val('');
+	   $('#product_theme').val('');
+	   $('#dial_shape2').val('');
+	   $('#compatible_os').val('');
+	   $('#prouduct_usage').val('');
+	   $('#prouduct_display_type').val('');
+	   $('#product_theme5').val('');
+	   $('#product_occasion2').val('');
+	   $('#product_theme4').val('');
+	   $('#material1').val('');
+	   $('#product_gemstones').val('');
+	   $('#Material2').val('');
+	   $('#product_type6').val('');
+	   $('#dial_shape1').val('');
+	   $('#prouduct_strap_color').val('');
+	   $('#prouduct_dial_color').val('');
+	   $('#product_type5').val('');
+	   $('#product_theme3').val('');
+	   $('#product_packof2').val('');
+	   $('#product_theme2').val('');
+	   $('#product_occasion1').val('');
+	   $('#product_type4').val('');
+	   $('#product_packof1').val('');
+	   $('#product_compatible_mobiles').val('');
+	   $('#product_type3').val('');
+	   $('#product_mega_pixel').val('');
+	   $('#product_sensor_type').val('');
+	   $('#product_battery_type').val('');
+	   $('#product_type2').val('');
+	   $('#wireless_speed').val('');
+	   $('#frequency_band').val('');
+	   $('#broadband_compatibility').val('');
+	   $('#usb_ports').val('');
+	   $('#product_frequency').val('');
+	   $('#product_antennae').val('');
+	   $('#product_display_size3').val('');
+	   $('#product_connectivity').val('');
+	   $('#product_ram3').val('');
+	   $('#voice_calling_facility').val('');
+	   $('#operating_system3').val('');
+	   $('#internal_storage3').val('');
+	   $('#battery_capacity2').val('');
+	   $('#primary_camera2').val('');
+	   $('#processor_clock_speed').val('');
+	   $('#product_display_size2').val('');
+	   $('#product_processor').val('');
+	   $('#product_processor_brand1').val('');
+	   $('#operating_system2').val('');
+	   $('#product_ram2').val('');
+	   $('#life_style').val('');
+	   $('#storage_type').val('');
+	   $('#dedicated_graphics_memory').val('');
+	   $('#touch_screentouch_screen').val('');
+	   $('#weight').val('');
+	   $('#internal_storage2').val('');
+	   $('#graphics_memory_type').val('');
+	   $('#ram_type').val('');
+	   $('#product_ram1').val('');
+	   $('#operating_system1').val('');
+	   $('#internal_storage4').val('');
+	   $('#product_display_size1').val('');
+	   $('#network_type').val('');
+	   $('#battery_capacity1').val('');
+	   $('#product_speciality').val('');
+	   $('#product_type1').val('');
+	   $('#operating_system_version_name').val('');
+	   $('#product_processor_brand2').val('');
+	   $('#resolution_type').val('');
+	   $('#primary_camera1').val('');
+	   $('#secondary_camera').val('');
+	   $('#sim_type').val('');
+	   $('#clock_speed').val('');
+	   $('#number_of_cores').val('');
+	   $('#internal_storage1').val('');
+	   $('#specificationnameid').val('');
+	   $('#specificationvalueid').val('');
+	  
+  }
   function removesizes(id){
 
 	if(id!=''){
@@ -954,115 +1084,239 @@
  
    $('#oldsubcat').show();
    $('#oldsubcat').show();
- 
-  $('#size_color').show()
-  $('#personalcareappliancesinputs').show();
- getspecialinputs('<?php echo htmlentities($productdetails['subcategory_id']);?>');
-	function getspecialinputs(id){
-	  if(id==8 || id==19 || id==20 || id==28 || id==52 || id==29){
-		  $('#winterwaerinputs').show();
-	  }else{
-		  $('#winterwaerinputs').hide();
-	  }
-	  if(id==9){
-		  $('#personalcareappliancesinputs').hide();
-	  }else{
-		  $('#personalcareappliancesinputs').show();
-	  }
-	  if(id==10){
-		  $('#smartwatchesinputs').show();
-	  }else{
-		  $('#smartwatchesinputs').hide();
-	  }
-	  if(id==53){
-		  $('#footwareinputs').show();
-		  $('#personalcareappliancesinputs').show();
-		  $('#size_color').show();
-	  }else{
-		  $('#footwareinputs').hide();
-	  }
-	  if(id==12 || id==13 || id==14 || id==16 || id==17){
-		  $('#womensaccessoriesinputs').show();
-	  }else{
-		  $('#womensaccessoriesinputs').hide();
-	  } 
-	  if(id==15){
-		  $('#jwelleryinputs').show();
-	  }else{
-		  $('#jwelleryinputs').hide();
-	  }
-	  if(id==50){
-		  $('#womenswatchesinputs').show();
-	  }else{
-		  $('#womenswatchesinputs').hide();
-	  } 
-	  if(id==22){
-		  $('#mensaccessoriesinputs').show();
-	  }else{
-		  $('#mensaccessoriesinputs').hide();
-	  }
-	  if(id==51){
-		  $('#mensehinicwearinputs').show();
-	  }else{
-		  $('#mensehinicwearinputs').hide();
-	  }
-	  if(id==23 || id==25){
-		  $('#mensfabricsinputs').show();
-	  }else{
-		  $('#mensfabricsinputs').hide();
-	  } 
-	  if(id==30){
-		  $('#mobileaccessoriesinputs').show();
-	  }else{
-		  $('#mobileaccessoriesinputs').hide();
-	  } 
-	  if(id==34){
-		  $('#camerainputs').show();
-	  }else{
-		  $('#camerainputs').hide();
-	  }
-	  if(id==35){
-		  $('#tabletsinputs').show();
-	  }else{
-		  $('#tabletsinputs').hide();
-	  }
-	  if(id==36){
-		  $('#routersinputs').show();
-		   $('#size_color').hide();
-	  }else{
-		  $('#routersinputs').hide();
-		   $('#size_color').hide();
-
-	  } 
-	  if(id==39){
-		  $('#laptopsinputs').show();
-	  }else{
-		  $('#laptopsinputs').hide();
-
-	  }
-	  if(id==40){
-		  $('#mobilesinputs').show();
-	  }else{
-		  $('#mobilesinputs').hide();
-
-	  } 
-	   
-		  
-  }
-	  
-	  
+ 	  
   getspecialinputs('<?php echo htmlentities($productdetails['category_id']);?>');
   function getproductinputs(id){
 	 if(id==18){
 		  $('#foodcategoryinputs').show();
 		  $('#idealfor').hide();
+		  $('#sizeid').hide();
+		  $('#colorid').hide();
 	  }else{
 		  $('#foodcategoryinputs').hide();
 		  $('#idealfor').show();
+		  $('#sizeid').show();
+		  $('#colorid').show();
 	  }
 	 
 	  
 }
+  $('#personalcareappliancesinputs').show();
+ getspecialinputs('<?php echo htmlentities($productdetails['subcategory_id']);?>');
+	function getspecialinputs(ids){
+	  if(ids==7){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#womensaccessoriesinputs').hide();
+	}
+	if(ids==8){
+	$('#winterwaerinputs').show();
+	$('#sizeid').show();
+	$('#colorid').show();
+	}else{ 
+	$('#winterwaerinputs').hide();
+	$('#sizeid').hide();
+	$('#colorid').hide();
+	}
+	if(ids==9){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}
+	if(ids==10){
+		$('#smartwatchesinputs').show();
+	}else{
+		$('#smartwatchesinputs').hide();
+
+	}
+	if(ids==53){
+		$('#footwareinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#footwareinputs').hide();
+
+	}
+	if(ids==11){
+		$('#product_theme').show();
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}else{
+		$('#product_theme').hide();
+
+	}
+	if(ids==13){
+		$('#mensfabricsinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#mensfabricsinputs').hide();
+
+	}
+	if(ids==14){
+		$('#winterwaerinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#winterwaerinputs').hide();
+
+	}
+	if(ids==15){
+		$('#jwelleryinputs').show();
+		$('#colorid').show();
+	}else{
+		$('#jwelleryinputs').hide();
+
+	}
+	if(ids==16){
+		$('#mensfabricsinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#mensfabricsinputs').hide();
+
+	}
+	if(ids==17){
+		$('#mensfabricsinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#mensfabricsinputs').hide();
+
+	}
+	if(ids==18){
+		$('#sizeid').show();
+		$('#colorid').show();
+	}
+	if(ids==50){
+		$('#womenswatchesinputs').show();
+	}else{
+		$('#womenswatchesinputs').hide();
+	}
+	if(ids==19){
+		$('#winterwaerinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#winterwaerinputs').hide();
+	}
+	if(ids==20){
+		$('#winterwaerinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#winterwaerinputs').hide();
+	}
+	if(ids==21){
+		$('#product_theme').show();
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}else{
+		$('#product_theme').hide();
+	}
+	if(ids==22){
+		$('#winterwaerinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#winterwaerinputs').hide();
+	}
+	if(ids==51){
+		$('#mensehinicwearinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#mensehinicwearinputs').hide();
+	}
+	if(ids==23){
+		$('#mensfabricsinputs').show();
+		$('#colorid').show();
+	}else{
+		$('#mensfabricsinputs').hide();
+	}
+	if(ids==24){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}
+	if(ids==25){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#product_theme').show();
+	}else{
+		$('#product_theme').hide();	
+	}
+	if(ids==52){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#winterwaerinputs').show();
+	}else{
+		$('#winterwaerinputs').hide();	
+	}
+	if(ids==28){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#winterwaerinputs').show();
+	}else{
+		$('#winterwaerinputs').hide();	
+	}
+	if(ids==29){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#winterwaerinputs').show();
+	}else{
+		$('#winterwaerinputs').hide();	
+	}
+	if(ids==30){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#mobileaccessoriesinputs').show();
+	}else{
+		$('#mobileaccessoriesinputs').hide();	
+	}
+	if(ids==31 || ids==32  || ids==33){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}
+	if(ids==34){
+		$('#sizeid').hide();
+		$('#colorid').show();
+		$('#camerainputs').show();
+	}else{
+		$('#camerainputs').hide();	
+	}
+	if(ids==35){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#tabletsinputs').show();
+	}else{
+		$('#tabletsinputs').hide();	
+	}
+	if(ids==36){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#routersinputs').show();
+	}else{
+		$('#routersinputs').hide();	
+	}
+	if(ids==39){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#laptopsinputs').show();
+	}else{
+		$('#laptopsinputs').hide();	
+	}
+	if(ids==40){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#mobilesinputs').show();
+	}else{
+		$('#mobilesinputs').hide();	
+	}
+	
+	   
+		  
+  }
+	  
+
   	
 	
 	
@@ -2303,7 +2557,7 @@ $(document).ready(function(){
   
 	 var k=1;
      $("#add_sep").click(function(){
-      $('#addrs'+k).html("<div class='col-md-6' style='padding:0'><input style='border-radius:5px 0px 0px 5px' type='text' class='form-control' id='specificationnameid[]' name='specificationname[]' ></div><div class='col-md-6' style='padding:0'><input style='border-radius:0px 5px 5px 0px' type='text' class='form-control' id='specificationvalueid[]' name='specificationvalue[]' ></div>");
+      $('#addrs'+k).html("<div class='col-md-6' style='padding:0'><input style='border-radius:5px 0px 0px 5px' type='text' class='form-control' id='specificationnameid' name='specificationname[]' ></div><div class='col-md-6' style='padding:0'><input style='border-radius:0px 5px 5px 0px' type='text' class='form-control' id='specificationvalueid[]' name='specificationvalue[]' ></div>");
 		$('#tab_sep').append('<div id="addrs'+(k+1)+'"></div>');
 		if(k >=1){
 			$('#delbtn').show();

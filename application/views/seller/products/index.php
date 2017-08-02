@@ -129,7 +129,12 @@ tfoot input {
 						<?php } else {?>					 
 						<td>Unavailable</td>
 						<?php } ?>
-						<td><a href="<?php echo site_url('seller/products/edit/'.base64_encode($item_data->item_id).'/'.base64_encode($item_data->category_id)); ?>">Edit</a></td>
+						<td>
+						<a href="<?php echo site_url('seller/products/edit/'.base64_encode($item_data->item_id).'/'.base64_encode($item_data->category_id)); ?>">Edit</a> | &nbsp;
+						<a href="<?php echo site_url('seller/products/status/'.base64_encode($item_data->item_id).'/'.base64_encode($item_data->item_status)); ?>"><?php if($item_data->item_status==1){ echo 'Deactive'; }else{ echo "Active"; } ?></a>
+						
+						
+						</td>
                      
 					</tr>
 				  <?php $k++; } ?>
