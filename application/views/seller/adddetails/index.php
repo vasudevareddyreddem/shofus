@@ -50,6 +50,9 @@
   width: 250px;
   left: 250px;
 }
+.navbar {
+	min-height: 75px;
+}
 </style>
     
 

@@ -18,6 +18,9 @@
 .mar_t50{
 	margin-top:100px;
 }
+.navbar{
+	min-height: 75px;
+}
 </style>
 
 <div class="navigation_main ">

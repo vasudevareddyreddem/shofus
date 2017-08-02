@@ -291,6 +291,9 @@ $(document).ready(function(){
 
  /* multiselect css end */
 }
+ .navbar {
+	min-height: 75px;
+}
 </style>
 <div class="navigation_main">
     <nav class="navbar navbar-inverse hm_nav">
@@ -346,9 +349,9 @@ $(document).ready(function(){
 
 	<div class="col-md-6  ">
 			<div class="form-group ">
-				<label>Select Category</label>
+				<label style="margin-bottom:14px;">Select Category</label>
 				
-				<select id="seller_cat" onchange="removemsg(this.value);" name="seller_cat[]"   multiple class="chosen-select" tabindex="8">
+				<select  id="seller_cat" onchange="removemsg(this.value);" name="seller_cat[]"   multiple class="chosen-select" tabindex="8">
 				  <option value=""></option>
 				  <?php foreach($getcat as $cat_data){ ?>
                     <option value="<?php echo $cat_data['category_id']; ?>"><?php echo $cat_data['category_name']; ?></option>                  
@@ -363,8 +366,9 @@ $(document).ready(function(){
 	<div class="container">
 					<div class="row ">
 						<div class="col-md-6 ">
+						<div class="form-group ">
 							<label>Add your own Category</label>
-							<table class="table" id="tab_logic">
+							<table   class="table" id="tab_logic">
 								<tbody>
 									<tr id='addr0'>
 										
@@ -375,6 +379,7 @@ $(document).ready(function(){
 									<tr id='addr1'></tr>
 								</tbody>
 							</table>
+							</div>
 					
 					</div>
 					<div class="clearfix"></div>

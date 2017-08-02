@@ -12,6 +12,9 @@
 .process-step{display:table-cell;text-align:center;position:relative}
 .process-step p{margin-top:4px}
 .btn-circle{width:80px;height:80px;text-align:center;font-size:12px;border-radius:50%}
+.navbar {
+	min-height: 75px;
+}
 
 </style>
 

@@ -258,6 +258,9 @@
 	}
 
  /* multiselect css end */
+ .navbar {
+	min-height: 75px;
+}
 </style>
 
 <div class="navigation_main ">
@@ -404,7 +407,7 @@
 		
 		 <div class="form-group">
             <label class="control-label">Signature file</label>
-            <input type="file" name='gstimag' id="gstimag" class="form-control"/>
+            <input style="padding:0;margin:0px" type="file" name='gstimag' id="gstimag" class="form-control"/>
             </div>
 		
 		 
