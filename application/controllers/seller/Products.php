@@ -1293,7 +1293,7 @@ public function returns()
 																	}else{
 																		$result = $this->products_model->get_skuid_exists($fields[2]);
 																		if(count($result)>0){
-																		$data['errors'][]="Email id already exits .please use another Email Id. Row Id is :  ".$key.'<br>';
+																		$data['errors'][]="Sku code already exits .please use another Sku code. Row Id is :  ".$key.'<br>';
 																		$error=1;	
 																		}
 

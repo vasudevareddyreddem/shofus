@@ -69,7 +69,7 @@
 	<label >&nbsp; </label>
 		<div  class=" shad_down " >
 			<h4 class="text-center" style="color:#006a99 ">Download this File to add Multiple Products</h4>
-				<form id="importproducts" name="importproducts" onsubmit="return validations();" action ="<?php echo base_url('seller/products/uploadproducts/');?>" method="post" enctype="multipart/form-data">
+				<form id="importproducts" name="importproducts" onsubmit="return validations();" action ="<?php echo base_url('seller/import/uploadproducts/');?>" method="post" enctype="multipart/form-data">
 				<input type="hidden" id="category_ids" name="category_ids">
 				<input type="hidden" id="subcategory_ids" name="subcategory_ids">
 				<p class="text-center">
