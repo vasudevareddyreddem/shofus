@@ -126,7 +126,7 @@ class Customer extends Front_Controller
 		$details= $this->customer_model->get_product_details($post['producr_id']);
 		//echo '<pre>';print_r($details);
 		if($details['offer_percentage']!='' && $details['offer_type']!=4){
-			if(date('m/d/Y') <= $details['offer_expairdate'] && date('H:ia')<= $details['offer_time']){
+			if(date('m/d/Y') <= $details['offer_expairdate']){
 				$item_price= ($details['item_cost']-$details['offer_amount']);
 				$price	=(($post['qty']) * ($item_price));
 			}else{
@@ -269,7 +269,7 @@ class Customer extends Front_Controller
 		//echo '<pre>';print_r($details);exit;
 		
 		if($details['offer_percentage']!='' && $details['offer_type']!=4){
-			if(date('m/d/Y') <= $details['offer_expairdate'] && date('H:ia')<= $details['offer_time']){
+			if(date('m/d/Y') <= $details['offer_expairdate']){
 				$item_price= ($details['item_cost']-$details['offer_amount']);
 				$price	=(($post['qty']) * ($item_price));
 			}else{

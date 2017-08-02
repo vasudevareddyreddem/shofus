@@ -74,7 +74,7 @@
               <tr>
                 <td>Price</td>
                 <td>
-				<?php if(date('m/d/Y') <= $products_list['offer_expairdate'] && date('H:ia')<= $products_list['offer_time']) {?>
+				<?php if(date('m/d/Y') <= $products_list['offer_expairdate']) {?>
 				<div class="price">
                     <div><?php echo ($products_list['item_cost'])-($products_list['offer_amount']); ?><span class="label label-default arrowed">-<?php echo $products_list['offer_percentage']; ?>%</span></div>
                     <span class="price-old"><?php echo $products_list['item_cost']; ?></span>
@@ -570,7 +570,7 @@ function sticky_relocate() {
         $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
     else if (window_top > div_top) {
         $('#sticky').addClass('stick');
-        $('#sticky').css({top: 150})
+        $('#sticky').css({top: 90})
     } else {
         $('#sticky').removeClass('stick');
 		$('#sticky').css({top:0})

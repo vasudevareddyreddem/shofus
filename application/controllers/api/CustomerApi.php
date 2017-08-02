@@ -19,19 +19,68 @@ class CustomerApi extends REST_Controller {
 		$this->load->library('email');
 		$this->load->library('form_validation');
 		$this->load->library('session');
-		$this->load->model('mobile_model');
-		$this->load->model('seller/Promotions_model');
+		$this->load->model('Customerapi_model');
+		//$this->load->model('seller/Promotions_model');
 	}
     
 	
-	/* start seller register Apis */
+	/*  register Apis */
 
 	public function register_post()
 	{
-	$post=$this->input->get();	
-	echo '<pre>';print_r($post);exit;
-	echo "cvxzcvx";exit;	
+		$get=$this->input->get();
+		//echo "<pre>";print_r($get);exit;
+		$emailcheck = $this->Customerapi_model->email_check($get['email']);
+		if(count($emailcheck)==0)
+		{
+			$password=md5($get['password']);
+			$newpassword=md5($get['confirm_password']);
+			if($password == $newpassword )
+			{			
+				$details=array(
+				'cust_firstname'=>$get['firstname'],	 	
+				'cust_lastname'=>$get['lastname'],
+				'cust_email'=>$get['email'],
+				'cust_password'=>$password,
+				'cust_mobile'=>$get['mobile'],
+				//'area'=>$this->session->userdata('location_area'),
+				'role_id'=>1,
+				'status'=>1,
+				'create_at'=>date('Y-m-d H:i:s'),
+				);
+				$customerdetails = $this->Customerapi_model->save_customer($details);
+			
+				if(count($customerdetails)>0){
+					$getdetails = $this->Customerapi_model->get_customer_details($customerdetails);	
+					$message = array('status'=>1,'customer_id'=>$customerdetails,'message'=>'Register Successfully');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
+			}else{
+			$message = array('status'=>0,'message'=>'Password and confirm password do not match.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}	
+		}else{
+			$message = array('status'=>0,'message'=>'E-mail already exists.Please use another email');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);		
+		}
 	}
+
+	/*  Login Apis */
+	public function login_post()
+	{	 
+	$get=$this->input->get();
+	$pass=md5($get['password']);
+	$logindetails = $this->Customerapi_model->login_details($get['email'],$pass);
+	//echo '<pre>';print_r($logindetails);exit;
+		if(count($logindetails)>0)
+		{	
+		$message = array('status'=>1,'customer_id'=>$logindetails['customer_id'],'message'=>'Successfully Login');
+				$this->response($message, REST_Controller::HTTP_OK);		
+		}else{
+			$message = array('status'=>0,'message'=>'Invalid Email Address or Password');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+ }
 	
 
 }

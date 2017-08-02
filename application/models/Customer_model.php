@@ -203,6 +203,7 @@ class Customer_model extends MY_Model
 	}
 
 	public function get_product_search_location($location_id){
+
 		//$date = new DateTime("now");
  		//$curr_date = $date->format('m/d/Y');
 		$this->db->select('products.*')->from('products');
