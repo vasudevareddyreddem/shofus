@@ -391,7 +391,7 @@
 			</div>
 	</div>
 	<?php 
-	if($productdetails['subcategory_id']=='12' || $productdetails['subcategory_id']=='13' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17'){
+	if($productdetails['subcategory_id']=='11' || $productdetails['subcategory_id']=='12' || $productdetails['subcategory_id']=='13' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17'){
 		$womensaccessoriesinputshide = '';
 		}else{
 			$womensaccessoriesinputshide = 'display:none;';
@@ -736,10 +736,7 @@
 		 <label for="exampleInputEmail1">NUMBER OF CORES</label>
 		<input type="text" class="form-control" id="number_of_cores" name="number_of_cores" value="<?php echo isset($productdetails['cores'])?$productdetails['cores']:''; ?>" >
 		</div>
-		<div class=" col-md-12 form-group">
-		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage1" name="internal_storage1" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
-		</div>
+		
 		
 	</div>
 	
@@ -1153,11 +1150,11 @@
 
 	}
 	if(ids==11){
-		$('#product_theme').show();
+		$('#womensaccessoriesinputs').show();
 		$('#sizeid').hide();
 		$('#colorid').hide();
 	}else{
-		$('#product_theme').hide();
+		$('#womensaccessoriesinputs').hide();
 
 	}
 	if(ids==13){
@@ -1326,7 +1323,7 @@
 		$('#mobilesinputs').show();
 	}else{
 		$('#mobilesinputs').hide();
-		$('#sizeid').show();
+		//$('#sizeid').show();
 	}
 	if(ids==1){
 		$('#sizeid').hide();

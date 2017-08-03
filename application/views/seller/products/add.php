@@ -270,6 +270,16 @@
 			</div>
 	
 	</div>
+	<div class="row" id="mensfabricsinputs1" style="display:none;">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Type</label>
+					<input type="text" class="form-control" id="product_type8" name="product_type8" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+				</div>
+			</div>
+	
+	</div>	
+	
 	<div class="row" id="winterwaerinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
@@ -612,10 +622,7 @@
 		 <label for="exampleInputEmail1">NUMBER OF CORES</label>
 		<input type="text" class="form-control" id="number_of_cores" name="number_of_cores" value="<?php echo isset($productdetails['cores'])?$productdetails['cores']:''; ?>" >
 		</div>
-		<div class=" col-md-12 form-group">
-		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage1" name="internal_storage1" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
-		</div>
+	
 		
 	</div>
 	
@@ -669,7 +676,8 @@
   <!--main content end--> 
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
-  <script>
+   <script type="text/javascript">
+
   $(document).ready(function() {
     $('#importproducts').bootstrapValidator({
        
@@ -723,6 +731,29 @@ $(document).ready(function(){
   
 });	
 
+
+ function getproductinputs(id){
+	
+	 if(id==18){
+		  $('#foodcategoryinputs').show();
+		  $('#idealfor').hide();
+		  $('#sizeid').hide();
+		  $('#colorid').hide();
+	  }else if(id==21){
+		$('#colorid').hide();  
+		$('#sizeid').show();  
+		$('#ideal_for').hide();  
+		  
+	  }else{
+		  $('#foodcategoryinputs').hide();
+		
+		  $('#idealfor').show();
+		  $('#sizeid').show();
+		  $('#colorid').show();
+	  }
+	 
+	  
+}
 function getspecialinputs(ids){
 	if(ids==7){
 		$('#sizeid').hide();
@@ -764,19 +795,20 @@ function getspecialinputs(ids){
 
 	}
 	if(ids==11){
-		$('#product_theme').show();
+		$('#womensaccessoriesinputs').show();
 		$('#sizeid').hide();
 		$('#colorid').hide();
 	}else{
-		$('#product_theme').hide();
+		$('#womensaccessoriesinputs').hide();
 
 	}
 	if(ids==13){
-		$('#mensfabricsinputs').show();
+		
 		$('#sizeid').show();
 		$('#colorid').show();
+		$('#mensfabricsinputs1').show();
 	}else{
-		$('#mensfabricsinputs').hide();
+		$('#mensfabricsinputs1').hide();
 
 	}
 	if(ids==14){
@@ -939,26 +971,7 @@ function getspecialinputs(ids){
   }
 	  
 	  
-  function getproductinputs(id){
-	 if(id==18){
-		  $('#foodcategoryinputs').show();
-		  $('#idealfor').hide();
-		  $('#sizeid').hide();
-		  $('#colorid').hide();
-	  }else if(id==21){
-		$('#colorid').hide();  
-		$('#sizeid').show();  
-		$('#ideal_for').hide();  
-		  
-	  }else{
-		  $('#foodcategoryinputs').hide();
-		  $('#idealfor').show();
-		  $('#sizeid').show();
-		  $('#colorid').show();
-	  }
-	 
-	  
-}
+ 
   	$(document).ready(function() {
     $('#addproduct').bootstrapValidator({
        
