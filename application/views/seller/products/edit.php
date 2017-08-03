@@ -294,10 +294,10 @@
 	</div>
 	<!-- food category purpose-->
 	<!-- special inputs for subcategory  --->
-	<?php if($productdetails['subcategory_id']=='23' ||$productdetails['subcategory_id']=='25'){
-		$mensfabricsinputshide = '';
-		}else{
+	<?php if($productdetails['subcategory_id']!='13' ||$productdetails['subcategory_id']!='23' || $productdetails['subcategory_id']!='25'){
 		$mensfabricsinputshide = 'display:none';
+		}else{
+		$mensfabricsinputshide = '';
 		} ?>
 	<div class="row" id="mensfabricsinputs" style="<?php echo $mensfabricsinputshide; ?>">
 			<div class="col-md-6 form-group">
@@ -308,7 +308,21 @@
 			</div>
 	
 	</div>
-	<?php if($productdetails['subcategory_id']=='21' ||$productdetails['subcategory_id']=='11' ||$productdetails['subcategory_id']=='25'){
+	<?php if($productdetails['subcategory_id']!='13'){
+		$mensfabricsinputshide1 = 'display:none';
+		}else{
+		$mensfabricsinputshide1 = '';
+		} ?>
+	<div class="row" id="mensfabricsinputs1" style="<?php echo $mensfabricsinputshide1; ?>">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Type</label>
+					<input type="text" class="form-control" id="product_type8" name="product_type8" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+				</div>
+			</div>
+	
+	</div>
+	<?php if($productdetails['subcategory_id']=='21' || $productdetails['subcategory_id']=='11' ||$productdetails['subcategory_id']=='25'){
 		$product_themehide = '';
 		}else{
 		$product_themehide = 'display:none';
@@ -326,6 +340,23 @@
 		$winterwaerinputshide = 'display:none';
 		} ?>
 	<div class="row" id="winterwaerinputs" style="<?php echo $winterwaerinputshide; ?>">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Type</label>
+					<input type="text" class="form-control" id="product_type7" name="product_type7" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+				</div>
+			</div>
+			<div class="col-md-6 form-group">
+			<label>Theme</label>
+			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			</div>
+	</div>
+	<?php if($productdetails['subcategory_id']=='14'){
+		$winterwaerinputshide1 = '';
+		}else{
+		$winterwaerinputshide1 = 'display:none';
+		} ?>
+	<div class="row" id="winterwaerinputs1" style="<?php echo $winterwaerinputshide1; ?>">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Type</label>
@@ -1158,19 +1189,19 @@
 
 	}
 	if(ids==13){
-		$('#mensfabricsinputs').show();
+		$('#mensfabricsinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
 	}else{
-		$('#mensfabricsinputs').hide();
+		$('#mensfabricsinputs1').hide();
 
 	}
 	if(ids==14){
-		$('#winterwaerinputs').show();
+		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
 	}else{
-		$('#winterwaerinputs').hide();
+		$('#winterwaerinputs1').hide();
 
 	}
 	if(ids==15){

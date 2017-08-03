@@ -280,6 +280,18 @@
 	
 	</div>	
 	
+	<div class="row" id="winterwaerinputs1" style="display:none;">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Type</label>
+					<input type="text" class="form-control" id="product_type7" name="product_type7" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+				</div>
+			</div>
+			<div class="col-md-6 form-group">
+			<label>Theme</label>
+			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			</div>
+	</div>
 	<div class="row" id="winterwaerinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
@@ -812,11 +824,11 @@ function getspecialinputs(ids){
 
 	}
 	if(ids==14){
-		$('#winterwaerinputs').show();
+		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
 	}else{
-		$('#winterwaerinputs').hide();
+		$('#winterwaerinputs1').hide();
 
 	}
 	if(ids==15){
