@@ -22,7 +22,10 @@ class Inventory_model extends MY_Model
 			$return[$category['category_id']]['inactivecount'] = $this->get_inactiveunreadcounts($category['category_id']);
         
 		}
+		if(!empty($return))
+		{
 		return $return;
+		}
 	}
 	public function get_activeunreadcounts($catid)
 	{
@@ -608,6 +611,29 @@ class Inventory_model extends MY_Model
 	{
 		$sql1="UPDATE home_banner SET preview_ok ='".$data."' WHERE image_id='".$imageid."'";
 		return $this->db->query($sql1);
+	}
+
+
+	/* product quantity querys */
+	public function total_quantity()
+	{
+		$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,SUM(products.item_quantity) AS quantity')->from('products');
+		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
+		 $this->db->group_by('sellers.seller_id');
+		 $this->db->where('sellers.status', 1);
+		return $this->db->get()->result_array();
+	}
+
+	public function categorywise_quantity($id)
+	{
+		$this->db->select('products.seller_id,sellers.seller_name,sellers.seller_rand_id,category.category_name,subcategories.subcategory_name,products.item_quantity,products.item_name')->from('products');
+		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
+		$this->db->join('category', 'category.category_id = products.category_id', 'left');
+		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
+		$this->db->group_by('products.item_quantity');
+		$this->db->where('sellers.seller_id', $id);
+		$this->db->where('sellers.status', 1);
+		return $this->db->get()->result_array();
 	}
 	
 }

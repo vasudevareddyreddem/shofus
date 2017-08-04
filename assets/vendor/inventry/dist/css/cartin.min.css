@@ -1431,11 +1431,12 @@ a:focus {
     background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)
 }
 .small-box {
-    border-radius: 2px;
+    border-radius: 0px;
     position: relative;
     display: block;
     margin-bottom: 20px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1)
+	background:#fff;
+	border:1px solid #bbb;
 }
 .small-box>.inner {
     padding: 10px
@@ -1455,11 +1456,10 @@ a:focus {
     color: #fff;
     background: rgba(0, 0, 0, 0.15)
 }
-.small-box h3 {
-    font-size: 38px;
-    font-weight: bold;
-    margin: 0 0 10px 0;
-    white-space: nowrap;
+.small-box h4 {
+    font-size: 18px;
+    font-weight: 500;
+
     padding: 0
 }
 .small-box p {
@@ -1488,7 +1488,12 @@ a:focus {
 }
 .small-box:hover {
     text-decoration: none;
-    color: #f9f9f9
+    color: #000;
+	background:#fff;
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.19);
+	cursor:pointer;
+}
+	
 }
 .small-box:hover .icon {
     font-size: 95px

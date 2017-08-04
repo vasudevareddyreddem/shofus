@@ -45,16 +45,16 @@
                     <tr>
                  <th>S.No</th>
                  <th>Order Id</th>
-                  <th>Seller Name</th>
+                  <!-- <th>Seller Name</th>
                 <th>Product Id</th>
-                 <th>Deliveryboy Name</th>
+                 <th>Deliveryboy Name</th> -->
                 <th>Product Name</th>
-                <th>Delivery Date</th>
-                <th>Delivery Time</th>
+                <!-- <th>Delivery Date</th>
+                <th>Delivery Time</th> -->
                 <th>Customer Details</th>
-               <th>Pick Date&Time</th>
-                <th>Delivered Date&Time</th>
-                <th>Payment Mode</th>
+               <!-- <th>Pick Date&Time</th>
+                <th>Delivered Date&Time</th> 
+                <th>Payment Mode</th>-->
 
                     </tr>
                   </thead>
@@ -69,7 +69,7 @@
                 <tr>
                   <td><?= ++$count ?></td>
                    <td><?php  echo $orders_data->order_id; ?></td>
-                   <td><?php  echo $orders_data->seller_name; ?></td>
+                   <!-- <td><?php  echo $orders_data->seller_name; ?></td>
                   <td><?php  echo $orders_data->item_id; ?></td>
                   <td><?php 
                       if(isset($orders_data->deliveryboy_id) && $orders_data->deliveryboy_id!=0 &&  $orders_data->deliveryboy_id!='')
@@ -95,34 +95,34 @@
 }else
                          {
                           echo '--';
-                         } ?></td>
-                  <td><?php  echo $orders_data->product_name; ?></td>
-                 <td><?php  echo $orders_data->delivery_date; ?></td>
-                  <td><?php  echo $orders_data->delivery_time; ?></td>
+                         } ?></td> -->
+                  <td><?php  echo $orders_data->item_name; ?></td>
+                 <!-- <td><?php  echo $orders_data->delivery_date; ?></td>
+                  <td><?php  echo $orders_data->delivery_time; ?></td -->>
 
                    <td><table class="table table-bordered qtytable">
                     <tbody>
                       <tr>
                         <th>Name</th>
-                        <td><?php  echo $orders_data->customer_name; ?></td>
+                        <td><?php  echo $orders_data->cust_firstname . $orders_data->cust_lastname; ?></td>
                       </tr>
                       <tr>
                         <th>Mobile</th>
-                        <td><?php  echo $orders_data->customer_phone; ?></td>
+                        <td><?php  echo $orders_data->cust_mobile; ?></td>
                       </tr>
                       <tr>
                         <th>Email</th>
-                        <td><?php  echo $orders_data->customer_email; ?></td>
+                        <td><?php  echo $orders_data->cust_email; ?></td>
                       </tr>
                       <tr>
                         <th>Address</th>
-                        <td><?php  echo $orders_data->customer_address; ?></td>
+                        <td><?php  echo $orders_data->address1; ?></td>
                       </tr>
                     </tbody>
                   </table></td>
-                <td><?php  echo $orders_data->pickup_time; ?></td>
-                 <td><?php  echo $orders_data->delivered_time; ?></td>
-                  <td><?php  echo $orders_data->payment_mode; ?></td>
+                <!-- <td><?php  echo $orders_data->pickup_time; ?></td>
+                 <td><?php  echo $orders_data->delivered_time; ?></td> 
+                  <td><?php  echo $orders_data->payment_mode; ?></td>-->
                 </tr>
 
                 <?php } ?>
@@ -139,7 +139,7 @@
 
               <?php endif; ?>
                 </table>
-                <center><?= $this->pagination->create_links(); ?></center>
+                
               </div>
             </div>
           </section>

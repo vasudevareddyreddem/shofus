@@ -49,39 +49,33 @@ class Payment extends CI_Controller
 	}
 	public function debit_credit_post()
 	{
-		
-		$post=$this->input->post();
-		$hashSequence = $post['key'].'|'.$post['txnid'].'|'.$post['amount'].'|'.$post['productinfo'].'|'.$post['firstname'].'|'.$post['email'].'||||||||||';
-		$hashVarsSeq = explode('|', $hashSequence);
- $hash_string='';
-	foreach($hashVarsSeq as $hash_var) {
-      $hash_string .= $hash_var;
-      $hash_string .= '|';
-    }
+			$post=$this->input->post();
+			//$hashSequence = $post['key'].'|'.$post['txnid'].'|'.$post['amount'].'|'.$post['productinfo'].'|'.$post['firstname'].'|'.$post['email'].'||||||||||';
+			$hashSequence = $post['key'].'|verify_payment|200|eCwWELxi';
+			//$hashSequence =  $post['key'].'|'.$post['txnid'].'|'.$post['amount'].'|'.'|'.'offer_key'.'|2|';
+			//$hashVarsSeq = explode('|', $hashSequence);
+			echo '<pre>';print_r($hashSequence);
+			//$hash_string .= 'eCwWELxi';
+			$hashvalue = hash('sha512',$hashSequence);
 
-    $hash_string .= $post['salt'];
-	$hash = strtolower(hash('sha512', $hash_string));
-	
-	
-	
-	
-	$ch = curl_init();                    // initiate curl
-$url = "https://test.payu.in/merchant/postservice.php?form=1"; // where you want to post data
-curl_setopt($ch, CURLOPT_URL,$url);
-curl_setopt($ch, CURLOPT_POST, true);  // tell curl you want to post something
-curl_setopt($ch, CURLOPT_POSTFIELDS, "key='Ibibo'&command=verify_payment&hash=ajh84ba8abvav"); // define what you want to post
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // return the output in string format
-$output = curl_exec ($ch); // execute
- 
-curl_close ($ch); // close curl handle
- 
-var_dump($output); // show output
-	//echo '<pre>';print_r($post);exit;
-//echo '<pre>';print_r($post);exit;
-exit;
+			
+			   //"key" => $post['key'].'|'."txnid" => $post['txnid'].'|'."amount" => $post['amount'].'|'."productinfo" => $post['productinfo'].'|'."firstname" => $post['firstname'].'|'."email" => $post['email'].'|'."surl" => "India".'|'."furl" => "India".'|'."hash" => $hashvalue
+			
 
-redirect($post['url'] . '/_payment');	
-	
+
+			                   // initiate curl
+			$url = "https://test.payu.in/merchant/postservice.php?form=1"; // where you want to post data
+			$ch = curl_init(); 
+			curl_setopt($ch, CURLOPT_URL,$url);
+			curl_setopt($ch, CURLOPT_POST, true);  // tell curl you want to post something
+			//curl_setopt($ch, CURLOPT_POSTFIELDS,  "key=".$post['key']."txnid=".$post['txnid']."amount=".$post['amount']."productinfo=".$post['productinfo']."firstname=".$post['firstname']."email=".$post['email']."surl=India".''."furl=India"."hash=".$hashvalue); // define what you want to post
+			//curl_setopt($ch, CURLOPT_POSTFIELDS,  "key=".$post['key']."command=".$post['txnid']."txnid=".$post['txnid']."amount=".$post['amount']."productinfo=".$post['productinfo']."firstname=".$post['firstname']."email=".$post['email']."surl=India".''."furl=India"."hash=".$hashvalue); // define what you want to post
+			curl_setopt($ch, CURLOPT_POSTFIELDS,  "key=gtKFFx&command=verify_payment&txnid=".$post['txnid']."&amount=".$post['amount']."&hash=".$hashvalue); // define what you want to post
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // return the output in string format
+			$output = curl_exec ($ch); // execute
+			curl_close ($ch); // close curl handle
+			echo '<pre>';print_r($output);exit;
+			
 	}
 	
 }

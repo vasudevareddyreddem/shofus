@@ -26,6 +26,10 @@
 				<input type="text"  class="form-control" id="subcategoryname"  name="subcategoryname" value="<?php echo isset($subcategory_details['subcategory_name'])?$subcategory_details['subcategory_name']:''; ?>"/>
 				</div>
 				<div class="form-group">
+				<label for="category">Category Commission</label>
+				<input type="text"  class="form-control" id="commission"  name="commission" value="<?php echo isset($subcategory_details['commission'])?$subcategory_details['commission']:''; ?>"/>
+				</div>
+				<div class="form-group">
 				<label for="category">category Name</label>
 				<select class="form-control" name="category_list" id="category_list">
 				<option value="">Select</option>
@@ -68,7 +72,16 @@ $(document).ready(function() {
 					message: ' Subcategory Name can only consist of alphanumaric, space and dot'
 					}
 				}
-			}, 
+			},
+commission: {
+					validators: {
+					between: {
+                    min: 0,
+                    max: 100,
+                    message: 'The Commission percentage must be between 0 and 100'
+					}
+				}
+			},			
 			category_list: {
 					validators: {
 					notEmpty: {

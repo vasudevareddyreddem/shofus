@@ -37,6 +37,10 @@
 				<input type="text"  class="form-control" id="categoryname"  name="categoryname"/>
 				</div>
 				<div class="form-group">
+				<label for="category">Category Commission</label>
+				<input type="text"  class="form-control" id="commission"  name="commission"/>
+				</div>
+				<div class="form-group">
 				<label for="category">Category Name</label>
 				<select class="form-control" name="category_list" id="category_list">
 				<option value="">Select</option>
@@ -123,7 +127,18 @@ $(document).ready(function() {
 					}
 				}
 			}, 
-		
+		commission: {
+					validators: {
+						notEmpty: {
+						message: 'Commission is required'
+					},
+					between: {
+                    min: 0,
+                    max: 100,
+                    message: 'The Commission percentage must be between 0 and 100'
+					}
+				}
+			},
 			category_list: {
 					validators: {
 					notEmpty: {

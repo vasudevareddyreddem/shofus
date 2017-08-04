@@ -1,31 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<?php
-$MERCHANT_KEY = "gtKFFx"; 
-   $hash_string = '';
 
 
-$PAYU_BASE_URL = "https://test.payu.in";
-
-	$hash = strtolower(hash('sha512', $hash_string));
-  $hash = $hash;
-  $action = "https://test.payu.in_payment";
-
-?>
-<html>
-  <head>
-  <script>
-    var hash = '<?php echo $hash ?>';
-    function submitPayuForm() {
-      if(hash == '') {
-        return;
-      }
-      var payuForm = document.forms.payuForm;
-	  alert();return false;
-      payuForm.submit();
-    }
-  </script>
-  </head>
 <style>
 .panel-title > a:before {
     float: left !important;
@@ -98,7 +73,7 @@ $PAYU_BASE_URL = "https://test.payu.in";
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation">
-						 <a href="<?php echo $action; ?>" aria-controls="step1" role="tab" title="Step 1">
+						 <a href="#" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-shopping-cart"></i>
                             </span>
@@ -145,27 +120,28 @@ $PAYU_BASE_URL = "https://test.payu.in";
 			<?php endif; ?>
 						<div class="container">
 						<div class="row">
-						<form action="<?php echo base_url('payment/debit_credit_post');?>" method="POST" >
-						<input type="hidden" name="key" value="<?php echo $this->config->item('MERCHANTKEY'); ?>" />
-						<input type="hidden" name="salt" value="<?php echo $this->config->item('salt'); ?>" />
-						<input type="hidden" name="url" value="<?php echo $this->config->item('paymentbaseurl'); ?>" />
-						<input type="hidden" name="txnid" value="<?php echo $txnid; ?>" >
-						<input type="hidden" name="hash" value="<?php echo $hashvalue; ?>"/>
-						<input type="hidden" name="surl" value="<?php echo base_url('customer/ordersuccess'); ?>" />   <!--Please change this parameter value with your success page absolute url like http://mywebsite.com/response.php. -->
-						<input type="hidden" name="furl" value="<?php echo base_url('customer/ordersuccess'); ?>" /><!--Please change this parameter value with your failure page absolute url like http://mywebsite.com/response.php. -->
-						<input type="hidden" name="amount" value="<?php echo $carttotal_amount['pricetotalvalue']; ?>" />
-						<input type="hidden" name="firstname" id="firstname" value="<?php echo $billimgdetails['name']; ?>" />
-						<input name="email" type="hidden" id="email" value="<?php echo $emailid; ?>" /></td>
-						<input name="phone" type="hidden" value="<?php echo $billimgdetails['mobile']; ?>" /></td>
-						<input type="hidden" name="productinfo" value="<?php echo $productinfo; ?>">
-
-						<input type="radio" name="paymentmode" value="0" >Cash on Delivery<br>
-						<input type="radio" name="paymentmode" value="1"> Female<br>
-						<input type="radio" name="paymentmode" value="2"> Other 
-						<button type="submit">Pay</button>
-						
-						</form>
-						</div>
+					
+		<form method="post" name="payuForm" action="https://test.payu.in/_payment">
+        <input name="key" type="hidden" value="<?php echo $this->config->item('MERCHANTKEY'); ?>" />
+        <input name="txnid" type="hidden"  value="<?php echo $txnid; ?>" />
+        <input type="hidden" name="hash" value="<?php echo $hash; ?>"/>
+		<input type="hidden" name="xyz" value="<?php echo $hash ?>"/>
+		<input name="amount" type="hidden" value="<?php echo $carttotal_amount['pricetotalvalue']; ?>" />
+		<input name="productinfo" type="hidden" value="<?php echo $productinfo; ?>">
+		<input name="udf1" type="hidden" value="">
+        <input name="udf2" type="hidden" value="">
+        <input name="udf3" type="hidden" value="">
+        <input name="udf4" type="hidden" value="">
+        <input name="udf5" type="hidden" value="">
+		<input name="firstname" id="firstname" type="hidden" value="<?php echo $billimgdetails['name']; ?>"/>
+        <input name="email" id="email"  type="hidden"  value='<?php echo $emailid; ?>'>
+        <input name="phone"   type="hidden"  value="<?php echo $billimgdetails['mobile']; ?>">
+        <input name="surl" type="hidden" value="<?php echo base_url('customer/success'); ?>" size="64" />
+        <input name="furl" type="hidden" value="<?php echo base_url('customer/ordersuccess'); ?>" size="64" />
+        <input name="curl" type="hidden" value="<?php echo base_url('payu/cancel'); ?>" />
+        <input type="submit" name="submit_form" value="Click Here for Payment" class="btn btn-info btn-block" >
+		</form>
+		</div>
                        
                     
     </section>
@@ -178,69 +154,5 @@ $PAYU_BASE_URL = "https://test.payu.in";
 	</div>
 	
 
-<script>
-
-	$(document).ready(function() {
-    $('#billingaddress').bootstrapValidator({
-       
-        fields: {
-            
-             name: {
-              validators: {
-					notEmpty: {
-						message: 'Name is required'
-					},
-                   regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Name can only consist of alphanumaric, space and dot'
-					}
-                }
-            },
-			mobile: {
-              validators: {
-					 notEmpty: {
-						message: 'Mobile Number is required'
-					},
-                    regexp: {
-					regexp:  /^[0-9]{10}$/,
-					message:'Mobile Number must be 10 to 14 digits'
-					}
-                }
-            },
-			area: {
-              validators: {
-					notEmpty: {
-						message: 'Please select an area'
-					}
-                }
-            },
-			address1: {
-				validators: {
-					notEmpty: {
-						message: 'Address1 is required'
-					},
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message: 'Address1 wont allow <> [] = % '
-					}
-				
-				}
-			},
-			address2: {
-				validators: {
-					
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message: 'Address2 wont allow <> [] = % '
-					}
-				
-				}
-			}
-			
-			
-        }
-    });
-});
-</script>
 
  

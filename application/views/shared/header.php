@@ -13,68 +13,41 @@
       top: 7px;
       width: 12px;
       cursor: pointer; }
+	  .affix{
+	top:0;
+}
+
 </style>
 <div class="sidebar_right" >
 			<ul style="padding:0 ">
+				
+				<div class="clearfix"></div>
+				<?php foreach ($sidecaregory_list as $categories){ ?>
 				<li  class=" spin ">
-					<a  href="<?php echo base_url('category/subcategoryview'); ?>" class="menu_ti2  ">
+					<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">food</span>
+					    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
 					</a>
-			
 				</li>
 				<div class="clearfix"></div>
-				<li  class=" spin ">
-					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">food</span>
-					</a>
-			
-				</li>
-				<div class="clearfix"></div>
-					<li  class=" spin ">
-					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">food</span>
-					</a>
-			
-				</li>
-				<div class="clearfix"></div>
-					<li  class=" spin ">
-					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">food</span>
-					</a>
-			
-					</li>
-				<div class="clearfix"></div>
-				<li  class=" spin ">
-					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">food</span>
-					</a>
-			
-					</li>
-				<div class="clearfix"></div>
+				<?php } ?>
+				
 				<li id="hover_li" class=" spin ">
 					<a  class="menu_ti2  ">
 						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit">More Categories</span>
+						<span class="menu_tit">MORE CATEGORIES</span>
 					</a>
 					<ul id="left_box" class="right_cust" style="display:none">
 						
 						
 							<div class="col-md-3">
 								<ul class="list_cat">
-									<li><a style="color:#666;">Mobiles</a></li>
-									<li><a href="">Samsung</a></li>
-									<li><a href="">Apple</a></li>
-									<li><a href="">Microsoft</a></li>
-									<li><a href="">Nokia</a></li>
-									<li><a href="">LG</a></li>
-									<li><a href="">HTC</a></li>
-									<li><a href="">Motorola</a></li>
-									<li><a href="">Samsung</a></li>
+								<?php foreach ($allcategories_list as $categories){ ?>
+								
+								<li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" style="color:#666;"><?php echo $categories['category_name'] ; ?></a></li>
+									
+								<?php } ?>
+									
 								</ul>
 							</div>
 						</div>
@@ -82,15 +55,7 @@
 				</li>
 				<div class="clearfix"></div>
 			
-					<div class="clearfix"></div>
-					<li class=" spin ">
-					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit"> More Categories</span>
-					</a>
-					
-				</li>
-			
+				
 				
 				
 				
@@ -99,7 +64,7 @@
 <div class="wrapper"> 
   <!--header part start here -->
   <div class="jain_container">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default nav_cus" role="navigation">
 	<div class="top-navbar">
     <div class="container">
       <div class=" row">
@@ -120,8 +85,8 @@
       </div>
     </div>
   </div>
-      <div class="container1 container-fluid">
-        <div class="navbar-header">
+      <div class="container1 container-fluid hm_nav">
+        <div class="navbar-header ">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
           <a class="navbar-brand" href="<?php echo base_url(); ?>"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
         <div class="col-md-6">
@@ -747,4 +712,17 @@ $("#hover_li").hover(function(){
 $("#hover_li1").hover(function(){
     $('#left_box1').fadeToggle();
 });
+</script>
+
+<script type="text/javascript" language="javascript">
+   $(window).scroll(function() {
+if ($(this).scrollTop() > 10) {
+$('.hm_nav').addClass('affix');
+$('.hm_nav').addClass('animated zoomLeft');
+}
+else{
+$('.hm_nav').removeClass('affix');
+$('.hm_nav').removeClass('animated zoomLeft');
+}
+ });
 </script>

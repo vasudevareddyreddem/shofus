@@ -65,15 +65,15 @@ tfoot input {
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
-	   <?php  foreach($catitemdata1 as $catitem_data1 )  {  ?> 
+	   <?php  $i=1;foreach($catitemdata1 as $catitem_data1 )  {  ?> 
 		
-		 <a id="btn_chang<?php echo $catitem_data1->category_id;?>" onclick="addtabactive(<?php echo $catitem_data1->category_id;?>);addtabactives(<?php echo $catitem_data1->category_id;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
+		 <a id="btn_chang<?php echo $i;?>" onclick="addtabactive(<?php echo $i;?>);addtabactives(<?php echo $i;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
 
-	<?php } ?>
-        <?php  foreach($catitemdata as $catitem_data )  {    ?>
+	<?php $i++;} ?>
+        <?php  $kk=1;foreach($catitemdata as $catitem_data )  {    ?>
         <!--<h1 onclick="document.getElementById('gry').style.display='block'">GETTING STARTED</h1>-->
         <div class="tab-content">
-              <div class="tab-pane" id="gry<?php echo $catitem_data->category_id; ?>">
+              <div class="tab-pane" id="gry<?php echo $kk; ?>">
               <?php 
 			foreach($catitem_data->docs as $subcategory){?>
 			<?php $space =  $subcategory->subcategory_name; 
@@ -407,7 +407,7 @@ tfoot input {
               
             </div>
         <!-- container --> 
-	   <?php }?>
+	   <?php $kk++;}?>
       </div>
     </div>
    <?php } else {?>

@@ -138,8 +138,8 @@
 						</div>
                   </div>
 				<div class="clearfix"></div>
-				 <?php if(isset($catlist['offer_amount']) && $catlist['offer_percentage']!=''){ ?>
-                <span class="price-old"><?php echo $catlist['item_cost']; ?></span>
+				<?php if(date('m/d/Y') <= $catlist['offer_expairdate']) {?>				 
+                <span class="price-old"><?php echo ($catlist['item_cost'])-($catlist['offer_amount']); ?></span>
 				<?php }else{ ?>
 				   <span class=""><?php echo $catlist['item_cost']; ?></span>
 				<?php } ?>

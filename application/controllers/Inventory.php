@@ -714,7 +714,6 @@ public function servicerequestview(){
 					move_uploaded_file($_FILES['categoryfile']['tmp_name'], "assets/sellerfile/category/" . trim($_FILES['categoryfile']['name']));
 					$data = array(
 					'category_name' => $post['categoryname'], 
-					'commission' => $post['commission'], 
 					'documetfile' => trim($_FILES['categoryfile']['name']),    
 					'status' => 1,    
 					'created_at' => date('Y-m-d H:i:s'),    
@@ -745,7 +744,8 @@ public function servicerequestview(){
 					//echo "<pre>";print_r($post);exit;
 					$addsubcat = array(
 					'category_id' => $post['category_list'], 
-					'subcategory_name' => $post['categoryname'], 
+					'subcategory_name' => $post['categoryname'],
+					'commission' => $post['commission'], 
 					'status' => 1,    
 					'created_at' => date('Y-m-d H:i:s'),    
 					'updated_at' => date('Y-m-d H:i:s'),
@@ -882,7 +882,6 @@ public function servicerequestview(){
 					}
 					$updatedata = array(
 					'category_name' => $post['categoryname'], 
-					'commission' => $post['commission'], 
 					'documetfile' => $imgname,
 					'created_at' => date('Y-m-d H:i:s'),    
 					'updated_at' => date('Y-m-d H:i:s'),
@@ -912,7 +911,8 @@ public function servicerequestview(){
 				//echo '<pre>';print_r($post);exit;
 					$updatedata = array(
 					'category_id' => $post['category_list'], 
-					'subcategory_name' => $post['subcategoryname'], 
+					'subcategory_name' => $post['subcategoryname'],
+					'commission' => $post['commission'], 
 					'created_at' => date('Y-m-d H:i:s'),    
 					'updated_at' => date('Y-m-d H:i:s'),
 					);
@@ -1818,13 +1818,20 @@ public function servicerequestview(){
 										{
 										$data['errors'][]='Subcategory Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
 										$error=1;
-										}else{
-											$result = $this->inventory_model->get_subname_existss($fields[0]);
-											if(count($result)>0){
-											$data['errors'][]="Subcategory Name already exits .please use another Subcategory Name. Row Id is :  ".$key.'<br>';
-											$error=1;	
-											}
+										}
 
+									}
+										
+									
+									if(empty($fields[1])) {
+										$data['errors'][]="Commision is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[1]!=''){
+										$regex ="/^[0-9]+$/"; 
+										if(!preg_match( $regex, $fields[1]))
+										{
+										$data['errors'][]="Commision must be digits. Row Id is :  ".$key.'<br>';
+										$error=1;
 										}
 									}
 									
@@ -1852,7 +1859,8 @@ public function servicerequestview(){
 							//echo "<pre>";print_r($fieldss);
 							$addsubcat = array(
 							'category_id' => $post['category_list'], 
-							'subcategory_name' =>$data[0], 
+							'subcategory_name' =>$data[0],
+							'commission' => $data[1], 
 							'status' => 1,    
 							'created_at' => date('Y-m-d H:i:s'),    
 							'updated_at' => date('Y-m-d H:i:s'),
@@ -1913,7 +1921,7 @@ public function servicerequestview(){
 										$data['errors'][]="category Name is required. Row Id is :  ".$key.'<br>';
 										$error=1;
 									}else if($fields[0]!=''){
-										$regex ="/^[ A-Za-z0-9_@.,}{@#&$*)(_+-]*$/"; 
+										$regex ="/^[ A-Za-z0-9_@.,}{@#&*)(_+-]*$/"; 
 										if(!preg_match( $regex, $fields[0]))	  	
 										{
 										$data['errors'][]='category Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
@@ -1927,17 +1935,7 @@ public function servicerequestview(){
 
 										}
 									}
-									if(empty($fields[1])) {
-										$data['errors'][]="Commision is required. Row Id is :  ".$key.'<br>';
-										$error=1;
-									}else if($fields[1]!=''){
-										$regex ="/^[0-9]+$/"; 
-										if(!preg_match( $regex, $fields[1]))
-										{
-										$data['errors'][]="Commision must be digits. Row Id is :  ".$key.'<br>';
-										$error=1;
-										}
-									}
+									
 									
 								}else{
 									$data['errors'][]='Please Fillout all Fields';
@@ -1963,7 +1961,6 @@ public function servicerequestview(){
 						//echo "<pre>";print_r($fieldss);
 						$data = array(
 						'category_name' => $data[0], 
-						'commission' => $data[1], 
 						'documetfile' => '',
 						'status' => 1,    
 						'created_at' => date('Y-m-d H:i:s'),    
@@ -1983,9 +1980,39 @@ public function servicerequestview(){
 	       }
     	
   
- 
+ 	
 
-  
+  public function productquantity(){ 
+	if($this->session->userdata('userdetails'))
+	{		
+		$data['quantity'] = $this->inventory_model->total_quantity();
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/product_quantity',$data);
+		$this->load->view('customer/inventry/footer');
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	} 
+  }
+
+
+  public function categorywisequantity()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	$sellerid = base64_decode($this->uri->segment(3));
+		//echo "<pre>";print_r($id);exit;
+		$data['category_wise'] = $this->inventory_model->categorywise_quantity($sellerid);
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/categorywise_quantity',$data);
+		$this->load->view('customer/inventry/footer');
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
  
 
 

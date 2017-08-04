@@ -1,695 +1,556 @@
-<!--wrapper start here -->
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/customer/multi-list.css">
-<div class="sidebar_right" >
-			
-			<ul style="padding:0 ">
-			
-			<?php  foreach($catitemdata as $catitem_data )  {  
-			?>
-				<li class="spin btn-group show-on-hover">
-					<a  class=" dropdown-toggle" data-toggle="dropdown">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
-						<span class="menu_tit"><?php echo $catitem_data->category_name; ?></span>
-					</a>
-					<ul class="dropdown-menu " role="menu">
-						<div class="row">
-							
-								<?php 
-								foreach($catitem_data->docs as $subcategory){
-									//echo '<pre>';print_r($subcategory);exit;
-									?>
-									<div class="col-md-3">
-											<ul class="list_cat">
-												<li><a href="<?php echo base_url('category/view/'.base64_encode($subcategory->subcategory_id)); ?>" style="color:#666;"><?php echo $subcategory->subcategory_name; ?></a></li>
-													<?php 
-													foreach($subcategory->docs12 as $item_data){?>
-													<li><a href="<?php echo base_url('category/productview/'.base64_encode($item_data->item_id)); ?>"><?php echo $item_data->item_name; ?></a></li>
-													<?php } ?>
-											</ul>
-							
-									</div>
-								<?php } ?>
-							
-							
-						
-						</div>
-						
-					</ul>
-				</li><div class="clearfix"></div>
-			
-				<?php }?>
-			</ul>
-</div>
-<div class="wrapper"> 
-  <!--header part start here -->
-  <div class="jain_container">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="top-navbar">
-    <div class="container">
-      <div class=" row">
-        <div class="social-media col-sm-4"> Stay connected:
-          <ul>
-            <li><a href="#" class=""><span class=""><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a></li>
-            <li><a href="#" class=""><span class=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></span></a></li>
-            <li><a href="#" class=""><span class=""><i class="fa fa-twitter-square" aria-hidden="true"></i></span></a></li>
-            <li><a href="#" class=""><span class=""><i class="fa fa-pinterest-square" aria-hidden="true"></i></span></a></li>
-          </ul>
-        </div>
-        <div class="user-link col-sm-8"> <a class="tel" href="tel:+201234567891"><span class="glyphicon glyphicon-earphone">&nbsp;</span>+123456789</a> <a class="" href="mailto:support@resalatheme.com"><i><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-      <div class="container1 container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
-          <a class="navbar-brand" href="<?php echo base_url(); ?>"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
-        <div class="col-md-6">
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <div class="row">
-            <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
-                  <div class=" smallsearch">
-                    <div class="cart_search">
-                      <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
-                      <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
-                    </div>
-					<div style="display:none;" class="search_fun" id="addingdropdown"></div>
-					
-                  </div>
-                </form>
-              </div>
-			
-            </div>
-          </div>
-        </div>
-		  <div class="medias list_ad">
-		  
-		  <?php if($this->session->userdata('userdetails')){ ?>
-		  <span class="medias user_log">
-				<a ><i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" /></i>
-				<p>Account</p>
-				</a>
-						
-			</span>
-			<div id="user_sow" style="display:none;">
-							<ul class="log_list" >
-								<span class="top_fix_niv glyphicon glyphicon-triangle-top"></span>
-								<li class="font_list"><a href="<?php echo base_url('customer/account');?>">  <span >My Account</span> </a></li>
-								<li class="font_list"><a href="<?php echo base_url('customer/cart');?>">  <span >My Cart</span> </a></li>
-								<li class="font_list"><a href="<?php echo base_url('customer/wishlist');?>">  <span >My Wishlist</span> </a></li>
-								<li class="font_list"><a href="<?php echo base_url('customer/changepassword');?>">  <span >Change Password</span> </a></li>
-								<li class="font_list"><a href="<?php echo base_url('customer/logout');?>">  <span >Logout</span> </a></li>
-							</ul>
-			</div>
-		  <?php }else{ ?>
-			<span class="medias user_log text-center">
-			<a href="<?php echo base_url('customer'); ?>" ><i class="" aria-hidden="true">
-			</i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" />
-			<p>Sign Up/Sign In</p></a>
-			</span>
-		  <?php } ?>
-			
-			<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
-				<p>Location</p></a>
-			</span></a></span>
-			
-			<?php if($this->session->userdata('userdetails')){ ?>
-			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i></a>&nbsp;<sup class="sup_log">
-			<?php if(count($cartitemcount)>0){ ?>
-				<?php echo count($cartitemcount); ?>
-				</sup>
-				<p >Cart</p>
-				<div class="sprinkle"></div>
-			<?php } ?>
-			
-			</span>
-			<?php } else{ ?>
-			<span class="medias text-center"><a href="<?php echo base_url('customer');?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
-				<p >Cart</p></a>
-			</span>
-			</a>&nbsp;<sup class="sup"></sup></span>
-			<?php } ?>
-			<span class="medias text-center"><a href=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></i>
-				<p>Track</p></a>
-			</span>
-		 </div>
-	</div>
-	  <div class="top-navbar1">
-    <div class="container">
-      <div class=" row">
-		  <ul class="navbar_1"><li><span style="color:#555">Qucik Jump to </span></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			
-		  </ul>
-	  </div>
-	 
-    </nav>
-	
-	 
-	
-	
-	<!-- Login popup start here -->
-	
-	<!-- Modal -->
-<div class="modal animated  zoomIn" id="sin_log" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="md-content">
-    <div id="log_sign"> 
-      
-      <!-- Nav tabs -->
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#login" aria-controls="home" role="tab" data-toggle="tab"> <i class="fa fa-lock" aria-hidden="true"></i> Login</a></li>
-        <li role="presentation"><a href="#signup" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
-      </ul>
-      
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="login">
-		 <div id="login-response" style="font-size:100%;"></div>
-          <form id="login-form" method="post">
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="text" class="form-control" name="login_email" id="login_email">
-			  <span class="all_errors"><p id="NameErr1" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="pwd">Password:</label>
-              <label class="pull-right" id="frgt_pass"><a href="#" class="pull-right" style="text-decoration: none;"><i class="icon-question-sign"></i>&nbsp; <i class="fa fa-question-circle" aria-hidden="true"></i> Forgot Password ?</a> </label>
-              <input type="password" class="form-control" name="login_password" id="login_password">
-			  <span class="all_errors"><p id="PasswordErr5" class="Error_msge"></p></span>
-            </div>
-            <!--<div class="checkbox">
-              <label>
-                <input type="checkbox">
-                Remember me</label>
-            </div>-->
-            <button type="submit" class="btn btn-danger cls pull-left" id="login_submit" name="submit">SIGN IN</button>
-          </form>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="signup">
-		<div id="signup-response" style="font-size:100%;"></div>
-          <form method="post" id="register-form">
-            <div class="form-group">
-              <label for="user name">User Name:</label>
-              <input type="text" name="user_name" id="user_name" class="form-control">
-			  <span class="all_errors"><p id="NameErr" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="text" class="form-control" name="user_email" id="user_email">
-			  <span class="all_errors"><p id="EmailErr" class="Error_msge"></p></span>
-            </div>
-			 <div class="form-group">
-              <label for="phone">Phone No:</label>
-              <input type="text" class="form-control" name="user_phone" id="user_phone">
-			  <span class="all_errors"><p id="PhoneErr" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="password">Password:</label>
-              <input type="password" class="form-control" name="user_password" id="user_password">
-			  <span class="all_errors"><p id="PassErr1" class="Error_msge"></p></span>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" id="chkterms2">
-                By signing up I agree to terms & conditions</label>
-				<span class="all_errors"><p id="TermsErr" class="Error_msge"></p></span>
-            </div>
-            <button type="submit" class="btn btn-danger cls pull-left" id="register_submit" name="submit">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div id="show_pass" style="display: none;">
-      
-	  <button class="md-close pull-right miy" style="margin-bottom: 15px;">Close me!</button>
-      Forgot Your Password ?
-	  <div id="lost-response" style="font-size:100%;"></div>
-	  <form method="post" id="lost-form">
-      <div class="form-group">
-        <input type="password" class="form-control" name="lost_email" id="lost_email" placeholder="Please Enter Your Email Here">
-      </div>
-      <button type="submit" class="btn btn-danger cls pull-left" id="lost_submit">Submit</button>
-	  </form>
-      <label id="show_login" class="pull-right lgo"><i class="fa fa-user-plus"></i> Login</label>
-    </div>
-  </div> 	
-  </div>
-</div>
-	
-	<!-- end popup start here -->   
-	
-	
-	<!-- Login popup start here -->
-<div class="md-modal md-effect-8" id="modal-8">
-  <div class="md-content">
-    <div id="log_sign"> 
-      
-      <!-- Nav tabs -->
-      <button class="md-close pull-right miy">Close me!</button>
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#login" aria-controls="home" role="tab" data-toggle="tab"> <i class="fa fa-lock" aria-hidden="true"></i> Login</a></li>
-        <li role="presentation"><a href="#signup" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
-      </ul>
-      
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="login">
-		 <div id="login-response" style="font-size:100%;"></div>
-          <form id="login-form" method="post">
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="text" class="form-control" name="login_email" id="login_email">
-			  <span class="all_errors"><p id="NameErr1" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="pwd">Password:</label>
-              <label class="pull-right" id="frgt_pass"><a href="#" class="pull-right" style="text-decoration: none;"><i class="icon-question-sign"></i>&nbsp; <i class="fa fa-question-circle" aria-hidden="true"></i> Forgot Password ?</a> </label>
-              <input type="password" class="form-control" name="login_password" id="login_password">
-			  <span class="all_errors"><p id="PasswordErr5" class="Error_msge"></p></span>
-            </div>
-            <!--<div class="checkbox">
-              <label>
-                <input type="checkbox">
-                Remember me</label>
-            </div>-->
-            <button type="submit" class="btn btn-danger cls pull-left" id="login_submit" name="submit">SIGN IN</button>
-          </form>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="signup">
-		<div id="signup-response" style="font-size:100%;"></div>
-          <form method="post" id="register-form">
-            <div class="form-group">
-              <label for="user name">User Name:</label>
-              <input type="text" name="user_name" id="user_name" class="form-control">
-			  <span class="all_errors"><p id="NameErr" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="text" class="form-control" name="user_email" id="user_email">
-			  <span class="all_errors"><p id="EmailErr" class="Error_msge"></p></span>
-            </div>
-			 <div class="form-group">
-              <label for="phone">Phone No:</label>
-              <input type="text" class="form-control" name="user_phone" id="user_phone">
-			  <span class="all_errors"><p id="PhoneErr" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="password">Password:</label>
-              <input type="password" class="form-control" name="user_password" id="user_password">
-			  <span class="all_errors"><p id="PassErr1" class="Error_msge"></p></span>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" id="chkterms2">
-                By signing up I agree to terms & conditions</label>
-				<span class="all_errors"><p id="TermsErr" class="Error_msge"></p></span>
-            </div>
-            <button type="submit" class="btn btn-danger cls pull-left" id="register_submit" name="submit">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div id="show_pass" style="display: none;">
-      
-	  <button class="md-close pull-right miy" style="margin-bottom: 15px;">Close me!</button>
-      Forgot Your Password ?
-	  <div id="lost-response" style="font-size:100%;"></div>
-	  <form method="post" id="lost-form">
-      <div class="form-group">
-        <input type="password" class="form-control" name="lost_email" id="lost_email" placeholder="Please Enter Your Email Here">
-      </div>
-      <button type="submit" class="btn btn-danger cls pull-left" id="lost_submit">Submit</button>
-	  </form>
-      <label id="show_login" class="pull-right lgo"><i class="fa fa-user-plus"></i> Login</label>
-    </div>
-  </div>
-</div>
-
-<div class="md-overlay"></div>
-<a href="javascript:void(0)"  style="text-decoration:none;" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup">
-</a>
-<div class="modal fade" id="locationsearchpopup" role="dialog">
-    <div class="modal-dialog">
-		<div class="modal-content">
-        <div class="modal-header">
-          <button type="button" id="hidebutton" class="close" data-dismiss="modal">&times;</button>
-       </div>
-        <div class="newsletter-form" style="padding:0px 20px 15px 20px;">
-          <h3>Select Your products Location</h3>
-		 <form action="<?php echo base_url('customer/test'); ?>" method="post">
-			<div class="input-box">
-				
-					<?php foreach($locationdata as $location_data) {?>
-					<input type="checkbox" name="check_list[]" value="<?php echo $location_data['location_id']; ?>"><label><?php echo $location_data['location_name']; ?></label><br/>
-
-					<?php }  ?>
-				
-				
-			<div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
-
-            <button type="submit"  class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
-          </div>
-		  </form>
-          <!--input-box--> 
-        </div>
-		
-		<div>
-		
-		</div>
-      </div>
-	</div>
-  </div>
- 
-
-<!-- the overlay element --> 
-
-<script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
-<script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/customer/multi-list.js"></script>
-
-		<script>
-		function getlocationselectlist(){
-			var ids=$('#locationsids[]').val();
-			alert(ids);
-		}
-
-			$(document).ready(function() {
-				$("#list").multiList();
-
-				// elementChecked
-				// "value" (the "value" attr from the li items) and "text (the full text)
-				$("#list").on("multiList.elementChecked", function(event, value, text) {
-					set_li();
-				});
-
-				// elementUnchecked
-				// "value" (the "value" attr from the li items) and "text (the full text)
-				$("#list").on("multiList.elementUnchecked", function(event, value, text) {
-					set_li();
-				});
-
-				$("#list").trigger("multiList.elementChecked");
-
-			});
-
-			function set_li() {
-				var selected_text = "";
-				var selected_elements = $("#list").multiList("getSelectedFull");
-				if (selected_elements.length > 0) {
-					for (var i = 0; i < selected_elements.length; i++) {
-						selected_text += selected_elements[i][1] + " (<i>" + selected_elements[i][0] + "</i>)";
-						if (i < selected_elements.length - 1) selected_text += ", ";
-					}
-				}
-				$("#selected_elements").html(selected_text);
-
-				var unselected_text = "";
-				var unselected_elements = $("#list").multiList("getUnselected");
-				if (unselected_elements.length > 0) {
-					for (var i = 0; i < unselected_elements.length; i++) {
-						unselected_text += "<i>" + unselected_elements[i] + "</i>";
-						if (i < unselected_elements.length - 1) unselected_text += ", ";
-					}
-				}
-				$("#unselected_elements").html(unselected_text);
-			}
-
-		</script>
-<script type="text/javascript">
-
-function searchfunction(val){
-	$('#addingdropdown').hide();
-	$('#addingdropdown').empty();
-	var length=val.length;
-	if(length >2){
-	
-		jQuery.ajax({
-			url: "<?php echo site_url('home/search_functionality');?>",
-			type: 'post',
-			data: {
-				form_key : window.FORM_KEY,
-				searchvalue: val,
-				},
-			dataType: 'html',
-			success: function (data) {
-			$('#addingdropdown').show();
-			$("#addingdropdown").append(data);	
-
-
-			}
-		});
-		
-	}
+<style>
+.top-navbar1{
+	display:none;
+}
+.panel-title > a:before {
+    float: right !important;
+    font-family: FontAwesome;
+	content:"\f077";
+    padding-right: 5px;
+}
+.panel-heading {
+    background:#45b1b5 ;
+}
+.panel-title > a.collapsed:before {
+    float: right !important;
+    content:"\f078";
+}
+.panel-title > a:hover, 
+.panel-title > a:active, 
+.panel-title > a:focus  {
+    text-decoration:none;
 	
 }
+.fluid_mod{
+	margin:0px 60px;
+	background:#fff;
+}
+
+</style>
+<!--<div class="" style="margin-top:50px;">
+	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
+</div>-->
+<body >
+	 <div class="container-fluid fluid_mod ">
+	 <div class="row ">
+			<div class="col-md-12  ">
+			  
+			  <div class="col-md-12 gir_alg" style="border-right:1px solid #45b1b5">
+			  <div class="title text-left mar_t10"><span>Sub Categoryview</span></div>
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Andhra
+					  </div>
+				  </div> 
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Arabian
+					  </div>
+				  </div> 
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						American
+					  </div>
+				  </div> 
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Bengali
+					  </div>
+				  </div>
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Beverages
+					  </div>
+					 
+				  </div>  
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Andhra
+					  </div>
+				  </div> 
+
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Arabian
+					  </div>
+				  </div> 
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						American
+					  </div>
+				  </div> 
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Bengali
+					  </div>
+				  </div>
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Beverages
+					  </div>
+				  </div> 
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Andhra
+					  </div>
+				  </div> 
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Arabian
+					  </div>
+				  </div> 
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						American
+					  </div>
+				  </div> 
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Bengali
+					  </div>
+				  </div>
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Beverages
+					  </div>
+					 
+				  </div>  
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Andhra
+					  </div>
+				  </div> 
+
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Arabian
+					  </div>
+				  </div> 
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						American
+					  </div>
+				  </div> 
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Bengali
+					  </div>
+				  </div>
+				  <div class="col-md-2 ">
+					 <div class="catg_sty">
+						Beverages
+					  </div>
+				  </div> 
+				  
+				 
+			  </div>
+			 
+			 
+			</div>
+	 </div>
+	<br>
+	<hr>
+	 <div class=" clearfix"></div>
+	 <!-- Filter Sidebar -->
+		<div class="col-sm-3">
+		 <div class="title"><span>Filters</span></div>
+
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingOne">
+						 <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					    Mobiles & Accessories
+					</a>
+				  </h4>
+
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						<div class="panel-body">
+							<select class="form-control" id="sel1">
+								<option>Mobile Accessories</option>
+								<option>Cases & Covers</option>
+								<option>Power Banks</option>
+								<option>Headphones</option>
+								<option>Memory Cards & Readers</option>
+								<option>Earphone Cable Organizers</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div>
+					
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingTwo">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					 BRAND
+					</a>
+				  </h4>
+
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+						<div class="panel-body">
+							<select class="test form-control" multiple="multiple" s>
+							
+									<option value="1">Search Brand</option>
+									<option value="2" selected>Samsung</option>
+									<option value="3">Lenovo</option>
+									<option value="4" disabled>Syska</option>
+									<option value="5">Mi</option>
+						
+									<option value="6" selected>Apple</option>
+									<option value="7">Sony</option>
+									<option value="7">Sony</option>
+									<option value="8">4256 MORE</option>
+							
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  OFFERS
+					</a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+							<div class="checkbox"><label><input type="checkbox" id="checkbox1"><span>&nbsp;Bank Offer</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox2"><span>&nbsp;Buy More, Save More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;No Cost EMI</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;Special Price</span></label></div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingFive">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+					  COMPATIBLE MOBILES
+					</a>
+				  </h4>
+
+					</div>
+					<div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+						<div class="panel-body">
+							<div class="checkbox"><label><input type="checkbox" id="checkbox1"><span>&nbsp;Acer beTouch E110</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox2"><span>&nbsp;Acer beTouch E130</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;Acer BeTouch E210</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox4"><span>&nbsp;Acer Ferrari Edition Liquid E</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox5"><span>&nbsp;Acer Liquid E700</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox6"><span>&nbsp;Acer Liquid Jade</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox6"><span>&nbsp;3309 MORE</span></label></div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingFour">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+					  DISCOUNT
+					</a>
+				  </h4>
+
+					</div>
+					<div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+						<div class="panel-body">
+							<div class="checkbox"><label><input type="checkbox" id="checkbox1"><span>&nbsp;50% or More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox2"><span>&nbsp;40% or More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;30% or More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox4"><span>&nbsp;20% or More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox5"><span>&nbsp;10% or More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox6"><span>&nbsp;Less than 10%</span></label></div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingSix">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+					  AVAILABILITY
+					</a>
+				  </h4>
+
+					</div>
+					<div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
+						<div class="panel-body">
+							<div class="checkbox"><label><input type="checkbox" id="checkbox1"><span>&nbsp;Include Out of Stock</span></label></div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <!-- End Filter Sidebar -->
+
+        <!-- Product List -->
+        <div class="col-sm-9">
+          <div class="title"><span>T-Shirts</span></div>
 
 
+          <div class="col-sm-4 col-md-3 box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper">
+                <a href="detail.html">
+                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/p1-1.jpg">
+                </a>
+                <div class="tags">
+                  <span class="label-tags"><span class="label label-primary arrowed">Featured</span></span>
+                </div>
+                <div class="tags tags-left">
+                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
+                </div>
+                <div class="option">
+                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+                </div>
+              </div>
+              <h6><a href="detail.html">WranglerGrey Printed Slim Fit Round Neck T-Shirt</a></h6>
+              <div class="price">
+                <div>$13.50 <span class="label-tags"><span class="label label-primary">-10%</span></span></div>
+                <span class="price-old">$15.00</span>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="#">(5 reviews)</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-3 box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper">
+                <a href="detail.html">
+                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/p2-1.jpg">
+                </a>
+                <div class="tags tags-left">
+                  <span class="label-tags"><span class="label label-success arrowed-right">New Arrivals</span></span>
+                </div>
+                <div class="option">
+                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+                </div>
+              </div>
+              <h6><a href="detail.html">CelioKhaki Printed Round Neck T-Shirt</a></h6>
+              <div class="price">
+                <div>$13.50 <span class="label-tags"><span class="label label-primary">-10%</span></span></div>
+                <span class="price-old">$15.00</span>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="#">(5 reviews)</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-3 box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper">
+                <a href="detail.html">
+                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/p3-1.jpg">
+                </a>
+                <div class="tags">
+                  <span class="label-tags"><span class="label label-danger arrowed">Sale</span></span>
+                  <span class="label-tags"><span class="label label-info arrowed">Collection</span></span>
+                </div>
+                <div class="option">
+                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+                </div>
+              </div>
+              <h6><a href="detail.html">CelioOff White Printed Round Neck T-Shirt</a></h6>
+              <div class="price">
+                <div>$13.50</div>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="#">(5 reviews)</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-3 hidden-sm box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper">
+                <a href="detail.html">
+                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/p4-1.jpg">
+                </a>
+                <div class="tags">
+                  <span class="label-tags"><span class="label label-primary arrowed">Popular</span></span>
+                </div>
+                <div class="option">
+                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+                </div>
+              </div>
+              <h6><a href="detail.html">Levi'sNavy Blue Printed Round Neck T-Shirt</a></h6>
+              <div class="price">
+                <div>$13.50</div>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="#">(5 reviews)</a>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-sm-4 col-md-3 box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper">
+                <a href="detail.html">
+                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/p5-1.jpg">
+                </a>
+                <div class="tags tags-left">
+                  <span class="label-tags"><span class="label label-primary arrowed-right">Pupolar</span></span>
+                </div>
+                <div class="option">
+                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+                </div>
+              </div>
+              <h6><a href="detail.html">IncultAcid Wash Raglan Crew Neck T-Shirt</a></h6>
+              <div class="price">
+                <div>$13.50 <span class="label-tags"><span class="label label-danger arrowed">-10%</span></span></div>
+                <span class="price-old">$15.00</span>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="#">(5 reviews)</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-3 box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper">
+                <a href="detail.html">
+                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/p6-1.jpg">
+                </a>
+                <div class="tags">
+                  <span class="label-tags"><span class="label label-danger arrowed">Hot Item</span></span>
+                </div>
+                <div class="option">
+                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+                </div>
+              </div>
+              <h6><a href="detail.html">Avoir EnvieOlive Printed Round Neck T-Shirt</a></h6>
+              <div class="price">
+                <div>$13.50 <span class="label-tags"><span class="label label-success arrowed">-10%</span></span></div>
+                <span class="price-old">$15.00</span>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="#">(5 reviews)</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-3 box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper">
+                <a href="detail.html">
+                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/p7-1.jpg">
+                </a>
+                <div class="tags">
+                  <span class="label-tags"><span class="label label-primary arrowed">Hot Item</span></span>
+                </div>
+                <div class="option">
+                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+                </div>
+              </div>
+              <h6><a href="detail.html">ElaboradoBrown Printed Round Neck T-Shirt</a></h6>
+              <div class="price">
+                <div>$13.50 <span class="label-tags"><span class="label label-primary arrowed">-10%</span></span></div>
+                <span class="price-old">$15.00</span>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="#">(5 reviews)</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-3 hidden-sm box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper">
+                <a href="detail.html">
+                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/polo1.jpg">
+                </a>
+                <div class="tags">
+                  <span class="label-tags"><span class="label label-success arrowed">New Arrivals</span></span>
+                </div>
+                <div class="option">
+                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+                </div>
+              </div>
+              <h6><a href="detail.html">IncultGeo Print Polo T-Shirt</a></h6>
+              <div class="price">
+                <div>$13.50 <span class="label-tags"><span class="label label-primary arrowed">-10%</span></span></div>
+                <span class="price-old">$15.00</span>
+              </div>
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="#">(5 reviews)</a>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+	
+        <!-- End Product List -->
 
- 
-    $(document).ready(function(){
-      $('#frgt_pass').click(function(){
-          $('#log_sign').hide();
-          $('#show_pass').show();
-
-      });
-       $('.md-close').click(function(){
-            $('#modal-8').hide();
-            $('.md-overlay').hide();
-          });
-       $('#show_login').click(function(){
-          $('#log_sign').show();
-          $('#show_pass').hide();
-       })
-    });
-  </script> 
-
-<!-- Login popup end here -->
+      
+    </div>
+	 </div>
+	 <div class="clearfix"></div>
+	 <br>
+</body>
 <script>
-function registershow(){
-	
-$("#modal-8").show();	
-} 
-</script>
-	
-
-<script type="text/javascript" language="javascript">
-      $(document).ready(function(){
-    $('#register_submit').click(function(e){
-    e.preventDefault();
- 
-    //if ($('#chkterms2').is(':checked')) {
-    var user_name = $("#user_name").val();
-    var user_email= $("#user_email").val();
-	var user_phone = $("#user_phone").val();
-    var user_password = $("#user_password").val();
-	var terms_conditions = $('#chkterms2').is(':checked');
-     
-    
-    var letters = /^[0-9a-zA-Z]+$/; 
-    var number = /^\d{10}$/;
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var name=/^[^-\s][a-zA-Z0-9_\s-]+$/;
-    var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-    
-    if (user_name == "")
-    {
-    $("#NameErr").html("Enter Your Name ").css("color", "red");
-    $("#user_name").focus();
-    return false;
-    }
-    else{
-      if(user_name!="" && user_name.match(letters)) 
-      {
-        $("#NameErr").html("");
-      }
-      else{
-        
-        $("#NameErr").html("Name Accepts Alphanumeric Only");
-        $("#user_name").focus();
-        return false;
-        }
-    }
-    
-    
-    if (user_email == "")
-    {
-    $("#EmailErr").html("Enter Your Email ID ").css("color", "red");
-    $("#user_email").focus();
-    return false;
-    }
-    else{
-      if(user_email!="" && user_email.match(mailformat)) 
-      {
-        $("#EmailErr").html("");
-      }
-      else{
-        
-        $("#EmailErr").html("Invalid Email Format");
-        $("#user_email").focus();
-        return false;
-        }
-      
-    }
-	
-	
-	
-	if (user_phone == "")
-    {
-    $("#PhoneErr").html("Enter Your Phone Number").css("color", "red");
-    $("#user_phone").focus();
-    return false;
-    }
-    else{
-      if(user_phone!="" && user_phone.match(number)) 
-      {
-        $("#PhoneErr").html("");
-      }
-      else{
-        
-        $("#PhoneErr").html("Invalid Phone Number");
-        $("#user_phone").focus();
-        return false;
-        }
-      
-    }
-    
-   
-    /************************************************************************/
-      if(user_password==""){
-      $("#PassErr1").html("Enter Your Password ").css("color", "red");
-      $("#user_password").focus();
-      return false; 
-      }
-      else{
-      if(user_password!="" && user_password.match(strongRegex)) 
-      {
-      $("#PassErr1").html("");
-      }
-      else{
-      $("#PassErr1").html("Password minimum length is 8 characters and should contain letters (One Letter in Caps), symbols, numbers");
-      $("#user_password").focus();
-      return false;
-      } 
-      }
-	  if (terms_conditions == "")
-		{
-		$("#TermsErr").html("Please Accept Terms & Conditions").css("color", "red");
-		return false;
-		}
-		else{
-			$("#TermsErr").html("");
-		}
-  
-    $.ajax({
-    type: "POST",
-    url: '<?php echo base_url() ?>Home/signup',
-    data: {user_name:user_name,user_email:user_email,user_phone:user_phone,user_password:user_password},
-    success:function(data)
-    {
-      //alert(data);
-    if(data == 1)
-    {
-      
-    $("#signup-response").html("You are Successfully Registered! Please Login to Continue. ").css("color", "green");
-    $('#register-form')[0].reset();
-    }
-
-    else if(data == 2){
-    
-    $("#EmailErr").html("The Mail Id you gave is already registered, Please try again.").css("color", "red");
-    $("#user_email").val("");
-    $('#register-form')[0].reset();
-    
-    }
-    else
-    {
-    $("#signup-response").html("Oops! Error.  Please try again later").css("color", "red");
-    
-    $('#register-form')[0].reset();
-
-    }
-    
-    },
-    error:function()
-    {
-    //alert('fail');
-    $("#signup-response").html("Please try again later for signup").css("color", "red");
-
-    $('#register-form')[0].reset();
-    }
+(function($) {
+    $(function() {
+        $('.test').fSelect();
     });
-    });
-    
-    });
-  
-
-		$(document).ready(function(){
-		$("#login_submit").click(function(e){
-		e.preventDefault();
-		
-		var user_email= $("#login_email").val();
-		var user_password = $("#login_password").val();
-		if (user_email == "")
-    {
-    $("#NameErr1").html("Enter Email").css("color", "red");
-    $("#login_email").focus();
-    return false;
-    }
-    else{
-      $("#NameErr1").html("");
-    }
-	if (user_password == "")
-    {
-    $("#PasswordErr5").html("Enter Password").css("color", "red");
-    $("#login_password").focus();
-    return false;
-    }
-    else{
-      $("#PasswordErr5").html("");
-    }
-		$.ajax({
-		type: "POST",
-		url: '<?php echo base_url() ?>Home/login',
-		data: {user_email:user_email,user_password:user_password},
-		success:function(data)
-		{
-		if(data == 1)
-		{
-			location.reload();
-		}
-		else{
-		
-		$("#login-response").html("Invalid User Name or Password").css("color", "red");
-		$('#login-form')[0].reset();	
-		}
-		},
-		error:function()
-		{
-		//$("#signupsuccess").html("Oops! Error.  Please try again later!!!");
-		}
-		});
-		
-		});
-		});
-
-$(document).ready(function(){
-    $(".user_log").click(function(){
-        $("#user_sow").toggle();
-    });
-});
+})(jQuery);
 </script>

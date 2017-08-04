@@ -11,6 +11,7 @@ class Customer extends Front_Controller
 		$this->load->library('session','form_validation');
 		$this->load->library('email');
 		$this->load->model('customer_model'); 
+		$this->load->model('home_model'); 
 			
  }
  
@@ -20,7 +21,15 @@ class Customer extends Front_Controller
 
   public function locationsearch(){
 		$post=$this->input->post();
-	  	$data['product_search']= $this->customer_model->get_product_search_location($post['locationarea']);
+
+		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
+		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
+		$data['tredings']= $this->customer_model->get_product_search_location($post['locationarea']);
+		$data['offers']= $this->customer_model->get_product_search_location($post['locationarea']);
+
+	  	//echo '<pre>';print_r($data);exit;
+	  	$data['deals_of_day']= $this->customer_model->get_product_search_deals_day($post['locationarea']);
+	  	$data['season_sales']= $this->customer_model->get_product_search_seaaon_sales($post['locationarea']);
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/productsearch', $data);
 		$this->template->render();
@@ -117,9 +126,15 @@ class Customer extends Front_Controller
 		$details= $this->customer_model->get_product_details($post['producr_id']);
 		//echo '<pre>';print_r($details);
 		if($details['offer_percentage']!='' && $details['offer_type']!=4){
-			$item_price= ($details['item_cost']-$details['offer_amount']);
-			
-			$price	=(($post['qty']) * ($item_price));
+			if(date('m/d/Y') <= $details['offer_expairdate']){
+				$item_price= ($details['item_cost']-$details['offer_amount']);
+				$price	=(($post['qty']) * ($item_price));
+			}else{
+				$item_price= $details['item_cost'];
+				$price	=(($post['qty']) * ($item_price));
+			}
+			// $item_price= ($details['item_cost']-$details['offer_amount']);			
+			// $price	=(($post['qty']) * ($item_price));
 		}else{
 			$price= (($post['qty']) * ($details['item_cost']));
 			$item_price=$details['item_cost'];
@@ -254,9 +269,15 @@ class Customer extends Front_Controller
 		//echo '<pre>';print_r($details);exit;
 		
 		if($details['offer_percentage']!='' && $details['offer_type']!=4){
-			$item_price= ($details['item_cost']-$details['offer_amount']);
-			
-			$price	=(($post['qty']) * ($item_price));		
+			if(date('m/d/Y') <= $details['offer_expairdate']){
+				$item_price= ($details['item_cost']-$details['offer_amount']);
+				$price	=(($post['qty']) * ($item_price));
+			}else{
+				$item_price= $details['item_cost'];
+				$price	=(($post['qty']) * ($item_price));
+			}
+			//$item_price= ($details['item_cost']-$details['offer_amount']);			
+			//$price	=(($post['qty']) * ($item_price));		
 		}else{
 			$price= (($post['qty']) * ($details['item_cost']));
 			$item_price=$details['item_cost'];
@@ -400,27 +421,49 @@ class Customer extends Front_Controller
 		$data['emailid']=$customerdetails['cust_email'];
 		$data['productinfo']=$items_names[0]['item_name'];
 		$data['txnid']=substr(hash('sha256', mt_rand() . microtime()), 0, 20);
-		$txnid=substr(hash('sha256', mt_rand() . microtime()), 0, 20);
 		$amount=$data['carttotal_amount']['pricetotalvalue'];
 		//echo '<pre>';print_r($data);exit;
-		$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
+		//$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
 		//$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|'.$data['billimgdetails']['name'].'|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
 		//echo '<pre>';print_r($hashSequence);exit;
-		$hashVarsSeq = explode('|', $hashSequence);
-		$hash_string='';
-		foreach($hashVarsSeq as $hash_var) {
-		$hash_string .= $hash_var;
-		$hash_string .= '|';
-		}
+		// $hashVarsSeq = explode('|', $hashSequence);
+		// $hash_string='';
+		// foreach($hashVarsSeq as $hash_var) {
+		// $hash_string .= $hash_var;
+		// $hash_string .= '|';
+		// }
+		//echo '<pre>';print_r($hash_string);exit;
 
-		
-		$data['hashvalue'] = strtolower(hash('sha512', $hash_string));
-		
-		
+		//$hash_string1='gtKFFx|efc7afd5632da2bb7448|163331.7|prodctname|firstanme|vasu@gmail.com|||||||||||eCwWELxi';
+		//$data['hashvalue'] = strtolower(hash('sha512', $hash_string1));
 		
 		
+		 $MERCHANT_KEY = $this->config->item('MERCHANTKEY');
+			$SALT='eCwWELxi';
+
+        $txnid = substr(hash('sha256', mt_rand().microtime()), 0, 20);
+
+        $udf1='';
+        $udf2='';
+        $udf3='';
+        $udf4='';
+        $udf5='';
+		$fname=$data['billimgdetails']['name'];
+		$email=$customerdetails['cust_email'];
 		
-		//echo '<pre>';print_r($data);exit;
+		//$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
+
+         $hashstring = $MERCHANT_KEY.'|'.$data['txnid'].'|'.$amount. '|'.$items_names[0]['item_name'].'|'.$fname.'|'.$email.'|'.$udf1.'|'.$udf2.'|'.$udf3.'|'.$udf4.'|'.$udf5.'||||||'.$SALT;
+         //$hashstring = '';
+
+        $hash = strtolower(hash('sha512',$hashstring));
+        $data['hash'] = $hash;
+		
+		
+		//echo '<pre>';print_r($hashstring);
+		//echo '<pre>';print_r($data);
+//exit;
+		$data['hashstring']=$hashstring;
 		$this->template->write_view('content', 'customer/payment',$data);
 		$this->template->render();
 	}else{
@@ -430,12 +473,12 @@ class Customer extends Front_Controller
 	 
 	 
  }
- public function ordersuccess(){
+ public function success(){
 	 if($this->session->userdata('userdetails'))
 	 {
 
 	$order_id=base64_decode($this->uri->segment(3));
-	//echo '<pre>';print_r($order_id);exit;
+	echo '<pre>';print_r($_POST);exit;
 	  $customerdetails=$this->session->userdata('userdetails');
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 		//echo '<pre>';print_r($cart_items);exit;

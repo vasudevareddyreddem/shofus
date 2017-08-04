@@ -425,7 +425,8 @@ function emailchecking(reasontype) {
                     url: '<?php echo base_url("seller/login/forgot"); ?>',
                     success:function(data)
                     {
-                        if(data.mailsend==1){
+                         $('#EmptyforError').hide();
+						if(data.mailsend==1){
                             $("#myModal1").fadeOut(1);
                             $("#forgot_mobile").val('');
                             $("#forgot-response1").html("Temporary Password Successfully Sent").css("color", "Green").fadeIn().fadeOut(5000);

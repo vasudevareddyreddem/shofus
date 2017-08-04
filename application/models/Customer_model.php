@@ -132,8 +132,8 @@ class Customer_model extends MY_Model
 		return $insert_id = $this->db->insert_id();
 	}
 	public function get_product_details($itemid){
-		$this->db->select('products.*,category.commission')->from('products');
-		$this->db->join('category', 'category.category_id = products.category_id', 'left');
+		$this->db->select('products.*,subcategories.commission')->from('products');
+		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
 		$this->db->where('item_id', $itemid);
         return $this->db->get()->row_array();
 	}
@@ -154,17 +154,69 @@ class Customer_model extends MY_Model
 		$this->db->where('cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
+
+	/* location search querys */
+	public function get_product_search_top_offers($location_id){
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d');
+		$this->db->select('products.*,top_offers.*')->from('products');
+		$this->db->join('top_offers', 'top_offers.item_id = products.item_id', 'left');
+		//$this->db->join('top_offers', 'top_offers.area = products.item_id', 'left');
+		//$this->db->join('reviews', 'reviews.item_id = top_offers.item_id', 'left');
+		$this->db->where_in('seller_location_area',$location_id);
+		$this->db->where_in('area',$location_id);
+		$this->db->where('admin_status','0');
+		$this->db->where('top_offers.expairdate >=', $curr_date);
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(8);
+		return $this->db->get()->result_array();
+	}
+	public function get_product_search_deals_day($location_id){
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d');
+		$this->db->select('products.*,deals_ofthe_day.*')->from('products');
+		$this->db->join('deals_ofthe_day', 'deals_ofthe_day.item_id = products.item_id', 'left');
+		//$this->db->join('top_offers', 'top_offers.area = products.item_id', 'left');
+		//$this->db->join('reviews', 'reviews.item_id = top_offers.item_id', 'left');
+		$this->db->where_in('seller_location_area',$location_id);
+		$this->db->where_in('area',$location_id);
+		$this->db->where('admin_status','0');
+		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(8);
+		return $this->db->get()->result_array();
+	}
+	public function get_product_search_seaaon_sales($location_id){
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d');
+		$this->db->select('products.*,season_sales.*')->from('products');
+		$this->db->join('season_sales', 'season_sales.item_id = products.item_id', 'left');
+		//$this->db->join('top_offers', 'top_offers.area = products.item_id', 'left');
+		//$this->db->join('reviews', 'reviews.item_id = top_offers.item_id', 'left');
+		$this->db->where_in('seller_location_area',$location_id);
+		$this->db->where_in('area',$location_id);
+		$this->db->where('admin_status','0');
+		$this->db->where('season_sales.expairdate >=', $curr_date);
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->limit(8);
+		return $this->db->get()->result_array();
+	}
+
 	public function get_product_search_location($location_id){
+
+		//$date = new DateTime("now");
+ 		//$curr_date = $date->format('m/d/Y');
 		$this->db->select('products.*')->from('products');
-		$this->db->join('reviews', 'reviews.item_id = products.item_id', 'left');
+		//$this->db->join('reviews', 'reviews.item_id = products.item_id', 'left');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where('admin_status','0');
+		//$this->db->where('products.offer_expairdate <=', $curr_date);
 		$this->db->order_by('products.offer_percentage desc');
 		$this->db->limit(8);
 		return $this->db->get()->result_array();
 	}
 	public function get_cart_products($cust_id){
-		$this->db->select('cart.*,products.item_name,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type')->from('cart');
+		$this->db->select('cart.*,products.item_name,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,products.offer_expairdate,products.offer_time')->from('cart');
 		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();

@@ -8,9 +8,7 @@
     
 
 </header>
-<div class="" style="margin-top:130px;">
-	
-</div>
+
 
 <div class="pad_bod">
 		<div class="row">

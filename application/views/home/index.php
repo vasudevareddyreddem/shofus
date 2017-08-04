@@ -1,31 +1,34 @@
 <body class="bac_img">
-<div class="banner_home con_start">
+<div class="banner_home con_start" style="margin-top:-20px;">
      
       <div id="myCarousel" class="carousel slide"> 
         <!-- Indicators -->
 
-			<div class="carousel-inner">
+      <div class="carousel-inner">
 
-				
-				<?php //echo '<pre>';print_r($homepage_banner);exit; ?>
-				<?php $c=0;foreach($homepage_banner as $images){  ?>
-				
-				<?php if($c==0){  ?>
-					<div class="item active"> <img src="<?php echo base_url('uploads/banners/'.$images['file_name']);?>" class="img-responsive">
-					<div class="container">
-						<div class="carousel-caption"> </div>
-					</div>
-				</div>
-				<?php }else{ ?>
-			  <div class="item"> <img src="<?php echo base_url('uploads/banners/'.$images['file_name']);?>" class="img-responsive">
-				<div class="container">
-				  <div class="carousel-caption"> </div>
-				</div>
-			  </div>
-				<?php } $c++;} ?>
+        
+        <?php //echo '<pre>';print_r($homepage_banner);exit; ?>
+        <?php $c=0;foreach($homepage_banner as $images){  ?>
+        
+        <?php if($c==0){  ?>
+          <div class="item active"> <img src="<?php echo base_url('uploads/banners/'.$images['file_name']);?>" class="img-responsive">
+          <div class="container">
+            <div class="carousel-caption"> </div>
+          </div>
+        </div>
+        <?php }else{ ?>
+        <div class="item"> <img src="<?php echo base_url('uploads/banners/'.$images['file_name']);?>" class="img-responsive">
+        <div class="container">
+          <div class="carousel-caption"> </div>
+        </div>
+        </div>
+        <?php } $c++;} ?>
 
-				
-		</div>
+        
+    </div>
+  
+      
+    
         
         <!-- Controls --> 
         <a class="left carousel-control" href="#myCarousel" data-slide="prev"> <i class="glyphicon glyphicon-chevron-left"></i> </a> <a class="right carousel-control" href="#myCarousel" data-slide="next"> <i class="glyphicon glyphicon-chevron-right"></i> </a> </div>
@@ -48,17 +51,19 @@
             </div>
             <div id="top-categories" class="product-flexslider hidden-buttons">
               <div class="slider-items slider-width-col4 products-grid">
-			  <?php foreach ($topoffers as $tops){  ?>
-				<div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url('assets/home/images/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
-                    <div class="pro-info"><?php echo $tops['item_name']; ?></div>
-					</div>
+        <?php foreach ($topoffers as $tops){  ?>
+        <div class="item" style="border: 1px #ddd solid;">
+                  <div class="pro-img img-wrapper  img_hover"><img src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
+                    
+          </div>
+		  
+		  <div class="pro-info" style="border-top:1px solid #ddd;"><?php echo $tops['item_name']; ?></div>
                   </div>
               <?php } ?>
-			  </div>
+        </div>
             </div>
-			<div class="clearfix"></div>
-				<a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary " style="position:absolute;top:15px;right:10px"> See More</button></a>
+      <div class="clearfix"></div>
+        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary " style="position:absolute;top:15px;right:10px"> See More</button></a>
           </div>
         </div>
       </div>
@@ -74,14 +79,14 @@
         <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-		   <?php foreach ($trending_products as $topslist){  ?>
+       <?php foreach ($trending_products as $topslist){  ?>
             <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$topslist['item_image']); ?>">
-				   
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$topslist['item_image']); ?>">
+           
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
@@ -92,18 +97,31 @@
                 <div class="option">
                   <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
                   <a href="#" id="compare" onclick="compare(<?php echo $topslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare" value="<?php echo $topslist['item_name']; ?>"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+          <?php if($topslist['yes']==1){ ?>
+          <a href="javascript:void(0);" data-toggle="tooltip" style="color:yellow;" title="Add to Wishlist" class="wishlist" onclick="addwhishlidt(<?php echo $topslist['item_id']; ?>);" id="addwhish" ><i class="fa fa-heart"></i></a>  
+          <?php }else{ ?> 
+          <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Wishlist" class="wishlist" onclick="addwhishlidt(<?php echo $topslist['item_id']; ?>);" id="addwhish"><i class="fa fa-heart"></i></a>  
+          <?php } ?>
+
+
+                  
                 </div>
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
+
+              
               <div class="price">
+              <!-- <?php echo "<pre>";print_r(date('m/d/Y')); ?> -->
+              <?php if(date('m/d/Y') <= $topslist['offer_expairdate'] ) {?>
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
-					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
-				</div>
-				
-			
-                <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+                 <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+                </div>
+                  <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+                  <?php } else{?> 
+              <span><?php echo $topslist['item_cost']; ?></span>
+              <?php }?>
               </div>
+              
               <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -115,8 +133,8 @@
             </div>
           </div>
             </div>
-			
-		   <?php } ?>
+      
+       <?php } ?>
             
            
             <!-- End Item --> 
@@ -138,8 +156,8 @@
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$topslist['item_image']); ?>">
-				   
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$topslist['item_image']); ?>">
+           
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
@@ -155,12 +173,15 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
               <div class="price">
+              <?php if(date('m/d/Y') <= $topslist['offer_expairdate']) {?>
                 <div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
-					<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
-				</div>
-				
-			
+                 <span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+                </div>
                 <span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+                <?php } else{?> 
+              <span><?php echo $topslist['item_cost']; ?></span>
+              <?php }?>
+
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -173,8 +194,8 @@
             </div>
           </div>
             </div>
-			
-		   <?php } ?>
+      
+       <?php } ?>
             
            
             
@@ -192,16 +213,16 @@
     
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-		  
-		  <?php //echo '<pre>';print_r($deals_of_the_day);exit; ?>
+      
+      <?php //echo '<pre>';print_r($deals_of_the_day);exit; ?>
       <?php foreach($deals_of_the_day as $items)  {    ?>
            <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$items['item_image']); ?>">
-				   
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>">
+           
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
@@ -218,12 +239,14 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>"><?php echo $items['item_name']; ?></a></h6>
               <div class="price">
+                <?php if(date('Y-m-d') <= $items['expairdate']) {?>
                 <div class="pull-left" ><?php echo ($items['item_cost'])-($items['offer_amount']); ?> 
-					<span class="label-tags"><span class="label label-default">-<?php echo $items['offer_percentage']; ?>%</span></span>
-				</div>
-				
-			
+                 <span class="label-tags"><span class="label label-default">-<?php echo $items['offer_percentage']; ?>%</span></span>
+                </div>
                 <span class="price-old"><?php echo $items['item_cost']; ?></span>
+                <?php } else{?> 
+              <span><?php echo $items['item_cost']; ?></span>
+              <?php }?>
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -242,7 +265,7 @@
         </div>
       </div>
     </section>
-	 <section>
+   <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
           <h2>Season Sales</h2>
@@ -257,7 +280,7 @@
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('assets/home/images/'.$items['item_image']); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>">
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
@@ -273,12 +296,14 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>"><?php echo $items['item_name']; ?></a></h6>
               <div class="price">
+                <?php if(date('Y-m-d') <= $items['expairdate']) {?>
                 <div class="pull-left" ><?php echo ($items['item_cost'])-($items['offer_amount']); ?> 
-					<span class="label-tags"><span class="label label-default">-<?php echo $items['offer_percentage']; ?>%</span></span>
-				</div>
-				
-			
+                 <span class="label-tags"><span class="label label-default">-<?php echo $items['offer_percentage']; ?>%</span></span>
+                </div>
                 <span class="price-old"><?php echo $items['item_cost']; ?></span>
+                <?php } else{?> 
+              <span><?php echo $items['item_cost']; ?></span>
+              <?php }?>
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -321,15 +346,15 @@
         <div class="newsletter-form">
          
 
-		  <div class="input-box">
-				<select name="locationid" id="locationid" class="validate-select sel_are">
-				<option value="">Select Area </option>
-				<?php foreach($locationdata as $location_data) {?>
-				<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
+      <div class="input-box">
+        <select name="locationid" id="locationid" class="validate-select sel_are">
+        <option value="">Select Area </option>
+        <?php foreach($locationdata as $location_data) {?>
+        <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
 
-				<?php } ?>
-				</select>
-				<div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
+        <?php } ?>
+        </select>
+        <div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
 
             <button type="button" onclick="searchlocation();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
           </div>
@@ -346,46 +371,73 @@
 </div>
 <div id="fade" style="display: block;"></div>
 
-	<?php } ?>
+  <?php } ?>
 </body>
 <script type="text/javascript" language="javascript">
 
  function searchlocation(){
-	 
-	 jQuery('#address1errormsg').show();
-	
-		 var area=jQuery('#locationid').val();
-		 if(area==''){
-				jQuery('#address1errormsg').html('Please Select Area');
-				return false;
-		 }
-		jQuery('#address1errormsg').html(''); 
-		jQuery('#address1errormsg').hide();
-		$("#location_seacrh_result").empty();
-		jQuery.ajax({
-				url: "<?php echo site_url('home/search_location_offers');?>",
-				type: 'post',
-				data: {
-					form_key : window.FORM_KEY,
-					address1: jQuery("#address1").val(),
-					area: jQuery("#locationid").val(),
-					},
-				dataType: 'html',
-				success: function (data) {
-					jQuery('.popup1').hide();
-					jQuery('#fade').hide();
-					$("#location_seacrh").hide();
-					$("#location_seacrh_result").show();
-					$("#location_seacrh_result").append(data);
+   
+   jQuery('#address1errormsg').show();
+  
+     var area=jQuery('#locationid').val();
+     if(area==''){
+        jQuery('#address1errormsg').html('Please Select Area');
+        return false;
+     }
+    jQuery('#address1errormsg').html(''); 
+    jQuery('#address1errormsg').hide();
+    $("#location_seacrh_result").empty();
+    jQuery.ajax({
+        url: "<?php echo site_url('home/search_location_offers');?>",
+        type: 'post',
+        data: {
+          form_key : window.FORM_KEY,
+          address1: jQuery("#address1").val(),
+          area: jQuery("#locationid").val(),
+          },
+        dataType: 'html',
+        success: function (data) {
+          jQuery('.popup1').hide();
+          jQuery('#fade').hide();
+          $("#location_seacrh").hide();
+          $("#location_seacrh_result").show();
+          $("#location_seacrh_result").append(data);
 
-				}
-			});
+        }
+      });
 
  }
-	
-	
+  
+  
 </script>
 <script type="text/javascript">
+function addwhishlidt(id){
+jQuery.ajax({
+      url: "<?php echo site_url('customer/addwhishlist');?>",
+      type: 'post',
+      data: {
+        form_key : window.FORM_KEY,
+        item_id: id,
+        },
+      dataType: 'JSON',
+      success: function (data) {
+        jQuery('#sucessmsg').show();
+        //alert(data.msg);
+        if(data.msg==2){
+        $('#addwhish').css("color", "");
+        $('#sucessmsg').html('Product Successfully removed to Whishlist');  
+        }
+        if(data.msg==1){
+        $('#addwhish').css("color", "yellow");
+        $('#sucessmsg').html('Product Successfully added to Whishlist');  
+        }
+      
+
+      }
+    });
+  
+  
+}
 
  function compare(id){
    //alert(id);

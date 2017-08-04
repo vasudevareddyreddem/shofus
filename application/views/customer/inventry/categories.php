@@ -15,9 +15,9 @@
       <div class="row">
       <?php foreach($category as $names) { ?>
         <div class="col-lg-3 col-xs-6">          
-          <div class="small-box bg-aqua">
+          <div class="small-box ">
             <div class="inner text-center">
-              <h3><?php echo $names['category_name'];?></h3>
+              <h4><?php echo $names['category_name'];?></h4>
             </div>           
             <a href="<?php echo base_url('inventory/categorywisesellers/'.base64_encode($names['category_id']));?>" class="small-box-footer">Sellers List<i class="fa fa-arrow-circle-right"></i></a>
           </div>

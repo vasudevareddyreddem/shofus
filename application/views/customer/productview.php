@@ -12,7 +12,7 @@
     border-radius: 0 0 0.5em 0.5em;
 }
 </style>
-<div class="" style="margin-top:150px;">
+<div class="">
 	
 </div>
 <div class="pad_bod" style="margin-bottom:220px;">
@@ -74,14 +74,14 @@
               <tr>
                 <td>Price</td>
                 <td>
-				<?php if(isset($products_list['offer_amount']) && $products_list['offer_percentage']!=''){ ?>
+				<?php if(date('m/d/Y') <= $products_list['offer_expairdate']) {?>
 				<div class="price">
                     <div><?php echo ($products_list['item_cost'])-($products_list['offer_amount']); ?><span class="label label-default arrowed">-<?php echo $products_list['offer_percentage']; ?>%</span></div>
                     <span class="price-old"><?php echo $products_list['item_cost']; ?></span>
                   </div>
 				<?php }else{ ?>
                   <div class="price">
-                    <span class="price-old"><?php echo $products_list['item_cost']; ?></span>
+                    <span><?php echo $products_list['item_cost']; ?></span>
                   </div>				  
 				<?php } ?>
                 </td>
@@ -169,7 +169,11 @@
                       </tr>
                       <tr>
                         <td>Item Cost</td>
-                        <td><?php echo $products_list['item_cost']; ?></td>
+                        <?php if(date('m/d/Y') <= $products_list['offer_expairdate'] && date('H:ia')<= $products_list['offer_time']) {?>
+                        	<td><?php echo ($products_list['item_cost'])-($products_list['offer_amount']); ?></td>
+                        	<?php }else{ ?>
+                        		<td><?php echo $products_list['item_cost']; ?></td>
+                        		<?php }?>
                       </tr>
                       <tr>
                         <td>Item Status</td>
@@ -566,7 +570,7 @@ function sticky_relocate() {
         $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
     else if (window_top > div_top) {
         $('#sticky').addClass('stick');
-        $('#sticky').css({top: 150})
+        $('#sticky').css({top: 90})
     } else {
         $('#sticky').removeClass('stick');
 		$('#sticky').css({top:0})
