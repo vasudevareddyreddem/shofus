@@ -304,6 +304,13 @@
 			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
+	<div class="row" id="product_themeetc" style="display:none;">
+		
+			<div class="col-md-6 form-group">
+			<label>Theme</label>
+			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			</div>
+	</div>
 	<div class="row" id="product_theme" style="display:none;">
 		
 			<div class="col-md-6 form-group">
@@ -767,7 +774,7 @@ $(document).ready(function(){
 	  
 }
 function getspecialinputs(ids){
-	if(ids==7){
+	if(ids==7 || ids==24){
 		$('#sizeid').hide();
 		$('#colorid').hide();
 	}
@@ -806,7 +813,7 @@ function getspecialinputs(ids){
 		$('#footwareinputs').hide();
 
 	}
-	if(ids==11){
+	if(ids==11 || ids==21){
 		$('#womensaccessoriesinputs').show();
 		$('#sizeid').hide();
 		$('#colorid').hide();
@@ -814,7 +821,7 @@ function getspecialinputs(ids){
 		$('#womensaccessoriesinputs').hide();
 
 	}
-	if(ids==13){
+	if(ids==13 || ids==16 || ids==17){
 		
 		$('#sizeid').show();
 		$('#colorid').show();
@@ -823,7 +830,7 @@ function getspecialinputs(ids){
 		$('#mensfabricsinputs1').hide();
 
 	}
-	if(ids==14){
+	if(ids==14 || ids==19 || ids==20 || ids==22){
 		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
@@ -838,22 +845,7 @@ function getspecialinputs(ids){
 		$('#jwelleryinputs').hide();
 
 	}
-	if(ids==16){
-		$('#mensfabricsinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-
-	}
-	if(ids==17){
-		$('#mensfabricsinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-
-	}
+	
 	if(ids==18){
 		$('#sizeid').show();
 		$('#colorid').show();
@@ -870,20 +862,8 @@ function getspecialinputs(ids){
 	}else{
 		$('#winterwaerinputs').hide();
 	}
-	if(ids==20){
-		$('#winterwaerinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs').hide();
-	}
-	if(ids==21){
-		$('#product_theme').show();
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}else{
-		$('#product_theme').hide();
-	}
+	
+	
 	if(ids==22){
 		$('#winterwaerinputs').show();
 		$('#sizeid').show();
@@ -911,9 +891,9 @@ function getspecialinputs(ids){
 	if(ids==25){
 		$('#sizeid').show();
 		$('#colorid').show();
-		$('#product_theme').show();
+		$('#womensaccessoriesinputs').show();
 	}else{
-		$('#product_theme').hide();	
+		$('#womensaccessoriesinputs').hide();	
 	}
 	if(ids==52){
 		$('#sizeid').show();

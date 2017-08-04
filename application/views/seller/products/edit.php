@@ -308,7 +308,7 @@
 			</div>
 	
 	</div>
-	<?php if($productdetails['subcategory_id']!='13'){
+	<?php if($productdetails['subcategory_id']!='13' || $productdetails['subcategory_id']!='16' ||$productdetails['subcategory_id']!='17'){
 		$mensfabricsinputshide1 = 'display:none';
 		}else{
 		$mensfabricsinputshide1 = '';
@@ -351,7 +351,7 @@
 			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='14'){
+	<?php if($productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22'){
 		$winterwaerinputshide1 = '';
 		}else{
 		$winterwaerinputshide1 = 'display:none';
@@ -422,7 +422,7 @@
 			</div>
 	</div>
 	<?php 
-	if($productdetails['subcategory_id']=='11' || $productdetails['subcategory_id']=='12' || $productdetails['subcategory_id']=='13' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17'){
+	if($productdetails['subcategory_id']=='11' || $productdetails['subcategory_id']=='12' || $productdetails['subcategory_id']=='13' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='21'){
 		$womensaccessoriesinputshide = '';
 		}else{
 			$womensaccessoriesinputshide = 'display:none;';
@@ -1148,7 +1148,7 @@
  getspecialinputs('<?php echo htmlentities($productdetails['subcategory_id']);?>');
 	function getspecialinputs(ids){
 	
-	if(ids==7){
+	if(ids==7 || ids==24){
 		$('#sizeid').hide();
 		$('#colorid').hide();
 		$('#womensaccessoriesinputs').hide();
@@ -1180,7 +1180,7 @@
 		$('#footwareinputs').hide();
 
 	}
-	if(ids==11){
+	if(ids==11 || ids==21){
 		$('#womensaccessoriesinputs').show();
 		$('#sizeid').hide();
 		$('#colorid').hide();
@@ -1188,7 +1188,7 @@
 		$('#womensaccessoriesinputs').hide();
 
 	}
-	if(ids==13){
+	if(ids==13 || ids==16 || ids==17){
 		$('#mensfabricsinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
@@ -1196,7 +1196,7 @@
 		$('#mensfabricsinputs1').hide();
 
 	}
-	if(ids==14){
+	if(ids==14 || ids==19 || ids==20 || ids==22){
 		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
