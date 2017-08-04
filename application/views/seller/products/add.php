@@ -79,6 +79,7 @@
 				<div class="collapse  form-group nopaddingRight san-lg" id="fileups">
 					 <label for="exampleInputEmail1">Import File</label>
 					<input type="file" class="form-control" name="categoryfile" id="categoryfile" >
+					</br>
 					<button type="submit" class="btn btn-warning btn-xs">Submit</button>
 				</div>
 				</form>
@@ -217,7 +218,7 @@
 			</div>
 	</div>
 	<div class="row">
-		<div class=" col-md-6">
+		<div class=" col-md-12">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">sub item</label>
 					<input type="text" class="form-control" id="product_sub_tem" name="product_sub_tem" >
@@ -330,7 +331,7 @@
 					<input type="text" class="form-control" id="dial_shape2" name="dial_shape2" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
 				</div>
 			</div>
-			<div class="col-md-6 form-group">
+			<div id="compatibleos" class="col-md-6 form-group">
 			<label>COMPATIBLE OS</label>
 			<input class="form-control" id="compatible_os"  type="text" name="compatible_os" value="<?php echo isset($productdetails['compatibleos'])?$productdetails['compatibleos']:''; ?>" />
 			</div>
@@ -339,6 +340,22 @@
 			<input class="form-control" id="prouduct_usage"  type="text" name="prouduct_usage" value="<?php echo isset($productdetails['usage'])?$productdetails['usage']:''; ?>" />
 			</div>
 			<div class="col-md-6 form-group">
+			<label>DISPLAY TYPE</label>
+			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" />
+			</div>
+	</div>
+	<div class="row" id="watchesinputs" style="display:none;">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">DIAL SHAPE</label>
+					<input type="text" class="form-control" id="dial_shape2" name="dial_shape2" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
+				</div>
+			</div>
+			<div class="col-md-6 form-group">
+			<label>USAGE</label>
+			<input class="form-control" id="prouduct_usage"  type="text" name="prouduct_usage" value="<?php echo isset($productdetails['usage'])?$productdetails['usage']:''; ?>" />
+			</div>
+			<div class="col-md-12 form-group">
 			<label>DISPLAY TYPE</label>
 			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" />
 			</div>
@@ -922,6 +939,11 @@ function getspecialinputs(ids){
 	if(ids==24){
 		$('#sizeid').hide();
 		$('#colorid').hide();
+	}
+	if(ids==27){
+		$('#watchesinputs').show();
+	}else{
+		$('#watchesinputs').hide();	
 	}
 	if(ids==25){
 		$('#sizeid').show();

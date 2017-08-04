@@ -393,6 +393,27 @@
 			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" />
 			</div>
 	</div>
+	<?php if($productdetails['subcategory_id']=='27'){
+		$watchesinputshide = '';
+		}else{
+		$watchesinputshide = 'display:none';
+		} ?>
+	<div class="row" id="watchesinputs" style="<?php echo $watchesinputshide; ?>">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">DIAL SHAPE</label>
+					<input type="text" class="form-control" id="dial_shape2" name="dial_shape2" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
+				</div>
+			</div>
+			<div class="col-md-6 form-group">
+			<label>USAGE</label>
+			<input class="form-control" id="prouduct_usage"  type="text" name="prouduct_usage" value="<?php echo isset($productdetails['usage'])?$productdetails['usage']:''; ?>" />
+			</div>
+			<div class="col-md-12 form-group">
+			<label>DISPLAY TYPE</label>
+			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" />
+			</div>
+	</div>
 	<?php if($productdetails['subcategory_id']=='53'){
 		$footwareinputshide = '';
 		}else{
