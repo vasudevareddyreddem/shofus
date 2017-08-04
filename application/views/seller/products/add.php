@@ -76,7 +76,7 @@
 				<a type="button" class="btn btn-primary btn-xs">Download</a>
 				<button type="submit" class="btn btn-warning btn-xs">Upload</button>
 				</p>
-				<div class="form-group nopaddingRight san-lg">
+				<div class="form-group nopaddingRight san-lg" style="display:none;">
 					 <label for="exampleInputEmail1">Add SubCategory Name</label>
 					<input type="file" class="form-control" name="categoryfile" id="categoryfile" >
 				</div>
@@ -125,6 +125,7 @@
 			
 	</div>
 	<div class="clearfix"></div>
+	<hr>
 	<div class="row">
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
@@ -214,31 +215,37 @@
 			</div>
 	</div>
 	<div class="row">
-		<div class=" col-md-6">
+		<div class=" col-md-12">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">sub item</label>
 					<input type="text" class="form-control" id="product_sub_tem" name="product_sub_tem" >
 				</div>
 			</div>
 	</div>
-	<div class="row col-md-12 form-group" id="sizeid"  >
+	<div class="row">
+	<div class=" col-md-12 form-group" id="sizeid"  >
 			<label>Size</label>
 			<input class="form-control" id="sizes"  type="text" name="sizes"/>
 					
 	</div>
-	<div class="row col-md-12 form-group" id="colorid">
+	</div>
+	<div class="row">
+	<div class=" col-md-12 form-group" id="colorid">
 			<label>Color</label>
 			<input class="form-control" id="colors"  type="text" name="colors"/>
 					
 	</div>
-	<div class="row" class=" col-md-12" >
-			<div class="col-md-6 form-group" id="idealfor"style="display:none;">
+	</div>
+	<div class="row">
+	<div  class=" col-md-12" >
+			<div class="col-md-12 form-group" id="idealfor"style="display:none;">
 			<div class="form-group nopaddingRight san-lg">
 			<label for="exampleInputEmail1">Ideal FOR</label>
 			<input type="text" class="form-control" id="ideal_for" name="ideal_for" >
 			</div>
 			</div>
-		<div class="col-md-6 form-group">
+			</div>
+		<div class="col-md-12 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Brand</label>
 					<input type="text" class="form-control" id="brand" name="brand" >
