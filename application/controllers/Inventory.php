@@ -1980,9 +1980,39 @@ public function servicerequestview(){
 	       }
     	
   
- 
+ 	
 
-  
+  public function productquantity(){ 
+	if($this->session->userdata('userdetails'))
+	{		
+		$data['quantity'] = $this->inventory_model->total_quantity();
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/product_quantity',$data);
+		$this->load->view('customer/inventry/footer');
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	} 
+  }
+
+
+  public function categorywisequantity()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	$sellerid = base64_decode($this->uri->segment(3));
+		//echo "<pre>";print_r($id);exit;
+		$data['category_wise'] = $this->inventory_model->categorywise_quantity($sellerid);
+		//echo "<pre>";print_r($data);exit;
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/categorywise_quantity',$data);
+		$this->load->view('customer/inventry/footer');
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
  
 
 

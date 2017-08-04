@@ -205,7 +205,7 @@
 				</div>
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='8' ||$productdetails['subcategory_id']=='53' || $productdetails['subcategory_id']=='13' ||$productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='15' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='18' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22' || $productdetails['subcategory_id']=='51' || $productdetails['subcategory_id']=='23' || $productdetails['subcategory_id']=='25' || $productdetails['subcategory_id']=='52' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29'){
+	<?php if($productdetails['category_id']!='21' || $productdetails['subcategory_id']=='8' ||$productdetails['subcategory_id']=='53' || $productdetails['subcategory_id']=='13' ||$productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='15' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='18' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22' || $productdetails['subcategory_id']=='51' || $productdetails['subcategory_id']=='23' || $productdetails['subcategory_id']=='25' || $productdetails['subcategory_id']=='52' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29'){
 		$coloridhide = '';
 		}else{
 		$coloridhide = 'display:none';
@@ -229,6 +229,10 @@
 		}else{
 		$sizeidhide = 'display:none';
 		} ?>
+		<?php if($productdetails['category_id']=='21' || $productdetails['subcategory_id']=='1'){
+			$sizeidhide = '';
+		}
+		?>
 	<div class="row form-group col-md-12" id="sizeid" style="<?php echo $sizeidhide; ?>">
 			<label>Size</label>
 			<span class="pull-right col-md-10">
@@ -244,19 +248,24 @@
 		
 					
 	</div>
-	<?php if($productdetails['category_id']!='18'){
-		$idealforhide = '';
+	<?php if($productdetails['category_id']=='21'){
+		$idealforhide = 'display:none;';
 		}else{
-		$idealforhide = 'display:none';
+		$idealforhide = '';
 		} ?>
-	<div class="row" class=" col-md-12" id="idealfor" style="<?php echo $idealforhide; ?>">
-			<div class="col-md-6 form-group">
+		<?php if($productdetails['category_id']=='18'){
+		$brandhide = 'display:none;';
+		}else{
+		$brandhide = '';
+		} ?>
+	<div class="row" class=" col-md-12" >
+			<div class="col-md-6 form-group"   id="idealfor" style="<?php echo $idealforhide; ?>">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Ideal FOR</label>
 					<input type="text" class="form-control" id="ideal_for" name="ideal_for" value="<?php echo isset($productdetails['ideal_for'])?$productdetails['ideal_for']:''; ?>" >
 				</div>
 		</div>
-		<div class="col-md-6 form-group">
+		<div class="col-md-6 form-group" style="<?php echo $brandhide; ?>">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Brand</label>
 					<input type="text" class="form-control" id="brand" name="brand" value="<?php echo isset($productdetails['brand'])?$productdetails['brand']:''; ?>" >
@@ -285,10 +294,10 @@
 	</div>
 	<!-- food category purpose-->
 	<!-- special inputs for subcategory  --->
-	<?php if($productdetails['subcategory_id']=='23' ||$productdetails['subcategory_id']=='25'){
-		$mensfabricsinputshide = '';
-		}else{
+	<?php if($productdetails['subcategory_id']!='13' ||$productdetails['subcategory_id']!='23' || $productdetails['subcategory_id']!='25'){
 		$mensfabricsinputshide = 'display:none';
+		}else{
+		$mensfabricsinputshide = '';
 		} ?>
 	<div class="row" id="mensfabricsinputs" style="<?php echo $mensfabricsinputshide; ?>">
 			<div class="col-md-6 form-group">
@@ -299,7 +308,21 @@
 			</div>
 	
 	</div>
-	<?php if($productdetails['subcategory_id']=='21' ||$productdetails['subcategory_id']=='11' ||$productdetails['subcategory_id']=='25'){
+	<?php if($productdetails['subcategory_id']!='13' || $productdetails['subcategory_id']!='16' ||$productdetails['subcategory_id']!='17'){
+		$mensfabricsinputshide1 = 'display:none';
+		}else{
+		$mensfabricsinputshide1 = '';
+		} ?>
+	<div class="row" id="mensfabricsinputs1" style="<?php echo $mensfabricsinputshide1; ?>">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Type</label>
+					<input type="text" class="form-control" id="product_type8" name="product_type8" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+				</div>
+			</div>
+	
+	</div>
+	<?php if($productdetails['subcategory_id']=='21' || $productdetails['subcategory_id']=='11' ||$productdetails['subcategory_id']=='25'){
 		$product_themehide = '';
 		}else{
 		$product_themehide = 'display:none';
@@ -317,6 +340,23 @@
 		$winterwaerinputshide = 'display:none';
 		} ?>
 	<div class="row" id="winterwaerinputs" style="<?php echo $winterwaerinputshide; ?>">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Type</label>
+					<input type="text" class="form-control" id="product_type7" name="product_type7" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+				</div>
+			</div>
+			<div class="col-md-6 form-group">
+			<label>Theme</label>
+			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			</div>
+	</div>
+	<?php if($productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22'){
+		$winterwaerinputshide1 = '';
+		}else{
+		$winterwaerinputshide1 = 'display:none';
+		} ?>
+	<div class="row" id="winterwaerinputs1" style="<?php echo $winterwaerinputshide1; ?>">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Type</label>
@@ -382,13 +422,14 @@
 			</div>
 	</div>
 	<?php 
-	if($productdetails['subcategory_id']=='12' || $productdetails['subcategory_id']=='13' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17'){
+	if($productdetails['subcategory_id']=='11' || $productdetails['subcategory_id']=='12' || $productdetails['subcategory_id']=='13' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='21'){
 		$womensaccessoriesinputshide = '';
 		}else{
-
-		$womensaccessoriesinputshide = "display:none";
+			$womensaccessoriesinputshide = 'display:none;';
 		} ?>
-	<div class="row" id="womensaccessoriesinputs" style="<?php $womensaccessoriesinputshide; ?>">
+		
+		
+	<div class="row" id="womensaccessoriesinputs" style="<?php echo $womensaccessoriesinputshide; ?>">
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
 			<input class="form-control" id="product_theme4"  type="text" name="product_theme4" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
@@ -726,10 +767,7 @@
 		 <label for="exampleInputEmail1">NUMBER OF CORES</label>
 		<input type="text" class="form-control" id="number_of_cores" name="number_of_cores" value="<?php echo isset($productdetails['cores'])?$productdetails['cores']:''; ?>" >
 		</div>
-		<div class=" col-md-12 form-group">
-		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage1" name="internal_storage1" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
-		</div>
+		
 		
 	</div>
 	
@@ -1092,6 +1130,11 @@
 		  $('#idealfor').hide();
 		  $('#sizeid').hide();
 		  $('#colorid').hide();
+	   }else if(id==21){
+		$('#colorid').hide(); 
+		$('#sizeid').show();		
+		$('#ideal_for').hide();  
+		  
 	  }else{
 		  $('#foodcategoryinputs').hide();
 		  $('#idealfor').show();
@@ -1104,7 +1147,8 @@
   $('#personalcareappliancesinputs').show();
  getspecialinputs('<?php echo htmlentities($productdetails['subcategory_id']);?>');
 	function getspecialinputs(ids){
-	  if(ids==7){
+	
+	if(ids==7 || ids==24){
 		$('#sizeid').hide();
 		$('#colorid').hide();
 		$('#womensaccessoriesinputs').hide();
@@ -1136,28 +1180,28 @@
 		$('#footwareinputs').hide();
 
 	}
-	if(ids==11){
-		$('#product_theme').show();
+	if(ids==11 || ids==21){
+		$('#womensaccessoriesinputs').show();
 		$('#sizeid').hide();
 		$('#colorid').hide();
 	}else{
-		$('#product_theme').hide();
+		$('#womensaccessoriesinputs').hide();
 
 	}
-	if(ids==13){
-		$('#mensfabricsinputs').show();
+	if(ids==13 || ids==16 || ids==17){
+		$('#mensfabricsinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
 	}else{
-		$('#mensfabricsinputs').hide();
+		$('#mensfabricsinputs1').hide();
 
 	}
-	if(ids==14){
-		$('#winterwaerinputs').show();
+	if(ids==14 || ids==19 || ids==20 || ids==22){
+		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
 	}else{
-		$('#winterwaerinputs').hide();
+		$('#winterwaerinputs1').hide();
 
 	}
 	if(ids==15){
@@ -1309,8 +1353,14 @@
 		$('#colorid').hide();
 		$('#mobilesinputs').show();
 	}else{
-		$('#mobilesinputs').hide();	
+		$('#mobilesinputs').hide();
+		//$('#sizeid').show();
 	}
+	if(ids==1){
+		$('#sizeid').hide();
+		$('#ideal_for').hide();
+	}
+	 
 	
 	   
 		  

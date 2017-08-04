@@ -53,11 +53,42 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
-	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data" >
+			<?php if($this->session->flashdata('addsuccess')){ ?>
 
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+					 <?php foreach($this->session->flashdata('addsuccess') as $error){?>
+					
+					<?php echo $error.'<br/>'; ?>
+					
+					
+					<?php } ?></div><?php } ?>
+	
+	<div class="col-md-6 ">
+	<label >&nbsp; </label>
+		<div  class=" shad_down " >
+			<h4 class="text-center" style="color:#006a99 ">Download this File to add Multiple Products</h4>
+				<form id="importproducts" name="importproducts" onsubmit="return validations();" action ="<?php echo base_url('seller/import/uploadproducts/');?>" method="post" enctype="multipart/form-data">
+				<input type="hidden" id="category_ids" name="category_ids">
+				<input type="hidden" id="subcategory_ids" name="subcategory_ids">
+				<p class="text-center">
+				<a type="button" class="btn btn-primary btn-xs">Download</a>
+				<button type="submit" class="btn btn-warning btn-xs">Upload</button>
+				</p>
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Add SubCategory Name</label>
+					<input type="file" class="form-control" name="categoryfile" id="categoryfile" >
+				</div>
+				</form>
+			<p class="text-center">(for each Subcategory)</p>
+		</div >
+	</div>
+	
+	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data" >
 	<div class="row">
-	<div class=" col-md-6 ">
-			<div class="form-group nopaddingRight san-lg">
+			<span id="errormsg"></span>
+			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Category </label>
 				<select class="form-control " onchange="getsubcategory(this.value);getproductinputs(this.value);" id="category_id" name="category_id">
 				<option value="">Select Category</option>
@@ -74,7 +105,7 @@
 				</div>
 				</div>
 			</div>
-			<div class="form-group nopaddingRight san-lg">
+			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Sub Category </label>
 				<select class="form-control" onchange="getspecialinputs(this.value);" id="subcategorylist" name="subcategorylist" >
 				<option value="">Select Subcategory </option>
@@ -91,23 +122,6 @@
 			
 			
 	</div>
-	
-	<div class=" col-md-6 ">
-	<label >&nbsp; </label>
-		<div  class=" shad_down " >
-			<h4 class="text-center" style="color:#006a99 ">Download this File to add Multiple Products</h4>
-			<p class="text-center">
-			<button type="button" class="btn btn-primary btn-xs">Download</button>
-			<button type="button" class="btn btn-warning btn-xs">Upload</button>
-			</p>
-			<p class="text-center">(for each Subcategory)</p>
-		</div >
-	</div>
-	</div>
-	
-	<div class="clearfix"></div>
-	<hr>
-	
 	
 	<div class="row">
 			<div class=" col-md-6 ">
@@ -215,13 +229,13 @@
 			<input class="form-control" id="colors"  type="text" name="colors"/>
 					
 	</div>
-	<div class="row" class=" col-md-12" id="idealfor" style="display:none;">
-			<div class="col-md-6 form-group">
-				<div class="form-group nopaddingRight san-lg">
-					 <label for="exampleInputEmail1">Ideal FOR</label>
-					<input type="text" class="form-control" id="ideal_for" name="ideal_for" >
-				</div>
-		</div>
+	<div class="row" class=" col-md-12" >
+			<div class="col-md-6 form-group" id="idealfor"style="display:none;">
+			<div class="form-group nopaddingRight san-lg">
+			<label for="exampleInputEmail1">Ideal FOR</label>
+			<input type="text" class="form-control" id="ideal_for" name="ideal_for" >
+			</div>
+			</div>
 		<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Brand</label>
@@ -256,6 +270,28 @@
 			</div>
 	
 	</div>
+	<div class="row" id="mensfabricsinputs1" style="display:none;">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Type</label>
+					<input type="text" class="form-control" id="product_type8" name="product_type8" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+				</div>
+			</div>
+	
+	</div>	
+	
+	<div class="row" id="winterwaerinputs1" style="display:none;">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Type</label>
+					<input type="text" class="form-control" id="product_type7" name="product_type7" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+				</div>
+			</div>
+			<div class="col-md-6 form-group">
+			<label>Theme</label>
+			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			</div>
+	</div>
 	<div class="row" id="winterwaerinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
@@ -266,6 +302,13 @@
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
 			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			</div>
+	</div>
+	<div class="row" id="product_themeetc" style="display:none;">
+		
+			<div class="col-md-6 form-group">
+			<label>Theme</label>
+			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
 	<div class="row" id="product_theme" style="display:none;">
@@ -598,10 +641,7 @@
 		 <label for="exampleInputEmail1">NUMBER OF CORES</label>
 		<input type="text" class="form-control" id="number_of_cores" name="number_of_cores" value="<?php echo isset($productdetails['cores'])?$productdetails['cores']:''; ?>" >
 		</div>
-		<div class=" col-md-12 form-group">
-		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage1" name="internal_storage1" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
-		</div>
+	
 		
 	</div>
 	
@@ -655,8 +695,48 @@
   <!--main content end--> 
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
-  <script>
+   <script type="text/javascript">
 
+  $(document).ready(function() {
+    $('#importproducts').bootstrapValidator({
+       
+        fields: {
+           categoryfile: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a File'
+					},
+					regexp: {
+						regexp: /\.(xlsx|xls|xlsm)$/i,
+					message: 'Uploaded file is not a valid. Only xlsx,xls,xlsm files are allowed'
+					}
+				}
+            }
+        }
+    });
+});
+function validations(){
+	
+	var catid= document.getElementById('category_id').value;
+	var subcatid= document.getElementById('subcategorylist').value;
+	document.getElementById('category_ids').value = catid;
+	document.getElementById('subcategory_ids').value = subcatid;
+
+	if(catid=='' && subcatid=='' ){
+		 $("#errormsg").html("Please select Ctaegory  and Subcategory").css("color", "red");
+		 return false;
+	}
+	if(catid=='' ){
+		 $("#errormsg").html("Please select Ctaegory").css("color", "red");
+		 return false;
+	}if(subcatid=='' ){
+		 $("#errormsg").html("Please select Subcategory").css("color", "red");
+		 return false;
+	}
+	$("#errormsg").html("");
+	return true;
+	
+}
 $(document).ready(function(){
     $("#categoryhideshow").click(function(){
         $("#addcat").toggle();
@@ -670,10 +750,41 @@ $(document).ready(function(){
   
 });	
 
+
+ function getproductinputs(id){
+	
+	 if(id==18){
+		  $('#foodcategoryinputs').show();
+		  $('#idealfor').hide();
+		  $('#sizeid').hide();
+		  $('#colorid').hide();
+	  }else if(id==21){
+		$('#colorid').hide();  
+		$('#sizeid').show();  
+		$('#ideal_for').hide();  
+		  
+	  }else{
+		  $('#foodcategoryinputs').hide();
+		
+		  $('#idealfor').show();
+		  $('#sizeid').show();
+		  $('#colorid').show();
+	  }
+	 
+	  
+}
 function getspecialinputs(ids){
-	if(ids==7){
+	if(ids==7 || ids==24){
 		$('#sizeid').hide();
 		$('#colorid').hide();
+	}
+	if(ids==40){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#mobilesinputs').show();
+	}else{
+		$('#mobilesinputs').hide();
+		$('#sizeid').show();		
 	}
 	if(ids==8){
 	$('#winterwaerinputs').show();
@@ -702,28 +813,29 @@ function getspecialinputs(ids){
 		$('#footwareinputs').hide();
 
 	}
-	if(ids==11){
-		$('#product_theme').show();
+	if(ids==11 || ids==21){
+		$('#womensaccessoriesinputs').show();
 		$('#sizeid').hide();
 		$('#colorid').hide();
 	}else{
-		$('#product_theme').hide();
+		$('#womensaccessoriesinputs').hide();
 
 	}
-	if(ids==13){
-		$('#mensfabricsinputs').show();
+	if(ids==13 || ids==16 || ids==17){
+		
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#mensfabricsinputs1').show();
+	}else{
+		$('#mensfabricsinputs1').hide();
+
+	}
+	if(ids==14 || ids==19 || ids==20 || ids==22){
+		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
 	}else{
-		$('#mensfabricsinputs').hide();
-
-	}
-	if(ids==14){
-		$('#winterwaerinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs').hide();
+		$('#winterwaerinputs1').hide();
 
 	}
 	if(ids==15){
@@ -733,22 +845,7 @@ function getspecialinputs(ids){
 		$('#jwelleryinputs').hide();
 
 	}
-	if(ids==16){
-		$('#mensfabricsinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-
-	}
-	if(ids==17){
-		$('#mensfabricsinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-
-	}
+	
 	if(ids==18){
 		$('#sizeid').show();
 		$('#colorid').show();
@@ -765,20 +862,8 @@ function getspecialinputs(ids){
 	}else{
 		$('#winterwaerinputs').hide();
 	}
-	if(ids==20){
-		$('#winterwaerinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs').hide();
-	}
-	if(ids==21){
-		$('#product_theme').show();
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}else{
-		$('#product_theme').hide();
-	}
+	
+	
 	if(ids==22){
 		$('#winterwaerinputs').show();
 		$('#sizeid').show();
@@ -806,9 +891,9 @@ function getspecialinputs(ids){
 	if(ids==25){
 		$('#sizeid').show();
 		$('#colorid').show();
-		$('#product_theme').show();
+		$('#womensaccessoriesinputs').show();
 	}else{
-		$('#product_theme').hide();	
+		$('#womensaccessoriesinputs').hide();	
 	}
 	if(ids==52){
 		$('#sizeid').show();
@@ -870,13 +955,7 @@ function getspecialinputs(ids){
 	}else{
 		$('#laptopsinputs').hide();	
 	}
-	if(ids==40){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#mobilesinputs').show();
-	}else{
-		$('#mobilesinputs').hide();	
-	}
+	
 	
 	
 	   
@@ -884,21 +963,7 @@ function getspecialinputs(ids){
   }
 	  
 	  
-  function getproductinputs(id){
-	 if(id==18){
-		  $('#foodcategoryinputs').show();
-		  $('#idealfor').hide();
-		  $('#sizeid').hide();
-		  $('#colorid').hide();
-	  }else{
-		  $('#foodcategoryinputs').hide();
-		  $('#idealfor').show();
-		  $('#sizeid').show();
-		  $('#colorid').show();
-	  }
-	 
-	  
-}
+ 
   	$(document).ready(function() {
     $('#addproduct').bootstrapValidator({
        
@@ -913,7 +978,7 @@ function getspecialinputs(ids){
 			subcategorylist: {
 					validators: {
 					notEmpty: {
-					message: 'Please select a subcategory'
+				message: 'Please select a subcategory'
 					}
 				}
 			},
@@ -1739,6 +1804,31 @@ function getspecialinputs(ids){
         }
     });
 });
+<<<<<<< HEAD
+$(document).ready(function() {
+    $('#importproducts').bootstrapValidator({
+       
+        fields: {
+            category_id_import: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a Category'
+					}
+				}
+            },
+			subcategory_id_import: {
+               validators: {
+					notEmpty: {
+					message: 'Please select a SubCategory'
+					}
+				}
+            },
+			
+			categoryes: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a value'
+=======
   
 
   function getsubcat(ids){
@@ -1779,6 +1869,7 @@ function getspecialinputs(ids){
 				data: {
 					form_key : window.FORM_KEY,
 					catid: id,
+>>>>>>> c8eef6046141137effba8ed1514e857ca456596c
 					},
 				dataType: 'html',
 				success: function (data) {
