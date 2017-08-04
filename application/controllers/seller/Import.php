@@ -12661,11 +12661,6 @@ class Import extends Admin_Controller {
 									}
 								
 							
-							}else if($post['subcategory_ids']==){
-								
-								
-
-
 							}							
 							
 						
