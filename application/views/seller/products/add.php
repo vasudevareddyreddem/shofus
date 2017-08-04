@@ -65,7 +65,7 @@
 					
 					<?php } ?></div><?php } ?>
 	
-	<div class="col-md-6 ">
+	<div class="col-md-5 " style="position:absolute;right:24px; width:39%;">
 	<label >&nbsp; </label>
 		<div  class=" shad_down " >
 			<h4 class="text-center" style="color:#006a99 ">Download this File to add Multiple Products</h4>
@@ -81,7 +81,7 @@
 					<input type="file" class="form-control" name="categoryfile" id="categoryfile" >
 				</div>
 				</form>
-			<p class="text-center">(for each Subcategory)</p>
+			
 		</div >
 	</div>
 	
@@ -98,6 +98,7 @@
 
 				</select>
 				<p  id="categoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Category</a> </p>
+					
 				<div style="display:none;" id="addcat">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Add Category Name</label>
@@ -105,6 +106,7 @@
 				</div>
 				</div>
 			</div>
+			<div class="clearfix"></div>
 			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Sub Category </label>
 				<select class="form-control" onchange="getspecialinputs(this.value);" id="subcategorylist" name="subcategorylist" >
@@ -122,7 +124,7 @@
 			
 			
 	</div>
-	
+	<div class="clearfix"></div>
 	<div class="row">
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
