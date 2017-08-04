@@ -18,7 +18,7 @@
 .mar_t50{
 	margin-top:100px;
 }
-.navbar{
+.navbar {
 	min-height: 75px;
 }
 </style>
