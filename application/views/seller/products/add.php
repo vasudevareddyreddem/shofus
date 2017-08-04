@@ -72,13 +72,14 @@
 				<form id="importproducts" name="importproducts" onsubmit="return validations();" action ="<?php echo base_url('seller/import/uploadproducts/');?>" method="post" enctype="multipart/form-data">
 				<input type="hidden" id="category_ids" name="category_ids">
 				<input type="hidden" id="subcategory_ids" name="subcategory_ids">
-				<p class="text-center">
-				<a type="button" class="btn btn-primary btn-xs">Download</a>
-				<button type="submit" class="btn btn-warning btn-xs">Upload</button>
+				<p class="text-center" id="labelids" style="display:none;">
+				<a id="documentfilelink" type="button" class="btn btn-primary btn-xs">Download</a>
+				<a type="button" class="btn btn-warning btn-xs" data-toggle="collapse" data-target="#fileups">Upload</a>
 				</p>
-				<div class="form-group nopaddingRight san-lg">
-					 <label for="exampleInputEmail1">Add SubCategory Name</label>
+				<div class="collapse  form-group nopaddingRight san-lg" id="fileups">
+					 <label for="exampleInputEmail1">Import File</label>
 					<input type="file" class="form-control" name="categoryfile" id="categoryfile" >
+					<button type="submit" class="btn btn-warning btn-xs">Submit</button>
 				</div>
 				</form>
 			
@@ -100,23 +101,23 @@
 				<p  id="categoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Category</a> </p>
 				<div style="display:none;margin-top:14px;" id="addcat">
 				<div class="form-group nopaddingRight san-lg">
-					 <label for="exampleInputEmail1">Add Category Name</label>
-					<input type="text" class="form-control" name="addcategoryname" id="addcategoryname" >
+					 <label for="exampleInputEmail1">Request for Add Category</label>
+					<input type="text" class="form-control" placeholder="category Name"  name="addcategoryname" id="addcategoryname" >
 				</div>
 				</div>
 			</div>
 			<div class="clearfix"></div>
 			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Sub Category </label>
-				<select class="form-control" onchange="getspecialinputs(this.value);" id="subcategorylist" name="subcategorylist" >
+				<select class="form-control" onchange="getspecialinputs(this.value);getinputfiledshideshow(this.value);" id="subcategorylist" name="subcategorylist" >
 				<option value="">Select Subcategory </option>
 
 				</select>
 				<p id="subcategoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Subcategory</a> </p>
-				<div style="display:none;" id="addsubcat">
+				<div style="display:none;margin-top:14px;" id="addsubcat">
 				<div class="form-group nopaddingRight san-lg">
-					 <label for="exampleInputEmail1">Add SubCategory Name</label>
-					<input type="text" class="form-control" name="addsubcategoryname" id="addsubcategoryname" >
+					 <label for="exampleInputEmail1">Request for Add SubCategory </label>
+					<input type="text" class="form-control" placeholder="Subcategory Name" name="addsubcategoryname" id="addsubcategoryname" >
 				</div>
 				</div>
 			</div>
@@ -125,6 +126,7 @@
 	</div>
 	<div class="clearfix"></div>
 	<hr>
+	<div id="inputfiledshideshow" style="display:none;">
 	<div class="row">
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
@@ -139,6 +141,7 @@
 				</div>
 			</div>
 	</div>
+	
 	<div class="row">
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
@@ -690,6 +693,7 @@
 		<button type="submit" name="buttonSubmit" class="btn btn-primary" >Submit</button>
 		<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/products'); ?>">Cancel</a>
 		</div>
+</div>
 	</form>
 	</section>
 </div>
@@ -774,6 +778,35 @@ $(document).ready(function(){
 	  }
 	 
 	  
+}
+function getinputfiledshideshow(ids){
+	
+	if(ids!=''){
+		$('#inputfiledshideshow').show();
+		$('#labelids').show();
+		$.ajax
+		({
+		type: "POST",
+		url: "<?php echo base_url();?>seller/products/getproductdocumentfile",
+		data: {
+			form_key : window.FORM_KEY,
+			subcategroyid: ids,
+			},
+		dataType: 'json',
+		cache: false,
+		success: function(data)
+		{
+		 var url='<?php echo base_url('assets/subcategoryimportfiles/'); ?>'+data.document;
+		 $('a#documentfilelink').attr({target: '_blank', href  : url});
+
+		} 
+		});
+		
+	}else{
+		$('#inputfiledshideshow').hide();
+		$('#labelids').hide();
+	}
+	
 }
 function getspecialinputs(ids){
 	if(ids==7 || ids==24){

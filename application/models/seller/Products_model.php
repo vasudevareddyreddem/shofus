@@ -103,6 +103,12 @@ class Products_model extends MY_Model
 		$this->db->where('item_id',$id);
         return $this->db->get()->row_array();
 	}
+	public function get_subcategory_document($id)
+	{
+		$this->db->select('subcategories.document')->from('subcategories');
+		$this->db->where('subcategory_id',$id);
+        return $this->db->get()->row_array();
+	}
 	public function get_skuid_exists($skuid)
 	{
 		$this->db->select('*')->from('products');

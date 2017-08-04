@@ -643,6 +643,18 @@ public function removespciciations(){
 				}
 		
 	}
+	public function getproductdocumentfile(){
+		
+	$post = $this->input->post();
+	//echo '<pre>';print_r($post);exit; 
+			
+				$getdocument=$this->products_model->get_subcategory_document($post['subcategroyid']);
+				if(count($getdocument) > 0)
+				{
+				echo json_encode($getdocument);	
+				}
+		
+	}
 
 public function update()
 
