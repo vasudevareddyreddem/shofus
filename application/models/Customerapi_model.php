@@ -45,16 +45,16 @@ class Customerapi_model extends MY_Model
 		$sql="SELECT * FROM customers WHERE customer_id ='".$cusid."'";
         return $this->db->query($sql)->row_array(); 
 	}
-	public function forget_mobile_check($mobile){
+	// public function forget_mobile_check($mobile){
 
-		$sql="SELECT * FROM customers WHERE cust_mobile ='".$mobile."'";
-        return $this->db->query($sql)->row_array(); 
-	}
-	public function forget_email_check($email){
+	// 	$sql="SELECT * FROM customers WHERE cust_mobile ='".$mobile."'";
+ //        return $this->db->query($sql)->row_array(); 
+	// }
+	// public function forget_email_check($email){
 
-		$sql="SELECT * FROM customers WHERE cust_email ='".$email."'";
-        return $this->db->query($sql)->row_array(); 
-	}
+	// 	$sql="SELECT * FROM customers WHERE cust_email ='".$email."'";
+ //        return $this->db->query($sql)->row_array(); 
+	// }
 
 	public function customer_details($cust_id){
 		
@@ -96,6 +96,46 @@ class Customerapi_model extends MY_Model
 		$this->db->where('top_offers.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
 
+	}
+
+	public function deals_of_the_day_list()
+	{
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d');
+		$this->db->select('deals_ofthe_day.*,products.*')->from('deals_ofthe_day');
+		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
+        $this->db->where('admin_status','0');
+		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
+		$this->db->where('deals_ofthe_day.preview_ok',1);
+		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
+		return $this->db->get()->result_array();
+	}
+	public function season_sales_list()
+	{
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d');
+		$this->db->select('season_sales.*,products.*')->from('season_sales');
+		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
+        $this->db->where('admin_status','0');
+		$this->db->order_by('season_sales.offer_percentage desc');
+		$this->db->where('season_sales.preview_ok',1);
+		$this->db->where('season_sales.expairdate >=', $curr_date);
+		return $this->db->get()->result_array();
+	}
+	public function treding_products_list()
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		return $this->db->get()->result_array();
+	}
+	
+	public function offers_for_you_list()
+	{
+		$this->db->select('*')->from('products');
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		return $this->db->get()->result_array();
 	}
 
 }

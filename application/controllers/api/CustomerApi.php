@@ -36,19 +36,19 @@ class CustomerApi extends REST_Controller {
 			$mobile_store = $get['mobile_email'];
 			//echo "<pre>";print_r($mobile_store);exit;
 		}else{
-			$mobile_store ='';
+			$mobile_store =NULL;
 		}
 		//echo "<pre>";print_r($mobile_store);exit;
 		$email =filter_var($get['mobile_email'], FILTER_VALIDATE_EMAIL);
-		if($email==$get['mobile_email']){
-			$email_store = $get['mobile_email'];
-		}else{
-			$email_store = '';
-		}
+		 if($email==$get['mobile_email']){
+		 	$email_store = $get['mobile_email'];
+		 }else{
+		 	$email_store = NULL;
+		 }
 		//echo "<pre>";print_r($email);exit;
 		$mobilecheck = $this->Customerapi_model->mobile_check($get['mobile_email']);
 		//echo $this->db->last_query();exit;
-		$emailcheck = $this->Customerapi_model->email_check($email);
+		$emailcheck = $this->Customerapi_model->email_check($get['mobile_email']);
 		if(count($mobilecheck)>0)
 		{
 			$message = array('status'=>0,'message'=>'Mobile number already exits. Please use another Mobile number.');
@@ -66,7 +66,7 @@ class CustomerApi extends REST_Controller {
 		 			$message = "Dear User,\nYou are Registered Successfully. \n Your OTP is : " .$six_digit_random_number. "\n\n Thanks,\nCart In Hour Team";
 			 		//send mail
 			 		$this->email->from($from_email, 'CartinHour');		
-			 		$this->email->to($email);
+			 		$this->email->to($email_store);
 			 		$this->email->subject($subject);
 			 		$this->email->message($message);
 			 		$this->email->send();
@@ -82,7 +82,7 @@ class CustomerApi extends REST_Controller {
 					$ret = file($url);
 				}
 				$details=array(
-				'cust_email'=>$email,
+				'cust_email'=>$email_store,
 				'cust_mobile'=>$mobile_store,
 				'otp_verification'=>$six_digit_random_number,
 				'role_id'=>1,
@@ -98,9 +98,42 @@ class CustomerApi extends REST_Controller {
 				
 	}
 }
+	
+	/*  Set Password Apis */
+	public function socialregister_post()
+	{
+		$get = $this->input->get(); 
+		$mobile = preg_match('/^[0-9]{10}+$/',$get['social_login']);
+
+		if($mobile==1){
+			$mobile_store = $get['social_login'];
+		}else{
+			$mobile_store =NULL;
+		}
+		$email =filter_var($get['social_login'], FILTER_VALIDATE_EMAIL);
+		 if($email==$get['social_login']){
+		 	$email_store = $get['social_login'];
+		 }else{
+		 	$email_store = NULL;
+		 }
+		 $social=array(
+				'cust_email'=>$email_store,
+				'cust_mobile'=>$mobile_store,
+				'role_id'=>1,
+				'status'=>1,
+				'create_at'=>date('Y-m-d H:i:s'),
+				);
+				$stroe_social_details = $this->Customerapi_model->save_customer($social);
+				if(count($stroe_social_details)>0){
+					$message = array('status'=>1,'customer_id'=>$stroe_social_details,'message'=>'Register Successfully');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
+
+	}
 
 	/*  Set Password Apis */
-	public function setpassword_post(){
+	public function setpassword_post()
+	{
 		$get=$this->input->get();
 		//echo "<pre>";print_r($get);exit;
 		$password=md5($get['password']);		
@@ -278,6 +311,68 @@ class CustomerApi extends REST_Controller {
 			
 		}else{
 			$message = array('status'=>0,'message'=>'Home Banners are not found.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
+	public function dealsoftheday_get()
+	{
+		$deals = $this->Customerapi_model->deals_of_the_day_list();
+		//echo '<pre>';print_r($top_offers);exit;
+		if(count($deals)>0){
+			//$images = header('Content-Type: image/jpg');
+			//echo '<pre>';print_r($images);exit;
+			$deals['path']='http://cartinhour.com/uploads/productsimages/';
+			$this->response($deals, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Deals of The Day are not found.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+	public function seasonsales_get()
+	{
+		$ssales = $this->Customerapi_model->season_sales_list();
+		//echo '<pre>';print_r($top_offers);exit;
+		if(count($ssales)>0){
+			//$images = header('Content-Type: image/jpg');
+			//echo '<pre>';print_r($images);exit;
+			$ssales['path']='http://cartinhour.com/uploads/productsimages/';
+			$this->response($ssales, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Season Sales are not found.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
+	public function trendigproducts_get()
+	{
+		$treding = $this->Customerapi_model->treding_products_list();
+		//echo '<pre>';print_r($top_offers);exit;
+		if(count($treding)>0){
+			//$images = header('Content-Type: image/jpg');
+			//echo '<pre>';print_r($images);exit;
+			$treding['path']='http://cartinhour.com/uploads/productsimages/';
+			$this->response($treding, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Trending Products are not found.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+	public function offersforyou_get()
+	{
+		$offers = $this->Customerapi_model->offers_for_you_list();
+		//echo '<pre>';print_r($top_offers);exit;
+		if(count($offers)>0){
+			//$images = header('Content-Type: image/jpg');
+			//echo '<pre>';print_r($images);exit;
+			$offers['path']='http://cartinhour.com/uploads/productsimages/';
+			$this->response($offers, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Offers For You are not found.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
