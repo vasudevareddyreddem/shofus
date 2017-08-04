@@ -978,7 +978,7 @@ function getspecialinputs(ids){
 			subcategorylist: {
 					validators: {
 					notEmpty: {
-					message: 'Please select a subcategory'
+				message: 'Please select a subcategory'
 					}
 				}
 			},
@@ -1804,6 +1804,31 @@ function getspecialinputs(ids){
         }
     });
 });
+<<<<<<< HEAD
+$(document).ready(function() {
+    $('#importproducts').bootstrapValidator({
+       
+        fields: {
+            category_id_import: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a Category'
+					}
+				}
+            },
+			subcategory_id_import: {
+               validators: {
+					notEmpty: {
+					message: 'Please select a SubCategory'
+					}
+				}
+            },
+			
+			categoryes: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a value'
+=======
   
 
   function getsubcat(ids){
@@ -1844,6 +1869,7 @@ function getspecialinputs(ids){
 				data: {
 					form_key : window.FORM_KEY,
 					catid: id,
+>>>>>>> c8eef6046141137effba8ed1514e857ca456596c
 					},
 				dataType: 'html',
 				success: function (data) {
