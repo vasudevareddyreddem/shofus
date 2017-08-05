@@ -55,7 +55,8 @@
 	 <div id="subcategorywise_products" style="">
 		<div class="col-sm-3">
 		 <div class="title"><span>Filters</span></div>
-
+		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
+			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingOne">
@@ -68,13 +69,11 @@
 					</div>
 					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							<select onchange="mobileaccessories(this.value);" class="form-control" id="sel1">
-								<option value="1">Mobile Accessories</option>
-								<option value="2">Cases & Covers</option>
-								<option value="3">Power Banks</option>
-								<option value="4">Headphones</option>
-								<option value="5">Memory Cards & Readers</option>
-								<option value="6">Earphone Cable Organizers</option>
+							<select onchange="mobileaccessories(this.value);" name="products[res]" class="form-control" id="sel1">
+								<option value="">Select</option>
+								<?php foreach ($myrestaurant as $reslist){ ?>
+								<option value="<?php echo $reslist['seller_id']; ?>"><?php echo $reslist['seller_name']; ?></option>
+								<?php } ?>
 							</select>
 						</div>
 					</div>
@@ -93,7 +92,7 @@
 					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body">
 						<?php foreach ($cusine_list as $list){ ?>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox1" name="products[tshirt][size]" value="<?php echo $list['cusine']; ?>"><span>&nbsp;<?php echo $list['cusine']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[cusine]" value="<?php echo $list['cusine']; ?>"><span>&nbsp;<?php echo $list['cusine']; ?></span></label></div>
 						
 						<?php } ?>
 						</div>
@@ -110,7 +109,7 @@
 					</div>
 					<div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
 						<div class="panel-body">
-							<div class="checkbox"><label><input type="checkbox" value="1" onclick="compatiblemobiles(this.value);" id="checkbox1"><span>&nbsp;Acer beTouch E110</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" value="1" onclick="compatiblemobiles(this.value);" id="checkbox1" name="products[amount]" value="20"><span>&nbsp;Acer beTouch E110</span></label></div>
 							<div class="checkbox"><label><input type="checkbox" value="2" id="checkbox2"><span>&nbsp;Acer beTouch E130</span></label></div>
 							<div class="checkbox"><label><input type="checkbox" value="3" id="checkbox3"><span>&nbsp;Acer BeTouch E210</span></label></div>
 							<div class="checkbox"><label><input type="checkbox" value="4" id="checkbox4"><span>&nbsp;Acer Ferrari Edition Liquid E</span></label></div>
@@ -123,6 +122,8 @@
 				
 				
 			</div>
+			<button type="submit" name="test">Submit</button>
+			</form>
 		</div>
         <!-- End Filter Sidebar -->
 
@@ -223,6 +224,22 @@
 </body>
 <script>
 
+function mobileaccessories(val){
+	alert(val);return false;
+	jQuery.ajax({
+				url: "<?php echo site_url('category/categorywiseearch');?>",
+				type: 'post',
+				data: {
+				productvalues: val,
+				categoryid: '<?php echo $this->uri->segment(3); ?>',
+				},
+				dataType: 'html',
+				success: function (data) {
+					alert(data);
+				
+				}
+			});
+}
 function discount(id){
 	var form = document.getElementById("discountform");
 

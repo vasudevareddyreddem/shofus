@@ -8,6 +8,27 @@ class Category_model extends MY_Model
 	}
 	
 	/* for search data*/
+	public function category_searflietrs(){
+		
+	$this->db->select('fliter_search.category_id,fliter_search.value,')->from('fliter_search');
+	$query=$this->db->get()->result_array();
+	$this->db->group_by('Ip_address',$this->input->ip_address());
+	$this->db->where('Ip_address',$this->input->ip_address());
+
+	$query=$this->db->get()->result_array();
+		foreach ($query as $list){
+			echo '<pre>';print_r($list);
+			
+		}
+	}
+	public function get_all_category_search_products($data){
+		$this->db->select('*')->from('products');
+		$this->db->where('products.item_status',1);
+		$this->db->where_in('seller_id',$data);
+		$this->db->where_in('cusine',$data);
+		return $this->db->get()->result_array();
+		
+	}
 	public function save_searchdata($data){
 		
 		$this->db->insert('fliter_search', $data);
@@ -176,6 +197,67 @@ class Category_model extends MY_Model
 	
 	
 	/* cusine list*/
+	public function delete_privous_searchdata($id)
+	{
+		$sql1="DELETE FROM fliter_search WHERE id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function get_all_previous_search_fields()
+	{
+		$this->db->select('*')->from('fliter_search');
+		$this->db->where('Ip_address',$this->input->ip_address());
+		return $this->db->get()->result_array();
+	}
+		
+		public function get_search_all_subcategory_products()
+	{
+	
+	$this->db->select('fliter_search.*')->from('fliter_search');
+	//$this->db->group_by('fliter_search.cusine');
+	//$this->db->group_by('fliter_search.restraent');
+	//$this->db->group_by('fliter_search.amount');
+	$query=$this->db->get()->result_array();
+		foreach ($query as $sorting){
+			echo '<pre>';print_r($sorting);
+			$return[$sorting['cusine']] = $this->get_cusine($sorting['cusine'],$sorting['category_id']);
+			$return[$sorting['restraent']] = $this->get_restraent($sorting['restraent'],$sorting['category_id']);
+			$return[$sorting['amount']] = $this->get_amount($sorting['amount'],$sorting['category_id']);
+			
+		}
+		if(!empty($return))
+		{
+		return $return;
+		}
+		
+	}
+	public function get_cusine($cusine,$cid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('cusine',$cusine);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_restraent($restraent,$cid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('seller_id',$restraent);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_amount($amount,$cid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('item_cost',$amount);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+		
+	}
+
 	public function get_all_cusine_list($catid)
 	{
 	
@@ -186,6 +268,16 @@ class Category_model extends MY_Model
 		$this->db->group_by('cusine');
 		return $this->db->get()->result_array();
 		
+	}
+	public function get_all_myrestaurant_list($catid)
+	{
+		$this->db->select('sellers.seller_name,sellers.seller_id')->from('products');
+		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');	
+		$this->db->where('products.category_id',$catid);
+		$this->db->where('products.item_status',1);
+		$this->db->where('products.seller_id!=','');
+		$this->db->group_by('products.seller_id');
+		return $this->db->get()->result_array();
 	}
 	
 	public function get_category_name($catid)

@@ -13,28 +13,50 @@ class Category extends Front_Controller
 			
  }
  
- public function cateegoryfilters(){
+ public function categorywiseearch(){
 	 
 	$post=$this->input->post();
+	echo '<pre>';print_r($post);
 	$ip=$this->input->ip_address();
 	$data=array(
 	'Ip_address'=>$ip,
-	'category_id'=>base64_decode($post['category_id']),
-	'brand'=>$post['brand'][0],
+	'category_id'=>base64_decode($post['categoryid']),
+	'cusine'=>isset($post['products']['cusine']) ? $post['products']['cusine']:'',
+	'restraent'=>isset($post['products']['res']) ? $post['products']['res']:'',
+	'amount'=>isset($post['products']['amount']) ? $post['products']['amount']:'',
 	'create'=>date('Y-m-d H:i:s'),
-	
 	);
-	//echo '<pre>';print_r($post);exit;
+	//echo '<pre>';print_r($data);exit;
 	$brand= $this->category_model->save_searchdata($data);
 	if(count($brand)>0){
 		redirect('category/filtersearch');
 		
 	}
+	
 
 }
 function filtersearch(){
 
+	$data=array();
 	$data['subcategory_list']= $this->category_model->get_all_subcategory_list();
+	$subcategory_porduct_list= $this->category_model->get_search_all_subcategory_products();
+	echo '<pre>';print_r($subcategory_porduct_list);exit;
+	foreach ($subcategory_porduct_list as $lists){
+			foreach ($lists as $plist){
+				$products[]=$plist;
+				$categoryid=$plist['category_id'];
+			}
+	}
+	$data['subcategory_porduct_list']=$products;
+	$data['previousdata']= $this->category_model->get_all_previous_search_fields();
+	$caterory_id=$categoryid;
+	if($caterory_id==18){
+		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);
+		$data['myrestaurant']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		
+	}
+	$data['category_name']= $this->category_model->get_category_name($caterory_id);
+
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'customer/filters_search',$data);
 	$this->template->render();
@@ -49,11 +71,13 @@ function filtersearch(){
 	//echo '<pre>';print_r($data);exit;
 	$this->load->view('customer/subcategorywiseproducts',$data);
 	//echo '<pre>';print_r($data);exit;
-	
-	
- } 
+} 
  public function subcategoryview(){
 	 
+	$removesearch= $this->category_model->get_all_previous_search_fields();
+	foreach ($removesearch as $list){
+		$this->category_model->delete_privous_searchdata($list['id']);
+	}
 	$caterory_id=base64_decode($this->uri->segment(3));
 	$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
 	$data['category_name']= $this->category_model->get_category_name($caterory_id);
@@ -61,6 +85,7 @@ function filtersearch(){
 	$data['category_id']=$this->uri->segment(3);
 	if($caterory_id==18){
 		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);
+		$data['myrestaurant']= $this->category_model->get_all_myrestaurant_list($caterory_id);
 		
 	}
 	//echo '<pre>';print_r($data);exit;
