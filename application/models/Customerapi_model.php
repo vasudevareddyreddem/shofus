@@ -138,4 +138,73 @@ class Customerapi_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 
+	public function getsingle_products($product_id){
+		
+		$this->db->select('products.*')->from('products');
+		//$this->db->join('item_wishlist', 'item_wishlist.item_id = products.item_id', 'left'); //
+		$this->db->where('products.item_id',$product_id);
+		$this->db->where('products.admin_status',0);
+		return $this->db->get()->row_array();
+	}
+
+	public function wishlist_save($data)
+	{
+		
+		$this->db->insert('item_wishlist', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function customer_wishlist_delete($cust_id,$wishlistid){
+		$sql1="DELETE FROM item_wishlist WHERE cust_id = '".$cust_id."' AND  id = '".$wishlistid."'";
+		return $this->db->query($sql1);
+	}
+
+	public function get_customer_whishlists($cust_id){
+		$this->db->select('item_wishlist.*,products.item_name,products.skuid,products.item_cost,products.offer_amount,products.item_image')->from('item_wishlist');
+		$this->db->join('products', 'products.item_id = item_wishlist.item_id', 'left');
+		$this->db->where('item_wishlist.cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
+
+	public function get_category_products($category_id)
+	{
+		$this->db->select('products.*')->from('products');
+		$this->db->join('category','category.category_id = products.category_id','left');
+		$this->db->where('products.category_id', $category_id);
+        return $this->db->get()->result_array();
+
+	}
+
+	public function get_categories()
+	{
+		$this->db->select('*')->from('category');
+		$this->db->where('category.status',1);
+		return $this->db->get()->result_array();
+	}
+
+	/* location querys*/
+	public function top_offers_product_search($location_id){
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d');
+		$this->db->select('products.*,top_offers.*')->from('products');
+		$this->db->join('top_offers', 'top_offers.item_id = products.item_id', 'left');
+		$this->db->where_in('area',$location_id);
+		$this->db->where('admin_status','0');
+		$this->db->where('top_offers.expairdate >=', $curr_date);
+		$this->db->order_by('products.offer_percentage desc');
+		return $this->db->get()->result_array();
+	}
+	
+	public function deals_of_the_day_product_search($location_id){
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d');
+		$this->db->select('products.*,deals_ofthe_day.*')->from('products');
+		$this->db->join('deals_ofthe_day', 'deals_ofthe_day.item_id = products.item_id', 'left');
+		$this->db->where_in('area',$location_id);
+		$this->db->where('admin_status','0');
+		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
+		$this->db->order_by('products.offer_percentage desc');
+		return $this->db->get()->result_array();
+	}
+
+
 }
