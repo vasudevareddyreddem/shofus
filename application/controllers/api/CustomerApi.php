@@ -266,7 +266,7 @@ class CustomerApi extends REST_Controller {
 			}
 	}
 
-
+	/*  locations Apis */
 	public function locations_get()
 	{
 		$locations=$this->Customerapi_model->get_locations_list();
@@ -281,7 +281,7 @@ class CustomerApi extends REST_Controller {
 		}
 	}
 
-
+	/*  home page banners Apis */
 	public function homepagebanners_get()
 	{
 		$banners=$this->Customerapi_model->home_page_banners();
@@ -297,7 +297,7 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
-
+	/*  Topoffers Apis */
 	public function topoffers_get()
 	{
 
@@ -314,11 +314,11 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
-
+	/*  deals of the day Apis */
 	public function dealsoftheday_get()
 	{
 		$deals = $this->Customerapi_model->deals_of_the_day_list();
-		//echo '<pre>';print_r($top_offers);exit;
+		//echo '<pre>';print_r($deals);exit;
 		if(count($deals)>0){
 			//$images = header('Content-Type: image/jpg');
 			//echo '<pre>';print_r($images);exit;
@@ -330,10 +330,11 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
+	/*  season sales Apis */
 	public function seasonsales_get()
 	{
 		$ssales = $this->Customerapi_model->season_sales_list();
-		//echo '<pre>';print_r($top_offers);exit;
+		//echo '<pre>';print_r($ssales);exit;
 		if(count($ssales)>0){
 			//$images = header('Content-Type: image/jpg');
 			//echo '<pre>';print_r($images);exit;
@@ -345,11 +346,11 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
-
+	/*  trending products Apis */
 	public function trendigproducts_get()
 	{
 		$treding = $this->Customerapi_model->treding_products_list();
-		//echo '<pre>';print_r($top_offers);exit;
+		//echo '<pre>';print_r($treding);exit;
 		if(count($treding)>0){
 			//$images = header('Content-Type: image/jpg');
 			//echo '<pre>';print_r($images);exit;
@@ -361,10 +362,11 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
+	/*  offers for you Apis */
 	public function offersforyou_get()
 	{
 		$offers = $this->Customerapi_model->offers_for_you_list();
-		//echo '<pre>';print_r($top_offers);exit;
+		//echo '<pre>';print_r($offers);exit;
 		if(count($offers)>0){
 			//$images = header('Content-Type: image/jpg');
 			//echo '<pre>';print_r($images);exit;
@@ -376,6 +378,196 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
+	/* Singel product view */
+	public function singleproductview_get()
+	{
+		$get = $this->input->get();
+		$single_product = $this->Customerapi_model->getsingle_products($get['item_id']);
+		//echo '<pre>';print_r($single_product);exit;
+		if(count($single_product)>0){
+			//$images = header('Content-Type: image/jpg');
+			//echo '<pre>';print_r($images);exit;
+			$single_product['path']='http://cartinhour.com/uploads/productsimages/';
+			$this->response($single_product, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Products not found.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+
+	}
+
+	/* add wishlists */ 
+	public function addwishlist_post()
+	{
+		$get = $this->input->get();
+		$item_ids=explode(",",$get['item_id']);
+		// echo "<pre>";print_r($item_ids);exit;
+		// $ids[] = $get['item_id'];
+		// echo "<pre>";print_r($ids);exit;
+		// for($i=0;$i<sizeof($ids);$i++)
+  //  		{
+  //    		$dataSet[$i] = array ('item_id' => $ids[$i]);
+  //  		}
+		// echo "<pre>";print_r($dataSet);exit;
+		foreach($item_ids as $item_id){
+		$data=array(
+		'cust_id'=>$get['customer_id'],
+		'item_id'=>$item_id,
+		'create_at'=>date('Y-m-d H:i:s'),
+		'yes'=>1,
+		);
+		$wish=$this->customerapi_model->wishlist_save($data);
+		//echo $this->db->last_query();exit;
+		}
+		
+		
+		if(count($wish)>0){
+			$message = array(
+				'status'=>1,
+				'message'=>'Successfully Added wishlists');
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+			$message = array(
+			'status'=>0,
+			'message'=>'Failed To Added wishlists'
+			);
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+
+
+
+	}
+
+	/* wishlist get api */
+	public function wishlists_get()
+	{
+		$get = $this->input->get();
+		$wishlist = $this->Customerapi_model->get_customer_whishlists($get['customer_id']);
+		//echo $this->db->last_query();exit;
+		if(count($wishlist)>0){
+				$message = array
+				(
+					'status'=>1,
+					'wishlists'=>$wishlist,
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Your wishlist Is Empty.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+	/* delete wishlist  api */
+	public function deletewishlist_post()
+	{
+		$get = $this->input->get();
+		//print_r($get);exit;
+		$wishlist_delete= $this->Customerapi_model->customer_wishlist_delete($get['customer_id'],$get['id']);
+		//echo $this->db->last_query();exit;
+		if(count($wishlist_delete)>0){
+				$message = array
+				(
+					'status'=>1,
+					'message'=>'Wishlist Item Successfully deleted..',
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Wishlist Item Failed To deleted!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+	/* category api*/
+	public function categories_get()
+	{
+		$categories = $this->Customerapi_model->get_categories();
+		if(count($categories)>0){
+				$message = array
+				(
+					'status'=>1,
+					'categories'=>$categories,
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Category List Empty.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
+	/* category wise products api*/
+	public function categorywiseproducts_get()
+	{
+		$get = $this->input->get();
+		$catwisepro = $this->Customerapi_model->get_category_products($get['category_id']);
+		if(count($catwisepro)>0){
+				$message = array
+				(
+					'status'=>1,
+					'products'=>$catwisepro,
+					'path'=>'http://cartinhour.com/uploads/productsimages/'
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array('status'=>0,'message'=>'No Products In This Category.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
+	// public function ipaddress_get()
+	// {
+	// 	//$ip = $this->input->ip_address();
+	// 	//echo ($this->input->valid_ip($ip)?'Valid':'Not Valid');
+	// 	echo $_SERVER['REMOTE_ADDR'];
+	// 	//echo $ip;
+	// }
+
+
+	/*  location wise products*/
+	public function topofferlocationwiseproducts_get()
+	{
+		//top_offers_product_search
+		$get = $this->input->get();
+		$top_offer_location = $this->Customerapi_model->top_offers_product_search($get['location_id']);
+		//echo $this->db->last_query();exit;
+		if(count($top_offer_location)>0){
+				$message = array
+				(
+					'status'=>1,
+					'location_top_offers'=>$top_offer_location,
+					'path'=>'http://cartinhour.com/uploads/productsimages/'
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array('status'=>0,'message'=>'No Products In This Locations.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
+	public function dealsofthedaylocationwiseproducts_get()
+	{
+		$get = $this->input->get();
+		$deals_of_the_day_location = $this->Customerapi_model->deals_of_the_day_product_search($get['location_id']);
+		//echo $this->db->last_query();exit;
+		if(count($deals_of_the_day_location)>0){
+				$message = array
+				(
+					'status'=>1,
+					'location_deals ofthe day'=>$deals_of_the_day_location,
+					'path'=>'http://cartinhour.com/uploads/productsimages/'
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array('status'=>0,'message'=>'No Products In This Locations.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
+
 
 
 
