@@ -174,6 +174,28 @@ class Category_model extends MY_Model
 	}
 /* added by vasudevareddy */
 	
+	
+	/* cusine list*/
+	public function get_all_cusine_list($catid)
+	{
+	
+		$this->db->select('products.cusine')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('item_status',1);
+		$this->db->where('cusine!=','');
+		$this->db->group_by('cusine');
+		return $this->db->get()->result_array();
+		
+	}
+	
+	public function get_category_name($catid)
+	{
+	
+	$this->db->select('category.category_name')->from('category');
+    $this->db->where_in('category_id', $catid);
+	return $this->db->get()->row_array();
+		
+	}
 	public function get_all_subcategory_products($category_ids)
 	{
 	

@@ -61,7 +61,7 @@
 					<div class="panel-heading" role="tab" id="headingOne">
 						 <h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					    My Restaurant
+					    Mobiles & Accessories
 					</a>
 				  </h4>
 
@@ -79,23 +79,51 @@
 						</div>
 					</div>
 				</div>
-				
-				
+				<div>
+					
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingTwo">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					 BRAND
+					</a>
+				  </h4>
+
+					</div>
+					<div id="collapseTwo"  class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+						<div class="panel-body">
+							<select class="test form-control" onchange="getbrand(this.value);" multiple="multiple" >
+							
+									<option >Search Brand</option>
+									<option value="2" >Samsung</option>
+									<option value="3">Lenovo</option>
+									<option value="4" >Syska</option>
+									<option value="5">Mi</option>
+									<option value="6" >Apple</option>
+									<option value="7">Sony</option>
+									<option value="7">Sony</option>
+									<option value="8">4256 MORE</option>
+							
+							</select>
+						</div>
+					</div>
+				</div>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
 					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-					  Cuisine
+					  OFFERS
 					</a>
 				  </h4>
 
 					</div>
 					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body">
-						<?php foreach ($cusine_list as $list){ ?>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox1" name="products[tshirt][size]" value="<?php echo $list['cusine']; ?>"><span>&nbsp;<?php echo $list['cusine']; ?></span></label></div>
-						
-						<?php } ?>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox1"><span>&nbsp;Bank Offer</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox2"><span>&nbsp;Buy More, Save More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;No Cost EMI</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;Special Price</span></label></div>
 						</div>
 					</div>
 				</div>
@@ -120,8 +148,45 @@
 						</div>
 					</div>
 				</div>
-				
-				
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingFour">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+					  DISCOUNT
+					</a>
+				  </h4>
+
+					</div>
+					<div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+						<form id="discountform" name="discountform" action="<?php echo base_url('category/cateegoryfilters'); ?>" method="post">
+						<input type="hidden" name="category_id" id="category_id" value="<?php echo $category_id;?>">
+						<div class="panel-body">
+							<div class="checkbox"><label><input type="checkbox" name="brand[]"  onclick="discount();"  value="1" id="checkbox1"><span>&nbsp;50% or More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" name="brand[]" value="2" id="checkbox2"><span>&nbsp;40% or More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" name="brand[]" value="3" id="checkbox3"><span>&nbsp;30% or More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" name="brand[]" value="4" id="checkbox4"><span>&nbsp;20% or More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" name="brand[]" value="5" id="checkbox5"><span>&nbsp;10% or More</span></label></div>
+							<div class="checkbox"><label><input type="checkbox" name="brand[]" value="6" id="checkbox6"><span>&nbsp;Less than 10%</span></label></div>
+						</div>
+						</form>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingSix">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+					  AVAILABILITY
+					</a>
+				  </h4>
+
+					</div>
+					<div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
+						<div class="panel-body">
+							<div class="checkbox"><label><input type="checkbox" id="checkbox1"><span>&nbsp;Include Out of Stock</span></label></div>
+							
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
         <!-- End Filter Sidebar -->

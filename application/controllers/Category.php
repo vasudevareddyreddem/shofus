@@ -55,16 +55,14 @@ function filtersearch(){
  public function subcategoryview(){
 	 
 	$caterory_id=base64_decode($this->uri->segment(3));
-	if($caterory_id==20 || $caterory_id==21){
-		$ids=array('20','21');
-		$data['subcategory_list']= $this->category_model->get_all_subcategorys($ids);
-		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products($ids);
-
-	}else{
-		$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
-		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id);
-	}
+	$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
+	$data['category_name']= $this->category_model->get_category_name($caterory_id);
+	$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id);
 	$data['category_id']=$this->uri->segment(3);
+	if($caterory_id==18){
+		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);
+		
+	}
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'customer/subcategoryview',$data);
 	$this->template->render();
