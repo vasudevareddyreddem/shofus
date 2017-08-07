@@ -289,8 +289,12 @@ class CustomerApi extends REST_Controller {
 		if(count($banners)>0){
 			//$images = header('Content-Type: image/jpg');
 			//echo '<pre>';print_r($images);exit;
-			$banners['path']='http://cartinhour.com/uploads/banners/';
-			$this->response($banners, REST_Controller::HTTP_OK);	
+			$message = array(
+				'status'=>1,
+				'banners_list'=>$locations,
+				'path'=>'http://cartinhour.com/uploads/banners/'
+			);
+			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
 			$message = array('status'=>0,'message'=>'Home Banners are not found.');
@@ -306,8 +310,13 @@ class CustomerApi extends REST_Controller {
 		if(count($top_offers)>0){
 			//$images = header('Content-Type: image/jpg');
 			//echo '<pre>';print_r($images);exit;
-			$top_offers['path']='http://cartinhour.com/uploads/productsimages/';
-			$this->response($top_offers, REST_Controller::HTTP_OK);	
+			$message = array(
+				'status'=>1,
+				'top_offers'=>$top_offers,
+				'path'=>'http://cartinhour.com/uploads/productsimages/'
+			);
+			//$top_offers['path']='http://cartinhour.com/uploads/productsimages/';
+			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
 			$message = array('status'=>0,'message'=>'Home Banners are not found.');
@@ -322,8 +331,13 @@ class CustomerApi extends REST_Controller {
 		if(count($deals)>0){
 			//$images = header('Content-Type: image/jpg');
 			//echo '<pre>';print_r($images);exit;
-			$deals['path']='http://cartinhour.com/uploads/productsimages/';
-			$this->response($deals, REST_Controller::HTTP_OK);	
+			$message = array(
+				'status'=>1,
+				'dealsoftheday'=>$deals,
+				'path'=>'http://cartinhour.com/uploads/productsimages/'
+			);
+			//$deals['path']='http://cartinhour.com/uploads/productsimages/';
+			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
 			$message = array('status'=>0,'message'=>'Deals of The Day are not found.');
@@ -338,8 +352,13 @@ class CustomerApi extends REST_Controller {
 		if(count($ssales)>0){
 			//$images = header('Content-Type: image/jpg');
 			//echo '<pre>';print_r($images);exit;
-			$ssales['path']='http://cartinhour.com/uploads/productsimages/';
-			$this->response($ssales, REST_Controller::HTTP_OK);	
+			$message = array(
+				'status'=>1,
+				'Seasonsales'=>$ssales,
+				'path'=>'http://cartinhour.com/uploads/productsimages/'
+			);
+			//$ssales['path']='http://cartinhour.com/uploads/productsimages/';
+			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
 			$message = array('status'=>0,'message'=>'Season Sales are not found.');
@@ -354,8 +373,13 @@ class CustomerApi extends REST_Controller {
 		if(count($treding)>0){
 			//$images = header('Content-Type: image/jpg');
 			//echo '<pre>';print_r($images);exit;
-			$treding['path']='http://cartinhour.com/uploads/productsimages/';
-			$this->response($treding, REST_Controller::HTTP_OK);	
+			$message = array(
+				'status'=>1,
+				'Trendingproducts'=>$treding,
+				'path'=>'http://cartinhour.com/uploads/productsimages/'
+			);
+			//$treding['path']='http://cartinhour.com/uploads/productsimages/';
+			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
 			$message = array('status'=>0,'message'=>'Trending Products are not found.');
@@ -370,8 +394,13 @@ class CustomerApi extends REST_Controller {
 		if(count($offers)>0){
 			//$images = header('Content-Type: image/jpg');
 			//echo '<pre>';print_r($images);exit;
-			$offers['path']='http://cartinhour.com/uploads/productsimages/';
-			$this->response($offers, REST_Controller::HTTP_OK);	
+			$message = array(
+				'status'=>1,
+				'offersforyou'=>$offers,
+				'path'=>'http://cartinhour.com/uploads/productsimages/'
+			);
+			//$offers['path']='http://cartinhour.com/uploads/productsimages/';
+			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
 			$message = array('status'=>0,'message'=>'Offers For You are not found.');
@@ -385,10 +414,17 @@ class CustomerApi extends REST_Controller {
 		$single_product = $this->Customerapi_model->getsingle_products($get['item_id']);
 		//echo '<pre>';print_r($single_product);exit;
 		if(count($single_product)>0){
+			$message = array
+				(
+					'status'=>1,
+					'single_product'=>$single_product,
+					'path'=>'http://cartinhour.com/uploads/productsimages/'
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
 			//$images = header('Content-Type: image/jpg');
 			//echo '<pre>';print_r($images);exit;
-			$single_product['path']='http://cartinhour.com/uploads/productsimages/';
-			$this->response($single_product, REST_Controller::HTTP_OK);	
+			//$single_product['path']='http://cartinhour.com/uploads/productsimages/';
+			//$this->response($single_product, REST_Controller::HTTP_OK);	
 			
 		}else{
 			$message = array('status'=>0,'message'=>'Products not found.');
@@ -530,7 +566,8 @@ class CustomerApi extends REST_Controller {
 	{
 		//top_offers_product_search
 		$get = $this->input->get();
-		$top_offer_location = $this->Customerapi_model->top_offers_product_search($get['location_id']);
+		$location_ids=explode(",",$get['location_id']);
+		$top_offer_location = $this->Customerapi_model->top_offers_product_search($location_ids);
 		//echo $this->db->last_query();exit;
 		if(count($top_offer_location)>0){
 				$message = array
@@ -550,13 +587,78 @@ class CustomerApi extends REST_Controller {
 	public function dealsofthedaylocationwiseproducts_get()
 	{
 		$get = $this->input->get();
-		$deals_of_the_day_location = $this->Customerapi_model->deals_of_the_day_product_search($get['location_id']);
+		$location_ids=explode(",",$get['location_id']);
+		$deals_of_the_day_location = $this->Customerapi_model->deals_of_the_day_product_search($location_ids);
 		//echo $this->db->last_query();exit;
 		if(count($deals_of_the_day_location)>0){
 				$message = array
 				(
 					'status'=>1,
 					'location_deals ofthe day'=>$deals_of_the_day_location,
+					'path'=>'http://cartinhour.com/uploads/productsimages/'
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array('status'=>0,'message'=>'No Products In This Locations.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
+	public function seasonsaleslocationwiseproducts_get()
+	{
+		$get = $this->input->get();
+		$location_ids=explode(",",$get['location_id']);
+		$season_sales_location = $this->Customerapi_model->season_sales_product_search($location_ids);
+		//echo $this->db->last_query();exit;
+		if(count($season_sales_location)>0){
+				$message = array
+				(
+					'status'=>1,
+					'location_season sales'=>$season_sales_location,
+					'path'=>'http://cartinhour.com/uploads/productsimages/'
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array('status'=>0,'message'=>'No Products In This Locations.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
+	public function trendinglocationwiseproducts_get()
+	{
+		$get = $this->input->get();
+		$location_ids=explode(",",$get['location_id']);
+		$treanding_location = $this->Customerapi_model->treanding_product_search($location_ids);
+		//echo $this->db->last_query();exit;
+		if(count($treanding_location)>0){
+				$message = array
+				(
+					'status'=>1,
+					'location_treading'=>$treanding_location,
+					'path'=>'http://cartinhour.com/uploads/productsimages/'
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array('status'=>0,'message'=>'No Products In This Locations.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
+
+	public function offersforyoulocationwiseproducts_get()
+	{
+		$get = $this->input->get();
+		$location_ids=explode(",",$get['location_id']);
+		$offers_for_you_location = $this->Customerapi_model->offers_for_you_product_search($location_ids);
+		//echo $this->db->last_query();exit;
+		if(count($offers_for_you_location)>0){
+				$message = array
+				(
+					'status'=>1,
+					'location_offer for you'=>$offers_for_you_location,
 					'path'=>'http://cartinhour.com/uploads/productsimages/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
