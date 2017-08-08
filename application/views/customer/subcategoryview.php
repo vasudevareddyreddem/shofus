@@ -60,11 +60,13 @@
 		<div class="col-sm-3">
 		 <div class="title"><span>Filters</span></div>
 		 <div class="example">
+			
+		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
 			<h3>Price</h3>
-				<div id="html5" class="noUi-target noUi-ltr noUi-horizontal">
+			<div id="html5"  name="html5" class="noUi-target noUi-ltr noUi-horizontal">
 
-				</div>
-			<select id="input-select">
+			</div>
+			<select id="input-select" name="min_amount" >
 
 			<option value="0">0</option>
 			<option value="1">1</option>
@@ -86,9 +88,8 @@
 			<option value="17">17</option>
 			
 			</select>
-			<input type="number" min="1" max="40" step="1" id="input-number">
+			<input type="number" name="max_amount" min="1" max="40" step="1" id="input-number">
 			</div>
-		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
 			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
 			
 			<?php if(base64_decode($this->uri->segment(3))=='18'){ ?>

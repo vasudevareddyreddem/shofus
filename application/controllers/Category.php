@@ -16,14 +16,15 @@ class Category extends Front_Controller
  public function categorywiseearch(){
 	 
 	$post=$this->input->post();
-	echo '<pre>';print_r($post);
+	//echo '<pre>';print_r($post);
 	$ip=$this->input->ip_address();
 	$data=array(
 	'Ip_address'=>$ip,
 	'category_id'=>base64_decode($post['categoryid']),
 	'cusine'=>isset($post['products']['cusine']) ? $post['products']['cusine']:'',
 	'restraent'=>isset($post['products']['res']) ? $post['products']['res']:'',
-	'amount'=>isset($post['products']['amount']) ? $post['products']['amount']:'',
+	'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+	'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
 	'create'=>date('Y-m-d H:i:s'),
 	);
 	//echo '<pre>';print_r($data);exit;
@@ -88,7 +89,7 @@ function filtersearch(){
 	if($caterory_id==18){
 		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);
 		$data['myrestaurant']= $this->category_model->get_all_myrestaurant_list($caterory_id);
-		$data['money']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['price_list']= $this->category_model->get_all_price_list($caterory_id);
 		
 	}else if($caterory_id==21){
 		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);
@@ -98,19 +99,19 @@ function filtersearch(){
 		$data['offer_list']= $this->category_model->get_all_offer_list($caterory_id);
 		
 	}else if($caterory_id==20){
-		$data['brand_list']= $this->category_model->get_all_cusine_list($caterory_id);
-		$data['price_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
-		$data['discount_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
-		$data['avalibility_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
-		$data['offe_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);
+		$data['price_list']= $this->category_model->get_all_price_list($caterory_id);
+		$data['discount_list']= $this->category_model->get_all_discount_list($caterory_id);
+		$data['avalibility_list']= $this->category_model->get_all_avalibility_list($caterory_id);
+		$data['offer_list']= $this->category_model->get_all_offer_list($caterory_id);
 		$data['color_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
 		
 	}else if($caterory_id==19){
-		$data['brand_list']= $this->category_model->get_all_cusine_list($caterory_id);
-		$data['price_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
-		$data['discount_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
-		$data['avalibility_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
-		$data['offe_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);
+		$data['price_list']= $this->category_model->get_all_price_list($caterory_id);
+		$data['discount_list']= $this->category_model->get_all_discount_list($caterory_id);
+		$data['avalibility_list']= $this->category_model->get_all_avalibility_list($caterory_id);
+		$data['offer_list']= $this->category_model->get_all_offer_list($caterory_id);
 		$data['color_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
 		$data['sizes_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
 	}
