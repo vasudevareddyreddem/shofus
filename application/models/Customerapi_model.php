@@ -154,7 +154,7 @@ class Customerapi_model extends MY_Model
 		return $insert_id = $this->db->insert_id();
 	}
 	public function customer_wishlist_delete($cust_id,$wishlistid){
-		$sql1="DELETE FROM item_wishlist WHERE cust_id = '".$cust_id."' AND  id = '".$wishlistid."'";
+		$sql1="DELETE FROM item_wishlist WHERE cust_id = '".$cust_id."' AND  item_id = '".$wishlistid."'";
 		return $this->db->query($sql1);
 	}
 
@@ -179,6 +179,21 @@ class Customerapi_model extends MY_Model
 		$this->db->select('category.category_id,category.category_name,category.status')->from('category');
 		$this->db->where('category.status',1);
 		return $this->db->get()->result_array();
+	}
+	public function get_subcategories($sub_id)
+	{
+		$this->db->select('subcategories.subcategory_id,subcategories.category_id,subcategories.subcategory_name,subcategories.status')->from('subcategories');
+		$this->db->where('subcategories.category_id',$sub_id);
+		$this->db->where('subcategories.status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_withoutsubcategories($cat_id,$sub_id)
+	{
+		$this->db->select('*')->from('products');
+		//$this->db->where('category_id',$cat_id);
+		$this->db->where('subcategory_id',$sub_id);
+		return $this->db->get()->result_array();
+		//$this->db->join('category', 'category.item_id = products.item_id', 'left');
 	}
 
 	/* location querys*/
@@ -248,6 +263,35 @@ class Customerapi_model extends MY_Model
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
+	}
+
+	public function get_product_details($itemid){
+		$this->db->select('products.*,subcategories.commission')->from('products');
+		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
+		$this->db->where('item_id', $itemid);
+        return $this->db->get()->row_array();
+	}
+	public function get_cart_products($cust_id){
+		$this->db->select('cart.*,products.item_name,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,products.offer_expairdate,products.offer_time')->from('cart');
+		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
+		$this->db->where('cart.cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
+	public function cart_products_save($data){
+		$this->db->insert('cart', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function temp_cart($cust_id){
+		$this->db->select('cart.*,products.item_name,products.item_image,products.item_cost')->from('cart');
+		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
+		$this->db->where('cart.cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
+	public function update_cart_item_quentity($cust_id,$item_id,$data){
+	
+		 $this->db->where('cust_id',$cust_id);
+		 $this->db->where('item_id',$item_id);
+    	return $this->db->update("cart",$data);
 	}
 
 
