@@ -183,14 +183,14 @@ class Customerapi_model extends MY_Model
 
 	/* location querys*/
 	public function top_offers_product_search($location_id){
-		$date = new DateTime("now");
- 		$curr_date = $date->format('Y-m-d');
+		//$date = new DateTime("now");
+ 		//$curr_date = $date->format('Y-m-d');
 		$this->db->select('products.*,top_offers.*')->from('products');
 		$this->db->join('top_offers', 'top_offers.item_id = products.item_id', 'left');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
-		$this->db->where('top_offers.expairdate >=', $curr_date);
+		//$this->db->where('top_offers.expairdate >=', $curr_date);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
 	}
@@ -205,8 +205,8 @@ class Customerapi_model extends MY_Model
 		// $this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
 		// $this->db->order_by('products.offer_percentage desc');
 		// return $this->db->get()->result_array();
-		$date = new DateTime("now");
- 		$curr_date = $date->format('Y-m-d');
+		//$date = new DateTime("now");
+ 		//$curr_date = $date->format('Y-m-d');
 		$this->db->select('products.*,deals_ofthe_day.*')->from('products');
 		$this->db->join('deals_ofthe_day', 'deals_ofthe_day.item_id = products.item_id', 'left');
 		//$this->db->join('top_offers', 'top_offers.area = products.item_id', 'left');
@@ -214,20 +214,20 @@ class Customerapi_model extends MY_Model
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
-		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
+		//$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
 	}
 	
 	public function season_sales_product_search($location_id){
-		$date = new DateTime("now");
- 		$curr_date = $date->format('Y-m-d');
+		//$date = new DateTime("now");
+ 		//$curr_date = $date->format('Y-m-d');
 		$this->db->select('products.*,season_sales.*')->from('products');
 		$this->db->join('season_sales', 'season_sales.item_id = products.item_id', 'left');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
-		$this->db->where('season_sales.expairdate >=', $curr_date);
+		//$this->db->where('season_sales.expairdate >=', $curr_date);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
 	}
