@@ -209,16 +209,16 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 		
-		public function get_search_all_subcategory_products()
+	public function get_search_all_subcategory_products()
 	{
 	
 	$this->db->select('fliter_search.*')->from('fliter_search');
-	//$this->db->group_by('fliter_search.cusine');
-	//$this->db->group_by('fliter_search.restraent');
-	//$this->db->group_by('fliter_search.amount');
+	$this->db->group_by('fliter_search.cusine');
+	$this->db->group_by('fliter_search.restraent');
+	$this->db->group_by('fliter_search.amount');
 	$query=$this->db->get()->result_array();
 		foreach ($query as $sorting){
-			echo '<pre>';print_r($sorting);
+			//echo '<pre>';print_r($sorting);
 			$return[$sorting['cusine']] = $this->get_cusine($sorting['cusine'],$sorting['category_id']);
 			$return[$sorting['restraent']] = $this->get_restraent($sorting['restraent'],$sorting['category_id']);
 			$return[$sorting['amount']] = $this->get_amount($sorting['amount'],$sorting['category_id']);
@@ -236,7 +236,9 @@ class Category_model extends MY_Model
 		$this->db->where('item_status',1);
 		$this->db->where('cusine',$cusine);
 		$this->db->where('category_id',$cid);
+		
 		return $this->db->get()->result_array();
+		//echo '<pre>';print_r($qq);exit;
 		
 	}
 	public function get_restraent($restraent,$cid){

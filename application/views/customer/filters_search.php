@@ -56,15 +56,16 @@
 	 <div id="subcategorywise_products" style="">
 		<div class="col-sm-3">
 		 <div class="title"><span>Filters</span></div>
-		 <?php //echo '<pre>';print_r($previousdata);exit; ?>
+		
 		 <?php foreach($previousdata as $predata){ 
 				$cusine[]=$predata['cusine'];
 				$restraent[]=$predata['restraent'];
 				$amount[]=$predata['amount'];
 		 
 		  } ?>
+		   <?php //echo '<pre>';print_r($restraent);exit; ?>
 		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
-			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
+			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo base64_encode($category_id);?>">
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingOne">
@@ -79,8 +80,16 @@
 						<div class="panel-body">
 							<select onchange="mobileaccessories(this.value);" name="products[res]" class="form-control" id="sel1">
 								<option value="">Select</option>
-								<?php foreach ($myrestaurant as $reslist){ ?>
+								<?php //echo '<pe>';print_r($myrestaurant);exit;
+								foreach ($myrestaurant as $reslist){ ?>
+								<?php  
+							if (in_array($reslist['seller_id'], $restraent)) { ?>
+								<option value="<?php echo $reslist['seller_id']; ?>" selected="selected"><?php echo $reslist['seller_name']; ?></option>
+
+							<?php }else{  ?>
 								<option value="<?php echo $reslist['seller_id']; ?>"><?php echo $reslist['seller_name']; ?></option>
+
+							<?php } ?>
 								<?php } ?>
 							</select>
 						</div>

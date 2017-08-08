@@ -40,7 +40,7 @@ function filtersearch(){
 	$data=array();
 	$data['subcategory_list']= $this->category_model->get_all_subcategory_list();
 	$subcategory_porduct_list= $this->category_model->get_search_all_subcategory_products();
-	echo '<pre>';print_r($subcategory_porduct_list);exit;
+	//echo '<pre>';print_r($subcategory_porduct_list);exit;
 	foreach ($subcategory_porduct_list as $lists){
 			foreach ($lists as $plist){
 				$products[]=$plist;
@@ -50,6 +50,8 @@ function filtersearch(){
 	$data['subcategory_porduct_list']=$products;
 	$data['previousdata']= $this->category_model->get_all_previous_search_fields();
 	$caterory_id=$categoryid;
+	$data['category_id']=$categoryid;
+
 	if($caterory_id==18){
 		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);
 		$data['myrestaurant']= $this->category_model->get_all_myrestaurant_list($caterory_id);

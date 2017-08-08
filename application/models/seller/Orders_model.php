@@ -125,7 +125,7 @@ public function getperformancedaily($month,$year)
 		
 	} */
 	//echo $month; echo $year; exit;
-$query = $this->db->query("SELECT COUNT(*) AS orders, created_at
+$query = $this->db->query("SELECT COUNT(*) AS orders
 FROM order_items
 WHERE seller_id=$sid
 AND MONTH(create_at)=$month
