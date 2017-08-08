@@ -25,7 +25,12 @@
 	margin:0px 60px;
 	background:#fff;
 }
-
+#input-select,
+#input-number {
+	padding: 7px;
+	margin: 15px 5px 5px;
+	width: 70px;
+}
 </style>
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
@@ -54,6 +59,35 @@
 	 <div id="subcategorywise_products" style="">
 		<div class="col-sm-3">
 		 <div class="title"><span>Filters</span></div>
+		 <div class="example">
+			<h3>Price</h3>
+				<div id="html5" class="noUi-target noUi-ltr noUi-horizontal">
+
+				</div>
+			<select id="input-select">
+
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			
+			</select>
+			<input type="number" min="1" max="40" step="1" id="input-number">
+			</div>
 		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
 			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
 			
@@ -370,3 +404,50 @@ function getproduct(id){
     });
 })(jQuery);
 </script>
+<script>
+		var select = document.getElementById('input-select');
+
+// Append the option elements
+for ( var i = -20; i <= 40; i++ ){
+
+	var option = document.createElement("option");
+		option.text = i;
+		option.value = i;
+
+	select.appendChild(option);
+}
+	</script>	
+	<script>
+		var html5Slider = document.getElementById('html5');
+
+noUiSlider.create(html5Slider, {
+	start: [ 10, 30 ],
+	connect: true,
+	range: {
+		'min': 1,
+		'max': 40
+	}
+});
+	</script>	
+	<script>
+		var inputNumber = document.getElementById('input-number');
+
+html5Slider.noUiSlider.on('update', function( values, handle ) {
+
+	var value = values[handle];
+
+	if ( handle ) {
+		inputNumber.value = value;
+	} else {
+		select.value = Math.round(value);
+	}
+});
+
+select.addEventListener('change', function(){
+	html5Slider.noUiSlider.set([this.value, null]);
+});
+
+inputNumber.addEventListener('change', function(){
+	html5Slider.noUiSlider.set([null, this.value]);
+});
+	</script>

@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/style.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/responsive.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/range.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/owl_002.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/fSelect.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/dataTables.bootstrap.css">
@@ -28,13 +29,17 @@
 <!-- pop up plugins -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/default.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/component.css" />
+<script src="<?php echo base_url(); ?>assets/home/js/jquery_range.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
+
+
 
 <script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/dataTables.bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/dataTables.bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/fSelect.js"></script>
+<script src="<?php echo base_url(); ?>assets/home/js/range.js"></script>
 
 </head>
 

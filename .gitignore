@@ -15,3 +15,4 @@ application/logs/709ab2b788df802911970da5be361141
 application/config/database.php
 application/views/customer/productsearch.php
 application/config/database.php
+*.png
