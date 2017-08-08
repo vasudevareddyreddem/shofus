@@ -541,7 +541,7 @@ class Import extends Admin_Controller {
 								}
 								
 							}else{
-								$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+								$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 								redirect('/seller/products/create');
 							}
 							
@@ -1061,7 +1061,7 @@ class Import extends Admin_Controller {
 								}
 								
 							}else{
-								$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+								$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 								redirect('/seller/products/create');
 							}
 							
@@ -1573,7 +1573,7 @@ class Import extends Admin_Controller {
 									}
 									
 								}else{
-									$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+									$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 									redirect('/seller/products/create');
 								}
 								
@@ -2096,7 +2096,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								
@@ -2681,7 +2681,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 									  
@@ -3300,7 +3300,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 									 
@@ -3896,7 +3896,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 									
@@ -4563,7 +4563,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 									
@@ -5267,7 +5267,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								
@@ -5780,12 +5780,12 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 									
 								
-							}else if($post['subcategory_ids']==8){
+							}else if($post['subcategory_ids']==888){
 								
 									if(substr($_FILES['categoryfile']['name'], 0, 25)=='Fashioncategoryfilewinter'){
 										if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
@@ -6336,7 +6336,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correct file!');
 										redirect('/seller/products/create');
 									}
 									
@@ -6895,7 +6895,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								
@@ -7417,7 +7417,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								
@@ -8030,7 +8030,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								
@@ -8621,11 +8621,11 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								
-							}else if($post['subcategory_ids']==14 || $post['subcategory_ids']==19 || $post['subcategory_ids']==20 || $post['subcategory_ids']==22 || $post['subcategory_ids']==52 || $post['subcategory_ids']==28 || $post['subcategory_ids']==29){
+							}else if($post['subcategory_ids']==8 ||$post['subcategory_ids']==14 || $post['subcategory_ids']==19 || $post['subcategory_ids']==20 || $post['subcategory_ids']==22 || $post['subcategory_ids']==52 || $post['subcategory_ids']==28 || $post['subcategory_ids']==29){
 								
 										if(substr($_FILES['categoryfile']['name'], 0, 30)=='Fashioncategoryfileethinicwear'){
 										if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
@@ -9209,7 +9209,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								
@@ -9771,7 +9771,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 									
@@ -10337,7 +10337,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}	
 								
@@ -10910,7 +10910,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								
@@ -11513,7 +11513,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								
@@ -12064,7 +12064,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								
@@ -12656,7 +12656,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								
@@ -13204,7 +13204,7 @@ class Import extends Admin_Controller {
 										}
 										
 									}else{
-										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload coreect file!');
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
 										redirect('/seller/products/create');
 									}
 								

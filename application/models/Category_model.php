@@ -250,6 +250,8 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 		
 	}
+	
+	/* food categorywise*/
 	public function get_amount($amount,$cid){
 		
 		$this->db->select('*')->from('products');
@@ -281,6 +283,57 @@ class Category_model extends MY_Model
 		$this->db->group_by('products.seller_id');
 		return $this->db->get()->result_array();
 	}
+	
+	/* food categorywise*/
+	/* GROCERY categorywise*/
+	public function get_all_brand_list($catid){
+		
+		$this->db->select('products.brand')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('item_status',1);
+		$this->db->where('brand!=','');
+		$this->db->group_by('brand');
+		return $this->db->get()->result_array();
+		
+	}
+
+	public function get_all_price_list($catid)
+	{
+		$this->db->select('products.item_cost')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('item_status',1);
+		$this->db->where('item_cost!=','');
+		$this->db->group_by('item_cost');
+		return $this->db->get()->result_array();
+	}
+	public function get_all_discount_list($catid)
+	{
+		$this->db->select('products.discount')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('item_status',1);
+		$this->db->where('discount!=','');
+		$this->db->group_by('discount');
+		return $this->db->get()->result_array();
+	}
+	public function get_all_avalibility_list($catid)
+	{
+		$this->db->select('products.item_status')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('item_status',1);
+		$this->db->where('item_quantity!=',0);
+		return $this->db->get()->row_array();
+	}
+	public function get_all_offer_list($catid)
+	{
+		$this->db->select('products.offers')->from('products');
+		$this->db->where('products.category_id',$catid);
+		$this->db->where('products.item_status',1);
+		$this->db->where('products.offers!=','');
+		$this->db->group_by('products.offers');
+		return $this->db->get()->result_array();
+	}
+	
+	/* GROCERY categorywise*/
 	
 	public function get_category_name($catid)
 	{

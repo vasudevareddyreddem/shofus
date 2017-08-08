@@ -838,15 +838,7 @@ function getspecialinputs(ids){
 		$('#mobilesinputs').hide();
 		$('#sizeid').show();		
 	}
-	if(ids==8){
-	$('#winterwaerinputs').show();
-	$('#sizeid').show();
-	$('#colorid').show();
-	}else{ 
-	$('#winterwaerinputs').hide();
-	$('#sizeid').hide();
-	$('#colorid').hide();
-	}
+	
 	if(ids==9){
 		$('#sizeid').hide();
 		$('#colorid').hide();
@@ -882,7 +874,7 @@ function getspecialinputs(ids){
 		$('#mensfabricsinputs1').hide();
 
 	}
-	if(ids==14 || ids==19 || ids==20 || ids==22){
+	if(ids==14 || ids==19 || ids==20 || ids==22 || ids==8){
 		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();

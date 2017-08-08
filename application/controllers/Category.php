@@ -88,7 +88,31 @@ function filtersearch(){
 	if($caterory_id==18){
 		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);
 		$data['myrestaurant']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['money']= $this->category_model->get_all_myrestaurant_list($caterory_id);
 		
+	}else if($caterory_id==21){
+		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);
+		$data['price_list']= $this->category_model->get_all_price_list($caterory_id);
+		$data['discount_list']= $this->category_model->get_all_discount_list($caterory_id);
+		$data['avalibility_list']= $this->category_model->get_all_avalibility_list($caterory_id);
+		$data['offer_list']= $this->category_model->get_all_offer_list($caterory_id);
+		
+	}else if($caterory_id==20){
+		$data['brand_list']= $this->category_model->get_all_cusine_list($caterory_id);
+		$data['price_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['discount_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['avalibility_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['offe_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['color_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		
+	}else if($caterory_id==19){
+		$data['brand_list']= $this->category_model->get_all_cusine_list($caterory_id);
+		$data['price_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['discount_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['avalibility_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['offe_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['color_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['sizes_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
 	}
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'customer/subcategoryview',$data);
@@ -143,7 +167,7 @@ function filtersearch(){
 	 
 	$pid=base64_decode($this->uri->segment(3));
 
-	//echo '<pre>';print_r($caterory_id);exit;
+	//echo '<pre>';print_r($pid);exit;
 	$data['products_list']= $this->category_model->get_products($pid);
 	$data['products_reviews']= $this->category_model->get_products_reviews($pid);
 	//echo '<pre>';print_r($data);exit;

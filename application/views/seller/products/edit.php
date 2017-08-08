@@ -334,7 +334,7 @@
 			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='8' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29' || $productdetails['subcategory_id']=='52'){
+	<?php if($productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29' || $productdetails['subcategory_id']=='52'){
 		$winterwaerinputshide = '';
 		}else{
 		$winterwaerinputshide = 'display:none';
@@ -351,7 +351,7 @@
 			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22'){
+	<?php if($productdetails['subcategory_id']=='8' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22'){
 		$winterwaerinputshide1 = '';
 		}else{
 		$winterwaerinputshide1 = 'display:none';
@@ -1174,15 +1174,7 @@
 		$('#colorid').hide();
 		$('#womensaccessoriesinputs').hide();
 	}
-	if(ids==8){
-	$('#winterwaerinputs').show();
-	$('#sizeid').show();
-	$('#colorid').show();
-	}else{ 
-	$('#winterwaerinputs').hide();
-	$('#sizeid').hide();
-	$('#colorid').hide();
-	}
+	
 	if(ids==9){
 		$('#sizeid').hide();
 		$('#colorid').hide();
@@ -1217,7 +1209,7 @@
 		$('#mensfabricsinputs1').hide();
 
 	}
-	if(ids==14 || ids==19 || ids==20 || ids==22){
+	if(ids==14 || ids==19 || ids==20 || ids==22 || ids==8){
 		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
