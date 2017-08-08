@@ -218,7 +218,7 @@ class CustomerApi extends REST_Controller {
 			//echo '<pre>';print_r($images);exit;
 			$message = array(
 				'status'=>1,
-				'banners_list'=>$locations,
+				'banners_list'=>$banners,
 				'path'=>'http://cartinhour.com/uploads/banners/'
 			);
 			$this->response($message, REST_Controller::HTTP_OK);	
@@ -380,7 +380,7 @@ class CustomerApi extends REST_Controller {
 		'create_at'=>date('Y-m-d H:i:s'),
 		'yes'=>1,
 		);
-		$wish=$this->customerapi_model->wishlist_save($data);
+		$wish=$this->Customerapi_model->wishlist_save($data);
 		//echo $this->db->last_query();exit;
 		}
 		
@@ -426,7 +426,7 @@ class CustomerApi extends REST_Controller {
 	{
 		$get = $this->input->get();
 		//print_r($get);exit;
-		$wishlist_delete= $this->Customerapi_model->customer_wishlist_delete($get['customer_id'],$get['id']);
+		$wishlist_delete= $this->Customerapi_model->customer_wishlist_delete($get['customer_id'],$get['item_id']);
 		//echo $this->db->last_query();exit;
 		if(count($wishlist_delete)>0){
 				$message = array
@@ -455,6 +455,31 @@ class CustomerApi extends REST_Controller {
 			
 		}else{
 			$message = array('status'=>0,'message'=>'Category List Empty.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+	/* Sub category api*/
+	public function subcategories_post()
+	{
+		$get = $this->input->get();
+		$subcategories = $this->Customerapi_model->get_subcategories($get['category_id']);
+		if(count($subcategories)>0){
+				$message = array
+				(
+					'status'=>1,
+					'Subcategories'=>$subcategories,
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			//$withoutsubs = $this->Customerapi_model->get_withoutsubcategories($get['category_id'],$get['subcategory_id']);
+			//$message = array
+				//(
+				//	'status'=>1,
+				//	'Product_item'=>$withoutsubs,
+				//);
+				//$this->response($message, REST_Controller::HTTP_OK);
+			$message = array('status'=>0,'message'=>'Sub Category List Empty.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
@@ -596,19 +621,177 @@ class CustomerApi extends REST_Controller {
 		}
 	}
 
-
-	public function php_info_get()
+	public function customertempcart_get()
 	{
-		echo phpinfo();
+		$get = $this->input->get();
+		$tempcart = $this->Customerapi_model->temp_cart($get['customer_id']);
+		//echo '<pre>';print_r($tempcart);exit;
+		if(count($tempcart)>0){
+			$message = array(
+				'status'=>1,
+				'Temp Cart'=>$tempcart,
+				'path'=>'http://cartinhour.com/uploads/productsimages/'
+			);
+			$this->response($message, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Your Cart Is empty');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
+	/* Add to cart */
+	public function addtocart_post()
+	{
+		$get = $this->input->get();
+		$products= $this->Customerapi_model->get_product_details($get['item_id']);
+		//$cart_ids=explode(",",$get['item_id']);
+		//echo "<pre>";print_r($cart_ids);exit;
+		//if($products['offer_percentage']!='' && $products['offer_type']!=4){
+			if(date('m/d/Y') <= $products['offer_expairdate']){
+				$item_price= ($products['item_cost']-$products['offer_amount']);
+				$price	=(($get['quentity']) * ($item_price));
+				//echo "<pre>";print_r($price);exit;
+			}else{
+				$item_price= $products['item_cost'];
+				$price	=(($get['quentity']) * ($item_price));
+				//echo "<pre>";print_r($price);exit;
+			}
+		//}else{
+			//$price= (($get['qty']) * ($products['item_cost']));
+			//$item_price=$products['item_cost'];
+			
+		//}
+		$commission_price=(($price)*($products['commission'])/100);
+		if($products['category_id']==18){
+			if($price <=500){
+				$delivery_charges=35;
+			}else{
+				$delivery_charges=0;
+			}
+		}else{
+			
+			if($price <=500){
+				$delivery_charges=75;
+			}else if(($price >= 500) && ($price <=1000)){
+				$delivery_charges=35;
+			}else if($price >=1000){
+				$delivery_charges=0;
+			}
+		}
+
+		$addcart=array(
+		'cust_id'=>$get['customer_id'],
+		'item_id'=>$get['item_id'],
+		'qty'=>$get['quentity'],
+		'item_price'=>$item_price,
+		'total_price'=>$price,
+		'commission_price'=>$commission_price,
+		'delivery_amount'=>$delivery_charges,
+		'seller_id'=>$products['seller_id'],
+		'category_id'=>$products['category_id'],
+		'create_at'=>date('Y-m-d H:i:s'),
+		);
+		//echo "<pre>";print_r($addcart);exit;
+		$cart_item_ids= $this->Customerapi_model->get_cart_products($get['customer_id']);
+		foreach($cart_item_ids as $cartids) 
+		{ 		
+			$cart_id[]=$cartids['item_id'];
+		}
+		//echo "<pre>";print_r($cart_id);exit;
+		if(in_array($get['item_id'],$cart_id))
+		{
+			if($get['item_id'] && $get['item_id']=!'' )
+			{
+				$message = array
+				(
+					'status'=>0,
+					'Cart'=>'Product already Exits',
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+			}
+		}else
+		{
+			$cart_save= $this->Customerapi_model->cart_products_save($addcart);
+			if(count($cart_save)>0)
+			{
+				$message = array
+				(
+					'status'=>1,
+					'Cart'=>'Successfully added to the cart',
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			}	
+		}
 	}
 
 
+	public function updatecart_post()
+	{
+		$get = $this->input->get();
+		$products= $this->Customerapi_model->get_product_details($get['item_id']);
+		//$cart_ids=explode(",",$get['item_id']);
+		//echo "<pre>";print_r($cart_ids);exit;
+		//if($products['offer_percentage']!='' && $products['offer_type']!=4){
+			if(date('m/d/Y') <= $products['offer_expairdate']){
+				$item_price= ($products['item_cost']-$products['offer_amount']);
+				$price	=(($get['quentity']) * ($item_price));
+				//echo "<pre>";print_r($price);exit;
+			}else{
+				$item_price= $products['item_cost'];
+				$price	=(($get['quentity']) * ($item_price));
+				//echo "<pre>";print_r($price);exit;
+			}
+		//}else{
+			//$price= (($get['qty']) * ($products['item_cost']));
+			//$item_price=$products['item_cost'];
+			
+		//}
+		$commission_price=(($price)*($products['commission'])/100);
+		if($products['category_id']==18){
+			if($price <=500){
+				$delivery_charges=35;
+			}else{
+				$delivery_charges=0;
+			}
+		}else{
+			
+			if($price <=500){
+				$delivery_charges=75;
+			}else if(($price >= 500) && ($price <=1000)){
+				$delivery_charges=35;
+			}else if($price >=1000){
+				$delivery_charges=0;
+			}
+		}
 
-
-
-
-
-
+		$updatedata=array(
+		'qty'=>$get['quentity'],
+		'item_price'=>$item_price,
+		'commission_price'=>$commission_price,
+		'total_price'=>$price,
+		'delivery_amount'=>$delivery_charges,
+		);
+		//echo "<pre>";print_r($updatedata);exit;
+		$cart_update= $this->Customerapi_model->update_cart_item_quentity($get['customer_id'],$get['item_id'],$updatedata);
+		//echo $this->db->last_query();
+		if(count($cart_update)>0){
+			$message = array
+				(
+					'status'=>1,
+					'Cart'=>'Cart Updated Successfully',
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array
+				(
+					'status'=>0,
+					'Cart'=>'Failed To Update Cart Item!',
+				);
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
 
 
 
