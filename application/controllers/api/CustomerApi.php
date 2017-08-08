@@ -24,80 +24,7 @@ class CustomerApi extends REST_Controller {
 	}
     
 	
-	/*  register Apis */
-
-	public function register_post()
-	{
-		$get=$this->input->get();
-		//echo "<pre>";print_r($get);exit;
-		$mobile = preg_match('/^[0-9]{10}+$/',$get['mobile_email']);
-
-		if($mobile==1){
-			$mobile_store = $get['mobile_email'];
-			//echo "<pre>";print_r($mobile_store);exit;
-		}else{
-			$mobile_store =NULL;
-		}
-		//echo "<pre>";print_r($mobile_store);exit;
-		$email =filter_var($get['mobile_email'], FILTER_VALIDATE_EMAIL);
-		 if($email==$get['mobile_email']){
-		 	$email_store = $get['mobile_email'];
-		 }else{
-		 	$email_store = NULL;
-		 }
-		//echo "<pre>";print_r($email);exit;
-		$mobilecheck = $this->Customerapi_model->mobile_check($get['mobile_email']);
-		//echo $this->db->last_query();exit;
-		$emailcheck = $this->Customerapi_model->email_check($get['mobile_email']);
-		if(count($mobilecheck)>0)
-		{
-			$message = array('status'=>0,'message'=>'Mobile number already exits. Please use another Mobile number.');
-			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}else if(count($emailcheck)>0){
-				
-				$message = array('status'=>0,'message'=>'Email Id already exits. Please use another Email Id.');
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}else{
-					//send otp
-				if($email){
-					$six_digit_random_number = mt_rand(100000, 999999);
-					$from_email = 'cartinhour.com';
-		 			$subject = 'Registraion';
-		 			$message = "Dear User,\nYou are Registered Successfully. \n Your OTP is : " .$six_digit_random_number. "\n\n Thanks,\nCart In Hour Team";
-			 		//send mail
-			 		$this->email->from($from_email, 'CartinHour');		
-			 		$this->email->to($email_store);
-			 		$this->email->subject($subject);
-			 		$this->email->message($message);
-			 		$this->email->send();
-				}else{
-					$six_digit_random_number = mt_rand(100000, 999999);
-					$user_id="cartin"; 
-					$pwd="9494422779";    
-					$sender_id = "CARTIN";          
-					$mobile_num = $mobile_store;  
-					$message = "Your OTP is : " .$six_digit_random_number;               
-					// Sending with PHP CURL
-					$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
-					$ret = file($url);
-				}
-				$details=array(
-				'cust_email'=>$email_store,
-				'cust_mobile'=>$mobile_store,
-				'otp_verification'=>$six_digit_random_number,
-				'role_id'=>1,
-				'status'=>1,
-				'create_at'=>date('Y-m-d H:i:s'),
-				);
-				$customerdetails = $this->Customerapi_model->save_customer($details);
-				if(count($customerdetails)>0){
-
-					$message = array('status'=>1,'customer_id'=>$customerdetails,'message'=>'Register Successfully');
-					$this->response($message, REST_Controller::HTTP_OK);
-				}
-				
-	}
-}
+	
 	
 	/*  Set Password Apis */
 	public function socialregister_post()
@@ -668,6 +595,14 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
+
+
+	public function php_info_get()
+	{
+		echo phpinfo();
+	}
+
+
 
 
 
