@@ -313,11 +313,11 @@
         <!-- End Filter Sidebar -->
 
         <!-- Product List -->
-        <div class="col-sm-9">
+        <div class="col-md-9">
           <div class="title"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?>&nbsp; Category Products lists</span></div>
 		<?php //echo '<pre>';print_r($subcategory_porduct_list);exit; ?>
 		<?php $cnt=1;foreach($subcategory_porduct_list as $productslist){ ?>
-          <div class="col-sm-4 col-md-3 box-product-outer">
+          <div class=" col-md-3 box-product-outer" style="width:23%">
             <div class="box-product">
               <div class="img-wrapper">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
@@ -366,7 +366,7 @@
        
          
           
-          <div class="col-sm-4 col-md-3 hidden-sm box-product-outer">
+         <!--- <div class="col-sm-4 col-md-3 hidden-sm box-product-outer">
             <div class="box-product">
               <div class="img-wrapper">
                 <a href="detail.html">
@@ -397,7 +397,7 @@
             </div>
           </div>
          
-        </div>
+        </div>-->
 	
         <!-- End Product List -->
 </div>
