@@ -42,8 +42,13 @@ class Customerapi_model extends MY_Model
        	return $this->db->query($sql1);
 	}
 	public function oldpassword($cusid){
-		$sql="SELECT * FROM customers WHERE customer_id ='".$cusid."'";
+		$sql="SELECT * FROM customers WHERE customers ='".$cusid."'";
         return $this->db->query($sql)->row_array(); 
+	}
+
+	public function forgot_otp($cust_id,$data){
+		$this->db->where('customer_id',$cust_id);
+		return $this->db->update('customers', $data);
 	}
 	// public function forget_mobile_check($mobile){
 

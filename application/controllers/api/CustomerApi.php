@@ -170,52 +170,81 @@ class CustomerApi extends REST_Controller {
 	/*  forgotpassword Apis */
 	public function forgotpassword_post()
 	{
-		$get=$this->input->get();
-		//echo "<pre>";print_r($get);exit;
-		$mobile = preg_match('/^[0-9]{10}+$/',$get['forgot_pass']);
-		//echo "<pre>";print_r($mobile);exit;
-		$email =filter_var($get['forgot_pass'], FILTER_VALIDATE_EMAIL);
-		if($mobile==1){
-			$mobilecheck = $this->Customerapi_model->mobile_check($get['forgot_pass']);
-			if($mobilecheck['cust_mobile'] == $get['forgot_pass'])
-			{
-			$six_digit_random_number = mt_rand(100000, 999999);
-					$user_id="cartin"; 
-					$pwd="9494422779";    
-					$sender_id = "CARTIN";          
-					$mobile_num = $get['forgot_pass'];  
-					$message = "Your OTP is : " .$six_digit_random_number;               
-					// Sending with PHP CURL
-					$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
-					$ret = file($url);
-			$message = array('status'=>1,'message'=>'Otp Send Your Mobile Number.');
-			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		//$this->load->library('form_validation');
+		//$this->form_validation->set_rules('forgot_pass', 'forgot password', 'required');
+		//if($this->form_validation->run() == FALSE)
+		//{
+			//$message = array('status'=>0,'message'=>validation_errors());
+			//$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		//}else 
+		//{
+			$get=$this->input->get();
+			//echo "<pre>";print_r($get);exit;
+			$mobile = preg_match('/^[0-9]{10}+$/',$get['forgot_pass']);
+			//echo "<pre>";print_r($mobile);exit;
+			$email =filter_var($get['forgot_pass'], FILTER_VALIDATE_EMAIL);
+			if($mobile==1){
+				$mobilecheck = $this->Customerapi_model->mobile_check($get['forgot_pass']);
+				if($mobilecheck['cust_mobile'] == $get['forgot_pass'])
+				{
+				$six_digit_random_number = mt_rand(100000, 999999);
+						$user_id="cartin"; 
+						$pwd="9494422779";    
+						$sender_id = "CARTIN";          
+						$mobile_num = $get['forgot_pass'];  
+						$message = "Your OTP is : " .$six_digit_random_number;               
+						// Sending with PHP CURL
+						$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
+						$ret = file($url);
+						$data = array(
+						'otp_verification' => $six_digit_random_number,
+						);
+						$forgot_otp=$this->Customerapi_model->forgot_otp($get['customer_id'],$data);
+						if(count($forgot_otp)>0){
+							$message = array('status'=>1,'message'=>'Otp Send Your Mobile Number.');
+							$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+						}else{
+							$message = array('status'=>0,'message'=>'Otp Not Send Your Mobile Number.');
+							$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+						}
+				
+				}else{
+					$message = array('status'=>0,'message'=>'No user found with this Mobile Number.');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}
 			}else{
-				$message = array('status'=>0,'message'=>'Mobile Number Not In Our database');
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				$emailcheck = $this->Customerapi_model->email_check($email);
+				//echo $this->db->last_query();exit;
+				if($emailcheck['cust_email'] == $get['forgot_pass'])
+				{
+				$six_digit_random_number = mt_rand(100000, 999999);
+				 		//send mail
+				 			$this->load->library('email');
+							$this->email->from('admin@cartinhour.com', 'CartInHour');
+							$this->email->to($get['forgot_pass']);
+							$this->email->subject('CartInHour - Forgot Password');
+							$otp = "Dear User, \n Your OTP is : " .$six_digit_random_number. "\n\n Thanks,\nCart In Hour Team";
+							$this->email->message($otp);
+							$this->email->send();
+							$data = array(
+						'otp_verification' => $six_digit_random_number,
+						);
+						$forgot_otp=$this->Customerapi_model->forgot_otp($get['customer_id'],$data);
+						if(count($forgot_otp)>0){
+							$message = array('status'=>1,'message'=>'Otp Send Your EMail Address');
+								$this->response($message, REST_Controller::HTTP_OK);
+						}else{
+							$message = array('status'=>0,'message'=>'Otp Not Send Your Emaill Address.');
+							$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+						}
+				 		
+				
+				}else{
+					$message = array('status'=>0,'message'=>'No user found with this Email.');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}
 			}
-		}else{
-			$emailcheck = $this->Customerapi_model->email_check($email);
-			//echo $this->db->last_query();exit;
-			if($emailcheck['cust_email'] == $get['forgot_pass'])
-			{
-			$six_digit_random_number = mt_rand(100000, 999999);
-					$from_email = 'cartinhour.com';
-		 			$subject = 'Registraion';
-		 			$message = "Dear User,\nYou are Registered Successfully. \n Your OTP is : " .$six_digit_random_number. "\n\n Thanks,\nCart In Hour Team";
-			 		//send mail
-			 		$this->email->from($from_email, 'CartinHour');		
-			 		$this->email->to($get['forgot_pass']);
-			 		$this->email->subject($subject);
-			 		$this->email->message($message);
-			 		$this->email->send();
-			$message = array('status'=>0,'message'=>'Otp Send Your Mail Address');
-			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}else{
-				$message = array('status'=>0,'message'=>'Email Address Not In Our database');
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}
-		}			
+		//}			
 	}
 		
 
