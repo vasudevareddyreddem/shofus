@@ -25,6 +25,11 @@
 				<label for="category">category Name</label>
 				<input type="text"  class="form-control" id="categoryname"  name="categoryname" value="<?php echo isset($category_details['category_name'])?$category_details['category_name']:''; ?>"/>
 				</div>
+				<div class="form-group">
+				<label for="category">Category Image</label>
+				<input type="file"  class="form-control" id="cat_image"  name="cat_image"/>
+				<span><?php echo isset($category_details['category_image'])?$category_details['category_image']:''; ?></span>
+				</div>
 				
 				<div class="form-group">
 				<label for="category">Category File</label>
@@ -60,7 +65,15 @@ $(document).ready(function() {
 					message: ' Category Name can only consist of alphanumaric, space and dot'
 					}
 				}
-			}, 
+			},
+			cat_image: {
+           validators: {
+          regexp: {
+          regexp: /\.(jpe?g|png)$/i,
+          message: 'Uploaded file is not a valid image. Only JPG, PNG and Jpeg files are allowed'
+          }
+            }
+      }, 
 			
 			categoryfile: {
 					validators: {
