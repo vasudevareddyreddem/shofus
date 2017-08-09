@@ -26,6 +26,11 @@
 				<input type="text"  class="form-control" id="subcategoryname"  name="subcategoryname" value="<?php echo isset($subcategory_details['subcategory_name'])?$subcategory_details['subcategory_name']:''; ?>"/>
 				</div>
 				<div class="form-group">
+				<label for="category">Subcategory Image</label>
+				<input type="file"  class="form-control" id="sub_image"  name="sub_image"/>
+				<span><?php echo isset($subcategory_details['subcategory_image'])?$subcategory_details['subcategory_image']:''; ?></span>
+				</div>
+				<div class="form-group">
 				<label for="category">Category Commission</label>
 				<input type="text"  class="form-control" id="commission"  name="commission" value="<?php echo isset($subcategory_details['commission'])?$subcategory_details['commission']:''; ?>"/>
 				</div>
@@ -73,6 +78,14 @@ $(document).ready(function() {
 					}
 				}
 			},
+			sub_image: {
+           validators: {
+          regexp: {
+          regexp: /\.(jpe?g|png)$/i,
+          message: 'Uploaded file is not a valid image. Only JPG, PNG and Jpeg files are allowed'
+          }
+            }
+      },
 commission: {
 					validators: {
 					between: {

@@ -37,9 +37,14 @@
 				<input type="text"  class="form-control" id="categoryname"  name="categoryname"/>
 				</div>
 				<div class="form-group">
+				<label for="category">Subcategory Image</label>
+				<input type="file"  class="form-control" id="sub_image"  name="sub_image"/>
+				</div>
+				<div class="form-group">
 				<label for="category">Category Commission</label>
 				<input type="text"  class="form-control" id="commission"  name="commission"/>
 				</div>
+
 				<div class="form-group">
 				<label for="category">Category Name</label>
 				<select class="form-control" name="category_list" id="category_list">
@@ -126,7 +131,18 @@ $(document).ready(function() {
 					message: ' subCategory Name can only consist of alphanumaric, space and dot'
 					}
 				}
-			}, 
+			},
+			sub_image: {
+           validators: {
+             notEmpty: {
+            message: 'SubCategory Image is required'
+          },
+          regexp: {
+          regexp: /\.(jpe?g|png)$/i,
+          message: 'Uploaded file is not a valid image. Only JPG, PNG and Jpeg files are allowed'
+          }
+            }
+      }, 
 		commission: {
 					validators: {
 						notEmpty: {
