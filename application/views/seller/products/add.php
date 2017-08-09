@@ -110,7 +110,7 @@
 			<div class="clearfix"></div>
 			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Sub Category </label>
-				<select class="form-control" onchange="getspecialinputs(this.value);getinputfiledshideshow(this.value);" id="subcategorylist" name="subcategorylist" >
+				<select class="form-control" onchange="getspecialinputs(this.value);getinputfiledshideshow(this.value);removeextrafields(this.value);" id="subcategorylist" name="subcategorylist" >
 				<option value="">Select Subcategory </option>
 
 				</select>
@@ -719,7 +719,105 @@
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
    <script type="text/javascript">
-
+function removeextrafields(){
+	  
+	   $('#productname').val('');
+	   $('#skuid').val('');
+	   $('#otherunique').val('');
+	   $('#product_price').val('');
+	   $('#specialprice').val('');
+	   $('#offers').val('');
+	   $('#discount').val('');
+	   $('#qty').val('');
+	   $('#keywords').val('');
+	   $('#title').val('');
+	   $('#status').val('');
+	   $('#product_description').val('');
+	   $('#product_sub_tem').val('');
+	   $('#ideal_for').val('');
+	   $('#brand').val('');
+	   $('#product_scusine').val('');
+	   $('#product_sufficient').val('');
+	   $('#product_type8').val('');
+	   $('#product_type7').val('');
+	   $('#product_theme1').val('');
+	   $('#product_theme').val('');
+	   $('#dial_shape2').val('');
+	   $('#compatible_os').val('');
+	   $('#prouduct_usage').val('');
+	   $('#prouduct_display_type').val('');
+	   $('#product_theme5').val('');
+	   $('#product_occasion2').val('');
+	   $('#product_theme4').val('');
+	   $('#material1').val('');
+	   $('#product_gemstones').val('');
+	   $('#Material2').val('');
+	   $('#product_type6').val('');
+	   $('#dial_shape1').val('');
+	   $('#prouduct_strap_color').val('');
+	   $('#prouduct_dial_color').val('');
+	   $('#product_type5').val('');
+	   $('#product_theme3').val('');
+	   $('#product_packof2').val('');
+	   $('#product_theme2').val('');
+	   $('#product_occasion1').val('');
+	   $('#product_type4').val('');
+	   $('#product_packof1').val('');
+	   $('#product_compatible_mobiles').val('');
+	   $('#product_type3').val('');
+	   $('#product_mega_pixel').val('');
+	   $('#product_sensor_type').val('');
+	   $('#product_battery_type').val('');
+	   $('#product_type2').val('');
+	   $('#wireless_speed').val('');
+	   $('#frequency_band').val('');
+	   $('#broadband_compatibility').val('');
+	   $('#usb_ports').val('');
+	   $('#product_frequency').val('');
+	   $('#product_antennae').val('');
+	   $('#product_display_size3').val('');
+	   $('#product_connectivity').val('');
+	   $('#product_ram3').val('');
+	   $('#voice_calling_facility').val('');
+	   $('#operating_system3').val('');
+	   $('#internal_storage3').val('');
+	   $('#battery_capacity2').val('');
+	   $('#primary_camera2').val('');
+	   $('#processor_clock_speed').val('');
+	   $('#product_display_size2').val('');
+	   $('#product_processor').val('');
+	   $('#product_processor_brand1').val('');
+	   $('#operating_system2').val('');
+	   $('#product_ram2').val('');
+	   $('#life_style').val('');
+	   $('#storage_type').val('');
+	   $('#dedicated_graphics_memory').val('');
+	   $('#touch_screentouch_screen').val('');
+	   $('#weight').val('');
+	   $('#internal_storage2').val('');
+	   $('#graphics_memory_type').val('');
+	   $('#ram_type').val('');
+	   $('#product_ram1').val('');
+	   $('#operating_system1').val('');
+	   $('#internal_storage4').val('');
+	   $('#product_display_size1').val('');
+	   $('#network_type').val('');
+	   $('#battery_capacity1').val('');
+	   $('#product_speciality').val('');
+	   $('#product_type1').val('');
+	   $('#operating_system_version_name').val('');
+	   $('#product_processor_brand2').val('');
+	   $('#resolution_type').val('');
+	   $('#primary_camera1').val('');
+	   $('#secondary_camera').val('');
+	   $('#sim_type').val('');
+	   $('#clock_speed').val('');
+	   $('#number_of_cores').val('');
+	   $('#internal_storage1').val('');
+	   $('#specificationnameid').val('');
+	   $('#specificationvalueid').val('');
+	  
+  }
   $(document).ready(function() {
     $('#importproducts').bootstrapValidator({
        

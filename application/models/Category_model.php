@@ -215,19 +215,87 @@ class Category_model extends MY_Model
 	$this->db->select('fliter_search.*')->from('fliter_search');
 	$this->db->group_by('fliter_search.cusine');
 	$this->db->group_by('fliter_search.restraent');
-	$this->db->group_by('fliter_search.amount');
+	$this->db->group_by('fliter_search.mini_amount');
+	$this->db->group_by('fliter_search.max_amount');
+	$this->db->group_by('fliter_search.offers');
+	$this->db->group_by('fliter_search.brand');
+	$this->db->group_by('fliter_search.discount');
+	$this->db->group_by('fliter_search.status');
+	$this->db->group_by('fliter_search.size');
+	$this->db->group_by('fliter_search.color');
 	$query=$this->db->get()->result_array();
 		foreach ($query as $sorting){
-			//echo '<pre>';print_r($sorting);
+			//echo '<pre>';print_r($sorting);exit;
 			$return[$sorting['cusine']] = $this->get_cusine($sorting['cusine'],$sorting['category_id']);
 			$return[$sorting['restraent']] = $this->get_restraent($sorting['restraent'],$sorting['category_id']);
-			$return[$sorting['amount']] = $this->get_amount($sorting['amount'],$sorting['category_id']);
+			$return[$sorting['mini_amount']] = $this->get_amount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
+			$return[$sorting['offers']] = $this->get_offers($sorting['offers'],$sorting['category_id']);
+			$return[$sorting['brand']] = $this->get_brands($sorting['brand'],$sorting['category_id']);
+			$return[$sorting['discount']] = $this->get_discounts($sorting['discount'],$sorting['category_id']);
+			$return[$sorting['status']] = $this->get_status($sorting['status'],$sorting['category_id']);
+			$return[$sorting['size']] = $this->get_sizes($sorting['size'],$sorting['category_id']);
+			$return[$sorting['color']] = $this->get_colors($sorting['color'],$sorting['category_id']);
 			
 		}
 		if(!empty($return))
 		{
 		return $return;
 		}
+		
+	}
+	public function get_offers($offer,$cid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('offers',$offer);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_brands($brand,$cid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('brand',$brand);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_discounts($discount,$cid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('discount',$discount);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_sizes($size,$cid){
+		
+		$this->db->select('products.*')->from('product_size_list');
+		$this->db->join('products', 'products.item_id = product_size_list.item_id', 'left'); //
+		$this->db->where('products.item_status',1);
+		$this->db->where('product_size_list.p_size_name',$size);
+		$this->db->where('products.category_id',$cid);
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_colors($color,$cid){
+		
+		$this->db->select('products.*')->from('product_color_list');
+		$this->db->join('products', 'products.item_id = product_color_list.item_id', 'left'); //
+		$this->db->where('products.item_status',1);
+		$this->db->where('product_color_list.color_name',$color);
+		$this->db->where('products.category_id',$cid);
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_status($status,$cid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',$status);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
 		
 	}
 	public function get_cusine($cusine,$cid){
@@ -252,14 +320,11 @@ class Category_model extends MY_Model
 	}
 	
 	/* food categorywise*/
-	public function get_amount($amount,$cid){
+	public function get_amount($min_amunt,$max_amount,$cid){
 		
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('item_cost',$amount);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-		
+		$sql = "SELECT * FROM products WHERE category_id ='".$cid."' AND item_status ='1' AND  item_cost BETWEEN '".$min_amunt."' AND '".$max_amount."'";
+        return $this->db->query($sql)->result_array();
+		//echo $this->db->last_query();exit;
 	}
 
 	public function get_all_cusine_list($catid)
@@ -285,6 +350,26 @@ class Category_model extends MY_Model
 	}
 	
 	/* food categorywise*/
+	/*electronic category*/
+	public function get_all_color_list($catid){
+		$this->db->select('product_color_list.color_name')->from('products');
+		$this->db->join('product_color_list', 'product_color_list.item_id = products.item_id', 'left');	
+		$this->db->where('products.category_id',$catid);
+		$this->db->where('products.item_status',1);
+		$this->db->where('product_color_list.color_name!=','');
+		$this->db->group_by('product_color_list.color_name');
+		return $this->db->get()->result_array();
+	}
+	public function get_all_size_list($catid){
+		$this->db->select('product_size_list.p_size_name')->from('products');
+		$this->db->join('product_size_list', 'product_size_list.item_id = products.item_id', 'left');	
+		$this->db->where('products.category_id',$catid);
+		$this->db->where('products.item_status',1);
+		$this->db->where('product_size_list.p_size_name!=','');
+		$this->db->group_by('product_size_list.p_size_name');
+		return $this->db->get()->result_array();
+	}
+	/*electronic category*/
 	/* GROCERY categorywise*/
 	public function get_all_brand_list($catid){
 		
