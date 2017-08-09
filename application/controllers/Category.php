@@ -14,7 +14,10 @@ class Category extends Front_Controller
  }
  
  public function categorywiseearch(){
-	 
+	$removesearch= $this->category_model->get_all_previous_search_fields();
+	foreach ($removesearch as $list){
+		$this->category_model->delete_privous_searchdata($list['id']);
+	} 
 	$post=$this->input->post();
 	//echo '<pre>';print_r($post);
 	$ip=$this->input->ip_address();
@@ -115,15 +118,25 @@ function filtersearch(){
 	$data['subcategory_list']= $this->category_model->get_all_subcategory_list();
 	$subcategory_porduct_list= $this->category_model->get_search_all_subcategory_products();
 	//echo '<pre>';print_r($subcategory_porduct_list);exit;
+
 	foreach ($subcategory_porduct_list as $lists){
-			foreach ($lists as $plist){
-				//echo '<pre>';print_r();
-				$products[]=$plist;
-				$categoryid=$plist['category_id'];
-			}
+			foreach ($lists as $li){
+					$idslist[]=$li['item_id'];
+					$products[]=$li;
+					$categoryid=$li['category_id'];
+				}
 	}
-	//echo '<pre>';print_r(array_unique($products));exit;
-	$data['subcategory_porduct_list']=$products;
+	$result = array_unique($idslist);
+	//echo '<pre>';print_r($result);
+	foreach ($result as $pids){
+		$products_list[]=$this->category_model->get_product_details($pids);
+
+
+	}	
+	
+	//echo '<pre>';print_r($products_list);
+	//exit;
+	$data['subcategory_porduct_list']=$products_list;
 	$data['previousdata']= $this->category_model->get_all_previous_search_fields();
 	$caterory_id=$categoryid;
 	$data['category_id']=$categoryid;
@@ -132,6 +145,8 @@ function filtersearch(){
 		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);
 		$data['myrestaurant']= $this->category_model->get_all_myrestaurant_list($caterory_id);
 		$data['price_list']= $this->category_model->get_all_price_list($caterory_id);
+		$data['avalibility_list']= $this->category_model->get_all_avalibility_list($caterory_id);
+
 		$data['minimum_price'] = reset($data['price_list']);
 		$data['maximum_price'] = end($data['price_list']);
 
@@ -150,7 +165,7 @@ function filtersearch(){
 		$data['discount_list']= $this->category_model->get_all_discount_list($caterory_id);
 		$data['avalibility_list']= $this->category_model->get_all_avalibility_list($caterory_id);
 		$data['offer_list']= $this->category_model->get_all_offer_list($caterory_id);
-		$data['color_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['color_list']= $this->category_model->get_all_color_list($caterory_id);
 		$data['minimum_price'] = reset($data['price_list']);
 		$data['maximum_price'] = end($data['price_list']);
 	}else if($caterory_id==19){
@@ -159,8 +174,8 @@ function filtersearch(){
 		$data['discount_list']= $this->category_model->get_all_discount_list($caterory_id);
 		$data['avalibility_list']= $this->category_model->get_all_avalibility_list($caterory_id);
 		$data['offer_list']= $this->category_model->get_all_offer_list($caterory_id);
-		$data['color_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
-		$data['sizes_list']= $this->category_model->get_all_myrestaurant_list($caterory_id);
+		$data['color_list']= $this->category_model->get_all_color_list($caterory_id);
+		$data['sizes_list']= $this->category_model->get_all_size_list($caterory_id);
 		$data['minimum_price'] = reset($data['price_list']);
 		$data['maximum_price'] = end($data['price_list']);
 	}
