@@ -131,8 +131,9 @@
               <label >Email Address / Mobile Number</label>
               <input  name="login_email" id="login_email" class="form-control" type="text" name="username" autofocus>
             </div>
-            <div class="form-group">
-              <label>Password</label>
+            <div class="form-group" >
+              
+              <label >Password</label>
               <input  id="login_password" name="login_password" class="form-control" type="password" name="password">
               </div>
               <div class="col-md-6 paddingRightZero">
@@ -158,7 +159,8 @@
               <input   class="form-control" type="text" maxlength="6" id="any_ref" name="any_ref">
               </div>
               <div class="clearfix"></div>
-              <input type="submit" class="btn btn-primary  btn-block btn-sm mar_t10" name="register_do" id="register_do" value="Register">
+			  <label>&nbsp;</label>
+              <input type="submit" class="btn btn-primary  btn-block  " name="register_do" id="register_do" value="Register">
               <!-- <button class="btn btn-primary btn-sm mar_t10" type="submit">Get OTP</button> -->
               </form>
             </div>
@@ -480,7 +482,7 @@ $(function() {
    
   
    $(window).scroll(function() {
-if ($(this).scrollTop() > 400) {
+if ($(this).scrollTop() > 100) {
 $('.hm_nav').addClass('affix');
 $('.hm_nav').addClass('animated fadeInDown');
 }

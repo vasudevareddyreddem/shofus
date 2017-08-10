@@ -119,6 +119,28 @@
 						</div>
 					</div>
 				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					    Availability
+					  </a>
+				  </h4>
+
+					</div>
+					<?php //echo '<pre>';print_r($avalibility_list);exit; ?>
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						<div class="panel-body">
+							<select onchange="mobileaccessories(this.value);" name="products[availability]" class="form-control" id="sel1">
+								<option value="">Select</option>
+								
+								<?php foreach ($avalibility_list as $list){ ?>
+								<option value="<?php echo $list; ?>"><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+				</div>
 				
 				
 				
@@ -206,7 +228,124 @@
 				
 				
 			</div>
-			<?php }else if(base64_decode($this->uri->segment(3))=='20'){ ?>
+			<?php }else if(base64_decode($this->uri->segment(3))=='19'){ ?>
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Offer	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($offer_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Colors	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($color_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  SIZE	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($sizes_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[size][]" value="<?php echo $list['p_size_name']; ?>"><span>&nbsp;<?php echo $list['p_size_name']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  BRAND	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($brand_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Discount	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($discount_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					    Availability
+					  </a>
+				  </h4>
+
+					</div>
+					<?php //echo '<pre>';print_r($avalibility_list);exit; ?>
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						<div class="panel-body">
+							<select onchange="mobileaccessories(this.value);" name="products[availability]" class="form-control" id="sel1">
+								<option value="">Select</option>
+								
+								<?php foreach ($avalibility_list as $list){ ?>
+								<option value="<?php echo $list; ?>"><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+			</div><?php }else if(base64_decode($this->uri->segment(3))=='20'){ ?>
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">

@@ -15,7 +15,7 @@
   width:100% !important;
   }
   .chosen-search-input{
-	  width:100% !important;
+    width:100% !important;
   }
   .chosen-container .chosen-drop {
     background: #fff;
@@ -243,9 +243,9 @@
       top: 7px;
       width: 12px;
       cursor: pointer; }
-	  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-		border:none;
-	}
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    border:none;
+  }
 
  /* multiselect css end */
 </style>
@@ -471,7 +471,7 @@ $(function(){
                             </div>
        <?php if($seller_storedetails['other_shops']=="yes") {?>                                        
       <div class="form-group nopaddingRight col-md-6 san-lg" id="shoplocation">
-      	   <label class="control-label">Other Locations </label>
+           <label class="control-label">Other Locations </label>
             <select id="other_shops_location"  name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
               <!-- <option value=""></option> -->
               <?php $iputfield = $seller_storedetails['other_shops_location'];
@@ -566,23 +566,23 @@ $(function(){
                                                 <div class="panel-body">
                                                     <form id="personalidetails"  name="personalidetails" action="<?php echo base_url('seller/personnel_details/personal_details_updatebd'); ?>" method="post" enctype="multipart/form-data">
                                                         <div class="row">
-														<div class="form-group nopaddingRight col-md-6 san-lg">
+                            <div class="form-group nopaddingRight col-md-6 san-lg">
                                                             <label for="exampleInputEmail1">Bank account</label>
                                                             <input class="form-control" placeholder="Name" type="text" id="bank_account" name="bank_account" value="<?php echo $seller_storedetails['seller_bank_account']?>">
                                                         </div>
                                                         <div class="form-group nopaddingRight col-md-6 san-lg">
                                                             <label for="exampleInputEmail1">Bank Account Name</label>
-															<input maxlength="100" type="text" maxlength="12" id="account_name" name="account_name" class="form-control"  value="<?php echo isset($seller_storedetails['seller_account_name'])?$seller_storedetails['seller_account_name']:''; ?>" />
+                              <input maxlength="100" type="text" maxlength="12" id="account_name" name="account_name" class="form-control"  value="<?php echo isset($seller_storedetails['seller_account_name'])?$seller_storedetails['seller_account_name']:''; ?>" />
                                                         </div>
-														</div>
+                            </div>
 
-														<div class="row">
-														<div class="form-group nopaddingRight col-md-6 san-lg">
-														<label for="exampleInputEmail1">Bank Account IFSC Code</label>
-														<input maxlength="100" type="text"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($seller_storedetails['seller_aaccount_ifsc_code'])?$seller_storedetails['seller_aaccount_ifsc_code']:''; ?>" />
-														</div>
-														</div>
-														<div class="clearfix"></div>
+                            <div class="row">
+                            <div class="form-group nopaddingRight col-md-6 san-lg">
+                            <label for="exampleInputEmail1">Bank Account IFSC Code</label>
+                            <input maxlength="100" type="text"  name="ifsccode" class="form-control" id="ifsccode"  value="<?php echo isset($seller_storedetails['seller_aaccount_ifsc_code'])?$seller_storedetails['seller_aaccount_ifsc_code']:''; ?>" />
+                            </div>
+                            </div>
+                            <div class="clearfix"></div>
                                                         <div style="margin-top: 20px; margin-left: 15px;">
                                                             <button type="submit" class="btn btn-primary">Submit</button>
                                                      
