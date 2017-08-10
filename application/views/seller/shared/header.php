@@ -70,7 +70,7 @@
 								
 								//echo $notification[0]['unreadcouont'];
 								//echo '<pre>';print_r($notification);exit; ?>
-                                    <li class="header"><i class="fa fa-bell"></i>Admin Notifications</li>
+                                    <li class="header"><i class="fa fa-bell"></i> &nbsp; Admin Notifications</li>
                                     <li>
                                         <ul class="menu">
                                         <?php foreach($allnotification as $list){ ?>
