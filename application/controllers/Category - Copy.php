@@ -14,134 +14,138 @@ class Category extends Front_Controller
  }
  
  public function categorywiseearch(){
-	
+	$removesearch= $this->category_model->get_all_previous_search_fields();
+	foreach ($removesearch as $list){
+		$this->category_model->delete_privous_searchdata($list['id']);
+	} 
 	$post=$this->input->post();
-	//echo '<pre>';print_r($cusine);
-	//echo '<pre>';print_r($post);exit;
-	
-				if(isset($post['searchvalue']) && $post['searchvalue']=='status' && $post['unchecked']!='uncheck'){
-					$status=$post['productsvalues'];
-				
-					$removesearch= $this->category_model->get_all_previous_search_fields();
-					foreach ($removesearch as $list){
-						$this->category_model->update_status_privous_searchdata($list['id'],$post['productsvalues']);
-					} 
-				}
-				if(isset($post['searchvalue']) && $post['searchvalue']=='cusine' && $post['unchecked']!='uncheck'){
-					$cus=$post['productsvalues'];
-				}else if(isset($post['unchecked']) && $post['unchecked']=='uncheck' && $post['searchvalue']=='cusine'){
-					$removesearch= $this->category_model->get_all_previous_search_fields();
-					foreach ($removesearch as $list){
-						if($list['cusine']==$post['productsvalues']){
-						$this->category_model->update_cusine_privous_searchdata($list['id'],'');
-						}
-					} 
-				}else{
-					$cus='';
-				}
-				if(isset($post['searchvalue']) && $post['searchvalue']=='res' && $post['unchecked']!='uncheck'){
-					$res=$post['productsvalues'];
-				}else if(isset($post['unchecked']) && $post['unchecked']=='uncheck' && $post['searchvalue']=='res'){
-					$removesearch= $this->category_model->get_all_previous_search_fields();
-					foreach ($removesearch as $list){
-						if($list['restraent']==$post['productsvalues']){
-						$this->category_model->update_res_privous_searchdata($list['id'],'');
-						}
-					} 
-				}else{
-					$res='';
-				}
-				
-				if($post['searchvalue']=='offer' && $post['unchecked']!='uncheck'){
-					$offer=$post['productsvalues'];
-				}else if($post['unchecked']=='uncheck' && $post['searchvalue']=='offer'){
-					$removesearch= $this->category_model->get_all_previous_search_fields();
-					foreach ($removesearch as $list){
-						if($list['offers']==$post['productsvalues']){
-						$this->category_model->update_offer_privous_searchdata($list['id'],'');
-						}
-					} 
-				}else{
-					$offer='';
-				}
-				if($post['searchvalue']=='brand' && $post['unchecked']!='uncheck'){
-					$brand=$post['productsvalues'];
-				}else if($post['unchecked']=='uncheck' && $post['searchvalue']=='brand'){
-					$removesearch= $this->category_model->get_all_previous_search_fields();
-					foreach ($removesearch as $list){
-						if($list['brand']==$post['productsvalues']){
-						$this->category_model->update_brand_privous_searchdata($list['id'],'');
-						}
-					} 
-				}else{
-					$brand='';
-				}
-				if($post['searchvalue']=='discount' && $post['unchecked']!='uncheck'){
-					$discount=$post['productsvalues'];
-				}else if($post['unchecked']=='uncheck' && $post['searchvalue']=='discount'){
-					$removesearch= $this->category_model->get_all_previous_search_fields();
-					foreach ($removesearch as $list){
-						if($list['discount']==$post['productsvalues']){
-						$this->category_model->update_discount_privous_searchdata($list['id'],'');
-						}
-					} 
-				}else{
-					$discount='';
-				}
-				if(isset($post['searchvalue']) && $post['searchvalue']=='color' && $post['unchecked']!='uncheck'){
-					$color=$post['productsvalues'];
-				}else if(isset($post['unchecked']) && $post['unchecked']=='uncheck' && $post['searchvalue']=='color'){
-					$removesearch= $this->category_model->get_all_previous_search_fields();
-					foreach ($removesearch as $list){
-						if($list['color']==$post['productsvalues']){
-						$this->category_model->update_color_privous_searchdata($list['id'],'');
-						}
-					} 
-				}else{
-					$color='';
-				}
-				if(isset($post['searchvalue']) && $post['searchvalue']=='size' && $post['unchecked']!='uncheck'){
-					$size=$post['productsvalues'];
-				}else if(isset($post['unchecked']) && $post['unchecked']=='uncheck' && $post['searchvalue']=='size'){
-					$removesearch= $this->category_model->get_all_previous_search_fields();
-					foreach ($removesearch as $list){
-						if($list['size']==$post['productsvalues']){
-						$this->category_model->update_size_privous_searchdata($list['id'],'');
-						}
-					} 
-				}else{
-					$size='';
-				}
-				
-		
-	
+	echo '<pre>';print_r($post);exit;
 	$ip=$this->input->ip_address();
+	if(isset($post['products']['cusine']) && count($post['products']['cusine'])>0){
+		foreach($post['products']['cusine'] as $list){
+				$data8=array(
+				'Ip_address'=>$ip,
+				'category_id'=>base64_decode($post['categoryid']),
+				'cusine'=>$list,
+				'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+				'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+				'status'=>isset($post['products']['availability']) ? $post['products']['availability']:'',
+
+				);
+				//echo '<pre>';print_r($data);
+			$brand8= $this->category_model->save_searchdata($data8);
+			}
+	}
+	if(isset($post['products']['res']) && count($post['products']['res'])>0){
+		foreach($post['products']['res'] as $list){
+				$data8=array(
+				'Ip_address'=>$ip,
+				'category_id'=>base64_decode($post['categoryid']),
+				'restraent'=>$list,
+				'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+				'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+				'status'=>isset($post['products']['availability']) ? $post['products']['availability']:'',
+
+				);
+				//echo '<pre>';print_r($data);
+			$brand8= $this->category_model->save_searchdata($data8);
+			}
+	}
+	if(isset($post['products']['offers']) && count($post['products']['offers'])>0){
+		foreach($post['products']['offers'] as $list){
+				$data7=array(
+				'Ip_address'=>$ip,
+				'category_id'=>base64_decode($post['categoryid']),
+				'offers'=>$list,
+				'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+				'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+				'status'=>isset($post['products']['availability']) ? $post['products']['availability']:'',
+
+				);
+			$brand7= $this->category_model->save_searchdata($data7);
+			}
+	}
+	if(isset($post['products']['brand']) && count($post['products']['brand'])>0){
+		foreach($post['products']['brand'] as $list){
+				$data6=array(
+				'Ip_address'=>$ip,
+				'category_id'=>base64_decode($post['categoryid']),
+				'brand'=>$list,
+				'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+				'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+				'status'=>isset($post['products']['availability']) ? $post['products']['availability']:'',
+
+				);
+			$brand6= $this->category_model->save_searchdata($data6);
+			}
+	}
+	if(isset($post['products']['discount']) && count($post['products']['discount'])>0){
+		foreach($post['products']['discount'] as $list){
+				$data5=array(
+				'Ip_address'=>$ip,
+				'category_id'=>base64_decode($post['categoryid']),
+				'discount'=>$list,
+				'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+				'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+				'status'=>isset($post['products']['availability']) ? $post['products']['availability']:'',
+
+				);
+			$brand5= $this->category_model->save_searchdata($data5);
+			}
+	}
+	if(isset($post['products']['discount']) && count($post['products']['discount'])>0){
+		foreach($post['products']['discount'] as $list){
+				$data4=array(
+				'Ip_address'=>$ip,
+				'category_id'=>base64_decode($post['categoryid']),
+				'discount'=>$list,
+				'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+				'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+				'status'=>isset($post['products']['availability']) ? $post['products']['availability']:'',
+
+				);
+			$brand4= $this->category_model->save_searchdata($data4);
+			}
+	}
+	if(isset($post['products']['size']) && count($post['products']['size'])>0){
+		foreach($post['products']['size'] as $list){
+				$data3=array(
+				'Ip_address'=>$ip,
+				'category_id'=>base64_decode($post['categoryid']),
+				'size'=>$list,
+				'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+				'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+				'status'=>isset($post['products']['availability']) ? $post['products']['availability']:'',
+				);
+			$brand3= $this->category_model->save_searchdata($data3);
+			}
+	}
+	if(isset($post['products']['color']) && count($post['products']['color'])>0){
+		foreach($post['products']['color'] as $list){
+				$data2=array(
+				'Ip_address'=>$ip,
+				'category_id'=>base64_decode($post['categoryid']),
+				'color'=>$list,
+				'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+				'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+				'status'=>isset($post['products']['availability']) ? $post['products']['availability']:'',
+				);
+			$brand2= $this->category_model->save_searchdata($data2);
+			}
+	}
 	
 	$data1=array(
 	'Ip_address'=>$ip,
 	'category_id'=>base64_decode($post['categoryid']),
-	'mini_amount'=>isset($post['mini_mum']) ? $post['mini_mum']:'',
-	'max_amount'=>isset($post['maxi_mum']) ? $post['maxi_mum']:'',
-	'cusine'=>isset($cus) ? $cus:'',
-	'restraent'=>isset($res) ? $res:'',
-	'offers'=>isset($offer) ? $offer:'',
-	'brand'=>isset($brand) ? $brand:'',
-	'discount'=>isset($discount) ? $discount:'',
-	'color'=>isset($color) ? $color:'',
-	'size'=>isset($size) ? $size:'',
-	'status'=>isset($status) ? $status:'',
+	'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+	'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+	'status'=>isset($post['products']['availability']) ? $post['products']['availability']:'',
 	'create'=>date('Y-m-d H:i:s'),
 	);
 	//echo '<pre>';print_r($data1);
 	//exit;
 	$brand1= $this->category_model->save_searchdata($data1);
 	if(count($brand1)>0){
-		$removesearch= $this->category_model->get_all_previous_search_fields();
-		foreach ($removesearch as $list){
-			$this->category_model->update_amount_privous_searchdata($post['mini_mum'],$post['maxi_mum'],$list['id']);
-			//echo $this->db->last_query();exit;
-		
-		}
 		redirect('category/filtersearch');
 		
 	}
@@ -161,31 +165,25 @@ function filtersearch(){
 		$categoryid=$lists['category_id'];
 		}
 		foreach ($catid as $lists){
-		$categoryids=$lists['category_id'];
+		$categoryid=$lists['category_id'];
 		}
-		//echo count($subcategory_porduct_list);
-		if(count($subcategory_porduct_list)>2){
 		foreach ($subcategory_porduct_list as $lists){
 				foreach ($lists as $li){
 						$idslist[]=$li['item_id'];
 						$products[]=$li;
 					}
 		}
-		$result = array_unique($idslist);
-		
+	$result = array_unique($idslist);
 	//echo '<pre>';print_r($result);exit;
 	foreach ($result as $pids){
 		$products_list[]=$this->category_model->get_product_details($pids);
 
 	}
-	$data['subcategory_porduct_list']=$products_list;
-	}else{
 	
-	$data['subcategory_porduct_list']=array();
-	}
+	$data['subcategory_porduct_list']=$products_list;
 	$data['previousdata']= $this->category_model->get_all_previous_search_fields();
 	$caterory_id=$categoryid;
-	$data['category_id']=$categoryids;
+	$data['category_id']=$categoryid;
 		
 	if($caterory_id==18){
 		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);
@@ -228,7 +226,8 @@ function filtersearch(){
 	$data['category_name']= $this->category_model->get_category_name($caterory_id);
 
 	//echo '<pre>';print_r($data);exit;
-	$this->load->view('customer/filters_search',$data);
+	$this->template->write_view('content', 'customer/filters_search',$data);
+	$this->template->render();
 	
 
 }	

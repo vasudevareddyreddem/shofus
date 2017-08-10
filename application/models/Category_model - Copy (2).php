@@ -204,51 +204,6 @@ class Category_model extends MY_Model
 		$this->db->where('item_id',$id);
 		return $this->db->get()->row_array();
 	}
-	public function update_amount_privous_searchdata($min,$max,$id)
-	{
-		$sql1="UPDATE fliter_search SET mini_amount ='".$min."', max_amount ='".$max."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_cusine_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET cusine ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_offer_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET offers ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_brand_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET brand ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_discount_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET discount ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_color_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET color ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_size_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET size ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_res_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET restraent ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_status_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET status ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
 	public function delete_privous_searchdata($id)
 	{
 		$sql1="DELETE FROM fliter_search WHERE id = '".$id."'";
@@ -260,11 +215,12 @@ class Category_model extends MY_Model
 		$this->db->where('Ip_address',$this->input->ip_address());
 		return $this->db->get()->result_array();
 	}
+		
 	public function get_search_all_category_id()
 	{
 		$this->db->select('fliter_search.category_id')->from('fliter_search');
 		return $this->db->get()->result_array();
-	}	
+	}
 	public function get_search_all_subcategory_products()
 	{
 	
@@ -281,126 +237,85 @@ class Category_model extends MY_Model
 	$this->db->group_by('fliter_search.color');
 	$query=$this->db->get()->result_array();
 		foreach ($query as $sorting){
-			//echo '<pre>';print_r($sorting);exit;
-			if($sorting['cusine']!=''){
-				$return['cusine'] = $this->get_cusine($sorting['cusine'],$sorting['category_id']);
-			}
-			if($sorting['restraent']!=''){
-				$return['restraent'] = $this->get_restraent($sorting['restraent'],$sorting['category_id']);
-			}
-			if($sorting['offers']!=''){
-			$return['offers'] = $this->get_offers($sorting['offers'],$sorting['category_id']);
-			}
-			if($sorting['brand']!=''){
-			$return['brand'] = $this->get_brands($sorting['brand'],$sorting['category_id']);
-			}
-			if($sorting['discount']!=''){
-			$return['discount'] = $this->get_discounts($sorting['discount'],$sorting['category_id']);
-			}
-			if($sorting['color']!=''){
-				$return['color'] = $this->get_colors($sorting['color'],$sorting['category_id']);
-			}
-			if($sorting['size']!=''){
-			$return['size'] = $this->get_sizes($sorting['size'],$sorting['category_id']);
-			}
-			$return['mini_amount'] = $this->get_amount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
-			$return['status'] = $this->get_status($sorting['status'],$sorting['category_id']);
+			//echo '<pre>';print_r($sorting);
+				$cateid=$sorting['category_id'];
+				$status=$sorting['status'];
+				if($sorting['restraent']!=''){
+				$restraent[]=$sorting['restraent'];	
+				}else{
+				$restraent[]='';
+				}
+				if($sorting['cusine']!=''){
+				$cusine[]=$sorting['cusine'];	
+				}else{
+					$cusine[]='';
+				}
+				
+				if($sorting['offers']!=''){
+				$offers[]=$sorting['offers'];	
+				}else{
+					$offers[]='';	
+				}
+				if($sorting['brand']!=''){
+				$brand[]=$sorting['brand'];	
+				}else{
+					$brand[]='';	
+				}
+				if($sorting['discount']!=''){
+				$discount[]=$sorting['discount'];	
+				}else{
+					$discount[]='';
+				}
+				
 			
-		}
-		if(!empty($return))
+			}
+					if (isset($cusine) && count($cusine)>=0 ||  isset($restraent) && count($restraent)>=0 ) 
+					{
+					$result1=$this->get_search_fileds_list($status,$cateid,$cusine,$restraent);
+					}
+					if (isset($brand) && count($brand)>=0  || isset($discount) && count($discount)>=0 || isset($offers) && count($offers)>=0 ) 
+					{
+						
+						echo 'dfgdfgxit';
+					
+					$result2=$this->get_search_fileds_list1($status,$cateid,$offers,$brand,$discount);
+					}		
+	//$result=$this->get_search_fileds_list($status,$cateid,$cusine,$restraent,$offers,$brand,$discount);
+		
+		
+		echo '<pre>';print_r($result2);exit
+		echo '<pre>';print_r($result);exit;
+
+		if(!empty($result))
 		{
-		return $return;
+		return $result;
 		}
-		
-	}
-	public function get_offers($offer,$cid){
-		
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('offers',$offer);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-		
-	}
-	public function get_brands($brand,$cid){
-		
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('brand',$brand);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-		
-	}
-	public function get_discounts($discount,$cid){
-		
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('discount',$discount);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-		
-	}
-	public function get_sizes($size,$cid){
-		
-		$this->db->select('products.*')->from('product_size_list');
-		$this->db->join('products', 'products.item_id = product_size_list.item_id', 'left'); //
-		$this->db->where('products.item_status',1);
-		$this->db->where('product_size_list.p_size_name',$size);
-		$this->db->where('products.category_id',$cid);
-		return $this->db->get()->result_array();
-		
-	}
-	public function get_colors($color,$cid){
-		
-		$this->db->select('products.*')->from('product_color_list');
-		$this->db->join('products', 'products.item_id = product_color_list.item_id', 'left'); //
-		$this->db->where('products.item_status',1);
-		$this->db->where('product_color_list.color_name',$color);
-		$this->db->where('products.category_id',$cid);
-		return $this->db->get()->result_array();
-		
-	}
-	public function get_status($status,$cid){
-		$this->db->select('*')->from('products');
-		if($status!=0){
-			$this->db->where('item_quantity !=',0);
-		}else{
-		$this->db->where('item_quantity=',0);	
-		}
-		$this->db->where('item_status',1);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-		
-	}
-	public function get_cusine($cusine,$cid){
-		
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('cusine',$cusine);
-		$this->db->where('category_id',$cid);
-		
-		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
-	}
-	public function get_restraent($restraent,$cid){
-		
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('seller_id',$restraent);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
 		
 	}
 	
-	/* food categorywise*/
-	public function get_amount($min_amunt,$max_amount,$cid){
-		
-		$sql = "SELECT * FROM products WHERE category_id ='".$cid."' AND item_status ='1' AND  item_cost BETWEEN '".$min_amunt."' AND '".$max_amount."'";
-		return $this->db->query($sql)->result_array();
-		//echo $this->db->last_query();exit;
-	}
+	
 
+	public function get_search_fileds_list($status,$cateid,$cusine,$restraent){
+		
+			$this->db->select('*')->from('products');
+			$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
+			$this->db->where('products.category_id',$cateid);		
+			$this->db->where('products.item_status',$status);
+			$this->db->where_in('products.cusine',$cusine);
+			 $this->db->where_in('sellers.seller_id',$restraent);		
+			return $this->db->get()->result_array();
+	}
+	public function get_search_fileds_list1($status,$cateid,$offers,$brand,$discount){
+		
+			$this->db->select('*')->from('products');
+			$this->db->where('products.category_id',$cateid);		
+			$this->db->where('products.item_status',$status);
+			$this->db->where_in('products.brand',$brand);
+			$this->db->where_in('products.discount',$discount);	
+			$this->db->where_in('products.offers',$offers);
+			return $this->db->get()->result_array();
+	}
+	
 	public function get_all_cusine_list($catid)
 	{
 	

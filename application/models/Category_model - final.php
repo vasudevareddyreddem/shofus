@@ -204,51 +204,6 @@ class Category_model extends MY_Model
 		$this->db->where('item_id',$id);
 		return $this->db->get()->row_array();
 	}
-	public function update_amount_privous_searchdata($min,$max,$id)
-	{
-		$sql1="UPDATE fliter_search SET mini_amount ='".$min."', max_amount ='".$max."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_cusine_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET cusine ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_offer_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET offers ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_brand_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET brand ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_discount_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET discount ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_color_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET color ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_size_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET size ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_res_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET restraent ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_status_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET status ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
 	public function delete_privous_searchdata($id)
 	{
 		$sql1="DELETE FROM fliter_search WHERE id = '".$id."'";
