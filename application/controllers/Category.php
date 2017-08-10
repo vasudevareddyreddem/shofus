@@ -236,6 +236,7 @@ function filtersearch(){
 	 
 	$post=$this->input->post();
 	$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products_list($post['subcategoryid']);
+	$data['cat_subcat_ids']= $this->category_model->get_category_id($post['subcategoryid']);
 	//echo '<pre>';print_r($data);exit;
 	$this->load->view('customer/subcategorywiseproducts',$data);
 	//echo '<pre>';print_r($data);exit;

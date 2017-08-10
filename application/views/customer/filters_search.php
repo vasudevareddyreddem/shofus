@@ -58,7 +58,7 @@
 	 <div class=" clearfix"></div>
 	 <!-- Filter Sidebar -->
 	 
-	 <div id="subcategorywise_products" style="">
+	 <div id="subcategorywise_products1" style="">
 		<div class="col-sm-3">
 		 <div class="title"><span>Filters</span></div>
 		
@@ -536,7 +536,7 @@
 		</div>
       
     </div>
-	 <div class="col-sm-9">
+	 <div class="col-sm-9" id="aftercategorysearch">
           <div class="title"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?>&nbsp; Category Products lists</span></div>
 		<?php //echo '<pre>';print_r($subcategory_porduct_list);exit; ?>
 		<?php 
@@ -670,8 +670,10 @@ function getproduct(id){
 				},
 				dataType: 'html',
 				success: function (data) {
-					$("#subcategorywise_products").empty();
-					$("#subcategorywise_products").append(data);
+					
+					$("#aftercategorysearch").empty();
+					$("#subcategorywise_products1").empty();
+					$("#subcategorywise_products1").append(data);
 				}
 			});
 			

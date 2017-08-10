@@ -524,10 +524,18 @@ class Category_model extends MY_Model
 	return $this->db->get()->result_array();
 		
 	}
+	public function get_category_id($subcatid)
+	{
+	
+	$this->db->select('subcategories.subcategory_id,subcategories.category_id')->from('subcategories');
+    $this->db->where('subcategories.subcategory_id', $subcatid);
+	return $this->db->get()->row_array();
+		
+	}
 	public function get_all_subcategory_products_list($subcatid)
 	{
 	
-	$this->db->select('products.*')->from('products');
+	$this->db->select('products.*,category.category_id')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
     $this->db->where('subcategories.subcategory_id', $subcatid);
