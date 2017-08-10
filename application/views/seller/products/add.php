@@ -1181,7 +1181,12 @@ function getspecialinputs(ids){
                    regexp: {
 					regexp: /^[0-9.]+$/,
 					message: 'Special price can only consist of digits'
-					}
+					},
+					lessThan: {
+                        field: 'product_price',
+                        inclusive: true,
+                        message: 'The ages has to be less than 100'
+                    },
 				}
 			},
 			discount: {

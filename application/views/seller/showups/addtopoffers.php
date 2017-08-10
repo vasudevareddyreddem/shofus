@@ -42,10 +42,10 @@ tfoot input {
 				</div>
 			</form>  
 			<h1>Offers</h1>
-			<small>My Offers</small>
+			<small>Top Offers</small>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard');?>"><i class="pe-7s-home"></i> Home</a></li>
-				<li class="active">My Offers</li>
+				<li class="active">Top Offers</li>
 			</ol>
 		</div>
 	</section>
@@ -372,7 +372,7 @@ tfoot input {
    
    <div class="container">
 	
-      <h1 class="head_title">You have no Products. Please add products</h1>
+      <h1>You have no Products. Please add products</h1>
    
    </div>
    

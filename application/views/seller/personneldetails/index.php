@@ -456,8 +456,7 @@ $(function(){
                             </div>
                             <div class="form-group nopaddingRight col-md-6 san-lg">
                             <label class="control-label">Other Shops (if any): </label>
-                            <select class="form-control" required="required" name ="other_shops" id ="other_shops">
-                            <option value=""></option>
+                            <select class="form-control" required="required" name ="other_shops" id ="other_shops" onchange="orthershops(this.value);">
                             <?php if($seller_storedetails['other_shops']=="yes") {?>
                             <option value="yes" selected>YES</option> 
                             <?php }else{ ?>
@@ -470,28 +469,32 @@ $(function(){
                             <?php } ?>
                             </select>
                             </div>
-      <div class="form-group nopaddingRight col-md-6 san-lg">
-	   <label class="control-label">Other Locations </label>
-                            
-                          
-
-
-          <select id="other_shops_location"  name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
-            <!-- <option value=""></option> -->
-            <?php $iputfield = $seller_storedetails['other_shops_location'];
-            $arr=explode(",",$iputfield); ?>
-            
-            <?php foreach($arr as $orders){ ?>
-            <option value="<?php echo $orders; ?>" selected="selected"><?php echo $orders; ?></option>
-            <?php } ?>
-             
-             <?php foreach($select_areas as $area){ ?>
-                      <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
-                      <?php }?>
-                    
-          </select>
-
-
+       <?php if($seller_storedetails['other_shops']=="yes") {?>                                        
+      <div class="form-group nopaddingRight col-md-6 san-lg" id="shoplocation">
+      	   <label class="control-label">Other Locations </label>
+            <select id="other_shops_location"  name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
+              <!-- <option value=""></option> -->
+              <?php $iputfield = $seller_storedetails['other_shops_location'];
+              $arr=explode(",",$iputfield); ?>
+                  
+              <?php foreach($arr as $orders){ ?>
+              <option value="<?php echo $orders; ?>" selected="selected"><?php echo $orders; ?></option>
+              <?php } ?>
+                   
+              <?php foreach($select_areas as $area){ ?>
+                <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
+              <?php }?>            
+            </select>
+      </div>
+      <?php } ?>
+      <div class="form-group nopaddingRight col-md-6 san-lg" id="addlocation" style="display: none;">
+           <label class="control-label">Other Locations </label>
+            <select id="other_shops_location"  name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
+                   
+              <?php foreach($select_areas as $area){ ?>
+                <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
+              <?php }?>            
+            </select>
       </div>
 
                             <div class="form-group nopaddingRight col-md-6 san-lg">
@@ -735,6 +738,15 @@ function deactive1(id){
 function deactive2(id){
   $('#cstimag').trigger("click"); 
 }
+function orthershops(vaule){
+  //alert(vaule);
+  if(vaule=='no'){
+  $('#shoplocation').hide();
+  $('#addlocation').hide();  
+  }else{
+  $('#addlocation').show();
+  }
+}
 
 
 
@@ -798,7 +810,6 @@ function deactive2(id){
   $("#locationmsg").show(); 
   }
 }
-
       
 
 
