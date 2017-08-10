@@ -336,8 +336,8 @@ tfoot input {
       console.log("Form submission", $(form).serialize()); 
       var $data = $(form).serialize();
 	  var offertpes=document.getElementById('offertype<?php echo $subcategory->subcategory_id;?>').value;
-	  var currentdate=new Date();
-     	var lessdate=(currentdate.getMonth()+1)+"/"+currentdate.getDate()+"/"+currentdate.getFullYear();
+	  	//var currentdate=new Date();
+     	//var lessdate=(currentdate.getMonth()+1)+"/"+currentdate.getDate()+"/"+currentdate.getFullYear();
 	  
 	  if(offertpes==''){
 		jQuery('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('Plase select an Offer Type');
@@ -373,10 +373,10 @@ tfoot input {
 		jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Plase select an expiry Date');
 		return false;
 	  }
-	  if(date < lessdate){
-	  	jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Please Select Valid Date');
-		return false;
-	  }
+	 //  if(date < lessdate){
+	 //  	jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Please Select Valid Date');
+		// return false;
+	 //  }
 	  	
 	  
 	  jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('');
