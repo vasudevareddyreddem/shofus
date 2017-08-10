@@ -109,7 +109,7 @@ tfoot input {
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
-                <th>Affer Amount</th>
+                <th>After Amount</th>
                 <th>Offer Type</th>
                 <th>Offer expiry Date and Time</th>                
             </tr>
@@ -159,7 +159,7 @@ tfoot input {
 		</div><span style="color:red" id="offeramounterror<?php echo $subcategory->subcategory_id;?>"></span>
 		<div class="modal-footer" style="border:none;">
 		<div class="form-group">
-		<label class="control-label pull-left">Offer Expairy Date:  
+		<label class="control-label pull-left">Offer Expiry Date:  
 		<?php 
 		$date = date('Y-m-d h:i:s');
 		$date1 = strtotime($date);

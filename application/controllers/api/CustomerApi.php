@@ -297,7 +297,7 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
-			$message = array('status'=>0,'message'=>'Home Banners are not found.');
+			$message = array('status'=>0,'message'=>'Top Offers are not found.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
@@ -590,7 +590,9 @@ class CustomerApi extends REST_Controller {
 	{
 		$get = $this->input->get();
 		$subcategorie_items = $this->Customerapi_model->get_subcategorie_items($get['subcategory_id']);
-		if(count($subcategorie_items)>0){
+		//print_r($subcategorie_items['some']);exit;
+		
+			if(count($subcategorie_items)>0){
 				$message = array
 				(
 					'status'=>1,
@@ -603,6 +605,9 @@ class CustomerApi extends REST_Controller {
 			$message = array('status'=>0,'message'=>'No Items In This Subcategory');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
+		
+		//echo "<pre>";print_r($subcategorie_items);exit;
+		
 	}
 
 	/* category wise products api*/

@@ -102,7 +102,7 @@ tfoot input {
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
-                <th>Affer Amount</th>
+                <th>After Amount</th>
                 <th>Offer Type</th>
                 <th>Offer expiry Date and Time</th>                
             </tr>
@@ -336,6 +336,8 @@ tfoot input {
       console.log("Form submission", $(form).serialize()); 
       var $data = $(form).serialize();
 	  var offertpes=document.getElementById('offertype<?php echo $subcategory->subcategory_id;?>').value;
+	  var currentdate=new Date();
+     	var lessdate=(currentdate.getMonth()+1)+"/"+currentdate.getDate()+"/"+currentdate.getFullYear();
 	  
 	  if(offertpes==''){
 		jQuery('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('Plase select an Offer Type');
@@ -367,17 +369,23 @@ tfoot input {
 	  }	
 	jQuery("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html('');
 	  var date=document.getElementById('datepicker<?php echo $subcategory->subcategory_id;?>').value;
-	  
 		if(date==''){
 		jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Plase select an expiry Date');
 		return false;
 	  }
+	  if(date < lessdate){
+	  	jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Please Select Valid Date');
+		return false;
+	  }
+	  	
+	  
 	  jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('');
 	    var time=document.getElementById('offertime<?php echo $subcategory->subcategory_id;?>').value;
 		if(time==''){
 		jQuery('#offerttime<?php echo $subcategory->subcategory_id;?>').html('Plase select an expiry Time');
 		return false;
 	  }
+
 	  jQuery('#offerttime<?php echo $subcategory->subcategory_id;?>').html('');
 	  $("#offeramounterror").html('');
 	  if(jQuery("#offertype<?php echo $subcategory->subcategory_id;?>").val()!=''){
@@ -494,6 +502,7 @@ function checkDelete(id)
 return confirm('Are you sure want to delete "'+id +'" product?');
 }
 </script>
+
 </section>
   </div> 
   </div>
