@@ -24,7 +24,7 @@
   <div class="">
     <div class="col-md-12 mar_b50" > 
 	<div class="panel_cus panel-primary ">
-      <div class="panel-heading panel_head_sty">Contact us</div>
+     
 			<div class=" col-md-6 pad_10">	  
 				<form name="contactus" class=""id="contactus"  method="post" action="<?php echo base_url('seller/contactus/details'); ?>" role="form">
 					<div class="messages" id="form-messages"></div>
@@ -40,7 +40,7 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="form_lastname">Lastname </label>
+									<label for="form_lastname">Lastname *</label>
 									<input id="form_lastname" type="text" name="lname" class="form-control" placeholder="Please enter your lastname *"  data-error="Lastname is required.">
 									<div class="help-block with-errors"></div>
 								</div>
@@ -91,8 +91,8 @@
 				   </div> -->
 
 				   <div class="thumbnail">
-						<!-- <div style="width: 100%"><iframe width="100%" height="300" src="https://www.maps.ie/create-google-map/map.php?width=100%&amp;height=300&amp;hl=en&amp;q=%20Sri%20Vani%20Nilayam%2C%20Sardar%20Patel%20Nagar%2C%20Nizampet%20%E2%80%98X%E2%80%99%20Road%2C%20Hyderabad%2C%20Telangana+(Cartinhour)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/it/misura-distanza-area-google-maps.html">Misurare distanze google maps</a></iframe></div><br />
-				   </div> -->
+					 <div style="width: 100%"><iframe width="100%" height="300" src="https://www.maps.ie/create-google-map/map.php?width=100%&amp;height=300&amp;hl=en&amp;q=%20Sri%20Vani%20Nilayam%2C%20Sardar%20Patel%20Nagar%2C%20Nizampet%20%E2%80%98X%E2%80%99%20Road%2C%20Hyderabad%2C%20Telangana+(Cartinhour)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/it/misura-distanza-area-google-maps.html">Misurare distanze google maps</a></iframe></div><br />
+				   </div> 
 					</div>
 					<div class="clearfix"></div>
 					

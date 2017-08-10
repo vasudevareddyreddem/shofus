@@ -371,6 +371,7 @@ $(function(){
       
       <?php //echo '<pre>';print_r($seller_storedetails);exit; ?>
     <form  id="basicdetails" name="basicdetails" action="<?php echo base_url('seller/personnel_details/updatebd'); ?>" method="post" enctype="multipart/form-data">
+	<div class="row">
       <div class="form-group nopaddingRight col-md-6 san-lg">
       <label for="exampleInputEmail1">Seller Name</label>
       <input class="form-control" placeholder="Name" type="text" id="seller_name" name="seller_name" value="<?php echo $seller_storedetails['seller_name'];   ?>">
@@ -379,9 +380,12 @@ $(function(){
       <label for="exampleInputEmail1">Seller Email</label>
       <input class="form-control" placeholder="Email" type="text" id="seller_email" name="seller_email" value="<?php echo $seller_storedetails['seller_email']   ?>">
       </div>
+      </div>
+	  <div class="row">
       <div class="form-group nopaddingRight col-md-6 san-lg">
       <label for="exampleInputEmail1">Mobile Number</label>
       <input class="form-control" placeholder="Name" type="text" id="seller_mobile" name="seller_mobile" value="<?php echo $seller_storedetails['seller_mobile'];   ?>">
+      </div>
       </div>
     
       
@@ -436,6 +440,7 @@ $(function(){
                 <?php endif; ?>
                                                 <div class="panel-body">
                              <form id="storedetails"  name="storedetails" action="<?php echo base_url('seller/personnel_details/seller_storedetails'); ?>" method="post" onsubmit="return checkvalidations();" enctype="multipart/form-data">
+							 <div class="row">
                             <div class="form-group nopaddingRight col-md-6 san-lg">
                             <label class="control-label">Your Store Name (Which displays on our website)</label>
                             <input  type="text" class="form-control" name="storename" id="storename" value="<?php echo $seller_storedetails['store_name'];   ?>" class="storename">
@@ -444,8 +449,9 @@ $(function(){
                             <label class="control-label">Address Line 1</label>
                             <input  type="text"  name="address1" id="address1" value="<?php echo $seller_storedetails['addrees1'];   ?>" class="form-control" />
                             </div>
+                            </div>
 
-
+							<div class="row">
                             <div class="form-group nopaddingRight col-md-6 san-lg">
                             <label class="control-label">Address Line 2</label>
                             <input  type="text"  name="address2" id="address2" value="<?php echo $seller_storedetails['addrees2'];   ?>" class="form-control" />
@@ -454,6 +460,8 @@ $(function(){
                             <label class="control-label">Pincode</label>
                             <input  type="text"  name="pincode" id="pincode"  value="<?php echo $seller_storedetails['pin_code'];   ?>" class="form-control" />
                             </div>
+                            </div>
+							<div class="row">
                             <div class="form-group nopaddingRight col-md-6 san-lg">
                             <label class="control-label">Other Shops (if any): </label>
                             <select class="form-control" required="required" name ="other_shops" id ="other_shops" onchange="orthershops(this.value);">
@@ -486,7 +494,9 @@ $(function(){
               <?php }?>            
             </select>
       </div>
+      </div>
       <?php } ?>
+	  <div class="row">
       <div class="form-group nopaddingRight col-md-6 san-lg" id="addlocation" style="display: none;">
            <label class="control-label">Other Locations </label>
             <select id="other_shops_location"  name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
@@ -502,6 +512,8 @@ $(function(){
                             <label class="control-label">Any web link </label>
                             <input type="text" id="weblink"  name="weblink" value="<?php echo $seller_storedetails['weblink'];   ?>"  class="form-control"/>
                             </div>
+                            </div>
+							<div class="row">
                             <div class="form-group nopaddingRight col-md-6 san-lg">
                               <label class="control-label">GSTIN</label>
                               <input type="text"  name="tin" id="tin"  value="<?php echo $seller_storedetails['tin_vat'];   ?>"  class="form-control" />
@@ -523,6 +535,8 @@ $(function(){
                               <span id="oldtanimg"><a target="_blank" href="<?php echo site_url('assets/sellerfile/'); ?><?php echo $seller_storedetails['tanimage'];?>" ><?php echo $seller_storedetails['tanimage'];?></a></span>
 
                             </div>
+                            </div>
+							<div class="row">
     <div class="form-group nopaddingRight col-md-6 san-lg">
       <label class="control-label">CIN </label>
     <input  type="text" id="cst"  name="cst" value="<?php echo $seller_storedetails['cst'];   ?>" class="form-control"/>
@@ -537,9 +551,10 @@ $(function(){
 
   <div class="form-group nopaddingRight col-md-6 san-lg">
         <label class="control-label">Signature file</label>
-  <input type="file" name='gstimag' id="gstimag" class="form-control"/>
+  <input style="height: auto;" type="file" name='gstimag' id="gstimag" class="form-control"/>
   <a target="_blank" href="<?php echo site_url('assets/sellerfile/'); ?><?php echo $seller_storedetails['gstinimage'];?>" ><span><?php echo isset($seller_storedetails['gstinimage'])?$seller_storedetails['gstinimage']:''; ?></span></a>
 
+  </div>
   </div>
 
                 
