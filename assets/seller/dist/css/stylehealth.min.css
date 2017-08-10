@@ -328,7 +328,7 @@ hr {
 .back-top {
     background-color: #006a99;
     border: 1px solid #006a99;
-    padding: 7px 9px;
+    padding:9px !important;
     height: 34px;
 	text-align:center;
     width: 34px;
