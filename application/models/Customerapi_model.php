@@ -42,8 +42,13 @@ class Customerapi_model extends MY_Model
        	return $this->db->query($sql1);
 	}
 	public function oldpassword($cusid){
-		$sql="SELECT * FROM customers WHERE customer_id ='".$cusid."'";
+		$sql="SELECT * FROM customers WHERE customers ='".$cusid."'";
         return $this->db->query($sql)->row_array(); 
+	}
+
+	public function forgot_otp($cust_id,$data){
+		$this->db->where('customer_id',$cust_id);
+		return $this->db->update('customers', $data);
 	}
 	// public function forget_mobile_check($mobile){
 
@@ -146,6 +151,28 @@ class Customerapi_model extends MY_Model
 		$this->db->where('products.admin_status',0);
 		return $this->db->get()->row_array();
 	}
+	public function get_subcategorie_items($sub_id)
+	{
+	
+	$this->db->select('products.*')->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
+	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
+    $this->db->where('subcategories.subcategory_id', $sub_id);
+    $this->db->where('products.item_status', 1);
+	return $this->db->get()->result_array();
+		
+	}
+	public function store_review($review){
+		
+		$this->db->insert('reviews', $review);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function itemwise_reviews($item_id){
+		
+		$this->db->select('*')->from('reviews');
+		$this->db->where('item_id',$item_id);
+		return $this->db->get()->result_array();
+	}
 
 	public function wishlist_save($data)
 	{
@@ -176,13 +203,13 @@ class Customerapi_model extends MY_Model
 
 	public function get_categories()
 	{
-		$this->db->select('category.category_id,category.category_name,category.status')->from('category');
+		$this->db->select('category.category_id,category.category_name,category.category_image,category.status')->from('category');
 		$this->db->where('category.status',1);
 		return $this->db->get()->result_array();
 	}
 	public function get_subcategories($sub_id)
 	{
-		$this->db->select('subcategories.subcategory_id,subcategories.category_id,subcategories.subcategory_name,subcategories.status')->from('subcategories');
+		$this->db->select('subcategories.subcategory_id,subcategories.category_id,subcategories.subcategory_name,subcategories.subcategory_image,subcategories.status')->from('subcategories');
 		$this->db->where('subcategories.category_id',$sub_id);
 		$this->db->where('subcategories.status',1);
 		return $this->db->get()->result_array();

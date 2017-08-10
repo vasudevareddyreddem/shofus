@@ -170,28 +170,83 @@ class CustomerApi extends REST_Controller {
 	/*  forgotpassword Apis */
 	public function forgotpassword_post()
 	{
-		$get = $this->input->get();
-		//echo "<pre>";print_r($get);exit;
-		$mobile = preg_match('/^[0-9]{10}+$/',$get['email_mobile']);
-		//echo "<pre>";print_r($mobile);exit;
-		if($mobile==1){
-			$mobilecheck = $this->Customerapi_model->forget_mobile_check($get['email_mobile']);
-			
-		}else{
-			$emailcheck = $this->Customerapi_model->forget_email_check($get['email_mobile']);
-			
-		}
-
-		if($get['email_mobile'] == $mobilecheck['cust_mobile'])
-		{
-			$message = array('status'=>0,'message'=>'This Mobile Number Not In our Database');
-			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}else{
+		//$this->load->library('form_validation');
+		//$this->form_validation->set_rules('forgot_pass', 'forgot password', 'required');
+		//if($this->form_validation->run() == FALSE)
+		//{
+			//$message = array('status'=>0,'message'=>validation_errors());
+			//$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		//}else 
+		//{
+			$get=$this->input->get();
+			//echo "<pre>";print_r($get);exit;
+			$mobile = preg_match('/^[0-9]{10}+$/',$get['forgot_pass']);
+			//echo "<pre>";print_r($mobile);exit;
+			$email =filter_var($get['forgot_pass'], FILTER_VALIDATE_EMAIL);
+			if($mobile==1){
+				$mobilecheck = $this->Customerapi_model->mobile_check($get['forgot_pass']);
+				if($mobilecheck['cust_mobile'] == $get['forgot_pass'])
+				{
+				$six_digit_random_number = mt_rand(100000, 999999);
+						$user_id="cartin"; 
+						$pwd="9494422779";    
+						$sender_id = "CARTIN";          
+						$mobile_num = $get['forgot_pass'];  
+						$message = "Your OTP is : " .$six_digit_random_number;               
+						// Sending with PHP CURL
+						$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
+						$ret = file($url);
+						$data = array(
+						'otp_verification' => $six_digit_random_number,
+						);
+						$forgot_otp=$this->Customerapi_model->forgot_otp($get['customer_id'],$data);
+						if(count($forgot_otp)>0){
+							$message = array('status'=>1,'message'=>'Otp Send Your Mobile Number.');
+							$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+						}else{
+							$message = array('status'=>0,'message'=>'Otp Not Send Your Mobile Number.');
+							$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+						}
 				
-				$message = array('status'=>0,'message'=>'This Emaill address Not In our Database');
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}else{
+					$message = array('status'=>0,'message'=>'No user found with this Mobile Number.');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}
+			}else{
+				$emailcheck = $this->Customerapi_model->email_check($email);
+				//echo $this->db->last_query();exit;
+				if($emailcheck['cust_email'] == $get['forgot_pass'])
+				{
+				$six_digit_random_number = mt_rand(100000, 999999);
+				 		//send mail
+				 			$this->load->library('email');
+							$this->email->from('admin@cartinhour.com', 'CartInHour');
+							$this->email->to($get['forgot_pass']);
+							$this->email->subject('CartInHour - Forgot Password');
+							$otp = "Dear User, \n Your OTP is : " .$six_digit_random_number. "\n\n Thanks,\nCart In Hour Team";
+							$this->email->message($otp);
+							$this->email->send();
+							$data = array(
+						'otp_verification' => $six_digit_random_number,
+						);
+						$forgot_otp=$this->Customerapi_model->forgot_otp($get['customer_id'],$data);
+						if(count($forgot_otp)>0){
+							$message = array('status'=>1,'message'=>'Otp Send Your EMail Address');
+								$this->response($message, REST_Controller::HTTP_OK);
+						}else{
+							$message = array('status'=>0,'message'=>'Otp Not Send Your Emaill Address.');
+							$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+						}
+				 		
+				
+				}else{
+					$message = array('status'=>0,'message'=>'No user found with this Email.');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}
 			}
+		//}			
 	}
+		
 
 	/*  locations Apis */
 	public function locations_get()
@@ -214,8 +269,6 @@ class CustomerApi extends REST_Controller {
 		$banners=$this->Customerapi_model->home_page_banners();
 		//echo '<pre>';print_r($banners);exit;
 		if(count($banners)>0){
-			//$images = header('Content-Type: image/jpg');
-			//echo '<pre>';print_r($images);exit;
 			$message = array(
 				'status'=>1,
 				'banners_list'=>$banners,
@@ -235,12 +288,10 @@ class CustomerApi extends REST_Controller {
 		$top_offers = $this->Customerapi_model->top_offers_list();
 		//echo '<pre>';print_r($top_offers);exit;
 		if(count($top_offers)>0){
-			//$images = header('Content-Type: image/jpg');
-			//echo '<pre>';print_r($images);exit;
 			$message = array(
 				'status'=>1,
 				'top_offers'=>$top_offers,
-				'path'=>'http://cartinhour.com/uploads/productsimages/'
+				'path'=>'http://cartinhour.com/uploads/products/'
 			);
 			//$top_offers['path']='http://cartinhour.com/uploads/productsimages/';
 			$this->response($message, REST_Controller::HTTP_OK);	
@@ -256,12 +307,10 @@ class CustomerApi extends REST_Controller {
 		$deals = $this->Customerapi_model->deals_of_the_day_list();
 		//echo '<pre>';print_r($deals);exit;
 		if(count($deals)>0){
-			//$images = header('Content-Type: image/jpg');
-			//echo '<pre>';print_r($images);exit;
 			$message = array(
 				'status'=>1,
 				'dealsoftheday'=>$deals,
-				'path'=>'http://cartinhour.com/uploads/productsimages/'
+				'path'=>'http://cartinhour.com/uploads/products/'
 			);
 			//$deals['path']='http://cartinhour.com/uploads/productsimages/';
 			$this->response($message, REST_Controller::HTTP_OK);	
@@ -277,12 +326,10 @@ class CustomerApi extends REST_Controller {
 		$ssales = $this->Customerapi_model->season_sales_list();
 		//echo '<pre>';print_r($ssales);exit;
 		if(count($ssales)>0){
-			//$images = header('Content-Type: image/jpg');
-			//echo '<pre>';print_r($images);exit;
 			$message = array(
 				'status'=>1,
 				'Seasonsales'=>$ssales,
-				'path'=>'http://cartinhour.com/uploads/productsimages/'
+				'path'=>'http://cartinhour.com/uploads/products/'
 			);
 			//$ssales['path']='http://cartinhour.com/uploads/productsimages/';
 			$this->response($message, REST_Controller::HTTP_OK);	
@@ -303,7 +350,7 @@ class CustomerApi extends REST_Controller {
 			$message = array(
 				'status'=>1,
 				'Trendingproducts'=>$treding,
-				'path'=>'http://cartinhour.com/uploads/productsimages/'
+				'path'=>'http://cartinhour.com/uploads/products/'
 			);
 			//$treding['path']='http://cartinhour.com/uploads/productsimages/';
 			$this->response($message, REST_Controller::HTTP_OK);	
@@ -324,7 +371,7 @@ class CustomerApi extends REST_Controller {
 			$message = array(
 				'status'=>1,
 				'offersforyou'=>$offers,
-				'path'=>'http://cartinhour.com/uploads/productsimages/'
+				'path'=>'http://cartinhour.com/uploads/product/'
 			);
 			//$offers['path']='http://cartinhour.com/uploads/productsimages/';
 			$this->response($message, REST_Controller::HTTP_OK);	
@@ -345,7 +392,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'single_product'=>$single_product,
-					'path'=>'http://cartinhour.com/uploads/productsimages/'
+					'path'=>'http://cartinhour.com/uploads/products/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			//$images = header('Content-Type: image/jpg');
@@ -359,6 +406,59 @@ class CustomerApi extends REST_Controller {
 		}
 
 	}
+
+	/* Item revirw*/ 
+	public function itemreview_post()
+	{
+	 
+		$get=$this->input->get();
+		//echo '<pre>';print_r($get);exit;
+		$review=array(
+		'customer_id'=>$get['customer_id'],	
+		'item_id'=>$get['item_id'],
+		'name'=>$get['name'],
+		'email'=>$get['email'],
+		'review_content'=>$get['review'],
+		);
+		//echo '<pre>';print_r($review);exit;
+		$review_store= $this->Customerapi_model->store_review($review);
+		//echo $this->db->last_query();exit;
+		if(count($review_store)>0){
+			$message = array
+			(
+				'status'=>1,
+				'Review'=>'Review Successfully Thank You!',
+			);
+			$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+			$message = array
+			(
+				'status'=>0,
+				'Review'=>'Review Failed!',
+			);
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
+
+	/* item wise review*/
+	public function itemreviews_get()
+	{
+		$get = $this->input->get();
+		$item_review_get = $this->Customerapi_model->itemwise_reviews($get['item_id']);
+		//echo '<pre>';print_r($item_review_get);exit;
+		if(count($item_review_get)>0){
+			$message = array(
+				'status'=>1,
+				'Item Review'=>$item_review_get,
+			);
+			$this->response($message, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'No Reviews In this Item');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
 
 	/* add wishlists */ 
 	public function addwishlist_post()
@@ -435,7 +535,6 @@ class CustomerApi extends REST_Controller {
 					'message'=>'Wishlist Item Successfully deleted..',
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
-			
 		}else{
 			$message = array('status'=>0,'message'=>'Wishlist Item Failed To deleted!');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
@@ -450,6 +549,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'categories'=>$categories,
+					'path' =>'http://cartinhour.com/assets/categoryimages/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -459,7 +559,7 @@ class CustomerApi extends REST_Controller {
 		}
 	}
 	/* Sub category api*/
-	public function subcategories_post()
+	public function subcategories_get()
 	{
 		$get = $this->input->get();
 		$subcategories = $this->Customerapi_model->get_subcategories($get['category_id']);
@@ -468,6 +568,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'Subcategories'=>$subcategories,
+					'path' =>'http://cartinhour.com/assets/subcategoryimages/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -484,6 +585,26 @@ class CustomerApi extends REST_Controller {
 		}
 	}
 
+	/* Sub Category wise items*/
+	public function subcategoriewiseitems_get()
+	{
+		$get = $this->input->get();
+		$subcategorie_items = $this->Customerapi_model->get_subcategorie_items($get['subcategory_id']);
+		if(count($subcategorie_items)>0){
+				$message = array
+				(
+					'status'=>1,
+					'Subcategorie Items'=>$subcategorie_items,
+					'path'=>'http://cartinhour.com/uploads/products/'
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array('status'=>0,'message'=>'No Items In This Subcategory');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+
 	/* category wise products api*/
 	public function categorywiseproducts_get()
 	{
@@ -494,7 +615,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'products'=>$catwisepro,
-					'path'=>'http://cartinhour.com/uploads/productsimages/'
+					'path'=>'http://cartinhour.com/uploads/products/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -504,13 +625,6 @@ class CustomerApi extends REST_Controller {
 		}
 	}
 
-	// public function ipaddress_get()
-	// {
-	// 	//$ip = $this->input->ip_address();
-	// 	//echo ($this->input->valid_ip($ip)?'Valid':'Not Valid');
-	// 	echo $_SERVER['REMOTE_ADDR'];
-	// 	//echo $ip;
-	// }
 
 
 	/*  location wise products*/
@@ -526,7 +640,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'location_top_offers'=>$top_offer_location,
-					'path'=>'http://cartinhour.com/uploads/productsimages/'
+					'path'=>'http://cartinhour.com/uploads/products/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -547,7 +661,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'location_deals ofthe day'=>$deals_of_the_day_location,
-					'path'=>'http://cartinhour.com/uploads/productsimages/'
+					'path'=>'http://cartinhour.com/uploads/products/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -568,7 +682,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'location_season sales'=>$season_sales_location,
-					'path'=>'http://cartinhour.com/uploads/productsimages/'
+					'path'=>'http://cartinhour.com/uploads/products/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -589,7 +703,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'location_treading'=>$treanding_location,
-					'path'=>'http://cartinhour.com/uploads/productsimages/'
+					'path'=>'http://cartinhour.com/uploads/products/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -611,7 +725,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'location_offer for you'=>$offers_for_you_location,
-					'path'=>'http://cartinhour.com/uploads/productsimages/'
+					'path'=>'http://cartinhour.com/uploads/products/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -630,7 +744,7 @@ class CustomerApi extends REST_Controller {
 			$message = array(
 				'status'=>1,
 				'Temp Cart'=>$tempcart,
-				'path'=>'http://cartinhour.com/uploads/productsimages/'
+				'path'=>'http://cartinhour.com/uploads/products/'
 			);
 			$this->response($message, REST_Controller::HTTP_OK);	
 			
