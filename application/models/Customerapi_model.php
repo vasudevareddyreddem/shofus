@@ -157,7 +157,7 @@ class Customerapi_model extends MY_Model
 	$this->db->select('products.*')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
-    $this->db->where('subcategories.subcategory_id', $sub_id);
+    $this->db->where('products.subcategory_id', $sub_id);
     $this->db->where('products.item_status', 1);
 	return $this->db->get()->result_array();
 		

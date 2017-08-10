@@ -1112,6 +1112,7 @@ function getspecialinputs(ids){
 	  
  
   	$(document).ready(function() {
+
     $('#addproduct').bootstrapValidator({
        
         fields: {
@@ -1182,6 +1183,12 @@ function getspecialinputs(ids){
 					regexp: /^[0-9.]+$/,
 					message: 'Special price can only consist of digits'
 					}
+					// ,
+					// lessThan: {
+     //                    field: 'product_price',
+     //                    inclusive: true,
+     //                    message: 'The ages has to be less than 100'
+     //                },
 				}
 			},
 			discount: {
@@ -1189,6 +1196,11 @@ function getspecialinputs(ids){
 					notEmpty: {
 						message: 'Discount is required'
 					},
+					between: {
+                    min: 1,
+                    max: 99,
+                    message: 'The discount must be between 1 and 99'
+                },
                    regexp: {
 					regexp: /^[0-9.]+$/,
 					message: 'Discount can only consist of digits'
@@ -2109,7 +2121,6 @@ $(document).ready(function(){
 });		
 </script>
   
-
 
 
 		

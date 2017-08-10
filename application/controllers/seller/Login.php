@@ -490,17 +490,14 @@ $result = $you_make - $actual_price;
 				$six_digit_random_number = mt_rand(100000, 999999);
 				$updatepassword=$this->login_model->update_forgotpassword($checkemail['seller_id'],$six_digit_random_number);
 				
-				$to_email = $post['mobile_number'];    
-				$from_email = 'mails@dev2.kateit.in';
-				$subject = 'Temporary Password';
-				$message = "Dear User,\n                
-				Your Password is : ".$six_digit_random_number;
 			//send mail
-				$this->email->set_mailtype("html");
-				$this->email->from($from_email, 'CartinHour');
-				$this->email->to($to_email);
-				$this->email->subject($subject);
-				$this->email->message($message);
+				//$this->email->set_mailtype("html");
+				$this->load->library('email');
+				$this->email->from('admin@cartinhour.com', 'CartInHour');
+				$this->email->to($post['mobile_number']);
+				$this->email->subject('CartInHour - Unable To Login');
+				$Unable_otp = "Dear User,\n Your Password is : ".$six_digit_random_number;
+				$this->email->message($Unable_otp);
 				$this->email->send();
 				$data['mailsend']=1;
 			echo json_encode($data);
