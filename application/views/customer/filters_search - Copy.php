@@ -35,8 +35,8 @@
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
 </div>-->
-<body>
-<span id="againcategory">
+<body >
+	 <div class="container-fluid fluid_mod ">
 	 <div class="row ">
 			<div class="col-md-12  ">
 			<?php //echo base64_decode($category_id);exit; ?>
@@ -72,10 +72,7 @@
 				$offers[]=$predata['offers'];
 				$brand[]=$predata['brand'];
 				$discount[]=$predata['discount'];
-				if($predata['status']!=''){
-				$status[]=$predata['status'];	
-				}
-				
+				$status[]=$predata['status'];
 				$size[]=$predata['size'];
 				$color[]=$predata['color'];
 				$min_am[]=$predata['mini_amount'];
@@ -91,7 +88,7 @@
 			
 			<div class="example">
 			<h3>Price</h3>
-			<div id="html5"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
+			<div id="html5"  name="html5" class="noUi-target noUi-ltr noUi-horizontal">
 
 			</div>
 			<select id="input-select" name="min_amount" >
@@ -119,9 +116,9 @@
 						<div class="panel-body">
 								<?php foreach ($myrestaurant as $reslist){ 
 								if (in_array($reslist['seller_id'], $restraent)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'res'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[res][]" value="<?php echo $reslist['seller_id']; ?>"><span>&nbsp;<?php echo $reslist['seller_name']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[res][]" value="<?php echo $reslist['seller_id']; ?>"><span>&nbsp;<?php echo $reslist['seller_name']; ?></span></label></div>
 								<?php } else{ ?>
-									<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'res'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[res][]" value="<?php echo $reslist['seller_id']; ?>"><span>&nbsp;<?php echo $reslist['seller_name']; ?></span></label></div>
+									<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[res][]" value="<?php echo $reslist['seller_id']; ?>"><span>&nbsp;<?php echo $reslist['seller_name']; ?></span></label></div>
 
 								<?php } } ?>
 						</div>
@@ -143,16 +140,15 @@
 						<?php foreach ($cusine_list as $list){ ?>
 							<?php //echo '<pe>';print_r($list['cusine']);exit; 
 							if (in_array($list['cusine'], $cusine)) { ?>
-								<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'cusine'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[cusine][]" value="<?php echo $list['cusine']; ?>"><span>&nbsp;<?php echo $list['cusine']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[cusine][]" value="<?php echo $list['cusine']; ?>"><span>&nbsp;<?php echo $list['cusine']; ?></span></label></div>
 
 							<?php }else{  ?>
-							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'cusine'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[cusine][]" value="<?php echo $list['cusine']; ?>"><span>&nbsp;<?php echo $list['cusine']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[cusine][]" value="<?php echo $list['cusine']; ?>"><span>&nbsp;<?php echo $list['cusine']; ?></span></label></div>
 							<?php }
 						 } ?>
 						</div>
 					</div>
-				</div>
-				<div class="panel panel-primary">
+				</div><div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingOne">
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -161,14 +157,14 @@
 				  </h4>
 
 					</div>
-					<?php //echo '<pre>';print_r($status[0]);exit; ?>
+					<?php //echo '<pre>';print_r($avalibility_list);exit; ?>
 					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							<select onchange="mobileaccessories(this.value, '<?php echo 'status'; ?>','<?php echo ''; ?>');" name="products[availability]" class="form-control" id="sel1">
+							<select onchange="mobileaccessories(this.value);" name="products[availability]" class="form-control" id="sel1">
 								<option value="">Select</option>
 								
 								<?php foreach ($avalibility_list as $list){ 
-									if (isset($status) && $status[0]== $list) {?>
+									if (in_array($list, $status)) {?>
 									<option value="<?php echo $list; ?>" selected><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
 									<?php } else{  ?>
 										<option value="<?php echo $list; ?>"><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
@@ -197,9 +193,9 @@
 						<div class="panel-body">
 						<?php foreach ($offer_list as $list){ 
 						if (in_array($list['offers'], $offers)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'offer'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
 						<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
 
 						<?php } } ?>
 						</div>
@@ -218,9 +214,9 @@
 						<div class="panel-body">
 						<?php foreach ($brand_list as $list){ 
 							if (in_array($list['brand'], $brand)) { ?>
-								<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'brand'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
 								<?php } else{ ?>
-									<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+									<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
 
 								<?php } } ?>
 						</div>
@@ -239,9 +235,9 @@
 						<div class="panel-body">
 						<?php foreach ($discount_list as $list){ 
 							if (in_array($list['discount'], $discount)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
 							<?php } else{ ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
 
 							<?php } } ?>
 						</div>
@@ -256,14 +252,14 @@
 				  </h4>
 
 					</div>
-					<?php //echo '<pre>';print_r($status[0]);exit; ?>
+					<?php //echo '<pre>';print_r($avalibility_list);exit; ?>
 					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							<select onchange="mobileaccessories(this.value, '<?php echo 'status'; ?>','<?php echo ''; ?>');" name="products[availability]" class="form-control" id="sel1">
+							<select onchange="mobileaccessories(this.value);" name="products[availability]" class="form-control" id="sel1">
 								<option value="">Select</option>
 								
 								<?php foreach ($avalibility_list as $list){ 
-									if (isset($status) && $status[0]== $list) {?>
+									if (in_array($list, $status)) {?>
 									<option value="<?php echo $list; ?>" selected><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
 									<?php } else{  ?>
 										<option value="<?php echo $list; ?>"><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
@@ -292,9 +288,9 @@
 						<div class="panel-body">
 						<?php foreach ($offer_list as $list){ 
 						if (in_array($list['offers'], $offers)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'offer'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
 						<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
 
 						<?php } } ?>
 						</div>
@@ -313,9 +309,9 @@
 						<div class="panel-body">
 						<?php foreach ($color_list as $list){ 
 						if (in_array($list['color_name'], $color)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'color'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
 						<?php } else{ ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'color'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
 
 						<?php } } ?>
 						</div>
@@ -334,9 +330,9 @@
 						<div class="panel-body">
 						<?php foreach ($brand_list as $list){ 
 							if (in_array($list['brand'], $brand)) { ?>
-								<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'brand'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
 								<?php } else{ ?>
-									<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+									<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
 
 								<?php } } ?>
 						</div>
@@ -355,9 +351,9 @@
 						<div class="panel-body">
 						<?php foreach ($discount_list as $list){ 
 							if (in_array($list['discount'], $discount)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
 							<?php } else{ ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
 
 							<?php } } ?>
 						</div>
@@ -372,14 +368,14 @@
 				  </h4>
 
 					</div>
-					<?php //echo '<pre>';print_r($status[0]);exit; ?>
+					<?php //echo '<pre>';print_r($avalibility_list);exit; ?>
 					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							<select onchange="mobileaccessories(this.value, '<?php echo 'status'; ?>','<?php echo ''; ?>');" name="products[availability]" class="form-control" id="sel1">
+							<select onchange="mobileaccessories(this.value);" name="products[availability]" class="form-control" id="sel1">
 								<option value="">Select</option>
 								
 								<?php foreach ($avalibility_list as $list){ 
-									if (isset($status) && $status[0]== $list) {?>
+									if (in_array($list, $status)) {?>
 									<option value="<?php echo $list; ?>" selected><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
 									<?php } else{  ?>
 										<option value="<?php echo $list; ?>"><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
@@ -408,9 +404,9 @@
 						<div class="panel-body">
 						<?php foreach ($offer_list as $list){ 
 						if (in_array($list['offers'], $offers)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'offer'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
 						<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
 
 						<?php } } ?>
 						</div>
@@ -429,9 +425,9 @@
 						<div class="panel-body">
 						<?php foreach ($color_list as $list){ 
 						if (in_array($list['color_name'], $color)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'color'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
 						<?php } else{ ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'color'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
 
 						<?php } } ?>
 						</div>
@@ -450,9 +446,9 @@
 						<div class="panel-body">
 						<?php foreach ($sizes_list as $list){ 
 						if (in_array($list['p_size_name'], $size)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'size'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['p_size_name']; ?>"><span>&nbsp;<?php echo $list['p_size_name']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[color][]" value="<?php echo $list['p_size_name']; ?>"><span>&nbsp;<?php echo $list['p_size_name']; ?></span></label></div>
 						<?php } else{ ?>
-							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['p_size_name']; ?>"><span>&nbsp;<?php echo $list['p_size_name']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[color][]" value="<?php echo $list['p_size_name']; ?>"><span>&nbsp;<?php echo $list['p_size_name']; ?></span></label></div>
 
 						<?php  }} ?>
 						</div>
@@ -471,9 +467,9 @@
 						<div class="panel-body">
 						<?php foreach ($brand_list as $list){ 
 							if (in_array($list['brand'], $brand)) { ?>
-								<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'brand'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
 								<?php } else{ ?>
-									<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+									<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
 
 								<?php } } ?>
 						</div>
@@ -492,9 +488,9 @@
 						<div class="panel-body">
 						<?php foreach ($discount_list as $list){ 
 							if (in_array($list['discount'], $discount)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
 							<?php } else{ ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value);" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
 
 							<?php } } ?>
 						</div>
@@ -509,14 +505,15 @@
 				  </h4>
 
 					</div>
-					<?php //echo '<pre>';print_r($status[0]);exit; ?>
+					<?php //echo '<pre>';print_r($avalibility_list); ?>
+					<?php //echo '<pre>';print_r($status);exit; ?>
 					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							<select onchange="mobileaccessories(this.value, '<?php echo 'status'; ?>','<?php echo ''; ?>');" name="products[availability]" class="form-control" id="sel1">
+							<select onchange="mobileaccessories(this.value);" name="products[availability]" class="form-control" id="sel1">
 								<option value="">Select</option>
 								
 								<?php foreach ($avalibility_list as $list){ 
-									if (isset($status) && $status[0]== $list) {?>
+									if (in_array($list, $status)) {?>
 									<option value="<?php echo $list; ?>" selected><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
 									<?php } else{  ?>
 										<option value="<?php echo $list; ?>"><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
@@ -629,35 +626,30 @@
           </div>
          
         </div>
-		</span>
-	
+	 </div>
 	 <div class="clearfix"></div>
 	 <br>
 </body>
 <script>
-function mobileaccessories(val,status,check){
+function mobileaccessories(id){
+	alert(id);
 	
-	jQuery.ajax({
-		
-				url: "<?php echo site_url('category/categorywiseearch');?>",
-				type: 'post',
-			
-				data: {
-					form_key : window.FORM_KEY,
-					categoryid: $('#categoryid').val(),
-					productsvalues: val,
-					searchvalue: status,
-					unchecked: check,
-					mini_mum: $('#input-select').val(),
-					maxi_mum: $('#input-number').val(),
+}
+function getbrand(id){
+	alert(id);
+	
+}
+function compatiblemobiles(id){
+	alert(id);
+	
+}
+function discount(id){
+	var form = document.getElementById("discountform");
 
-					},
-				dataType: 'html',
-				success: function (data) {
-					$("#againcategory").empty();
-					$("#againcategory").append(data);
-	}
+document.getElementById("discountform").addEventListener("click", function () {
+  form.submit();
 });
+	
 }
 function getproduct(id){
 	if(id!=''){
