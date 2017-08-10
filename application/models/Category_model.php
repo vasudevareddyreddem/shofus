@@ -232,7 +232,7 @@ class Category_model extends MY_Model
 	$this->db->group_by('fliter_search.color');
 	$query=$this->db->get()->result_array();
 		foreach ($query as $sorting){
-			echo '<pre>';print_r($sorting);exit;
+			//echo '<pre>';print_r($sorting);exit;
 		
 				$return= $this->get_search_fileds_list($sorting['cusine'],$sorting['restraent'],$sorting['mini_amount'],$sorting['max_amount'],$sorting['offers'],$sorting['brand'],$sorting['discount'],$sorting['status'],$sorting['size'],$sorting['color'],$sorting['category_id']);
 			
@@ -248,7 +248,12 @@ class Category_model extends MY_Model
 	public function get_search_fileds_list($cusine,$restraent,$mini_amount,$max_amount,$offers,$brand,$discount,$status,$size,$color,$category_id)
 	{
 		
+	if($cusine!=''){
+		$sql = "SELECT * FROM products WHERE category_id ='".$category_id."' AND item_status ='1' AND  item_cost='".$cusine."'";
+	}else{
 		
+	}
+	return $this->db->query($sql)->result_array();
 	}
 	
 	public function get_all_cusine_list($catid)
