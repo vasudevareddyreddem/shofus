@@ -66,10 +66,7 @@
                                     <span class="label label-warning"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-								<?php 
 								
-								//echo $notification[0]['unreadcouont'];
-								//echo '<pre>';print_r($notification);exit; ?>
                                     <li class="header"><i class="fa fa-bell"></i> &nbsp; Admin Notifications</li>
                                     <li>
                                         <ul class="menu">

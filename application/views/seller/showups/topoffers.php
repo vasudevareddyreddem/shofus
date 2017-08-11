@@ -30,12 +30,12 @@
       <div class="faq">
 	  
  <?php if($this->session->flashdata('active')): ?>
-			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<div  style="width:90%" class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 			</button><?php echo $this->session->flashdata('active');?></div>	
 			<?php endif; ?>
 			<?php if($this->session->flashdata('deactive')): ?>
-			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<div  class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 			</button><?php echo $this->session->flashdata('deactive');?></div>	
 			<?php endif; ?>
