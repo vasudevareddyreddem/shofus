@@ -37,6 +37,7 @@
 			</form>  
 			<h1>Listing</h1>
 			<small>Add Listing</small>
+			<a href="<?php echo base_url('seller/personnel_details'); ?>#tab2"><i class="pe-7s-home"></i>Add More Categorys</a>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard'); ?>"><i class="pe-7s-home"></i> Home</a></li>
 				<li class="active">Dashboard</li>
