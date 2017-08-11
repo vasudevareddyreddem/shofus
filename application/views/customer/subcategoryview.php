@@ -109,6 +109,7 @@
 				  </h4>
 
 					</div>
+					
 					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body">
 						<?php foreach ($cusine_list as $list){ ?>
