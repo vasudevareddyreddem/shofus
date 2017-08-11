@@ -98,7 +98,7 @@ tfoot input {
             <tr>
                 <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
 				</th>
-				<div style="padding:15px 0px"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
+				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button" >Submit</a></div>
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
@@ -174,7 +174,7 @@ tfoot input {
 			
 			<div class="col-md-6">	
 			<label class="control-label ">Enter your Offer Expiry  Date and Time: </label> 			
-			<input type="text" class="form-control"   name="expairdate" id="datepicker<?php echo $subcategory->subcategory_id;?>" style="background:#fff" >					
+			<input type="text" class="form-control"  name="expairdate" id="datepicker<?php echo $subcategory->subcategory_id;?>" style="background:#fff" readonly>					
 			<span style="color:red" id="offertdate<?php echo $subcategory->subcategory_id;?>"></span>	
 			</div>
 			</div>
@@ -336,8 +336,6 @@ tfoot input {
       console.log("Form submission", $(form).serialize()); 
       var $data = $(form).serialize();
 	  var offertpes=document.getElementById('offertype<?php echo $subcategory->subcategory_id;?>').value;
-	  	//var currentdate=new Date();
-     	//var lessdate=(currentdate.getMonth()+1)+"/"+currentdate.getDate()+"/"+currentdate.getFullYear();
 	  
 	  if(offertpes==''){
 		jQuery('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('Plase select an Offer Type');
@@ -373,10 +371,6 @@ tfoot input {
 		jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Plase select an expiry Date');
 		return false;
 	  }
-	 //  if(date < lessdate){
-	 //  	jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Please Select Valid Date');
-		// return false;
-	 //  }
 	  	
 	  
 	  jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('');
@@ -405,6 +399,17 @@ tfoot input {
       e.preventDefault();
    });
 });
+$(document).ready(function() {
+    
+        var submit = $("#submit_prog<?php echo $subcategory->subcategory_id;?>").hide(),
+            cbs = $('input[name="select_all"]').click(function() {
+                submit.toggle( cbs.is(":checked") );
+            });
+            cid = $('input[name="cat_id[]"]').click(function() {
+                submit.toggle( cid.is(":checked") );
+            });
+    
+    });
 </script>
                 </div>
               </div>
@@ -496,11 +501,16 @@ function addtabactive(id)
 
 }
 
+
+
 function checkDelete(id)
 {
   
 return confirm('Are you sure want to delete "'+id +'" product?');
 }
+
+
+
 </script>
 
 </section>

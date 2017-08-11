@@ -408,9 +408,9 @@ $(function(){
             </button><?php echo $this->session->flashdata('catupdatemessage');?></div>
             <?php endif; ?>
           <div class="panel-body">
-              <form id="categories"  name="categories" action="<?php echo base_url('seller/personnel_details/seller_categories'); ?>" method="post" onsubmit="return checkvalidations();" enctype="multipart/form-data">
+              <form id="categories" onsubmit="return validations();" name="categories" action="<?php echo base_url('seller/personnel_details/seller_categories'); ?>" method="post" enctype="multipart/form-data">
                 <label class="control-label">Select Categories</label>
-                  <select id="seller_cat[]"  name="seller_cat[]"   multiple class="chosen-select" tabindex="8">
+                  <select id="seller_cat"  name="seller_cat[]"   multiple class="chosen-select" tabindex="8">
           
                     <?php foreach($seller_categorudetails as $cat_data){ ?>
                     <option value="<?php echo $cat_data['seller_category_id']; ?>" selected="selected"><?php echo $cat_data['category_name']; ?></option>
@@ -422,7 +422,9 @@ $(function(){
                             
                   </select>
                   <div>
+                  <span id="errormsg"></span>
                 <div class="clearfix"></div>
+
                 <br>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form> 
@@ -431,6 +433,7 @@ $(function(){
           
           </section>
       </div>
+      
         <div class="tab-pane fade" id="tab3">
         <section class="panel">
                 <?php if($this->session->flashdata('storeupdatemessage')): ?>
@@ -828,22 +831,22 @@ function orthershops(vaule){
       
 
 
- $(document).ready(function() {
-    $('#categories').bootstrapValidator({
+//  $(document).ready(function() {
+//     $('#categories').bootstrapValidator({
        
-        fields: {
-        'seller_cat[]': {
-              validators: {
-           notEmpty: {
-                        message: 'Please select a Category'
-                    }
-                }
-            }
+//         fields: {
+//         'seller_cat[]': {
+//               validators: {
+//            notEmpty: {
+//                         message: 'Please select a Category'
+//                     }
+//                 }
+//             }
             
     
-        }
-    });
-});
+//         }
+//     });
+// });
 $(document).ready(function() {
     $('#storedetails').bootstrapValidator({
        
@@ -1132,5 +1135,18 @@ $(document).ready(function() {
         $('.chosen-select').chosen();
         $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
       });
+
+      function validations(){
+  
+  var catempty=document.getElementById('seller_cat').value;
+  //alert(areaids);
+  if(catempty==''){
+    $("#errormsg").html("Please select a category").css("color", "red");
+    return false;
+  }else{
+    $("#errormsg").html("");
+    return true;
+  }
+}
     </script>
     
