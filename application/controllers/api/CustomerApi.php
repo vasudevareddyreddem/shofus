@@ -1000,15 +1000,21 @@ class CustomerApi extends REST_Controller {
 
 
 		 if(count($top_offer_location && $deals_of_the_day_location && $season_sales_location && $treanding_location && $offers_for_you_location)>0){
-		 	$message = array('status'=>0);
-		 	$message = array(
-					'Location_Top_offers'=>$top_offer_location,
-					'Location_Deals Of Thed Day'=>$deals_of_the_day_location,
-					'Location_Season Sales'=>$season_sales_location,
-					'Location_Tranding Products'=>$treanding_location,
-					'Location_Offers For You'=>$offers_for_you_location,
-					'path'=>'http://cartinhour.com/uploads/products/');
-				$this->response($message, REST_Controller::HTTP_OK);
+		 	$somearray = array(
+		 			'status'=>1,
+		 			'Total Products'=> array(
+			 			'Location_Top_offers'=>$top_offer_location,
+						'Location_Deals Of Thed Day'=>$deals_of_the_day_location,
+						'Location_Season Sales'=>$season_sales_location,
+						'Location_Tranding Products'=>$treanding_location,
+						'Location_Offers For You'=>$offers_for_you_location,
+						'path'=>'http://cartinhour.com/uploads/products/'
+		 			)
+		 			
+		 		);
+		 			
+		 	//$message = ['status'=>1];
+				$this->response($somearray, REST_Controller::HTTP_OK);
 			
 		 }else{
 		 	$message = array('status'=>0,'message'=>'No Products In This Locations.');
