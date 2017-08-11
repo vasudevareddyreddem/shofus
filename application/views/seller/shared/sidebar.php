@@ -17,16 +17,16 @@
                             </a>
                         </li>
                         
-                        <li class="treeview">
+                        <li class="treeview" >
                             <a href="#">
                                 <i class="fa fa-list"></i><span>Listings</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul class="treeview-menu">
+                            <ul class="treeview-menu" style="width:220px;">
                                 <li><a href="<?php echo base_url();?>seller/products">My Listing</a></li>
-                                <li><a href="<?php echo base_url();?>seller/products/track_requests">Track Approval Requests</a></li>
+                                <li><a  href="<?php echo base_url();?>seller/products/track_requests">Track Approval Requests</a></li>
                                 
                             </ul>
                         </li>
