@@ -988,5 +988,35 @@ class CustomerApi extends REST_Controller {
 
 
 
+	public function totalproductslocationwise_get()
+	{
+		$get = $this->input->get();
+		$location_ids=explode(",",$get['location_id']);
+		$top_offer_location = $this->Customerapi_model->top_offers_product_search($location_ids);
+		$deals_of_the_day_location = $this->Customerapi_model->deals_of_the_day_product_search($location_ids);
+		$season_sales_location = $this->Customerapi_model->season_sales_product_search($location_ids);
+		$treanding_location = $this->Customerapi_model->treanding_product_search($location_ids);
+		$offers_for_you_location = $this->Customerapi_model->offers_for_you_product_search($location_ids);
+
+
+		 if(count($top_offer_location && $deals_of_the_day_location && $season_sales_location && $treanding_location && $offers_for_you_location)>0){
+		 	$message = array('status'=>0);
+		 	$message = array(
+					'Location_Top_offers'=>$top_offer_location,
+					'Location_Deals Of Thed Day'=>$deals_of_the_day_location,
+					'Location_Season Sales'=>$season_sales_location,
+					'Location_Tranding Products'=>$treanding_location,
+					'Location_Offers For You'=>$offers_for_you_location,
+					'path'=>'http://cartinhour.com/uploads/products/');
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		 }else{
+		 	$message = array('status'=>0,'message'=>'No Products In This Locations.');
+		 	$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		 }
+	}
+
+
+
 
 }
