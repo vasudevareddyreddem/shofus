@@ -38,9 +38,21 @@ class Dashboard_model extends CI_Model
 		$this->db->where('category_status',1);
 		return $this->db->get()->result_array();
 	}
+	public function get_all_request_details($sid)
+	{
+		$this->db->select('*')->from('request_for_services');
+		$this->db->where('seller_id', $sid);
+		$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
 	public function update_unnread_count_data($notification_id,$data)
 	{
 		$sql1="UPDATE notifications SET category_status ='".$data."' WHERE notification_id = '".$notification_id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_service_data($serv_id,$data)
+	{
+		$sql1="UPDATE request_for_services SET status ='".$data."' WHERE service_id = '".$serv_id."'";
 		return $this->db->query($sql1);
 	}
 	

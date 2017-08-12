@@ -232,6 +232,7 @@ class Customerapi_model extends MY_Model
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
+		$this->db->where('top_offers.preview_ok',1);
 		//$this->db->where('top_offers.expairdate >=', $curr_date);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
@@ -256,6 +257,7 @@ class Customerapi_model extends MY_Model
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
+		$this->db->where('deals_ofthe_day.preview_ok',1);
 		//$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
@@ -269,6 +271,7 @@ class Customerapi_model extends MY_Model
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
+		$this->db->where('season_sales.preview_ok',1);
 		//$this->db->where('season_sales.expairdate >=', $curr_date);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();

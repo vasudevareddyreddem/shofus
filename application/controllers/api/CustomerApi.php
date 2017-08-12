@@ -719,7 +719,6 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'location_top_offers'=>$top_offer_location,
-					'path'=>'http://cartinhour.com/uploads/products/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -740,7 +739,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'location_deals ofthe day'=>$deals_of_the_day_location,
-					'path'=>'http://cartinhour.com/uploads/products/'
+					
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -761,7 +760,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'location_season sales'=>$season_sales_location,
-					'path'=>'http://cartinhour.com/uploads/products/'
+					
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -782,7 +781,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'location_treading'=>$treanding_location,
-					'path'=>'http://cartinhour.com/uploads/products/'
+					
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -804,7 +803,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'location_offer for you'=>$offers_for_you_location,
-					'path'=>'http://cartinhour.com/uploads/products/'
+					
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -994,17 +993,20 @@ class CustomerApi extends REST_Controller {
 		$location_ids=explode(",",$get['location_id']);
 		$top_offer_location = $this->Customerapi_model->top_offers_product_search($location_ids);
 		$deals_of_the_day_location = $this->Customerapi_model->deals_of_the_day_product_search($location_ids);
-		$season_sales_location = $this->Customerapi_model->season_sales_product_search($location_ids);
-		$treanding_location = $this->Customerapi_model->treanding_product_search($location_ids);
-		$offers_for_you_location = $this->Customerapi_model->offers_for_you_product_search($location_ids);
 
+		$season_sales_location = $this->Customerapi_model->season_sales_product_search($location_ids);
+
+		$treanding_location = $this->Customerapi_model->treanding_product_search($location_ids);
+
+		$offers_for_you_location = $this->Customerapi_model->offers_for_you_product_search($location_ids);
+		//echo "<pre>";print_r($offers_for_you_location);exit;
 
 		 if(count($top_offer_location && $deals_of_the_day_location && $season_sales_location && $treanding_location && $offers_for_you_location)>0){
 		 	$somearray = array(
 		 			'status'=>1,
 		 			'Total Products'=> array(
 			 			'Location_Top_offers'=>$top_offer_location,
-						'Location_Deals Of Thed Day'=>$deals_of_the_day_location,
+						'Location_Deals Of The Day'=>$deals_of_the_day_location,
 						'Location_Season Sales'=>$season_sales_location,
 						'Location_Tranding Products'=>$treanding_location,
 						'Location_Offers For You'=>$offers_for_you_location,
@@ -1012,9 +1014,36 @@ class CustomerApi extends REST_Controller {
 		 			)
 		 			
 		 		);
+		 		$this->response($somearray, REST_Controller::HTTP_OK);
+			
+		 }else{
+		 	$message = array('status'=>0,'message'=>'No Products In This Locations.');
+		 	$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		 }
+	}
+
+	public function homepagetotalproducts_get()
+	{
+		$top_offers = $this->Customerapi_model->top_offers_list();
+		$deals = $this->Customerapi_model->deals_of_the_day_list();
+		$ssales = $this->Customerapi_model->season_sales_list();
+		$treding = $this->Customerapi_model->treding_products_list();
+		$offers = $this->Customerapi_model->offers_for_you_list();
+		if(count($top_offers && $deals && $ssales && $treding && $offers)>0){
+		 	$total = array(
+		 			'status'=>1,
+		 			'Total Products'=> array(
+			 			'Top_offers'=>$top_offers,
+						'Deals Of The Day'=>$deals,
+						'Season Sales'=>$ssales,
+						'Tranding Products'=>$treding,
+						'Offers For You'=>$offers,
+						'path'=>'http://cartinhour.com/uploads/products/'
+		 			)
 		 			
-		 	//$message = ['status'=>1];
-				$this->response($somearray, REST_Controller::HTTP_OK);
+		 		);
+		 			
+				$this->response($total, REST_Controller::HTTP_OK);
 			
 		 }else{
 		 	$message = array('status'=>0,'message'=>'No Products In This Locations.');

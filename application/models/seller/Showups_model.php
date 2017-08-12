@@ -27,6 +27,15 @@ class Showups_model extends MY_Model
     $this->db->where('seller_id',$sid);
     return $this->db->update('home_banner', $data);
   }
+  public function active_limit($sid)
+  {
+    // $query = $this->db->query("SELECT COUNT(*) AS active_banners FROM home_banner WHERE seller_id=$sid AND WHERE status=1");
+    // return $query->result();
+     $this->db->select('count(home_banner.status) AS active_banners')->from('home_banner');
+     //$this->db->where('seller_id',$sid);
+     $this->db->where('status',1);
+     return $this->db->get()->result_array();
+  }
   public function delete_banner($id,$sid){
     $sql1="DELETE FROM home_banner WHERE image_id = '".$id."' AND  seller_id = '".$sid."'";
     return $this->db->query($sql1);
