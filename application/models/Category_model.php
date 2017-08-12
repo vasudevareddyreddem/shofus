@@ -155,6 +155,517 @@ class Category_model extends MY_Model
 		$this->db->group_by('processor_clock_speed');
 		return $this->db->get()->result_array();
 	}
+	public function get_wireless_speed_list($catid,$subcat)
+	{
+		$this->db->select('products.wireless_speed')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('wireless_speed!=','');
+		$this->db->group_by('wireless_speed');
+		return $this->db->get()->result_array();
+	}
+	public function get_frequency_band_list($catid,$subcat)
+	{
+		$this->db->select('products.frequency_band')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('frequency_band!=','');
+		$this->db->group_by('frequency_band');
+		return $this->db->get()->result_array();
+	}
+	public function get_broadband_compatibility_list($catid,$subcat)
+	{
+		$this->db->select('products.broadband_compatibility')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('broadband_compatibility!=','');
+		$this->db->group_by('broadband_compatibility');
+		return $this->db->get()->result_array();
+	}
+	public function get_usb_ports_list($catid,$subcat)
+	{
+		$this->db->select('products.usb_ports')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('usb_ports!=','');
+		$this->db->group_by('usb_ports');
+		return $this->db->get()->result_array();
+	}
+	public function get_frequency_list_list($catid,$subcat)
+	{
+		$this->db->select('products.frequency')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('frequency!=','');
+		$this->db->group_by('frequency');
+		return $this->db->get()->result_array();
+	}
+	public function get_antennae_list($catid,$subcat)
+	{
+		$this->db->select('products.antennae')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('antennae!=','');
+		$this->db->group_by('antennae');
+		return $this->db->get()->result_array();
+	}
+	public function get_processor_list($catid,$subcat)
+	{
+		$this->db->select('products.processor')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('processor!=','');
+		$this->db->group_by('processor');
+		return $this->db->get()->result_array();
+	}
+	public function get_processor_brand_list($catid,$subcat)
+	{
+		$this->db->select('products.processor_brand')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('processor_brand!=','');
+		$this->db->group_by('processor_brand');
+		return $this->db->get()->result_array();
+	}
+	public function get_lifestyle_list($catid,$subcat)
+	{
+		$this->db->select('products.life_style')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('life_style!=','');
+		$this->db->group_by('life_style');
+		return $this->db->get()->result_array();
+	}
+	public function get_storage_type_list($catid,$subcat)
+	{
+		$this->db->select('products.storage_type')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('storage_type!=','');
+		$this->db->group_by('storage_type');
+		return $this->db->get()->result_array();
+	}
+	public function get_graphics_memory_list($catid,$subcat)
+	{
+		$this->db->select('products.graphics_memory')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('graphics_memory!=','');
+		$this->db->group_by('graphics_memory');
+		return $this->db->get()->result_array();
+	}
+	public function get_touch_screen_list($catid,$subcat)
+	{
+		$this->db->select('products.touch_screen')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('touch_screen!=','');
+		$this->db->group_by('touch_screen');
+		return $this->db->get()->result_array();
+	}
+	public function get_weight_list($catid,$subcat)
+	{
+		$this->db->select('products.weight')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('weight!=','');
+		$this->db->group_by('weight');
+		return $this->db->get()->result_array();
+	}
+	public function get_memory_type_list($catid,$subcat)
+	{
+		$this->db->select('products.memory_type')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('memory_type!=','');
+		$this->db->group_by('memory_type');
+		return $this->db->get()->result_array();
+	}
+	public function get_ram_typee_list($catid,$subcat)
+	{
+		$this->db->select('products.ram_type')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('ram_type!=','');
+		$this->db->group_by('ram_type');
+		return $this->db->get()->result_array();
+	}
+	public function get_network_type_list($catid,$subcat)
+	{
+		$this->db->select('products.network_type')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('network_type!=','');
+		$this->db->group_by('network_type');
+		return $this->db->get()->result_array();
+	}
+	public function get_speciality_list($catid,$subcat)
+	{
+		$this->db->select('products.speciality')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('speciality!=','');
+		$this->db->group_by('speciality');
+		return $this->db->get()->result_array();
+	}
+	public function get_operating_system_version_name_list($catid,$subcat)
+	{
+		$this->db->select('products.operating_system_version_name')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('operating_system_version_name!=','');
+		$this->db->group_by('operating_system_version_name');
+		return $this->db->get()->result_array();
+	}
+	public function get_resolution_type_list($catid,$subcat)
+	{
+		$this->db->select('products.resolution_type')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('resolution_type!=','');
+		$this->db->group_by('resolution_type');
+		return $this->db->get()->result_array();
+	}
+	public function get_secondary_camera_list($catid,$subcat)
+	{
+		$this->db->select('products.secondary_camera')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('secondary_camera!=','');
+		$this->db->group_by('secondary_camera');
+		return $this->db->get()->result_array();
+	}
+	public function get_sim_type_list($catid,$subcat)
+	{
+		$this->db->select('products.sim_type')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('sim_type!=','');
+		$this->db->group_by('sim_type');
+		return $this->db->get()->result_array();
+	}
+	public function get_clock_speed_list($catid,$subcat)
+	{
+		$this->db->select('products.clock_speed')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('clock_speed!=','');
+		$this->db->group_by('clock_speed');
+		return $this->db->get()->result_array();
+	}
+	public function get_cores_list($catid,$subcat)
+	{
+		$this->db->select('products.cores')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('cores!=','');
+		$this->db->group_by('cores');
+		return $this->db->get()->result_array();
+	}
+	public function get_theme_list($catid,$subcat)
+	{
+		$this->db->select('products.theme')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('theme!=','');
+		$this->db->group_by('theme');
+		return $this->db->get()->result_array();
+	}
+	public function get_dial_shape_list($catid,$subcat)
+	{
+		$this->db->select('products.dial_shape')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('dial_shape!=','');
+		$this->db->group_by('dial_shape');
+		return $this->db->get()->result_array();
+	}
+	public function get_compatibleos_list($catid,$subcat)
+	{
+		$this->db->select('products.compatibleos')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('compatibleos!=','');
+		$this->db->group_by('compatibleos');
+		return $this->db->get()->result_array();
+	}
+	public function get_usage_list($catid,$subcat)
+	{
+		$this->db->select('products.usage')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('usage!=','');
+		$this->db->group_by('usage');
+		return $this->db->get()->result_array();
+	}
+	public function get_display_type_list($catid,$subcat)
+	{
+		$this->db->select('products.display_type')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('display_type!=','');
+		$this->db->group_by('display_type');
+		return $this->db->get()->result_array();
+	}
+	public function get_occasion_list($catid,$subcat)
+	{
+		$this->db->select('products.occasion')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('occasion!=','');
+		$this->db->group_by('occasion');
+		return $this->db->get()->result_array();
+	}
+	public function get_ideal_for_sub($catid,$subcat)
+	{
+		$this->db->select('products.ideal_for')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('ideal_for!=','');
+		$this->db->group_by('ideal_for');
+		return $this->db->get()->result_array();
+	}
+	public function get_material_list($catid,$subcat)
+	{
+		$this->db->select('products.material')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('material!=','');
+		$this->db->group_by('material');
+		return $this->db->get()->result_array();
+	}
+	public function get_gemstones_list($catid,$subcat)
+	{
+		$this->db->select('products.gemstones')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('gemstones!=','');
+		$this->db->group_by('gemstones');
+		return $this->db->get()->result_array();
+	}
+	public function get_strap_color_list($catid,$subcat)
+	{
+		$this->db->select('products.strap_color')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('strap_color!=','');
+		$this->db->group_by('strap_color');
+		return $this->db->get()->result_array();
+	}
+	public function get_dial_color_list($catid,$subcat)
+	{
+		$this->db->select('products.dial_color')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('dial_color!=','');
+		$this->db->group_by('dial_color');
+		return $this->db->get()->result_array();
+	}
+	public function update_dial_color_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET dial_color ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_strap_color_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET strap_color ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_material_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET material ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_gemstones_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET gemstones ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_ideal_for_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET ideal_for ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_occasion_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET occasion ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_display_type_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET display_type ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_usage_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET usages ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_compatibleos_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET compatibleos ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	
+	public function update_dial_shape_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET dial_shape ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_theme_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET theme ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_clock_speed_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET clock_speed ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_cores_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET cores ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_secondary_camera_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET secondary_camera ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_sim_type_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET sim_type ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_resolution_type_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET resolution_type ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_operating_system_version_name_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET operating_system_version_name ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_speciality_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET speciality ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_network_type_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET network_type ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_ram_typee_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET ram_type ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_memory_type_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET memory_type ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_weight_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET weight ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_touch_screen_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET touch_screen ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_storage_type_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET storage_type ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_graphics_memory_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET graphics_memory ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_life_style_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET life_style ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_processor_brand_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET processor_brand ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_processor_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET processor ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_antennae_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET antennae ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_frequency_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET frequency ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_usb_ports_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET usb_ports ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_frequency_band_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET frequency_band ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_broadband_compatibility_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET broadband_compatibility ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_wireless_speed_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET wireless_speed ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
 	public function update_processor_clock_speed_privous_subcategorysearchdata($id,$data)
 	{
 		$sql1="UPDATE subcat_wise_fliter_search SET processor_clock_speed ='".$data."' WHERE id ='".$id."'";
