@@ -34,7 +34,12 @@
 				<div class="box">
             <div class="box-header">
               <h3 class="box-title">Home Page Banners List
-              <a href="<?php echo base_url('seller/showups/addhomebanner');?>" class="btn btn-primary pull-right">Add</a></h3>
+                 <?php if(count($banner_button)>5){ ?>
+                  <a  class="btn btn-danger pull-right">Limit Exits</a>
+                <?php }else{ ?>
+                  <a href="<?php echo base_url('seller/showups/addhomebanner');?>" class="btn btn-primary pull-right">Add</a>
+                 <?php } ?>
+              </h3>
             </div>
             <!-- /.box-header -->
             <?php if(!empty($seller_banner))  { ?>

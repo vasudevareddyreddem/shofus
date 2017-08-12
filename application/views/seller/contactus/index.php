@@ -120,17 +120,17 @@ $(document).ready(function() {
 				}
 		  }
         }, 
-		lname: {
-          validators: {
-						notEmpty: {
-						message: 'Lastname is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Lastname can only consist of alphanumaric, space and dot'
-				}
-		  }
-        },
+		// lname: {
+  //         validators: {
+		// 				notEmpty: {
+		// 				message: 'Lastname is required'
+		// 			},
+		// 			regexp: {
+		// 			regexp: /^[a-zA-Z0-9. ]+$/,
+		// 			message: 'Lastname can only consist of alphanumaric, space and dot'
+		// 		}
+		//   }
+  //       },
 		email: {
 				validators: {
 					notEmpty: {

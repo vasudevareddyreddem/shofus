@@ -98,7 +98,7 @@ tfoot input {
             <tr>
                 <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
 				</th>
-				<div style="padding:15px 0px"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
+				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
@@ -410,6 +410,17 @@ tfoot input {
       e.preventDefault();
    });
 });
+$(document).ready(function() {
+    
+        var submit = $("#submit_prog<?php echo $subcategory->subcategory_id;?>").hide(),
+            cbs = $('input[name="select_all"]').click(function() {
+                submit.toggle( cbs.is(":checked") );
+            });
+            cid = $('input[name="cat_id[]"]').click(function() {
+                submit.toggle( cid.is(":checked") );
+            });
+    
+    });
 </script>
                 </div>
               </div>
@@ -427,7 +438,7 @@ tfoot input {
    
    <div class="container">
 	
-      <h1 class="head_title">You have no Products. Please add products</h1>
+     <a href="<?php echo base_url('/seller/products/create');?>"> <h1 class="head_title">You have no Products. Please add products</h1></a>
    
    </div>
    

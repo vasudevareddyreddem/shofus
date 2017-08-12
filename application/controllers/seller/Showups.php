@@ -24,6 +24,7 @@ class Showups extends Admin_Controller {
 	public function homepagebanner()
 	{
 		$data['seller_banner'] = $this->showups_model->seller_homebanners();
+		$data['banner_button']=$this->showups_model->banner_count(date('Y-m-d'));
 		//$data['auto'] = $this->showups_model->auto_update();
 		//echo "<pre>";print_r($data);exit;
 		$this->template->write_view('content', 'seller/showups/homepagebanner',$data);
