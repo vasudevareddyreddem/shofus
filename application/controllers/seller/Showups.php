@@ -123,6 +123,14 @@ class Showups extends Admin_Controller {
 	}
 	public function banner_status()
 	{
+		$sellerid = base64_decode($this->uri->segment(5));
+		$activestatus=$this->showups_model->active_limit($sellerid);
+		//echo "<pre>";print_r($activestatus);exit;
+		if($activestatus['0']['active_banners']==6)
+		{
+			$this->session->set_flashdata('deactive',"6 Banners active");
+			redirect('seller/showups/homepagebanner');
+		}else{
 		$id = base64_decode($this->uri->segment(4));
 		$sellerid = base64_decode($this->uri->segment(5));
 		$status = base64_decode($this->uri->segment(6));
@@ -142,6 +150,7 @@ class Showups extends Admin_Controller {
 		);
 			$updatestatus=$this->showups_model->update_banner_status($id,$sellerid,$data);
 			//echo $this->db->last_query();exit;
+			
 			if(count($updatestatus)>0)
 				{
 					if($status==1)
@@ -152,6 +161,8 @@ class Showups extends Admin_Controller {
 					}
 					redirect('seller/showups/homepagebanner');
 				}
+		}
+		
 
 
 	}
