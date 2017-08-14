@@ -921,7 +921,7 @@ class Category extends Front_Controller
 			$data['ideal_for']= $this->category_model->get_ideal_for_sub($caterory_id,$subcaterory_id);
 
 		}
-		if($subcaterory_id==8 || $subcaterory_id==14 || $subcaterory_id==19){
+		if($subcaterory_id==8 || $subcaterory_id==14 || $subcaterory_id==19 || $subcaterory_id==20){
 			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
 			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
 		}
@@ -931,7 +931,7 @@ class Category extends Front_Controller
 			$data['usage_list']= $this->category_model->get_usage_list($caterory_id,$subcaterory_id);
 			$data['display_type']= $this->category_model->get_display_type_list($caterory_id,$subcaterory_id);
 		}
-		if($subcaterory_id==11){
+		if($subcaterory_id==11 || $subcaterory_id==21){
 					$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
 		}
 		if($subcaterory_id==53){
@@ -1310,7 +1310,7 @@ function filtersearch(){
 			$data['ideal_for']= $this->category_model->get_ideal_for_sub($caterory_id,$subcaterory_id);
 
 		}
-		if($subcaterory_id==8 || $subcaterory_id==14 || $subcaterory_id==19){
+		if($subcaterory_id==8 || $subcaterory_id==14 || $subcaterory_id==19 || $subcaterory_id==20){
 			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
 			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
 		}
@@ -1320,7 +1320,7 @@ function filtersearch(){
 			$data['usage_list']= $this->category_model->get_usage_list($caterory_id,$subcaterory_id);
 			$data['display_type']= $this->category_model->get_display_type_list($caterory_id,$subcaterory_id);
 		}
-		if($subcaterory_id==11){
+		if($subcaterory_id==11 || $subcaterory_id==21){
 			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
 		}
 		if($subcaterory_id==53){

@@ -422,7 +422,7 @@
 				<?php } ?>
 				
 				
-					<?php if($cat_subcat_ids[0]['subcategory_id']=='19' || $cat_subcat_ids[0]['subcategory_id']=='50' || $cat_subcat_ids[0]['subcategory_id']=='18' || $cat_subcat_ids[0]['subcategory_id']=='17' || $cat_subcat_ids[0]['subcategory_id']=='16' || $cat_subcat_ids[0]['subcategory_id']!='10' || $cat_subcat_ids[0]['subcategory_id']!='53'){ ?>
+					<?php if($cat_subcat_ids[0]['subcategory_id']=='21' || $cat_subcat_ids[0]['subcategory_id']=='20' || $cat_subcat_ids[0]['subcategory_id']=='19' || $cat_subcat_ids[0]['subcategory_id']=='50' || $cat_subcat_ids[0]['subcategory_id']=='18' || $cat_subcat_ids[0]['subcategory_id']=='17' || $cat_subcat_ids[0]['subcategory_id']=='16' || $cat_subcat_ids[0]['subcategory_id']!='10' || $cat_subcat_ids[0]['subcategory_id']!='53'){ ?>
 				<?php if(count($ideal_for)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
@@ -475,7 +475,7 @@
 				
 				<?php } ?>
 				
-				<?php if($cat_subcat_ids[0]['subcategory_id']=='8' || $cat_subcat_ids[0]['subcategory_id']=='14' || $cat_subcat_ids[0]['subcategory_id']=='19'){ ?>
+				<?php if($cat_subcat_ids[0]['subcategory_id']=='8' || $cat_subcat_ids[0]['subcategory_id']=='14' || $cat_subcat_ids[0]['subcategory_id']=='19' || $cat_subcat_ids[0]['subcategory_id']=='20'){ ?>
 				<?php if(count($theme_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">

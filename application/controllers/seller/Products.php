@@ -183,8 +183,14 @@ public function item_status(){
 			
 	
 		//echo '<pre>';print_r($images);exit;
-		if($post['product_theme'] ||$post['product_theme1'] || $post['product_theme2'] || $post['product_theme3'] || $post['product_theme4'] || $post['product_theme5']){
+		if($post['product_theme23'] || $post['product_theme12'] || $post['product_theme'] ||$post['product_theme1'] || $post['product_theme2'] || $post['product_theme3'] || $post['product_theme4'] || $post['product_theme5']){
 	
+	if($post['product_theme23']!=''){
+	$pthem=$post['product_theme23'];		
+	}
+	if($post['product_theme12']!=''){
+	$pthem=$post['product_theme12'];		
+	}
 	if($post['product_theme']!=''){
 	$pthem=$post['product_theme'];		
 	}
@@ -201,10 +207,10 @@ public function item_status(){
 	$pthem=$post['product_theme5'];		
 	}
 }
-if($post['product_type1'] || $post['product_type2'] || $post['product_type3'] || $post['product_type4'] || $post['product_type5'] || $post['product_type6'] || $post['product_type7'] || $post['product_type8']){
+if($post['product_type71'] || $post['product_type1'] || $post['product_type2'] || $post['product_type3'] || $post['product_type4'] || $post['product_type5'] || $post['product_type6'] || $post['product_type7'] || $post['product_type8']){
 	
-	if($post['product_type1']!=''){
-	$ptype=$post['product_type1'];		
+	if($post['product_type71']!=''){
+	$ptype=$post['product_type71'];		
 	}
 	if($post['product_type2']!=''){
 	$ptype=$post['product_type2'];		
