@@ -774,8 +774,13 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
+<<<<<<< HEAD
+									<label for="form_lastname">Lastname *</label>
+									<input id="form_lastname" type="text" name="lname" class="form-control" placeholder="Please enter your lastname " >
+=======
 									<label for="form_lastname">Lastname </label>
 									<input id="form_lastname" type="text" name="lname" class="form-control" placeholder="Please enter your lastname *" >
+>>>>>>> 813e2a08407f4fba38dce163bf5e0c2593eb20c0
 									
 								</div>
 							</div>
