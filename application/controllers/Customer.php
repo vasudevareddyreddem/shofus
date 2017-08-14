@@ -21,7 +21,6 @@ class Customer extends Front_Controller
 
   public function locationsearch(){
 		$post=$this->input->post();
-
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
 		$data['tredings']= $this->customer_model->get_product_search_location($post['locationarea']);
@@ -422,23 +421,7 @@ class Customer extends Front_Controller
 		$data['productinfo']=$items_names[0]['item_name'];
 		$data['txnid']=substr(hash('sha256', mt_rand() . microtime()), 0, 20);
 		$amount=$data['carttotal_amount']['pricetotalvalue'];
-		//echo '<pre>';print_r($data);exit;
-		//$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
-		//$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|'.$data['billimgdetails']['name'].'|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
-		//echo '<pre>';print_r($hashSequence);exit;
-		// $hashVarsSeq = explode('|', $hashSequence);
-		// $hash_string='';
-		// foreach($hashVarsSeq as $hash_var) {
-		// $hash_string .= $hash_var;
-		// $hash_string .= '|';
-		// }
-		//echo '<pre>';print_r($hash_string);exit;
-
-		//$hash_string1='gtKFFx|efc7afd5632da2bb7448|163331.7|prodctname|firstanme|vasu@gmail.com|||||||||||eCwWELxi';
-		//$data['hashvalue'] = strtolower(hash('sha512', $hash_string1));
-		
-		
-		 $MERCHANT_KEY = $this->config->item('MERCHANTKEY');
+		$MERCHANT_KEY = $this->config->item('MERCHANTKEY');
 			$SALT='eCwWELxi';
 
         $txnid = substr(hash('sha256', mt_rand().microtime()), 0, 20);
@@ -450,19 +433,12 @@ class Customer extends Front_Controller
         $udf5='';
 		$fname=$data['billimgdetails']['name'];
 		$email=$customerdetails['cust_email'];
-		
-		//$hashSequence = $this->config->item('MERCHANTKEY').'|'.$txnid.'|'.$amount.'|'.$items_names[0]['item_name'].'|firstanme|'.$customerdetails['cust_email'].'|||||||||||eCwWELxi';
-
-         $hashstring = $MERCHANT_KEY.'|'.$data['txnid'].'|'.$amount. '|'.$items_names[0]['item_name'].'|'.$fname.'|'.$email.'|'.$udf1.'|'.$udf2.'|'.$udf3.'|'.$udf4.'|'.$udf5.'||||||'.$SALT;
-         //$hashstring = '';
-
-        $hash = strtolower(hash('sha512',$hashstring));
+		$hashstring = $MERCHANT_KEY.'|'.$data['txnid'].'|'.$amount. '|'.$items_names[0]['item_name'].'|'.$fname.'|'.$email.'|'.$udf1.'|'.$udf2.'|'.$udf3.'|'.$udf4.'|'.$udf5.'||||||'.$SALT;
+		$hash = strtolower(hash('sha512',$hashstring));
         $data['hash'] = $hash;
-		
-		
 		//echo '<pre>';print_r($hashstring);
 		//echo '<pre>';print_r($data);
-//exit;
+		//exit;
 		$data['hashstring']=$hashstring;
 		$this->template->write_view('content', 'customer/payment',$data);
 		$this->template->render();
@@ -499,6 +475,7 @@ class Customer extends Front_Controller
 			$saveorder= $this->customer_model->save_order_success($ordersucess);
 				//echo '<pre>';print_r($saveorder);exit;
 				$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+				//echo '<pre>';print_r($cart_items);exit;
 				foreach($cart_items as $items){
 					$orderitems=array(
 						'order_id'=>$saveorder,
@@ -517,6 +494,12 @@ class Customer extends Front_Controller
 						'create_at'=>date('Y-m-d H:i:s'),
 					);
 					//echo '<pre>';print_r($adddata);exit;
+					$item_qty=$this->customer_model->get_item_details($items['item_id']);
+					$less_qty=$item_qty['item_quantity']-$items['qty'];
+					//echo '<pre>';print_r($item_qty);
+					//echo '<pre>';print_r($less_aty);
+					//exit;
+					$this->customer_model->update_tem_qty_after_purchasingorder($items['item_id'],$less_qty,$items['seller_id']);
 					$save= $this->customer_model->save_order_items_list($orderitems);
 				}
 				$this->session->set_flashdata('paymentsucess','Payment successfully completed!');
