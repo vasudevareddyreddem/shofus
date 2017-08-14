@@ -37,6 +37,7 @@
 			</form>  
 			<h1>Listing</h1>
 			<small>Add Listing</small>
+			
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard'); ?>"><i class="pe-7s-home"></i> Home</a></li>
 				<li class="active">Dashboard</li>
@@ -79,6 +80,7 @@
 				<div class="collapse  form-group nopaddingRight san-lg" id="fileups">
 					 <label for="exampleInputEmail1">Import File</label>
 					<input type="file" class="form-control" name="categoryfile" id="categoryfile" >
+					</br>
 					<button type="submit" class="btn btn-warning btn-xs">Submit</button>
 				</div>
 				</form>
@@ -109,7 +111,7 @@
 			<div class="clearfix"></div>
 			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Sub Category </label>
-				<select class="form-control" onchange="getspecialinputs(this.value);getinputfiledshideshow(this.value);" id="subcategorylist" name="subcategorylist" >
+				<select class="form-control" onchange="getspecialinputs(this.value);getinputfiledshideshow(this.value);removeextrafields(this.value);" id="subcategorylist" name="subcategorylist" >
 				<option value="">Select Subcategory </option>
 
 				</select>
@@ -217,7 +219,7 @@
 			</div>
 	</div>
 	<div class="row">
-		<div class=" col-md-6">
+		<div class=" col-md-12">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">sub item</label>
 					<input type="text" class="form-control" id="product_sub_tem" name="product_sub_tem" >
@@ -330,7 +332,7 @@
 					<input type="text" class="form-control" id="dial_shape2" name="dial_shape2" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
 				</div>
 			</div>
-			<div class="col-md-6 form-group">
+			<div id="compatibleos" class="col-md-6 form-group">
 			<label>COMPATIBLE OS</label>
 			<input class="form-control" id="compatible_os"  type="text" name="compatible_os" value="<?php echo isset($productdetails['compatibleos'])?$productdetails['compatibleos']:''; ?>" />
 			</div>
@@ -339,6 +341,22 @@
 			<input class="form-control" id="prouduct_usage"  type="text" name="prouduct_usage" value="<?php echo isset($productdetails['usage'])?$productdetails['usage']:''; ?>" />
 			</div>
 			<div class="col-md-6 form-group">
+			<label>DISPLAY TYPE</label>
+			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" />
+			</div>
+	</div>
+	<div class="row" id="watchesinputs" style="display:none;">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">DIAL SHAPE</label>
+					<input type="text" class="form-control" id="dial_shape2" name="dial_shape2" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
+				</div>
+			</div>
+			<div class="col-md-6 form-group">
+			<label>USAGE</label>
+			<input class="form-control" id="prouduct_usage"  type="text" name="prouduct_usage" value="<?php echo isset($productdetails['usage'])?$productdetails['usage']:''; ?>" />
+			</div>
+			<div class="col-md-12 form-group">
 			<label>DISPLAY TYPE</label>
 			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" />
 			</div>
@@ -702,7 +720,105 @@
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
    <script type="text/javascript">
-
+function removeextrafields(){
+	  
+	   $('#productname').val('');
+	   $('#skuid').val('');
+	   $('#otherunique').val('');
+	   $('#product_price').val('');
+	   $('#specialprice').val('');
+	   $('#offers').val('');
+	   $('#discount').val('');
+	   $('#qty').val('');
+	   $('#keywords').val('');
+	   $('#title').val('');
+	   $('#status').val('');
+	   $('#product_description').val('');
+	   $('#product_sub_tem').val('');
+	   $('#ideal_for').val('');
+	   $('#brand').val('');
+	   $('#product_scusine').val('');
+	   $('#product_sufficient').val('');
+	   $('#product_type8').val('');
+	   $('#product_type7').val('');
+	   $('#product_theme1').val('');
+	   $('#product_theme').val('');
+	   $('#dial_shape2').val('');
+	   $('#compatible_os').val('');
+	   $('#prouduct_usage').val('');
+	   $('#prouduct_display_type').val('');
+	   $('#product_theme5').val('');
+	   $('#product_occasion2').val('');
+	   $('#product_theme4').val('');
+	   $('#material1').val('');
+	   $('#product_gemstones').val('');
+	   $('#Material2').val('');
+	   $('#product_type6').val('');
+	   $('#dial_shape1').val('');
+	   $('#prouduct_strap_color').val('');
+	   $('#prouduct_dial_color').val('');
+	   $('#product_type5').val('');
+	   $('#product_theme3').val('');
+	   $('#product_packof2').val('');
+	   $('#product_theme2').val('');
+	   $('#product_occasion1').val('');
+	   $('#product_type4').val('');
+	   $('#product_packof1').val('');
+	   $('#product_compatible_mobiles').val('');
+	   $('#product_type3').val('');
+	   $('#product_mega_pixel').val('');
+	   $('#product_sensor_type').val('');
+	   $('#product_battery_type').val('');
+	   $('#product_type2').val('');
+	   $('#wireless_speed').val('');
+	   $('#frequency_band').val('');
+	   $('#broadband_compatibility').val('');
+	   $('#usb_ports').val('');
+	   $('#product_frequency').val('');
+	   $('#product_antennae').val('');
+	   $('#product_display_size3').val('');
+	   $('#product_connectivity').val('');
+	   $('#product_ram3').val('');
+	   $('#voice_calling_facility').val('');
+	   $('#operating_system3').val('');
+	   $('#internal_storage3').val('');
+	   $('#battery_capacity2').val('');
+	   $('#primary_camera2').val('');
+	   $('#processor_clock_speed').val('');
+	   $('#product_display_size2').val('');
+	   $('#product_processor').val('');
+	   $('#product_processor_brand1').val('');
+	   $('#operating_system2').val('');
+	   $('#product_ram2').val('');
+	   $('#life_style').val('');
+	   $('#storage_type').val('');
+	   $('#dedicated_graphics_memory').val('');
+	   $('#touch_screentouch_screen').val('');
+	   $('#weight').val('');
+	   $('#internal_storage2').val('');
+	   $('#graphics_memory_type').val('');
+	   $('#ram_type').val('');
+	   $('#product_ram1').val('');
+	   $('#operating_system1').val('');
+	   $('#internal_storage4').val('');
+	   $('#product_display_size1').val('');
+	   $('#network_type').val('');
+	   $('#battery_capacity1').val('');
+	   $('#product_speciality').val('');
+	   $('#product_type1').val('');
+	   $('#operating_system_version_name').val('');
+	   $('#product_processor_brand2').val('');
+	   $('#resolution_type').val('');
+	   $('#primary_camera1').val('');
+	   $('#secondary_camera').val('');
+	   $('#sim_type').val('');
+	   $('#clock_speed').val('');
+	   $('#number_of_cores').val('');
+	   $('#internal_storage1').val('');
+	   $('#specificationnameid').val('');
+	   $('#specificationvalueid').val('');
+	  
+  }
   $(document).ready(function() {
     $('#importproducts').bootstrapValidator({
        
@@ -821,15 +937,7 @@ function getspecialinputs(ids){
 		$('#mobilesinputs').hide();
 		$('#sizeid').show();		
 	}
-	if(ids==8){
-	$('#winterwaerinputs').show();
-	$('#sizeid').show();
-	$('#colorid').show();
-	}else{ 
-	$('#winterwaerinputs').hide();
-	$('#sizeid').hide();
-	$('#colorid').hide();
-	}
+	
 	if(ids==9){
 		$('#sizeid').hide();
 		$('#colorid').hide();
@@ -865,7 +973,7 @@ function getspecialinputs(ids){
 		$('#mensfabricsinputs1').hide();
 
 	}
-	if(ids==14 || ids==19 || ids==20 || ids==22){
+	if(ids==14 || ids==19 || ids==20 || ids==22 || ids==8){
 		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
@@ -922,6 +1030,11 @@ function getspecialinputs(ids){
 	if(ids==24){
 		$('#sizeid').hide();
 		$('#colorid').hide();
+	}
+	if(ids==27){
+		$('#watchesinputs').show();
+	}else{
+		$('#watchesinputs').hide();	
 	}
 	if(ids==25){
 		$('#sizeid').show();
@@ -1000,6 +1113,7 @@ function getspecialinputs(ids){
 	  
  
   	$(document).ready(function() {
+
     $('#addproduct').bootstrapValidator({
        
         fields: {
@@ -1070,6 +1184,12 @@ function getspecialinputs(ids){
 					regexp: /^[0-9.]+$/,
 					message: 'Special price can only consist of digits'
 					}
+					// ,
+					// lessThan: {
+     //                    field: 'product_price',
+     //                    inclusive: true,
+     //                    message: 'The ages has to be less than 100'
+     //                },
 				}
 			},
 			discount: {
@@ -1077,6 +1197,11 @@ function getspecialinputs(ids){
 					notEmpty: {
 						message: 'Discount is required'
 					},
+					between: {
+                    min: 1,
+                    max: 99,
+                    message: 'The discount must be between 1 and 99'
+                },
                    regexp: {
 					regexp: /^[0-9.]+$/,
 					message: 'Discount can only consist of digits'
@@ -1997,7 +2122,6 @@ $(document).ready(function(){
 });		
 </script>
   
-
 
 
 		

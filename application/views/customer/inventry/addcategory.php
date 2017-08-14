@@ -37,6 +37,10 @@
 				<input type="text"  class="form-control" id="categoryname"  name="categoryname"/>
 				</div>
 				<div class="form-group">
+				<label for="category">Category Image</label>
+				<input type="file"  class="form-control" id="cat_image"  name="cat_image"/>
+				</div>
+				<div class="form-group">
 				<label for="category">Category File</label>
 				<input style="height:auto;" type="file" class="form-control" id="categoryfile" name="categoryfile" />
 				</div>
@@ -102,7 +106,19 @@ $(document).ready(function() {
 					message: ' Category Name can only consist of alphanumaric, space and dot'
 					}
 				}
-			},categoryfile: {
+			},
+			cat_image: {
+           validators: {
+             notEmpty: {
+            message: 'Category Image is required'
+          },
+          regexp: {
+          regexp: /\.(jpe?g|png)$/i,
+          message: 'Uploaded file is not a valid image. Only JPG, PNG and Jpeg files are allowed'
+          }
+            }
+      },
+			categoryfile: {
 					validators: {
 					regexp: {
 					regexp: /\.(xlsx|xls)$/i,

@@ -711,9 +711,17 @@ public function servicerequestview(){
 					$post=$this->input->post();
 					//echo "<pre>";print_r($_FILES);
 					//echo "<pre>";print_r($post);exit;
+					if($_FILES['cat_image']['name']!=''){
+					$catimg=$_FILES['cat_image']['name'];
+					move_uploaded_file($_FILES['cat_image']['tmp_name'], "assets/categoryimages/" . $_FILES['cat_image']['name']);
+
+					}else{
+					$catimg='';
+					}
 					move_uploaded_file($_FILES['categoryfile']['tmp_name'], "assets/sellerfile/category/" . trim($_FILES['categoryfile']['name']));
 					$data = array(
-					'category_name' => $post['categoryname'], 
+					'category_name' => $post['categoryname'],
+					'category_image'=>$catimg,
 					'documetfile' => trim($_FILES['categoryfile']['name']),    
 					'status' => 1,    
 					'created_at' => date('Y-m-d H:i:s'),    
@@ -742,9 +750,17 @@ public function servicerequestview(){
 			{
 					$post=$this->input->post();
 					//echo "<pre>";print_r($post);exit;
+					if($_FILES['sub_image']['name']!=''){
+					$subimg=$_FILES['sub_image']['name'];
+					move_uploaded_file($_FILES['sub_image']['tmp_name'], "assets/subcategoryimages/" . $_FILES['sub_image']['name']);
+
+					}else{
+					$subimg='';
+					}
 					$addsubcat = array(
 					'category_id' => $post['category_list'], 
 					'subcategory_name' => $post['categoryname'],
+					'subcategory_image'=>$subimg,
 					'commission' => $post['commission'], 
 					'status' => 1,    
 					'created_at' => date('Y-m-d H:i:s'),    
@@ -873,6 +889,14 @@ public function servicerequestview(){
 			{
 				$post=$this->input->post();
 				$category_details = $this->inventory_model->get_categort_details($post['catid']);
+				if($_FILES['cat_image']['name']!=''){
+					$catimg=$_FILES['cat_image']['name'];
+					move_uploaded_file($_FILES['cat_image']['tmp_name'], "assets/categoryimages/" . $_FILES['cat_image']['name']);
+
+					}else{
+					$catimg=$category_details['category_image'];
+					}
+				//print_r($category_details);exit;
 					if($_FILES['categoryfile']['name']!=''){
 						$imgname=$_FILES['categoryfile']['name'];
 						move_uploaded_file($_FILES['categoryfile']['tmp_name'], "assets/sellerfile/category/" . trim($_FILES['categoryfile']['name']));
@@ -881,7 +905,8 @@ public function servicerequestview(){
 						$imgname=$category_details['documetfile'];
 					}
 					$updatedata = array(
-					'category_name' => $post['categoryname'], 
+					'category_name' => $post['categoryname'],
+					'category_image'=>$catimg,
 					'documetfile' => $imgname,
 					'created_at' => date('Y-m-d H:i:s'),    
 					'updated_at' => date('Y-m-d H:i:s'),
@@ -909,9 +934,19 @@ public function servicerequestview(){
 			{
 				$post=$this->input->post();
 				//echo '<pre>';print_r($post);exit;
+					$subcategory_image_get=$this->inventory_model->getoldimage($post['category_list'],$post['subcategoryid']);
+					//echo '<pre>';print_r($subcategory_image_get);exit;
+					if($_FILES['sub_image']['name']!=''){
+					$subimg=$_FILES['sub_image']['name'];
+					move_uploaded_file($_FILES['sub_image']['tmp_name'], "assets/subcategoryimages/" . $_FILES['sub_image']['name']);
+
+					}else{
+					$subimg=$subcategory_image_get['subcategory_image'];
+					}
 					$updatedata = array(
 					'category_id' => $post['category_list'], 
 					'subcategory_name' => $post['subcategoryname'],
+					'subcategory_image'=>$subimg,
 					'commission' => $post['commission'], 
 					'created_at' => date('Y-m-d H:i:s'),    
 					'updated_at' => date('Y-m-d H:i:s'),

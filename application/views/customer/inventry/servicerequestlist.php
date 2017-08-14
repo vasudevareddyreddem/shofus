@@ -41,7 +41,7 @@
                   <td><?php echo $details['select_plan']; ?></td>
                   <td><?php echo $details['seller_name']; ?></td>
                   <td><?php echo $details['seller_email']; ?></td>                  
-                  <td><?php echo $details['seller_mobile']; ?></td>                  
+                  <td><?php echo $details['phone_number']; ?></td>                  
                   <td><a href="<?php echo base_url('inventory/servicerequestview/'.base64_encode($details['service_id'])); ?>">View</a> |&nbsp;
 					<?php if($details['status']==0){  ?>
 					<a href="<?php echo base_url('inventory/servicerequestreply/'.base64_encode($details['service_id']).'/'.base64_encode($details['seller_id'])); ?>"><?php if($details['status']==0){ echo "Reply";}else{ echo "Replied";} ?></a></td>

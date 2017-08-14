@@ -334,7 +334,7 @@
 			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='8' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29' || $productdetails['subcategory_id']=='52'){
+	<?php if($productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29' || $productdetails['subcategory_id']=='52'){
 		$winterwaerinputshide = '';
 		}else{
 		$winterwaerinputshide = 'display:none';
@@ -351,7 +351,7 @@
 			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
-	<?php if($productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22'){
+	<?php if($productdetails['subcategory_id']=='8' || $productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22'){
 		$winterwaerinputshide1 = '';
 		}else{
 		$winterwaerinputshide1 = 'display:none';
@@ -389,6 +389,27 @@
 			<input class="form-control" id="prouduct_usage"  type="text" name="prouduct_usage" value="<?php echo isset($productdetails['usage'])?$productdetails['usage']:''; ?>" />
 			</div>
 			<div class="col-md-6 form-group">
+			<label>DISPLAY TYPE</label>
+			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" />
+			</div>
+	</div>
+	<?php if($productdetails['subcategory_id']=='27'){
+		$watchesinputshide = '';
+		}else{
+		$watchesinputshide = 'display:none';
+		} ?>
+	<div class="row" id="watchesinputs" style="<?php echo $watchesinputshide; ?>">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">DIAL SHAPE</label>
+					<input type="text" class="form-control" id="dial_shape2" name="dial_shape2" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
+				</div>
+			</div>
+			<div class="col-md-6 form-group">
+			<label>USAGE</label>
+			<input class="form-control" id="prouduct_usage"  type="text" name="prouduct_usage" value="<?php echo isset($productdetails['usage'])?$productdetails['usage']:''; ?>" />
+			</div>
+			<div class="col-md-12 form-group">
 			<label>DISPLAY TYPE</label>
 			<input class="form-control" id="prouduct_display_type"  type="text" name="prouduct_display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" />
 			</div>
@@ -1153,15 +1174,7 @@
 		$('#colorid').hide();
 		$('#womensaccessoriesinputs').hide();
 	}
-	if(ids==8){
-	$('#winterwaerinputs').show();
-	$('#sizeid').show();
-	$('#colorid').show();
-	}else{ 
-	$('#winterwaerinputs').hide();
-	$('#sizeid').hide();
-	$('#colorid').hide();
-	}
+	
 	if(ids==9){
 		$('#sizeid').hide();
 		$('#colorid').hide();
@@ -1196,7 +1209,7 @@
 		$('#mensfabricsinputs1').hide();
 
 	}
-	if(ids==14 || ids==19 || ids==20 || ids==22){
+	if(ids==14 || ids==19 || ids==20 || ids==22 || ids==8){
 		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();

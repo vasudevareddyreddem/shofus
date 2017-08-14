@@ -42,10 +42,10 @@ tfoot input {
 				</div>
 			</form>  
 			<h1>Offers</h1>
-			<small>My Offers</small>
+			<small>Top Offers</small>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard');?>"><i class="pe-7s-home"></i> Home</a></li>
-				<li class="active">My Offers</li>
+				<li class="active">Top Offers</li>
 			</ol>
 		</div>
 	</section>
@@ -105,11 +105,11 @@ tfoot input {
             <tr>
                 <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
 				</th>
-				<div style="padding:15px 0px"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">submit</a></div>
+				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">submit</a></div>
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
-                <th>Affer Amount</th>
+                <th>After Amount</th>
                 <th>Offer Type</th>
                 <th>Offer expiry Date and Time</th>                
             </tr>
@@ -159,7 +159,7 @@ tfoot input {
 		</div><span style="color:red" id="offeramounterror<?php echo $subcategory->subcategory_id;?>"></span>
 		<div class="modal-footer" style="border:none;">
 		<div class="form-group">
-		<label class="control-label pull-left">Offer Expairy Date:  
+		<label class="control-label pull-left">Offer Expiry Date:  
 		<?php 
 		$date = date('Y-m-d h:i:s');
 		$date1 = strtotime($date);
@@ -312,7 +312,7 @@ tfoot input {
 	 
 		 var offerAmt=document.getElementById('offeramount<?php echo $subcategory->subcategory_id;?>').value;
 			 if(offerAmt==''){
-				jQuery('#offeramounterror<?php echo $subcategory->subcategory_id;?>').html('Plase eneter offer Percentages');
+				jQuery('#offeramounterror<?php echo $subcategory->subcategory_id;?>').html('Please enter offer Percentages');
 				return false; 
 			 }else{
 					if (!IsMobile<?php echo $subcategory->subcategory_id;?>(offerAmt)) {
@@ -355,6 +355,17 @@ tfoot input {
       e.preventDefault();
    });
 });
+$(document).ready(function() {
+    
+        var submit = $("#submit_prog<?php echo $subcategory->subcategory_id;?>").hide(),
+            cbs = $('input[name="select_all"]').click(function() {
+                submit.toggle( cbs.is(":checked") );
+            });
+            cid = $('input[name="cat_id[]"]').click(function() {
+                submit.toggle( cid.is(":checked") );
+            });
+    
+    });
 </script>
                 </div>
               </div>
@@ -372,7 +383,7 @@ tfoot input {
    
    <div class="container">
 	
-      <h1 class="head_title">You have no Products. Please add products</h1>
+      <h1>You have no Products. Please add products</h1>
    
    </div>
    

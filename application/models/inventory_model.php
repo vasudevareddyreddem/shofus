@@ -635,6 +635,14 @@ class Inventory_model extends MY_Model
 		$this->db->where('sellers.status', 1);
 		return $this->db->get()->result_array();
 	}
+
+	function getoldimage($cat_id,$sub_id)
+	{
+		$this->db->select('*')->from('subcategories');
+		$this->db->where('category_id',$cat_id);
+		$this->db->where('subcategory_id',$sub_id);
+		return $this->db->get()->row_array();
+	}
 	
 }
 ?>	

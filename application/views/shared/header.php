@@ -25,7 +25,7 @@
 				<?php foreach ($sidecaregory_list as $categories){ ?>
 				<li  class=" spin ">
 					<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span ><img  class=" circ_icon" src="<?php echo base_url(); ?>assets/home/images/fashion.png" /></span>
 					    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
 					</a>
 				</li>
@@ -34,7 +34,7 @@
 				
 				<li id="hover_li" class=" spin ">
 					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot "></span>
+						<span  class="circ_icon glyphicon glyphicon-blackboard rot" style="font-size:34px;"></span>
 						<span class="menu_tit">MORE CATEGORIES</span>
 					</a>
 					<ul id="left_box" class="right_cust" style="display:none">

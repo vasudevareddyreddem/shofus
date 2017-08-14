@@ -18,10 +18,15 @@ class Adddetails extends Seller_adddetails{
 	}
 
 	 public function index() {
+	 	if($this->session->userdata('seller_id'))
+	 	{
 		$data['sellerdata']=$this->adddetails_model->get_seller_data($this->session->userdata('seller_id'));		 
 	// echo '<pre>';print_r($data);exit;
 	  $this->load->view('seller/layouts/header');
 	  $this->load->view('seller/adddetails/index',$data);
+	}else{
+		redirect('seller/login');
+	}
 	}
  
   //store 
@@ -89,11 +94,14 @@ class Adddetails extends Seller_adddetails{
 	}
 
 	public function categories() {	 
-
+	if($this->session->userdata('seller_id'))
+	 	{
 		$data['getcat'] = $this->products_model->getcatdata();
 		$this->load->view('seller/layouts/header');
 		$this->load->view('seller/adddetails/sellercategory', $data);
-
+		}else{
+		redirect('seller/login');
+	}
 	}
 	public function updateseeler_details()
 	{  
@@ -170,18 +178,27 @@ class Adddetails extends Seller_adddetails{
     }
 	public function storedetails()
 	{  
+		if($this->session->userdata('seller_id'))
+	 	{
 		$this->load->view('seller/layouts/header');
 		$data['selectareas']=$this->adddetails_model->get_seleted_areas();		 
 		$data['select_areas']=$this->adddetails_model->get_seletedareas();
 		$data['sellerdata']=$this->adddetails_model->get_seller_storedetails_data($this->session->userdata('seller_id'));		 
 		$this->load->view('seller/adddetails/storedetails',$data);
+		}else{
+		redirect('seller/login');
+	}
 	}
 	public function personaldetails()
 	{  
+		if($this->session->userdata('seller_id'))
+	 	{
 		$this->load->view('seller/layouts/header');
 		$data['sellerdata']=$this->adddetails_model->get_seller_data($this->session->userdata('seller_id'));		 
-
 		$this->load->view('seller/adddetails/personaldetails',$data);
+	}else{
+		redirect('seller/login');
+	}
 	}
 	
 	
@@ -300,10 +317,14 @@ class Adddetails extends Seller_adddetails{
 	{  
 		$this->load->library('session');
 		$data['seller_id'] = $this->session->userdata('seller_id');
-		//echo '<pre>';print_r($seller_id);exit;
-		$this->load->view('seller/layouts/header');
-		$this->load->view('seller/adddetails/setpassword',$data);
-
+		if($this->session->userdata('seller_id'))
+	 	{
+			//echo '<pre>';print_r($seller_id);exit;
+			$this->load->view('seller/layouts/header');
+			$this->load->view('seller/adddetails/setpassword',$data);
+		}else{
+		redirect('seller/login');
+	}
 
     }
 	public function setpasswordpost()

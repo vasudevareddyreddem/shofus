@@ -98,7 +98,7 @@ tfoot input {
             <tr>
                 <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
 				</th>
-				<div style="padding:15px 0px"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
+				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
@@ -131,7 +131,7 @@ tfoot input {
 						<?php } ?>
 						<td>
 						<a href="<?php echo site_url('seller/products/edit/'.base64_encode($item_data->item_id).'/'.base64_encode($item_data->category_id)); ?>">Edit</a> | &nbsp;
-						<a href="<?php echo site_url('seller/products/item_status/'.base64_encode($item_data->item_id).'/'.base64_encode($item_data->item_status)); ?>"><?php if($item_data->item_status==1){ echo 'Deactive'; }else{ echo "Active"; } ?></a>
+						<a href="<?php echo site_url('seller/products/item_status/'.base64_encode($item_data->item_id).'/'.base64_encode($item_data->item_status)); ?>"><?php if($item_data->item_status==0){ echo 'Deactive'; }else{ echo "Active"; } ?></a>
 						
 						
 						</td>
@@ -410,6 +410,17 @@ tfoot input {
       e.preventDefault();
    });
 });
+$(document).ready(function() {
+    
+        var submit = $("#submit_prog<?php echo $subcategory->subcategory_id;?>").hide(),
+            cbs = $('input[name="select_all"]').click(function() {
+                submit.toggle( cbs.is(":checked") );
+            });
+            cid = $('input[name="cat_id[]"]').click(function() {
+                submit.toggle( cid.is(":checked") );
+            });
+    
+    });
 </script>
                 </div>
               </div>
@@ -427,7 +438,7 @@ tfoot input {
    
    <div class="container">
 	
-      <h1 class="head_title">You have no Products. Please add products</h1>
+     <a href="<?php echo base_url('/seller/products/create');?>"> <h1 class="head_title">You have no Products. Please add products</h1></a>
    
    </div>
    

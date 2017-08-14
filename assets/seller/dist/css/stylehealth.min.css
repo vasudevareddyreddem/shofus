@@ -328,7 +328,7 @@ hr {
 .back-top {
     background-color: #006a99;
     border: 1px solid #006a99;
-    padding: 7px 9px;
+    padding:9px !important;
     height: 34px;
 	text-align:center;
     width: 34px;
@@ -955,7 +955,7 @@ hr {
     .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
         display: block!important;
         position: absolute;
-        width: 180px;
+        width: 220px;
         left: 50px
     }
     .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span {

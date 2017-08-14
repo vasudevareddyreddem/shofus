@@ -477,8 +477,71 @@ class Customer extends Front_Controller
 	 if($this->session->userdata('userdetails'))
 	 {
 
+		//$order_id=base64_decode($this->uri->segment(3));
+		//echo '<pre>';print_r($_POST);exit;
+	if($_POST['status']=='success'){
+			$billingaddress=$this->session->userdata('billingaddress');			
+			$customerdetails=$this->session->userdata('userdetails');
+			$ordersucess=array(
+						'customer_id'=>$customerdetails['customer_id'],
+						'transaction_id'=>$_POST['mihpayid'],
+						'net_amount'=>$_POST['net_amount_debit'],
+						'total_price'=>$_POST['net_amount_debit'],
+						'discount'=>$_POST['discount'],
+						'bank_reference_number'=>$_POST['bank_ref_num'],
+						'payment_mode'=>$_POST['card_type'],
+						'card_number'=>$_POST['cardnum'],
+						'email'=>$_POST['email'],
+						'phone'=>$_POST['phone'],
+						'order_status'=>1,
+						'created_at'=>date('Y-m-d H:i:s'),
+					);
+			$saveorder= $this->customer_model->save_order_success($ordersucess);
+				//echo '<pre>';print_r($saveorder);exit;
+				$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+				foreach($cart_items as $items){
+					$orderitems=array(
+						'order_id'=>$saveorder,
+						'item_id'=>$items['item_id'],
+						'seller_id'=>$items['seller_id'],
+						'customer_id'=>$items['cust_id'],
+						'qty'=>$items['qty'],
+						'item_price'=>$items['item_price'],
+						'total_price'=>$items['total_price'],
+						'delivery_amount'=>$items['delivery_amount'],
+						'commission_price'=>$items['commission_price'],
+						'customer_email'=>$customerdetails['cust_email'],
+						'customer_phone'=>$billingaddress['mobile'],
+						'customer_address'=>$billingaddress['address1'],
+						'order_status'=>1,
+						'create_at'=>date('Y-m-d H:i:s'),
+					);
+					//echo '<pre>';print_r($adddata);exit;
+					$save= $this->customer_model->save_order_items_list($orderitems);
+				}
+				$this->session->set_flashdata('paymentsucess','Payment successfully completed!');
+				redirect('customer/ordersuccess/'.base64_encode($saveorder));
+		
+	}else{
+		$data['msg']= '<h2>Fail!</h2>';
+		$data['error_msg']= $_POST['error_Message'];
+		$this->session->set_flashdata('paymenterror',$_POST['error_Message']);
+		redirect('customer/orderpayment');
+	}
+	  
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	}
+	 
+	 
+ }
+ public function ordersuccess(){
+	 if($this->session->userdata('userdetails'))
+	 {
+
 	$order_id=base64_decode($this->uri->segment(3));
-	echo '<pre>';print_r($_POST);exit;
+	//echo '<pre>';print_r($_POST);exit;
 	  $customerdetails=$this->session->userdata('userdetails');
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 		//echo '<pre>';print_r($cart_items);exit;

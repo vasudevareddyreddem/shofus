@@ -6,7 +6,7 @@
 	  <?php //echo '<pre>';print_r($seller_order_items);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
-              <h3 class="box-title" >Seller Seanson sales Items List</h3>
+              <h3 class="box-title" >Seller Season sales Items List</h3>
               <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/seasonsales'); ?>" class="box-title">Back</a>
             </div>
             <!-- /.box-header -->
@@ -23,8 +23,8 @@
 					<th>category Name</th>
 					<th>Item Amount</th>
 					<th>Offer Amount</th>
-					<th>Intial Date</th>
-					<th>Expairy Date</th>
+					<th>Initial Date</th>
+					<th>Expiry Date</th>
 					<th>Item Status</th>
 					<th>Home page Status</th>
 				 </tr>
@@ -36,7 +36,7 @@
                   <td><?php echo $items['seller_rand_id']; ?></td>
                   <td><?php echo $items['item_name']; ?></td>
                   <td><?php echo $items['category_name']; ?></td>
-                  <td><?php echo $items['item_pirce']; ?></td>
+                  <td><?php echo $items['item_price']; ?></td>
 				  <td><?php echo $items['offer_amount']; ?></td>    
 				  <td><?php echo Date('d-M-Y',strtotime(htmlentities($items['intialdate'])));?></td> 				  
 				  <td><?php echo Date('d-M-Y',strtotime(htmlentities($items['expairdate'])));?></td> 				  

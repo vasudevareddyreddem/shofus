@@ -16,11 +16,11 @@
 	width:100% !important;
 } #sizes{
 	width:100% !important;
-}#ussizes{
+}
+#ussizes{
 	width:100% !important;
 }
 </style>
-
 <div class="content-wrapper mar_t_con"  >
 	<section class="content-header">
 		<div class="header-icon">
@@ -36,7 +36,7 @@
 				</div>
 			</form>  
 			<h1>Listing</h1>
-			<small>Edit Product</small>
+			<small>Add Listing</small>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard'); ?>"><i class="pe-7s-home"></i> Home</a></li>
 				<li class="active">Dashboard</li>
@@ -53,63 +53,90 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
-	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data" >
-<?php //echo '<pe>';print_r($productdetails['subcategory_id']);?>
-<?php //echo '<pe>';print_r($productdetails['category_id']);?>
-	<div class="row">
-			<div class="form-group col-md-6">
-				<label for="exampleInputEmail1">Category </label>
-				<select class="form-control " onchange="getsubcategory(this.value);getsubcategorylist(this.value);getproductinputs(this.value);" id="category_id" name="category_id">
-					<option value="">Select Category</option>
-					<?php foreach($category_details as $list){ ?>
-						<?php if($productdetails['category_id']==$list['seller_category_id']){ ?>
-						<option selected="selected" value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
+			<?php if($this->session->flashdata('addsuccess')){ ?>
 
-						<?php }else{ ?>
-							<option value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
-						<?php }} ?>
-
-				</select>
-			</div>
-			<div id="oldsubcat" class="form-group col-md-6" style="display:none;">
-				<label for="exampleInputEmail1">Sub Category </label>
-				<select class="form-control " onchange="getspecialinputs(this.value);" id="subcategorylistes" name="editsubcategorylist"  >
-				<option value="">Select Subcategory </option>
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+					 <?php foreach($this->session->flashdata('addsuccess') as $error){?>
+					
+					<?php echo $error.'<br/>'; ?>
+					
+					
+					<?php } ?></div><?php } ?>
+	
+	<div class="col-md-5 " style="position:absolute;right:24px; width:39%;">
+	<label >&nbsp; </label>
+		<div  class=" shad_down " >
+			<h4 class="text-center" style="color:#006a99 ">Download this File to add Multiple Products</h4>
+				<form id="importproducts" name="importproducts" onsubmit="return validations();" action ="<?php echo base_url('seller/import/uploadproducts/');?>" method="post" enctype="multipart/form-data">
+				<input type="hidden" id="category_ids" name="category_ids">
+				<input type="hidden" id="subcategory_ids" name="subcategory_ids">
+				<p class="text-center">
+				<a type="button" class="btn btn-primary btn-xs">Download</a>
+				<button type="submit" class="btn btn-warning btn-xs">Upload</button>
+				</p>
+				<div class="form-group nopaddingRight san-lg" style="display:none;">
+					 <label for="exampleInputEmail1">Add SubCategory Name</label>
+					<input type="file" class="form-control" name="categoryfile" id="categoryfile" >
+				</div>
+				</form>
 			
-				<?php foreach($subcatdata as $subcat_data){ ?>
-				<?php if($productdetails['subcategory_id']==$subcat_data->subcategory_id){ ?>
-				<option selected="selected" value="<?php echo $subcat_data->subcategory_id; ?>"><?php echo $subcat_data->subcategory_name; ?></option>
-				<?php } else{ ?>
-				<option value="<?php echo $subcat_data->subcategory_id; ?>"><?php echo $subcat_data->subcategory_name; ?></option>
-				<?php } } ?>
-				
+		</div >
+	</div>
+	
+	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data" >
+	<div class="row">
+			<span id="errormsg"></span>
+			<div class="form-group col-md-6 nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Category </label>
+				<select class="form-control " onchange="getsubcategory(this.value);getproductinputs(this.value);" id="category_id" name="category_id">
+				<option value="">Select Category</option>
+				<?php foreach($category_details as $list){ ?>
+				<option value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
+				<?php } ?>
+
 				</select>
-				
+				<p  id="categoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Category</a> </p>
+					
+				<div style="display:none;" id="addcat">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Add Category Name</label>
+					<input type="text" class="form-control" name="addcategoryname" id="addcategoryname" >
+				</div>
+				</div>
 			</div>
-			<div id="editsubcat" class="form-group col-md-6" style="display:none;">
+			<div class="clearfix"></div>
+			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Sub Category </label>
-				
 				<select class="form-control" onchange="getspecialinputs(this.value);" id="subcategorylist" name="subcategorylist" >
 				<option value="">Select Subcategory </option>
 
 				</select>
+				<p id="subcategoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Subcategory</a> </p>
+				<div style="display:none;" id="addsubcat">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Add SubCategory Name</label>
+					<input type="text" class="form-control" name="addsubcategoryname" id="addsubcategoryname" >
+				</div>
+				</div>
 			</div>
-		
+			
 			
 	</div>
-	
-	
+	<div class="clearfix"></div>
+	<hr>
 	<div class="row">
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					    <label for="exampleInputEmail1">Product name</label>
-						<input type="text" class="form-control" id="productname" name="productname" value="<?php echo isset($productdetails['item_name'])?$productdetails['item_name']:''; ?>" >
+						<input type="text" class="form-control" id="productname" name="productname" >
 											
 				</div>
 			</div>	<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Sku code</label>
-					<input type="text" class="form-control" name="skuid" id="skuid" value="<?php echo isset($productdetails['skuid'])?$productdetails['skuid']:''; ?>" >
+					<input type="text" class="form-control" name="skuid" id="skuid" >
 				</div>
 			</div>
 	</div>
@@ -117,13 +144,13 @@
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					   <label for="exampleInputEmail1">Other Unique code</label>
-						<input type="text" class="form-control" name="otherunique" id="otherunique" value="<?php echo isset($productdetails['item_code'])?$productdetails['item_code']:''; ?>" >
+						<input type="text" class="form-control" name="otherunique" id="otherunique" >
 				</div>
 			</div>
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">price</label>
-					<input type="text" class="form-control" id="product_price" name="product_price" value="<?php echo isset($productdetails['item_cost'])?$productdetails['item_cost']:''; ?>" >
+					<input type="text" class="form-control" id="product_price" name="product_price" >
 			</div>
 		</div>
 	</div>
@@ -131,13 +158,13 @@
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Special price</label>
-					<input type="text" class="form-control" id="specialprice" name="specialprice" value="<?php echo isset($productdetails['special_price'])?$productdetails['special_price']:''; ?>" >
+					<input type="text" class="form-control" id="specialprice" name="specialprice" >
 				</div>
 			</div>
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Offers</label>
-					<input type="text" class="form-control" id="offers" name="offers" value="<?php echo isset($productdetails['offers'])?$productdetails['offers']:''; ?>" >
+					<input type="text" class="form-control" id="offers" name="offers" >
 				</div>
 			</div>
 	</div>
@@ -145,13 +172,13 @@
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Discount</label>
-					<input type="text" class="form-control" id="discount" name="discount" value="<?php echo isset($productdetails['discount'])?$productdetails['discount']:''; ?>" >
+					<input type="text" class="form-control" id="discount" name="discount" >
 				</div>
 			</div>
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Qty</label>
-					<input type="text" class="form-control" id="qty" name="qty" value="<?php echo isset($productdetails['item_quantity'])?$productdetails['item_quantity']:''; ?>" >
+					<input type="text" class="form-control" id="qty" name="qty" >
 				</div>
 			</div>
 	</div>
@@ -159,12 +186,12 @@
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					   <label for="exampleInputEmail1">Meta keywords</label>
-						<input type="text" class="form-control" id="keywords" name="keywords" value="<?php echo isset($productdetails['keywords'])?$productdetails['keywords']:''; ?>" >
+						<input type="text" class="form-control" id="keywords" name="keywords" >
 				</div>
 			</div>	<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Meta title</label>
-					<input type="text" class="form-control" id="title" name="title" value="<?php echo isset($productdetails['title'])?$productdetails['title']:''; ?>" >
+					<input type="text" class="form-control" id="title" name="title" >
 				</div>
 			</div>
 	</div>
@@ -174,68 +201,55 @@
 					<label for="exampleInputEmail1">Status</label>
 					<select class="form-control " id="status" name="status" >
 					<option value="">Select </option>
-					<?php if($productdetails['item_status']=="1") {?>
-						<option value="1" selected>Available</option>	
-							<?php }else{ ?>
-						<option value="1">Available</option>
-							<?php } ?>
-							<?php if($productdetails['item_status']=="0") {?> 
-						<option value="0" selected>Unavailable</option>	
-							<?php }else{ ?>
-						<option value="0">Unavailable</option>	
-					<?php } ?>
+					<option value="1">Available</option>
+					<option value="0">Unavailable</option>
 					</select>
 				</div>
 			</div>
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					    <label for="exampleInputEmail1">Product description</label>
-						<textarea  placeholder="product Description" style="width: 478px; height: 38px;" class="form-control" rows="3" id="product_description" name="product_description"><?php echo isset($productdetails['item_description'])?$productdetails['item_description']:''; ?></textarea>
+						<textarea  placeholder="product Description" style="width: 478px; height: 38px;" class="form-control" rows="3" id="product_description" name="product_description"></textarea>
 											
 				</div>
 			</div>
 	</div>
 	<div class="row">
-		<div class=" col-md-6">
+		<div class=" col-md-12">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">sub item</label>
-					<input type="text" class="form-control" id="product_sub_tem" name="product_sub_tem" value="<?php echo isset($productdetails['item_sub_name'])?$productdetails['item_sub_name']:''; ?>" >
+					<input type="text" class="form-control" id="product_sub_tem" name="product_sub_tem" >
 				</div>
 			</div>
 	</div>
-	<div class="row" class=" col-md-12" id="size_color" style="display:none;">
-			<div class="form-group col-md-6" id="personalcareappliancesinputs" style="display:none">
+	<div class="row">
+	<div class=" col-md-12 form-group" id="sizeid"  >
 			<label>Size</label>
-			<span class="pull-right col-md-10">
-
-				<?php  //echo '<pre>';print_r($productcolors);exit;
-				foreach($productsizes as $sizeslist){ ?> 
-				<input type="hidden" name="oldsizes[]" value="<?php echo $sizeslist['p_size_name']; ?>">
-				<a id="sizes_<?php echo $sizeslist['p_size_id'] ;?>" onclick="removesizes(<?php echo $sizeslist['p_size_id']?>);"class="btn btn-primary btn-xs"><?php echo $sizeslist['p_size_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
-				<?php } ?>
-
-				</span>
 			<input class="form-control" id="sizes"  type="text" name="sizes"/>
-			</div>
-			<div class="form-group col-md-6">
-			<label>Color</label>
-			<span class="pull-right col-md-10">
-
-			<?php  //echo '<pre>';print_r($productcolors);exit;
-			foreach($productcolors as $colors_name){ ?> 
-			<input type="hidden" name="oldcolors[]" value="<?php echo $colors_name['color_name']; ?>">
-			<a id="colord_<?php echo $colors_name['p_color_id'] ;?>" onclick="removecolor(<?php echo $colors_name['p_color_id']?>);" class="btn btn-primary btn-xs"><?php echo $colors_name['color_name']; ?>&nbsp;<span aria-hidden="true">×</span></a>
-			<?php } ?>
-
-			</span>
-			<input class="form-control" id="colors"  type="text" name="colors"/>
-			</div>			
+					
 	</div>
-	<div class="row" class=" col-md-12" id="idealfor" style="display:none;">
-			<div class="col-md-6 form-group">
+	</div>
+	<div class="row">
+	<div class=" col-md-12 form-group" id="colorid">
+			<label>Color</label>
+			<input class="form-control" id="colors"  type="text" name="colors"/>
+					
+	</div>
+	</div>
+	<div class="row">
+	<div  class=" col-md-12" >
+			<div class="col-md-12 form-group" id="idealfor"style="display:none;">
+			<div class="form-group nopaddingRight san-lg">
+			<label for="exampleInputEmail1">Ideal FOR</label>
+			<input type="text" class="form-control" id="ideal_for" name="ideal_for" >
+			</div>
+			</div>
+			</div>
+			</div>
+		<div class="col-md-12 form-group">
 				<div class="form-group nopaddingRight san-lg">
-					 <label for="exampleInputEmail1">Ideal FOR</label>
-					<input type="text" class="form-control" id="ideal_for" name="ideal_for" value="<?php echo isset($productdetails['ideal_for'])?$productdetails['ideal_for']:''; ?>" >
+					 <label for="exampleInputEmail1">Brand</label>
+					<input type="text" class="form-control" id="brand" name="brand" >
 				</div>
 		</div>
 						
@@ -247,8 +261,12 @@
 	<div class="row" id="foodcategoryinputs" style="display:none;">
 			
 			<div class="col-md-6 form-group">
+			<label>Cuisine</label>
+			<input class="form-control" id="product_scusine"  type="text" name="product_scusine"/>
+			</div>
+			<div class="col-md-6 form-group">
 			<label>sufficient for?</label>
-			<input class="form-control" id="product_sufficient"  type="text" name="product_sufficient" value="<?php echo isset($productdetails['sufficient_for'])?$productdetails['sufficient_for']:''; ?>" />
+			<input class="form-control" id="product_sufficient"  type="text" name="product_sufficient"/>
 			</div>
 	</div>
 	<!-- food category purpose-->
@@ -257,18 +275,54 @@
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Type</label>
-					<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+					<input type="text" class="form-control" id="product_type8" name="product_type8" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 				</div>
 			</div>
 	
+	</div>
+	<div class="row" id="mensfabricsinputs1" style="display:none;">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Type</label>
+					<input type="text" class="form-control" id="product_type8" name="product_type8" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+				</div>
+			</div>
+	
+	</div>	
+	
+	<div class="row" id="winterwaerinputs1" style="display:none;">
+			<div class="col-md-6 form-group">
+				<div class="form-group nopaddingRight san-lg">
+					 <label for="exampleInputEmail1">Type</label>
+					<input type="text" class="form-control" id="product_type7" name="product_type7" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+				</div>
+			</div>
+			<div class="col-md-6 form-group">
+			<label>Theme</label>
+			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			</div>
 	</div>
 	<div class="row" id="winterwaerinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Type</label>
-					<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+					<input type="text" class="form-control" id="product_type7" name="product_type7" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 				</div>
 			</div>
+			<div class="col-md-6 form-group">
+			<label>Theme</label>
+			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			</div>
+	</div>
+	<div class="row" id="product_themeetc" style="display:none;">
+		
+			<div class="col-md-6 form-group">
+			<label>Theme</label>
+			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			</div>
+	</div>
+	<div class="row" id="product_theme" style="display:none;">
+		
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
 			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
@@ -278,7 +332,7 @@
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">DIAL SHAPE</label>
-					<input type="text" class="form-control" id="dial_shape" name="dial_shape" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
+					<input type="text" class="form-control" id="dial_shape2" name="dial_shape2" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
 				</div>
 			</div>
 			<div class="col-md-6 form-group">
@@ -297,47 +351,47 @@
 	<div class="row" id="footwareinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			<input class="form-control" id="product_theme5"  type="text" name="product_theme5" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 			<div class="col-md-6 form-group">
 			<label>OCCASION</label>
-			<input class="form-control" id="product_occasion"  type="text" name="product_occasion" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>" />
+			<input class="form-control" id="product_occasion2"  type="text" name="product_occasion2" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>" />
 			</div>
 			<div class="col-md-6 form-group">
 			<label>Size(UK)</label>
-			<input class="form-control" id="ussizes"  type="text" name="ussizes"  />
+			<input class="form-control" id="ussizes"  type="text" name="ussizes"/>
 			</div>
 	</div>
 	<div class="row" id="womensaccessoriesinputs" style="display:none;">
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			<input class="form-control" id="product_theme4"  type="text" name="product_theme4" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
 	
 	<div class="row" id="jwelleryinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Material</label>
-		<input type="text" class="form-control" id="material" name="material" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
+		<input type="text" class="form-control" id="material1" name="material1" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Gemstones</label>
 		<input type="text" class="form-control" id="product_gemstones" name="product_gemstones" value="<?php echo isset($productdetails['gemstones'])?$productdetails['gemstones']:''; ?>" >
 		</div>
 	</div>
-	<div class="row" id="womenswatchesinputs" style="display:none;"  >
+	<div class="row" id="womenswatchesinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Material</label>
-		<input type="text" class="form-control" id="Material" name="Material" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
+		<input type="text" class="form-control" id="Material2" name="Material2" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type6" name="product_type6" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">DIAL SHAPE</label>
-					<input type="text" class="form-control" id="dial_shape" name="dial_shape" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
+					<input type="text" class="form-control" id="dial_shape1" name="dial_shape1" value="<?php echo isset($productdetails['dial_shape'])?$productdetails['dial_shape']:''; ?>" >
 				</div>
 			</div>
 		<div class="col-md-6 form-group">
@@ -352,48 +406,48 @@
 	<div class="row" id="mensaccessoriesinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type5" name="product_type5" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>"/>
+			<input class="form-control" id="product_theme3"  type="text" name="product_theme3" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>"/>
 		</div>
 		<div class="col-md-12 form-group">
 		 <label for="exampleInputEmail1">PACK OF</label>
-		<input type="text" class="form-control" id="product_packof" name="product_packof" value="<?php echo isset($productdetails['packof'])?$productdetails['packof']:''; ?>" >
+		<input type="text" class="form-control" id="product_packof2" name="product_packof2" value="<?php echo isset($productdetails['packof'])?$productdetails['packof']:''; ?>" >
 		</div>
 		
 	</div>
 	<div class="row" id="mensehinicwearinputs" style="display:none;">
 		<div class="col-md-6 form-group">
 		<label>Theme</label>
-		<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+		<input class="form-control" id="product_theme2"  type="text" name="product_theme2" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 		</div>
 		<div class="col-md-6 form-group">
 		<label>OCCASION</label>
-		<input class="form-control" id="product_occasion"  type="text" name="product_occasion" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>"/>
+		<input class="form-control" id="product_occasion1"  type="text" name="product_occasion1" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>"/>
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type4" name="product_type4" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PACK OF</label>
-		<input type="text" class="form-control" id="product_packof" name="product_packof" value="<?php echo isset($productdetails['packof'])?$productdetails['packof']:''; ?>" >
+		<input type="text" class="form-control" id="product_packof1" name="product_packof1" value="<?php echo isset($productdetails['packof'])?$productdetails['packof']:''; ?>" >
 		</div>
 		
 	</div>
-	<!-- electronice purpose-->
+	<!--- for electronic purpose-->
 	<div class="row" id="mobileaccessoriesinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		<label>COMPATIBLE MOBILES</label>
-		<input class="form-control" id="product_compatible_mobiles"  type="text" name="product_compatible_mobiles" value="<?php echo isset($productdetails['compatible_mobiles'])?$productdetails['compatible_mobiles']:''; ?>" />
+		<input class="form-control" id="product_compatible_mobiles"  type="text" name="product_compatible_mobiles"/>
 		</div>
 	</div>
 	<div class="row" id="camerainputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type3" name="product_type3" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">MEGA PIXEL</label>
@@ -411,7 +465,7 @@
 	<div class="row" id="routersinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type2" name="product_type2" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">WIRELESS SPEED</label>
@@ -442,7 +496,7 @@
 	<div class="row" id="tabletsinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">DISPLAY SIZE</label>
-		<input type="text" class="form-control" id="product_display_size" name="product_display_size" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
+		<input type="text" class="form-control" id="product_display_size3" name="product_display_size3" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">CONNECTIVITY</label>
@@ -450,7 +504,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RAM</label>
-		<input type="text" class="form-control" id="product_ram" name="product_ram" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
+		<input type="text" class="form-control" id="product_ram3" name="product_ram3" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">VOICE CALLING FACILITY</label>
@@ -458,19 +512,19 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
-		<input type="text" class="form-control" id="operating_system" name="operating_system" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>" >
+		<input type="text" class="form-control" id="operating_system3" name="operating_system3" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
+		<input type="text" class="form-control" id="internal_storage3" name="internal_storage3" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">BATTERY CAPACITY</label>
-		<input type="text" class="form-control" id="battery_capacity" name="battery_capacity" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
+		<input type="text" class="form-control" id="battery_capacity2" name="battery_capacity2" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PRIMARY CAMERA</label>
-		<input type="text" class="form-control" id="primary_camera" name="primary_camera" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
+		<input type="text" class="form-control" id="primary_camera2" name="primary_camera2" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
 		</div>
 		<div class=" col-md-12 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR CLOCK SPEED</label>
@@ -480,7 +534,7 @@
 	<div class="row" id="laptopsinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SCREEN SIZE</label>
-		<input type="text" class="form-control" id="product_display_size" name="product_display_size" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>"  >
+		<input type="text" class="form-control" id="product_display_size2" name="product_display_size2" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>"  >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR</label>
@@ -488,15 +542,15 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR BRAND</label>
-		<input type="text" class="form-control" id="product_processor_brand" name="product_processor_brand" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
+		<input type="text" class="form-control" id="product_processor_brand1" name="product_processor_brand1" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
-		<input type="text" class="form-control" id="operating_system" name="operating_system" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>">
+		<input type="text" class="form-control" id="operating_system2" name="operating_system2" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>">
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RAM</label>
-		<input type="text" class="form-control" id="product_ram" name="product_ram" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
+		<input type="text" class="form-control" id="product_ram2" name="product_ram2" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">LIFESTYLE</label>
@@ -520,7 +574,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">HARD DISK CAPACITY</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
+		<input type="text" class="form-control" id="internal_storage2" name="internal_storage2" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">GRAPHICS MEMORY TYPE</label>
@@ -532,23 +586,22 @@
 		</div>
 		
 	</div>
-	
 	<div class="row" id="mobilesinputs" style="display:none;">
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RAM</label>
-		<input type="text" class="form-control" id="product_ram" name="product_ram" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
+		<input type="text" class="form-control" id="product_ram1" name="product_ram1" value="" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM</label>
-		<input type="text" class="form-control" id="operating_system" name="operating_system" value="<?php echo isset($productdetails['operatingsystem'])?$productdetails['operatingsystem']:''; ?>" >
+		<input type="text" class="form-control" id="operating_system1" name="operating_system1" value="" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
+		<input type="text" class="form-control" id="internal_storage4" name="internal_storage4" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SCREEN SIZE</label>
-		<input type="text" class="form-control" id="product_display_size" name="product_display_size" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
+		<input type="text" class="form-control" id="product_display_size1" name="product_display_size1" value="<?php echo isset($productdetails['display_size'])?$productdetails['display_size']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">NETWORK TYPE</label>
@@ -556,7 +609,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">BATTERY CAPACITY</label>
-		<input type="text" class="form-control" id="battery_capacity" name="battery_capacity" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
+		<input type="text" class="form-control" id="battery_capacity1" name="battery_capacity1" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SPECIALITY</label>
@@ -564,7 +617,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">Type</label>
-		<input type="text" class="form-control" id="product_type" name="product_type" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+		<input type="text" class="form-control" id="product_type1" name="product_type1" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">OPERATING SYSTEM VERSION NAME</label>
@@ -572,7 +625,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PROCESSOR BRAND</label>
-		<input type="text" class="form-control" id="product_processor_brand" name="product_processor_brand" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
+		<input type="text" class="form-control" id="product_processor_brand2" name="product_processor_brand2" value="<?php echo isset($productdetails['processor_brand'])?$productdetails['processor_brand']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">RESOLUTION TYPE</label>
@@ -580,7 +633,7 @@
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">PRIMARY CAMERA</label>
-		<input type="text" class="form-control" id="primary_camera" name="primary_camera" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
+		<input type="text" class="form-control" id="primary_camera1" name="primary_camera1" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
 		</div>
 		<div class=" col-md-6 form-group">
 		 <label for="exampleInputEmail1">SECONDARY CAMERA</label>
@@ -598,35 +651,17 @@
 		 <label for="exampleInputEmail1">NUMBER OF CORES</label>
 		<input type="text" class="form-control" id="number_of_cores" name="number_of_cores" value="<?php echo isset($productdetails['cores'])?$productdetails['cores']:''; ?>" >
 		</div>
-		<div class=" col-md-12 form-group">
-		 <label for="exampleInputEmail1">INTERNAL STORAGE</label>
-		<input type="text" class="form-control" id="internal_storage" name="internal_storage" value="<?php echo isset($productdetails['internal_storage'])?$productdetails['internal_storage']:''; ?>" >
-		</div>
+	
 		
 	</div>
 	
 	
+	
 	<div class="row">
 			<div class=" col-md-6">
-			<label for="exampleInputEmail1">Product specifications </label>
-			<?php $i=0;foreach($productspcification as $spc){ ?>
-						<div id="tab_sep11_<?php echo $spc['specification_id']; ?>">
-						
-							<div class="col-md-6" style="padding:0">
-								<input style="border-radius:5px 0px 0px 5px" type="text" placeholder="Specification Name" class="form-control" id="specificationnameid" name="specificationname[]" value="<?php echo isset($spc['spc_name'])?$spc['spc_name']:''; ?>" >
-							</div>
-							<div class="col-md-6" style="padding:0">
-								<input style="border-radius:0px 5px 5px 0px" type="text" placeholder="Specification Value"  class="form-control" id="specificationvalueid" name="specificationvalue[]" value="<?php echo isset($spc['spc_value'])?$spc['spc_value']:''; ?>" >
-							</div>
-							<button type="button" onclick="removeattachment(<?php echo $spc['specification_id']?>);" >
-							<span aria-hidden="true">×</span>
-							</button>
-					
-						</div>
-				<?php $i++;} ?>
 				<div id="tab_sep">
 					<div class="col-md-6 form-group" style="padding:0">
-						<label for="exampleInputEmail1">&nbsp;</label>
+						<label for="exampleInputEmail1">Product specifications </label>
 						<input style="border-radius:5px 0px 0px 5px" type="text" placeholder="Specification Name" class="form-control" id="specificationnameid" name="specificationname[]" >
 					</div>
 					<div class="col-md-6 form-group" style="padding:0">
@@ -670,133 +705,276 @@
   <!--main content end--> 
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
-	<?php if($productdetails['subcategory_id']='40'){
+   <script type="text/javascript">
 
-//echo 'error';exit;	?>
-	<script>
-	$('#mobilesinputs').show();
-	$("#mobilesinputs").css("display","");
+  $(document).ready(function() {
+    $('#importproducts').bootstrapValidator({
+       
+        fields: {
+           categoryfile: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a File'
+					},
+					regexp: {
+						regexp: /\.(xlsx|xls|xlsm)$/i,
+					message: 'Uploaded file is not a valid. Only xlsx,xls,xlsm files are allowed'
+					}
+				}
+            }
+        }
+    });
+});
+function validations(){
+	
+	var catid= document.getElementById('category_id').value;
+	var subcatid= document.getElementById('subcategorylist').value;
+	document.getElementById('category_ids').value = catid;
+	document.getElementById('subcategory_ids').value = subcatid;
 
-	</script>
-	<?php } ?>
+	if(catid=='' && subcatid=='' ){
+		 $("#errormsg").html("Please select Ctaegory  and Subcategory").css("color", "red");
+		 return false;
+	}
+	if(catid=='' ){
+		 $("#errormsg").html("Please select Ctaegory").css("color", "red");
+		 return false;
+	}if(subcatid=='' ){
+		 $("#errormsg").html("Please select Subcategory").css("color", "red");
+		 return false;
+	}
+	$("#errormsg").html("");
+	return true;
+	
+}
+$(document).ready(function(){
+    $("#categoryhideshow").click(function(){
+        $("#addcat").toggle();
+    });
+  
+});
+$(document).ready(function(){
+    $("#subcategoryhideshow").click(function(){
+        $("#addsubcat").toggle();
+    });
+  
+});	
 
-  <script>
- 
-   $('#oldsubcat').show();
-   $('#oldsubcat').show();
- 
-  $('#size_color').show()
-  $('#personalcareappliancesinputs').show();
- getspecialinputs('<?php echo htmlentities($productdetails['subcategory_id']);?>');
-	function getspecialinputs(id){
-	  if(id==8 || id==19 || id==20 || id==28 || id==52 || id==29){
-		  $('#winterwaerinputs').show();
-	  }else{
-		  $('#winterwaerinputs').hide();
-	  }
-	  if(id==9){
-		  $('#personalcareappliancesinputs').hide();
-	  }else{
-		  $('#personalcareappliancesinputs').show();
-	  }
-	  if(id==10){
-		  $('#smartwatchesinputs').show();
-	  }else{
-		  $('#smartwatchesinputs').hide();
-	  }
-	  if(id==11){
-		  $('#footwareinputs').show();
-		  $('#personalcareappliancesinputs').show();
-		  $('#size_color').show();
-	  }else{
-		  $('#footwareinputs').hide();
-	  }
-	  if(id==12 || id==13 || id==14 || id==16 || id==17){
-		  $('#womensaccessoriesinputs').show();
-	  }else{
-		  $('#womensaccessoriesinputs').hide();
-	  } 
-	  if(id==15){
-		  $('#jwelleryinputs').show();
-	  }else{
-		  $('#jwelleryinputs').hide();
-	  }
-	  if(id==50){
-		  $('#womenswatchesinputs').show();
-	  }else{
-		  $('#womenswatchesinputs').hide();
-	  } 
-	  if(id==22){
-		  $('#mensaccessoriesinputs').show();
-	  }else{
-		  $('#mensaccessoriesinputs').hide();
-	  }
-	  if(id==51){
-		  $('#mensehinicwearinputs').show();
-	  }else{
-		  $('#mensehinicwearinputs').hide();
-	  }
-	  if(id==23 || id==25){
-		  $('#mensfabricsinputs').show();
-	  }else{
-		  $('#mensfabricsinputs').hide();
-	  } 
-	  if(id==30){
-		  $('#mobileaccessoriesinputs').show();
-	  }else{
-		  $('#mobileaccessoriesinputs').hide();
-	  } 
-	  if(id==34){
-		  $('#camerainputs').show();
-	  }else{
-		  $('#camerainputs').hide();
-	  }
-	  if(id==35){
-		  $('#tabletsinputs').show();
-	  }else{
-		  $('#tabletsinputs').hide();
-	  }
-	  if(id==36){
-		  $('#routersinputs').show();
-		   $('#size_color').hide();
-	  }else{
-		  $('#routersinputs').hide();
-		   $('#size_color').hide();
 
-	  } 
-	  if(id==39){
-		  $('#laptopsinputs').show();
+ function getproductinputs(id){
+	
+	 if(id==18){
+		  $('#foodcategoryinputs').show();
+		  $('#idealfor').hide();
+		  $('#sizeid').hide();
+		  $('#colorid').hide();
+	  }else if(id==21){
+		$('#colorid').hide();  
+		$('#sizeid').show();  
+		$('#ideal_for').hide();  
+		  
 	  }else{
-		  $('#laptopsinputs').hide();
-
+		  $('#foodcategoryinputs').hide();
+		
+		  $('#idealfor').show();
+		  $('#sizeid').show();
+		  $('#colorid').show();
 	  }
-	  if(id==40){
-		  $('#mobilesinputs').show();
-	  }else{
-		  $('#mobilesinputs').hide();
+	 
+	  
+}
+function getspecialinputs(ids){
+	if(ids==7 || ids==24){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}
+	if(ids==40){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#mobilesinputs').show();
+	}else{
+		$('#mobilesinputs').hide();
+		$('#sizeid').show();		
+	}
+	if(ids==8){
+	$('#winterwaerinputs').show();
+	$('#sizeid').show();
+	$('#colorid').show();
+	}else{ 
+	$('#winterwaerinputs').hide();
+	$('#sizeid').hide();
+	$('#colorid').hide();
+	}
+	if(ids==9){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}
+	if(ids==10){
+		$('#smartwatchesinputs').show();
+	}else{
+		$('#smartwatchesinputs').hide();
 
-	  } 
+	}
+	if(ids==53){
+		$('#footwareinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#footwareinputs').hide();
+
+	}
+	if(ids==11 || ids==21){
+		$('#womensaccessoriesinputs').show();
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}else{
+		$('#womensaccessoriesinputs').hide();
+
+	}
+	if(ids==13 || ids==16 || ids==17){
+		
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#mensfabricsinputs1').show();
+	}else{
+		$('#mensfabricsinputs1').hide();
+
+	}
+	if(ids==14 || ids==19 || ids==20 || ids==22){
+		$('#winterwaerinputs1').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#winterwaerinputs1').hide();
+
+	}
+	if(ids==15){
+		$('#jwelleryinputs').show();
+		$('#colorid').show();
+	}else{
+		$('#jwelleryinputs').hide();
+
+	}
+	
+	if(ids==18){
+		$('#sizeid').show();
+		$('#colorid').show();
+	}
+	if(ids==50){
+		$('#womenswatchesinputs').show();
+	}else{
+		$('#womenswatchesinputs').hide();
+	}
+	if(ids==19){
+		$('#winterwaerinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#winterwaerinputs').hide();
+	}
+	
+	
+	if(ids==22){
+		$('#winterwaerinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#winterwaerinputs').hide();
+	}
+	if(ids==51){
+		$('#mensehinicwearinputs').show();
+		$('#sizeid').show();
+		$('#colorid').show();
+	}else{
+		$('#mensehinicwearinputs').hide();
+	}
+	if(ids==23){
+		$('#mensfabricsinputs').show();
+		$('#colorid').show();
+	}else{
+		$('#mensfabricsinputs').hide();
+	}
+	if(ids==24){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}
+	if(ids==25){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#womensaccessoriesinputs').show();
+	}else{
+		$('#womensaccessoriesinputs').hide();	
+	}
+	if(ids==52){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#winterwaerinputs').show();
+	}else{
+		$('#winterwaerinputs').hide();	
+	}
+	if(ids==28){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#winterwaerinputs').show();
+	}else{
+		$('#winterwaerinputs').hide();	
+	}
+	if(ids==29){
+		$('#sizeid').show();
+		$('#colorid').show();
+		$('#winterwaerinputs').show();
+	}else{
+		$('#winterwaerinputs').hide();	
+	}
+	if(ids==30){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#mobileaccessoriesinputs').show();
+	}else{
+		$('#mobileaccessoriesinputs').hide();	
+	}
+	if(ids==31 || ids==32  || ids==33){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}
+	if(ids==34){
+		$('#sizeid').hide();
+		$('#colorid').show();
+		$('#camerainputs').show();
+	}else{
+		$('#camerainputs').hide();	
+	}
+	if(ids==35){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#tabletsinputs').show();
+	}else{
+		$('#tabletsinputs').hide();	
+	}
+	if(ids==36){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#routersinputs').show();
+	}else{
+		$('#routersinputs').hide();	
+	}
+	if(ids==39){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#laptopsinputs').show();
+	}else{
+		$('#laptopsinputs').hide();	
+	}
+	
+	
+	
 	   
 		  
   }
 	  
 	  
-  getspecialinputs('<?php echo htmlentities($productdetails['category_id']);?>');
-  function getproductinputs(id){
-	 if(id==18){
-		  $('#foodcategoryinputs').show();
-		  $('#idealfor').hide();
-	  }else{
-		  $('#foodcategoryinputs').hide();
-		  $('#idealfor').show();
-	  }
-	 
-	  
-}
-  	
-	
-	
-	$(document).ready(function() {
+ 
+  	$(document).ready(function() {
     $('#addproduct').bootstrapValidator({
        
         fields: {
@@ -810,7 +988,7 @@
 			subcategorylist: {
 					validators: {
 					notEmpty: {
-					message: 'Please select a subcategory'
+				message: 'Please select a subcategory'
 					}
 				}
 			},
@@ -888,6 +1066,28 @@
                     regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Offer  can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_scusine: {
+					validators: {
+					notEmpty: {
+						message: 'Cusine  is required'
+					},
+                   regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Cusine  can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			brand: {
+					validators: {
+					notEmpty: {
+						message: 'Brand  is required'
+					},
+                   regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Brand  can only consist of alphanumaric, space and dot'
 					}
 				}
 			},
@@ -1035,6 +1235,59 @@
 				}
 			},
 			product_theme: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_theme1: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},product_theme2: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},product_theme3: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_theme4: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_theme5: {
 					validators: {
 					notEmpty: {
 						message: 'Theme is required'
@@ -1561,6 +1814,31 @@
         }
     });
 });
+<<<<<<< HEAD
+$(document).ready(function() {
+    $('#importproducts').bootstrapValidator({
+       
+        fields: {
+            category_id_import: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a Category'
+					}
+				}
+            },
+			subcategory_id_import: {
+               validators: {
+					notEmpty: {
+					message: 'Please select a SubCategory'
+					}
+				}
+            },
+			
+			categoryes: {
+               validators: {
+					notEmpty: {
+						message: 'Please select a value'
+=======
   
 
   function getsubcat(ids){
@@ -1580,22 +1858,31 @@
 		});
   }
  
-function getsubcategory(id){
 
+
+
+
+  
+  function getsubcategory(id){
+	  if(id==2){
+		  $('#materialpurose').show();
+		  $('#seasonpurpose').show();
+	  }else{
+		  $('#materialpurose').hide(); 
+		  $('#seasonpurpose').hide(); 
+	  }
 	  if(id!=''){
-		
+		$('#subcategorylist').empty();
 		jQuery.ajax({
 				url: "<?php echo site_url('seller/products/get_subcaregories_list');?>",
 				type: 'post',
 				data: {
 					form_key : window.FORM_KEY,
 					catid: id,
+>>>>>>> c8eef6046141137effba8ed1514e857ca456596c
 					},
 				dataType: 'html',
 				success: function (data) {
-					$("#oldsubcat").hide();	
-					$("#editsubcat").show();
-					$('#subcategorylist').empty();					
 					$("#subcategorylist").append(data);	
 
 				}
@@ -1648,7 +1935,7 @@ $(document).ready(function() {
         });
 $(document).ready(function() {
             var jsonData = [];
-            var fruits = '<?php echo $sizes_lists; ?>'.split(',');
+            var fruits = '<?php echo $uksizes_lists; ?>'.split(',');
             for(var i=0;i<fruits.length;i++) jsonData.push({id:fruits[i],name:fruits[i]});
             var ussizes = $('#ussizes').tagSuggest({
                 data: jsonData,

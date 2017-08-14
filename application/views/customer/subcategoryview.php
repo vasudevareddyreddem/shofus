@@ -25,18 +25,24 @@
 	margin:0px 60px;
 	background:#fff;
 }
-
+#input-select,
+#input-number {
+	padding: 7px;
+	margin: 15px 5px 5px;
+	width: 70px;
+}
 </style>
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
 </div>-->
 <body >
-	 <div class="container-fluid fluid_mod ">
+	 <div class="container-fluid fluid_mod " id="containerhigh"></div>
+	 <div class="container-fluid fluid_mod " id="containerhighold">
 	 <div class="row ">
 			<div class="col-md-12  ">
 			  
 			  <div class="col-md-12 gir_alg" style="border-right:1px solid #45b1b5">
-			  <div class="title text-left mar_t10"><span>Sub Categoryview</span></div>
+			  <div class="title text-left mar_t10"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
 			  <?php foreach($subcategory_list as $list){ ?>
 				  <div class="col-md-2"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
 					 <div class="catg_sty">
@@ -51,61 +57,112 @@
 	<hr>
 	 <div class=" clearfix"></div>
 	 <!-- Filter Sidebar -->
-	 
 	 <div id="subcategorywise_products" style="">
 		<div class="col-sm-3">
 		 <div class="title"><span>Filters</span></div>
+		 
+			
+		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
+			<div class="example">
+			<h3>Price</h3>
+			<div id="html5"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
 
+			</div>
+			<select id="input-select" name="min_amount" >
+			<?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
+				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+			<?php } ?>
+			
+			</select>
+			<input type="text" name="max_amount"   step="1" id="input-number">
+			</div>
+			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
+			
+			<?php if(base64_decode($this->uri->segment(3))=='18'){ ?>
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingOne">
 						 <h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					    Mobiles & Accessories
+					    My Restaurant
 					</a>
 				  </h4>
 
 					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+								<?php foreach ($myrestaurant as $reslist){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'res'; ?>','<?php echo ''; ?>');" id="restrarent" name="products[res][]" value="<?php echo $reslist['seller_id']; ?>"><span>&nbsp;<?php echo $reslist['seller_name']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Cuisine
+					</a>
+				  </h4>
+
+					</div>
+					
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($cusine_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'cusine'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[cusine][]" value="<?php echo $list['cusine']; ?>"><span>&nbsp;<?php echo $list['cusine']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					    Availability
+					  </a>
+				  </h4>
+
+					</div>
+					<?php //echo '<pre>';print_r($avalibility_list);exit; ?>
 					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							<select onchange="mobileaccessories(this.value);" class="form-control" id="sel1">
-								<option value="1">Mobile Accessories</option>
-								<option value="2">Cases & Covers</option>
-								<option value="3">Power Banks</option>
-								<option value="4">Headphones</option>
-								<option value="5">Memory Cards & Readers</option>
-								<option value="6">Earphone Cable Organizers</option>
+							<select onchange="mobileaccessories(this.value, '<?php echo 'status'; ?>','<?php echo ''; ?>');" name="products[availability]" class="form-control" id="sel1">
+								<option value="">Select</option>
+								
+								<?php foreach ($avalibility_list as $list){ ?>
+								<option value="<?php echo $list; ?>"><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
+								<?php } ?>
 							</select>
 						</div>
 					</div>
 				</div>
-				<div>
-					
-				</div>
+				
+				
+				
+			</div>
+			
+			<?php }else if(base64_decode($this->uri->segment(3))=='21'){ ?>
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-primary">
-					<div class="panel-heading" role="tab" id="headingTwo">
+					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
-					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					 BRAND
-					</a>
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Offer	
+					  </a>
 				  </h4>
 
 					</div>
-					<div id="collapseTwo"  class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body">
-							<select class="test form-control" onchange="getbrand(this.value);" multiple="multiple" >
-							
-									<option >Search Brand</option>
-									<option value="2" >Samsung</option>
-									<option value="3">Lenovo</option>
-									<option value="4" >Syska</option>
-									<option value="5">Mi</option>
-									<option value="6" >Apple</option>
-									<option value="7">Sony</option>
-									<option value="7">Sony</option>
-									<option value="8">4256 MORE</option>
-							
-							</select>
+						<?php foreach ($offer_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
+						
+						<?php } ?>
 						</div>
 					</div>
 				</div>
@@ -113,90 +170,294 @@
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
 					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-					  OFFERS
-					</a>
+					  BRAND	
+					  </a>
 				  </h4>
 
 					</div>
 					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body">
-							<div class="checkbox"><label><input type="checkbox" id="checkbox1"><span>&nbsp;Bank Offer</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox2"><span>&nbsp;Buy More, Save More</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;No Cost EMI</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" id="checkbox3"><span>&nbsp;Special Price</span></label></div>
+						<?php foreach ($brand_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+						
+						<?php } ?>
 						</div>
 					</div>
 				</div>
 				<div class="panel panel-primary">
-					<div class="panel-heading" role="tab" id="headingFive">
+					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
-					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-					  COMPATIBLE MOBILES
-					</a>
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Discount	
+					  </a>
 				  </h4>
 
 					</div>
-					<div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body">
-							<div class="checkbox"><label><input type="checkbox" value="1" onclick="compatiblemobiles(this.value);" id="checkbox1"><span>&nbsp;Acer beTouch E110</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" value="2" id="checkbox2"><span>&nbsp;Acer beTouch E130</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" value="3" id="checkbox3"><span>&nbsp;Acer BeTouch E210</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" value="4" id="checkbox4"><span>&nbsp;Acer Ferrari Edition Liquid E</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" value="5" id="checkbox5"><span>&nbsp;Acer Liquid E700</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" value="6"  id="checkbox6"><span>&nbsp;Acer Liquid Jade</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" value="7" id="checkbox6"><span>&nbsp;3309 MORE</span></label></div>
+						<?php foreach ($discount_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+						
+						<?php } ?>
 						</div>
 					</div>
 				</div>
 				<div class="panel panel-primary">
-					<div class="panel-heading" role="tab" id="headingFour">
-						 <h4 class="panel-title">
-					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-					  DISCOUNT
-					</a>
+					<div class="panel-heading" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					    Availability
+					  </a>
 				  </h4>
 
 					</div>
-					<div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
-						<form id="discountform" name="discountform" action="<?php echo base_url('category/cateegoryfilters'); ?>" method="post">
-						<input type="hidden" name="category_id" id="category_id" value="<?php echo $category_id;?>">
+					<?php //echo '<pre>';print_r($avalibility_list);exit; ?>
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							<div class="checkbox"><label><input type="checkbox" name="brand[]"  onclick="discount();"  value="1" id="checkbox1"><span>&nbsp;50% or More</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" name="brand[]" value="2" id="checkbox2"><span>&nbsp;40% or More</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" name="brand[]" value="3" id="checkbox3"><span>&nbsp;30% or More</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" name="brand[]" value="4" id="checkbox4"><span>&nbsp;20% or More</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" name="brand[]" value="5" id="checkbox5"><span>&nbsp;10% or More</span></label></div>
-							<div class="checkbox"><label><input type="checkbox" name="brand[]" value="6" id="checkbox6"><span>&nbsp;Less than 10%</span></label></div>
-						</div>
-						</form>
-					</div>
-				</div>
-				<div class="panel panel-primary">
-					<div class="panel-heading" role="tab" id="headingSix">
-						 <h4 class="panel-title">
-					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-					  AVAILABILITY
-					</a>
-				  </h4>
-
-					</div>
-					<div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
-						<div class="panel-body">
-							<div class="checkbox"><label><input type="checkbox" id="checkbox1"><span>&nbsp;Include Out of Stock</span></label></div>
-							
+							<select onchange="mobileaccessories(this.value, '<?php echo 'status'; ?>','<?php echo ''; ?>');" name="products[availability]" class="form-control" id="sel1">
+								<option value="">Select</option>
+								
+								<?php foreach ($avalibility_list as $list){ ?>
+								<option value="<?php echo $list; ?>"><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
+								<?php } ?>
+							</select>
 						</div>
 					</div>
 				</div>
+				
+				
+				
 			</div>
+			<?php }else if(base64_decode($this->uri->segment(3))=='19'){ ?>
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Offer	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($offer_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  BRAND	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($brand_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Colors	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($color_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'color'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  SIZE	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($sizes_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['p_size_name']; ?>"><span>&nbsp;<?php echo $list['p_size_name']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Discount	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($discount_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					    Availability
+					  </a>
+				  </h4>
+
+					</div>
+					<?php //echo '<pre>';print_r($avalibility_list);exit; ?>
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						<div class="panel-body">
+							<select onchange="mobileaccessories(this.value, '<?php echo 'status'; ?>','<?php echo ''; ?>');" name="products[availability]" class="form-control" id="sel1">
+								<option value="">Select</option>
+								
+								<?php foreach ($avalibility_list as $list){ ?>
+								<option value="<?php echo $list; ?>"><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+			<?php }else if(base64_decode($this->uri->segment(3))=='20'){ ?>
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Offer	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($offer_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo $list['offers']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  BRAND	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($brand_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Colors	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($color_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'color'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  Discount	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($discount_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					    Availability
+					  </a>
+				  </h4>
+
+					</div>
+					<?php //echo '<pre>';print_r($avalibility_list);exit; ?>
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						<div class="panel-body">
+							<select onchange="mobileaccessories(this.value, '<?php echo 'status'; ?>','<?php echo ''; ?>');" name="products[availability]" class="form-control" id="sel1">
+								<option value="">Select</option>
+								
+								<?php foreach ($avalibility_list as $list){ ?>
+								<option value="<?php echo $list; ?>"><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+			<?php } ?>
+			<button type="submit" name="test">Submit</button>
+			</form>
 		</div>
         <!-- End Filter Sidebar -->
 
         <!-- Product List -->
-        <div class="col-sm-9">
-          <div class="title"><span>T-Shirts</span></div>
+        <div class="col-md-9">
+          <div class="title"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?>&nbsp; Category Products lists</span></div>
 		<?php //echo '<pre>';print_r($subcategory_porduct_list);exit; ?>
 		<?php $cnt=1;foreach($subcategory_porduct_list as $productslist){ ?>
-          <div class="col-sm-4 col-md-3 box-product-outer">
+          <div class=" col-md-3 box-product-outer" style="width:23%">
             <div class="box-product">
               <div class="img-wrapper">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
@@ -220,9 +481,9 @@
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="detail.html"><?php echo $productslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
               <div class="price">
-                <div>$13.50 <span class="label-tags"><span class="label label-primary">-10%</span></span> &nbsp;<span class="price-old">$15.00</span></div>
+                <div>$13.50 <span class="label-tags"><span class="label label-primary">-<?php echo $productslist['discount']; ?>%</span></span> &nbsp;<span class="price-old"><?php echo $productslist['item_cost']; ?></span></div>
                
               </div>
               <div class="rating">
@@ -245,7 +506,7 @@
        
          
           
-          <div class="col-sm-4 col-md-3 hidden-sm box-product-outer">
+         <!--- <div class="col-sm-4 col-md-3 hidden-sm box-product-outer">
             <div class="box-product">
               <div class="img-wrapper">
                 <a href="detail.html">
@@ -276,7 +537,7 @@
             </div>
           </div>
          
-        </div>
+        </div>-->
 	
         <!-- End Product List -->
 </div>
@@ -287,17 +548,32 @@
 	 <br>
 </body>
 <script>
-function mobileaccessories(id){
-	alert(id);
+
+function mobileaccessories(val,status,check){
 	
-}
-function getbrand(id){
-	alert(id);
-	
-}
-function compatiblemobiles(id){
-	alert(id);
-	
+	jQuery.ajax({
+		
+				url: "<?php echo site_url('category/categorywiseearch');?>",
+				type: 'post',
+			
+				data: {
+					form_key : window.FORM_KEY,
+					categoryid: '<?php echo $this->uri->segment(3); ?>',
+					productsvalues: val,
+					searchvalue: status,
+					unchecked: check,
+					mini_mum: $('#input-select').val(),
+					maxi_mum: $('#input-number').val(),
+
+					},
+				dataType: 'html',
+				success: function (data) {
+					$("#containerhigh").empty();
+					$("#containerhighold").hide();
+					$("#containerhigh").show();
+					$("#containerhigh").append(data);
+	}
+});
 }
 function discount(id){
 	var form = document.getElementById("discountform");
@@ -345,6 +621,8 @@ function getproduct(id){
 				},
 				dataType: 'html',
 				success: function (data) {
+					
+					
 					$("#subcategorywise_products").empty();
 					$("#subcategorywise_products").append(data);
 				}
@@ -360,3 +638,48 @@ function getproduct(id){
     });
 })(jQuery);
 </script>
+<script>
+		var select = document.getElementById('input-select');
+
+// Append the option elements
+for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php echo floor($maximum_price['item_cost']); ?>'; i++ ){
+
+	var option = document.createElement("option");
+		option.text = i;
+		option.value = i;
+
+	select.appendChild(option);
+}
+
+		var html5Slider = document.getElementById('html5');
+
+noUiSlider.create(html5Slider, {
+	start: [ '<?php echo floor($minimum_price['item_cost']); ?>', '<?php echo floor($maximum_price['item_cost']); ?>' ],
+	connect: true,
+	range: {
+		'min': <?php echo floor($minimum_price['item_cost']); ?>,
+		'max': <?php echo floor($maximum_price['item_cost']); ?>
+	}
+});
+
+		var inputNumber = document.getElementById('input-number');
+
+html5Slider.noUiSlider.on('update', function( values, handle ) {
+
+	var value = values[handle];
+
+	if ( handle ) {
+		inputNumber.value = value;
+	} else {
+		select.value = Math.round(value);
+	}
+});
+
+select.addEventListener('change', function(){
+	html5Slider.noUiSlider.set([this.value, null]);
+});
+
+inputNumber.addEventListener('change', function(){
+	html5Slider.noUiSlider.set([null, this.value]);
+});
+	</script>

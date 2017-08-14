@@ -66,17 +66,18 @@
                                     <span class="label label-warning"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-								<?php 
 								
-								//echo $notification[0]['unreadcouont'];
-								//echo '<pre>';print_r($notification);exit; ?>
-                                    <li class="header"><i class="fa fa-bell"></i>Admin Notifications</li>
+                                    <li class="header"><i class="fa fa-bell"></i> &nbsp; Admin Notifications</li>
                                     <li>
                                         <ul class="menu">
                                         <?php foreach($allnotification as $list){ ?>
                                             <li>
-                                            <a href="#" class="border-gray"><i class="fa fa-inbox"></i><?php  echo $list['seller_message']; ?></a></li>
-											<?php } ?>                                           
+                                            <a href="<?php echo base_url('seller/services/notications'); ?>" class="border-gray"><i class="fa fa-inbox"></i><?php  echo $list['seller_message']; ?></a></li>
+											                 <?php } ?>
+                                       <?php foreach($servicerequest as $service){ ?>
+                                            <li id="service">
+                                            <a onclick="getservic();" class="border-gray"><i class="fa fa-inbox" ></i><?php  echo $service['replymsg']; ?></a></li>
+                                       <?php } ?>                                           
                                         </ul>
                                     </li>
                                    <li class="footer">
@@ -233,6 +234,24 @@
   }
   </script>
   <?php } ?>
+
+  <script>
+  function getservic(){
+    
+    jQuery.ajax({
+         url: "<?php echo base_url('seller/dashboard/getservice'); ?>",
+         data:'',
+         type: "POST",
+         dataType:"JSON",
+         success:function(data){
+           if(data.msg==1){
+             $('#service').hide();
+             
+           }
+          }
+     }); 
+  }
+  </script>
   <script type="text/javascript">
   
   
