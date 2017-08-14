@@ -495,9 +495,24 @@ class Category_model extends MY_Model
 		$this->db->group_by('dial_color');
 		return $this->db->get()->result_array();
 	}
+	public function get_packof_list($catid,$subcat)
+	{
+		$this->db->select('products.packof')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_status',1);
+		$this->db->where('packof!=','');
+		$this->db->group_by('packof');
+		return $this->db->get()->result_array();
+	}
 	public function update_dial_color_privous_subcategorysearchdata($id,$data)
 	{
 		$sql1="UPDATE subcat_wise_fliter_search SET dial_color ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function update_packof_privous_subcategorysearchdata($id,$data)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET packof ='".$data."' WHERE id ='".$id."'";
 		return $this->db->query($sql1);
 	}
 	public function update_strap_color_privous_subcategorysearchdata($id,$data)

@@ -101,6 +101,7 @@
 				$gemstoness[]=$predata['gemstones'];
 				$strap_colors[]=$predata['strap_color'];
 				$dial_colors[]=$predata['dial_color'];
+				$packofs[]=$predata['packof'];
 				$min_am[]=$predata['mini_amount'];
 				$max_amt[]=$predata['max_amount'];
 			
@@ -422,7 +423,7 @@
 				<?php } ?>
 				
 				
-					<?php if($cat_subcat_ids[0]['subcategory_id']=='21' || $cat_subcat_ids[0]['subcategory_id']=='20' || $cat_subcat_ids[0]['subcategory_id']=='19' || $cat_subcat_ids[0]['subcategory_id']=='50' || $cat_subcat_ids[0]['subcategory_id']=='18' || $cat_subcat_ids[0]['subcategory_id']=='17' || $cat_subcat_ids[0]['subcategory_id']=='16' || $cat_subcat_ids[0]['subcategory_id']!='10' || $cat_subcat_ids[0]['subcategory_id']!='53'){ ?>
+			<?php if($cat_subcat_ids[0]['subcategory_id']=='29' ||  $cat_subcat_ids[0]['subcategory_id']=='28' ||  $cat_subcat_ids[0]['subcategory_id']!='9' ||  $cat_subcat_ids[0]['subcategory_id']=='52' ||  $cat_subcat_ids[0]['subcategory_id']=='27' ||  $cat_subcat_ids[0]['subcategory_id']!='26' ||  $cat_subcat_ids[0]['subcategory_id']=='25' ||  $cat_subcat_ids[0]['subcategory_id']=='24' ||  $cat_subcat_ids[0]['subcategory_id']=='23' ||  $cat_subcat_ids[0]['subcategory_id']=='51' ||  $cat_subcat_ids[0]['subcategory_id']=='22' ||  $cat_subcat_ids[0]['subcategory_id']=='21' || $cat_subcat_ids[0]['subcategory_id']=='20' || $cat_subcat_ids[0]['subcategory_id']=='19' || $cat_subcat_ids[0]['subcategory_id']=='50' || $cat_subcat_ids[0]['subcategory_id']=='18' || $cat_subcat_ids[0]['subcategory_id']=='17' || $cat_subcat_ids[0]['subcategory_id']=='16' || $cat_subcat_ids[0]['subcategory_id']!='10' || $cat_subcat_ids[0]['subcategory_id']!='53'){ ?>
 				<?php if(count($ideal_for)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
@@ -449,7 +450,7 @@
 					<?php } ?>
 				
 				
-				<?php if($cat_subcat_ids[0]['subcategory_id']=='50' ||$cat_subcat_ids[0]['subcategory_id']=='13' || $cat_subcat_ids[0]['subcategory_id']=='16' || $cat_subcat_ids[0]['subcategory_id']=='17'){ ?>
+				<?php if($cat_subcat_ids[0]['subcategory_id']=='23' || $cat_subcat_ids[0]['subcategory_id']=='51' || $cat_subcat_ids[0]['subcategory_id']=='50' || $cat_subcat_ids[0]['subcategory_id']=='13' || $cat_subcat_ids[0]['subcategory_id']=='16' || $cat_subcat_ids[0]['subcategory_id']=='17'){ ?>
 				<?php if(count($producttype_list)>0){ ?>
 					<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThreecom">
@@ -475,7 +476,7 @@
 				
 				<?php } ?>
 				
-				<?php if($cat_subcat_ids[0]['subcategory_id']=='8' || $cat_subcat_ids[0]['subcategory_id']=='14' || $cat_subcat_ids[0]['subcategory_id']=='19' || $cat_subcat_ids[0]['subcategory_id']=='20'){ ?>
+				<?php if($cat_subcat_ids[0]['subcategory_id']=='29' || $cat_subcat_ids[0]['subcategory_id']=='28' || $cat_subcat_ids[0]['subcategory_id']=='52' || $cat_subcat_ids[0]['subcategory_id']=='22' || $cat_subcat_ids[0]['subcategory_id']=='8' || $cat_subcat_ids[0]['subcategory_id']=='14' || $cat_subcat_ids[0]['subcategory_id']=='19' || $cat_subcat_ids[0]['subcategory_id']=='20'){ ?>
 				<?php if(count($theme_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
@@ -616,7 +617,79 @@
 					
 				
 				<?php } ?>
-				<?php if($cat_subcat_ids[0]['subcategory_id']=='11'){ ?>
+				<?php if($cat_subcat_ids[0]['subcategory_id']=='27'){ ?>
+				
+				<?php if(count($dial_shape)>0){ ?>
+						<div class="panel panel-primary">
+							<div class="panel-heading" role="tab" id="headingThreecom">
+								<h4 class="panel-title">
+								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#dial_shape" aria-expanded="false" aria-controls="dial_shape">
+								DIAL SHAPE	
+								</a>
+								</h4>
+
+							</div>
+							<div id="dial_shape" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreecom">
+								<div class="panel-body">
+								<?php foreach ($dial_shape as $list){  
+								if (in_array($list['dial_shape'], $dial_shapes)) { ?>
+									<div class="checkbox"><label><input checked="checked" type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'dial_shape'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[dial_shape][]" value="<?php echo $list['dial_shape']; ?>"><span>&nbsp;<?php echo $list['dial_shape']; ?></span></label></div>
+								<?php } else{ ?>
+									<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'dial_shape'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[dial_shape][]" value="<?php echo $list['dial_shape']; ?>"><span>&nbsp;<?php echo $list['dial_shape']; ?></span></label></div>
+								<?php } } ?>
+								</div>
+							</div>
+						</div>
+					<?php } ?>
+					<?php if(count($usage_list)>0){ ?>
+						<div class="panel panel-primary">
+							<div class="panel-heading" role="tab" id="headingThreecom">
+								<h4 class="panel-title">
+								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#usage" aria-expanded="false" aria-controls="usage">
+								USAGE	
+								</a>
+								</h4>
+
+							</div>
+							<div id="usage" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreecom">
+								<div class="panel-body">
+								<?php foreach ($usage_list as $list){ 
+								if (in_array($list['usage'], $usagelist)) { ?>
+									<div class="checkbox"><label><input checked="checked" type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'usage'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[usage][]" value="<?php echo $list['usage']; ?>"><span>&nbsp;<?php echo $list['usage']; ?></span></label></div>
+								<?php } else{ ?>
+									<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'usage'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[usage][]" value="<?php echo $list['usage']; ?>"><span>&nbsp;<?php echo $list['usage']; ?></span></label></div>
+								<?php } } ?>
+								</div>
+							</div>
+						</div>
+					<?php } ?>
+					<?php if(count($display_type)>0){ ?>
+						<div class="panel panel-primary">
+							<div class="panel-heading" role="tab" id="headingThreecom">
+								<h4 class="panel-title">
+								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#display_type" aria-expanded="false" aria-controls="display_type">
+								DISPLAY TYPE	
+								</a>
+								</h4>
+
+							</div>
+							<div id="display_type" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreecom">
+								<div class="panel-body">
+								<?php foreach ($display_type as $list){  
+										if (in_array($list['display_type'], $display_types)) { ?>
+									<div class="checkbox"><label><input checked="checked" type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'display_type'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[display_type][]" value="<?php echo $list['display_type']; ?>"><span>&nbsp;<?php echo $list['display_type']; ?></span></label></div>
+								<?php } else{ ?>
+									<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'display_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[display_type][]" value="<?php echo $list['display_type']; ?>"><span>&nbsp;<?php echo $list['display_type']; ?></span></label></div>
+								<?php } } ?>
+								</div>
+							</div>
+						</div>
+					<?php } ?>
+					
+					
+				
+				<?php } ?>
+				<?php if($cat_subcat_ids[0]['subcategory_id']=='25' || $cat_subcat_ids[0]['subcategory_id']=='11' || $cat_subcat_ids[0]['subcategory_id']=='21'){ ?>
 					<?php if(count($theme_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
@@ -640,7 +713,7 @@
 				</div>
 				<?php } ?>
 				<?php } ?>
-				<?php if($cat_subcat_ids[0]['subcategory_id']=='53'){ ?>
+				<?php if($cat_subcat_ids[0]['subcategory_id']=='53' || $cat_subcat_ids[0]['subcategory_id']=='51'){ ?>
 					<?php if(count($theme_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
@@ -826,6 +899,59 @@
 				
 				
 				
+				
+				<?php } ?>
+				
+				<?php if($cat_subcat_ids[0]['subcategory_id']=='22'){ ?>
+				
+						<?php if(count($packof)>0){ ?>
+						<div class="panel panel-primary">
+							<div class="panel-heading" role="tab" id="headingThreecom">
+								<h4 class="panel-title">
+								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#packof" aria-expanded="false" aria-controls="packof">
+								PACK OF	
+								</a>
+								</h4>
+
+							</div>
+							<div id="packof" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreecom">
+								<div class="panel-body">
+								<?php foreach ($packof as $list){ 
+								if (in_array($list['packof'], $packofs)) { ?>
+									<div class="checkbox"><label><input checked="checked" type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'packof'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[packof][]" value="<?php echo $list['packof']; ?>"><span>&nbsp;<?php echo $list['packof']; ?></span></label></div>
+								<?php } else{ ?>
+									<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'packof'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[packof][]" value="<?php echo $list['packof']; ?>"><span>&nbsp;<?php echo $list['packof']; ?></span></label></div>
+								<?php } } ?>
+								</div>
+							</div>
+						</div>
+					<?php } ?>
+				
+				<?php } ?>
+				<?php if($cat_subcat_ids[0]['subcategory_id']=='51'){ ?>
+				
+						<?php if(count($packof)>0){ ?>
+						<div class="panel panel-primary">
+							<div class="panel-heading" role="tab" id="headingThreecom">
+								<h4 class="panel-title">
+								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#packof" aria-expanded="false" aria-controls="packof">
+								PACK OF	
+								</a>
+								</h4>
+
+							</div>
+							<div id="packof" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreecom">
+								<div class="panel-body">
+								<?php foreach ($packof as $list){ 
+								if (in_array($list['packof'], $packofs)) { ?>
+									<div class="checkbox"><label><input checked="checked" type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'packof'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[packof][]" value="<?php echo $list['packof']; ?>"><span>&nbsp;<?php echo $list['packof']; ?></span></label></div>
+								<?php } else{ ?>
+									<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'packof'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[packof][]" value="<?php echo $list['packof']; ?>"><span>&nbsp;<?php echo $list['packof']; ?></span></label></div>
+								<?php } } ?>
+								</div>
+							</div>
+						</div>
+					<?php } ?>
 				
 				<?php } ?>
 				

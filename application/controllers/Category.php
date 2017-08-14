@@ -689,6 +689,18 @@ class Category extends Front_Controller
 				}else{
 					$dial_color='';
 				}
+				if(isset($post['searchvalue']) && $post['searchvalue']=='packof' && $post['unchecked']!='uncheck'){
+					$packof=$post['productsvalues'];
+				}else if(isset($post['unchecked']) && $post['unchecked']=='uncheck' && $post['searchvalue']=='packof'){
+					$removesearch= $this->category_model->get_all_previous_subcategorywise_search_fields();
+					foreach ($removesearch as $list){
+						if($list['packof']==$post['productsvalues']){
+						$this->category_model->update_packof_privous_subcategorysearchdata($list['id'],'');
+						}
+					} 
+				}else{
+					$packof='';
+				}
 				
 				
 				
@@ -757,6 +769,7 @@ class Category extends Front_Controller
 	'gemstones'=>isset($gemstones) ? $gemstones:'',
 	'strap_color'=>isset($strap_color) ? $strap_color:'',
 	'dial_color'=>isset($dial_color) ? $dial_color:'',
+	'packof'=>isset($packof) ? $packof:'',
 	'status'=>isset($status) ? $status:'',
 	'create'=>date('Y-m-d H:i:s'),
 	);
@@ -921,7 +934,7 @@ class Category extends Front_Controller
 			$data['ideal_for']= $this->category_model->get_ideal_for_sub($caterory_id,$subcaterory_id);
 
 		}
-		if($subcaterory_id==8 || $subcaterory_id==14 || $subcaterory_id==19 || $subcaterory_id==20){
+		if($subcaterory_id==8 || $subcaterory_id==14 || $subcaterory_id==19 || $subcaterory_id==20 || $subcaterory_id==52 || $subcaterory_id==28 || $subcaterory_id==29){
 			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
 			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
 		}
@@ -931,14 +944,14 @@ class Category extends Front_Controller
 			$data['usage_list']= $this->category_model->get_usage_list($caterory_id,$subcaterory_id);
 			$data['display_type']= $this->category_model->get_display_type_list($caterory_id,$subcaterory_id);
 		}
-		if($subcaterory_id==11 || $subcaterory_id==21){
+		if($subcaterory_id==11 || $subcaterory_id==21 || $subcaterory_id==25){
 					$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
 		}
 		if($subcaterory_id==53){
 			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
 			$data['occasion']= $this->category_model->get_occasion_list($caterory_id,$subcaterory_id);
 		}
-		if($subcaterory_id==13 || $subcaterory_id==16 || $subcaterory_id==17){
+		if($subcaterory_id==13 || $subcaterory_id==16 || $subcaterory_id==17 || $subcaterory_id==23){
 			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
 		}if($subcaterory_id==15){
 			$data['material']= $this->category_model->get_material_list($caterory_id,$subcaterory_id);
@@ -951,8 +964,24 @@ class Category extends Front_Controller
 			$data['dial_shape']= $this->category_model->get_dial_shape_list($caterory_id,$subcaterory_id);
 			$data['dial_color']= $this->category_model->get_dial_color_list($caterory_id,$subcaterory_id);
 
+			}
+			if($subcaterory_id==22){
+				$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
+				$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+				$data['packof']= $this->category_model->get_packof_list($caterory_id,$subcaterory_id);
+			}
+			if($subcaterory_id==51){
+				$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
+				$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+				$data['packof']= $this->category_model->get_packof_list($caterory_id,$subcaterory_id);
+				$data['occasion']= $this->category_model->get_occasion_list($caterory_id,$subcaterory_id);
 
-		}
+			}
+			if($subcaterory_id==27){
+			$data['dial_shape']= $this->category_model->get_dial_shape_list($caterory_id,$subcaterory_id);
+			$data['usage_list']= $this->category_model->get_usage_list($caterory_id,$subcaterory_id);
+			$data['display_type']= $this->category_model->get_display_type_list($caterory_id,$subcaterory_id);
+			}
 
 				
 		
@@ -1310,7 +1339,7 @@ function filtersearch(){
 			$data['ideal_for']= $this->category_model->get_ideal_for_sub($caterory_id,$subcaterory_id);
 
 		}
-		if($subcaterory_id==8 || $subcaterory_id==14 || $subcaterory_id==19 || $subcaterory_id==20){
+		if($subcaterory_id==8 || $subcaterory_id==14 || $subcaterory_id==19 || $subcaterory_id==20 || $subcaterory_id==52 || $subcaterory_id==28 || $subcaterory_id==29){
 			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
 			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
 		}
@@ -1320,14 +1349,14 @@ function filtersearch(){
 			$data['usage_list']= $this->category_model->get_usage_list($caterory_id,$subcaterory_id);
 			$data['display_type']= $this->category_model->get_display_type_list($caterory_id,$subcaterory_id);
 		}
-		if($subcaterory_id==11 || $subcaterory_id==21){
+		if($subcaterory_id==11 || $subcaterory_id==21 || $subcaterory_id==25){
 			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
 		}
 		if($subcaterory_id==53){
 			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
 			$data['occasion']= $this->category_model->get_occasion_list($caterory_id,$subcaterory_id);
 		}
-		if($subcaterory_id==13 || $subcaterory_id==16 || $subcaterory_id==17){
+		if($subcaterory_id==13 || $subcaterory_id==16 || $subcaterory_id==17 || $subcaterory_id==23){
 			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
 		}
 		if($subcaterory_id==15){
@@ -1343,6 +1372,23 @@ function filtersearch(){
 
 
 		}
+		if($subcaterory_id==22){
+			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
+			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+			$data['packof']= $this->category_model->get_packof_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==51){
+			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
+			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+			$data['packof']= $this->category_model->get_packof_list($caterory_id,$subcaterory_id);
+			$data['occasion']= $this->category_model->get_occasion_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==27){
+			$data['dial_shape']= $this->category_model->get_dial_shape_list($caterory_id,$subcaterory_id);
+			$data['usage_list']= $this->category_model->get_usage_list($caterory_id,$subcaterory_id);
+			$data['display_type']= $this->category_model->get_display_type_list($caterory_id,$subcaterory_id);
+		}
+		
 		
 		
 	}

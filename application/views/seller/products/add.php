@@ -976,7 +976,7 @@ function getspecialinputs(ids){
 		$('#mensfabricsinputs1').hide();
 
 	}
-	if(ids==14 || ids==19 || ids==20 || ids==22 || ids==8){
+	if(ids==14 || ids==19 || ids==20 || ids==8){
 		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
@@ -1011,11 +1011,11 @@ function getspecialinputs(ids){
 	
 	
 	if(ids==22){
-		$('#winterwaerinputs').show();
+		$('#mensaccessoriesinputs').show();
 		$('#sizeid').show();
 		$('#colorid').show();
 	}else{
-		$('#winterwaerinputs').hide();
+		$('#mensaccessoriesinputs').hide();
 	}
 	if(ids==51){
 		$('#mensehinicwearinputs').show();
@@ -1033,6 +1033,11 @@ function getspecialinputs(ids){
 	if(ids==24){
 		$('#sizeid').hide();
 		$('#colorid').hide();
+	}
+	if(ids==26){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#idealfor').hide();
 	}
 	if(ids==27){
 		$('#watchesinputs').show();
@@ -1106,6 +1111,7 @@ function getspecialinputs(ids){
 	}else{
 		$('#laptopsinputs').hide();	
 	}
+	
 	
 	
 	
