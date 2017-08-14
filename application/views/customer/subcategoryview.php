@@ -36,7 +36,7 @@
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
 </div>-->
 <body >
-	 <div class="container-fluid fluid_mod " id="containerhigh"></div>
+	  <div class="container-fluid fluid_mod " id="containerhigh"></div>
 	 <div class="container-fluid fluid_mod " id="containerhighold">
 	 <div class="row ">
 			<div class="col-md-12  ">
