@@ -1902,12 +1902,21 @@
         <!-- Product List -->
         <div class="col-sm-9">
           <div class="title"><span><?php echo $cat_subcat_ids['subcategory_name']; ?></span></div>
+		  <div  style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+            </button>
+		</div>
 		<?php //echo '<pre>';print_r($subcategory_porduct_list);exit; ?>
 		<?php $cnt=1;foreach($subcategory_porduct_list as $productslist){ ?>
+          <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
+			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
+			<input type="hidden" name="qty" id="qty" value="1" >
+			
           <div class=" col-md-3 box-product-outer" style="width:23%">
             <div class="box-product">
               <div class="img-wrapper">
-                <a href="detail.html">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                   <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                 </a>
                 <div class="tags">
@@ -1916,16 +1925,28 @@
                 <div class="tags tags-left">
                   <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
                 </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
+				<div class="option">
+				  <button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
+                  <a href="#" id="compare" onclick="compare(<?php echo $productslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left" ></i></a>
+				<?php if($productslist['yes']==1){ ?>
+				<a href="javascript:void(0);"  style="color:#ef5350;" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+				<?php }else{ ?>	
+				<a href="javascript:void(0);" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+				<?php } ?>	
+				</div>
               </div>
-              <h6><a href="detail.html"><?php echo $productslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
               <div class="price">
-                <div>$13.50 <span class="label-tags"><span class="label label-primary">-10%</span></span></div>
-                <span class="price-old">$15.00</span>
+                <?php $current_date=date('m/d/Y h:ia');
+			$offerexpirydate=$productslist['offer_expairdate'].' '.$productslist['offer_time'];
+			if($current_date <= $offerexpirydate) {?>
+				<div class="pull-left" ><?php echo ($productslist['item_cost'])-($productslist['offer_amount']); ?> 
+				<span class="label-tags"><span class="label label-default">-<?php echo $productslist['offer_percentage']; ?>%</span></span>
+				</div>
+				<span class="price-old"><?php echo $productslist['item_cost']; ?></span>
+            <?php } else{?> 
+				   <span><?php echo $productslist['item_cost']; ?></span>
+              <?php  } ?>
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -1937,6 +1958,7 @@
               </div>
             </div>
           </div>
+		  </form>
 		  <?php  
 			if(($cnt % 4)==0){?> 
 			<div class="clearfix"></div>
@@ -1957,6 +1979,38 @@
 	 <br>
 </body>
 <script>
+function addwhishlidts(id){
+jQuery.ajax({
+			url: "<?php echo site_url('customer/addwhishlist');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				item_id: id,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+				jQuery('#sucessmsg').show();
+				//alert(data.msg);
+				if(data.msg==2){
+				$('#sucessmsg').show('');
+				$('#addwhish').css("color", "");
+				$('#sucessmsg').html('Product Successfully removed to Whishlist');
+				document.getElementById("sucessmsg").focus();
+				
+				}
+				if(data.msg==1){
+				$('#sucessmsg').show('');
+				$('#addwhish').css("color", "#ef5350");
+				$('#sucessmsg').html('Product Successfully added to Whishlist');
+				document.getElementById("sucessmsg").focus();				
+				}
+			
+
+			}
+		});
+	
+	
+}
 
 function submobileaccessories(val,status,check){
 	

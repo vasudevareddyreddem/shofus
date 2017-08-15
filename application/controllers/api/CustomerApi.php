@@ -614,6 +614,25 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
+
+	/* customersorders api*/
+	public function customersorders_get()
+	{
+		$get = $this->input->get();
+		$cust_orders= $this->Customerapi_model->customer_oreders_list($get['customer_id']);
+		//echo '<pre>';print_r($cust_orders);exit;
+		if(count($cust_orders)>0){
+				$message = array
+				(
+					'status'=>1,
+					'Orders'=>$cust_orders,
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>0,'message'=>'Your Orders List Is Empty');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
 	/* category api*/
 	public function categories_get()
 	{
@@ -635,8 +654,8 @@ class CustomerApi extends REST_Controller {
 	/* Sub category api*/
 	public function subcategories_get()
 	{
-		$get = $this->input->get();
-		$subcategories = $this->Customerapi_model->get_subcategories($get['category_id']);
+		$get = $this->input->get('categoty_id');
+		$subcategories = $this->Customerapi_model->get_subcategories($get);
 		if(count($subcategories)>0){
 				$message = array
 				(
@@ -723,7 +742,7 @@ class CustomerApi extends REST_Controller {
 				$this->response($message, REST_Controller::HTTP_OK);
 			
 		}else{
-			$message = array('status'=>0,'message'=>'No Products In This Locations.');
+			$message = array('status'=>0,'message'=>'No Topoffers In This Locations.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
@@ -1000,6 +1019,53 @@ class CustomerApi extends REST_Controller {
 
 		$offers_for_you_location = $this->Customerapi_model->offers_for_you_product_search($location_ids);
 		//echo "<pre>";print_r($offers_for_you_location);exit;
+		// if(count($top_offer_location)>0){
+		// 	$top_offers = $top_offer_location;
+		// }else{
+		// 	$top_offers = array
+		// 	(
+		// 		['Empty'=>'No Top Offers In This Locations.']
+		// 	);
+		// }
+
+		// if(count($deals_of_the_day_location)>0){
+		// 	$deals_of_the_day = $deals_of_the_day_location;
+		// }else{
+		// 	$deals_of_the_day = array
+		// 	(
+		// 		['Empty'=>'No Deals Of The day In This Locations.']
+		// 	);
+			
+		// }
+
+		// if(count($season_sales_location)>0){
+		// 	$season_sales = $season_sales_location;
+		// }else{
+			
+		// 	$season_sales = array
+		// 	(
+		// 		'Empty'=>'No Season Sales In This Locations.'
+		// 	);			
+		// }
+
+		// if(count($treanding_location)>0){
+		// 	$treanding = $treanding_location;
+		// }else{
+		// 	$treanding = array
+		// 	(
+		// 		['Empty'=>'No Trending Products In This Locations.']
+		// 	);
+			
+		// }
+
+		// if(count($offers_for_you_location)>0){
+		// 	$offers_for_you = $offers_for_you_location;
+		// }else{
+		// 	$offers_for_you = array
+		// 	(
+		// 		'Empty'=>'No Offers For you In This Locations.'
+		// 	);
+		// }
 
 		 if(count($top_offer_location && $deals_of_the_day_location && $season_sales_location && $treanding_location && $offers_for_you_location)>0){
 		 	$somearray = array(
@@ -1049,6 +1115,25 @@ class CustomerApi extends REST_Controller {
 		 	$message = array('status'=>0,'message'=>'No Products In This Locations.');
 		 	$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		 }
+	}
+
+
+
+	public function customers_get(){
+		$get = $this->input->get();
+		$customers= $this->Customerapi_model->get_customers();
+		//echo '<pre>';print_r($tempcart);exit;
+		if(count($customers)>0){
+			$message = array(
+				'status'=>1,
+				'Customers'=>$customers,
+			);
+			$this->response($message, REST_Controller::HTTP_OK);	
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Customers List Empty');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
 	}
 
 

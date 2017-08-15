@@ -120,7 +120,6 @@ class Customer extends Front_Controller
 	if($this->session->userdata('userdetails'))
 	 {
 		$post=$this->input->post();
-		//echo '<pre>';print_r($post);
 		$customerdetails=$this->session->userdata('userdetails');
 		$details= $this->customer_model->get_product_details($post['producr_id']);
 		//echo '<pre>';print_r($details);
