@@ -122,7 +122,7 @@ class Customer extends Front_Controller
 		$post=$this->input->post();
 		$customerdetails=$this->session->userdata('userdetails');
 		$details= $this->customer_model->get_product_details($post['producr_id']);
-		//echo '<pre>';print_r($details);
+			//echo '<pre>';print_r($post);exit;
 		if($details['offer_percentage']!='' && $details['offer_type']!=4){
 			if(date('m/d/Y') <= $details['offer_expairdate']){
 				$item_price= ($details['item_cost']-$details['offer_amount']);
@@ -179,14 +179,11 @@ class Customer extends Front_Controller
 			}
 		if(in_array($post['producr_id'],$rid)){
 			
-			if(isset($post['category_id']) && $post['category_id']=!'' ){
-				$this->session->set_flashdata('adderror','Product already Exits');
-				redirect('category/view/'.base64_encode($post['category_id']));
-				
-			}else if(isset($post['wishlist']) && $post['wishlist']=!'' ){
+			if(isset($post['wishlist']) && $post['wishlist']=!'' ){
 			$this->session->set_flashdata('adderror','Product already added to the cart');
 			redirect('customer/wishlist');	
 			}else{
+				
 			$this->session->set_flashdata('error','Product already Exits');
 			redirect('category/productview/'.base64_encode($post['producr_id']));	
 			}

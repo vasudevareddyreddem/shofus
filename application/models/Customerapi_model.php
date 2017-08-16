@@ -93,12 +93,13 @@ class Customerapi_model extends MY_Model
 	public function top_offers_list()
 	{
 		//$date = new DateTime("now");
- 		//$curr_date = $date->format('Y-m-d');
+ 		$curr_date = $date->format('Y-m-d');
 		$this->db->select('top_offers.*,products.*')->from('top_offers');
 		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
+		$this->db->join('item_wishlist', 'item_wishlist.item_id = top_offers.item_id', 'left');
 		$this->db->order_by('top_offers.offer_percentage desc');
 		$this->db->where('top_offers.preview_ok',1);
-		//$this->db->where('top_offers.expairdate >=', $curr_date);
+		$this->db->where('top_offers.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
 
 	}
@@ -180,8 +181,8 @@ class Customerapi_model extends MY_Model
 		$this->db->insert('item_wishlist', $data);
 		return $insert_id = $this->db->insert_id();
 	}
-	public function customer_wishlist_delete($cust_id,$wishlistid){
-		$sql1="DELETE FROM item_wishlist WHERE cust_id = '".$cust_id."' AND  item_id = '".$wishlistid."'";
+	public function customer_wishlist_delete($cust_id,$wishlistid,$id){
+		$sql1="DELETE FROM item_wishlist WHERE cust_id = '".$cust_id."' AND  item_id = '".$wishlistid."' AND  id = '".$id."'";
 		return $this->db->query($sql1);
 	}
 
@@ -307,6 +308,12 @@ class Customerapi_model extends MY_Model
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
+	public function get_wish_list_products($cust_id){
+		$this->db->select('item_wishlist.*')->from('item_wishlist');
+		$this->db->join('products', 'products.item_id = item_wishlist.item_id', 'left');
+		$this->db->where('item_wishlist.cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
 	public function cart_products_save($data){
 		$this->db->insert('cart', $data);
 		return $insert_id = $this->db->insert_id();
@@ -317,11 +324,16 @@ class Customerapi_model extends MY_Model
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
-	public function update_cart_item_quentity($cust_id,$item_id,$data){
+	public function update_cart_item_quentity($cust_id,$item_id,$cart_id,$data){
 	
 		 $this->db->where('cust_id',$cust_id);
 		 $this->db->where('item_id',$item_id);
+		 $this->db->where('id',$cart_id);
     	return $this->db->update("cart",$data);
+	}
+	public function delete_cart_item($cust_id,$pid,$id){
+		$sql1="DELETE FROM cart WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."' AND id ='".$id."'";
+		return $this->db->query($sql1);
 	}
 
 

@@ -132,7 +132,7 @@
               </thead>
               <tbody>
 			  <?php 
-			  
+			  //echo '<pre>';print_r($cart_items);exit; 
 			$total='';
 			  foreach($cart_items as $items){ ?>
 			  <form action="<?php  echo base_url('customer/updatecart'); ?>" method="post" name="updatecart" id="updatecart">
@@ -175,19 +175,23 @@
             $amount=(($offeramount) * ($items['qty']));
             $total+= $amount;?>
             <td class="unit"><?php echo $offeramount; ?> </td>
-          <td class="sub"><?php echo $amount; ?></td> 
+			<td class="sub"><?php echo $amount; ?></td> 
 
           <?php }else{
             $withoutofferamount=($items['item_cost']);
             $amount=(($withoutofferamount) * ($items['qty']));
             $total+= $amount; 
            ?>
-           <td class="unit"><?php echo $withoutofferamount; ?> </td>
-          <td class="sub"><?php echo $amount; ?></td>
+			<td class="unit"><?php echo $withoutofferamount; ?> </td>
+			<td class="sub"><?php echo $amount; ?></td>
          <?php } ?>
            
                      
-         <?php  }?>
+         <?php  }else{ ?>
+			 
+			 <td class="unit"><?php echo $items['item_cost']; ?> </td>
+			<td class="sub"><?php echo $items['item_cost']; ?></td>
+		<?php  } ?>
                   <td class="action">
 				  <button style="background:transprent;" type="submit" ><i class="fa fa-refresh"></i></button>&nbsp;
                     <a href="<?php echo base_url('customer/deletecart/'.base64_encode($items['item_id']).'/'.base64_encode($items['id'])); ?>" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>

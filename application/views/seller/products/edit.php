@@ -138,25 +138,13 @@
 			</div>
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Offers</label>
-					<input type="text" class="form-control" id="offers" name="offers" value="<?php echo isset($productdetails['offers'])?$productdetails['offers']:''; ?>" >
-				</div>
-			</div>
-	</div>
-	<div class="row">
-			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Discount</label>
-					<input type="text" class="form-control" id="discount" name="discount" value="<?php echo isset($productdetails['discount'])?$productdetails['discount']:''; ?>" >
-				</div>
-			</div>
-			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Qty</label>
 					<input type="text" class="form-control" id="qty" name="qty" value="<?php echo isset($productdetails['item_quantity'])?$productdetails['item_quantity']:''; ?>" >
 				</div>
 			</div>
+			
 	</div>
+	
 	<div class="row">
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
@@ -205,7 +193,7 @@
 				</div>
 			</div>
 	</div>
-	<?php if($productdetails['category_id']!='21' || $productdetails['subcategory_id']=='8' ||$productdetails['subcategory_id']=='53' || $productdetails['subcategory_id']=='13' ||$productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='15' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='18' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22' || $productdetails['subcategory_id']=='51' || $productdetails['subcategory_id']=='23' || $productdetails['subcategory_id']=='25' || $productdetails['subcategory_id']=='52' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29'){
+	<?php if($productdetails['category_id']!='21' || $productdetails['category_id']!='21' || $productdetails['subcategory_id']=='8' ||$productdetails['subcategory_id']=='53' || $productdetails['subcategory_id']=='13' ||$productdetails['subcategory_id']=='14' || $productdetails['subcategory_id']=='15' || $productdetails['subcategory_id']=='16' || $productdetails['subcategory_id']=='17' || $productdetails['subcategory_id']=='18' || $productdetails['subcategory_id']=='19' || $productdetails['subcategory_id']=='20' || $productdetails['subcategory_id']=='22' || $productdetails['subcategory_id']=='51' || $productdetails['subcategory_id']=='23' || $productdetails['subcategory_id']=='25' || $productdetails['subcategory_id']=='52' || $productdetails['subcategory_id']=='28' || $productdetails['subcategory_id']=='29'){
 		$coloridhide = '';
 		}else{
 		$coloridhide = 'display:none';
@@ -1154,7 +1142,7 @@
 	   }else if(id==21){
 		$('#colorid').hide(); 
 		$('#sizeid').show();		
-		$('#ideal_for').hide();  
+		$('#idealfor').hide();  
 		  
 	  }else{
 		  $('#foodcategoryinputs').hide();
@@ -1169,6 +1157,13 @@
  getspecialinputs('<?php echo htmlentities($productdetails['subcategory_id']);?>');
 	function getspecialinputs(ids){
 	
+	if(ids=1){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+	}else{
+		$('#sizeid').show();
+		$('#colorid').show();
+	}
 	if(ids==7 || ids==24){
 		$('#sizeid').hide();
 		$('#colorid').hide();
@@ -1374,10 +1369,7 @@
 		$('#mobilesinputs').hide();
 		//$('#sizeid').show();
 	}
-	if(ids==1){
-		$('#sizeid').hide();
-		$('#ideal_for').hide();
-	}
+	
 	 
 	
 	   
@@ -1461,28 +1453,7 @@
 					}
 				}
 			},
-			discount: {
-					validators: {
-					notEmpty: {
-						message: 'Discount is required'
-					},
-                   regexp: {
-					regexp: /^[0-9.]+$/,
-					message: 'Discount can only consist of digits'
-					}
-				}
-			},
-			offers: {
-					validators: {
-					notEmpty: {
-						message: 'Offer is required'
-					},
-                    regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Offer  can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
+			
 			producttype: {
 					validators: {
 					notEmpty: {

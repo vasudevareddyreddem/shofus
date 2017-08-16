@@ -167,25 +167,13 @@
 			</div>
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Offers</label>
-					<input type="text" class="form-control" id="offers" name="offers" >
-				</div>
-			</div>
-	</div>
-	<div class="row">
-			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Discount</label>
-					<input type="text" class="form-control" id="discount" name="discount" >
-				</div>
-			</div>
-			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Qty</label>
 					<input type="text" class="form-control" id="qty" name="qty" >
 				</div>
 			</div>
+		
 	</div>
+	
 	<div class="row">
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
@@ -243,7 +231,7 @@
 			<input type="text" class="form-control" id="ideal_for" name="ideal_for" >
 			</div>
 			</div>
-		<div class="col-md-6 form-group">
+		<div class="col-md-6 form-group" id="brand">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Brand</label>
 					<input type="text" class="form-control" id="brand" name="brand" >
@@ -879,6 +867,7 @@ $(document).ready(function(){
 	
 	 if(id==18){
 		  $('#foodcategoryinputs').show();
+		  $('#brand').hide();
 		  $('#idealfor').hide();
 		  $('#sizeid').hide();
 		  $('#colorid').hide();
@@ -1201,33 +1190,8 @@ function getspecialinputs(ids){
      //                },
 				}
 			},
-			discount: {
-					validators: {
-					notEmpty: {
-						message: 'Discount is required'
-					},
-					between: {
-                    min: 1,
-                    max: 99,
-                    message: 'The discount must be between 1 and 99'
-                },
-                   regexp: {
-					regexp: /^[0-9.]+$/,
-					message: 'Discount can only consist of digits'
-					}
-				}
-			},
-			offers: {
-					validators: {
-					notEmpty: {
-						message: 'Offer is required'
-					},
-                    regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Offer  can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
+			
+			
 			product_scusine: {
 					validators: {
 					notEmpty: {
