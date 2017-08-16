@@ -865,6 +865,7 @@ a.offers_link {
 	position: relative;
 	margin-top: 0px;
 	margin-bottom: 30px;
+	z-index:0;
 }
 .top-cate .new_title {
 	text-align: left;

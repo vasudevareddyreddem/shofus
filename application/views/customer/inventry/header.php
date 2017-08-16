@@ -84,7 +84,7 @@
 			<?php }else{ ?>
 			<img  src="<?php echo base_url(); ?>uploads/profile/default.jpg" class="user-image" alt="Logo">
 			<?php } ?>
-			  <span class="hidden-xs"><?php echo $customerdetails['cust_firstname'].'/'.$customerdetails['cust_lastname'] ?>	</span>
+			  <span class="hidden-xs"><?php echo $customerdetails['cust_firstname'].' '.$customerdetails['cust_lastname'] ?>	</span>
             </a><ul class="dropdown-menu pad_prof" >
 			<a href="<?php echo base_url('inventory/account');?>"><li class="user-body">My Account</li></a>
               <a href="<?php echo base_url('inventory/changepassword');?>"><li class="user-body">Change Password</li></a>

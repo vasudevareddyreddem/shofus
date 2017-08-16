@@ -1,5 +1,5 @@
 	<!--footer part start here -->
-  <footer class="main-footer text-center">
+  <footer class="main-footer text-center" style="margin:0 auto;">
    
       <div class="" style="margin: 0px">
        <!-- <b>Version</b>  -->

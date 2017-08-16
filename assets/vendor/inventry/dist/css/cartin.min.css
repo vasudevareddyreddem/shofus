@@ -616,7 +616,7 @@ a:focus {
     .sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>.treeview-menu {
         display: block !important;
         position: absolute;
-        width: 210px;
+        width: 230px;
         left: 50px;
 
     }
