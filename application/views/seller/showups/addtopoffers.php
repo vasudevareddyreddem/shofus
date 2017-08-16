@@ -360,7 +360,7 @@ $(document).ready(function() {
    
    <div class="container">
 	
-      <h1>You have no Products. Please add products</h1>
+     <a href="<?php echo base_url('seller/products/create');?>"> <h1 class="head_title">You have  no products. please add products. </h1></a>
    
    </div>
    
