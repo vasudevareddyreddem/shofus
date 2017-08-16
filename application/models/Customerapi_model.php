@@ -93,13 +93,13 @@ class Customerapi_model extends MY_Model
 	public function top_offers_list()
 	{
 		//$date = new DateTime("now");
- 		$curr_date = $date->format('Y-m-d');
+ 		//$curr_date = $date->format('Y-m-d');
 		$this->db->select('top_offers.*,products.*')->from('top_offers');
 		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
 		$this->db->join('item_wishlist', 'item_wishlist.item_id = top_offers.item_id', 'left');
 		$this->db->order_by('top_offers.offer_percentage desc');
 		$this->db->where('top_offers.preview_ok',1);
-		$this->db->where('top_offers.expairdate >=', $curr_date);
+		//$this->db->where('top_offers.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
 
 	}

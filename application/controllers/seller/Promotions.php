@@ -10,9 +10,9 @@ class Promotions extends Admin_Controller {
 		parent::__construct();
 		
 		
-		$this->load->library('session','form_validation');
+		$this->load->library('session');
 		$this->load->helper('security');
-		$this->load->library(array('form_validation','session'));
+		$this->load->library('form_validation');
 		$this->load->model('seller/Promotions_model');
 		$this->load->model('seller/products_model');
 	}
@@ -54,8 +54,17 @@ class Promotions extends Admin_Controller {
 			//echo '--';
 			//echo $offer_price_pertange;
 			//	echo '<pre>';print_r($productprice);exit;
-			$data=array('offer_percentage'=>$post['offeramount'],'offer_amount'=>$offer_price_pertange,'offer_combo_item_id'=>$post['combo'],'offer_type'=>$post['offertype'],'offer_time'=>$post['offertime'],'offer_expairdate'=>$post['expairdate']);
-			//echo '<pre>';print_r($data);
+			$details=$this->Promotions_model->get_offer_product_price($post['combo']);
+			$data=array(
+			'offer_percentage'=>$post['offeramount'],
+			'offer_amount'=>$offer_price_pertange,
+			'offer_combo_item_id'=>$post['combo'],
+			'offer_combo_item_name'=>$details['item_name'],
+			'offer_type'=>$post['offertype'],
+			'offer_expairdate'=>Date('Y-m-d h:i:s A',strtotime(htmlentities($post['expairdate']))),
+			//'offer_expairdate'=>$post['expairdate']
+			);
+			//echo '<pre>';print_r($data);exit;
 			$update=$this->Promotions_model->add_offer_to_productss($cat_ida,$data);
 			
 		}
@@ -95,7 +104,7 @@ class Promotions extends Admin_Controller {
 					}else{
 							$offer_price=($productprice['item_cost'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
-							$date = date('Y-m-d h:i:s');
+							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
 							$date2 = strtotime("+7 day", $date1);
 							$data=array(
@@ -107,7 +116,7 @@ class Promotions extends Admin_Controller {
 							'item_price'=>$productprice['item_cost'],
 							'offer_amount'=>$offer_amount,
 							'intialdate'=>date("Y-m-d H:i:s"),  
-							'expairdate'=>date('Y-m-d h:i:s', $date2),
+							'expairdate'=>date('Y-m-d h:i:s A', $date2),
 							'status'=>1,
 							'area'=>$productprice['seller_location_area'],
 							'create_at'=>date("Y-m-d H:i:s") 
@@ -116,7 +125,7 @@ class Promotions extends Admin_Controller {
 								'offer_percentage'=>$post['offeramount'],
 								'offer_amount'=>$offer_amount,
 								'offer_type'=>5,
-								'offer_expairdate'=>date("Y-m-d H:i:s"),  
+								'offer_expairdate'=>date("Y-m-d h:i:s A"),  
 								);			
 								$productupdate=$this->Promotions_model->add_topoffer_to_products_inproducts($cat_ida,$data1);
 								
@@ -166,7 +175,7 @@ public function addtopoffers()
 					}else{
 							$offer_price=($productprice['item_cost'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
-							$date = date('Y-m-d h:i:s');
+							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
 							$date2 = strtotime("+7 day", $date1);
 							$data=array(
@@ -178,7 +187,7 @@ public function addtopoffers()
 							'item_price'=>$productprice['item_cost'],
 							'offer_amount'=>$offer_amount,
 							'intialdate'=>date("Y-m-d H:i:s"),  
-							'expairdate'=>date('Y-m-d h:i:s', $date2),
+							'expairdate'=>date('Y-m-d h:i:s A', $date2),
 							'status'=>1,
 							'area'=>$productprice['seller_location_area'],
 							'create_at'=>date("Y-m-d H:i:s") 
@@ -236,7 +245,7 @@ public function dealsoftheday()
 					}else{
 							$offer_price=($productprice['item_cost'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
-							$date = date('Y-m-d h:i:s');
+							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
 							$date2 = strtotime("+1 day", $date1);
 							$data=array(
@@ -248,7 +257,7 @@ public function dealsoftheday()
 							'item_price'=>$productprice['item_cost'],
 							'offer_amount'=>$offer_amount,
 							'intialdate'=>date("Y-m-d H:i:s"),  
-							'expairdate'=>date('Y-m-d h:i:s', $date2),
+							'expairdate'=>date('Y-m-d h:i:s A', $date2),
 							'status'=>1,
 							'area'=>$productprice['seller_location_area'],
 							'create_at'=>date("Y-m-d H:i:s") 

@@ -1,32 +1,11 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.css">
 
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.js"></script>
+ <link href="<?php echo base_url(); ?>assets/seller/css/timePicker.css" rel="stylesheet" type="text/css"/> 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
+<script src="<?php echo base_url();?>assets/seller/js/jquery-timepicker.js"></script>
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery-ui.js"></script>
-<style>
-tfoot input {
-        width: 100%;
-        padding: 3px;
-        box-sizing: border-box;
-    }
-	.ui-datepicker-calendar{
-		padding:10px !important;
-		width:300px;
-		background:#fff;
-	}
-	tr{
-		padding:10px !important;
-	
-	}td{
-		padding:10px !important;
-	
-	}
-	.ui-icon  {
-		padding-right:20px !important;
-		cursor: pointer;
-		margin:10px 0px;
-	}
-</style>
+
 <div class="content-wrapper mar_t_con" >
 	<section class="content-header">
 		<div class="header-icon">
@@ -103,7 +82,7 @@ tfoot input {
                 <th>Item Code</th>
                 <th>Item Cost</th>
                 <th>Affer Amount</th>
-                <th>Offer Type</th>
+                <th>Combo offer item Name</th>
                 <th>Offer expiry Date and Time</th>
 				<th>Status</th>
                  <th>Action</th>                
@@ -122,8 +101,8 @@ tfoot input {
 						<td><?php echo $item_data->item_code;?></td>
 						<td><?php echo $item_data->item_cost;?></td>
 						<td><?php echo $item_data->offer_amount;?></td>
-						<td><?php echo $item_data->offer_combo_item_id;?></td>
-						<td><?php echo $item_data->offer_expairdate;?>,&nbsp;<?php echo $item_data->offer_time;?></td>
+						<td><?php if($item_data->offer_combo_item_id !=4 && $item_data->offer_combo_item_id !='' && $item_data->offer_combo_item_id!=0){ echo $item_data->offer_combo_item_name; }else{ echo ""; }?></td>
+						<td><?php echo $item_data->offer_expairdate;?></td>
 						<?php if($item_data->item_status == 1) {  ?>
 						<td>Available</td>
 						<?php } else {?>					 
@@ -181,29 +160,18 @@ tfoot input {
 		</div><span style="color:red" id="offeramounterror<?php echo $subcategory->subcategory_id;?>"></span>
 		</div>
 	
-		<div class="row">
-			<div class="form-group">
-			
-			
-			<div class="col-md-6">	
-			<label class="control-label ">Enter your Offer Expiry  Date and Time: </label> 			
-			<input type="text" class="form-control"   name="expairdate" id="datepicker<?php echo $subcategory->subcategory_id;?>" style="background:#fff" >					
-			<span style="color:red" id="offertdate<?php echo $subcategory->subcategory_id;?>"></span>	
-			</div>
-			</div>
-					
-			
-			<div class="col-md-6">	
-			<label class="control-label ">&nbsp;&nbsp;</label> 			
-			<select class="form-control" id="offertime<?php echo $subcategory->subcategory_id;?>" name ="offertime">
-			<option value="">select</option>
-			<?php $time = array('12:00 am','12:30am','01:00am','01:30am','02:00am','02:30am','03:00am','03:30am','04:00am','04:30am','05:00am','05:30am','06:00am','06:30am','07:00am','07:30am','08:00am','08:30am','09:00am','09:30am','10:00am','10:30am','11:00am','11:30am','12:00pm','12:30pm','01:00pm','01:30pm','02:00pm','02:30pm','03:00pm','03:30pm','04:00pm','04:30pm','05:00pm','05:30pm','06:00pm','06:30pm','07:00pm','07:30pm','08:00pm','08:30pm','09:00pm','09:30pm','10:00pm','10:30pm','11:00pm','11:30pm');?>
-			<?php foreach($time as $status): ?>
-			<option value = "<?php echo $status;?>"><?php echo $status;?></option>
-			<?php endforeach; ?>
-			</select>
-			<span style="color:red" id="offerttime<?php echo $subcategory->subcategory_id;?>"></span>			
-			</div>	
+			<div class="row" style="padding:5px 12px;">
+		    <div class="form-group">
+                <label for="dtp_input1" class=" control-label">Select your Offer Expiry  Date</label>
+                <div class="input-group date form_datetime " data-date="" data-date-format="dd-mm-yyyy HH:ii P" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" name="expairdate" id="datepicker<?php echo $subcategory->subcategory_id;?>" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+				<span style="color:red" id="offertdate<?php echo $subcategory->subcategory_id;?>"></span>	
+				</div>
+		
 
 		</div>		
 	
@@ -225,14 +193,11 @@ tfoot input {
 	}
 	$('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('');
 	$('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
-	$(function() {
-		$("#datepicker<?php echo $subcategory->subcategory_id;?>" ).datepicker({
-			      changeMonth: true,
-					changeYear: true,
-					minDate: -0,
-			autoclose: true
-			});
-		});
+	$(function () {
+     $('#datepicker<?php echo $subcategory->subcategory_id;?>').datetimepicker({  
+         minDate:new Date(),
+      });
+ });
 	function fetoffertype<?php echo $subcategory->subcategory_id;?>(id){
 		$('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('');
 		$('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
@@ -450,7 +415,16 @@ $(document).ready(function() {
   <!--body end here --> 
   
   <script language="JavaScript" type="text/javascript">
-
+  $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
 function updateDataTableSelectAllCtrl(table){
    var $table             = table.table().node();
    var $chkbox_all        = $('tbody input[type="checkbox"]', $table);

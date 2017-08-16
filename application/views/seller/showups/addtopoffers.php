@@ -3,30 +3,7 @@
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery-ui.js"></script>
-<style>
-tfoot input {
-        width: 100%;
-        padding: 3px;
-        box-sizing: border-box;
-    }
-	.ui-datepicker-calendar{
-		padding:10px !important;
-		width:300px;
-		background:#fff;
-	}
-	tr{
-		padding:10px !important;
-	
-	}td{
-		padding:10px !important;
-	
-	}
-	.ui-icon  {
-		padding-right:20px !important;
-		cursor: pointer;
-		margin:10px 0px;
-	}
-</style>
+
 <div class="content-wrapper mar_t_con" >
 	<section class="content-header">
 		<div class="header-icon">
