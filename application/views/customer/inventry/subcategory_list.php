@@ -53,6 +53,8 @@
 </div>
 </div>
 </div>
+<br>
+<br>
 <script>
 $(document).ready(function() {
     $('#example1').DataTable( {

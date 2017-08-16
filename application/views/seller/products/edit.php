@@ -790,12 +790,14 @@
 							<div class="col-md-6" style="padding:0">
 								<input style="border-radius:5px 0px 0px 5px" type="text" placeholder="Specification Name" class="form-control" id="specificationnameid" name="specificationname[]" value="<?php echo isset($spc['spc_name'])?$spc['spc_name']:''; ?>" >
 							</div>
-							<div class="col-md-6" style="padding:0">
+							<div class="col-md-5" style="padding:0">
 								<input style="border-radius:0px 5px 5px 0px" type="text" placeholder="Specification Value"  class="form-control" id="specificationvalueid" name="specificationvalue[]" value="<?php echo isset($spc['spc_value'])?$spc['spc_value']:''; ?>" >
 							</div>
-							<button type="button" onclick="removeattachment(<?php echo $spc['specification_id']?>);" >
+							<div class="col-md-1" style="margin:2px 0px">
+							<button style="position:absolute;top:0;right:0"type="button" onclick="removeattachment(<?php echo $spc['specification_id']?>);" >
 							<span aria-hidden="true">×</span>
 							</button>
+							</div>
 					
 						</div>
 				<?php $i++;} ?>

@@ -1,4 +1,5 @@
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
+    <head>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrap-chosen.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
     
@@ -9,6 +10,7 @@
         $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
       });
     </script>
+	</head>
 	<style>
 		* Component: Direct Chat
  * ----------------------
@@ -718,9 +720,12 @@
                 </div>
                 <!-- /.box-footer-->
               </div>
+              </div>
+              </div>
+              </div>
               <!--/.direct-chat -->
-            </div>
-            </div>
+       
+      
             <!-- /.col -->
   
 
