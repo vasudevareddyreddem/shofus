@@ -17,6 +17,15 @@ class User_profile_model extends MY_Model
     	$query = $this->db->get();
     	return $query->result();
 	}
+	public function personal_details()
+	{	
+		$sid = $this->session->userdata('seller_id');
+		$this->db->select('sellers.seller_rand_id,sellers.seller_name,sellers.seller_address');
+			$this->db->from('sellers');   
+		$this->db->where('seller_id', $sid);
+    	$query = $this->db->get();
+    	return $query->row_array();
+	}
 
 	public function profile_pic_save($pic){
 		$sid = $this->session->userdata('seller_id');

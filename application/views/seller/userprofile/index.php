@@ -34,10 +34,10 @@
                     </div>
                     <div class="card-content">
                         <div class="card-content-member">
-                            <h4 class="m-t-0">Your Name:<?php echo ucfirst($this->session->userdata('seller_name'));    ?></h4>
-                            <h4 class="m-t-0">Your Id:<?php echo ucfirst($this->session->userdata('seller_rand_id'));?></h4>
+                            <h4 class="m-t-0">Your ID:<?php echo ucfirst($personal_deatils['seller_rand_id']); ?></h4>
+                            <h4 class="m-t-0">Your Name:<?php echo ucfirst($personal_deatils['seller_name']); ?></h4>
                             <p class="m-0"><i class="pe-7s-map-marker"></i>
-                                <?php echo ucfirst($this->session->userdata('seller_address')); ?></p>
+                               <?php echo ucfirst($personal_deatils['seller_address']); ?></p>
                         </div>
                         <div class="card-content-languages">
 
