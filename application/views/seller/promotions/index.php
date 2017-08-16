@@ -174,7 +174,7 @@ tfoot input {
 		<div class="row" style="padding:5px 12px;">
 		    <div class="form-group">
                 <label for="dtp_input1" class=" control-label">DateTime Picking</label>
-                <div class="input-group date form_datetime " data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                <div class="input-group date form_datetime " data-date="1979-09-16T05:25:07Z" data-date-format="dd-mm-yyyy HH:ii P" data-link-field="dtp_input1">
                     <input class="form-control" size="16" type="text" value="" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
