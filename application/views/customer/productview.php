@@ -134,6 +134,93 @@
                 </td>
               </tr>
 			 </form>
+			 <div class="clearfix">&nbsp;</div>
+			 <table class="table table-bordered">
+  
+    <tbody>
+      <tr>
+        <th>Specifications</th>
+      </tr>
+      <tr>
+        <td>
+			<div class="row">
+				<h4 style="padding:0px 15px">General</h4>
+			</div>
+			<div class="row" style="margin-top:15px;">
+				<div class="col-md-3">
+					fsdkfks
+				</div>
+				<div class="col-md-5">
+					fsdkfks
+				</div>
+			</div>
+				<div class="row" style="margin-top:15px;">
+				<div class="col-md-3">
+					fsdkfks
+				</div>
+				<div class="col-md-5">
+					fsdkfks
+				</div>
+			</div>
+				<div class="row" style="margin-top:15px;">
+				<div class="col-md-3">
+					fsdkfks
+				</div>
+				<div class="col-md-5">
+					fsdkfks
+				</div>
+			</div>
+			</div>
+			
+		</td>
+        
+      </tr>
+	  
+	   <tr class="read_div" style="display:none;">
+        <td>
+			<div class="row">
+				<h4 style="padding:0px 15px">General</h4>
+			</div>
+			<div class="row" style="margin-top:15px;">
+				<div class="col-md-3">
+					fsdkfks
+				</div>
+				<div class="col-md-5">
+					fsdkfks
+				</div>
+			</div>
+				<div class="row" style="margin-top:15px;">
+				<div class="col-md-3">
+					fsdkfks
+				</div>
+				<div class="col-md-5">
+					fsdkfks
+				</div>
+			</div>
+				<div class="row" style="margin-top:15px;">
+				<div class="col-md-3">
+					fsdkfks
+				</div>
+				<div class="col-md-5">
+					fsdkfks
+				</div>
+			</div>
+			</div>
+			
+		</td>
+        
+      </tr>
+	     <tr>
+        <td>
+			<div class=" read_mor">
+				Read more...
+			</div>
+		</td>
+        
+      </tr>
+    
+    </tbody>
+  </table>
         </div>
 
         <div class="col-md-8 col-md-offset-4 mar_t20" >
@@ -673,6 +760,13 @@ $(function() {
     	}
     }).mouseup(function(){
         clearInterval(action);
+    });
+});
+</script>
+<script>
+		$(document).ready(function(){
+		$(".read_mor").click(function(){
+        $(".read_div").toggle(1000);
     });
 });
 </script>

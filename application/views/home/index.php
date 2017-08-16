@@ -76,19 +76,19 @@
         <div class="new_title">
           <h2>Treding Products</h2>
         </div>
-        <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
        <?php foreach ($trending_products as $topslist){  ?>
              <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $topslist['item_id']; ?>" >
 			<input type="hidden" name="category_id" id="category_id" value="<?php echo $topslist['category_id']; ?>" >
-			<div class="item">
-          <div class=" box-product-outer">
+			<!--<div class="item">
+          <div class=" box-product-outer" >
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$topslist['item_image']); ?>">
+               <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$topslist['item_image']); ?>"> 
+				 
            
                 </a>
                 <div class="tags">
@@ -105,6 +105,53 @@
 				<?php }else{ ?> 
 				<a href="javascript:void(0);" data-toggle="tooltip" title="Add to Wishlist" class="wishlist" onclick="addwhishlidt(<?php echo $topslist['item_id']; ?>);" id="addwhish"><i class="fa fa-heart"></i></a>  
 				<?php } ?>
+				</div>
+              </div>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
+
+              
+             <div class="price">
+           <?php 
+		   $current_date=date('m/d/Y h:ia');
+			$offerexpirydate=$topslist['offer_expairdate'].' '.$topslist['offer_time'];
+			if($current_date <= $offerexpirydate) {?>
+				<div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
+				<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+				</div>
+				<span class="price-old"><?php echo $topslist['item_cost']; ?></span>
+            <?php } else{?> 
+				   <span><?php echo $topslist['item_cost']; ?></span>
+              <?php  } ?>
+              </div>
+              
+              <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <a href="#">(5 reviews)</a>
+              </div>
+            </div>
+          </div>
+            </div>-->
+			<div class="item">
+          <div class=" box-product-outer" >
+            <div class="box-product">
+              <div class="img-wrapper  img_hover">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
+                  <!-- <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$topslist['item_image']); ?>">  -->
+				  <img src="<?php echo base_url(); ?>assets/home/images/test.png" />
+           
+                </a>
+                <div class="tags">
+                  <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
+                </div>
+                <div class="tags tags-left">
+                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
+                </div>
+				<div style="background:#45b1b5;color:#fff;padding:2px;">
+					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
