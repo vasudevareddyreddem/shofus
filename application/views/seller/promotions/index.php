@@ -1,10 +1,12 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.css">
 
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
-<script src="<?php echo base_url();?>assets/vendor/datatable/jquery-ui.js"></script>
-<script src="<?php echo base_url();?>assets/seller/js/jquery-timepicker.js"></script>
   <link href="<?php echo base_url(); ?>assets/seller/css/timePicker.css" rel="stylesheet" type="text/css"/> 
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
+<script src="<?php echo base_url();?>assets/seller/js/jquery-timepicker.js"></script>
+<script src="<?php echo base_url();?>assets/vendor/datatable/jquery-ui.js"></script>
+
+
  
 <style>
 tfoot input {
@@ -180,6 +182,7 @@ tfoot input {
 					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                 </div>
 				<input type="hidden" id="dtp_input1" value="" /><br/>
+				</div>
 			<!--<div class="form-group">
 			
 			
