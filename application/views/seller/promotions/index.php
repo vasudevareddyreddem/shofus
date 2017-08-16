@@ -3,6 +3,9 @@
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery-ui.js"></script>
+<script src="<?php echo base_url();?>assets/seller/js/jquery-timepicker.js"></script>
+  <link href="<?php echo base_url(); ?>assets/seller/css/timePicker.css" rel="stylesheet" type="text/css"/> 
+ 
 <style>
 tfoot input {
         width: 100%;
@@ -168,8 +171,16 @@ tfoot input {
 		</div><span style="color:red" id="offeramounterror<?php echo $subcategory->subcategory_id;?>"></span>
 		</div>
 	
-		<div class="row">
-			<div class="form-group">
+		<div class="row" style="padding:5px 12px;">
+		    <div class="form-group">
+                <label for="dtp_input1" class=" control-label">DateTime Picking</label>
+                <div class="input-group date form_datetime " data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+			<!--<div class="form-group">
 			
 			
 			<div class="col-md-6">	
@@ -191,7 +202,7 @@ tfoot input {
 			</select>
 			<span style="color:red" id="offerttime<?php echo $subcategory->subcategory_id;?>"></span>			
 			</div>	
-
+			-->
 		</div>		
 	
 		
@@ -437,6 +448,39 @@ $(document).ready(function() {
      
 
   <!--body end here --> 
+  <script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+	$('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+</script>
   
   <script language="JavaScript" type="text/javascript">
 
