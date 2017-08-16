@@ -79,12 +79,10 @@
 				</th>
 				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button" >Submit</a></div>
 				<th>Item Name</th>
-                <th>Sku Id</th>
-                <th>Special price</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
                 <th>After Amount</th>
-                <th>Combo offer item Name</th>
+                <th>Offer Type</th>
                 <th>Offer expiry Date and Time</th>                
             </tr>
         </thead>
@@ -98,13 +96,11 @@
 					<tr>
 						<td><input value="<?php echo $item_data->item_id; ?>" type="checkbox" id="cat_id[]" name="cat_id[]" ></td>
 						<td><?php echo $item_data->item_name;?></td>
-						<td><?php echo $item_data->skuid;?></td>
-						<td><?php echo $item_data->special_price;?></td>
 						<td><?php echo $item_data->item_code;?></td>
 						<td><?php echo $item_data->item_cost;?></td>
 						<td><?php echo $item_data->offer_amount;?></td>
-						<td><?php if($item_data->offer_combo_item_id !=4 && $item_data->offer_combo_item_id !='' && $item_data->offer_combo_item_id!=0){ echo $item_data->offer_combo_item_name; }else{ echo ""; }?></td>
-						<td><?php echo $item_data->offer_expairdate;?></td>
+						<td><?php echo $item_data->offer_combo_item_id;?></td>
+						<td><?php echo $item_data->offer_expairdate;?>,&nbsp;<?php echo $item_data->offer_time;?></td>
 
 					</tr>
 				  <?php $k++; } ?>
@@ -177,15 +173,15 @@
    </div>
      </form>
 	<script type="text/javascript">
+	function IsMobile<?php echo $subcategory->subcategory_id;?>(reasontype) {
+        var regex = /^[0-9]+$/;
+        return regex.test(reasontype);
+	}
 	 $(function () {
      $('#datepicker<?php echo $subcategory->subcategory_id;?>').datetimepicker({  
          minDate:new Date(),
       });
  });
-	function IsMobile<?php echo $subcategory->subcategory_id;?>(reasontype) {
-        var regex = /^[0-9]+$/;
-        return regex.test(reasontype);
-	}
 	$('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('');
 	$('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
 	
@@ -343,6 +339,7 @@
 	  	
 	  
 	  jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('');
+	   
 
 	  jQuery('#offerttime<?php echo $subcategory->subcategory_id;?>').html('');
 	  $("#offeramounterror").html('');
@@ -402,8 +399,7 @@ $(document).ready(function() {
 
   <!--body end here --> 
   <script type="text/javascript">
-  
-    $('.form_datetime').datetimepicker({
+  $('.form_datetime').datetimepicker({
         //language:  'fr',
         weekStart: 1,
         todayBtn:  1,
