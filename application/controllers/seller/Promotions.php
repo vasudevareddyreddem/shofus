@@ -62,7 +62,6 @@ class Promotions extends Admin_Controller {
 			'offer_combo_item_name'=>$details['item_name'],
 			'offer_type'=>$post['offertype'],
 			'offer_expairdate'=>Date('Y-m-d h:i:s A',strtotime(htmlentities($post['expairdate']))),
-			//'offer_expairdate'=>$post['expairdate']
 			);
 			//echo '<pre>';print_r($data);exit;
 			$update=$this->Promotions_model->add_offer_to_productss($cat_ida,$data);

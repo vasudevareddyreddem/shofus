@@ -225,7 +225,7 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else{
 				$products= $this->Customerapi_model->get_product_details($item_id);
-				$currentdate=date('Y-m-d h:i:s');
+				$currentdate=date('Y-m-d h:i:s A');
 				if($products['offer_expairdate']>=$currentdate){
 						$item_price= ($products['item_cost']-$products['offer_amount']);
 						$price	=(($qty) * ($item_price));
@@ -353,7 +353,7 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else{
 				$products= $this->Customerapi_model->get_product_details($item_id);
-				$currentdate=date('Y-m-d h:i:s');
+				$currentdate=date('Y-m-d h:i:s A');
 				if($products['offer_expairdate']>=$currentdate){
 						$item_price= ($products['item_cost']-$products['offer_amount']);
 						$price	=(($qty) * ($item_price));
