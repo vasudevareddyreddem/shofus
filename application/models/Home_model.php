@@ -320,7 +320,7 @@ public function getproducts($subid)
 	}
 	public function get_sidebar_category_list()
 	{
-		$this->db->select('category.category_name,category.category_id,')->from('products');
+		$this->db->select('category.category_name,category.category_id,,category.category_image')->from('products');
 		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 		$this->db->join('category', 'category.category_id =products.category_id', 'left');
 		$this->db->group_by('category.category_id');

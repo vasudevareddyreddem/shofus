@@ -1301,6 +1301,11 @@
 	}else{
 		$('#product_theme').hide();	
 	}
+	if(ids==26){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#idealfor').hide();
+	}
 	if(ids==52){
 		$('#sizeid').show();
 		$('#colorid').show();

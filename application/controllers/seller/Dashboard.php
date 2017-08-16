@@ -31,6 +31,19 @@ class Dashboard extends Admin_Controller {
 			
 		}
 	}
+
+  function getservice(){
+    $details = $this->dashboard_model->get_all_request_details($this->session->userdata('seller_id'));
+    //print_r($details);exit; 
+    foreach ($details as $data){
+      $detail=$this->dashboard_model->update_service_data($data['service_id'],0);  
+    }
+    if(count($detail)>0){
+      $dataa['msg']=1;  
+      echo json_encode($dataa); 
+      
+    }
+  }
 	public function index()
 	{
   

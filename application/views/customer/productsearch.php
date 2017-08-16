@@ -61,11 +61,13 @@
             <div id="top-categories" class="product-flexslider hidden-buttons">
         <div class="slider-items slider-width-col4 products-grid">
         <?php foreach ($top_offers as $tops){  ?>
-        <div class="item">
-                  <div class="pro-img"><img src="<?php echo base_url('assets/home/images/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
-                    <div class="pro-info"><?php echo $tops['item_name']; ?></div>
-          </div>
-                  </div>
+        <a href="<?php echo base_url('category/productview/'.base64_encode($tops['item_id'])); ?>">
+					<div class="item" style="border: 1px #ddd solid;">
+					<div class="pro-img img-wrapper  img_hover"><img src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
+					</div>
+					<div class="pro-info" style="border-top:1px solid #ddd;"><?php echo $tops['item_name']; ?></div>
+					</div>
+					</a>
               <?php } ?>
          </div>
       </div>

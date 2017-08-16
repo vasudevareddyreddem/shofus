@@ -291,12 +291,12 @@
 			<div class="col-md-6 form-group">
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Type</label>
-					<input type="text" class="form-control" id="product_type7" name="product_type7" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
+					<input type="text" class="form-control" id="product_type71" name="product_type71" value="<?php echo isset($productdetails['producttype'])?$productdetails['producttype']:''; ?>" >
 				</div>
 			</div>
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme1"  type="text" name="product_theme1" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			<input class="form-control" id="product_theme12"  type="text" name="product_theme12" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
 	<div class="row" id="winterwaerinputs" style="display:none;">
@@ -315,7 +315,7 @@
 		
 			<div class="col-md-6 form-group">
 			<label>Theme</label>
-			<input class="form-control" id="product_theme"  type="text" name="product_theme" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
+			<input class="form-control" id="product_theme23"  type="text" name="product_theme23" value="<?php echo isset($productdetails['theme'])?$productdetails['theme']:''; ?>" />
 			</div>
 	</div>
 	<div class="row" id="product_theme" style="display:none;">
@@ -741,6 +741,8 @@ function removeextrafields(){
 	   $('#product_sufficient').val('');
 	   $('#product_type8').val('');
 	   $('#product_type7').val('');
+	   $('#product_type71').val('');
+	   $('#product_theme12').val('');
 	   $('#product_theme1').val('');
 	   $('#product_theme').val('');
 	   $('#dial_shape2').val('');
@@ -957,11 +959,12 @@ function getspecialinputs(ids){
 
 	}
 	if(ids==11 || ids==21){
-		$('#womensaccessoriesinputs').show();
+		$('#product_themeetc').show();
 		$('#sizeid').hide();
 		$('#colorid').hide();
+		//$('#ideal_for').hide();
 	}else{
-		$('#womensaccessoriesinputs').hide();
+		$('#product_themeetc').hide();
 
 	}
 	if(ids==13 || ids==16 || ids==17){
@@ -973,7 +976,7 @@ function getspecialinputs(ids){
 		$('#mensfabricsinputs1').hide();
 
 	}
-	if(ids==14 || ids==19 || ids==20 || ids==22 || ids==8){
+	if(ids==14 || ids==19 || ids==20 || ids==8){
 		$('#winterwaerinputs1').show();
 		$('#sizeid').show();
 		$('#colorid').show();
@@ -1008,11 +1011,11 @@ function getspecialinputs(ids){
 	
 	
 	if(ids==22){
-		$('#winterwaerinputs').show();
+		$('#mensaccessoriesinputs').show();
 		$('#sizeid').show();
 		$('#colorid').show();
 	}else{
-		$('#winterwaerinputs').hide();
+		$('#mensaccessoriesinputs').hide();
 	}
 	if(ids==51){
 		$('#mensehinicwearinputs').show();
@@ -1030,6 +1033,11 @@ function getspecialinputs(ids){
 	if(ids==24){
 		$('#sizeid').hide();
 		$('#colorid').hide();
+	}
+	if(ids==26){
+		$('#sizeid').hide();
+		$('#colorid').hide();
+		$('#idealfor').hide();
 	}
 	if(ids==27){
 		$('#watchesinputs').show();
@@ -1103,6 +1111,7 @@ function getspecialinputs(ids){
 	}else{
 		$('#laptopsinputs').hide();	
 	}
+	
 	
 	
 	
@@ -1384,7 +1393,29 @@ function getspecialinputs(ids){
 					}
 				}
 			},
+			product_type71: {
+					validators: {
+					notEmpty: {
+						message: 'Type is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Type can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
 			product_theme: {
+					validators: {
+					notEmpty: {
+						message: 'Theme is required'
+					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Theme can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_theme12: {
 					validators: {
 					notEmpty: {
 						message: 'Theme is required'

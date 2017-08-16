@@ -34,7 +34,13 @@
 				<div class="box">
             <div class="box-header">
               <h3 class="box-title">Home Page Banners List
-              <a href="<?php echo base_url('seller/showups/addhomebanner');?>" class="btn btn-primary pull-right">Add</a></h3>
+              <a href="<?php echo base_url('seller/showups/addhomebanner');?>" class="btn btn-primary pull-right">Add</a>
+                 <!-- <?php if(count($banner_button)>5){ ?> -->
+                  <!-- <a  class="btn btn-danger pull-right">Limit Exceeded</a> -->
+                <!-- <?php }else{ ?> -->
+                  
+                 <!-- <?php } ?> -->
+              </h3>
             </div>
             <!-- /.box-header -->
             <?php if(!empty($seller_banner))  { ?>
@@ -42,7 +48,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Sellr Id</th>
+                  <th>Seller Id</th>
                   <th>Seller Name</th>
                   <th>Banner</th>
                   <th>Start date</th>

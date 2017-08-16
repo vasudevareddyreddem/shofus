@@ -7,6 +7,19 @@ class Customer_model extends MY_Model
 		$this->load->database("default");
 	}
 	
+	
+	/* item qty updating purpose*/
+	public function get_item_details($itemid){
+		$this->db->select('products.item_quantity')->from('products');		
+		$this->db->where('item_id', $itemid);
+		return $this->db->get()->row_array();
+	}
+	public function update_tem_qty_after_purchasingorder($itemid,$qty,$sellerid){
+		$sql1="UPDATE products SET item_quantity ='".$qty."' WHERE item_id = '".$itemid."' AND seller_id = '".$sellerid."' ";
+       	return $this->db->query($sql1);
+	}	
+	
+	/* item qty updating purpose*/
 	/* save orders purpose*/
 	public function order_list($cust_id){
 		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.item_description,products.item_image')->from('order_items');
