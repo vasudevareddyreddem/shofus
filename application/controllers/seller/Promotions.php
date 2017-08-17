@@ -61,18 +61,20 @@ class Promotions extends Admin_Controller {
 			'offer_combo_item_id'=>$post['combo'],
 			'offer_combo_item_name'=>$details['item_name'],
 			'offer_type'=>$post['offertype'],
-			//offer_expairdate'=>Date('Y-m-d h:i:s A',strtotime(htmlentities($post['expairdate']))),
+			'offer_expairdate'=>Date('Y-m-d h:i:s A',strtotime(htmlentities($post['expairdate']))),
 			);
-			echo '<pre>';print_r($data);exit;
+			//echo '<pre>';print_r($data);exit;
 			$update=$this->Promotions_model->add_offer_to_productss($cat_ida,$data);
+			
 			
 		}
 		if(count($update)>0){
 			$data=array('msg'=>1);
 			echo json_encode($data);
 			$this->session->set_flashdata('success',"Offer successfully Updated!");
-			//redirect('seller/promotions');
+			redirect('seller/promotions');
 		}
+		
 	
 		
 		
@@ -195,7 +197,7 @@ public function addtopoffers()
 							'offer_percentage'=>$post['offeramount'],
 							'offer_amount'=>$offer_amount,
 							'offer_type'=>5,
-							'offer_expairdate'=>date("Y-m-d H:i:s"),  
+							'offer_expairdate'=>date("Y-m-d h:i:s A"),  
 							);			
 							$productupdate=$this->Promotions_model->add_topoffer_to_products_inproducts($cat_ida,$data1);
 							$update=$this->Promotions_model->add_topoffer_to_products($data);
@@ -265,7 +267,7 @@ public function dealsoftheday()
 							'offer_percentage'=>$post['offeramount'],
 							'offer_amount'=>$offer_amount,
 							'offer_type'=>5,
-							'offer_expairdate'=>date("Y-m-d H:i:s"),  
+							'offer_expairdate'=>date("Y-m-d h:i:s A"),  
 							);			
 							$productupdate=$this->Promotions_model->add_topoffer_to_products_inproducts($cat_ida,$data1);
 

@@ -106,6 +106,7 @@
 			
 			<?php if($category_id=='18'){ ?>
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<?php if(count($myrestaurant)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingOne">
 						 <h4 class="panel-title">
@@ -127,8 +128,8 @@
 						</div>
 					</div>
 				</div>
-				
-				
+				<?php } ?>
+				<?php if(count($cusine_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -152,6 +153,8 @@
 						</div>
 					</div>
 				</div>
+			<?php } ?>
+				<?php if(count($avalibility_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingOne">
 				<h4 class="panel-title">
@@ -178,12 +181,14 @@
 						</div>
 					</div>
 				</div>
+			<?php } ?>
 				
 				
 				
 			</div>
 			<?php }else if($category_id=='21'){ ?>
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<?php if(count($offer_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -205,6 +210,8 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
+				<?php if(count($brand_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -226,6 +233,8 @@
 						</div>
 					</div>
 				</div>
+			<?php } ?>
+				<?php if(count($discount_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -247,6 +256,8 @@
 						</div>
 					</div>
 				</div>
+			<?php } ?>
+				<?php if(count($avalibility_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingOne">
 				<h4 class="panel-title">
@@ -273,12 +284,14 @@
 						</div>
 					</div>
 				</div>
+			<?php } ?>
 				
 				
 				
 			</div>
 				<?php }else if($category_id=='20'){ ?>
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<?php if(count($offer_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -300,6 +313,8 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
+				<?php if(count($color_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -321,6 +336,8 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
+				<?php if(count($brand_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -342,6 +359,8 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
+				<?php if(count($discount_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -363,6 +382,8 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
+				<?php if(count($avalibility_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingOne">
 				<h4 class="panel-title">
@@ -389,12 +410,14 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
 				
 				
 				
 			</div>
 				<?php }else if($category_id=='19'){ ?>
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<?php if(count($offer_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -416,6 +439,8 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
+				<?php if(count($color_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -437,6 +462,8 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
+				<?php if(count($sizes_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -458,6 +485,8 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
+				<?php if(count($brand_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -479,6 +508,8 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
+				<?php if(count($discount_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -500,6 +531,8 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
+				<?php if(count($avalibility_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingOne">
 				<h4 class="panel-title">
@@ -526,6 +559,7 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
 				
 				
 				
@@ -541,10 +575,28 @@
 		<?php //echo '<pre>';print_r($subcategory_porduct_list);exit; ?>
 		<?php 
 		if(count($subcategory_porduct_list)>0){
-		
-		
-		$cnt=1;foreach($subcategory_porduct_list as $productslist){ ?>
-			<div class=" col-md-3 box-product-outer" style="width:23%">
+		 $customerdetails=$this->session->userdata('userdetails');
+		$cnt=1;foreach($subcategory_porduct_list as $productslist){ 
+		//echo'<pre>';print_r($whishlist_item_ids_list);exit;
+			$currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
+				}
+				?>
+		 <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
+			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
+			<input type="hidden" name="qty" id="qty" value="1" >
+			
+          <div class=" col-md-3 box-product-outer" style="width:23%">
             <div class="box-product">
               <div class="img-wrapper">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
@@ -557,21 +609,22 @@
                   <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
                 </div>
 				<div class="option">
-				<button  style="background-color:transparent;border: none;cursor:pointer;color:#fff;font-size:20px;
-				"type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>
-				<a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-
-				<?php if($productslist['yes']==1){ ?>
-				<a href="javascript:void(0);" style="color:#ef5350;" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+				  <button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
+				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)  ) { ?>
+				<a href="javascript:void(0);"  style="color:#ef5350;" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
 				<?php }else{ ?>	
-				<a href="javascript:void(0);"  onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+				<a href="javascript:void(0);" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="detail.html"><?php echo $productslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
               <div class="price">
-                <div>$13.50 <span class="label-tags"><span class="label label-primary">-10%</span></span> &nbsp;<span class="price-old">$15.00</span></div>
                
+				<div class="pull-left" ><?php echo ($item_price); ?> 
+				<span class="label-tags"><span class="label label-default">-<?php echo $percentage; ?>%</span></span>
+				</div>
+				<span class="price-old"><?php echo $orginal_price; ?></span>
+            
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -583,6 +636,7 @@
               </div>
             </div>
           </div>
+		  </form>
 		  <?php  
 			if(($cnt % 4)==0){?> 
 			<div class="clearfix"></div>
@@ -597,36 +651,6 @@
        
          
           
-          <div class="col-sm-4 col-md-3 hidden-sm box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper">
-                <a href="detail.html">
-                  <img alt="Product" src="<?php echo base_url(); ?>assets/home/images/polo1.jpg">
-                </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-success arrowed">New Arrivals</span></span>
-                </div>
-                <div class="option">
-                  <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="detail.html">IncultGeo Print Polo T-Shirt</a></h6>
-              <div class="price">
-                <div>$13.50 <span class="label-tags"><span class="label label-primary arrowed">-10%</span></span></div>
-                <span class="price-old">$15.00</span>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-          </div>
          
         </div>
 		</span>

@@ -121,41 +121,36 @@ class Customer extends Front_Controller
 	 {
 		$post=$this->input->post();
 		$customerdetails=$this->session->userdata('userdetails');
-		$details= $this->customer_model->get_product_details($post['producr_id']);
+		$products= $this->customer_model->get_product_details($post['producr_id']);
+			$qty=$post['qty'];
 			//echo '<pre>';print_r($post);exit;
-		if($details['offer_percentage']!='' && $details['offer_type']!=4){
-			if(date('m/d/Y') <= $details['offer_expairdate']){
-				$item_price= ($details['item_cost']-$details['offer_amount']);
-				$price	=(($post['qty']) * ($item_price));
-			}else{
-				$item_price= $details['item_cost'];
-				$price	=(($post['qty']) * ($item_price));
-			}
-			// $item_price= ($details['item_cost']-$details['offer_amount']);			
-			// $price	=(($post['qty']) * ($item_price));
-		}else{
-			$price= (($post['qty']) * ($details['item_cost']));
-			$item_price=$details['item_cost'];
-			
-		}
-		$commission_price=(($price)*($details['commission'])/100);
-		if($details['category_id']==1){
-			if($price <500){
-				$delivery_charges=35;
-			}else{
-				$delivery_charges=0;
-			}
-		}else{
-			
-			if($price <500){
-				$delivery_charges=75;
-			}else if(($price > 500) && ($price < 1000)){
-				$delivery_charges=35;
-			}else if($price >1000){
-				$delivery_charges=0;
-			}
-		}
 		
+			$currentdate=date('Y-m-d h:i:s A');
+				if($products['offer_expairdate']>=$currentdate){
+						$item_price= ($products['item_cost']-$products['offer_amount']);
+						$price	=(($qty) * ($item_price));
+				}else{
+					//echo "expired";
+					$item_price= $products['special_price'];
+					$price	=(($qty) * ($item_price));
+				}
+				$commission_price=(($price)*($products['commission'])/100);
+				if($products['category_id']==18){
+						if($price <500){
+							$delivery_charges=35;
+						}else{
+							$delivery_charges=0;
+						}
+					}else{
+						
+						if($price <500){
+							$delivery_charges=75;
+						}else if(($price > 500) && ($price < 1000)){
+							$delivery_charges=35;
+						}else if($price >1000){
+							$delivery_charges=0;
+						}
+					}
 		
 		
 		$adddata=array(
@@ -166,8 +161,8 @@ class Customer extends Front_Controller
 		'total_price'=>$price,
 		'commission_price'=>$commission_price,
 		'delivery_amount'=>$delivery_charges,
-		'seller_id'=>$details['seller_id'],
-		'category_id'=>$details['category_id'],
+		'seller_id'=>$products['seller_id'],
+		'category_id'=>$products['category_id'],
 		'create_at'=>date('Y-m-d H:i:s'),
 		);
 		//echo '<pre>';print_r($adddata);exit;
@@ -260,40 +255,39 @@ class Customer extends Front_Controller
 		$customerdetails=$this->session->userdata('userdetails');
 		$post=$this->input->post();
 		
-		$details= $this->customer_model->get_product_details($post['product_id']);
-		//echo '<pre>';print_r($details);exit;
+		$products= $this->customer_model->get_product_details($post['product_id']);
+		//echo '<pre>';print_r($post);exit;
 		
-		if($details['offer_percentage']!='' && $details['offer_type']!=4){
-			if(date('m/d/Y') <= $details['offer_expairdate']){
-				$item_price= ($details['item_cost']-$details['offer_amount']);
-				$price	=(($post['qty']) * ($item_price));
-			}else{
-				$item_price= $details['item_cost'];
-				$price	=(($post['qty']) * ($item_price));
-			}
-			//$item_price= ($details['item_cost']-$details['offer_amount']);			
-			//$price	=(($post['qty']) * ($item_price));		
-		}else{
-			$price= (($post['qty']) * ($details['item_cost']));
-			$item_price=$details['item_cost'];
-		}
-		$commission_price=(($price)*($details['commission'])/100);
-		if($details['category_id']==1){
-			if($price <500){
-				$delivery_charges=35;
-			}else{
-				$delivery_charges=0;
-			}
-		}else{
-			
-			if($price <500){
-				$delivery_charges=75;
-			}else if(($price > 500) && ($price < 1000)){
-				$delivery_charges=35;
-			}else if($price >1000){
-				$delivery_charges=0;
-			}
-		}
+		$qty=$post['qty'];
+			//echo '<pre>';print_r($post);exit;
+		
+			$currentdate=date('Y-m-d h:i:s A');
+				if($products['offer_expairdate']>=$currentdate){
+						$item_price= ($products['item_cost']-$products['offer_amount']);
+						$price	=(($qty) * ($item_price));
+				}else{
+					//echo "expired";
+					$item_price= $products['special_price'];
+					$price	=(($qty) * ($item_price));
+				}
+				$commission_price=(($price)*($products['commission'])/100);
+				if($products['category_id']==18){
+						if($price <500){
+							$delivery_charges=35;
+						}else{
+							$delivery_charges=0;
+						}
+					}else{
+						
+						if($price <500){
+							$delivery_charges=75;
+						}else if(($price > 500) && ($price < 1000)){
+							$delivery_charges=35;
+						}else if($price >1000){
+							$delivery_charges=0;
+						}
+					}
+		
 		//echo "<pre>";print_r($post);exit;
 		$updatedata=array(
 		'qty'=>$post['qty'],
@@ -588,6 +582,8 @@ class Customer extends Front_Controller
 	}else{
 		$data['msg']=0;	
 		echo json_encode($data); 
+		$this->session->set_flashdata('loginerror','Please login to continue');
+		 //redirect('customer');
 	}
 	 
  }

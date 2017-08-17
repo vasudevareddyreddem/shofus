@@ -1907,8 +1907,24 @@
             </button>
 		</div>
 		<?php //echo '<pre>';print_r($subcategory_porduct_list);exit; ?>
-		<?php $cnt=1;foreach($subcategory_porduct_list as $productslist){ ?>
-          <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+		<?php 
+          $customerdetails=$this->session->userdata('userdetails');
+		$cnt=1;foreach($subcategory_porduct_list as $productslist){ 
+		//echo'<pre>';print_r($whishlist_item_ids_list);exit;
+			$currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
+				}
+				?>
+		 <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
 			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
 			<input type="hidden" name="qty" id="qty" value="1" >
@@ -1927,8 +1943,7 @@
                 </div>
 				<div class="option">
 				  <button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
-                  <a href="#" id="compare" onclick="compare(<?php echo $productslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left" ></i></a>
-				<?php if($productslist['yes']==1){ ?>
+				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)  ) { ?>
 				<a href="javascript:void(0);"  style="color:#ef5350;" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
 				<?php }else{ ?>	
 				<a href="javascript:void(0);" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
@@ -1937,16 +1952,12 @@
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
               <div class="price">
-                <?php $current_date=date('m/d/Y h:ia');
-			$offerexpirydate=$productslist['offer_expairdate'].' '.$productslist['offer_time'];
-			if($current_date <= $offerexpirydate) {?>
-				<div class="pull-left" ><?php echo ($productslist['item_cost'])-($productslist['offer_amount']); ?> 
-				<span class="label-tags"><span class="label label-default">-<?php echo $productslist['offer_percentage']; ?>%</span></span>
+               
+				<div class="pull-left" ><?php echo ($item_price); ?> 
+				<span class="label-tags"><span class="label label-default">-<?php echo $percentage; ?>%</span></span>
 				</div>
-				<span class="price-old"><?php echo $productslist['item_cost']; ?></span>
-            <?php } else{?> 
-				   <span><?php echo $productslist['item_cost']; ?></span>
-              <?php  } ?>
+				<span class="price-old"><?php echo $orginal_price; ?></span>
+            
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
