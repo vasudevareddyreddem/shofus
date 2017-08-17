@@ -27,78 +27,81 @@ class CustomerApi extends REST_Controller {
 
 	public function register_post()
 	{
-		$get=$this->input->get();
-		//echo "<pre>";print_r($get);exit;
-		$mobile = preg_match('/^[0-9]{10}+$/',$get['mobile_email']);
-
-		if($mobile==1){
-			$mobile_store = $get['mobile_email'];
-			//echo "<pre>";print_r($mobile_store);exit;
-		}else{
-			$mobile_store =NULL;
+		
+		$username=$this->input->get('username');
+		$password=$this->input->get('password');	
+		if($username==''){
+		$message = array('status'=>0,'message'=>'Username id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		
+		}elseif($password==''){
+		$message = array('status'=>0,'message'=>'Password is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		
 		}
-		//echo "<pre>";print_r($mobile_store);exit;
-		$email =filter_var($get['mobile_email'], FILTER_VALIDATE_EMAIL);
-		 if($email==$get['mobile_email']){
-		 	$email_store = $get['mobile_email'];
-		 }else{
-		 	$email_store = NULL;
-		 }
-		//echo "<pre>";print_r($email);exit;
-		$mobilecheck = $this->Customerapi_model->mobile_check($get['mobile_email']);
-		//echo $this->db->last_query();exit;
-		$emailcheck = $this->Customerapi_model->email_check($get['mobile_email']);
-		if(count($mobilecheck)>0)
-		{
-			$message = array('status'=>0,'message'=>'Mobile number already exits. Please use another Mobile number.');
-			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}else if(count($emailcheck)>0){
-				
-				$message = array('status'=>0,'message'=>'Email Id already exits. Please use another Email Id.');
+		$cheking =$this->Customerapi_model->mobile_checking($username);
+		if(count($cheking)>0){
+				$message = array('status'=>0,'message'=>'Mobile number / Email id already exits!');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}else{
-					//send otp
-				if($email){
-
-					$this->load->library('email');
-					$six_digit_random_number = mt_rand(100000, 999999);
-		 			
-			 		//send mail
-			 		$this->email->from('admin@cartinhour.com', 'CartInHour');		
-			 		$this->email->to($get['mobile_email']);
-			 		$this->email->subject('CartInHour - Registraion');
-			 		$message_otp = "Dear User,\nYou are Registered Successfully. \n Your OTP is : " .$six_digit_random_number. "\n\n Thanks,\nCart In Hour Team";
-			 		$this->email->message($message_otp);
-			 		$this->email->send();
+		}else{
+			$email =filter_var($username, FILTER_VALIDATE_EMAIL);
+				if($email==''){
+					$mobile=$username;
+					$email='';
 				}else{
-					$six_digit_random_number = mt_rand(100000, 999999);
-					$user_id="cartin"; 
-					$pwd="9494422779";    
-					$sender_id = "CARTIN";          
-					$mobile_num = $mobile_store;  
-					$message = "Your OTP is : " .$six_digit_random_number;               
-					// Sending with PHP CURL
-					$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
-					$ret = file($url);
+					$mobile='';
+					$email=$username;
 				}
-				$details=array(
-				'cust_email'=>$email_store,
-				'cust_mobile'=>$mobile_store,
-				'otp_verification'=>$six_digit_random_number,
+			$details=array(
+				'cust_email'=>$email,
+				'cust_mobile'=>$mobile,
+				'cust_password'=>$password,
 				'role_id'=>1,
 				'status'=>1,
 				'create_at'=>date('Y-m-d H:i:s'),
 				);
 				$customerdetails = $this->Customerapi_model->save_customer($details);
 				if(count($customerdetails)>0){
-
-					$message = array('status'=>1,'customer_id'=>$customerdetails,'message'=>'Register Successfully');
-					$this->response($message, REST_Controller::HTTP_OK);
+						$message = array('status'=>1,'cust_id'=>$customerdetails, 'message'=>'Registration successfully completed!');
+						$this->response($message, REST_Controller::HTTP_OK);
+					}else{
+						$message = array('status'=>0,'message'=>'!Invalida login details.Please try again');
+						$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 				}
-				
-	}
-}
+			
+		}
+		
 	
+	}
+		
+	
+	
+	
+	
+	/* login post*/
+	public function login_post()
+	{
+		$username=$this->input->get('username');
+		$password=$this->input->get('password');	
+		if($username==''){
+		$message = array('status'=>0,'message'=>'Username id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		
+		}elseif($password==''){
+		$message = array('status'=>0,'message'=>'Password is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		
+		}
+		$logindetails=$this->Customerapi_model->login_customer($username,$password);
+		if(count($logindetails)>0){
+						$message = array('status'=>1,'details'=>$logindetails, 'message'=>'Customer details are found');
+						$this->response($message, REST_Controller::HTTP_OK);
+					}else{
+						$message = array('status'=>0,'message'=>'!Invalida login details.Please try again');
+						$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+	
+	}
 	
 	/*  Set Password Apis */
 	public function socialregister_post()
@@ -179,22 +182,7 @@ class CustomerApi extends REST_Controller {
 	}
 
 
-	/*  Login Apis */
-	public function login_post()
-	{	 
-		$get=$this->input->get();
-		//$pass=md5($get['password']);
-		$logindetails = $this->Customerapi_model->login_details($get['email']);
-		//echo '<pre>';print_r($logindetails);exit;
-		if(count($logindetails)>0)
-		{	
-		$message = array('status'=>1,'customer_id'=>$logindetails['customer_id'],'message'=>'Successfully Login');
-				$this->response($message, REST_Controller::HTTP_OK);		
-		}else{
-			$message = array('status'=>0,'message'=>'Invalid Email Address or Password');
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
-		}
- 	}
+	
 
 	/* add to cart */
 	public function addtocart_post(){
@@ -302,11 +290,11 @@ class CustomerApi extends REST_Controller {
 				$incart_id[]=$cartids['id'];
 				$initem_id[]=$cartids['item_id'];
 			}
-			if(!in_array($item_id,$incart_id))
+			if(!in_array($item_id,$initem_id))
 			{
 				$message = array('status'=>0,'message'=>'Product not exits.Please try again');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}else if(!in_array($cart_id,$initem_id)){
+			}else if(!in_array($cart_id,$incart_id)){
 				$message = array('status'=>0,'message'=>'Product not exits.Please try again');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}else{
@@ -421,13 +409,14 @@ class CustomerApi extends REST_Controller {
 		{ 		
 			$cart_ids[]=$cartids['cust_id'];
 		}
-		//echo '<pre>';print_r($cart_ids);exit;
+		$item_lists= $this->Customerapi_model->get_cart_products_list($customer_id);
+		//echo '<pre>';print_r($item_lists);exit;
 		if(!in_array($customer_id,$cart_ids))
 		{
 			$message = array('status'=>0,'message'=>'Customer having  no products in the cart');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else{
-			$message = array('status'=>1,'message'=>'cart items list','list'=>$cart_item_ids);
+			$message = array('status'=>1,'message'=>'cart items list','list'=>$item_lists);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}
 	}

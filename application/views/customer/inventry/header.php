@@ -55,7 +55,7 @@
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
 				<?php foreach($unreadcount as $list){ ?>
-                  <li>
+                 <a href="<?php echo base_url('inventory/notificationview/'.base64_encode($list['seller_id'])); ?>"> <li>
                    <i class="fa fa-warning text-yellow"></i>
 				   <?php 
 				   
@@ -64,7 +64,7 @@
 						$postmessage = substr($messageword, 0, $letters);
 						echo $postmessage;
 				   ?>
-                </li>
+                </li></a>
 				  <?php }  ?>
                 </ul>
               </li>

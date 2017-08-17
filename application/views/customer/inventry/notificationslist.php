@@ -3,7 +3,7 @@
       <div class="container">
          <!-- Main content -->
       <div class="row">
-	  <?php //echo '<pre>';print_r($category_list);exit; ?>
+	  <?php //echo '<pre>';print_r($notification_details);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
               <h3 class="box-title" >Messages List</h3>
@@ -32,7 +32,7 @@
                 <?php  
                   foreach($notification_details as $details) { ?>
 				  
-				  <?php if($details['count'][0]['unreadcount']!=0){ ?>
+				<?php if($details['count'][0]['unreadcount']!=0){ ?>
                 <tr style="background: darkseagreen none repeat scroll 0% 0%; color: white;">                   
                 <td><?php echo $details['seller_rand_id']; ?></td>
                 <td><?php echo $details['seller_name']; ?><?php if($details['count'][0]['unreadcount']!=0){ ?>&nbsp;<span style="color:darkslateblue;">(<?php  echo $details['count'][0]['unreadcount'];  ?>)</span><?php }  ?></td>

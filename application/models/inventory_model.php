@@ -621,18 +621,21 @@ class Inventory_model extends MY_Model
 		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
 		 $this->db->group_by('sellers.seller_id');
 		 $this->db->where('sellers.status', 1);
+		 $this->db->where('products.item_status', 1);
 		return $this->db->get()->result_array();
 	}
 
 	public function categorywise_quantity($id)
 	{
-		$this->db->select('products.seller_id,sellers.seller_name,sellers.seller_rand_id,category.category_name,subcategories.subcategory_name,products.item_quantity,products.item_name')->from('products');
+		$this->db->select('products.seller_id,sellers.seller_name,sellers.seller_rand_id,category.category_name,subcategories.subcategory_name,sum(products.item_quantity)as qty ,products.item_name')->from('products');
 		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
 		$this->db->join('category', 'category.category_id = products.category_id', 'left');
 		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
-		$this->db->group_by('products.item_quantity');
+		//$this->db->group_by('subcategories.subcategory_id');
+		$this->db->group_by('products.category_id');
 		$this->db->where('sellers.seller_id', $id);
 		$this->db->where('sellers.status', 1);
+		 $this->db->where('products.item_status', 1);
 		return $this->db->get()->result_array();
 	}
 
@@ -642,6 +645,17 @@ class Inventory_model extends MY_Model
 		$this->db->where('category_id',$cat_id);
 		$this->db->where('subcategory_id',$sub_id);
 		return $this->db->get()->row_array();
+	}
+	function get_seller_products_list($seller_id)
+	{
+		$this->db->select('products.item_id')->from('products');
+		$this->db->where('seller_id',$seller_id);
+		return $this->db->get()->result_array();
+	}
+	function activate_product_status($item_id,$seller_id,$data)
+	{
+		$sql1="UPDATE products SET item_status ='".$data."'WHERE seller_id = '".$seller_id."' AND item_id='".$item_id."'";
+		return $this->db->query($sql1);
 	}
 	
 }

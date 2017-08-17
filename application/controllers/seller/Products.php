@@ -28,6 +28,7 @@ class Products extends Admin_Controller {
 	   
 	   $data['catitemdata'] = $this->products_model->getcatsubcatpro();
 	   $data['seller_prducts'] = $this->products_model->get_seller_products($this->session->userdata('seller_id'));
+	   $data['status_details'] = $this->products_model->get_seller_details($this->session->userdata('seller_id'));
 	   //echo '<pre>';print_r($data);exit;
 	   $data['catitemdata1'] = $this->products_model->getcatsubcatpro();
 		$data['cnt']= count($data['catitemdata1']);

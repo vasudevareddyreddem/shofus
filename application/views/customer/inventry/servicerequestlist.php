@@ -21,6 +21,7 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
+					<?php if(count($seller_details)>0){ ?>
               <table id="example1" class="table table-bordered table-striped table-responsive" >
                 <thead>
                 <tr>
@@ -53,6 +54,11 @@
                  <?php }?>
                 </tbody>              
               </table>
+			  
+					<?php } else{ ?>
+					<div> NO data  are available</div>
+					
+					<?php } ?>
              </div>
             <!-- /.box-body -->
           </div>

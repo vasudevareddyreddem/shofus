@@ -122,7 +122,7 @@ tfoot input {
 					<?php if($item_data->offer_type=='1' ){echo "Listing Discount";}
         elseif($item_data->offer_type=='2'){ ?><?php echo "Cart Discount"; ?> <?php } 
         elseif($item_data->offer_type=='3'){ ?><?php echo "Flat Price Offer";  ?> <?php }
-        elseif($item_data->offer_type=='4'){ ?><?php echo "Combo Disoucnt";  ?> <?php }
+        elseif($item_data->offer_type=='4'){ ?><?php echo "Combo Discount";  ?> <?php }
         else{
           echo "NULL";
         } ?>

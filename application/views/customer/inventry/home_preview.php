@@ -6,6 +6,11 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
+					<?php if($this->session->flashdata('error')): ?>
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('error');?></div>	
+					<?php endif; ?>
 
 	<div class="banner_home">
       <div id="myCarousel" class="carousel slide"> 
