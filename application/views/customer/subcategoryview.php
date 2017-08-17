@@ -459,6 +459,7 @@
                       <span aria-hidden="true">&times;</span>
             </button>
 		</div>
+		
 		<?php $cnt=1;foreach($subcategory_porduct_list as $productslist){ ?>
 		 <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >

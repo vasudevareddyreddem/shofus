@@ -348,8 +348,21 @@ class Adddetails extends Seller_adddetails{
 				$changedata=array('seller_password'=>$conpassword);
 				$passwordchange = $this->adddetails_model->setpassword($seller_id,$changedata);
 				if(count($passwordchange)>0){
-					$completeregistration = $this->adddetails_model->update_seller_competed($seller_id,1);
 					$sellerdetails = $this->adddetails_model->getseller_details($seller_id);
+					/* for notification purpose*/
+						$addnotifications = array(
+						'seller_id' => $seller_id,
+						'subject'=>'New seller',
+						'seller_message'=>$sellerdetails['seller_name'].' was successfully Registered.',
+						'message_type' =>'REPLY',
+						'created_at' => date('Y-m-d H:i:s'),
+						);
+						//echo '<pre>';print_r($addnotifications);exit;
+						$contact = $this->adddetails_model->save_notifciations($addnotifications);
+						
+						/* for notification purpose*/
+					$completeregistration = $this->adddetails_model->update_seller_competed($seller_id,1);
+					
 					$sellerlogindetails  = array(
 					'seller_id'    => $sellerdetails['seller_id'],
 					'seller_name'  => $sellerdetails['seller_name'],
