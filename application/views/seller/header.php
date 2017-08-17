@@ -569,9 +569,12 @@ $(document).ready(function(){
     {
     if(data == 1)
     {
-   $("#login-response").html("Invalid Email / Mobile Number  or password.").css("color", "red").fadeIn().fadeOut(5000);
-     $('#login_submit')[0].reset(); 
-    }
+		$("#login-response").html("Invalid Email / Mobile Number  or password.").css("color", "red").fadeIn().fadeOut(5000);
+		$('#login_submit')[0].reset(); 
+    }else if(data==2){
+		$("#login-response").html("Your account deactivated. Please contact to system admin").css("color", "red").fadeIn().fadeOut(9000);
+		$('#login_submit')[0].reset(); 	
+	}
     else if(data == 0)
     {
     window.location='<?php echo base_url("seller/dashboard"); ?>'; 

@@ -163,8 +163,8 @@ public function insert() {
             $username   = $this->input->post('login_email');
             $password = md5($this->input->post('login_password'));           
             $result   = $this->login_model->selleruser_login($username, $password);
+			if($result['status']!=0){
 			//echo '<pre>';print_r($result); exit;            
-                        
              if(count($result)>0) {
                 $datavalue= array(
                     'seller_id'    		=> $result['seller_id'],
@@ -180,6 +180,10 @@ public function insert() {
             } else {              
 				echo "1";
 				}
+				
+			}else{
+				echo "2";
+			}
                 
 
             }
