@@ -460,7 +460,29 @@
             </button>
 		</div>
 		
-		<?php $cnt=1;foreach($subcategory_porduct_list as $productslist){ ?>
+		<?php $cnt=1;foreach($subcategory_porduct_list as $productslist){ 
+		
+				$currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= (($productslist['offer_amount']) /$productslist['item_cost'])*100;
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+				}
+				
+		
+		echo '<pre>';print_r($percentage);
+		echo '%';
+		echo '<pre>';print_r($productslist['item_cost']);
+		echo '--';
+		echo '<pre>';print_r($productslist['offer_amount']);
+		echo '--';
+		echo '<pre>';print_r($item_price);
+		
+		echo '<pre>';print_r($productslist);
+
+		exit;?>
 		 <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
 			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >

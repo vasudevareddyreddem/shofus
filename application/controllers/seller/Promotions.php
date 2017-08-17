@@ -48,7 +48,7 @@ class Promotions extends Admin_Controller {
 	
 			}
 			$productprice=$this->Promotions_model->get_offer_product_price($cat_ida);
-			$offer_price=($productprice['item_cost'] * $post['offeramount']);
+			$offer_price=($productprice['special_price'] * $post['offeramount']);
 			$offer_price_pertange=($offer_price / 100);
 			//echo $offer_price;
 			//echo '--';
@@ -61,9 +61,9 @@ class Promotions extends Admin_Controller {
 			'offer_combo_item_id'=>$post['combo'],
 			'offer_combo_item_name'=>$details['item_name'],
 			'offer_type'=>$post['offertype'],
-			'offer_expairdate'=>Date('Y-m-d h:i:s A',strtotime(htmlentities($post['expairdate']))),
+			//offer_expairdate'=>Date('Y-m-d h:i:s A',strtotime(htmlentities($post['expairdate']))),
 			);
-			//echo '<pre>';print_r($data);exit;
+			echo '<pre>';print_r($data);exit;
 			$update=$this->Promotions_model->add_offer_to_productss($cat_ida,$data);
 			
 		}
@@ -71,7 +71,7 @@ class Promotions extends Admin_Controller {
 			$data=array('msg'=>1);
 			echo json_encode($data);
 			$this->session->set_flashdata('success',"Offer successfully Updated!");
-			redirect('seller/promotions');
+			//redirect('seller/promotions');
 		}
 	
 		
@@ -101,7 +101,7 @@ class Promotions extends Admin_Controller {
 						if(count($itemscount)>100){
 					$status=2;
 					}else{
-							$offer_price=($productprice['item_cost'] * $post['offeramount']);
+							$offer_price=($productprice['special_price'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
 							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
@@ -172,7 +172,7 @@ public function addtopoffers()
 					if(count($itemscount)>100){
 					$status=2;
 					}else{
-							$offer_price=($productprice['item_cost'] * $post['offeramount']);
+							$offer_price=($productprice['special_price'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
 							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
@@ -242,7 +242,7 @@ public function dealsoftheday()
 					if(count($itemscount)>100){
 					$status=2;
 					}else{
-							$offer_price=($productprice['item_cost'] * $post['offeramount']);
+							$offer_price=($productprice['special_price'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
 							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
