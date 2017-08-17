@@ -1588,8 +1588,8 @@ function getspecialinputs(ids){
 						message: 'Mega pixel is required'
 					},
                    regexp: {
-					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
-					message: 'Mega pixel can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9]+$/,
+					message: 'Mega pixel can only consist of digits'
 					}
 				}
 			},
