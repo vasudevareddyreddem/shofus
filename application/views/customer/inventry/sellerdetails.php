@@ -54,7 +54,7 @@
 					  </tr> 
 					  <tr>
 						<th >Created date</th>
-						<td><?php echo isset($seller_details['created_at'])?$seller_details['created_at']:''; ?></td>
+						<td><?php echo Date('d-M-Y',strtotime(htmlentities($seller_details['created_at'])));?></td>
 						
 					  </tr> 
 					  <tr>
