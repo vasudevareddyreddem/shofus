@@ -85,7 +85,9 @@
                 <th>Combo offer item Name</th>
                 <th>Offer expiry Date and Time</th>
 				<th>Status</th>
-                 <th>Action</th>                
+				<?php if($status_details['status']==1){ ?>
+                 <th>Action</th>
+				<?php } ?>				 
             </tr>
         </thead>
       
@@ -103,17 +105,15 @@
 						<td><?php echo $item_data->offer_amount;?></td>
 						<td><?php if($item_data->offer_combo_item_id !=4 && $item_data->offer_combo_item_id !='' && $item_data->offer_combo_item_id!=0){ echo $item_data->offer_combo_item_name; }else{ echo ""; }?></td>
 						<td><?php echo $item_data->offer_expairdate;?></td>
-						<?php if($item_data->item_status == 1) {  ?>
-						<td>Available</td>
-						<?php } else {?>					 
-						<td>Unavailable</td>
-						<?php } ?>
+						<td><?php if($item_data->item_status == 1) { 
+						echo "Available" ;}else { echo "Unavailable"; } ?>
+						</td>
+						<?php if($status_details['status']==1){ ?>
 						<td>
 						<a href="<?php echo site_url('seller/products/edit/'.base64_encode($item_data->item_id).'/'.base64_encode($item_data->category_id)); ?>">Edit</a> | &nbsp;
 						<a href="<?php echo site_url('seller/products/item_status/'.base64_encode($item_data->item_id).'/'.base64_encode($item_data->item_status)); ?>"><?php if($item_data->item_status==0){ echo 'Deactive'; }else{ echo "Active"; } ?></a>
-						
-						
 						</td>
+						<?php } ?>
                      
 					</tr>
 				  <?php $k++; } ?>

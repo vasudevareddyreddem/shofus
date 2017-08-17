@@ -38,6 +38,12 @@ class Products_model extends MY_Model
 		$this->db->where('item_status',1);
         return $this->db->get()->result_array();
 	}
+	public function get_seller_details($sid)
+	{
+		$this->db->select('sellers.seller_id,sellers.status')->from('sellers');
+		$this->db->where('seller_id',$sid);
+        return $this->db->get()->row_array();
+	}
 	public function get_subcategoies($cid)
 	{
 		$this->db->select('*')->from('subcategories');
