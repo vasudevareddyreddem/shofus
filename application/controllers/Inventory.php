@@ -492,9 +492,13 @@ public function servicerequestview(){
 					$data=array('status'=>$status);
 					
 					$updatestatus=$this->inventory_model->update_seller_status($id,$data);
-					//echo $this->db->last_query();exit;
+					$product_list=$this->inventory_model->get_seller_products_list($id);
+					//echo '<pre>';print_r($product_list);exit;
 					
 					if(count($updatestatus)>0){
+						foreach($product_list as $list){
+							$updatestatus=$this->inventory_model->activate_product_status($list['item_id'],$id,$status);
+						}
 						if($status==1){
 							$this->session->set_flashdata('success'," Seller activation successful");
 						}else{

@@ -646,6 +646,17 @@ class Inventory_model extends MY_Model
 		$this->db->where('subcategory_id',$sub_id);
 		return $this->db->get()->row_array();
 	}
+	function get_seller_products_list($seller_id)
+	{
+		$this->db->select('products.item_id')->from('products');
+		$this->db->where('seller_id',$seller_id);
+		return $this->db->get()->result_array();
+	}
+	function activate_product_status($item_id,$seller_id,$data)
+	{
+		$sql1="UPDATE products SET item_status ='".$data."'WHERE seller_id = '".$seller_id."' AND item_id='".$item_id."'";
+		return $this->db->query($sql1);
+	}
 	
 }
 ?>	

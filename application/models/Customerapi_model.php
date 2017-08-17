@@ -11,6 +11,16 @@ class Customerapi_model extends MY_Model
 	}
 
 
+	public function login_customer($username,$password){
+
+	$sql = "SELECT * FROM customers WHERE (cust_email ='".$username."' AND cust_password ='".md5($password)."') OR (cust_mobile ='".$username."' AND cust_password ='".md5($password)."')";
+	return $this->db->query($sql)->row_array();
+	}
+	public function mobile_checking($username){
+
+	$sql = "SELECT * FROM customers WHERE (cust_email ='".$username."') OR (cust_mobile ='".$username."')";
+      return $this->db->query($sql)->row_array(); 
+	}
 	public function mobile_check($mobile){
 
 		$sql="SELECT * FROM customers WHERE cust_mobile ='".$mobile."'";
@@ -305,6 +315,11 @@ class Customerapi_model extends MY_Model
 	public function get_cart_products($cust_id){
 		$this->db->select('cart.*,products.item_name,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,products.offer_expairdate,products.offer_time')->from('cart');
 		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
+		$this->db->where('cart.cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
+	public function get_cart_products_list($cust_id){
+		$this->db->select('*')->from('cart');
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
