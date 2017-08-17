@@ -51,7 +51,8 @@
 					  </tr> 
 					  <tr>
 						<th >Created date</th>
-						<td><?php echo isset($request_details['created_at'])?$request_details['created_at']:''; ?></td>
+						<td><?php echo Date('d-M-Y',strtotime(htmlentities($request_details['created_at'])));?></td>
+
 						
 					  </tr> 
 					  <tr>
