@@ -710,7 +710,13 @@ public function servicerequestview(){
 			{
 					$post=$this->input->post();
 					//echo "<pre>";print_r($_FILES);
-					//echo "<pre>";print_r($post);exit;
+					$alreadyexits = $this->inventory_model->get_name_existss($post['categoryname']);
+						if(count($alreadyexits)>0){
+							$this->session->set_flashdata('error',"Category Namealready exits.please use another category Name.");
+							redirect('inventory/categoryadd');
+							
+						}
+					
 					if($_FILES['cat_image']['name']!=''){
 					$catimg=$_FILES['cat_image']['name'];
 					move_uploaded_file($_FILES['cat_image']['tmp_name'], "assets/categoryimages/" . $_FILES['cat_image']['name']);
