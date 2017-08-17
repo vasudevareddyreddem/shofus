@@ -136,7 +136,7 @@
 			<option value="1">Listing Discount</option>
 			<option value="2">Cart Discount</option>
 			<option value="3">Flat Price Offer</option>
-			<option value="4">Combo Disoucnt</option>
+			<option value="4">Combo Discoucnt</option>
 		</select>
 		<span style="color:red" id="offertypeerror<?php echo $subcategory->subcategory_id;?>"></span>
 		

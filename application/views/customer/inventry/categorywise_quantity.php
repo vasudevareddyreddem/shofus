@@ -15,9 +15,7 @@
 				  <tr>
 					<th>Seller id</th>
 					<th>Seller Name</th>
-          <th>Category Name</th>
-          <th>Subcategory Name</th>
-          <th>Item Name</th>
+					<th>Category Name</th>
 					<th>Total Quantity</th>
 					
 				 </tr>
@@ -29,9 +27,7 @@
                   <td><?php echo $category['seller_rand_id'] ?></td>
                   <td><?php echo $category['seller_name'] ?></td>
                   <td><?php echo $category['category_name'] ?></td>
-                  <td><?php echo $category['subcategory_name'] ?></td>
-                  <td><?php echo $category['item_name'] ?></td>
-                  <td><?php echo $category['item_quantity'] ?></td>                  
+                  <td><?php echo $category['qty'] ?></td>                  
                 </tr>
                  <?php }?>
                 </tbody>              
