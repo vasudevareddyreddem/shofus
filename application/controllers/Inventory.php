@@ -712,7 +712,7 @@ public function servicerequestview(){
 					//echo "<pre>";print_r($_FILES);
 					$alreadyexits = $this->inventory_model->get_name_existss($post['categoryname']);
 						if(count($alreadyexits)>0){
-							$this->session->set_flashdata('error',"Category Namealready exits.please use another category Name.");
+							$this->session->set_flashdata('error',"Category Name already exits.please use another category Name.");
 							redirect('inventory/categoryadd');
 							
 						}
