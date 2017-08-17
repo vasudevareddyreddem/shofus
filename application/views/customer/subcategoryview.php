@@ -31,6 +31,9 @@
 	margin: 15px 5px 5px;
 	width: 70px;
 }
+.wish{
+	color:#ef5350;
+}
 </style>
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
@@ -533,9 +536,9 @@
 				<div class="option">
 				  <button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
 				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)  ) { ?>
-				<a href="javascript:void(0);"  style="color:#ef5350;" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+				<a href="javascript:void(0);"   onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids" class="fa fa-heart"></i></a> 
 				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+				<a href="javascript:void(0);" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids" class="fa fa-heart"></i></a> 
 				<?php } ?>	
 				</div>
               </div>
@@ -629,14 +632,14 @@ jQuery.ajax({
 				//alert(data.msg);
 				if(data.msg==2){
 				$('#sucessmsg').show('');
-				$('#addwhish').css("color", "");
+				$('#addwishlistids').removeClass('MyClass');
 				$('#sucessmsg').html('Product Successfully removed to Whishlist');
 				document.getElementById("sucessmsg").focus();
 				
 				}
 				if(data.msg==1){
 				$('#sucessmsg').show('');
-				$('#addwhish').css("color", "#ef5350");
+				$('#addwishlistids').addClass('MyClass');
 				$('#sucessmsg').html('Product Successfully added to Whishlist');
 				document.getElementById("sucessmsg").focus();				
 				}
