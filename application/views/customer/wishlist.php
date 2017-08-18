@@ -62,6 +62,15 @@
 .font_span{
 	font-size:17px;
 }
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	border:none;
+}
+tr th:first-child,
+tr th:last-child {
+    width:40%;
+	font-weight:400;
+	color:#aaa;
+}
 </style>
 
 
@@ -164,6 +173,53 @@
 	   
 	   </div>
 	 <!-- track start-->
+<div class="row">
+	
+			<div class="panel panel-primary">
+			<div class="panel-body">
+<div class="col-md-4" style="border-right:1px solid #45b1b5">
+<table class="table " >
+	<div><h5>ORDER DETAILS</h5></div>
+    <tbody>
+      <tr>
+       <th>Order ID</th>
+        <td>OD109489975315807000(1 item)</td>
+        
+      </tr>
+      <tr>
+      <th>Order Date</th>
+        <td>Wed, Jun 21st '17 4:57 PM</td>
+        
+      </tr>
+      <tr>
+        <th>Amount Paid</th>
+        <td>₹424through Cash on delivery</td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-4" style="border-right:1px solid #45b1b5">
+	<div><h5>ORDER DETAILS</h5></div>
+		<div>
+			<p><strong>Namexxxxxxxxx</strong></p>
+			<p>Sardar Patel Nagar, Kukatpally Housing Board Colony, Hyderabad, Telangana</p>
+			<p><strong>Phone :8500226782</strong></p>
+		</div>
+    
+</div>
+<div class="col-md-4" >
+
+	<div><h5>MANAGE ORDER</h5></div>
+		<p ><a class="site_col">REQUEST INVOICE</a></p>
+    
+</div>
+				
+				
+
+</div>
+		</div>
+		</div>
 		<div class="row">
 	
 			<div class="panel panel-primary">
