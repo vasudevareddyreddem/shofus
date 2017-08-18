@@ -536,6 +536,6 @@ jQuery.ajax({
  }
  $(document).ready(compare);
 
-</script>
+ </script>
 
 
