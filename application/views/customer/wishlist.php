@@ -13,29 +13,18 @@
     text-decoration:none;
 }
 </style>
-<header>
-<!--wrapper start here -->
 
-<div class="wrapper"> 
-  <!--header part start here -->
-  <div class="jain_container">
-    
 
-</header>
-<div class="" style="margin-top:130px;">
-	
-</div>
 <body >
 <div class="pad_bod">
 		<div class="row">
-		
 		<?php //echo '<pre>';print_r($whistlist_items);exit; ?>
 		<div class="container">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Wishlist</div>
 			<div class="panel-body">
 			<section>
-        <div class="wizard">
+        <div class="">
            
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
