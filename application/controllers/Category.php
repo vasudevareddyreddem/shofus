@@ -992,6 +992,9 @@ class Category extends Front_Controller
 		$whishlist_item_ids_list[]=$list['item_id'];
 		$whishlist_ids_list[]=$list['id'];
 	}
+	$data['customer_ids_list']=$customer_ids_list;
+	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+	$data['whishlist_ids_list']=$whishlist_ids_list;
 	//echo '<pre>';print_r($data);exit;
 	$this->load->view('customer/subcategorywisefiltersearch',$data);
 	//echo '<pre>';print_r($data);exit;

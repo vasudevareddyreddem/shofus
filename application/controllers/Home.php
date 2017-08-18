@@ -9,6 +9,7 @@ class Home extends Front_Controller {
 		
 		$this->load->model('customer_model');
 		$this->load->model('home_model');
+		$this->load->model('category_model');
 		$this->load->library('cart');
         $this->load->library('session');
 		//$this->load->library('Instamojo');
@@ -36,7 +37,17 @@ public function index()
 			$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		}
 	
-	
+	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	foreach ($wishlist_ids as  $list){
+		$customer_ids_list[]=$list['cust_id'];
+		$whishlist_item_ids_list[]=$list['item_id'];
+		$whishlist_ids_list[]=$list['id'];
+	}
+		
+	//echo '<pre>';print_r($customer_ids_list);exit;
+	$data['customer_ids_list']=$customer_ids_list;
+	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+	$data['whishlist_ids_list']=$whishlist_ids_list;
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'home/index',$data);
 	$this->template->render();
