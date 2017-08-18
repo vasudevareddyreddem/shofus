@@ -2303,12 +2303,20 @@
                 <div class="tags tags-left">
                   <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
                 </div>
+				<?php if($productslist['item_quantity']<=0){ ?>
+				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
+					<div style="z-index:1026"><h4>out of stock</h4></div>
+				</div>
+				<?php } ?>
+				
 				<div class="option">
-				  <button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
+				<?php if($productslist['item_quantity']>0){ ?>
+				<button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
+				<?php } ?>
 				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)  ) { ?>
-				<a href="javascript:void(0);"  style="color:#ef5350;" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+				<a href="javascript:void(0);"   onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids" class="fa fa-heart"></i></a> 
 				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a> 
+				<a href="javascript:void(0);" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids" class="fa fa-heart"></i></a> 
 				<?php } ?>	
 				</div>
               </div>
