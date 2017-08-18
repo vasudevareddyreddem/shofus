@@ -2314,7 +2314,7 @@
 				<button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
 				<?php } ?>
 				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)  ) { ?>
-				<a href="javascript:void(0);"   onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids" class="fa fa-heart"></i></a> 
+				<a href="javascript:void(0);" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist btn-danger"><i id="addwishlistids" class="fa fa-heart"></i></a> 
 				<?php }else{ ?>	
 				<a href="javascript:void(0);" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids" class="fa fa-heart"></i></a> 
 				<?php } ?>	
@@ -2363,7 +2363,43 @@
 	 <br>
 </body>
 <script>
+function addwhishlidts(id){
+jQuery.ajax({
+			url: "<?php echo site_url('customer/addwhishlist');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				item_id: id,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+				if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+				jQuery('#sucessmsg').show();
+				//alert(data.msg);
+				if(data.msg==2){
+				$('#sucessmsg').show('');
+				$("#addwhish"+id).removeClass("btn-danger");
+				$('#sucessmsg').html('Product Successfully removed to Whishlist');
+				document.getElementById("sucessmsg").focus();
+				
+				}
+				if(data.msg==1){
+				$('#sucessmsg').show('');
+				 $("#addwhish"+id).addClass("btn-danger");
+				$('#sucessmsg').html('Product Successfully added to Whishlist');
+				document.getElementById("sucessmsg").focus();				
+				}
+				
+				}
+			
 
+			}
+		});
+	
+	
+}
 function submobileaccessories(val,status,check){
 	
 	jQuery.ajax({

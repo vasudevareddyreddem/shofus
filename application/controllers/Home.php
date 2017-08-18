@@ -48,7 +48,7 @@ public function index()
 	$data['customer_ids_list']=$customer_ids_list;
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;
-	//echo '<pre>';print_r($data);exit;
+	//echo '<pre>';print_r($data['season_sales']);exit;
 	$this->template->write_view('content', 'home/index',$data);
 	$this->template->render();
 }
@@ -68,6 +68,18 @@ public function search_location_offers()
 	$data['offer_for_you'] = $this->home_model->get_search_offer_for_you($postvalue['area']);
 	$data['deals_of_the_day'] = $this->home_model->get_search_deals_of_the_day($postvalue['area']);
 	$data['season_sales'] = $this->home_model->get_search_season_sales($postvalue['area']);
+	
+		$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	foreach ($wishlist_ids as  $list){
+		$customer_ids_list[]=$list['cust_id'];
+		$whishlist_item_ids_list[]=$list['item_id'];
+		$whishlist_ids_list[]=$list['id'];
+	}
+		
+	//echo '<pre>';print_r($customer_ids_list);exit;
+	$data['customer_ids_list']=$customer_ids_list;
+	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+	$data['whishlist_ids_list']=$whishlist_ids_list;
 	$this->load->view('home/locationsearch',$data);
 
 }

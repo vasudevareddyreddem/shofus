@@ -12,6 +12,7 @@ class Customer extends Front_Controller
 		$this->load->library('email');
 		$this->load->model('customer_model'); 
 		$this->load->model('home_model'); 
+		$this->load->model('category_model'); 
 			
  }
  
@@ -30,8 +31,19 @@ class Customer extends Front_Controller
 	  	$data['deals_of_day']= $this->customer_model->get_product_search_deals_day($post['locationarea']);
 	  	$data['season_sales']= $this->customer_model->get_product_search_seaaon_sales($post['locationarea']);
 		//echo '<pre>';print_r($data);exit;
-		$this->template->write_view('content', 'customer/productsearch', $data);
-		$this->template->render();
+		$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	foreach ($wishlist_ids as  $list){
+		$customer_ids_list[]=$list['cust_id'];
+		$whishlist_item_ids_list[]=$list['item_id'];
+		$whishlist_ids_list[]=$list['id'];
+	}
+		
+	//echo '<pre>';print_r($customer_ids_list);exit;
+	$data['customer_ids_list']=$customer_ids_list;
+	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+	$data['whishlist_ids_list']=$whishlist_ids_list;
+	$this->template->write_view('content', 'customer/productsearch', $data);
+	$this->template->render();
 	  
   }
   public function account(){
@@ -880,7 +892,28 @@ class Customer extends Front_Controller
 	
 
 	public function seemore(){
-		$this->template->write_view('content', 'customer/seemore');
+		
+		if($this->session->userdata('userdetails')){
+			$customerdetails=$this->session->userdata('userdetails');
+			$details = $this->customer_model->get_profile_details($customerdetails['customer_id']);
+			$data['topoffers'] = $this->home_model->get_search_top_offers($details['area']);
+			
+		}else{
+			$data['topoffers'] = $this->home_model->get_top_offers();
+		
+		}
+		$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	foreach ($wishlist_ids as  $list){
+		$customer_ids_list[]=$list['cust_id'];
+		$whishlist_item_ids_list[]=$list['item_id'];
+		$whishlist_ids_list[]=$list['id'];
+	}
+		
+	//echo '<pre>';print_r($customer_ids_list);exit;
+	$data['customer_ids_list']=$customer_ids_list;
+	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+	$data['whishlist_ids_list']=$whishlist_ids_list;
+		$this->template->write_view('content', 'customer/seemore',$data);
 		$this->template->render();
 	}
 

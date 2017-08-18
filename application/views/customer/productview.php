@@ -70,33 +70,47 @@
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $products_list['item_id']; ?>" >
          
 		 <table class="table table-detail">
+		 
+		 <?php 
+		 $currentdate=date('Y-m-d h:i:s A');
+				if($products_list['offer_expairdate']>=$currentdate){
+				$item_price= ($products_list['item_cost']-$products_list['offer_amount']);
+				$percentage= $products_list['offer_percentage'];
+				$orginal_price=$products_list['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $products_list['special_price'];
+					$prices= ($products_list['item_cost']-$products_list['special_price']);
+					$percentage= (($prices) /$products_list['item_cost'])*100;
+					$orginal_price=$products_list['item_cost'];
+				} ?>
             <tbody>
               <tr>
                 <td>Price</td>
                 <td>
-				<?php if(date('m/d/Y') <= $products_list['offer_expairdate']) {?>
 				<div class="price">
-                    <div><?php echo ($products_list['item_cost'])-($products_list['offer_amount']); ?><span class="label label-default arrowed">-<?php echo $products_list['offer_percentage']; ?>%</span></div>
-                    <span class="price-old"><?php echo $products_list['item_cost']; ?></span>
+                    <div><?php echo $item_price; ?><span class="label label-default arrowed">-<?php echo $percentage; ?>%</span></div>
+                    <span class="price-old"><?php echo $orginal_price; ?></span>
                   </div>
-				<?php }else{ ?>
-                  <div class="price">
-                    <span><?php echo $products_list['item_cost']; ?></span>
-                  </div>				  
-				<?php } ?>
-                </td>
+				</td>
               </tr>
               <tr>
+			 
+			   
+			
                 <td>Availability</td>
                 <td><span class="label label-success arrowed">
-				 <?php if($products_list['item_status']==1){ 
+				 <?php if($products_list['item_status']==1 && $products_list['item_quantity']!=0){ 
 					echo "Ready Stock";
-				}
-				else{
+					}
+					else{
 					echo "Out of Stock";
-				}				?>
+					}
+					?>
 				
 				</span></td>
+				
+			   
               </tr>
               <tr>
                 <td>Quantity</td>
@@ -122,10 +136,16 @@
 		    <tr>
                 <td></td>
                 <td>
-                  <button class="btn btn-theme m-b-1" type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+				<?php 
+				$customerdetails=$this->session->userdata('userdetails');
+				//echo $customerdetails['customer_id'];exit;
+				if($products_list['item_quantity']!=0 && $products_list['item_status']!=0 ){ ?>
+				     <button class="btn btn-theme m-b-1" type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+
+				<?php } ?>
 				  <a href="" id="compare" class="btn btn-theme m-b-1" type="button" ><i class="fa fa-align-left"></i> Add to Compare</a>
                   <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>"> 
-					<?php if($products_list['yes']==1){ ?>
+				<?php 	if (in_array($products_list['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)  ) { ?>
 					<a href="javascript:void(0);" style="color:yellow;" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" id="addwhish" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
 					<?php }else{ ?>	
 					<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" id="addwhish" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
@@ -135,92 +155,7 @@
               </tr>
 			 </form>
 			 <div class="clearfix">&nbsp;</div>
-			 <table class="table table-bordered">
-  
-    <tbody>
-      <tr>
-        <th>Specifications</th>
-      </tr>
-      <tr>
-        <td>
-			<div class="row">
-				<h4 style="padding:0px 15px">General</h4>
-			</div>
-			<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					fsdkfks
-				</div>
-				<div class="col-md-5">
-					fsdkfks
-				</div>
-			</div>
-				<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					fsdkfks
-				</div>
-				<div class="col-md-5">
-					fsdkfks
-				</div>
-			</div>
-				<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					fsdkfks
-				</div>
-				<div class="col-md-5">
-					fsdkfks
-				</div>
-			</div>
-			</div>
 			
-		</td>
-        
-      </tr>
-	  
-	   <tr class="read_div" style="display:none;">
-        <td>
-			<div class="row">
-				<h4 style="padding:0px 15px">General</h4>
-			</div>
-			<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					fsdkfks
-				</div>
-				<div class="col-md-5">
-					fsdkfks
-				</div>
-			</div>
-				<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					fsdkfks
-				</div>
-				<div class="col-md-5">
-					fsdkfks
-				</div>
-			</div>
-				<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					fsdkfks
-				</div>
-				<div class="col-md-5">
-					fsdkfks
-				</div>
-			</div>
-			</div>
-			
-		</td>
-        
-      </tr>
-	     <tr>
-        <td>
-			<div class=" read_mor">
-				Read more...
-			</div>
-		</td>
-        
-      </tr>
-    
-    </tbody>
-  </table>
         </div>
 
         <div class="col-md-8 col-md-offset-4 mar_t20" >
@@ -373,15 +308,19 @@ jQuery.ajax({
 				},
 			dataType: 'JSON',
 			success: function (data) {
-				jQuery('#sucessmsg').show();
-				//alert(data.msg);
-				if(data.msg==2){
-				$('#addwhish').css("color", "");
-				$('#sucessmsg').html('Product Successfully removed to Whishlist');	
-				}
-				if(data.msg==1){
-				$('#addwhish').css("color", "yellow");
-				$('#sucessmsg').html('Product Successfully added to Whishlist');	
+				if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+					jQuery('#sucessmsg').show();
+					//alert(data.msg);
+					if(data.msg==2){
+					$('#addwhish').css("color", "");
+					$('#sucessmsg').html('Product Successfully removed to Whishlist');	
+					}
+					if(data.msg==1){
+					$('#addwhish').css("color", "yellow");
+					$('#sucessmsg').html('Product Successfully added to Whishlist');	
+					}
 				}
 			
 
