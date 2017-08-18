@@ -12,11 +12,61 @@
 .panel-title > a:focus  {
     text-decoration:none;
 }
+
+.stepwizard-step p {
+    margin-top: 10px;    
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard {
+    display: table;     
+    width: 100%;
+    position: relative;
+}
+
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-order: 0;
+    
+}
+
+.stepwizard-step {    
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.font_span{
+	font-size:17px;
+}
 </style>
 
 
 <body >
-<div class="pad_bod">
+<div class="container">
 		<div class="row">
 		<?php //echo '<pre>';print_r($whistlist_items);exit; ?>
 		<div class="container">
@@ -121,6 +171,71 @@
 	   </div>
 	   
 	   </div>
+	 <!-- track start-->
+		<div class="row">
+	
+			<div class="panel panel-primary">
+			<div class="panel-body">
+				<div class="col-md-4">
+					<div class="col-md-4">
+						<img style="width:60px" src="<?php echo base_url(); ?>assets/home/images/user.png" />
+					</div>
+					<div class="col-md-8">
+						<p><a>Drapes Crepe Printed Salwar Suit Dupatta Material</a></p>
+						<div>Color: Black</div>
+						<div>30 Days Exchange</div>	<div>Color: Black</div>
+						<div>30 Days Exchange</div>
+					
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="stepwizard">
+						<div class="stepwizard-row">
+							<div class="stepwizard-step">
+								<button type="button" class="btn btn-primary btn-circle">1</button>
+								<p>Select State</p>
+							</div>
+							<div class="stepwizard-step">
+								<button type="button" class="btn btn-defaultt btn-circle">2</button>
+								<p>Property Address</p>
+							</div>
+							<div class="stepwizard-step">
+								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">3</button>
+								<p>List Price</p>
+							</div> 
+							<div class="stepwizard-step">
+								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">4</button>
+								<p>Commission Offered</p>
+							</div> 
+							</div> 
+					</div>
+				
+
+				</div>
+				<div class="col-md-3">
+					<div class="col-md-3">
+							<span class="font_span">₹500</span>
+					</div>
+					<div class="col-md-9">
+							<span class="site_co">2 Offers Applied</span>
+					</div>
+				</div>
+					<div class="clearfix">&nbsp;</div>
+						<br>
+					<div class=""><span><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; <i class="font_span">Delivery expected by Tue, Jun 27th '17</i></div>
+					<hr	>
+				<div class="col-md-3 col-md-offset-9">
+						<span class="font_span"><b>Toatal</b></span>&nbsp;&nbsp;
+						<span class="font_span">₹500</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span class="font_span site_col">Savings</span>&nbsp;&nbsp;
+						<span class="font_span">₹44</span>
+				</div>
+
+			</div>
+		</div>
+		</div>
+	 <!-- track end-->
+	   
 	   </div>
 	</div>
 	
