@@ -40,8 +40,8 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="form_lastname">Lastname *</label>
-									<input id="form_lastname" type="text" name="lname" class="form-control" placeholder="Please enter your lastname *"  data-error="Lastname is required.">
+									<label for="form_lastname">Lastname </label>
+									<input id="form_lastname" type="text" name="lname" class="form-control" placeholder="Please enter your lastname "  data-error="Lastname is required.">
 									<div class="help-block with-errors"></div>
 								</div>
 							</div>
