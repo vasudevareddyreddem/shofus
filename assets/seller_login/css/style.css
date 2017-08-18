@@ -806,7 +806,7 @@ a.socialIcon:hover, .socialHoverClass {
 .san_label {
 	height: 36px;
 	border-radius: 0px;
-	width: 286px;
+	/* width: 286px; */
 	float: left;
 	font-weight: 300;
 }
