@@ -158,7 +158,12 @@ public function item_status(){
 
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
+		
+		$discount= ($post['product_price']-$post['specialprice']);
+		$offers= (($discount) /$post['product_price'])*100;
 		//echo '<pre>';print_r($post);
+		
+		
 		//echo '<pre>';print_r($_FILES);
 		
 		//exit;
@@ -359,8 +364,8 @@ if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_s
 			'item_code' => isset($post['otherunique'])?$post['otherunique']:'',
 			'item_cost' => isset($post['product_price'])?$post['product_price']:'',
 			'special_price' =>  isset($post['specialprice'])?$post['specialprice']:'',
-			'offers' =>  isset($post['offers'])?$post['offers']:'',
-			'discount' => isset($post['discount'])?$post['discount']:'',
+			'offers' =>  isset($offers)?$offers:'',
+			'discount' => isset($discount)?$discount:'',
 			'item_quantity' =>isset($post['qty'])?$post['qty']:'',
 			'keywords' =>isset($post['keywords'])?$post['keywords']:'',
 			'title' =>isset($post['title'])?$post['title']:'',

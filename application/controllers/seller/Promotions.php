@@ -48,7 +48,7 @@ class Promotions extends Admin_Controller {
 	
 			}
 			$productprice=$this->Promotions_model->get_offer_product_price($cat_ida);
-			$offer_price=($productprice['item_cost'] * $post['offeramount']);
+			$offer_price=($productprice['special_price'] * $post['offeramount']);
 			$offer_price_pertange=($offer_price / 100);
 			//echo $offer_price;
 			//echo '--';
@@ -66,6 +66,7 @@ class Promotions extends Admin_Controller {
 			//echo '<pre>';print_r($data);exit;
 			$update=$this->Promotions_model->add_offer_to_productss($cat_ida,$data);
 			
+			
 		}
 		if(count($update)>0){
 			$data=array('msg'=>1);
@@ -73,6 +74,7 @@ class Promotions extends Admin_Controller {
 			$this->session->set_flashdata('success',"Offer successfully Updated!");
 			redirect('seller/promotions');
 		}
+		
 	
 		
 		
@@ -101,7 +103,7 @@ class Promotions extends Admin_Controller {
 						if(count($itemscount)>100){
 					$status=2;
 					}else{
-							$offer_price=($productprice['item_cost'] * $post['offeramount']);
+							$offer_price=($productprice['special_price'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
 							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
@@ -172,7 +174,7 @@ public function addtopoffers()
 					if(count($itemscount)>100){
 					$status=2;
 					}else{
-							$offer_price=($productprice['item_cost'] * $post['offeramount']);
+							$offer_price=($productprice['special_price'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
 							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
@@ -195,7 +197,7 @@ public function addtopoffers()
 							'offer_percentage'=>$post['offeramount'],
 							'offer_amount'=>$offer_amount,
 							'offer_type'=>5,
-							'offer_expairdate'=>date("Y-m-d H:i:s"),  
+							'offer_expairdate'=>date("Y-m-d h:i:s A"),  
 							);			
 							$productupdate=$this->Promotions_model->add_topoffer_to_products_inproducts($cat_ida,$data1);
 							$update=$this->Promotions_model->add_topoffer_to_products($data);
@@ -242,7 +244,7 @@ public function dealsoftheday()
 					if(count($itemscount)>100){
 					$status=2;
 					}else{
-							$offer_price=($productprice['item_cost'] * $post['offeramount']);
+							$offer_price=($productprice['special_price'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
 							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
@@ -265,7 +267,7 @@ public function dealsoftheday()
 							'offer_percentage'=>$post['offeramount'],
 							'offer_amount'=>$offer_amount,
 							'offer_type'=>5,
-							'offer_expairdate'=>date("Y-m-d H:i:s"),  
+							'offer_expairdate'=>date("Y-m-d h:i:s A"),  
 							);			
 							$productupdate=$this->Promotions_model->add_topoffer_to_products_inproducts($cat_ida,$data1);
 

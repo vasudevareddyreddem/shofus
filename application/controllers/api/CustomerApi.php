@@ -420,6 +420,22 @@ class CustomerApi extends REST_Controller {
 			$this->response($message,REST_Controller::HTTP_OK);
 		}
 	}
+	/*alraedy wishlist Items in wishlist*/
+	public function alreadyitemidwishlist_get()
+	{
+		
+		
+		$item_lists= $this->Customerapi_model->get_all_wish_lists_ids();
+		//echo '<pre>';print_r($item_lists);exit;
+		if(count($item_lists)>0)
+		{
+			$message = array('status'=>1,'message'=>'wishlist ids list','list'=>$item_lists);
+			$this->response($message,REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>0,'message'=>'wishlist ids are not fount');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
 	/* cart list*/
 	/* add wishlists */ 
 	public function addwishlist_post()

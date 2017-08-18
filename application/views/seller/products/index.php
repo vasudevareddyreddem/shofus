@@ -159,8 +159,7 @@
 		<input type="text" class="form-control"  name="offeramount" id="offeramount<?php echo $subcategory->subcategory_id;?>">					
 		</div><span style="color:red" id="offeramounterror<?php echo $subcategory->subcategory_id;?>"></span>
 		</div>
-	
-			<div class="row" style="padding:5px 12px;">
+		<div class="row" style="padding:5px 12px;">
 		    <div class="form-group">
                 <label for="dtp_input1" class=" control-label">Select your Offer Expiry  Date</label>
                 <div class="input-group date form_datetime " data-date="" data-date-format="dd-mm-yyyy HH:ii P" data-link-field="dtp_input1">
@@ -173,7 +172,7 @@
 				</div>
 		
 
-		</div>		
+		</div>	
 	
 		
         <div class="modal-footer" style="border:none;">
@@ -191,13 +190,6 @@
         var regex = /^[0-9]+$/;
         return regex.test(reasontype);
 	}
-	$('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('');
-	$('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
-	$(function () {
-     $('#datepicker<?php echo $subcategory->subcategory_id;?>').datetimepicker({  
-         minDate:new Date(),
-      });
- });
 	function fetoffertype<?php echo $subcategory->subcategory_id;?>(id){
 		$('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('');
 		$('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
@@ -243,16 +235,11 @@
       var data = table.row($row).data();
       // Get row ID
       var rowId = data[0];
-	
+		var index = $.inArray(rowId, rows_selected);
 
-      // Determine whether row ID is in the list of selected row IDs 
-      var index = $.inArray(rowId, rows_selected);
-
-      // If checkbox is checked and row ID is not in list of selected row IDs
       if(this.checked && index === -1){
          rows_selected.push(rowId);
 
-      // Otherwise, if checkbox is not checked and row ID is in list of selected row IDs
       } else if (!this.checked && index !== -1){
          rows_selected.splice(index, 1);
       }
@@ -263,19 +250,15 @@
          $row.removeClass('selected');
       }
 
-      // Update state of "Select all" control
       updateDataTableSelectAllCtrl(table);
 
-      // Prevent click event from propagating to parent
       e.stopPropagation();
    });
 
-   // Handle click on table cells with checkboxes
    $('#example<?php echo $subcategory->subcategory_id;  ?>').on('click', 'tbody td, thead th:first-child', function(e){
       $(this).parent().find('input[type="checkbox"]').trigger('click');
    });
 
-   // Handle click on "Select all" control
    $('thead input[name="select_all"]', table.table().container()).on('click', function(e){
       if(this.checked){
          $('tbody input[type="checkbox"]:not(:checked)', table.table().container()).trigger('click');
@@ -318,32 +301,31 @@
 	  if(offertpes==''){
 		jQuery('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('Plase select an Offer Type');
 		return false;
-	  }
-	  if(offertpes==4){
+	  } if(offertpes==4){
 		 var product=document.getElementById('combo<?php echo $subcategory->subcategory_id;?>').value;
 		if(product==''){
 			jQuery('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('Plase select a Product');
 			return false;   
 		  }
 		  jQuery('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
-	}else{
-		 var offerAmt=document.getElementById('offeramount<?php echo $subcategory->subcategory_id;?>').value;
-			 if(offerAmt==''){
-				jQuery('#offeramounterror<?php echo $subcategory->subcategory_id;?>').html('Plase eneter offer Percentages');
-				return false; 
-			 }else{
-					if (!IsMobile<?php echo $subcategory->subcategory_id;?>(offerAmt)) {
-					$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter Correct Offer Percentages");
-					return false;
-					} 
-			 }
-			 if(offerAmt >100){
-				$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter lessthan or equal 100 Percentages");
-				return false; 
-			 }
-  
-	  }	
-	jQuery("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html('');
+		}else{
+			 var offerAmt=document.getElementById('offeramount<?php echo $subcategory->subcategory_id;?>').value;
+				 if(offerAmt==''){
+					jQuery('#offeramounterror<?php echo $subcategory->subcategory_id;?>').html('Plase eneter offer Percentages');
+					return false; 
+				 }else{
+						if (!IsMobile<?php echo $subcategory->subcategory_id;?>(offerAmt)) {
+						$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter Correct Offer Percentages");
+						return false;
+						} 
+				 }
+				 if(offerAmt >100){
+					$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter lessthan or equal 100 Percentages");
+					return false; 
+				 }
+	  
+		  }
+		  jQuery("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html('');
 	  var date=document.getElementById('datepicker<?php echo $subcategory->subcategory_id;?>').value;
 	  
 		if(date==''){
@@ -351,13 +333,6 @@
 		return false;
 	  }
 	  jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('');
-	    var time=document.getElementById('offertime<?php echo $subcategory->subcategory_id;?>').value;
-		if(time==''){
-		jQuery('#offerttime<?php echo $subcategory->subcategory_id;?>').html('Plase select an expiry Time');
-		return false;
-	  }
-	  jQuery('#offerttime<?php echo $subcategory->subcategory_id;?>').html('');
-	  $("#offeramounterror").html('');
 	  if(jQuery("#offertype<?php echo $subcategory->subcategory_id;?>").val()!=''){
       jQuery.ajax({
 			url: "<?php echo base_url('/seller/promotions/storepromotions');?>",
@@ -366,8 +341,7 @@
 			format:"html",
 					success:function(data){
 					if(data.msg=1){
-
-					location.reload();
+							location.reload();
 						}
 					}
         });

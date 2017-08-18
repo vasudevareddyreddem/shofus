@@ -424,7 +424,7 @@
   
     <?php if($this->session->userdata('location_area') == "")   {?>
 
-  <div class="popup1" style="display: block;">
+  <!--<div class="popup1" style="display: block;">
   <div class="newsletter-sign-box">
     <div class="newsletter"> <img src="<?php echo base_url(); ?>assets/home/images/close-icon.ico" alt="close" class="x" onClick="HideMe();">
       <form method="post" id="popup-newsletter" name="popup-newsletter" class="email-form">
@@ -444,16 +444,68 @@
 
             <button type="button" onclick="searchlocation();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
           </div>
-          <!--input-box--> 
+  
         </div>
-        <!--newsletter-form-->
+        
         
       </form>
     </div>
-    <!--newsletter--> 
+ 
     
   </div>
-  <!--newsletter-sign-box--> 
+
+</div>-->
+<div class="popup1" style="display: block;">
+
+  <div class=" bac_loc_img  animated fadeInDown" 
+						style="
+						left: 0;
+						margin: auto;
+						min-height: 50px;
+						position: fixed;
+						top: 0;
+						width: 100%;
+						z-index: 10000;
+						
+						">
+    <div class="newsletter"> 
+		<div style="position:absolute;left:4%;top:0%">
+			<img class="" style="width:60%" src="<?php echo base_url(); ?>assets/home/images/loc_logo.png" />
+		</div>
+		<div style="position:absolute;right:5%;top:30%">
+			<span class="" style="font-size:25px;color:#187a7d;background:#fff;padding:8px;border-radius:50%"> cartinhour</span>
+		</div>
+      <form method="post" id="popup-newsletter" name="popup-newsletter" class="email-form">
+      
+        <div class="newsletter-form">
+		<div class="row">
+		<div class="col-md-3  col-md-offset-1 " style="padding-right:1px">
+			<div class="box_sh_la pull-right" style="background-color:#fff;padding:8px 10px;">Select Your Delivery Location</div>
+		</div>
+		<div class="col-md-6 " style="padding-left:0px">
+        <select style="height:37px;" name="locationid" id="locationid" class="validate-select sel_are box_sh form-control">
+        <option value="">Select Area </option>
+        <?php foreach($locationdata as $location_data) {?>
+        <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
+
+        <?php } ?>
+        </select>
+		</div>
+        <div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
+		<!--<div class="col-md-2 " >
+            <button style="margin-top:0" type="button" onclick="searchlocation();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
+          </div>-->
+  
+        </div>
+        
+        
+      </form>
+    </div>
+    </div>
+ 
+    
+  </div>
+
 </div>
 <div id="fade" style="display: block;"></div>
 

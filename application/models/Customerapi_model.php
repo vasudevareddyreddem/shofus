@@ -10,7 +10,11 @@ class Customerapi_model extends MY_Model
 
 	}
 
-
+	public function get_all_wish_lists_ids()
+	{
+		$this->db->select('*')->from('item_wishlist');
+        return $this->db->get()->result_array();
+	}
 	public function login_customer($username,$password){
 
 	$sql = "SELECT * FROM customers WHERE (cust_email ='".$username."' AND cust_password ='".md5($password)."') OR (cust_mobile ='".$username."' AND cust_password ='".md5($password)."')";
