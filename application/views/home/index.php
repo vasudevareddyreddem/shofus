@@ -1,4 +1,8 @@
-<body class="bac_img">
+ <style>
+ .hi {
+  color: green;
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <body class="bac_img">
+ </style>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <body class="bac_img">
 <div class="banner_home con_start" style="margin-top:-20px;">
      
       <div id="myCarousel" class="carousel slide"> 
@@ -38,7 +42,7 @@
   </div>
   <!--header part end here --> 
   <!--body part start here -->
-  
+  <?php $customerdetails=$this->session->userdata('userdetails'); ?>
   <div class="cart_bdy" style="display:none;" id="location_seacrh_result"></div>
   <div class="" id="location_seacrh">
     <!--Top Category slider Start-->
@@ -54,7 +58,7 @@
 					<?php foreach ($topoffers as $tops){  ?>
 					<a href="<?php echo base_url('category/productview/'.base64_encode($tops['item_id'])); ?>">
 					<div class="item" style="border: 1px #ddd solid;">
-					<div class="pro-img img-wrapper  img_hover"><img src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
+					<div class="pro-img img-wrapper  img_hover"><img class="img-responsive" src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
 					</div>
 					<div class="pro-info" style="border-top:1px solid #ddd;"><?php echo $tops['item_name']; ?></div>
 					</div>
@@ -121,10 +125,10 @@
 				<?php if($productslist['item_quantity']>0){ ?>
 				<button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
 				<?php } ?>
-				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array(isset($customerdetails['customer_id']), $customer_ids_list)) { ?>
-				<a href="javascript:void(0);" style="color:#ef5350"   onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids" class="fa fa-heart"></i></a> 
+				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+				<a href="javascript:void(0);"  onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist btn-danger"><i id="addwishlistids" class="fa fa-heart"></i></a> 
 				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids" class="fa fa-heart"></i></a> 
+				<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids" class="fa fa-heart"></i></a> 
 				<?php } ?>	
 				</div>
               </div>
@@ -170,18 +174,33 @@
         <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-            <?php foreach ($offer_for_you as $topslist){  ?>
+            <?php foreach ($offer_for_you as $productslist){
+				$currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
+				}
+
+			?>
            
 				<form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
-			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $topslist['item_id']; ?>" >
-			<input type="hidden" name="category_id" id="category_id" value="<?php echo $topslist['category_id']; ?>" >
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
+			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
+			<input type="hidden" name="qty" id="qty" value="1" >
 			
 		   <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$topslist['item_image']); ?>">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
            
                 </a>
                 <div class="tags">
@@ -190,29 +209,31 @@
                 <div class="tags tags-left">
                   <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
                 </div>
-                <div class="option">
-                  <button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>
-                  <a href="#" id="compare" onclick="compare(<?php echo $topslist['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-					<?php if($topslist['yes']==1){ ?>
-					<a href="javascript:void(0);" data-toggle="tooltip" style="color:yellow;" title="Add to Wishlist" class="wishlist" onclick="addwhishlidt(<?php echo $topslist['item_id']; ?>);" id="addwhish" ><i class="fa fa-heart"></i></a>  
-					<?php }else{ ?> 
-					<a href="javascript:void(0);" data-toggle="tooltip" title="Add to Wishlist" class="wishlist" onclick="addwhishlidt(<?php echo $topslist['item_id']; ?>);" id="addwhish"><i class="fa fa-heart"></i></a>  
-					<?php } ?>
-                </div>
-              </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($topslist['item_id'])); ?>"><?php echo $topslist['item_name']; ?></a></h6>
-               <div class="price">
-           <?php 
-		   $current_date=date('m/d/Y h:ia');
-			$offerexpirydate=$topslist['offer_expairdate'].' '.$topslist['offer_time'];
-			if($current_date <= $offerexpirydate) {?>
-				<div class="pull-left" ><?php echo ($topslist['item_cost'])-($topslist['offer_amount']); ?> 
-				<span class="label-tags"><span class="label label-default">-<?php echo $topslist['offer_percentage']; ?>%</span></span>
+              <?php if($productslist['item_quantity']<=0){ ?>
+				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
+					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
-				<span class="price-old"><?php echo $topslist['item_cost']; ?></span>
-            <?php } else{?> 
-				   <span><?php echo $topslist['item_cost']; ?></span>
-              <?php  } ?>
+				<?php } ?>
+				
+				<div class="option">
+				<?php if($productslist['item_quantity']>0){ ?>
+				<button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
+				<?php } ?>
+				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+				<a href="javascript:void(0);"  onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist btn-danger"><i id="addwishlistids" class="fa fa-heart"></i></a> 
+				<?php }else{ ?>	
+				<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids" class="fa fa-heart"></i></a> 
+				<?php } ?>	
+				</div>
+              </div>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
+               <div class="price">
+               
+				<div class="pull-left" ><?php echo ($item_price); ?> 
+				<span class="label-tags"><span class="label label-default">-<?php echo $percentage; ?>%</span></span>
+				</div>
+				<span class="price-old"><?php echo $orginal_price; ?></span>
+            
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -242,23 +263,38 @@
         <div class="new_title">
           <h2> Deals of the Day </h2>
         </div>
-        <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
     
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
       
       <?php //echo '<pre>';print_r($deals_of_the_day);exit; ?>
-      <?php foreach($deals_of_the_day as $items)  {    ?>
+      <?php foreach($deals_of_the_day as $productslist)  { 
+			$currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
+				}
+
+
+	  ?>
 	    <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
-			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $items['item_id']; ?>" >
-			<input type="hidden" name="category_id" id="category_id" value="<?php echo $items['category_id']; ?>" >
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
+			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
+			<input type="hidden" name="qty" id="qty" value="1" >
 			
            <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
            
                 </a>
                 <div class="tags">
@@ -267,30 +303,30 @@
                 <div class="tags tags-left">
                   <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
                 </div>
-                <div class="option">
-                  <button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>
-                   <a href="#" id="compare"  id="compare" onclick="compare(<?php echo $items['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-					<?php if($items['yes']==1){ ?>
-					<a href="javascript:void(0);" data-toggle="tooltip" style="color:yellow;" title="Add to Wishlist" class="wishlist" onclick="addwhishlidt(<?php echo $items['item_id']; ?>);" id="addwhish" ><i class="fa fa-heart"></i></a>  
-					<?php }else{ ?> 
-					<a href="javascript:void(0);" data-toggle="tooltip" title="Add to Wishlist" class="wishlist" onclick="addwhishlidt(<?php echo $items['item_id']; ?>);" id="addwhish"><i class="fa fa-heart"></i></a>  
-					<?php } ?> 
+               <?php if($productslist['item_quantity']<=0){ ?>
+				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
+					<div style="z-index:1026"><h4>out of stock</h4></div>
+				</div>
+				<?php } ?>
+				
+				<div class="option">
+				<?php if($productslist['item_quantity']>0){ ?>
+				<button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
+				<?php } ?>
+				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+				<a href="javascript:void(0);"  onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist btn-danger"><i id="addwishlistids" class="fa fa-heart"></i></a> 
+				<?php }else{ ?>	
+				<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids" class="fa fa-heart"></i></a> 
+				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>"><?php echo $items['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
                <div class="price">
-           <?php 
-		   $current_date=date('m/d/Y h:ia');
-			$offerexpirydate=$items['offer_expairdate'].' '.$items['offer_time'];
-			if($current_date <= $offerexpirydate) {?>
-				<div class="pull-left" ><?php echo ($items['item_cost'])-($items['offer_amount']); ?> 
-				<span class="label-tags"><span class="label label-default">-<?php echo $items['offer_percentage']; ?>%</span></span>
+               	<div class="pull-left" ><?php echo ($item_price); ?> 
+				<span class="label-tags"><span class="label label-default">-<?php echo $percentage; ?>%</span></span>
 				</div>
-				<span class="price-old"><?php echo $items['item_cost']; ?></span>
-            <?php } else{?> 
-				   <span><?php echo $items['item_cost']; ?></span>
-              <?php  } ?>
-              </div>
+				<span class="price-old"><?php echo $orginal_price; ?></span>
+				</div>
               <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -318,17 +354,34 @@
     
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-      <?php foreach($season_sales as $items)  {    ?>
+		  <?php //echo '<pre>';print_r($season_sales);exit; ?>
+      <?php foreach($season_sales as $productslist)  { 
+			$currentdate=date('Y-m-d h:i:s A');
+			if($productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+			}else{
+			//echo "expired";
+				$item_price= $productslist['special_price'];
+				$prices= ($productslist['item_cost']-$productslist['special_price']);
+				$percentage= (($prices) /$productslist['item_cost'])*100;
+				$orginal_price=$productslist['item_cost'];
+			}
+
+
+	  ?>
 	    <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
-			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $items['item_id']; ?>" >
-			<input type="hidden" name="category_id" id="category_id" value="<?php echo $items['category_id']; ?>" >
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
+			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
+			<input type="hidden" name="qty" id="qty" value="1" >
 			
                <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>">
-                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                 </a>
                 <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
@@ -336,28 +389,31 @@
                 <div class="tags tags-left">
                   <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
                 </div>
-                <div class="option">
-                  <button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
-                  <a href="#" id="compare" onclick="compare(<?php echo $items['item_id']; ?>);" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left" ></i></a>
-					<?php if($items['yes']==1){ ?>
-					<a href="javascript:void(0);" data-toggle="tooltip" style="color:yellow;" title="Add to Wishlist" class="wishlist" onclick="addwhishlidt(<?php echo $items['item_id']; ?>);" id="addwhish" ><i class="fa fa-heart"></i></a>  
-					<?php }else{ ?> 
-					<a href="javascript:void(0);" data-toggle="tooltip" title="Add to Wishlist" class="wishlist" onclick="addwhishlidt(<?php echo $items['item_id']; ?>);" id="addwhish"><i class="fa fa-heart"></i></a>  
-					<?php } ?>
-					</div>
-              </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>"><?php echo $items['item_name']; ?></a></h6>
-              <div class="price">
-                 <?php $current_date=date('m/d/Y h:ia');
-			$offerexpirydate=$items['offer_expairdate'].' '.$items['offer_time'];
-			if($current_date <= $offerexpirydate) {?>
-				<div class="pull-left" ><?php echo ($items['item_cost'])-($items['offer_amount']); ?> 
-				<span class="label-tags"><span class="label label-default">-<?php echo $items['offer_percentage']; ?>%</span></span>
+                <?php if($productslist['item_quantity']<=0){ ?>
+				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
+					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
-				<span class="price-old"><?php echo $items['item_cost']; ?></span>
-            <?php } else{?> 
-				   <span><?php echo $items['item_cost']; ?></span>
-              <?php  } ?>
+				<?php } ?>
+				
+				<div class="option">
+				<?php if($productslist['item_quantity']>0){ ?>
+				<button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
+				<?php } ?>
+				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+				<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist btn-danger"><i id="addwishlistids" class="fa fa-heart"></i></a> 
+				<?php }else{ ?>	
+				<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids" class="fa fa-heart"></i></a> 
+				<?php } ?>	
+				</div>
+              </div>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
+              <div class="price">
+               
+				<div class="pull-left" ><?php echo ($item_price); ?> 
+				<span class="label-tags"><span class="label label-default">-<?php echo $percentage; ?>%</span></span>
+				</div>
+				<span class="price-old"><?php echo $orginal_price; ?></span>
+            
               </div>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -392,6 +448,8 @@
     </div> -->
   
     <?php if($this->session->userdata('location_area') == "")   {?>
+
+  
 <div class="popup1" style="display: block;">
 
   <div class=" bac_loc_img  animated fadeInDown" 
@@ -420,7 +478,7 @@
 			<div class="box_sh_la pull-right" style="background-color:#fff;padding:8px 10px;">Select Your Delivery Location</div>
 		</div>
 		<div class="col-md-6 " style="padding-left:0px">
-        <select style="height:37px;" name="locationid" id="locationid" class="validate-select sel_are box_sh form-control">
+        <select style="height:37px;" onchange="searchlocation(this.value);" name="locationid" id="locationid" class="validate-select sel_are box_sh form-control">
         <option value="">Select Area </option>
         <?php foreach($locationdata as $location_data) {?>
         <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
@@ -444,17 +502,17 @@
   </div>
 
 </div>
+<div id="fade" style="display: block;"></div>
 
   <?php } ?>
 </body>
 <script type="text/javascript" language="javascript">
 
- function searchlocation(){
+ function searchlocation(id){
    
    jQuery('#address1errormsg').show();
   
-     var area=jQuery('#locationid').val();
-     if(area==''){
+     if(id==''){
         jQuery('#address1errormsg').html('Please Select Area');
         return false;
      }
@@ -466,8 +524,7 @@
         type: 'post',
         data: {
           form_key : window.FORM_KEY,
-          address1: jQuery("#address1").val(),
-          area: jQuery("#locationid").val(),
+          area: id,
           },
         dataType: 'html',
         success: function (data) {
@@ -495,20 +552,18 @@ jQuery.ajax({
         },
       dataType: 'JSON',
       success: function (data) {
+		  var property = document.getElementById(addwishlistids);
         jQuery('#sucessmsg').show();
         //alert(data.msg);
-		if(data.msg==0){
-					window.location='<?php echo base_url("customer/"); ?>'; 
-				}else{
-					if(data.msg==2){
-					$('#addwhish').css("color", "");
-					$('#sucessmsg').html('Product Successfully removed to Whishlist');  
-					}
-					if(data.msg==1){
-					$('#addwhish').css("color", "yellow");
-					$('#sucessmsg').html('Product Successfully added to Whishlist');  
-					}
-				}
+        if(data.msg==2){
+			$("#addwhish"+id).removeClass("btn-danger");
+        $('#sucessmsg').html('Product Successfully removed to Whishlist');  
+        }
+        if(data.msg==1){
+		 $("#addwhish"+id).addClass("btn-danger");
+        //$('#addwhish').css("color", "yellow");
+        $('#sucessmsg').html('Product Successfully added to Whishlist');  
+        }
       
 
       }
@@ -536,6 +591,6 @@ jQuery.ajax({
  }
  $(document).ready(compare);
 
- </script>
+</script>
 
 

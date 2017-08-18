@@ -224,9 +224,9 @@ class Customerapi_model extends MY_Model
 	}
 	public function get_subcategories($sub_id)
 	{
-		$this->db->select('subcategories.subcategory_id,subcategories.category_id,subcategories.subcategory_name,subcategories.subcategory_image,subcategories.status')->from('subcategories');
-		$this->db->where('subcategories.category_id',$sub_id);
-		$this->db->where('subcategories.status',1);
+		$this->db->select('*')->from('subcategories');
+		$this->db->where('category_id',$sub_id);
+		//$this->db->where('subcategories.status',1);
 		return $this->db->get()->result_array();
 	}
 	public function get_withoutsubcategories($cat_id,$sub_id)

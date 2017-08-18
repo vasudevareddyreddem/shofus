@@ -134,17 +134,25 @@ tr th:last-child {
 						</div>
                   </div>
 				  </td>
+				  <?php 
+					$currentdate=date('Y-m-d h:i:s A');
+						if($items['offer_expairdate']>=$currentdate){
+									$item_price= ($items['item_cost']-$items['offer_amount']);
+									$percentage= $items['offer_percentage'];
+									$orginal_price=$items['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $items['special_price'];
+							$prices= ($items['item_cost']-$items['special_price']);
+							$percentage= (($prices) /$items['item_cost'])*100;
+							$orginal_price=$items['item_cost'];
+						}
+					?>
 				  <td class="unit">
-				    <?php if($items['offer_percentage']!==0 && $items['offer_percentage']!=='' ){
-						$offeramount=($items['item_cost'])-($items['offer_amount']);
-						echo $offeramount; 
-						}else{ 
-						echo $items['item_cost'];
-
-						} ?>
+				  <?php echo $item_price ; ?>
 				  </td>
 				    <td class="action">
-                   <button style="background:transprent;" type="submit" ><i class="fa fa-refresh"></i></button>&nbsp;
+                   <button style="background:transprent;" type="submit" ><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>&nbsp;
                     <a href="<?php echo base_url('customer/deletewishlist/'.base64_encode($items['id'])); ?>" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>
                    </td>
 				  </tr>
