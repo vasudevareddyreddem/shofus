@@ -24,11 +24,9 @@ class Customer extends Front_Controller
 		$post=$this->input->post();
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
-		$data['tredings']= $this->customer_model->get_product_search_location($post['locationarea']);
-		$data['offers']= $this->customer_model->get_product_search_location($post['locationarea']);
-
-	  	//echo '<pre>';print_r($data);exit;
-	  	$data['deals_of_day']= $this->customer_model->get_product_search_deals_day($post['locationarea']);
+		$data['tredings']= $this->customer_model->get_product_search_tredings($post['locationarea']);
+		$data['offers']= $this->customer_model->get_product_search_offers_for_you($post['locationarea']);
+		$data['deals_of_day']= $this->customer_model->get_product_search_deals_day($post['locationarea']);
 	  	$data['season_sales']= $this->customer_model->get_product_search_seaaon_sales($post['locationarea']);
 		//echo '<pre>';print_r($data);exit;
 		$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
