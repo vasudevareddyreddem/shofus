@@ -126,7 +126,7 @@ class Promotions extends Admin_Controller {
 								'offer_percentage'=>$post['offeramount'],
 								'offer_amount'=>$offer_amount,
 								'offer_type'=>5,
-								'offer_expairdate'=>date("Y-m-d h:i:s A"),  
+								'offer_expairdate'=>date('Y-m-d h:i:s A', $date2),   
 								);			
 								$productupdate=$this->Promotions_model->add_topoffer_to_products_inproducts($cat_ida,$data1);
 								
@@ -197,8 +197,8 @@ public function addtopoffers()
 							'offer_percentage'=>$post['offeramount'],
 							'offer_amount'=>$offer_amount,
 							'offer_type'=>5,
-							'offer_expairdate'=>date("Y-m-d h:i:s A"),  
-							);			
+							'offer_expairdate'=>date('Y-m-d h:i:s A', $date2),  
+							);
 							$productupdate=$this->Promotions_model->add_topoffer_to_products_inproducts($cat_ida,$data1);
 							$update=$this->Promotions_model->add_topoffer_to_products($data);
 							$status=1;
@@ -267,7 +267,7 @@ public function dealsoftheday()
 							'offer_percentage'=>$post['offeramount'],
 							'offer_amount'=>$offer_amount,
 							'offer_type'=>5,
-							'offer_expairdate'=>date("Y-m-d h:i:s A"),  
+							'offer_expairdate'=>date('Y-m-d h:i:s A', $date2),    
 							);			
 							$productupdate=$this->Promotions_model->add_topoffer_to_products_inproducts($cat_ida,$data1);
 

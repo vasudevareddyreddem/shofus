@@ -1549,6 +1549,17 @@ function filtersearch(){
 	$data['products_list']= $this->category_model->get_products($pid);
 	$data['products_reviews']= $this->category_model->get_products_reviews($pid);
 	//echo '<pre>';print_r($data);exit;
+	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	foreach ($wishlist_ids as  $list){
+		$customer_ids_list[]=$list['cust_id'];
+		$whishlist_item_ids_list[]=$list['item_id'];
+		$whishlist_ids_list[]=$list['id'];
+	}
+		
+	//echo '<pre>';print_r($customer_ids_list);exit;
+	$data['customer_ids_list']=$customer_ids_list;
+	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+	$data['whishlist_ids_list']=$whishlist_ids_list;
 	$this->template->write_view('content', 'customer/productview', $data);
 	$this->template->render();
 	//echo '<pre>';print_r($data);exit;

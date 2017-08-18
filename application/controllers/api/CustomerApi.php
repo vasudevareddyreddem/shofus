@@ -937,7 +937,7 @@ class CustomerApi extends REST_Controller {
 	/* Sub category api*/
 	public function subcategories_get()
 	{
-		$get = $this->input->get('categoty_id');
+		$get = $this->input->get('category_id');
 		$subcategories = $this->Customerapi_model->get_subcategories($get);
 		if(count($subcategories)>0){
 				$message = array
@@ -949,13 +949,7 @@ class CustomerApi extends REST_Controller {
 				$this->response($message, REST_Controller::HTTP_OK);
 			
 		}else{
-			//$withoutsubs = $this->Customerapi_model->get_withoutsubcategories($get['category_id'],$get['subcategory_id']);
-			//$message = array
-				//(
-				//	'status'=>1,
-				//	'Product_item'=>$withoutsubs,
-				//);
-				//$this->response($message, REST_Controller::HTTP_OK);
+		
 			$message = array('status'=>0,'message'=>'Sub Category List Empty.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}

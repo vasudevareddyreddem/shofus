@@ -62,6 +62,15 @@
 .font_span{
 	font-size:17px;
 }
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	border:none;
+}
+tr th:first-child,
+tr th:last-child {
+    width:40%;
+	font-weight:400;
+	color:#aaa;
+}
 </style>
 
 
@@ -125,17 +134,25 @@
 						</div>
                   </div>
 				  </td>
+				  <?php 
+					$currentdate=date('Y-m-d h:i:s A');
+						if($items['offer_expairdate']>=$currentdate){
+									$item_price= ($items['item_cost']-$items['offer_amount']);
+									$percentage= $items['offer_percentage'];
+									$orginal_price=$items['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $items['special_price'];
+							$prices= ($items['item_cost']-$items['special_price']);
+							$percentage= (($prices) /$items['item_cost'])*100;
+							$orginal_price=$items['item_cost'];
+						}
+					?>
 				  <td class="unit">
-				    <?php if($items['offer_percentage']!==0 && $items['offer_percentage']!=='' ){
-						$offeramount=($items['item_cost'])-($items['offer_amount']);
-						echo $offeramount; 
-						}else{ 
-						echo $items['item_cost'];
-
-						} ?>
+				  <?php echo $item_price ; ?>
 				  </td>
 				    <td class="action">
-                   <button style="background:transprent;" type="submit" ><i class="fa fa-refresh"></i></button>&nbsp;
+                   <button style="background:transprent;" type="submit" ><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>&nbsp;
                     <a href="<?php echo base_url('customer/deletewishlist/'.base64_encode($items['id'])); ?>" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>
                    </td>
 				  </tr>
@@ -164,6 +181,53 @@
 	   
 	   </div>
 	 <!-- track start-->
+<div class="row">
+	
+			<div class="panel panel-primary">
+			<div class="panel-body">
+<div class="col-md-4" style="border-right:1px solid #45b1b5">
+<table class="table " >
+	<div><h5>ORDER DETAILS</h5></div>
+    <tbody>
+      <tr>
+       <th>Order ID</th>
+        <td>OD109489975315807000(1 item)</td>
+        
+      </tr>
+      <tr>
+      <th>Order Date</th>
+        <td>Wed, Jun 21st '17 4:57 PM</td>
+        
+      </tr>
+      <tr>
+        <th>Amount Paid</th>
+        <td>₹424through Cash on delivery</td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-4" style="border-right:1px solid #45b1b5">
+	<div><h5>ORDER DETAILS</h5></div>
+		<div>
+			<p><strong>Namexxxxxxxxx</strong></p>
+			<p>Sardar Patel Nagar, Kukatpally Housing Board Colony, Hyderabad, Telangana</p>
+			<p><strong>Phone :8500226782</strong></p>
+		</div>
+    
+</div>
+<div class="col-md-4" >
+
+	<div><h5>MANAGE ORDER</h5></div>
+		<p ><a class="site_col">REQUEST INVOICE</a></p>
+    
+</div>
+				
+				
+
+</div>
+		</div>
+		</div>
 		<div class="row">
 	
 			<div class="panel panel-primary">
