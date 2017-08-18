@@ -416,11 +416,14 @@ class Customer extends Front_Controller
 		$customerdetails=$this->session->userdata('userdetails');
 		$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
 		$items_names= $this->customer_model->get_cart_Items_names($customerdetails['customer_id']);
+		foreach ($items_names as $list){
+			$productitemnames[]=$list['item_name'];
+		}
 		$data['billimgdetails']=$this->session->userdata('billingaddress');
 		$data['emailid']=$customerdetails['cust_email'];
-		$data['productinfo']=$items_names[0]['item_name'];
+		$data['productinfo']=implode('-', $productitemnames);
 		$data['txnid']=substr(hash('sha256', mt_rand() . microtime()), 0, 20);
-		$amount=$data['carttotal_amount']['pricetotalvalue'];
+		$amount=$data['carttotal_amount']['pricetotalvalue']+$data['carttotal_amount']['delivertamount'];
 		$MERCHANT_KEY = $this->config->item('MERCHANTKEY');
 			$SALT='eCwWELxi';
 
@@ -433,7 +436,7 @@ class Customer extends Front_Controller
         $udf5='';
 		$fname=$data['billimgdetails']['name'];
 		$email=$customerdetails['cust_email'];
-		$hashstring = $MERCHANT_KEY.'|'.$data['txnid'].'|'.$amount. '|'.$items_names[0]['item_name'].'|'.$fname.'|'.$email.'|'.$udf1.'|'.$udf2.'|'.$udf3.'|'.$udf4.'|'.$udf5.'||||||'.$SALT;
+		$hashstring = $MERCHANT_KEY.'|'.$data['txnid'].'|'.$amount. '|'.implode('-', $productitemnames).'|'.$fname.'|'.$email.'|'.$udf1.'|'.$udf2.'|'.$udf3.'|'.$udf4.'|'.$udf5.'||||||'.$SALT;
 		$hash = strtolower(hash('sha512',$hashstring));
         $data['hash'] = $hash;
 		//echo '<pre>';print_r($hashstring);
@@ -455,8 +458,14 @@ class Customer extends Front_Controller
 
 		//$order_id=base64_decode($this->uri->segment(3));
 		//echo '<pre>';print_r($_POST);exit;
+		$customerdetails=$this->session->userdata('userdetails');
 	if($_POST['status']=='success'){
-			$billingaddress=$this->session->userdata('billingaddress');			
+		 $carttotal_amount= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+		$toatal=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
+		$decimal_two_numbers = number_format($toatal, 2, '.', '');
+		
+		if($decimal_two_numbers == $_POST['amount']){
+						$billingaddress=$this->session->userdata('billingaddress');			
 			$customerdetails=$this->session->userdata('userdetails');
 			$ordersucess=array(
 						'customer_id'=>$customerdetails['customer_id'],
@@ -470,9 +479,10 @@ class Customer extends Front_Controller
 						'email'=>$_POST['email'],
 						'phone'=>$_POST['phone'],
 						'order_status'=>1,
+						'hash'=>$_POST['hash'],
 						'created_at'=>date('Y-m-d H:i:s'),
 					);
-			$saveorder= $this->customer_model->save_order_success($ordersucess);
+				$saveorder= $this->customer_model->save_order_success($ordersucess);
 				//echo '<pre>';print_r($saveorder);exit;
 				$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 				//echo '<pre>';print_r($cart_items);exit;
@@ -493,7 +503,7 @@ class Customer extends Front_Controller
 						'order_status'=>1,
 						'create_at'=>date('Y-m-d H:i:s'),
 					);
-					//echo '<pre>';print_r($adddata);exit;
+					//echo '<pre>';print_r($orderitems);exit;
 					$item_qty=$this->customer_model->get_item_details($items['item_id']);
 					$less_qty=$item_qty['item_quantity']-$items['qty'];
 					//echo '<pre>';print_r($item_qty);
@@ -504,6 +514,16 @@ class Customer extends Front_Controller
 				}
 				$this->session->set_flashdata('paymentsucess','Payment successfully completed!');
 				redirect('customer/ordersuccess/'.base64_encode($saveorder));
+						
+			
+		}else{
+			
+			$this->session->set_flashdata('error','Your are proceessdig wrong way that way your amount is lossing.please contact customer care!');
+			redirect('customer/paymenterror');
+		}
+		
+		
+			
 		
 	}else{
 		$data['msg']= '<h2>Fail!</h2>';

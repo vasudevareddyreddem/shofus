@@ -15,6 +15,9 @@
     text-decoration:none;
 }
 </style>
+<script>
+$('#supcount').hide();
+</script>
 
 <div class="" style="margin-top:150px;">
 	

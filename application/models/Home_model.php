@@ -35,6 +35,13 @@ class Home_model extends CI_Model
 	//echo $this->db->last_query();exit; 
 
 	}
+	public function get_search_functionality_sub_category($areaid)
+	{
+	$this->db->select('subcategories.category_id,subcategories.subcategory_id,subcategories.subcategory_name,subcategories.yes')->from('subcategories');
+	$this->db->like('subcategory_name', $areaid);
+	return $this->db->get()->result_array();
+	//echo $this->db->last_query();exit; 
+	}
 	public function get_search_functionality_category($areaid)
 	{
 	$this->db->select('*')->from('category');
@@ -42,13 +49,7 @@ class Home_model extends CI_Model
 	return $this->db->get()->result_array();
 	//echo $this->db->last_query();exit; 
 	}
-	public function get_search_functionality_sub_category($areaid)
-	{
-	$this->db->select('subcategories.subcategory_id,subcategories.subcategory_name,subcategories.yes')->from('subcategories');
-	$this->db->like('subcategory_name', $areaid);
-	return $this->db->get()->result_array();
-	//echo $this->db->last_query();exit; 
-	}
+	
 	public function get_search_top_offers($areaid)
 	{
 		$date = new DateTime("now");
@@ -131,7 +132,6 @@ class Home_model extends CI_Model
 		$this->db->select('*')->from('products');
         $this->db->where('admin_status','0');
 		$this->db->order_by('products.offer_percentage desc');
-		$this->db->limit(5);
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 
@@ -141,7 +141,6 @@ class Home_model extends CI_Model
 		$this->db->select('*')->from('products');
         $this->db->where('admin_status','0');
 		$this->db->order_by('products.offer_percentage desc');
-		$this->db->limit(5);
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 

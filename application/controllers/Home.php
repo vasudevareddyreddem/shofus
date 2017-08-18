@@ -88,11 +88,7 @@ public function search_functionality(){
 	
 	$post=$this->input->post();
 	$data1 = $this->home_model->get_search_functionality_products($post['searchvalue']);
-	//$data1['url']=base_url('category/productview/');
-	//echo "<pre>";print_r($values);exit;
-	//$data2 = $this->home_model->get_search_functionality_category($post['searchvalue']);
 	$data2 = $this->home_model->get_search_functionality_sub_category($post['searchvalue']);
-	//$data2['url']=base_url('category/view/');
 	$data['detail']=array_merge($data1,$data2);
 	//echo "<pre>";print_r($data);exit;
 	$this->load->view('customer/search',$data);
