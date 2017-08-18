@@ -142,19 +142,36 @@ tr th:last-child {
 					<div class="stepwizard">
 						<div class="stepwizard-row">
 							<div class="stepwizard-step">
+							
+								<?php if($item_details['status_confirmation']==1){ ?>
 								<button type="button" class="btn btn-primary btn-circle">1</button>
+								<?php }else{ ?>
+								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">1</button>
+								<?php } ?>
 								<p>Order Confirmation</p>
 							</div>
 							<div class="stepwizard-step">
-								<button type="button" class="btn btn-defaultt btn-circle">2</button>
+								<?php if($item_details['status_confirmation']==2){ ?>
+								<button type="button" class="btn btn-primary btn-circle">2</button>
+								<?php }else{ ?>
+								<button type="button" class="btn btn-defaultt btn-circle"disabled="disabled">2</button>
+								<?php } ?>
 								<p>Packing Order</p>
 							</div>
 							<div class="stepwizard-step">
+								<?php if($item_details['status_confirmation']==3){ ?>
+								<button type="button" class="btn btn-primary btn-circle">3</button>
+								<?php }else{ ?>
 								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">3</button>
+								<?php } ?>
 								<p>Order on Road</p>
 							</div> 
 							<div class="stepwizard-step">
+									<?php if($item_details['status_confirmation']==4){ ?>
+								<button type="button" class="btn btn-primary btn-circle">4</button>
+								<?php }else{ ?>
 								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">4</button>
+								<?php } ?>
 								<p>Delivered</p>
 							</div> 
 							</div> 

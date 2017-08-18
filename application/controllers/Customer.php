@@ -511,6 +511,17 @@ class Customer extends Front_Controller
 					//exit;
 					$this->customer_model->update_tem_qty_after_purchasingorder($items['item_id'],$less_qty,$items['seller_id']);
 					$save= $this->customer_model->save_order_items_list($orderitems);
+					$statu=array(
+						'order_item_id'=>$save,
+						'order_id'=>$saveorder,
+						'item_id'=>$items['item_id'],
+						'status_confirmation'=>1,
+						'create_time'=>date('Y-m-d h:i:s A'),
+						'update_time'=>date('Y-m-d h:i:s A'),
+					);
+					$save= $this->customer_model->save_order_item_status_list($statu);
+					
+					
 				}
 				$this->session->set_flashdata('paymentsucess','Payment successfully completed!');
 				redirect('customer/ordersuccess/'.base64_encode($saveorder));
