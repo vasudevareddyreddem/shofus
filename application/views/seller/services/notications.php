@@ -621,7 +621,7 @@
 			</ol>
 		</div>
 	</section>
-  <section class="content ">
+  <section class=" ">
   <section id="main-content">
     <section class="wrapper">
    

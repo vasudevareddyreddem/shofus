@@ -1,5 +1,5 @@
 <div class="content-wrapper" style="padding-top:80px;">
-	 <div class="col-md-8 col-md-offset-2">
+	 <div class="col-md-8 col-md-offset-2" >
               <!-- DIRECT CHAT -->
               <div class="box box-primary direct-chat direct-chat-primary">
                 <div class="box-header with-border">
@@ -63,12 +63,16 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                   <form name="sendmsg" id="sendmsg" action="<?php echo base_url('inventory/adminnotificationreply'); ?>" method="post">
-                    <div class="input-group">
+                    <div class="form-group" style="padding:0">
+					<div class="col-md-10" style="padding:0">
                       <input type="text" name="message" id="message" placeholder="Type Message ..." class="form-control">
                           <input type="hidden" name="seller_id" id="seller_id"  value="<?php echo $notification['seller_id']; ?>">
+					</div>
+					<div class="col-md-2" style="padding:0">
 						  <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary btn-flat">Send</button>
                           </span>
+                    </div>
                     </div>
                   </form>
                 </div>

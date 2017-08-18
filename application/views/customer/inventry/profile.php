@@ -7,7 +7,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Update Profile</li>
+        <li class="active">Edit Profile</li>
       </ol>
     </section>
 	</div>
