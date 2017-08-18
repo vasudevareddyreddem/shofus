@@ -42,6 +42,10 @@ class Customer_model extends MY_Model
 		$this->db->insert('order_items', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	public function save_order_item_status_list($data){
+		$this->db->insert('order_status', $data);
+		return $insert_id = $this->db->insert_id();
+	}
 	public function after_payment_cart_item($cust_id,$pid,$id){
 		$sql1="DELETE FROM cart WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."' AND id ='".$id."'";
 		return $this->db->query($sql1);
@@ -266,6 +270,20 @@ class Customer_model extends MY_Model
 	public function setpassword_user($custid,$pass){
 		$sql1="UPDATE customers SET cust_password ='".$pass."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
+	}
+	public function get_order_items_lists($custid){
+			$this->db->select('order_items.*')->from('order_items');
+			$this->db->where('order_items.customer_id', $custid);
+			return $this->db->get()->result_array();
+	}
+	public function get_order_items_list($custid,$order_id){
+			$this->db->select('order_items.*,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,')->from('order_items');
+			$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+			$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
+			$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+			$this->db->where('order_items.customer_id', $custid);
+			$this->db->where('order_items.order_item_id', $order_id);
+			return $this->db->get()->row_array();
 	}
 
 	

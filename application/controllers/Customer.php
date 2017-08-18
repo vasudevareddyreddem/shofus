@@ -511,6 +511,17 @@ class Customer extends Front_Controller
 					//exit;
 					$this->customer_model->update_tem_qty_after_purchasingorder($items['item_id'],$less_qty,$items['seller_id']);
 					$save= $this->customer_model->save_order_items_list($orderitems);
+					$statu=array(
+						'order_item_id'=>$save,
+						'order_id'=>$saveorder,
+						'item_id'=>$items['item_id'],
+						'status_confirmation'=>1,
+						'create_time'=>date('Y-m-d h:i:s A'),
+						'update_time'=>date('Y-m-d h:i:s A'),
+					);
+					$save= $this->customer_model->save_order_item_status_list($statu);
+					
+					
 				}
 				$this->session->set_flashdata('paymentsucess','Payment successfully completed!');
 				redirect('customer/ordersuccess/'.base64_encode($saveorder));
@@ -560,6 +571,34 @@ class Customer extends Front_Controller
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('customer');
+	}
+	 
+	 
+ } 
+ public function orederdetails(){
+	 if($this->session->userdata('userdetails'))
+	 {
+
+	$order_id=base64_decode($this->uri->segment(3));
+	$customerdetails=$this->session->userdata('userdetails');
+	$customer_items= $this->customer_model->get_order_items_lists($customerdetails['customer_id']);
+	foreach ($customer_items as $order_ids){
+		$ids[]=$order_ids['order_item_id'];
+		
+	}
+	if(in_array($order_id, $ids)){
+		$data['item_details']= $this->customer_model->get_order_items_list($customerdetails['customer_id'],$order_id);
+		$this->template->write_view('content', 'customer/orderdetails',$data);
+		$this->template->render();
+	}else{
+		$this->session->set_flashdata('loginerror','Please login to continue');
+		redirect('customer');
+	}
+	
+	 
+	}else{
+		 $this->session->set_flashdata('permissionerror','you have no permissions to access this floder');
+		 redirect('customer/orders');
 	}
 	 
 	 

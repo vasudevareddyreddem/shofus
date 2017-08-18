@@ -15,6 +15,11 @@
         
             <!-- /.box-header -->
             <div class="box-body">
+			<?php if($this->session->flashdata('permissionerror')): ?>
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('permissionerror');?></div>
+			<?php endif; ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -23,6 +28,7 @@
                   <th>Amount</th>
                   <th>Date</th>
                   <th>Status</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,9 +40,12 @@
                   <td><?php echo $orders['order_item_id'] ?></td>
                   <td><?php echo $orders['item_name'] ?> </td>
                   <td><?php echo $orders['total_price'] ?></td>
-                  <td><?php echo $orders['create_at'] ?></td>
+                  	<td><?php echo Date('d-M-Y',strtotime(htmlentities($orders['create_at'])));?></td>
                   <td>
 				  <?php   if($orders['order_status']==1){ echo "confirmed";} else{ echo "pending";}?>
+				  </td>
+				  <td>
+				  <a href="<?php echo base_url('customer/orederdetails/'.base64_encode($orders['order_item_id'])); ?>">view</a>
 				  </td>
                 </tr>
                 <?php } ?>
