@@ -267,6 +267,19 @@ class Customer_model extends MY_Model
 		$sql1="UPDATE customers SET cust_password ='".$pass."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
 	}
+	public function get_order_items_lists($custid){
+			$this->db->select('order_items.*')->from('order_items');
+			$this->db->where('order_items.customer_id', $custid);
+			return $this->db->get()->result_array();
+	}
+	public function get_order_items_list($custid,$order_id){
+			$this->db->select('order_items.*,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode')->from('order_items');
+			$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+			$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
+			$this->db->where('order_items.customer_id', $custid);
+			$this->db->where('order_items.order_item_id', $order_id);
+			return $this->db->get()->row_array();
+	}
 
 	
 	

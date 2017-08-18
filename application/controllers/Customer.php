@@ -563,6 +563,34 @@ class Customer extends Front_Controller
 	}
 	 
 	 
+ } 
+ public function orederdetails(){
+	 if($this->session->userdata('userdetails'))
+	 {
+
+	$order_id=base64_decode($this->uri->segment(3));
+	$customerdetails=$this->session->userdata('userdetails');
+	$customer_items= $this->customer_model->get_order_items_lists($customerdetails['customer_id']);
+	foreach ($customer_items as $order_ids){
+		$ids[]=$order_ids['order_item_id'];
+		
+	}
+	if(in_array($order_id, $ids)){
+		$data['item_details']= $this->customer_model->get_order_items_list($customerdetails['customer_id'],$order_id);
+		$this->template->write_view('content', 'customer/orderdetails',$data);
+		$this->template->render();
+	}else{
+		$this->session->set_flashdata('loginerror','Please login to continue');
+		redirect('customer');
+	}
+	
+	 
+	}else{
+		 $this->session->set_flashdata('permissionerror','you have no permissions to access this floder');
+		 redirect('customer/orders');
+	}
+	 
+	 
  }
  public function addwhishlist(){
 	 
