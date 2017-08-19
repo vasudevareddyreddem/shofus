@@ -644,7 +644,7 @@ class Customer extends Front_Controller
 	 if($this->session->userdata('userdetails'))
 	 {
 
-		echo $order_id=base64_decode($this->uri->segment(3));
+		$order_id=base64_decode($this->uri->segment(3));
 			if($order_id!=''){
 						$customerdetails=$this->session->userdata('userdetails');
 						$customer_items= $this->customer_model->get_order_items_lists($customerdetails['customer_id']);
