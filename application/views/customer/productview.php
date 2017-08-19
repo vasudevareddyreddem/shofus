@@ -11,6 +11,12 @@
     z-index: 10;
     border-radius: 0 0 0.5em 0.5em;
 }
+.product-ratings{
+	color:#ddd
+	}
+.product-rateing{
+	color:#fc0
+	}
 </style>
 <div class="">
 	
@@ -166,16 +172,18 @@
 			<div class="row">
 				<h4 style="padding:0px 15px">General</h4>
 			</div>
-			<?php foreach ($products_specufucation a $key=>$list){  ?>
+			<?php $i=0;foreach($products_specufucation as $list){  ?>
+			<?php if($i<=3){ ?>
 			<div class="row" style="margin-top:15px;">
 				<div class="col-md-3">
-					fsdkfks
+					<?php echo $list['spc_name']; ?>
 				</div>
 				<div class="col-md-5">
-					fsdkfks
+					<?php echo $list['spc_value']; ?>
 				</div>
 			</div>
 			<?php } ?>
+			<?php $i++;} ?>
 				
 				
 			</div>
@@ -183,37 +191,26 @@
 		</td>
         
       </tr>
-	  
+	  <?php if (count($products_specufucation)>4){ ?>
 	   <tr class="read_div" style="display:none;">
         <td>
 			<div class="row">
-				<h4 style="padding:0px 15px">General</h4>
+				<h4 style="padding:0px 15px">More specifications</h4>
 			</div>
+				<?php $i=0;foreach($products_specufucation as $list){  ?>
+			<?php if($i>3){ ?>
 			<div class="row" style="margin-top:15px;">
 				<div class="col-md-3">
-					fsdkfks
+					<?php echo $list['spc_name']; ?>
 				</div>
 				<div class="col-md-5">
-					fsdkfks
+					<?php echo $list['spc_value']; ?>
 				</div>
 			</div>
-				<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					fsdkfks
-				</div>
-				<div class="col-md-5">
-					fsdkfks
-				</div>
-			</div>
-				<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					fsdkfks
-				</div>
-				<div class="col-md-5">
-					fsdkfks
-				</div>
-			</div>
-			</div>
+				
+			<?php } ?>
+			<?php $i++;} ?>	
+		
 			
 		</td>
         
@@ -226,6 +223,7 @@
 		</td>
         
       </tr>
+	  <?php } ?>
     
     </tbody>
   </table>
@@ -297,49 +295,69 @@
               <div role="tabpanel" class="tab-pane" id="review">
                 <div class="well">
                   <?php
+				  //echo '<pre>';print_r($products_reviews);exit; 
 					if(count($products_reviews)>0){ 
 					foreach($products_reviews as $reviewslist){ ?>
 				   <div class="media">
                     <div class="media-left">
-                      <a href="#">
-                        <img class="media-object img-thumbnail" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+">
-                      </a>
-                      <div class="product-rating">
+						<div style="background:#ddd;height:30px;width:30px;"><h1>
+						<?php echo  ucfirst(substr($reviewslist['cust_firstname'], 0, 1)); ?>
+						</h1></div>
+                   
+					  <?php if($reviewslist['rating']==1){  ?>
+					    <i class="fa fa-star product-rateing"> </i>
+					    <i class="fa fa-star product-ratings"> </i>
+					    <i class="fa fa-star product-ratings"> </i>
+					    <i class="fa fa-star product-ratings"> </i>
+					    <i class="fa fa-star product-ratings"> </i>
+					 	<?php }else if($reviewslist['rating']==2){ ?>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+						<?php }else if($reviewslist['rating']==3){ ?>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+						<?php }else if($reviewslist['rating']==4){ ?>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+					  <?php }else if($reviewslist['rating']==5){ ?>
+					  <i class="fa fa-star product-rateing"> </i>
+					  <i class="fa fa-star product-rateing"> </i>
+					  <i class="fa fa-star product-rateing"> </i>
+					  <i class="fa fa-star product-rateing"> </i>
+					  <i class="fa fa-star product-rateing"> </i>
+					  <?php } else{ ?>
+						<i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                      </div>
+
+					  <?php }	?>
+					
+                      
+					
                     </div>
                     <div class="media-body">
                       <h5 class="media-heading"><strong><?php echo $reviewslist['name']; ?></strong></h5>
-						<?php echo $reviewslist['review_content']; ?>
+						<?php echo $reviewslist['review_content']; ?><br>
+						Cartinhour Customer  : <?php echo isset($reviewslist['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($reviewslist['create_at']))):'';  ?>
+
                     </div>
+					
                   </div>
 					<?php } }else{ ?>
 					<div class="media"> NO Reviews</div>
 					<?php } ?>
 				
-                  <hr/>
-                  <h4 class="m-b-2">Add your review</h4>
-                  <form role="form" name="addreview" id="addreview" action="<?php echo base_url('category/productreview'); ?>" method="post">
-					<div class="form-group">
-                      <label for="Name">Name</label>
-                      <input type="text" id="name" name="name" class="form-control" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                      <label for="Email">Email</label>
-                      <input type="text" name="email" id="email" class="form-control" placeholder="Email">
-                    </div>
-					
-					
-                    <div class="form-group">
-                      <label for="Review">Your Review</label>
-                      <textarea id="review" name="review" class="form-control" rows="5" placeholder="Your Review"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-theme">Submit Review</button>
-                  </form>
               
               </div>
               <!-- End Review Tab Content -->

@@ -1561,7 +1561,7 @@ function filtersearch(){
 	$data['customer_ids_list']=$customer_ids_list;
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;
-	echo '<pre>';print_r($data);exit;
+	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'customer/productview', $data);
 	$this->template->render();
 	
@@ -1572,18 +1572,33 @@ function filtersearch(){
 	$post=$this->input->post();
 	//echo '<pre>';print_r($post);exit;
 	$details=array(
+	'customer_id'=>$post['customer_id'],
 	'item_id'=>$post['product_id'],
 	'name'=>$post['name'],
 	'email'=>$post['email'],
 	'review_content'=>$post['review'],
+	'create_at'=>date('Y-m-d H:i:s A'),
 	);
 	$savereview= $this->category_model->save_review($details);
 	if(count($savereview)>0){
+		
+		if($post['count']!=''){
+			$addrataing=array(
+			'customer_id'=>$post['customer_id'],
+			'review_id'=>$savereview,
+			'item_id'=>$post['product_id'],
+			'name'=>$post['name'],
+			'email'=>$post['email'],
+			'rating'=>$post['count'],
+			'create_at'=>date('Y-m-d H:i:s A'),
+		);
+		$saverating= $this->category_model->save_rating($addrataing);
+		}
 		$this->session->set_flashdata('success',"review Successfully Submitted");
-		redirect('category/productview/'.base64_encode($post['product_id']));	
+		redirect('customer/orederdetails/'.base64_encode($post['order_item_id']));	
 	}else{
 		$this->session->set_flashdata('error',"Error will occured!");
-		redirect('category/productview/'.base64_encode($post['product_id']));	
+		redirect('customer/orederdetails/'.base64_encode($post['order_item_id']));	
 	}
 
 	//echo '<pre>';print_r($data);exit;

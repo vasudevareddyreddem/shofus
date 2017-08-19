@@ -1665,8 +1665,11 @@ class Category_model extends MY_Model
 	}
 	public function get_products_reviews($pid){
 		
-		$this->db->select('*')->from('reviews');
-		$this->db->where('item_id',$pid);
+		$this->db->select('reviews.*,ratings.rating,customers.cust_firstname')->from('reviews');
+		$this->db->join('ratings', 'ratings.review_id = reviews.review_id', 'left'); 
+		$this->db->join('customers', 'customers.customer_id = reviews.customer_id', 'left'); 
+		$this->db->where('reviews.item_id',$pid);
+		$this->db->order_by("ratings.review_id", "DESC");
 		return $this->db->get()->result_array();
 	}
 	public function get_products_specifications_list($pid){
@@ -1686,6 +1689,11 @@ class Category_model extends MY_Model
 	public function save_review($data){
 		
 		$this->db->insert('reviews', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function save_rating($data){
+		
+		$this->db->insert('ratings', $data);
 		return $insert_id = $this->db->insert_id();
 	}
 

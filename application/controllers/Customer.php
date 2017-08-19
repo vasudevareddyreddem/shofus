@@ -617,6 +617,8 @@ class Customer extends Front_Controller
 	$order_id=base64_decode($this->uri->segment(3));
 	$customerdetails=$this->session->userdata('userdetails');
 	$customer_items= $this->customer_model->get_order_items_lists($customerdetails['customer_id']);
+	$data['customerdetail']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
+
 	foreach ($customer_items as $order_ids){
 		$ids[]=$order_ids['order_item_id'];
 		
