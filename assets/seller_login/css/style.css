@@ -79,6 +79,11 @@ html { overflow-y: scroll;
     height: 100%;
 	
 }
+.bac_img_pop {
+  
+    background-image: url("../images/pop_log.png ");
+
+}
 .main_wrapper {
 	width: 100%;
 	height: auto;

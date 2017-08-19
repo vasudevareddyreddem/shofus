@@ -298,13 +298,18 @@
   
   <!--end Just fill form to Select plan Modal -->
   <!--Forget Password Modal -->
-          <div class="modal fade" id="myModal1" role="dialog">
+          <div class="modal   animated rollIn" id="myModal1" role="dialog">
           
               <div class="modal-dialog modal-sm">
               <button type="button" id="poupclose" style="color:#444;z-index:1024;opacity:0.5;" class="close" data-dismiss="modal">&times;</button>
-                <div class="modal-content">
+                <div class="modal-content bac_img_pop">
+    <div class="modal-header " style="background-color:#006a99;color:#fff;padding:10px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"> Temporary Password </h4>
+        </div>
                   <div class="modal-body pass_list">                
-                      <h4>How do you want temporary password to be send:</h4>                       
+                      <div style="font-size:15px;margin-bottom:10px">How do you want temporary password to be send:</div>  
+						<div class="clearfix">                     
                         <form id="login_pass" name="login_pass" method="post"> 
                         <input type="radio" name="unable_login" id="unable_login" value="1" > E-Mail 
                         <input type="radio" name="unable_login" id="unable_login" value="0" > Mobile

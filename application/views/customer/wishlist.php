@@ -219,7 +219,7 @@ tr th:last-child {
 <div class="col-md-4" >
 
 	<div><h5>MANAGE ORDER</h5></div>
-		<p ><a class="site_col">REQUEST INVOICE</a></p>
+		<p ><a class="site_col" id="review">REQUEST INVOICE</a></p>
     
 </div>
 				
@@ -227,6 +227,37 @@ tr th:last-child {
 
 </div>
 		</div>
+		</div>
+
+
+<div class="row rev_form" style="display:none">
+	
+			<div class="panel panel-primary">
+			<div class="panel-body">
+<div class="row">
+<div class=" col-md-6 col-md-offset-3">		
+ <form action="/action_page.php">
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+    </div>
+<div class="form-group">
+      <label for="pwd">Password:</label>
+      <textarea  class="form-control" id="pwd" placeholder="Enter password" name="pwd"></textarea>
+    </div>
+  
+    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+</div>
+
+			</div>
+		</div>
+  </form>
+
 		</div>
 		<div class="row">
 	
@@ -368,6 +399,13 @@ $(function() {
 });
 </script>
 
+<script>
+$(document).ready(function(){
+    $("#review").click(function(){
+        $(".rev_form").toggle();
+    });
+});
+</script>
 
 		
 
