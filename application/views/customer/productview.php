@@ -166,6 +166,7 @@
 			<div class="row">
 				<h4 style="padding:0px 15px">General</h4>
 			</div>
+			<?php foreach ($products_specufucation a $key=>$list){  ?>
 			<div class="row" style="margin-top:15px;">
 				<div class="col-md-3">
 					fsdkfks
@@ -174,22 +175,9 @@
 					fsdkfks
 				</div>
 			</div>
-				<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					fsdkfks
-				</div>
-				<div class="col-md-5">
-					fsdkfks
-				</div>
-			</div>
-				<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					fsdkfks
-				</div>
-				<div class="col-md-5">
-					fsdkfks
-				</div>
-			</div>
+			<?php } ?>
+				
+				
 			</div>
 			
 		</td>
