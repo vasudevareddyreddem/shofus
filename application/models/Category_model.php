@@ -1669,12 +1669,18 @@ class Category_model extends MY_Model
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->result_array();
 	}
+	public function get_products_specifications_list($pid){
+		
+		$this->db->select('*')->from('product_spcifications');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->result_array();
+	}
 	public function get_products($pid){
 		
 		$this->db->select('products.*,item_wishlist.yes')->from('products');
 		$this->db->join('item_wishlist', 'item_wishlist.item_id = products.item_id', 'left'); //
 		$this->db->where('products.item_id',$pid);
-		$this->db->where('products.admin_status',0);
+		$this->db->where('products.item_status',1);
 		return $this->db->get()->row_array();
 	}
 	public function save_review($data){
