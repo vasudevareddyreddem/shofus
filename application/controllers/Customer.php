@@ -22,6 +22,17 @@ class Customer extends Front_Controller
 
   public function locationsearch(){
 		$post=$this->input->post();
+		//echo '<pre>';print_r($post);exit;
+		if($this->session->userdata('userdetails')){
+			$logindetails=$this->session->userdata('userdetails');
+			$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$post['locationarea']);	
+			//echo $this->db->last_query();exit;
+				if(count($updatearea)>0){
+					$details = $this->customer_model->get_profile_details($logindetails['customer_id']);
+					$this->session->set_userdata('userdetails',$details);
+				}
+			}
+
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
 		$data['tredings']= $this->customer_model->get_product_search_tredings($post['locationarea']);
@@ -389,6 +400,18 @@ class Customer extends Front_Controller
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
 		$post=$this->input->post();
+		//echo '<pre>';print_r($customerdetails);exit;
+		//echo '<pre>';print_r($post);exit;
+		if($customerdetails['address1']=='' || $customerdetails['address2']==''){
+			
+			$details=array(
+			'address1'=>$post['address1'],
+			'address2'=>$post['address2'],
+			'area'=>$post['area'],
+			);
+			$updatedetails= $this->customer_model->update_deails($customerdetails['customer_id'],$details);
+
+		}
 		$details=array(
 		'cust_id'=>$customerdetails['customer_id'],
 		'name'=>$post['name'],
@@ -455,17 +478,16 @@ class Customer extends Front_Controller
  public function success(){
 	 if($this->session->userdata('userdetails'))
 	 {
-
 		//$order_id=base64_decode($this->uri->segment(3));
 		//echo '<pre>';print_r($_POST);exit;
-		$customerdetails=$this->session->userdata('userdetails');
+	$customerdetails=$this->session->userdata('userdetails');
 	if($_POST['status']=='success'){
-		 $carttotal_amount= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+		$carttotal_amount= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
 		$toatal=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
 		$decimal_two_numbers = number_format($toatal, 2, '.', '');
 		
 		if($decimal_two_numbers == $_POST['amount']){
-						$billingaddress=$this->session->userdata('billingaddress');			
+			$billingaddress=$this->session->userdata('billingaddress');			
 			$customerdetails=$this->session->userdata('userdetails');
 			$ordersucess=array(
 						'customer_id'=>$customerdetails['customer_id'],
@@ -523,8 +545,8 @@ class Customer extends Front_Controller
 					
 					
 				}
-				$this->session->set_flashdata('paymentsucess','Payment successfully completed!');
-				redirect('customer/ordersuccess/'.base64_encode($saveorder));
+				//$this->session->set_flashdata('paymentsucess','Payment successfully completed!');
+				//redirect('customer/ordersuccess/'.base64_encode($saveorder));
 						
 			
 		}else{
@@ -550,6 +572,19 @@ class Customer extends Front_Controller
 	 
 	 
  }
+ public function paymentfailure(){
+	 if($this->session->userdata('userdetails'))
+	 {
+		
+		//echo '<pre>';print_r($_POST);exit; 
+		$data['msg']= '<h2>Fail!</h2>';
+		$data['error_msg']= $_POST['error_Message'];
+		$this->session->set_flashdata('paymenterror',$_POST['error_Message']);
+		redirect('customer/orderpayment');
+
+	 }
+
+ }	 
  public function ordersuccess(){
 	 if($this->session->userdata('userdetails'))
 	 {

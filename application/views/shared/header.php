@@ -24,13 +24,22 @@
 				<div class="clearfix"></div>
 				<?php //echo '<pre>';print_r($sidecaregory_list);exit; ?>
 				<?php foreach ($sidecaregory_list as $categories){ ?>
+				<?php if($categories['category_image']==''){ ?>
 				<li  class=" spin ">
 					<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
-						<span ><img  class=" circ_icon" src="<?php echo base_url('assets/home/images/food_ico.png'.$categories['category_image']); ?>" /></span>
 					    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
 					</a>
 				</li>
 				<div class="clearfix"></div>
+				<?php }else{ ?>
+				<li  class=" spin ">
+					<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
+						<span ><img  class=" circ_icon" src="<?php echo base_url('assets/home/images/'.$categories['category_image']); ?>" /></span>
+					    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
+					</a>
+				</li>
+				<div class="clearfix"></div>
+				<?php } ?>
 				<?php } ?>
 				
 				<li id="hover_li" class=" spin ">
@@ -379,7 +388,7 @@ box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);position:fixed">
 	      <h3 style="margin-top:5px">Select Location</h3>
 			 
 			 <span id="locationmsg"></span>
-			 <select data-placeholder="select your nearest area" name="locationarea" id="locationarea" multiple class="chosen-select" tabindex="1">
+			 <select data-placeholder="select your nearest area" name="locationarea" id="locationarea"  class="chosen-select" tabindex="1">
               <option value=""></option>
               <?php foreach($locationdata as $location_data) {?>
 			  <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>

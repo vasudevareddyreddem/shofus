@@ -15,6 +15,22 @@ class Customerapi_model extends MY_Model
 		$this->db->select('*')->from('item_wishlist');
         return $this->db->get()->result_array();
 	}
+	public function get_search_functionality_products($areaid)
+	{
+	$this->db->select('products.item_id,products.item_name,products.yes')->from('products');
+	//$this->db->where('item_name',$areaid);
+	$this->db->like('item_name', $areaid);
+	return $this->db->get()->result_array();
+	//echo $this->db->last_query();exit; 
+
+	}
+	public function get_search_functionality_sub_category($areaid)
+	{
+	$this->db->select('subcategories.category_id,subcategories.subcategory_id,subcategories.subcategory_name,subcategories.yes')->from('subcategories');
+	$this->db->like('subcategory_name', $areaid);
+	return $this->db->get()->result_array();
+	//echo $this->db->last_query();exit; 
+	}
 	public function login_customer($username,$password){
 
 	$sql = "SELECT * FROM customers WHERE (cust_email ='".$username."' AND cust_password ='".md5($password)."') OR (cust_mobile ='".$username."' AND cust_password ='".md5($password)."')";
@@ -206,6 +222,11 @@ class Customerapi_model extends MY_Model
 		$this->db->where('item_wishlist.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
+	public function get_customer_whishlists_count($cust_id){
+		$this->db->select('COUNT(item_wishlist.item_id) as count')->from('item_wishlist');
+		$this->db->where('item_wishlist.cust_id', $cust_id);
+        return $this->db->get()->row_array();
+	}
 
 	public function get_category_products($category_id)
 	{
@@ -326,6 +347,11 @@ class Customerapi_model extends MY_Model
 		$this->db->select('*')->from('cart');
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();
+	}
+	public function get_cart_products_list_count($cust_id){
+		$this->db->select('COUNT(cart.cust_id)AS count')->from('cart');
+		$this->db->where('cart.cust_id', $cust_id);
+        return $this->db->get()->row_array();
 	}
 	public function get_wish_list_products($cust_id){
 		$this->db->select('item_wishlist.*')->from('item_wishlist');

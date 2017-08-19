@@ -111,6 +111,11 @@
 				}
 
 		   ?>
+		   	<form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
+			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
+			<input type="hidden" name="qty" id="qty" value="1" >
+			
             <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
@@ -162,6 +167,7 @@
             </div>
           </div>
             </div>
+			</form>
 			
 		   <?php } ?>
             

@@ -405,6 +405,7 @@ class CustomerApi extends REST_Controller {
 				
 		}
 		$cart_item_ids= $this->Customerapi_model->get_cart_products($customer_id);
+		$item_lists_count= $this->Customerapi_model->get_cart_products_list_count($customer_id);
 		foreach($cart_item_ids as $cartids) 
 		{ 		
 			$cart_ids[]=$cartids['cust_id'];
@@ -416,7 +417,7 @@ class CustomerApi extends REST_Controller {
 			$message = array('status'=>0,'message'=>'Customer having  no products in the cart');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else{
-			$message = array('status'=>1,'message'=>'cart items list','list'=>$item_lists);
+			$message = array('status'=>1,'message'=>'cart items list','list'=>$item_lists,'count'=>$item_lists_count['count']);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}
 	}
@@ -488,7 +489,8 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 		$wishlist = $this->Customerapi_model->get_customer_whishlists($customer_id);
-		//echo $this->db->last_query();exit;
+		$wishlistcount = $this->Customerapi_model->get_customer_whishlists_count($customer_id);
+		//echo '<pre>';print_r($wishlist);exit;
 		if(count($wishlist)>0){
 			foreach($wishlist as $cartids) 
 		{ 		
@@ -500,11 +502,34 @@ class CustomerApi extends REST_Controller {
 			$message = array('status'=>0,'message'=>'Customer having  no products in the wishlist');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else{
-			$message = array('status'=>1,'message'=>'wishlist items list','list'=>$wishlist);
+			$message = array('status'=>1,'message'=>'wishlist items list','list'=>$wishlist,'count'=>$wishlistcount['count']);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}
 		}else{
 			$message = array('status'=>0,'message'=>'Customer having  no products in the wishlist');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
+	/* homesearch  api */
+	public function homesearch_get()
+	{
+		$searchvalue=$this->input->get('searchvalue');
+			if($searchvalue==''){
+			$message = array('status'=>0,'message'=>'search value is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if(strlen($searchvalue)<=2){
+				$message = array('status'=>0,'message'=>'search value minimum length is 3 characters!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			$data1 = $this->Customerapi_model->get_search_functionality_products($searchvalue);
+			$data2 = $this->Customerapi_model->get_search_functionality_sub_category($searchvalue);
+			$search=array_merge($data1,$data2);
+		if(count($search)>0){
+		
+			$message = array('status'=>1,'message'=>'result list are found.','list'=>$search);
+			$this->response($message,REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>0,'message'=>'No result found');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}

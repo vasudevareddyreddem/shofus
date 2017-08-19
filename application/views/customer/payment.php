@@ -136,7 +136,7 @@
 							<input name="email" id="email"  type="hidden"  value='<?php echo $emailid; ?>'>
 							<input name="phone"   type="hidden"  value="<?php echo $billimgdetails['mobile']; ?>">
 							<input name="surl" type="hidden" value="<?php echo base_url('customer/success'); ?>" size="64" />
-							<input name="furl" type="hidden" value="<?php echo base_url('customer/ordersuccess'); ?>" size="64" />
+							<input name="furl" type="hidden" value="<?php echo base_url('customer/paymentfailure'); ?>" size="64" />
 							<input name="curl" type="hidden" value="<?php echo base_url('payu/cancel'); ?>" />
 							<div>
 							<input type="submit" name="submit_form" value="Click Here for Payment" class="btn btn-primary pull-right " style="margin-right:50%">
