@@ -17,6 +17,31 @@
 .product-rateing{
 	color:#fc0
 	}
+.img_c-l_siz{
+		background:#f5f5f5;
+		width:50px;
+		height:70px;
+		border:1px solid #ddd;
+		margin:0px 10px;
+}
+.pr-V_siz{
+		background:#f5f5f5;
+		border:1px solid #ddd;
+		width:8%;
+		font-size:16px;
+		text-algin:center !important;
+		margin:0px 10px;
+		
+}
+
+.site_active{
+	background:#45b1b5;
+	color:#fff;
+}
+.pr-V_siz:hover{
+	background:#45b1b5;
+	color:#fff;
+}	
 </style>
 <div class="">
 	
@@ -115,6 +140,52 @@
 					?>
 				
 				</span></td>
+				
+			   
+              </tr>
+			   <tr>
+                <td>Color</td>
+                <td>
+						<div class="row">
+							<div class="col-md-2 img_c-l_siz" >
+								<img class="img-responsive	"  src="<?php echo base_url(); ?>assets/home/images/loc_logo.png" />
+							</div>
+						
+							<div  class="col-md-2 img_c-l_siz" >
+								<img class="img-responsive	"  src="<?php echo base_url(); ?>assets/home/images/loc_logo.png" />
+							</div>
+						</div>
+				</td>
+				
+			   
+              </tr>
+			   <tr>
+                <td>Size</td>
+                <td>
+						<div class="row">
+							<div class="col-md-2 pr-V_siz site_active" >
+								<span >XL</span>
+						</div>
+						<div class="col-md-2 pr-V_siz" >
+								<span>XXL</span>
+						</div>
+						<div class="col-md-2 pr-V_siz" >
+								<span>L</span>
+						</div>
+						<div class="row">
+							<div class="col-md-2 pr-V_siz" >
+								<span>S</span>
+						</div>
+						<div class="col-md-2 pr-V_siz" >
+								<span>M</span>
+						</div>
+						<div class="col-md-2 pr-V_siz" >
+								<span>XL</span>
+						</div>
+						
+							
+						</div>
+				</td>
 				
 			   
               </tr>
@@ -300,9 +371,9 @@
 					foreach($products_reviews as $reviewslist){ ?>
 				   <div class="media">
                     <div class="media-left">
-						<div style="background:#ddd;height:30px;width:30px;"><h1>
+						<div style="background:#ddd;font-size:46px;padding:6px 25px;"><span >
 						<?php echo  ucfirst(substr($reviewslist['cust_firstname'], 0, 1)); ?>
-						</h1></div>
+						</span></div>
                    
 					  <?php if($reviewslist['rating']==1){  ?>
 					    <i class="fa fa-star product-rateing"> </i>
