@@ -628,14 +628,49 @@ class Customer extends Front_Controller
 		$this->template->write_view('content', 'customer/orderdetails',$data);
 		$this->template->render();
 	}else{
-		$this->session->set_flashdata('loginerror','Please login to continue');
-		redirect('customer');
+			$this->session->set_flashdata('permissionerror','you have no permissions to access this floder');
+		 redirect('customer/orders');
 	}
 	
 	 
 	}else{
-		 $this->session->set_flashdata('permissionerror','you have no permissions to access this floder');
-		 redirect('customer/orders');
+		$this->session->set_flashdata('loginerror','Please login to continue');
+		redirect('customer');
+	}
+	 
+	 
+ }
+ public function orderrefund(){
+	 if($this->session->userdata('userdetails'))
+	 {
+
+		echo $order_id=base64_decode($this->uri->segment(3));
+			if($order_id!=''){
+						$customerdetails=$this->session->userdata('userdetails');
+						$customer_items= $this->customer_model->get_order_items_lists($customerdetails['customer_id']);
+						//echo '<pre>';print_r($customer_items);exit;
+						$data['customerdetail']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
+
+						foreach ($customer_items as $order_ids){
+							$ids[]=$order_ids['order_item_id'];
+							
+						}
+						if(in_array($order_id, $ids)){
+							$data['order_status_details']= $this->customer_model->get_order_items_refund_list($order_id);
+							$this->template->write_view('content', 'customer/orderrefund',$data);
+							$this->template->render();
+						}else{
+							$this->session->set_flashdata('permissionerror','you have no permissions to access this floder');
+							 redirect('customer/orders');
+						}
+			}else{
+					$this->session->set_flashdata('permissionerror','you have no permissions to access this floder');
+					redirect('customer/orders');
+			}
+	 
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		redirect('customer');
 	}
 	 
 	 
@@ -1009,6 +1044,25 @@ class Customer extends Front_Controller
 	$data['whishlist_ids_list']=$whishlist_ids_list;
 		$this->template->write_view('content', 'customer/seemore',$data);
 		$this->template->render();
+	}
+	
+	public function refundpost(){
+	 
+	if($this->session->userdata('userdetails'))
+	{
+		$post=$this->input->post();
+		echo '<pre>';print_r($post);exit;
+		$details=array(
+		'region'=>$post['region'],
+		'status_refund'=>$post['product_id'],
+		'update_time'=>date('Y-m-d H:i:s A'),
+		);
+		$savereview= $this->category_model->save_review($details);
+
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+		}
 	}
 
 
