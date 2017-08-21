@@ -136,10 +136,7 @@ tr th:last-child {
 				<p ><a class="site_col" id="review">Review this product</a></p>
 				</div>
 
-				</div>
-		</div>
-		<div class="panel panel-primary">
-			<div class="panel-body">
+		
 					
 				<div  style="border-bottom:1px solid #f5f5f5;margin-top:5px;" class="clearfix">&nbsp;</div>
 			<br>
