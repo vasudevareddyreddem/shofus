@@ -129,11 +129,10 @@ tr th:last-child {
 					</div>
 
 				</div>
-
-				</div>
-		</div>
-		<div class="panel panel-primary">
-			<div class="panel-body">
+					
+				<div  style="border-bottom:1px solid #f5f5f5;margin-top:5px;" class="clearfix">&nbsp;</div>
+			<br>
+	
 				<div class="col-md-4">
 					<div class="col-md-4">
 						<img style="width:60px" src="<?php echo base_url(); ?>assets/home/images/user.png" />
