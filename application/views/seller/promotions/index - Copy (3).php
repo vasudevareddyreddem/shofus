@@ -313,7 +313,7 @@
 	  if(offertpes==4){
 		 var product=document.getElementById('combo<?php echo $subcategory->subcategory_id;?>').value;
 		if(product==''){
-			jQuery('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('Plase select a Product');
+			jQuery('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('Please select a Product');
 			return false;   
 		  }
 		  jQuery('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
