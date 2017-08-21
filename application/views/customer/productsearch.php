@@ -137,7 +137,7 @@
 				<?php } ?>
 				
 				<div class="option">
-				<?php if($productslist['item_quantity']>0){ ?>
+				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
 				<button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
 				<?php } ?>
 				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
@@ -151,7 +151,7 @@
               <div class="price">
                
 				<div class="pull-left" ><?php echo ($item_price); ?> 
-				<span class="label-tags"><span class="label label-default">-<?php echo $percentage; ?>%</span></span>
+				<span class="label-tags"><span class="label label-default">-<?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
 				</div>
 				<span class="price-old"><?php echo $orginal_price; ?></span>
             
@@ -241,7 +241,7 @@
                <div class="price">
                
 				<div class="pull-left" ><?php echo ($item_price); ?> 
-				<span class="label-tags"><span class="label label-default">-<?php echo $percentage; ?>%</span></span>
+				<span class="label-tags"><span class="label label-default">-<?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
 				</div>
 				<span class="price-old"><?php echo $orginal_price; ?></span>
             
@@ -334,7 +334,7 @@
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
                <div class="price">
                	<div class="pull-left" ><?php echo ($item_price); ?> 
-				<span class="label-tags"><span class="label label-default">-<?php echo $percentage; ?>%</span></span>
+				<span class="label-tags"><span class="label label-default">-<?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
 				</div>
 				<span class="price-old"><?php echo $orginal_price; ?></span>
 				</div>
@@ -422,7 +422,7 @@
               <div class="price">
                
 				<div class="pull-left" ><?php echo ($item_price); ?> 
-				<span class="label-tags"><span class="label label-default">-<?php echo $percentage; ?>%</span></span>
+				<span class="label-tags"><span class="label label-default">-<?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
 				</div>
 				<span class="price-old"><?php echo $orginal_price; ?></span>
             

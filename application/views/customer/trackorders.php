@@ -129,6 +129,12 @@ tr th:last-child {
 					</div>
 
 				</div>
+				<div class="col-md-4" >
+				<?php if($item_details['status_deliverd']==4 && $item_details['order_status']!=5){ ?>
+				<div><a class="site_col" href="<?php echo base_url('customer/orderrefund/'.base64_encode($item_details['order_item_id'])); ?>"><h5>Return</h5></a></div>
+				<?php } ?>
+				<p ><a class="site_col" id="review">Review this product</a></p>
+				</div>
 
 				</div>
 		</div>
