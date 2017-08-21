@@ -337,7 +337,7 @@
 	jQuery("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html('');
 	  var date=document.getElementById('datepicker<?php echo $subcategory->subcategory_id;?>').value;
 		if(date==''){
-		jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Plase select an expiry Date');
+		jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Please select an expiry Date');
 		return false;
 	  }
 	  	
