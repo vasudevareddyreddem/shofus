@@ -626,6 +626,7 @@ $(function(){
                     <?php endif; ?>
                     <div class="panel-body">
                     <form id="changepassword"  name="changepassword" action="<?php echo base_url('seller/personnel_details/changepassword'); ?>" method="post" enctype="multipart/form-data">
+					<div class="row">
                       <div class="form-group nopaddingRight col-md-6 san-lg">
                       <label for="exampleInputEmail1">old passwod</label>
                       <input class="form-control"  type="password" id="oldpassword" name="oldpassword" value="">
@@ -635,10 +636,13 @@ $(function(){
                       <input maxlength="100" type="password" maxlength="12" id="newpassword" name="newpassword" class="form-control"  value="" />
 
                       </div>
+                      </div>
+					  <div class="row">
                       <div class="form-group nopaddingRight col-md-6 san-lg">
                       <label for="exampleInputEmail1">Confirm Password</label>
                       <input maxlength="100" type="password" maxlength="12" id="confirmpassword" name="confirmpassword" class="form-control"  value="" />
 
+                      </div>
                       </div>
 
 
