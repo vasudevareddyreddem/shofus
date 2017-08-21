@@ -304,7 +304,7 @@
 	  } if(offertpes==4){
 		 var product=document.getElementById('combo<?php echo $subcategory->subcategory_id;?>').value;
 		if(product==''){
-			jQuery('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('Plase select a Product');
+			jQuery('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('Please select a Product');
 			return false;   
 		  }
 		  jQuery('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
@@ -320,7 +320,7 @@
 						} 
 				 }
 				 if(offerAmt >100){
-					$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter lessthan or equal 100 Percentages");
+					$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter less than or equal to 100 Percentages");
 					return false; 
 				 }
 	  
@@ -329,7 +329,7 @@
 	  var date=document.getElementById('datepicker<?php echo $subcategory->subcategory_id;?>').value;
 	  
 		if(date==''){
-		jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Plase select an expiry Date');
+		jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('Please select an expiry Date');
 		return false;
 	  }
 	  jQuery('#offertdate<?php echo $subcategory->subcategory_id;?>').html('');
