@@ -298,7 +298,7 @@
 					} 
 			 }
 			 if(offerAmt >100){
-				$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter lessthan or equal 100 Percentages");
+				$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter less than or equal to 100 Percentages");
 				return false; 
 			 }
   
