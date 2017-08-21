@@ -406,13 +406,12 @@
 					  <i class="fa fa-star product-rateing"> </i>
 					  <i class="fa fa-star product-rateing"> </i>
 					  <?php } else{ ?>
-						<i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-
-					  <?php }	?>
+							<i class="fa fa-star product-ratings"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+					 <?php } ?>
 					
                       
 					

@@ -63,7 +63,7 @@ tr th:last-child {
 <div class="container">
 		<div class="row">
 		<?php //echo base64_decode($this->uri->segment('3'));
-		//echo '<pre>';print_r($customerdetail);exit; ?>
+		//echo '<pre>';print_r($item_details);exit; ?>
 		
 	 <!-- track start-->
 <div class="row">
@@ -123,7 +123,9 @@ tr th:last-child {
     
 </div>
 		<div class="col-md-4" >
-		<div><h5>MANAGE ORDER</h5></div>
+		<?php if($item_details['status_deliverd']==4){ ?>
+		<div><a class="site_col" href="<?php echo base_url('customer/orderrefund/'.base64_encode($item_details['order_item_id'])); ?>"><h5>Return</h5></a></div>
+		<?php } ?>
 		<p ><a class="site_col" id="review">Review this product</a></p>
 		</div>
 		</div>
@@ -196,7 +198,7 @@ tr th:last-child {
 								<p>Order Confirmation</p>
 							</div>
 							<div class="stepwizard-step">
-								<?php if($item_details['status_confirmation']==2){ ?>
+								<?php if($item_details['status_packing']==2){ ?>
 								<button type="button" class="btn btn-primary btn-circle">2</button>
 								<?php }else{ ?>
 								<button type="button" class="btn btn-defaultt btn-circle"disabled="disabled">2</button>
@@ -204,7 +206,7 @@ tr th:last-child {
 								<p>Packing Order</p>
 							</div>
 							<div class="stepwizard-step">
-								<?php if($item_details['status_confirmation']==3){ ?>
+								<?php if($item_details['status_road']==3){ ?>
 								<button type="button" class="btn btn-primary btn-circle">3</button>
 								<?php }else{ ?>
 								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">3</button>
@@ -212,7 +214,7 @@ tr th:last-child {
 								<p>Order on Road</p>
 							</div> 
 							<div class="stepwizard-step">
-									<?php if($item_details['status_confirmation']==4){ ?>
+									<?php if($item_details['status_deliverd']==4){ ?>
 								<button type="button" class="btn btn-primary btn-circle">4</button>
 								<?php }else{ ?>
 								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">4</button>
