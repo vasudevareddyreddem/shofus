@@ -17,23 +17,23 @@
      
 		<li class="">
           <a href="<?php echo base_url('inventory/sellerlist'); ?>">
-             <i class="fa fa-dashboard"></i> <span>Seller Lists</span>
+             <i class="fa fa-list-ul"></i> <span>Seller Lists</span>
           </a>
         </li>
 		<li class="">
           <a href="<?php echo base_url('inventory/sellerpayments'); ?>">
-             <i class="fa fa-dashboard"></i> <span>Seller payments</span>
+             <i class="fa fa-credit-card"></i> <span>Seller payments</span>
           </a>
         </li>
      
 		<li class="treeview">
           <a href="<?php echo base_url('inventory/sellerservicerequests'); ?>">
-		  <i class="fa fa-dashboard"></i> <span>Service requests</span>
+		  <i class="fa fa-usb"></i> <span>Service requests</span>
           </a>
         </li>
         <li class="treeview">
           <a href="">
-           <i class="fa fa-dashboard"></i> <span>Show ups :</span>
+           <i class="fa fa-modx"></i> <span>Show ups :</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -48,12 +48,12 @@
         </li>
 		<li class="">
           <a href="<?php echo base_url('inventory/homepagepreview'); ?>">
-             <i class="fa fa-dashboard"></i> <span>Customer Home page preview</span>
+             <i class="fa fa-home"></i> <span>Customer Home page preview</span>
           </a>
         </li>
 		<li class="">
           <a href="<?php echo base_url('inventory/sellernitificationlist'); ?>">
-             <i class="fa fa-dashboard"></i> <span>Seller notification</span>
+             <i class="fa fa-globe"></i> <span>Seller notification</span>
           </a>
         </li>
     

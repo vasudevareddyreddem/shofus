@@ -44,7 +44,8 @@
 				
 				<li id="hover_li" class=" spin ">
 					<a  class="menu_ti2  ">
-						<span  class="circ_icon glyphicon glyphicon-blackboard rot" style="font-size:34px;"></span>
+						<span   ><img class=" circ_icon"src="<?php echo base_url(); ?>assets/home/images/more_cat.png" />
+						</span>
 						<span class="menu_tit">MORE CATEGORIES</span>
 					</a>
 					<ul id="left_box" class="right_cust" style="display:none">
@@ -148,17 +149,17 @@
 			<!--<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
 				<p>Location</p></a>
 			</span></a></span>-->
-			<span class="medias text-center"><a href="javascript:void(0);" onclick="openpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
+			<span class="medias text-center"><a href="javascript:void(0);" onclick="openpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
 				<p>Location</p></a>
 			</span></a></span>
 			
 			<?php if($this->session->userdata('userdetails')){ ?>
-			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i></a>&nbsp;<sup id="supcount" class="sup_log">
+			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i><img  src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i></a>&nbsp;<sup id="supcount" class="sup_log blink-image" style="color:#45b1b5;">
 			<?php if(count($cartitemcount)>0){ ?>
 				<?php echo count($cartitemcount)	; ?>
 				</sup>
 				<p>Cart</p>
-				<div class="sprinkle"></div>
+				<!--<div class="sprinkle"></div>-->
 			<?php }else{  ?>
 			<sup class="sup_log"></sup>	
 			<?php } ?>

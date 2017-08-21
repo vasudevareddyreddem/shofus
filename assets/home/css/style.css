@@ -6081,10 +6081,10 @@ box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
     }
 } 
 .blink-image {
-    -moz-animation: blink normal 4s infinite ease-in-out; /* Firefox */
+    -moz-animation: blink normal 3s infinite ease-in-out; /* Firefox */
     -webkit-animation: blink normal 4s infinite ease-in-out; /* Webkit */
-    -ms-animation: blink normal 4s infinite ease-in-out; /* IE */
-    animation: blink normal 4s infinite ease-in-out; /* Opera and prob css3 final iteration */
+    -ms-animation: blink normal 3s infinite ease-in-out; /* IE */
+    animation: blink normal 3s infinite ease-in-out; /* Opera and prob css3 final iteration */
 }
 /* subcategoryview css end */
 @media screen and (min-width: 1920px) {
