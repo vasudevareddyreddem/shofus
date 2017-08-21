@@ -295,6 +295,7 @@ class Customer_model extends MY_Model
 			$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
 			$this->db->join('locations', 'locations.location_id = billing_address.area', 'left');
 			$this->db->where('order_items.customer_id', $custid);
+			$this->db->order_by('order_items.order_item_id desc');
 			return $this->db->get()->result_array();
 	}
 	public function get_order_items_list($custid,$order_id){

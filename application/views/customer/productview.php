@@ -19,8 +19,8 @@
 	}
 .img_c-l_siz{
 		background:#f5f5f5;
-		width:50px;
-		height:70px;
+		width:20px;
+		height:30px;
 		border:1px solid #ddd;
 		margin:0px 10px;
 }
@@ -41,7 +41,12 @@
 .pr-V_siz:hover{
 	background:#45b1b5;
 	color:#fff;
-}	
+}
+.col_active{
+	border:2px solid #45b1b5;
+	
+	
+}
 </style>
 <div class="">
 	
@@ -143,52 +148,44 @@
 				
 			   
               </tr>
+			  <?php if(count($colors_list)>0){ ?>
 			   <tr>
                 <td>Color</td>
                 <td>
-						<div class="row">
-							<div class="col-md-2 img_c-l_siz" >
-								<img class="img-responsive	"  src="<?php echo base_url(); ?>assets/home/images/loc_logo.png" />
-							</div>
 						
-							<div  class="col-md-2 img_c-l_siz" >
-								<img class="img-responsive	"  src="<?php echo base_url(); ?>assets/home/images/loc_logo.png" />
-							</div>
+						
+						<div class="row">
+						<input type="hidden" name="colorvalue" id="colorvalue" value="">
+						<?php $i=1;foreach($colors_list as $list) { ?>
+						<div href="javascript:void(0);" id="colorlist<?php echo $i;?>" onclick="colorselect(<?php echo $i; ?>);colorselectvalue('<?php echo $list['color_name'];?>');"  class="col-md-2 img_c-l_siz" style="background-color:<?php echo $list['color_name']; ?>"></div>
+						<?php $i++;} ?>
+							
 						</div>
+						
 				</td>
 				
 			   
               </tr>
+			   <?php } ?>
+			  <?php if(count($sizes_list)>0){ ?>
 			   <tr>
                 <td>Size</td>
                 <td>
 						<div class="row">
-							<div class="col-md-2 pr-V_siz site_active" >
-								<span >XL</span>
+						<input type="hidden" name="sizevalue" id="sizevalue" value="">
+						<?php $i=1;foreach($sizes_list as $list) { ?>
+						<div id="sizeslist<?php echo $i;?>" class="col-md-2 pr-V_siz" >
+						<span  onclick="sizeselect('<?php echo $i;?>');sizeselectvalue('<?php echo $list['p_size_name'];?>');"><?php echo $list['p_size_name'];?></span>
 						</div>
-						<div class="col-md-2 pr-V_siz" >
-								<span>XXL</span>
-						</div>
-						<div class="col-md-2 pr-V_siz" >
-								<span>L</span>
-						</div>
-						<div class="row">
-							<div class="col-md-2 pr-V_siz" >
-								<span>S</span>
-						</div>
-						<div class="col-md-2 pr-V_siz" >
-								<span>M</span>
-						</div>
-						<div class="col-md-2 pr-V_siz" >
-								<span>XL</span>
-						</div>
-						
+						<?php $i++;} ?>
 							
 						</div>
 				</td>
 				
 			   
               </tr>
+			  
+			  <?php } ?>
               <tr>
                 <td>Quantity</td>
                 <td>
@@ -460,6 +457,35 @@
 
 
 <script type="text/javascript">
+
+function colorselectvalue(vals){
+		document.getElementById("colorvalue").value=vals;
+}
+function sizeselectvalue(val){
+		document.getElementById("sizevalue").value=val;
+}
+function sizeselect(val){
+	$("#sizeslist"+val).addClass("site_active");
+	var cnt;
+    var nt =<?php echo $sizecnt;?>;
+	//var cnt='';
+	for(cnt = 1; cnt <= nt; cnt++){
+		if(cnt!=val){
+			$("#sizeslist"+cnt).removeClass("site_active");
+		}             
+	}
+}
+function colorselect(val){
+	$("#colorlist"+val).addClass("col_active");
+	var cnt;
+    var nt =<?php echo $colorcnt;?>;
+	//var cnt='';
+	for(cnt = 1; cnt <= nt; cnt++){
+		if(cnt!=val){
+			$("#colorlist"+cnt).removeClass("col_active");
+		}             
+	}
+}
 function addwhishlidt(id){
 jQuery.ajax({
 			url: "<?php echo site_url('customer/addwhishlist');?>",

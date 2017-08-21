@@ -1549,6 +1549,10 @@ function filtersearch(){
 	$data['products_list']= $this->category_model->get_products($pid);
 	$data['products_reviews']= $this->category_model->get_products_reviews($pid);
 	$data['products_specufucation']= $this->category_model->get_products_specifications_list($pid);
+	$data['sizes_list']= $this->category_model->get_products_sizes_list($pid);
+	$data['colors_list']= $this->category_model->get_products_colos_list($pid);
+	$data['colorcnt']= count($data['colors_list']);
+	$data['sizecnt']= count($data['sizes_list']);
 	//echo '<pre>';print_r($data);exit;
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	foreach ($wishlist_ids as  $list){

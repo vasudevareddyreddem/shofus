@@ -1663,6 +1663,20 @@ class Category_model extends MY_Model
 		$this->db->where('subcategories.subcategory_id',$catid);
 		return $this->db->get()->row_array();
 	}
+	public function get_products_sizes_list($pid){
+		
+		$this->db->select('*')->from('product_size_list');
+		$this->db->where('item_id',$pid);
+		$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_products_colos_list($pid){
+		
+		$this->db->select('*')->from('product_color_list');
+		$this->db->where('item_id',$pid);
+		$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
 	public function get_products_reviews($pid){
 		
 		$this->db->select('reviews.*,ratings.rating,customers.cust_firstname')->from('reviews');
