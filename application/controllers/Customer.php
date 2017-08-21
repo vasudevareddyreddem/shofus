@@ -415,6 +415,7 @@ class Customer extends Front_Controller
 		$details=array(
 		'cust_id'=>$customerdetails['customer_id'],
 		'name'=>$post['name'],
+		'emal_id'=>$customerdetails['cust_email'],
 		'mobile'=>$post['mobile'],
 		'address1'=>$post['address1'],
 		'address2'=>$post['address2'],
@@ -451,8 +452,7 @@ class Customer extends Front_Controller
 			$SALT='eCwWELxi';
 
         $txnid = substr(hash('sha256', mt_rand().microtime()), 0, 20);
-
-        $udf1='';
+		$udf1='';
         $udf2='';
         $udf3='';
         $udf4='';
@@ -505,7 +505,21 @@ class Customer extends Front_Controller
 						'created_at'=>date('Y-m-d H:i:s'),
 					);
 				$saveorder= $this->customer_model->save_order_success($ordersucess);
+				
 				//echo '<pre>';print_r($saveorder);exit;
+				/* order sms*/
+				/*$username=$this->config->item('smsusername');
+				$pass=$this->config->item('smspassword');
+				$msg='Order received:we have received your order for '.$_POST['productinfo'].' with order id '.$saveorder.' Amounting to '.$_POST['net_amount_debit'].' You can manage your order at http://cartinhour.com';
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+				curl_setopt($ch, CURLOPT_POST, 1);
+				curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=SUCCES&phone="'.$_POST['phone'].'"&text="'.$msg.'"&priority=ndnd&stype=normal');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				$server_output = curl_exec ($ch);
+				curl_close ($ch);*/
+				//echo $sms;exit;
+				/* order sms*/
 				$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 				//echo '<pre>';print_r($cart_items);exit;
 				foreach($cart_items as $items){
@@ -545,8 +559,24 @@ class Customer extends Front_Controller
 					
 					
 				}
-				//$this->session->set_flashdata('paymentsucess','Payment successfully completed!');
-				//redirect('customer/ordersuccess/'.base64_encode($saveorder));
+				
+				/*for billing address*/
+				$orderbilling=array(
+						'cust_id'=>$billingaddress['cust_id'],
+						'order_id'=>$saveorder,
+						'name'=>$billingaddress['name'],
+						'emal_id'=>$billingaddress['emal_id'],
+						'mobile'=>$billingaddress['mobile'],
+						'address1'=>$billingaddress['address1'],
+						'address2'=>$billingaddress['address2'],
+						'area'=>$billingaddress['area'],
+						'create-at'=>date('Y-m-d H:i:s'),
+					);
+					$saveorderbillingaddress= $this->customer_model->save_order_billing_address($orderbilling);
+					
+				/*for billing address*/
+				$this->session->set_flashdata('paymentsucess','Payment successfully completed!');
+				redirect('customer/ordersuccess/'.base64_encode($saveorder));
 						
 			
 		}else{
@@ -590,7 +620,8 @@ class Customer extends Front_Controller
 	 {
 
 	$order_id=base64_decode($this->uri->segment(3));
-	//echo '<pre>';print_r($_POST);exit;
+	$billinginnfo = $this->session->userdata('billingaddress');
+	//echo '<pre>';print_r($billinginnfo);exit;
 	  $customerdetails=$this->session->userdata('userdetails');
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 		//echo '<pre>';print_r($cart_items);exit;
@@ -624,7 +655,9 @@ class Customer extends Front_Controller
 		
 	}
 	if(in_array($order_id, $ids)){
+		
 		$data['item_details']= $this->customer_model->get_order_items_list($customerdetails['customer_id'],$order_id);
+		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/orderdetails',$data);
 		$this->template->render();
 	}else{
@@ -657,6 +690,10 @@ class Customer extends Front_Controller
 						}
 						if(in_array($order_id, $ids)){
 							$data['order_status_details']= $this->customer_model->get_order_items_refund_list($order_id);
+							$data['color_list']= $this->customer_model->get_color_lists($data['order_status_details']['item_id']);
+							$data['size_list']= $this->customer_model->get_sizes_lists($data['order_status_details']['item_id']);
+							$data['product_details']= $this->customer_model->get_product_details_for_subcats($data['order_status_details']['item_id']);
+							//echo '<pre>';print_r($data);exit;
 							$this->template->write_view('content', 'customer/orderrefund',$data);
 							$this->template->render();
 						}else{
@@ -1050,34 +1087,82 @@ class Customer extends Front_Controller
 	 
 	if($this->session->userdata('userdetails'))
 	{
+		
 		$post=$this->input->post();
-		echo '<pre>';print_r($post);exit;
-		$details=array(
-		'region'=>$post['region'],
-		'status_refund'=>$post['product_id'],
-		'update_time'=>date('Y-m-d H:i:s A'),
-		);
-		$savereview= $this->category_model->save_review($details);
+		//echo '<pre>';print_r($post);exit;
+		if(isset($post['refund_type']) && $post['refund_type']==1){
+				$refundtype='Refund';
+		}else if(isset($post['refund_type']) && $post['refund_type']==2){
+				$refundtype='Exchange';
+		}else if(isset($post['refund_type']) && $post['refund_type']==3){
+				$refundtype='Replacement';
+		}
+		if(isset($post['refund_type1']) && $post['refund_type1']==1){
+				$refundtype1='Refund';
+		}else if(isset($post['refund_type1']) && $post['refund_type1']==2){
+				$refundtype1='Exchange';
+		}else if(isset($post['refund_type1']) && $post['refund_type1']==3){
+				$refundtype1='Replacement';
+		}
+			if(isset($post['refund_type']) && $post['refund_type']!=''){
+						$details=array(
+						'region'=>$post['region'],
+						'status_refund'=>$refundtype,
+						'update_time'=>date('Y-m-d H:i:s A'),
+						);
+						//echo '<pre>';print_r($details);exit;
+						$savereview= $this->customer_model->update_refund_details($post['status_id'],$details);
+						if(count($savereview)>0){
+							$data=array('order_status'=>5);
+							$this->customer_model->update_refund_details_inorders($post['order_item_id'],$data);
+							//echo $this->db->last_query();exit;
+							$this->session->set_flashdata('successmsg','Your query submitted successfully');
+							redirect('customer/orders');
+						}
+			}
+			if(isset($post['refund_type1']) && $post['refund_type1']!=''){
+				//echo '<pre>';print_r($post);
+				$exchangedetails=array(
+						'color'=>$post['color'],
+						'size'=>$post['size'],
+						'region'=>isset($post['region'])?$post['region']:'',
+						'status_refund'=>$refundtype1,
+						'update_time'=>date('Y-m-d H:i:s A'),
+						);
+						$exchangesave= $this->customer_model->update_refund_details($post['status_id'],$exchangedetails);
+						if(count($exchangesave)>0){
+							$data=array('order_status'=>5);
+							$this->customer_model->update_refund_details_inorders($post['order_item_id'],$data);
+							//echo $this->db->last_query();exit;
+							$this->session->set_flashdata('successmsg','Your query submitted successfully');
+							redirect('customer/orders');
+						}
+				
+			}
+		
 
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('customer');
 		}
 	}
-
-
-
-
-
 	
-	
-	
-	
+	 public function trackorders(){
+		 if($this->session->userdata('userdetails'))
+		 {
 
-
-
-
-
+			$customerdetails=$this->session->userdata('userdetails');
+			$data['customer_all_order_details']= $this->customer_model->get_order_items_track_list($customerdetails['customer_id']);
+			//echo '<pre>';print_r($data['customer_all_order_details']);exit; 
+			$this->template->write_view('content', 'customer/trackorders', $data);
+			$this->template->render();
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('customer');
+		}
+	 
+	 
+ }
 
 
 

@@ -60,13 +60,6 @@ tr th:last-child {
 </style>
 
 <body >
-<div class="container">
-		<div class="row">
-		<?php //echo base64_decode($this->uri->segment('3'));
-		//echo '<pre>';print_r($item_details);exit; ?>
-		
-	 <!-- track start-->
-<div class="row">
   <?php if($this->session->flashdata('success')): ?>
 			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
@@ -77,106 +70,69 @@ tr th:last-child {
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
-	
-			<div class="panel panel-primary">
-			<div class="panel-body">
-<div class="col-md-4" style="border-right:1px solid #45b1b5">
-<table class="table " >
-	<div><h5>ORDER DETAILS</h5></div>
-    <tbody>
-      <tr>
-       <th>Order ID</th>
-        <td><?php echo isset($item_details['order_item_id'])?'ORDER2017'.$item_details['order_item_id']:'';  ?></td>
-        
-      </tr>
-	  <tr>
-       <th>Item Name</th>
-        <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td>
-        
-      </tr>
-      <tr>
-      <th>Order Date</th>
-        <td><?php echo isset($item_details['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($item_details['create_at']))):'';  ?></td>
-        
-      </tr>
-      <tr>
-        <th>Amount Paid</th>
-        <td>₹<?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>through <?php echo isset($item_details['payment_mode'])?$item_details['payment_mode']:'';  ?></td>
-        
-      </tr>
-	  <tr>
-        <th>Delivery Amount</th>
-        <td>₹<?php echo isset($item_details['delivery_amount'])?$item_details['delivery_amount']:'';  ?></td>
-        
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="col-md-4" style="border-right:1px solid #45b1b5">
-	<div><h5>Delivery location Address Details</h5></div>
-		<div>
-			<p><strong>Name :<?php echo isset($item_details['name'])?$item_details['name']:'';  ?></strong></p>
-			<p><strong>Email Address :<?php echo isset($item_details['emal_id'])?$item_details['emal_id']:'';  ?></strong></p>
-			<p><strong>Address :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
-			<?php if(isset($item_details['address2']) && $item_details['address2']!=''){?>
-			<p><strong>Address2 :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
-			<?php } ?>
-			<p><strong>Phone :<?php echo isset($item_details['mobile'])?$item_details['mobile']:'';  ?></strong></p>
-			<p><strong>Delivery location area :<?php echo isset($item_details['location_name'])?$item_details['location_name']:'';  ?></strong></p>
-		</div>
-    
-</div>
-		<div class="col-md-4" >
-		<?php if($item_details['status_deliverd']==4 && $item_details['order_status']!=5){ ?>
-		<div><a class="site_col" href="<?php echo base_url('customer/orderrefund/'.base64_encode($item_details['order_item_id'])); ?>"><h5>Return</h5></a></div>
-		<?php } ?>
-		<p ><a class="site_col" id="review">Review this product</a></p>
-		</div>
-		</div>
-		</div>
-		</div>
-		<div class="row rev_form" style="display:none">
-	
-			<div class="panel panel-primary">
-			<div class="panel-body">
-				<form id="addreview" name="addreview" action="<?php echo base_url('category/productreview'); ?>" method="POST">
-					<input type="hidden" name="product_id" id="product_id" value="<?php echo $item_details['item_id']; ?>">
-					<input type="hidden" name="order_item_id" id="order_item_id" value="<?php echo $item_details['order_item_id']; ?>">
-					<input type="hidden" name="customer_id" id="customer_id" value="<?php echo $customerdetail['customer_id']; ?>">
-					<div class="row">
-							<div class=" col-md-6 col-md-offset-3">		
-							
+			
+			<?php foreach ($customer_all_order_details as $item_details){ ?>
+<div class="container">
+		<div class="row">
+		<?php //echo base64_decode($this->uri->segment('3'));
+		//echo '<pre>';print_r($item_details);exit; ?>
+		
+	 <!-- track start-->
+<div class="row">
 
-								<div class="form-group">
-									<label for="email">Email:</label>
-									<input type="text" name="email" id="email" value="<?php echo $customerdetail['cust_email']; ?>" class="form-control" placeholder="Email">
-								</div>
-								<div class="form-group">
-									<label for="pwd">Name:</label>
-									<input type="text" id="name" name="name" value="<?php echo $customerdetail['cust_firstname'].' '.$customerdetail['cust_lastname']; ?>" class="form-control" placeholder="Name">
-								</div>
-								<div class="form-group starrr" id="stars">
-									<label for="pwd">Rate this product</label>
-									<input type="hidden" id="count" name="count" class="form-control" value="" placeholder="Name">
-								</div>
-								
-								<div class="form-group">
-									<label for="pwd">Your Review:</label>
-									<textarea id="review" name="review" class="form-control" rows="5" placeholder="Your Review"></textarea>
-								</div>
-							  
-								<button type="submit" class="btn btn-primary pull-right">Submit</button>
-							</div>
+	
+			<div class="panel panel-primary">
+				<div class="panel-body">
+				<div class="col-md-4" style="border-right:1px solid #45b1b5">
+				<table class="table " >
+					<div><h5>ORDER DETAILS</h5></div>
+					<tbody>
+					<tr>
+					<th>Order ID</th>
+					<td><?php echo isset($item_details['order_item_id'])?'ORDER2017'.$item_details['order_item_id']:'';  ?></td>
+
+					</tr>
+					<tr>
+					<th>Item Name</th>
+					<td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td>
+
+					</tr>
+					<tr>
+					<th>Order Date</th>
+					<td><?php echo isset($item_details['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($item_details['create_at']))):'';  ?></td>
+
+					</tr>
+					<tr>
+					<th>Amount Paid</th>
+					<td>₹<?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>through <?php echo isset($item_details['payment_mode'])?$item_details['payment_mode']:'';  ?></td>
+
+					</tr>
+					<tr>
+					<th>Delivery Amount</th>
+					<td>₹<?php echo isset($item_details['delivery_amount'])?$item_details['delivery_amount']:'';  ?></td>
+
+					</tr>
+				</tbody>
+				</table>
+				</div>
+				<div class="col-md-4" style="border-right:1px solid #45b1b5">
+					<div><h5>Delivery location Address Details</h5></div>
+					<div>
+					<p><strong>Name :<?php echo isset($item_details['name'])?$item_details['name']:'';  ?></strong></p>
+					<p><strong>Email Address :<?php echo isset($item_details['emal_id'])?$item_details['emal_id']:'';  ?></strong></p>
+					<p><strong>Address :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
+					<?php if(isset($item_details['address2']) && $item_details['address2']!=''){?>
+					<p><strong>Address2 :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
+					<?php } ?>
+					<p><strong>Phone :<?php echo isset($item_details['mobile'])?$item_details['mobile']:'';  ?></strong></p>
+					<p><strong>Delivery location area :<?php echo isset($item_details['location_name'])?$item_details['location_name']:'';  ?></strong></p>
 					</div>
-						
-					</form>
-				 </div>
+
+				</div>
 
 				</div>
 		</div>
-		<div class="row">
-	
-			<div class="panel panel-primary">
+		<div class="panel panel-primary">
 			<div class="panel-body">
 				<div class="col-md-4">
 					<div class="col-md-4">
@@ -202,7 +158,7 @@ tr th:last-child {
 								<p>Order Confirmation</p>
 							</div>
 							<div class="stepwizard-step">
-								<?php if($item_details['status_packing']==2){ ?>
+								<?php if(isset($item_details['status_packing']) && $item_details['status_packing']==2){ ?>
 								<button type="button" class="btn btn-primary btn-circle">2</button>
 								<?php }else{ ?>
 								<button type="button" class="btn btn-defaultt btn-circle"disabled="disabled">2</button>
@@ -210,7 +166,7 @@ tr th:last-child {
 								<p>Packing Order</p>
 							</div>
 							<div class="stepwizard-step">
-								<?php if($item_details['status_road']==3){ ?>
+								<?php if(isset($item_details['status_road']) && $item_details['status_road']==3){ ?>
 								<button type="button" class="btn btn-primary btn-circle">3</button>
 								<?php }else{ ?>
 								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">3</button>
@@ -218,7 +174,7 @@ tr th:last-child {
 								<p>Order on Road</p>
 							</div> 
 							<div class="stepwizard-step">
-									<?php if($item_details['status_deliverd']==4){ ?>
+									<?php if(isset($item_details['status_deliverd']) && $item_details['status_deliverd']==4){ ?>
 								<button type="button" class="btn btn-primary btn-circle">4</button>
 								<?php }else{ ?>
 								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">4</button>
@@ -262,6 +218,7 @@ tr th:last-child {
 	   
 	   </div>
 	</div>
+	<?php } ?>
 	
 <script>
 var __slice = [].slice;

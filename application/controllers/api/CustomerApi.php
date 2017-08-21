@@ -55,7 +55,7 @@ class CustomerApi extends REST_Controller {
 			$details=array(
 				'cust_email'=>$email,
 				'cust_mobile'=>$mobile,
-				'cust_password'=>$password,
+				'cust_password'=>md5($password),
 				'role_id'=>1,
 				'status'=>1,
 				'create_at'=>date('Y-m-d H:i:s'),

@@ -160,6 +160,8 @@
 				<p>Cart</p>
 				<div class="sprinkle"></div>
 			<?php }else{  ?>
+			</sup>
+			<p>Cart</p>
 			<sup class="sup_log"></sup>	
 			<?php } ?>
 			
@@ -170,7 +172,7 @@
 			</span>
 			</a>&nbsp;<sup class="sup"></sup></span>
 			<?php } ?>
-			<span class="medias text-center"><a href="<?php echo base_url(''); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></i>
+			<span class="medias text-center"><a href="<?php echo base_url('customer/trackorders'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></i>
 				<p>Track</p></a>
 			</span>
 		 </div>

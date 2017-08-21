@@ -1,10 +1,8 @@
-
+<?php //echo '<pre>';print_r($orders_list);exit; ?>
 <div class="wrapper"> 
   <!--header part start here -->
   <div class="jain_container">
-			<div class="" style="margin-top:180px;">
-				
-			</div>
+			
 		<body >
 		<div class="container">
 			<div class="row">
@@ -15,6 +13,11 @@
         
             <!-- /.box-header -->
             <div class="box-body">
+			<?php if($this->session->flashdata('successmsg')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('successmsg');?></div>
+			<?php endif; ?>
 			<?php if($this->session->flashdata('permissionerror')): ?>
 			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
@@ -40,9 +43,29 @@
                   <td><?php echo $orders['order_item_id'] ?></td>
                   <td><?php echo $orders['item_name'] ?> </td>
                   <td><?php echo $orders['total_price'] ?></td>
-                  	<td><?php echo Date('d-M-Y',strtotime(htmlentities($orders['create_at'])));?></td>
-                  <td>
-				  <?php   if($orders['order_status']==1){ echo "confirmed";} else{ echo "pending";}?>
+                  <td><?php echo Date('d-M-Y',strtotime(htmlentities($orders['create_at'])));?></td>
+                 <td>
+				  <?php 
+				  if($orders['order_status']==1)
+				  { 
+					echo "Order Confirmation";
+				  }else if($orders['order_status']==2){
+					  
+					  echo "Packing Order";
+				  }else if($orders['order_status']==3){
+					  
+					  echo "Order on Road";
+				  }else if($orders['order_status']==4){
+					  
+					  echo "Delivered";
+				  }else if($orders['order_status']==5){
+					  
+					  echo "Return";
+				  }else{
+					  
+					 echo " "; 
+					}
+					?>
 				  </td>
 				  <td>
 				  <a href="<?php echo base_url('customer/orederdetails/'.base64_encode($orders['order_item_id'])); ?>">view</a>
@@ -58,6 +81,7 @@
                   <th>Amount</th>
                   <th>Date</th>
                   <th>Status</th>
+                  <th>Action</th>
                 </tr>
                 </tfoot>
               </table>
@@ -72,7 +96,7 @@
     $('#example1').DataTable({
       "paging": true,
       "lengthChange": false,
-      "searching": false,
+      "searching": true,
       "ordering": true,
       "info": true,
       "autoWidth": false

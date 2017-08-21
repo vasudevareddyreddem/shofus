@@ -85,7 +85,9 @@ tr th:last-child {
 				<table class="table " >
 						<div><h5>Return Options</h5></div>
 						<div class="radio"><label><input type="radio" name="returnoptions" onclick="returnoption(this.value);" value="1" ><span>Refund</span></label></div>
+						<?php if($product_details['category_id']!=18){ ?>
 						<div class="radio"><label><input type="radio" name="returnoptions" onclick="returnoption(this.value);" value="2"><span>Exchange</span></label></div>
+						<?php }?>
 						<div class="radio"><label><input type="radio" name="returnoptions" onclick="returnoption(this.value);" value="3" ><span>Replacement</span></label></div>
 				  </table>
 			</div>
@@ -97,10 +99,11 @@ tr th:last-child {
 			<div class="row rev_form" id="refundrefundfields" style="display:none">
 				<div class="panel panel-primary">
 			<div class="panel-body">
-				<form id="addreview" name="addreview" action="<?php echo base_url('customer/refundpost'); ?>" method="POST">
+				<form id="addrefund" name="addrefund" action="<?php echo base_url('customer/refundpost'); ?>" method="POST">
 					<input type="hidden" name="status_id" id="status_id" value="<?php echo $order_status_details['status_id']; ?>">
 					<input type="hidden" name="order_item_id" id="order_item_id" value="<?php echo $order_status_details['order_item_id']; ?>">
 					<input type="hidden" name="order_id" id="order_id" value="<?php echo $order_status_details['order_id']; ?>">
+					<input type="hidden" name="refund_type" id="refund_type" value="">
 					<div class="row">
 							<div class=" col-md-6 col-md-offset-3">		
 							
@@ -120,22 +123,58 @@ tr th:last-child {
 		<div class="row rev_form" id="refundexchangefields" style="display:none">
 				<div class="panel panel-primary">
 			<div class="panel-body">
-				<form id="addreview" name="addreview" action="<?php echo base_url('category/productreview'); ?>" method="POST">
-					<input type="hidden" name="product_id" id="product_id" value="<?php echo $item_details['item_id']; ?>">
-					<input type="hidden" name="order_item_id" id="order_item_id" value="<?php echo $item_details['order_item_id']; ?>">
-					<input type="hidden" name="customer_id" id="customer_id" value="<?php echo $customerdetail['customer_id']; ?>">
+				<form id="addexchange" name="addexchange" action="<?php echo base_url('customer/refundpost'); ?>" method="POST">
+					<input type="hidden" name="status_id" id="status_id" value="<?php echo $order_status_details['status_id']; ?>">
+					<input type="hidden" name="order_item_id" id="order_item_id" value="<?php echo $order_status_details['order_item_id']; ?>">
+					<input type="hidden" name="order_id" id="order_id" value="<?php echo $order_status_details['order_id']; ?>">
+					<input type="hidden" name="refund_type1" id="refund_type1" value="">
+
 					<div class="row">
 							<div class=" col-md-6 col-md-offset-3">		
 							
 								
+								<?php   
+								
+								if($product_details['category_id']==19){
+								
+								if($product_details['subcategory_id']==7 || $product_details['subcategory_id']==9 || $product_details['subcategory_id']==21 ||  $product_details['subcategory_id']==24){ ?>
+								
 								<div class="form-group">
-									<label for="pwd">Colors:</label>
+									<label for="pwd">Region:</label>
 									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Region">
 								</div>
+								
+								<?php }else{ ?>
 								<div class="form-group">
-									<label for="pwd">Sixes:</label>
+									<label for="exampleInputEmail1">Color</label>
+									<select class="form-control " id="color" name="color" >
+									<option value="">Select </option>
+									<?php foreach($color_list as $list){ ?>
+									<option value="<?php echo $list['color_name']; ?>"><?php echo $list['color_name']; ?></option>
+									<?php } ?>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Size</label>
+									<select class="form-control " id="size" name="size" >
+									<option value="">Select </option>
+									<?php foreach($size_list as $list){ ?>
+									<option value="<?php echo $list['p_size_name']; ?>"><?php echo $list['p_size_name']; ?></option>
+									<?php } ?>
+									</select>
+								</div>
+
+
+
+								<?php }	}else{ ?>
+								<div class="form-group">
+									<label for="pwd">Region:</label>
 									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Region">
 								</div>
+								
+								<?php } ?>
+							
+
 							  
 								<button type="submit" class="btn btn-primary pull-right">Submit</button>
 							</div>
@@ -151,7 +190,10 @@ tr th:last-child {
 
 <script>
 function returnoption(id){
-	alert(id);
+	
+	document.getElementById("refund_type").value=id;
+	document.getElementById("refund_type1").value=id;
+
 	if(id==1){
 		$('#refundrefundfields').show();
 		$('#refundexchangefields').hide();
@@ -165,6 +207,53 @@ function returnoption(id){
 	}
 	
 }
+$(document).ready(function() {
+    $('#addexchange').bootstrapValidator({
+       
+        fields: {
+            
+			
+            color: {
+              validators: {
+					notEmpty: {
+						message: 'Please select a color'
+					}
+                }
+            },
+			size: {
+              validators: {
+					notEmpty: {
+						message: 'Please select a size'
+					}
+                }
+            },
+			region: {
+             validators: {
+					notEmpty: {
+						message: 'region is required'
+					}
+				}
+            }
+        }
+    });
+});
+$(document).ready(function() {
+    $('#addrefund').bootstrapValidator({
+       
+        fields: {
+            
+			
+            
+			region: {
+             validators: {
+					notEmpty: {
+						message: 'region is required'
+					}
+				}
+            }
+        }
+    });
+});
 </script>
 
  
