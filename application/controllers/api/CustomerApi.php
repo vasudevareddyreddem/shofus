@@ -1167,6 +1167,7 @@ class CustomerApi extends REST_Controller {
 				$message = array
 				(
 					'status'=>1,
+					'path'=>'http://cartinhour.com/uploads/products/',
 					'location_top_offers'=>$top_offer_location,
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -1187,6 +1188,7 @@ class CustomerApi extends REST_Controller {
 				$message = array
 				(
 					'status'=>1,
+					'path'=>'http://cartinhour.com/uploads/products/',
 					'location_deals ofthe day'=>$deals_of_the_day_location,
 					
 				);
@@ -1208,6 +1210,7 @@ class CustomerApi extends REST_Controller {
 				$message = array
 				(
 					'status'=>1,
+					'path'=>'http://cartinhour.com/uploads/products/',
 					'location_season sales'=>$season_sales_location,
 					
 				);
@@ -1229,6 +1232,7 @@ class CustomerApi extends REST_Controller {
 				$message = array
 				(
 					'status'=>1,
+					'path'=>'http://cartinhour.com/uploads/products/',
 					'location_treading'=>$treanding_location,
 					
 				);
@@ -1251,6 +1255,7 @@ class CustomerApi extends REST_Controller {
 				$message = array
 				(
 					'status'=>1,
+					'path'=>'http://cartinhour.com/uploads/products/',
 					'location_offer for you'=>$offers_for_you_location,
 					
 				);

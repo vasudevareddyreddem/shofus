@@ -144,7 +144,7 @@
 		<div id="ComboDisoucnt<?php echo $subcategory->subcategory_id;?>" style="display:none;">
 		<div class="form-group">
 		<label class="control-label">Select your Products: </label>                      
-		<select class="form-control"   id="combo<?php echo $subcategory->subcategory_id;?>" name="combo">
+		<select class="form-control" onchange="selectcombooffer<?php echo $subcategory->subcategory_id; ?>(this.value);"   id="combo<?php echo $subcategory->subcategory_id;?>" name="combo">
 				<option value="">Select product</option>
 				<?php foreach($seller_prducts as $cat_data){ ?>
 				<option value="<?php echo $cat_data['item_id']; ?>"><?php echo $cat_data['item_name']; ?></option>                  
@@ -200,6 +200,13 @@
 		}else{
 			$('#offervalue<?php echo $subcategory->subcategory_id;?>').show();
 			$('#ComboDisoucnt<?php echo $subcategory->subcategory_id;?>').hide();
+		}
+	}
+	function selectcombooffer<?php echo $subcategory->subcategory_id;?>(id){
+		if(id==''){
+		$('#producttypeerror<?php echo $subcategory->subcategory_id;?>').show();	
+		}else{
+		$('#producttypeerror<?php echo $subcategory->subcategory_id;?>').hide();		
 		}
 	}
 
@@ -299,7 +306,7 @@
 	  var offertpes=document.getElementById('offertype<?php echo $subcategory->subcategory_id;?>').value;
 	  
 	  if(offertpes==''){
-		jQuery('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('Plase select an Offer Type');
+		jQuery('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('Please select an Offer Type');
 		return false;
 	  } if(offertpes==4){
 		 var product=document.getElementById('combo<?php echo $subcategory->subcategory_id;?>').value;
@@ -311,7 +318,7 @@
 		}else{
 			 var offerAmt=document.getElementById('offeramount<?php echo $subcategory->subcategory_id;?>').value;
 				 if(offerAmt==''){
-					jQuery('#offeramounterror<?php echo $subcategory->subcategory_id;?>').html('Plase eneter offer Percentages');
+					jQuery('#offeramounterror<?php echo $subcategory->subcategory_id;?>').html('Please eneter offer Percentages');
 					return false; 
 				 }else{
 						if (!IsMobile<?php echo $subcategory->subcategory_id;?>(offerAmt)) {

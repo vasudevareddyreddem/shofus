@@ -1094,7 +1094,7 @@ $(document).ready(function() {
           },
           stringLength: {
                         min: 6,
-                        message: 'Old Password  must be greater than 6 characters'
+                        message: 'Old Password  minimum 6 characters'
                     },
           regexp: {
           regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
