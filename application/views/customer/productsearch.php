@@ -64,12 +64,28 @@
             <div id="top-categories" class="product-flexslider hidden-buttons">
         <div class="slider-items slider-width-col4 products-grid">
 		
-        <?php foreach ($top_offers as $tops){  ?>
+        <?php foreach ($top_offers as $tops){ 
+					$currentdate=date('Y-m-d h:i:s A');
+					if($tops['offer_expairdate']>=$currentdate){
+					$item_price= ($tops['item_cost']-$tops['offer_amount']);
+					$percentage= $tops['offer_percentage'];
+					$orginal_price=$tops['item_cost'];
+					}else{
+					//echo "expired";
+					$item_price= $tops['special_price'];
+					$prices= ($tops['item_cost']-$tops['special_price']);
+					$percentage= (($prices) /$tops['item_cost'])*100;
+					$orginal_price=$tops['item_cost'];
+					}
+
+
+
+		?>
         <a href="<?php echo base_url('category/productview/'.base64_encode($tops['item_id'])); ?>">
 					<div class="item" style="border: 1px solid #ddd ;">
 						<div style="position:absolute;top:0;left:15px;z-index: 1024;">
 							<div style="background:#ddd;border-radius:50%;height:20px;height:20px;color:#fff;"> <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-danger arrowed-right">25%</span></span>
+                  <span class="label-tags"><span class="label label-danger arrowed-right"><?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
                 </div></div>
 						</div>
 					<div class="pro-img img-wrapper  img_hover">
@@ -470,19 +486,21 @@ jQuery.ajax({
         },
       dataType: 'JSON',
       success: function (data) {
-		  var property = document.getElementById(addwishlistids);
-        jQuery('#sucessmsg').show();
-        //alert(data.msg);
-        if(data.msg==2){
-			$("#addwhish"+id).removeClass("btn-danger");
-        $('#sucessmsg').html('Product Successfully removed to Whishlist');  
-        }
-        if(data.msg==1){
-		 $("#addwhish"+id).addClass("btn-danger");
-        //$('#addwhish').css("color", "yellow");
-        $('#sucessmsg').html('Product Successfully added to Whishlist');  
-        }
-      
+		  if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+						jQuery('#sucessmsg').show();
+						//alert(data.msg);
+						if(data.msg==2){
+							$("#addwhish"+id).removeClass("btn-danger");
+						$('#sucessmsg').html('Product Successfully removed to Whishlist');  
+						}
+						if(data.msg==1){
+						 $("#addwhish"+id).addClass("btn-danger");
+						//$('#addwhish').css("color", "yellow");
+						$('#sucessmsg').html('Product Successfully added to Whishlist');  
+						}
+				}
 
       }
     });

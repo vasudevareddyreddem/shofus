@@ -406,6 +406,11 @@ class Customerapi_model extends MY_Model
 		$this->db->where('order_items.customer_id', $cust_id);
 		return $this->db->get()->result_array();
 	}
+	public function product_details($itemid){
+		$this->db->select('products.*')->from('products');
+		$this->db->where('item_id', $itemid);
+        return $this->db->get()->row_array();
+	}
 
 
 }
