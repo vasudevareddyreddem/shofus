@@ -107,13 +107,37 @@ class Customer_model extends MY_Model
 		$sql="SELECT * FROM customers WHERE customer_id ='".$cusid."' AND role_id ='".$roleid."'";
         return $this->db->query($sql)->row_array(); 
 	}
+	public function login_verficationcode_save($email,$cid,$vericiationcode){
+		$sql1="UPDATE customers SET forgot_verification ='".$vericiationcode."' WHERE cust_email = '".$email."' AND customer_id = '".$cid."'";
+       	return $this->db->query($sql1);
+	}
+	public function login_verficationcode_mobile_save($mobile,$cid,$vericiationcode){
+		$sql1="UPDATE customers SET forgot_verification ='".$vericiationcode."' WHERE cust_mobile = '".$mobile."' AND customer_id = '".$cid."'";
+       	return $this->db->query($sql1);
+	}
+	public function check_opt($email,$otp){
+		$sql = "SELECT * FROM customers WHERE cust_email ='".$email."' AND forgot_verification ='".$otp."'";
+        return $this->db->query($sql)->row_array();
+	}
+	public function check_opt_mobile($mobile,$otp){
+		$sql = "SELECT * FROM customers WHERE cust_mobile ='".$mobile."' AND forgot_verification ='".$otp."'";
+        return $this->db->query($sql)->row_array();
+	}
+	public function update_password_mobile($pass,$cust_id,$mobile){
+		$sql1="UPDATE customers SET cust_password ='".md5($pass)."' WHERE cust_mobile = '".$mobile."' AND customer_id = '".$cust_id."'";
+       	return $this->db->query($sql1);
+	}
+	public function update_password_remove_otp($cust_id,$data){
+		$sql1="UPDATE customers SET forgot_verification ='".$data."' WHERE customer_id = '".$cust_id."'";
+       	return $this->db->query($sql1);
+	}
 	public function update_password($pass,$cust_id,$email){
 		$sql1="UPDATE customers SET cust_password ='".md5($pass)."' WHERE cust_email = '".$email."' AND customer_id = '".$cust_id."'";
        	return $this->db->query($sql1);
 	}
 	public function forgot_login($email){
-		$sql="SELECT * FROM customers WHERE cust_email ='".$email."'";
-        return $this->db->query($sql)->row_array(); 
+	$sql = "SELECT * FROM customers WHERE (cust_email ='".$email."') OR (cust_mobile ='".$email."')";
+	return $this->db->query($sql)->row_array();		
 	}
 	public function get_user($cid,$email){
 		$this->db->select('*')->from('customers');		
@@ -142,10 +166,8 @@ class Customer_model extends MY_Model
 	}
 
 	public function login_details($email,$pass){
-		$this->db->select('*')->from('customers');
-		$this->db->where('cust_email', $email);
-		$this->db->where('cust_password', $pass);
-        return $this->db->get()->row_array();
+		$sql = "SELECT * FROM customers WHERE (cust_email ='".$email."' AND cust_password='".$pass."') OR (cust_mobile ='".$email."' AND cust_password='".$pass."')";
+		return $this->db->query($sql)->row_array();	
 	}
 	
 	public function save_customer($data){

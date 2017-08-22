@@ -55,7 +55,7 @@
                     <form id="loginform" name="loginform" method="post" action="<?php echo base_url('customer/loginpost');?>" class="form-horizontal" role="form">
                         <div class=" form-group">
                             <label class="control-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email"  placeholder="Email">
+                            <input type="text" class="form-control" id="email" name="email"  placeholder="Email id / Mobile Number">
                         </div>
 
                         <div  class=" form-group">
@@ -249,11 +249,7 @@ $(document).ready(function() {
 			email: {
              validators: {
 					notEmpty: {
-						message: 'Email is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-					message: 'Please enter a valid email address. For example johndoe@domain.com.'
+						message: 'Emailid / Mobile number is required'
 					}
 				}
             },

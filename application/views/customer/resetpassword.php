@@ -52,14 +52,14 @@
 			<input type="hidden" id="email" name="email" value="<?php echo $email; ?>">
                         <div class=" col-md-12">
 							<div class="form-group">
-								<label class="control-label">New password</label>
-								<input type="text" id="newpassword" name="newpassword" value="" class="form-control" placeholder="Email Address" />
+								<label class="control-label">Otp VErification Code</label>
+								<input type="text" id="otp" name="otpcode" value="" class="form-control" placeholder="" />
 							</div>
 						</div>
 						<div class=" col-md-12">
 							<div class="form-group">
-								<label class="control-label">Confirm Password</label>
-								<input type="text" id="confirmpassword" name="confirmpassword" value="" class="form-control" placeholder="Email Address" />
+								<label class="control-label">Setpassword</label>
+								<input type="password" id="setpassword" name="setpassword" value="" class="form-control" placeholder="" />
 							</div>
 						</div>
                         

@@ -183,6 +183,8 @@ class Customer extends Front_Controller
 		'commission_price'=>$commission_price,
 		'delivery_amount'=>$delivery_charges,
 		'seller_id'=>$products['seller_id'],
+		'color'=>isset($post['colorvalue'])?$post['colorvalue']:'',
+		'size'=>isset($post['sizevalue'])?$post['sizevalue']:'',
 		'category_id'=>$products['category_id'],
 		'create_at'=>date('Y-m-d H:i:s'),
 		);
@@ -537,6 +539,8 @@ class Customer extends Front_Controller
 						'customer_phone'=>$billingaddress['mobile'],
 						'customer_address'=>$billingaddress['address1'],
 						'order_status'=>1,
+						'color'=>$items['color'],
+						'size'=>$items['size'],
 						'create_at'=>date('Y-m-d H:i:s'),
 					);
 					//echo '<pre>';print_r($orderitems);exit;
@@ -857,21 +861,58 @@ class Customer extends Front_Controller
 	public function forgotpasswordpost(){
 	  
 		$post=$this->input->post();
-	//echo '<pre>';print_r($post);
+		//echo '<pre>';print_r($post);exit;
 	$forgotpass = $this->customer_model->forgot_login($post['emailaddress']);
 	//echo '<pre>';print_r($forgotpass);exit;
 		if(count($forgotpass)>0)
 		{			
-			$this->load->library('email');
-			$this->email->from('admin@cartinhour.com', 'CartInHour');
-			$this->email->to($post['emailaddress']);
-			$this->email->subject('CartInHour - Forgot Password');
-			$html = "Click this link to reset your password. ".site_url('customer/resetpassword/'.base64_encode($forgotpass['cust_email']).'/'.base64_encode($forgotpass['customer_id']));
-			//echo $html;exit;
-			$this->email->message($html);
-			$this->email->send();
-			$this->session->set_flashdata('forsuccess','Check Your Email to reset your password!');
-			redirect('customer');
+			
+			
+			
+			$email =filter_var($post['emailaddress'], FILTER_VALIDATE_EMAIL);
+				if($email==''){
+					$mobile=$post['emailaddress'];
+					$email='';
+				}else{
+					$mobile='';
+					$email=$post['emailaddress'];
+				}
+				
+				$six_digit_random_number = mt_rand(100000, 999999);
+				$username=$this->config->item('smsusername');
+				$pass=$this->config->item('smspassword');
+				if($mobile!=''){
+					$msg=' Your cartinhour verification code is '.$six_digit_random_number;
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch, CURLOPT_POST, 1);
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=SUCCES&phone="'.$mobile.'"&text="'.$msg.'"&priority=ndnd&stype=normal');
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					$server_output = curl_exec ($ch);
+					curl_close ($ch);
+					echo '<pre>';print_r($server_output);exit;
+				$this->customer_model->login_verficationcode_mobile_save($mobile,$forgotpass['customer_id'],$six_digit_random_number);
+				redirect( 'customer/resetpassword/'.base64_encode($mobile).'/'.base64_encode($forgotpass['customer_id'])); 
+					
+				}else if(isset($email) && $email!=''){
+						$msg='Greetings! You are just a step away from accessing your Cartinhour account We are sharing a verification code to access your account. Once you have verified the code, you will be prompted to set a new password immediately. This is to ensure that only you have access to your account. '.$six_digit_random_number;
+						$this->load->library('email');
+						$this->email->from('admin@cartinhour.com', 'CartInHour');
+						$this->email->to($email);
+						$this->email->subject('CartInHour - Forgot Password');
+						$html =$msg;
+						//echo $html;exit;
+						$this->email->message($html);
+						if($this->email->send()){
+							$this->customer_model->login_verficationcode_save($email,$forgotpass['customer_id'],$six_digit_random_number);
+						}else{
+						$this->customer_model->login_verficationcode_save($email,$forgotpass['customer_id'],$six_digit_random_number);
+
+						}
+						redirect( 'customer/resetpassword/'.base64_encode($email).'/'.base64_encode($forgotpass['customer_id'])); 
+				}
+			
+			
 		}else{
 			$this->session->set_flashdata('error',"Invalid Email Address!");
 			redirect('customer/forgotpassword');
@@ -880,8 +921,8 @@ class Customer extends Front_Controller
 
 	public function resetpassword(){
 	
-		$data['cust_id'] = $this->uri->segment(4);
-		$data['email']= $this->uri->segment(3);
+	$data['cust_id'] = $this->uri->segment(4);
+	$data['email']= $this->uri->segment(3);
 	$this->load->view( 'customer/resetpassword',$data); 
 	} 
 	
@@ -889,13 +930,37 @@ class Customer extends Front_Controller
 	public function resetpasswordpost(){
 	
 			$post=$this->input->post();
-		//echo '<pre>';print_r($post);exit;
-			if(isset($post['newpassword']) && $post['confirmpassword'] !='' )
-				{
-					if(md5($post['newpassword'])== md5($post['confirmpassword']))
+		
+			
+			//echo '<pre>';print_r($post);exit;
+			//echo $this->db->last_query();exit;
+			$email =filter_var(base64_decode($post['email']), FILTER_VALIDATE_EMAIL);
+				if($email==''){
+					$mobile=base64_decode($post['email']);
+					$otpverification = $this->customer_model->check_opt_mobile($mobile,$post['otpcode']);
+						if(count($otpverification)>0)
+						{
+							$users = $this->customer_model->update_password_mobile($post['setpassword'],base64_decode($post['cust_id']),base64_decode($post['email']));
+							//echo $this->db->last_query();exit;
+							//echo '<pre>';print_r($users);exit;
+							if(count($users)>0)
+							{
+								$this->customer_model->update_password_remove_otp(base64_decode($post['cust_id']),'');
+
+								$this->session->set_flashdata("forsuccess","Password successfully changed!");
+								redirect('customer');
+							}
+						}else{
+						 $this->session->set_flashdata("error","Verification code is Wrong.Please try again!");
+						 redirect('customer/resetpassword/'.$post['email'].'/'.$post['cust_id']);
+						}
+				
+				}else{
+					$email=base64_decode($post['email']);
+					$otpverification = $this->customer_model->check_opt(base64_decode($post['email']),$post['otpcode']);
+					if(count($otpverification)>0)
 					{
-						$users = $this->customer_model->update_password($post['newpassword'],base64_decode($post['cust_id']),base64_decode($post['email']));
-						
+						$users = $this->customer_model->update_password($post['setpassword'],base64_decode($post['cust_id']),base64_decode($post['email']));
 						//echo '<pre>';print_r($users);exit;
 						if(count($users)>0)
 						{
@@ -908,16 +973,20 @@ class Customer extends Front_Controller
 						$this->email->message($html);
 						$this->email->send();
 						
+							$this->customer_model->update_password_remove_otp(base64_decode($post['cust_id']),'');
 							$this->session->set_flashdata("forsuccess","Password successfully changed!");
 							redirect('customer');
 						}
-					}
-					else
+					}else
 					{
-						$this->session->set_flashdata("error","Passwords are Not matched!");
+						$this->session->set_flashdata("error","Verification code is Wrong.Please try again!");
 						redirect('customer/resetpassword/'.$post['email'].'/'.$post['cust_id']);
 					}
-		}
+				}
+				
+	
+					
+	
 	}
 	public function changepassword(){
 	

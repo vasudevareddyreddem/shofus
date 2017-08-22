@@ -50,8 +50,8 @@
 			<div class="row">
                         <div class=" col-md-12">
 							<div class="form-group">
-								<label class="control-label">Email Address</label>
-								<input type="text" id="emailaddress" name="emailaddress" value="" class="form-control" placeholder="Email Address" />
+								<label class="control-label">Email Address Mobile number</label>
+								<input type="text" id="emailaddress" name="emailaddress" value="" class="form-control" placeholder="Email Address / Mobile number" />
 							</div>
 						</div>
                         
@@ -73,7 +73,7 @@
 </body>
 
 </html>
-	<script type="text/javascript">
+<script type="text/javascript">
 
 $(document).ready(function() {
     $('#forgotpass').bootstrapValidator({
@@ -82,11 +82,7 @@ $(document).ready(function() {
             emailaddress: {
              validators: {
 					notEmpty: {
-						message: 'Email is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-					message: 'Please enter a valid email address. For example johndoe@domain.com.'
+						message: 'Email / Mobile is required'
 					}
 				}
             }
