@@ -68,11 +68,11 @@ class Customerapi_model extends MY_Model
 	}
 
 	public function set_customer_password($custid,$pass){
-		$sql1="UPDATE customers SET cust_password ='".$pass."' WHERE customer_id = '".$custid."'";
+		$sql1="UPDATE customers SET cust_password ='".md5($pass)."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
 	}
-	public function oldpassword($cusid){
-		$sql="SELECT * FROM customers WHERE customers ='".$cusid."'";
+	public function oldpassword($cusid,$pass){
+		$sql="SELECT * FROM customers WHERE customer_id ='".$cusid."' AND cust_password ='".md5($pass)."'";
         return $this->db->query($sql)->row_array(); 
 	}
 
@@ -80,16 +80,11 @@ class Customerapi_model extends MY_Model
 		$this->db->where('customer_id',$cust_id);
 		return $this->db->update('customers', $data);
 	}
-	// public function forget_mobile_check($mobile){
-
-	// 	$sql="SELECT * FROM customers WHERE cust_mobile ='".$mobile."'";
- //        return $this->db->query($sql)->row_array(); 
-	// }
-	// public function forget_email_check($email){
-
-	// 	$sql="SELECT * FROM customers WHERE cust_email ='".$email."'";
- //        return $this->db->query($sql)->row_array(); 
-	// }
+	public function save_customer_profile($cust_id,$data){
+		$this->db->where('customer_id',$cust_id);
+		return $this->db->update('customers', $data);
+	}
+	
 
 	public function customer_details($cust_id){
 		

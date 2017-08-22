@@ -599,51 +599,6 @@ class CustomerApi extends REST_Controller {
 	
 	}
 	
- 	/*  changepassword Apis */
-	public function changepassword_post()
-	{
-		$get=$this->input->get();
-		//echo "<pre>";print_r($get);exit;
-		$oldpassword=md5($get['oldpassword']);
-		$newpassword=md5($get['newpassword']);
-		$conformpassword=md5($get['confirmpassword']);
-		$cust_id = $this->Customerapi_model	->oldpassword($get['customer_id']);		
-		$currentpasswords=$cust_id['cust_password'];
-		if($oldpassword == $currentpasswords )
-		{
-			if($newpassword == $conformpassword)
-			{
-				$changepassword = $this->Customerapi_model->set_customer_password($get['customer_id'],$conformpassword);
-				if (count($changepassword)>0)
-				{
-					$message = array
-					(
-						'status'=>1,
-						'message'=>'Password successfully changed!'
-					);
-					$this->response($message, REST_Controller::HTTP_OK);
-				}
-				else
-				{
-					$message = array('status'=>0,'message'=>'Something went wrong in change password process!');
-					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-				}
-				}else
-				{
-					$message = array('status'=>0,'message'=>'New password and confirm password was not matching');
-					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-				}
-		}else
-		{
-			$message = [
-			
-				'status'=>0,
-				'message'=>'Your Old password is incorrect. Please try again'
-			];
-			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
-		}
-	}
-
 	/*  forgotpassword Apis */
 	public function forgotpassword_post()
 	{
@@ -743,8 +698,124 @@ class CustomerApi extends REST_Controller {
 
 		
 	}
+	public function savecustomerprofile_post(){
 		
+			$customer_id=$this->input->get('customer_id');
+			$fname=$this->input->get('fname');	
+			$lname=$this->input->get('lname');	
+			$email=$this->input->get('email');	
+			$mobile=$this->input->get('mobile');	
+			$address1=$this->input->get('address1');	
+			$address2=$this->input->get('address2');	
+			$area=$this->input->get('location');	
+			$image=$this->input->get('profilepic');	
+			if($customer_id==''){
+			$message = array('status'=>0,'message'=>'customer id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 
+			}elseif($fname==''){
+			$message = array('status'=>0,'message'=>'First Name is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}elseif($lname==''){
+			$message = array('status'=>0,'message'=>'Last Name is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}elseif($email==''){
+			$message = array('status'=>0,'message'=>'Email is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}elseif($mobile==''){
+			$message = array('status'=>0,'message'=>'Mobile is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}elseif($address1==''){
+			$message = array('status'=>0,'message'=>'Address1 is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			$customer_details=$this->Customerapi_model->get_customer_details($customer_id);
+			
+			if($customer_details['cust_email]']=='' && $customer_details['cust_email']!=$email){
+				$email_check=$this->Customerapi_model->email_check($email);
+				if(count($email_check)>0){
+					$message = array('status'=>0,'message'=>'EmailId Already Exits.please use another Email Id');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}
+			}
+			$saveprofile=array(
+					'cust_firstname'=>$fname,
+					'cust_lastname'=>$lname,
+					'cust_email'=>$email,
+					'cust_mobile'=>$mobile,
+					'address1'=>$address1,
+					'address2'=>isset($address2)?$address2:'',
+					'area'=>isset($area)?$area:'',
+					'cust_propic'=>isset($image)?$image:'',
+					'create_at'=>date('Y-m-d H:i:s'),
+					);
+
+					$saveprofile = $this->Customerapi_model->save_customer_profile($customer_id,$saveprofile);
+					if(count($saveprofile)>0){
+						$message = array('status'=>1,'customer_id'=>$customer_id,'message'=>'profile successfully Updated');
+						$this->response($message, REST_Controller::HTTP_OK);	
+					}else{
+						$message = array('status'=>0,'message'=>'Technical problem will occurred .Please try again');
+						$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+			
+			
+				
+	}
+	public function changepassword_post(){
+		
+			$customer_id=$this->input->get('customer_id');
+			$oldpassword=$this->input->get('oldpassword');	
+			$confirmpassword=$this->input->get('confirmpassword');	
+			
+			if($customer_id==''){
+			$message = array('status'=>0,'message'=>'customer id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+
+			}elseif($oldpassword==''){
+			$message = array('status'=>0,'message'=>'Oldpassword is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}elseif($confirmpassword==''){
+			$message = array('status'=>0,'message'=>'Confirmpassword is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			$checkoldpassword = $this->Customerapi_model->oldpassword($customer_id,$oldpassword);
+			if(count($checkoldpassword)>0){
+					$changepassword = $this->Customerapi_model->set_customer_password($customer_id,$confirmpassword);
+					//echo $this->db->last_query();exit;
+					if(count($changepassword)>0){
+						$message = array('status'=>1,'customer_id'=>$customer_id,'message'=>'password successfully Updated');
+					$this->response($message, REST_Controller::HTTP_OK);	
+					}else{
+						$message = array('status'=>0,'customer_id'=>$customer_id,'message'=>'Technical problem will occurred .Please try again');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+			}else{
+				$message = array('status'=>0,'customer_id'=>$customer_id,'message'=>'Old password is wrong .please try again');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+
+				
+	}
+	/* customer profile*/	
+	public function customer_profile_get()
+	{
+		$customer_id=$this->input->get('customer_id');
+			if($customer_id==''){
+			$message = array('status'=>0,'message'=>'Customer id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+		$cust_details=$this->Customerapi_model->customer_details($customer_id);
+		//echo '<pre>';print_r($wishlist);exit;
+		if(count($cust_details)>0){
+		
+			$message = array('status'=>1,'profilepicpath'=>'http://cartinhour.com/uploads/profile/','message'=>'customer profile details','details'=>$cust_details);
+			$this->response($message,REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>0,'message'=>'Customer details  not found');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
 	/*  locations Apis */
 	public function locations_get()
 	{
@@ -1191,90 +1262,6 @@ class CustomerApi extends REST_Controller {
 		}
 	}
 
-	/* Add to cart */
-	public function addtocart_postss()
-	{
-		$get = $this->input->get();
-		$products= $this->Customerapi_model->get_product_details($get['item_id']);
-		//$cart_ids=explode(",",$get['item_id']);
-		//echo "<pre>";print_r($cart_ids);exit;
-		//if($products['offer_percentage']!='' && $products['offer_type']!=4){
-			if(date('m/d/Y') <= $products['offer_expairdate']){
-				$item_price= ($products['item_cost']-$products['offer_amount']);
-				$price	=(($get['quentity']) * ($item_price));
-				//echo "<pre>";print_r($price);exit;
-			}else{
-				$item_price= $products['item_cost'];
-				$price	=(($get['quentity']) * ($item_price));
-				//echo "<pre>";print_r($price);exit;
-			}
-		//}else{
-			//$price= (($get['qty']) * ($products['item_cost']));
-			//$item_price=$products['item_cost'];
-			
-		//}
-		$commission_price=(($price)*($products['commission'])/100);
-		if($products['category_id']==18){
-			if($price <=500){
-				$delivery_charges=35;
-			}else{
-				$delivery_charges=0;
-			}
-		}else{
-			
-			if($price <=500){
-				$delivery_charges=75;
-			}else if(($price >= 500) && ($price <=1000)){
-				$delivery_charges=35;
-			}else if($price >=1000){
-				$delivery_charges=0;
-			}
-		}
-
-		$addcart=array(
-		'cust_id'=>$get['customer_id'],
-		'item_id'=>$get['item_id'],
-		'qty'=>$get['quentity'],
-		'item_price'=>$item_price,
-		'total_price'=>$price,
-		'commission_price'=>$commission_price,
-		'delivery_amount'=>$delivery_charges,
-		'seller_id'=>$products['seller_id'],
-		'category_id'=>$products['category_id'],
-		'create_at'=>date('Y-m-d H:i:s'),
-		);
-		//echo "<pre>";print_r($addcart);exit;
-		$cart_item_ids= $this->Customerapi_model->get_cart_products($get['customer_id']);
-		foreach($cart_item_ids as $cartids) 
-		{ 		
-			$cart_id[]=$cartids['item_id'];
-		}
-		//echo "<pre>";print_r($cart_id);exit;
-		if(in_array($get['item_id'],$cart_id))
-		{
-			if($get['item_id'] && $get['item_id']=!'' )
-			{
-				$message = array
-				(
-					'status'=>0,
-					'Cart'=>'Product already Exits',
-				);
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
-			}
-		}else
-		{
-			$cart_save= $this->Customerapi_model->cart_products_save($addcart);
-			if(count($cart_save)>0)
-			{
-				$message = array
-				(
-					'status'=>1,
-					'Cart'=>'Successfully added to the cart',
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
-			}	
-		}
-	}
 
 
 	
