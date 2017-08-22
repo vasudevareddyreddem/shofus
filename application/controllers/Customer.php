@@ -842,7 +842,6 @@ class Customer extends Front_Controller
 	//echo '<pre>';print_r($post);exit;
 	$pass=md5($post['password']);
 	$logindetails = $this->customer_model->login_details($post['email'],$pass);
-	//echo '<pre>';print_r($logindetails);
 		if(count($logindetails)>0)
 		{			
 			if($this->session->userdata('location_area')!=''){
@@ -958,7 +957,7 @@ class Customer extends Front_Controller
 							{
 								$this->customer_model->update_password_remove_otp(base64_decode($post['cust_id']),'');
 
-								$this->session->set_flashdata("forsuccess","Password successfully changed!");
+								$this->session->set_flashdata("forsuccess","Password successfully Updated!");
 								redirect('customer');
 							}
 						}else{
@@ -985,7 +984,7 @@ class Customer extends Front_Controller
 						$this->email->send();
 						
 							$this->customer_model->update_password_remove_otp(base64_decode($post['cust_id']),'');
-							$this->session->set_flashdata("forsuccess","Password successfully changed!");
+							$this->session->set_flashdata("forsuccess","Password successfully Updated!");
 							redirect('customer');
 						}
 					}else
