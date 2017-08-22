@@ -380,6 +380,37 @@ class Customerapi_model extends MY_Model
 		$sql1="DELETE FROM cart WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."' AND id ='".$id."'";
 		return $this->db->query($sql1);
 	}
+	public function forgot_login($email){
+	$sql = "SELECT * FROM customers WHERE (cust_email ='".$email."') OR (cust_mobile ='".$email."')";
+	return $this->db->query($sql)->row_array();		
+	}
+	public function login_verficationcode_mobile_save($mobile,$cid,$vericiationcode){
+		$sql1="UPDATE customers SET forgot_verification ='".$vericiationcode."' WHERE cust_mobile = '".$mobile."' AND customer_id = '".$cid."'";
+       	return $this->db->query($sql1);
+	}
+		public function login_verficationcode_save($email,$cid,$vericiationcode){
+		$sql1="UPDATE customers SET forgot_verification ='".$vericiationcode."' WHERE cust_email = '".$email."' AND customer_id = '".$cid."'";
+       	return $this->db->query($sql1);
+	}
+	public function check_opt_mobile($cus_id,$otp){
+		$sql = "SELECT * FROM customers WHERE customer_id ='".$cus_id."' AND forgot_verification ='".$otp."'";
+        return $this->db->query($sql)->row_array();
+	}
+	public function update_password($pass,$cust_id){
+		$sql1="UPDATE customers SET cust_password ='".md5($pass)."' WHERE customer_id = '".$cust_id."'";
+       	return $this->db->query($sql1);
+	}
+	public function update_password_remove_otp($cust_id,$data){
+		$sql1="UPDATE customers SET forgot_verification ='".$data."' WHERE customer_id = '".$cust_id."'";
+       	return $this->db->query($sql1);
+	}
+	public function order_list($cust_id){
+		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.item_description,products.item_image')->from('order_items');
+		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+		$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
+		$this->db->where('order_items.customer_id', $cust_id);
+		return $this->db->get()->result_array();
+	}
 
 
 }
