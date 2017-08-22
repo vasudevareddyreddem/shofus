@@ -63,16 +63,28 @@
         <?php if(count($top_offers)>0){ ?>
             <div id="top-categories" class="product-flexslider hidden-buttons">
         <div class="slider-items slider-width-col4 products-grid">
+		
         <?php foreach ($top_offers as $tops){  ?>
         <a href="<?php echo base_url('category/productview/'.base64_encode($tops['item_id'])); ?>">
-					<div class="item" style="border: 1px #ddd solid;">
-					<div class="pro-img img-wrapper  img_hover"><img class="img-responsive" src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
+					<div class="item" style="border: 1px solid #ddd ;">
+						<div style="position:absolute;top:0;left:15px;z-index: 1024;">
+							<div style="background:#ddd;border-radius:50%;height:20px;height:20px;color:#fff;"> <div class="tags tags-left">
+                  <span class="label-tags"><span class="label label-danger arrowed-right">25%</span></span>
+                </div></div>
+						</div>
+					<div class="pro-img img-wrapper  img_hover">
+					
+					<img class="img-responsive" src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
+					
 					</div>
-					<div class="pro-info" style="border-top:1px solid #ddd;"><?php echo $tops['item_name']; ?></div>
+					<div class="pro-info" style="border-top:1px solid #ddd;background:#4a5f67;color:#fff;padding:2px;"><?php echo $tops['item_name']; ?></div>
 					</div>
 					</a>
+					
               <?php } ?>
+			 
          </div>
+		 
       </div>
       <div class="clearfix"></div>
         <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary " style="position:absolute;top:15px;right:10px"> See More</button></a>
