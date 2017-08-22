@@ -890,7 +890,7 @@ class Customer extends Front_Controller
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					$server_output = curl_exec ($ch);
 					curl_close ($ch);
-					echo '<pre>';print_r($server_output);exit;
+					//echo '<pre>';print_r($server_output);exit;
 				$this->customer_model->login_verficationcode_mobile_save($mobile,$forgotpass['customer_id'],$six_digit_random_number);
 				redirect( 'customer/resetpassword/'.base64_encode($mobile).'/'.base64_encode($forgotpass['customer_id'])); 
 					
