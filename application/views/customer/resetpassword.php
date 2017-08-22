@@ -52,7 +52,7 @@
 			<input type="hidden" id="email" name="email" value="<?php echo $email; ?>">
                         <div class=" col-md-12">
 							<div class="form-group">
-								<label class="control-label">Otp VErification Code</label>
+								<label class="control-label">OTP Verification Code</label>
 								<input type="text" id="otp" name="otpcode" value="" class="form-control" placeholder="" />
 							</div>
 						</div>
@@ -87,34 +87,27 @@ $(document).ready(function() {
     $('#resetpassword').bootstrapValidator({
        
         fields: {
-            newpassword: {
+            setpassword: {
 					validators: {
 					notEmpty: {
-						message: 'New Password is required'
+						message: 'set password is required'
 					},
 					stringLength: {
                         min: 6,
-                        message: 'New Password  must be greater than 6 characters'
+                        message: 'set password  must be greater than 6 characters'
                     },
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'New Password wont allow <>[]'
+					message: 'set password wont allow <>[]'
 					}
 				}
 			},
-			confirmpassword: {
+			otpcode: {
 					validators: {
 					notEmpty: {
-						message: 'Confirm Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'Confirm Password  must be atleast 6 characters'
-                    },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Confirm Password wont allow <>[]'
+						message: 'verification code is required'
 					}
+					
 				}
 			},
         }
