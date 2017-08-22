@@ -785,9 +785,10 @@ class Customer extends Front_Controller
  public function registerpost(){
 	
 	$post=$this->input->post();
-	//echo '<pre>';print_r($post);exit;
 	$emailcheck = $this->customer_model->email_check($post['email']);
-	if(count($emailcheck)==0){
+	$mobilecheck = $this->customer_model->mobile_check($post['mobile']);
+	//echo '<pre>';print_r($mobilecheck);
+	if(count($emailcheck)==0 && count($mobilecheck)==0){
 		$password=md5($post['password']);
 		$newpassword=md5($post['confirm_password']);
 		if($password == $newpassword ){
@@ -812,12 +813,22 @@ class Customer extends Front_Controller
 			redirect('');
 			}
 		}else{
+			
 			$this->session->set_flashdata('error',"Password and confirm password do not match");
 			redirect('customer');
 		}
 		
 	}else{
-		$this->session->set_flashdata('error',"E-mail already exists.Please use another email");
+		
+			if(count($mobilecheck)>0 && count($emailcheck)>0){
+				$this->session->set_flashdata('error',"E-mail and Mobile Number already exists.Please use another E-mail and Mobile Number");
+			}else if(count($emailcheck)>0){
+					$this->session->set_flashdata('error',"E-mail already exists.Please use another E-mail");
+			}else if(count($mobilecheck)>0){
+				$this->session->set_flashdata('error',"Mobile Number already exists.Please use another Mobile Number");
+			}			
+		
+	
 		redirect('customer');	
 		
 	}

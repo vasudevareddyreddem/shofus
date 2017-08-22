@@ -54,7 +54,7 @@
 			
                     <form id="loginform" name="loginform" method="post" action="<?php echo base_url('customer/loginpost');?>" class="form-horizontal" role="form">
                         <div class=" form-group">
-                            <label class="control-label">Email</label>
+                            <label class="control-label">Email id / Mobile Number</label>
                             <input type="text" class="form-control" id="email" name="email"  placeholder="Email id / Mobile Number">
                         </div>
 

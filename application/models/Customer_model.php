@@ -95,6 +95,10 @@ class Customer_model extends MY_Model
 		$sql="SELECT * FROM customers WHERE cust_email ='".$email."'";
         return $this->db->query($sql)->row_array(); 
 	}
+	public function mobile_check($mobile){
+		$sql="SELECT * FROM customers WHERE cust_mobile ='".$mobile."'";
+        return $this->db->query($sql)->row_array(); 
+	}
 	public function update_sear_area($custid,$areaid){
 		$sql1="UPDATE customers SET area ='".$areaid."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
