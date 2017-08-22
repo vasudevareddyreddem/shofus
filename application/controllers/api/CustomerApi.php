@@ -528,6 +528,25 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
+	/* prduct details page*/
+	public function productdetails_get()
+	{
+		$item_id=$this->input->get('item_id');
+			if($item_id==''){
+			$message = array('status'=>0,'message'=>'Item id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+		$product_details=$this->Customerapi_model->product_details($item_id);
+		//echo '<pre>';print_r($wishlist);exit;
+		if(count($product_details)>0){
+		
+			$message = array('status'=>1,'message'=>'product details','details'=>$product_details);
+			$this->response($message,REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>0,'message'=>'product Id is not valid one');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
 	/* homesearch  api */
 	public function homesearch_get()
 	{
@@ -1395,7 +1414,7 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
-
+	
 
 
 

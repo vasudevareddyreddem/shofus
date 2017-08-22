@@ -459,14 +459,15 @@
          
 
       <div class="input-box">
-        <select name="locationid" id="locationid" class="validate-select sel_are">
+        <select onchange="selectsearchlocation(this.value);" name="locationid" id="locationid" class="validate-select sel_are">
         <option value="">Select Area </option>
         <?php foreach($locationdata as $location_data) {?>
         <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
 
         <?php } ?>
         </select>
-        <div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
+		<input type="hidden" name="locationvalue" id="locationvalue" value="">
+       <div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
 
             <button type="button" onclick="searchlocation();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
           </div>
@@ -538,14 +539,23 @@
 </body>
 <script type="text/javascript" language="javascript">
 
- function searchlocation(id){
-   
-   jQuery('#address1errormsg').show();
-  
-     if(id==''){
+ function selectsearchlocation(id){
+	 if(id!=''){
+		 jQuery('#address1errormsg').hide();
+ 
+	 }
+	document.getElementById("locationvalue").value=id;
+ }
+
+ function searchlocation(){
+	 
+	 var id= jQuery('#locationvalue').val();
+    if(id==''){
+		 jQuery('#address1errormsg').show();
         jQuery('#address1errormsg').html('Please Select Area');
         return false;
      }
+	 
     jQuery('#address1errormsg').html(''); 
     jQuery('#address1errormsg').hide();
     $("#location_seacrh_result").empty();
@@ -554,7 +564,7 @@
         type: 'post',
         data: {
           form_key : window.FORM_KEY,
-          area: id,
+          area: jQuery('#locationvalue').val(),
           },
         dataType: 'html',
         success: function (data) {
