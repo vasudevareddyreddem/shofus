@@ -436,18 +436,21 @@ jQuery.ajax({
         },
       dataType: 'JSON',
       success: function (data) {
-		  var property = document.getElementById(addwishlistids);
-        jQuery('#sucessmsg').show();
-        //alert(data.msg);
-        if(data.msg==2){
-			$("#addwhish"+id).removeClass("btn-danger");
-        $('#sucessmsg').html('Product Successfully removed to Whishlist');  
-        }
-        if(data.msg==1){
-		 $("#addwhish"+id).addClass("btn-danger");
-        //$('#addwhish').css("color", "yellow");
-        $('#sucessmsg').html('Product Successfully added to Whishlist');  
-        }
+		  if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+						jQuery('#sucessmsg').show();
+						//alert(data.msg);
+						if(data.msg==2){
+							$("#addwhish"+id).removeClass("btn-danger");
+						$('#sucessmsg').html('Product Successfully removed to Whishlist');  
+						}
+						if(data.msg==1){
+						 $("#addwhish"+id).addClass("btn-danger");
+						//$('#addwhish').css("color", "yellow");
+						$('#sucessmsg').html('Product Successfully added to Whishlist');  
+						}
+				}
       
 
       }
