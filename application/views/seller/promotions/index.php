@@ -44,6 +44,11 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
+					<?php if($this->session->flashdata('errormsg')){ ?>
+					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('errormsg');?></div>	
+					<?php } ?>
 	   <?php  $i=1;foreach($catitemdata1 as $catitem_data1 )  {  ?> 
 		
 		 <a id="btn_chang<?php echo $i;?>" onclick="addtabactive(<?php echo $i;?>);addtabactives(<?php echo $i;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
@@ -364,8 +369,10 @@
 					if(data.msg=1){
 
 					location.reload();
-						}
 					}
+					
+					
+				}
         });
 	  }
       e.preventDefault();
