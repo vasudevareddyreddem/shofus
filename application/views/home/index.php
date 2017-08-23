@@ -52,6 +52,7 @@
         <div class="row">
           <div class="slider-items-products">
             <div class="new_title">
+			<?php //echo date('Y-m-d H:i:s A'); ?>
               <h2>Top Offers </h2>
             </div>
             <div id="top-categories" class="product-flexslider hidden-buttons">

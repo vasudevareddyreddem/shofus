@@ -88,12 +88,11 @@
           </ul>
         </div> 
 		<div class="col-md-5">
-				<?php foreach($locationdata as $list){ ?>
-				<?php if($list['location_id']==$this->session->userdata('location_area')){ ?>
-					<div id="selectedlocation" style="border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;"><span><?php echo $list['location_name']; ?></span></div>
-			<?php } ?>
-
-				<?php } ?>
+		<div id="selectedlocation" style="height:30px;border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;">
+		
+		<?php echo $this->session->userdata('location_area');
+		?>
+		</div>
         </div>
         <div class="user-link col-md-4"> <a class="tel" href="tel:+201234567891"><span class="glyphicon glyphicon-earphone">&nbsp;</span>+123456789</a> <a class="" href="mailto:support@resalatheme.com"><i><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
           
@@ -396,7 +395,7 @@ box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);position:fixed">
 	      <h3 style="margin-top:5px">Select Location</h3>
 			 
 			 <span id="locationmsg"></span>
-			 <select data-placeholder="select your nearest area" name="locationarea[]" id="locationarea" multiple  class="chosen-select" tabindex="1">
+			 <select data-placeholder="select your nearest area"  name="locationarea[]" id="locationarea" multiple  class="chosen-select" tabindex="1">
               <option value=""></option>
               <?php foreach($locationdata as $location_data) {?>
 			  <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
@@ -404,7 +403,7 @@ box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);position:fixed">
             </select>
 			
 			<div class="mar_t10" style="padding:20px 0px;">
-			<button type="submit" class="btn btn-primary pull-right">Submit</button>
+			<button type="submit" id="formsubmmition" class="btn btn-primary pull-right">Submit</button>
 			</form>
         </div>
       </div>
@@ -426,6 +425,28 @@ box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);position:fixed">
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
 <script type="text/javascript">
+
+$("#formsubmmition").click(function(){
+    var selectedValues = [];    
+    $("#locationarea :selected").each(function(){
+        selectedValues.push($(this).val()); 
+    });
+    jQuery.ajax({
+			url: "<?php echo site_url('customer/locationsearchname');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				searchvalue: selectedValues,
+				},
+			dataType: 'json',
+			success: function (data) {
+				$("#selectedlocation").empty();
+				$("#selectedlocation").append(data);
+
+
+			}
+		});
+});
 function openpopup (){
 $('#locationdiv').show();
 }
@@ -436,8 +457,6 @@ function closepopup (){
 	$('#locationdiv').hide();
 }
 function validations(){
-	
-	
 	var areaids=document.getElementById('locationarea').value;
 	
 	if(areaids==''){

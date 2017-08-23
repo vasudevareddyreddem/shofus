@@ -20,11 +20,31 @@ class Customer extends Front_Controller
   
   
 
+  public function locationsearchname(){
+		$post=$this->input->post();
+		$locationdata= $this->home_model->getlocations();
+		$loacationname=array();
+		foreach ($locationdata as $list){
+			if (in_array($list['location_id'], $post['searchvalue'])) {
+				$loacationname[]=$list['location_name'];
+			}
+		}
+		$locationdatadetails=implode(", ",$loacationname);
+		echo json_encode($locationdatadetails);
+
+  }
   public function locationsearch(){
 		$post=$this->input->post();
-		//echo '<pre>';print_r($post);exit;
-	$this->session->set_userdata('location_area',$post['locationarea']);
 		
+		$locationdata= $this->home_model->getlocations();
+		$loacationname=array();
+		foreach ($locationdata as $list){
+			if (in_array($list['location_id'], $post['locationarea'])) {
+				$loacationname[]=$list['location_name'];
+			}
+		}
+		$locationdatadetails=implode(", ",$loacationname);
+		$this->session->set_userdata('location_area',$locationdatadetails);
 
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
