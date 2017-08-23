@@ -50,7 +50,7 @@
 			<div class="row">
                         <div class=" col-md-12">
 							<div class="form-group">
-								<label class="control-label">Email Address Mobile number</label>
+								<label class="control-label">Email ID / Mobile number</label>
 								<input type="text" id="emailaddress" name="emailaddress" value="" class="form-control" placeholder="Email Address / Mobile number" />
 							</div>
 						</div>
