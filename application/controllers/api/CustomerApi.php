@@ -528,6 +528,35 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
+	/* for order details*/
+	public function orderdetails_get()
+	{
+		$customer_id=$this->input->get('customer_id');
+		$order_item_id=$this->input->get('order_item_id');
+			if($customer_id==''){
+			$message = array('status'=>0,'message'=>'Customer id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if($order_item_id==''){
+			$message = array('status'=>0,'message'=>'Order Item id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+				$customer_items= $this->Customerapi_model->get_order_items_lists($customer_id);
+
+				foreach ($customer_items as $order_ids){
+					$ids[]=$order_ids['order_item_id'];
+				}
+				
+				if(in_array($order_item_id, $ids)){
+					
+					$item_details= $this->Customerapi_model->get_order_items_list($customer_id,$order_item_id);
+					$message = array('status'=>1,'message'=>'order details are found','order details'=>$item_details);
+					$this->response($message,REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>0,'message'=>'You have no permissions');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}
+		
+	}
 	/* prduct details page*/
 	public function productdetails_get()
 	{
@@ -544,6 +573,25 @@ class CustomerApi extends REST_Controller {
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'product Id is not valid one');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
+	/* product track details page*/
+	public function ordertrack_get()
+	{
+		$customer_id=$this->input->get('customer_id');
+			if($customer_id==''){
+			$message = array('status'=>0,'message'=>'Customer id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			$customer_orders_track_detals= $this->Customerapi_model->get_order_items_track_list($customer_id);
+		//echo '<pre>';print_r($wishlist);exit;
+		if(count($customer_orders_track_detals)>0){
+		
+			$message = array('status'=>1,'message'=>'order track details','track details'=>$customer_orders_track_detals);
+			$this->response($message,REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>0,'message'=>'customer having no orders');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
@@ -615,6 +663,66 @@ class CustomerApi extends REST_Controller {
 				}
 
 		}
+	
+	}
+	/* add review  api */
+	public function productreview_post()
+	{
+	$customer_id=$this->input->get('customer_id');
+	$product_id=$this->input->get('product_id');	
+	$email=$this->input->get('email');	
+	$name=$this->input->get('name');	
+	$Rate=$this->input->get('Rate');	
+	$review=$this->input->get('review');	
+	if($customer_id==''){
+		$message = array('status'=>0,'message'=>'Customer id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		
+	}elseif($product_id==''){
+		$message = array('status'=>0,'message'=>'Product id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		
+	}else if($email==''){
+		$message = array('status'=>0,'message'=>'Email is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+	}else if($name==''){
+		$message = array('status'=>0,'message'=>'Name is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+	}else if($review==''){
+		$message = array('status'=>0,'message'=>'Review is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+	}
+	
+	$details=array(
+	'customer_id'=>$customer_id,
+	'item_id'=>$product_id,
+	'name'=>$name,
+	'email'=>$email,
+	'review_content'=>$review,
+	'create_at'=>date('Y-m-d H:i:s A'),
+	);
+	$savereview= $this->Customerapi_model->save_review($details);
+		if(count($savereview)>0){
+			
+			if($Rate!=''){
+				$addrataing=array(
+				'customer_id'=>$customer_id,
+				'review_id'=>$savereview,
+				'item_id'=>$product_id,
+				'name'=>$name,
+				'email'=>$email,
+				'rating'=>$Rate,
+				'create_at'=>date('Y-m-d H:i:s A'),
+			);
+			$saverating= $this->Customerapi_model->save_rating($addrataing);
+			}
+			$message = array('status'=>1,'message'=>'review Successfully Submitted');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>0,'message'=>'Technical problem occured try again later!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+
 	
 	}
 	

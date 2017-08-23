@@ -137,7 +137,10 @@
 				<div class="price">
                
 				<div class="pull-left" ><?php echo ($item_price); ?> 
+			<?php if($percentage!=''){ ?>
 				<span class="label-tags"><span class="label label-default">-<?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
+			<?Php }else{ ?>
+			<?php } ?>
 				</div>
 				<span class="price-old"><?php echo $orginal_price; ?></span>
             
@@ -495,6 +498,7 @@
  
 	 }
 	document.getElementById("locationvalue").value=id;
+	$("#selectedlocation").append(id);
  }
 
  function searchlocation(){

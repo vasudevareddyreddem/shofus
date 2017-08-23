@@ -31,7 +31,7 @@ class Front_Controller extends MY_Controller {
 					}else{
 					$data['cartitemcount'] =0;	
 					}
-					//echo '<pre>';print_r($data['cartitemcount']);exit;
+					//echo '<pre>';print_r($data['locationdata']);exit;
 					$this->template->set_template('website'); 
 					$this->template->write_view('header', 'shared/header',$data);
 					$this->template->write_view('footer', 'shared/footer');

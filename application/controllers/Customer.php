@@ -23,6 +23,7 @@ class Customer extends Front_Controller
   public function locationsearch(){
 		$post=$this->input->post();
 		//echo '<pre>';print_r($post);exit;
+	$this->session->set_userdata('location_area',$post['locationarea']);
 		if($this->session->userdata('userdetails')){
 			$logindetails=$this->session->userdata('userdetails');
 			$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$post['locationarea']);	

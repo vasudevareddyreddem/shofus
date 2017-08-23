@@ -87,8 +87,13 @@
             <li><a href="#" class=""><span class=""><i class="fa fa-pinterest-square" aria-hidden="true"></i></span></a></li>
           </ul>
         </div> 
-		<div class="col-md-5"> 
-			<div style="border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;">fsdafdasdfas</div>
+		<div class="col-md-5">
+				<?php foreach($locationdata as $list){ ?>
+				<?php if($list['location_id']==$this->session->userdata('location_area')){ ?>
+					<div id="selectedlocation" style="border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;"><span><?php echo $list['location_name']; ?></span></div>
+			<?php } ?>
+
+				<?php } ?>
         </div>
         <div class="user-link col-md-4"> <a class="tel" href="tel:+201234567891"><span class="glyphicon glyphicon-earphone">&nbsp;</span>+123456789</a> <a class="" href="mailto:support@resalatheme.com"><i><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
           

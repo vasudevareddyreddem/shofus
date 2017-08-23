@@ -411,6 +411,51 @@ class Customerapi_model extends MY_Model
 		$this->db->where('item_id', $itemid);
         return $this->db->get()->row_array();
 	}
+	public function get_order_items_lists($custid){
+			$this->db->select('order_items.*')->from('order_items');
+			$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
+			$this->db->join('locations', 'locations.location_id = billing_address.area', 'left');
+			$this->db->where('order_items.customer_id', $custid);
+			return $this->db->get()->result_array();
+	}
+	public function get_profile_details($custid){
+		$this->db->select('customers.*,locations.location_name')->from('customers');
+		$this->db->join('locations', 'locations.location_id = customers.area', 'left');
+		$this->db->where('customers.customer_id',$custid);
+		return $this->db->get()->row_array();
+	}
+	public function get_order_items_list($custid,$order_id){
+			$this->db->select('order_items.*,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name')->from('order_items');
+			$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+			$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
+			$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+			$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
+			$this->db->join('locations', 'locations.location_id = billing_address.area', 'left');
+			$this->db->where('order_items.customer_id', $custid);
+			$this->db->where('order_items.order_item_id', $order_id);
+			return $this->db->get()->row_array();
+	}
+	public function save_review($data){
+		
+		$this->db->insert('reviews', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function save_rating($data){
+		
+		$this->db->insert('ratings', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function get_order_items_track_list($custid){
+			$this->db->select('order_items.*,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name')->from('order_items');
+			$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+			$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
+			$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+			$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
+			$this->db->join('locations', 'locations.location_id = billing_address.area', 'left');
+			$this->db->where('order_items.customer_id', $custid);
+			$this->db->order_by('order_items.order_item_id desc');
+			return $this->db->get()->result_array();
+	}
 
 
 }
