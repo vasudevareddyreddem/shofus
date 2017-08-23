@@ -58,7 +58,7 @@
 						</div>
 						<div class=" col-md-12">
 							<div class="form-group">
-								<label class="control-label">Setpassword</label>
+								<label class="control-label">Set Password</label>
 								<input type="password" id="setpassword" name="setpassword" value="" class="form-control" placeholder="" />
 							</div>
 						</div>
