@@ -987,6 +987,7 @@ class Category extends Front_Controller
 		
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	if(count($wishlist_ids)>0){
 	foreach ($wishlist_ids as  $list){
 		$customer_ids_list[]=$list['cust_id'];
 		$whishlist_item_ids_list[]=$list['item_id'];
@@ -995,6 +996,7 @@ class Category extends Front_Controller
 	$data['customer_ids_list']=$customer_ids_list;
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;
+	}
 	//echo '<pre>';print_r($data);exit;
 	$this->load->view('customer/subcategorywisefiltersearch',$data);
 	//echo '<pre>';print_r($data);exit;
@@ -1215,7 +1217,9 @@ function filtersearch(){
 	}
 	$data['category_name']= $this->category_model->get_category_name($caterory_id);
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
-	foreach ($wishlist_ids as  $list){
+	if(count($wishlist_ids)>0){
+		
+		foreach ($wishlist_ids as  $list){
 		$customer_ids_list[]=$list['cust_id'];
 		$whishlist_item_ids_list[]=$list['item_id'];
 		$whishlist_ids_list[]=$list['id'];
@@ -1225,6 +1229,7 @@ function filtersearch(){
 	$data['customer_ids_list']=$customer_ids_list;
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;
+	}
 	//echo '<pre>';print_r($data);exit;
 	$this->load->view('customer/filters_search',$data);
 	
@@ -1412,7 +1417,9 @@ function filtersearch(){
 		
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
-	foreach ($wishlist_ids as  $list){
+	
+	if(count($wishlist_ids)>0){
+		foreach ($wishlist_ids as  $list){
 		$customer_ids_list[]=$list['cust_id'];
 		$whishlist_item_ids_list[]=$list['item_id'];
 		$whishlist_ids_list[]=$list['id'];
@@ -1422,6 +1429,7 @@ function filtersearch(){
 	$data['customer_ids_list']=$customer_ids_list;
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;
+	}
 	//echo '<pre>';print_r($data);exit;
 	//echo '<pre>';print_r($data);exit;
 	$this->load->view('customer/subcategorywiseproducts',$data);
@@ -1483,7 +1491,8 @@ function filtersearch(){
 	}
 	
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
-	foreach ($wishlist_ids as  $list){
+	if(count($wishlist_ids)>0){
+		foreach ($wishlist_ids as  $list){
 		$customer_ids_list[]=$list['cust_id'];
 		$whishlist_item_ids_list[]=$list['item_id'];
 		$whishlist_ids_list[]=$list['id'];
@@ -1493,6 +1502,7 @@ function filtersearch(){
 	$data['customer_ids_list']=$customer_ids_list;
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;
+	}
 	$this->template->write_view('content', 'customer/subcategoryview',$data);
 	$this->template->render();
 	
@@ -1555,7 +1565,8 @@ function filtersearch(){
 	$data['sizecnt']= count($data['sizes_list']);
 	//echo '<pre>';print_r($data);exit;
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
-	foreach ($wishlist_ids as  $list){
+	if(count($wishlist_ids)>0){
+		foreach ($wishlist_ids as  $list){
 		$customer_ids_list[]=$list['cust_id'];
 		$whishlist_item_ids_list[]=$list['item_id'];
 		$whishlist_ids_list[]=$list['id'];
@@ -1565,6 +1576,7 @@ function filtersearch(){
 	$data['customer_ids_list']=$customer_ids_list;
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;
+	}
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'customer/productview', $data);
 	$this->template->render();
