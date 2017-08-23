@@ -396,7 +396,7 @@ box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);position:fixed">
 	      <h3 style="margin-top:5px">Select Location</h3>
 			 
 			 <span id="locationmsg"></span>
-			 <select data-placeholder="select your nearest area" name="locationarea" id="locationarea"  class="chosen-select" tabindex="1">
+			 <select data-placeholder="select your nearest area" name="locationarea[]" id="locationarea" multiple  class="chosen-select" tabindex="1">
               <option value=""></option>
               <?php foreach($locationdata as $location_data) {?>
 			  <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>

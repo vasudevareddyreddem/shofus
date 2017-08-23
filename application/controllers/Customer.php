@@ -24,15 +24,7 @@ class Customer extends Front_Controller
 		$post=$this->input->post();
 		//echo '<pre>';print_r($post);exit;
 	$this->session->set_userdata('location_area',$post['locationarea']);
-		if($this->session->userdata('userdetails')){
-			$logindetails=$this->session->userdata('userdetails');
-			$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$post['locationarea']);	
-			//echo $this->db->last_query();exit;
-				if(count($updatearea)>0){
-					$details = $this->customer_model->get_profile_details($logindetails['customer_id']);
-					$this->session->set_userdata('userdetails',$details);
-				}
-			}
+		
 
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
