@@ -16,6 +16,7 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
+					<?php if($notification_details){ ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -56,6 +57,10 @@
                  <?php }?>
                 </tbody>              
                 </table> <br><br><br>
+				
+					<?php }else{ ?>
+					<div>NO data avaialable</div>
+					<?php }?>
             </div>
             <!-- /.box-body -->
           </div>
