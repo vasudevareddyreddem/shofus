@@ -472,7 +472,6 @@
 		<input type="hidden" name="locationvalue" id="locationvalue" value="">
        <div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
 
-            <button type="button" onclick="searchlocation();" id="location_submit" class="button subscribe" name="location_submit"><span>SUBMIT</span></button>
           </div>
   
         </div>
@@ -492,18 +491,17 @@
 </body>
 <script type="text/javascript" language="javascript">
 
- function selectsearchlocation(id){
+ /*function selectsearchlocation(id){
 	 if(id!=''){
 		 jQuery('#address1errormsg').hide();
  
 	 }
 	document.getElementById("locationvalue").value=id;
 	$("#selectedlocation").append(id);
- }
+ }*/
 
- function searchlocation(){
+ function selectsearchlocation(id){
 	 
-	 var id= jQuery('#locationvalue').val();
     if(id==''){
 		 jQuery('#address1errormsg').show();
         jQuery('#address1errormsg').html('Please Select Area');
@@ -518,7 +516,7 @@
         type: 'post',
         data: {
           form_key : window.FORM_KEY,
-          area: jQuery('#locationvalue').val(),
+          area: id,
           },
         dataType: 'html',
         success: function (data) {
