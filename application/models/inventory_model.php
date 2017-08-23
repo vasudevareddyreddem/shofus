@@ -238,7 +238,10 @@ class Inventory_model extends MY_Model
 			$return[$category['seller_id']]['lastone'] = $this->get_latestmessage($category['seller_id']);
         
 		}
+		if(!empty($return))
+		{
 		return $return;
+		}
 	}
 	public function get_unreadcount($sid)
 	{

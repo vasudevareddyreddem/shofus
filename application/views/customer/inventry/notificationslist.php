@@ -59,7 +59,7 @@
                 </table> <br><br><br>
 				
 					<?php }else{ ?>
-					<div>NO data avaialable</div>
+					<div>No data avaialable</div>
 					<?php }?>
             </div>
             <!-- /.box-body -->
