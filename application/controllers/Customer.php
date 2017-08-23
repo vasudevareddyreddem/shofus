@@ -42,6 +42,7 @@ class Customer extends Front_Controller
 	  	$data['season_sales']= $this->customer_model->get_product_search_seaaon_sales($post['locationarea']);
 		//echo '<pre>';print_r($data);exit;
 		$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+		if(count($wishlist_ids)>0){
 	foreach ($wishlist_ids as  $list){
 		$customer_ids_list[]=$list['cust_id'];
 		$whishlist_item_ids_list[]=$list['item_id'];
@@ -52,6 +53,7 @@ class Customer extends Front_Controller
 	$data['customer_ids_list']=$customer_ids_list;
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;
+		}
 	$this->template->write_view('content', 'customer/productsearch', $data);
 	$this->template->render();
 	  
