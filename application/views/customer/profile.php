@@ -18,10 +18,11 @@
             </div>
             <div class="panel-body">
 			<?php if($this->session->flashdata('success')): ?>
-					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<div class="alert dark alert-success alert-dismissible text-center col-md-8 col-md-offset-2" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
+					<div class="clearfix">&nbsp;</div>
               <div class="row">
 			  <?php 
 			  if($profile_details['cust_propic']!=''){ ?>
