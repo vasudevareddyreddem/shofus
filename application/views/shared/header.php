@@ -158,7 +158,7 @@
 			</span></a></span>
 			
 			<?php if($this->session->userdata('userdetails')){ ?>
-			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i><img  src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i></a>&nbsp;<sup id="supcount" class="sup_log blink-image" style="color:#45b1b5;">
+			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i><img  src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i></a>&nbsp;<sup id="supcount" class="sup_log blink-image" style="color:#45b1b5; ">
 			<?php if(count($cartitemcount)>0){ ?>
 				<?php echo count($cartitemcount)	; ?>
 				</sup>
