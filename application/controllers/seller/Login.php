@@ -456,19 +456,18 @@ $result = $you_make - $actual_price;
 			
 				$six_digit_random_number = mt_rand(100000, 999999);
 				$updatepassword=$this->login_model->update_forgotpassword($checkmobile['seller_id'],$six_digit_random_number);
-				//echo $this->db->last_query();exit;				
-				//echo '<pre>';print_r($updatepassword);exit;
-				$user_id="cartin"; 
-				$pwd="9494422779";    
-				$sender_id = "CARTIN";          
-				$mobile_num = $post['mobile_number'];  
-				$message = "Your Temporary Password is : " .$six_digit_random_number;        
-				// Sending with PHP CURL
-				$url="http://smslogin.mobi/spanelv2/api.php?username=".$user_id."&password=".$pwd."&to=".urlencode($mobile_num)."&from=".$sender_id."&message=".urlencode($message);
-				$ret = file($url); 
-				if($ret)
+				$username=$this->config->item('smsusername');
+				$pass=$this->config->item('smspassword');
+					$msg='Your Temporary Password is  '.$six_digit_random_number;
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch, CURLOPT_POST, 1);
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone="'.$post['mobile_number'].'"&text="'.$msg.'"&priority=ndnd&stype=normal');
+					//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					$server_output = curl_exec ($ch);
+					curl_close ($ch);
+				if($server_output==1)
 				{
-					//echo '<pre>';print_r($ret);exit;
 				$data['sendmsg']=1;
 				echo json_encode($data);
 				}else{
