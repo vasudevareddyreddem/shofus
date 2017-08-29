@@ -19,6 +19,25 @@ class Products_model extends MY_Model
 
 	}
 
+	function get_name_existss($name)
+    {
+	   $sql = "SELECT * FROM category WHERE category_name ='".$name."' AND status='1'";
+        return $this->db->query($sql)->row_array();
+     }
+	 function get_subcatname_existss($name)
+    {
+	   $sql = "SELECT * FROM subcategories WHERE subcategory_name ='".$name."' AND status='1'";
+        return $this->db->query($sql)->row_array();
+     }
+	 function insert_cat_data($data){
+		$this->db->insert('category', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	function save_sub_categories($data){
+		$this->db->insert('subcategories', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	
 	public function get_seller_catdata($sid)
 	{
 		$this->db->select('seller_categories.*,category.documetfile')->from('seller_categories');

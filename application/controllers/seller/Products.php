@@ -1805,6 +1805,61 @@ public function returns()
 			
 			
 		
+	}
+
+	function addcategory(){
+		$post=$this->input->post();
+		//echo '<pre>';print_r($post['categoryname']);exit;
+		$alreadyexits = $this->products_model->get_name_existss($post['categoryname']);
+		if(count($alreadyexits)>0){
+			
+			$data['msg']=0;
+			echo json_encode($data);exit;
+		}
+		$adddata = array(
+		'category_name' => $post['categoryname'],
+		'status' => 0,    
+		'created_at' => date('Y-m-d H:i:s'),    
+		'updated_at' => date('Y-m-d H:i:s'),
+		'seller_id' =>$this->session->userdata('seller_id'), 
+
+		);
+		$result=$this->products_model->insert_cat_data($adddata);
+		if(count($result)>0){
+			$data['msg']=1;
+			echo json_encode($data);
+		}else{
+			$data['msg']=2;
+			echo json_encode($data);
+		}
+
+	}
+	function addsubcategory(){
+		$post=$this->input->post();
+		//echo '<pre>';print_r($post['categoryname']);exit;
+		$alreadyexits = $this->products_model->get_subcatname_existss($post['subcategoryname']);
+		if(count($alreadyexits)>0){
+			
+			$data['msg']=0;
+			echo json_encode($data);exit;
+		}
+		$addsubcat = array(
+		'category_id' => $post['categoryid'], 
+		'subcategory_name' => $post['subcategoryname'],
+		'status' => 0,    
+		'created_at' => date('Y-m-d H:i:s'),    
+		'updated_at' => date('Y-m-d H:i:s'),
+		'created_by' =>$this->session->userdata('seller_id'), 
+		);
+		$result=$this->products_model->save_sub_categories($addsubcat);
+		if(count($result)>0){
+			$data['msg']=1;
+			echo json_encode($data);
+		}else{
+			$data['msg']=2;
+			echo json_encode($data);
+		}
+
 	}	
 
 }

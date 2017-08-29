@@ -98,14 +98,20 @@
 				<?php foreach($category_details as $list){ ?>
 				<option value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
 				<?php } ?>
-
+			
 				</select>
+				<span id="suberrormsg" style="color:red;"></span>
 				<p  id="categoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Category</a> </p>
 				<div style="display:none;margin-top:14px;" id="addcat">
+				<span style="color:red" id="addcaterrormsg"></span>
+
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Request for Add Category</label>
 					<input type="text" class="form-control" placeholder="category Name"  name="addcategoryname" id="addcategoryname" >
+					<button type="button" onclick="addrequestcategory();" id="addcat">Add</button>
+
 				</div>
+
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -117,9 +123,12 @@
 				</select>
 				<p id="subcategoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Subcategory</a> </p>
 				<div style="display:none;margin-top:14px;" id="addsubcat">
+				<span style="color:red" id="addsubcaterrormsg"></span>
+
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Request for Add SubCategory </label>
 					<input type="text" class="form-control" placeholder="Subcategory Name" name="addsubcategoryname" id="addsubcategoryname" >
+					<button type="button" onclick="addrequestsubcategory();" id="addsubcat">Add</button>
 				</div>
 				</div>
 			</div>
@@ -708,6 +717,83 @@
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
    <script type="text/javascript">
+	   
+   function addrequestsubcategory(){
+	   var catid=document.getElementById('category_id').value;
+	   if(catid==''){
+		   		jQuery('#suberrormsg').html('please select Category');
+				return false;
+		}
+		jQuery('#suberrormsg').html('');
+	   var subcategory=document.getElementById('addsubcategoryname').value;
+	   if(subcategory==''){
+		   		jQuery('#addsubcaterrormsg').html('Request for Add SubCategory is required');
+				return false;
+		}
+	   if(subcategory!=''){
+		 jQuery('#suberrormsg').html('');
+		 jQuery('#addsubcaterrormsg').html('');
+			jQuery.ajax({
+				url: "<?php echo site_url('seller/products/addsubcategory');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					subcategoryname: subcategory,
+					categoryid: catid,
+					},
+				dataType: 'json',
+				success: function (data) {
+					if(data.msg==0){
+						jQuery('#addsubcaterrormsg').html('Subcategory Name already exits.please use another Subcategory Name');
+						return false;
+					}
+					if(data.msg==1){
+						jQuery('#addsubcaterrormsg').html('Subcategory Successfully Added');
+						location.reload();
+					}
+					if(data.msg==2){
+						jQuery('#addsubcaterrormsg').html('Sorry, a technical error occurred! Please try again later.');
+						return false;
+					}
+				}
+			});
+	   }
+	   
+   } 
+   function addrequestcategory(){
+	   var category=document.getElementById('addcategoryname').value;
+	   if(category==''){
+		   		jQuery('#addcaterrormsg').html('Request for Add Category is required');
+				return false;
+		}
+	   if(category!=''){
+		 jQuery('#addcaterrormsg').html('');
+			jQuery.ajax({
+				url: "<?php echo site_url('seller/products/addcategory');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					categoryname: category,
+					},
+				dataType: 'json',
+				success: function (data) {
+					if(data.msg==0){
+						jQuery('#addcaterrormsg').html('Category Name already exits.please use another category Name');
+						return false;
+					}
+					if(data.msg==1){
+						jQuery('#addcaterrormsg').html('Category Successfully Added');
+						location.reload();
+					}
+					if(data.msg==2){
+						jQuery('#addcaterrormsg').html('Sorry, a technical error occurred! Please try again later.');
+						return false;
+					}
+				}
+			});
+	   }
+	   
+   }
 function removeextrafields(){
 	  
 	   $('#productname').val('');
@@ -852,12 +938,16 @@ function validations(){
 $(document).ready(function(){
     $("#categoryhideshow").click(function(){
         $("#addcat").toggle();
+		 $("#addcategoryname").val('');
+        $("#addcaterrormsg").html('');
     });
   
 });
 $(document).ready(function(){
     $("#subcategoryhideshow").click(function(){
         $("#addsubcat").toggle();
+        $("#addsubcategoryname").val('');
+        $("#addsubcaterrormsg").html('');	
     });
   
 });	
