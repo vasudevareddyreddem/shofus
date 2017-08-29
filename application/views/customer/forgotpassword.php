@@ -39,7 +39,7 @@
            
 
             <div class="col-md-10 col-md-offset-1 ">
-			<h3 class="">Forget Password</h3>
+			<h3 class="">Forgot Password</h3>
 			<hr>
 				<?php if($this->session->flashdata('error')): ?>	
 			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">

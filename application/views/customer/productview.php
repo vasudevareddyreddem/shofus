@@ -174,7 +174,7 @@
 						<div class="row">
 						<input type="hidden" name="sizevalue" id="sizevalue" value="">
 						<?php $i=1;foreach($sizes_list as $list) { ?>
-						<div id="sizeslist<?php echo $i;?>" class="col-md-2 pr-V_siz" >
+						<div style="font-size:17px" id="sizeslist<?php echo $i;?>" class="col-md-2 " >
 						<span  onclick="sizeselect('<?php echo $i;?>');sizeselectvalue('<?php echo $list['p_size_name'];?>');"><?php echo $list['p_size_name'];?></span>
 						</div>
 						<?php $i++;} ?>

@@ -14,18 +14,31 @@
 .panel-title > a:focus  {
     text-decoration:none;
 }
+ #sticky {
+ 
+     // height:20%;
+
+ 
+}
+#sticky.stick {
+    position: fixed !important;
+    top: 0;
+    z-index: 10;
+    border-radius: 0 0 0.5em 0.5em;
+}
 </style>
 <script>
 $('#supcount').hide();
 </script>
 
-<div class="" style="margin-top:150px;">
+<div class="">
 	
 </div>
 <body >
 <div class="pad_bod">
 		<div class="row">
-		<div class="col-md-3" style="position: fixed;">
+		<div id="sticky-anchor"></div>
+		<div class="col-md-3" id="sticky">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Price details</div>
 			<div class="panel-body">
@@ -64,7 +77,7 @@ $('#supcount').hide();
 		</div>
 		</div>
 		
-		<div class="col-md-offset-3 col-md-8 col-md-offset-right-1">
+		<div class="col-md-8 " id="off_set_stic">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Success</div>
 			<div class="panel-body">
@@ -253,6 +266,34 @@ $('#supcount').hide();
         }
     });
 });
+
+
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    var footer_top = $("#footer-start").offset().top;
+    var div_top = $('#sticky-anchor').offset().top;
+    var div_height = $("#sticky").height();
+    
+    var padding = 20;  // tweak here or get from margins etc
+    
+    if (window_top + div_height > footer_top - padding)
+        $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
+    else if (window_top > div_top) {
+        $('#sticky').addClass('stick');
+        $('#off_set_stic').addClass('col-md-offset-3');
+        $('#sticky').css({top: 100})
+    } else {
+        $('#off_set_stic').removeClass('col-md-offset-3');
+        $('#sticky').removeClass('stick');
+		$('#sticky').css({top:0})
+    }
+}
+
+$(function () {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});
+
 </script>
 
  

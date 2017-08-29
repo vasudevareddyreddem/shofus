@@ -14,12 +14,12 @@
 .panel-title > a:focus  {
     text-decoration:none;
 }
-#sticky {
+// #sticky {
  
-    height:80%;
+    // height:80%;
 
  
-}
+// }
 #sticky.stick {
     position: fixed !important;
     top: 0;

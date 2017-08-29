@@ -52,10 +52,10 @@
 						
 						
 							<div class="col-md-3">
-								<ul class="list_cat">
+								<ul style="background:#fff;" class="list_cat">
 								<?php foreach ($allcategories_list as $categories){ ?>
 								
-								<li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" style="color:#666;"><?php echo $categories['category_name'] ; ?></a></li>
+								<li ><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" style="color:#666;"><?php echo $categories['category_name'] ; ?></a></li>
 									
 								<?php } ?>
 									

@@ -16,13 +16,13 @@
 }
 </style>
 
-<div class="" style="margin-top:150px;">
+<div class="" >
 	
 </div>
 <body >
 <div class="pad_bod">
 		<div class="row">
-		<div class="col-md-3" style="position: fixed;">
+		<div class="col-md-3" >
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Price details</div>
 			<div class="panel-body">
@@ -61,7 +61,7 @@
 		</div>
 		</div>
 		
-		<div class="col-md-offset-3 col-md-8 col-md-offset-right-1">
+		<div class="col-md-9 ">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Payment</div>
 			<div class="panel-body">
@@ -118,7 +118,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('paymenterror');?></div>
 			<?php endif; ?>
-						<div class="container">
+						<div class="">
 						<div class="row">
 							<form method="post" name="payuForm" action="https://test.payu.in/_payment">
 							<input name="key" type="hidden" value="<?php echo $this->config->item('MERCHANTKEY'); ?>" />
@@ -153,6 +153,9 @@
 	   </div>
 	   </div>
 	</div>
+	</div>
+	</div>
+
 	
 
 
