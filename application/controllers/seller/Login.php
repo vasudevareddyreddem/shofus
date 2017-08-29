@@ -449,6 +449,7 @@ $result = $you_make - $actual_price;
 	public function forgot()
 	{
 		$post=$this->input->post();
+		//echo '<pre>';print_r($post);exit;
 		if($post['option']==0){
 		$checkmobile=$this->login_model->verify_mobile($post['mobile_number']);	
 		//echo '<pre>';print_r($checkmobile);exit;
