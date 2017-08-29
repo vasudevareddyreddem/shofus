@@ -45,7 +45,7 @@ class Customer extends Front_Controller
 		}
 		$locationdatadetails=implode(", ",$loacationname);
 		$this->session->set_userdata('location_area',$locationdatadetails);
-
+		//echo $this->session->userdata('location_area');exit;
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
 		$data['tredings']= $this->customer_model->get_product_search_tredings($post['locationarea']);
@@ -868,7 +868,13 @@ class Customer extends Front_Controller
 		if(count($logindetails)>0)
 		{			
 			if($this->session->userdata('location_area')!=''){
-			$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$this->session->userdata('location_area'));	
+					$locationdata= $this->home_model->getlocations();
+					foreach ($locationdata as $list){
+								if ($list['location_name']==$this->session->userdata('location_area')) {
+									$loacationid=$list['location_id'];
+								}
+							}
+					$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$loacationid);	
 				if(count($updatearea)>0){
 					
 					if($post['remember']==1){

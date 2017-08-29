@@ -2024,22 +2024,22 @@ function getspecialinputs(ids){
 			'specificationname[]': {
 					 validators: {
 						 notEmpty: {
-						message: 'specificationname is required'
+						message: 'specification name is required'
 					},
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message: 'specificationname  wont allow <> [] = % '
+					message: 'specification name  wont allow <> [] = % '
 					}
             }
 			},
 			'specificationvalue[]': {
 					 validators: {
 						 notEmpty: {
-						message: 'specificationvalue is required'
+						message: 'specification value is required'
 					},
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message: 'specificationvalue value wont allow <> [] = % '
+					message: 'specification value value wont allow <> [] = % '
 					}
             }
 			},
