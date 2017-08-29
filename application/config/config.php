@@ -1018,8 +1018,8 @@ $config['salt']	= "eCwWELxi";
 $config['PAYU_BASE_URL']	= "https://test.payu.in";
 
 /*sms*/
-$config['smsusername']	= "success";
-$config['smspassword']	= "123456";
+$config['smsusername']	= "cartinhour";
+$config['smspassword']	= "qwerty";
 
 
 

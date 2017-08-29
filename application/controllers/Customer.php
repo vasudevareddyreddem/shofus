@@ -20,11 +20,31 @@ class Customer extends Front_Controller
   
   
 
+  public function locationsearchname(){
+		$post=$this->input->post();
+		$locationdata= $this->home_model->getlocations();
+		$loacationname=array();
+		foreach ($locationdata as $list){
+			if (in_array($list['location_id'], $post['searchvalue'])) {
+				$loacationname[]=$list['location_name'];
+			}
+		}
+		$locationdatadetails=implode(", ",$loacationname);
+		echo json_encode($locationdatadetails);
+
+  }
   public function locationsearch(){
 		$post=$this->input->post();
-		//echo '<pre>';print_r($post);exit;
-	$this->session->set_userdata('location_area',$post['locationarea']);
 		
+		$locationdata= $this->home_model->getlocations();
+		$loacationname=array();
+		foreach ($locationdata as $list){
+			if (in_array($list['location_id'], $post['locationarea'])) {
+				$loacationname[]=$list['location_name'];
+			}
+		}
+		$locationdatadetails=implode(", ",$loacationname);
+		$this->session->set_userdata('location_area',$locationdatadetails);
 
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
@@ -511,7 +531,7 @@ class Customer extends Front_Controller
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=SUCCES&phone="'.$_POST['phone'].'"&text="'.$msg.'"&priority=ndnd&stype=normal');
+				curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone="'.$_POST['phone'].'"&text="'.$msg.'"&priority=ndnd&stype=normal');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				$server_output = curl_exec ($ch);
 				curl_close ($ch);*/
@@ -887,15 +907,16 @@ class Customer extends Front_Controller
 				$username=$this->config->item('smsusername');
 				$pass=$this->config->item('smspassword');
 				if($mobile!=''){
+					
+					
 					$msg=' Your cartinhour verification code is '.$six_digit_random_number;
 					$ch = curl_init();
 					curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 					curl_setopt($ch, CURLOPT_POST, 1);
-					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=SUCCES&phone="'.$mobile.'"&text="'.$msg.'"&priority=ndnd&stype=normal');
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone="'.$mobile.'"&text="'.$msg.'"&priority=ndnd&stype=normal');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					$server_output = curl_exec ($ch);
 					curl_close ($ch);
-					//echo '<pre>';print_r($server_output);exit;
 				$this->customer_model->login_verficationcode_mobile_save($mobile,$forgotpass['customer_id'],$six_digit_random_number);
 				redirect( 'customer/resetpassword/'.base64_encode($mobile).'/'.base64_encode($forgotpass['customer_id'])); 
 					

@@ -48,12 +48,23 @@ class Promotions extends Admin_Controller {
 	
 			}
 			$productprice=$this->Promotions_model->get_offer_product_price($cat_ida);
-			$offer_price=($productprice['special_price'] * $post['offeramount']);
+			$offer_price=($productprice['item_cost'] * $post['offeramount']);
 			$offer_price_pertange=($offer_price / 100);
 			//echo $offer_price;
 			//echo '--';
-			//echo $offer_price_pertange;
-			//	echo '<pre>';print_r($productprice);exit;
+			//echo $post['offeramount'];
+			//echo '<pre>';print_r($productprice);
+			
+			// $prices= ($productprice['item_cost']-$productprice['special_price']);
+			// echo $percentage= (($prices) /$productprice['item_cost'])*100;
+			// exit;
+			// if($post['offeramount'] >= $percentage){
+				
+				// echo 'error';
+			// }else{
+				// echo 'done';
+			// }
+			// exit;
 			$details=$this->Promotions_model->get_offer_product_price($post['combo']);
 			$data=array(
 			'offer_percentage'=>$post['offeramount'],
@@ -103,7 +114,7 @@ class Promotions extends Admin_Controller {
 						if(count($itemscount)>100){
 					$status=2;
 					}else{
-							$offer_price=($productprice['special_price'] * $post['offeramount']);
+							$offer_price=($productprice['item_cost'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
 							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
@@ -174,7 +185,7 @@ public function addtopoffers()
 					if(count($itemscount)>100){
 					$status=2;
 					}else{
-							$offer_price=($productprice['special_price'] * $post['offeramount']);
+							$offer_price=($productprice['item_cost'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
 							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
@@ -244,7 +255,7 @@ public function dealsoftheday()
 					if(count($itemscount)>100){
 					$status=2;
 					}else{
-							$offer_price=($productprice['special_price'] * $post['offeramount']);
+							$offer_price=($productprice['item_cost'] * $post['offeramount']);
 							$offer_amount=($offer_price / 100);
 							$date = date('Y-m-d h:i:s A');
 							$date1 = strtotime($date);
