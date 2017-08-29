@@ -19,7 +19,7 @@ class Front_Controller extends MY_Controller {
 				//$data['catitemdata']= $this->home_model->getcatsubcatpro();	
 				$data['allcategories_list']= $this->home_model->get_all_category_with_products();
 				$data['sidecaregory_list']= $this->home_model->get_sidebar_category_list();
-				
+				//echo '<pre>';print_r($data);exit;
 				$data['catitemdata1'] = $this->home_model->getcatsubcatpro();
 				$data['cnt']= count($data['catitemdata1']);
 				$data['catdata'] = $this->home_model->getcatsubcat();
