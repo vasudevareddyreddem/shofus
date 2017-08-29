@@ -56,7 +56,7 @@ class Home_model extends CI_Model
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('top_offers.*,products.*')->from('top_offers');
 		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
-		$this->db->where('seller_location_area',$areaid);
+		$this->db->where_in('seller_location_area',$areaid);
         $this->db->where('admin_status','0');
 		$this->db->order_by('top_offers.offer_percentage desc');
 		$this->db->where('top_offers.preview_ok',1);
@@ -68,7 +68,7 @@ class Home_model extends CI_Model
 	public function get_search_trending_products($areaid)
 	{
 		$this->db->select('*')->from('products');
-        $this->db->where('seller_location_area',$areaid);
+		$this->db->where_in('seller_location_area',$areaid);
         $this->db->where('admin_status','0');
 		$this->db->order_by('products.offer_percentage desc');
 		$this->db->limit(5);
@@ -78,7 +78,7 @@ class Home_model extends CI_Model
 	public function get_search_offer_for_you($areaid)
 	{
 		$this->db->select('*')->from('products');
-        $this->db->where('seller_location_area',$areaid);
+		$this->db->where_in('seller_location_area',$areaid);
         $this->db->where('admin_status','0');
 		$this->db->order_by('products.offer_percentage desc');
 		$this->db->limit(5);
@@ -87,12 +87,11 @@ class Home_model extends CI_Model
 	}
 	public function get_search_deals_of_the_day($areaid)
 	{
-		
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('deals_ofthe_day.*,products.*')->from('deals_ofthe_day');
 		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
-		$this->db->where('seller_location_area',$areaid);
+		$this->db->where_in('seller_location_area',$areaid);
         $this->db->where('admin_status','0');
 		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
 		$this->db->where('deals_ofthe_day.preview_ok',1);
@@ -106,7 +105,7 @@ class Home_model extends CI_Model
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('season_sales.*,products.*')->from('season_sales');
 		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
-		$this->db->where('seller_location_area',$areaid);
+		$this->db->where_in('seller_location_area',$areaid);
 		$this->db->order_by('season_sales.offer_percentage desc');
 		$this->db->where('season_sales.preview_ok',1);
 		$this->db->where('products.item_status',1);
@@ -303,7 +302,6 @@ public function getproducts($subid)
 		$this->db->select('category.category_name,category.category_id,')->from('products');
 		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 		$this->db->join('category', 'category.category_id =products.category_id', 'left');
-
 		$this->db->group_by('category.category_id');
 		$this->db->order_by('category.category_id', 'ASC');
 		$this->db->where('category.status', 1);		
@@ -400,12 +398,20 @@ $this->db->select('*');
 		return $query->result();	
 
 }	
-public function getlocations()
+	public function getlocations()
 
-{
-$this->db->select('*')->from('locations');
-return $this->db->get()->result_array();
-}	
+	{
+	$this->db->select('*')->from('locations');
+	return $this->db->get()->result_array();
+	}
+	public function getlocations_insession($data)
+
+	{
+		
+		$this->db->select('*')->from('locations');
+		$this->db->where_in('location_name',$data);
+		return $this->db->get()->row_array();
+	}	
 	
 /*    login and signup      */	
 

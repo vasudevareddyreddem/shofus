@@ -472,7 +472,7 @@ function searchfunction(val){
 	$('#addingdropdown').hide();
 	$('#addingdropdown').empty();
 	var length=val.length;
-	if(length >2){
+	if(length >=1){
 	
 		jQuery.ajax({
 			url: "<?php echo site_url('home/search_functionality');?>",

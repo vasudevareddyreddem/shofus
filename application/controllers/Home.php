@@ -22,11 +22,18 @@ public function index()
 		if($this->session->userdata('userdetails')){
 			$customerdetails=$this->session->userdata('userdetails');
 			$details = $this->customer_model->get_profile_details($customerdetails['customer_id']);
-			$data['topoffers'] = $this->home_model->get_search_top_offers($details['area']);
-			$data['trending_products'] = $this->home_model->get_search_trending_products($details['area']);
-			$data['offer_for_you'] = $this->home_model->get_search_offer_for_you($details['area']);
-			$data['deals_of_the_day'] = $this->home_model->get_search_deals_of_the_day($details['area']);
-			$data['season_sales'] = $this->home_model->get_search_season_sales($details['area']);
+			$location_name=explode(',',$this->session->userdata('location_area'));
+			foreach($location_name as $list){
+				$locationdata= $this->home_model->getlocations_insession(trim($list));
+				$ids[]=$locationdata['location_id'];
+			}
+		
+			$data['topoffers'] = $this->home_model->get_search_top_offers($ids);
+			$data['trending_products'] = $this->home_model->get_search_trending_products($ids);
+			$data['offer_for_you'] = $this->home_model->get_search_offer_for_you($ids);
+			$data['deals_of_the_day'] = $this->home_model->get_search_deals_of_the_day($ids);
+			//echo $this->db->last_query();exit;
+			$data['season_sales'] = $this->home_model->get_search_season_sales($ids);
 			$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		}else{
 			$data['topoffers'] = $this->home_model->get_top_offers();

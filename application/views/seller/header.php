@@ -379,7 +379,6 @@ function emailchecking(reasontype) {
                     url: '<?php echo base_url("seller/login/forgot"); ?>',
                     success:function(data)
                     {
-                    //alert(data);
                     //document.getElementById("unableloginfield").disabled = false;
                     if(data.sendmsg==1){
                     
@@ -390,11 +389,11 @@ function emailchecking(reasontype) {
                             return true;
                         }if(data.sendmsg==0){
                             $("#forgot-response").html("Some technical problem are occured").css("color", "red").fadeIn().fadeOut(5000);
-                            $('#forgot_submit')[0].reset();
+                            $('#MobileforErr')[0].reset();
                         }
                         if(data.nomobile==0){
                             $("#forgoterror").html("The Mobile you entered is not a registered Mobile. Please try again").css("color", "red");
-                            $('#forgot_submit')[0].reset();
+                            $('#MobileforErr')[0].reset();
                             return false;
                         }
                     }

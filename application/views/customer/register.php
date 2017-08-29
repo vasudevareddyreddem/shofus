@@ -51,22 +51,26 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('forsuccess');?></div>
 			<?php endif; ?>
-			
                     <form id="loginform" name="loginform" method="post" action="<?php echo base_url('customer/loginpost');?>" class="form-horizontal" role="form">
                         <div class=" form-group">
                             <label class="control-label">Email id / Mobile Number</label>
-                            <input type="text" class="form-control" id="email" name="email"  placeholder="Email id / Mobile Number">
+                            <input type="text" class="form-control" id="email" name="email"  placeholder="Email id / Mobile Number" value="<?php echo isset($username)?$username:''; ?>">
                         </div>
 
                         <div  class=" form-group">
                            <label class="control-label">Password</label>
-                            <input id="password" type="password" class="form-control" name="password" placeholder="password">
+                            <input id="password" type="password" class="form-control" name="password" placeholder="password" value="<?php echo isset($password)?$password:''; ?>">
                         </div>
 
                         <div class="">
                             <div class="checkbox pull-left">
                                 <label>
-                                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+								<?php if(isset($remember) && $remember!=''){ ?>
+                                    <input id="login-remember" type="checkbox" checked="checked" name="remember" value="1"> Remember me
+								<?php } else{ ?>
+								          <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+
+								<?php } ?>
                                 </label>
                             </div>
 							<div class="pull-right">

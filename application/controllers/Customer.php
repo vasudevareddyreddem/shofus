@@ -45,7 +45,7 @@ class Customer extends Front_Controller
 		}
 		$locationdatadetails=implode(", ",$loacationname);
 		$this->session->set_userdata('location_area',$locationdatadetails);
-
+		//echo $this->session->userdata('location_area');exit;
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
 		$data['tredings']= $this->customer_model->get_product_search_tredings($post['locationarea']);
@@ -792,7 +792,15 @@ class Customer extends Front_Controller
 	  {
 		redirect('');
 	 }else{
-		$this->load->view( 'customer/register'); 
+		$this->load->helper('cookie');
+
+		$this->input->cookie('username', TRUE);
+		$data['username'] = get_cookie('username');
+		$this->input->cookie('password', TRUE);
+		$data['password'] = get_cookie('password');
+		$this->input->cookie('remember', TRUE);
+		$data['remember'] = get_cookie('remember');
+		$this->load->view( 'customer/register',$data); 
 	 }	
 
 	
@@ -860,12 +868,43 @@ class Customer extends Front_Controller
 		if(count($logindetails)>0)
 		{			
 			if($this->session->userdata('location_area')!=''){
-			$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$this->session->userdata('location_area'));	
+					$locationdata= $this->home_model->getlocations();
+					foreach ($locationdata as $list){
+								if ($list['location_name']==$this->session->userdata('location_area')) {
+									$loacationid=$list['location_id'];
+								}
+							}
+					$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$loacationid);	
 				if(count($updatearea)>0){
+					
+					if($post['remember']==1){
+					$usernamecookie = array('name' => 'username','value' => $post["email"],'expire' => time()+86500,'path'   => '/');
+					$passwordcookie = array('name' => 'password','value' => $post["password"],'expire' => time()+86500,'path'   => '/');
+					$remembercookie = array('name' => 'remember','value' => $post["remember"],'expire' => time()+86500,'path'   => '/');
+					$this->input->set_cookie($usernamecookie);
+					$this->input->set_cookie($passwordcookie);
+					$this->input->set_cookie($remembercookie);
+					$this->load->helper('cookie');
+					$this->input->cookie('username', TRUE);
+
+					}
 					$details = $this->customer_model->get_profile_details($logindetails['customer_id']);
 					$this->session->set_userdata('userdetails',$details);
 				}
 			}else{
+				
+				
+				if($post['remember']==1){
+				$usernamecookie = array('name' => 'username','value' => $post["email"],'expire' => time()+86500,'path'   => '/');
+				$passwordcookie = array('name' => 'password','value' => $post["password"],'expire' => time()+86500,'path'   => '/');
+				$remembercookie = array('name' => 'remember','value' => $post["remember"],'expire' => time()+86500,'path'   => '/');
+				$this->input->set_cookie($usernamecookie);
+				$this->input->set_cookie($passwordcookie);
+				$this->input->set_cookie($remembercookie);
+				$this->load->helper('cookie');
+				$this->input->cookie('username', TRUE);
+				
+				}
 				$logindetails = $this->customer_model->login_details($post['email'],$pass);
 				$this->session->set_userdata('userdetails',$logindetails);				
 			}
