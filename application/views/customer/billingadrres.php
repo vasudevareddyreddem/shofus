@@ -161,9 +161,15 @@
 										  <input type="text" id="address2" name="address2" class="form-control"  value="<?php echo $customerdetail['address2']; ?>" >
 										</div> 
 					
-						<button style="float:right;" type="submit">Proceed to Checkout</span></button>
-					</form>
-				
+
+										
+					<nav aria-label="Shopping Cart Next Navigation">
+						<ul class="pager">
+						  <li class="previous"><a href="<?php echo base_url('customer/cart'); ?>" style="float:left;" >Back</span></a></li>
+						  <li class="next"><button style="float:right;" type="submit">Proceed to Checkout</span></button></li>
+						</ul>
+					</nav>
+		  </form>
 					
 				</div>
     </section>

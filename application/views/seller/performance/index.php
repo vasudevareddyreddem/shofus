@@ -186,7 +186,7 @@ else{
 
 if(per_year.value==""){
 
-document.getElementById('erroryear').innerHTML="Please Select Subcategory";
+document.getElementById('erroryear').innerHTML="Please Select year";
 
 $("#per_year").focus();
 

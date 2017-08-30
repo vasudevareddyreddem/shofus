@@ -25,6 +25,12 @@ class Home_model extends CI_Model
 	$this->db->where('cust_id', $cust_id);
 	return $this->db->get()->result_array();
 	}
+	public function customer_details($cust_id)
+	{
+	$this->db->select('customers.cust_firstname,customers.cust_lastname')->from('customers');
+	$this->db->where('customer_id', $cust_id);
+	return $this->db->get()->row_array();
+	}
 	
 	public function get_search_functionality_products($areaid)
 	{

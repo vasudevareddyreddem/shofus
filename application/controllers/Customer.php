@@ -343,9 +343,15 @@ class Customer extends Front_Controller
 		//echo '<pre>';print_r($update);exit;
 		if(count($update)>0){
 			$this->session->set_flashdata('productsuccess','Product Quantity Successfully Updated!');
-			redirect('customer/cart');	
+			if($post['ajax']==1){
+			$data['msg']=1;
+			echo json_encode($data);
+			}else{
+			redirect('customer/cart');
+			}			
 			
 		}
+		
 		
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
@@ -399,14 +405,23 @@ class Customer extends Front_Controller
 	
 	if($this->session->userdata('userdetails'))
 	 {
+
 		$customerdetails=$this->session->userdata('userdetails');
-		$data['locationdata'] = $this->home_model->getlocations();
-		$data['customerdetail']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
-		$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		if(count($cart_items)>0){
+			$data['locationdata'] = $this->home_model->getlocations();
+			$data['customerdetail']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
+			$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+
+			//echo '<pre>';print_r($data);exit;
+			$this->template->write_view('content', 'customer/billingadrres',$data);
+			$this->template->render();
+		}else{
+			
+			redirect('customer/cart');	
+		}
+
 		
-		//echo '<pre>';print_r($data);exit;
-		$this->template->write_view('content', 'customer/billingadrres',$data);
-		$this->template->render();
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('customer');

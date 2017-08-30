@@ -128,7 +128,7 @@ tr th:last-child {
 							<span class="input-group-btn data-dwn">
 								<a class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
 							</span>
-							<input type="text" name="qty" id="qty" class="form-control text-center" value="1" min="1" max="20">
+							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="1" min="1" max="10">
 							<span class="input-group-btn data-up">
 								<a class="btn btn-primary " data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
 							</span>

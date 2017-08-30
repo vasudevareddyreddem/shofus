@@ -127,7 +127,7 @@
 		  <?php if($this->session->userdata('userdetails')){ ?>
 		  <span class="medias user_log">
 				<a ><i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" /></i>
-				<p>Account</p>
+				<p><?php echo $details['cust_firstname'].' '.$details['cust_lastname']; ?></p>
 				</a>
 						
 			</span>

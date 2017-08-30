@@ -166,19 +166,15 @@
 				   <div class="input-qty">
 						<div class="input-group number-spinner">
 							<span class="input-group-btn data-dwn">
-								<a class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
+								<a class="btn btn-primary" onclick="productqty();" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
 							</span>
-							<input type="text" name="qty" id="qty" class="form-control text-center" value="<?php echo $items['qty'];  ?>" min="1" max="20">
+							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="<?php echo $items['qty'];  ?>" min="1" max="10">
 							<span class="input-group-btn data-up">
-								<a class="btn btn-primary " data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
+								<a class="btn btn-primary" onclick="productqtyincreae();" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
 							</span>
 						</div>
                   </div>
-				  
-				  
-				  
-				  
-				  </td>
+				 </td>
 				  
 				  <?php if($items['offer_percentage']!==0 && $items['offer_percentage']!=='' ){ ?>
 					 
@@ -206,7 +202,7 @@
 			<td class="sub"><?php echo $items['item_cost']; ?></td>
 		<?php  } ?>
                   <td class="action">
-				  <button style="background:transprent;" type="submit" ><i class="fa fa-refresh"></i></button>&nbsp;
+				  <!--<button style="background:transprent;" type="submit" ><i class="fa fa-refresh"></i></button>&nbsp;-->
                     <a href="<?php echo base_url('customer/deletecart/'.base64_encode($items['item_id']).'/'.base64_encode($items['id'])); ?>" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>
                   </td>
 				  	
@@ -255,6 +251,51 @@
 	
 
 <script>
+function productqty(){
+	var qtycnt=document.getElementById("qty").value;
+	var pid=document.getElementById("product_id").value;
+	if(qtycnt>1){
+	jQuery.ajax({
+			url: "<?php echo site_url('customer/updatecart');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				product_id: pid,
+				qty: qtycnt,
+				ajax: 1,
+				},
+			dataType: 'json',
+			success: function (data) {
+				location.reload();
+			
+			}
+		});
+		
+	}
+}
+function productqtyincreae(){
+	var qtycnt=document.getElementById("qty").value;
+	var pid=document.getElementById("product_id").value;
+	if(qtycnt<11){
+	jQuery.ajax({
+			url: "<?php echo site_url('customer/updatecart');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				product_id: pid,
+				qty: qtycnt,
+				ajax: 1,
+				},
+			dataType: 'json',
+			success: function (data) {
+				location.reload();
+			
+			}
+		});
+		
+	}
+}
+
 
 	$(document).ready(function () {
     //Initialize tooltips
