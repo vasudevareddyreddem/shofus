@@ -137,7 +137,7 @@
 								<li class="font_list"><a href="<?php echo base_url('customer/account');?>">  <span >My Account</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/cart');?>">  <span >My Cart</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/orders');?>">  <span >My Orders</span> </a></li>
-								<li class="font_list"><a href="<?php echo base_url('customer/wishlist');?>">  <span >My Wishlist</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/trackorders');?>">  <span >Tarck</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/changepassword');?>">  <span >Change Password</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/logout');?>">  <span >Logout</span> </a></li>
 							</ul>
@@ -177,8 +177,8 @@
 			</span>
 			</a>&nbsp;<sup class="sup"></sup></span>
 			<?php } ?>
-			<span class="medias text-center"><a href="<?php echo base_url('customer/trackorders'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></i>
-				<p>Track</p></a>
+			<span class="medias text-center"><a href="<?php echo base_url('customer/wishlist'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></i>
+				<p>My Wishlist</p></a>
 			</span>
 		 </div>
 	</div>
