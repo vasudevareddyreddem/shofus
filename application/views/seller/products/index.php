@@ -81,7 +81,7 @@
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
-                <th>Affer Amount</th>
+                <th>Offer Amount</th>
                 <th>Combo offer item Name</th>
                 <th>Offer expiry Date and Time</th>
 				<th>Status</th>

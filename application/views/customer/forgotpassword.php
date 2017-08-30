@@ -51,7 +51,7 @@
                         <div class=" col-md-12">
 							<div class="form-group">
 								<label class="control-label">Email ID / Mobile number</label>
-								<input type="text" id="emailaddress" name="emailaddress" value="" class="form-control" placeholder="Email Address / Mobile number" />
+								<input type="text" id="emailaddress" name="emailaddress" value="" class="form-control" placeholder="Email Id / Mobile number" />
 							</div>
 						</div>
                         

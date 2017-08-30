@@ -87,8 +87,8 @@
 				 <th>Sku Id</th>
                 <th>Special price</th>
                 <th>Item Code</th>
+                <th>Offer Amount</th>
                 <th>Item Cost</th>
-                <th>After Amount</th>
                 <th>Combo offer item Name</th>
                 <th>Offer expiry Date and Time</th>                
             </tr>

@@ -346,6 +346,11 @@ class Inventory_model extends MY_Model
 		$sql1="UPDATE top_offers SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
 		return $this->db->query($sql1);
 	}
+	public function seller_new_comming_list($sid,$data)
+	{
+		$sql1="UPDATE sellers SET readcount ='".$data."' WHERE seller_id = '".$sid."'";
+		return $this->db->query($sql1);
+	}
 	
 	
 	/* offer list purpose*/
@@ -630,7 +635,7 @@ class Inventory_model extends MY_Model
 
 	public function categorywise_quantity($id)
 	{
-		$this->db->select('products.seller_id,sellers.seller_name,sellers.seller_rand_id,category.category_name,subcategories.subcategory_name,sum(products.item_quantity)as qty ,products.item_name')->from('products');
+		$this->db->select('products.seller_id,products.category_id,sellers.seller_name,sellers.seller_rand_id,category.category_name,subcategories.subcategory_name,sum(products.item_quantity)as qty ,products.item_name')->from('products');
 		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
 		$this->db->join('category', 'category.category_id = products.category_id', 'left');
 		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
@@ -638,6 +643,16 @@ class Inventory_model extends MY_Model
 		$this->db->group_by('products.category_id');
 		$this->db->where('sellers.seller_id', $id);
 		$this->db->where('sellers.status', 1);
+		 $this->db->where('products.item_status', 1);
+		return $this->db->get()->result_array();
+	}
+	public function categorywise_product_quantity($categoryid,$seller_id)
+	{
+		$this->db->select('products.item_name,products.item_quantity,products.skuid,products.item_status,category.category_name')->from('products');
+		$this->db->join('category', 'category.category_id = products.category_id', 'left');
+		//$this->db->group_by('subcategories.subcategory_id');
+		$this->db->where('products.seller_id', $seller_id);
+		$this->db->where('products.category_id', $categoryid);
 		 $this->db->where('products.item_status', 1);
 		return $this->db->get()->result_array();
 	}

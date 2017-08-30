@@ -28,16 +28,29 @@
                 <tbody>
                 <?php  
                   foreach($seller_details as $details) {?>
-                <tr>                  
-                  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>"><?php echo $details['seller_rand_id']; ?></a></td>
-                  <td><?php echo $details['seller_name']; ?></td>
-                  <td><?php echo $details['seller_email']; ?></td>                  
-                  <td><?php echo $details['seller_mobile']; ?></td>                  
-                  <td><?php if($details['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                
-                  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>">View</a> |&nbsp;
-					<a href="<?php echo base_url('inventory/status/'.base64_encode($details['seller_id']).'/'.base64_encode($details['status'])); ?>"><?php if($details['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a></td>
-                
-                </tr>
+						  <?php if($details['readcount']==0){ ?>
+								<tr style="background: darkseagreen none repeat scroll 0% 0%; color: white;">                   
+								  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>"><?php echo $details['seller_rand_id']; ?></a></td>
+								  <td><?php echo $details['seller_name']; ?></td>
+								  <td><?php echo $details['seller_email']; ?></td>                  
+								  <td><?php echo $details['seller_mobile']; ?></td>                  
+								  <td><?php if($details['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                
+								  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>">View</a> |&nbsp;
+									<a href="<?php echo base_url('inventory/status/'.base64_encode($details['seller_id']).'/'.base64_encode($details['status'])); ?>"><?php if($details['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a></td>
+								
+								</tr>
+						  <?php } else{ ?>
+								<tr>                  
+								  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>"><?php echo $details['seller_rand_id']; ?></a></td>
+								  <td><?php echo $details['seller_name']; ?></td>
+								  <td><?php echo $details['seller_email']; ?></td>                  
+								  <td><?php echo $details['seller_mobile']; ?></td>                  
+								  <td><?php if($details['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                
+								  <td><a href="<?php echo base_url('inventory/sellerdetails/'.base64_encode($details['seller_id'])); ?>">View</a> |&nbsp;
+									<a href="<?php echo base_url('inventory/status/'.base64_encode($details['seller_id']).'/'.base64_encode($details['status'])); ?>"><?php if($details['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a></td>
+								
+								</tr>
+						  <?php }  ?>
                  <?php }?>
                 </tbody>              
               </table>

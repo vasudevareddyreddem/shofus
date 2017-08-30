@@ -240,6 +240,7 @@ public function changepasswordpost(){
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
 				$data['seller_details'] = $this->inventory_model->get_seller_details(base64_decode($this->uri->segment(3)));
+				$this->inventory_model->seller_new_comming_list(base64_decode($this->uri->segment(3)),1);
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('customer/inventry/sidebar');
 				$this->load->view('customer/inventry/sellerdetails',$data);
@@ -2064,6 +2065,26 @@ public function servicerequestview(){
 		//echo "<pre>";print_r($data);exit;
 		$this->load->view('customer/inventry/sidebar');
 		$this->load->view('customer/inventry/categorywise_quantity',$data);
+		$this->load->view('customer/inventry/footer');
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
+  public function categorywiseproductlist()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		$category_id = base64_decode($this->uri->segment(3));
+		$sellerid = base64_decode($this->uri->segment(4));
+		//echo "<pre>";print_r($category_id);
+		//echo "<pre>";print_r($sellerid);exit;
+		$data['product_details'] = $this->inventory_model->categorywise_product_quantity($category_id,$sellerid);
+		//echo "<pre>";print_r($data);exit;
+		$data['seller_id']= $this->uri->segment(4);
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/categorywise_productlist',$data);
 		$this->load->view('customer/inventry/footer');
 		
 	}else{

@@ -238,7 +238,7 @@
           </nav>
 		  
 		<?php }else{ ?>
-		</tr> No Item In the cart. click on <a  class="site_col" href="<?php echo base_url(''); ?>"> &nbsp; Continue shopping</a> </tr>
+		</tr> No Item In the cart. click on <a  class="site_col" href="<?php echo base_url(''); ?>"> &nbsp;<b> Continue shopping</b></a> </tr>
 		<?php } ?>
 		<div class="clearfix"></div>
                 </div>

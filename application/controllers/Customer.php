@@ -988,7 +988,7 @@ class Customer extends Front_Controller
 			
 			
 		}else{
-			$this->session->set_flashdata('error',"Invalid Email Address!");
+			$this->session->set_flashdata('error',"Invalid Email Id / Mobile number!");
 			redirect('customer/forgotpassword');
 		}
 	}
