@@ -277,10 +277,13 @@ class Customer extends Front_Controller
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
 		$data['whistlist_items']= $this->customer_model->get_whishlist_products($customerdetails['customer_id']);
-		
-		//echo '<pre>';print_r($data);exit;
+		//echo count($data['whistlist_items']);
+		if(count($data['whistlist_items'])>0){
 		$this->template->write_view('content', 'customer/wishlist', $data);
 		$this->template->render();
+		}else{
+			redirect('');
+		}
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('customer');
@@ -988,7 +991,7 @@ class Customer extends Front_Controller
 			
 			
 		}else{
-			$this->session->set_flashdata('error',"Invalid Email Id / Mobile number!");
+			$this->session->set_flashdata('error',"Invalid Email Id / Mobile number!. Please enter registered email id / Mobile number");
 			redirect('customer/forgotpassword');
 		}
 	}

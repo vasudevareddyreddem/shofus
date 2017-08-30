@@ -166,7 +166,7 @@
 				<!--<div class="sprinkle"></div>-->
 			<?php }else{  ?>
 			</sup>
-			<p>Cart</p>
+			<p>&nbsp;&nbsp; Cart &nbsp;&nbsp;</p>
 			<sup class="sup_log"></sup>	
 			<?php } ?>
 			
