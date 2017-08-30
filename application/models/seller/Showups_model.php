@@ -29,10 +29,8 @@ class Showups_model extends MY_Model
   }
   public function active_limit($sid)
   {
-    // $query = $this->db->query("SELECT COUNT(*) AS active_banners FROM home_banner WHERE seller_id=$sid AND WHERE status=1");
-    // return $query->result();
-     $this->db->select('count(home_banner.status) AS active_banners')->from('home_banner');
-     //$this->db->where('seller_id',$sid);
+   
+     $this->db->select('*')->from('home_banner');
      $this->db->where('status',1);
      return $this->db->get()->result_array();
   }
@@ -42,8 +40,10 @@ class Showups_model extends MY_Model
   }
   public function banner_count($date){
     //echo $date;exit;
+	$date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s');
     $this->db->select('*')->from('home_banner');
-    $this->db->where('intialdate',$date);
+	$this->db->where('expairydate >=', $curr_date);
     $this->db->where('status',1);
     return $this->db->get()->result_array();
 
@@ -52,7 +52,7 @@ class Showups_model extends MY_Model
     //echo $date;exit;
     $this->db->select('home_banner.*')->from('home_banner');
     $this->db->where('file_name',$name);
-    //$this->db->where('image_id',$id);
+    $this->db->where('home_page_status',1);
     return $this->db->get()->row_array();
 
   }

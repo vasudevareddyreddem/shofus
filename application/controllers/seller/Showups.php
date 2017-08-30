@@ -49,119 +49,107 @@ class Showups extends Admin_Controller {
 	// }
 
 	public function save_banner(){
-		if(isset($_POST)){
-			if(!empty($_FILES['home_banner']['name'])){
-				$config['upload_path'] = 'uploads/banners/';
-				$config['allowed_types'] = 'jpg|jpeg|png';
-				$config['file_name'] = $_FILES['home_banner']['name'];
-				//$config['max_size']             = 100;
-                //$config['max_width']            = 1024;
-                //$config['max_height']           = 768;
-                //Load upload library and initialize configuration
-				$this->load->library('upload',$config);
-				$this->upload->initialize($config);
-				if($this->upload->do_upload('home_banner')){
-					$uploadData = $this->upload->data();
-					$home_banner = $uploadData['file_name'];
-				}else{
-					$this->session->set_flashdata('message','Image format Invalid..');
-				//$this->prepare_flashmessage("Image format Invalid..", 1);
-				//return redirect('admin/fooditems');
-				echo "<script>window.location='".base_url()."seller/showups/homepagebanner';</script>";
-				}
-			}else{
-				
-				$home_banner = '';
-			}			
-		}
+		
+		$bannercheck=$this->showups_model->banner_exits($_FILES['home_banner']['name']);
+		if(count($bannercheck)>0){
+			$this->session->set_flashdata('deactive',"Item already added.");
+			redirect('seller/showups/homepagebanner');
+		}else{
+				$bannercount=$this->showups_model->banner_count(date('Y-m-d H:i:s A'));
+				if(count($bannercount)<=5){
+					$date = date('Y-m-d h:i:s');
+					$date1 = strtotime($date);
+					$date2 = strtotime("+1 day", $date1);
+						move_uploaded_file($_FILES['home_banner']['tmp_name'], "uploads/banners/" . $_FILES['home_banner']['name']);
 
-		$date = date('Y-m-d h:i:s');
-		$date1 = strtotime($date);
-		$date2 = strtotime("+1 day", $date1);
-		$bannercheck=$this->showups_model->banner_exits($home_banner);
-		//echo "<pre>";print_r($bannercheck);exit;
-		//echo $this->db->last_query();exit;
-		if(($bannercheck['seller_id'] == $this->session->userdata('seller_id')) && ($bannercheck['expairydate'] >= date('Y-m-d')) ){
-				$status=3;
-			}else{
-				$bannercount=$this->showups_model->banner_count(date('Y-m-d'));
-				//echo $this->db->last_query();exit;
-				if(count($bannercount)>5)
-				{
-					$status=2;
-					}else
-					{
-						$data=array(         
+					$data=array(         
 						'seller_id' => $this->session->userdata('seller_id'),
 						'intialdate'=>date("Y-m-d H:i:s"),  
 						'expairydate'=>date('Y-m-d h:i:s', $date2),   
-						'file_name'=>$home_banner,
+						'file_name'=>$_FILES['home_banner']['name'],
 						'created_at'=>date('Y-m-d H:i:s'),
 						'updated_at'=>date('Y-m-d H:i:s')		
 						);
 						//echo '<pre>';print_r($data);exit;
 						$banner=$this->showups_model->save_banner_image($data);
-						$status=1;
-
-					}
-			}
-			if($status==1){
-			$this->session->set_flashdata('active',"Banner successfully Added!");
-			redirect('seller/showups/homepagebanner');
-
-		}else if($status==2){
-			
-		 $this->session->set_flashdata('deactive',"only 6 Images Per Day");
-		 redirect('seller/showups/homepagebanner');	
-		}else if($status==3){
-		$this->session->set_flashdata('deactive',"Item already added.");
-		redirect('seller/showups/homepagebanner');	
+						if(count($banner)>0){
+							$this->session->set_flashdata('active',"Banner successfully Added!");
+							redirect('seller/showups/homepagebanner');
+						}else{
+							$this->session->set_flashdata('deactive',"Sorry, a technical error occurred! Please try again later.");
+							redirect('seller/showups/homepagebanner');
+						}
+						
+				}else{
+					$this->session->set_flashdata('deactive',"while adding it should come like 1 of 6 , 2 of 6...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+					redirect('seller/showups/homepagebanner');
+				}
 			
 		}
+
+		
 		
 
 	}
 	public function banner_status()
 	{
-		$sellerid = base64_decode($this->uri->segment(5));
-		$activestatus=$this->showups_model->active_limit($sellerid);
-		//echo "<pre>";print_r($activestatus);exit;
-		if($activestatus['0']['active_banners']==6)
-		{
-			$this->session->set_flashdata('deactive',"6 Banners active");
-			redirect('seller/showups/homepagebanner');
-		}else{
-		$id = base64_decode($this->uri->segment(4));
+		 $id = base64_decode($this->uri->segment(4));
+		
 		$sellerid = base64_decode($this->uri->segment(5));
 		$status = base64_decode($this->uri->segment(6));
-		//echo "<pre>";print_r($status);exit;
-		if($status==1)
-		{
-			$status=0;
-		}else{
-			$status=1;
-		}
-		
-			
-		$data=array
-		(
-			
-			'status'=>$status
-		);
-			$updatestatus=$this->showups_model->update_banner_status($id,$sellerid,$data);
-			//echo $this->db->last_query();exit;
-			
-			if(count($updatestatus)>0)
-				{
+		$activestatus=$this->showups_model->banner_count(date('Y-m-d H:i:s A'));
+		//echo "<pre>";print_r($activestatus);exit;
+		if($status==0){
+			if(count($activestatus)>5){
+				$this->session->set_flashdata('deactive',"6 Banners active");
+				redirect('seller/showups/homepagebanner');
+			}else{
+				
 					if($status==1)
 					{
-						$this->session->set_flashdata('active'," Banner activation successful");
+						$status=0;
 					}else{
-						$this->session->set_flashdata('deactive',"Banner deactivation successful");
+						$status=1;
 					}
-					redirect('seller/showups/homepagebanner');
-				}
+					$data=array('status'=>$status);
+					$updatestatus=$this->showups_model->update_banner_status($id,$sellerid,$data);
+					//echo $this->db->last_query();exit;
+						if(count($updatestatus)>0)
+							{
+								if($status==1)
+								{
+									$this->session->set_flashdata('active'," Banner activation successful");
+								}else{
+									$this->session->set_flashdata('deactive',"Banner deactivation successful");
+								}
+								redirect('seller/showups/homepagebanner');
+						}
+			}
+		}else{
+			
+			if($status==1)
+			{
+				$status=0;
+			}else{
+				$status=1;
+			}
+			$data=array('status'=>$status);
+			$updatestatus=$this->showups_model->update_banner_status($id,$sellerid,$data);
+			//echo $this->db->last_query();exit;
+			if(count($updatestatus)>0)
+							{
+								if($status==1)
+								{
+									$this->session->set_flashdata('active'," Banner activation successful");
+								}else{
+									$this->session->set_flashdata('deactive',"Banner deactivation successful");
+								}
+								redirect('seller/showups/homepagebanner');
+						}
 		}
+		
+		
+		
 		
 
 
