@@ -90,7 +90,7 @@
 		<div id="compare_items" class="col-md-4 text-center" style="display:none;"></div>
 		<div id="compare_items2" class="col-md-4 text-center" style="display:none;"></div>
 		
-		<div class="col-md-3 text-center" id="item_hide1">
+		<div class="col-md-4 text-center" id="item_hide1">
             <div class="form-group nopaddingRight col-md-6 san-lg" >
                 <label for="exampleInputPassword1">Select Compare Product</label>
                 <select class="form-control" onchange="productitem_one(this.value);" id="item_id" name="item_id">
@@ -102,7 +102,7 @@
                 </select>
             </div>
         </div>
-		<div class="col-md-3 text-center" id="item_hide2">
+		<div class="col-md-4 text-center" id="item_hide2">
             <div class="form-group nopaddingRight col-md-6 san-lg" >
                 <label for="exampleInputPassword1">Select Compare Product</label>
                 <select class="form-control" onchange="productitem_two(this.value);" id="item_idtwo" name="item_idtwo">
