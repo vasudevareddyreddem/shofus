@@ -65,8 +65,8 @@
                         
 							
                     </div>
-
-                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+					<a class="btn  btn-primary "  href="<?php echo base_url('customer');?>">Cancel</a>
+                    <button class="btn  btn-primary " type="submit">
                         Submit</button>
                 </form>
 
