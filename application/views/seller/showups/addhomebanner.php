@@ -58,10 +58,10 @@
 			 	<div class="form-group nopaddingRight col-md-6 san-lg">
                   <label for="exampleInputFile">Home Page Banner</label>
                   <input type="file" name="home_banner" id="home_banner">
-                  <div class="preview_box">
+                  <div class="preview_box" id="imagesrcpreview"  style="display:none;">
 				<!-- Preview -->
         				<img id="preview_img" src=""/>
-        			</div>
+					</div>
 				</div>
                   	
 				
@@ -118,11 +118,13 @@
 $(document).ready(function(){
     //Image file input change event
     $("#home_banner").change(function(){
+		$('#imagesrcpreview').show();
         readImageData(this);//Call image read and render function
     });
 });
 
 function readImageData(imgData){
+	
 	if (imgData.files && imgData.files[0]) {
         var readerObj = new FileReader();
         

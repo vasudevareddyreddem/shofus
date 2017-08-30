@@ -946,6 +946,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $("#subcategoryhideshow").click(function(){
         $("#addsubcat").toggle();
+        $("#suberrormsg").html('');
         $("#addsubcategoryname").val('');
         $("#addsubcaterrormsg").html('');	
     });
