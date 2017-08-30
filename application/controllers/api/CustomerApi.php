@@ -569,7 +569,7 @@ class CustomerApi extends REST_Controller {
 		//echo '<pre>';print_r($wishlist);exit;
 		if(count($product_details)>0){
 		
-			$message = array('status'=>1,'message'=>'product details','details'=>$product_details);
+			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','message'=>'product details','details'=>$product_details);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'product Id is not valid one');

@@ -177,7 +177,7 @@
 			</span>
 			</a>&nbsp;<sup class="sup"></sup></span>
 			<?php } ?>
-			<span class="medias text-center"><a href="<?php echo base_url('customer/wishlist'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></i>
+			<span class="medias text-center"><a href="<?php echo base_url('customer/wishlist'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/whish.png" /></i>
 				<p>My Wishlist</p></a>
 			</span>
 		 </div>
