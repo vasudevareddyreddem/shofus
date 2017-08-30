@@ -86,21 +86,44 @@
                     </li>
                 </ul>
             </div>
-        </div>
-        <!-- <button id="btnTimeextend">ADD</button> -->
-        <div class="col-md-3" id="item_hide">
-            <div class="form-group nopaddingRight col-md-6 san-lg">
-                <label for="exampleInputPassword1">Select Compare Product</label>
-                <select class="form-control" id="item_id" name="item_id">
-                    <option>Select item</option>
-                    <?php foreach($item as $item_data){ ?>
-                    <option value="<?php echo $item_data->item_id; ?>">
-                        <?php echo $item_data->item_name; ?></option>
-                    <?php } ?>
-                </select>
+        </div> <div class="col-md-4 text-center">
+            <div class="panel panel-default panel-pricing">
+                <div class="panel-heading">
+                    <img class="img-responsive" src="<?php echo base_url('uploads/products/'.$compore_products['item_image']); ?>">                   
+                </div>
+
+                <ul class="list-group text-center">
+                    <li class="list-group-item">Product Name:
+                        <?php echo $compore_products[ 'item_name'];?>
+                    </li>
+                    <li class="list-group-item">Product Price:
+                        <?php echo ($compore_products[ 'item_cost']); ?>
+                    </li>
+                    <li class="list-group-item">Product Code:
+                        <?php echo $compore_products[ 'item_code']; ?>
+                    </li>
+                </ul>
+            </div>
+        </div> <div class="col-md-4 text-center">
+            <div class="panel panel-default panel-pricing">
+                <div class="panel-heading">
+                    <img class="img-responsive" src="<?php echo base_url('uploads/products/'.$compore_products['item_image']); ?>">                   
+                </div>
+
+                <ul class="list-group text-center">
+                    <li class="list-group-item">Product Name:
+                        <?php echo $compore_products[ 'item_name'];?>
+                    </li>
+                    <li class="list-group-item">Product Price:
+                        <?php echo ($compore_products[ 'item_cost']); ?>
+                    </li>
+                    <li class="list-group-item">Product Code:
+                        <?php echo $compore_products[ 'item_code']; ?>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="col-md-3" id="compare_items"></div>
+        
 
     </div>
 </div>
