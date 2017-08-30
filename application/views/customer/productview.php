@@ -108,6 +108,7 @@
 		 <table class="table table-detail">
 		 
 		 <?php 
+		 //echo '<pre>';print_r($products_list);exit ;
 		 $currentdate=date('Y-m-d h:i:s A');
 				if($products_list['offer_expairdate']>=$currentdate){
 				$item_price= ($products_list['item_cost']-$products_list['offer_amount']);
@@ -124,8 +125,8 @@
               <tr>
                 <td>Price</td>
                 <td>
+                    <div><?php echo $item_price; ?><span class="label label-default arrowed">-<?php echo number_format($percentage, 2, '.', ''); ?>%</span></div>
 				<div class="price">
-                    <div><?php echo $item_price; ?><span class="label label-default arrowed">-<?php echo $percentage; ?>%</span></div>
                     <span class="price-old"><?php echo $orginal_price; ?></span>
                   </div>
 				</td>

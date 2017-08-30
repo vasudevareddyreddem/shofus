@@ -168,7 +168,7 @@
 							<span class="input-group-btn data-dwn">
 								<a class="btn btn-primary" onclick="productqty();" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
 							</span>
-							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="<?php echo $items['qty'];  ?>" min="1" max="10">
+							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="<?php echo $items['qty'];  ?>" min="1" max="<?php echo $items['item_quantity']; ?>">
 							<span class="input-group-btn data-up">
 								<a class="btn btn-primary" onclick="productqtyincreae();" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
 							</span>
