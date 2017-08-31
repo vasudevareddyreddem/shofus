@@ -186,11 +186,7 @@
         var regex = /^[0-9]+$/;
         return regex.test(reasontype);
 	}
-	 $(function () {
-     $('#datepicker<?php echo $subcategory->subcategory_id;?>').datetimepicker({  
-         minDate:new Date(),
-      });
- });
+	 
 	$('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('');
 	$('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
 	
@@ -424,6 +420,7 @@ $(document).ready(function() {
 		autoclose: 1,
 		todayHighlight: 1,
 		startView: 2,
+		startDate: '-0m',
 		forceParse: 0,
         showMeridian: 1
     });

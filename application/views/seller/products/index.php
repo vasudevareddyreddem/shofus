@@ -403,6 +403,7 @@ $(document).ready(function() {
 		autoclose: 1,
 		todayHighlight: 1,
 		startView: 2,
+		startDate: '-0m',
 		forceParse: 0,
         showMeridian: 1
     });
