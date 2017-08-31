@@ -66,16 +66,19 @@
       <div><h3>Compare Products</h3></div>
     </div>
   </div>
+  <?php //echo '<pre>';print_r($compore_products);exit; ?>
 
     <div class="row">
         <div class="col-md-4 text-center">
             <div class="panel panel-default panel-pricing">
-                <div class="panel-heading">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($compore_products['item_id']));?>">
+				<div class="panel-heading">
                     <img class="img-responsive" src="<?php echo base_url('uploads/products/'.$compore_products['item_image']); ?>">                   
                 </div>
 
                 <ul class="list-group text-center">
-                    <li class="list-group-item">Product Name:
+									
+					<li class="list-group-item">Product Name:
                         <?php echo $compore_products[ 'item_name'];?>
                     </li>
                     <li class="list-group-item">Product Price:
@@ -84,6 +87,9 @@
                     <li class="list-group-item">Product Code:
                         <?php echo $compore_products[ 'item_code']; ?>
                     </li>
+					</a>
+					
+				</form>
                 </ul>
             </div>
         </div>
