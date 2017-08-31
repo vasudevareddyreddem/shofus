@@ -25,7 +25,10 @@ class user_profile extends Admin_Controller {
 		$data['product_review_list'] = $this->user_profile_model->product_reviews_list($this->session->userdata('seller_id'));
 	   	$data['product_review_lists'] = $this->user_profile_model->product_reviews_lists($this->session->userdata('seller_id'));
 	   	$data['average'] = $this->user_profile_model->product_reviews_avg($this->session->userdata('seller_id'));
-	   $one=$two=$three=$four=$five= $overall=0;
+	  
+if(count($data['product_review_lists'])>0){
+
+	$one=$two=$three=$four=$five= $overall=0;
 	   foreach ($data['product_review_lists'] as $list){
 		   if($list['rating']==1){
 			   $one++;
@@ -54,6 +57,8 @@ class user_profile extends Admin_Controller {
 	   $data['threepercentage']=($three/$overall)*100;
 	   $data['twopercentage']=($two/$overall)*100;
 	   $data['onepercentage']=($one/$overall)*100;
+	   
+}
 	  // echo '<pre>';print_r($data);exit;
 	   //echo '<pre>';print_r($some);exit;
 		$this->template->write_view('content', 'seller/userprofile/index',$data);

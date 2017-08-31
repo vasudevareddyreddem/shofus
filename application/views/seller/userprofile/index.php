@@ -96,7 +96,7 @@
                     <div class="col-sm-12 col-md-6">
                         <div class="rating-block">
                             <h4>Average user rating</h4>
-                            <h2 class="m-b-20"><?php echo isset($average['avg'])?number_format($average['avg'], 2, '.', ''):''; ?> <small>/ 5</small></h2>
+                            <h2 class="m-b-20"><?php echo isset($average['avg'])?number_format($average['avg'], 2, '.', ''):'0'; ?> <small>/ 5</small></h2>
                            
 							  <input type="text" class="rating rating-loading" value="<?php echo isset($average['avg'])?number_format($average['avg'], 2, '.', ''):''; ?>"  title="">
                         </div>
@@ -177,7 +177,8 @@
                     </div>
                 </div>
                 <div class="review-block">
-				<?php foreach ($product_review_list as $list){ ?>
+				<?php if(count($product_review_list)>0){
+				 foreach ($product_review_list as $list){ ?>
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="review-block-img">
@@ -311,6 +312,12 @@
 				<?php if(count($product_review_lists)>4){ ?>
 				<a href="<?php echo base_url('seller/user_profile/productreviews'); ?>" type="button">See More</a>
 				<?php } ?>
+				
+				<?php }else{ ?>
+				No review are available.
+				<?php } ?>
+				
+				
                   
                 </div>
             </div>
