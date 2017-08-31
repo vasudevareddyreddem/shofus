@@ -97,7 +97,7 @@
                         <div class="rating-block">
                             <h4>Average user rating</h4>
                             <h2 class="m-b-20"><?php echo isset($average['avg'])?number_format($average['avg'], 2, '.', ''):''; ?> <small>/ 5</small></h2>
-                           							  <input type="text" class="rating rating-loading" value="<?php echo isset($average['avg'])?number_format($average['avg'], 2, '.', ''):''; ?>"  title="">
+                           	 <input type="text" class="rating rating-loading" value="<?php echo isset($average['avg'])?number_format($average['avg'], 2, '.', ''):''; ?>"  title="">
 
                         </div>
                     </div>
