@@ -146,6 +146,7 @@ tr th:last-child {
 					<input type="hidden" name="product_id" id="product_id" value="<?php echo $item_details['item_id']; ?>">
 					<input type="hidden" name="order_item_id" id="order_item_id" value="<?php echo $item_details['order_item_id']; ?>">
 					<input type="hidden" name="customer_id" id="customer_id" value="<?php echo $customerdetail['customer_id']; ?>">
+					<input type="hidden" name="seller_id" id="seller_id" value="<?php echo $item_details['seller_id']; ?>">
 					<div class="row">
 							<div class=" col-md-6 col-md-offset-3">		
 							

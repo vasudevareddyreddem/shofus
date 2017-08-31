@@ -581,7 +581,7 @@ class CustomerApi extends REST_Controller {
 	{
 		$customer_id=$this->input->get('customer_id');
 			if($customer_id==''){
-			$message = array('status'=>0,'message'=>'Customer id is required!');
+			$message = array('status'=>1,'message'=>'Customer id is required!');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 			$customer_orders_track_detals= $this->Customerapi_model->get_order_items_track_list($customer_id);
@@ -591,7 +591,7 @@ class CustomerApi extends REST_Controller {
 			$message = array('status'=>1,'message'=>'order track details','track details'=>$customer_orders_track_detals);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
-			$message = array('status'=>0,'message'=>'customer having no orders');
+			$message = array('status'=>1,'message'=>'customer having no orders');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}

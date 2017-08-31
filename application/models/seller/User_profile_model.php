@@ -43,6 +43,37 @@ class User_profile_model extends MY_Model
     	return $query->result_array();
 
 	 }
+	 public function product_reviews_list($sid){
+		 
+		$this->db->select('reviews.*,ratings.rating')->from('reviews');
+		$this->db->join('ratings', 'ratings.review_id = reviews.review_id', 'left');
+		$this->db->order_by("reviews.review_id", "DESC");
+		$this->db->where('reviews.seller_id',$sid);
+		$this->db->limit(4);
+        return $this->db->get()->result_array();
+		 
+	 }
+	 public function product_reviews_lists($sid){
+		 
+		$this->db->select('reviews.*,ratings.rating')->from('reviews');
+		$this->db->join('ratings', 'ratings.review_id = reviews.review_id', 'left');
+		$this->db->order_by("reviews.review_id", "DESC");
+		$this->db->where('reviews.seller_id',$sid);
+        return $this->db->get()->result_array();
+		 
+	 }
+	 public function product_reviews_avg($sid){
+		 
+		$sql = "SELECT AVG(rating) as avg FROM ratings WHERE seller_id ='".$sid."'";
+		return $this->db->query($sql)->row_array();	
+		 
+	 }
+	 public function product_reviews_fiveavg($sid){
+		 
+		$sql = "SELECT AVG(rating) as avg FROM ratings WHERE seller_id ='".$sid."' AND rating=5";
+		return $this->db->query($sql)->row_array();	
+		 
+	 }
 
 
 	}

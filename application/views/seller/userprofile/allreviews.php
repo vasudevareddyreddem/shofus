@@ -1,4 +1,4 @@
- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/seller/index/css/star-rating.css" media="all" type="text/css"/>
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/seller/index/css/star-rating.css" media="all" type="text/css"/>
     <script src="<?php echo base_url(); ?>assets/seller/index/js/star-rating.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/seller/index/js/themes/krajee-fa/theme.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/seller/index/js/themes/krajee-svg/theme.js" type="text/javascript"></script>
@@ -18,7 +18,7 @@
     white-space: nowrap;
 }
 </style>
-	<div class="content-wrapper mar_t_con">
+<div class="content-wrapper mar_t_con">
     <section class="content">
         <?php if($this->session->flashdata('message')): ?>
         <div class="alert dark alert-success alert-dismissible" id="infoMessage">
@@ -97,11 +97,10 @@
                         <div class="rating-block">
                             <h4>Average user rating</h4>
                             <h2 class="m-b-20"><?php echo isset($average['avg'])?number_format($average['avg'], 2, '.', ''):''; ?> <small>/ 5</small></h2>
-                           
-							  <input type="text" class="rating rating-loading" value="<?php echo isset($average['avg'])?number_format($average['avg'], 2, '.', ''):''; ?>"  title="">
+                           							  <input type="text" class="rating rating-loading" value="<?php echo isset($average['avg'])?number_format($average['avg'], 2, '.', ''):''; ?>"  title="">
+
                         </div>
                     </div>
-				
                     <div class="col-sm-12 col-md-6">
                         <h4 class="m-t-0">Rating breakdown</h4>
                         <div class="pull-left">
@@ -308,9 +307,7 @@
                     </div>
                     <hr/>
 				<?php } ?>
-				<?php if(count($product_review_lists)>4){ ?>
-				<a href="<?php echo base_url('seller/user_profile/productreviews'); ?>" type="button">See More</a>
-				<?php } ?>
+			
                   
                 </div>
             </div>
