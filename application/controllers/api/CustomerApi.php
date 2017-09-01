@@ -671,6 +671,7 @@ class CustomerApi extends REST_Controller {
 	$name=$this->input->get('name');	
 	$Rate=$this->input->get('Rate');	
 	$review=$this->input->get('review');	
+	$seller_id=$this->input->get('seller_id');	
 	if($customer_id==''){
 		$message = array('status'=>0,'message'=>'Customer id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -688,6 +689,9 @@ class CustomerApi extends REST_Controller {
 	}else if($review==''){
 		$message = array('status'=>0,'message'=>'Review is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+	}else if($seller_id==''){
+		$message = array('status'=>0,'message'=>'seller id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 	}
 	
 	$details=array(
@@ -696,6 +700,7 @@ class CustomerApi extends REST_Controller {
 	'name'=>$name,
 	'email'=>$email,
 	'review_content'=>$review,
+	'seller_id'=>$seller_id,
 	'create_at'=>date('Y-m-d H:i:s A'),
 	);
 	$savereview= $this->Customerapi_model->save_review($details);
@@ -709,6 +714,7 @@ class CustomerApi extends REST_Controller {
 				'name'=>$name,
 				'email'=>$email,
 				'rating'=>$Rate,
+				'seller_id'=>$seller_id,
 				'create_at'=>date('Y-m-d H:i:s A'),
 			);
 			$saverating= $this->Customerapi_model->save_rating($addrataing);
