@@ -1,24 +1,4 @@
- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/seller/index/css/star-rating.css" media="all" type="text/css"/>
-    <script src="<?php echo base_url(); ?>assets/seller/index/js/star-rating.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/seller/index/js/themes/krajee-fa/theme.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/seller/index/js/themes/krajee-svg/theme.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/seller/index/js/themes/krajee-uni/theme.js" type="text/javascript"></script>
-
-	<style>
-.glyphicon-minus-sign::before {
-    content: "";
-}
-.label {
-    display:none;
-}
-.rating-container .filled-stars {
-    -webkit-text-stroke: 1px #4cae4c;
-    color: #4cae4c;
-    text-shadow: 1px 1px #ddd;
-    white-space: nowrap;
-}
-</style>
-	<div class="content-wrapper mar_t_con">
+<div class="content-wrapper mar_t_con">
     <section class="content">
         <?php if($this->session->flashdata('message')): ?>
         <div class="alert dark alert-success alert-dismissible" id="infoMessage">
@@ -96,12 +76,24 @@
                     <div class="col-sm-12 col-md-6">
                         <div class="rating-block">
                             <h4>Average user rating</h4>
-                            <h2 class="m-b-20"><?php echo isset($average['avg'])?number_format($average['avg'], 2, '.', ''):'0'; ?> <small>/ 5</small></h2>
-                           
-							  <input type="text" class="rating rating-loading" value="<?php echo isset($average['avg'])?number_format($average['avg'], 2, '.', ''):''; ?>"  title="">
+                            <h2 class="m-b-20">4.3 <small>/ 5</small></h2>
+                            <button type="button" class="btn btn-success btn-sm" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-success btn-sm" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-success btn-sm" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
                         </div>
                     </div>
-				
                     <div class="col-sm-12 col-md-6">
                         <h4 class="m-t-0">Rating breakdown</h4>
                         <div class="pull-left">
@@ -111,12 +103,12 @@
                             </div>
                             <div class="review-progress">
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: <?php echo isset($fivepercentage)?$fivepercentage:''; ?>%">
-                                        <span class="sr-only">10% Complete (danger)</span>
+                                    <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 90%">
+                                        <span class="sr-only">90% Complete (danger)</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="progress-number"><?php echo isset($five)?$five:''; ?></div>
+                            <div class="progress-number">1</div>
                         </div>
                         <div class="pull-left">
                             <div class="review-number">
@@ -125,12 +117,12 @@
                             </div>
                             <div class="review-progress">
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: <?php echo isset($fourpercentage)?$fourpercentage:''; ?>%">
+                                    <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
                                         <span class="sr-only">80% Complete (danger)</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="progress-number"><?php echo isset($four)?$four:''; ?></div>
+                            <div class="progress-number">1</div>
                         </div>
                         <div class="pull-left">
                             <div class="review-number">
@@ -139,12 +131,12 @@
                             </div>
                             <div class="review-progress">
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: <?php echo isset($threepercentage)?$threepercentage:''; ?>%">
+                                    <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 70%">
                                         <span class="sr-only">70% Complete (danger)</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="progress-number"><?php echo isset($three)?$three:''; ?></div>
+                            <div class="progress-number">0</div>
                         </div>
                         <div class="pull-left">
                             <div class="review-number">
@@ -153,12 +145,12 @@
                             </div>
                             <div class="review-progress">
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: <?php echo isset($twopercentage)?$twopercentage:''; ?>%">
+                                    <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
                                         <span class="sr-only">60% Complete (danger)</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="progress-number"><?php echo isset($two)?$two:''; ?></div>
+                            <div class="progress-number">0</div>
                         </div>
                         <div class="pull-left">
                             <div class="review-number">
@@ -167,158 +159,114 @@
                             </div>
                             <div class="review-progress">
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-violet progress-bar-striped active" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: <?php echo isset($onepercentage)?$onepercentage:''; ?>%">
+                                    <div class="progress-bar progress-bar-violet progress-bar-striped active" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 50%">
                                         <span class="sr-only">50% Complete (danger)</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="progress-number"><?php echo isset($one)?$one:''; ?></div>
+                            <div class="progress-number">0</div>
                         </div>
                     </div>
                 </div>
                 <div class="review-block">
-				<?php if(count($product_review_list)>0){
-				 foreach ($product_review_list as $list){ ?>
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="review-block-img">
                                 <img src="assets/dist/img/avatar.png" class="img-rounded" alt="">
                             </div>
-                            <div class="review-block-name"><a href="#"><?php echo $list['name']; ?></a>
+                            <div class="review-block-name"><a href="#">nktailor</a>
                             </div>
-                            <div class="review-block-date"><?php echo isset($list['create_at'])?Date('M d Y',strtotime(htmlentities($list['create_at']))):'';  ?>
-                                <br/>
-								
-								<?php 
-								
-									$startTimeStamp = strtotime(date('Y-m-d'));
-									$endTimeStamp = strtotime(Date('Y-m-d',strtotime(htmlentities($list['create_at']))));
-									$timeDiff = abs($endTimeStamp - $startTimeStamp);
-									$numberDays = $timeDiff/86400;  // 86400 seconds in one day
-									 $numberDays = intval($numberDays);
-								?>
-								<?php echo $numberDays; ?> day ago</div>
+                            <div class="review-block-date">January 29, 2016
+                                <br/>1 day ago</div>
                         </div>
                         <div class="col-sm-9">
                             <div class="review-block-rate">
-							<?php if($list['rating']==1){ ?>
                                 <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                 </button>
-								  <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                 </button>
-								  <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                 </button>
-								  <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                 </button>
-								  <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                 </button>
-							<?php }else if($list['rating']==2){ ?>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								 <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								  <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								  <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								  <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								
-							<?php }else if($list['rating']==3){ ?>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								 <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								<button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								  <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								
-							<?php }else if($list['rating']==4){ ?>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								 <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								  <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								
-							<?php }else if($list['rating']==5){ ?>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								 <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-							<?php }else{ ?>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-								<button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-
-							<?php } ?>
-                               
                             </div>
-                            <div class="review-block-description"><?php echo $list['review_content']; ?> </div>
+                            <div class="review-block-title">this was nice in buy</div>
+                            <div class="review-block-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. </div>
                         </div>
                     </div>
                     <hr/>
-				<?php } ?>
-				<?php if(count($product_review_lists)>4){ ?>
-				<a href="<?php echo base_url('seller/user_profile/productreviews'); ?>" type="button">See More</a>
-				<?php } ?>
-				
-				<?php }else{ ?>
-				No review are available.
-				<?php } ?>
-				
-				
-                  
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="review-block-img">
+                                <img src="assets/dist/img/avatar2.png" class="img-rounded" alt="">
+                            </div>
+                            <div class="review-block-name"><a href="#">nktailor</a>
+                            </div>
+                            <div class="review-block-date">January 29, 2016
+                                <br/>1 day ago</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="review-block-title">this was nice in buy</div>
+                            <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="review-block-img">
+                                <img src="assets/dist/img/avatar3.png" class="img-rounded" alt="">
+                            </div>
+                            <div class="review-block-name"><a href="#">nktailor</a>
+                            </div>
+                            <div class="review-block-date">January 29, 2016
+                                <br/>1 day ago</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+                                <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="review-block-title">this was nice in buy</div>
+                            <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

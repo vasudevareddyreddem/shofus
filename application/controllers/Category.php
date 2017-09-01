@@ -1593,9 +1593,11 @@ function filtersearch(){
 	'name'=>$post['name'],
 	'email'=>$post['email'],
 	'review_content'=>$post['review'],
+	'seller_id'=>$post['seller_id'],
 	'create_at'=>date('Y-m-d H:i:s A'),
 	);
 	$savereview= $this->category_model->save_review($details);
+	
 	if(count($savereview)>0){
 		
 		if($post['count']!=''){
@@ -1606,9 +1608,11 @@ function filtersearch(){
 			'name'=>$post['name'],
 			'email'=>$post['email'],
 			'rating'=>$post['count'],
+			'seller_id'=>$post['seller_id'],
 			'create_at'=>date('Y-m-d H:i:s A'),
 		);
 		$saverating= $this->category_model->save_rating($addrataing);
+		//echo $this->db->last_query();exit;
 		}
 		$this->session->set_flashdata('success',"review Successfully Submitted");
 		redirect('customer/orederdetails/'.base64_encode($post['order_item_id']));	
@@ -1649,8 +1653,9 @@ function filtersearch(){
 	public function compare_items_list_two()
 	{
 		$items=$this->input->post('item_id');
-		$data['compare_two']=$this->category_model->getcompare_item_details($items);
-		//print_r($data);exit;
+		$category =$this->input->post('category_id');
+		$data['compare_one']=$this->category_model->getcompare_item_details($items);
+		$data['items']=$this->category_model->getsubitemdata($category);
 		$this->load->view('customer/comparetwo',$data);
   		
 

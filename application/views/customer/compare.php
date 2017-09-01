@@ -66,16 +66,19 @@
       <div><h3>Compare Products</h3></div>
     </div>
   </div>
+  <?php //echo '<pre>';print_r($compore_products);exit; ?>
 
     <div class="row">
         <div class="col-md-4 text-center">
             <div class="panel panel-default panel-pricing">
-                <div class="panel-heading">
+                <a href="<?php echo base_url('category/productview/'.base64_encode($compore_products['item_id']));?>">
+				<div class="panel-heading">
                     <img class="img-responsive" src="<?php echo base_url('uploads/products/'.$compore_products['item_image']); ?>">                   
                 </div>
 
                 <ul class="list-group text-center">
-                    <li class="list-group-item">Product Name:
+									
+					<li class="list-group-item">Product Name:
                         <?php echo $compore_products[ 'item_name'];?>
                     </li>
                     <li class="list-group-item">Product Price:
@@ -84,11 +87,14 @@
                     <li class="list-group-item">Product Code:
                         <?php echo $compore_products[ 'item_code']; ?>
                     </li>
+					</a>
+					
+				</form>
                 </ul>
             </div>
         </div>
 		<div id="compare_items" class="col-md-4 text-center" style="display:none;"></div>
-		<div id="compare_items2" class="col-md-4 text-center" style="display:none;"></div>
+		
 		
 		<div class="col-md-4 text-center" id="item_hide1">
             <div class="form-group nopaddingRight col-md-6 san-lg" >
@@ -102,7 +108,8 @@
                 </select>
             </div>
         </div>
-		<div class="col-md-4 text-center" id="item_hide2">
+		<div id="compare_items2" class="col-md-4 text-center" style="display:none;"></div>
+		<div class="col-md-4 text-center" id="item_hide2" style="display:none;">
             <div class="form-group nopaddingRight col-md-6 san-lg" >
                 <label for="exampleInputPassword1">Select Compare Product</label>
                 <select class="form-control" onchange="productitem_two(this.value);" id="item_idtwo" name="item_idtwo">
@@ -114,10 +121,7 @@
                 </select>
             </div>
         </div>
-		
-        
-
-    </div>
+	</div>
 </div>
 <input type="hidden" name="category_id" id="category_id" value="<?php echo $compore_products['category_id']; ?>">      
    
@@ -139,9 +143,12 @@
 				cache: false,
 				dataType:'html',
 				success: function (data) {
-					$('#compare_items').show();
-					$('#compare_items').append(data);
 					$('#item_hide1').hide();
+					$('#item_hide2').show();
+					$('#compare_items').show();
+					$('#compare_items').empty();
+					$('#compare_items').append(data);
+					
 				} 
 			});	
     
@@ -151,7 +158,7 @@
 		var category_id = $("#category_id").val();
 		$.ajax({
 				type: "POST",
-				url: "<?php echo base_url();?>category/compare_items_list",
+				url: "<?php echo base_url();?>category/compare_items_list_two",
 				data: {
 					item_id:id,
 					category_id:category_id
@@ -159,9 +166,11 @@
 				cache: false,
 				dataType:'html',
 				success: function (data) {
-					$('#compare_items2').show();
-					$('#compare_items2').append(data);
 					$('#item_hide2').hide();
+					$('#compare_items2').show();
+					$('#compare_items2').empty();
+					$('#compare_items2').append(data);
+					
 				} 
 			});	
     

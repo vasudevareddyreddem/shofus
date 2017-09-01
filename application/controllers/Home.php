@@ -93,7 +93,7 @@ public function search_location_offers()
 		$whishlist_item_ids_list[]=$list['item_id'];
 		$whishlist_ids_list[]=$list['id'];
 	}
-		
+	$data['locationnames']=$locationdatadetails;
 	//echo '<pre>';print_r($customer_ids_list);exit;
 	$data['customer_ids_list']=$customer_ids_list;
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;

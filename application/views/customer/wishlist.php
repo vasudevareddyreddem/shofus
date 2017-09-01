@@ -94,6 +94,11 @@ tr th:last-child {
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('adderror');?></div>
 			<?php endif; ?>
+			<?php if($this->session->flashdata('productsuccess')): ?>
+			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('productsuccess');?></div>
+			<?php endif; ?>
             <table class="table table-bordered table-cart">
               <thead>
                 <tr>
@@ -122,19 +127,27 @@ tr th:last-child {
                     <p><a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>" class="d-block"><?php echo $items['item_name']; ?></a></p>
 					<small>Status : <?php if($items['item_status']=1){ echo "In Stock";}else{ "Out of Stock";} ?></small>
 				  </td>
-				   <td class="input-qty">
+				   <?Php if($items['item_quantity']!=0){ ?>
+					     <td class="input-qty">
 				   <div class="input-qty">
 						<div class="input-group number-spinner">
 							<span class="input-group-btn data-dwn">
-								<a class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
+								<a class="btn btn-primary"  data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
 							</span>
-							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="1" min="1" max="10">
+							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="1" min="1" max="<?php echo $items['item_quantity']; ?>">
 							<span class="input-group-btn data-up">
-								<a class="btn btn-primary " data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
+								<a class="btn btn-primary" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
 							</span>
 						</div>
                   </div>
-				  </td>
+				 </td>
+					  
+					  
+				  <?php }else{ ?>
+				  		<td class="input-qty"><span class="label label-warning arrowed"> Out of Stock</span></td>
+
+				
+				  <?php } ?>
 				  <?php 
 					$currentdate=date('Y-m-d h:i:s A');
 						if($items['offer_expairdate']>=$currentdate){

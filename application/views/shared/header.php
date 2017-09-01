@@ -88,7 +88,7 @@
           </ul>
         </div> 
 		<div class="col-md-5">
-		<div id="selectedlocation" style="height:30px;border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;">
+		<div id="selectedlocation" class="" style="height:30px;border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;">
 		
 		<?php echo $this->session->userdata('location_area');
 		?>
@@ -426,27 +426,7 @@ box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);position:fixed">
 <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
 <script type="text/javascript">
 
-$("#formsubmmition").click(function(){
-    var selectedValues = [];    
-    $("#locationarea :selected").each(function(){
-        selectedValues.push($(this).val()); 
-    });
-    jQuery.ajax({
-			url: "<?php echo site_url('customer/locationsearchname');?>",
-			type: 'post',
-			data: {
-				form_key : window.FORM_KEY,
-				searchvalue: selectedValues,
-				},
-			dataType: 'json',
-			success: function (data) {
-				$("#selectedlocation").empty();
-				$("#selectedlocation").append(data);
 
-
-			}
-		});
-});
 function openpopup (){
 $('#locationdiv').show();
 }

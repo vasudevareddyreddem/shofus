@@ -17,22 +17,6 @@ class Customer extends Front_Controller
  }
  
 
-  
-  
-
-  public function locationsearchname(){
-		$post=$this->input->post();
-		$locationdata= $this->home_model->getlocations();
-		$loacationname=array();
-		foreach ($locationdata as $list){
-			if (in_array($list['location_id'], $post['searchvalue'])) {
-				$loacationname[]=$list['location_name'];
-			}
-		}
-		$locationdatadetails=implode(", ",$loacationname);
-		echo json_encode($locationdatadetails);
-
-  }
   public function locationsearch(){
 		$post=$this->input->post();
 		
@@ -66,8 +50,12 @@ class Customer extends Front_Controller
 		$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 		$data['whishlist_ids_list']=$whishlist_ids_list;
 		}
-	$this->template->write_view('content', 'customer/productsearch', $data);
+		$data['locationnames']=$locationdatadetails;
+		
+	//$this->template->write_view('content','shared/header');
+	$this->template->write_view('content','customer/productsearch', $data);
 	$this->template->render();
+	
 	  
   }
   public function account(){
@@ -155,11 +143,20 @@ class Customer extends Front_Controller
 	 
 	if($this->session->userdata('userdetails'))
 	 {
-		$post=$this->input->post();
+		
+		
 		$customerdetails=$this->session->userdata('userdetails');
+		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		if(count($cart_items)>0){
+			foreach ($cart_items as $list){
+				$productsdetails= $this->customer_model->get_product_details($list['item_id']);
+				$this->customer_model->cart_item_qty_update($list['item_id'],$productsdetails['item_quantity']);
+			}
+		}
+		$post=$this->input->post();
 		$products= $this->customer_model->get_product_details($post['producr_id']);
 			$qty=$post['qty'];
-			//echo '<pre>';print_r($post);exit;
+			//echo '<pre>';print_r($products);exit;
 		
 			$currentdate=date('Y-m-d h:i:s A');
 				if($products['offer_expairdate']>=$currentdate){
@@ -193,6 +190,7 @@ class Customer extends Front_Controller
 		'cust_id'=>$customerdetails['customer_id'],
 		'item_id'=>$post['producr_id'],
 		'qty'=>$post['qty'],
+		'item_qty'=>$products['item_quantity'],
 		'item_price'=>$item_price,
 		'total_price'=>$price,
 		'commission_price'=>$commission_price,
@@ -258,10 +256,16 @@ class Customer extends Front_Controller
 	 
 	 if($this->session->userdata('userdetails'))
 	 {
+		
+		//echo "bvb";exit;
 		$customerdetails=$this->session->userdata('userdetails');
 		$data['cart_items']= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 		$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
-		
+		foreach ($data['cart_items'] as $list){
+			$productsdetails= $this->customer_model->get_product_details($list['item_id']);
+			$this->customer_model->cart_item_qty_update($list['item_id'],$productsdetails['item_quantity']);
+			
+		}
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/cart', $data);
 		$this->template->render();
@@ -294,15 +298,17 @@ class Customer extends Front_Controller
 	 if($this->session->userdata('userdetails'))
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
+		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		foreach ($cart_items as $list){
+			$productsdetails= $this->customer_model->get_product_details($list['item_id']);
+			$this->customer_model->cart_item_qty_update($list['item_id'],$productsdetails['item_quantity']);
+		}
 		$post=$this->input->post();
-		
 		$products= $this->customer_model->get_product_details($post['product_id']);
 		//echo '<pre>';print_r($post);exit;
-		
 		$qty=$post['qty'];
 			//echo '<pre>';print_r($post);exit;
-		
-			$currentdate=date('Y-m-d h:i:s A');
+		$currentdate=date('Y-m-d h:i:s A');
 				if($products['offer_expairdate']>=$currentdate){
 						$item_price= ($products['item_cost']-$products['offer_amount']);
 						$price	=(($qty) * ($item_price));
@@ -362,10 +368,16 @@ class Customer extends Front_Controller
  public function deletecart(){
 	 if($this->session->userdata('userdetails'))
 	 {
+		
+		$customerdetails=$this->session->userdata('userdetails');
+		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		foreach ($cart_items as $list){
+			$productsdetails= $this->customer_model->get_product_details($list['item_id']);
+			$this->customer_model->cart_item_qty_update($list['item_id'],$productsdetails['item_quantity']);
+		}
 		$item_id=base64_decode($this->uri->segment(3));
 		$id=base64_decode($this->uri->segment(4));
 		//echo '<pre>';print_r($item_id);exit; 
-		$customerdetails=$this->session->userdata('userdetails');
 		$post=$this->input->post();
 		$delete= $this->customer_model->delete_cart_item($customerdetails['customer_id'],$item_id,$id);
 		if(count($delete)>0){
@@ -408,6 +420,20 @@ class Customer extends Front_Controller
 
 		$customerdetails=$this->session->userdata('userdetails');
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		foreach ($cart_items as $list){
+			
+			$productsdetails= $this->customer_model->get_product_details($list['item_id']);
+			$this->customer_model->cart_item_qty_update($list['item_id'],$productsdetails['item_quantity']);
+			if($list['qty']==0){
+				$this->session->set_flashdata('qtyerror','Please remove Out of stock product in cart then move to next step!');
+				redirect('customer/cart');	
+			}else if($list['qty']>$productsdetails['item_quantity']){
+				$this->session->set_flashdata('qtyerror','Please decrease this '.$productsdetails['item_name'].' product qty lessthan or equal to '.$productsdetails['item_quantity']);
+				redirect('customer/cart');	
+			}
+		}
+		//echo '<pre>';print_r($cart_items);
+		//exit;
 		if(count($cart_items)>0){
 			$data['locationdata'] = $this->home_model->getlocations();
 			$data['customerdetail']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
@@ -473,6 +499,23 @@ class Customer extends Front_Controller
 	 if($this->session->userdata('userdetails'))
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
+		
+		/* out of stock products pupose*/
+		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		foreach ($cart_items as $list){
+			
+			$productsdetails= $this->customer_model->get_product_details($list['item_id']);
+			$this->customer_model->cart_item_qty_update($list['item_id'],$productsdetails['item_quantity']);
+			if($list['qty']==0){
+				$this->session->set_flashdata('qtyerror','Please remove Out of stock product in cart then move to next step!');
+				redirect('customer/cart');	
+			}else if($list['qty']>$productsdetails['item_quantity']){
+				$this->session->set_flashdata('qtyerror','Please decrease this '.$productsdetails['item_name'].' product qty lessthan or equal to '.$productsdetails['item_quantity']);
+				redirect('customer/cart');	
+			}
+		}
+		/* out of stock products pupose*/
+		
 		$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
 		$items_names= $this->customer_model->get_cart_Items_names($customerdetails['customer_id']);
 		foreach ($items_names as $list){

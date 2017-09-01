@@ -361,6 +361,10 @@ class Customer_model extends MY_Model
 				$this->db->where('item_status', 1);
 				return $this->db->get()->row_array();
 	}
+	public function cart_item_qty_update($itemid,$qty){
+		$sql1="UPDATE cart SET item_qty ='".$qty."' WHERE item_id = '".$itemid."'";
+       	return $this->db->query($sql1);
+	}
 
 	
 	
