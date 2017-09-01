@@ -1653,8 +1653,9 @@ function filtersearch(){
 	public function compare_items_list_two()
 	{
 		$items=$this->input->post('item_id');
-		$data['compare_two']=$this->category_model->getcompare_item_details($items);
-		//print_r($data);exit;
+		$category =$this->input->post('category_id');
+		$data['compare_one']=$this->category_model->getcompare_item_details($items);
+		$data['items']=$this->category_model->getsubitemdata($category);
 		$this->load->view('customer/comparetwo',$data);
   		
 
