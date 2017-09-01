@@ -25,7 +25,7 @@
 </head>
 <style>
     .mar_t10per {
-        margin-top: 10%;
+        margin-top: 9%;
     }
     .form .form-control {
         margin-bottom: 10px;
@@ -85,11 +85,33 @@
                             <!-- Button -->
 
                             <div class="col-sm-12 controls">
-                                <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+                                <button class="btn  btn-primary btn-block signup-btn" type="submit">
                                     login</button>
 
                             </div>
                         </div>
+										  
+				<div class="or-text">
+					<div class="or-text-row">
+						<div class="or-text-line">
+							<button type="button" class="btn btn-default btn-circle" disabled="disabled">or</button>
+						</div>
+					</div>
+				</div>
+				<div class="row">	
+					<div class="col-sm-5">
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary_org"><i class="fa fa-facebook"></i>Sign in with Facebook</button>
+						</div>
+					</div>
+					<div class="col-sm-1">&nbsp;</div>
+					<div class="col-sm-5">
+						<div class="btn-group">
+							<button type="button" class="btn btn-danger"><i class="fa fa-google-plus"></i>Sign in with GooglePlus</button>
+						</div>
+					</div>
+					
+				</div>
 				</form>
   
 
@@ -150,7 +172,7 @@
 					<div class="row">
 					<div>
 
-                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+                    <button class="btn  btn-primary btn-block signup-btn" type="submit">
                         Create my account</button>
                 </form>
 
