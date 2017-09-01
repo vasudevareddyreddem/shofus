@@ -191,15 +191,15 @@ class CustomerApi extends REST_Controller {
 	$item_id=$this->input->get('item_id');	
 	$qty=$this->input->get('qty');
 	if($customer_id==''){
-		$message = array('status'=>0,'message'=>'Customer id is required!');
+		$message = array('status'=>1,'message'=>'Customer id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		
 	}elseif($item_id==''){
-		$message = array('status'=>0,'message'=>'Item id is required!');
+		$message = array('status'=>1,'message'=>'Item id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		
 	}else if($qty==''){
-		$message = array('status'=>0,'message'=>'Qty is required!');
+		$message = array('status'=>1,'message'=>'Qty is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 	}
 	$cart_item_ids= $this->Customerapi_model->get_cart_products($customer_id);
@@ -209,7 +209,7 @@ class CustomerApi extends REST_Controller {
 		}
 		if(in_array($item_id,$cart_id))
 		{
-			$message = array('status'=>0,'message'=>'Product already exits');
+			$message = array('status'=>1,'message'=>'Product already exits');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else{
 				$products= $this->Customerapi_model->get_product_details($item_id);
@@ -257,7 +257,7 @@ class CustomerApi extends REST_Controller {
 						$message = array('status'=>1,'message'=>'Product Successfully added to the cart');
 						$this->response($message, REST_Controller::HTTP_OK);
 					}else{
-						$message = array('status'=>0,'message'=>'Technical problem occured try again later!');
+						$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
 						$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 					}
 			}
@@ -272,15 +272,15 @@ class CustomerApi extends REST_Controller {
 		$item_id=$this->input->get('item_id');	
 		$cart_id=$this->input->get('id');	
 			if($customer_id==''){
-				$message = array('status'=>0,'message'=>'Customer id is required!');
+				$message = array('status'=>1,'message'=>'Customer id is required!');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 				
 			}elseif($item_id==''){
-				$message = array('status'=>0,'message'=>'Item id is required!');
+				$message = array('status'=>1,'message'=>'Item id is required!');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 				
 			}else if($cart_id==''){
-				$message = array('status'=>0,'message'=>'Id is required!');
+				$message = array('status'=>1,'message'=>'Id is required!');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 			$cart_item_ids= $this->Customerapi_model->get_cart_products($customer_id);
@@ -292,10 +292,10 @@ class CustomerApi extends REST_Controller {
 			}
 			if(!in_array($item_id,$initem_id))
 			{
-				$message = array('status'=>0,'message'=>'Product not exits.Please try again');
+				$message = array('status'=>1,'message'=>'Product not exits.Please try again');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}else if(!in_array($cart_id,$incart_id)){
-				$message = array('status'=>0,'message'=>'Product not exits.Please try again');
+				$message = array('status'=>1,'message'=>'Product not exits.Please try again');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}else{
 				$delete= $this->Customerapi_model->delete_cart_item($customer_id,$item_id,$cart_id);
@@ -303,7 +303,7 @@ class CustomerApi extends REST_Controller {
 						$message = array('status'=>1,'message'=>'cart Item Successfully Removed!');
 						$this->response($message, REST_Controller::HTTP_OK);
 				}else{
-					$message = array('status'=>0,'message'=>'Technical problem occured try again later!');
+					$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
 					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 				}
 			}
@@ -316,18 +316,18 @@ class CustomerApi extends REST_Controller {
 	$qty=$this->input->get('qty');
 	$cart_id=$this->input->get('id');	
 	if($customer_id==''){
-		$message = array('status'=>0,'message'=>'Customer id is required!');
+		$message = array('status'=>1,'message'=>'Customer id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		
 	}elseif($item_id==''){
-		$message = array('status'=>0,'message'=>'Item id is required!');
+		$message = array('status'=>1,'message'=>'Item id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		
 	}else if($qty==''){
-		$message = array('status'=>0,'message'=>'Qty is required!');
+		$message = array('status'=>1,'message'=>'Qty is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 	}else if($cart_id==''){
-		$message = array('status'=>0,'message'=>'Id is required!');
+		$message = array('status'=>1,'message'=>'Id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 	}
 	$cart_item_ids= $this->Customerapi_model->get_cart_products($customer_id);
@@ -337,7 +337,7 @@ class CustomerApi extends REST_Controller {
 		}
 		if(!in_array($item_id,$cart_ids))
 		{
-			$message = array('status'=>0,'message'=>'Product nots exits');
+			$message = array('status'=>1,'message'=>'Product nots exits');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else{
 				$products= $this->Customerapi_model->get_product_details($item_id);
@@ -386,7 +386,7 @@ class CustomerApi extends REST_Controller {
 						$message = array('status'=>1,'message'=>'Product Successfully Updated to the cart');
 						$this->response($message, REST_Controller::HTTP_OK);
 					}else{
-						$message = array('status'=>0,'message'=>'Technical problem occured try again later!');
+						$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
 						$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 					}
 			}
@@ -400,7 +400,7 @@ class CustomerApi extends REST_Controller {
 	{
 		$customer_id=$this->input->get('customer_id');
 		if($customer_id==''){
-				$message = array('status'=>0,'message'=>'Customer id is required!');
+				$message = array('status'=>1,'message'=>'Customer id is required!');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 				
 		}
@@ -414,7 +414,7 @@ class CustomerApi extends REST_Controller {
 		//echo '<pre>';print_r($item_lists);exit;
 		if(!in_array($customer_id,$cart_ids))
 		{
-			$message = array('status'=>0,'message'=>'Customer having  no products in the cart');
+			$message = array('status'=>1,'message'=>'Customer having  no products in the cart');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else{
 			$message = array('status'=>1,'message'=>'cart items list','list'=>$item_lists,'count'=>$item_lists_count['count']);
@@ -433,7 +433,7 @@ class CustomerApi extends REST_Controller {
 			$message = array('status'=>1,'message'=>'wishlist ids list','list'=>$item_lists);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
-			$message = array('status'=>0,'message'=>'wishlist ids are not fount');
+			$message = array('status'=>1,'message'=>'wishlist ids are not fount');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
@@ -485,7 +485,7 @@ class CustomerApi extends REST_Controller {
 	{
 		$customer_id=$this->input->get('customer_id');
 			if($customer_id==''){
-			$message = array('status'=>0,'message'=>'Customer id is required!');
+			$message = array('status'=>1,'message'=>'Customer id is required!');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 		$wishlist = $this->Customerapi_model->get_customer_whishlists($customer_id);
@@ -499,14 +499,14 @@ class CustomerApi extends REST_Controller {
 		//echo '<pre>';print_r($cart_ids);exit;
 		if(!in_array($customer_id,$cart_ids))
 		{
-			$message = array('status'=>0,'message'=>'Customer having  no products in the wishlist');
+			$message = array('status'=>1,'message'=>'Customer having  no products in the wishlist');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else{
 			$message = array('status'=>1,'message'=>'wishlist items list','list'=>$wishlist,'count'=>$wishlistcount['count']);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}
 		}else{
-			$message = array('status'=>0,'message'=>'Customer having  no products in the wishlist');
+			$message = array('status'=>1,'message'=>'Customer having  no products in the wishlist');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}/* wishlist get api */
@@ -600,11 +600,8 @@ class CustomerApi extends REST_Controller {
 	{
 		$searchvalue=$this->input->get('searchvalue');
 			if($searchvalue==''){
-			$message = array('status'=>0,'message'=>'search value is required!');
+			$message = array('status'=>1,'message'=>'search value is required!');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}else if(strlen($searchvalue)<=2){
-				$message = array('status'=>0,'message'=>'search value minimum length is 3 characters!');
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 			$data1 = $this->Customerapi_model->get_search_functionality_products($searchvalue);
 			$data2 = $this->Customerapi_model->get_search_functionality_sub_category($searchvalue);
@@ -614,7 +611,7 @@ class CustomerApi extends REST_Controller {
 			$message = array('status'=>1,'message'=>'result list are found.','list'=>$search);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
-			$message = array('status'=>0,'message'=>'No result found');
+			$message = array('status'=>1,'message'=>'No result found');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
@@ -625,15 +622,15 @@ class CustomerApi extends REST_Controller {
 	$item_id=$this->input->get('item_id');	
 	$wish_id=$this->input->get('id');	
 	if($customer_id==''){
-		$message = array('status'=>0,'message'=>'Customer id is required!');
+		$message = array('status'=>1,'message'=>'Customer id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		
 	}elseif($item_id==''){
-		$message = array('status'=>0,'message'=>'Item id is required!');
+		$message = array('status'=>1,'message'=>'Item id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		
 	}else if($wish_id==''){
-		$message = array('status'=>0,'message'=>'Id is required!');
+		$message = array('status'=>1,'message'=>'Id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 	}
 	
@@ -646,11 +643,11 @@ class CustomerApi extends REST_Controller {
 		//echo '<pre>';print_r($cart_ids);exit;
 		if(!in_array($wish_id,$wish_ids))
 		{
-			$message = array('status'=>0,'message'=>'product not exits');
+			$message = array('status'=>1,'message'=>'product not exits');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else if(!in_array($item_id,$wishitem_ids))
 		{
-			$message = array('status'=>0,'message'=>'product not exits');
+			$message = array('status'=>1,'message'=>'product not exits');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}else{
 				$wishlist_delete= $this->Customerapi_model->customer_wishlist_delete($customer_id,$item_id,$wish_id);
@@ -658,7 +655,7 @@ class CustomerApi extends REST_Controller {
 				$message = array('status'=>1,'message'=>'Wishlist Item Successfully deleted');
 				$this->response($message, REST_Controller::HTTP_OK);
 				}else{
-				$message = array('status'=>0,'message'=>'Technical problem occured try again later!');
+				$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 				}
 

@@ -129,6 +129,11 @@
 			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('productsuccess');?></div>
+			<?php endif; ?> 
+			<?php if($this->session->flashdata('qtyerror')): ?>
+			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button><?php echo $this->session->flashdata('qtyerror');?></div>
 			<?php endif; ?>
 			
 			<?php if(count($cart_items)>0){   ?>
@@ -147,10 +152,10 @@
 			  <?php 
 			  //echo '<pre>';print_r($cart_items);exit; 
 			$total='';
-			  foreach($cart_items as $items){ ?>
+			  $cnt=0;foreach($cart_items as $items){ ?>
 			  <form action="<?php  echo base_url('customer/updatecart'); ?>" method="post" name="updatecart" id="updatecart">
 
-			  <input type="hidden" name="product_id" id="product_id"  value="<?php echo $items['item_id']; ?>">
+			  <input type="hidden" name="product_id" id="product_id<?php echo $cnt; ?>"  value="<?php echo $items['item_id']; ?>">
                 <tr>
                   <td class="img-cart">
                     <a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>">
@@ -161,20 +166,28 @@
                     <p><a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>" class="d-block"><?php echo $items['item_name']; ?></a></p>
                   </td>
 				  
-				  
-                  <td class="input-qty">
+				  <?Php if($items['item_qty']!=0){ ?>
+					     <td class="input-qty">
 				   <div class="input-qty">
 						<div class="input-group number-spinner">
 							<span class="input-group-btn data-dwn">
-								<a class="btn btn-primary" onclick="productqty();" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
+								<a class="btn btn-primary" onclick="productqty('<?php echo $cnt; ?>');" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
 							</span>
-							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="<?php echo $items['qty'];  ?>" min="1" max="<?php echo $items['item_quantity']; ?>">
+							<input type="text" name="qty" id="qty<?php echo $cnt; ?>" readonly class="form-control text-center" value="<?php echo $items['qty'];  ?>" min="1" max="<?php echo $items['item_quantity']; ?>">
 							<span class="input-group-btn data-up">
-								<a class="btn btn-primary" onclick="productqtyincreae();" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
+								<a class="btn btn-primary" onclick="productqtyincreae('<?php echo $cnt; ?>');" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
 							</span>
 						</div>
                   </div>
 				 </td>
+					  
+					  
+				  <?php }else{ ?>
+				  		<td class="input-qty"><span class="label label-warning arrowed"> Out of Stock</span></td>
+
+				
+				  <?php } ?>
+                  
 				  
 				  <?php if($items['offer_percentage']!==0 && $items['offer_percentage']!=='' ){ ?>
 					 
@@ -209,7 +222,7 @@
                 </tr>
 				  </form>
 				
-			  <?php }   ?>
+			  <?php $cnt++;}   ?>
                
              
                
@@ -251,9 +264,10 @@
 	
 
 <script>
-function productqty(){
-	var qtycnt=document.getElementById("qty").value;
-	var pid=document.getElementById("product_id").value;
+function productqty(id){
+
+	var qtycnt=document.getElementById("qty"+id).value;
+	var pid=document.getElementById("product_id"+id).value;
 	if(qtycnt>1){
 	jQuery.ajax({
 			url: "<?php echo site_url('customer/updatecart');?>",
@@ -273,9 +287,9 @@ function productqty(){
 		
 	}
 }
-function productqtyincreae(){
-	var qtycnt=document.getElementById("qty").value;
-	var pid=document.getElementById("product_id").value;
+function productqtyincreae(id){
+	var qtycnt=document.getElementById("qty"+id).value;
+	var pid=document.getElementById("product_id"+id).value;
 	if(qtycnt<11){
 	jQuery.ajax({
 			url: "<?php echo site_url('customer/updatecart');?>",
