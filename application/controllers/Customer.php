@@ -17,22 +17,6 @@ class Customer extends Front_Controller
  }
  
 
-  
-  
-
-  public function locationsearchname(){
-		$post=$this->input->post();
-		$locationdata= $this->home_model->getlocations();
-		$loacationname=array();
-		foreach ($locationdata as $list){
-			if (in_array($list['location_id'], $post['searchvalue'])) {
-				$loacationname[]=$list['location_name'];
-			}
-		}
-		$locationdatadetails=implode(", ",$loacationname);
-		echo json_encode($locationdatadetails);
-
-  }
   public function locationsearch(){
 		$post=$this->input->post();
 		
@@ -66,8 +50,12 @@ class Customer extends Front_Controller
 		$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 		$data['whishlist_ids_list']=$whishlist_ids_list;
 		}
-	$this->template->write_view('content', 'customer/productsearch', $data);
+		$data['locationnames']=$locationdatadetails;
+		
+	//$this->template->write_view('content','shared/header');
+	$this->template->write_view('content','customer/productsearch', $data);
 	$this->template->render();
+	
 	  
   }
   public function account(){

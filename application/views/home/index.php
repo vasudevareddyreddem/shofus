@@ -492,14 +492,7 @@
 </body>
 <script type="text/javascript" language="javascript">
 
- /*function selectsearchlocation(id){
-	 if(id!=''){
-		 jQuery('#address1errormsg').hide();
  
-	 }
-	document.getElementById("locationvalue").value=id;
-	$("#selectedlocation").append(id);
- }*/
 
  function selectsearchlocation(id){
 	 

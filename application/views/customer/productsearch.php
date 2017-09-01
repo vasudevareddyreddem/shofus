@@ -1,3 +1,8 @@
+<script>
+$("#selectedlocation").empty();
+$("#selectedlocation").append('<?php echo $locationnames; ?>');
+</script>
+<?php //echo '<pre>';print_r($locationnames);exit; ?>
 <body class="bac_img">
 <div class="banner_home con_start" style="margin-top:-20px;">
      
