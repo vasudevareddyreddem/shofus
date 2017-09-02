@@ -1466,6 +1466,33 @@ class Customerapi_model extends MY_Model
 			if($sorting['compatibleos']!=''){
 			$return['compatibleos'] = $this->get_subcategorycompatibleos($sorting['compatibleos'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
+			if($sorting['usages']!=''){
+			$return['usages'] = $this->get_subcategoryusages($sorting['usages'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['display_type']!=''){
+			$return['display_type'] = $this->get_subcategorydisplay_type($sorting['display_type'],$sorting['category_id'],$sorting['subcategory_id']);
+			}if($sorting['occasion']!=''){
+			$return['occasion'] = $this->get_subcategoryoccasion($sorting['occasion'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['ideal_for']!=''){
+			$return['ideal_for'] = $this->get_subcategoryideal_for($sorting['ideal_for'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['material']!=''){
+			$return['material'] = $this->get_subcategorymaterial($sorting['material'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['gemstones']!=''){
+			$return['gemstones'] = $this->get_subcategorygemstones($sorting['gemstones'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['strap_color']!=''){
+			$return['strap_color'] = $this->get_subcategorystrap_color($sorting['strap_color'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['dial_color']!=''){
+			$return['dial_color'] = $this->get_subcategorydial_color($sorting['dial_color'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['packof']!=''){
+			$return['packof'] = $this->get_subcategorypackof($sorting['packof'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			
 			
 			$return['mini_amount'] = $this->get_subcategoryamount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id'],$sorting['subcategory_id']);
 			$return['status'] = $this->get_subcategorystatus($sorting['status'],$sorting['category_id'],$sorting['subcategory_id']);
@@ -1478,6 +1505,76 @@ class Customerapi_model extends MY_Model
 		
 	}
 	/*sub*/
+	public function get_subcategorypackof($packof,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('packof',$packof);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorydial_color($dial_color,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('dial_color',$dial_color);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorystrap_color($strap_color,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('strap_color',$strap_color);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorygemstones($gemstones,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('gemstones',$gemstones);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorymaterial($material,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('material',$material);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryideal_for($ideal_for,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('ideal_for',$ideal_for);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryoccasion($occasion,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('occasion',$occasion);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorydisplay_type($display_type,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('display_type',$display_type);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryusages($usages,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('usages',$usages);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
 	public function get_subcategorycompatibleos($compatibleos,$cid,$subcat){
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',1);
