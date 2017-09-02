@@ -795,7 +795,7 @@ class Category extends Front_Controller
 	 
 	$post=$this->input->post();
 	$subcategory_porduct_list= $this->category_model->get_search_all_subcategorywise_products();
-	echo '<pre>';print_r($subcategory_porduct_list);exit;
+	//echo '<pre>';print_r($subcategory_porduct_list);exit;
 	//echo count($subcategory_porduct_list['mini_amount']);exit;
 	$data['cat_subcat_ids']= $this->category_model->get_search_all_subcategory_id();
 
