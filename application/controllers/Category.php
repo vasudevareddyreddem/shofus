@@ -795,7 +795,7 @@ class Category extends Front_Controller
 	 
 	$post=$this->input->post();
 	$subcategory_porduct_list= $this->category_model->get_search_all_subcategorywise_products();
-	//echo '<pre>';print_r($subcategory_porduct_list);exit;
+	echo '<pre>';print_r($subcategory_porduct_list);exit;
 	//echo count($subcategory_porduct_list['mini_amount']);exit;
 	$data['cat_subcat_ids']= $this->category_model->get_search_all_subcategory_id();
 
@@ -1007,10 +1007,8 @@ public function categorywiseearch(){
 	$post=$this->input->post();
 	//echo '<pre>';print_r($cusine);
 	//echo '<pre>';print_r($post);exit;
-	
-				if(isset($post['searchvalue']) && $post['searchvalue']=='status' && $post['unchecked']!='uncheck'){
+	if(isset($post['searchvalue']) && $post['searchvalue']=='status' && $post['unchecked']!='uncheck'){
 					$status=$post['productsvalues'];
-				
 					$removesearch= $this->category_model->get_all_previous_search_fields();
 					foreach ($removesearch as $list){
 						$this->category_model->update_status_privous_searchdata($list['id'],$post['productsvalues']);

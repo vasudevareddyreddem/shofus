@@ -295,7 +295,7 @@ if($post['dial_shape1'] || $post['dial_shape2']){
 	$dialshape=$post['dial_shape2'];		
 	}
 }
-if($post['material1'] || $post['material2']){
+if(isset($post['material1']) || isset($post['material2'])){
 	
 	if($post['material1']!=''){
 	$material=$post['material1'];		
@@ -340,7 +340,7 @@ if($post['product_ram1'] || $post['product_ram2'] || $post['product_ram3']){
 	$ram=$post['product_ram3'];		
 	}
 }
-if($post['internal_storage1'] || $post['internal_storage2'] || $post['internal_storage3'] || $post['internal_storage4']){
+if(isset($post['internal_storage1']) || isset($post['internal_storage2']) || isset($post['internal_storage3']) || isset($post['internal_storage4'])){
 	
 	if($post['internal_storage1']!=''){
 	$internalstorages=$post['internal_storage1'];		
