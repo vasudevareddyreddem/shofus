@@ -2024,6 +2024,16 @@ class Customerapi_model extends MY_Model
 		$sql1="UPDATE subcat_wise_fliter_search SET mini_amount ='".$min."', max_amount ='".$max."' WHERE id ='".$id."'";
 		return $this->db->query($sql1);
 	}
+	/* review purpose*/
+	public function get_products_reviews($pid){
+		
+		$this->db->select('reviews.*,ratings.rating,customers.cust_firstname')->from('reviews');
+		$this->db->join('ratings', 'ratings.review_id = reviews.review_id', 'left'); 
+		$this->db->join('customers', 'customers.customer_id = reviews.customer_id', 'left'); 
+		$this->db->where('reviews.item_id',$pid);
+		$this->db->order_by("ratings.review_id", "DESC");
+		return $this->db->get()->result_array();
+	}
 	
 		
 	
