@@ -887,7 +887,13 @@ a.socialIcon:hover, .socialHoverClass {
 	padding-top: 0px;
 	padding-bottom: 0px;
 }
+@media only screen and (min-width: 50px) and (max-width: 767px) {
+	.widt_img_lo {
+	width:30% !important;
+}}
 @media only screen and (min-width: 50px) and (max-width: 639px) {
+
+
 .logo p {
 	text-align: center;
 }
@@ -1834,28 +1840,7 @@ ul {
 .bor_lef{ 
 	 border-right:1px solid #ddd;
 	 } 
-	/* .bor_top { */
-	/* border-top:1px solid #ddd; */
-	/* } */
-/* .bac_img { */
-	 /* background-image: url('../images/bac_img.png');  */
-  /* -webkit-background-size: cover; */
-  /* -moz-background-size: cover; */
-  /* -o-background-size: cover; */
-  /* background-size: cover; */
-/* } */
-/* .tab-content label,.col_a{ */
-	/* color:#fff; */
-/* } */
-	/* .tab-content li{ */
-	/* color:#f5f5f5; */
-/* }	 */
-/* .text-successs{ */
-	/* color:#f0ad4e; */
-/* } */
-/* .co_reg{ */
-	/* color:#18c718; */
-/* } */
+	
 @media screen and (max-width: 767px) {
 .our-features-box li{
 	width:100%;
@@ -1871,9 +1856,8 @@ ul {
 .our-features-box ul{
 	padding:0px;
 }
-<<<<<<< .mine
-}	
 
+}	
 
 
 
