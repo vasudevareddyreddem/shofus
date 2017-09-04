@@ -605,6 +605,34 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
+	/* relatedproduct list */
+	public function relatedproducts_get()
+	{
+		$name=$this->input->get('name');
+		$category_id=$this->input->get('category_id');
+		$subcategory_id=$this->input->get('subcategory_id');
+			if($category_id==''){
+			$message = array('status'=>1,'message'=>'category id name is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if($subcategory_id==''){
+			$message = array('status'=>1,'message'=>'subcategory id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if($name==''){
+			$message = array('status'=>1,'message'=>'product name is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			$searchname=substr($name, 0, 4);
+			$relatedproducts= $this->Customerapi_model->get_related_products_list($category_id,$subcategory_id,$searchname);
+		//echo $this->db->last_query();exit;
+		if(count($relatedproducts)>0){
+		
+			$message = array('status'=>1,'message'=>'related product list details','list'=>$relatedproducts);
+			$this->response($message,REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>1,'message'=>'No related product list ');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
 	/* homesearch  api */
 	public function homesearch_get()
 	{
@@ -2117,6 +2145,63 @@ class CustomerApi extends REST_Controller {
 				$message = array('status'=>1,'subcategorywisefilterresult'=>$subcategory_porduct_list,'message'=>'filter search result');
 				$this->response($message, REST_Controller::HTTP_OK);
 					//echo '<pre>';print_r($subcategory_porduct_list);exit;
+			
+		}
+		public function orderreturn_post(){
+			$order_item_id=$this->input->get('order_item_id');
+			$status_id=$this->input->get('status_id');
+			$returntype=$this->input->get('returntype');
+			$region=$this->input->get('region');
+			$size=$this->input->get('size');
+			$color=$this->input->get('color');
+			$checking=$this->Customerapi_model->checking_ststus_id($status_id,$order_item_id);
+			if(count($checking)>0){
+			
+			if($status_id==''){
+				$message = array('status'=>1,'message'=>'Status id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if($returntype==''){
+				$message = array('status'=>1,'message'=>'Return type is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if($region==''){
+				$message = array('status'=>1,'message'=>'Region is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if($order_item_id==''){
+				$message = array('status'=>1,'message'=>'order item id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+				if(isset($returntype) && $returntype==1){
+					$refundtype='Refund';
+				}else if(isset($returntype) && $returntype==2){
+					$refundtype='Exchange';
+				}else if(isset($returntype) && $returntype==3){
+					$refundtype='Replacement';
+				}
+				
+				$exchangedetails=array(
+						'color'=>isset($color)?$color:'',
+						'size'=>isset($size)?$size:'',
+						'region'=>isset($region)?$region:'',
+						'status_refund'=>isset($returntype)?$returntype:'',
+						'update_time'=>date('Y-m-d H:i:s A'),
+						);
+				$exchangesave= $this->Customerapi_model->update_refund_details($status_id,$exchangedetails);
+				if(count($exchangesave)>0){
+							$data=array('order_status'=>5);
+							$this->Customerapi_model->update_refund_details_inorders($order_item_id,$data);
+					$message = array('status'=>1,'message'=>'Your query submitted successfully');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}
+				
+		}else{
+			$message = array('status'=>1,'message'=>'status id invalid try again later!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+
+				
 			
 		}
 

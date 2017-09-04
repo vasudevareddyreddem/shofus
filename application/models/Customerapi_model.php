@@ -2034,6 +2034,26 @@ class Customerapi_model extends MY_Model
 		$this->db->order_by("ratings.review_id", "DESC");
 		return $this->db->get()->result_array();
 	}
+	public function update_refund_details($status_id,$data){
+		$this->db->where('status_id', $status_id);
+		return $this->db->update('order_status', $data);
+	}
+	public function update_refund_details_inorders($status_id,$data){
+		$this->db->where('order_item_id', $status_id);
+		return $this->db->update('order_items', $data);
+	}
+	public function checking_ststus_id($status_id,$order_item_id)
+	{
+		$this->db->select('*')->from('order_status');
+		$this->db->where('order_item_id',$order_item_id);
+		$this->db->where('status_id',$status_id);
+		return $this->db->get()->row_array();
+	}
+	public function get_related_products_list($catid,$subcatid,$name)
+	{
+		$sql = "SELECT * FROM products WHERE category_id ='".$catid."'AND subcategory_id ='".$subcatid."' AND  item_name LIKE '%".$name."%'";
+      return $this->db->query($sql)->result_array(); 
+	}
 	
 		
 	
