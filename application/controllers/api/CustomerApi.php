@@ -586,6 +586,25 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
+	/* product review list */
+	public function reviewlist_get()
+	{
+		$item_id=$this->input->get('item_id');
+			if($item_id==''){
+			$message = array('status'=>1,'message'=>'item id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			$review_details= $this->Customerapi_model->get_products_reviews($item_id);
+		//echo '<pre>';print_r($wishlist);exit;
+		if(count($review_details)>0){
+		
+			$message = array('status'=>1,'count'=>count($review_details),'message'=>'product review details','list'=>$review_details);
+			$this->response($message,REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>1,'message'=>'product having no review');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
 	/* homesearch  api */
 	public function homesearch_get()
 	{
@@ -1091,38 +1110,7 @@ class CustomerApi extends REST_Controller {
 
 	}
 
-	/* Item revirw*/ 
-	public function itemreview_post()
-	{
-	 
-		$get=$this->input->get();
-		//echo '<pre>';print_r($get);exit;
-		$review=array(
-		'customer_id'=>$get['customer_id'],	
-		'item_id'=>$get['item_id'],
-		'name'=>$get['name'],
-		'email'=>$get['email'],
-		'review_content'=>$get['review'],
-		);
-		//echo '<pre>';print_r($review);exit;
-		$review_store= $this->Customerapi_model->store_review($review);
-		//echo $this->db->last_query();exit;
-		if(count($review_store)>0){
-			$message = array
-			(
-				'status'=>1,
-				'Review'=>'Review Successfully Thank You!',
-			);
-			$this->response($message, REST_Controller::HTTP_OK);
-		}else{
-			$message = array
-			(
-				'status'=>0,
-				'Review'=>'Review Failed!',
-			);
-			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-		}
-	}
+	
 
 	/* item wise review*/
 	public function itemreviews_get()
