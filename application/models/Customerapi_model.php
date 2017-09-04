@@ -628,7 +628,11 @@ class Customerapi_model extends MY_Model
 		return $this->db->query($sql)->result_array();
 		//echo $this->db->last_query();exit;
 	}
-	
+		public function update_amount_privous_searchdata($min,$max,$id)
+	{
+		$sql1="UPDATE fliter_search SET mini_amount ='".$min."', max_amount ='".$max."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
 	public function get_all_previous_search_fields($ipadd)
 	{
 		$this->db->select('*')->from('fliter_search');
@@ -733,9 +737,21 @@ class Customerapi_model extends MY_Model
 		$this->db->group_by('category_id');
 		return $this->db->get()->result_array();
 	}
+	public function get_subcategory_iddata_filterssearh()
+	{
+		$this->db->select('subcat_wise_fliter_search.category_id,subcat_wise_fliter_search.subcategory_id,subcat_wise_fliter_search.Ip_address')->from('subcat_wise_fliter_search');
+		$this->db->group_by('category_id');
+		$this->db->group_by('subcategory_id');
+		return $this->db->get()->result_array();
+	}
 	public function delete_privous_searchdata($id,$ipaddress)
 	{
 		$sql1="DELETE FROM fliter_search WHERE id = '".$id."' AND Ip_address ='".$ipaddress."'";
+		return $this->db->query($sql1);
+	}
+	public function delete_subcategory_privous_searchdata($id,$ipaddress)
+	{
+		$sql1="DELETE FROM subcat_wise_fliter_search WHERE id = '".$id."' AND Ip_address ='".$ipaddress."'";
 		return $this->db->query($sql1);
 	}
 	
@@ -1331,8 +1347,58 @@ class Customerapi_model extends MY_Model
 	$this->db->group_by('subcat_wise_fliter_search.status');
 	$this->db->group_by('subcat_wise_fliter_search.size');
 	$this->db->group_by('subcat_wise_fliter_search.color');
+	$this->db->group_by('subcat_wise_fliter_search.compatible_mobiles');
+	$this->db->group_by('subcat_wise_fliter_search.producttype');
+	$this->db->group_by('subcat_wise_fliter_search.mega_pixel');
+	$this->db->group_by('subcat_wise_fliter_search.sensor_type');
+	$this->db->group_by('subcat_wise_fliter_search.battery_type');
+	$this->db->group_by('subcat_wise_fliter_search.display_size');
+	$this->db->group_by('subcat_wise_fliter_search.connectivity');
+	$this->db->group_by('subcat_wise_fliter_search.ram');
+	$this->db->group_by('subcat_wise_fliter_search.voice_calling_facility');
+	$this->db->group_by('subcat_wise_fliter_search.operatingsystem');
+	$this->db->group_by('subcat_wise_fliter_search.internal_storage');
+	$this->db->group_by('subcat_wise_fliter_search.battery_capacity');
+	$this->db->group_by('subcat_wise_fliter_search.primary_camera');
+	$this->db->group_by('subcat_wise_fliter_search.processor_clock_speed');
+	$this->db->group_by('subcat_wise_fliter_search.wireless_speed');
+	$this->db->group_by('subcat_wise_fliter_search.frequency_band');
+	$this->db->group_by('subcat_wise_fliter_search.broadband_compatibility');
+	$this->db->group_by('subcat_wise_fliter_search.usb_ports');
+	$this->db->group_by('subcat_wise_fliter_search.frequency');
+	$this->db->group_by('subcat_wise_fliter_search.antennae');
+	$this->db->group_by('subcat_wise_fliter_search.processor');
+	$this->db->group_by('subcat_wise_fliter_search.processor_brand');
+	$this->db->group_by('subcat_wise_fliter_search.life_style');
+	$this->db->group_by('subcat_wise_fliter_search.storage_type');
+	$this->db->group_by('subcat_wise_fliter_search.graphics_memory');
+	$this->db->group_by('subcat_wise_fliter_search.touch_screen');
+	$this->db->group_by('subcat_wise_fliter_search.weight');
+	$this->db->group_by('subcat_wise_fliter_search.memory_type');
+	$this->db->group_by('subcat_wise_fliter_search.ram_type');
+	$this->db->group_by('subcat_wise_fliter_search.network_type');
+	$this->db->group_by('subcat_wise_fliter_search.speciality');
+	$this->db->group_by('subcat_wise_fliter_search.operating_system_version_name');
+	$this->db->group_by('subcat_wise_fliter_search.resolution_type');
+	$this->db->group_by('subcat_wise_fliter_search.secondary_camera');
+	$this->db->group_by('subcat_wise_fliter_search.sim_type');
+	$this->db->group_by('subcat_wise_fliter_search.clock_speed');
+	$this->db->group_by('subcat_wise_fliter_search.cores');
+	$this->db->group_by('subcat_wise_fliter_search.theme');
+	$this->db->group_by('subcat_wise_fliter_search.dial_shape');
+	$this->db->group_by('subcat_wise_fliter_search.compatibleos');
+	$this->db->group_by('subcat_wise_fliter_search.usages');
+	$this->db->group_by('subcat_wise_fliter_search.display_type');
+	$this->db->group_by('subcat_wise_fliter_search.occasion');
+	$this->db->group_by('subcat_wise_fliter_search.ideal_for');
+	$this->db->group_by('subcat_wise_fliter_search.material');
+	$this->db->group_by('subcat_wise_fliter_search.gemstones');
+	$this->db->group_by('subcat_wise_fliter_search.strap_color');
+	$this->db->group_by('subcat_wise_fliter_search.dial_color');
+	$this->db->group_by('subcat_wise_fliter_search.packof');
 	$query=$this->db->get()->result_array();
 		foreach ($query as $sorting){
+			
 			if($sorting['cusine']!=''){
 				$return['cusine'] = $this->get_subcategorycusine($sorting['cusine'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
@@ -1349,8 +1415,8 @@ class Customerapi_model extends MY_Model
 			if($sorting['discount']!=''){
 			$return['discount'] = $this->get_subcategorydiscount($sorting['discount'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
-			if($sorting['mobileacc']!=''){
-			$return['mobileacc'] = $this->get_subcategorymobileacc($sorting['mobileacc'],$sorting['category_id'],$sorting['subcategory_id']);
+			if($sorting['compatible_mobiles']!=''){
+			$return['compatible_mobiles'] = $this->get_subcategorymobileacc($sorting['compatible_mobiles'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
 			if($sorting['producttype']!=''){
 			$return['producttype'] = $this->get_subcategoryproducttype($sorting['producttype'],$sorting['category_id'],$sorting['subcategory_id']);
@@ -1496,7 +1562,7 @@ class Customerapi_model extends MY_Model
 			
 			$return['mini_amount'] = $this->get_subcategoryamount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id'],$sorting['subcategory_id']);
 			$return['status'] = $this->get_subcategorystatus($sorting['status'],$sorting['category_id'],$sorting['subcategory_id']);
-			
+			//echo $this->db->last_query();exit;
 		}
 		if(!empty($return))
 		{
@@ -1854,7 +1920,7 @@ class Customerapi_model extends MY_Model
 	public function get_subcategorymobileacc($mobileacc,$cid,$subcat){
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',1);
-		$this->db->where('mobileacc',$mobileacc);
+		$this->db->where('compatible_mobiles',$mobileacc);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
@@ -1945,6 +2011,18 @@ class Customerapi_model extends MY_Model
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
 		
+	}
+	
+	public function get_all_previous_subcategorywise_search_fields($ip)
+	{
+		$this->db->select('*')->from('subcat_wise_fliter_search');
+		$this->db->where('Ip_address',$ip);
+		return $this->db->get()->result_array();
+	}
+	public function update_amount_privous_subcategory_wise_searchdata($min,$max,$id)
+	{
+		$sql1="UPDATE subcat_wise_fliter_search SET mini_amount ='".$min."', max_amount ='".$max."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
 	}
 	
 		

@@ -1687,7 +1687,14 @@ class CustomerApi extends REST_Controller {
 					'create'=>date('Y-m-d H:i:s'),
 				);
 				$filtersdata= $this->Customerapi_model->save_searchdata($filterdata);
-				
+					if(count($filtersdata)>0){
+						$removesearch= $this->Customerapi_model->get_all_previous_search_fields();
+							foreach ($removesearch as $list){
+								$this->Customerapi_model->update_amount_privous_searchdata($mini_amount,$max_amount,$list['id']);
+
+							}
+
+					}
 					$categorywise= $this->Customerapi_model->get_search_all_subcategory_products();
 					//echo '<pre>';print_r($categorywise);
 						if(count($categorywise)>0){
@@ -1934,16 +1941,27 @@ class CustomerApi extends REST_Controller {
 			
 		}
 		public function subcategory_wise_search_post(){
+			
+			//echo 'fddf';exit;
 			$Ip_address=$this->input->get('Ip_address');
-			$category_id=$this->input->get('category_id');
+			$category_ids=$this->input->get('category_id');
 			$subcategory_id=$this->input->get('subcategory_id');
 			$mini_amount=$this->input->get('mini_amount');
 			$max_amount=$this->input->get('max_amount');
 			
+			$getcategory_id= $this->Customerapi_model->get_subcategory_iddata_filterssearh();
+			//echo '<pre>';print_r($getcategory_id);exit;
+			if($getcategory_id[0]['subcategory_id']!=$subcategory_id && $getcategory_id[0]['Ip_address']==$Ip_address){
+				$previousdata= $this->Customerapi_model->get_all_previous_subcategorywise_search_fields($Ip_address);
+				foreach ($previousdata as $list){
+					$this->Customerapi_model->delete_subcategory_privous_searchdata($list['id'],$Ip_address);
+				}
+			}
+			//echo '<pre>';print_r($previousdata);exit;
 			if($Ip_address==''){
 				$message = array('status'=>1,'message'=>'Ip address is required!');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}else if($category_id==''){
+			}else if($category_ids==''){
 				$message = array('status'=>1,'message'=>'category id is required!');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}else if($subcategory_id==''){
@@ -2016,7 +2034,7 @@ class CustomerApi extends REST_Controller {
 			
 			$filters=array(
 					'Ip_address'=>$Ip_address,
-					'category_id'=>$category_id,
+					'category_id'=>$category_ids,
 					'subcategory_id'=>$subcategory_id,
 					'mini_amount'=>isset($mini_amount) ? $mini_amount:'',
 					'max_amount'=>isset($max_amount) ? $max_amount:'',
@@ -2027,7 +2045,7 @@ class CustomerApi extends REST_Controller {
 					'discount'=>isset($discount) ? $discount:'',
 					'color'=>isset($color) ? $color:'',
 					'size'=>isset($size) ? $size:'',
-					'mobileacc'=>isset($mobileacc) ? $mobileacc:'',
+					'compatible_mobiles'=>isset($mobileacc) ? $mobileacc:'',
 					'producttype'=>isset($producttype) ? $producttype:'',
 					'mega_pixel'=>isset($mega_pixel) ? $mega_pixel:'',
 					'sensor_type'=>isset($sensor_type) ? $sensor_type:'',
@@ -2079,9 +2097,38 @@ class CustomerApi extends REST_Controller {
 					'status'=>isset($status) ? $status:'',
 					'create'=>date('Y-m-d H:i:s'),
 					);
-				//$filtersdata= $this->Customerapi_model->save_sub_searchdata($filters);
+				$filtersdata= $this->Customerapi_model->save_sub_searchdata($filters);
+					if(count($filtersdata)>0){
+						$removesearch= $this->Customerapi_model->get_all_previous_subcategorywise_search_fields($Ip_address);
+						foreach ($removesearch as $list){
+						$this->Customerapi_model->update_amount_privous_subcategory_wise_searchdata($mini_amount,$max_amount,$list['id']);
+
+					}
+				}
 				$subcategorywise= $this->Customerapi_model->get_search_all_subcategorywise_products();
-				echo '<>pre';print_r($subcategorywise);exit;
+				//echo '<pre>';print_r($subcategorywise);exit;
+					if(count($subcategorywise)>0){
+							foreach ($subcategorywise as $lists){
+							foreach ($lists as $li){
+							$idslist[]=$li['item_id'];
+							$products[]=$li;
+							}
+							}
+						$result = array_unique($idslist);
+
+				//echo '<pre>';print_r($result);exit;
+						foreach ($result as $pids){
+							$products_list[]=$this->Customerapi_model->get_product_details($pids);
+
+						}
+						$subcategory_porduct_list=$products_list;
+					}else{
+
+						$subcategory_porduct_list=array();
+					}
+				$message = array('status'=>1,'subcategorywisefilterresult'=>$subcategory_porduct_list,'message'=>'filter search result');
+				$this->response($message, REST_Controller::HTTP_OK);
+					//echo '<pre>';print_r($subcategory_porduct_list);exit;
 			
 		}
 
