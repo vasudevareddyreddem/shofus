@@ -651,11 +651,7 @@ $(document).ready(function() {
             },
 			tin: {
                validators: {
-                notEmpty: {
-            message: 'Please Upload GSTIN'
-          },
-				
-				regexp: {
+                regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' Tin can only consist of alphanumaric, space and dot'
 				}
@@ -664,11 +660,7 @@ $(document).ready(function() {
             },
 			tan: {
                validators: {
-                notEmpty: {
-            message: 'Please Upload TAN'
-          },
-				
-				regexp: {
+               regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' Tin can only consist of alphanumaric, space and dot'
 				}
@@ -677,11 +669,7 @@ $(document).ready(function() {
             },
 			cst: {
                validators: {
-                notEmpty: {
-            message: 'Please Upload CIN'
-          },
-				
-				regexp: {
+               regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' Cst can only consist of alphanumaric, space and dot'
 				}
@@ -690,12 +678,7 @@ $(document).ready(function() {
             },
 			gstin: {
                validators: {
-                 notEmpty: {
-            message: 'Please Upload Signature'
-          },
-        
-				
-				regexp: {
+                regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: ' GSTIN can only consist of alphanumaric, space and dot'
 				}
@@ -704,9 +687,6 @@ $(document).ready(function() {
             },
             gstimag: {
            validators: {
-             notEmpty: {
-            message: 'Signature Image is required'
-          },
           regexp: {
           regexp: /\.(jpe?g|png)$/i,
           message: 'Uploaded file is not a valid image. Only JPG, PNG and Jpeg files are allowed'
