@@ -4593,8 +4593,15 @@ input[type=radio]:checked + span::before {
   position: relative;
   display: block;
 }
+/* .box-product .img-wrapper > a > img { */
+  /* width: 100%; */
+
+/* } */
 .box-product .img-wrapper > a > img {
-  width: 100%;
+  width: auto;
+  min-height:150px;
+  height:50px;
+  overflow:hidden;
 }
 .box-product .img-wrapper .tags {
   position: absolute;
