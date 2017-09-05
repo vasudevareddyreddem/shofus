@@ -107,7 +107,7 @@
             <div class="box-product">
               <div class="img-wrapper  img_hover">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
-               <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
+               <img style="width:200px;height:200px;" class="thumbnail"src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
 				 
            
                 </a>
@@ -457,7 +457,7 @@
 
   <div class="popup1" style="display: block;">
   <div class="newsletter-sign-box">
-    <div class="newsletter"> <img src="<?php echo base_url(); ?>assets/home/images/close-icon.ico" alt="close" class="x" onClick="HideMe();">
+    <div class="newsletter"> <!--<img src="<?php echo base_url(); ?>assets/home/images/close-icon.ico" alt="close" class="x" onClick="HideMe();">-->
       <form method="post" id="popup-newsletter" name="popup-newsletter" class="email-form">
         <h3>Select Your Delivery Location</h3>
         <div class="newsletter-form">
