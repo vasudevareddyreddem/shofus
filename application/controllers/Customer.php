@@ -1370,6 +1370,10 @@ class Customer extends Front_Controller
 	 
 	 
  }
+ public function nearstores(){
+	$this->template->write_view('content', 'customer/nearstores');
+				$this->template->render(); 
+ }
 
 
 
