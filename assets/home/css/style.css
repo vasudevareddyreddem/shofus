@@ -4578,7 +4578,7 @@ input[type=radio]:checked + span::before {
 .box-product-outer {
   margin: 5px;
   padding: 15px;
-  border: 1px solid #e4ebf3;
+  /* border: 1px solid #e4ebf3; */
   border-radius: 0;
   /* &:hover {
     @include box-shadow(0 6px 12px rgba(0, 0, 0, .175));
