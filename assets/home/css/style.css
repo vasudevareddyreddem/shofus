@@ -4145,7 +4145,7 @@ body {
 body,
 a,
 .btn-default {
-  color: #666;
+  color: #555;
 }
 
 .btn {
@@ -4660,7 +4660,7 @@ input[type=radio]:checked + span::before {
   color: #ef5350;
 }*/
 .box-product h6 a {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.4;
   display: block;
   text-align:center;

@@ -137,25 +137,26 @@
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
 				<div class="price">
                
-				<div class="pull-left" ><?php echo ($item_price); ?> 
-			<?php if($percentage!=''){ ?>
-				<span class="label-tags"><span class="label label-default">-<?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
+				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
+			<?php if($percentage!=''){ ?> &nbsp;
+			<span class="price-old">₹ <?php echo $orginal_price; ?></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 0, '.', ''); ?>% off</p></span>
 			<?Php }else{ ?>
 			<?php } ?>
 				</div>
-				<span class="price-old"><?php echo $orginal_price; ?></span>
+				<div class="clearfix"></div>
             
               </div>
             
               
-              <div class="rating">
+             <!-- <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-half-o"></i>
                 <a href="#">(5 reviews)</a>
-              </div>
+              </div>-->
             </div>
           </div>
             </div>

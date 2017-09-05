@@ -1377,5 +1377,6 @@ class Customer extends Front_Controller
 
 
 
+
 }		
 ?>
