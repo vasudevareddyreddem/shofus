@@ -1374,6 +1374,10 @@ class Customer extends Front_Controller
 	$this->template->write_view('content', 'customer/nearstores');
 				$this->template->render(); 
  }
+ public function productlist(){
+	$this->template->write_view('content', 'customer/productlist');
+				$this->template->render(); 
+ }
 
 
 
