@@ -4598,10 +4598,11 @@ input[type=radio]:checked + span::before {
 
 /* } */
 .box-product .img-wrapper > a > img {
-  width: auto;
-  min-height:150px;
-  height:50px;
-  overflow:hidden;
+  /* width: auto; */
+  /* min-height:150px; */
+  /* height:50px; */
+  /* overflow:hidden; */
+  width: 100%; 
 }
 .box-product .img-wrapper .tags {
   position: absolute;
