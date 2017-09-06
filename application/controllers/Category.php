@@ -1444,7 +1444,14 @@ function filtersearch(){
 	$caterory_id=base64_decode($this->uri->segment(3));
 	$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
 	$data['category_name']= $this->category_model->get_category_name($caterory_id);
-	$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id);
+	$sid=$this->uri->segment(4);
+	if($sid!=''){
+		//echo base64_decode($this->uri->segment(4));
+		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,base64_decode($sid));
+	}else{
+		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,$sid);
+	}
+	
 	$data['category_id']=$this->uri->segment(3);
 	if($caterory_id==18){
 		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);

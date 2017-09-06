@@ -345,7 +345,7 @@ class Adddetails extends Seller_adddetails{
 			$newpassword=md5($post['password']);
 			$conpassword=md5($post['confirmpassword']);
 			if($newpassword == $conpassword){
-				$changedata=array('seller_password'=>$conpassword);
+				$changedata=array('seller_password'=>$conpassword,'org_password'=>$post['confirmpassword']);
 				$passwordchange = $this->adddetails_model->setpassword($seller_id,$changedata);
 				if(count($passwordchange)>0){
 					$sellerdetails = $this->adddetails_model->getseller_details($seller_id);
@@ -362,7 +362,7 @@ class Adddetails extends Seller_adddetails{
 						
 						/* for notification purpose*/
 					$completeregistration = $this->adddetails_model->update_seller_competed($seller_id,1);
-					
+					$sellerdetails = $this->adddetails_model->getseller_details($seller_id);
 					$sellerlogindetails  = array(
 					'seller_id'    => $sellerdetails['seller_id'],
 					'seller_name'  => $sellerdetails['seller_name'],

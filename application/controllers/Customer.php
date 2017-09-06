@@ -21,6 +21,8 @@ class Customer extends Front_Controller
 		$post=$this->input->post();
 		
 		$locationdata= $this->home_model->getlocations();
+		
+		//echo '<pre>';print_r($post);exit;
 		$loacationname=array();
 		foreach ($locationdata as $list){
 			if (in_array($list['location_id'], $post['locationarea'])) {
@@ -29,6 +31,7 @@ class Customer extends Front_Controller
 		}
 		$locationdatadetails=implode(", ",$loacationname);
 		$this->session->set_userdata('location_area',$locationdatadetails);
+		$this->session->set_userdata('location_ids',$post['locationarea']);
 		//echo $this->session->userdata('location_area');exit;
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
@@ -1371,12 +1374,24 @@ class Customer extends Front_Controller
 	 
  }
  public function nearstores(){
-	$this->template->write_view('content', 'customer/nearstores');
-				$this->template->render(); 
+	 $locationdatadetails=$this->session->userdata('location_ids');
+	
+	
+	foreach ($locationdatadetails as $list){
+	$seller_list[]= $this->customer_model->get_seller_details($list);	
+	}
+	
+	$data['seller_list']=$seller_list;
+	 //echo '<pre>';print_r($seller_list);exit;
+	$this->template->write_view('content', 'customer/nearstores',$data);
+	$this->template->render(); 
  }
  public function productlist(){
-	$this->template->write_view('content', 'customer/productlist');
-				$this->template->render(); 
+	 $sid=base64_decode($this->uri->segment(3));
+	 $data['seller_cat_list']= $this->customer_model->get_seller_category_details($sid);
+	//echo '<pre>';print_r($data['seller_cat_list']);exit;
+	$this->template->write_view('content', 'customer/productlist',$data);
+	$this->template->render(); 
  }
 
 
