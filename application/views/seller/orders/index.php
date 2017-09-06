@@ -28,23 +28,7 @@
   <section class="content ">
   <section id="main-content">
     <section class="wrapper">
-      <!--<div class="row">
-        <div class="col-lg-12">
-       <div class="row">
-       <div class="col-md-7">
-           <h3 class="page-header"><i class="fa fa-list-ol" aria-hidden="true"></i>Orders</h3></div>
-          <div class="col-md-5 pull-right">
-         <form class="navbar-form" action="<?php echo base_url(); ?>seller/categories/search" method="post">
-          <input class="form-control" placeholder="Search" name="search" type="text">
-         <button class="btn btn-default" type="submit">Go!</button>
-          </form>
-            </div></div> 
-          <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="<?php echo base_url();?>seller/dashboard">Home</a></li>
-            <li><i class="fa fa-list-ol" aria-hidden="true"></i>Orders</li>
-          </ol>
-        </div>
-      </div>-->
+     
       <div class="row">
         <div class="col-md-12">
           <section class="panel">
@@ -59,15 +43,13 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                 <th>S.No</th>
-                <th>Order Id</th>
-                <th>Product Name</th>
-                <th>Total Price</th>
-                <!-- <th>Delivery Date</th>
-                <th>Delivery Time</th> -->
-                <th>Customer Details</th>
-                <th>Order Status</th>
-                <!-- <th>Delete</th> -->
+						<th>Order Id</th>
+						<th>Product Name</th>
+						<th>Qty</th>
+						<th>Item Price</th>
+						<th>Total Price</th>
+						<th>Customer Details</th>
+						<th>Order Status</th>
                     </tr>
                   </thead>
                   <?php if(!empty($ordersdata)): ?>
@@ -79,14 +61,12 @@
      ?>
 
                 <tr>
-                  <td><?= ++$count ?></td>
                   <td><?php  echo $orders_data->order_id; ?></td>
                   <td><?php  echo $orders_data->item_name; ?></td>
+                  <td><?php  echo $orders_data->qty; ?></td>
+                  <td><?php  echo $orders_data->item_price; ?></td>
                   <td><?php  echo $orders_data->total_price; ?></td>
-                 <!-- <td><?php  echo $orders_data->delivery_date; ?></td>
-                  <td><?php  echo $orders_data->delivery_time; ?></td>
- -->
-                   <td><table class="table table-bordered qtytable">
+					<td><table class="table table-bordered qtytable">
                     <tbody>
                       <tr>
                         <th>Name</th>
@@ -107,22 +87,25 @@
                     </tbody>
                   </table></td>
 
-               <td class="text-center" style="color:<?php  if( $orders_data->order_status=='' || $orders_data->order_status=='0' ){echo "Red";}elseif($orders_data->order_status=='1'){echo "Blue";}elseif($orders_data->order_status=='2'){echo "Brown";}elseif($orders_data->order_status=='3'){echo "Green";}
+				<td class="text-center" style="color:font-weight:bold">
+			
+				<?php if($orders_data->status_confirmation==1 && $orders_data->status_packing=='' && $orders_data->status_road=='' && $orders_data->status_deliverd==''){
+					echo "Order Confirmation";  
+				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road=='' && $orders_data->status_deliverd==''){
+					  echo "Packing Order";
+				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road==3 && $orders_data->status_deliverd==''){
+					  echo "Order on Road";
+				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road==3 && $orders_data->status_deliverd==4){
+					  echo "Delivered";
+				  }else{
+					 echo "error"; 
+				  }
+				  ?>
+					
+					
+			
 
-         else{echo "Orange";} ?>;font-weight:bold">
-
-        <?php  
-
-        if($orders_data->order_status=='' || $orders_data->order_status=='0'){echo "Not Assigned";}
-        elseif($orders_data->order_status=='1'){ ?> <a href="<?php echo base_url(); ?>seller/orders/assigned_orders"><?php echo "Assigned"; ?></a> <?php } 
-         elseif($orders_data->order_status=='2'){ ?><a href="<?php echo base_url(); ?>seller/orders/inprogress_orders" style="color: Brown"><?php echo "In-Progress";  ?></a> <?php }
-         elseif($orders_data->order_status=='3'){ ?> <a href="<?php echo base_url(); ?>seller/orders/delivered_orders" style="color: Green"><?php echo "Delivered";  ?></a> <?php }
-        else{
-          echo "N/A";
-        }
-        ?>
-
-        </td>         
+				</td>         
 
                    <!-- <td>  <a href="<?php echo base_url(); ?>seller/orders/delete/<?php  echo $orders_data->order_id; ?>" onclick="return checkDelete('<?php  echo $orders_data->order_id; ?>')"><i class="fa fa-trash-o" style="font-size:18px"></i></a></td> -->
 
@@ -164,7 +147,7 @@ return confirm('Are you sure want to delete "'+id +'" Order?');
 }
 $(document).ready(function() {
     $('#example1').DataTable( {
-        "order": [[ 2, "desc" ]]
+        "order": [[ 1, "desc" ]]
     } );
 } );
 

@@ -223,11 +223,12 @@
 				</div>
 			</div>
 	</div>
-	<div class="row col-md-12 form-group" id="sizeid"  >
+	<div class="row col-md-12 form-group" id="sizesid" style="display:none";>
 			<label>Size</label>
 			<input class="form-control" id="sizes"  type="text" name="sizes"/>
 					
 	</div>
+	
 	<div class="row col-md-12 form-group" id="colorid">
 			<label>Color</label>
 			<input class="form-control" id="colors"  type="text" name="colors"/>
@@ -953,25 +954,25 @@ $(document).ready(function(){
   
 });	
 
-
+ $('#sizeid').hide();
  function getproductinputs(id){
 	
 	 if(id==18){
 		  $('#foodcategoryinputs').show();
 		  $('#brand').hide();
 		  $('#idealfor').hide();
-		  $('#sizeid').hide();
+		  $('#sizesid').hide();
 		  $('#colorid').hide();
 	  }else if(id==21){
 		$('#colorid').hide();  
-		$('#sizeid').show();  
+		$('#sizesid').hide();  
 		$('#ideal_for').hide();  
 		  
 	  }else{
 		  $('#foodcategoryinputs').hide();
 		
 		  $('#idealfor').show();
-		  $('#sizeid').show();
+		  $('#sizesid').show();
 		  $('#colorid').show();
 	  }
 	 
@@ -1008,11 +1009,11 @@ function getinputfiledshideshow(ids){
 }
 function getspecialinputs(ids){
 	if(ids==7 || ids==24){
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').hide();
 	}
 	if(ids==40){
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').hide();
 		$('#mobilesinputs').show();
 	}else{
@@ -1021,7 +1022,7 @@ function getspecialinputs(ids){
 	}
 	
 	if(ids==9){
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').hide();
 	}
 	if(ids==10){
@@ -1040,7 +1041,7 @@ function getspecialinputs(ids){
 	}
 	if(ids==11 || ids==21){
 		$('#product_themeetc').show();
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').hide();
 		//$('#ideal_for').hide();
 	}else{
@@ -1049,7 +1050,7 @@ function getspecialinputs(ids){
 	}
 	if(ids==13 || ids==16 || ids==17){
 		
-		$('#sizeid').show();
+		$('#sizesid').show();
 		$('#colorid').show();
 		$('#mensfabricsinputs1').show();
 	}else{
@@ -1058,7 +1059,7 @@ function getspecialinputs(ids){
 	}
 	if(ids==14 || ids==19 || ids==20 || ids==8){
 		$('#winterwaerinputs1').show();
-		$('#sizeid').show();
+		$('#sizesid').show();
 		$('#colorid').show();
 	}else{
 		$('#winterwaerinputs1').hide();
@@ -1073,7 +1074,7 @@ function getspecialinputs(ids){
 	}
 	
 	if(ids==18){
-		$('#sizeid').show();
+		$('#sizesid').show();
 		$('#colorid').show();
 	}
 	if(ids==50){
@@ -1083,7 +1084,7 @@ function getspecialinputs(ids){
 	}
 	if(ids==19){
 		$('#winterwaerinputs').show();
-		$('#sizeid').show();
+		$('#sizesid').show();
 		$('#colorid').show();
 	}else{
 		$('#winterwaerinputs').hide();
@@ -1092,14 +1093,14 @@ function getspecialinputs(ids){
 	
 	if(ids==22){
 		$('#mensaccessoriesinputs').show();
-		$('#sizeid').show();
+		$('#sizesid').show();
 		$('#colorid').show();
 	}else{
 		$('#mensaccessoriesinputs').hide();
 	}
 	if(ids==51){
 		$('#mensehinicwearinputs').show();
-		$('#sizeid').show();
+		$('#sizesid').show();
 		$('#colorid').show();
 	}else{
 		$('#mensehinicwearinputs').hide();
@@ -1111,11 +1112,11 @@ function getspecialinputs(ids){
 		$('#mensfabricsinputs').hide();
 	}
 	if(ids==24){
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').hide();
 	}
 	if(ids==26){
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').hide();
 		$('#idealfor').hide();
 	}
@@ -1125,67 +1126,67 @@ function getspecialinputs(ids){
 		$('#watchesinputs').hide();	
 	}
 	if(ids==25){
-		$('#sizeid').show();
+		$('#sizesid').show();
 		$('#colorid').show();
 		$('#womensaccessoriesinputs').show();
 	}else{
 		$('#womensaccessoriesinputs').hide();	
 	}
 	if(ids==52){
-		$('#sizeid').show();
+		$('#sizesid').show();
 		$('#colorid').show();
 		$('#winterwaerinputs').show();
 	}else{
 		$('#winterwaerinputs').hide();	
 	}
 	if(ids==28){
-		$('#sizeid').show();
+		$('#sizesid').show();
 		$('#colorid').show();
 		$('#winterwaerinputs').show();
 	}else{
 		$('#winterwaerinputs').hide();	
 	}
 	if(ids==29){
-		$('#sizeid').show();
+		$('#sizesid').show();
 		$('#colorid').show();
 		$('#winterwaerinputs').show();
 	}else{
 		$('#winterwaerinputs').hide();	
 	}
 	if(ids==30){
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').hide();
 		$('#mobileaccessoriesinputs').show();
 	}else{
 		$('#mobileaccessoriesinputs').hide();	
 	}
 	if(ids==31 || ids==32  || ids==33){
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').hide();
 	}
 	if(ids==34){
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').show();
 		$('#camerainputs').show();
 	}else{
 		$('#camerainputs').hide();	
 	}
 	if(ids==35){
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').hide();
 		$('#tabletsinputs').show();
 	}else{
 		$('#tabletsinputs').hide();	
 	}
 	if(ids==36){
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').hide();
 		$('#routersinputs').show();
 	}else{
 		$('#routersinputs').hide();	
 	}
 	if(ids==39){
-		$('#sizeid').hide();
+		$('#sizesid').hide();
 		$('#colorid').hide();
 		$('#laptopsinputs').show();
 	}else{
@@ -1222,9 +1223,7 @@ function getspecialinputs(ids){
 			},
 			skuid: {
 					validators: {
-					notEmpty: {
-						message: 'Sku id is required'
-					},
+				
                    regexp: {
 					regexp: /^[a-zA-Z0-9. -_&]+$/,
 					message: 'Sku id can only consist of alphanumaric, space and dot'
@@ -1233,9 +1232,7 @@ function getspecialinputs(ids){
 			},
 			otherunique: {
 					validators: {
-					notEmpty: {
-						message: 'Other Unique code is required'
-					},
+				
                    regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Other Unique can only consist of alphanumaric, space and dot'
@@ -1345,9 +1342,7 @@ function getspecialinputs(ids){
 			},
 			keywords: {
 					validators: {
-					notEmpty: {
-						message: 'Meta keywords is required'
-					},
+				
 					regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Meta keywords can only consist of alphanumaric, space and dot'
@@ -1356,9 +1351,7 @@ function getspecialinputs(ids){
 			},
 			title: {
 					validators: {
-					notEmpty: {
-						message: 'Meta title is required'
-					},
+				
 					regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Meta title can only consist of alphanumaric, space and dot'
@@ -1406,9 +1399,7 @@ function getspecialinputs(ids){
 			
 			ideal_for: {
 					validators: {
-					notEmpty: {
-						message: 'Ideal for is required'
-					},
+					
 					regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Ideal for can only consist of alphanumaric, space and dot'
@@ -1442,6 +1433,15 @@ function getspecialinputs(ids){
 					notEmpty: {
 						message: 'Type is required'
 					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Type can only consist of alphanumaric, space and dot'
+					}
+				}
+			},		
+			product_type2: {
+					validators: {
+					
 					regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Type can only consist of alphanumaric, space and dot'
@@ -1774,6 +1774,24 @@ function getspecialinputs(ids){
 					}
 				}
 			},
+			product_display_size3: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'DisPlay Size can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_display_size2: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'DisPlay Size can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
 			product_connectivity: {
 					validators: {
 					notEmpty: {
@@ -1793,6 +1811,42 @@ function getspecialinputs(ids){
 					regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Ram can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_ram3: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Ram can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_ram1: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Ram can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_ram2: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Ram can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			operating_system1: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'operating system only consist of alphanumaric, space and dot'
 					}
 				}
 			},
@@ -1818,6 +1872,42 @@ function getspecialinputs(ids){
 					}
 				}
 			},
+			operating_system3: {
+					validators: {
+				
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Operating system can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			operating_system2: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Operating system can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			internal_storage2: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Internal storage can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			internal_storage3: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Internal storage can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
 			internal_storage: {
 					validators: {
 					notEmpty: {
@@ -1829,11 +1919,101 @@ function getspecialinputs(ids){
 					}
 				}
 			},
+			internal_storage4: {
+					validators: {
+				
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Internal storage can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_display_size1: {
+					validators: {
+				
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'SCREEN SIZE can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			battery_capacity2: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Battery capacity can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
 			battery_capacity: {
 					validators: {
 					notEmpty: {
 					message: 'Battery capacity is required'
 					},
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Battery capacity can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_type1: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Type can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_type3: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Type can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			primary_camera2: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Primary camera can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			primary_camera1: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Primary camera can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_processor_brand2: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Processor brand can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			product_processor_brand1: {
+					validators: {
+					
+					regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Processor brand can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
+			battery_capacity1: {
+					validators: {
+					
 					regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Battery capacity can only consist of alphanumaric, space and dot'
