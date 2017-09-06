@@ -1552,18 +1552,22 @@ class Category_model extends MY_Model
 	$this->db->select('products.*')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
-	$this->db->join('item_wishlist', 'item_wishlist.item_id =products.item_id', 'left');	
+	$this->db->join('item_wishlist', 'item_wishlist.item_id =products.item_id', 'left');
+		
     $this->db->where_in('products.category_id', $category_ids);
     $this->db->where('products.item_status', 1);
 	return $this->db->get()->result_array();
 		
 	}
-	public function get_all_subcategory_product($category_ids)
+	public function get_all_subcategory_product($category_ids,$sid)
 	{
 	
 	$this->db->select('products.*')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
-	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
+	$this->db->join('category', 'category.category_id =products.category_id', 'left');
+	if($sid!=''){
+	$this->db->where_in('products.seller_id',$sid);
+	}	
     $this->db->where('products.category_id', $category_ids);
     $this->db->where('products.item_status', 1);
 	return $this->db->get()->result_array();

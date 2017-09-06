@@ -365,8 +365,45 @@ class Customer_model extends MY_Model
 		$sql1="UPDATE cart SET item_qty ='".$qty."' WHERE item_id = '".$itemid."'";
        	return $this->db->query($sql1);
 	}
+	public function get_seller_details($ids){
+		//echo '<pre>';print_r($ids);exit;
+		$this->db->select('sellers.seller_name,sellers.seller_id,seller_store_details.image')->from('seller_store_details');
+		$this->db->join('sellers', 'sellers.seller_id = seller_store_details.seller_id', 'left');
+		$this->db->where('seller_store_details.area',$ids);
+		//$this->db->where_in('seller_store_details.area',array($ids));
+		$query=$this->db->get()->result_array();
+		foreach($query as $list){
+		 $return['details']=$list;
+		 $return['details']['average']=$this->product_reviews_avg($list['seller_id']);
+		 $return['details']['catergories']=$this->product_categories_list($list['seller_id']);
+		}
+		if(!empty($return))
+			{
+			return $return;
 
-	
+			}			
+	}
+
+	public function product_reviews_avg($sid){
+		 
+		$sql = "SELECT AVG(rating) as avg FROM ratings WHERE seller_id ='".$sid."'";
+		return $this->db->query($sql)->row_array();	
+		 
+	 }
+	 public function product_categories_list($sid){
+		 
+			$this->db->select('seller_categories.seller_category_id,seller_categories.category_name')->from('seller_categories');
+			$this->db->where('seller_id', $sid);
+			return $this->db->get()->result_array();
+		 
+	 }
+	 public function get_seller_category_details($sid){
+		 
+			$this->db->select('seller_categories.seller_category_id,seller_categories.seller_id,seller_categories.category_name')->from('seller_categories');
+			$this->db->where('seller_id', $sid);
+			return $this->db->get()->result_array();
+		 
+	 }
 	
 }
 ?>
