@@ -106,11 +106,13 @@
           <div class=" box-product-outer" >
             <div class="box-product">
               <div class="img-wrapper  img_hover">
+			  <div class="img_size">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                <img class="" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
 				 
            
                 </a>
+				</div>
                <!-- <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
                 </div>
@@ -205,10 +207,12 @@
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
+			  <div class="img_size">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                    <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
            
                 </a>
+				</div>
                <!-- <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
                 </div>
@@ -299,10 +303,12 @@
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
+			  <div class="img_size">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                    <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
            
                 </a>
+				</div>
                 <!--<div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
                 </div>
@@ -386,9 +392,11 @@
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
+			  <div class="img_size">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                    <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                 </a>
+				</div>
                 <!--<div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
                 </div>
