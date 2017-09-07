@@ -28,24 +28,7 @@
   <section class="content ">
   <section id="main-content">
     <section class="wrapper">
-      <!--<div class="row">
-        <div class="col-lg-12">
-      <div class="row">
-       <div class="col-md-7">
-           <h3 class="page-header"><i class="fa fa-list-ol" aria-hidden="true"></i>New Orders</h3></div>
-         <!-- <div class="col-md-5 pull-right">
-         <form class="navbar-form" action="<?php echo base_url(); ?>seller/orders/new_search" method="post">
-          <input class="form-control" placeholder="Search" name="search" type="text">
-         <button class="btn btn-default" type="submit">Go!</button>
-          </form>
-            </div>-->
-<!--</div>
-          <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="<?php echo base_url();?>seller/dashboard">Home</a></li>
-            <li><i class="fa fa-list-ol" aria-hidden="true"></i>New Orders</li>
-          </ol>
-        </div>
-      </div>-->
+      
       <div class="row">
         <div class="col-md-12">
           <section class="panel">
@@ -60,14 +43,13 @@
                 <table class="table table-bordered table-striped" id="example1">
                   <thead>
                     <tr>
-                 <th>S.No</th>
                 <th>Order Id</th>
                 <th>Order Price</th>                
-                <!-- <th>Delivery Date</th>
-                 <th>Delivery Time</th>-->
-                <th>Customer Details</th>
-                <!-- <th>Delete</th> -->
-                    </tr>
+                <th>Qty</th>                
+                <th>Total Price</th>                
+				<th>Customer Details</th>
+				<th>Status</th>
+                 </tr>
                   </thead>
                   <?php if(!empty($ordersdata)): ?>
 
@@ -78,11 +60,10 @@
      ?>
 
                 <tr>
-                  <td><?= ++$count ?></td>
                   <td><?php  echo $orders_data->order_id; ?></td>
+                  <td><?php  echo $orders_data->item_price; ?></td>
+                  <td><?php  echo $orders_data->qty; ?></td>
                   <td><?php  echo $orders_data->total_price; ?></td>
-                 <!-- <td><?php  echo $orders_data->delivery_date; ?></td>
-                  <td><?php  echo $orders_data->delivery_time; ?></td> -->
 
                    <td><table class="table table-bordered qtytable">
                     <tbody>
@@ -104,7 +85,23 @@
                       </tr>
                     </tbody>
                   </table></td>
-          <!-- <td>  <a href="<?php echo base_url(); ?>seller/orders/delete/<?php  echo $orders_data->order_id; ?>" onclick="return checkDelete('<?php  echo $orders_data->order_id; ?>')"><i class="fa fa-trash-o" style="font-size:18px"></i></a></td> -->
+				  <td>
+				  <?php if($orders_data->status_confirmation==1 && $orders_data->status_packing=='' && $orders_data->status_road=='' && $orders_data->status_deliverd==''){
+					echo "Order Confirmation";  
+				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road=='' && $orders_data->status_deliverd==''){
+					  echo "Packing Order";
+				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road==3 && $orders_data->status_deliverd==''){
+					  echo "Order on Road";
+				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road==3 && $orders_data->status_deliverd==4){
+					  echo "Delivered";
+				  }else{
+					 echo "error"; 
+				  }
+				  ?>
+				  
+				  
+				  
+				  </td>
 
                 
                 </tr>

@@ -48,24 +48,21 @@ public function delete()
 public function new_orders()
 {
 		$result=$this->Orders_model->new_orders();
+		//echo $this->db->last_query();exit;
 		$data['ordersdata'] =  $result;
 		//echo "<pre>";print_r($data);exit;
 		$this->template->write_view('content', 'seller/orders/new_orders', $data);
 		$this->template->render();
 }
 
-public function assigned_orders()
-{
-		$result=$this->Orders_model->assigned_orders();
-		$data['ordersdata'] =  $result;
-		$this->template->write_view('content', 'seller/orders/assigned_orders', $data);
-		$this->template->render();
-}
+
 
 public function inprogress_orders()
 {
    
 		$result=$this->Orders_model->inprogress_orders();
+		//echo $this->db->last_query();exit;
+		//echo "<pre>";print_r($result);exit;
 		$data['ordersdata'] =  $result;
 		$this->template->write_view('content', 'seller/orders/inprogress_orders', $data);
 		$this->template->render();
