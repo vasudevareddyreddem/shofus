@@ -184,7 +184,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
 			<?php if($percentage!=''){ ?> &nbsp;
 			<span class="price-old">₹ <?php echo $orginal_price; ?></span>
-				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 0, '.', ''); ?>% off</p></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
 			<?Php }else{ ?>
 			<?php } ?>
 				</div>
@@ -277,7 +277,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
 			<?php if($percentage!=''){ ?> &nbsp;
 			<span class="price-old">₹ <?php echo $orginal_price; ?></span>
-				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 0, '.', ''); ?>% off</p></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
 			<?Php }else{ ?>
 			<?php } ?>
 				</div>
@@ -373,7 +373,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
 			<?php if($percentage!=''){ ?> &nbsp;
 			<span class="price-old">₹ <?php echo $orginal_price; ?></span>
-				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 0, '.', ''); ?>% off</p></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
 			<?Php }else{ ?>
 			<?php } ?>
 				</div>
@@ -464,7 +464,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
 			<?php if($percentage!=''){ ?> &nbsp;
 			<span class="price-old">₹ <?php echo $orginal_price; ?></span>
-				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 0, '.', ''); ?>% off</p></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
 			<?Php }else{ ?>
 			<?php } ?>
 				</div>
