@@ -236,12 +236,12 @@
 		
 					
 	</div>
-	<?php if($productdetails['category_id']=='21'){
+	<?php if($productdetails['category_id']=='21' || $productdetails['category_id']=='18'){
 		$idealforhide = 'display:none;';
 		}else{
 		$idealforhide = '';
 		} ?>
-		<?php if($productdetails['category_id']=='18'){
+		<?php if($productdetails['category_id']==18){
 		$brandhide = 'display:none;';
 		}else{
 		$brandhide = '';
@@ -1411,11 +1411,10 @@
 					}
 				}
 			},
+		
 			otherunique: {
 					validators: {
-					notEmpty: {
-						message: 'Other Unique code is required'
-					},
+				
                    regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Other Unique can only consist of alphanumaric, space and dot'
@@ -1496,9 +1495,7 @@
 			},
 			keywords: {
 					validators: {
-					notEmpty: {
-						message: 'Meta keywords is required'
-					},
+				
 					regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Meta keywords can only consist of alphanumaric, space and dot'
@@ -1507,9 +1504,7 @@
 			},
 			title: {
 					validators: {
-					notEmpty: {
-						message: 'Meta title is required'
-					},
+				
 					regexp: {
 					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Meta title can only consist of alphanumaric, space and dot'
@@ -1554,7 +1549,17 @@
 					}
             }
 			},
-			
+			product_scusine: {
+					validators: {
+					notEmpty: {
+						message: 'Cusine  is required'
+					},
+                   regexp: {
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
+					message: 'Cusine  can only consist of alphanumaric, space and dot'
+					}
+				}
+			},
 			ideal_for: {
 					validators: {
 					notEmpty: {

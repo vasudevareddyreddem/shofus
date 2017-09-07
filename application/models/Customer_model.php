@@ -238,7 +238,7 @@ class Customer_model extends MY_Model
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
 		$this->db->where('season_sales.expairdate >=', $curr_date);
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('products.offer_percentage ASC');
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 	}
@@ -248,7 +248,7 @@ class Customer_model extends MY_Model
 		$this->db->select('products.*')->from('products');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where('admin_status','0');
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('products.offer_percentage ASC');
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 	}
@@ -257,7 +257,7 @@ class Customer_model extends MY_Model
 		$this->db->select('products.*')->from('products');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where('admin_status','0');
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('products.offer_percentage ASC');
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 	}
@@ -291,6 +291,10 @@ class Customer_model extends MY_Model
 	}
 	public function delete_cart_item($cust_id,$pid,$id){
 		$sql1="DELETE FROM cart WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."' AND id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function delete_cart_items($cust_id,$pid){
+		$sql1="DELETE FROM cart WHERE cust_id = '".$cust_id."' AND  item_id = '".$pid."'";
 		return $this->db->query($sql1);
 	}
 	public function delete_wishlist_item($cust_id,$wishlistid){

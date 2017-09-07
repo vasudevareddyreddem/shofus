@@ -45,6 +45,19 @@ public function index()
 		}
 	
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	$cartitemids= $this->category_model->get_all_cart_lists_ids();
+	if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}
 	if(count($wishlist_ids)>0){
 	foreach ($wishlist_ids as  $list){
 		$customer_ids_list[]=$list['cust_id'];
@@ -52,7 +65,7 @@ public function index()
 		$whishlist_ids_list[]=$list['id'];
 	}
 		
-	//echo '<pre>';print_r($customer_ids_list);exit;
+	//echo '<pre>';print_r($data);exit;
 	$data['customer_ids_list']=$customer_ids_list;
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;

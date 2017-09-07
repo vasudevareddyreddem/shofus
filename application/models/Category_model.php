@@ -1546,6 +1546,11 @@ class Category_model extends MY_Model
 		$this->db->select('*')->from('item_wishlist');
         return $this->db->get()->result_array();
 	}
+	public function get_all_cart_lists_ids()
+	{
+		$this->db->select('*')->from('cart');
+        return $this->db->get()->result_array();
+	}
 	public function get_all_subcategory_products($category_ids)
 	{
 	
@@ -1571,8 +1576,20 @@ class Category_model extends MY_Model
     $this->db->where('products.category_id', $category_ids);
     $this->db->where('products.item_status', 1);
 	return $this->db->get()->result_array();
-		
+	
+	
 	}
+	public function product_reviews_avg($itemid){
+		 
+		$sql = "SELECT AVG(rating) as avg,item_id FROM ratings WHERE item_id ='".$itemid."'";
+		return $this->db->query($sql)->row_array();	
+	}
+	public function product_reviews_count($itemid){
+		 
+		$sql = "SELECT COUNT(item_id) as count,item_id FROM reviews WHERE item_id ='".$itemid."'";
+		return $this->db->query($sql)->row_array();	
+		 
+	 }	
 	public function get_category_id($subcatid)
 	{
 	

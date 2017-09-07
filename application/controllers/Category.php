@@ -817,6 +817,15 @@ class Category extends Front_Controller
 
 	}
 	$data['subcategory_porduct_list']=$products_list;
+	foreach($data['subcategory_porduct_list'] as $list){
+			//echo '<pre>';print_r($list);
+			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+			
+		}
+	
+	$data['avg_count']=$reviewrating;
+	$data['rating_count']=$reviewcount;
 	}else{
 	
 	$data['subcategory_porduct_list']=array();
@@ -1167,10 +1176,21 @@ function filtersearch(){
 
 	}
 	$data['subcategory_porduct_list']=$products_list;
+	foreach($data['subcategory_porduct_list'] as $list){
+			//echo '<pre>';print_r($list);
+			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+			
+		}
+	
+	$data['avg_count']=$reviewrating;
+	$data['rating_count']=$reviewcount;
+	
 	}else{
 	
 	$data['subcategory_porduct_list']=array();
 	}
+	
 	$data['previousdata']= $this->category_model->get_all_previous_search_fields();
 	$caterory_id=$categoryid;
 	$data['category_id']=$categoryids;
@@ -1214,6 +1234,19 @@ function filtersearch(){
 		$data['maximum_price'] = end($data['price_list']);
 	}
 	$data['category_name']= $this->category_model->get_category_name($caterory_id);
+	$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	if(count($wishlist_ids)>0){
 		
@@ -1245,6 +1278,15 @@ function filtersearch(){
 	}
 	$post=$this->input->post();
 	$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products_list($post['subcategoryid']);
+	foreach($data['subcategory_porduct_list'] as $list){
+			//echo '<pre>';print_r($list);
+			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+			
+		}
+	
+	$data['avg_count']=$reviewrating;
+	$data['rating_count']=$reviewcount;
 	$data['cat_subcat_ids']= $this->category_model->get_category_id($post['subcategoryid']);
 	$caterory_id=$data['cat_subcat_ids']['category_id'];
 	$subcaterory_id=$data['cat_subcat_ids']['subcategory_id'];
@@ -1414,6 +1456,19 @@ function filtersearch(){
 		
 		
 	}
+	$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	
 	if(count($wishlist_ids)>0){
@@ -1448,10 +1503,24 @@ function filtersearch(){
 	if($sid!=''){
 		//echo base64_decode($this->uri->segment(4));
 		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,base64_decode($sid));
+		foreach($data['subcategory_porduct_list'] as $list){
+			//echo '<pre>';print_r($list);
+			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+			
+		}
 	}else{
 		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,$sid);
+		foreach($data['subcategory_porduct_list'] as $list){
+			//echo '<pre>';print_r($list);
+			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+			
+		}
 	}
-	
+	$data['avg_count']=$reviewrating;
+	$data['rating_count']=$reviewcount;
+
 	$data['category_id']=$this->uri->segment(3);
 	if($caterory_id==18){
 		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);
@@ -1495,6 +1564,19 @@ function filtersearch(){
 		
 	}
 	
+	$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	if(count($wishlist_ids)>0){
 		foreach ($wishlist_ids as  $list){

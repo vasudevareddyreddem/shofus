@@ -41,6 +41,19 @@ class Customer extends Front_Controller
 	  	$data['season_sales']= $this->customer_model->get_product_search_seaaon_sales($post['locationarea']);
 		//echo '<pre>';print_r($data);exit;
 		$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+		$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}
 		if(count($wishlist_ids)>0){
 		foreach ($wishlist_ids as  $list){
 			$customer_ids_list[]=$list['cust_id'];
@@ -239,6 +252,116 @@ class Customer extends Front_Controller
 	} 
 	 
  }
+ /*onclick purpose*/
+ public function onclickaddcart(){
+	 
+	if($this->session->userdata('userdetails'))
+	 {
+		 
+		
+		$customerdetails=$this->session->userdata('userdetails');
+		
+		$post=$this->input->post();
+		//echo '<pre>';print_r($post);exit;
+		$products= $this->customer_model->get_product_details($post['producr_id']);
+			$qty=$post['qty'];
+			
+		
+			$currentdate=date('Y-m-d h:i:s A');
+				if($products['offer_expairdate']>=$currentdate){
+						$item_price= ($products['item_cost']-$products['offer_amount']);
+						$price	=(($qty) * ($item_price));
+				}else{
+					//echo "expired";
+					$item_price= $products['special_price'];
+					$price	=(($qty) * ($item_price));
+				}
+				$commission_price=(($price)*($products['commission'])/100);
+				if($products['category_id']==18){
+						if($price <500){
+							$delivery_charges=35;
+						}else{
+							$delivery_charges=0;
+						}
+				}else{
+						
+						if($price <500){
+							$delivery_charges=75;
+						}else if(($price > 500) && ($price < 1000)){
+							$delivery_charges=35;
+						}else if($price >1000){
+							$delivery_charges=0;
+						}else{
+							$delivery_charges=35;
+						}
+					}
+		
+		$adddata=array(
+		'cust_id'=>$customerdetails['customer_id'],
+		'item_id'=>$post['producr_id'],
+		'qty'=>$post['qty'],
+		'item_qty'=>$products['item_quantity'],
+		'item_price'=>$item_price,
+		'total_price'=>$price,
+		'commission_price'=>$commission_price,
+		'delivery_amount'=>$delivery_charges,
+		'seller_id'=>$products['seller_id'],
+		'color'=>isset($post['colorvalue'])?$post['colorvalue']:'',
+		'size'=>isset($post['sizevalue'])?$post['sizevalue']:'',
+		'category_id'=>$products['category_id'],
+		'create_at'=>date('Y-m-d H:i:s'),
+		);
+		//echo '<pre>';print_r($adddata);exit;
+		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+			if(count($cart_items)>0){
+					foreach($cart_items as $pids) { 
+								
+									$rid[]=$pids['item_id'];
+					}
+				if(in_array($post['producr_id'],$rid)){
+					$delete= $this->customer_model->delete_cart_items($customerdetails['customer_id'],$post['producr_id']);
+					$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+					if(count($delete)>0){
+						$data['msg']=2;
+						$data['count']=count($countlist);							
+						echo json_encode($data);
+					
+					}
+
+				}else{
+					
+					$save= $this->customer_model->cart_products_save($adddata);
+					$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+					if(count($save)>0){
+						$data['msg']=1;	
+						$data['count']=count($countlist);	
+						echo json_encode($data);
+					
+
+					}
+				
+				}
+			}else{
+			
+				$save= $this->customer_model->cart_products_save($adddata);
+			if(count($save)>0){
+				$data['msg']=1;	
+				echo json_encode($data);
+			
+
+			}
+			}
+			
+			
+	
+		
+	 }else{
+		 $data['msg']=0;	
+		echo json_encode($data);
+	} 
+	 
+ }
+ /*onclick purpose*/
  public function orders(){
 	 
 	 if($this->session->userdata('userdetails'))
