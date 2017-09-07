@@ -64,7 +64,7 @@ class Home_model extends CI_Model
 		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
 		$this->db->where_in('seller_location_area',$areaid);
         $this->db->where('admin_status','0');
-		$this->db->order_by('top_offers.offer_percentage desc');
+		$this->db->order_by('top_offers.offer_percentage ASC');
 		$this->db->where('top_offers.preview_ok',1);
 		$this->db->where('products.item_status',1);
 		$this->db->where('top_offers.expairdate >=', $curr_date);
@@ -76,7 +76,7 @@ class Home_model extends CI_Model
 		$this->db->select('*')->from('products');
 		$this->db->where_in('seller_location_area',$areaid);
         $this->db->where('admin_status','0');
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('products.offer_percentage ASC');
 		$this->db->limit(5);
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
@@ -86,7 +86,7 @@ class Home_model extends CI_Model
 		$this->db->select('*')->from('products');
 		$this->db->where_in('seller_location_area',$areaid);
         $this->db->where('admin_status','0');
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('products.offer_percentage ASC');
 		$this->db->limit(5);
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
@@ -99,7 +99,7 @@ class Home_model extends CI_Model
 		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
 		$this->db->where_in('seller_location_area',$areaid);
         $this->db->where('admin_status','0');
-		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
+		$this->db->order_by('deals_ofthe_day.offer_percentage ASC');
 		$this->db->where('deals_ofthe_day.preview_ok',1);
 		$this->db->where('products.item_status',1);
 		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
@@ -112,7 +112,7 @@ class Home_model extends CI_Model
 		$this->db->select('season_sales.*,products.*')->from('season_sales');
 		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
 		$this->db->where_in('seller_location_area',$areaid);
-		$this->db->order_by('season_sales.offer_percentage desc');
+		$this->db->order_by('season_sales.offer_percentage ASC');
 		$this->db->where('season_sales.preview_ok',1);
 		$this->db->where('products.item_status',1);
 		$this->db->where('season_sales.expairdate >=', $curr_date);
@@ -125,7 +125,7 @@ class Home_model extends CI_Model
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('top_offers.*,products.*')->from('top_offers');
 		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
-		$this->db->order_by('top_offers.offer_percentage desc');
+		$this->db->order_by('top_offers.offer_percentage ASC');
 		$this->db->where('top_offers.preview_ok',1);
 		$this->db->where('products.item_status',1);
 		$this->db->where('top_offers.expairdate >=', $curr_date);
@@ -136,7 +136,7 @@ class Home_model extends CI_Model
 	{
 		$this->db->select('*')->from('products');
         $this->db->where('admin_status','0');
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('products.offer_percentage ASC');
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 
@@ -145,7 +145,7 @@ class Home_model extends CI_Model
 	{
 		$this->db->select('*')->from('products');
         $this->db->where('admin_status','0');
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('products.offer_percentage ASC');
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 
@@ -156,7 +156,7 @@ class Home_model extends CI_Model
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('deals_ofthe_day.*,products.*')->from('deals_ofthe_day');
 		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
-		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
+		$this->db->order_by('deals_ofthe_day.offer_percentage DESC');
 		$this->db->where('deals_ofthe_day.preview_ok',1);
 		$this->db->where('products.item_status',1);
 		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
@@ -179,7 +179,7 @@ class Home_model extends CI_Model
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('season_sales.*,products.*')->from('season_sales');
 		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
-		$this->db->order_by('season_sales.offer_percentage desc');
+		$this->db->order_by('season_sales.offer_percentage ASC');
 		$this->db->where('season_sales.preview_ok',1);
 		$this->db->where('season_sales.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
@@ -190,7 +190,7 @@ class Home_model extends CI_Model
 	{
 		$this->db->select('*')->from('products');
         $this->db->where('admin_status','0');
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('products.offer_percentage ASC');
 		$this->db->limit(5);
 		return $this->db->get()->result_array();
 

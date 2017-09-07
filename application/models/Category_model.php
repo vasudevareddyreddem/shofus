@@ -1546,6 +1546,11 @@ class Category_model extends MY_Model
 		$this->db->select('*')->from('item_wishlist');
         return $this->db->get()->result_array();
 	}
+	public function get_all_cart_lists_ids()
+	{
+		$this->db->select('*')->from('cart');
+        return $this->db->get()->result_array();
+	}
 	public function get_all_subcategory_products($category_ids)
 	{
 	
