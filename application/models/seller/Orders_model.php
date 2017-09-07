@@ -57,7 +57,6 @@ public function inprogress_orders()
 {
     
 	$sid = $this->session->userdata('seller_id');
-	$sid = $this->session->userdata('seller_id');
 	$this->db->select('order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,order_items.*,products.item_name,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1')->from('order_items');
 	$this->db->join('products', 'products.item_id = order_items.item_id','left');
 	$this->db->join('customers', 'customers.customer_id = order_items.customer_id','left');
@@ -72,13 +71,14 @@ public function inprogress_orders()
 public function delivered_orders()
 {
 	$sid = $this->session->userdata('seller_id');
-     $this->db->select('order_items.*,products.*,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1');
-	$this->db->from('order_items');
+	$this->db->select('order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,order_items.*,products.item_name,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1')->from('order_items');
 	$this->db->join('products', 'products.item_id = order_items.item_id','left');
 	$this->db->join('customers', 'customers.customer_id = order_items.customer_id','left');
-	$this->db->where('order_items.order_status','3');
+	$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 	$this->db->where('order_items.seller_id',$sid);
-	return $query = $this->db->get()->result();
+	$this->db->where('order_status.status_deliverd=',4);
+	$this->db->order_by('order_items.order_item_id','desc');
+	return $this->db->get()->result();
 }
 
 
@@ -86,14 +86,15 @@ public function rejected_orders()
 
 {
 	$sid = $this->session->userdata('seller_id');
-     $this->db->select('order_items.*,products.*,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1');
-	$this->db->from('order_items');
+	$this->db->select('order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,order_items.*,products.item_name,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1')->from('order_items');
 	$this->db->join('products', 'products.item_id = order_items.item_id','left');
 	$this->db->join('customers', 'customers.customer_id = order_items.customer_id','left');
-	$this->db->where('order_items.order_status','4');
+	$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 	$this->db->where('order_items.seller_id',$sid);
-	return $query = $this->db->get()->result();
-
+	//$this->db->where('order_status.status_deliverd=',4);
+	$this->db->where('order_status.status_refund is NOT NULL', NULL, False);
+	$this->db->order_by('order_items.order_item_id','desc');
+	return $this->db->get()->result();
 }
 
 

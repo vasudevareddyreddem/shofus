@@ -4,27 +4,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery-ui.js"></script>
 <div class="content-wrapper mar_t_con" >
-<section class="content-header">
-		<div class="header-icon">
-			<i class="pe-7s-note2"></i>
-		</div>
-		<div class="header-title">
-			<form action="#" method="get" class="sidebar-form search-box pull-right hidden-md hidden-lg hidden-sm">
-				<div class="input-group">
-					<input type="text" name="q" class="form-control" placeholder="Search...">
-					<span class="input-group-btn">
-						<button type="submit" name="search" id="search-btn" class="btn"><i class="fa fa-search"></i></button>
-					</span>
-				</div>
-			</form>  
-			<h1>Orders</h1>
-			<small>Delivered Orders</small>
-			<ol class="breadcrumb hidden-xs">
-				<li><a href="<?php echo base_url('seller/dashboard');?>"><i class="pe-7s-home"></i> Home</a></li>
-				<li class="active">Delivered Orders</li>
-			</ol>
-		</div>
-	</section>
+
   <section class="content ">
   <section id="main-content">
     <section class="wrapper">
@@ -43,18 +23,15 @@
                 <table class="table table-bordered table-striped" id="example1">
                   <thead>
                     <tr>
-                 <th>S.No</th>
-                 <th>Order Id</th>
-                  <!-- <th>Seller Name</th>
-                <th>Product Id</th>
-                 <th>Deliveryboy Name</th> -->
-                <th>Product Name</th>
-                <!-- <th>Delivery Date</th>
-                <th>Delivery Time</th> -->
-                <th>Customer Details</th>
-               <!-- <th>Pick Date&Time</th>
-                <th>Delivered Date&Time</th> 
-                <th>Payment Mode</th>-->
+					<th>Order Id</th>
+					<th>Product Name</th>
+					<th>Qty</th>
+					<th>Item price</th>
+					<th>Total price</th>
+					<th>Customer Details</th>
+					<th>Status</th>
+					
+           
 
                     </tr>
                   </thead>
@@ -67,38 +44,13 @@
      ?>
 
                 <tr>
-                  <td><?= ++$count ?></td>
                    <td><?php  echo $orders_data->order_id; ?></td>
-                   <!-- <td><?php  echo $orders_data->seller_name; ?></td>
-                  <td><?php  echo $orders_data->item_id; ?></td>
-                  <td><?php 
-                      if(isset($orders_data->deliveryboy_id) && $orders_data->deliveryboy_id!=0 &&  $orders_data->deliveryboy_id!='')
-                      {
-                                $this->db->select('deliveryboy_name');
-                                $this->db->where('deliveryboy_id',$orders_data->deliveryboy_id);
-                      $query =  $this->db->from('deliveryboy')->get();
-
-                      if($query->num_rows() > 0)
-                       {
-                              $ret = $query->row();
-                              if(isset($ret->deliveryboy_name) && $ret->deliveryboy_name!='')
-                              {
-                           echo  $ret->deliveryboy_name; 
-                         }else
-                         {
-                          echo '--';
-                         }
-}else
-                         {
-                          echo '--';
-                         } 
-}else
-                         {
-                          echo '--';
-                         } ?></td> -->
+                  
                   <td><?php  echo $orders_data->item_name; ?></td>
-                 <!-- <td><?php  echo $orders_data->delivery_date; ?></td>
-                  <td><?php  echo $orders_data->delivery_time; ?></td -->>
+                  <td><?php  echo $orders_data->qty; ?></td>
+                  <td><?php  echo $orders_data->item_price; ?></td>
+                  <td><?php  echo $orders_data->total_price; ?></td>
+            
 
                    <td><table class="table table-bordered qtytable">
                     <tbody>
@@ -120,9 +72,26 @@
                       </tr>
                     </tbody>
                   </table></td>
-                <!-- <td><?php  echo $orders_data->pickup_time; ?></td>
-                 <td><?php  echo $orders_data->delivered_time; ?></td> 
-                  <td><?php  echo $orders_data->payment_mode; ?></td>-->
+				  <td class="text-center" style="color:font-weight:bold">
+			
+				<?php if($orders_data->status_confirmation==1 && $orders_data->status_packing=='' && $orders_data->status_road=='' && $orders_data->status_deliverd==''){
+					echo "Order Confirmation";  
+				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road=='' && $orders_data->status_deliverd==''){
+					  echo "Packing Order";
+				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road==3 && $orders_data->status_deliverd==''){
+					  echo "Order on Road";
+				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road==3 && $orders_data->status_deliverd==4){
+					  echo "Delivered";
+				  }else{
+					 echo "error"; 
+				  }
+				  ?>
+					
+					
+			
+
+				</td> 
+               
                 </tr>
 
                 <?php } ?>

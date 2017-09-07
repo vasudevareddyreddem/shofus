@@ -9,14 +9,7 @@
 			<i class="pe-7s-note2"></i>
 		</div>
 		<div class="header-title">
-			<form action="#" method="get" class="sidebar-form search-box pull-right hidden-md hidden-lg hidden-sm">
-				<div class="input-group">
-					<input type="text" name="q" class="form-control" placeholder="Search...">
-					<span class="input-group-btn">
-						<button type="submit" name="search" id="search-btn" class="btn"><i class="fa fa-search"></i></button>
-					</span>
-				</div>
-			</form>  
+		
 			<h1>Orders</h1>
 			<small>Rejected Orders</small>
 			<ol class="breadcrumb hidden-xs">
@@ -43,15 +36,14 @@
                 <table class="table table-bordered table-striped" id="example1">
                   <thead>
                     <tr>
-                 <th>S.No</th>
                 <th>Order Id</th>
-                <!-- <th>Seller Name</th>
-                <th>Product Id</th> -->
-                <th>Product Name</th>
-                <!-- <th>Delivery Date</th>
-                <th>Delivery Time</th> -->
-                <th>Customer Details</th>
-                <!-- <th>Delete</th> -->
+				<th>Product Name</th>
+				<th>Item Price</th>
+				<th>Qty</th>
+				<th>Total price</th>
+				<th>Customer Details</th>
+				<th>Status</th>
+              
                     </tr>
                   </thead>
                   <?php if(!empty($ordersdata)): ?>
@@ -63,13 +55,11 @@
      ?>
 
                 <tr>
-                  <td><?= ++$count ?></td>
                   <td><?php  echo $orders_data->order_id; ?></td>
-                  <!-- <td><?php  echo $orders_data->seller_name; ?></td>
-                  <td><?php  echo $orders_data->item_id; ?></td> -->
                   <td><?php  echo $orders_data->item_name; ?></td>
-                 <!-- <td><?php  echo $orders_data->delivery_date; ?></td>
-                  <td><?php  echo $orders_data->delivery_time; ?></td> -->
+                  <td><?php  echo $orders_data->item_price; ?></td>
+                  <td><?php  echo $orders_data->qty; ?></td>
+                  <td><?php  echo $orders_data->total_price; ?></td>
 
                    <td><table class="table table-bordered qtytable">
                     <tbody>
@@ -90,8 +80,9 @@
                         <td><?php  echo $orders_data->address1; ?></td>
                       </tr>
                     </tbody>
-                  </table></td>
-          <!-- <td>  <a href="<?php echo base_url(); ?>seller/orders/delete/<?php  echo $orders_data->order_id; ?>" onclick="return checkDelete('<?php  echo $orders_data->order_id; ?>')"><i class="fa fa-trash-o" style="font-size:18px"></i></a></td> -->
+                  </table>
+				  </td>
+				  <td><?php  echo $orders_data->status_refund; ?></td>
 
                 
                 </tr>
