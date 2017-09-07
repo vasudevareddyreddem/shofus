@@ -58,8 +58,9 @@
 			<div class="bzoom_wrap">
 			<ul id="bzoom">
 					<li>
-				
+					
 						<img  class="bzoom_thumb_image img_prod" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>" title="<?php echo $products_list['item_image']; ?>" />
+						
 						<img class="bzoom_big_image"  src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>"/>
 					</li>
 					
