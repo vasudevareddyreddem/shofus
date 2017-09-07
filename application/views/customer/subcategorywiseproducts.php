@@ -8,6 +8,12 @@
 	content:"\f077";
     padding-right: 5px;
 }
+.product-ratings{
+	color:#ddd !important;
+	}
+.product-rateing{
+	color:#fc0 !important;
+	}
 	.fa {
     padding-right: 0px !important;
 }
