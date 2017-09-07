@@ -8,6 +8,9 @@
 	content:"\f077";
     padding-right: 5px;
 }
+	.fa {
+    padding-right: 0px !important;
+}
 .panel-heading {
     background:#45b1b5 ;
 }
@@ -1941,12 +1944,7 @@
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                   <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                 </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-primary arrowed">Featured</span></span>
-                </div>
-                <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
-                </div>
+               
 				<?php if($productslist['item_quantity']<=0){ ?>
 				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
@@ -1955,32 +1953,83 @@
 				
 				<div class="option">
 				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
-				<button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
-				<?php } ?>
-				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)  ) { ?>
-				<a href="javascript:void(0);" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist btn-danger"><i id="addwishlistids" class="fa fa-heart"></i></a> 
+				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
+				<a style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
 				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidts(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids" class="fa fa-heart"></i></a> 
+				<a style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart"></i></a>                  
+				<?php } ?>
+				<?php } ?>
+				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+				<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart text-primary"></i></a> 
+				<?php }else{ ?>	
+				<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart "></i></a> 
 				<?php } ?>	
 				</div>
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
               <div class="price">
                
-				<div class="pull-left" ><?php echo ($item_price); ?> 
-				<span class="label-tags"><span class="label label-default">-<?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
+				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
+			<?php if($percentage!=''){ ?> &nbsp;
+			<span class="price-old">₹ <?php echo $orginal_price; ?></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
+			<?Php }else{ ?>
+			<?php } ?>
 				</div>
-				<span class="price-old"><?php echo $orginal_price; ?></span>
+				<div class="clearfix"></div>
             
               </div>
               <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
+                <?php foreach ($avg_count as $li){
+				$idslist[]=$li['item_id'];			
+				if($productslist['item_id']==$li['item_id']){?>
+				<?php if(round($li['avg'])==1){  ?>
+					    <i class="fa fa-star product-rateing"> </i>
+						<i class="fa fa-star product-ratings"></i>
+						<i class="fa fa-star product-ratings"></i>
+						<i class="fa fa-star product-ratings"></i>
+						<i class="fa fa-star product-ratings"></i>
+					 	<?php }else if(round($li['avg'])==2){  ?>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+						<?php }else if(round($li['avg'])==3){  ?>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+						<?php }else if(round($li['avg'])==4){  ?>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-rateing"> </i>
+							<i class="fa fa-star product-ratings"> </i>
+					  <?php }else if(round($li['avg'])==5){  ?>
+					  <i class="fa fa-star product-rateing"> </i>
+					  <i class="fa fa-star product-rateing"> </i>
+					  <i class="fa fa-star product-rateing"> </i>
+					  <i class="fa fa-star product-rateing"> </i>
+					  <i class="fa fa-star product-rateing"> </i>
+					  <?php } ?>			
+				
+				<?php }?>
+					 <?php } ?>	
+					 	<?php 	if (!in_array($productslist['item_id'], $idslist)){ ?>
+							<i class="fa fa-star product-ratings"></i>
+						<i class="fa fa-star product-ratings"></i>
+						<i class="fa fa-star product-ratings"></i>
+						<i class="fa fa-star product-ratings"></i>
+						<i class="fa fa-star product-ratings"></i>
+							
+						<?php } ?>
+				<?php foreach ($rating_count as $li){ 
+				if($productslist['item_id']==$li['item_id']){?>
+				<a href="<?php echo base_url('category/productview/'.base64_encode($li['item_id'])); ?>">(<?php echo $li['count']; ?>  reviews)</a>
+				<?php }} ?>
+			</div>
             </div>
           </div>
 		  </form>
@@ -2004,7 +2053,41 @@
 	 <br>
 </body>
 <script>
-function addwhishlidts(id){
+ function itemaddtocart(itemid,catid,val){
+
+jQuery.ajax({
+        url: "<?php echo site_url('customer/onclickaddcart');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+          producr_id: itemid,
+		  category_id: catid,
+		  qty: '1',
+          },
+        dataType: 'json',
+        success: function (data) {
+           if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+						jQuery('#sucessmsg').show();
+						$("#supcount").empty();
+						$("#supcount").append(data.count);
+						if(data.msg==2){
+						$("#addticartitem"+itemid+val).removeClass("text-primary");
+						$('#sucessmsg').html('Product Successfully removed to Whishlist');  
+						}
+						if(data.msg==1){
+						 $("#addticartitem"+itemid+val).addClass("text-primary");
+						//$('#addwhish').css("color", "yellow");
+						$('#sucessmsg').html('Product Successfully added to Whishlist');  
+						}
+				}
+
+        }
+      });
+
+ }
+function addwhishlidts(id,val){
 jQuery.ajax({
 			url: "<?php echo site_url('customer/addwhishlist');?>",
 			type: 'post',
@@ -2018,14 +2101,14 @@ jQuery.ajax({
 				//alert(data.msg);
 				if(data.msg==2){
 				$('#sucessmsg').show('');
-				$("#addwhish"+id).removeClass("btn-danger");
+				$("#addwishlistids"+id+val).removeClass("text-primary");
 				$('#sucessmsg').html('Product Successfully removed to Whishlist');
 				document.getElementById("sucessmsg").focus();
 				
 				}
 				if(data.msg==1){
 				$('#sucessmsg').show('');
-				$("#addwhish"+id).addClass("btn-danger");
+				 $("#addwishlistids"+id+val).addClass("text-primary");
 				$('#sucessmsg').html('Product Successfully added to Whishlist');
 				document.getElementById("sucessmsg").focus();				
 				}
