@@ -14,7 +14,7 @@ $i=1;foreach($detail as $searhitems){
  <?php } $i++;}   ?>
 
 <?php }else{ ?>
-	<li style="list-style-type:none;">No results found</li> 
+	<li style="list-style-type:none;10px 0px; font-size:16px;">No results found</li> 
 
 <?php } ?>
 
