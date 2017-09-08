@@ -748,7 +748,7 @@ class Category_model extends MY_Model
 	}
 	public function update_mobileacc_privous_subcategorysearchdata($id,$data)
 	{
-		$sql1="UPDATE subcat_wise_fliter_search SET mobileacc ='".$data."' WHERE id ='".$id."'";
+		$sql1="UPDATE subcat_wise_fliter_search SET compatible_mobiles ='".$data."' WHERE id ='".$id."'";
 		return $this->db->query($sql1);
 	}
 	public function update_size_privous_subcategorysearchdata($id,$data)
@@ -855,6 +855,7 @@ class Category_model extends MY_Model
 	public function get_search_all_subcategorywise_products()
 	{
 	
+	
 	$this->db->select('*')->from('subcat_wise_fliter_search');
 	$this->db->group_by('subcat_wise_fliter_search.cusine');
 	$this->db->group_by('subcat_wise_fliter_search.restraent');
@@ -866,28 +867,222 @@ class Category_model extends MY_Model
 	$this->db->group_by('subcat_wise_fliter_search.status');
 	$this->db->group_by('subcat_wise_fliter_search.size');
 	$this->db->group_by('subcat_wise_fliter_search.color');
+	$this->db->group_by('subcat_wise_fliter_search.compatible_mobiles');
+	$this->db->group_by('subcat_wise_fliter_search.producttype');
+	$this->db->group_by('subcat_wise_fliter_search.mega_pixel');
+	$this->db->group_by('subcat_wise_fliter_search.sensor_type');
+	$this->db->group_by('subcat_wise_fliter_search.battery_type');
+	$this->db->group_by('subcat_wise_fliter_search.display_size');
+	$this->db->group_by('subcat_wise_fliter_search.connectivity');
+	$this->db->group_by('subcat_wise_fliter_search.ram');
+	$this->db->group_by('subcat_wise_fliter_search.voice_calling_facility');
+	$this->db->group_by('subcat_wise_fliter_search.operatingsystem');
+	$this->db->group_by('subcat_wise_fliter_search.internal_storage');
+	$this->db->group_by('subcat_wise_fliter_search.battery_capacity');
+	$this->db->group_by('subcat_wise_fliter_search.primary_camera');
+	$this->db->group_by('subcat_wise_fliter_search.processor_clock_speed');
+	$this->db->group_by('subcat_wise_fliter_search.wireless_speed');
+	$this->db->group_by('subcat_wise_fliter_search.frequency_band');
+	$this->db->group_by('subcat_wise_fliter_search.broadband_compatibility');
+	$this->db->group_by('subcat_wise_fliter_search.usb_ports');
+	$this->db->group_by('subcat_wise_fliter_search.frequency');
+	$this->db->group_by('subcat_wise_fliter_search.antennae');
+	$this->db->group_by('subcat_wise_fliter_search.processor');
+	$this->db->group_by('subcat_wise_fliter_search.processor_brand');
+	$this->db->group_by('subcat_wise_fliter_search.life_style');
+	$this->db->group_by('subcat_wise_fliter_search.storage_type');
+	$this->db->group_by('subcat_wise_fliter_search.graphics_memory');
+	$this->db->group_by('subcat_wise_fliter_search.touch_screen');
+	$this->db->group_by('subcat_wise_fliter_search.weight');
+	$this->db->group_by('subcat_wise_fliter_search.memory_type');
+	$this->db->group_by('subcat_wise_fliter_search.ram_type');
+	$this->db->group_by('subcat_wise_fliter_search.network_type');
+	$this->db->group_by('subcat_wise_fliter_search.speciality');
+	$this->db->group_by('subcat_wise_fliter_search.operating_system_version_name');
+	$this->db->group_by('subcat_wise_fliter_search.resolution_type');
+	$this->db->group_by('subcat_wise_fliter_search.secondary_camera');
+	$this->db->group_by('subcat_wise_fliter_search.sim_type');
+	$this->db->group_by('subcat_wise_fliter_search.clock_speed');
+	$this->db->group_by('subcat_wise_fliter_search.cores');
+	$this->db->group_by('subcat_wise_fliter_search.theme');
+	$this->db->group_by('subcat_wise_fliter_search.dial_shape');
+	$this->db->group_by('subcat_wise_fliter_search.compatibleos');
+	$this->db->group_by('subcat_wise_fliter_search.usages');
+	$this->db->group_by('subcat_wise_fliter_search.display_type');
+	$this->db->group_by('subcat_wise_fliter_search.occasion');
+	$this->db->group_by('subcat_wise_fliter_search.ideal_for');
+	$this->db->group_by('subcat_wise_fliter_search.material');
+	$this->db->group_by('subcat_wise_fliter_search.gemstones');
+	$this->db->group_by('subcat_wise_fliter_search.strap_color');
+	$this->db->group_by('subcat_wise_fliter_search.dial_color');
+	$this->db->group_by('subcat_wise_fliter_search.packof');
 	$query=$this->db->get()->result_array();
 		foreach ($query as $sorting){
+			
 			if($sorting['cusine']!=''){
-				$return['cusine'] = $this->get_subcategorycusine($sorting['cusine'],$sorting['category_id'],$sorting['subcategory_id']);
+				$return['cusine'][] = $this->get_subcategorycusine($sorting['cusine'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
 		
 			if($sorting['restraent']!=''){
-				$return['restraent'] = $this->get_subcategoryrestraent($sorting['restraent'],$sorting['category_id'],$sorting['subcategory_id']);
+				$return['restraent'][] = $this->get_subcategoryrestraent($sorting['restraent'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
 			if($sorting['offers']!=''){
-			$return['offers'] = $this->get_subcategoryoffers($sorting['offers'],$sorting['category_id'],$sorting['subcategory_id']);
+			$return['offers'][] = $this->get_subcategoryoffers($sorting['offers'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
 			if($sorting['brand']!=''){
-			$return['brand'] = $this->get_subcategorybrand($sorting['brand'],$sorting['category_id'],$sorting['subcategory_id']);
+			$return['brand'][] = $this->get_subcategorybrand($sorting['brand'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
 			if($sorting['discount']!=''){
-			$return['discount'] = $this->get_subcategorydiscount($sorting['discount'],$sorting['category_id'],$sorting['subcategory_id']);
+			$return['discount'][] = $this->get_subcategorydiscount($sorting['discount'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['compatible_mobiles']!=''){
+			$return['compatible_mobiles'][] = $this->get_subcategorymobileacc($sorting['compatible_mobiles'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['producttype']!=''){
+			$return['producttype'][] = $this->get_subcategoryproducttype($sorting['producttype'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['mega_pixel']!=''){
+			$return['mega_pixel'][] = $this->get_subcategorymega_pixel($sorting['mega_pixel'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['sensor_type']!=''){
+			$return['sensor_type'][] = $this->get_subcategorysensor_type($sorting['sensor_type'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['battery_type']!=''){
+			$return['battery_type'][] = $this->get_subcategorybattery_type($sorting['battery_type'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['display_size']!=''){
+			$return['display_size'][] = $this->get_subcategorydisplay_size($sorting['display_size'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['connectivity']!=''){
+			$return['connectivity'][] = $this->get_subcategoryconnectivity($sorting['connectivity'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['voice_calling_facility']!=''){
+			$return['voice_calling_facility'][] = $this->get_subcategoryvoice_calling_facility($sorting['voice_calling_facility'],$sorting['category_id'],$sorting['subcategory_id']);
+			}if($sorting['ram']!=''){
+			$return['ram'][] = $this->get_subcategoryram($sorting['ram'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['operatingsystem']!=''){
+			$return['operatingsystem'][] = $this->get_subcategoryoperatingsystem($sorting['operatingsystem'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['internal_storage']!=''){
+			$return['internal_storage'][] = $this->get_subcategoryinternal_storage($sorting['internal_storage'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['battery_capacity']!=''){
+			$return['battery_capacity'][] = $this->get_subcategorybattery_capacity($sorting['battery_capacity'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['primary_camera']!=''){
+			$return['primary_camera'][] = $this->get_subcategoryprimary_camera($sorting['primary_camera'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['processor_clock_speed']!=''){
+			$return['processor_clock_speed'][]=$this->get_subcategoryprocessor_clock_speed($sorting['processor_clock_speed'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['wireless_speed']!=''){
+			$return['wireless_speed'][] = $this->get_subcategorywireless_speed($sorting['wireless_speed'],$sorting['category_id'],$sorting['subcategory_id']);
+			}if($sorting['frequency_band']!=''){
+			$return['frequency_band'][] = $this->get_subcategoryfrequency_band($sorting['frequency_band'],$sorting['category_id'],$sorting['subcategory_id']);
+			}if($sorting['broadband_compatibility']!=''){
+			$return['broadband_compatibility'][] = $this->get_subcategorybroadband_compatibility($sorting['broadband_compatibility'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['usb_ports']!=''){
+			$return['usb_ports'][] = $this->get_subcategoryusb_ports($sorting['usb_ports'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['frequency']!=''){
+			$return['frequency'][] = $this->get_subcategoryfrequency($sorting['frequency'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['antennae']!=''){
+			$return['antennae'][] = $this->get_subcategoryantennae($sorting['antennae'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['processor']!=''){
+			$return['processor'][] = $this->get_subcategoryprocessor($sorting['processor'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['processor_brand']!=''){
+			$return['processor_brand'][] = $this->get_subcategoryprocessor_brand($sorting['processor_brand'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['life_style']!=''){
+			$return['life_style'][] = $this->get_subcategorylife_style($sorting['life_style'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['storage_type']!=''){
+			$return['storage_type'][] = $this->get_subcategorystorage_type($sorting['storage_type'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['graphics_memory']!=''){
+			$return['graphics_memory'][] = $this->get_subcategorygraphics_memory($sorting['graphics_memory'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['touch_screen']!=''){
+			$return['touch_screen'][] = $this->get_subcategorytouch_screen($sorting['touch_screen'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['weight']!=''){
+			$return['weight'][] = $this->get_subcategoryweight($sorting['weight'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['memory_type']!=''){
+			$return['memory_type'][] = $this->get_subcategorymemory_type($sorting['memory_type'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['ram_type']!=''){
+			$return['ram_type'][] = $this->get_subcategoryram_type($sorting['ram_type'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['network_type']!=''){
+			$return['network_type'][] = $this->get_subcategorynetwork_type($sorting['network_type'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['speciality']!=''){
+			$return['speciality'][] = $this->get_subcategoryspeciality($sorting['speciality'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['operating_system_version_name']!=''){
+			$return['operating_system_version_name'][] = $this->get_subcategoryoperating_system_version_name($sorting['operating_system_version_name'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['resolution_type']!=''){
+			$return['resolution_type'][] = $this->get_subcategoryresolution_type($sorting['resolution_type'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['secondary_camera']!=''){
+			$return['secondary_camera'][] = $this->get_subcategorysecondary_camera($sorting['secondary_camera'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['sim_type']!=''){
+			$return['sim_type'][] = $this->get_subcategorysim_type($sorting['sim_type'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['clock_speed']!=''){
+			$return['clock_speed'][] = $this->get_subcategoryclock_speed($sorting['clock_speed'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['cores']!=''){
+			$return['cores'][] = $this->get_subcategorycores($sorting['cores'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['theme']!=''){
+			$return['theme'][] = $this->get_subcategorytheme($sorting['theme'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['dial_shape']!=''){
+			$return['dial_shape'][] = $this->get_subcategorydial_shape($sorting['dial_shape'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['compatibleos']!=''){
+			$return['compatibleos'][] = $this->get_subcategorycompatibleos($sorting['compatibleos'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['usages']!=''){
+			$return['usages'][] = $this->get_subcategoryusages($sorting['usages'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['display_type']!=''){
+			$return['display_type'][] = $this->get_subcategorydisplay_type($sorting['display_type'],$sorting['category_id'],$sorting['subcategory_id']);
+			}if($sorting['occasion']!=''){
+			$return['occasion'][] = $this->get_subcategoryoccasion($sorting['occasion'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['ideal_for']!=''){
+			$return['ideal_for'][] = $this->get_subcategoryideal_for($sorting['ideal_for'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['material']!=''){
+			$return['material'][] = $this->get_subcategorymaterial($sorting['material'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['gemstones']!=''){
+			$return['gemstones'][] = $this->get_subcategorygemstones($sorting['gemstones'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['strap_color']!=''){
+			$return['strap_color'][] = $this->get_subcategorystrap_color($sorting['strap_color'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['dial_color']!=''){
+			$return['dial_color'][] = $this->get_subcategorydial_color($sorting['dial_color'],$sorting['category_id'],$sorting['subcategory_id']);
+			}
+			if($sorting['packof']!=''){
+			$return['packof'][] = $this->get_subcategorypackof($sorting['packof'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
 			
-			$return['mini_amount'] = $this->get_subcategoryamount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id'],$sorting['subcategory_id']);
-			$return['status'] = $this->get_subcategorystatus($sorting['status'],$sorting['category_id'],$sorting['subcategory_id']);
 			
+			$return['mini_amount'][] = $this->get_subcategoryamount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id'],$sorting['subcategory_id']);
+			$return['status'][] = $this->get_subcategorystatus($sorting['status'],$sorting['category_id'],$sorting['subcategory_id']);
+			//echo $this->db->last_query();exit;
 		}
 		if(!empty($return))
 		{
@@ -895,6 +1090,378 @@ class Category_model extends MY_Model
 		}
 		
 	}
+		
+	public function get_subcategorypackof($packof,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('packof',$packof);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorydial_color($dial_color,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('dial_color',$dial_color);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorystrap_color($strap_color,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('strap_color',$strap_color);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorygemstones($gemstones,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('gemstones',$gemstones);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorymaterial($material,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('material',$material);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryideal_for($ideal_for,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('ideal_for',$ideal_for);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryoccasion($occasion,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('occasion',$occasion);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorydisplay_type($display_type,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('display_type',$display_type);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryusages($usages,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('usages',$usages);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorycompatibleos($compatibleos,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('compatibleos',$compatibleos);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorydial_shape($dial_shape,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('dial_shape',$dial_shape);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorytheme($theme,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('theme',$theme);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorycores($cores,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('cores',$cores);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryclock_speed($clock_speed,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('clock_speed',$clock_speed);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorysim_type($sim_type,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('sim_type',$sim_type);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorysecondary_camera($secondary_camera,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('secondary_camera',$secondary_camera);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryresolution_type($resolution_type,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('resolution_type',$resolution_type);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryoperating_system_version_name($operating_system_version_name,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('operating_system_version_name',$operating_system_version_name);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryspeciality($speciality,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('speciality',$speciality);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorynetwork_type($network_type,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('network_type',$network_type);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}	
+	public function get_subcategoryram_type($ram_type,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('ram_type',$ram_type);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorymemory_type($memory_type,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('memory_type',$memory_type);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryweight($weight,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('weight',$weight);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorytouch_screen($touch_screen,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('touch_screen',$touch_screen);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorygraphics_memory($graphics_memory,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('graphics_memory',$graphics_memory);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorystorage_type($storage_type,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('storage_type',$storage_type);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorylife_style($life_style,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('life_style',$life_style);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryprocessor_brand($processor_brand,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('processor_brand',$processor_brand);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryprocessor($processor,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('processor',$processor);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryantennae($antennae,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('antennae',$antennae);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryfrequency($frequency,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('frequency',$frequency);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryusb_ports($usb_ports,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('usb_ports',$usb_ports);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorybroadband_compatibility($broadband_compatibility,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('broadband_compatibility',$broadband_compatibility);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryfrequency_band($frequency_band,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('frequency_band',$frequency_band);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorywireless_speed($wireless_speed,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('wireless_speed',$wireless_speed);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryprocessor_clock_speed($processor_clock_speed,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('processor_clock_speed',$processor_clock_speed);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryprimary_camera($primary_camera,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('primary_camera',$primary_camera);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorybattery_capacity($battery_capacity,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('battery_capacity',$battery_capacity);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryinternal_storage($internal_storage,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('internal_storage',$internal_storage);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryoperatingsystem($operatingsystem,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('operatingsystem',$operatingsystem);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryram($ram,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('ram',$ram);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryvoice_calling_facility($voice_calling_facility,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('voice_calling_facility',$voice_calling_facility);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategoryconnectivity($connectivity,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('connectivity',$connectivity);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorydisplay_size($display_size,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('display_size',$display_size);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorybattery_type($battery_type,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('battery_type',$battery_type);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorysensor_type($sensor_type,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('sensor_type',$sensor_type);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategorymobileacc($mobileacc,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('compatible_mobiles',$mobileacc);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	public function get_subcategoryproducttype($producttype,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('producttype',$producttype);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}public function get_subcategorymega_pixel($mega_pixel,$cid,$subcat){
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('mega_pixel',$mega_pixel);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+	}
+	
+	/*sub*/
 	public function get_subcategorydiscount($discount,$cid,$subcat){
 		
 		$this->db->select('*')->from('products');

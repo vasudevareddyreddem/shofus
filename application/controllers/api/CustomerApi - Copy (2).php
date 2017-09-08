@@ -557,14 +557,10 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 		$product_details=$this->Customerapi_model->product_details($item_id);
-		$color_list=$this->Customerapi_model->get_product_color_details($item_id);
-		$size_list=$this->Customerapi_model->get_product_size_details($item_id);
-		$specification_list=$this->Customerapi_model->get_product_specification_details($item_id);
-		$uk_size_list=$this->Customerapi_model->get_product_uksize_details($item_id);
 		//echo '<pre>';print_r($wishlist);exit;
 		if(count($product_details)>0){
 		
-			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list);
+			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','message'=>'product details','details'=>$product_details);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'product Id is not valid one');
@@ -1684,14 +1680,14 @@ class CustomerApi extends REST_Controller {
 			/*once change category id delete old data*/
 			$getcategory_id= $this->Customerapi_model->get_subcategory_id_filterssearh($Ip_address);
 			if(count($getcategory_id)>0){
-			//echo '<pre>';print_r($getcategory_id);exit;
-			if($getcategory_id[0]['category_id']!=$category_id){
-				$previous= $this->Customerapi_model->get_all_previous_search_fields_withip($getcategory_id[0]['Ip_address'],$getcategory_id[0]['category_id']);
-				foreach($previous as $list){
-					$this->Customerapi_model->delete_privous_searchdata($list['id'],$getcategory_id[0]['Ip_address']);
+				//echo '<pre>';print_r($getcategory_id);exit;
+				if($getcategory_id[0]['category_id']!=$category_id){
+					$previous= $this->Customerapi_model->get_all_previous_search_fields_withip($getcategory_id[0]['Ip_address'],$getcategory_id[0]['category_id']);
+					foreach($previous as $list){
+						$this->Customerapi_model->delete_privous_searchdata($list['id'],$getcategory_id[0]['Ip_address']);
+					}
+					
 				}
-				
-			}
 			}
 			if($category_id==18){
 			if(isset($cusine) && $cusine!=''){
@@ -1813,28 +1809,27 @@ class CustomerApi extends REST_Controller {
 
 					}
 					$categorywise= $this->Customerapi_model->get_search_all_subcategory_products();
-					if(count($categorywise)>0){
-					foreach($categorywise as $list){
-						
-						foreach($list as $li){
-							foreach($li as $l){
-							$idslist[]=$l['item_id'];
+					echo '<pre>';print_r($categorywise);exit;
+						if(count($categorywise)>0){
+							foreach ($categorywise as $lists){
+								foreach ($lists as $li){
+								$idslist[]=$li['item_id'];
+								$products[]=$li;
 							}
 						}
-					}
-				//echo '<pre>';print_r($idslist);
-					$result = array_unique($idslist);
-						foreach ($result as $pids){
+						$result = array_unique($idslist);
+
+						//echo '<pre>';print_r($result);exit;
+							foreach ($result as $pids){
 								$products_list[]=$this->Customerapi_model->product_details($pids);
 
 							}
 							$categorywiseproducrlist=$products_list;
-				}else{
-					$categorywiseproducrlist=array();;
-					
-				}
-						
-					$previousdata= $this->Customerapi_model->get_all_previous_search_fields($Ip_address);
+						}else{
+
+						$categorywiseproducrlist=array();
+						}
+						$previousdata= $this->Customerapi_model->get_all_previous_search_fields($Ip_address);
 					$message = array('status'=>1,'previoussearchdata'=>$previousdata,'filtersresult'=>$categorywiseproducrlist,'message'=>'filter search result and previous search data ');
 					$this->response($message, REST_Controller::HTTP_OK);
 	}

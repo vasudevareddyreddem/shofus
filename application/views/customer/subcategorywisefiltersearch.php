@@ -63,7 +63,7 @@
 				$size[]=$predata['size'];
 				$color[]=$predata['color'];
 				$ideal_fors[]=$predata['ideal_for'];
-				$mobileacclist[]=$predata['mobileacc'];
+				$mobileacclist[]=$predata['compatible_mobiles'];
 				$producttype[]=$predata['producttype'];
 				$mega_pixel[]=$predata['mega_pixel'];
 				$sensor_types[]=$predata['sensor_type'];
@@ -314,7 +314,6 @@
 			<?php }else if($cat_subcat_ids[0]['category_id']=='19'){ ?>
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<?php if(count($offer_list)>0){ ?>
-				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -2306,12 +2305,7 @@
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                   <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                 </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-primary arrowed">Featured</span></span>
-                </div>
-                <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
-                </div>
+               
 				<?php if($productslist['item_quantity']<=0){ ?>
 				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
@@ -2346,7 +2340,7 @@
 				<div class="clearfix"></div>
             
               </div>
-               <div class="rating">
+               <div class="rating text-center">
                 <?php if(count($avg_count)>0){foreach ($avg_count as $li){
 				$idslist[]=$li['item_id'];			
 				if($productslist['item_id']==$li['item_id']){?>

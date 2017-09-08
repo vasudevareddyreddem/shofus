@@ -557,14 +557,10 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 		$product_details=$this->Customerapi_model->product_details($item_id);
-		$color_list=$this->Customerapi_model->get_product_color_details($item_id);
-		$size_list=$this->Customerapi_model->get_product_size_details($item_id);
-		$specification_list=$this->Customerapi_model->get_product_specification_details($item_id);
-		$uk_size_list=$this->Customerapi_model->get_product_uksize_details($item_id);
 		//echo '<pre>';print_r($wishlist);exit;
 		if(count($product_details)>0){
 		
-			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list);
+			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','message'=>'product details','details'=>$product_details);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'product Id is not valid one');
@@ -1682,9 +1678,7 @@ class CustomerApi extends REST_Controller {
 			
 			
 			/*once change category id delete old data*/
-			$getcategory_id= $this->Customerapi_model->get_subcategory_id_filterssearh($Ip_address);
-			if(count($getcategory_id)>0){
-			//echo '<pre>';print_r($getcategory_id);exit;
+			$getcategory_id= $this->Customerapi_model->get_subcategory_id_filterssearh();
 			if($getcategory_id[0]['category_id']!=$category_id){
 				$previous= $this->Customerapi_model->get_all_previous_search_fields_withip($getcategory_id[0]['Ip_address'],$getcategory_id[0]['category_id']);
 				foreach($previous as $list){
@@ -1692,120 +1686,25 @@ class CustomerApi extends REST_Controller {
 				}
 				
 			}
-			}
-			if($category_id==18){
-			if(isset($cusine) && $cusine!=''){
-				$cusinedata=explode(',',$cusine);
-				foreach ($cusinedata as $clist){
-					$cusinefilterdata=array(
-					'Ip_address'=>$Ip_address,
-					'category_id'=>$category_id,
-					'cusine'=>$clist,
-					'status'=>isset($status) ? $status:'',
-					'create'=>date('Y-m-d H:i:s'),
-				);
-				$this->Customerapi_model->save_searchdata($cusinefilterdata);
-					
-				}
-			}
-			if(isset($restraent) && $restraent!=''){
-				$restraentdata=explode(',',$restraent);
-				foreach ($restraentdata as $rlist){
-					$restraentfilterdata=array(
-					'Ip_address'=>$Ip_address,
-					'category_id'=>$category_id,
-					'restraent'=>$rlist,
-					'status'=>isset($status) ? $status:'',
-					'create'=>date('Y-m-d H:i:s'),
-				);
-				$this->Customerapi_model->save_searchdata($restraentfilterdata);
-					
-				}
-			}
-			}else{
-			if(isset($offers) && $offers!=''){
-				$offersdata=explode(',',$offers);
-				foreach ($offersdata as $olist){
-					$offersfilterdata=array(
-					'Ip_address'=>$Ip_address,
-					'category_id'=>$category_id,
-					'offers'=>$olist,
-					'status'=>isset($status) ? $status:'',
-					'create'=>date('Y-m-d H:i:s'),
-				);
-				$this->Customerapi_model->save_searchdata($offersfilterdata);
-					
-				}
-			}
-			if(isset($brand) && $brand!=''){
-				$branddata=explode(',',$brand);
-				foreach ($branddata as $blist){
-					$brandfilterdata=array(
-					'Ip_address'=>$Ip_address,
-					'category_id'=>$category_id,
-					'brand'=>$blist,
-					'status'=>isset($status) ? $status:'',
-					'create'=>date('Y-m-d H:i:s'),
-				);
-				$this->Customerapi_model->save_searchdata($brandfilterdata);
-					
-				}
-			}
-			if(isset($discount) && $discount!=''){
-				$discountdata=explode(',',$discount);
-				foreach ($discountdata as $dlist){
-					$discountfilterdata=array(
-					'Ip_address'=>$Ip_address,
-					'category_id'=>$category_id,
-					'discount'=>$dlist,
-					'status'=>isset($status) ? $status:'',
-					'create'=>date('Y-m-d H:i:s'),
-				);
-				$this->Customerapi_model->save_searchdata($discountfilterdata);
-					
-				}
-			}
-			if(isset($color) && $color!=''){
-				$colordata=explode(',',$color);
-				foreach ($colordata as $clist){
-					$colorfilterdata=array(
-					'Ip_address'=>$Ip_address,
-					'category_id'=>$category_id,
-					'color'=>$clist,
-					'status'=>isset($status) ? $status:'',
-					'create'=>date('Y-m-d H:i:s'),
-				);
-				$this->Customerapi_model->save_searchdata($colorfilterdata);
-					
-				}
-			}
-			if(isset($size) && $size!=''){
-				$sizedata=explode(',',$size);
-				foreach ($sizedata as $slist){
-					$sizefilterdata=array(
-					'Ip_address'=>$Ip_address,
-					'category_id'=>$category_id,
-					'size'=>$slist,
-					'status'=>isset($status) ? $status:'',
-					'create'=>date('Y-m-d H:i:s'),
-				);
-				$this->Customerapi_model->save_searchdata($sizefilterdata);
-					
-				}
-			}
-			}
 			/*delete old data*/
 				$filterdata=array(
 					'Ip_address'=>$Ip_address,
 					'category_id'=>$category_id,
 					'mini_amount'=>isset($mini_amount) ? $mini_amount:'',
 					'max_amount'=>isset($max_amount) ? $max_amount:'',
+					'cusine'=>isset($cusine) ? $cusine:'',
+					'restraent'=>isset($restraent) ? $restraent:'',
+					'offers'=>isset($offers) ? $offers:'',
+					'brand'=>isset($brand) ? $brand:'',
+					'discount'=>isset($discount) ? $discount:'',
+					'color'=>isset($color) ? $color:'',
+					'size'=>isset($size) ? $size:'',
 					'status'=>isset($status) ? $status:'',
 					'create'=>date('Y-m-d H:i:s'),
 				);
 				$filtersdata= $this->Customerapi_model->save_searchdata($filterdata);
 					if(count($filtersdata)>0){
-						$removesearch= $this->Customerapi_model->get_all_previous_search_fields($Ip_address);
+						$removesearch= $this->Customerapi_model->get_all_previous_search_fields();
 							foreach ($removesearch as $list){
 								$this->Customerapi_model->update_amount_privous_searchdata($mini_amount,$max_amount,$list['id']);
 
@@ -1813,28 +1712,27 @@ class CustomerApi extends REST_Controller {
 
 					}
 					$categorywise= $this->Customerapi_model->get_search_all_subcategory_products();
-					if(count($categorywise)>0){
-					foreach($categorywise as $list){
-						
-						foreach($list as $li){
-							foreach($li as $l){
-							$idslist[]=$l['item_id'];
+					//echo '<pre>';print_r($categorywise);
+						if(count($categorywise)>0){
+							foreach ($categorywise as $lists){
+								foreach ($lists as $li){
+								$idslist[]=$li['item_id'];
+								$products[]=$li;
 							}
 						}
-					}
-				//echo '<pre>';print_r($idslist);
-					$result = array_unique($idslist);
-						foreach ($result as $pids){
+						$result = array_unique($idslist);
+
+						//echo '<pre>';print_r($result);exit;
+							foreach ($result as $pids){
 								$products_list[]=$this->Customerapi_model->product_details($pids);
 
 							}
 							$categorywiseproducrlist=$products_list;
-				}else{
-					$categorywiseproducrlist=array();;
-					
-				}
-						
-					$previousdata= $this->Customerapi_model->get_all_previous_search_fields($Ip_address);
+						}else{
+
+						$categorywiseproducrlist=array();
+						}
+						$previousdata= $this->Customerapi_model->get_all_previous_search_fields($Ip_address);
 					$message = array('status'=>1,'previoussearchdata'=>$previousdata,'filtersresult'=>$categorywiseproducrlist,'message'=>'filter search result and previous search data ');
 					$this->response($message, REST_Controller::HTTP_OK);
 	}
@@ -1891,8 +1789,364 @@ class CustomerApi extends REST_Controller {
 				$this->response($message, REST_Controller::HTTP_OK);
 		}
 		
+		public function subcategoriewise_leftside_filters_get(){
+			$category_id=$this->input->get('category_id');
+			$subcategory_id=$this->input->get('subcategory_id');
+			if($category_id==''){
+			$message = array('status'=>1,'message'=>'category id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if($subcategory_id==''){
+			$message = array('status'=>1,'message'=>'Subcategory id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			
+			if($category_id==18){
+					$data['cusine_list']= $this->Customerapi_model->get_all_cusine_list_sub($category_id,$subcategory_id);
+					$data['myrestaurant']= $this->Customerapi_model->get_all_myrestaurant_list_sub($category_id,$subcategory_id);
+					$data['price_list']= $this->Customerapi_model->get_all_price_list_sub($category_id,$subcategory_id);
+					$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
+					$data['minimum_price'] = reset($data['price_list']);
+					$data['maximum_price'] = end($data['price_list']);
+			}else if($category_id==21){
+					$data['brand_list']= $this->Customerapi_model->get_all_brand_list_sib($category_id,$subcategory_id);
+					$data['price_list']= $this->Customerapi_model->get_all_price_list_sub($category_id,$subcategory_id);
+					$data['discount_list']= $this->Customerapi_model->get_all_discount_list_sub($category_id,$subcategory_id);
+					$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
+					$data['offer_list']= $this->Customerapi_model->get_all_offer_list_sub($category_id,$subcategory_id);
+					$data['minimum_price'] = reset($data['price_list']);
+					$data['maximum_price'] = end($data['price_list']);
+			}else if($category_id==20){
+					$data['brand_list']= $this->Customerapi_model->get_all_brand_list_sib($category_id,$subcategory_id);
+					$data['price_list']= $this->Customerapi_model->get_all_price_list_sub($category_id,$subcategory_id);
+					$data['discount_list']= $this->Customerapi_model->get_all_discount_list_sub($category_id,$subcategory_id);
+					$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
+					$data['offer_list']= $this->Customerapi_model->get_all_offer_list_sub($category_id,$subcategory_id);
+					$data['color_list']= $this->Customerapi_model->get_all_color_list_sub($category_id,$subcategory_id);
+					$data['minimum_price'] = reset($data['price_list']);
+					$data['maximum_price'] = end($data['price_list']);
+						if($subcategory_id==30){
+							$data['comatability_mobile_list']= $this->Customerapi_model->get_comatability_mobile_list($category_id,$subcategory_id);
+						}
+						if($subcategory_id==34){
+							$data['producttype_list']= $this->Customerapi_model->get_type_mobile_list($category_id,$subcategory_id);
+							$data['megapuxel_list']= $this->Customerapi_model->get_mega_pixel_list($category_id,$subcategory_id);
+							$data['sensor_type']= $this->Customerapi_model->get_sensor_type_list($category_id,$subcategory_id);
+							$data['battery_type']= $this->Customerapi_model->get_battery_type_list($category_id,$subcategory_id);
+						}
+						if($subcategory_id==35){
+							$data['display_size']= $this->Customerapi_model->get_display_size_list($category_id,$subcategory_id);
+							$data['connectivity_list']= $this->Customerapi_model->get_conncetivity_list($category_id,$subcategory_id);
+							$data['ram_list']= $this->Customerapi_model->get_ram_list($category_id,$subcategory_id);
+							$data['voice_calling_facility']= $this->Customerapi_model->get_voice_calling_facility_list($category_id,$subcategory_id);
+							$data['operating_system']= $this->Customerapi_model->get_os_list($category_id,$subcategory_id);
+							$data['internal_storage']= $this->Customerapi_model->get_internal_storage_list($category_id,$subcategory_id);
+							$data['battery_capacity']= $this->Customerapi_model->get_battery_capacity_list($category_id,$subcategory_id);
+							$data['primary_camera']= $this->Customerapi_model->get_primary_camera_list($category_id,$subcategory_id);
+							$data['processor_clock_speed']= $this->Customerapi_model->get_processor_clock_speed_list($category_id,$subcategory_id);
+						}
+						if($subcategory_id==36){
+							$data['producttype_list']= $this->Customerapi_model->get_type_mobile_list($category_id,$subcategory_id);
+							$data['wireless_speed']= $this->Customerapi_model->get_wireless_speed_list($category_id,$subcategory_id);
+							$data['frequency_band']= $this->Customerapi_model->get_frequency_band_list($category_id,$subcategory_id);
+							$data['broadband_compatibility']= $this->Customerapi_model->get_broadband_compatibility_list($category_id,$subcategory_id);
+							$data['usb_ports']= $this->Customerapi_model->get_usb_ports_list($category_id,$subcategory_id);
+							$data['frequency_list']= $this->Customerapi_model->get_frequency_list_list($category_id,$subcategory_id);
+							$data['antennae_list']= $this->Customerapi_model->get_antennae_list($category_id,$subcategory_id);
+						}
+						if($subcategory_id==39){
+							$data['display_size']= $this->Customerapi_model->get_display_size_list($category_id,$subcategory_id);
+							$data['processor_list']= $this->Customerapi_model->get_processor_list($category_id,$subcategory_id);
+							$data['ram_list']= $this->Customerapi_model->get_ram_list($category_id,$subcategory_id);
+							$data['operating_system']= $this->Customerapi_model->get_os_list($category_id,$subcategory_id);
+							$data['processor_brand']= $this->Customerapi_model->get_processor_brand_list($category_id,$subcategory_id);
+							$data['lifestyle_list']= $this->Customerapi_model->get_lifestyle_list($category_id,$subcategory_id);
+							$data['storage_type']= $this->Customerapi_model->get_storage_type_list($category_id,$subcategory_id);
+							$data['graphics_memory']= $this->Customerapi_model->get_graphics_memory_list($category_id,$subcategory_id);
+							$data['touch_screen']= $this->Customerapi_model->get_touch_screen_list($category_id,$subcategory_id);
+							$data['weight_list']= $this->Customerapi_model->get_weight_list($category_id,$subcategory_id);
+							$data['internal_storage']= $this->Customerapi_model->get_internal_storage_list($category_id,$subcategory_id);
+							$data['memory_type']= $this->Customerapi_model->get_memory_type_list($category_id,$subcategory_id);
+							$data['ram_type']= $this->Customerapi_model->get_ram_typee_list($category_id,$subcategory_id);
+						}
+						if($subcategory_id==40){
+								$data['producttype_list']= $this->Customerapi_model->get_type_mobile_list($category_id,$subcategory_id);
+								$data['ram_list']= $this->Customerapi_model->get_ram_list($category_id,$subcategory_id);
+								$data['operating_system']= $this->Customerapi_model->get_os_list($category_id,$subcategory_id);
+								$data['internal_storage']= $this->Customerapi_model->get_internal_storage_list($category_id,$subcategory_id);
+								$data['display_size']= $this->Customerapi_model->get_display_size_list($category_id,$subcategory_id);
+								$data['battery_capacity']= $this->Customerapi_model->get_battery_capacity_list($category_id,$subcategory_id);
+								$data['network_type']= $this->Customerapi_model->get_network_type_list($category_id,$subcategory_id);
+								$data['speciality_list']= $this->Customerapi_model->get_speciality_list($category_id,$subcategory_id);
+								$data['primary_camera']= $this->Customerapi_model->get_primary_camera_list($category_id,$subcategory_id);
+								$data['operating_system_version_name']= $this->Customerapi_model->get_operating_system_version_name_list($category_id,$subcategory_id);
+								$data['processor_brand']= $this->Customerapi_model->get_processor_brand_list($category_id,$subcategory_id);
+								$data['resolution_type']= $this->Customerapi_model->get_resolution_type_list($category_id,$subcategory_id);
+								$data['secondary_camera']= $this->Customerapi_model->get_secondary_camera_list($category_id,$subcategory_id);
+								$data['sim_type']= $this->Customerapi_model->get_sim_type_list($category_id,$subcategory_id);
+								$data['clock_speed']= $this->Customerapi_model->get_clock_speed_list($category_id,$subcategory_id);
+								$data['cores']= $this->Customerapi_model->get_cores_list($category_id,$subcategory_id);
+
+
+						}
 		
-		
+					}else if($category_id==19){
+						$data['brand_list']= $this->Customerapi_model->get_all_brand_list_sib($category_id,$subcategory_id);
+						$data['price_list']= $this->Customerapi_model->get_all_price_list_sub($category_id,$subcategory_id);
+						$data['discount_list']= $this->Customerapi_model->get_all_discount_list_sub($category_id,$subcategory_id);
+						$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
+						$data['offer_list']= $this->Customerapi_model->get_all_offer_list_sub($category_id,$subcategory_id);
+						$data['color_list']= $this->Customerapi_model->get_all_color_list_sub($category_id,$subcategory_id);
+						$data['sizes_list']= $this->Customerapi_model->get_all_size_list_sub($category_id,$subcategory_id);
+						$data['minimum_price'] = reset($data['price_list']);
+						$data['maximum_price'] = end($data['price_list']);
+							if($subcategory_id!=10 ||$subcategory_id!=53){
+								$data['ideal_for']= $this->Customerapi_model->get_ideal_for_sub($category_id,$subcategory_id);
+							}
+							if($subcategory_id==8 || $subcategory_id==14 || $subcategory_id==19 || $subcategory_id==20 || $subcategory_id==52 || $subcategory_id==28 || $subcategory_id==29){
+								$data['theme_list']= $this->Customerapi_model->get_theme_list($category_id,$subcategory_id);
+								$data['producttype_list']= $this->Customerapi_model->get_type_mobile_list($category_id,$subcategory_id);
+							}
+							if($subcategory_id==10){
+								$data['dial_shape']= $this->Customerapi_model->get_dial_shape_list($category_id,$subcategory_id);
+								$data['compatibleos']= $this->Customerapi_model->get_compatibleos_list($category_id,$subcategory_id);
+								$data['usage_list']= $this->Customerapi_model->get_usage_list($category_id,$subcategory_id);
+								$data['display_type']= $this->Customerapi_model->get_display_type_list($category_id,$subcategory_id);
+							}
+							if($subcategory_id==11 || $subcategory_id==21 || $subcategory_id==25){
+										$data['theme_list']= $this->Customerapi_model->get_theme_list($category_id,$subcategory_id);
+							}
+							if($subcategory_id==53){
+								$data['theme_list']= $this->Customerapi_model->get_theme_list($category_id,$subcategory_id);
+								$data['occasion']= $this->Customerapi_model->get_occasion_list($category_id,$subcategory_id);
+							}
+							if($subcategory_id==13 || $subcategory_id==16 || $subcategory_id==17 || $subcategory_id==23){
+								$data['producttype_list']= $this->Customerapi_model->get_type_mobile_list($category_id,$subcategory_id);
+							}if($subcategory_id==15){
+								$data['material']= $this->Customerapi_model->get_material_list($category_id,$subcategory_id);
+								$data['gemstones']= $this->Customerapi_model->get_gemstones_list($category_id,$subcategory_id);
+							}
+							if($subcategory_id==50){
+								$data['strap_color']= $this->Customerapi_model->get_strap_color_list($category_id,$subcategory_id);
+								$data['producttype_list']= $this->Customerapi_model->get_type_mobile_list($category_id,$subcategory_id);
+								$data['material']= $this->Customerapi_model->get_material_list($category_id,$subcategory_id);
+								$data['dial_shape']= $this->Customerapi_model->get_dial_shape_list($category_id,$subcategory_id);
+								$data['dial_color']= $this->Customerapi_model->get_dial_color_list($category_id,$subcategory_id);
+
+							}
+							if($subcategory_id==22){
+								$data['theme_list']= $this->Customerapi_model->get_theme_list($category_id,$subcategory_id);
+								$data['producttype_list']= $this->Customerapi_model->get_type_mobile_list($category_id,$subcategory_id);
+								$data['packof']= $this->Customerapi_model->get_packof_list($category_id,$subcategory_id);
+							}
+							if($subcategory_id==51){
+								$data['theme_list']= $this->Customerapi_model->get_theme_list($category_id,$subcategory_id);
+								$data['producttype_list']= $this->Customerapi_model->get_type_mobile_list($category_id,$subcategory_id);
+								$data['packof']= $this->Customerapi_model->get_packof_list($category_id,$subcategory_id);
+								$data['occasion']= $this->Customerapi_model->get_occasion_list($category_id,$subcategory_id);
+
+							}
+							if($subcategory_id==27){
+								$data['dial_shape']= $this->Customerapi_model->get_dial_shape_list($category_id,$subcategory_id);
+								$data['usage_list']= $this->Customerapi_model->get_usage_list($category_id,$subcategory_id);
+								$data['display_type']= $this->Customerapi_model->get_display_type_list($category_id,$subcategory_id);
+							}
+
+					}
+				$message = array('status'=>1,'subcategorywiseleftsidefilters_list'=>$data,'message'=>'filter search result');
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}
+		public function subcategory_wise_search_post(){
+			
+			//echo 'fddf';exit;
+			$Ip_address=$this->input->get('Ip_address');
+			$category_ids=$this->input->get('category_id');
+			$subcategory_id=$this->input->get('subcategory_id');
+			$mini_amount=$this->input->get('mini_amount');
+			$max_amount=$this->input->get('max_amount');
+			
+			$getcategory_id= $this->Customerapi_model->get_subcategory_iddata_filterssearh();
+			//echo '<pre>';print_r($getcategory_id);exit;
+			if($getcategory_id[0]['subcategory_id']!=$subcategory_id && $getcategory_id[0]['Ip_address']==$Ip_address){
+				$previousdata= $this->Customerapi_model->get_all_previous_subcategorywise_search_fields($Ip_address);
+				foreach ($previousdata as $list){
+					$this->Customerapi_model->delete_subcategory_privous_searchdata($list['id'],$Ip_address);
+				}
+			}
+			//echo '<pre>';print_r($previousdata);exit;
+			if($Ip_address==''){
+				$message = array('status'=>1,'message'=>'Ip address is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if($category_ids==''){
+				$message = array('status'=>1,'message'=>'category id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if($subcategory_id==''){
+				$message = array('status'=>1,'message'=>'subcategory id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if($mini_amount==''){
+				$message = array('status'=>1,'message'=>'Minimum Amount is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}elseif($max_amount==''){
+				$message = array('status'=>1,'message'=>'Maximum Amount required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			$cus=$this->input->get('cusine');
+			$restraent=$this->input->get('restraent');
+			$offer=$this->input->get('offers');
+			$brand=$this->input->get('brand');
+			$discount=$this->input->get('discount');
+			$color=$this->input->get('color');
+			$size=$this->input->get('size');
+			$mobileacc=$this->input->get('mobileacc');
+			$producttype=$this->input->get('producttype');
+			$mega_pixel=$this->input->get('mega_pixel');
+			$sensor_type=$this->input->get('sensor_type');
+			$battery_type=$this->input->get('battery_type');
+			$display_size=$this->input->get('display_size');
+			$connectivity=$this->input->get('connectivity');
+			$voice_calling_facility=$this->input->get('voice_calling_facility');
+			$ram=$this->input->get('ram');
+			$operatingsystem=$this->input->get('operatingsystem');
+			$internal_storage=$this->input->get('internal_storage');
+			$battery_capacity=$this->input->get('battery_capacity');
+			$primary_camera=$this->input->get('primary_camera');
+			$processor_clock_speed=$this->input->get('processor_clock_speed');
+			$wireless_speed=$this->input->get('wireless_speed');
+			$frequency_band=$this->input->get('frequency_band');
+			$broadband_compatibility=$this->input->get('broadband_compatibility');
+			$usb_ports=$this->input->get('usb_ports');
+			$frequency=$this->input->get('frequency');
+			$antennae=$this->input->get('antennae');
+			$processor=$this->input->get('processor');
+			$processor_brand=$this->input->get('processor_brand');
+			$life_style=$this->input->get('life_style');
+			$storage_type=$this->input->get('storage_type');
+			$graphics_memory=$this->input->get('graphics_memory');
+			$touch_screen=$this->input->get('touch_screen');
+			$weight=$this->input->get('weight');
+			$memory_type=$this->input->get('memory_type');
+			$ram_type=$this->input->get('ram_type');
+			$network_type=$this->input->get('network_type');
+			$speciality=$this->input->get('speciality');
+			$operating_system_version_name=$this->input->get('operating_system_version_name');
+			$resolution_type=$this->input->get('resolution_type');
+			$secondary_camera=$this->input->get('secondary_camera');
+			$sim_type=$this->input->get('sim_type');
+			$clock_speed=$this->input->get('clock_speed');
+			$cores=$this->input->get('cores');
+			$theme=$this->input->get('theme');
+			$dial_shape=$this->input->get('dial_shape');
+			$compatibleos=$this->input->get('compatibleos');
+			$usages=$this->input->get('usages');
+			$display_type=$this->input->get('display_type');
+			$occasion=$this->input->get('occasion');
+			$ideal_for=$this->input->get('ideal_for');
+			$material=$this->input->get('material');
+			$gemstones=$this->input->get('gemstones');
+			$strap_color=$this->input->get('strap_color');
+			$dial_color=$this->input->get('dial_color');
+			$packof=$this->input->get('packof');
+			$status=$this->input->get('status');
+			
+			$filters=array(
+					'Ip_address'=>$Ip_address,
+					'category_id'=>$category_ids,
+					'subcategory_id'=>$subcategory_id,
+					'mini_amount'=>isset($mini_amount) ? $mini_amount:'',
+					'max_amount'=>isset($max_amount) ? $max_amount:'',
+					'cusine'=>isset($cus) ? $cus:'',
+					'restraent'=>isset($restraent) ? $restraent:'',
+					'offers'=>isset($offer) ? $offer:'',
+					'brand'=>isset($brand) ? $brand:'',
+					'discount'=>isset($discount) ? $discount:'',
+					'color'=>isset($color) ? $color:'',
+					'size'=>isset($size) ? $size:'',
+					'compatible_mobiles'=>isset($mobileacc) ? $mobileacc:'',
+					'producttype'=>isset($producttype) ? $producttype:'',
+					'mega_pixel'=>isset($mega_pixel) ? $mega_pixel:'',
+					'sensor_type'=>isset($sensor_type) ? $sensor_type:'',
+					'battery_type'=>isset($battery_type) ? $battery_type:'',
+					'display_size'=>isset($display_size) ? $display_size:'',
+					'connectivity'=>isset($connectivity) ? $connectivity:'',
+					'voice_calling_facility'=>isset($voice_calling_facility) ? $voice_calling_facility:'',
+					'ram'=>isset($ram) ? $ram:'',
+					'operatingsystem'=>isset($operatingsystem) ? $operatingsystem:'',
+					'internal_storage'=>isset($internal_storage) ? $internal_storage:'',
+					'battery_capacity'=>isset($battery_capacity) ? $battery_capacity:'',
+					'primary_camera'=>isset($primary_camera) ? $primary_camera:'',
+					'processor_clock_speed'=>isset($processorclockspeed) ? $processorclockspeed:'',
+					'wireless_speed'=>isset($wireless_speed) ? $wireless_speed:'',
+					'frequency_band'=>isset($frequency_band) ? $frequency_band:'',
+					'broadband_compatibility'=>isset($broadband_compatibility) ? $broadband_compatibility:'',
+					'usb_ports'=>isset($usb_ports) ? $usb_ports:'',
+					'frequency'=>isset($frequency) ? $frequency:'',
+					'antennae'=>isset($antennae) ? $antennae:'',
+					'processor'=>isset($processor) ? $processor:'',
+					'processor_brand'=>isset($processor_brand) ? $processor_brand:'',
+					'life_style'=>isset($life_style) ? $life_style:'',
+					'storage_type'=>isset($storage_type) ? $storage_type:'',
+					'graphics_memory'=>isset($graphics_memory) ? $graphics_memory:'',
+					'touch_screen'=>isset($touch_screen) ? $touch_screen:'',
+					'weight'=>isset($weight) ? $weight:'',
+					'memory_type'=>isset($memory_type) ? $memory_type:'',
+					'ram_type'=>isset($ram_type) ? $ram_type:'',
+					'network_type'=>isset($network_type) ? $network_type:'',
+					'speciality'=>isset($speciality) ? $speciality:'',
+					'operating_system_version_name'=>isset($operating_system_version_name) ? $operating_system_version_name:'',
+					'resolution_type'=>isset($resolution_type) ? $resolution_type:'',
+					'secondary_camera'=>isset($secondary_camera) ? $secondary_camera:'',
+					'sim_type'=>isset($sim_type) ? $sim_type:'',
+					'clock_speed'=>isset($clock_speed) ? $clock_speed:'',
+					'cores'=>isset($cores) ? $cores:'',
+					'theme'=>isset($theme) ? $theme:'',
+					'dial_shape'=>isset($dial_shape) ? $dial_shape:'',
+					'compatibleos'=>isset($compatibleos) ? $compatibleos:'',
+					'usages'=>isset($usage) ? $usage:'',
+					'display_type'=>isset($display_type) ? $display_type:'',
+					'occasion'=>isset($occasion) ? $occasion:'',
+					'ideal_for'=>isset($ideal_for) ? $ideal_for:'',
+					'material'=>isset($material) ? $material:'',
+					'gemstones'=>isset($gemstones) ? $gemstones:'',
+					'strap_color'=>isset($strap_color) ? $strap_color:'',
+					'dial_color'=>isset($dial_color) ? $dial_color:'',
+					'packof'=>isset($packof) ? $packof:'',
+					'status'=>isset($status) ? $status:'',
+					'create'=>date('Y-m-d H:i:s'),
+					);
+				$filtersdata= $this->Customerapi_model->save_sub_searchdata($filters);
+					if(count($filtersdata)>0){
+						$removesearch= $this->Customerapi_model->get_all_previous_subcategorywise_search_fields($Ip_address);
+						foreach ($removesearch as $list){
+						$this->Customerapi_model->update_amount_privous_subcategory_wise_searchdata($mini_amount,$max_amount,$list['id']);
+
+					}
+				}
+				$subcategorywise= $this->Customerapi_model->get_search_all_subcategorywise_products();
+				//echo '<pre>';print_r($subcategorywise);exit;
+					if(count($subcategorywise)>0){
+							foreach ($subcategorywise as $lists){
+							foreach ($lists as $li){
+							$idslist[]=$li['item_id'];
+							$products[]=$li;
+							}
+							}
+						$result = array_unique($idslist);
+
+				//echo '<pre>';print_r($result);exit;
+						foreach ($result as $pids){
+							$products_list[]=$this->Customerapi_model->get_product_details($pids);
+
+						}
+						$subcategory_porduct_list=$products_list;
+					}else{
+
+						$subcategory_porduct_list=array();
+					}
+				$message = array('status'=>1,'subcategorywisefilterresult'=>$subcategory_porduct_list,'message'=>'filter search result');
+				$this->response($message, REST_Controller::HTTP_OK);
+					//echo '<pre>';print_r($subcategory_porduct_list);exit;
+			
+		}
 		public function orderreturn_post(){
 			$order_item_id=$this->input->get('order_item_id');
 			$status_id=$this->input->get('status_id');
