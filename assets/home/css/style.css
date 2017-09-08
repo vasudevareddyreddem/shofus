@@ -6389,9 +6389,7 @@ box-shadow: 0px 6px 31px -8px rgba(0,0,0,0.75);
 	 z-index:1025;
 	 width:775px;
 	 font-size:20px;
-	   height: 200px;
-    
-   overflow: scroll;
+
 	 -webkit-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
 box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
