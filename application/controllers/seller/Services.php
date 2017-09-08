@@ -44,7 +44,7 @@ class Services extends Admin_Controller {
 		);
 		$contact = $this->adddetails_model->save_notifciations($addnotifications);
 		if(count($contact)>0){
-			$this->session->set_flashdata('sucess','Notification successfully send!');
+			$this->session->set_flashdata('sucess','Notification successfully sent!');
 			redirect('seller/services/notications');	
 		}
 	}
