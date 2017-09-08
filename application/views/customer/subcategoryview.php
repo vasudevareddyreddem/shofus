@@ -573,7 +573,7 @@
 				 <div class="clearfix"></div>
             
               </div>
-              <div class="rating">
+              <div class="rating text-center">
                 <?php foreach ($avg_count as $li){
 				$idslist[]=$li['item_id'];			
 				if($productslist['item_id']==$li['item_id']){?>

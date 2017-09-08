@@ -117,7 +117,7 @@ class Category extends Front_Controller
 				}else if(isset($post['unchecked']) && $post['unchecked']=='uncheck' && $post['searchvalue']=='mobileacc'){
 					$removesearch= $this->category_model->get_all_previous_subcategorywise_search_fields();
 					foreach ($removesearch as $list){
-						if($list['mobileacc']==$post['productsvalues']){
+						if($list['compatible_mobiles']==$post['productsvalues']){
 						$this->category_model->update_mobileacc_privous_subcategorysearchdata($list['id'],'');
 						}
 					} 
@@ -721,7 +721,7 @@ class Category extends Front_Controller
 	'discount'=>isset($discount) ? $discount:'',
 	'color'=>isset($color) ? $color:'',
 	'size'=>isset($size) ? $size:'',
-	'mobileacc'=>isset($mobileacc) ? $mobileacc:'',
+	'compatible_mobiles'=>isset($mobileacc) ? $mobileacc:'',
 	'producttype'=>isset($cameratype) ? $cameratype:'',
 	'mega_pixel'=>isset($mega_pixel) ? $mega_pixel:'',
 	'sensor_type'=>isset($sensor_type) ? $sensor_type:'',
@@ -802,13 +802,15 @@ class Category extends Front_Controller
 	$caterory_id=$data['cat_subcat_ids'][0]['category_id'];
 	$subcaterory_id=$data['cat_subcat_ids'][0]['subcategory_id'];
 		
-		if(count($subcategory_porduct_list)>0  && count($subcategory_porduct_list['mini_amount'])>0 || count($subcategory_porduct_list['status'])>0 ){
-		foreach ($subcategory_porduct_list as $lists){
-				foreach ($lists as $li){
-						$idslist[]=$li['item_id'];
-						$products[]=$li;
+		foreach($subcategory_porduct_list as $list){
+						
+						foreach($list as $li){
+							foreach($li as $l){
+							$idslist[]=$l['item_id'];
+							}
+						}
 					}
-		}
+					//echo '<pre>';print_r($idslist);exit;
 		$result = array_unique($idslist);
 		
 	//echo '<pre>';print_r($result);exit;
@@ -826,10 +828,7 @@ class Category extends Front_Controller
 	
 	$data['avg_count']=$reviewrating;
 	$data['rating_count']=$reviewcount;
-	}else{
 	
-	$data['subcategory_porduct_list']=array();
-	}
 	$data['previousdata']= $this->category_model->get_all_previous_search_subcategory_fields();
 	$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
 

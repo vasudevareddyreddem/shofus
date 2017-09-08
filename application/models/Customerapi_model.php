@@ -332,6 +332,26 @@ class Customerapi_model extends MY_Model
 		$this->db->where('item_id', $itemid);
         return $this->db->get()->row_array();
 	}
+	public function get_product_color_details($itemid){
+		$this->db->select('*')->from('product_color_list');
+		$this->db->where('item_id', $itemid);
+        return $this->db->get()->result_array();
+	}
+	public function get_product_size_details($itemid){
+		$this->db->select('*')->from('product_size_list');
+		$this->db->where('item_id', $itemid);
+        return $this->db->get()->result_array();
+	}
+	public function get_product_uksize_details($itemid){
+		$this->db->select('*')->from('product_uksize_list');
+		$this->db->where('item_id', $itemid);
+        return $this->db->get()->result_array();
+	}
+	public function get_product_specification_details($itemid){
+		$this->db->select('*')->from('product_spcifications');
+		$this->db->where('item_id', $itemid);
+        return $this->db->get()->result_array();
+	}
 
 	public function get_cart_products_list($cust_id){
 		$this->db->select('*')->from('cart');
@@ -516,38 +536,60 @@ class Customerapi_model extends MY_Model
 	$this->db->group_by('fliter_search.status');
 	$this->db->group_by('fliter_search.size');
 	$this->db->group_by('fliter_search.color');
-	$query=$this->db->get()->result_array();
-		foreach ($query as $sorting){
-			if($sorting['cusine']!=''){
-				$return['cusine'] = $this->get_cusineapi($sorting['cusine'],$sorting['category_id']);
+	$querys=$this->db->get()->result_array();
+		foreach ($querys as $listing){
+			//echo $listing->cusine;
+			//echo '<pre>';print_r($listing);
+			if($listing['cusine']!=''){
+			$dat['cusine'][]=$this->get_cusinelist($listing['cusine'],$listing['category_id']);
 			}
-			if($sorting['restraent']!=''){
-				$return['restraent'] = $this->get_restraentapi($sorting['restraent'],$sorting['category_id']);
-				//echo $this->db->last_query();exit;
+			if($listing['restraent']!=''){
+			$dat['res'][]=$this->get_restraentlist($listing['restraent'],$listing['category_id']);
 			}
-			if($sorting['offers']!=''){
-			$return['offers'] = $this->get_offersapi($sorting['offers'],$sorting['category_id']);
+			if($listing['offers']!=''){
+			$dat['offers'][]= $this->get_offersapi($listing['offers'],$listing['category_id']);
 			}
-			if($sorting['brand']!=''){
-			$return['brand'] = $this->get_brandsapi($sorting['brand'],$sorting['category_id']);
+			if($listing['brand']!=''){
+			$dat['brand'][] = $this->get_brandsapi($listing['brand'],$listing['category_id']);
 			}
-			if($sorting['discount']!=''){
-			$return['discount'] = $this->get_discountsapi($sorting['discount'],$sorting['category_id']);
+			if($listing['discount']!=''){
+			$dat['discount'][] = $this->get_discountsapi($listing['discount'],$listing['category_id']);
 			}
-			if($sorting['color']!=''){
-				$return['color'] = $this->get_colorsapi($sorting['color'],$sorting['category_id']);
+			if($listing['color']!=''){
+			$dat['color'][] = $this->get_colorsapi($listing['color'],$listing['category_id']);
 			}
-			if($sorting['size']!=''){
-			$return['size'] = $this->get_sizesapi($sorting['size'],$sorting['category_id']);
+			if($listing['size']!=''){
+			$dat['size'][] = $this->get_sizesapi($listing['size'],$listing['category_id']);
 			}
-			$return['mini_amount'] = $this->get_amountapi($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
-			$return['status'] = $this->get_statusapi($sorting['status'],$sorting['category_id']);
-			
+			$dat['mini_amount'][] = $this->get_amountapi($listing['mini_amount'],$listing['max_amount'],$listing['category_id']);
+			if($listing['status']!=''){
+			$dat['status'][] = $this->get_statusapi($listing['status'],$listing['category_id']);
+			}
 		}
-		if(!empty($return))
+		if(!empty($dat))
 		{
-		return $return;
+		return $dat; 
 		}
+		
+	}
+	public function get_cusinelist($cus,$cid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		//$this->db->where_in('cusine',$cusine);
+		$this->db->where('cusine', $cus);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_restraentlist($res,$cid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',1);
+		//$this->db->where_in('cusine',$cusine);
+		$this->db->where('seller_id', $res);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
 		
 	}
 	public function get_offersapi($offer,$cid){
@@ -559,9 +601,11 @@ class Customerapi_model extends MY_Model
 	}
 	public function get_cusineapi($cusine,$cid){
 		
+		//echo $cusine;exit;
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',1);
-		$this->db->where('cusine',$cusine);
+		//$this->db->where_in('cusine',$cusine);
+		$this->db->where('cusine', $cusine);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
 	}
@@ -731,9 +775,10 @@ class Customerapi_model extends MY_Model
 		$this->db->group_by('products.offers');
 		return $this->db->get()->result_array();
 	}
-	public function get_subcategory_id_filterssearh()
+	public function get_subcategory_id_filterssearh($ip)
 	{
 		$this->db->select('fliter_search.category_id,fliter_search.Ip_address')->from('fliter_search');
+		$this->db->where('fliter_search.Ip_address',$ip);
 		$this->db->group_by('category_id');
 		return $this->db->get()->result_array();
 	}

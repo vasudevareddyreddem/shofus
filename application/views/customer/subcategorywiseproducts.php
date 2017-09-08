@@ -41,6 +41,7 @@
 	 <div class=" clearfix"></div>
 	 <!-- Filter Sidebar -->
 	 <span id="withoursearchsubcategory">
+	 <span id="withoursearchsubcategory1">
 		<div class="col-sm-3">
 		 <div class="title"><span>Filters</span></div>
 
@@ -1985,7 +1986,7 @@
 				<div class="clearfix"></div>
             
               </div>
-              <div class="rating">
+              <div class="rating text-center">
                 <?php foreach ($avg_count as $li){
 				$idslist[]=$li['item_id'];			
 				if($productslist['item_id']==$li['item_id']){?>
@@ -2048,6 +2049,7 @@
          
          
         </div>
+		</span>
 		</span>
 	
         <!-- End Product List -->
@@ -2127,7 +2129,6 @@ jQuery.ajax({
 }
 
 function submobileaccessories(val,status,check){
-	
 	jQuery.ajax({
 		
 				url: "<?php echo site_url('category/subcategorywiseearch');?>",
@@ -2146,9 +2147,8 @@ function submobileaccessories(val,status,check){
 					},
 				dataType: 'html',
 				success: function (data) {
+					//alert(data);
 					$("#withoursearchsubcategory").empty();
-					//$("#containerhighold").hide();
-					//$("#containerhigh").show();
 					$("#withoursearchsubcategory").append(data);
 	}
 });
