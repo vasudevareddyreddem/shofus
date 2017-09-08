@@ -76,15 +76,15 @@
   <!--header part start here -->
   <div class="jain_container">
     <nav class="navbar navbar-default nav_cus" role="navigation">
-	<div class="top-navbar">
-    <div class="container">
+	<div class="top-navbar" style="color:#fff;">
+    <div class="container-fluid">
       <div class=" row">
-        <div class="social-media col-md-3"> Stay connected:
+        <div class="social-media col-md-2" style="width:20%"> Stay connected:
           <ul>
-            <li><a href="#" class=""><span class=""><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a></li>
-            <li><a href="#" class=""><span class=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></span></a></li>
-            <li><a href="#" class=""><span class=""><i class="fa fa-twitter-square" aria-hidden="true"></i></span></a></li>
-            <li><a href="#" class=""><span class=""><i class="fa fa-pinterest-square" aria-hidden="true"></i></span></a></li>
+            <li><a href="#" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/fb.png" /></i></span></a></li>&nbsp;
+            <li><a href="#" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/gmai.png" /></i></span></a></li>&nbsp;
+            <li><a href="#" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/tiw.png" /></i></span></a></li>
+           
           </ul>
         </div> 
 		<div class="col-md-5">
@@ -94,7 +94,7 @@
 		?>
 		</div>
         </div>
-        <div class="user-link col-md-4"> <a class="tel" href="tel:+201234567891"><span class="glyphicon glyphicon-earphone">&nbsp;</span>+123456789</a> <a class="" href="mailto:support@resalatheme.com"><i><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
+        <div class="user-link col-md-5" style="width:35%;margin-top:5px;"> <a class="tel" href="tel:+201234567891"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a> <a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
           
         </div>
       </div>
