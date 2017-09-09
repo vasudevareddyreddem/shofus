@@ -42,7 +42,7 @@ class apiOAuth2 extends apiAuth {
   const OAUTH2_FEDERATED_SIGNON_CERTS_URL = 'https://www.googleapis.com/oauth2/v1/certs';
   const CLOCK_SKEW_SECS = 300; // five minutes in seconds
   const AUTH_TOKEN_LIFETIME_SECS = 300; // five minutes in seconds
-  const MAX_TOKEN_LIFETIME_SECS = 86400; // one day in seconds
+  const MAX_TOKEN_LIFETIME_SECS = 300; // one day in seconds
 
   /**
    * Instantiates the class, but does not initiate the login flow, leaving it

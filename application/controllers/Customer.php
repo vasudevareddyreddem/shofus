@@ -995,7 +995,7 @@ class Customer extends Front_Controller
 		if (isset($_GET['code'])) {
 			
 			$this->googleplus->getAuthenticate();
-			$this->session->set_userdata('login',true);
+			//$this->session->set_userdata('login',true);
 			$gplus=$this->googleplus->getUserInfo();
 					if(isset($gplus['email']) && $gplus['email']!=''){
 						$emailcheck = $this->customer_model->email_check($gplus['email']);
@@ -1005,7 +1005,7 @@ class Customer extends Front_Controller
 									'cust_lastname'=>$gplus['family_name'],
 									'cust_email'=>$gplus['email'],
 									'role_id'=>1,
-									'status'=>1,
+									'status'=>0,
 									'create_at'=>date('Y-m-d H:i:s'),
 									);
 									$gcustomerdetails = $this->customer_model->save_customer($gdetails);
@@ -1017,12 +1017,14 @@ class Customer extends Front_Controller
 									}
 							
 							}else{
-								//$this->googleplus->revokeToken();		
+								$this->googleplus->revokeToken();		
 								$this->session->set_flashdata('loginerror',"E-mail already exists.Please login with Your credentials");
+								redirect('customer', 'refresh');	
 							}
 					}else{
-							//$this->googleplus->revokeToken();
-							$this->session->set_flashdata('loginerror',"Social logins unavailable please login with your credentials");	
+							$this->googleplus->revokeToken();
+							$this->session->set_flashdata('loginerror',"Social logins unavailable please login with your credentials");
+							redirect('customer', 'refresh');						
 						}
 			} 
 		/*fb*/
@@ -1045,7 +1047,7 @@ class Customer extends Front_Controller
 							'cust_lastname'=>$users['last_name'],
 							'cust_email'=>$users['email'],
 							'role_id'=>1,
-							'status'=>1,
+							'status'=>0,
 							'create_at'=>date('Y-m-d H:i:s'),
 							);
 							$fbcustomerdetails = $this->customer_model->save_customer($fbdetails);
@@ -1059,10 +1061,12 @@ class Customer extends Front_Controller
 					}else{
 						$this->facebook->destroy_session();			
 						$this->session->set_flashdata('loginerror',"E-mail already exists.Please login with Your credentials");
+						redirect('customer', 'refresh');	
 					}
 			}else{
 					$this->facebook->destroy_session();
-					$this->session->set_flashdata('loginerror',"Social logins unavailable please login with your credentials");	
+					$this->session->set_flashdata('loginerror',"Social logins unavailable please login with your credentials");
+					redirect('customer', 'refresh');						
 				}
 
 			
@@ -1431,7 +1435,7 @@ class Customer extends Front_Controller
 						{
 							$fbdetails = $this->customer_model->get_customer_fbdetails(base64_decode($post['cust_id']),base64_decode($post['email']));
 							if(count($fbdetails)>0){
-								$users = $this->customer_model->setpassword_user(base64_decode($post['cust_id']),md5($post['confirmpassword']));
+								$users = $this->customer_model->socialsetpassword_user(base64_decode($post['cust_id']),md5($post['confirmpassword']),1);
 								if(count($users)>0)
 								{
 								$getdetails = $this->customer_model->get_customer_details(base64_decode($post['cust_id']));	

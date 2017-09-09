@@ -313,6 +313,10 @@ class Customer_model extends MY_Model
 		$sql1="UPDATE customers SET cust_password ='".$pass."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
 	}
+	public function socialsetpassword_user($custid,$pass,$statusid){
+		$sql1="UPDATE customers SET cust_password ='".$pass."' , status ='".$statusid."' WHERE customer_id = '".$custid."'";
+       	return $this->db->query($sql1);
+	}
 	public function get_order_items_lists($custid){
 			$this->db->select('order_items.*')->from('order_items');
 			$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
