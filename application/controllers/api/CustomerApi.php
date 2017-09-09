@@ -194,64 +194,120 @@ class CustomerApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 	}
 	$cart_item_ids= $this->Customerapi_model->get_cart_products($customer_id);
-		foreach($cart_item_ids as $cartids) 
-		{ 		
-			$cart_id[]=$cartids['item_id'];
-		}
-		if(in_array($item_id,$cart_id))
-		{
-			$message = array('status'=>1,'message'=>'Product already exits');
-			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-		}else{
-				$products= $this->Customerapi_model->get_product_details($item_id);
-				$currentdate=date('Y-m-d h:i:s A');
-				if($products['offer_expairdate']>=$currentdate){
-						$item_price= ($products['item_cost']-$products['offer_amount']);
-						$price	=(($qty) * ($item_price));
-				}else{
-					//echo "expired";
-					$item_price= $products['special_price'];
-					$price	=(($qty) * ($item_price));
+	if(count($cart_item_ids)>0){ 
+			foreach($cart_item_ids as $cartids) 
+				{ 		
+					$cart_id[]=$cartids['item_id'];
 				}
-				$commission_price=(($price)*($products['commission'])/100);
-				if($products['category_id']==18){
-						if($price <500){
-							$delivery_charges=35;
+				if(in_array($item_id,$cart_id))
+				{
+					$message = array('status'=>1,'message'=>'Product already exits');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}else{
+						$products= $this->Customerapi_model->get_product_details($item_id);
+						$currentdate=date('Y-m-d h:i:s A');
+						if($products['offer_expairdate']>=$currentdate){
+								$item_price= ($products['item_cost']-$products['offer_amount']);
+								$price	=(($qty) * ($item_price));
 						}else{
-							$delivery_charges=0;
+							//echo "expired";
+							$item_price= $products['special_price'];
+							$price	=(($qty) * ($item_price));
 						}
+						$commission_price=(($price)*($products['commission'])/100);
+						if($products['category_id']==18){
+								if($price <500){
+									$delivery_charges=35;
+								}else{
+									$delivery_charges=0;
+								}
+							}else{
+								
+								if($price <500){
+									$delivery_charges=75;
+								}else if(($price > 500) && ($price < 1000)){
+									$delivery_charges=35;
+								}else if($price >1000){
+									$delivery_charges=0;
+								}
+							}
+							//echo '<pr>';print_r($products);exit;
+							$adddata=array(
+								'cust_id'=>$customer_id,
+								'item_id'=>$item_id,
+								'qty'=>$qty,
+								'item_price'=>$item_price,
+								'total_price'=>$price,
+								'commission_price'=>$commission_price,
+								'delivery_amount'=>$delivery_charges,
+								'seller_id'=>$products['seller_id'],
+								'category_id'=>$products['category_id'],
+								'create_at'=>date('Y-m-d H:i:s'),
+							);
+							$cart_save= $this->Customerapi_model->cart_products_save($adddata);
+							if(count($cart_save)>0){
+								$message = array('status'=>1,'message'=>'Product Successfully added to the cart');
+								$this->response($message, REST_Controller::HTTP_OK);
+							}else{
+								$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
+								$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+							}
+					}
+	
+	}else{
+			$products= $this->Customerapi_model->get_product_details($item_id);
+					$currentdate=date('Y-m-d h:i:s A');
+					if($products['offer_expairdate']>=$currentdate){
+							$item_price= ($products['item_cost']-$products['offer_amount']);
+							$price	=(($qty) * ($item_price));
 					}else{
-						
-						if($price <500){
-							$delivery_charges=75;
-						}else if(($price > 500) && ($price < 1000)){
-							$delivery_charges=35;
-						}else if($price >1000){
-							$delivery_charges=0;
+						//echo "expired";
+						$item_price= $products['special_price'];
+						$price	=(($qty) * ($item_price));
+					}
+					$commission_price=(($price)*($products['commission'])/100);
+					if($products['category_id']==18){
+							if($price <500){
+								$delivery_charges=35;
+							}else{
+								$delivery_charges=0;
+							}
+						}else{
+							
+							if($price <500){
+								$delivery_charges=75;
+							}else if(($price > 500) && ($price < 1000)){
+								$delivery_charges=35;
+							}else if($price >1000){
+								$delivery_charges=0;
+							}
 						}
-					}
-					//echo '<pr>';print_r($products);exit;
-					$adddata=array(
-						'cust_id'=>$customer_id,
-						'item_id'=>$item_id,
-						'qty'=>$qty,
-						'item_price'=>$item_price,
-						'total_price'=>$price,
-						'commission_price'=>$commission_price,
-						'delivery_amount'=>$delivery_charges,
-						'seller_id'=>$products['seller_id'],
-						'category_id'=>$products['category_id'],
-						'create_at'=>date('Y-m-d H:i:s'),
-					);
-					$cart_save= $this->Customerapi_model->cart_products_save($adddata);
-					if(count($cart_save)>0){
-						$message = array('status'=>1,'message'=>'Product Successfully added to the cart');
-						$this->response($message, REST_Controller::HTTP_OK);
-					}else{
-						$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
-						$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-					}
-			}
+						//echo '<pr>';print_r($products);exit;
+						$adddata=array(
+							'cust_id'=>$customer_id,
+							'item_id'=>$item_id,
+							'qty'=>$qty,
+							'item_price'=>$item_price,
+							'total_price'=>$price,
+							'commission_price'=>$commission_price,
+							'delivery_amount'=>$delivery_charges,
+							'seller_id'=>$products['seller_id'],
+							'category_id'=>$products['category_id'],
+							'create_at'=>date('Y-m-d H:i:s'),
+						);
+						$cart_save= $this->Customerapi_model->cart_products_save($adddata);
+						if(count($cart_save)>0){
+							$message = array('status'=>1,'message'=>'Product Successfully added to the cart');
+							$this->response($message, REST_Controller::HTTP_OK);
+						}else{
+							$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
+							$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+						}
+		
+		
+	}
+		
+		
 	
 	
 		
@@ -403,14 +459,20 @@ class CustomerApi extends REST_Controller {
 		}
 		$item_lists= $this->Customerapi_model->get_cart_products_list($customer_id);
 		//echo '<pre>';print_r($item_lists);exit;
-		if(!in_array($customer_id,$cart_ids))
-		{
-			$message = array('status'=>1,'message'=>'Customer having  no products in the cart');
-			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		if(count($item_lists)>0){
+			if(!in_array($customer_id,$cart_ids))
+			{
+				$message = array('status'=>1,'message'=>'Customer having  no products in the cart');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else{
+				$message = array('status'=>1,'message'=>'cart items list','list'=>$item_lists,'count'=>$item_lists_count['count']);
+				$this->response($message,REST_Controller::HTTP_OK);
+			}
 		}else{
-			$message = array('status'=>1,'message'=>'cart items list','list'=>$item_lists,'count'=>$item_lists_count['count']);
-			$this->response($message,REST_Controller::HTTP_OK);
+				$message = array('status'=>1,'message'=>'Customer having  no products in the cart');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
+		
 	}
 	/*alraedy wishlist Items in wishlist*/
 	public function alreadyitemidwishlist_get()
