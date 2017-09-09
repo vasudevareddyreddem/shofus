@@ -13,7 +13,8 @@ class Customer extends Front_Controller
 		$this->load->model('customer_model'); 
 		$this->load->model('home_model'); 
 		$this->load->model('category_model');
-		$this->load->library('facebook');		
+		$this->load->library('facebook');
+		$this->load->library('googleplus');		
 			
  }
  
@@ -989,7 +990,41 @@ class Customer extends Front_Controller
 		$this->input->cookie('remember', TRUE);
 		$data['remember'] = get_cookie('remember');
 		
-		
+		/*google plus*/
+		$data['login_url'] = $this->googleplus->loginURL();
+		if (isset($_GET['code'])) {
+			
+			$this->googleplus->getAuthenticate();
+			$this->session->set_userdata('login',true);
+			$gplus=$this->googleplus->getUserInfo();
+					if(isset($gplus['email']) && $gplus['email']!=''){
+						$emailcheck = $this->customer_model->email_check($gplus['email']);
+						if(count($emailcheck)==0){
+								$gdetails=array(
+									'cust_firstname'=>$gplus['given_name'],	 	
+									'cust_lastname'=>$gplus['family_name'],
+									'cust_email'=>$gplus['email'],
+									'role_id'=>1,
+									'status'=>1,
+									'create_at'=>date('Y-m-d H:i:s'),
+									);
+									$gcustomerdetails = $this->customer_model->save_customer($gdetails);
+									if(count($gcustomerdetails)>0){
+										$ggetdetails = $this->customer_model->get_customer_details($gcustomerdetails);
+										//echo '<pre>';print_r($fbgetdetails);exit;
+										redirect( 'customer/password/'.base64_encode($ggetdetails['customer_id']).'/'.base64_encode($ggetdetails['cust_email']).'/'.base64_encode('gplus')); 
+
+									}
+							
+							}else{
+								//$this->googleplus->revokeToken();		
+								$this->session->set_flashdata('loginerror',"E-mail already exists.Please login with Your credentials");
+							}
+					}else{
+							//$this->googleplus->revokeToken();
+							$this->session->set_flashdata('loginerror',"Social logins unavailable please login with your credentials");	
+						}
+			} 
 		/*fb*/
 		$data['user'] = array();
 
@@ -1181,7 +1216,7 @@ class Customer extends Front_Controller
 				if($mobile!=''){
 					
 					
-					/*$msg=' Your cartinhour verification code is '.$six_digit_random_number;
+					$msg=$six_digit_random_number;
 					$ch = curl_init();
 					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 					curl_setopt($ch, CURLOPT_POST, 1);
@@ -1191,13 +1226,13 @@ class Customer extends Front_Controller
 					$server_output = curl_exec ($ch);
 					curl_close ($ch);
 					print_r($server_output);exit;
-					//exit;						
+					exit;						
 					echo $url='http://bhashsms.com/api/sendmsg.php?user=cartinhour&pass=qwerty&sender=cartin&phone='.$mobile.'&text=Your cartinhour verification code is '.$six_digit_random_number.'&priority=ndnd&stype=normal';
 					//exit;
 					//echo $this->curl->simple_post($url, false, array(CURLOPT_USERAGENT => true));exit;
 					$this->load->library('curl');
 					$result = $this->curl->simple_get($url);
-					var_dump($server_output);exit;*/
+					var_dump($server_output);exit;
 					
 				$this->customer_model->login_verficationcode_mobile_save($mobile,$forgotpass['customer_id'],$six_digit_random_number);
 				redirect( 'customer/resetpassword/'.base64_encode($mobile).'/'.base64_encode($forgotpass['customer_id'])); 
@@ -1362,6 +1397,7 @@ class Customer extends Front_Controller
 		
 		$userinfo = $this->session->userdata('userdetails');
 		$this->facebook->destroy_session();
+		$this->googleplus->revokeToken();
 		//echo '<pre>';print_r($userinfo );exit;
         $this->session->unset_userdata($userinfo);
         $this->session->unset_userdata('location_area');
