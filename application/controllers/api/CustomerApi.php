@@ -444,15 +444,33 @@ class CustomerApi extends REST_Controller {
 				
 			}
 		$wish_list_ids= $this->Customerapi_model->get_wish_list_products($customer_id);
+		if(count($wish_list_ids)>0){
+			
 		foreach($wish_list_ids as $cartids) 
 		{ 		
 			$wish_ids[]=$cartids['item_id'];
 		}
-		//echo '<pre>';print_r($cart_ids);exit;
-		if(in_array($item_id,$wish_ids))
-		{
-			$message = array('status'=>0,'message'=>'product already added in wishlist');
-			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		
+			if(in_array($item_id,$wish_ids))
+			{
+				$message = array('status'=>0,'message'=>'product already added in wishlist');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else{
+				$data=array(
+				'cust_id'=>$customer_id,
+				'item_id'=>$item_id,
+				'create_at'=>date('Y-m-d H:i:s'),
+				'yes'=>1,
+				);
+				$wish=$this->Customerapi_model->wishlist_save($data);
+					if(count($wish)>0){
+					$message = array('status'=>1,'message'=>'Product Successfully Added to the wishlists');
+					$this->response($message, REST_Controller::HTTP_OK);
+					}else{
+					$message = array('status'=>0,'message'=>'Technical problem occured try again later!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+				}
 		}else{
 			$data=array(
 			'cust_id'=>$customer_id,

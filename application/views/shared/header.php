@@ -94,7 +94,7 @@
 		?>
 		</div>
         </div>
-        <div class="user-link col-md-5" style="width:35%;margin-top:5px;"> <a class="tel" href="tel:+201234567891"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a> <a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
+        <div class="user-link col-md-5" style="width:35%;margin-top:5px;"> <a class="tel" href="<?php echo base_url('customer/trackorders');?>"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a> <a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
           
         </div>
       </div>
