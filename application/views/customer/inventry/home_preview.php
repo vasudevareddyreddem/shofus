@@ -120,16 +120,18 @@
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
+			  <div class="img_size text-center">
                 <a href="javascript:void(0);">
-                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+                   <img class="" src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
 				   
                 </a>
-                <div class="tags">
+				</div>
+               <!-- <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
                 </div>
                 <div class="tags tags-left">
                   <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
-                </div>
+                </div>-->
                 <div class="option">
                   <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
                   
@@ -187,16 +189,19 @@
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
+			  <div class="img_size text-center">
                 <a href="javascript:void(0);">
-                   <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+                   <img class="" src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
 				   
                 </a>
+				</div>
+				<!--
                 <div class="tags">
                   <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
                 </div>
                 <div class="tags tags-left">
                   <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
-                </div>
+                </div>-->
                 <div class="option">
                   <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
                   

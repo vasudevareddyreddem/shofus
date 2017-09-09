@@ -47,7 +47,7 @@
 </style>
 
 <div class="pad_bod" style="margin:0;padding:0" >
-		<div class="row">
+		<div class="">
 		<div id="sticky-anchor"></div>
 		<div class="col-md-3 z_ind " id="sticky">
 			<ul id="glasscase" class="gc-start">
@@ -278,7 +278,7 @@
 			
         </div>
 
-        <div class="col-md-8 col-md-offset-4 mar_t20" >
+        <div class="col-md-8 col-md-offset-3 mar_t20" >
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
@@ -517,11 +517,11 @@ function sticky_relocate() {
         $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
     else if (window_top > div_top) {
         $('#sticky').addClass('stick');
-        $('#con_scrol').addClass('col-md-offset-4');
+        $('#con_scrol').addClass('col-md-offset-3');
         $('#sticky').css({top: 90})
     } else {
         $('#sticky').removeClass('stick');
-        $('#con_scrol').removeClass('col-md-offset-4');
+        $('#con_scrol').removeClass('col-md-offset-3');
 		$('#sticky').css({top:0})
     }
 }
