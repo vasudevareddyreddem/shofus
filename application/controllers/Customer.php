@@ -12,7 +12,9 @@ class Customer extends Front_Controller
 		$this->load->library('email');
 		$this->load->model('customer_model'); 
 		$this->load->model('home_model'); 
-		$this->load->model('category_model'); 
+		$this->load->model('category_model');
+		$this->load->library('facebook');
+		$this->load->library('googleplus');		
 			
  }
  
@@ -987,6 +989,89 @@ class Customer extends Front_Controller
 		$data['password'] = get_cookie('password');
 		$this->input->cookie('remember', TRUE);
 		$data['remember'] = get_cookie('remember');
+		
+		/*google plus*/
+		$data['login_url'] = $this->googleplus->loginURL();
+		if (isset($_GET['code'])) {
+			
+			$this->googleplus->getAuthenticate();
+			//$this->session->set_userdata('login',true);
+			$gplus=$this->googleplus->getUserInfo();
+					if(isset($gplus['email']) && $gplus['email']!=''){
+						$emailcheck = $this->customer_model->email_check($gplus['email']);
+						if(count($emailcheck)==0){
+								$gdetails=array(
+									'cust_firstname'=>$gplus['given_name'],	 	
+									'cust_lastname'=>$gplus['family_name'],
+									'cust_email'=>$gplus['email'],
+									'role_id'=>1,
+									'status'=>0,
+									'create_at'=>date('Y-m-d H:i:s'),
+									);
+									$gcustomerdetails = $this->customer_model->save_customer($gdetails);
+									if(count($gcustomerdetails)>0){
+										$ggetdetails = $this->customer_model->get_customer_details($gcustomerdetails);
+										//echo '<pre>';print_r($fbgetdetails);exit;
+										redirect( 'customer/password/'.base64_encode($ggetdetails['customer_id']).'/'.base64_encode($ggetdetails['cust_email']).'/'.base64_encode('gplus')); 
+
+									}
+							
+							}else{
+								$this->googleplus->revokeToken();		
+								$this->session->set_flashdata('loginerror',"E-mail already exists.Please login with Your credentials");
+								redirect('customer', 'refresh');	
+							}
+					}else{
+							$this->googleplus->revokeToken();
+							$this->session->set_flashdata('loginerror',"Social logins unavailable please login with your credentials");
+							redirect('customer', 'refresh');						
+						}
+			} 
+		/*fb*/
+		$data['user'] = array();
+
+		// Check if user is logged in
+		if ($this->facebook->is_authenticated())
+		{
+			// User logged in, get user details
+			$user = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,gender');
+			if (!isset($user['error']))
+			{
+				$users = $user;
+			}
+			if(isset($users['email']) && $users['email']!=''){
+				$emailcheck = $this->customer_model->email_check($users['email']);
+				if(count($emailcheck)==0){
+						$fbdetails=array(
+							'cust_firstname'=>$users['first_name'],	 	
+							'cust_lastname'=>$users['last_name'],
+							'cust_email'=>$users['email'],
+							'role_id'=>1,
+							'status'=>0,
+							'create_at'=>date('Y-m-d H:i:s'),
+							);
+							$fbcustomerdetails = $this->customer_model->save_customer($fbdetails);
+							if(count($fbcustomerdetails)>0){
+								$fbgetdetails = $this->customer_model->get_customer_details($fbcustomerdetails);
+								//echo '<pre>';print_r($fbgetdetails);exit;
+								redirect( 'customer/password/'.base64_encode($fbgetdetails['customer_id']).'/'.base64_encode($fbgetdetails['cust_email']).'/'.base64_encode('fb')); 
+
+							}
+					
+					}else{
+						$this->facebook->destroy_session();			
+						$this->session->set_flashdata('loginerror',"E-mail already exists.Please login with Your credentials");
+						redirect('customer', 'refresh');	
+					}
+			}else{
+					$this->facebook->destroy_session();
+					$this->session->set_flashdata('loginerror',"Social logins unavailable please login with your credentials");
+					redirect('customer', 'refresh');						
+				}
+
+			
+		}
+		/*fb*/
 		$this->load->view( 'customer/register',$data); 
 	 }	
 
@@ -1135,22 +1220,23 @@ class Customer extends Front_Controller
 				if($mobile!=''){
 					
 					
-					$msg=' Your cartinhour verification code is '.$six_digit_random_number;
-					// $ch = curl_init();
-					// curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
-					// curl_setopt($ch, CURLOPT_POST, 1);
-					// curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone="'.$mobile.'"&text="'.$msg.'"&priority=ndnd&stype=normal');
-					// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					// echo '<pre>';print_r($ch);exit;
-					//$server_output = curl_exec ($ch);
-					// curl_close ($ch);
-					//$this->load->library('Curl'); 
-					$url='http://bhashsms.com/api/sendmsg.php?user=cartinhour&pass=qwerty&sender=cartin&phone='.$mobile.'&text=Your cartinhour verification code is '.$six_digit_random_number.'&priority=ndnd&stype=normal';
-					
+					$msg=$six_digit_random_number;
+					$ch = curl_init();
+					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch, CURLOPT_POST, 1);
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone="'.$mobile.'"&text="'.$msg.'"&priority=ndnd&stype=normal');
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					//echo '<pre>';print_r($ch);exit;
+					$server_output = curl_exec ($ch);
+					curl_close ($ch);
+					print_r($server_output);exit;
+					exit;						
+					echo $url='http://bhashsms.com/api/sendmsg.php?user=cartinhour&pass=qwerty&sender=cartin&phone='.$mobile.'&text=Your cartinhour verification code is '.$six_digit_random_number.'&priority=ndnd&stype=normal';
+					//exit;
 					//echo $this->curl->simple_post($url, false, array(CURLOPT_USERAGENT => true));exit;
 					$this->load->library('curl');
 					$result = $this->curl->simple_get($url);
-					var_dump($result);exit;
+					var_dump($server_output);exit;
 					
 				$this->customer_model->login_verficationcode_mobile_save($mobile,$forgotpass['customer_id'],$six_digit_random_number);
 				redirect( 'customer/resetpassword/'.base64_encode($mobile).'/'.base64_encode($forgotpass['customer_id'])); 
@@ -1249,6 +1335,7 @@ class Customer extends Front_Controller
 					
 	
 	}
+	
 	public function changepassword(){
 	
 		
@@ -1313,6 +1400,8 @@ class Customer extends Front_Controller
 	public function logout(){
 		
 		$userinfo = $this->session->userdata('userdetails');
+		$this->facebook->destroy_session();
+		$this->googleplus->revokeToken();
 		//echo '<pre>';print_r($userinfo );exit;
         $this->session->unset_userdata($userinfo);
         $this->session->unset_userdata('location_area');
@@ -1326,10 +1415,48 @@ class Customer extends Front_Controller
 	
 	public function password()
 	{
+		
+		//echo $this->uri->segment(5);exit;
+		if($this->uri->segment(5)!=''){
+		$data['cust_id'] = $this->uri->segment(3);
+		$data['cust_email']= $this->uri->segment(4);
+		$this->load->view('customer/fbresetpassword',$data);
+		}else{
 		$data['cust_id'] = base64_decode($this->uri->segment(4));
 		$data['cust_email']= base64_decode($this->uri->segment(3));
 		$this->load->view('customer/setpassword',$data);
+		}
+		
 	}
+	public function facebookresetpasswordpost(){
+	
+			$post=$this->input->post();
+				if(md5($post['newpassword'])==md5($post['confirmpassword']))
+						{
+							$fbdetails = $this->customer_model->get_customer_fbdetails(base64_decode($post['cust_id']),base64_decode($post['email']));
+							if(count($fbdetails)>0){
+								$users = $this->customer_model->socialsetpassword_user(base64_decode($post['cust_id']),md5($post['confirmpassword']),1);
+								if(count($users)>0)
+								{
+								$getdetails = $this->customer_model->get_customer_details(base64_decode($post['cust_id']));	
+								$this->session->set_userdata('userdetails',$getdetails);
+								$this->session->set_flashdata("forsuccess","Password successfully Updated!");
+								redirect('customer');
+								}else{
+									$this->session->set_flashdata("error","technical problem will occurs please try again.");
+									redirect('customer/password/'.$post['cust_id'].'/'.$post['email'].'/'.base64_encode('fb'));
+								}
+								
+							}else{
+								$this->session->set_flashdata("error","Yor Email Id was not matching in records.");
+								redirect('customer/password/'.$post['cust_id'].'/'.$post['email'].'/'.base64_encode('fb'));
+							}
+							
+						}else{
+						 $this->session->set_flashdata("error","New password and confirm password was not matching");
+						 redirect('customer/password/'.$post['cust_id'].'/'.$post['email'].'/'.base64_encode('fb'));
+						}
+		}
 
 	public function setpassword()
 	{

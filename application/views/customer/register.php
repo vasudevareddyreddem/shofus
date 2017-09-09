@@ -101,13 +101,13 @@
 				<div class="row">	
 					<div class="col-sm-5">
 						<div class="btn-group">
-							<button type="button" class="btn btn-primary_org"><i class="fa fa-facebook"></i>Sign in with Facebook</button>
+							<a href="<?php echo $this->facebook->login_url(); ?>" type="button" class="btn btn-primary_org"><i class="fa fa-facebook"></i>Sign in with Facebook</a>
 						</div>
 					</div>
 					<div class="col-sm-1">&nbsp;</div>
 					<div class="col-sm-5">
 						<div class="btn-group">
-							<button type="button" class="btn btn-danger"><i class="fa fa-google-plus"></i>Sign in with GooglePlus</button>
+							<a  href="<?php echo $login_url;?>" type="button" class="btn btn-danger"><i class="fa fa-google-plus"></i>Sign in with GooglePlus</a>
 						</div>
 					</div>
 					

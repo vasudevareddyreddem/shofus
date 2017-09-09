@@ -178,6 +178,14 @@ class Customer_model extends MY_Model
 		$this->db->insert('customers', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	
+	public function get_customer_fbdetails($cid,$email){
+		$this->db->select('*')->from('customers');		
+		$this->db->where('cust_email', $email);
+		$this->db->where('customer_id', $cid);
+        return $this->db->get()->row_array();
+	}
+
 	public function get_product_details($itemid){
 		$this->db->select('products.*,subcategories.commission')->from('products');
 		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
@@ -303,6 +311,10 @@ class Customer_model extends MY_Model
 	}
 	public function setpassword_user($custid,$pass){
 		$sql1="UPDATE customers SET cust_password ='".$pass."' WHERE customer_id = '".$custid."'";
+       	return $this->db->query($sql1);
+	}
+	public function socialsetpassword_user($custid,$pass,$statusid){
+		$sql1="UPDATE customers SET cust_password ='".$pass."' , status ='".$statusid."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
 	}
 	public function get_order_items_lists($custid){
