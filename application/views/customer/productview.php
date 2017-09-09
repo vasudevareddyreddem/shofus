@@ -1,10 +1,6 @@
 <style>
-
 #sticky {
- 
     height:80%;
-
- 
 }
 #sticky.stick {
     position: fixed;
@@ -53,7 +49,7 @@
 <div class="pad_bod" style="margin:0;padding:0" >
 		<div class="row">
 		<div id="sticky-anchor"></div>
-		<div class="col-md-4 z_ind " id="sticky">
+		<div class="col-md-3 z_ind " id="sticky">
 			<ul id="glasscase" class="gc-start">
                     <li>
 						<img class="img-responsive" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>"/>
