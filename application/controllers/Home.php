@@ -79,15 +79,18 @@ public function index()
 public function search_location_offers()
 {
 	$postvalue=$this->input->post();
+	
 	$locationdata= $this->home_model->getlocations();
 		$loacationname=array();
 		foreach ($locationdata as $list){
 			if ($list['location_id']==$postvalue['area']) {
 				$loacationname[]=$list['location_name'];
+				$loacationidslist[]=$list['location_id'];
 			}
 		}
 		$locationdatadetails=implode(", ",$loacationname);
 		$this->session->set_userdata('location_area',$locationdatadetails);
+		$this->session->set_userdata('location_ids',$loacationidslist);
 	if($this->session->userdata('userdetails'))
 	 {
 	$customerdetails=$this->session->userdata('userdetails');

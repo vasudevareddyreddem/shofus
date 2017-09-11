@@ -2032,6 +2032,9 @@ class CustomerApi extends REST_Controller {
 				
 			
 		}
+		public function nearbystores_post(){
+			
+		}
 
 
 

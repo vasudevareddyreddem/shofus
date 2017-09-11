@@ -24,7 +24,7 @@ class Customer extends Front_Controller
 		
 		$locationdata= $this->home_model->getlocations();
 		
-		//echo '<pre>';print_r($post);exit;
+		echo '<pre>';print_r($post);exit;
 		$loacationname=array();
 		foreach ($locationdata as $list){
 			if (in_array($list['location_id'], $post['locationarea'])) {
@@ -1700,6 +1700,7 @@ class Customer extends Front_Controller
  }
  public function nearstores(){
 	 $locationdatadetails=$this->session->userdata('location_ids');
+	 
 	
 	
 	foreach ($locationdatadetails as $list){
