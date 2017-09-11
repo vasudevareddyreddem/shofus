@@ -6,7 +6,7 @@
 	<body class="bac_img">
 <div class="banner_home con_start" style="margin-top:-20px;">
      
-      <div id="myCarousel" class="carousel slide"> 
+      <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
         <!-- Indicators -->
 
       <div class="carousel-inner">
