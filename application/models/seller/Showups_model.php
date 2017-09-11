@@ -59,9 +59,11 @@ class Showups_model extends MY_Model
 
   public function banner_limit()
   {
-    $this->db->select('home_banner.*,count(home_banner.image_id) as imagecount')->from('home_banner');
-    $this->db->where('status',1);
-    $this->db->where('intialdate', date('Y-m-d'));
+    $date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s A');
+	$this->db->select('home_banner.*,count(home_banner.image_id) as imagecount')->from('home_banner');
+    $this->db->where('home_page_status',1);
+	$this->db->where('home_banner.expairydate >=', $curr_date);
     return $this->db->get()->result_array();
   }
 

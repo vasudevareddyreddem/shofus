@@ -1558,6 +1558,8 @@ public function servicerequestview(){
 			if($logindetail['role_id']==5)
 			{
 				$data['home_banner'] = $this->inventory_model->get_seller_banners();
+				//
+				
 				//echo "<pre>";print_r($data);exit;
 			   	$this->load->view('customer/inventry/sidebar');
 			   	$this->load->view('customer/inventry/home_page_banner',$data);

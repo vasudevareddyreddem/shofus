@@ -448,10 +448,13 @@ class Inventory_model extends MY_Model
 	/* home page banner purpose*/
 	
 	public function get_seller_banners(){
+	$date = new DateTime("now");
+		$curr_date = $date->format('Y-m-d h:i:s A');
 	$this->db->select('sellers.seller_name,sellers.seller_id,sellers.seller_rand_id,COUNT(home_banner.image_id) AS itemscount,')->from('home_banner');
 		$this->db->join('sellers', 'sellers.seller_id = home_banner.seller_id', 'left');
 		 $this->db->group_by('home_banner.seller_id');
 		 $this->db->where('sellers.status', 1);
+		 $this->db->where('home_banner.expairydate >=', $curr_date);
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		$query=$this->db->get()->result_array();
 		 foreach ($query as $offers)
@@ -470,9 +473,12 @@ class Inventory_model extends MY_Model
 	
 	public function get_homepage_banner_active_count($sid)
 	{
+		$date = new DateTime("now");
+		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('count(home_page_status) as activecount')->from('home_banner');
 		$this->db->where('seller_id',$sid);
 		$this->db->where('home_page_status',1);
+		$this->db->where('home_banner.expairydate >=', $curr_date);
 		return $this->db->get()->result_array();
 	}
 	public function get_homepage_banner_details_list($sid){

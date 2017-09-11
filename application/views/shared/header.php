@@ -94,7 +94,7 @@
 		?>
 		</div>
         </div>
-        <div class="user-link col-md-5" style="width:35%;margin-top:5px;"> <a class="tel" href="<?php echo base_url('customer/trackorders');?>"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a> <a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
+        <div class="user-link col-md-5" style="width:35%;margin-top:5px;"><a class="tel" target="_blank" href="<?php echo base_url('seller/login');?>"><span class=""></span> &nbsp; Sale with us </a>  <a class="tel" href="<?php echo base_url('customer/trackorders');?>"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a> <a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
           
         </div>
       </div>
@@ -137,7 +137,7 @@
 								<li class="font_list"><a href="<?php echo base_url('customer/account');?>">  <span >My Account</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/cart');?>">  <span >My Cart</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/orders');?>">  <span >My Orders</span> </a></li>
-								<li class="font_list"><a href="<?php echo base_url('customer/trackorders');?>">  <span >Tarck</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/trackorders');?>">  <span >Track</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/wishlist'); ?>">  <span >My Wishlist</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/changepassword');?>">  <span >Change Password</span> </a></li>
 								<li class="font_list"><a href="<?php echo base_url('customer/logout');?>">  <span >Logout</span> </a></li>
@@ -705,10 +705,11 @@ $("#modal-8").show();
 		});
 
 $(document).ready(function(){
-    $(".user_log").click(function(){
-        $("#user_sow").fadeToggle(500);
+    $(".user_log").mouseover(function(){
+        $("#user_sow").fadeToggle();
     });
 });
+
 </script>
 <script>
 $(document).ready(function(){

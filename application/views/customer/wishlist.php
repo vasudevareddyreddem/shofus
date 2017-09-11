@@ -32,7 +32,8 @@
               <tbody>
 			  <?php 
 			  //echo '<pre>';print_r($whistlist_items);exit;
-			  foreach($whistlist_items as $items){ ?>
+			  $w=0;foreach($whistlist_items as $items){ ?>
+			 <input type="hidden" name="orginalqty" id="orginalqty<?php echo $w; ?>" value="<?php echo $items['item_quantity']; ?>" >
 			  <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 				<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $items['item_id']; ?>" >
 				<input type="hidden" name="wishlist" id="wishlist" value="1" >
@@ -45,20 +46,22 @@
                   </td>
 				  <td>
                     <p><a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>" class="d-block"><?php echo $items['item_name']; ?></a></p>
-					<small>Status : <?php if($items['item_status']=1){ echo "In Stock";}else{ "Out of Stock";} ?></small>
+					<small>Status : <?php if($items['item_status']==1 && $items['item_quantity']!=0 ){ echo "In Stock";}else{ echo "Out of Stock";} ?></small>
 				  </td>
-				   <?Php if($items['item_quantity']!=0){ ?>
+				  
+				   <?Php if($items['item_quantity']!=0 && $items['item_status']!=0){ ?>
 					     <td class="input-qty">
 				   <div class="input-qty">
 						<div class="input-group number-spinner">
 							<span class="input-group-btn data-dwn">
 								<a class="btn btn-primary"  data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
 							</span>
-							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="1" min="1" max="<?php echo $items['item_quantity']; ?>">
+							<input type="text" name="qty" id="qty<?php echo $w; ?>" readonly class="form-control text-center" value="1" min="1" max="<?php echo $items['item_quantity']; ?>">
 							<span class="input-group-btn data-up">
-								<a class="btn btn-primary" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
+								<a class="btn btn-primary" onclick="qtyincrease('<?php echo $w; ?>');" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
 							</span>
 						</div>
+						<span style="color:red;" id="maxqtyerror<?php echo $w; ?>"></span>
                   </div>
 				 </td>
 					  
@@ -86,13 +89,15 @@
 				  <?php echo $item_price ; ?>
 				  </td>
 				    <td class="action">
+					<?php if($items['item_status']==1 && $items['item_quantity']!=0 ){ ?>
                    <button style="background:transprent;" type="submit" ><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>&nbsp;
-                    <a href="<?php echo base_url('customer/deletewishlist/'.base64_encode($items['id'])); ?>" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>
+                    <?php } ?>
+					<a href="<?php echo base_url('customer/deletewishlist/'.base64_encode($items['id'])); ?>" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>
                    </td>
 				  </tr>
 				  
 				  </form>
-			<?php } ?>
+			<?php $w++;} ?>
               
               </tbody>
             </table>
@@ -118,6 +123,22 @@
 	
 
 <script>
+function qtyincrease(id){
+	var qty=document.getElementById("qty"+id).value;
+	var orginalqty=document.getElementById("orginalqty"+id).value;
+	if(qty==orginalqty){
+		$("#maxqtyerror"+id).html("available qty is "+orginalqty).fadeIn().fadeOut(5000);
+	}else{
+		if(qty>10){
+			$("#maxqtyerror"+id).html("Maximum allowed qty is 10 ").fadeIn().fadeOut(5000);
+			document.getElementById("qty"+id).value=10;
+			
+		}
+		
+	}
+	
+	
+}
 	$(document).ready(function () {
     //Initialize tooltips
     $('.nav-tabs > li a[title]').tooltip();

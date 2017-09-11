@@ -27,13 +27,7 @@
     border-radius: 0 0 0.5em 0.5em;
 }
 </style>
-
-
-<body >
-<div class="pad_bod">
-		<div class="row" id="updateqty"></div>
-		<div class="row" id="">
-		<div id="sticky-anchorupdateqtyhide"></div>
+		<span id="reupdateqty">
 		<div class="col-md-3" id="sticky">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Price details</div>
@@ -261,10 +255,8 @@
 	   </div>
 	   </div>
 	   </div>
-		<div class="clearfix">&nbsp;</div>
-	   </div>
-	   </div>
-	</div>
+	   </span>
+	   
 	
 
 <script>
@@ -284,9 +276,8 @@ function productqty(id){
 				},
 			dataType: 'html',
 			success: function (data) {
-				$("#updateqty").empty();
-				$("#anchorupdateqtyhide").hide();
-				$("#updateqty").append(data);
+				$("#reupdateqty").empty();
+				$("#reupdateqty").append(data);
 			
 			}
 		});
@@ -308,9 +299,8 @@ function productqtyincreae(id){
 				},
 			dataType: 'html',
 			success: function (data) {
-				$("#updateqty").empty();
-				$("#anchorupdateqtyhide").hide();
-				$("#updateqty").append(data);
+				$("#reupdateqty").empty();
+				$("#reupdateqty").append(data);
 			
 			}
 		});
