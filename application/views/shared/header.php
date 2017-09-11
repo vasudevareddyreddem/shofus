@@ -88,13 +88,16 @@
           </ul>
         </div> 
 		<div class="col-md-5">
-		<div id="selectedlocation" class="" style="height:30px;border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;text-align:center;">
+		<div id="selectedlocation" class="col-md-9" style="height:30px;border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;text-align:center;">
 		
 		<?php echo $this->session->userdata('location_area');
 		?>
+		
 		</div>
+		<div class="col-md-3 " style="padding-top:5px;"><a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="<?php echo base_url('seller/login');?>"><span class=""></span> &nbsp; Sale with us </a>	</div>
+		
         </div>
-        <div class="user-link col-md-5" style="width:35%;margin-top:5px;"><a class="tel" target="_blank" href="<?php echo base_url('seller/login');?>"><span class=""></span> &nbsp; Sale with us </a>  <a class="tel" href="<?php echo base_url('customer/trackorders');?>"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a> <a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
+        <div class="user-link col-md-5" style="width:35%;margin-top:5px;">  <a class="tel" href="<?php echo base_url('customer/trackorders');?>"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a> <a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
           
         </div>
       </div>
