@@ -246,7 +246,8 @@ class CustomerApi extends REST_Controller {
 							);
 							$cart_save= $this->Customerapi_model->cart_products_save($adddata);
 							if(count($cart_save)>0){
-								$message = array('status'=>1,'message'=>'Product Successfully added to the cart');
+								
+								$message = array('status'=>1,'id'=>$cart_save,'message'=>'Product Successfully added to the cart');
 								$this->response($message, REST_Controller::HTTP_OK);
 							}else{
 								$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
@@ -297,7 +298,7 @@ class CustomerApi extends REST_Controller {
 						);
 						$cart_save= $this->Customerapi_model->cart_products_save($adddata);
 						if(count($cart_save)>0){
-							$message = array('status'=>1,'message'=>'Product Successfully added to the cart');
+							$message = array('status'=>1,'id'=>$cart_save,'message'=>'Product Successfully added to the cart');
 							$this->response($message, REST_Controller::HTTP_OK);
 						}else{
 							$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
@@ -526,7 +527,7 @@ class CustomerApi extends REST_Controller {
 				);
 				$wish=$this->Customerapi_model->wishlist_save($data);
 					if(count($wish)>0){
-					$message = array('status'=>1,'message'=>'Product Successfully Added to the wishlists');
+					$message = array('status'=>1,'id'=>$wish,'message'=>'Product Successfully Added to the wishlists');
 					$this->response($message, REST_Controller::HTTP_OK);
 					}else{
 					$message = array('status'=>0,'message'=>'Technical problem occured try again later!');
@@ -542,7 +543,7 @@ class CustomerApi extends REST_Controller {
 			);
 			$wish=$this->Customerapi_model->wishlist_save($data);
 				if(count($wish)>0){
-				$message = array('status'=>1,'message'=>'Product Successfully Added to the wishlists');
+				$message = array('status'=>1,'id'=>$wish,'message'=>'Product Successfully Added to the wishlists');
 				$this->response($message, REST_Controller::HTTP_OK);
 				}else{
 				$message = array('status'=>0,'message'=>'Technical problem occured try again later!');
@@ -580,7 +581,8 @@ class CustomerApi extends REST_Controller {
 			$message = array('status'=>1,'message'=>'Customer having  no products in the wishlist');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
-	}/* wishlist get api */
+	}
+/* wishlist get api */
 	public function orderlist_get()
 	{
 		$customer_id=$this->input->get('customer_id');
