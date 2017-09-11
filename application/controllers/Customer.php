@@ -1224,19 +1224,12 @@ class Customer extends Front_Controller
 					$ch = curl_init();
 					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 					curl_setopt($ch, CURLOPT_POST, 1);
-					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone="'.$mobile.'"&text="'.$msg.'"&priority=ndnd&stype=normal');
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobile.'&text=Your cartinhour verification code is '.$msg.'&priority=ndnd&stype=normal');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					//echo '<pre>';print_r($ch);exit;
 					$server_output = curl_exec ($ch);
 					curl_close ($ch);
-					print_r($server_output);exit;
-					exit;						
-					echo $url='http://bhashsms.com/api/sendmsg.php?user=cartinhour&pass=qwerty&sender=cartin&phone='.$mobile.'&text=Your cartinhour verification code is '.$six_digit_random_number.'&priority=ndnd&stype=normal';
-					//exit;
-					//echo $this->curl->simple_post($url, false, array(CURLOPT_USERAGENT => true));exit;
-					$this->load->library('curl');
-					$result = $this->curl->simple_get($url);
-					var_dump($server_output);exit;
+					
 					
 				$this->customer_model->login_verficationcode_mobile_save($mobile,$forgotpass['customer_id'],$six_digit_random_number);
 				redirect( 'customer/resetpassword/'.base64_encode($mobile).'/'.base64_encode($forgotpass['customer_id'])); 

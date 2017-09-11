@@ -59,7 +59,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($seller_banner as $banner) { ?>
+                <?php 
+				
+				//echo '<pre>';print_r($seller_banner);exit;
+				foreach($seller_banner as $banner) {
+				$date = new DateTime("now");
+				$curr_date = $date->format('Y-m-d h:i:s A');					?>
                 <tr>
                   <td><?php echo $banner['seller_rand_id']; ?></td>
                   <td><?php echo $banner['seller_name'];?></td>
@@ -67,7 +72,14 @@
                   <td><?php echo $banner['intialdate'];?></td>
                   <td><?php echo $banner['expairydate']; ?></td>
                   <td><?php 
-                  if($banner['status']==1){echo "Active";}else{echo "Deactive";} ?>
+                   if($banner['expairydate']<=$curr_date){
+						  
+						  echo "expired";
+						}else if($banner['status']==1){
+							echo "Active";
+						}else{
+						  echo "Deactive";
+						  } ?>
                   	
                   </td>
                   <td><a href="<?php echo base_url('seller/showups/banner_status/'

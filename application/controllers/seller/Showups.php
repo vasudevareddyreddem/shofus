@@ -31,6 +31,7 @@ class Showups extends Admin_Controller {
 	public function addhomebanner()
 	{
 		$data['banner_count'] = $this->showups_model->banner_limit();
+		//echo '<pre>';print_r($data['banner_count']);exit;
 		$this->template->write_view('content', 'seller/showups/addhomebanner',$data);
 		$this->template->render();
 	}
