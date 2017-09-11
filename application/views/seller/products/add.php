@@ -102,6 +102,7 @@
 				</select>
 				<span id="suberrormsg" style="color:red;"></span>
 				<p  id="categoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Category</a> </p>
+				<span style="color:red" id="addcaterrormsg1"></span>
 				<div style="display:none;margin-top:14px;" id="addcat">
 				<span style="color:red" id="addcaterrormsg"></span>
 
@@ -122,6 +123,7 @@
 
 				</select>
 				<p id="subcategoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Subcategory</a> </p>
+				<span style="color:red" id="addsubcaterrormsg1"></span>
 				<div style="display:none;margin-top:14px;" id="addsubcat">
 				<span style="color:red" id="addsubcaterrormsg"></span>
 
@@ -745,15 +747,16 @@
 				dataType: 'json',
 				success: function (data) {
 					if(data.msg==0){
-						jQuery('#addsubcaterrormsg').html('Subcategory Name already exits.please use another Subcategory Name');
+						jQuery('#addsubcaterrormsg').html('Subcategory Name already exits.please use another Subcategory Name').fadeIn().fadeOut(5000);
 						return false;
 					}
 					if(data.msg==1){
-						jQuery('#addsubcaterrormsg').html('Subcategory Successfully Added');
-						location.reload();
+						jQuery('#addsubcaterrormsg1').html('Subcategory Successfully Added!').fadeIn().fadeOut(5000);
+						document.getElementById('addsubcategoryname').value='';
+						 $("#addsubcat").toggle().fadeOut(5000);
 					}
 					if(data.msg==2){
-						jQuery('#addsubcaterrormsg').html('Sorry, a technical error occurred! Please try again later.');
+						jQuery('#addsubcaterrormsg').html('Sorry, a technical error occurred! Please try again later.').fadeIn().fadeOut(5000);
 						return false;
 					}
 				}
@@ -779,15 +782,16 @@
 				dataType: 'json',
 				success: function (data) {
 					if(data.msg==0){
-						jQuery('#addcaterrormsg').html('Category Name already exits.please use another category Name');
+						jQuery('#addcaterrormsg').html('Category Name already exits.please use another category Name').fadeIn().fadeOut(5000);
 						return false;
 					}
 					if(data.msg==1){
-						jQuery('#addcaterrormsg').html('Category Successfully Added');
-						location.reload();
+						jQuery('#addcaterrormsg1').html('Category Successfully Added').fadeIn().fadeOut(5000);
+						document.getElementById('addcategoryname').value='';
+						 $("#addcat").toggle().fadeOut(5000);
 					}
 					if(data.msg==2){
-						jQuery('#addcaterrormsg').html('Sorry, a technical error occurred! Please try again later.');
+						jQuery('#addcaterrormsg').html('Sorry, a technical error occurred! Please try again later.').fadeIn().fadeOut(5000);
 						return false;
 					}
 				}
