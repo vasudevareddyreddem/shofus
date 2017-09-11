@@ -71,7 +71,7 @@ public function index()
 	$data['whishlist_ids_list']=$whishlist_ids_list;
 	
 	}
-	//echo '<pre>';print_r($data['season_sales']);exit;
+	//echo '<pre>';print_r($data['homepage_banner']);exit;
 	$this->template->write_view('content', 'home/index',$data);
 	$this->template->render();
 }

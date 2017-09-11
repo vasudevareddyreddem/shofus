@@ -31,7 +31,9 @@
                 </thead>
                 <tbody>
                 <?php  
-                  foreach($dealsofthe_day_details as $items) {?>
+                  foreach($dealsofthe_day_details as $items) { 
+				  $date = new DateTime("now");
+				$curr_date = $date->format('Y-m-d h:i:s A');?>
                 <tr>                  
                   <td><?php echo $items['seller_rand_id']; ?></td>
                   <td><?php echo $items['item_name']; ?></td>
@@ -39,8 +41,11 @@
                   <td><?php echo $items['item_price']; ?></td>
 				  <td><?php echo $items['offer_amount']; ?></td>    
 				  <td><?php echo Date('d-M-Y',strtotime(htmlentities($items['intialdate'])));?></td> 				  
-				  <td><?php echo Date('d-M-Y',strtotime(htmlentities($items['expairdate'])));?></td> 				  
-                  <td><?php if($items['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
+				  <td><?php echo Date('d-M-Y H:i:s A',strtotime(htmlentities($items['expairdate'])));?></td> 				  
+                  <td><?php if($items['expairdate']<=$curr_date){
+						  
+						  echo "expired";
+						}else if($items['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
                   <td>
 				  <a href="<?php echo base_url('inventory/dealsoftheday_home_page_status/'.base64_encode($items['seller_id']).'/'.base64_encode($items['item_id']).'/'.base64_encode($items['home_page_status'])); ?>"><?php if($items['home_page_status']==1){ echo "Active";}else{ echo "Deactive";} ?></a>
 				 </td>                  

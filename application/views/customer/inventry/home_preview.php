@@ -13,7 +13,7 @@
 					<?php endif; ?>
 
 	<div class="banner_home">
-      <div id="myCarousel" class="carousel slide"> 
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">  
         <!-- Indicators -->
 		<form action="<?php echo base_url('inventory/previewok'); ?>" method="post">
 			<?php foreach($topoffers as $list){ ?>
