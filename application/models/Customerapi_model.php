@@ -2100,6 +2100,15 @@ class Customerapi_model extends MY_Model
       return $this->db->query($sql)->result_array(); 
 	}
 	
+	public function location_stores_list($locationids)
+	{
+		$this->db->select('seller_store_details.store_name,sellers.seller_id')->from('sellers');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left'); 
+		$this->db->where_in('seller_store_details.area',$locationids);
+		$this->db->where('sellers.status',1);
+		return $this->db->get()->result_array();
+	}
+	
 		
 	
 

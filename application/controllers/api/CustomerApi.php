@@ -2033,7 +2033,17 @@ class CustomerApi extends REST_Controller {
 			
 		}
 		public function nearbystores_post(){
-			
+			$locationid=$this->input->get('locationid');
+			if($locationid==''){
+				$message = array('status'=>1,'message'=>'Location id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			foreach ($locationid as $list){
+				
+			}
+			$storelist= $this->Customerapi_model->location_stores_list($locationid);
+			echo $this->db->last_query();
+			echo '<pre>';print_r($storelist);exit;
 		}
 
 
