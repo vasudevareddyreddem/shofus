@@ -88,7 +88,7 @@
           </ul>
         </div> 
 		<div class="col-md-5">
-		<div id="selectedlocation" class="" style="height:30px;border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;">
+		<div id="selectedlocation" class="" style="height:30px;border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;text-align:center;">
 		
 		<?php echo $this->session->userdata('location_area');
 		?>
@@ -178,7 +178,7 @@
 			</span>
 			</a>&nbsp;<sup class="sup"></sup></span>
 			<?php } ?>
-			<span class="medias text-center"><a href="<?php echo base_url('customer/nearstores'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/whish.png" /></i>
+			<span class="medias text-center"><a href="<?php echo base_url('customer/nearstores'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
 				<p>Near by stores</p></a>
 			</span>
 		 </div>

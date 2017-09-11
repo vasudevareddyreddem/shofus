@@ -244,7 +244,6 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
            
                 </a>
 				</div>
-              
               <?php if($productslist['item_quantity']<=0){ ?>
 				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
@@ -335,7 +334,6 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
            
                 </a>
 				</div>
-                
                <?php if($productslist['item_quantity']<=0){ ?>
 				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
@@ -421,7 +419,6 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
                    <img class="" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                 </a>
 				</div>
-               
                 <?php if($productslist['item_quantity']<=0){ ?>
 				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
 					<div style="z-index:1026"><h4>out of stock</h4></div>

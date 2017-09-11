@@ -75,10 +75,7 @@
 		<table id="example<?php echo $subcategory->subcategory_id;?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th><input type="checkbox" name="select_all" onclick="checkall('<?php echo $subcategory->subcategory_id;  ?>');" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
-				</th>
-				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
-				<th>Item Name</th>
+                <th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
                 <th>Offer Amount</th>
@@ -98,7 +95,6 @@
 						
 						?>
 					<tr>
-						<td><input value="<?php echo $item_data->item_id; ?>" type="checkbox" id="cat_id[]" name="cat_id[]" ></td>
 						<td><?php echo $item_data->item_name;?></td>
 						<td><?php echo $item_data->item_code;?></td>
 						<td><?php echo $item_data->item_cost;?></td>
