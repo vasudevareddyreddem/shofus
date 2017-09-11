@@ -56,6 +56,11 @@
 						<th >Created date</th>
 						<td><?php echo Date('d-M-Y',strtotime(htmlentities($seller_details['created_at'])));?></td>
 						
+					  </tr>
+					  <tr>
+						<th >Store location</th>
+						<td><?php echo isset($seller_details['location_name'])?$seller_details['location_name']:''; ?></td>
+						
 					  </tr> 
 					  <tr>
 						<th >Status</th>

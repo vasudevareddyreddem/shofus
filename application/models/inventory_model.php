@@ -100,8 +100,10 @@ class Inventory_model extends MY_Model
 	}
 	public function get_seller_details($sid)
 	{
-		$this->db->select('*')->from('sellers');
-		$this->db->where('seller_id',$sid);
+		$this->db->select('sellers.*,locations.location_name')->from('sellers');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left');
+		$this->db->join('locations', 'locations.location_id = seller_store_details.area', 'left');
+		$this->db->where('sellers.seller_id',$sid);
 		return $this->db->get()->row_array();
 	}
 	public function update_seller_status($sellerid,$data){
