@@ -83,7 +83,7 @@
             </div>
             </div>
         </div>
-		<a  href="<?php echo base_url('customer/inve'); ?>" class="" style="position: absolute;top:-100px;right:43%">
+		<a  href="<?php echo base_url('admin/login'); ?>" class="" style="position: absolute;top:-100px;right:43%">
 			<img src="<?php echo base_url(); ?>assets/images/inv_logo.png" />
 		</a>
     </div>

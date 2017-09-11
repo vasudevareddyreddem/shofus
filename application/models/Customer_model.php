@@ -420,6 +420,17 @@ class Customer_model extends MY_Model
 			return $this->db->get()->result_array();
 		 
 	 }
+	 public function add_subscribe_customer($email){
+		 
+			$this->db->select('')->from('customers');
+			$this->db->where('cust_email', $email);
+			return $this->db->get()->row_array();
+		 
+	 }
+	 public function update_subscribe_customer($custid,$data){
+		$sql1="UPDATE customers SET subscribe ='".$data."' WHERE customer_id = '".$custid."'";
+       	return $this->db->query($sql1);
+	}
 	
 }
 ?>

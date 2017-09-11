@@ -1650,6 +1650,34 @@ class Customer extends Front_Controller
 	$this->template->write_view('content', 'customer/productlist',$data);
 	$this->template->render(); 
  }
+ public function subscribe(){
+	 if($this->session->userdata('userdetails'))
+	{
+			 $post=$this->input->post();
+			 $emailcheck=$this->customer_model->add_subscribe_customer($post['newsletter1']);
+			 if(count($emailcheck)>0){
+				 $addsubscribe=$this->customer_model->update_subscribe_customer($emailcheck['customer_id'],1);
+				 if(count($addsubscribe)>0){
+					 $this->session->set_flashdata('successmsg','Your query submitted successfully');
+					 redirect('');
+					 
+				 }else{
+					  $this->session->set_flashdata('errormsg','Technical problem will occurred. please try again');
+					  redirect('');
+				 }
+				 
+			 }else{
+				$this->session->set_flashdata('errormsg','Your enter Wrong email id . Please enter valid email id');
+				redirect('');
+			 }
+		 
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	 }
+
+	 
+ }
 
 
 

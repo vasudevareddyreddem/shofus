@@ -13,11 +13,22 @@
               </div>
             </div>
             <!-- Footer Newsletter -->
+			
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col1">
               <div class="newsletter-wrap">
+					<?php if($this->session->flashdata('successmsg')): ?>	
+					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('successmsg');?></div>
+					<?php endif; ?>
+					<?php if($this->session->flashdata('errormsg')): ?>	
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('errormsg');?></div>
+					<?php endif; ?>						
                 <h4>Sign up for emails</h4>
-                <form name="subscribe" id="subscribe" action="#" method="post" id="newsletter-validate-detail1">
-                  <div id="container_form_news">
+                <form name="subscribe" id="subscribe" action="<?php echo base_url('customer/subscribe'); ?>" method="post" id="newsletter-validate-detail1">
+                  <div id="container_form_news form-group">
                     <div id="container_form_news2">
                       <input name="newsletter1" id="newsletter1" class="input-text required-entry validate-email" placeholder="Enter your email address" type="text">
                       <button type="submit" title="Subscribe" class="button subscribe"><span>Subscribe</span></button>
@@ -139,13 +150,14 @@
     $('#subscribe').bootstrapValidator({
        
         fields: {
-            
-           
-			
-			newsletter1: {
-             validators: {
+            newsletter1: {
+              validators: {
 					notEmpty: {
-						message: 'Email id is required'
+						message: 'Email is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+					message: 'Please enter a valid email address. For example johndoe@domain.com.'
 					}
 				}
             },
