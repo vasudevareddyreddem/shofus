@@ -6,7 +6,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 <body class="bac_img">
 <div class="banner_home con_start" style="margin-top:-20px;">
      
-      <div id="myCarousel" class="carousel slide"> 
+      <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
         <!-- Indicators -->
         <ol class="carousel-indicators">
 		<?php $c=0;foreach($homepage_banner as $images){  ?>
