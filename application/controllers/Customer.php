@@ -493,6 +493,74 @@ class Customer extends Front_Controller
 	}
 	 
  } 
+ public function qtyupdatecart(){
+	 if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		foreach ($cart_items as $list){
+			$productsdetails= $this->customer_model->get_product_details($list['item_id']);
+			$this->customer_model->cart_item_qty_update($list['item_id'],$productsdetails['item_quantity']);
+		}
+		$post=$this->input->post();
+		$products= $this->customer_model->get_product_details($post['product_id']);
+		//echo '<pre>';print_r($post);exit;
+		$qty=$post['qty'];
+			//echo '<pre>';print_r($post);exit;
+		$currentdate=date('Y-m-d h:i:s A');
+				if($products['offer_expairdate']>=$currentdate){
+						$item_price= ($products['item_cost']-$products['offer_amount']);
+						$price	=(($qty) * ($item_price));
+				}else{
+					//echo "expired";
+					$item_price= $products['special_price'];
+					$price	=(($qty) * ($item_price));
+				}
+				$commission_price=(($price)*($products['commission'])/100);
+				if($products['category_id']==18){
+						if($price <500){
+							$delivery_charges=35;
+						}else{
+							$delivery_charges=0;
+						}
+					}else{
+						
+						if($price <500){
+							$delivery_charges=75;
+						}else if(($price > 500) && ($price < 1000)){
+							$delivery_charges=35;
+						}else if($price >1000){
+							$delivery_charges=0;
+						}
+					}
+		
+		//echo "<pre>";print_r($post);exit;
+		$updatedata=array(
+		'qty'=>$post['qty'],
+		'item_price'=>$item_price,
+		'commission_price'=>$commission_price,
+		'total_price'=>$price,
+		'delivery_amount'=>$delivery_charges,
+		);
+		
+		$update= $this->customer_model->update_cart_qty($customerdetails['customer_id'],$post['product_id'],$updatedata);
+		
+		//echo '<pre>';print_r($update);exit;
+		if(count($update)>0){
+			$this->session->set_flashdata('productsuccess','Product Quantity Successfully Updated!');
+			$data['cart_items']= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+			$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+			$this->load->view('customer/updateqtycart',$data);			
+			
+		}
+		
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	}
+	 
+ } 
  public function deletecart(){
 	 if($this->session->userdata('userdetails'))
 	 {
@@ -718,13 +786,13 @@ class Customer extends Front_Controller
 				$pass=$this->config->item('smspassword');
 				$msg='Order received:we have received your order for '.$_POST['productinfo'].' with order id '.$saveorder.' Amounting to '.$_POST['net_amount_debit'].' You can manage your order at http://cartinhour.com';
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
-				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone="'.$_POST['phone'].'"&text="'.$msg.'"&priority=ndnd&stype=normal');
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				$server_output = curl_exec ($ch);
-				curl_close ($ch);*/
-				//echo $sms;exit;
+					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch, CURLOPT_POST, 1);
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$_POST['phone'].'&text='.$msg.'&priority=ndnd&stype=normal');
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					//echo '<pre>';print_r($ch);exit;
+					$server_output = curl_exec ($ch);
+					curl_close ($ch);
 				/* order sms*/
 				$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 				//echo '<pre>';print_r($cart_items);exit;
