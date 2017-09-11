@@ -22,7 +22,7 @@
 			  
 			  <?php 
 			  $customerdetails=$this->session->userdata('userdetails');
-			  foreach ($topoffers as $productslist){
+			 $s=6; foreach ($topoffers as $productslist){
 				$currentdate=date('Y-m-d h:i:s A');
 				if($productslist['offer_expairdate']>=$currentdate){
 				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
@@ -51,12 +51,7 @@
 				 
            
                 </a>
-                <div class="tags">
-                  <span class="label-tags"><span class="label label-default arrowed">Featured</span></span>
-                </div>
-                <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
-                </div>
+               
 				<?php if($productslist['item_quantity']<=0){ ?>
 				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
@@ -64,34 +59,32 @@
 				<?php } ?>
 				
 				<div class="option">
-				<?php if($productslist['item_quantity']>0){ ?>
-				<button type="submit" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>                  
+				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
+				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
+				<a style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $s; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+				<?php }else{ ?>	
+				<a style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $s; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-shopping-cart"></i></a>                  
+				<?php } ?>
 				<?php } ?>
 				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-				<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist btn-danger"><i id="addwishlistids" class="fa fa-heart"></i></a> 
+				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $s; ?>');" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-heart text-primary"></i></a> 
 				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $productslist['item_id']; ?>);" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids" class="fa fa-heart"></i></a> 
+				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $s; ?>');" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-heart "></i></a> 
 				<?php } ?>	
 				</div>
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
-				<div class="price">
+				  <div class="price">
                
-				<div class="pull-left" ><?php echo ($item_price); ?> 
-				<span class="label-tags"><span class="label label-default">-<?php echo $percentage; ?>%</span></span>
+				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
+			<?php if($percentage!=''){ ?> &nbsp;
+			<span class="price-old">₹ <?php echo $orginal_price; ?></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
+			<?Php }else{ ?>
+			<?php } ?>
 				</div>
-				<span class="price-old"><?php echo $orginal_price; ?></span>
+				<div class="clearfix"></div>
             
-              </div>
-            
-              
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
               </div>
             </div>
           </div>
@@ -100,7 +93,7 @@
 				</form>
                  
                 </div>
-				<?php  } ?>
+				<?php  $s++;} ?>
 				
                 <!-- Item -->
               
@@ -126,7 +119,7 @@
 </html>
 
 <script type="text/javascript">
-function addwhishlidt(id){
+function addwhishlidt(id,val){
 jQuery.ajax({
       url: "<?php echo site_url('customer/addwhishlist');?>",
       type: 'post',
@@ -136,19 +129,21 @@ jQuery.ajax({
         },
       dataType: 'JSON',
       success: function (data) {
-		  var property = document.getElementById(addwishlistids);
-        jQuery('#sucessmsg').show();
-        //alert(data.msg);
-        if(data.msg==2){
-			$("#addwhish"+id).removeClass("btn-danger");
-        $('#sucessmsg').html('Product Successfully removed to Whishlist');  
-        }
-        if(data.msg==1){
-		 $("#addwhish"+id).addClass("btn-danger");
-        //$('#addwhish').css("color", "yellow");
-        $('#sucessmsg').html('Product Successfully added to Whishlist');  
-        }
-      
+		  if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+						jQuery('#sucessmsg').show();
+						//alert(data.msg);
+						if(data.msg==2){
+							$("#addwishlistids"+id+val).removeClass("text-primary");
+						$('#sucessmsg').html('Product Successfully removed to Whishlist');  
+						}
+						if(data.msg==1){
+						 $("#addwishlistids"+id+val).addClass("text-primary");
+						//$('#addwhish').css("color", "yellow");
+						$('#sucessmsg').html('Product Successfully added to Whishlist');  
+						}
+				}
 
       }
     });

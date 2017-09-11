@@ -1518,6 +1518,19 @@ class Customer extends Front_Controller
 			$data['topoffers'] = $this->home_model->get_top_offers();
 		
 		}
+		$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}
 		$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 		if(count($wishlist_ids)>0){ 
 	foreach ($wishlist_ids as  $list){
@@ -1532,6 +1545,7 @@ class Customer extends Front_Controller
 	$data['whishlist_ids_list']=$whishlist_ids_list;
 	
 		}
+		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/seemore',$data);
 		$this->template->render();
 	}
