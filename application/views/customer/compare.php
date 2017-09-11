@@ -102,8 +102,9 @@
                 <select class="form-control" onchange="productitem_one(this.value);" id="item_id" name="item_id">
                     <option>Select item</option>
                     <?php foreach($item as $item_data){ ?>
-                    <option value="<?php echo $item_data->item_id; ?>">
-                        <?php echo $item_data->item_name; ?></option>
+					<?php if($item_data->item_id!=$first_item){ ?>
+                    <option value="<?php echo $item_data->item_id; ?>"><?php echo $item_data->item_name; ?></option>
+					<?php } ?>
                     <?php } ?>
                 </select>
             </div>
@@ -114,9 +115,10 @@
                 <label for="exampleInputPassword1">Select Compare Product</label>
                 <select class="form-control" onchange="productitem_two(this.value);" id="item_idtwo" name="item_idtwo">
                     <option>Select item</option>
-                    <?php foreach($item as $item_data){ ?>
-                    <option value="<?php echo $item_data->item_id; ?>">
-                        <?php echo $item_data->item_name; ?></option>
+                     <?php foreach($item as $item_data){ ?>
+					<?php if($item_data->item_id!=$first_item){ ?>
+                    <option value="<?php echo $item_data->item_id; ?>"><?php echo $item_data->item_name; ?></option>
+					<?php } ?>
                     <?php } ?>
                 </select>
             </div>
@@ -129,7 +131,23 @@
     
 
 <script type="text/javascript">
-    
+   var $dropdown1 = $("select[name='item_id']");
+var $dropdown2 = $("select[name='item_idtwo']");
+
+$dropdown1.change(function() {
+    $dropdown2.find('option').prop("disabled", false);
+    var selectedItem = $(this).val();
+    if (selectedItem) {
+        $dropdown2.find('option[value="' + selectedItem + '"]').prop("disabled", true);
+    }
+});
+$dropdown2.change(function() {
+    $dropdown1.find('option').prop("disabled", false);
+    var selectedItem = $(this).val();
+    if (selectedItem) {
+        $dropdown1.find('option[value="' + selectedItem + '"]').prop("disabled", true);
+    }
+});
     function productitem_one(id)
     {
 		var category_id = $("#category_id").val();

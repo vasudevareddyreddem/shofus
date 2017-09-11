@@ -1719,6 +1719,7 @@ function filtersearch(){
  	//print_r($category_ld);exit;
 	$data['compore_products']= $this->category_model->get_products($pid);
 	$data['item']=$this->category_model->getsubitemdata($category_ld);
+	$data['first_item']=$pid;
 	$this->template->write_view('content', 'customer/compare',$data);
 	$this->template->render();
 	
