@@ -45,9 +45,9 @@
                   </td>
 				  <td>
                     <p><a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>" class="d-block"><?php echo $items['item_name']; ?></a></p>
-					<small>Status : <?php if($items['item_status']=1){ echo "In Stock";}else{ "Out of Stock";} ?></small>
+					<small>Status : <?php if($items['item_quantity']==0){ echo "Out of Stock";}else if($items['item_status']=1){ echo "In Stock";}else{ "Out of Stock";} ?></small>
 				  </td>
-				   <?Php if($items['item_quantity']!=0){ ?>
+				   <?Php if($items['item_quantity']!=0 || $items['item_status']=0 ){ ?>
 					     <td class="input-qty">
 				   <div class="input-qty">
 						<div class="input-group number-spinner">

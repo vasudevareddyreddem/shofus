@@ -125,7 +125,7 @@ public function forgotpassword()
 		$this->session->set_flashdata('success','Check Your Email to reset your password!');
 		redirect('admin/login');
 		}else{
-		$this->session->set_flashdata('loginerror','Your  email not send!');
+		$this->session->set_flashdata('loginerror','sending email from localhost not working');
 		redirect('admin/login');
 		}			
 	}else{

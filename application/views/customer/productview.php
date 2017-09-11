@@ -79,7 +79,7 @@
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
 		<div style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"></div>
-
+<input type="hidden" name="orginalproductqty" id="orginalproductqty" value="<?php echo $products_list['item_quantity']; ?>" >
           <div class="title-detail"><?php echo $products_list['item_name']; ?></div>
 		  <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $products_list['item_id']; ?>" >
@@ -166,7 +166,8 @@
               </tr>
 			  
 			  <?php } ?>
-              <tr>
+              <?php if($products_list['item_status']==1 && $products_list['item_quantity']!=0){ ?>
+			  <tr>
                 <td>Quantity</td>
                 <td>
                   <div class="input-qty">
@@ -174,14 +175,18 @@
 							<span class="input-group-btn data-dwn">
 								<a class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
 							</span>
-							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="1" min="1" max="10">
+							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="1" min="1" max="<?php echo $products_list['item_quantity']; ?>">
 							<span class="input-group-btn data-up">
-								<a class="btn btn-primary " data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
+								<a class="btn btn-primary " onclick="qtyincreasepurpose();" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
 							</span>
+							
 						</div>
+						
                   </div>
+				  <span style="color:red;" id="maxqtyerror"></span>
                 </td>
               </tr>
+			  <?php } ?>
 
          
             </tbody>
@@ -437,6 +442,14 @@
 
 
 <script type="text/javascript">
+function qtyincreasepurpose(){
+	var qty=document.getElementById("qty").value;
+	var orginalqty=document.getElementById("orginalproductqty").value;
+	if(qty==orginalqty){
+		$("#maxqtyerror").html("available qty is "+orginalqty).fadeIn().fadeOut(5000);
+	}
+	
+}
 
 function colorselectvalue(vals){
 		document.getElementById("colorvalue").value=vals;
