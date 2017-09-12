@@ -497,6 +497,7 @@ class Customer extends Front_Controller
  public function qtyupdatecart(){
 	 if($this->session->userdata('userdetails'))
 	 {
+		//$data=array();
 		$customerdetails=$this->session->userdata('userdetails');
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 		foreach ($cart_items as $list){
@@ -532,6 +533,8 @@ class Customer extends Front_Controller
 							$delivery_charges=35;
 						}else if($price >1000){
 							$delivery_charges=0;
+						}else{
+							$delivery_charges=35;
 						}
 					}
 		

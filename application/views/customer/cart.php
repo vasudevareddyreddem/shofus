@@ -32,7 +32,7 @@
 <body >
 <div class="pad_bod">
 		<div class="row" id="updateqty"></div>
-		<div class="row" id="">
+		<div class="row" id="oldcartqty">
 		<div id="sticky-anchorupdateqtyhide"></div>
 		<div class="col-md-3" id="sticky">
 		<div class="panel panel-primary">
@@ -156,7 +156,11 @@
 			  <?php 
 			  //echo '<pre>';print_r($cart_items);exit; 
 			$total='';
+			
 			  $cnt=0;foreach($cart_items as $items){ ?>
+			  <script>$('#qty'+'<?php echo $cnt; ?>').val('');</script>
+			  <input type="hidden" name="orginalqty" id="orginalqty<?php echo $cnt; ?>" value="<?php echo $items['item_quantity']; ?>" >
+
 			  <form action="<?php  echo base_url('customer/updatecart'); ?>" method="post" name="updatecart" id="updatecart">
 
 			  <input type="hidden" name="product_id" id="product_id<?php echo $cnt; ?>"  value="<?php echo $items['item_id']; ?>">
@@ -183,6 +187,7 @@
 							</span>
 						</div>
                   </div>
+				  <span style="color:red;" id="qtymesage<?php echo $cnt; ?>"></span>
 				 </td>
 					  
 					  
@@ -205,7 +210,7 @@
 				  	
                 </tr>
 				  </form>
-					<?php $total=+$items['total_price']; ?>
+				<?php $total +=$items['total_price']; ?>
 			  <?php $cnt++;}   ?>
                
              
@@ -250,57 +255,69 @@
 <script>
 function productqty(id){
 
-	var qtycnt=document.getElementById("qty"+id).value;
 	var pid=document.getElementById("product_id"+id).value;
-	if(qtycnt>=1){
-	jQuery.ajax({
-			url: "<?php echo site_url('customer/qtyupdatecart');?>",
-			type: 'post',
-			data: {
-				form_key : window.FORM_KEY,
-				product_id: pid,
-				qty: qtycnt,
-				ajax: 1,
-				},
-			dataType: 'html',
-			success: function (data) {
-				$("#updateqty").empty();
-				$("#anchorupdateqtyhide").hide();
-				$("#updateqty").append(data);
-			
-			}
-		});
+	var qtycnt=document.getElementById("qty"+id).value;
+	var qty=parseInt(qtycnt);
+	if(qty==1){
 		
+		$('#qty'+id).val(qty);
+	}else{
+		$('#qty'+id).val(qty - 1);
+		$("#qtymesage"+id).html('');
+			jQuery.ajax({
+				url: "<?php echo site_url('customer/qtyupdatecart');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					product_id: pid,
+					qty: qty - 1,
+					ajax: 1,
+					},
+				dataType: 'html',
+				success: function (data) {
+					//$("#oldcartqty").hide();
+					$("#oldcartqty").empty();
+					$("#oldcartqty").empty();
+					$("#oldcartqty").append(data);
+				
+				}
+			});
 	}
+	
+	
 }
 function productqtyincreae(id){
-	var qtycnt=document.getElementById("qty"+id).value;
 	var pid=document.getElementById("product_id"+id).value;
-	if(qtycnt<11){
-	jQuery.ajax({
-			url: "<?php echo site_url('customer/qtyupdatecart');?>",
-			type: 'post',
-			data: {
-				form_key : window.FORM_KEY,
-				product_id: pid,
-				qty: qtycnt,
-				ajax: 1,
-				},
-			dataType: 'html',
-			success: function (data) {
-				$("#updateqty").empty();
-				$("#anchorupdateqtyhide").hide();
-				$("#updateqty").append(data);
-			
-			}
-		});
-		
+	var qtycnt1=document.getElementById("qty"+id).value;
+	var orginalqtycnt=document.getElementById("orginalqty"+id).value;
+	var qty1=parseInt(qtycnt1);
+	if(qty1==orginalqtycnt){
+		$("#qtymesage"+id).html("Avaiable  Quantity is " +orginalqtycnt);
+	}else if(qty1==10){
+	$("#qtymesage"+id).html("Maximum allowwed Quantity is 10 ");
 	}else{
-		$('#qtymesage').show();
-		$("#qtymesage").html("Maximum allowwed Quantity is 10 ");
-		document.getElementById("qty"+id).value='10';
-		return false;
+		$("#qtymesage"+id).html("");
+		$('#qty'+id).val(qty1 + 1);
+			jQuery.ajax({
+				url: "<?php echo site_url('customer/qtyupdatecart');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					product_id: pid,
+					qty: qty1 + 1,
+					ajax: 1,
+					},
+				dataType: 'html',
+				success: function (data) {
+					//$("#oldcartqty").hide();
+					$("#oldcartqty").empty();
+					$("#oldcartqty").empty();
+					$("#oldcartqty").append(data);
+				
+				}
+			});
 	}
+	
 }
 
 
@@ -339,36 +356,7 @@ function nextTab(elem) {
 function prevTab(elem) {
     $(elem).prev().find('a[data-toggle="tab"]').click();
 }
-$(function() {
-    var action;
-    $(".number-spinner a").mousedown(function () {
-        btn = $(this);
-        input = btn.closest('.number-spinner').find('input');
-        btn.closest('.number-spinner').find('a').prop("disabled", false);
 
-    	if (btn.attr('data-dir') == 'up') {
-            action = setInterval(function(){
-                if ( input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max')) ) {
-                    input.val(parseInt(input.val())+1);
-                }else{
-                    btn.prop("disabled", true);
-                    clearInterval(action);
-                }
-            }, 50);
-    	} else {
-            action = setInterval(function(){
-                if ( input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min')) ) {
-                    input.val(parseInt(input.val())-1);
-                }else{
-                    btn.prop("disabled", true);
-                    clearInterval(action);
-                }
-            }, 50);
-    	}
-    }).mouseup(function(){
-        clearInterval(action);
-    });
-});
 
 function sticky_relocate() {
     var window_top = $(window).scrollTop();
