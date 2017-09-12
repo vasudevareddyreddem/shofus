@@ -14,8 +14,9 @@ class Customer extends Front_Controller
 		$this->load->model('home_model'); 
 		$this->load->model('category_model');
 		$this->load->library('facebook');
-		$this->load->library('googleplus');		
-			
+		$this->load->library('googleplus');
+		$this->load->library('user_agent');
+ 
  }
  
 
@@ -24,7 +25,7 @@ class Customer extends Front_Controller
 		
 		$locationdata= $this->home_model->getlocations();
 		
-		echo '<pre>';print_r($post);exit;
+		//echo '<pre>';print_r($post);exit;
 		$loacationname=array();
 		foreach ($locationdata as $list){
 			if (in_array($list['location_id'], $post['locationarea'])) {
@@ -1043,7 +1044,9 @@ class Customer extends Front_Controller
  }
  public function index(){
 	
-	 $test=$this->session->userdata('userdetails');
+	 $redirection_url=$this->agent->referrer();
+	 $this->session->set_userdata('redirect_urls',$redirection_url);
+		$test=$this->session->userdata('userdetails');
 	 //echo '<pre>';print_r($test);exit;
 	 if($this->session->userdata('userdetails'))
 	  {
@@ -1202,6 +1205,7 @@ class Customer extends Front_Controller
  public function loginpost(){
 	 
 	$post=$this->input->post();
+	$session_url=$this->session->userdata('redirect_urls');
 	//echo '<pre>';print_r($post);exit;
 	$pass=md5($post['password']);
 	$logindetails = $this->customer_model->login_details($post['email'],$pass);
@@ -1250,7 +1254,7 @@ class Customer extends Front_Controller
 			}
 			//echo '<pre>';print_r($logindetails);exit;
 			$this->session->set_flashdata('sucesss',"Successfully Login");
-			redirect('');
+			redirect($session_url);
 		}else{
 			$this->session->set_flashdata('loginerror',"Invalid Email Address or Password!");
 			redirect('customer');
