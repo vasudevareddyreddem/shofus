@@ -86,7 +86,10 @@ class Import extends Admin_Controller {
 																	}
 
 																}
-																if($fields[3]!=''){
+																if(empty($fields[3])) {
+																	$data['errors'][]="Other Unique code is required. Row Id is :  ".$key.'<br>';
+																	$error=1;
+																}else if($fields[3]!=''){
 																	$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																	if(!preg_match( $regex, $fields[3]))	  	
 																	{
@@ -1114,7 +1117,10 @@ class Import extends Admin_Controller {
 																		}
 
 																	}
-																	if($fields[3]!=''){
+																	if(empty($fields[3])) {
+																		$data['errors'][]="Other Unique code is required. Row Id is :  ".$key.'<br>';
+																		$error=1;
+																	}else if($fields[3]!=''){
 																		$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																		if(!preg_match( $regex, $fields[3]))	  	
 																		{
@@ -1171,7 +1177,10 @@ class Import extends Admin_Controller {
 																		$error=1;
 																		}
 																	}
-																	if($fields[9]!=''){
+																	if(empty($fields[9])) {
+																		$data['errors'][]="Meta keywords is required. Row Id is :  ".$key.'<br>';
+																		$error=1;
+																	}else if($fields[9]!=''){
 																		$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																		if(!preg_match( $regex, $fields[9]))	  	
 																		{
@@ -1179,7 +1188,10 @@ class Import extends Admin_Controller {
 																		$error=1;
 																		}
 																	}
-																	if($fields[10]!=''){
+																	if(empty($fields[10])) {
+																		$data['errors'][]="Meta title is required. Row Id is :  ".$key.'<br>';
+																		$error=1;
+																	}else if($fields[10]!=''){
 																		$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																		if(!preg_match( $regex, $fields[10]))	  	
 																		{
@@ -1231,7 +1243,10 @@ class Import extends Admin_Controller {
 																		$error=1;
 																		}
 																	}
-																	if($fields[15]!=''){
+																	if(empty($fields[15])) {
+																		$data['errors'][]="Ideal for is required. Row Id is :  ".$key.'<br>';
+																		$error=1;
+																	}else if($fields[15]!=''){
 																		$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/";
 																		if(!preg_match( $regex, $fields[15]))
 																		{
@@ -1613,7 +1628,10 @@ class Import extends Admin_Controller {
 																			}
 
 																		}
-																		if($fields[3]!=''){
+																		if(empty($fields[3])) {
+																			$data['errors'][]="Other Unique code is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[3]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[3]))	  	
 																			{
@@ -1670,7 +1688,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[9]!=''){
+																		if(empty($fields[9])) {
+																			$data['errors'][]="Meta keywords is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[9]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[9]))	  	
 																			{
@@ -1678,7 +1699,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[10]!=''){
+																		if(empty($fields[10])) {
+																			$data['errors'][]="Meta title is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[10]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[10]))	  	
 																			{
@@ -1730,7 +1754,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[15]!=''){
+																		if(empty($fields[15])) {
+																			$data['errors'][]="Ideal for is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[15]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/";
 																			if(!preg_match( $regex, $fields[15]))
 																			{
@@ -2123,7 +2150,10 @@ class Import extends Admin_Controller {
 																			}
 
 																		}
-																		if($fields[3]!=''){
+																		if(empty($fields[3])) {
+																			$data['errors'][]="Other Unique code is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[3]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[3]))	  	
 																			{
@@ -2180,7 +2210,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[9]!=''){
+																		if(empty($fields[9])) {
+																			$data['errors'][]="Meta keywords is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[9]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[9]))	  	
 																			{
@@ -2188,7 +2221,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[10]!=''){
+																		if(empty($fields[10])) {
+																			$data['errors'][]="Meta title is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[10]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[10]))	  	
 																			{
@@ -2240,7 +2276,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[15]!=''){
+																		if(empty($fields[15])) {
+																			$data['errors'][]="Ideal for is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[15]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/";
 																			if(!preg_match( $regex, $fields[15]))
 																			{
@@ -2281,7 +2320,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[19]!=''){
+																		if(empty($fields[19])) {
+																			$data['errors'][]="Type is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[19]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[19]))	  	
 																			{
@@ -2693,7 +2735,10 @@ class Import extends Admin_Controller {
 																			}
 
 																		}
-																		if($fields[3]!=''){
+																		if(empty($fields[3])) {
+																			$data['errors'][]="Other Unique code is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[3]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[3]))	  	
 																			{
@@ -2750,7 +2795,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[9]!=''){
+																		if(empty($fields[9])) {
+																			$data['errors'][]="Meta keywords is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[9]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[9]))	  	
 																			{
@@ -2758,7 +2806,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[10]!=''){
+																		if(empty($fields[10])) {
+																			$data['errors'][]="Meta title is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[10]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[10]))	  	
 																			{
@@ -2810,7 +2861,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[15]!=''){
+																		if(empty($fields[15])) {
+																			$data['errors'][]="Ideal for is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[15]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/";
 																			if(!preg_match( $regex, $fields[15]))
 																			{
@@ -2840,7 +2894,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[18]!=''){
+																		if(empty($fields[18])) {
+																			$data['errors'][]="Display size is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[18]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[18]))	  	
 																			{
@@ -2859,7 +2916,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[20]!=''){
+																		if(empty($fields[20])) {
+																			$data['errors'][]="Ram is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[20]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[20]))	  	
 																			{
@@ -2878,7 +2938,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[22]!=''){
+																		if(empty($fields[22])) {
+																			$data['errors'][]="Operating system is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[22]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[22]))	  	
 																			{
@@ -2886,7 +2949,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[23]!=''){
+																		if(empty($fields[23])) {
+																			$data['errors'][]="Internal storage is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[23]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[23]))	  	
 																			{
@@ -2894,7 +2960,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[24]!=''){
+																		if(empty($fields[24])) {
+																			$data['errors'][]="Battery type is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[24]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[24]))	  	
 																			{
@@ -2902,7 +2971,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[25]!=''){
+																		if(empty($fields[25])) {
+																			$data['errors'][]="Primary camera is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[25]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[25]))	  	
 																			{
@@ -3282,7 +3354,10 @@ class Import extends Admin_Controller {
 																			}
 
 																		}
-																		if($fields[3]!=''){
+																		if(empty($fields[3])) {
+																			$data['errors'][]="Other Unique code is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[3]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[3]))	  	
 																			{
@@ -3339,7 +3414,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[9]!=''){
+																		if(empty($fields[9])) {
+																			$data['errors'][]="Meta keywords is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[9]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[9]))	  	
 																			{
@@ -3347,7 +3425,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[10]!=''){
+																		if(empty($fields[10])) {
+																			$data['errors'][]="Meta title is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[10]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[10]))	  	
 																			{
@@ -3399,7 +3480,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[15]!=''){
+																		if(empty($fields[15])) {
+																			$data['errors'][]="Ideal for is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[15]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/";
 																			if(!preg_match( $regex, $fields[15]))
 																			{
@@ -3429,7 +3513,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[18]!=''){
+																		if(empty($fields[18])) {
+																			$data['errors'][]="Type is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[18]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[18]))	  	
 																			{
@@ -3459,7 +3546,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[21]!=''){
+																		if(empty($fields[21])) {
+																			$data['errors'][]="Broadband compatibility is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[21]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[21]))	  	
 																			{
@@ -3467,7 +3557,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[22]!=''){
+																		if(empty($fields[22])) {
+																			$data['errors'][]="NO.of usb ports is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[22]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[22]))	  	
 																			{
@@ -3475,7 +3568,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[23]!=''){
+																		if(empty($fields[23])) {
+																			$data['errors'][]="Frequency is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[23]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[23]))	  	
 																			{
@@ -3483,7 +3579,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[24]!=''){
+																		if(empty($fields[24])) {
+																			$data['errors'][]="Antennae is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[24]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[24]))	  	
 																			{
@@ -3850,7 +3949,10 @@ class Import extends Admin_Controller {
 																			}
 
 																		}
-																		if($fields[3]!=''){
+																		if(empty($fields[3])) {
+																			$data['errors'][]="Other Unique code is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[3]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[3]))	  	
 																			{
@@ -3907,7 +4009,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[9]!=''){
+																		if(empty($fields[9])) {
+																			$data['errors'][]="Meta keywords is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[9]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[9]))	  	
 																			{
@@ -3915,7 +4020,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[10]!=''){
+																		if(empty($fields[10])) {
+																			$data['errors'][]="Meta title is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[10]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[10]))	  	
 																			{
@@ -3967,7 +4075,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[15]!=''){
+																		if(empty($fields[15])) {
+																			$data['errors'][]="Ideal for is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[15]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/";
 																			if(!preg_match( $regex, $fields[15]))
 																			{
@@ -3997,7 +4108,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[18]!=''){
+																		if(empty($fields[18])) {
+																			$data['errors'][]="Screen size is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[18]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[18]))	  	
 																			{
@@ -4016,7 +4130,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[20]!=''){
+																		if(empty($fields[20])) {
+																			$data['errors'][]="Processor Brand  is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[20]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[20]))	  	
 																			{
@@ -4024,7 +4141,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[21]!=''){
+																		if(empty($fields[21])) {
+																			$data['errors'][]="Operating system is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[21]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[21]))	  	
 																			{
@@ -4032,7 +4152,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[22]!=''){
+																		if(empty($fields[22])) {
+																			$data['errors'][]="Ram is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[22]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[22]))	  	
 																			{
@@ -4051,7 +4174,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[24]!=''){
+																		if(empty($fields[24])) {
+																			$data['errors'][]="Storage type is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[24]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[24]))	  	
 																			{
@@ -4059,7 +4185,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[25]!=''){
+																		if(empty($fields[25])) {
+																			$data['errors'][]="Dedicated graphics memory is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[25]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[25]))	  	
 																			{
@@ -4089,7 +4218,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[28]!=''){
+																		if(empty($fields[28])) {
+																			$data['errors'][]="Hard disk capacity is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[28]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[28]))	  	
 																			{
@@ -4097,7 +4229,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[29]!=''){
+																		if(empty($fields[29])) {
+																			$data['errors'][]="Graphics memory type is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[29]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[29]))	  	
 																			{
@@ -4105,7 +4240,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[30]!=''){
+																		if(empty($fields[30])) {
+																			$data['errors'][]="Ram type is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[30]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[30]))	  	
 																			{
@@ -4479,7 +4617,10 @@ class Import extends Admin_Controller {
 																			}
 
 																		}
-																		if(isset($fields[3]) && $fields[3]!=''){
+																		if(empty($fields[3])) {
+																			$data['errors'][]="Other Unique code is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[3]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[3]))	  	
 																			{
@@ -4509,11 +4650,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[5]>=$fields[4]){
-																			$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
-																			$error=1;	
-																		}
-																		if(isset($fields[6]) && $fields[6]!=''){
+																		if($fields[6]!=''){
 																			$regex ="/^[0-9.]+$/"; 
 																			if(!preg_match( $regex, $fields[6]))	  	
 																			{
@@ -4521,7 +4658,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if(isset($fields[7]) && $fields[7]!=''){
+																		if($fields[7]!=''){
 																			$regex ="/^[0-9.]+$/"; 
 																			if(!preg_match( $regex, $fields[7]))	  	
 																			{
@@ -4540,7 +4677,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if(isset($fields[9]) && $fields[9]!=''){
+																		if(empty($fields[9])) {
+																			$data['errors'][]="Meta keywords is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[9]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[9]))	  	
 																			{
@@ -4548,7 +4688,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if(isset($fields[10]) && $fields[10]!=''){
+																		if(empty($fields[10])) {
+																			$data['errors'][]="Meta title is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[10]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[10]))	  	
 																			{
@@ -4600,7 +4743,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if(isset($fields[15]) && $fields[15]!=''){
+																		if(empty($fields[15])) {
+																			$data['errors'][]="Ideal for is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[15]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/";
 																			if(!preg_match( $regex, $fields[15]))
 																			{
@@ -4630,7 +4776,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[18]!=''){
+																		if(empty($fields[18])) {
+																			$data['errors'][]="Ram is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[18]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[18]))	  	
 																			{
@@ -4638,7 +4787,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[19]!=''){
+																		if(empty($fields[19])) {
+																			$data['errors'][]="Operating System is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[19]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[19]))	  	
 																			{
@@ -4646,7 +4798,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[20]!=''){
+																		if(empty($fields[20])) {
+																			$data['errors'][]="internal Storage is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[20]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[20]))	  	
 																			{
@@ -4654,7 +4809,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[21]!=''){
+																		if(empty($fields[21])) {
+																			$data['errors'][]="Screen size is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[21]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[21]))	  	
 																			{
@@ -4662,7 +4820,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[22]!=''){
+																		if(empty($fields[22])) {
+																			$data['errors'][]="Network type is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[22]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[22]))	  	
 																			{
@@ -4670,7 +4831,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[23]!=''){
+																		if(empty($fields[23])) {
+																			$data['errors'][]="Battery capacity is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[23]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[23]))	  	
 																			{
@@ -4678,7 +4842,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[24]!=''){
+																		if(empty($fields[24])) {
+																			$data['errors'][]="Speciality is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[24]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[24]))	  	
 																			{
@@ -4686,7 +4853,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[25]!=''){
+																		if(empty($fields[25])) {
+																			$data['errors'][]="Type is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[25]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[25]))	  	
 																			{
@@ -4694,7 +4864,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[26]!=''){
+																		if(empty($fields[26])) {
+																			$data['errors'][]="Operating system version name is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[26]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[26]))	  	
 																			{
@@ -4702,7 +4875,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[27]!=''){
+																		if(empty($fields[27])) {
+																			$data['errors'][]="Processor brand is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[27]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[27]))	  	
 																			{
@@ -4710,7 +4886,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[28]!=''){
+																		if(empty($fields[28])) {
+																			$data['errors'][]="Resolution type is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[28]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[28]))	  	
 																			{
@@ -4718,7 +4897,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[29]!=''){
+																		if(empty($fields[29])) {
+																			$data['errors'][]="Primary camera is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[29]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[29]))	  	
 																			{
@@ -4726,7 +4908,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[30]!=''){
+																		if(empty($fields[30])) {
+																			$data['errors'][]="Secondary camera is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[30]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[30]))	  	
 																			{
@@ -4734,7 +4919,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[31]!=''){
+																		if(empty($fields[31])) {
+																			$data['errors'][]="sim type is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[31]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[31]))	  	
 																			{
@@ -4742,7 +4930,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[32]!=''){
+																		if(empty($fields[32])) {
+																			$data['errors'][]="Clock Speed is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[32]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[32]))	  	
 																			{
@@ -4750,7 +4941,10 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[33]!=''){
+																		if(empty($fields[33])) {
+																			$data['errors'][]="No.of cores is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[33]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[33]))	  	
 																			{
@@ -4759,7 +4953,10 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		
-																		if($fields[34]!=''){
+																		if(empty($fields[34])) {
+																			$data['errors'][]="Image is required. Row Id is :  ".$key;
+																		$error=1;
+																		}else if($fields[34]!=''){
 																				$image_link = $fields[34];
 																				$split_image1 = pathinfo($image_link);
 																				$imagename=$split_image1['filename'].".".$split_image1['extension'];
@@ -4981,43 +5178,42 @@ class Import extends Admin_Controller {
 																		copy($data[45], $path.$imagename11);
 																		
 																	}
-																	$discount= ($data[4]-$data[5]);
-																	$offers= (($discount) /$data[4])*100;
+																	
 																	$adddetails=array(
 																			'category_id' => $post['category_ids'],			
 																			'subcategory_id' =>$post['subcategory_ids'],
 																			'seller_id' =>$this->session->userdata('seller_id'), 
-																			'item_name' =>isset($data[1])?$data[1]:'',
-																			'skuid' => isset($data[2])?$data[2]:'',
-																			'item_code' => isset($data[3])?$data[3]:'',
-																			'item_cost' => isset($data[4])?$data[4]:'',
-																			'special_price' => isset($data[5])?$data[5]:'',
-																			'offers' =>isset($offers)?$offers:'',
-																			'discount' =>isset($discount)?$discount:'',
-																			'item_quantity' =>isset($data[8])?$data[8]:'',
-																			'keywords' =>isset($data[9])?$data[9]:'',
-																			'title' =>isset($data[10])?$data[10]:'',
-																			'item_status' => isset($data[11])?$data[11]:'',
-																			'item_description' =>isset($data[12])?$data[12]:'',
-																			'item_sub_name' =>isset($data[13])?$data[13]:'',
-																			'brand' =>isset($data[14])?$data[14]:'',
-																			'ideal_for' =>isset($data[15])?$data[15]:'',
-																			'ram' =>isset($data[18])?$data[18]:'',
-																			'operatingsystem' =>isset($data[19])?$data[19]:'',
-																			'internal_storage' =>isset($data[20])?$data[20]:'',
-																			'display_size' =>isset($data[21])?$data[21]:'',
-																			'network_type' =>isset($data[22])?$data[22]:'',
-																			'battery_capacity' =>isset($data[23])?$data[23]:'',
-																			'speciality' =>isset($data[24])?$data[24]:'',
-																			'producttype' =>isset($data[25])?$data[25]:'',
-																			'operating_system_version_name' =>isset($data[26])?$data[26]:'',
-																			'processor_brand' =>isset($data[27])?$data[27]:'',
-																			'resolution_type' =>isset($data[28])?$data[28]:'',
-																			'primary_camera' =>isset($data[29])?$data[29]:'',
-																			'secondary_camera' =>isset($data[30])?$data[30]:'',
-																			'sim_type' =>isset($data[31])?$data[31]:'',
-																			'clock_speed' =>isset($data[32])?$data[32]:'',
-																			'cores' =>isset($data[33])?$data[33]:'',
+																			'item_name' => $data[1],
+																			'skuid' => $data[2],
+																			'item_code' => $data[3],
+																			'item_cost' => $data[4],
+																			'special_price' => $data[5],
+																			'offers' =>$data[6],
+																			'discount' =>$data[7],
+																			'item_quantity' =>$data[8],
+																			'keywords' =>$data[9],
+																			'title' =>$data[10],
+																			'item_status' => $data[11],
+																			'item_description' =>$data[12],
+																			'item_sub_name' =>$data[13],
+																			'brand' =>$data[14],
+																			'ideal_for' =>$data[15],
+																			'ram' =>$data[18],
+																			'operatingsystem' =>$data[19],
+																			'internal_storage' =>$data[20],
+																			'display_size' =>$data[21],
+																			'network_type' =>$data[22],
+																			'battery_capacity' =>$data[23],
+																			'speciality' =>$data[24],
+																			'producttype' =>$data[25],
+																			'operating_system_version_name' =>$data[26],
+																			'processor_brand' =>$data[27],
+																			'resolution_type' =>$data[28],
+																			'primary_camera' =>$data[29],
+																			'secondary_camera' =>$data[30],
+																			'sim_type' =>$data[31],
+																			'clock_speed' =>$data[32],
+																			'cores' =>$data[33],
 																			'item_image'=>isset($imagename)?$imagename:'',
 																			'item_image1'=>isset($imagename1)?$imagename1:'',
 																			'item_image2'=>isset($imagename2)?$imagename2:'',
