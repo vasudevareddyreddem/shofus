@@ -483,6 +483,7 @@ if(isset($post['internal_storage1']) || isset($post['internal_storage2']) || iss
 						'seller_id' => $this->session->userdata('seller_id'), 
 						'documetfile' => '',
 						'status' => 0,    
+						'first_time' =>1,    
 						'created_at' => date('Y-m-d H:i:s'),    
 						'updated_at' => date('Y-m-d H:i:s'),
 						);
@@ -1818,7 +1819,8 @@ public function returns()
 		}
 		$adddata = array(
 		'category_name' => $post['categoryname'],
-		'status' => 0,    
+		'status' => 0,
+		'first_time' =>1,    
 		'created_at' => date('Y-m-d H:i:s'),    
 		'updated_at' => date('Y-m-d H:i:s'),
 		'seller_id' =>$this->session->userdata('seller_id'), 
