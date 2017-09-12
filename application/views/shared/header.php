@@ -16,7 +16,10 @@
 	  .affix{
 	top:0;
 }
-
+.slid_col{
+	color:#fff;
+	padding:4px;
+}
 </style>
 <div class="sidebar_right" >
 			<ul style="padding:0 ">
@@ -88,10 +91,45 @@
           </ul>
         </div> 
 		<div class="col-md-5">
-		<div id="selectedlocation" class="col-md-9" style="height:30px;border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;text-align:center;">
+		<div class="col-md-9" style="border:1px solid #fff;padding:5px;">
+		<!--<div id="selectedlocation" class="col-md-9" style="height:30px;border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;text-align:center;">
 		
 		<?php echo $this->session->userdata('location_area');
-		?>
+		?>--><div class="carousel slide media-carousel" id="media"  data-ride="carousel" >
+        <div class="carousel-inner">
+          <div class="item  active" style="height:auto;">
+            <div class="row">
+              <div style="padding-left:15px;">
+              <span class="slid_col"> Test slider</span>,
+              <span class="slid_col"> test slider</span>,
+              <span class="slid_col"> test slider</span>,
+              </div>          
+                     
+            </div>
+          </div> 
+		  <div class="item  " style="height:auto;">
+            <div class="row">
+              <div style="padding-left:15px;">
+              <span class="slid_col"> Test slider</span>,
+              <span class="slid_col"> test slider</span>,
+              <span class="slid_col"> test slider</span>,
+              </div>          
+                     
+            </div>
+          </div> <div class="item  " style="height:auto;">
+            <div class="row">
+              <div style="padding-left:15px;">
+              <span class="slid_col"> Test slider</span>,
+              <span class="slid_col"> test slider</span>,
+              <span class="slid_col"> test slider</span>,
+              </div>          
+                     
+            </div>
+          </div>
+         
+        </div>
+       
+      </div> 
 		
 		</div>
 		<div class="col-md-3 " style="padding-top:5px;"><a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="<?php echo base_url('seller/login');?>"><span class=""></span> &nbsp; Sale with us </a>	</div>
