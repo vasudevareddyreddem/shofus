@@ -133,7 +133,7 @@
 						<form action="<?php echo base_url('customer/billingaddresspost'); ?>" method="post" name="billingaddress" id="billingaddress">
 										<div class="form-group">
 										  <label>Name:</label>
-										  <input type="text" id="name" name="name" class="form-control" value="<?php echo $customerdetail['cust_firstname'].''.$customerdetail['cust_lastname']; ?>">
+										  <input type="text" id="name" name="name" class="form-control" value="<?php echo $customerdetail['cust_firstname'].' '.$customerdetail['cust_lastname']; ?>">
 										</div>
 										<div class="form-group">
 										  <label >Mobile:</label>
