@@ -193,31 +193,11 @@
 				  <?php } ?>
                   
 				  
-				  <?php if($items['offer_percentage']!==0 && $items['offer_percentage']!=='' ){ ?>
-					 
-					 <?php if(date('m/d/Y') <= $items['offer_expairdate']){
-
-            $offeramount=($items['item_cost'])-($items['offer_amount']);
-            $amount=(($offeramount) * ($items['qty']));
-            $total+= $amount;?>
-            <td class="unit"><?php echo $offeramount; ?> </td>
-			<td class="sub"><?php echo $amount; ?></td> 
-
-          <?php }else{
-            $withoutofferamount=($items['item_cost']);
-            $amount=(($withoutofferamount) * ($items['qty']));
-            $total+= $amount; 
-           ?>
-			<td class="unit"><?php echo $withoutofferamount; ?> </td>
-			<td class="sub"><?php echo $amount; ?></td>
-         <?php } ?>
-           
-                     
-         <?php  }else{ ?>
+				  
 			 
-			 <td class="unit"><?php echo $items['item_cost']; ?> </td>
-			<td class="sub"><?php echo $items['item_cost']; ?></td>
-		<?php  } ?>
+				<td class="unit"><?php echo $items['item_price']; ?> </td>
+				<td class="sub"><?php echo $items['total_price']; ?></td>
+		
                   <td class="action">
 				  <!--<button style="background:transprent;" type="submit" ><i class="fa fa-refresh"></i></button>&nbsp;-->
                     <a href="<?php echo base_url('customer/deletecart/'.base64_encode($items['item_id']).'/'.base64_encode($items['id'])); ?>" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>
@@ -225,7 +205,7 @@
 				  	
                 </tr>
 				  </form>
-				
+					<?php $total=+$items['total_price']; ?>
 			  <?php $cnt++;}   ?>
                
              
@@ -235,7 +215,7 @@
                   <td colspan="2"><b><?php echo $total; ?></b></td>
                 </tr> 
 				<tr>
-                  <td colspan="4" class="text-right">grand Total</td>
+                  <td colspan="4" class="text-right">Grand Total</td>
                   <td colspan="2"><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></td>
                 </tr>
 				
