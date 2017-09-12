@@ -59,7 +59,7 @@
         <div class="tab-content">
               <div class="tab-pane" id="gry<?php echo $kk; ?>">
               <?php 
-			foreach($catitem_data->docs as $subcategory){?>
+			$cnt=1;foreach($catitem_data->docs as $subcategory){?>
 			<?php $space =  $subcategory->subcategory_name; 
 			 
 			//$nospace = str_replace(' ','_',$space);
@@ -80,9 +80,9 @@
 		<table id="example<?php echo $subcategory->subcategory_id;?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th><input type="checkbox" name="select_all" onclick="checkall('<?php echo $subcategory->subcategory_id;  ?>');" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
+              <th><input type="checkbox" name="select_all" onclick="checkall('<?php echo $subcategory->subcategory_id;  ?>','<?php echo $cnt; ?>');" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
 				</th>
-				<div style="padding:15px 0px" id="submit_proga<?php echo $subcategory->subcategory_id; ?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button" >Submit</a></div>
+				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
 				<th>Item Name</th>
 				 <th>Sku Id</th>
                 <th>Special price</th>
@@ -182,15 +182,15 @@
    </div>
      </form>
 	<script type="text/javascript">
-	
-	function checkall(id){
+	$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>').hide();
+	function checkall(id,cnt){
 		
 		var check=document.getElementById("example-select-all"+id).checked;
-		if(check=='true'){
-			$('#offerspopup'+id).show();
+		if(check='true'){
+			$('#submit_prog'+id+cnt).show();
 		}
 	}
-	$('#submit_proga<?php echo $subcategory->subcategory_id;?>').hide();
+	
 	function IsMobile<?php echo $subcategory->subcategory_id;?>(reasontype) {
         var regex = /^[0-9]+$/;
         return regex.test(reasontype);
@@ -397,7 +397,7 @@ $(document).ready(function() {
 </script>
                 </div>
               </div>
-			<?php }?>
+			<?php $cnt++;} ?>
               </div>
              
              
