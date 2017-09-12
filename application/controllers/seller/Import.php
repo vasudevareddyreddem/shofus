@@ -3282,7 +3282,7 @@ class Import extends Admin_Controller {
 																			}
 
 																		}
-																		if($fields[3]!=''){
+																		if(isset($fields[3]) && $fields[3]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[3]))	  	
 																			{
@@ -3312,7 +3312,11 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[6]!=''){
+																		if($fields[5]>=$fields[4]){
+																		$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																		$error=1;	
+																		}
+																		if(isset($fields[6]) && $fields[6]!=''){
 																			$regex ="/^[0-9.]+$/"; 
 																			if(!preg_match( $regex, $fields[6]))	  	
 																			{
@@ -3320,7 +3324,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[7]!=''){
+																		if(isset($fields[7]) && $fields[7]!=''){
 																			$regex ="/^[0-9.]+$/"; 
 																			if(!preg_match( $regex, $fields[7]))	  	
 																			{
@@ -3339,7 +3343,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[9]!=''){
+																		if(isset($fields[9]) && $fields[9]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[9]))	  	
 																			{
@@ -3347,7 +3351,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[10]!=''){
+																		if(isset($fields[10]) && $fields[10]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[10]))	  	
 																			{
@@ -3399,7 +3403,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[15]!=''){
+																		if(isset($fields[15]) && $fields[15]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/";
 																			if(!preg_match( $regex, $fields[15]))
 																			{
@@ -3429,7 +3433,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[18]!=''){
+																		if(isset($fields[18]) && $fields[18]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[18]))	  	
 																			{
@@ -3459,7 +3463,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[21]!=''){
+																		if(isset($fields[21]) && $fields[21]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[21]))	  	
 																			{
@@ -3467,7 +3471,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[22]!=''){
+																		if(isset($fields[22]) && $fields[22]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[22]))	  	
 																			{
@@ -3475,7 +3479,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[23]!=''){
+																		if(isset($fields[23]) && $fields[23]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[23]))	  	
 																			{
@@ -3483,7 +3487,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[24]!=''){
+																		if(isset($fields[24]) && $fields[24]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[24]))	  	
 																			{
@@ -3717,33 +3721,34 @@ class Import extends Admin_Controller {
 																		copy($data[36], $path.$imagename11);
 																		
 																	}
-																	
+																	$discount= ($data[4]-$data[5]);
+																	$offers= (($discount) /$data[4])*100;
 																	$adddetails=array(
 																			'category_id' => $post['category_ids'],			
 																			'subcategory_id' =>$post['subcategory_ids'],
 																			'seller_id' =>$this->session->userdata('seller_id'), 
-																			'item_name' => $data[1],
-																			'skuid' => $data[2],
-																			'item_code' => $data[3],
-																			'item_cost' => $data[4],
-																			'special_price' => $data[5],
-																			'offers' =>$data[6],
-																			'discount' =>$data[7],
-																			'item_quantity' =>$data[8],
-																			'keywords' =>$data[9],
-																			'title' =>$data[10],
-																			'item_status' => $data[11],
-																			'item_description' =>$data[12],
-																			'item_sub_name' =>$data[13],
-																			'brand' =>$data[14],
-																			'ideal_for' =>$data[15],
-																			'producttype' =>$data[18],
-																			'wireless_speed' =>$data[19],
-																			'frequency_band' =>$data[20],
-																			'broadband_compatibility' =>$data[21],
-																			'usb_ports' =>$data[22],
-																			'frequency' =>$data[23],
-																			'antennae' =>$data[24],
+																			'item_name' => isset($data[1])?$data[1]:'',
+																			'skuid' => isset($data[2])?$data[2]:'',
+																			'item_code' => isset($data[3])?$data[3]:'',
+																			'item_cost' => isset($data[4])?$data[4]:'',
+																			'special_price' => isset($data[5])?$data[5]:'',
+																			'offers' =>isset($offers)?$offers:'',
+																			'discount' =>isset($discount)?$discount:'',
+																			'item_quantity' =>isset($data[8])?$data[8]:'',
+																			'keywords' =>isset($data[9])?$data[9]:'',
+																			'title' =>isset($data[10])?$data[10]:'',
+																			'item_status' => isset($data[11])?$data[11]:'',
+																			'item_description' =>isset($data[12])?$data[12]:'',
+																			'item_sub_name' =>isset($data[13])?$data[13]:'',
+																			'brand' =>isset($data[14])?$data[14]:'',
+																			'ideal_for' =>isset($data[15])?$data[15]:'',
+																			'producttype' =>isset($data[18])?$data[18]:'',
+																			'wireless_speed' =>isset($data[19])?$data[19]:'',
+																			'frequency_band' =>isset($data[20])?$data[20]:'',
+																			'broadband_compatibility' =>isset($data[21])?$data[21]:'',
+																			'usb_ports' =>isset($data[22])?$data[22]:'',
+																			'frequency' =>isset($data[23])?$data[23]:'',
+																			'antennae' =>isset($data[24])?$data[24]:'',
 																			'item_image'=>isset($imagename)?$imagename:'',
 																			'item_image1'=>isset($imagename1)?$imagename1:'',
 																			'item_image2'=>isset($imagename2)?$imagename2:'',
@@ -3880,7 +3885,11 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[6]!=''){
+																		if($fields[5]>=$fields[4]){
+																			$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																			$error=1;	
+																		}
+																		if(isset($fields[6]) && $fields[6]!=''){
 																			$regex ="/^[0-9.]+$/"; 
 																			if(!preg_match( $regex, $fields[6]))	  	
 																			{
@@ -3888,7 +3897,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[7]!=''){
+																		if(isset($fields[7]) && $fields[7]!=''){
 																			$regex ="/^[0-9.]+$/"; 
 																			if(!preg_match( $regex, $fields[7]))	  	
 																			{
@@ -3907,7 +3916,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[9]!=''){
+																		if(isset($fields[9]) && $fields[9]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[9]))	  	
 																			{
@@ -3915,7 +3924,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[10]!=''){
+																		if(isset($fields[10]) && $fields[10]!=''){
 																			$regex ="/^[a-zA-Z0-9.-_& ]+$/"; 
 																			if(!preg_match( $regex, $fields[10]))	  	
 																			{
@@ -3967,7 +3976,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[15]!=''){
+																		if(isset($fields[15]) && $fields[15]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/";
 																			if(!preg_match( $regex, $fields[15]))
 																			{
@@ -3997,7 +4006,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[18]!=''){
+																		if(isset($fields[18]) && $fields[18]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[18]))	  	
 																			{
@@ -4016,7 +4025,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[20]!=''){
+																		if(isset($fields[20]) && $fields[20]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[20]))	  	
 																			{
@@ -4024,7 +4033,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[21]!=''){
+																		if(isset($fields[21]) && $fields[21]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[21]))	  	
 																			{
@@ -4032,7 +4041,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[22]!=''){
+																		if(isset($fields[22]) && $fields[22]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[22]))	  	
 																			{
@@ -4051,7 +4060,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[24]!=''){
+																		if(isset($fields[24]) && $fields[24]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[24]))	  	
 																			{
@@ -4059,7 +4068,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[25]!=''){
+																		if(isset($fields[25]) && $fields[25]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[25]))	  	
 																			{
@@ -4089,7 +4098,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[28]!=''){
+																		if(isset($fields[28]) && $fields[28]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[28]))	  	
 																			{
@@ -4097,7 +4106,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[29]!=''){
+																		if(isset($fields[29]) && $fields[29]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[29]))	  	
 																			{
@@ -4105,7 +4114,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if($fields[30]!=''){
+																		if(isset($fields[30]) && $fields[30]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[30]))	  	
 																			{
@@ -4339,39 +4348,40 @@ class Import extends Admin_Controller {
 																		copy($data[42], $path.$imagename11);
 																		
 																	}
-																	
+																		$discount= ($data[4]-$data[5]);
+																		$offers= (($discount) /$data[4])*100;
 																	$adddetails=array(
 																			'category_id' => $post['category_ids'],			
 																			'subcategory_id' =>$post['subcategory_ids'],
 																			'seller_id' =>$this->session->userdata('seller_id'), 
-																			'item_name' => $data[1],
-																			'skuid' => $data[2],
-																			'item_code' => $data[3],
-																			'item_cost' => $data[4],
-																			'special_price' => $data[5],
-																			'offers' =>$data[6],
-																			'discount' =>$data[7],
-																			'item_quantity' =>$data[8],
-																			'keywords' =>$data[9],
-																			'title' =>$data[10],
-																			'item_status' => $data[11],
-																			'item_description' =>$data[12],
-																			'item_sub_name' =>$data[13],
-																			'brand' =>$data[14],
-																			'ideal_for' =>$data[15],
-																			'display_size' =>$data[18],
-																			'processor' =>$data[19],
-																			'processor_brand' =>$data[20],
-																			'operatingsystem' =>$data[21],
-																			'ram' =>$data[22],
-																			'life_style' =>$data[23],
-																			'storage_type' =>$data[24],
-																			'graphics_memory' =>$data[25],
-																			'touch_screen' =>$data[26],
-																			'weight' =>$data[27],
-																			'internal_storage' =>$data[28],
-																			'memory_type' =>$data[29],
-																			'ram_type' =>$data[30],
+																			'item_name' =>isset($data[1])?$data[1]:'',
+																			'skuid' => isset($data[2])?$data[2]:'',
+																			'item_code' => isset($data[3])?$data[3]:'',
+																			'item_cost' => isset($data[4])?$data[4]:'',
+																			'special_price' => isset($data[5])?$data[5]:'',
+																			'offers' =>isset($offers)?$offers:'',
+																			'discount' =>isset($discount)?$discount:'',
+																			'item_quantity' =>isset($data[8])?$data[8]:'',
+																			'keywords' =>isset($data[9])?$data[9]:'',
+																			'title' =>isset($data[10])?$data[10]:'',
+																			'item_status' => isset($data[11])?$data[11]:'',
+																			'item_description' =>isset($data[12])?$data[12]:'',
+																			'item_sub_name' =>isset($data[13])?$data[13]:'',
+																			'brand' =>isset($data[14])?$data[14]:'',
+																			'ideal_for' =>isset($data[15])?$data[15]:'',
+																			'display_size' =>isset($data[18])?$data[18]:'',
+																			'processor' =>isset($data[19])?$data[19]:'',
+																			'processor_brand' =>isset($data[20])?$data[20]:'',
+																			'operatingsystem' =>isset($data[21])?$data[21]:'',
+																			'ram' =>isset($data[22])?$data[22]:'',
+																			'life_style' =>isset($data[23])?$data[23]:'',
+																			'storage_type' =>isset($data[24])?$data[24]:'',
+																			'graphics_memory' =>isset($data[25])?$data[25]:'',
+																			'touch_screen' =>isset($data[26])?$data[26]:'',
+																			'weight' =>isset($data[27])?$data[27]:'',
+																			'internal_storage' =>isset($data[28])?$data[28]:'',
+																			'memory_type' =>isset($data[29])?$data[29]:'',
+																			'ram_type' =>isset($data[30])?$data[30]:'',
 																			'item_image'=>isset($imagename)?$imagename:'',
 																			'item_image1'=>isset($imagename1)?$imagename1:'',
 																			'item_image2'=>isset($imagename2)?$imagename2:'',
