@@ -708,7 +708,7 @@ $("#modal-8").show();
 		});
 
 $(document).ready(function(){
-    $(".user_log").mouseover(function(){
+    $(".user_log").click(function(){
         $("#user_sow").fadeToggle();
     });
 });
