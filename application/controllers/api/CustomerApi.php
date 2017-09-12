@@ -2038,12 +2038,57 @@ class CustomerApi extends REST_Controller {
 				$message = array('status'=>1,'message'=>'Location id is required!');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
-			foreach ($locationid as $list){
-				
+			$ids=explode(',',$locationid);
+			foreach ($ids as $list){
+				//echo '<pre>';print_r($list);
+				$storelist[]= $this->Customerapi_model->location_stores_list($list);
 			}
-			$storelist= $this->Customerapi_model->location_stores_list($locationid);
-			echo $this->db->last_query();
-			echo '<pre>';print_r($storelist);exit;
+			//echo '<pre>';print_r($storelist);exit;
+			if(count($storelist)>0){
+					$message = array('status'=>1,'list'=>$storelist,'message'=>'near by stores list');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>1,'message'=>'NO stores are available. Please try again!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}
+		}
+		public function nearbystorescategorylist_get(){
+			$seller_id=$this->input->get('seller_id');
+			if($seller_id==''){
+				$message = array('status'=>1,'message'=>'selled id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			$category_list= $this->Customerapi_model->get_seller_category_details($seller_id);
+			
+			//echo '<pre>';print_r($storelist);exit;
+			if(count($category_list)>0){
+					$message = array('status'=>1,'list'=>$category_list,'message'=>'Seller categories list');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>1,'message'=>'NO categories are available. Please try again!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}
+		}
+		public function seller_categorylist_wise_products_get(){
+			$seller_id=$this->input->get('seller_id');
+			$category_id=$this->input->get('category_id');
+			if($seller_id==''){
+				$message = array('status'=>1,'message'=>'Seller id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}else if($category_id==''){
+				$message = array('status'=>1,'message'=>'category id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			$product_list= $this->Customerapi_model->get_sellercategory_wise_productslist($seller_id,$category_id);
+			
+			//echo '<pre>';print_r($storelist);exit;
+			if(count($product_list)>0){
+					$message = array('status'=>1,'list'=>$product_list,'message'=>'Seller categories wise product list');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>1,'message'=>'NO products are available. Please try again!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}
 		}
 
 

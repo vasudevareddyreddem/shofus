@@ -2106,8 +2106,38 @@ class Customerapi_model extends MY_Model
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left'); 
 		$this->db->where_in('seller_store_details.area',$locationids);
 		$this->db->where('sellers.status',1);
-		return $this->db->get()->result_array();
+		$query=$this->db->get()->row_array();
+		$return['storelist']=$query;
+		$return['storelist']['categorylist']=$this->product_categories_list($query['seller_id']);
+		if(!empty($return))
+			{
+			return $return;
+
+		}
 	}
+	public function product_categories_list($sid){
+		 
+			$this->db->select('seller_categories.seller_category_id,seller_categories.category_name')->from('seller_categories');
+			$this->db->where('seller_id', $sid);
+			return $this->db->get()->result_array();
+		 
+	 }
+	  public function get_seller_category_details($sid){
+		 
+			$this->db->select('seller_categories.seller_category_id,seller_categories.seller_id,seller_categories.category_name')->from('seller_categories');
+			$this->db->where('seller_id', $sid);
+			return $this->db->get()->result_array();
+		 
+	 }
+	 public function get_sellercategory_wise_productslist($sid,$catid){
+		 
+			$this->db->select('*')->from('products');
+			$this->db->where('seller_id', $sid);
+			$this->db->where('category_id', $catid);
+			$this->db->where('item_status',1);
+			return $this->db->get()->result_array();
+		 
+	 }
 	
 		
 	
