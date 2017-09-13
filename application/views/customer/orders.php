@@ -36,7 +36,7 @@
 				<?php 
 				//echo '<pre>';print_r($orders_list);exit;
 				
-				foreach ($orders_listss as $orders){ ?>
+				foreach ($orders_lists as $orders){ ?>
                 <tr>
                   <td><?php echo $orders['order_item_id'] ?></td>
                   <td><?php echo $orders['item_name'] ?> </td>
