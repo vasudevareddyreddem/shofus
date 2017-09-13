@@ -18,9 +18,8 @@
             </div>
             <div class="panel-body">
 			<?php if($this->session->flashdata('success')): ?>
-					<div class="alert dark alert-success alert-dismissible text-center col-md-8 col-md-offset-2" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('success');?></div>	
+					<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
+
 					<?php endif; ?>
 					<div class="clearfix">&nbsp;</div>
               <div class="row">
