@@ -75,8 +75,7 @@
 			<div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('error');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div>
               
 			<?php endif; ?>
-		<div  style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"></div>
-<input type="hidden" name="orginalproductqty" id="orginalproductqty" value="<?php echo $products_list['item_quantity']; ?>" >
+			<input type="hidden" name="orginalproductqty" id="orginalproductqty" value="<?php echo $products_list['item_quantity']; ?>" >
           <div class="title-detail"><?php echo $products_list['item_name']; ?></div>
 		  <?php if(count($colors_list)>0){ ?>
 		  <form action="<?php echo base_url('customer/addcart'); ?>" onsubmit="return validation();" method="Post" name="addtocart" id="addtocart" >
@@ -461,6 +460,7 @@ if(color==''){
 	
 }
 $("#sizeerrormsg").html("");
+return true;
 
 
 }
