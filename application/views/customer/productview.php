@@ -543,7 +543,7 @@ function productqtyincreae(){
 	if(qty1==orginalqtycnt){
 		$("#qtymesage").html("Avaiable  Quantity is " +orginalqtycnt);
 	}else if(qty1==10){
-	$("#qtymesage").html("Maximum allowwed Quantity is 10 ");
+	$("#qtymesage").html("Maximum allowed Quantity is 10 ");
 	}else{
 		$("#qtymesage").html("");
 		$('#qty').val(qty1 + 1);

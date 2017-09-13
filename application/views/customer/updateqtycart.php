@@ -252,7 +252,7 @@ function productqtyincreae(id){
 	if(qty1==orginalqtycnt){
 		$("#qtymesage"+id).html("Avaiable  Quantity is " +orginalqtycnt);
 	}else if(qty1==10){
-	$("#qtymesage"+id).html("Maximum allowwed Quantity is 10 ");
+	$("#qtymesage"+id).html("Maximum allowed Quantity is 10 ");
 	}else{
 		$("#qtymesage"+id).html("");
 		$('#qty'+id).val(qty1 + 1);
