@@ -21,11 +21,14 @@ class Customer_model extends MY_Model
 	
 	/* item qty updating purpose*/
 	/* save orders purpose*/
+	
 	public function order_list($cust_id){
-		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.item_description,products.item_image')->from('order_items');
+		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.item_description,products.item_image,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund')->from('order_items');
 		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 		$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
+		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 		$this->db->where('order_items.customer_id', $cust_id);
+		$this->db->order_by('order_items.order_item_id desc');
 		return $this->db->get()->result_array();
 	}
 	public function get_order_items($order_id){

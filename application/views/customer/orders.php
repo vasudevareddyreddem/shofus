@@ -38,34 +38,26 @@
 				<?php 
 				//echo '<pre>';print_r($orders_list);exit;
 				
-				foreach ($orders_list as $orders){ ?>
+				foreach ($orders_lists as $orders){ ?>
                 <tr>
                   <td><?php echo $orders['order_item_id'] ?></td>
                   <td><?php echo $orders['item_name'] ?> </td>
                   <td><?php echo $orders['total_price'] ?></td>
                   <td><?php echo Date('d-M-Y',strtotime(htmlentities($orders['create_at'])));?></td>
                  <td>
-				  <?php 
-				  if($orders['order_status']==1)
-				  { 
-					echo "Order Confirmation";
-				  }else if($orders['order_status']==2){
-					  
+				  <?php if($orders['order_status']==1 && $orders['status_packing']=='' && $orders['status_road']=='' && $orders['status_deliverd']==''){
+					echo "Order Confirmation";  
+				  }else if($orders['order_status']==1 && $orders['status_packing']==2 && $orders['status_road']=='' && $orders['status_deliverd']==''){
 					  echo "Packing Order";
-				  }else if($orders['order_status']==3){
-					  
+				  }else if($orders['order_status']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']==''){
 					  echo "Order on Road";
-				  }else if($orders['order_status']==4){
-					  
+				  }else if($orders['order_status']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']==4){
 					  echo "Delivered";
-				  }else if($orders['order_status']==5){
-					  
-					  echo "Return";
 				  }else{
-					  
-					 echo " "; 
-					}
-					?>
+					 echo "returned"; 
+				  }
+				  ?>
+				
 				  </td>
 				  <td>
 				  <a href="<?php echo base_url('customer/orederdetails/'.base64_encode($orders['order_item_id'])); ?>">view</a>

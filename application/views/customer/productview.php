@@ -2086,12 +2086,3 @@ $(function() {
         });
     </script>
 <!--quantity script end-->
-<!--alert script start-->
-<script>
-function myFunction() {
-    var x = document.getElementById("snackbar")
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
-</script>
-<!--alert script end-->

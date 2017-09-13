@@ -370,7 +370,7 @@ class Customer extends Front_Controller
 	 if($this->session->userdata('userdetails'))
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
-		$data['orders_list']= $this->customer_model->order_list($customerdetails['customer_id']);
+		$data['orders_lists']= $this->customer_model->order_list($customerdetails['customer_id']);
 		
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/orders', $data);
