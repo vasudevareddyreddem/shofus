@@ -144,7 +144,7 @@
 						<div href="javascript:void(0);" id="colorlist<?php echo $i;?>" onclick="colorselect(<?php echo $i; ?>);colorselectvalue('<?php echo $list['color_name'];?>');"  class="col-md-2 img_c-l_siz" style="background-color:<?php echo $list['color_name']; ?>"></div>
 						<?php $i++;} ?>
 							
-						</div>
+						</div><span id="colorerrormsg"></span>
 						
 				</td>
 				
@@ -161,6 +161,7 @@
 						<div style="font-size:17px" id="sizeslist<?php echo $i;?>" class="col-md-2 " >
 						<span  onclick="sizeselect('<?php echo $i;?>');sizeselectvalue('<?php echo $list['p_size_name'];?>');"><?php echo $list['p_size_name'];?></span>
 						</div>
+						<span id="sizeerrormsg"></span>
 						<?php $i++;} ?>
 							
 						</div>
@@ -448,8 +449,19 @@
 <script type="text/javascript">
 function validation(){
 var color=$('#colorvalue').val();
-alert(color);
-	alert('hello');return false;
+var size=$('#sizevalue').val();
+if(color==''){
+	$("#colorerrormsg").html("Please select your Color").css("color", "red");
+	return false;
+}if(size==''){
+	$("#colorerrormsg").html("");
+	$("#sizeerrormsg").html("Please select your Size").css("color", "red");
+	return false;
+	
+}
+$("#sizeerrormsg").html("");
+return true;
+
 }
 function qtyincreasepurpose(){
 	var qty=document.getElementById("qty").value;

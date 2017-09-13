@@ -181,6 +181,8 @@ class CustomerApi extends REST_Controller {
 	$customer_id=$this->input->get('customer_id');
 	$item_id=$this->input->get('item_id');	
 	$qty=$this->input->get('qty');
+	$color=$this->input->get('color');
+	$size=$this->input->get('size');
 	if($customer_id==''){
 		$message = array('status'=>1,'message'=>'Customer id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -243,6 +245,8 @@ class CustomerApi extends REST_Controller {
 								'seller_id'=>$products['seller_id'],
 								'category_id'=>$products['category_id'],
 								'create_at'=>date('Y-m-d H:i:s'),
+								'color'=>isset($color)?$color:'',
+								'size'=>isset($size)?$size:'',
 							);
 							$cart_save= $this->Customerapi_model->cart_products_save($adddata);
 							if(count($cart_save)>0){
