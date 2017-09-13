@@ -6768,6 +6768,23 @@ height:450px;
 		}
 /* login page css end */
 /* alert page css start */
+.btn_war {
+		background:#f0ad4e !important;
+		color:#fff;
+	}
+	.btn_suc {
+		background:#5cb85c;
+		color:#fff;
+	}
+	.btn_dan {
+		background:#d9534f;
+		color:#fff;
+	}
+	.ico_bac{
+		background:#fff;
+		border-radius:50%;
+		padding:2px;
+	}
 	.alert_msg{
 		
 		position:fixed;
@@ -6776,9 +6793,12 @@ height:450px;
 		padding:10px;
 		left:20px;
 		z-index:1200;
+		
+	}
+	.alt_cus {
 		-webkit-animation: seconds 1.0s forwards;
   -webkit-animation-iteration-count: 1;
-  -webkit-animation-delay: 5s;
+  -webkit-animation-delay:5s;
   animation: seconds 1.0s forwards;
   animation-iteration-count: 1;
   animation-delay: 5s;
@@ -6800,21 +6820,5 @@ height:450px;
     opacity: 0;
     left: -9999px; 
   }
-	.btn_war {
-		background:#f0ad4e;
-		color:#fff;
-	}
-	.btn_suc {
-		background:#5cb85c;
-		color:#fff;
-	}
-	.btn_dan {
-		background:#d9534f;
-		color:#fff;
-	}
-	.ico_bac{
-		background:#fff;
-		border-radius:50%;
-		padding:2px;
-	}
+	
 /* alert page end  */
