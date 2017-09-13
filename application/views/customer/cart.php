@@ -126,19 +126,7 @@
 				 
 				<div class="title"><span>Order Confirmation</span></div>
           <div class="table-responsive">
-		  <?php if($this->session->flashdata('productsuccess')): ?>
-			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('productsuccess');?></div>
-			<?php endif; ?> 
-			<?php if($this->session->flashdata('qtyerror')): ?>
-			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('qtyerror');?></div>
-			<?php endif; ?>
-			<div style="display:none;" class="alert dark alert-warning alert-dismissible" id="qtymesage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button></div>
+		  
 			
 			<?php if(count($cart_items)>0){   ?>
             <table class="table table-bordered table-cart">
@@ -247,10 +235,23 @@
 	   </div>
 	   </div>
 		<div class="clearfix">&nbsp;</div>
+		
 	   </div>
 	   </div>
 	</div>
+	</div>
+	</div>
+	<div class="clearfix">&nbsp;</div>
 	
+<?php if($this->session->flashdata('productsuccess')): ?>
+			<div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></div>
+			<?php endif; ?> 
+			<?php if($this->session->flashdata('qtyerror')): ?>
+				<div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div>
+
+			<?php endif; ?>
+			
+			<div style="display:none;" class="alert_msg animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div>
 
 <script>
 function productqty(id){

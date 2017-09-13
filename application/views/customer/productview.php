@@ -69,10 +69,10 @@
 
         <div class="col-md-8 " id="con_scrol">
           <?php if($this->session->flashdata('success')): ?>
-			<div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?></div>
+			<div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></div>
 			<?php endif; ?>
 			<?php if($this->session->flashdata('error')): ?>	
-			<div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('error');?>&nbsp; <i class="fa fa-check text-warning ico_bac" aria-hidden="true"></i></div>
+			<div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('error');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div>
               
 			<?php endif; ?>
 		<div  style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"></div>

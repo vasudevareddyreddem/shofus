@@ -92,19 +92,7 @@
 				 
 				<div class="title"><span>Order Confirmation</span></div>
           <div class="table-responsive">
-		  <?php if($this->session->flashdata('productsuccess')): ?>
-			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('productsuccess');?></div>
-			<?php endif; ?> 
-			<?php if($this->session->flashdata('qtyerror')): ?>
-			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('qtyerror');?></div>
-			<?php endif; ?>
-			<div style="display:none;" class="alert dark alert-warning alert-dismissible" id="qtymesage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button></div>
+		 
 			
 			<?php if(count($cart_items)>0){   ?>
            <table class="table table-bordered table-cart">
@@ -212,10 +200,19 @@
 	   </div>
 	   </div>
 	   </span>
-	   
-	
+	   <div class="clearfix">&nbsp;</div>
+<?php if($this->session->flashdata('productsuccess')): ?>
+			<div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></div>
+			<?php endif; ?> 
+			<?php if($this->session->flashdata('qtyerror')): ?>
+				<div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div>
+
+			<?php endif; ?>
+			
+			<div style="display:none;" class="alert_msg animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div>
 
 <script>
+
 function productqty(id){
 
 	var pid=document.getElementById("product_id"+id).value;
@@ -278,6 +275,69 @@ function productqtyincreae(id){
 	}
 	
 }
+
+$(document).ready(function () {
+    //Initialize tooltips
+    $('.nav-tabs > li a[title]').tooltip();
+    
+    //Wizard
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+
+    $(".next-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+
+    });
+    $(".prev-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        prevTab($active);
+
+    });
+});
+
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+}
+
+
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    var footer_top = $("#footer-start").offset().top;
+    var div_top = $('#sticky-anchor').offset().top;
+    var div_height = $("#sticky").height();
+    
+    var padding = 20;  // tweak here or get from margins etc
+    
+    if (window_top + div_height > footer_top - padding)
+        $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
+    else if (window_top > div_top) {
+        $('#sticky').addClass('stick');
+        $('#off_set_stic').addClass('col-md-offset-3');
+        $('#sticky').css({top: 100})
+    } else {
+        $('#off_set_stic').removeClass('col-md-offset-3');
+        $('#sticky').removeClass('stick');
+		$('#sticky').css({top:0})
+    }
+}
+
+$(function () {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});
 
 
 </script>
