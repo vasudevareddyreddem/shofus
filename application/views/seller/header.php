@@ -351,14 +351,14 @@ function emailchecking(reasontype) {
           
           if(mobile==''){
               
-              $("#forgoterror").html("Please Enter Mobile Number").css("color", "red").fadeIn().fadeOut(5000);
+              $("#forgoterror").html("Please Enter Mobile Number").css("color", "red");
               return false;
           }else{
               
              
              var mobile = document.getElementById('forgot_mobile').value;
             if (!IsMobile(mobile)) {
-            $("#forgoterror").html("Please Enter Correct Mobile Number").css("color", "red").fadeIn().fadeOut(5000);
+            $("#forgoterror").html("Please Enter Correct Mobile Number").css("color", "red");
             jQuery('#seller_mobile').focus();
             return false;
             } 
@@ -384,11 +384,11 @@ function emailchecking(reasontype) {
                     
                             $("#myModal1").fadeOut(1);
                             $("#forgot_mobile").val('');
-                            $("#forgot-response1").html("Temporary Password Successfully Sent").css("color", "Green").fadeIn().fadeOut(5000);
+                            $("#forgot-response1").html("Temporary Password Successfully Sent").css("color", "Green");
                             
                             return true;
                         }if(data.sendmsg==0){
-                            $("#forgot-response").html("Some technical problem are occured").css("color", "red").fadeIn().fadeOut(5000);
+                            $("#forgot-response").html("Some technical problem are occured").css("color", "red");
                             $('#MobileforErr')[0].reset();
                         }
                         if(data.nomobile==0){
@@ -406,12 +406,12 @@ function emailchecking(reasontype) {
       if(radiovalue==1){
           var email = document.getElementById('forgot_mobile').value;
           if(email==''){
-              $("#forgoterror").html("Please Enter Email").css("color", "red").fadeIn().fadeOut(5000);
+              $("#forgoterror").html("Please Enter Email").css("color", "red");
               return false;
           }else{
               
               if (!emailchecking(email)) {
-            $("#forgoterror").html("Please enter a valid email address. For example johndoe@domain.com").css("color", "red").fadeIn().fadeOut(5000);
+            $("#forgoterror").html("Please enter a valid email address. For example johndoe@domain.com").css("color", "red");
             jQuery('#seller_mobile').focus();
             return false;
             }
