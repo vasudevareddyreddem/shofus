@@ -6789,4 +6789,9 @@ height:450px;
 		background:#d9534f;
 		color:#fff;
 	}
+	.ico_bac{
+		background:#fff;
+		border-radius:50%;
+		padding:2px;
+	}
 /* alert page end  */
