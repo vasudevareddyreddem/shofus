@@ -42,14 +42,12 @@
 			<hr>
                 <div id="loginbox" class="mainbox ">
 					<?php if($this->session->flashdata('loginerror')): ?>	
-			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('loginerror');?></div>
+				<div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('loginerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div>
+
 			<?php endif; ?>	
 			<?php if($this->session->flashdata('forsuccess')): ?>
-			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('forsuccess');?></div>
+							<div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('forsuccess');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div>
+
 			<?php endif; ?>
                     <form id="loginform" name="loginform" method="post" action="<?php echo base_url('customer/loginpost');?>" class="form-horizontal" role="form">
                         <div class=" form-group">
@@ -127,14 +125,12 @@
 			<h3 class="text-center">Sign up</h3>
 			<hr>
 			<?php if($this->session->flashdata('addcus')): ?>
-			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('addcus');?></div>
+						<div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('addcus');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div>
+
 			<?php endif; ?>
 			<?php if($this->session->flashdata('error')): ?>	
-			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('error');?></div>
+							<div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('error');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div>
+
 			<?php endif; ?>
 				<form id="customerregister" name="customerregister" action="<?php echo base_url('customer/registerpost');?>" method="post" accept-charset="utf-8" class="form" role="form" style="padding:0px 15px;">
 
