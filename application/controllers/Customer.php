@@ -1224,7 +1224,7 @@ class Customer extends Front_Controller
 					$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$loacationid);	
 				if(count($updatearea)>0){
 					
-					if($post['remember']==1){
+					if(isset($post['remember']) && $post['remember']==1){
 					$usernamecookie = array('name' => 'username','value' => $post["email"],'expire' => time()+86500,'path'   => '/');
 					$passwordcookie = array('name' => 'password','value' => $post["password"],'expire' => time()+86500,'path'   => '/');
 					$remembercookie = array('name' => 'remember','value' => $post["remember"],'expire' => time()+86500,'path'   => '/');
@@ -1234,6 +1234,11 @@ class Customer extends Front_Controller
 					$this->load->helper('cookie');
 					$this->input->cookie('username', TRUE);
 
+					}else{
+						$this->load->helper('cookie');
+						delete_cookie('username');
+						delete_cookie('password');
+						delete_cookie('remember');
 					}
 					$details = $this->customer_model->get_profile_details($logindetails['customer_id']);
 					$this->session->set_userdata('userdetails',$details);
@@ -1241,7 +1246,7 @@ class Customer extends Front_Controller
 			}else{
 				
 				
-				if($post['remember']==1){
+				if(isset($post['remember']) && $post['remember']==1){
 				$usernamecookie = array('name' => 'username','value' => $post["email"],'expire' => time()+86500,'path'   => '/');
 				$passwordcookie = array('name' => 'password','value' => $post["password"],'expire' => time()+86500,'path'   => '/');
 				$remembercookie = array('name' => 'remember','value' => $post["remember"],'expire' => time()+86500,'path'   => '/');
@@ -1251,6 +1256,11 @@ class Customer extends Front_Controller
 				$this->load->helper('cookie');
 				$this->input->cookie('username', TRUE);
 				
+				}else{
+					$this->load->helper('cookie');
+					delete_cookie('username');
+						delete_cookie('password');
+						delete_cookie('remember');
 				}
 				$logindetails = $this->customer_model->login_details($post['email'],$pass);
 				$this->session->set_userdata('userdetails',$logindetails);				
