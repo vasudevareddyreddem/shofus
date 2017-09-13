@@ -1227,9 +1227,11 @@ function getspecialinputs(ids){
 			},
 			skuid: {
 					validators: {
-				
+					notEmpty: {
+						message: 'Sku id is required'
+					},
                    regexp: {
-					regexp: /^[a-zA-Z0-9. -_&]+$/,
+					regexp: /^[ a-zA-Z0-9.,$#@-_&]+$/,
 					message: 'Sku id can only consist of alphanumaric, space and dot'
 					}
 				}
@@ -1267,20 +1269,12 @@ function getspecialinputs(ids){
 			},
 			specialprice: {
 					validators: {
-					notEmpty: {
-						message: 'Special price is required'
-					},
-                   regexp: {
-					regexp: /^[0-9.]+$/,
-					message: 'Special price can only consist of digits'
-					}
-					// ,
-					// lessThan: {
-     //                    field: 'product_price',
-     //                    inclusive: true,
-     //                    message: 'The ages has to be less than 100'
-     //                },
-				}
+                    between: {
+                            min: 1,
+                            max: 'product_price',
+                            message: 'speacial price must be between %s and %s'
+                        }
+                }
 			},
 			
 			

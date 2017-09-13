@@ -81,13 +81,17 @@
 		<div style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"></div>
 <input type="hidden" name="orginalproductqty" id="orginalproductqty" value="<?php echo $products_list['item_quantity']; ?>" >
           <div class="title-detail"><?php echo $products_list['item_name']; ?></div>
+		  <?php if(count($colors_list)>0){ ?>
+		  <form action="<?php echo base_url('customer/addcart'); ?>" onsubmit="return validation();" method="Post" name="addtocart" id="addtocart" >
+		  <?php }else{ ?>
 		  <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+		  <?php } ?>
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $products_list['item_id']; ?>" >
          
 		 <table class="table table-detail">
 		 
 		 <?php 
-		 //echo '<pre>';print_r($products_list);exit ;
+		 //echo '<pre>';print_r($colors_list);exit ;
 		 $currentdate=date('Y-m-d h:i:s A');
 				if($products_list['offer_expairdate']>=$currentdate){
 				$item_price= ($products_list['item_cost']-$products_list['offer_amount']);
@@ -442,6 +446,11 @@
 
 
 <script type="text/javascript">
+function validation(){
+var color=$('#colorvalue').val();
+alert(color);
+	alert('hello');return false;
+}
 function qtyincreasepurpose(){
 	var qty=document.getElementById("qty").value;
 	var orginalqty=document.getElementById("orginalproductqty").value;
