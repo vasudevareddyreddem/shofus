@@ -271,7 +271,7 @@ $(document).ready(function() {
 			email: {
              validators: {
 					notEmpty: {
-						message: 'Emailid / Mobile number is required'
+						message: 'Email id / Mobile number is required'
 					}
 				}
             },
