@@ -285,7 +285,7 @@
         </div>
 
         <div class="col-md-8 col-md-offset-3 mar_t20" >
-
+<?php echo '<pre>';print_r($products_list);exit;?>
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">Description</a></li>
@@ -338,6 +338,78 @@
                         <td>Item Code</td>
                         <td><?php echo $products_list['item_code']; ?></td>
                       </tr>
+					  <?php if(isset($products_list['ideal_for']) && $products_list['ideal_for']!=''){ ?>
+					   <tr>
+                        <td>Ideal for</td>
+                        <td><?php echo $products_list['ideal_for']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['item_sub_name']) && $products_list['item_sub_name']!=''){ ?>
+					   <tr>
+                        <td>Item Sub name</td>
+                        <td><?php echo $products_list['item_sub_name']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['sufficient_for']) && $products_list['sufficient_for']!=''){ ?>
+					   <tr>
+                        <td>Sufficient for</td>
+                        <td><?php echo $products_list['sufficient_for']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['producttype']) && $products_list['producttype']!=''){ ?>
+					   <tr>
+                        <td>Type</td>
+                        <td><?php echo $products_list['producttype']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['theme']) && $products_list['theme']!=''){ ?>
+					   <tr>
+                        <td>Theme</td>
+                        <td><?php echo $products_list['theme']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['dial_shape']) && $products_list['dial_shape']!=''){ ?>
+					   <tr>
+                        <td>Dial Shape</td>
+                        <td><?php echo $products_list['dial_shape']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['compatibleos']) && $products_list['compatibleos']!=''){ ?>
+					   <tr>
+                        <td>Compatible mobiles</td>
+                        <td><?php echo $products_list['compatibleos']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['usage']) && $products_list['usage']!=''){ ?>
+					   <tr>
+                        <td>Usage</td>
+                        <td><?php echo $products_list['usage']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['display_type']) && $products_list['display_type']!=''){ ?>
+					   <tr>
+                        <td>Display Type</td>
+                        <td><?php echo $products_list['display_type']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['occasion']) && $products_list['occasion']!=''){ ?>
+					   <tr>
+                        <td>Occasion</td>
+                        <td><?php echo $products_list['occasion']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['material']) && $products_list['material']!=''){ ?>
+					   <tr>
+                        <td>Material</td>
+                        <td><?php echo $products_list['material']; ?></td>
+                      </tr>
+					  <?php } ?> 
+					  <?php if(isset($products_list['gemstones']) && $products_list['gemstones']!=''){ ?>
+					   <tr>
+                        <td>Material</td>
+                        <td><?php echo $products_list['gemstones']; ?></td>
+                      </tr>
+					  <?php } ?>
                     </tbody>
                   </table>
                   </table>
