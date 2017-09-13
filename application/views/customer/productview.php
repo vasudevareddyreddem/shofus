@@ -285,7 +285,7 @@
         </div>
 
         <div class="col-md-8 col-md-offset-3 mar_t20" >
-<?php echo '<pre>';print_r($products_list);exit;?>
+<?php //echo '<pre>';print_r($products_list);exit;?>
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">Description</a></li>
