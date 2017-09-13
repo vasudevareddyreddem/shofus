@@ -78,7 +78,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
-		<div style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"></div>
+		<div  style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"></div>
 <input type="hidden" name="orginalproductqty" id="orginalproductqty" value="<?php echo $products_list['item_quantity']; ?>" >
           <div class="title-detail"><?php echo $products_list['item_name']; ?></div>
 		  <?php if(count($colors_list)>0){ ?>
@@ -288,12 +288,7 @@
         </div>
 
         <div class="col-md-8 col-md-offset-3 mar_t20" >
-			  <div class="clearfix"></div>
-			<!--alert code start-->
-			<button class="btn btn-primary" onclick="myFunction()">alert btn</button>
 
-				<div id="snackbar">Some text some message..</div>
-			<!--alert code end-->
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">Description</a></li>
@@ -430,7 +425,10 @@
           </div>
           </div>
           </div>
-		
+		  <div class="clearfix"></div>
+		  <!--alert text -->
+			<div class="alert_msg animated slideInUp btn_war"> this is my test sample</div>
+		  <!--alert text ednd -->
 		  <div class="clearfix"></div>
 		  <div class="compar_btn" id="compar_btn" >
 	 		<div class="btn-group show-on-hover">
@@ -454,8 +452,8 @@
 <script type="text/javascript">
 function validation(){
 var color=$('#colorvalue').val();
-alert(color);
-	alert('hello');return false;
+//alert(color);
+	//alert('hello');return false;
 }
 function qtyincreasepurpose(){
 	var qty=document.getElementById("qty").value;
@@ -2074,12 +2072,3 @@ $(function() {
         });
     </script>
 <!--quantity script end-->
-<!--alert script start-->
-<script>
-function myFunction() {
-    var x = document.getElementById("snackbar")
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
-</script>
-<!--alert script end-->
