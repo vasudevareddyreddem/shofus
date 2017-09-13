@@ -741,9 +741,9 @@ $(function() {
             gcBase.supportCanvas = Modernizr.canvas;
 
             var ctntDisplayArea = "<div class='gc-display-area'>" +
-                                        "<div class='gc-icon gc-icon-download'></div>" +
-                                        "<div class='gc-icon gc-icon-next'></div>" +
-                                        "<div class='gc-icon gc-icon-prev'></div>" +
+                                        "<div class=''></div>" +
+                                        "<div class='gc-icon next_icon'></div>" +
+                                        "<div class='gc-icon pre_icon'></div>" +
                                         "<div class='gc-display-container'>" +
                                             "<div class='gc-lens'></div>" +
                                             "<img class='gc-display-display' alt=' ' />" +
@@ -754,15 +754,15 @@ $(function() {
                                      "</div>";
             var ctntOverlayArea = "<div class='gc-overlay-area'>" +
                                     "<div class='gc-overlay-top-icons'>" +
-                                     "<div class='gc-icon gc-icon-close'> </div>" +
-                                        "<div class='gc-icon gc-icon-enlarge'> </div>" +
+                                     "<div class='gc-icon clos_icon'> </div>" +
+                                        "<div class='gc-icon enlarge_icon'> </div>" +
                                         "<div class='gc-icon gc-icon-compress'> </div>" +
                                     "</div>" +
                                     "<div class='gc-overlay-left-icons'>" +
-                                        "<div class='gc-icon gc-icon-prev'> </div>" +
+                                        "<div class='gc-icon pre_icon'> </div>" +
                                     "</div>" +
                                     "<div class='gc-overlay-right-icons'>" +
-                                        "<div class='gc-icon gc-icon-next'> </div>" +
+                                        "<div class='gc-icon next_icon'> </div>" +
                                     "</div>" +
                                     "<div class='gc-overlay-gcontainer'>" +
                                         "<div class='gc-overlay-container'>" +
@@ -775,8 +775,8 @@ $(function() {
 
             var sVT = (gcBase.config.thumbsPosition == 'right' || gcBase.config.thumbsPosition == 'left') ? '-vt' : '';
 
-            var ctntThumbsPrevNext = "<div class='gc-thumbs-area-prev'><div class='gc-icon gc-icon-prev" + sVT + "'></div></div>" +
-                                     "<div class='gc-thumbs-area-next'><div class='gc-icon gc-icon-next" + sVT + "'></div></div>";
+            var ctntThumbsPrevNext = "<div class='gc-thumbs-area-prev'><div class='gc-icon pre_icon" + sVT + "'></div></div>" +
+                                     "<div class='gc-thumbs-area-next'><div class='gc-icon next_icon" + sVT + "'></div></div>";
             // Setting the position of the thumb images
             gcBase.widthDisplayPerc = 100;
             if (gcBase.config.thumbsPosition == 'top' || gcBase.config.thumbsPosition == 'left') {
@@ -807,9 +807,9 @@ $(function() {
             gcBase.gcDisplayContainer = gcBase.gcDisplayArea.find('.gc-display-container');
             gcBase.gcDisplayDisplay = gcBase.gcDisplayContainer.find('.gc-display-display');
             gcBase.gcLens = gcBase.gcDisplayContainer.find('.gc-lens').hide();
-            gcBase.gcDisplayDownload = gcBase.gcDisplayArea.find('.gc-icon-download');
-            gcBase.gcDisplayPrevious = gcBase.gcDisplayArea.find('.gc-icon-prev');
-            gcBase.gcDisplayNext = gcBase.gcDisplayArea.find('.gc-icon-next');
+            gcBase.gcDisplayDownload = gcBase.gcDisplayArea.find('');
+            gcBase.gcDisplayPrevious = gcBase.gcDisplayArea.find('.pre_icon');
+            gcBase.gcDisplayNext = gcBase.gcDisplayArea.find('.next_icon');
             // Zoom: Area, Display
             gcBase.gcZoom = gcBase.element.find('.gc-zoom').hide();
             gcBase.gcZoomContainer = gcBase.gcZoom.find('.gc-zoom-container');
@@ -820,10 +820,10 @@ $(function() {
             gcBase.gcOverlayContainer = gcBase.gcOverlayArea.find('.gc-overlay-container');
             gcBase.gcOverlayContainerDisplay = gcBase.gcOverlayContainer.find('.gc-overlay-container-display');
             gcBase.gcOverlayDisplay = gcBase.gcOverlayContainer.find('.gc-overlay-display');
-            gcBase.gcOverlayPrevious = gcBase.gcOverlayArea.find('.gc-icon-prev');
-            gcBase.gcOverlayNext = gcBase.gcOverlayArea.find('.gc-icon-next');
-            gcBase.gcOverlayClose = gcBase.gcOverlayArea.find('.gc-icon-close');
-            gcBase.gcOverlayEnlarge = gcBase.gcOverlayArea.find('.gc-icon-enlarge').hide();
+            gcBase.gcOverlayPrevious = gcBase.gcOverlayArea.find('.pre_icon');
+            gcBase.gcOverlayNext = gcBase.gcOverlayArea.find('.next_icon');
+            gcBase.gcOverlayClose = gcBase.gcOverlayArea.find('.clos_icon');
+            gcBase.gcOverlayEnlarge = gcBase.gcOverlayArea.find('.enlarge_icon').hide();
             gcBase.gcOverlayCompress = gcBase.gcOverlayArea.find('.gc-icon-compress').hide();
             // Thumbs: Area, Ul, Li, AreaPrevious, AreaNext, Previous, Next, Img, LiDiv
             gcBase.gcThumbsUl = gcBase.element.find('ul');
@@ -831,9 +831,9 @@ $(function() {
             gcBase.gcThumbsArea = gcBase.element.find('.gc-thumbs-area');
             gcBase.gcThumbsArea.append(ctntThumbsPrevNext);
             gcBase.gcThumbsAreaPrevious = gcBase.gcThumbsArea.find('.gc-thumbs-area-prev');
-            gcBase.gcThumbsPrevious = gcBase.gcThumbsAreaPrevious.find('.gc-icon-prev' + sVT);
+            gcBase.gcThumbsPrevious = gcBase.gcThumbsAreaPrevious.find('.pre_icon' + sVT);
             gcBase.gcThumbsAreaNext = gcBase.gcThumbsArea.find('.gc-thumbs-area-next');
-            gcBase.gcThumbsNext = gcBase.gcThumbsAreaNext.find('.gc-icon-next' + sVT);
+            gcBase.gcThumbsNext = gcBase.gcThumbsAreaNext.find('.next_icon' + sVT);
             gcBase.gcThumbsLi = gcBase.gcThumbsUl.find('li');
 
             gcBase.gcThumbsLi.each(function (index) {

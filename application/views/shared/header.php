@@ -82,7 +82,7 @@
 	<div class="top-navbar" style="color:#fff;">
     <div class="container-fluid">
       <div class=" row">
-        <div class="social-media col-md-2" style="width:20%"> Stay connected:
+        <div class="social-media col-md-2" > Stay connected:
           <ul>
             <li><a href="#" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/fb.png" /></i></span></a></li>&nbsp;
             <li><a href="#" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/gmai.png" /></i></span></a></li>&nbsp;
@@ -90,12 +90,12 @@
            
           </ul>
         </div> 
-		<div class="col-md-5">
-		<div class="col-md-9" style="border:1px solid #fff;padding:5px;">
+		<div class="col-md-4">
+		<div class="" style="padding:5px;">
 		<!--<div id="selectedlocation" class="col-md-9" style="height:30px;border-radius:2px;border:1px solid #b7d7d8;padding:4px;color:#fff;text-align:center;">
 		
 		<?php echo $this->session->userdata('location_area');
-		?>--><div class="carousel slide media-carousel" id="media"  data-ride="carousel" >
+		?>--><div class="carousel slide media-carousel" id="media"  >
         <div class="carousel-inner">
           <div class="item  active" style="height:auto;">
             <div class="row">
@@ -128,14 +128,18 @@
           </div>
          
         </div>
-       
+       <a data-slide="prev" href="#media" class="left carousel-control" style="width:auto;"><span style="font-size:40px; position:absolute;
+	   top:-22px;left:-10px;">‹</span></a>
+        <a data-slide="next" href="#media" class="right carousel-control"><span style="font-size:40px; position:absolute;
+	   top:-22px;right:-10px;">›</span></a>
       </div> 
 		
 		</div>
-		<div class="col-md-3 " style="padding-top:5px;"><a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="<?php echo base_url('seller/login');?>"><span class=""></span> &nbsp; Sale with us </a>	</div>
+		
 		
         </div>
-        <div class="user-link col-md-5" style="width:35%;margin-top:5px;">  <a class="tel" href="<?php echo base_url('customer/trackorders');?>"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a> <a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
+        <div class="user-link col-md-6" style="margin-top:5px;">  <a class="tel" href="<?php echo base_url('customer/trackorders');?>"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a> <a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
+		<span  style="padding-top:5px;"><a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="<?php echo base_url('seller/login');?>"><span class=""></span> &nbsp; Sale with us </a>	</span>
           
         </div>
       </div>
