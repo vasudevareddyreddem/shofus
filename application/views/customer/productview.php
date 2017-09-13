@@ -289,7 +289,12 @@
         </div>
 
         <div class="col-md-8 col-md-offset-3 mar_t20" >
+			  <div class="clearfix"></div>
+			<!--alert code start-->
+			<button class="btn btn-primary" onclick="myFunction()">alert btn</button>
 
+				<div id="snackbar">Some text some message..</div>
+			<!--alert code end-->
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">Description</a></li>
@@ -426,6 +431,7 @@
           </div>
           </div>
           </div>
+		
 		  <div class="clearfix"></div>
 		  <div class="compar_btn" id="compar_btn" >
 	 		<div class="btn-group show-on-hover">
@@ -2080,3 +2086,12 @@ $(function() {
         });
     </script>
 <!--quantity script end-->
+<!--alert script start-->
+<script>
+function myFunction() {
+    var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+<!--alert script end-->
