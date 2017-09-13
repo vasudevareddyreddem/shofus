@@ -14,11 +14,7 @@
 					
 					
 					<?php } ?></div><?php } ?>
-				<?php if($this->session->flashdata('passworderror')): ?>
-					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('passworderror');?></div>	
-					<?php endif; ?>
+				
 						<?php if($this->session->flashdata('updatpassword')): ?>
 					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -30,6 +26,11 @@
 					</button><?php echo validation_errors(); ?></div>	
 					<?php  endif;?>
 				<form enctype="multipart/form-data" method="post" name="addcategory" id="addcategory"  action="<?php echo base_url('inventory/addsubcategorypost'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
+				<?php if($this->session->flashdata('error')): ?>
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('error');?></div>	
+					<?php endif; ?>
 				<div class=""  style="font-size:20px;font-weight:600;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Add Subcategory</div>
 				
 				<div class="form-group">

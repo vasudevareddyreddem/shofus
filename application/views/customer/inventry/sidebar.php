@@ -65,8 +65,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('inventory/categorieslist'); ?>"><i class="fa fa-circle-o"></i> Add Category & commission</a></li>
-            <li><a href="<?php echo base_url('inventory/subcategorieslist'); ?>"><i class="fa fa-circle-o"></i> Add sub category</a></li>
+            <li><a href="<?php echo base_url('inventory/categorieslist'); ?>"><i class="fa fa-circle-o"></i> Add Category </a></li>
+            <li><a href="<?php echo base_url('inventory/subcategorieslist'); ?>"><i class="fa fa-circle-o"></i> Add sub category & commission</a></li>
             <li><a href="<?php echo base_url('inventory/productquantity'); ?>"><i class="fa fa-circle-o"></i>Product Quantity</a></li>
           </ul>
         </li>
