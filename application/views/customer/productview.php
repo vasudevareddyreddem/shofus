@@ -169,26 +169,27 @@
 			  <?php } ?>
               <?php if($products_list['item_status']==1 && $products_list['item_quantity']!=0){ ?>
 			  <tr>
+			  <input type="hidden" name="orginalqty" id="orginalqty" value="<?php echo $products_list['item_quantity']; ?>">
                 <td>Quantity</td>
                 <td>
                   <div class="input-qty">
 						<div class="input-group number-spinner">
 							<span class="input-group-btn data-dwn">
-								<a class="btn btn-primary " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
+								<a class="btn btn-primary " onclick="productqty();" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
 							</span>
 							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="1" min="1" max="<?php echo $products_list['item_quantity']; ?>">
 							<span class="input-group-btn data-up">
-								<a class="btn btn-primary " onclick="qtyincreasepurpose();" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
+								<a class="btn btn-primary " onclick="productqtyincreae();" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
 							</span>
 							
 						</div>
 						
                   </div>
-				  <span style="color:red;" id="maxqtyerror"></span>
+				  <span style="color:red;" id="qtymesage"></span>
                 </td>
               </tr>
 			  <?php } ?>
-
+			
          
             </tbody>
 			<div class="clearfix"></div>
@@ -519,6 +520,39 @@
 
 
 <script type="text/javascript">
+
+	function productqty(){
+
+	var qtycnt=document.getElementById("qty").value;
+	var qty=parseInt(qtycnt);
+	if(qty==1){
+		
+		$('#qty').val(qty);
+	}else{
+		$('#qty').val(qty - 1);
+		$("#qtymesage"+id).html('');
+			
+	}
+	
+	
+}
+function productqtyincreae(){
+	var qtycnt1=document.getElementById("qty").value;
+	var orginalqtycnt=document.getElementById("orginalqty").value;
+	var qty1=parseInt(qtycnt1);
+	if(qty1==orginalqtycnt){
+		$("#qtymesage").html("Avaiable  Quantity is " +orginalqtycnt);
+	}else if(qty1==10){
+	$("#qtymesage").html("Maximum allowwed Quantity is 10 ");
+	}else{
+		$("#qtymesage").html("");
+		$('#qty').val(qty1 + 1);
+		
+	}
+	
+}
+				
+
 function validation(){
 var color=$('#colorvalue').val();
 var size=$('#sizevalue').val();
@@ -701,36 +735,7 @@ $(document).ready(function() {
     });
 });
 
-$(function() {
-    var action;
-    $(".number-spinner a").mousedown(function () {
-        btn = $(this);
-        input = btn.closest('.number-spinner').find('input');
-        btn.closest('.number-spinner').find('a').prop("disabled", false);
 
-    	if (btn.attr('data-dir') == 'up') {
-            action = setInterval(function(){
-                if ( input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max')) ) {
-                    input.val(parseInt(input.val())+1);
-                }else{
-                    btn.prop("disabled", true);
-                    clearInterval(action);
-                }
-            }, 50);
-    	} else {
-            action = setInterval(function(){
-                if ( input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min')) ) {
-                    input.val(parseInt(input.val())-1);
-                }else{
-                    btn.prop("disabled", true);
-                    clearInterval(action);
-                }
-            }, 50);
-    	}
-    }).mouseup(function(){
-        clearInterval(action);
-    });
-});
 </script>
 <script>
 		$(document).ready(function(){
