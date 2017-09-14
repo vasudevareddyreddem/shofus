@@ -2,6 +2,53 @@
  .hi {
   color: green;
 }
+#locationarea_chosen{
+	width:350px !important;
+}
+ .chosen-container-multi .chosen-choices .search-choice .search-choice-close {
+     background: url("<?php echo base_url();?>assets/home/images/close.png") right top no-repeat;
+      display: block;
+      font-size: 1px;
+      height: 10px;
+      position: absolute;
+      right: 4px;
+      top: 7px;
+      width: 12px;
+      cursor: pointer; }
+	  .affix{
+	top:0;
+}
+
+ 
+  .login-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 10px;
+            margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+  }
+  .hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  h3 {
+    text-align: center;
+    line-height: 300%;
+  }
 </style>
 	<body class="bac_img">
 <div class="banner_home con_start" style="margin-top:-20px;">
@@ -40,9 +87,50 @@
       <!-- /.carousel --> 
       
     </div>
-  </div>
+
   <!--header part end here --> 
   <!--body part start here -->
+  	<div class="clearfix"></div>
+	<div class="loc_pop_cus" style="">
+	<div style="position:absolute;top:-16px;left:58%" > <i class="fa fa-sort-asc " style="font-size:40px;color:#fff;" aria-hidden="true"></i></div>
+	<div class="main" style="width:400px;">
+      <div class="row">
+        <div class="">
+			<div class="form-group">
+			  <label for="sel1">Select Your Delivery Location:</label>
+			  <select class="form-control" id="sel1">
+				<option>kphp</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+			  </select>
+			</div> 
+        </div>
+       
+      </div>
+      <div class="login-or">
+        <hr class="hr-or">
+        <span class="span-or">or</span>
+      </div>
+
+      <form role="form">
+        <div class="form-group">
+          <label for="inputUsernameEmail">Select Your  Shop location</label>
+          <select data-placeholder="select your nearest area"  name="locationarea[]" id="locationarea" multiple  class="chosen-select" tabindex="1">
+              <option value=""></option>
+              <?php foreach($locationdata as $location_data) {?>
+			  <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
+          	<?php }  ?>
+            </select>
+			<div class="clearfix">&nbsp;</div>
+			<button type="submit" id="formsubmmition" class="btn btn-primary btn-block">Submit</button>
+        </div>
+      </form>
+    </div>
+	</div>
+	
+	
+	
   <?php $customerdetails=$this->session->userdata('userdetails'); ?>
   <div class="cart_bdy" style="display:none;" id="location_seacrh_result"></div>
   <div class="" id="location_seacrh">
@@ -447,17 +535,25 @@
   </div>
 
   
-    <?php if($this->session->userdata('location_area') == "")   {?>
+  <!--  <?php if($this->session->userdata('location_area') == "")   {?>
 
   <div class="popup1" style="display: block;">
   <div class="newsletter-sign-box">
+	  <div style="position:absolute;top:-50px;left:43%;">
+			<img style="width:60%" class="img-responsive" src="<?php echo base_url(); ?>assets/home/images/logo_login.png" />
+	  </div>
     <div class="newsletter"> <!--<img src="<?php echo base_url(); ?>assets/home/images/close-icon.ico" alt="close" class="x" onClick="HideMe();">-->
-      <form method="post" id="popup-newsletter" name="popup-newsletter" class="email-form">
+	
+      <!--<form method="post" id="popup-newsletter" name="popup-newsletter" class="email-form">
         <h3>Select Your Delivery Location</h3>
+		<div class="col-md-6"><img src="<?php echo base_url(); ?>assets/home/images/dilver_l_img.png" />
+		</div>
+		<div class="col-md-6">
         <div class="newsletter-form">
-         
-
-      <div class="input-box">
+		<span class="font_si20 site_col">Welcome to cartinhour</span>
+		<p class="font_si18">Cartinhour saves an hour deliver in hour to your door</p>
+		<p class="font_si18"><i>Have a nice day...</i></p>
+		<div class="input-box">
         <select onchange="selectsearchlocation(this.value);" name="locationid" id="locationid" class="validate-select sel_are">
         <option value="">Select Area </option>
         <?php foreach($locationdata as $location_data) {?>
@@ -468,23 +564,36 @@
 		<input type="hidden" name="locationvalue" id="locationvalue" value="">
        <div style="display:none;" class="alert alert-danger alert-dismissible" id="address1errormsg"></div>
 
-          </div>
+       </div>
   
+        </div>
         </div>
         
         
       </form>
+	  </div>
     </div>
  
     
   </div>
+-->
 
-</div>
 
 <div id="fade" style="display: block;"></div>
 
   <?php } ?>
 </body>
+<script src="<?php echo base_url(); ?>assets/customer/js/select.js"></script>
+    <script>
+      $(function() {
+        $('.chosen-select').chosen();
+        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+      });
+    </script>
+<script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
+<script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
+<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+<script type="text/javascript">
 <script type="text/javascript" language="javascript">
 
  function itemaddtocart(itemid,catid,val){
