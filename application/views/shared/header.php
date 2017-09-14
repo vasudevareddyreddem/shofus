@@ -122,11 +122,7 @@
           </ul>
         </div> 
 		<div class="col-md-5">
-		<div class="col-md-9" style="border:1px solid #fff;padding:5px;">
-		<marquee id="selectedlocation" scrolldelay="300" behavior="scroll" direction="left"><?php echo $this->session->userdata('location_area'); ?>  </marquee>
-
 		
-		</div>
 		<div class="col-md-3 " style="padding-top:5px;"><a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="<?php echo base_url('seller/login');?>"><span class=""></span> &nbsp; Sale with us </a>	</div>
 		
         </div>
@@ -448,6 +444,10 @@
         <div class="form-group">
           <label for="inputUsernameEmail">Select Your  Shop location</label>
 		  <span id="locationmsg"></span>
+		
+			<div id="selectedlocation"><?php echo $this->session->userdata('location_area'); ?> </div>
+
+	
           <select data-placeholder="select your nearest area"  name="locationarea[]" id="locationarea" multiple  class="chosen-select" tabindex="1">
               <option value=""></option>
               <?php foreach($locationdata as $location_data) {?>
