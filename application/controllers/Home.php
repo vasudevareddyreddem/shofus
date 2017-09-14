@@ -98,7 +98,7 @@ public function search_location_offers()
 	if($this->session->userdata('userdetails'))
 	 {
 	$customerdetails=$this->session->userdata('userdetails');
-	$updatearea = $this->customer_model->update_sear_area($customerdetails['customer_id'],$this->session->userdata('location_area'));	
+	$updatearea = $this->customer_model->update_sear_area($customerdetails['customer_id'],$postvalue['area']);	
 	 }
 	//echo '<pre>';print_r($postvalue);exit;
 	$data['topoffers'] = $this->home_model->get_search_top_offers($postvalue['area']);
