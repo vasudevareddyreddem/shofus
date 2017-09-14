@@ -41,9 +41,8 @@
                 <div class="tab-content">
                    
 					<?php if($this->session->flashdata('errormsg')): ?>
-					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('errormsg');?></div>	
+					<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('errormsg');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+
 					<?php endif; ?>
                    <form id="editprofile" name="editprofile" method="post" action="<?php echo base_url('customer/updateprofilepost');?>" class="form-horizontal" enctype="multipart/form-data" role="form">
                         <div class=" form-group">

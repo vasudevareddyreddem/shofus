@@ -114,9 +114,8 @@
 			<div class="tab-content">
 					<div class="title"><span>Billing Address</span></div>
 					 <?php if($this->session->flashdata('paymenterror')): ?>
-						<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('paymenterror');?></div>
+					<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('paymenterror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+
 			<?php endif; ?>
 						<div class="">
 						<div class="row">

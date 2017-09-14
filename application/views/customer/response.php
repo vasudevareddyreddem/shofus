@@ -130,9 +130,8 @@ $('#supcount').hide();
        <div class="tab-content">
 					<div class="title"><span>Thanks for Shoping</span></div>
 					 <?php if($this->session->flashdata('paymentsucess')): ?>
-						<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('paymentsucess');?></div>
+					<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('paymentsucess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
+
 			<?php endif; ?>
 						<div class="row">
 							<div class="col-md-6">

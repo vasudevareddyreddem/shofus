@@ -459,16 +459,16 @@ $result = $you_make - $actual_price;
 				$updatepassword=$this->login_model->update_forgotpassword($checkmobile['seller_id'],$six_digit_random_number);
 				$username=$this->config->item('smsusername');
 				$pass=$this->config->item('smspassword');
-					$msg='Your Temporary Password is  '.$six_digit_random_number;
+					$msg=$six_digit_random_number;
 					$ch = curl_init();
-					curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 					curl_setopt($ch, CURLOPT_POST, 1);
-					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone="'.$post['mobile_number'].'"&text="'.$msg.'"&priority=ndnd&stype=normal');
-					
-					//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$post['mobile_number'].'&text=Your cartinhour Temporary Password is '.$msg.'&priority=ndnd&stype=normal');
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					//echo '<pre>';print_r($ch);exit;
 					$server_output = curl_exec ($ch);
 					curl_close ($ch);
-				if($server_output==1)
+				if($server_output!='')
 				{
 				$data['sendmsg']=1;
 				echo json_encode($data);

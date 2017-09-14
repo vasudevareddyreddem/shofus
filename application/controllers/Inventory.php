@@ -760,7 +760,12 @@ public function servicerequestview(){
 			if($logindetail['role_id']==5)
 			{
 					$post=$this->input->post();
-					//echo "<pre>";print_r($post);exit;
+					$alreadyexits = $this->inventory_model->get_sub_name_existss($post['categoryname']);
+						if(count($alreadyexits)>0){
+							$this->session->set_flashdata('error',"Sub category Name already exits.please use another Sub category Name.");
+							redirect('inventory/addsubcategory');
+							
+						}
 					if($_FILES['sub_image']['name']!=''){
 					$subimg=$_FILES['sub_image']['name'];
 					move_uploaded_file($_FILES['sub_image']['tmp_name'], "assets/subcategoryimages/" . $_FILES['sub_image']['name']);

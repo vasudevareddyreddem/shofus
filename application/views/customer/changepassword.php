@@ -40,14 +40,13 @@
         <div class="wizard">
                 <div class="tab-content">
                     <?php if($this->session->flashdata('updatpassword')): ?>
-					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('updatpassword');?></div>
+				<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('updatpassword');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
+
+
 					<?php endif; ?>
 					<?php if($this->session->flashdata('passworderror')): ?>
-					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('passworderror');?></div>	
+					<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('passworderror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+
 					<?php endif; ?>
                    <form id="chanagepassword" name="chanagepassword" method="post" action="<?php echo base_url('customer/changepasswordpost');?>" class="form-horizontal" role="form">
                         <div class=" form-group">

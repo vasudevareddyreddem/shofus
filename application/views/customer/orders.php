@@ -14,14 +14,12 @@
             <!-- /.box-header -->
             <div class="box-body">
 			<?php if($this->session->flashdata('successmsg')): ?>
-			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('successmsg');?></div>
+						<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('successmsg');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
+
 			<?php endif; ?>
 			<?php if($this->session->flashdata('permissionerror')): ?>
-			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('permissionerror');?></div>
+							<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('permissionerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+
 			<?php endif; ?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>

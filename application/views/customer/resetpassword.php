@@ -41,10 +41,8 @@
             <div class="col-md-10 col-md-offset-1 ">
 			<h3 class="">Reset Password</h3>
 			<hr>
-				<?php if($this->session->flashdata('error')): ?>	
-			<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button><?php echo $this->session->flashdata('error');?></div>
+			<?php if($this->session->flashdata('error')): ?>	
+					<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('error');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 			<?php endif; ?>	
 			<form action="<?php echo base_url('customer/resetpasswordpost'); ?>" method="post" name="resetpassword" id="resetpassword">
 			<div class="row">

@@ -1112,7 +1112,13 @@ class CustomerApi extends REST_Controller {
 	{
 
 		$top_offers = $this->Customerapi_model->top_offers_list();
-		//echo '<pre>';print_r($top_offers);exit;
+		foreach($top_offers as $list){
+			$top_offers_list = $this->Customerapi_model->get_product_detail_review_count($list['item_id']);
+			echo '<pre>';print_r($top_offers_list);
+			
+			
+		}
+		
 		if(count($top_offers)>0){
 			$message = array(
 				'status'=>1,

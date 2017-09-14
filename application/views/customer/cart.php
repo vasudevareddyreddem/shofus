@@ -244,14 +244,14 @@
 	<div class="clearfix">&nbsp;</div>
 	
 <?php if($this->session->flashdata('productsuccess')): ?>
-			<div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div>
+			<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 			<?php endif; ?> 
 			<?php if($this->session->flashdata('qtyerror')): ?>
-				<div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div>
+				<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 			<?php endif; ?>
 			
-			<div style="display:none;" class="alert_msg animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div>
+			<div class="alt_cus"><div style="display:none;" class="alert_msg animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 <script>
 function productqty(id){
@@ -295,7 +295,7 @@ function productqtyincreae(id){
 	if(qty1==orginalqtycnt){
 		$("#qtymesage"+id).html("Avaiable  Quantity is " +orginalqtycnt);
 	}else if(qty1==10){
-	$("#qtymesage"+id).html("Maximum allowwed Quantity is 10 ");
+	$("#qtymesage"+id).html("Maximum allowed Quantity is 10 ");
 	}else{
 		$("#qtymesage"+id).html("");
 		$('#qty'+id).val(qty1 + 1);
