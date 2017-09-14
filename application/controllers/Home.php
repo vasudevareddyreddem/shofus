@@ -13,6 +13,10 @@ class Home extends Front_Controller {
 		$this->load->library('cart');
         $this->load->library('session');
 		//$this->load->library('Instamojo');
+		 if($this->session->userdata('location_area')=='')  {
+	
+	//echo "dfdf";exit;
+	}
 	}
 
 public function index()

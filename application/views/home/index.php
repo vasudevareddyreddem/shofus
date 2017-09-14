@@ -1,4 +1,10 @@
- 
+ <?php if($this->session->userdata('location_area')=='')  {?>
+	
+	<script>
+$('#removepopuplocation').show();
+</script>
+<?php 	} ?>
+
 	<body class="bac_img">
 <div class="banner_home con_start" style="margin-top:-20px;">
      
@@ -448,7 +454,6 @@
       </div>
     </section>
   </div>
-
 </body>
 
 <script type="text/javascript">

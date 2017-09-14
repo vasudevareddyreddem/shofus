@@ -51,11 +51,7 @@
     line-height: 300%;
   }
 </style>
-<?php if($this->session->userdata('location_area') == '')  {?>
-<script>
-alert('fg');//$('#removepopuplocation').show();
-</script>
-<?php } ?>
+
 <div class="sidebar_right" >
 			<ul style="padding:0 ">
 				
@@ -424,7 +420,7 @@ alert('fg');//$('#removepopuplocation').show();
     </div>
   </div>
 </div>
-
+<div id="fademaskpurpose"  class="mask_hide"></div>
 <div class="loc_pop_cus" id="removepopuplocation" style="display:none;">
 	<div style="position:absolute;top:-16px;left:58%" > <i class="fa fa-sort-asc " style="font-size:40px;color:#fff;" aria-hidden="true"></i></div>
 	<div class="main" style="width:400px;">
@@ -467,6 +463,7 @@ alert('fg');//$('#removepopuplocation').show();
 
  
 
+
 <!-- the overlay element --> 
 <script src="<?php echo base_url(); ?>assets/customer/js/select.js"></script>
     <script>
@@ -480,9 +477,10 @@ alert('fg');//$('#removepopuplocation').show();
 <script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script> 
 <script type="text/javascript">
 
-
+$("#fademaskpurpose").addClass("mask_hide");
 function locationopenpopup (){
 $('#removepopuplocation').show();
+$("#fademaskpurpose").removeClass("mask_hide");
 }
  $(document).ready(function(){
 	closepopup (); 
@@ -509,7 +507,7 @@ function validations(){
         jQuery('#address1errormsg').html('Please Select Area');
         return false;
      }
-	 
+	 $("#fademaskpurpose").addClass("mask_hide");
     jQuery('#address1errormsg').html(''); 
     jQuery.ajax({
         url: "<?php echo site_url('home/search_location_offers');?>",

@@ -1,6 +1,8 @@
 <script>
 $("#selectedlocation").empty();
 $("#selectedlocation").append('<?php echo $locationnames; ?>');
+$("#fademaskpurpose").addClass("mask_hide");
+
 </script>
 <?php //echo '<pre>';print_r($locationnames);exit; ?>
 <body class="bac_img">

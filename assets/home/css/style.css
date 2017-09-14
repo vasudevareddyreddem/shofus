@@ -1985,8 +1985,13 @@ footer .coppyright {
 	text-align: center;
 }
 /*STARTING POPUP START */
-
-#fade {
+.mask_hide {
+	display:none;
+}
+.mash_show {
+	display: block !important;
+}
+#fademaskpurpose {
 	overflow-x: hidden; 
     overflow-y: auto;
 	position: fixed;
@@ -2000,7 +2005,6 @@ footer .coppyright {
 	-khtml-opacity: 0.8;
 	opacity: 0.1;
 	z-index: 9999;
-	display: none;
 	
 }
 .popup1 {
