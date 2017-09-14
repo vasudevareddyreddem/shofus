@@ -159,7 +159,7 @@
 			<!--<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
 				<p>Location</p></a>
 			</span></a></span>-->
-			<span class="medias text-center"><a href="javascript:void(0);" onclick="openpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
+			<span class="medias text-center"><a href="javascript:void(0);" onclick="openpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Change Your Location Here" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
 				<p>Location</p></a>
 			</span></a></span>
 			
