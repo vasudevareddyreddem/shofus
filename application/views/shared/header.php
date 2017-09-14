@@ -477,7 +477,7 @@ alert('fg');//$('#removepopuplocation').show();
     </script>
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
-<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+<script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script> 
 <script type="text/javascript">
 
 
