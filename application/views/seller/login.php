@@ -774,7 +774,7 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="form_lastname">Lastname *</label>
+									<label for="form_lastname">Lastname </label>
 									<input id="form_lastname" type="text" name="lname" class="form-control" placeholder="Please enter your lastname " >
 									
 								</div>
