@@ -56,10 +56,15 @@
                         
 							
                     </div>
-
+				<div class="col-md-6">
                     <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
                         Submit</button>
+						</div>
                 </form>
+				<div class="col-md-6">
+				<a href="<?php echo base_url('customer'); ?>" class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+                        Cancel</a>
+						</div>
 
             </div>
             </div>
