@@ -37,7 +37,7 @@
 				<?php }else{ ?>
 				<li  class=" spin ">
 					<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
-						<span ><img  class=" circ_icon" src="<?php echo base_url('assets/home/images/'.$categories['category_image']); ?>" /></span>
+						<span ><img  class=" circ_icon" src="<?php echo base_url('assets/categoryimages/'.$categories['category_image']); ?>" /></span>
 					    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
 					</a>
 				</li>

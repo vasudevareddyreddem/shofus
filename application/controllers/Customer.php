@@ -1208,8 +1208,17 @@ class Customer extends Front_Controller
  public function loginpost(){
 	 
 	$post=$this->input->post();
-	$session_url=$this->session->userdata('redirect_urls');
-	//echo '<pre>';print_r($post);exit;
+	$uridata=$this->session->userdata('redirect_urls');
+	$uri_path = parse_url($uridata, PHP_URL_PATH);
+	$uri_segments = explode('/', $uri_path);
+	if($uri_segments[3]=='resetpassword' || $uri_segments[2]=='resetpassword'){
+		$session_url='';
+	}else if($uri_segments[3]=='forgotpassword' || $uri_segments[2]=='forgotpassword'){
+		$session_url='';
+	}else{
+		$session_url=$this->session->userdata('redirect_urls');
+	}
+	
 	$pass=md5($post['password']);
 	$logindetails = $this->customer_model->login_details($post['email'],$pass);
 		if(count($logindetails)>0)
@@ -1306,14 +1315,14 @@ class Customer extends Front_Controller
 					
 					
 					$msg=$six_digit_random_number;
-					$ch = curl_init();
+					/*$ch = curl_init();
 					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 					curl_setopt($ch, CURLOPT_POST, 1);
 					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobile.'&text=Your cartinhour verification code is '.$msg.'&priority=ndnd&stype=normal');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					//echo '<pre>';print_r($ch);exit;
 					$server_output = curl_exec ($ch);
-					curl_close ($ch);
+					curl_close ($ch);*/
 					
 					
 				$this->customer_model->login_verficationcode_mobile_save($mobile,$forgotpass['customer_id'],$six_digit_random_number);

@@ -709,7 +709,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
 				 <form name="notifications" id="notifications" action="<?php echo base_url('seller/services/notificationpost'); ?>" method="post" enctype="multipart/form-data">
-                    <div class="input-group">
+                    <div class="input-group form-group">
                       <span class="col-md-6"><input type="text"  id="subject" name="subject" placeholder="Subject ..." class="form-control"></span>
                       <span class="col-md-6"><input type="text"  id="message" name="message" placeholder="Message ..." class="form-control"></span>
                           <span class="input-group-btn">
