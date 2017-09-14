@@ -52,8 +52,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
   <!--header part end here --> 
   <!--body part start here -->
     <?php $customerdetails=$this->session->userdata('userdetails'); ?>
-  <div class="cart_bdy" style="display:none;" id="location_seacrh_result"></div>
-  <div class="cart_bdy" id="location_seacrh">
+  <div class="cart_bdy" style="" id="location_seacrh_result"></div>
+  <div class="cart_bdy" id="location_seacrhs">
    
     <div class="top-cate">
       <div class="featured-pro container_main">

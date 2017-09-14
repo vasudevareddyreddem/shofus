@@ -1,7 +1,10 @@
 <!--wrapper start here -->
 <style>
+ .hi {
+  color: green;
+}
 #locationarea_chosen{
-	width:500px !important;
+	width:350px !important;
 }
  .chosen-container-multi .chosen-choices .search-choice .search-choice-close {
      background: url("<?php echo base_url();?>assets/home/images/close.png") right top no-repeat;
@@ -16,11 +19,39 @@
 	  .affix{
 	top:0;
 }
-.slid_col{
-	color:#fff;
-	padding:4px;
-}
+
+ 
+  .login-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 10px;
+            margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+  }
+  .hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  h3 {
+    text-align: center;
+    line-height: 300%;
+  }
 </style>
+
 <div class="sidebar_right" >
 			<ul style="padding:0 ">
 				
@@ -159,7 +190,7 @@
 			<!--<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
 				<p>Location</p></a>
 			</span></a></span>-->
-			<span class="medias text-center"><a href="javascript:void(0);" onclick="openpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Change Your Location Here" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
+			<span class="medias text-center"><a href="javascript:void(0);" onclick="locationopenpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Change Your Location Here" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
 				<p>Location</p></a>
 			</span></a></span>
 			
@@ -390,32 +421,45 @@
   </div>
 </div>
 
-<div id="locationdiv"  style="position: absolute;top: 100px;z-index: 1050; display:none">
-	<div class="container">
-	<div class="row">
-	  <div class="col-md-6 col-md-offset-3 well" style="-webkit-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);
--moz-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);
-box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);position:fixed">
-	  <span id="hide_btn" onclick="closepopup();" class="glyphicon glyphicon-remove pull-right"></span>
+<div class="loc_pop_cus" id="removepopuplocation" style="display:none;">
+	<div style="position:absolute;top:-16px;left:58%" > <i class="fa fa-sort-asc " style="font-size:40px;color:#fff;" aria-hidden="true"></i></div>
+	<div class="main" style="width:400px;">
+      <div class="row">
+        <div class="">
+			<div class="form-group">
+			  <label for="sel1">Select Your Delivery Location:</label>
+				<select onchange="selectsearchlocation(this.value);" name="locationid" id="locationid" class="validate-select sel_are">
+				<option value="">Select Area </option>
+				<?php foreach($locationdata as $location_data) {?>
+				<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
+
+				<?php } ?>
+				</select>
+			</div> 
+        </div>
+       
+      </div>
+      <div class="login-or">
+        <hr class="hr-or">
+        <span class="span-or">or</span>
+      </div>
+
 		 <form  onSubmit="return validations();" action="<?php echo base_url('customer/locationsearch'); ?>" method="post">
-	      <h3 style="margin-top:5px">Select Location</h3>
-			 
-			 <span id="locationmsg"></span>
-			 <select data-placeholder="select your nearest area"  name="locationarea[]" id="locationarea" multiple  class="chosen-select" tabindex="1">
+        <div class="form-group">
+          <label for="inputUsernameEmail">Select Your  Shop location</label>
+		  <span id="locationmsg"></span>
+          <select data-placeholder="select your nearest area"  name="locationarea[]" id="locationarea" multiple  class="chosen-select" tabindex="1">
               <option value=""></option>
               <?php foreach($locationdata as $location_data) {?>
 			  <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
           	<?php }  ?>
             </select>
-			
-			<div class="mar_t10" style="padding:20px 0px;">
-			<button type="submit" id="formsubmmition" class="btn btn-primary pull-right">Submit</button>
-			</form>
+			<div class="clearfix">&nbsp;</div>
+			<button type="submit" id="formsubmmition" class="btn btn-primary btn-block">Submit</button>
         </div>
-      </div>
+      </form>
     </div>
-</div>
-</div>
+	</div>
 
  
 
@@ -433,20 +477,19 @@ box-shadow: 1px 4px 43px -10px rgba(0,0,0,0.75);position:fixed">
 <script type="text/javascript">
 
 
-function openpopup (){
-$('#locationdiv').show();
+function locationopenpopup (){
+$('#removepopuplocation').show();
 }
  $(document).ready(function(){
 	closepopup (); 
  });
 function closepopup (){
-	$('#locationdiv').hide();
+	$('#location_seacrh').hide();
 }
 function validations(){
 	var areaids=document.getElementById('locationarea').value;
-	
 	if(areaids==''){
-		$("#locationmsg").html("Please select a value").css("color", "red");
+		$("#locationmsg").html("Please select a Shop location").css("color", "red");
 		return false;
 	}else{
 		$("#locationmsg").html("");
@@ -454,6 +497,37 @@ function validations(){
 	}
 
 }
+
+ function selectsearchlocation(id){
+	 
+    if(id==''){
+		 jQuery('#address1errormsg').show();
+        jQuery('#address1errormsg').html('Please Select Area');
+        return false;
+     }
+	 
+    jQuery('#address1errormsg').html(''); 
+    jQuery.ajax({
+        url: "<?php echo site_url('home/search_location_offers');?>",
+        type: 'post',
+        data: {
+          form_key : window.FORM_KEY,
+          area: id,
+          },
+        dataType: 'html',
+        success: function (data) {
+          jQuery('.popup1').hide();
+          jQuery('#fade').hide();
+          $("#removepopuplocation").hide();
+		  $("#location_seacrhs").empty();
+          $("#location_seacrhs").show();
+          $("#location_seacrhs").append(data);
+
+        }
+      });
+
+ }
+
 function searchfunction(val){
 	$('#addingdropdown').hide();
 	$('#addingdropdown').empty();

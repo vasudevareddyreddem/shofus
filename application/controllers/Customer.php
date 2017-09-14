@@ -72,6 +72,7 @@ class Customer extends Front_Controller
 		$data['locationnames']=$locationdatadetails;
 		
 	//$this->template->write_view('content','shared/header');
+	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content','customer/productsearch', $data);
 	$this->template->render();
 	
@@ -263,7 +264,12 @@ class Customer extends Front_Controller
  }
  /*onclick purpose*/
  public function onclickaddcart(){
-	 
+	 $post=$this->input->post();
+	 //echo '<pre>';print_r($post);exit;
+	if($this->session->userdata('userdetails')=='')
+	 {
+		$this->session->set_userdata('beforecart',$post);
+	 }
 	if($this->session->userdata('userdetails'))
 	 {
 		 
@@ -1690,7 +1696,8 @@ class Customer extends Front_Controller
 	public function logout(){
 		
 		$userinfo = $this->session->userdata('userdetails');
-		$beforecart = $this->session->userdata('beforecart');
+		$beforecart =$this->session->userdata('beforecart');
+		$this->session->userdata('location_area');
 		$this->facebook->destroy_session();
 		$this->googleplus->revokeToken();
 		//echo '<pre>';print_r($userinfo );exit;
