@@ -50,6 +50,7 @@
     text-align: center;
     line-height: 300%;
   }
+  
 </style>
 
 <div class="sidebar_right" >
@@ -110,36 +111,42 @@
   <!--header part start here -->
   <div class="jain_container">
     <nav class="navbar navbar-default nav_cus" role="navigation">
-	<div class="top-navbar" style="color:#fff;">
-    <div class="container-fluid">
+	<div class="top-navbar sm_hide" style="color:#fff;">
+    <div class="container-fluid" style="padding:0 40px">
       <div class=" row">
-        <div class="social-media col-md-2" style="width:20%"> Stay connected:
+        <div class="social-media pull-left" > Stay connected:
           <ul>
             <li><a href="#" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/fb.png" /></i></span></a></li>&nbsp;
             <li><a href="#" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/gmai.png" /></i></span></a></li>&nbsp;
             <li><a href="#" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/tiw.png" /></i></span></a></li>
            
           </ul>
+        </div>  
+		<div class="top-menu pull-right " > 
+          <ul>
+            <li>
+				<a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="<?php echo base_url('seller/login');?>"><span class=""></span> &nbsp; Sale with us </a>
+			</li>&nbsp;
+            <li>
+				<a class="tel" href="<?php echo base_url('customer/trackorders');?>"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a></li>&nbsp;
+            <li>
+				<a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
+			</li>
+           
+          </ul>
         </div> 
-		<div class="col-md-5">
 		
-		<div class="col-md-3 " style="padding-top:5px;"><a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="<?php echo base_url('seller/login');?>"><span class=""></span> &nbsp; Sale with us </a>	</div>
-		
-        </div>
-        <div class="user-link col-md-5" style="width:35%;margin-top:5px;">  <a class="tel" href="<?php echo base_url('customer/trackorders');?>"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a> <a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
-          
-        </div>
       </div>
     </div>
   </div>
       <div class="container1 container-fluid hm_nav">
-        <div class="navbar-header ">
+        <div class="navbar-header " style="padding-right:50px;">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
-          <a class="navbar-brand" href="<?php echo base_url(); ?>"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
-        <div class="col-md-6">
+          <a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhour" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
+        <div class="pull-left searc_width" >
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="row">
-            <div class="col-md-12"> <form class="form-horizontal form-horizontal_x">
+            <div  > <form class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
                       <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
@@ -154,7 +161,7 @@
             </div>
           </div>
         </div>
-		  <div class="medias list_ad">
+		  <div class="medias list_ad ">
 		  
 		  <?php if($this->session->userdata('userdetails')){ ?>
 		  <span class="medias user_log">
