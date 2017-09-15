@@ -2,6 +2,7 @@
 	
 	<script>
 $('#removepopuplocation').show();
+$("#fademaskpurpose").removeClass("mask_hide");
 </script>
 <?php 	} ?>
 
