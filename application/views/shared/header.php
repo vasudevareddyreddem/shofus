@@ -161,7 +161,7 @@
             </div>
           </div>
         </div>
-		  <div class="medias list_ad pull-right">
+		  <div class="medias list_ad ">
 		  
 		  <?php if($this->session->userdata('userdetails')){ ?>
 		  <span class="medias user_log">
