@@ -336,6 +336,7 @@ class Customer extends Front_Controller
 					$delete= $this->customer_model->delete_cart_items($customerdetails['customer_id'],$post['producr_id']);
 					$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 					if(count($delete)>0){
+						$this->session->set_flashdata('productsuccess','Product Successfully removed to the cart');
 						$data['msg']=2;
 						$data['count']=count($countlist);							
 						echo json_encode($data);
@@ -347,6 +348,7 @@ class Customer extends Front_Controller
 					$save= $this->customer_model->cart_products_save($adddata);
 					$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 					if(count($save)>0){
+						$this->session->set_flashdata('productsuccess','Product Successfully added to the cart');
 						$data['msg']=1;	
 						$data['count']=count($countlist);	
 						echo json_encode($data);
@@ -1239,11 +1241,11 @@ class Customer extends Front_Controller
 	//echo '<pre>';print_r($adddata);exit;
 	$uri_path = parse_url($uridata, PHP_URL_PATH);
 	$uri_segments = explode('/', $uri_path);
-	if($uri_segments[3]=='resetpassword' || $uri_segments[2]=='resetpassword'){
+	if(isset($uri_segments[3]) && $uri_segments[3]=='resetpassword' || isset( $uri_segments[2]) && $uri_segments[2]=='resetpassword'){
 		$session_url='';
-	}else if($uri_segments[3]=='forgotpassword' || $uri_segments[2]=='forgotpassword'){
+	}else if(isset($uri_segments[3])  && $uri_segments[3] =='forgotpassword' || isset( $uri_segments[2]) && $uri_segments[2]=='forgotpassword'){
 		$session_url='';
-	}else if($uri_segments[3]=='locationsearch' || $uri_segments[2]=='locationsearch'){
+	}else if(isset($uri_segments[3])  && $uri_segments[3] =='locationsearch' || isset( $uri_segments[2]) && $uri_segments[2]=='locationsearch'){
 		$session_url='';
 	}else{
 		$session_url=$this->session->userdata('redirect_urls');

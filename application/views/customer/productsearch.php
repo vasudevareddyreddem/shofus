@@ -56,7 +56,7 @@ $("#fademaskpurpose").addClass("mask_hide");
     <?php $customerdetails=$this->session->userdata('userdetails'); ?>
   <div class="cart_bdy" style="" id="location_seacrh_result"></div>
   <div class="cart_bdy" id="location_seacrhs">
-   
+   <div id="sucessmsg" style="display:none;"></div>
     <div class="top-cate">
       <div class="featured-pro container_main">
         <div class="row">
@@ -489,12 +489,12 @@ jQuery.ajax({
 						$("#supcount").append(data.count);
 						if(data.msg==2){
 						$("#addticartitem"+itemid+val).removeClass("text-primary");
-						$('#sucessmsg').html('Product Successfully removed to Whishlist');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 						if(data.msg==1){
 						 $("#addticartitem"+itemid+val).addClass("text-primary");
 						//$('#addwhish').css("color", "yellow");
-						$('#sucessmsg').html('Product Successfully added to Whishlist');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 				}
 
@@ -521,12 +521,12 @@ jQuery.ajax({
 						//alert(data.msg);
 						if(data.msg==2){
 							$("#addwishlistids"+id+val).removeClass("text-primary");
-						$('#sucessmsg').html('Product Successfully removed to Whishlist');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 						if(data.msg==1){
 						 $("#addwishlistids"+id+val).addClass("text-primary");
 						//$('#addwhish').css("color", "yellow");
-						$('#sucessmsg').html('Product Successfully added to Whishlist');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 				}
 

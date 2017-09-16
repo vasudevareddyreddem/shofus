@@ -6855,11 +6855,12 @@ height:450px;
 	.alert_msg{
 		
 		position:fixed;
-		bottom:100px;
+		top:50px;
 		color:#fff;
 		padding:10px;
-		left:20px;
+		right:0;
 		z-index:1200;
+		
 		
 	}	
 	.alert_msg1 {
