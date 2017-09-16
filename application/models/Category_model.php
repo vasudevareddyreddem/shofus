@@ -2258,6 +2258,12 @@ class Category_model extends MY_Model
 		$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
+	public function get_products_uksizes_list($pid){
+		
+		$this->db->select('*')->from('product_uksize_list');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->result_array();
+	}
 	public function get_products_colos_list($pid){
 		
 		$this->db->select('*')->from('product_color_list');

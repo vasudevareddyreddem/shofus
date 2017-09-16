@@ -498,6 +498,7 @@
         <!-- End Filter Sidebar -->
 
         <!-- Product List -->
+		<div id="sucessmsg" style="display:none;"></div>
         <div class="col-md-9">
           <div class="title"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?>&nbsp; Category Products lists</span></div>
 		<?php //echo '<pre>';print_r($subcategory_porduct_list);exit; ?>
@@ -666,12 +667,12 @@ jQuery.ajax({
 						$("#supcount").append(data.count);
 						if(data.msg==2){
 						$("#addticartitem"+itemid+val).removeClass("text-primary");
-						$('#sucessmsg').html('Product Successfully removed to Whishlist');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 						if(data.msg==1){
 						 $("#addticartitem"+itemid+val).addClass("text-primary");
 						//$('#addwhish').css("color", "yellow");
-						$('#sucessmsg').html('Product Successfully added to Whishlist');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 				}
 
@@ -731,14 +732,14 @@ jQuery.ajax({
 				if(data.msg==2){
 				$('#sucessmsg').show('');
 				$("#addwishlistids"+id+val).removeClass("text-primary");
-				$('#sucessmsg').html('Product Successfully removed to Whishlist');
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 				document.getElementById("sucessmsg").focus();
 				
 				}
 				if(data.msg==1){
 				$('#sucessmsg').show('');
 				 $("#addwishlistids"+id+val).addClass("text-primary");
-				$('#sucessmsg').html('Product Successfully added to Whishlist');
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 				document.getElementById("sucessmsg").focus();				
 				}
 				

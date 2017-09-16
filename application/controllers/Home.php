@@ -106,8 +106,20 @@ public function search_location_offers()
 	$data['offer_for_you'] = $this->home_model->get_search_offer_for_you($postvalue['area']);
 	$data['deals_of_the_day'] = $this->home_model->get_search_deals_of_the_day($postvalue['area']);
 	$data['season_sales'] = $this->home_model->get_search_season_sales($postvalue['area']);
-	
-		$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}
+	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	foreach ($wishlist_ids as  $list){
 		$customer_ids_list[]=$list['cust_id'];
 		$whishlist_item_ids_list[]=$list['item_id'];
