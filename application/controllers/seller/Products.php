@@ -1629,7 +1629,7 @@ public function returns()
 											}
 											if(count($data['errors'])<=0){
 													foreach($totalfields as $data){
-														$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+														$path='/home/cartinhour/public_html/uploads/products/';
 														//echo '<pre>';print_r($data);
 															$image_link = $data[18];
 															$split_image = pathinfo($image_link);
