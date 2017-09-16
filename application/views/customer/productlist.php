@@ -50,3 +50,4 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 	</div>
 </div>
 </div>
+<div style="margin-top:150px;" class="clearfix">&nbsp;</div>
