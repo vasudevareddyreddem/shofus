@@ -1060,6 +1060,8 @@ class Customer extends Front_Controller
  }
  public function index(){
 	
+	 
+	 //echo $this->uri->segment(1);exit;
 	 $redirection_url=$this->agent->referrer();
 	 $this->session->set_userdata('redirect_urls',$redirection_url);
 		$test=$this->session->userdata('userdetails');
@@ -1238,14 +1240,18 @@ class Customer extends Front_Controller
 	$post=$this->input->post();
 	$uridata=$this->session->userdata('redirect_urls');
 	$adddata=$this->session->userdata('beforecart');
-	//echo '<pre>';print_r($adddata);exit;
+	//echo '<pre>';print_r($uridata);exit;
 	$uri_path = parse_url($uridata, PHP_URL_PATH);
 	$uri_segments = explode('/', $uri_path);
+
+	
 	if(isset($uri_segments[3]) && $uri_segments[3]=='resetpassword' || isset( $uri_segments[2]) && $uri_segments[2]=='resetpassword'){
 		$session_url='';
 	}else if(isset($uri_segments[3])  && $uri_segments[3] =='forgotpassword' || isset( $uri_segments[2]) && $uri_segments[2]=='forgotpassword'){
 		$session_url='';
 	}else if(isset($uri_segments[3])  && $uri_segments[3] =='locationsearch' || isset( $uri_segments[2]) && $uri_segments[2]=='locationsearch'){
+		$session_url='';
+	}else if(isset($uridata)  && $uridata =='https://www.facebook.com/' || isset( $uridata) && $uridata=='https://in.linkedin.com/'){
 		$session_url='';
 	}else{
 		$session_url=$this->session->userdata('redirect_urls');
