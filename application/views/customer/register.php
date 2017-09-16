@@ -105,7 +105,7 @@
 					<div class="col-sm-1">&nbsp;</div>
 					<div class="col-sm-5">
 						<div class="btn-group">
-							<a  href="<?php echo base_url('hauth/login/Google'); ?>" type="button" class="btn btn-danger"><i class="fa fa-google-plus"></i>Sign in with GooglePlus</a>
+							<a  href="<?php echo base_url('hauth/login/LinkedIn'); ?>" type="button" class="btn btn-danger"><i class="fa fa-linkedin" aria-hidden="true"></i></i>Sign in with Linkdin</a>
 						</div>
 					</div>
 					
