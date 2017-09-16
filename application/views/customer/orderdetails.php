@@ -103,7 +103,7 @@ tr th:last-child {
       </tr>
       <tr>
         <th>Amount Paid</th>
-        <td>₹<?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>through <?php echo isset($item_details['payment_mode'])?$item_details['payment_mode']:'';  ?></td>
+        <td>₹<?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; <?php echo isset($item_details['payment_mode'])?$item_details['payment_mode']:'';  ?></td>
         
       </tr>
 	  <tr>

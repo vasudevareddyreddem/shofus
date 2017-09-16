@@ -1243,6 +1243,8 @@ class Customer extends Front_Controller
 		$session_url='';
 	}else if($uri_segments[3]=='forgotpassword' || $uri_segments[2]=='forgotpassword'){
 		$session_url='';
+	}else if($uri_segments[3]=='locationsearch' || $uri_segments[2]=='locationsearch'){
+		$session_url='';
 	}else{
 		$session_url=$this->session->userdata('redirect_urls');
 	}

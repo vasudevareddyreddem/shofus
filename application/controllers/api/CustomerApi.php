@@ -884,10 +884,11 @@ class CustomerApi extends REST_Controller {
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 						curl_setopt($ch, CURLOPT_POST, 1);
-						curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=SUCCES&phone="'.$mobile.'"&text="'.$msg.'"&priority=ndnd&stype=normal');
+						curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobile.'&text='.$msg.'&priority=ndnd&stype=normal');
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 						$server_output = curl_exec ($ch);
 						curl_close ($ch);
+					
 						//echo '<pre>';print_r($server_output);exit;
 						$this->Customerapi_model->login_verficationcode_mobile_save($mobile,$forgotpasscheck['customer_id'],$six_digit_random_number);
 						$message = array('status'=>1,'customer_id'=>$forgotpasscheck['customer_id'],'message'=>'Verification code send to your MobileNumber Id.check it once');
@@ -988,8 +989,9 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 			$customer_details=$this->Customerapi_model->get_customer_details($customer_id);
+			//echo '<pre>';print_r($customer_details);exit;
 			
-			if($customer_details['cust_email]']=='' && $customer_details['cust_email']!=$email){
+			if(isset($customer_details['cust_email]']) && $customer_details['cust_email]']=='' && $customer_details['cust_email']!=$email){
 				$email_check=$this->Customerapi_model->email_check($email);
 				if(count($email_check)>0){
 					$message = array('status'=>0,'message'=>'EmailId Already Exits.please use another Email Id');
@@ -1010,7 +1012,7 @@ class CustomerApi extends REST_Controller {
 
 					$saveprofile = $this->Customerapi_model->save_customer_profile($customer_id,$saveprofile);
 					if(count($saveprofile)>0){
-						$message = array('status'=>1,'customer_id'=>$customer_id,'message'=>'profile successfully Updated');
+						$message = array('status'=>1,'imagepath'=>'http://cartinhour.com/uploads/profile/','customer_id'=>$customer_id,'message'=>'profile successfully Updated');
 						$this->response($message, REST_Controller::HTTP_OK);	
 					}else{
 						$message = array('status'=>0,'message'=>'Technical problem will occurred .Please try again');

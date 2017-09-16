@@ -46,7 +46,6 @@ $config =
 			"Facebook" => array (
 				"enabled" => true,
 				"keys"    => array ( "id" => '1516692405064355', "secret" => '54dab4497a9c59cfa29e6a222ee5fbc0' ),
-				//"redirect_uri"=>'http://localhost/cartinhours/customer/',
 			),
 
 			"Twitter" => array (
