@@ -13,8 +13,7 @@ class Customer extends Front_Controller
 		$this->load->model('customer_model'); 
 		$this->load->model('home_model'); 
 		$this->load->model('category_model');
-		$this->load->library('facebook');
-		$this->load->library('googleplus');
+		$this->load->library('HybridAuthLib');	
 		$this->load->library('user_agent');
  
  }
@@ -1075,89 +1074,8 @@ class Customer extends Front_Controller
 		$data['password'] = get_cookie('password');
 		$this->input->cookie('remember', TRUE);
 		$data['remember'] = get_cookie('remember');
-		
-		/*google plus*/
-		$data['login_url'] = $this->googleplus->loginURL();
-		if (isset($_GET['code'])) {
-			
-			$this->googleplus->getAuthenticate();
-			//$this->session->set_userdata('login',true);
-			$gplus=$this->googleplus->getUserInfo();
-					if(isset($gplus['email']) && $gplus['email']!=''){
-						$emailcheck = $this->customer_model->email_check($gplus['email']);
-						if(count($emailcheck)==0){
-								$gdetails=array(
-									'cust_firstname'=>$gplus['given_name'],	 	
-									'cust_lastname'=>$gplus['family_name'],
-									'cust_email'=>$gplus['email'],
-									'role_id'=>1,
-									'status'=>0,
-									'create_at'=>date('Y-m-d H:i:s'),
-									);
-									$gcustomerdetails = $this->customer_model->save_customer($gdetails);
-									if(count($gcustomerdetails)>0){
-										$ggetdetails = $this->customer_model->get_customer_details($gcustomerdetails);
-										//echo '<pre>';print_r($fbgetdetails);exit;
-										redirect( 'customer/password/'.base64_encode($ggetdetails['customer_id']).'/'.base64_encode($ggetdetails['cust_email']).'/'.base64_encode('gplus')); 
-
-									}
-							
-							}else{
-								$this->googleplus->revokeToken();		
-								$this->session->set_flashdata('loginerror',"E-mail already exists.Please login with Your credentials");
-								redirect('customer', 'refresh');	
-							}
-					}else{
-							$this->googleplus->revokeToken();
-							$this->session->set_flashdata('loginerror',"Social logins unavailable please login with your credentials");
-							redirect('customer', 'refresh');						
-						}
-			} 
-		/*fb*/
-		$data['user'] = array();
-
-		// Check if user is logged in
-		if ($this->facebook->is_authenticated())
-		{
-			// User logged in, get user details
-			$user = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,gender');
-			if (!isset($user['error']))
-			{
-				$users = $user;
-			}
-			if(isset($users['email']) && $users['email']!=''){
-				$emailcheck = $this->customer_model->email_check($users['email']);
-				if(count($emailcheck)==0){
-						$fbdetails=array(
-							'cust_firstname'=>$users['first_name'],	 	
-							'cust_lastname'=>$users['last_name'],
-							'cust_email'=>$users['email'],
-							'role_id'=>1,
-							'status'=>0,
-							'create_at'=>date('Y-m-d H:i:s'),
-							);
-							$fbcustomerdetails = $this->customer_model->save_customer($fbdetails);
-							if(count($fbcustomerdetails)>0){
-								$fbgetdetails = $this->customer_model->get_customer_details($fbcustomerdetails);
-								//echo '<pre>';print_r($fbgetdetails);exit;
-								redirect( 'customer/password/'.base64_encode($fbgetdetails['customer_id']).'/'.base64_encode($fbgetdetails['cust_email']).'/'.base64_encode('fb')); 
-
-							}
 					
-					}else{
-						$this->facebook->destroy_session();			
-						$this->session->set_flashdata('loginerror',"E-mail already exists.Please login with Your credentials");
-						redirect('customer', 'refresh');	
-					}
-			}else{
-					$this->facebook->destroy_session();
-					$this->session->set_flashdata('loginerror',"Social logins unavailable please login with your credentials");
-					redirect('customer', 'refresh');						
-				}
-
-			
-		}
-		/*fb*/
+		
 		$this->load->view( 'customer/register',$data); 
 	 }	
 
@@ -1324,6 +1242,8 @@ class Customer extends Front_Controller
 	if($uri_segments[3]=='resetpassword' || $uri_segments[2]=='resetpassword'){
 		$session_url='';
 	}else if($uri_segments[3]=='forgotpassword' || $uri_segments[2]=='forgotpassword'){
+		$session_url='';
+	}else if($uri_segments[3]=='locationsearch' || $uri_segments[2]=='locationsearch'){
 		$session_url='';
 	}else{
 		$session_url=$this->session->userdata('redirect_urls');
@@ -1698,8 +1618,8 @@ class Customer extends Front_Controller
 		$userinfo = $this->session->userdata('userdetails');
 		$beforecart =$this->session->userdata('beforecart');
 		$this->session->userdata('location_area');
-		//$this->facebook->destroy_session();
-		//$this->googleplus->revokeToken();
+		$this->hybridauthlib->logoutAllProviders();
+		$this->session->sess_destroy();	
 		//echo '<pre>';print_r($userinfo );exit;
         $this->session->unset_userdata($userinfo);
         $this->session->unset_userdata($beforecart);

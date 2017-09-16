@@ -449,7 +449,7 @@
 
 		 <form  onSubmit="return validations();" action="<?php echo base_url('customer/locationsearch'); ?>" method="post">
         <div class="form-group">
-          <label for="inputUsernameEmail">Select Your  Shop location</label>
+          <label for="inputUsernameEmail">Select Your  Shop location</label></br>
 		  <span id="locationmsg"></span>
 		
 			<div id="selectedlocation"><?php echo $this->session->userdata('location_area'); ?> </div>

@@ -99,15 +99,16 @@
 				<div class="row">	
 					<div class="col-sm-5">
 						<div class="btn-group">
-							<a href="<?php echo $this->facebook->login_url(); ?>" type="button" class="btn btn-primary_org"><i class="fa fa-facebook"></i>Sign in with Facebook</a>
+							<a href="<?php echo base_url('hauth/login/Facebook'); ?>" type="button" class="btn btn-primary_org"><i class="fa fa-facebook"></i>Sign in with Facebook</a>
 						</div>
 					</div>
 					<div class="col-sm-1">&nbsp;</div>
 					<div class="col-sm-5">
 						<div class="btn-group">
-							<a  href="<?php echo $login_url;?>" type="button" class="btn btn-danger"><i class="fa fa-google-plus"></i>Sign in with GooglePlus</a>
+							<a  href="<?php echo base_url('hauth/login/LinkedIn'); ?>" type="button" class="btn btn-danger"><i class="fa fa-linkedin" aria-hidden="true"></i></i>Sign in with Linkdin</a>
 						</div>
 					</div>
+					
 					
 				</div>
 				</form>
