@@ -76,4 +76,4 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 	</div>
 	</div>
 
-<div style="margin-top:50px;" class="clearfix">&nbsp;</div>
+<div style="margin-top:150px;" class="clearfix">&nbsp;</div>
