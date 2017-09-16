@@ -40,6 +40,11 @@
 			<div class="" style="padding:0px 15px;">
 			<h3 class="text-center">Sign in</h3>
 			<hr>
+			
+			<?php if($_GET['social']='error'){ ?>
+											<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> You are canceled social login. please try again&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+
+			<?php } ?>
                 <div id="loginbox" class="mainbox ">
 					<?php if($this->session->flashdata('loginerror')): ?>	
 				<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> <?php echo $this->session->flashdata('loginerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>

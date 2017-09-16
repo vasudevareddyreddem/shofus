@@ -31,6 +31,15 @@ class HAuth extends Front_Controller {
 
 	public function login($provider)
 	{
+		
+		
+		$linklogin=$this->uri->segment('2');
+		$link=$this->uri->segment('3');
+		//print_r($link);exit;
+		if(isset($link) && $link=='LinkedIn' && $linklogin=='login'){
+			//redirect('customer');
+			
+		}
 		log_message('debug', "controllers.HAuth.login($provider) called");
 
 		try
@@ -136,6 +145,7 @@ class HAuth extends Front_Controller {
 	public function endpoint()
 	{
 
+		//redirect('customer');
 		log_message('debug', 'controllers.HAuth.endpoint called.');
 		log_message('info', 'controllers.HAuth.endpoint: $_REQUEST: '.print_r($_REQUEST, TRUE));
 

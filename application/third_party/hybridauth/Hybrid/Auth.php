@@ -166,7 +166,8 @@ class Hybrid_Auth {
 			if (version_compare(PHP_VERSION, '5.3.0', '>=') && ($p instanceof Exception)) {
 				throw new Exception($m, $c, $p);
 			} else {
-				throw new Exception($m, $c);
+				//$this->session->set_flashdata('loginerror','You are canceled social login. please try again');
+				redirect('customer?social=error');
 			}
 		}
 
