@@ -1698,8 +1698,8 @@ class Customer extends Front_Controller
 		$userinfo = $this->session->userdata('userdetails');
 		$beforecart =$this->session->userdata('beforecart');
 		$this->session->userdata('location_area');
-		$this->facebook->destroy_session();
-		$this->googleplus->revokeToken();
+		//$this->facebook->destroy_session();
+		//$this->googleplus->revokeToken();
 		//echo '<pre>';print_r($userinfo );exit;
         $this->session->unset_userdata($userinfo);
         $this->session->unset_userdata($beforecart);
