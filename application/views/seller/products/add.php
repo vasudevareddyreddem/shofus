@@ -726,7 +726,7 @@
 		   var price=document.getElementById('product_price').value;
 		   var specialprice=document.getElementById('specialprice').value;
 		   if(specialprice>price){
-			  $('#errormsgvalidation').html('speacial price must be lessthan price');
+			  $('#errormsgvalidation').html('special price must be lessthan price');
 			  return false;
 		   }else{
 			  return true;
@@ -1291,7 +1291,7 @@ function getspecialinputs(ids){
                     between: {
                             min: 1,
                             max: 'product_price',
-                            message: 'speacial price must be between %s and %s'
+                            message: 'special price must be between %s and %s'
                         }
                 }
 			},
