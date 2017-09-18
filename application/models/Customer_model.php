@@ -386,21 +386,23 @@ class Customer_model extends MY_Model
 	}
 	public function get_seller_details($ids){
 		//echo '<pre>';print_r($ids);exit;
-		$this->db->select('sellers.seller_name,sellers.seller_id,seller_store_details.image')->from('seller_store_details');
+		$this->db->select('sellers.seller_name,sellers.seller_id,seller_store_details.store_name,seller_store_details.image,locations.location_name')->from('seller_store_details');
 		$this->db->join('sellers', 'sellers.seller_id = seller_store_details.seller_id', 'left');
+		$this->db->join('locations', 'locations.location_id = seller_store_details.area', 'left');
 		$this->db->where('seller_store_details.area',$ids);
 		//$this->db->where_in('seller_store_details.area',array($ids));
-		$query=$this->db->get()->result_array();
-		foreach($query as $list){
+		return $this->db->get()->result_array();
+		/*foreach($query as $list){
 		 $return['details']=$list;
 		 $return['details']['average']=$this->product_reviews_avg($list['seller_id']);
 		 $return['details']['catergories']=$this->product_categories_list($list['seller_id']);
 		}
+		//echo '<pre>';print_r($return);exit;
 		if(!empty($return))
 			{
 			return $return;
 
-			}			
+			}*/			
 	}
 
 	public function product_reviews_avg($sid){

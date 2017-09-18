@@ -1517,9 +1517,12 @@ function filtersearch(){
 			
 		}
 	}
-	$data['avg_count']=$reviewrating;
-	$data['rating_count']=$reviewcount;
-
+	if(isset($reviewrating) && count($reviewrating)>0){
+		$data['avg_count']=$reviewrating;
+	}
+	if(isset($reviewcount) && count($reviewcount)>0){
+		$data['rating_count']=$reviewcount;
+	}
 	$data['category_id']=$this->uri->segment(3);
 	if($caterory_id==18){
 		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);
