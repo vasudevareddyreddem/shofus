@@ -92,7 +92,7 @@ $(document).ready(function() {
 					},
 					stringLength: {
                         min: 6,
-                        message: 'set Password must be atleast six character'
+                        message: 'Set Password must be atleast six characters'
                     },
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
