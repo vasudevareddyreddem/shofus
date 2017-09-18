@@ -22,7 +22,6 @@
 <script src="<?php echo base_url();?>assets/seller_login/js/animate-it.js"></script>
 <script src="<?php echo base_url();?>assets/seller_login/js/jquery.easing.min.js"></script>
 <script src="<?php echo base_url();?>assets/seller_login/js/jquery.smartWizard"></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 
 
