@@ -631,7 +631,10 @@ class CustomerApi extends REST_Controller {
 				if(in_array($order_item_id, $ids)){
 					
 					$item_details= $this->Customerapi_model->get_order_items_list($customer_id,$order_item_id);
-					$message = array('status'=>1,'message'=>'order details are found','order details'=>$item_details);
+					$color_list= $this->Customerapi_model->get_product_color_details($item_details['item_id']);
+					$size_list= $this->Customerapi_model->get_product_size_details($item_details['item_id']);
+					$uksize_list= $this->Customerapi_model->get_product_uksize_details($item_details['item_id']);
+					$message = array('status'=>1,'message'=>'order details are found','order details'=>$item_details,'colors'=>$color_list,'sizes'=>$size_list,'uksizes'=>$uksize_list);
 					$this->response($message,REST_Controller::HTTP_OK);
 				}else{
 					$message = array('status'=>0,'message'=>'You have no permissions');

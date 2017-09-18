@@ -1870,11 +1870,25 @@ class Customer extends Front_Controller
 	
 	
 	foreach ($locationdatadetails as $list){
-	$seller_list[]= $this->customer_model->get_seller_details($list);	
+		if($list!=''){
+			$details=$this->customer_model->get_seller_details($list);
+			if(count($details)==0){
+				$data['seller_list']=array();
+			}
+			if(count($details)>0){
+				foreach ($details as $lis){
+				//echo '<pre>';print_r($lis);exit;
+				$data['seller_list'][$lis['seller_id']]=$lis;
+				$data['seller_list'][$lis['seller_id']]['avg']=$this->customer_model->product_reviews_avg($lis['seller_id']);
+				$data['seller_list'][$lis['seller_id']]['categories']=$this->customer_model->product_categories_list($lis['seller_id']);
+				
+				}
+				
+			}
+		
+		
+		}	
 	}
-	
-	$data['seller_list']=$seller_list;
-	 //echo '<pre>';print_r($seller_list);exit;
 	$this->template->write_view('content', 'customer/nearstores',$data);
 	$this->template->render(); 
  }
