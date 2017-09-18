@@ -726,7 +726,7 @@
 		   var price=document.getElementById('product_price').value;
 		   var specialprice=document.getElementById('specialprice').value;
 		   if(specialprice>price){
-			  $('#errormsgvalidation').html('special price must be lessthan price');
+			  $('#errormsgvalidation').html('special price must be less than price');
 			  return false;
 		   }else{
 			  return true;
