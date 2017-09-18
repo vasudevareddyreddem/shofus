@@ -42,7 +42,7 @@
 			<hr>
 			
 			<?php if(isset($_GET['social']) && $_GET['social']='error'){ ?>
-					<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> You are canceled social login. please try again&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+					<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> You cancelled social login. please try again&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 			<?php } ?>
                 <div id="loginbox" class="mainbox ">
