@@ -1288,6 +1288,9 @@ function getspecialinputs(ids){
 			},
 			specialprice: {
 					validators: {
+						notEmpty: {
+						message: 'Special Price is required'
+					},
                     between: {
                             min: 1,
                             max: 'product_price',
