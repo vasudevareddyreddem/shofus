@@ -88,7 +88,7 @@ $(document).ready(function() {
             setpassword: {
 					validators: {
 					notEmpty: {
-						message: 'set password is required'
+						message: 'Set password is required'
 					},
 					stringLength: {
                         min: 6,
