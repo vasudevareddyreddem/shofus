@@ -146,7 +146,8 @@
         <div class="pull-left searc_width" >
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="row">
-            <div  > <form class="form-horizontal form-horizontal_x">
+            <div  >
+			<div class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
                       <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
@@ -155,7 +156,7 @@
 					<div style="display:none;" class="search_fun" id="addingdropdown"></div>
 					
                   </div>
-                </form>
+                </div>
               </div>
 			
             </div>
