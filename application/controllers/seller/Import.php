@@ -1145,7 +1145,7 @@ class Import extends Admin_Controller {
 																		}
 																	}
 																	if($fields[5]>=$fields[4]){
-																		$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																		$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																		$error=1;	
 																	}
 																	if(isset($data[6])&& $data[6]!=''){
@@ -1649,7 +1649,7 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		if($fields[5]>=$fields[4]){
-																			$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																			$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																			$error=1;	
 																		}
 																		if(isset($data[6])&& $data[6]!=''){
@@ -2164,7 +2164,7 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		if($fields[5]>=$fields[4]){
-																			$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																			$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																			$error=1;	
 																		}
 																		if(isset($fields[6])&& $fields[6]!=''){
@@ -2739,7 +2739,7 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		if($fields[5]>=$fields[4]){
-																			$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																			$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																			$error=1;	
 																		}
 
@@ -3334,7 +3334,7 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		if($fields[5]>=$fields[4]){
-																		$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																		$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																		$error=1;	
 																		}
 																		if(isset($fields[6]) && $fields[6]!=''){
@@ -4541,7 +4541,7 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		if($fields[5]>=$fields[4]){
-																			$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																			$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																			$error=1;	
 																		}
 																		if(isset($fields[6]) && $fields[6]!=''){
