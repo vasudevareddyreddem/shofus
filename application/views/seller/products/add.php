@@ -1356,7 +1356,7 @@ function getspecialinputs(ids){
 					},
 					regexp: {
 					regexp: /^[0-9]+$/,
-					message: 'Qty can only consist of digits'
+					message: 'Qty must be in digits'
 					}
 				}
 			},
