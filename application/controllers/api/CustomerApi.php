@@ -1376,19 +1376,22 @@ class CustomerApi extends REST_Controller {
 		$location_ids=explode(",",$get['location_id']);
 		$top_offer_location = $this->Customerapi_model->top_offers_product_search($location_ids);
 		//echo $this->db->last_query();exit;
-		if(count($top_offer_location)>0){
-				$message = array
-				(
-					'status'=>1,
-					'path'=>'http://cartinhour.com/uploads/products/',
-					'location_top_offers'=>$top_offer_location,
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+		foreach($top_offer_location as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$top_offers_list['topoffer'][$tlist['item_id']]=$tlist;
+			$top_offers_list['topoffer'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$top_offers_list['topoffer'][$tlist['item_id']]['avg']=$avg;
 			
+		}
+		if(isset($top_offers_list) && $top_offers_list!=''){
+			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','location_top_offers'=>$top_offers_list['topoffer']);
+			$this->response($message, REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'No Topoffers In This Locations.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
+		
 	}
 
 	public function dealsofthedaylocationwiseproducts_get()
@@ -1397,20 +1400,21 @@ class CustomerApi extends REST_Controller {
 		$location_ids=explode(",",$get['location_id']);
 		$deals_of_the_day_location = $this->Customerapi_model->deals_of_the_day_product_search($location_ids);
 		//echo $this->db->last_query();exit;
-		if(count($deals_of_the_day_location)>0){
-				$message = array
-				(
-					'status'=>1,
-					'path'=>'http://cartinhour.com/uploads/products/',
-					'location_deals ofthe day'=>$deals_of_the_day_location,
-					
-				);
+		foreach($deals_of_the_day_location as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$deals_list['delasoftheday'][$tlist['item_id']]=$tlist;
+			$deals_list['delasoftheday'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$deals_list['delasoftheday'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($deals_list) && $deals_list!=''){
+			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','location_deals ofthe day'=>$deals_list['delasoftheday']);
 				$this->response($message, REST_Controller::HTTP_OK);
-			
 		}else{
 			$message = array('status'=>0,'message'=>'No Products In This Locations.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
+		
 	}
 
 	public function seasonsaleslocationwiseproducts_get()
@@ -1419,20 +1423,21 @@ class CustomerApi extends REST_Controller {
 		$location_ids=explode(",",$get['location_id']);
 		$season_sales_location = $this->Customerapi_model->season_sales_product_search($location_ids);
 		//echo $this->db->last_query();exit;
-		if(count($season_sales_location)>0){
-				$message = array
-				(
-					'status'=>1,
-					'path'=>'http://cartinhour.com/uploads/products/',
-					'location_season sales'=>$season_sales_location,
-					
-				);
+		foreach($season_sales_location as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$ssales_list['salesforyou'][$tlist['item_id']]=$tlist;
+			$ssales_list['salesforyou'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$ssales_list['salesforyou'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($ssales_list) && $ssales_list!=''){
+			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','location_season sales'=>$ssales_list['salesforyou']);
 				$this->response($message, REST_Controller::HTTP_OK);
-			
 		}else{
 			$message = array('status'=>0,'message'=>'No Products In This Locations.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
+		
 	}
 
 	public function trendinglocationwiseproducts_get()
@@ -1441,20 +1446,23 @@ class CustomerApi extends REST_Controller {
 		$location_ids=explode(",",$get['location_id']);
 		$treanding_location = $this->Customerapi_model->treanding_product_search($location_ids);
 		//echo $this->db->last_query();exit;
-		if(count($treanding_location)>0){
-				$message = array
-				(
-					'status'=>1,
-					'path'=>'http://cartinhour.com/uploads/products/',
-					'location_treading'=>$treanding_location,
-					
-				);
+		
+		$treanding_location = $this->Customerapi_model->treanding_product_search($location_ids);
+		foreach($treanding_location as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$treding_list['treading'][$tlist['item_id']]=$tlist;
+			$treding_list['treading'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$treding_list['treading'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($treding_list) && $treding_list!=''){
+			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','location_treading'=>$treding_list['treading']);
 				$this->response($message, REST_Controller::HTTP_OK);
-			
 		}else{
 			$message = array('status'=>0,'message'=>'No Products In This Locations.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
+		
 	}
 
 
@@ -1464,16 +1472,17 @@ class CustomerApi extends REST_Controller {
 		$location_ids=explode(",",$get['location_id']);
 		$offers_for_you_location = $this->Customerapi_model->offers_for_you_product_search($location_ids);
 		//echo $this->db->last_query();exit;
-		if(count($offers_for_you_location)>0){
-				$message = array
-				(
-					'status'=>1,
-					'path'=>'http://cartinhour.com/uploads/products/',
-					'location_offer for you'=>$offers_for_you_location,
-					
-				);
+		
+		foreach($offers_for_you_location as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$offers_list['offersforyou'][$tlist['item_id']]=$tlist;
+			$offers_list['offersforyou'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$offers_list['offersforyou'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($offers_list) && $offers_list!=''){
+			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','location_offer for you'=>$offers_list['offersforyou']);
 				$this->response($message, REST_Controller::HTTP_OK);
-			
 		}else{
 			$message = array('status'=>0,'message'=>'No Products In This Locations.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
@@ -1508,63 +1517,152 @@ class CustomerApi extends REST_Controller {
 		$get = $this->input->get();
 		$location_ids=explode(",",$get['location_id']);
 		$top_offer_location = $this->Customerapi_model->top_offers_product_search($location_ids);
+		foreach($top_offer_location as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$top_offers_list['topoffer'][$tlist['item_id']]=$tlist;
+			$top_offers_list['topoffer'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$top_offers_list['topoffer'][$tlist['item_id']]['avg']=$avg;
+			
+		}
+		if(isset($top_offers_list) && $top_offers_list!=''){
+			$top_offers_list=$top_offers_list['topoffer'];
+		}else{
+			$top_offers_list=array();
+		}
 		$deals_of_the_day_location = $this->Customerapi_model->deals_of_the_day_product_search($location_ids);
+		foreach($deals_of_the_day_location as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$deals_list['delasoftheday'][$tlist['item_id']]=$tlist;
+			$deals_list['delasoftheday'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$deals_list['delasoftheday'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($deals_list) && $deals_list!=''){
+			$deals_list=$deals_list['delasoftheday'];
+		}else{
+			$deals_list=array();
+		}
 
 		$season_sales_location = $this->Customerapi_model->season_sales_product_search($location_ids);
+		foreach($season_sales_location as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$ssales_list['salesforyou'][$tlist['item_id']]=$tlist;
+			$ssales_list['salesforyou'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$ssales_list['salesforyou'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($ssales_list) && $ssales_list!=''){
+			$ssales_list=$ssales_list['salesforyou'];
+		}else{
+			$ssales_list=array();
+		}
 
 		$treanding_location = $this->Customerapi_model->treanding_product_search($location_ids);
+		foreach($treanding_location as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$treding_list['treading'][$tlist['item_id']]=$tlist;
+			$treding_list['treading'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$treding_list['treading'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($treding_list) && $treding_list!=''){
+			$treding_list=$treding_list['treading'];
+		}else{
+			$treding_list=array();
+		}
 
 		$offers_for_you_location = $this->Customerapi_model->offers_for_you_product_search($location_ids);
-		
+		foreach($offers_for_you_location as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$offers_list['offersforyou'][$tlist['item_id']]=$tlist;
+			$offers_list['offersforyou'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$offers_list['offersforyou'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($offers_list) && $offers_list!=''){
+			$offers_list=$offers_list['offersforyou'];
+		}else{
+			$offers_list=array();
+		}
 
-		 if(count($top_offer_location && $deals_of_the_day_location && $season_sales_location && $treanding_location && $offers_for_you_location)>0){
-		 	$somearray = array(
-		 			'status'=>1,
-		 			'Total Products'=> array(
-			 			'Location_Top_offers'=>$top_offer_location,
-						'Location_Deals Of The Day'=>$deals_of_the_day_location,
-						'Location_Season Sales'=>$season_sales_location,
-						'Location_Tranding Products'=>$treanding_location,
-						'Location_Offers For You'=>$offers_for_you_location,
-						'path'=>'http://cartinhour.com/uploads/products/'
-		 			)
-		 			
-		 		);
-		 		$this->response($somearray, REST_Controller::HTTP_OK);
-			
-		 }else{
-		 	$message = array('status'=>0,'message'=>'No Products In This Locations.');
-		 	$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
-		 }
+		
+		$message = array('status'=>1,'Tofoffer'=>$top_offers_list,'dealsoftheday'=>$deals_list,'seasonsales'=>$ssales_list,'trending'=>$treding_list,'offersforyou'=>$offers_list,'path'=>'http://cartinhour.com/uploads/products/');	
+		$this->response($message, REST_Controller::HTTP_OK);
+		
 	}
 
 	public function homepagetotalproducts_get()
 	{
 		$top_offers = $this->Customerapi_model->top_offers_list();
+		foreach($top_offers as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$top_offers_list['topoffer'][$tlist['item_id']]=$tlist;
+			$top_offers_list['topoffer'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$top_offers_list['topoffer'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($top_offers_list) && $top_offers_list!=''){
+			$top_offers_list=$top_offers_list['topoffer'];
+		}else{
+			$top_offers_list=array();
+		}
 		$deals = $this->Customerapi_model->deals_of_the_day_list();
+		foreach($deals as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$deals_list['delasoftheday'][$tlist['item_id']]=$tlist;
+			$deals_list['delasoftheday'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$deals_list['delasoftheday'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($deals_list) && $deals_list!=''){
+			$deals_list=$deals_list['delasoftheday'];
+		}else{
+			$deals_list=array();
+		}
 		$ssales = $this->Customerapi_model->season_sales_list();
+		foreach($ssales as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$ssales_list['salesforyou'][$tlist['item_id']]=$tlist;
+			$ssales_list['salesforyou'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$ssales_list['salesforyou'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($ssales_list) && $ssales_list!=''){
+			$ssales_list=$ssales_list['salesforyou'];
+		}else{
+			$ssales_list=array();
+		}
 		$treding = $this->Customerapi_model->treding_products_list();
+		foreach($ssales as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$treding_list['treading'][$tlist['item_id']]=$tlist;
+			$treding_list['treading'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$treding_list['treading'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($treding_list) && $treding_list!=''){
+			$treding_list=$treding_list['treading'];
+		}else{
+			$treding_list=array();
+		}
 		$offers = $this->Customerapi_model->offers_for_you_list();
-		if(count($top_offers && $deals && $ssales && $treding && $offers)>0){
-		 	$total = array(
-		 			'status'=>1,
-		 			'Total Products'=> array(
-			 			'Top_offers'=>$top_offers,
-						'Deals Of The Day'=>$deals,
-						'Season Sales'=>$ssales,
-						'Tranding Products'=>$treding,
-						'Offers For You'=>$offers,
-						'path'=>'http://cartinhour.com/uploads/products/'
-		 			)
-		 			
-		 		);
-		 			
-				$this->response($total, REST_Controller::HTTP_OK);
-			
-		 }else{
-		 	$message = array('status'=>0,'message'=>'No Products In This Locations.');
-		 	$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
-		 }
+		foreach($offers as $tlist){
+			$reviecount=$this->Customerapi_model->get_products_reviews($tlist['item_id']);
+			$avg=$this->Customerapi_model->product_reviews_avg($tlist['item_id']);
+			$offers_list['offersforyou'][$tlist['item_id']]=$tlist;
+			$offers_list['offersforyou'][$tlist['item_id']]['reviewcount']=count($reviecount);
+			$offers_list['offersforyou'][$tlist['item_id']]['avg']=$avg;
+		}
+		if(isset($offers_list) && $offers_list!=''){
+			$offers_list=$offers_list['offersforyou'];
+		}else{
+			$offers_list=array();
+		}
+		
+		$message = array('status'=>1,'Tofoffer'=>$top_offers_list,'dealsoftheday'=>$deals_list,'seasonsales'=>$ssales_list,'trending'=>$treding_list,'offersforyou'=>$offers_list,'path'=>'http://cartinhour.com/uploads/products/');	
+		$this->response($message, REST_Controller::HTTP_OK);
+
 	}
 
 
