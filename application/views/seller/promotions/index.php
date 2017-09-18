@@ -80,7 +80,7 @@
 		<table id="example<?php echo $subcategory->subcategory_id;?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
-              <th><input type="checkbox" name="select_all" onclick="checkall('<?php echo $subcategory->subcategory_id;  ?>','<?php echo $cnt; ?>');" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
+              <th><input type="checkbox" name="select_all" onclick="checkall<?php echo $subcategory->subcategory_id;?>('<?php echo $subcategory->subcategory_id;  ?>','<?php echo $cnt; ?>');" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
 				</th>
 				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
 				<th>Item Name</th>
@@ -183,12 +183,13 @@
      </form>
 	<script type="text/javascript">
 	$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>').hide();
-	function checkall(id,cnt){
+	function checkall<?php echo $subcategory->subcategory_id;?>(id,cnt){
 		
 		var check=document.getElementById("example-select-all"+id).checked;
 		if(check='true'){
 			$('#submit_prog'+id+cnt).show();
 		}
+			
 	}
 	
 	function IsMobile<?php echo $subcategory->subcategory_id;?>(reasontype) {
