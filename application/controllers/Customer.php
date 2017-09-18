@@ -1872,9 +1872,7 @@ class Customer extends Front_Controller
 	foreach ($locationdatadetails as $list){
 		if($list!=''){
 			$details=$this->customer_model->get_seller_details($list);
-			if(count($details)==0){
-				$data['seller_list']=array();
-			}
+			
 			if(count($details)>0){
 				foreach ($details as $lis){
 				//echo '<pre>';print_r($lis);exit;
@@ -1889,7 +1887,13 @@ class Customer extends Front_Controller
 		
 		}	
 	}
-	$this->template->write_view('content', 'customer/nearstores',$data);
+	if(isset($data) && $data!=''){
+		$this->template->write_view('content', 'customer/nearstores',$data);
+	}else{
+		$data['seller_list']=array();
+		$this->template->write_view('content', 'customer/nearstores',$data);
+	}
+	
 	$this->template->render(); 
  }
  public function productlist(){

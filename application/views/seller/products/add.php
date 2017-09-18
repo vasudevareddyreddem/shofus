@@ -1291,7 +1291,7 @@ function getspecialinputs(ids){
                     between: {
                             min: 1,
                             max: 'product_price',
-                            message: 'special price must be between %s and %s'
+                            message: 'Special price must be between %s and %s'
                         }
                 }
 			},
