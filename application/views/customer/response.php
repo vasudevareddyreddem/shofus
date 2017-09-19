@@ -128,7 +128,7 @@ $('#supcount').hide();
 
          
        <div class="tab-content">
-					<div class="title"><span>Thanks for Shoping</span></div>
+					<div class="title"><span>Thanks for Shopping</span></div>
 					 <?php if($this->session->flashdata('paymentsucess')): ?>
 					<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('paymentsucess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 

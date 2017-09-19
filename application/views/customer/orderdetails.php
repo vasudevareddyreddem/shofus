@@ -251,7 +251,7 @@ tr th:last-child {
 					</i></div>
 					<hr	>
 				<div class="col-md-3 col-md-offset-9">
-						<span class="font_span"><b>Toatal</b></span>&nbsp;&nbsp;
+						<span class="font_span"><b>Total</b></span>&nbsp;&nbsp;
 						<span class="font_span">₹<?php echo $item_details['total_price']+$item_details['delivery_amount']; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
 						<span class="font_span site_col">Savings</span>&nbsp;&nbsp;
 						<span class="font_span">₹<?php echo isset($item_details['discount'])?$item_details['discount']:'';  ?></span>
