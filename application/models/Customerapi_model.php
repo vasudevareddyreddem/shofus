@@ -270,7 +270,6 @@ class Customerapi_model extends MY_Model
 	}
 	
 	public function deals_of_the_day_product_search($location_id){
-	
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('products.*,deals_ofthe_day.*')->from('products');
@@ -299,6 +298,7 @@ class Customerapi_model extends MY_Model
 	}
 	
 	public function treanding_product_search($location_id){
+	
 		$this->db->select('products.*')->from('products');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->order_by('products.offer_percentage desc');
@@ -306,7 +306,7 @@ class Customerapi_model extends MY_Model
 	}
 	
 	public function offers_for_you_product_search($location_id){
-		$this->db->select('products.*')->from('products');
+	$this->db->select('products.*')->from('products');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
@@ -2124,10 +2124,66 @@ class Customerapi_model extends MY_Model
 			return $this->db->get()->result_array();
 		 
 	 }
+	 public function get_all_products_review_and_reviewcount(){
+		 
+			$this->db->select('products.item_id')->from('products');
+			$this->db->where('item_status',1);
+			return $this->db->get()->result_array();
+	}
 	 public function product_reviews_avg($item){
 		 
 		$sql = "SELECT AVG(rating) as avg FROM ratings WHERE item_id ='".$item."'";
 		return $this->db->query($sql)->row_array();	
+		 
+	 }
+	 public function get_all_filters_product_list($catid,$fliter,$val)
+	{
+	
+	if($val=='cuisine'){
+		$this->db->select('products.cusine')->from('products');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left'); 
+		$this->db->group_by('products.cusine');
+	}else if($val=='restrant'){
+		$this->db->select('seller_store_details.store_name')->from('products');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');
+		$this->db->group_by('products.seller_id');
+	}else if($val=='offers'){
+		$this->db->select('products.offers')->from('products');
+		$this->db->group_by('products.offers');
+	}else if($val=='brand'){
+		$this->db->select('products.brand')->from('products');
+		$this->db->group_by('products.brand');
+	}else if($val=='discount'){
+		$this->db->select('products.discount')->from('products');
+		$this->db->group_by('products.discount');
+	}else if($val=='item_cost'){
+		$this->db->select('products.item_cost')->from('products');
+		$this->db->group_by('products.item_cost');
+	}
+	$this->db->where('category_id', $catid);
+	$this->db->where('item_status',1);
+	return $this->db->get()->result_array();
+	
+		
+	}
+	 public function get_all_filters_product_list_color($catid,$fliter,$val){
+		 
+			$this->db->select('product_color_list.color_name')->from('products');
+			$this->db->join('product_color_list', 'product_color_list.item_id = products.item_id', 'left');
+			$this->db->group_by('product_color_list.color_name');
+			$this->db->where('products.category_id', $catid);
+			$this->db->where('products.item_status',1);
+			return $this->db->get()->result_array(); 
+		 
+	 }
+	 public function get_all_filters_product_list_size($catid,$fliter,$val){
+		 
+			$this->db->select('product_size_list.p_size_name')->from('products');
+			$this->db->join('product_size_list', 'product_size_list.item_id = products.item_id', 'left');
+			$this->db->group_by('product_size_list.p_size_name');
+			$this->db->where('products.category_id', $catid);
+			$this->db->where('products.item_status',1);
+			return $this->db->get()->result_array(); 
 		 
 	 }
 	

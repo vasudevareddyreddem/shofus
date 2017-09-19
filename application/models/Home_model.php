@@ -512,8 +512,6 @@ public function getregstatus($email)
 		$query = $this->db->get('user');
 		//print_r($query->result()); exit;
 		return $query->row();
-	
-	
 }	
 public function checkEmailExits($email)
 	{
@@ -528,8 +526,6 @@ public function updateforgotstatus($email)
 	$this->db->where('user_email', $email);
      return $this->db->update('user', $data);
 	
-	
-	
 }	
 
 public function updateforgotstatus1($email)
@@ -537,11 +533,7 @@ public function updateforgotstatus1($email)
 	$data = array('forgot_status' => 0);
 	$this->db->where('user_email', $email);
      return $this->db->update('user', $data);
-	
-	
-	
 }	
-
 public function getforgotstatus($email)
 {
 	
@@ -549,10 +541,7 @@ public function getforgotstatus($email)
 		$query = $this->db->get('user');
 		//print_r($query->result()); exit;
 		return $query->row();
-	
-	
 }
-
 
 public function getsingleproduct($id)
 {
@@ -562,15 +551,6 @@ public function getsingleproduct($id)
 		$query = $this->db->get('products');
 		//print_r($query->result()); exit;
 		return $query->row();
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 
 
@@ -592,12 +572,6 @@ public function getsubcategoryid($id)
 		$query = $this->db->get('products');
 		//print_r($query->result()); exit;
 		return $query->row();	
-	
-	
-	
-	
-	
-	
 }
 
 
@@ -607,27 +581,27 @@ public function getsimilarproducts($id)
 {
 	
 $this->db->where('subcategory_id',$id);
-		$query = $this->db->get('products');
-		//print_r($query->result()); exit;
-		return $query->result();
+$query = $this->db->get('products');
+//print_r($query->result()); exit;
+return $query->result();
 	
 }
 
+public function get_quickjump(){
+	$this->db->select('COUNT(order_items.item_id) as count,products.item_id,products.category_id,products.subcategory_id,category.category_name,subcategories.subcategory_name')->from('order_items');
+	$this->db->join('products', 'products.item_id = order_items.item_id', 'left');	
+	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
+	$this->db->join('category', 'category.category_id = products.category_id', 'left');	
+	$this->db->where('products.item_status',1);
+	$this->db->group_by('order_items.item_id');
+	$this->db->order_by("COUNT(order_items.item_id)", "DESC");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	$this->db->limit(8);
+	return $this->db->get()->result_array();
+		/*$sql="SELECT COUNT(item_id), item_id FROM order_items GROUP BY item_id ORDER BY COUNT(item_id) DESC";
+        return $this->db->query($sql)->result_array();*/
+	
+}
 	
 	
 }
