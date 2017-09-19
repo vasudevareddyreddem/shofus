@@ -44,7 +44,7 @@
                   <td><?php echo Date('d-M-Y',strtotime(htmlentities($orders['create_at'])));?></td>
                  <td>
 				  <?php if($orders['order_status']==1 && $orders['status_packing']=='' && $orders['status_road']=='' && $orders['status_deliverd']==''){
-					echo "Order Confirmation";  
+					echo "Order confirmed ";  
 				  }else if($orders['order_status']==1 && $orders['status_packing']==2 && $orders['status_road']=='' && $orders['status_deliverd']==''){
 					  echo "Packing Order";
 				  }else if($orders['order_status']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']==''){
