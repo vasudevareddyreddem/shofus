@@ -526,7 +526,7 @@ function emailchecking(reasontype) {
                             $("#forgot-response1").html("Password Successfully updated").css("color", "Green").fadeIn().fadeOut(5000);
 						}if(data.pass==0){
 							document.getElementById("unableloginfield").disabled = false;
-                            $("#forgoterror").html("Your enter OTP code is wrong try again.Please try again").css("color", "red");
+                            $("#forgoterror").html("Your entered  OTP code is wrong. Please try again").css("color", "red");
 						}
                     }
                     
@@ -589,7 +589,7 @@ function emailchecking(reasontype) {
                             $("#forgot-response1").html("Password Successfully updated").css("color", "Green").fadeIn().fadeOut(5000);
 						}if(data.pass==0){
 							document.getElementById("unableloginfield").disabled = false;
-                            $("#forgoterror").html("Your enter OTP code is wrong try again.Please try again").css("color", "red");
+                            $("#forgoterror").html("Your entered  OTP code is wrong. Please try again").css("color", "red");
 						}
                     }
             });

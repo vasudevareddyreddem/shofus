@@ -27,6 +27,8 @@ class Front_Controller extends MY_Controller {
 					$this->template->set_template('website'); 
 					$this->template->write_view('header', 'shared/header',$data);
 					$this->template->write_view('footer', 'shared/footer');
+					
+
 				}
 
 }

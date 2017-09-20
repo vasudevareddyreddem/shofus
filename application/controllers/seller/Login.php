@@ -31,7 +31,20 @@ class Login extends CI_Controller {
 }
 
  public function index() {
-	 
+	 if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		if($customerdetails['role_id']==1){
+			redirect('');
+		}else if($customerdetails['role_id']==5){
+			redirect('inventory/dashboard');
+		}else if($customerdetails['role_id']==2){
+			redirect('admin/dashboard');
+		}else if($customerdetails['role_id']==6){
+			redirect('deliveryboy/dashboard');
+		}
+	 }
+	
 	$seller_id=$this->session->userdata('seller_id');
 	if($seller_id!=''){
 		redirect('seller/dashboard');
@@ -200,12 +213,18 @@ public function insert() {
             'loggedin'  => FALSE,
 
         );
-        $this->session->set_userdata($data);
-        $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
-        $this->output->set_header("Pragma: no-cache");
-        $this->session->sess_regenerate(TRUE);
-        //flash_message('Successfully Logged Out', 'success');
-        return redirect(base_url('seller/login'));
+		$this->session->set_userdata($data);
+		$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+		$this->output->set_header("Pragma: no-cache");
+		$this->session->sess_regenerate(TRUE);
+		$this->session->set_userdata($data);
+		$this->session->sess_destroy('userdetails');
+		$this->session->unset_userdata('userdetails');
+		$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+		$this->output->set_header("Pragma: no-cache");
+		$this->session->sess_destroy();	
+		$this->session->unset_userdata('location_area');
+		return redirect(base_url('seller/login'));
 
     }
 
