@@ -17,14 +17,12 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col1">
               <div class="newsletter-wrap">
 					<?php if($this->session->flashdata('successmsg')): ?>	
-					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('successmsg');?></div>
+						<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('successmsg');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
+
 					<?php endif; ?>
 					<?php if($this->session->flashdata('errormsg')): ?>	
-					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button><?php echo $this->session->flashdata('errormsg');?></div>
+						<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('errormsg');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+
 					<?php endif; ?>						
                 <h4>Sign up for emails</h4>
                 <form name="subscribe" id="subscribe" action="<?php echo base_url('customer/subscribe'); ?>" method="post" id="newsletter-validate-detail1">
