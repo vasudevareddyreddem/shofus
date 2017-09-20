@@ -122,7 +122,7 @@
             <div id="sectionA" class="tab-pane fade in active">
             <div class="row">
             <div class="col-xs-6 bor_lef">
-            <div class="innter-form">
+            <div class="innter-form" id="temp_pas_hi" >
               <form method="post"  name="login_form" id="login_submit">
               <div id="login-response"></div>
                 <div id="EmptyforError"></div><div id="forgot-response1"></div>
@@ -137,13 +137,41 @@
               </div>
               <div class="col-md-6 paddingRightZero">
                 <div class="pswrd ">
-                    <a href="#" tabindex="5" class="forgot-password" class="btn btn-info " data-toggle="modal" data-target="#myModal1">Unable to Login?</a>
+                    <a href="#" tabindex="5" class="forgot-password" id="un_log" >Unable to Login?</a>
                 </div>
               </div>
               <button class="btn btn-primary pull-right  btn-block " type="submit" id="login_do">Sign In</button>
                     
               </form>
             </div>
+			<div class="clearfix"></div>
+			
+			<div class=" pass_list" style="display:none" id="temp_pass">             <h4 class="text-primary" > Temporary Password </h4> 
+		
+                      <label style="font-size:15px;margin-bottom:10px">How do you want temporary password to be send:</label>  
+						<div class="clearfix"> </div>                    
+                        <form id="login_pass" name="login_pass" method="post"> 
+                        <input type="radio" name="unable_login" id="unable_login" value="1" > E-Mail 
+                        <input type="radio" name="unable_login" id="unable_login" value="0" > Mobile
+                        <div id="forgoterror"></div>
+                        <div id="forgot-response"></div>
+                        <input type="text" class="form-control" id="forgot_mobile" name="forgot_mobile">
+                         <span id="MobileforErr"></span>
+						<span id="otp_code" style="display:none;">
+						  <div style="font-size:15px;margin-bottom:10px;">OTP CODE:
+							<input type="text" class="form-control" id="otp_number" name="otp_number">
+						 </div>
+						  <div style="font-size:15px;margin-bottom:10px">Set Password:
+							<input type="password" class="form-control" id="forgot_password" name="forgot_password">
+						 </div>
+						</span>
+						
+                      <a id="log_f" class="pull-right" style="margin:3px 0px;cursor: pointer;text-decoration: none;">Login</a>
+					  <div class="clearfix"></div>
+                     
+                      <a href="javascript:void(0)"  onclick="validationcheckings();"   id="unableloginfield" class="btn btn-success btn-block">Submit</a>
+					  <div class="clearfix"></div>
+                </div>
             </div>
             <div class="col-xs-6 ">
               <div class="innter-form">
@@ -308,7 +336,7 @@
         </div>
                   <div class="modal-body pass_list">                
                       <div style="font-size:15px;margin-bottom:10px">How do you want temporary password to be send:</div>  
-						<div class="clearfix">                     
+						<div class="clearfix"> </div>                    
                         <form id="login_pass" name="login_pass" method="post"> 
                         <input type="radio" name="unable_login" id="unable_login" value="1" > E-Mail 
                         <input type="radio" name="unable_login" id="unable_login" value="0" > Mobile
@@ -336,7 +364,22 @@
       
       
       
-
+<script>
+	$(document).ready(function(){
+		$("#un_log").click(function(){
+			$("#temp_pas_hi").hide();
+			$("#temp_pass").show();
+		});
+		
+	});
+	$(document).ready(function(){
+		$("#log_f").click(function(){
+			$("#temp_pass").hide();
+			$("#temp_pas_hi").show();
+		});
+		
+	});
+</script>
 <script>
 
 function IsMobile(reasontype) {
