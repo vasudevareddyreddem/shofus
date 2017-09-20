@@ -112,7 +112,7 @@
             <li class=""><a data-toggle="tab" >Sign In</a></li>
             <li><a data-toggle="tab" >Register</a></li>
           </ul>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button  type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
        <div class="modal-body">
           
@@ -316,6 +316,14 @@
                         <div id="forgot-response"></div>
                         <input type="text" class="form-control" id="forgot_mobile" name="forgot_mobile">
                          <span id="MobileforErr"></span>
+						<span id="otp_code" style="display:none;">
+						  <div style="font-size:15px;margin-bottom:10px;">OTP CODE:
+							<input type="text" class="form-control" id="otp_number" name="otp_number">
+						 </div>
+						  <div style="font-size:15px;margin-bottom:10px">Set Password:
+							<input type="password" class="form-control" id="forgot_password" name="forgot_password">
+						 </div>
+						</span>
                       
                       <br>
                       <a href="javascript:void(0)"  onclick="validationcheckings();"   id="unableloginfield" class="btn btn-success">Submit</a>
@@ -330,6 +338,7 @@
       
 
 <script>
+
 function IsMobile(reasontype) {
         var regex = /^[0-9]{10}$/;
         return regex.test(reasontype);
@@ -341,6 +350,28 @@ function emailchecking(reasontype) {
  function validationcheckings (){
      
      $("#forgot-response").html("");
+	 var styles=document.getElementById("otp_code").style.display;
+	 if(styles==''){
+		  var otpval = document.getElementById('otp_number').value;
+		  var passwords = document.getElementById('forgot_password').value;
+		 if(otpval==''){
+             $("#forgoterror").html("Please OTP value").css("color", "red");
+              return false;
+          }
+		  if(passwords==''){
+             $("#forgoterror").html("Please Enter your password").css("color", "red");
+              return false;
+          }else if(passwords!=''){
+			  if(passwords.length>5){
+				  
+			  }else{
+				 $("#forgoterror").html("Password length must be at least six characters").css("color", "red");
+				 return false;
+			  }
+			  
+			  
+		  }
+	 }
       var radiovalue=$('input[name="unable_login"]:checked').val();
       //alert(radiovalue);
       if(radiovalue==1 || radiovalue==0){
@@ -371,6 +402,8 @@ function emailchecking(reasontype) {
                     data: {
                     form_key : window.FORM_KEY,
                     mobile_number: jQuery('#forgot_mobile').val(),
+                    otp: jQuery('#otp_number').val(),
+                    password: jQuery('#forgot_password').val(),
                     option: 0,
                     },
                     
@@ -380,21 +413,26 @@ function emailchecking(reasontype) {
                     {
                     //document.getElementById("unableloginfield").disabled = false;
                     if(data.sendmsg==1){
-                    
-                            $("#myModal1").fadeOut(1);
-                            $("#forgot_mobile").val('');
-                            $("#forgot-response1").html("Temporary Password Successfully Sent").css("color", "Green");
+						$("#otp_code").show();
                             
                             return true;
                         }if(data.sendmsg==0){
                             $("#forgot-response").html("Some technical problem are occured").css("color", "red");
-                            $('#MobileforErr')[0].reset();
                         }
                         if(data.nomobile==0){
                             $("#forgoterror").html("The Mobile you entered is not a registered Mobile. Please try again").css("color", "red");
-                            $('#MobileforErr')[0].reset();
                             return false;
-                        }
+                        }if(data.pass==1){
+							$("#myModal1").fadeOut(1);
+							$("#forgoterror").html('');
+							$("#forgot_mobile").val('');
+							$("#forgot_password").val('');
+							$("#otp_number").val('');
+							$("#otp_code").hide();
+                            $("#forgot-response1").html("Password Successfully updated").css("color", "Green").fadeIn().fadeOut(5000);
+						}if(data.pass==0){
+                            $("#forgoterror").html("Your enter OTP code is wrong try again.Please try again").css("color", "red");
+						}
                     }
                     
             });
@@ -423,6 +461,8 @@ function emailchecking(reasontype) {
                     data: {
                     form_key : window.FORM_KEY,
                     mobile_number: jQuery('#forgot_mobile').val(),
+					otp: jQuery('#otp_number').val(),
+                    pasword: jQuery('#forgot_password').val(),
                     option: 1,
                     },
                     
@@ -432,11 +472,7 @@ function emailchecking(reasontype) {
                     {
                          $('#EmptyforError').hide();
 						if(data.mailsend==1){
-                            $("#myModal1").fadeOut(1);
-                            $("#forgot_mobile").val('');
-                            $("#forgot-response1").html("Temporary Password Successfully Sent").css("color", "Green").fadeIn().fadeOut(5000);
-                            $('#forgot_submit')[0].reset();
-                            
+                            $("#otp_code").show();
                             return true;
                         }
                         if(data.noemail==0){
@@ -444,6 +480,18 @@ function emailchecking(reasontype) {
                             $('#forgot_submit')[0].reset();
                             return false;
                         }
+						if(data.pass==1){
+							$("#myModal1").fadeOut(1);
+							$("#forgoterror").html('');
+							$("#forgot_mobile").val('');
+							$("#forgot_password").val('');
+							$("#otp_number").val('');
+							$("#otp_code").hide();
+                            $("#forgot-response1").html("Password Successfully updated").css("color", "Green").fadeIn().fadeOut(5000);
+						}if(data.pass==0){
+							//$("#myModal1").fadeOut(1);
+                            $("#forgoterror").html("Your enter OTP code is wrong try again.Please try again").css("color", "red");
+						}
                     }
             });
       

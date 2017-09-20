@@ -245,12 +245,13 @@ tr th:last-child {
 						<br>
 					<div class=""><span><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
 					<i class="font_span">
-					<?php $expire = date($item_details['create_at'], strtotime('+1 hour')); ?>
-					Delivery expected by <?php echo isset($expire)?Date('M-d-Y h:i:s A',strtotime(htmlentities($expire))):'';  ?>
+					<?php  $timestamp = strtotime($item_details['create_at']) + 2*60*60;
+						$time = date('H:i:s', $timestamp);?>
+					Delivery expected by <?php echo isset($item_details['create_at'])?Date('M-d-Y',strtotime(htmlentities($item_details['create_at']))):'';  ?><?php echo $time; ?>
 					</i></div>
 					<hr	>
 				<div class="col-md-3 col-md-offset-9">
-						<span class="font_span"><b>Toatal</b></span>&nbsp;&nbsp;
+						<span class="font_span"><b>Total</b></span>&nbsp;&nbsp;
 						<span class="font_span">₹<?php echo $item_details['total_price']+$item_details['delivery_amount']; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
 						<span class="font_span site_col">Savings</span>&nbsp;&nbsp;
 						<span class="font_span">₹<?php echo isset($item_details['discount'])?$item_details['discount']:'';  ?></span>

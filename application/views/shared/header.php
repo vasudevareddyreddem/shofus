@@ -225,21 +225,18 @@
 	</div>
 	  <div class="top-navbar1">
     <div class="container">
+	<?php if(count($qucikjump)>0){ ?>
       <div class=" row qucik_jmp">
+	  <?php //echo '<pre>';print_r($qucikjump);exit; ?>
 		  <ul class="navbar_1"><li><span style="color:#555">Qucik Jump to </span></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
+		  <?php foreach($qucikjump as $list){ ?>
+			  <li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id']).'/'.base64_encode('quick').'/'.base64_encode($list['subcategory_id']));?>"><?php echo $list['subcategory_name']; ?></a></li>
+		  <?php } ?>
+			
+			
 		</ul>
 	  </div>
+	<?php } ?>
 	 
     </nav>
 	

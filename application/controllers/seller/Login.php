@@ -450,18 +450,17 @@ $result = $you_make - $actual_price;
 	{
 		$post=$this->input->post();
 		//echo '<pre>';print_r($post);exit;
-		if($post['option']==0){
+		if($post['option']==0 && $post['otp']==''){
 		$checkmobile=$this->login_model->verify_mobile($post['mobile_number']);	
-		//echo '<pre>';print_r($checkmobile);exit;
 		if(count($checkmobile)>0){
 			
 				$six_digit_random_number = mt_rand(100000, 999999);
-				$updatepassword=$this->login_model->update_forgotpassword($checkmobile['seller_id'],$six_digit_random_number);
+				$updatepassword=$this->login_model->update_forgotpassword_otp($checkmobile['seller_id'],$six_digit_random_number);
 				$username=$this->config->item('smsusername');
 				$pass=$this->config->item('smspassword');
 					$msg=$six_digit_random_number;
 					$ch = curl_init();
-					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 					curl_setopt($ch, CURLOPT_POST, 1);
 					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$post['mobile_number'].'&text=Your cartinhour Temporary Password is '.$msg.'&priority=ndnd&stype=normal');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -485,12 +484,12 @@ $result = $you_make - $actual_price;
 			echo json_encode($data);
 		}
 			
-		}elseif($post['option']==1){
+		}elseif($post['option']==1 && $post['otp']==''){
 			
 			$checkemail=$this->login_model->verify_email($post['mobile_number']);	
 			if(count($checkemail)>0){
 				$six_digit_random_number = mt_rand(100000, 999999);
-				$updatepassword=$this->login_model->update_forgotpassword($checkemail['seller_id'],$six_digit_random_number);
+				$updatepassword=$this->login_model->update_forgotpassword_otp($checkemail['seller_id'],$six_digit_random_number);
 				
 			//send mail
 				//$this->email->set_mailtype("html");
@@ -507,6 +506,32 @@ $result = $you_make - $actual_price;
 			$data['noemail']=0;
 			echo json_encode($data);
 			}
+		}else if($post['otp']!='' && $post['password']!=''){
+			if($post['option']==1){
+				$checkemail=$this->login_model->verify_email($post['mobile_number']);
+				if($checkemail['verification_otp']==$post['otp']){
+					$updatepass=$this->login_model->set_update_forgotpassword($checkemail['seller_id'],$post['password'],'');
+					$data['pass']=1;
+					echo json_encode($data);
+				}else{
+					$data['pass']=0;
+					echo json_encode($data);
+				}
+				
+			}else if($post['option']==0){
+				$checkmobile=$this->login_model->verify_mobile($post['mobile_number']);
+				if($checkmobile['verification_otp']==$post['otp']){
+					$updatepass=$this->login_model->set_update_forgotpassword($checkmobile['seller_id'],$post['password'],'');
+					$data['pass']=1;
+					echo json_encode($data);
+				}else{
+					$data['pass']=0;
+					echo json_encode($data);
+				}				
+				
+			}
+			
+			
 		}
 		
 

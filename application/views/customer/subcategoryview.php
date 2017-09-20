@@ -1,3 +1,11 @@
+<?php if(isset($quick) && $quick=='quick'){ ?>
+	<script>
+	
+$(document).ready(function() {
+   $('#onclicksubcat<?php echo $subcatid; ?>').click();
+});
+ </script>
+<?php } ?>
 <style>
 .top-navbar1{
 	display:none;
@@ -56,7 +64,7 @@
 			  <div class="col-md-12 gir_alg" style="border-right:1px solid #45b1b5">
 			  <div class="title text-left mar_t10"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
 			  <?php foreach($subcategory_list as $list){ ?>
-				  <div class="col-md-2"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
+				  <div class="col-md-2" id="onclicksubcat<?php echo $list['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
 					 <div class="catg_sty">
 						<?php echo $list['subcategory_name']; ?>
 					  </div>
@@ -753,7 +761,6 @@ jQuery.ajax({
 }
 function getproduct(id){
 	if(id!=''){
-	
 	jQuery.ajax({
 				url: "<?php echo site_url('category/categorywiseproductslist');?>",
 				type: 'post',
