@@ -438,6 +438,8 @@ function emailchecking(reasontype) {
  function validationcheckings (){
      
      $("#forgot-response").html("");
+     $("#Emptyforregister").html("");
+	 
 	 var styles=document.getElementById("otp_code").style.display;
 	 if(styles==''){
 		  var otpval = document.getElementById('otp_number').value;
