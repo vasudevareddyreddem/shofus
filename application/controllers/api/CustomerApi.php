@@ -2149,46 +2149,108 @@ class CustomerApi extends REST_Controller {
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 			if(isset($option) && $option=='cusine_list'){
-				$fliter=$cuisine;
+				$fliter=$option;
 				$val='cuisine';
-				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
-
-			}else if(isset($option) && $option=='myrestaurant'){
-				$fliter=$restrant;
+				$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+				if(count($filtersoption_list)>0){
+				foreach ($filtersoption_list as $key=>$list){
+					$ls[]=$list['cusine'];
+					
+				}
+				$data=$ls;
+				}else{
+				$data='';
+				}
+				
+			
+			}elseif(isset($option) && $option=='myrestaurant'){
+				$fliter=$option;
 				$val='restrant';
-				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
-
+				$filtersoption_lists= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+				//echo '<pre>';print_r($filtersoption_lists);exit;
+				if(count($filtersoption_lists)>0){
+				foreach ($filtersoption_lists as $key=>$list){
+					$ls[]=$list['seller_name'];
+					
+				}
+				$data=$ls;
+				}else{
+				$data='';
+				}
+			
 			}else if(isset($option) && $option=='offer_list'){
-				$fliter=$offers;
+				$fliter=$option;
 				$val='offers';
-			$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
-
+					$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+					if(count($filtersoption_list)>0){
+						foreach ($filtersoption_list as $key=>$list){
+							$ls[]=$list['offers'];
+					
+						}
+						$data=$ls;
+						}else{
+							$data='';
+							}
 			}else if(isset($option) && $option=='brand_list'){
-				$fliter=$brand;
+				$fliter=$option;
 				$val='brand';
-				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
-
+				$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+					if(count($filtersoption_list)>0){
+						foreach ($filtersoption_list as $key=>$list){
+							$ls[]=$list['brand'];
+					
+						}
+						$data=$ls;
+						}else{
+							$data='';
+							}
 			}else if(isset($option) && $option=='discount_list'){
-				$fliter=$discount;
+				$fliter=$option;
 				$val='discount';
-				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
-
+				$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+					if(count($filtersoption_list)>0){
+						foreach ($filtersoption_list as $key=>$list){
+							$ls[]=$list['discount'];
+					
+						}
+						$data=$ls;
+						}else{
+							$data='';
+							}
 			}else if(isset($option) && $option=='price_list'){
-				$fliter=$item_cost;
+				$fliter=$option;
 				$val='item_cost';
 				$datails['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
-				$data['minimum_price'] = reset($datails['filtersoption_list']);
-				$data['maximum_price'] = end($datails['filtersoption_list']);
+				$data['minimum'] = reset($datails['filtersoption_list']);
+				$data['maximum'] = end($datails['filtersoption_list']);
 			}else if(isset($option) && $option=='color_list'){
-				$fliter=$color;
+				$fliter=$option;
 				$val='color';
-				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list_color($category_id,$fliter,$val);
+				$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list_color($category_id,$fliter,$val);
+					if(count($filtersoption_list)>0){
+						foreach ($filtersoption_list as $key=>$list){
+							$ls[]=$list['color_name'];
+					
+						}
+						$data=$ls;
+						}else{
+							$data='';
+							}
 			}else if(isset($option) && $option=='sizes_list'){
-				$fliter=$size;
+				$fliter=$option;
 				$val='size';
-				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list_size($category_id,$fliter,$val);
+				$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list_size($category_id,$fliter,$val);
+					if(count($filtersoption_list)>0){
+						foreach ($filtersoption_list as $key=>$list){
+							$ls[]=$list['p_size_name'];
+					
+						}
+						$data=$ls;
+						}else{
+							$data='';
+							}
 			}else if(isset($option) && $option=='avalibility_list'){
-					$data['filtersoption_list']= array('Instock'=>1,'Out of stock'=>0);
+					$data= array('Instock'=>1,'Out of stock'=>0);
 			}
 			$message = array('status'=>1,'list'=>$data,'message'=>'filters options list');
 			$this->response($message, REST_Controller::HTTP_OK);
