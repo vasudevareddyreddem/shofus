@@ -184,11 +184,11 @@
                 <input type="checkbox" name="check_tac" id="check_tac" >
               <a href="<?php echo base_url('seller/login/termsandconditions'); ?>">Terms and Conditions</a>
               <label>Enter Refer Code</label>
-              <input   class="form-control" type="text" maxlength="6" id="any_ref" name="any_ref">
+              <input   class="form-control" type="text" maxlength="6" id="any_ref" name="any_ref" value="">
               </div>
               <div class="clearfix"></div>
 			  <label>&nbsp;</label>
-              <input type="submit" class="btn btn-primary  btn-block  " name="register_do" id="register_do" value="Register">
+              <input type="bitton" onclick="newregister();" class="btn btn-primary  btn-block  " name="register_do" id="register_do" value="Register">
               <!-- <button class="btn btn-primary btn-sm mar_t10" type="submit">Get OTP</button> -->
               </form>
             </div>
@@ -382,7 +382,51 @@
 	});
 </script>
 <script>
-
+function IcsLemail(reasontype) {
+        var regex = /^[0-9]{10}$/;
+        return regex.test(reasontype);
+ }
+function newregister(){
+	    var register = $("#seller_mobile").val();
+		var any_refer = $('#any_ref').val();
+		if(register=="")
+		{
+			$("#Emptyforregister").html("Please Enter Mobile Number").css("color", "red");
+			$("#seller_mobile").focus();
+			return false;
+		}else if(register!=''){
+			var lcemail = document.getElementById('seller_mobile').value;
+            if (!IcsLemail(lcemail)) {
+            $("#Emptyforregister").html("Please Enter Correct Mobile Number").css("color", "red");
+            jQuery('#seller_mobile').focus();
+            return false;;
+            }
+		}
+		 var chkPassport = document.getElementById("check_tac");
+        if (chkPassport.checked) {
+        } else {
+			$("#Emptyforregister").html("Please agree Terms and Conditions").css("color", "red");
+			return false;
+        }
+		$("#Emptyforregister").html('');
+		$.ajax({
+				type: "POST",
+				url: '<?php echo base_url(); ?>seller/login/insert',
+				data: {seller_mobile:register,any_ref:any_refer},
+				success:function(data)
+					{
+						if(data == 0)
+						{
+						$("#Emptyforregister").html("The Phone Number you entered already exist..").css("color", "red");
+						}else if(data == 1)
+							{
+							document.location.href='<?php echo base_url('seller/adddetails'); ?>'; 
+							}
+					},
+				});
+						
+	
+}
 function IsMobile(reasontype) {
         var regex = /^[0-9]{10}$/;
         return regex.test(reasontype);
@@ -700,92 +744,6 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 
-function register(){
-
-}
-
-function IcsLemail(reasontype) {
-        var regex = /^[0-9]{10}$/;
-        return regex.test(reasontype);
-        }
-$(document).ready(function(){
-    $("#register_do").click(function(e){
-    e.preventDefault();
-
-    var register;
-    register = $("#seller_mobile").val();
-    var tac=$('input[name="check_tac"]:checked').val();
-    var any_refer;
-    any_refer = $('#any_ref').val();
-    //alert(any_refer);
-    //var tac = $("#seller_mobile").val();
-    //alert(tac);
-    var phone =  /^(?=.*?[1-9])[0-9()-+]+$/;
-   
-   if(register=="")
-  {
-  $("#Emptyforregister").html("Please Enter Mobile Number").css("color", "red");
-    $("#seller_mobile").focus();
-        return false;
-  }
-  else{
-  $("#Emptyforregister").html(""); 
-  }
-  
-
-
- 
-
-
- if ( ( register_form.check_tac.checked == false ) ) 
-{
- $("#Emptyforregister").html("Please agree Terms and Conditions").css("color", "red");
-return false;
-}else{
-    //$('#register_do').css("display", "block");
-
-    if(register!=''){
-        var lcemail = document.getElementById('seller_mobile').value;
-            if (!IcsLemail(lcemail)) {
-            $("#Emptyforregister").html("Please Enter Correct Mobile Number").css("color", "red");
-            jQuery('#seller_mobile').focus();
-            return;
-            }else{
-                    $.ajax({
-                        type: "POST",
-                           url: '<?php echo base_url(); ?>seller/login/insert',
-                            data: {seller_mobile:register,any_ref:any_refer},
-                        success:function(data)
-                        {
-                          //alert(data);
-                        if(data == 0)
-                        {
-                       $("#Emptyforregister").html("The Phone Number you entered already exist..").css("color", "red");
-                         $('#login_submit')[0].reset(); 
-                        }
-                        else if(data == 1)
-                        {
-                            document.location.href='<?php echo base_url('seller/adddetails'); ?>'; 
-                        }
-                        },
-                        });
-                }
-        }
-//         var re = /[a-zA-Z0-9\\]$/;
-// if (!re.test(any_refer)) {
-//     $("#Emptyforregister").html("Alow Only Numbers And letters").css("color", "red");
-//     return false;
-// }
-// else{
-//   $("#Emptyforregister").html(""); 
-//   }
-            }
-
-
-
-      
-    });
-    });
 $(document).ready(function(){
     $("#togg_menu").click(function(){
         $(".cust_togg_menu").slideToggle("slow");
