@@ -146,7 +146,8 @@
             </div>
 			<div class="clearfix"></div>
 			
-			<div class=" pass_list" style="display:none" id="temp_pass">             <h4 class="text-primary" > Temporary Password </h4> 
+			<div class=" pass_list" style="display:none" id="temp_pass">
+			<h4 class="text-primary" > Temporary Password </h4> 
 		
                       <label style="font-size:15px;margin-bottom:10px">How do you want temporary password to be send:</label>  
 						<div class="clearfix"> </div>                    
@@ -474,6 +475,8 @@ function emailchecking(reasontype) {
 							$("#forgot_password").val('');
 							$("#otp_number").val('');
 							$("#otp_code").hide();
+							$("#temp_pass").hide();
+							$("#temp_pas_hi").show();
                             $("#forgot-response1").html("Password Successfully updated").css("color", "Green").fadeIn().fadeOut(5000);
 						}if(data.pass==0){
 							document.getElementById("unableloginfield").disabled = false;
@@ -535,6 +538,8 @@ function emailchecking(reasontype) {
 							$("#forgot_password").val('');
 							$("#otp_number").val('');
 							$("#otp_code").hide();
+							$("#temp_pass").hide();
+							$("#temp_pas_hi").show();
                             $("#forgot-response1").html("Password Successfully updated").css("color", "Green").fadeIn().fadeOut(5000);
 						}if(data.pass==0){
 							document.getElementById("unableloginfield").disabled = false;
