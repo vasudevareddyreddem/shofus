@@ -112,7 +112,7 @@
             <li class=""><a data-toggle="tab" >Sign In</a></li>
             <li><a data-toggle="tab" >Register</a></li>
           </ul>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button  type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
        <div class="modal-body">
           
@@ -321,7 +321,7 @@
 							<input type="text" class="form-control" id="otp_number" name="otp_number">
 						 </div>
 						  <div style="font-size:15px;margin-bottom:10px">Set Password:
-							<input type="text" class="form-control" id="forgot_password" name="forgot_password">
+							<input type="password" class="form-control" id="forgot_password" name="forgot_password">
 						 </div>
 						</span>
                       
@@ -338,6 +338,7 @@
       
 
 <script>
+
 function IsMobile(reasontype) {
         var regex = /^[0-9]{10}$/;
         return regex.test(reasontype);
