@@ -2139,58 +2139,55 @@ class CustomerApi extends REST_Controller {
 		}
 			public function category_filters_list_post(){
 				$category_id=$this->input->get('category_id');
-				$cuisine=$this->input->get('cuisine');
-				$restrant=$this->input->get('restrant');
-				$offers=$this->input->get('offers');
-				$brand=$this->input->get('brand');
-				$discount=$this->input->get('discount');
-				$item_cost=$this->input->get('item_cost');
-				$color=$this->input->get('color');
-				$size=$this->input->get('size');
-				$status=$this->input->get('status');
+				$option=$this->input->get('option');
+		
 			if($category_id==''){
 				$message = array('status'=>1,'message'=>'Category id is required!');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}else if(isset($cuisine) && $cuisine!=''){
+			}if($option==''){
+				$message = array('status'=>1,'message'=>'option is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			if(isset($option) && $option=='cusine_list'){
 				$fliter=$cuisine;
 				$val='cuisine';
 				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
 
-			}else if(isset($restrant) && $restrant!=''){
+			}else if(isset($option) && $option=='myrestaurant'){
 				$fliter=$restrant;
 				$val='restrant';
 				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
 
-			}else if(isset($offers) && $offers!=''){
+			}else if(isset($option) && $option=='offer_list'){
 				$fliter=$offers;
 				$val='offers';
 			$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
 
-			}else if(isset($brand) && $brand!=''){
+			}else if(isset($option) && $option=='brand_list'){
 				$fliter=$brand;
 				$val='brand';
 				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
 
-			}else if(isset($discount) && $discount!=''){
+			}else if(isset($option) && $option=='discount_list'){
 				$fliter=$discount;
 				$val='discount';
 				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
 
-			}else if(isset($item_cost) && $item_cost!=''){
+			}else if(isset($option) && $option=='price_list'){
 				$fliter=$item_cost;
 				$val='item_cost';
 				$datails['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
 				$data['minimum_price'] = reset($datails['filtersoption_list']);
 				$data['maximum_price'] = end($datails['filtersoption_list']);
-			}else if(isset($color) && $color!=''){
+			}else if(isset($option) && $option=='color_list'){
 				$fliter=$color;
 				$val='color';
 				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list_color($category_id,$fliter,$val);
-			}else if(isset($size) && $size!=''){
+			}else if(isset($option) && $option=='sizes_list'){
 				$fliter=$size;
 				$val='size';
 				$data['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list_size($category_id,$fliter,$val);
-			}else if(isset($status) && $status!=''){
+			}else if(isset($option) && $option=='avalibility_list'){
 					$data['filtersoption_list']= array('Instock'=>1,'Out of stock'=>0);
 			}
 			$message = array('status'=>1,'list'=>$data,'message'=>'filters options list');
