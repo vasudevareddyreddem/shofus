@@ -22,7 +22,22 @@ class Home extends Front_Controller {
 public function index()
 
  {
-	$data['locationdata'] = $this->home_model->getlocations();
+		
+		if($this->session->userdata('seller_id')!=''){
+			redirect('seller/dashboard');
+		}
+	  if($this->session->userdata('userdetails'))
+		{
+		$customerdetails=$this->session->userdata('userdetails');
+		if($customerdetails['role_id']==5){
+			redirect('inventory/dashboard');
+		}else if($customerdetails['role_id']==2){
+			redirect('admin/dashboard');
+		}else if($customerdetails['role_id']==6){
+			redirect('deliveryboy/dashboard');
+		}
+	 }
+		$data['locationdata'] = $this->home_model->getlocations();
 		if($this->session->userdata('userdetails')){
 			$customerdetails=$this->session->userdata('userdetails');
 			$details = $this->customer_model->get_profile_details($customerdetails['customer_id']);

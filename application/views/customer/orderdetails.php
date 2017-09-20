@@ -128,11 +128,15 @@ tr th:last-child {
 		</div>
     
 </div>
+<?php //echo '<pre>';print_r($item_details);exit; ?>
 		<div class="col-md-4" >
 		<?php if($item_details['status_deliverd']==4 && $item_details['order_status']!=5 && $currentdate<= $tomorrow){ ?>
 		<div><a class="site_col" href="<?php echo base_url('customer/orderrefund/'.base64_encode($item_details['order_item_id'])); ?>"><h5>Return</h5></a></div>
 		<?php } ?>
 		<p ><a class="site_col" id="review">Review this product</a></p>
+		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']!=''){ ?>
+		<p >Your order status is returned</p>
+		<?php } ?>
 		</div>
 		</div>
 		</div>
@@ -187,7 +191,9 @@ tr th:last-child {
 					</div>
 					<div class="col-md-8">
 						<p><a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
+						<?php if(isset($item_details['color']) && $item_details['color']!=''){ ?>
 						<div>Color: <?php echo isset($item_details['color'])?$item_details['color']:'';  ?></div>
+						<?php } ?>
 						<div>7 Days Exchange</div>
 					
 					</div>

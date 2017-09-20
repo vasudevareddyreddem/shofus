@@ -12,26 +12,30 @@ class Login extends CI_Controller {
 		$this->load->library('session','form_validation');
 		$this->load->library('email');
 		$this->load->model('admin/login_model');
+		
 }
 
 
  public function index() {
-
-
-	if($this->session->userdata('userdetails')){
+	 $seller_id=$this->session->userdata('seller_id');
+		if($seller_id!=''){
+			redirect('seller/dashboard');
+		}
+		if($this->session->userdata('userdetails')){
 		$customerdetails=$this->session->userdata('userdetails');
-		if($customerdetails['role_id']==5){
+		if($customerdetails['role_id']==1){
+			redirect('');
+		}else if($customerdetails['role_id']==5){
 			redirect('inventory/dashboard');
 		}else if($customerdetails['role_id']==2){
 			redirect('admin/dashboard');
-			
 		}else if($customerdetails['role_id']==6){
-			
 			redirect('deliveryboy/dashboard');
 		}
-	}else{
-	   $this->load->view('admin/login'); 
-   }
+	}
+
+ $this->load->view('admin/login'); 
+  
 
 
   }
@@ -85,8 +89,12 @@ public function loginpost()
 	'admin_id'        => '',
 	'admin_name'  => '',
 	'user_email'     => '',
+	'seller_id'        => '',
+	'seller_name'  => '',
+	'seller_email'     => '',
 	'loggedin'  => FALSE,
 	);
+	
 	$userinfo = $this->session->userdata('userdetails');
 	$this->session->set_userdata($data);
 	$this->session->unset_userdata($userinfo);
@@ -94,6 +102,10 @@ public function loginpost()
 	$this->session->unset_userdata('userdetails');
 	$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
 	$this->output->set_header("Pragma: no-cache");
+	$this->session->sess_destroy();	
+	$this->session->unset_userdata($userinfo);
+	$this->session->unset_userdata($beforecart);
+	$this->session->unset_userdata('location_area');
 	redirect('admin/login');
  }
 
