@@ -21,10 +21,11 @@ class Customer extends Front_Controller
 
   public function locationsearch(){
 		$post=$this->input->post();
+			if(count($post['locationarea'])==0){
+			redirect('');
+		}
 		
 		$locationdata= $this->home_model->getlocations();
-		
-		//echo '<pre>';print_r($post);exit;
 		$loacationname=array();
 		foreach ($locationdata as $list){
 			if (in_array($list['location_id'], $post['locationarea'])) {
@@ -1007,6 +1008,12 @@ class Customer extends Front_Controller
  }
  public function addwhishlist(){
 	 
+	 if($this->session->userdata('userdetails')=='')
+	 {
+		$post=$this->input->post();
+		$post['wish']=1;
+		$this->session->set_userdata('beforewishlist',$post);
+	 }
 	
 	if($this->session->userdata('userdetails'))
 	 {
@@ -1240,6 +1247,7 @@ class Customer extends Front_Controller
 	$post=$this->input->post();
 	$uridata=$this->session->userdata('redirect_urls');
 	$adddata=$this->session->userdata('beforecart');
+	$adddwish=$this->session->userdata('beforewishlist');
 	//echo '<pre>';print_r($uridata);exit;
 	$uri_path = parse_url($uridata, PHP_URL_PATH);
 	$uri_segments = explode('/', $uri_path);
@@ -1404,6 +1412,44 @@ class Customer extends Front_Controller
 					}
 			/*addtocartfunctionality*/
 			
+					}else if(isset($adddwish) && $adddwish!=''){
+						//echo '<pre>';print_r($adddwish);exit;
+						$customerdetails=$this->session->userdata('userdetails');
+							$detailsa=array(
+							'cust_id'=>$customerdetails['customer_id'],
+							'item_id'=>$adddwish['item_id'],
+							'create_at'=>date('Y-m-d H:i:s'),
+							'yes'=>1,
+							);
+							$whishlist = $this->customer_model->get_whishlist_list($customerdetails['customer_id']);
+							if(count($whishlist)>0){
+									foreach($whishlist as $lists) { 
+												
+													$itemsids[]=$lists['item_id'];
+									}
+								if(in_array($adddwish['item_id'],$itemsids)){
+									$removewhislish=$this->customer_model->remove_whishlist($customerdetails['customer_id'],$adddwish['item_id']);
+									if(count($removewhislish)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully Removed to Whishlist');
+									redirect('customer/wishlist');
+									}
+								
+								}else{
+									$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+									if(count($addwhishlist)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully added to Whishlist');
+									redirect('customer/wishlist');
+									}
+								}
+								
+							}else{
+								$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+									if(count($addwhishlist)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully added to Whishlist');
+									redirect('customer/wishlist');
+									}
+								
+							}
 					}else{
 						$this->session->set_flashdata('sucesss',"Successfully Login");
 						redirect($session_url);
