@@ -2144,8 +2144,9 @@ class Customerapi_model extends MY_Model
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left'); 
 		$this->db->group_by('products.cusine');
 	}else if($val=='restrant'){
-		$this->db->select('seller_store_details.store_name')->from('products');
+		$this->db->select('sellers.seller_name')->from('products');
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
 		$this->db->group_by('products.seller_id');
 	}else if($val=='offers'){
 		$this->db->select('products.offers')->from('products');

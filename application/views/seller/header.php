@@ -112,7 +112,7 @@
             <li class=""><a data-toggle="tab" >Sign In</a></li>
             <li><a data-toggle="tab" >Register</a></li>
           </ul>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button  type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
        <div class="modal-body">
           
@@ -321,7 +321,7 @@
 							<input type="text" class="form-control" id="otp_number" name="otp_number">
 						 </div>
 						  <div style="font-size:15px;margin-bottom:10px">Set Password:
-							<input type="text" class="form-control" id="forgot_password" name="forgot_password">
+							<input type="password" class="form-control" id="forgot_password" name="forgot_password">
 						 </div>
 						</span>
                       
@@ -338,6 +338,7 @@
       
 
 <script>
+
 function IsMobile(reasontype) {
         var regex = /^[0-9]{10}$/;
         return regex.test(reasontype);
@@ -394,7 +395,7 @@ function emailchecking(reasontype) {
           }
           $("#forgoterror").html("");
             $("#forgot_submit").html("");
-            //document.getElementById("unableloginfield").disabled = true;
+            document.getElementById("unableloginfield").disabled = true;
             $.ajax({
               
                     type: 'post',
@@ -416,9 +417,11 @@ function emailchecking(reasontype) {
                             
                             return true;
                         }if(data.sendmsg==0){
+							document.getElementById("unableloginfield").disabled = false;
                             $("#forgot-response").html("Some technical problem are occured").css("color", "red");
                         }
                         if(data.nomobile==0){
+							document.getElementById("unableloginfield").disabled = false;
                             $("#forgoterror").html("The Mobile you entered is not a registered Mobile. Please try again").css("color", "red");
                             return false;
                         }if(data.pass==1){
@@ -430,6 +433,7 @@ function emailchecking(reasontype) {
 							$("#otp_code").hide();
                             $("#forgot-response1").html("Password Successfully updated").css("color", "Green").fadeIn().fadeOut(5000);
 						}if(data.pass==0){
+							document.getElementById("unableloginfield").disabled = false;
                             $("#forgoterror").html("Your enter OTP code is wrong try again.Please try again").css("color", "red");
 						}
                     }
@@ -455,6 +459,7 @@ function emailchecking(reasontype) {
             $("#forgoterror").html("");
             $("#forgot_submit").html("");
             $("#forgot_submit").html("");
+			document.getElementById("unableloginfield").disabled = true;
                 $.ajax({
                     type: 'post',
                     data: {
@@ -472,11 +477,12 @@ function emailchecking(reasontype) {
                          $('#EmptyforError').hide();
 						if(data.mailsend==1){
                             $("#otp_code").show();
+							document.getElementById("unableloginfield").disabled = false;
                             return true;
                         }
                         if(data.noemail==0){
                             $("#forgot-response").html("The Email you entered is not a registered email. Please try again").css("color", "red").fadeIn().fadeOut(5000);
-                            $('#forgot_submit')[0].reset();
+                            document.getElementById("unableloginfield").disabled = false;
                             return false;
                         }
 						if(data.pass==1){
@@ -488,7 +494,7 @@ function emailchecking(reasontype) {
 							$("#otp_code").hide();
                             $("#forgot-response1").html("Password Successfully updated").css("color", "Green").fadeIn().fadeOut(5000);
 						}if(data.pass==0){
-							//$("#myModal1").fadeOut(1);
+							document.getElementById("unableloginfield").disabled = false;
                             $("#forgoterror").html("Your enter OTP code is wrong try again.Please try again").css("color", "red");
 						}
                     }
