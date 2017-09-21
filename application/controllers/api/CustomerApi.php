@@ -634,7 +634,7 @@ class CustomerApi extends REST_Controller {
 					$color_list= $this->Customerapi_model->get_product_color_details($item_details['item_id']);
 					$size_list= $this->Customerapi_model->get_product_size_details($item_details['item_id']);
 					$uksize_list= $this->Customerapi_model->get_product_uksize_details($item_details['item_id']);
-					$message = array('status'=>1,'message'=>'order details are found','order details'=>$item_details,'colors'=>$color_list,'sizes'=>$size_list,'uksizes'=>$uksize_list);
+					$message = array('status'=>1,'message'=>'order details are found','order details'=>$item_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uksize_list);
 					$this->response($message,REST_Controller::HTTP_OK);
 				}else{
 					$message = array('status'=>0,'message'=>'You have no permissions');
@@ -2009,6 +2009,7 @@ class CustomerApi extends REST_Controller {
 			$region=$this->input->get('region');
 			$size=$this->input->get('size');
 			$color=$this->input->get('color');
+			$uksize=$this->input->get('uksize');
 			$checking=$this->Customerapi_model->checking_ststus_id($status_id,$order_item_id);
 			if(count($checking)>0){
 			
@@ -2036,6 +2037,7 @@ class CustomerApi extends REST_Controller {
 				$exchangedetails=array(
 						'color'=>isset($color)?$color:'',
 						'size'=>isset($size)?$size:'',
+						'uksize'=>isset($uksize)?$uksize:'',
 						'region'=>isset($region)?$region:'',
 						'status_refund'=>isset($returntype)?$returntype:'',
 						'update_time'=>date('Y-m-d H:i:s A'),
