@@ -623,6 +623,7 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 				$customer_items= $this->Customerapi_model->get_order_items_lists($customer_id);
+				//echo '<pre>';print_r($customer_items);exit;
 
 				foreach ($customer_items as $order_ids){
 					$ids[]=$order_ids['order_item_id'];
@@ -631,9 +632,21 @@ class CustomerApi extends REST_Controller {
 				if(in_array($order_item_id, $ids)){
 					
 					$item_details= $this->Customerapi_model->get_order_items_list($customer_id,$order_item_id);
-					$color_list= $this->Customerapi_model->get_product_color_details($item_details['item_id']);
-					$size_list= $this->Customerapi_model->get_product_size_details($item_details['item_id']);
-					$uksize_list= $this->Customerapi_model->get_product_uksize_details($item_details['item_id']);
+					if(isset($item_details['category_id']) && $item_details['category_id']==19){
+						if($item_details['category_id']==19 && $item_details['category_id']==53){
+							$color_list= $this->Customerapi_model->get_product_color_details($item_details['item_id']);
+							$uksize_list= $this->Customerapi_model->get_product_uksize_details($item_details['item_id']);
+							$size_list=[];
+						}else{
+							$color_list= $this->Customerapi_model->get_product_color_details($item_details['item_id']);
+							$size_list= $this->Customerapi_model->get_product_size_details($item_details['item_id']);
+							$uksize_list=[];
+						}
+					}
+					
+					
+					
+					//echo '<pre>';print_r($item_details);exit;
 					$message = array('status'=>1,'message'=>'order details are found','order details'=>$item_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uksize_list);
 					$this->response($message,REST_Controller::HTTP_OK);
 				}else{
