@@ -589,7 +589,6 @@ if(color==''){
 	return false;
 	
 }
-return false;
 $("#sizeerrormsg").html("");
 return true;
 

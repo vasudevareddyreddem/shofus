@@ -210,7 +210,14 @@ class Customer extends Front_Controller
 							$delivery_charges=0;
 						}
 					}
-		
+		if($products['subcategory_id']==53){
+			$uksize=$post['sizevalue'];
+			$size='';
+			
+		}else{
+			$uksize='';
+			$size=$post['sizevalue'];
+		}
 		
 		$adddata=array(
 		'cust_id'=>$customerdetails['customer_id'],
@@ -223,7 +230,8 @@ class Customer extends Front_Controller
 		'delivery_amount'=>$delivery_charges,
 		'seller_id'=>$products['seller_id'],
 		'color'=>isset($post['colorvalue'])?$post['colorvalue']:'',
-		'size'=>isset($post['sizevalue'])?$post['sizevalue']:'',
+		'size'=>isset($size)?$size:'',
+		'uksize'=>isset($uksize)?$uksize:'',
 		'category_id'=>$products['category_id'],
 		'create_at'=>date('Y-m-d H:i:s'),
 		);
@@ -311,6 +319,7 @@ class Customer extends Front_Controller
 						}
 					}
 		
+		
 		$adddata=array(
 		'cust_id'=>$customerdetails['customer_id'],
 		'item_id'=>$post['producr_id'],
@@ -322,7 +331,8 @@ class Customer extends Front_Controller
 		'delivery_amount'=>$delivery_charges,
 		'seller_id'=>$products['seller_id'],
 		'color'=>isset($post['colorvalue'])?$post['colorvalue']:'',
-		'size'=>isset($post['sizevalue'])?$post['sizevalue']:'',
+		'size'=>isset($size)?$size:'',
+		'uksize'=>isset($uksize)?$uksize:'',
 		'category_id'=>$products['category_id'],
 		'create_at'=>date('Y-m-d H:i:s'),
 		);
@@ -831,6 +841,7 @@ class Customer extends Front_Controller
 						'order_status'=>1,
 						'color'=>$items['color'],
 						'size'=>$items['size'],
+						'uksize'=>$items['uksize'],
 						'create_at'=>date('Y-m-d H:i:s'),
 					);
 					//echo '<pre>';print_r($orderitems);exit;
@@ -984,15 +995,24 @@ class Customer extends Front_Controller
 						}
 						if(in_array($order_id, $ids)){
 							$data['order_status_details']= $this->customer_model->get_order_items_refund_list($order_id);
-							$data['color_list']= $this->customer_model->get_color_lists($data['order_status_details']['item_id']);
-							$data['size_list']= $this->customer_model->get_sizes_lists($data['order_status_details']['item_id']);
+							//echo '<pre>';print_r($data['order_status_details']);
+							if($data['order_status_details']['category_id']==19){
+								if($data['order_status_details']['subcategory_id']==53){
+									$data['color_list']= $this->customer_model->get_color_lists($data['order_status_details']['item_id']);
+									$data['uksize_list']= $this->customer_model->get_uksizes_lists($data['order_status_details']['item_id']);
+									$data['size_list']=array();
+								}else{
+									$data['color_list']= $this->customer_model->get_color_lists($data['order_status_details']['item_id']);
+									$data['size_list']= $this->customer_model->get_sizes_lists($data['order_status_details']['item_id']);
+									$data['uksize_list']=array();
+								}
+							}
 							$data['product_details']= $this->customer_model->get_product_details_for_subcats($data['order_status_details']['item_id']);
-							//echo '<pre>';print_r($data);exit;
 							$this->template->write_view('content', 'customer/orderrefund',$data);
 							$this->template->render();
 						}else{
 							$this->session->set_flashdata('permissionerror','you have no permissions to access this floder');
-							 redirect('customer/orders');
+							redirect('customer/orders');
 						}
 			}else{
 					$this->session->set_flashdata('permissionerror','you have no permissions to access this floder');
@@ -1096,6 +1116,7 @@ class Customer extends Front_Controller
 	
 	$post=$this->input->post();
 	$adddata=$this->session->userdata('beforecart');
+	$adddwish=$this->session->userdata('beforewishlist');
 	$emailcheck = $this->customer_model->email_check($post['email']);
 	$mobilecheck = $this->customer_model->mobile_check($post['mobile']);
 	//echo '<pre>';print_r($mobilecheck);
@@ -1165,7 +1186,13 @@ class Customer extends Front_Controller
 										$delivery_charges=0;
 									}
 								}
-					
+					if($products['subcategory_id']==53){
+							$uksize=$adddata['sizevalue'];
+							$size='';
+						}else{
+							$uksize='';
+							$size=$adddata['sizevalue'];
+						}
 					
 					$adddata=array(
 					'cust_id'=>$customerdetails['customer_id'],
@@ -1178,7 +1205,8 @@ class Customer extends Front_Controller
 					'delivery_amount'=>$delivery_charges,
 					'seller_id'=>$products['seller_id'],
 					'color'=>isset($adddata['colorvalue'])?$adddata['colorvalue']:'',
-					'size'=>isset($adddata['sizevalue'])?$adddata['sizevalue']:'',
+					'uksize'=>isset($uksize)?$uksize:'',
+					'size'=>isset($size)?$size:'',
 					'category_id'=>$products['category_id'],
 					'create_at'=>date('Y-m-d H:i:s'),
 					);
@@ -1211,6 +1239,44 @@ class Customer extends Front_Controller
 					}
 			
 			
+					}else if(isset($adddwish) && $adddwish!=''){
+						//echo '<pre>';print_r($adddwish);exit;
+						$customerdetails=$this->session->userdata('userdetails');
+							$detailsa=array(
+							'cust_id'=>$customerdetails['customer_id'],
+							'item_id'=>$adddwish['item_id'],
+							'create_at'=>date('Y-m-d H:i:s'),
+							'yes'=>1,
+							);
+							$whishlist = $this->customer_model->get_whishlist_list($customerdetails['customer_id']);
+							if(count($whishlist)>0){
+									foreach($whishlist as $lists) { 
+												
+													$itemsids[]=$lists['item_id'];
+									}
+								if(in_array($adddwish['item_id'],$itemsids)){
+									$removewhislish=$this->customer_model->remove_whishlist($customerdetails['customer_id'],$adddwish['item_id']);
+									if(count($removewhislish)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully Removed to Whishlist');
+									redirect('customer/wishlist');
+									}
+								
+								}else{
+									$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+									if(count($addwhishlist)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully added to Whishlist');
+									redirect('customer/wishlist');
+									}
+								}
+								
+							}else{
+								$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+									if(count($addwhishlist)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully added to Whishlist');
+									redirect('customer/wishlist');
+									}
+								
+							}
 					}else{
 						$this->session->set_flashdata('sucesss',"Successfully Login");
 						redirect('');
@@ -1367,7 +1433,13 @@ class Customer extends Front_Controller
 									}
 								}
 					
-					
+						if($products['subcategory_id']==53){
+							$uksize=$post['sizevalue'];
+							$size='';
+						}else{
+							$uksize='';
+							$size=$post['sizevalue'];
+						}
 					$adddata=array(
 					'cust_id'=>$customerdetails['customer_id'],
 					'item_id'=>$adddata['producr_id'],
@@ -1379,7 +1451,8 @@ class Customer extends Front_Controller
 					'delivery_amount'=>$delivery_charges,
 					'seller_id'=>$products['seller_id'],
 					'color'=>isset($adddata['colorvalue'])?$adddata['colorvalue']:'',
-					'size'=>isset($adddata['sizevalue'])?$adddata['sizevalue']:'',
+					'size'=>isset($size)?$size:'',
+					'uksize'=>isset($uksize)?$uksize:'',
 					'category_id'=>$products['category_id'],
 					'create_at'=>date('Y-m-d H:i:s'),
 					);
@@ -1838,7 +1911,6 @@ class Customer extends Front_Controller
 	{
 		
 		$post=$this->input->post();
-		//echo '<pre>';print_r($post);exit;
 		if(isset($post['refund_type']) && $post['refund_type']==1){
 				$refundtype='Refund';
 		}else if(isset($post['refund_type']) && $post['refund_type']==2){
@@ -1871,13 +1943,22 @@ class Customer extends Front_Controller
 			}
 			if(isset($post['refund_type1']) && $post['refund_type1']!=''){
 				//echo '<pre>';print_r($post);
+				if(isset($post['size']) && $post['size']!=''){
+					$size=$post['size'];
+					$uksize='';
+				}else{
+					$size='';
+					$uksize=$post['uksize'];
+				}
 				$exchangedetails=array(
 						'color'=>$post['color'],
-						'size'=>$post['size'],
+						'size'=>isset($size)?$size:'',
+						'uksize'=>isset($uksize)?$uksize:'',
 						'region'=>isset($post['region'])?$post['region']:'',
 						'status_refund'=>$refundtype1,
 						'update_time'=>date('Y-m-d H:i:s A'),
 						);
+						//echo '<pre>';print_r($exchangedetails);exit;
 						$exchangesave= $this->customer_model->update_refund_details($post['status_id'],$exchangedetails);
 						if(count($exchangesave)>0){
 							$data=array('order_status'=>5);
