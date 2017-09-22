@@ -328,7 +328,9 @@ class Customer_model extends MY_Model
 			return $this->db->get()->result_array();
 	}
 	public function get_order_items_refund_list($order_id){
-			$this->db->select('order_status.*')->from('order_status');
+			$this->db->select('order_status.*,products.category_id,products.subcategory_id')->from('order_status');
+			$this->db->join('products', 'products.item_id = order_status.item_id', 'left');
+
 			$this->db->where('order_status.order_item_id', $order_id);
 			return $this->db->get()->row_array();
 	}
@@ -372,6 +374,11 @@ class Customer_model extends MY_Model
 			$this->db->select('*')->from('product_size_list');
 			$this->db->where('item_id', $itemid);
 			$this->db->where('status', 1);
+			return $this->db->get()->result_array();
+	}
+	public function get_uksizes_lists($itemid){
+			$this->db->select('*')->from('product_uksize_list');
+			$this->db->where('item_id', $itemid);
 			return $this->db->get()->result_array();
 	}
 	public function get_product_details_for_subcats($itemid){

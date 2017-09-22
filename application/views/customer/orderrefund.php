@@ -145,6 +145,10 @@ tr th:last-child {
 								
 								<?php }else{ ?>
 								<div class="form-group">
+									<label for="pwd">Region:</label>
+									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Region">
+								</div>
+								<div class="form-group">
 									<label for="exampleInputEmail1">Color</label>
 									<select class="form-control " id="color" name="color" >
 									<option value="">Select </option>
@@ -153,6 +157,7 @@ tr th:last-child {
 									<?php } ?>
 									</select>
 								</div>
+								<?php if(isset($size_list) && count($size_list)>0){ ?>
 								<div class="form-group">
 									<label for="exampleInputEmail1">Size</label>
 									<select class="form-control " id="size" name="size" >
@@ -162,6 +167,17 @@ tr th:last-child {
 									<?php } ?>
 									</select>
 								</div>
+								<?php }else{ ?>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Uk Size</label>
+									<select class="form-control " id="uksize" name="uksize" >
+									<option value="">Select </option>
+									<?php foreach($uksize_list as $list){ ?>
+									<option value="<?php echo $list['p_size_name']; ?>"><?php echo $list['p_size_name']; ?></option>
+									<?php } ?>
+									</select>
+								</div>
+								<?php }?>
 
 
 
@@ -223,6 +239,13 @@ $(document).ready(function() {
               validators: {
 					notEmpty: {
 						message: 'Please select a size'
+					}
+                }
+            },
+			uksize: {
+              validators: {
+					notEmpty: {
+						message: 'Please select a uksize'
 					}
                 }
             },
