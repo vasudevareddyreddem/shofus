@@ -318,14 +318,7 @@ class Customer extends Front_Controller
 							$delivery_charges=35;
 						}
 					}
-					if($products['subcategory_id']==53){
-			$uksize=$post['sizevalue'];
-			$size='';
-			
-		}else{
-			$uksize='';
-			$size=$post['sizevalue'];
-		}
+		
 		
 		$adddata=array(
 		'cust_id'=>$customerdetails['customer_id'],
