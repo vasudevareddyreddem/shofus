@@ -56,7 +56,7 @@ class Users extends Admin_Controller {
 		 			$email = $this->input->post('email_id');
 		 			//print_r($email);exit;
 		 			$link = 'Click on this link - <a href="http://localhost/cartinhour/customer/password/'.base64_encode($details['cust_email']).'/'.base64_encode($details['customer_id']).'">http://localhost/cartinhour/customer/password/'.base64_encode($details['cust_email']).'/'.base64_encode($details['customer_id']).'</a>';
-		 			echo '<pre>';print_r($link);exit;
+		 			//echo '<pre>';print_r($link);exit;
 		 			//send mail
 		 			$this->email->from($from_email, 'CartinHour');
 		 			$this->email->to($this->input->post('email_id'));
