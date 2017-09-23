@@ -82,8 +82,7 @@ class DeliveryboyApi extends REST_Controller {
 					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 					}
 					
-					echo '<pre>';print_r($getdeliverbiy_details);exit;
-					//$getdeliverbiy_details=$this->Deliveryboyapi_model->update_deliveryboy_address($username,$password);
+					
 
 		}else{
 			$message = array('status'=>0,'message'=>'Role Id is wrong.please try againa!');
@@ -96,7 +95,80 @@ class DeliveryboyApi extends REST_Controller {
 	
 	public function orders_list_get(){
 		
+		$customer_id=$this->input->get('customer_id');
+		if($customer_id==''){
+		$message = array('status'=>0,'message'=>'customer id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$oreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_list($customer_id);
+		$rejectoreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_reject_list($customer_id);
+		if(count($rejectoreders_list)>0){
+				foreach ($rejectoreders_list as $lists){
+					$orditemids[]=$lists['order_item_id'];
+					$orddeliveryids[]=$lists['rejeted_del_boy_id'];
+				}
+				foreach ($oreders_list as $orderlists){
+					
+						if(!in_array($orderlists['order_item_id'],$orditemids) && !in_array($orderlists['rejeted_del_boy_id'],$orddeliveryids) )
+						{ 
+							$order_lists[]=$orderlists;
+						}else{
+						
+						}
+				}
+			
+		}else{
+			foreach ($oreders_list as $lists){
+					$order_lists[]=$lists;
+				}
+		}
+		if(count($oreders_list)>0){
+				$message = array('status'=>1,'list'=>$order_lists, 'message'=>'orders list are found');
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+		$message = array('status'=>0,'message'=>'You have no delivery orders list');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
 		
+	}
+	public function reject_orders_list_get(){
+		
+		$customer_id=$this->input->get('customer_id');
+		if($customer_id==''){
+		$message = array('status'=>0,'message'=>'customer id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$rejectoreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_reject_orderlist($customer_id);
+		
+		if(count($rejectoreders_list)>0){
+				$message = array('status'=>1,'list'=>$rejectoreders_list, 'message'=>'reject orders list are found');
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+		$message = array('status'=>0,'message'=>'You have no delivery orders list');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		
+	}	
+	public function order_status_change_post(){
+		
+		$customer_id=$this->input->get('customer_id');
+		$order_item_id=$this->input->get('order_item_id');
+		if($customer_id==''){
+		$message = array('status'=>0,'message'=>'customer id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}else if($order_item_id==''){
+		$message = array('status'=>0,'message'=>'order item id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$statusupdate=$this->Deliveryboyapi_model->order_status_updated($customer_id,$order_item_id);
+		
+		if(count($statusupdate)>0){
+				$message = array('status'=>1, 'message'=>'Succssfully rejected your ordered item');
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+		$message = array('status'=>0,'message'=>'You have no delivery orders list');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
 		
 	}
 
