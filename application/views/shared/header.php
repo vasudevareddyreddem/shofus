@@ -190,21 +190,12 @@
 			<p>Sign Up/Sign In</p></a>
 			</span>
 		  <?php } ?>
-			
-			<!--<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
-				<p>Location</p></a>
-			</span></a></span>-->
-			<span class="medias text-center"><a href="javascript:void(0);" onclick="locationopenpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Change Your Location Here" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
-				<p>Location</p></a>
-			</span></a></span>
-			
 			<?php if($this->session->userdata('userdetails')){ ?>
 			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i><img  src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i></a>&nbsp;<sup id="supcount" class="sup_log blink-image" style="color:#45b1b5; ">
 			<?php if(count($cartitemcount)>0){ ?>
 				<?php echo count($cartitemcount)	; ?>
 				</sup>
 				<p>Cart</p>
-				<!--<div class="sprinkle"></div>-->
 			<?php }else{  ?>
 			</sup>
 			<p>&nbsp;&nbsp; Cart &nbsp;&nbsp;</p>
@@ -421,7 +412,7 @@
     </div>
   </div>
 </div>
-<div id="fademaskpurpose"  class="mask_hide"></div>
+<!--<div id="fademaskpurpose"  class="mask_hide"></div>
 <div class="loc_pop_cus" id="removepopuplocation" style="display:none;">
 	<div style="position:absolute;top:-16px;left:58%" > <i class="fa fa-sort-asc " style="font-size:40px;color:#fff;" aria-hidden="true"></i></div>
 	<div class="main" style="width:400px;">
@@ -464,7 +455,7 @@
         </div>
       </form>
     </div>
-	</div>
+	</div>-->
 
  
 
@@ -482,7 +473,6 @@
 <script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script> 
 <script type="text/javascript">
 
-$("#fademaskpurpose").addClass("mask_hide");
 function locationopenpopup (){
 $('#removepopuplocation').show();
 $("#fademaskpurpose").removeClass("mask_hide");
@@ -512,7 +502,6 @@ function validations(){
         jQuery('#address1errormsg').html('Please Select Area');
         return false;
      }
-	 $("#fademaskpurpose").addClass("mask_hide");
     jQuery('#address1errormsg').html(''); 
     jQuery.ajax({
         url: "<?php echo site_url('home/search_location_offers');?>",
