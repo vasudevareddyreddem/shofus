@@ -1445,14 +1445,15 @@
 			},
 			specialprice: {
 					validators: {
-					notEmpty: {
-						message: 'Special price is required'
+						notEmpty: {
+						message: 'Special Price is required'
 					},
-                   regexp: {
-					regexp: /^[0-9.]+$/,
-					message: 'Special price can only consist of digits'
-					}
-				}
+                    between: {
+                            min: 1,
+                            max: 'product_price',
+                            message: 'Special price must be less than or equal to price'
+                        }
+                }
 			},
 			
 			producttype: {
@@ -1489,7 +1490,7 @@
 					},
 					regexp: {
 					regexp: /^[0-9]+$/,
-					message: 'Qty can only consist of digits'
+					message: 'Qty must be in digits'
 					}
 				}
 			},

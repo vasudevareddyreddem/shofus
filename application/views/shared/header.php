@@ -1,4 +1,4 @@
-<!--wrapper start here -->
+	<!--wrapper start here -->
 <style>
  .hi {
   color: green;
@@ -130,7 +130,7 @@
             <li>
 				<a class="tel" href="<?php echo base_url('customer/trackorders');?>"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a></li>&nbsp;
             <li>
-				<a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
+				<a class="" href="mailto:support@cartinhour.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
 			</li>
            
           </ul>
@@ -146,7 +146,8 @@
         <div class="pull-left searc_width" >
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="row">
-            <div  > <form class="form-horizontal form-horizontal_x">
+            <div  >
+			<div class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
                       <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
@@ -155,7 +156,7 @@
 					<div style="display:none;" class="search_fun" id="addingdropdown"></div>
 					
                   </div>
-                </form>
+                </div>
               </div>
 			
             </div>
@@ -189,21 +190,12 @@
 			<p>Sign Up/Sign In</p></a>
 			</span>
 		  <?php } ?>
-			
-			<!--<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
-				<p>Location</p></a>
-			</span></a></span>-->
-			<span class="medias text-center"><a href="javascript:void(0);" onclick="locationopenpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Change Your Location Here" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
-				<p>Location</p></a>
-			</span></a></span>
-			
 			<?php if($this->session->userdata('userdetails')){ ?>
 			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i><img  src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i></a>&nbsp;<sup id="supcount" class="sup_log blink-image" style="color:#45b1b5; ">
 			<?php if(count($cartitemcount)>0){ ?>
 				<?php echo count($cartitemcount)	; ?>
 				</sup>
 				<p>Cart</p>
-				<!--<div class="sprinkle"></div>-->
 			<?php }else{  ?>
 			</sup>
 			<p>&nbsp;&nbsp; Cart &nbsp;&nbsp;</p>
@@ -224,21 +216,18 @@
 	</div>
 	  <div class="top-navbar1">
     <div class="container">
+	<?php if(count($qucikjump)>0){ ?>
       <div class=" row qucik_jmp">
-		  <ul class="navbar_1"><li><span style="color:#555">Qucik Jump to </span></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
+	  <?php //echo '<pre>';print_r($qucikjump);exit; ?>
+		  <ul class="navbar_1"><li><span style="color:#555">Quick Jump to </span></li>
+		  <?php foreach($qucikjump as $list){ ?>
+			  <li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id']).'/'.base64_encode('quick').'/'.base64_encode($list['subcategory_id']));?>"><?php echo $list['subcategory_name']; ?></a></li>
+		  <?php } ?>
+			
+			
 		</ul>
 	  </div>
+	<?php } ?>
 	 
     </nav>
 	
@@ -423,7 +412,7 @@
     </div>
   </div>
 </div>
-<div id="fademaskpurpose"  class="mask_hide"></div>
+<!--<div id="fademaskpurpose"  class="mask_hide"></div>
 <div class="loc_pop_cus" id="removepopuplocation" style="display:none;">
 	<div style="position:absolute;top:-16px;left:58%" > <i class="fa fa-sort-asc " style="font-size:40px;color:#fff;" aria-hidden="true"></i></div>
 	<div class="main" style="width:400px;">
@@ -449,7 +438,7 @@
 
 		 <form  onSubmit="return validations();" action="<?php echo base_url('customer/locationsearch'); ?>" method="post">
         <div class="form-group">
-          <label for="inputUsernameEmail">Select Your  Shop location</label>
+          <label for="inputUsernameEmail">Select Your  Shop location</label></br>
 		  <span id="locationmsg"></span>
 		
 			<div id="selectedlocation"><?php echo $this->session->userdata('location_area'); ?> </div>
@@ -466,7 +455,7 @@
         </div>
       </form>
     </div>
-	</div>
+	</div>-->
 
  
 
@@ -484,7 +473,6 @@
 <script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script> 
 <script type="text/javascript">
 
-$("#fademaskpurpose").addClass("mask_hide");
 function locationopenpopup (){
 $('#removepopuplocation').show();
 $("#fademaskpurpose").removeClass("mask_hide");
@@ -514,7 +502,6 @@ function validations(){
         jQuery('#address1errormsg').html('Please Select Area');
         return false;
      }
-	 $("#fademaskpurpose").addClass("mask_hide");
     jQuery('#address1errormsg').html(''); 
     jQuery.ajax({
         url: "<?php echo site_url('home/search_location_offers');?>",

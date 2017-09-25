@@ -31,7 +31,20 @@ class Login extends CI_Controller {
 }
 
  public function index() {
-	 
+	 if($this->session->userdata('userdetails'))
+	 {
+		$customerdetails=$this->session->userdata('userdetails');
+		if($customerdetails['role_id']==1){
+			redirect('');
+		}else if($customerdetails['role_id']==5){
+			redirect('inventory/dashboard');
+		}else if($customerdetails['role_id']==2){
+			redirect('admin/dashboard');
+		}else if($customerdetails['role_id']==6){
+			redirect('deliveryboy/dashboard');
+		}
+	 }
+	
 	$seller_id=$this->session->userdata('seller_id');
 	if($seller_id!=''){
 		redirect('seller/dashboard');
@@ -200,12 +213,18 @@ public function insert() {
             'loggedin'  => FALSE,
 
         );
-        $this->session->set_userdata($data);
-        $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
-        $this->output->set_header("Pragma: no-cache");
-        $this->session->sess_regenerate(TRUE);
-        //flash_message('Successfully Logged Out', 'success');
-        return redirect(base_url('seller/login'));
+		$this->session->set_userdata($data);
+		$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+		$this->output->set_header("Pragma: no-cache");
+		$this->session->sess_regenerate(TRUE);
+		$this->session->set_userdata($data);
+		$this->session->sess_destroy('userdetails');
+		$this->session->unset_userdata('userdetails');
+		$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+		$this->output->set_header("Pragma: no-cache");
+		$this->session->sess_destroy();	
+		$this->session->unset_userdata('location_area');
+		return redirect(base_url('seller/login'));
 
     }
 
@@ -450,18 +469,17 @@ $result = $you_make - $actual_price;
 	{
 		$post=$this->input->post();
 		//echo '<pre>';print_r($post);exit;
-		if($post['option']==0){
+		if($post['option']==0 && $post['otp']==''){
 		$checkmobile=$this->login_model->verify_mobile($post['mobile_number']);	
-		//echo '<pre>';print_r($checkmobile);exit;
 		if(count($checkmobile)>0){
 			
 				$six_digit_random_number = mt_rand(100000, 999999);
-				$updatepassword=$this->login_model->update_forgotpassword($checkmobile['seller_id'],$six_digit_random_number);
+				$updatepassword=$this->login_model->update_forgotpassword_otp($checkmobile['seller_id'],$six_digit_random_number);
 				$username=$this->config->item('smsusername');
 				$pass=$this->config->item('smspassword');
 					$msg=$six_digit_random_number;
 					$ch = curl_init();
-					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 					curl_setopt($ch, CURLOPT_POST, 1);
 					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$post['mobile_number'].'&text=Your cartinhour Temporary Password is '.$msg.'&priority=ndnd&stype=normal');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -485,12 +503,12 @@ $result = $you_make - $actual_price;
 			echo json_encode($data);
 		}
 			
-		}elseif($post['option']==1){
+		}elseif($post['option']==1 && $post['otp']==''){
 			
 			$checkemail=$this->login_model->verify_email($post['mobile_number']);	
 			if(count($checkemail)>0){
 				$six_digit_random_number = mt_rand(100000, 999999);
-				$updatepassword=$this->login_model->update_forgotpassword($checkemail['seller_id'],$six_digit_random_number);
+				$updatepassword=$this->login_model->update_forgotpassword_otp($checkemail['seller_id'],$six_digit_random_number);
 				
 			//send mail
 				//$this->email->set_mailtype("html");
@@ -507,6 +525,32 @@ $result = $you_make - $actual_price;
 			$data['noemail']=0;
 			echo json_encode($data);
 			}
+		}else if($post['otp']!='' && $post['password']!=''){
+			if($post['option']==1){
+				$checkemail=$this->login_model->verify_email($post['mobile_number']);
+				if($checkemail['verification_otp']==$post['otp']){
+					$updatepass=$this->login_model->set_update_forgotpassword($checkemail['seller_id'],$post['password'],'');
+					$data['pass']=1;
+					echo json_encode($data);
+				}else{
+					$data['pass']=0;
+					echo json_encode($data);
+				}
+				
+			}else if($post['option']==0){
+				$checkmobile=$this->login_model->verify_mobile($post['mobile_number']);
+				if($checkmobile['verification_otp']==$post['otp']){
+					$updatepass=$this->login_model->set_update_forgotpassword($checkmobile['seller_id'],$post['password'],'');
+					$data['pass']=1;
+					echo json_encode($data);
+				}else{
+					$data['pass']=0;
+					echo json_encode($data);
+				}				
+				
+			}
+			
+			
 		}
 		
 

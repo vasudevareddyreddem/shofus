@@ -80,7 +80,7 @@
 		<table id="example<?php echo $subcategory->subcategory_id;?>" class="display" width="100%" cellspacing="0">
         <thead>
             <tr>
-              <th><input type="checkbox" name="select_all" onclick="checkall('<?php echo $subcategory->subcategory_id;  ?>','<?php echo $cnt; ?>');" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
+              <th><input type="checkbox" name="select_all" onclick="checkall<?php echo $subcategory->subcategory_id;?>('<?php echo $subcategory->subcategory_id;  ?>','<?php echo $cnt; ?>');" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
 				</th>
 				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
 				<th>Item Name</th>
@@ -101,7 +101,7 @@
 						
 						?>
 					<tr>
-						<td><input value="<?php echo $item_data->item_id; ?>" type="checkbox" id="cat_id[]" name="cat_id[]" ></td>
+						<td><input value="<?php echo $item_data->item_id; ?>" class="chkdata<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>" type="checkbox" id="cat_id[]" name="cat_id[]" ></td>
 						<td><?php echo $item_data->item_name;?></td>
 						<td><?php echo $item_data->skuid;?></td>
 						<td><?php echo $item_data->special_price;?></td>
@@ -183,13 +183,8 @@
      </form>
 	<script type="text/javascript">
 	$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>').hide();
-	function checkall(id,cnt){
-		
-		var check=document.getElementById("example-select-all"+id).checked;
-		if(check='true'){
-			$('#submit_prog'+id+cnt).show();
-		}
-	}
+	
+
 	
 	function IsMobile<?php echo $subcategory->subcategory_id;?>(reasontype) {
         var regex = /^[0-9]+$/;
@@ -246,11 +241,29 @@
    // Handle click on checkbox
    $('#example<?php echo $subcategory->subcategory_id;?> tbody').on('click', 'input[type="checkbox"]', function(e){
       var $row = $(this).closest('tr');
- 
+ ckbox = document.getElementsByClassName("chkdata<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>");
+count=0;
+for(var i=0;i<ckbox.length;i++){
+ element = ckbox[i];
+  if(element.checked){
+   count++;
+  }
+}
+if(count>0){
+	$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>').show();
+
+	
+}else{
+	$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>').hide();
+
+}
+
+
       // Get row data
       var data = table.row($row).data();
       // Get row ID
       var rowId = data[0];
+	  
 	
 
       // Determine whether row ID is in the list of selected row IDs 
@@ -267,9 +280,13 @@
 
       if(this.checked){
          $row.addClass('selected');
+		 //$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>').show();
       } else {
-         $row.removeClass('selected');
+		  $row.removeClass('selected');
+         //$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>').hide();
       }
+	  //alert($rows());
+	  
 
       // Update state of "Select all" control
       updateDataTableSelectAllCtrl(table);
@@ -290,7 +307,6 @@
       } else {
          $('tbody input[type="checkbox"]:checked', table.table().container()).trigger('click');
       }
-
       // Prevent click event from propagating to parent
       e.stopPropagation();
    });

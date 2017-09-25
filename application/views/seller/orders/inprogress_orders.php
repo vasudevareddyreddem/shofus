@@ -66,7 +66,7 @@
                     <tbody>
                       <tr>
                         <th>Name</th>
-                        <td><?php  echo $orders_data->cust_firstname . $orders_data->cust_lastname;; ?></td>
+                        <td><?php  echo $orders_data->cust_firstname.' '.$orders_data->cust_lastname;; ?></td>
                       </tr>
                       <tr>
                         <th>Mobile</th>
@@ -85,7 +85,7 @@
 				  <td class="text-center" style="color:font-weight:bold">
 			
 				<?php if($orders_data->status_confirmation==1 && $orders_data->status_packing=='' && $orders_data->status_road=='' && $orders_data->status_deliverd==''){
-					echo "Order Confirmation";  
+					echo "Order confirmed ";  
 				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road=='' && $orders_data->status_deliverd==''){
 					  echo "Packing Order";
 				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road==3 && $orders_data->status_deliverd==''){

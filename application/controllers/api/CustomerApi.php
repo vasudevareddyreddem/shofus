@@ -183,6 +183,7 @@ class CustomerApi extends REST_Controller {
 	$qty=$this->input->get('qty');
 	$color=$this->input->get('color');
 	$size=$this->input->get('size');
+	$uksize=$this->input->get('uksize');
 	if($customer_id==''){
 		$message = array('status'=>1,'message'=>'Customer id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -247,6 +248,7 @@ class CustomerApi extends REST_Controller {
 								'create_at'=>date('Y-m-d H:i:s'),
 								'color'=>isset($color)?$color:'',
 								'size'=>isset($size)?$size:'',
+								'uksize'=>isset($uksize)?$uksize:'',
 							);
 							$cart_save= $this->Customerapi_model->cart_products_save($adddata);
 							if(count($cart_save)>0){
@@ -299,6 +301,9 @@ class CustomerApi extends REST_Controller {
 							'seller_id'=>$products['seller_id'],
 							'category_id'=>$products['category_id'],
 							'create_at'=>date('Y-m-d H:i:s'),
+							'color'=>isset($color)?$color:'',
+							'size'=>isset($size)?$size:'',
+							'uksize'=>isset($uksize)?$uksize:'',
 						);
 						$cart_save= $this->Customerapi_model->cart_products_save($adddata);
 						if(count($cart_save)>0){
@@ -618,6 +623,7 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 				$customer_items= $this->Customerapi_model->get_order_items_lists($customer_id);
+				//echo '<pre>';print_r($customer_items);exit;
 
 				foreach ($customer_items as $order_ids){
 					$ids[]=$order_ids['order_item_id'];
@@ -626,7 +632,22 @@ class CustomerApi extends REST_Controller {
 				if(in_array($order_item_id, $ids)){
 					
 					$item_details= $this->Customerapi_model->get_order_items_list($customer_id,$order_item_id);
-					$message = array('status'=>1,'message'=>'order details are found','order details'=>$item_details);
+					if(isset($item_details['category_id']) && $item_details['category_id']==19){
+						if($item_details['category_id']==19 && $item_details['category_id']==53){
+							$color_list= $this->Customerapi_model->get_product_color_details($item_details['item_id']);
+							$uksize_list= $this->Customerapi_model->get_product_uksize_details($item_details['item_id']);
+							$size_list=[];
+						}else{
+							$color_list= $this->Customerapi_model->get_product_color_details($item_details['item_id']);
+							$size_list= $this->Customerapi_model->get_product_size_details($item_details['item_id']);
+							$uksize_list=[];
+						}
+					}
+					
+					
+					
+					//echo '<pre>';print_r($item_details);exit;
+					$message = array('status'=>1,'message'=>'order details are found','order details'=>$item_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uksize_list);
 					$this->response($message,REST_Controller::HTTP_OK);
 				}else{
 					$message = array('status'=>0,'message'=>'You have no permissions');
@@ -884,10 +905,11 @@ class CustomerApi extends REST_Controller {
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 						curl_setopt($ch, CURLOPT_POST, 1);
-						curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=SUCCES&phone="'.$mobile.'"&text="'.$msg.'"&priority=ndnd&stype=normal');
+						curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobile.'&text='.$msg.'&priority=ndnd&stype=normal');
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 						$server_output = curl_exec ($ch);
 						curl_close ($ch);
+					
 						//echo '<pre>';print_r($server_output);exit;
 						$this->Customerapi_model->login_verficationcode_mobile_save($mobile,$forgotpasscheck['customer_id'],$six_digit_random_number);
 						$message = array('status'=>1,'customer_id'=>$forgotpasscheck['customer_id'],'message'=>'Verification code send to your MobileNumber Id.check it once');
@@ -988,8 +1010,9 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 			$customer_details=$this->Customerapi_model->get_customer_details($customer_id);
+			//echo '<pre>';print_r($customer_details);exit;
 			
-			if($customer_details['cust_email]']=='' && $customer_details['cust_email']!=$email){
+			if(isset($customer_details['cust_email]']) && $customer_details['cust_email]']=='' && $customer_details['cust_email']!=$email){
 				$email_check=$this->Customerapi_model->email_check($email);
 				if(count($email_check)>0){
 					$message = array('status'=>0,'message'=>'EmailId Already Exits.please use another Email Id');
@@ -1010,7 +1033,7 @@ class CustomerApi extends REST_Controller {
 
 					$saveprofile = $this->Customerapi_model->save_customer_profile($customer_id,$saveprofile);
 					if(count($saveprofile)>0){
-						$message = array('status'=>1,'customer_id'=>$customer_id,'message'=>'profile successfully Updated');
+						$message = array('status'=>1,'imagepath'=>'http://cartinhour.com/uploads/profile/','customer_id'=>$customer_id,'message'=>'profile successfully Updated');
 						$this->response($message, REST_Controller::HTTP_OK);	
 					}else{
 						$message = array('status'=>0,'message'=>'Technical problem will occurred .Please try again');
@@ -1531,6 +1554,8 @@ class CustomerApi extends REST_Controller {
 	public function homepagetotalproducts_get()
 	{
 		$top_offers = $this->Customerapi_model->top_offers_list();
+		
+		
 		$deals = $this->Customerapi_model->deals_of_the_day_list();
 		$ssales = $this->Customerapi_model->season_sales_list();
 		$treding = $this->Customerapi_model->treding_products_list();
@@ -1921,7 +1946,7 @@ class CustomerApi extends REST_Controller {
 				}
 						
 					$previousdata= $this->Customerapi_model->get_all_previous_search_fields($Ip_address);
-					$message = array('status'=>1,/*'previoussearchdata'=>$previousdata,*/'filtersresult'=>$categorywiseproducrlist,'message'=>'filter search result and previous search data ');
+					$message = array('status'=>1,'filtersresult'=>$categorywiseproducrlist,'message'=>'filter search result and previous search data','previoussearchdata'=>$previousdata);
 					$this->response($message, REST_Controller::HTTP_OK);
 	}
 	public function category_wise_leftside_filters_get(){
@@ -1937,6 +1962,8 @@ class CustomerApi extends REST_Controller {
 					$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
 					$data['minimum_price'] = reset($data['price_list']);
 					$data['maximum_price'] = end($data['price_list']);
+					$iospurpose=array_merge($data['cusine_list'][0],$data['myrestaurant'][0],$data['price_list'][0],array('Instock'=>1,'Out of stock'=>0),array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));
+
 				}else if($category_id==21){
 					$data['brand_list']= $this->Customerapi_model->get_all_brand_list($category_id);
 					$data['price_list']= $this->Customerapi_model->get_all_price_list($category_id);
@@ -1945,6 +1972,8 @@ class CustomerApi extends REST_Controller {
 					$data['offer_list']= $this->Customerapi_model->get_all_offer_list($category_id);
 					$data['minimum_price'] = reset($data['price_list']);
 					$data['maximum_price'] = end($data['price_list']);
+					$iospurpose=array_merge($data['brand_list'][0],$data['price_list'][0],$data['discount_list'][0],array('Instock'=>1,'Out of stock'=>0),$data['offer_list'][0],array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));
+
 				}else if($category_id==20){
 					$data['brand_list']= $this->Customerapi_model->get_all_brand_list($category_id);
 					$data['price_list']= $this->Customerapi_model->get_all_price_list($category_id);
@@ -1954,6 +1983,8 @@ class CustomerApi extends REST_Controller {
 					$data['color_list']= $this->Customerapi_model->get_all_color_list($category_id);
 					$data['minimum_price'] = reset($data['price_list']);
 					$data['maximum_price'] = end($data['price_list']);
+					$iospurpose=array_merge($data['brand_list'][0],$data['price_list'][0],$data['discount_list'][0],array('Instock'=>1,'Out of stock'=>0),$data['offer_list'][0],$data['color_list'][0],array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));
+
 				}else if($category_id==19){
 					$data['brand_list']= $this->Customerapi_model->get_all_brand_list($category_id);
 					$data['price_list']= $this->Customerapi_model->get_all_price_list($category_id);
@@ -1964,6 +1995,8 @@ class CustomerApi extends REST_Controller {
 					$data['sizes_list']= $this->Customerapi_model->get_all_size_list($category_id);
 					$data['minimum_price'] = reset($data['price_list']);
 					$data['maximum_price'] = end($data['price_list']);
+					$iospurpose=array_merge($data['brand_list'][0],$data['price_list'][0],$data['discount_list'][0],array('Instock'=>1,'Out of stock'=>0),$data['offer_list'][0],$data['color_list'][0],$data['sizes_list'][0],array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));
+
 				}else{
 					$data['brand_list']= $this->Customerapi_model->get_all_brand_list($category_id);
 					$data['price_list']= $this->Customerapi_model->get_all_price_list($category_id);
@@ -1972,8 +2005,11 @@ class CustomerApi extends REST_Controller {
 					$data['offer_list']= $this->Customerapi_model->get_all_offer_list($category_id);
 					$data['minimum_price'] = reset($data['price_list']);
 					$data['maximum_price'] = end($data['price_list']);
+					$iospurpose=array_merge($data['brand_list'][0],$data['price_list'][0],$data['discount_list'][0],array('Instock'=>1,'Out of stock'=>0),$data['offer_list'][0],array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));
+
 				}
-				$message = array('status'=>1,'categorywiseleftsidefilters_list'=>$data,'message'=>'filter search result');
+				
+				$message = array('status'=>1,'categorywiseleftsidefilters_list'=>$data,'message'=>'filter search result','iosapppurpose'=>$iospurpose);
 				$this->response($message, REST_Controller::HTTP_OK);
 		}
 		
@@ -1986,6 +2022,7 @@ class CustomerApi extends REST_Controller {
 			$region=$this->input->get('region');
 			$size=$this->input->get('size');
 			$color=$this->input->get('color');
+			$uksize=$this->input->get('uksize');
 			$checking=$this->Customerapi_model->checking_ststus_id($status_id,$order_item_id);
 			if(count($checking)>0){
 			
@@ -2013,6 +2050,7 @@ class CustomerApi extends REST_Controller {
 				$exchangedetails=array(
 						'color'=>isset($color)?$color:'',
 						'size'=>isset($size)?$size:'',
+						'uksize'=>isset($uksize)?$uksize:'',
 						'region'=>isset($region)?$region:'',
 						'status_refund'=>isset($returntype)?$returntype:'',
 						'update_time'=>date('Y-m-d H:i:s A'),
@@ -2094,6 +2132,145 @@ class CustomerApi extends REST_Controller {
 					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 				}
 		}
+		public function overallproducts_list_review_get(){
+			
+			$product_list= $this->Customerapi_model->get_all_products_review_and_reviewcount();
+			if(count($product_list)>0){
+				//echo '<pre>';print_r($product_list);exit;
+				foreach ($product_list as $List){
+				$reviecount=$this->Customerapi_model->get_products_reviews($List['item_id']);
+				$avg=$this->Customerapi_model->product_reviews_avg($List['item_id']);
+				$data[$List['item_id']]=$List;
+				$data[$List['item_id']]['reviewcount']=count($reviecount);
+				$data[$List['item_id']]['avg']=$avg['avg'];
+				}
+				$message = array('status'=>1,'list'=>$data,'message'=>'product review and count list ');
+				$this->response($message, REST_Controller::HTTP_OK);
+			}else{
+				$message = array('status'=>1,'message'=>'NO products review and count list!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			
+		}
+			public function category_filters_list_post(){
+				$category_id=$this->input->get('category_id');
+				$option=$this->input->get('option');
+		
+			if($category_id==''){
+				$message = array('status'=>1,'message'=>'Category id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}if($option==''){
+				$message = array('status'=>1,'message'=>'option is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			if(isset($option) && $option=='cusine_list'){
+				$fliter=$option;
+				$val='cuisine';
+				$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+				if(count($filtersoption_list)>0){
+				foreach ($filtersoption_list as $key=>$list){
+					$ls[]=$list['cusine'];
+					
+				}
+				$data=$ls;
+				}else{
+				$data='';
+				}
+				
+			
+			}elseif(isset($option) && $option=='myrestaurant'){
+				$fliter=$option;
+				$val='restrant';
+				$filtersoption_lists= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+				//echo '<pre>';print_r($filtersoption_lists);exit;
+				if(count($filtersoption_lists)>0){
+				foreach ($filtersoption_lists as $key=>$list){
+					$ls[]=$list['seller_name'];
+					
+				}
+				$data=$ls;
+				}else{
+				$data='';
+				}
+			
+			}else if(isset($option) && $option=='offer_list'){
+				$fliter=$option;
+				$val='offers';
+					$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+					if(count($filtersoption_list)>0){
+						foreach ($filtersoption_list as $key=>$list){
+							$ls[]=$list['offers'];
+					
+						}
+						$data=$ls;
+						}else{
+							$data='';
+							}
+			}else if(isset($option) && $option=='brand_list'){
+				$fliter=$option;
+				$val='brand';
+				$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+					if(count($filtersoption_list)>0){
+						foreach ($filtersoption_list as $key=>$list){
+							$ls[]=$list['brand'];
+					
+						}
+						$data=$ls;
+						}else{
+							$data='';
+							}
+			}else if(isset($option) && $option=='discount_list'){
+				$fliter=$option;
+				$val='discount';
+				$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+					if(count($filtersoption_list)>0){
+						foreach ($filtersoption_list as $key=>$list){
+							$ls[]=$list['discount'];
+					
+						}
+						$data=$ls;
+						}else{
+							$data='';
+							}
+			}else if(isset($option) && $option=='price_list'){
+				$fliter=$option;
+				$val='item_cost';
+				$datails['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+				$data['minimum'] = reset($datails['filtersoption_list']);
+				$data['maximum'] = end($datails['filtersoption_list']);
+			}else if(isset($option) && $option=='color_list'){
+				$fliter=$option;
+				$val='color';
+				$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list_color($category_id,$fliter,$val);
+					if(count($filtersoption_list)>0){
+						foreach ($filtersoption_list as $key=>$list){
+							$ls[]=$list['color_name'];
+					
+						}
+						$data=$ls;
+						}else{
+							$data='';
+							}
+			}else if(isset($option) && $option=='sizes_list'){
+				$fliter=$option;
+				$val='size';
+				$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list_size($category_id,$fliter,$val);
+					if(count($filtersoption_list)>0){
+						foreach ($filtersoption_list as $key=>$list){
+							$ls[]=$list['p_size_name'];
+					
+						}
+						$data=$ls;
+						}else{
+							$data='';
+							}
+			}else if(isset($option) && $option=='avalibility_list'){
+					$data= array('Instock'=>1,'Out of stock'=>0);
+			}
+			$message = array('status'=>1,'list'=>$data,'message'=>'filters options list');
+			$this->response($message, REST_Controller::HTTP_OK);
+				
+			}
 
 
 

@@ -22,31 +22,29 @@ class Home extends Front_Controller {
 public function index()
 
  {
-	$data['locationdata'] = $this->home_model->getlocations();
-		if($this->session->userdata('userdetails')){
-			$customerdetails=$this->session->userdata('userdetails');
-			$details = $this->customer_model->get_profile_details($customerdetails['customer_id']);
-			$location_name=explode(',',$this->session->userdata('location_area'));
-			foreach($location_name as $list){
-				$locationdata= $this->home_model->getlocations_insession(trim($list));
-				$ids[]=$locationdata['location_id'];
-			}
 		
-			$data['topoffers'] = $this->home_model->get_search_top_offers($ids);
-			$data['trending_products'] = $this->home_model->get_search_trending_products($ids);
-			$data['offer_for_you'] = $this->home_model->get_search_offer_for_you($ids);
-			$data['deals_of_the_day'] = $this->home_model->get_search_deals_of_the_day($ids);
-			//echo $this->db->last_query();exit;
-			$data['season_sales'] = $this->home_model->get_search_season_sales($ids);
-			$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
-		}else{
-			$data['topoffers'] = $this->home_model->get_top_offers();
-			$data['trending_products'] = $this->home_model->get_trending_products();
-			$data['offer_for_you'] = $this->home_model->get_offer_for_you();
-			$data['deals_of_the_day'] = $this->home_model->get_deals_of_the_day();
-			$data['season_sales'] = $this->home_model->get_season_sales();
-			$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
+		if($this->session->userdata('seller_id')!=''){
+			redirect('seller/dashboard');
 		}
+	  if($this->session->userdata('userdetails'))
+		{
+		$customerdetails=$this->session->userdata('userdetails');
+		if($customerdetails['role_id']==5){
+			redirect('inventory/dashboard');
+		}else if($customerdetails['role_id']==2){
+			redirect('admin/dashboard');
+		}else if($customerdetails['role_id']==6){
+			redirect('deliveryboy/dashboard');
+		}
+	 }
+		
+	$data['topoffers'] = $this->home_model->get_top_offers();
+	$data['trending_products'] = $this->home_model->get_trending_products();
+	$data['offer_for_you'] = $this->home_model->get_offer_for_you();
+	$data['deals_of_the_day'] = $this->home_model->get_deals_of_the_day();
+	$data['season_sales'] = $this->home_model->get_season_sales();
+	$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
+		
 	
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	$cartitemids= $this->category_model->get_all_cart_lists_ids();
@@ -106,8 +104,20 @@ public function search_location_offers()
 	$data['offer_for_you'] = $this->home_model->get_search_offer_for_you($postvalue['area']);
 	$data['deals_of_the_day'] = $this->home_model->get_search_deals_of_the_day($postvalue['area']);
 	$data['season_sales'] = $this->home_model->get_search_season_sales($postvalue['area']);
-	
-		$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}
+	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	foreach ($wishlist_ids as  $list){
 		$customer_ids_list[]=$list['cust_id'];
 		$whishlist_item_ids_list[]=$list['item_id'];

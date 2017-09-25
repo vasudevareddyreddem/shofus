@@ -35,7 +35,7 @@
 </section>
 
 <div class="clearfix"></div>
-<div class="sm_hide" style=" height:43em;"></div>
+<div class="sm_hide" style=" height:48em;"></div>
 <img class="img-responsive md_hide"  src="<?php echo base_url();?>assets/seller_login/images/pacban1.png " />
 <section>
   <div class="container" >

@@ -1,7 +1,36 @@
 <body >
 <div class="container">
 		<div class="row">
-	
+			 <div class="col-md-8 col-md-offset-4">
+            <div class="well well-sm" style="background:#fff;">
+                <div class="row">
+				<div style="position:absolute;top:20px;right:50px">
+					<span class="glyphicon glyphicon-trash tras_col" ></span>
+				</div>
+                    <div class="col-xs-3 col-md-3 text-center">
+                        <img src="https://rukminim1.flixcart.com/image/312/312/j110uq80/stuffed-toy/d/9/v/big-jumbo-pink-3-feet-teddy-bear-soft-toy-with-heart-for-love-original-imaesdyyzh6ywe6u.jpeg?q=70" alt="bootsnipp"
+                            class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-xs-9 col-md-9 section-box">
+                        <div  class="pull-left whish_head">
+                            Jumbo Pink 3 feet Teddy bear Soft toy </div>
+							<div class="clearfix">&nbsp;</div><brs>
+							<div>
+								<span style="font-size:20px;font-weight:500">₹944</span> &nbsp;&nbsp;
+								<span class="price-old"style="font-size:16px;color:#bbb">₹944</span>&nbsp;&nbsp;
+								<span class="site_col" style="font-size:18px;">55% off</span>&nbsp;&nbsp;
+							</div>
+                        
+                    </div>
+					
+				
+                </div>
+				
+            </div>
+        </div>
+		</div>
+		<div class="row">
+			
 		
 			<section>
        

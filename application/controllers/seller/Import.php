@@ -387,7 +387,7 @@ class Import extends Admin_Controller {
 											}
 											if(count($data['errors'])<=0){
 													foreach($totalfields as $data){
-														$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+														$path='/home/cartinhour/public_html/uploads/products/';
 														//echo '<pre>';print_r($data);exit;
 															$image_link = $data[18];
 															$split_image = pathinfo($image_link);
@@ -896,7 +896,7 @@ class Import extends Admin_Controller {
 											}
 											if(count($data['errors'])<=0){
 													foreach($totalfields as $data){
-														$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+														$path='/home/cartinhour/public_html/uploads/products/';
 														//echo '<pre>';print_r($data);exit;
 															$image_link = $data[18];
 															$split_image = pathinfo($image_link);
@@ -1145,7 +1145,7 @@ class Import extends Admin_Controller {
 																		}
 																	}
 																	if($fields[5]>=$fields[4]){
-																		$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																		$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																		$error=1;	
 																	}
 																	if(isset($data[6])&& $data[6]!=''){
@@ -1410,7 +1410,7 @@ class Import extends Admin_Controller {
 												}
 												if(count($data['errors'])<=0){
 														foreach($totalfields as $data){
-															$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+															$path='/home/cartinhour/public_html/uploads/products/';
 															//echo '<pre>';print_r($data);exit;
 																$image_link = $data[18];
 																$split_image = pathinfo($image_link);
@@ -1649,7 +1649,7 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		if($fields[5]>=$fields[4]){
-																			$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																			$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																			$error=1;	
 																		}
 																		if(isset($data[6])&& $data[6]!=''){
@@ -1925,7 +1925,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[19];
 																	$split_image = pathinfo($image_link);
@@ -2164,7 +2164,7 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		if($fields[5]>=$fields[4]){
-																			$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																			$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																			$error=1;	
 																		}
 																		if(isset($fields[6])&& $fields[6]!=''){
@@ -2481,7 +2481,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[23];
 																	$split_image = pathinfo($image_link);
@@ -2739,7 +2739,7 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		if($fields[5]>=$fields[4]){
-																			$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																			$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																			$error=1;	
 																		}
 
@@ -3086,7 +3086,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[27];
 																	$split_image = pathinfo($image_link);
@@ -3334,7 +3334,7 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		if($fields[5]>=$fields[4]){
-																		$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																		$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																		$error=1;	
 																		}
 																		if(isset($fields[6]) && $fields[6]!=''){
@@ -3662,7 +3662,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[25];
 																	$split_image = pathinfo($image_link);
@@ -3907,7 +3907,7 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		if($fields[5]>=$fields[4]){
-																			$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																			$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																			$error=1;	
 																		}
 																		if(isset($fields[6]) && $fields[6]!=''){
@@ -4289,7 +4289,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[31];
 																	$split_image = pathinfo($image_link);
@@ -4541,7 +4541,7 @@ class Import extends Admin_Controller {
 																			}
 																		}
 																		if($fields[5]>=$fields[4]){
-																			$data['errors'][]="speacial price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
+																			$data['errors'][]="special price must be between 1 and".$fields[4].". Row Id is :  ".$key.'<br>';
 																			$error=1;	
 																		}
 																		if(isset($fields[6]) && $fields[6]!=''){
@@ -4932,7 +4932,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[34];
 																	$split_image = pathinfo($image_link);
@@ -5463,7 +5463,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[18];
 																	$split_image = pathinfo($image_link);
@@ -5995,7 +5995,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[20];
 																	$split_image = pathinfo($image_link);
@@ -6573,7 +6573,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[22];
 																	$split_image = pathinfo($image_link);
@@ -7099,7 +7099,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[19];
 																	$split_image = pathinfo($image_link);
@@ -7665,7 +7665,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[23];
 																	$split_image = pathinfo($image_link);
@@ -8257,7 +8257,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[21];
 																	$split_image = pathinfo($image_link);
@@ -8858,7 +8858,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[22];
 																	$split_image = pathinfo($image_link);
@@ -9437,7 +9437,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[21];
 																	$split_image = pathinfo($image_link);
@@ -9988,7 +9988,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[20];
 																	$split_image = pathinfo($image_link);
@@ -10586,7 +10586,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[23];
 																	$split_image = pathinfo($image_link);
@@ -11169,7 +11169,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[24];
 																	$split_image = pathinfo($image_link);
@@ -11729,7 +11729,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[20];
 																	$split_image = pathinfo($image_link);
@@ -12292,7 +12292,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[21];
 																	$split_image = pathinfo($image_link);
@@ -12883,7 +12883,7 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path='/home/cartinhour/public_html/uploads/products/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[21];
 																	$split_image = pathinfo($image_link);

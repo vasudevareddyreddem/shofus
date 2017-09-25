@@ -88,7 +88,7 @@
 		</div >
 	</div>
 	
-	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data" >
+	<form onsubmit="return validateForm()" name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/insert/'); ?>" method="post" enctype="multipart/form-data" >
 	<div class="row">
 			<span id="errormsg"></span>
 			<div class="form-group col-md-6 nopaddingRight san-lg">
@@ -173,9 +173,11 @@
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Special price</label>
-					<input type="text" class="form-control" id="specialprice" name="specialprice" >
+					<input onkeyup="enablesubbmit();" type="text" class="form-control" id="specialprice" name="specialprice" >
 				</div>
+				<span style="color:red;" id="errormsgvalidation"></span>
 			</div>
+			
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Qty</label>
@@ -708,7 +710,7 @@
 			</div>
 	</div>
 		<div >
-		<button type="submit" name="buttonSubmit" class="btn btn-primary" >Submit</button>
+		<button type="submit" id="keysubtton" name="buttonSubmit" class="btn btn-primary" >Submit</button>
 		<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/products'); ?>">Cancel</a>
 		</div>
 </div>
@@ -720,7 +722,24 @@
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
    <script type="text/javascript">
+	    function validateForm(){
+		   var price=document.getElementById('product_price').value;
+		   var specialprice=document.getElementById('specialprice').value;
+		   if(specialprice>price){
+			  $('#errormsgvalidation').html('special price must be less than price');
+			  return false;
+		   }else{
+			  return true;
+		   }
+		  // return false;
+	   }
 	   
+	   function enablesubbmit(){
+		   document.getElementById('keysubtton').disabled = false;
+		  $('#errormsgvalidation').html('');
+		  
+		   
+	   }
    function addrequestsubcategory(){
 	   var catid=document.getElementById('category_id').value;
 	   if(catid==''){
@@ -1269,10 +1288,13 @@ function getspecialinputs(ids){
 			},
 			specialprice: {
 					validators: {
+						notEmpty: {
+						message: 'Special Price is required'
+					},
                     between: {
                             min: 1,
                             max: 'product_price',
-                            message: 'speacial price must be between %s and %s'
+                            message: 'Special price must be less than or equal to price'
                         }
                 }
 			},
@@ -1334,7 +1356,7 @@ function getspecialinputs(ids){
 					},
 					regexp: {
 					regexp: /^[0-9]+$/,
-					message: 'Qty can only consist of digits'
+					message: 'Qty must be in digits'
 					}
 				}
 			},

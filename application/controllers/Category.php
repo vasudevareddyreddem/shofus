@@ -795,6 +795,7 @@ class Category extends Front_Controller
 	 
 	$post=$this->input->post();
 	$subcategory_porduct_list= $this->category_model->get_search_all_subcategorywise_products();
+	
 	//echo '<pre>';print_r($subcategory_porduct_list);exit;
 	//echo count($subcategory_porduct_list['mini_amount']);exit;
 	$data['cat_subcat_ids']= $this->category_model->get_search_all_subcategory_id();
@@ -811,23 +812,25 @@ class Category extends Front_Controller
 						}
 					}
 					//echo '<pre>';print_r($idslist);exit;
-		$result = array_unique($idslist);
-		
-	//echo '<pre>';print_r($result);exit;
-	foreach ($result as $pids){
-		$products_list[]=$this->category_model->get_product_details($pids);
+					if(isset($idslist) && count($idslist)>0){
+							$result = array_unique($idslist);
+							//echo '<pre>';print_r($result);exit;
+							foreach ($result as $pids){
+								$products_list[]=$this->category_model->get_product_details($pids);
+							}
+								$data['subcategory_porduct_list']=$products_list;
+							foreach($data['subcategory_porduct_list'] as $list){
+								//echo '<pre>';print_r($list);
+								$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+								$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+							}
 
-	}
-	$data['subcategory_porduct_list']=$products_list;
-	foreach($data['subcategory_porduct_list'] as $list){
-			//echo '<pre>';print_r($list);
-			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
-			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
-			
-		}
-	
-	$data['avg_count']=$reviewrating;
-	$data['rating_count']=$reviewcount;
+							$data['avg_count']=$reviewrating;
+							$data['rating_count']=$reviewcount;
+
+					}else{
+						$data['subcategory_porduct_list']=array();
+					}
 	
 	$data['previousdata']= $this->category_model->get_all_previous_search_subcategory_fields();
 	$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
@@ -992,6 +995,19 @@ class Category extends Front_Controller
 			}
 
 				
+		
+	}
+	$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
 		
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
@@ -1277,6 +1293,7 @@ function filtersearch(){
 	}
 	$post=$this->input->post();
 	$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products_list($post['subcategoryid']);
+	//echo '<pre>';print_r($data['subcategory_porduct_list']);exit;
 	foreach($data['subcategory_porduct_list'] as $list){
 			//echo '<pre>';print_r($list);
 			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
@@ -1490,6 +1507,8 @@ function filtersearch(){
  public function subcategoryview(){
 	 
 	
+	$data['quick']=base64_decode($this->uri->segment(4));
+	$data['subcatid']=base64_decode($this->uri->segment(5));
 	//echo '<pre>';print_r($wishlist_ids);exit;
 	$removesearch= $this->category_model->get_all_previous_search_fields();
 	foreach ($removesearch as $list){
@@ -1499,9 +1518,17 @@ function filtersearch(){
 	$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
 	$data['category_name']= $this->category_model->get_category_name($caterory_id);
 	$sid=$this->uri->segment(4);
-	if($sid!=''){
+	if($sid!='' && is_int($sid)){
 		//echo base64_decode($this->uri->segment(4));
 		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,base64_decode($sid));
+		foreach($data['subcategory_porduct_list'] as $list){
+			//echo '<pre>';print_r($list);
+			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+			
+		}
+	}else if(isset($data['subcatid']) && $data['subcatid']!=''){
+		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,'');
 		foreach($data['subcategory_porduct_list'] as $list){
 			//echo '<pre>';print_r($list);
 			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
@@ -1517,9 +1544,12 @@ function filtersearch(){
 			
 		}
 	}
-	$data['avg_count']=$reviewrating;
-	$data['rating_count']=$reviewcount;
-
+	if(isset($reviewrating) && count($reviewrating)>0){
+		$data['avg_count']=$reviewrating;
+	}
+	if(isset($reviewcount) && count($reviewcount)>0){
+		$data['rating_count']=$reviewcount;
+	}
 	$data['category_id']=$this->uri->segment(3);
 	if($caterory_id==18){
 		$data['cusine_list']= $this->category_model->get_all_cusine_list($caterory_id);
@@ -1646,9 +1676,13 @@ function filtersearch(){
 	$data['products_reviews']= $this->category_model->get_products_reviews($pid);
 	$data['products_specufucation']= $this->category_model->get_products_specifications_list($pid);
 	$data['sizes_list']= $this->category_model->get_products_sizes_list($pid);
+	$data['uksizes_list']= $this->category_model->get_products_uksizes_list($pid);
 	$data['colors_list']= $this->category_model->get_products_colos_list($pid);
 	$data['colorcnt']= count($data['colors_list']);
 	$data['sizecnt']= count($data['sizes_list']);
+	$data['uksizecnt']= count($data['uksizes_list']);
+	$data['bothsizecnt']= count($data['sizes_list'])+ count($data['uksizes_list']);
+
 	//echo '<pre>';print_r($data);exit;
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	if(count($wishlist_ids)>0){

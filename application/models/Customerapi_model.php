@@ -117,40 +117,40 @@ class Customerapi_model extends MY_Model
 
 	public function top_offers_list()
 	{
-		//$date = new DateTime("now");
- 		//$curr_date = $date->format('Y-m-d');
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('top_offers.*,products.*')->from('top_offers');
 		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
 		$this->db->join('item_wishlist', 'item_wishlist.item_id = top_offers.item_id', 'left');
 		$this->db->order_by('top_offers.offer_percentage desc');
 		$this->db->where('top_offers.preview_ok',1);
-		//$this->db->where('top_offers.expairdate >=', $curr_date);
+		$this->db->where('top_offers.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
 
 	}
 
 	public function deals_of_the_day_list()
 	{
-		//$date = new DateTime("now");
- 		//$curr_date = $date->format('Y-m-d');
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('deals_ofthe_day.*,products.*')->from('deals_ofthe_day');
 		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
         $this->db->where('admin_status','0');
 		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
 		$this->db->where('deals_ofthe_day.preview_ok',1);
-		//$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
+		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
 	}
 	public function season_sales_list()
 	{
-		//$date = new DateTime("now");
- 		//$curr_date = $date->format('Y-m-d');
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('season_sales.*,products.*')->from('season_sales');
 		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
         $this->db->where('admin_status','0');
 		$this->db->order_by('season_sales.offer_percentage desc');
 		$this->db->where('season_sales.preview_ok',1);
-		//$this->db->where('season_sales.expairdate >=', $curr_date);
+		$this->db->where('season_sales.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
 	}
 	public function treding_products_list()
@@ -256,61 +256,49 @@ class Customerapi_model extends MY_Model
 
 	/* location querys*/
 	public function top_offers_product_search($location_id){
-		//$date = new DateTime("now");
- 		//$curr_date = $date->format('Y-m-d');
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('products.*,top_offers.*')->from('products');
 		$this->db->join('top_offers', 'top_offers.item_id = products.item_id', 'left');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
 		$this->db->where('top_offers.preview_ok',1);
-		//$this->db->where('top_offers.expairdate >=', $curr_date);
+		$this->db->where('top_offers.expairdate >=', $curr_date);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
 	}
 	
 	public function deals_of_the_day_product_search($location_id){
-		// $date = new DateTime("now");
- 	// 	$curr_date = $date->format('Y-m-d');
-		// $this->db->select('products.*,deals_ofthe_day.*')->from('products');
-		// $this->db->join('deals_ofthe_day', 'deals_ofthe_day.item_id = products.item_id', 'left');
-		// $this->db->where_in('deals_ofthe_day.area',$location_id);
-		// $this->db->where('admin_status','0');
-		// $this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
-		// $this->db->order_by('products.offer_percentage desc');
-		// return $this->db->get()->result_array();
-		//$date = new DateTime("now");
- 		//$curr_date = $date->format('Y-m-d');
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('products.*,deals_ofthe_day.*')->from('products');
 		$this->db->join('deals_ofthe_day', 'deals_ofthe_day.item_id = products.item_id', 'left');
-		//$this->db->join('top_offers', 'top_offers.area = products.item_id', 'left');
-		//$this->db->join('reviews', 'reviews.item_id = top_offers.item_id', 'left');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
 		$this->db->where('deals_ofthe_day.preview_ok',1);
-		//$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
+		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
 	}
 	
 	public function season_sales_product_search($location_id){
-		//$date = new DateTime("now");
- 		//$curr_date = $date->format('Y-m-d');
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('products.*,season_sales.*')->from('products');
 		$this->db->join('season_sales', 'season_sales.item_id = products.item_id', 'left');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
 		$this->db->where('season_sales.preview_ok',1);
-		//$this->db->where('season_sales.expairdate >=', $curr_date);
+		$this->db->where('season_sales.expairdate >=', $curr_date);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
 	}
 	
 	public function treanding_product_search($location_id){
-		//$date = new DateTime("now");
- 		//$curr_date = $date->format('Y-m-d');
+	
 		$this->db->select('products.*')->from('products');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->order_by('products.offer_percentage desc');
@@ -318,9 +306,7 @@ class Customerapi_model extends MY_Model
 	}
 	
 	public function offers_for_you_product_search($location_id){
-		//$date = new DateTime("now");
- 		//$curr_date = $date->format('Y-m-d');
-		$this->db->select('products.*')->from('products');
+	$this->db->select('products.*')->from('products');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
@@ -440,7 +426,7 @@ class Customerapi_model extends MY_Model
 		return $this->db->get()->row_array();
 	}
 	public function get_order_items_list($custid,$order_id){
-			$this->db->select('order_items.*,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,order_status.status_id,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name')->from('order_items');
+			$this->db->select('order_items.*,products.category_id,products.subcategory_id,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,order_status.status_id,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name')->from('order_items');
 			$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 			$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
 			$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
@@ -2136,6 +2122,69 @@ class Customerapi_model extends MY_Model
 			$this->db->where('category_id', $catid);
 			$this->db->where('item_status',1);
 			return $this->db->get()->result_array();
+		 
+	 }
+	 public function get_all_products_review_and_reviewcount(){
+		 
+			$this->db->select('products.item_id')->from('products');
+			$this->db->where('item_status',1);
+			return $this->db->get()->result_array();
+	}
+	 public function product_reviews_avg($item){
+		 
+		$sql = "SELECT AVG(rating) as avg FROM ratings WHERE item_id ='".$item."'";
+		return $this->db->query($sql)->row_array();	
+		 
+	 }
+	 public function get_all_filters_product_list($catid,$fliter,$val)
+	{
+	
+	if($val=='cuisine'){
+		$this->db->select('products.cusine')->from('products');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left'); 
+		$this->db->group_by('products.cusine');
+	}else if($val=='restrant'){
+		$this->db->select('sellers.seller_name')->from('products');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
+		$this->db->group_by('products.seller_id');
+	}else if($val=='offers'){
+		$this->db->select('products.offers')->from('products');
+		$this->db->group_by('products.offers');
+	}else if($val=='brand'){
+		$this->db->select('products.brand')->from('products');
+		$this->db->group_by('products.brand');
+	}else if($val=='discount'){
+		$this->db->select('products.discount')->from('products');
+		$this->db->group_by('products.discount');
+	}else if($val=='item_cost'){
+		$this->db->select('products.item_cost')->from('products');
+		$this->db->group_by('products.item_cost');
+	}
+	$this->db->where('category_id', $catid);
+	$this->db->where('item_status',1);
+	return $this->db->get()->result_array();
+	
+		
+	}
+	 public function get_all_filters_product_list_color($catid,$fliter,$val){
+		 
+			$this->db->select('product_color_list.color_name')->from('products');
+			$this->db->join('product_color_list', 'product_color_list.item_id = products.item_id', 'left');
+			$this->db->group_by('product_color_list.color_name');
+			$this->db->where('products.category_id', $catid);
+			$this->db->where('products.item_status',1);
+			return $this->db->get()->result_array(); 
+		 
+	 }
+	 public function get_all_filters_product_list_size($catid,$fliter,$val){
+		 
+			$this->db->select('product_size_list.p_size_name')->from('products');
+			$this->db->join('product_size_list', 'product_size_list.item_id = products.item_id', 'left');
+			$this->db->group_by('product_size_list.p_size_name');
+			$this->db->where('products.category_id', $catid);
+			$this->db->where('products.item_status',1);
+			return $this->db->get()->result_array(); 
 		 
 	 }
 	

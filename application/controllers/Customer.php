@@ -21,10 +21,11 @@ class Customer extends Front_Controller
 
   public function locationsearch(){
 		$post=$this->input->post();
+			if(count($post['locationarea'])==0){
+			redirect('');
+		}
 		
 		$locationdata= $this->home_model->getlocations();
-		
-		//echo '<pre>';print_r($post);exit;
 		$loacationname=array();
 		foreach ($locationdata as $list){
 			if (in_array($list['location_id'], $post['locationarea'])) {
@@ -209,7 +210,14 @@ class Customer extends Front_Controller
 							$delivery_charges=0;
 						}
 					}
-		
+		if($products['subcategory_id']==53){
+			$uksize=$post['sizevalue'];
+			$size='';
+			
+		}else{
+			$uksize='';
+			$size=$post['sizevalue'];
+		}
 		
 		$adddata=array(
 		'cust_id'=>$customerdetails['customer_id'],
@@ -222,7 +230,8 @@ class Customer extends Front_Controller
 		'delivery_amount'=>$delivery_charges,
 		'seller_id'=>$products['seller_id'],
 		'color'=>isset($post['colorvalue'])?$post['colorvalue']:'',
-		'size'=>isset($post['sizevalue'])?$post['sizevalue']:'',
+		'size'=>isset($size)?$size:'',
+		'uksize'=>isset($uksize)?$uksize:'',
 		'category_id'=>$products['category_id'],
 		'create_at'=>date('Y-m-d H:i:s'),
 		);
@@ -310,6 +319,7 @@ class Customer extends Front_Controller
 						}
 					}
 		
+		
 		$adddata=array(
 		'cust_id'=>$customerdetails['customer_id'],
 		'item_id'=>$post['producr_id'],
@@ -321,7 +331,8 @@ class Customer extends Front_Controller
 		'delivery_amount'=>$delivery_charges,
 		'seller_id'=>$products['seller_id'],
 		'color'=>isset($post['colorvalue'])?$post['colorvalue']:'',
-		'size'=>isset($post['sizevalue'])?$post['sizevalue']:'',
+		'size'=>isset($size)?$size:'',
+		'uksize'=>isset($uksize)?$uksize:'',
 		'category_id'=>$products['category_id'],
 		'create_at'=>date('Y-m-d H:i:s'),
 		);
@@ -336,6 +347,7 @@ class Customer extends Front_Controller
 					$delete= $this->customer_model->delete_cart_items($customerdetails['customer_id'],$post['producr_id']);
 					$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 					if(count($delete)>0){
+						$this->session->set_flashdata('productsuccess','Product Successfully removed to the cart');
 						$data['msg']=2;
 						$data['count']=count($countlist);							
 						echo json_encode($data);
@@ -347,6 +359,7 @@ class Customer extends Front_Controller
 					$save= $this->customer_model->cart_products_save($adddata);
 					$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 					if(count($save)>0){
+						$this->session->set_flashdata('productsuccess','Product Successfully added to the cart');
 						$data['msg']=1;	
 						$data['count']=count($countlist);	
 						echo json_encode($data);
@@ -828,6 +841,7 @@ class Customer extends Front_Controller
 						'order_status'=>1,
 						'color'=>$items['color'],
 						'size'=>$items['size'],
+						'uksize'=>$items['uksize'],
 						'create_at'=>date('Y-m-d H:i:s'),
 					);
 					//echo '<pre>';print_r($orderitems);exit;
@@ -981,15 +995,24 @@ class Customer extends Front_Controller
 						}
 						if(in_array($order_id, $ids)){
 							$data['order_status_details']= $this->customer_model->get_order_items_refund_list($order_id);
-							$data['color_list']= $this->customer_model->get_color_lists($data['order_status_details']['item_id']);
-							$data['size_list']= $this->customer_model->get_sizes_lists($data['order_status_details']['item_id']);
+							//echo '<pre>';print_r($data['order_status_details']);
+							if($data['order_status_details']['category_id']==19){
+								if($data['order_status_details']['subcategory_id']==53){
+									$data['color_list']= $this->customer_model->get_color_lists($data['order_status_details']['item_id']);
+									$data['uksize_list']= $this->customer_model->get_uksizes_lists($data['order_status_details']['item_id']);
+									$data['size_list']=array();
+								}else{
+									$data['color_list']= $this->customer_model->get_color_lists($data['order_status_details']['item_id']);
+									$data['size_list']= $this->customer_model->get_sizes_lists($data['order_status_details']['item_id']);
+									$data['uksize_list']=array();
+								}
+							}
 							$data['product_details']= $this->customer_model->get_product_details_for_subcats($data['order_status_details']['item_id']);
-							//echo '<pre>';print_r($data);exit;
 							$this->template->write_view('content', 'customer/orderrefund',$data);
 							$this->template->render();
 						}else{
 							$this->session->set_flashdata('permissionerror','you have no permissions to access this floder');
-							 redirect('customer/orders');
+							redirect('customer/orders');
 						}
 			}else{
 					$this->session->set_flashdata('permissionerror','you have no permissions to access this floder');
@@ -1005,6 +1028,12 @@ class Customer extends Front_Controller
  }
  public function addwhishlist(){
 	 
+	 if($this->session->userdata('userdetails')=='')
+	 {
+		$post=$this->input->post();
+		$post['wish']=1;
+		$this->session->set_userdata('beforewishlist',$post);
+	 }
 	
 	if($this->session->userdata('userdetails'))
 	 {
@@ -1058,6 +1087,8 @@ class Customer extends Front_Controller
  }
  public function index(){
 	
+		
+	 //echo $this->uri->segment(1);exit;
 	 $redirection_url=$this->agent->referrer();
 	 $this->session->set_userdata('redirect_urls',$redirection_url);
 		$test=$this->session->userdata('userdetails');
@@ -1085,6 +1116,7 @@ class Customer extends Front_Controller
 	
 	$post=$this->input->post();
 	$adddata=$this->session->userdata('beforecart');
+	$adddwish=$this->session->userdata('beforewishlist');
 	$emailcheck = $this->customer_model->email_check($post['email']);
 	$mobilecheck = $this->customer_model->mobile_check($post['mobile']);
 	//echo '<pre>';print_r($mobilecheck);
@@ -1154,7 +1186,13 @@ class Customer extends Front_Controller
 										$delivery_charges=0;
 									}
 								}
-					
+					if($products['subcategory_id']==53){
+							$uksize=$adddata['sizevalue'];
+							$size='';
+						}else{
+							$uksize='';
+							$size=$adddata['sizevalue'];
+						}
 					
 					$adddata=array(
 					'cust_id'=>$customerdetails['customer_id'],
@@ -1167,7 +1205,8 @@ class Customer extends Front_Controller
 					'delivery_amount'=>$delivery_charges,
 					'seller_id'=>$products['seller_id'],
 					'color'=>isset($adddata['colorvalue'])?$adddata['colorvalue']:'',
-					'size'=>isset($adddata['sizevalue'])?$adddata['sizevalue']:'',
+					'uksize'=>isset($uksize)?$uksize:'',
+					'size'=>isset($size)?$size:'',
 					'category_id'=>$products['category_id'],
 					'create_at'=>date('Y-m-d H:i:s'),
 					);
@@ -1200,6 +1239,44 @@ class Customer extends Front_Controller
 					}
 			
 			
+					}else if(isset($adddwish) && $adddwish!=''){
+						//echo '<pre>';print_r($adddwish);exit;
+						$customerdetails=$this->session->userdata('userdetails');
+							$detailsa=array(
+							'cust_id'=>$customerdetails['customer_id'],
+							'item_id'=>$adddwish['item_id'],
+							'create_at'=>date('Y-m-d H:i:s'),
+							'yes'=>1,
+							);
+							$whishlist = $this->customer_model->get_whishlist_list($customerdetails['customer_id']);
+							if(count($whishlist)>0){
+									foreach($whishlist as $lists) { 
+												
+													$itemsids[]=$lists['item_id'];
+									}
+								if(in_array($adddwish['item_id'],$itemsids)){
+									$removewhislish=$this->customer_model->remove_whishlist($customerdetails['customer_id'],$adddwish['item_id']);
+									if(count($removewhislish)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully Removed to Whishlist');
+									redirect('customer/wishlist');
+									}
+								
+								}else{
+									$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+									if(count($addwhishlist)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully added to Whishlist');
+									redirect('customer/wishlist');
+									}
+								}
+								
+							}else{
+								$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+									if(count($addwhishlist)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully added to Whishlist');
+									redirect('customer/wishlist');
+									}
+								
+							}
 					}else{
 						$this->session->set_flashdata('sucesss',"Successfully Login");
 						redirect('');
@@ -1236,12 +1313,19 @@ class Customer extends Front_Controller
 	$post=$this->input->post();
 	$uridata=$this->session->userdata('redirect_urls');
 	$adddata=$this->session->userdata('beforecart');
-	//echo '<pre>';print_r($adddata);exit;
+	$adddwish=$this->session->userdata('beforewishlist');
+	//echo '<pre>';print_r($uridata);exit;
 	$uri_path = parse_url($uridata, PHP_URL_PATH);
 	$uri_segments = explode('/', $uri_path);
-	if($uri_segments[3]=='resetpassword' || $uri_segments[2]=='resetpassword'){
+
+	
+	if(isset($uri_segments[3]) && $uri_segments[3]=='resetpassword' || isset( $uri_segments[2]) && $uri_segments[2]=='resetpassword'){
 		$session_url='';
-	}else if($uri_segments[3]=='forgotpassword' || $uri_segments[2]=='forgotpassword'){
+	}else if(isset($uri_segments[3])  && $uri_segments[3] =='forgotpassword' || isset( $uri_segments[2]) && $uri_segments[2]=='forgotpassword'){
+		$session_url='';
+	}else if(isset($uri_segments[3])  && $uri_segments[3] =='locationsearch' || isset( $uri_segments[2]) && $uri_segments[2]=='locationsearch'){
+		$session_url='';
+	}else if(isset($uridata)  && $uridata =='https://www.facebook.com/' || isset( $uridata) && $uridata=='https://in.linkedin.com/'){
 		$session_url='';
 	}else{
 		$session_url=$this->session->userdata('redirect_urls');
@@ -1349,7 +1433,13 @@ class Customer extends Front_Controller
 									}
 								}
 					
-					
+						if($products['subcategory_id']==53){
+							$uksize=$post['sizevalue'];
+							$size='';
+						}else{
+							$uksize='';
+							$size=$post['sizevalue'];
+						}
 					$adddata=array(
 					'cust_id'=>$customerdetails['customer_id'],
 					'item_id'=>$adddata['producr_id'],
@@ -1361,7 +1451,8 @@ class Customer extends Front_Controller
 					'delivery_amount'=>$delivery_charges,
 					'seller_id'=>$products['seller_id'],
 					'color'=>isset($adddata['colorvalue'])?$adddata['colorvalue']:'',
-					'size'=>isset($adddata['sizevalue'])?$adddata['sizevalue']:'',
+					'size'=>isset($size)?$size:'',
+					'uksize'=>isset($uksize)?$uksize:'',
 					'category_id'=>$products['category_id'],
 					'create_at'=>date('Y-m-d H:i:s'),
 					);
@@ -1394,6 +1485,44 @@ class Customer extends Front_Controller
 					}
 			/*addtocartfunctionality*/
 			
+					}else if(isset($adddwish) && $adddwish!=''){
+						//echo '<pre>';print_r($adddwish);exit;
+						$customerdetails=$this->session->userdata('userdetails');
+							$detailsa=array(
+							'cust_id'=>$customerdetails['customer_id'],
+							'item_id'=>$adddwish['item_id'],
+							'create_at'=>date('Y-m-d H:i:s'),
+							'yes'=>1,
+							);
+							$whishlist = $this->customer_model->get_whishlist_list($customerdetails['customer_id']);
+							if(count($whishlist)>0){
+									foreach($whishlist as $lists) { 
+												
+													$itemsids[]=$lists['item_id'];
+									}
+								if(in_array($adddwish['item_id'],$itemsids)){
+									$removewhislish=$this->customer_model->remove_whishlist($customerdetails['customer_id'],$adddwish['item_id']);
+									if(count($removewhislish)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully Removed to Whishlist');
+									redirect('customer/wishlist');
+									}
+								
+								}else{
+									$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+									if(count($addwhishlist)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully added to Whishlist');
+									redirect('customer/wishlist');
+									}
+								}
+								
+							}else{
+								$addwhishlist = $this->customer_model->add_whishlist($detailsa);
+									if(count($addwhishlist)>0){
+									$this->session->set_flashdata('productsuccess','Product Successfully added to Whishlist');
+									redirect('customer/wishlist');
+									}
+								
+							}
 					}else{
 						$this->session->set_flashdata('sucesss',"Successfully Login");
 						redirect($session_url);
@@ -1613,6 +1742,8 @@ class Customer extends Front_Controller
  
 	public function logout(){
 		
+		$data = array('admin_id'=> '','admin_name' => '','user_email' => '','seller_id'  => '','seller_name' => '','seller_email' => '','loggedin'  => FALSE);
+		$this->session->set_userdata($data);
 		$userinfo = $this->session->userdata('userdetails');
 		$beforecart =$this->session->userdata('beforecart');
 		$this->session->userdata('location_area');
@@ -1780,7 +1911,6 @@ class Customer extends Front_Controller
 	{
 		
 		$post=$this->input->post();
-		//echo '<pre>';print_r($post);exit;
 		if(isset($post['refund_type']) && $post['refund_type']==1){
 				$refundtype='Refund';
 		}else if(isset($post['refund_type']) && $post['refund_type']==2){
@@ -1813,13 +1943,22 @@ class Customer extends Front_Controller
 			}
 			if(isset($post['refund_type1']) && $post['refund_type1']!=''){
 				//echo '<pre>';print_r($post);
+				if(isset($post['size']) && $post['size']!=''){
+					$size=$post['size'];
+					$uksize='';
+				}else{
+					$size='';
+					$uksize=$post['uksize'];
+				}
 				$exchangedetails=array(
 						'color'=>$post['color'],
-						'size'=>$post['size'],
+						'size'=>isset($size)?$size:'',
+						'uksize'=>isset($uksize)?$uksize:'',
 						'region'=>isset($post['region'])?$post['region']:'',
 						'status_refund'=>$refundtype1,
 						'update_time'=>date('Y-m-d H:i:s A'),
 						);
+						//echo '<pre>';print_r($exchangedetails);exit;
 						$exchangesave= $this->customer_model->update_refund_details($post['status_id'],$exchangedetails);
 						if(count($exchangesave)>0){
 							$data=array('order_status'=>5);
@@ -1860,12 +1999,30 @@ class Customer extends Front_Controller
 	
 	
 	foreach ($locationdatadetails as $list){
-	$seller_list[]= $this->customer_model->get_seller_details($list);	
+		if($list!=''){
+			$details=$this->customer_model->get_seller_details($list);
+			
+			if(count($details)>0){
+				foreach ($details as $lis){
+				//echo '<pre>';print_r($lis);exit;
+				$data['seller_list'][$lis['seller_id']]=$lis;
+				$data['seller_list'][$lis['seller_id']]['avg']=$this->customer_model->product_reviews_avg($lis['seller_id']);
+				$data['seller_list'][$lis['seller_id']]['categories']=$this->customer_model->product_categories_list($lis['seller_id']);
+				
+				}
+				
+			}
+		
+		
+		}	
+	}
+	if(isset($data) && $data!=''){
+		$this->template->write_view('content', 'customer/nearstores',$data);
+	}else{
+		$data['seller_list']=array();
+		$this->template->write_view('content', 'customer/nearstores',$data);
 	}
 	
-	$data['seller_list']=$seller_list;
-	 //echo '<pre>';print_r($seller_list);exit;
-	$this->template->write_view('content', 'customer/nearstores',$data);
 	$this->template->render(); 
  }
  public function productlist(){

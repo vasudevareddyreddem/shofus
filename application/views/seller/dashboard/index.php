@@ -107,7 +107,7 @@
                                         <tr >
                                             
                                             <td><?= $SNO; ?></td>
-                                            <td><?php  echo $order_data->cust_firstname . $order_data->cust_lastname; ?></td>
+                                            <td><?php  echo $order_data->cust_firstname .' '. $order_data->cust_lastname; ?></td>
                                             <td><?php  echo $order_data->item_name; ?></td>
                                             <td><?php  echo $order_data->total_price; ?></td>
                                             <td></td>                                              </tr>
@@ -189,7 +189,7 @@
                     <tbody>
                       <tr>
                         <th>Name</th>
-                        <td><?php  echo $orders_data->cust_firstname . $orders_data->cust_lastname; ?></td>
+                        <td><?php  echo $orders_data->cust_firstname .' '. $orders_data->cust_lastname; ?></td>
                       </tr>
                       <tr>
                         <th>Mobile</th>

@@ -1,3 +1,11 @@
+<?php if(isset($quick) && $quick=='quick'){ ?>
+	<script>
+	
+$(document).ready(function() {
+   $('#onclicksubcat<?php echo $subcatid; ?>').click();
+});
+ </script>
+<?php } ?>
 <style>
 .top-navbar1{
 	display:none;
@@ -56,7 +64,7 @@
 			  <div class="col-md-12 gir_alg" style="border-right:1px solid #45b1b5">
 			  <div class="title text-left mar_t10"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
 			  <?php foreach($subcategory_list as $list){ ?>
-				  <div class="col-md-2"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
+				  <div class="col-md-2" id="onclicksubcat<?php echo $list['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
 					 <div class="catg_sty">
 						<?php echo $list['subcategory_name']; ?>
 					  </div>
@@ -498,6 +506,7 @@
         <!-- End Filter Sidebar -->
 
         <!-- Product List -->
+		<div id="sucessmsg" style="display:none;"></div>
         <div class="col-md-9">
           <div class="title"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?>&nbsp; Category Products lists</span></div>
 		<?php //echo '<pre>';print_r($subcategory_porduct_list);exit; ?>
@@ -666,12 +675,12 @@ jQuery.ajax({
 						$("#supcount").append(data.count);
 						if(data.msg==2){
 						$("#addticartitem"+itemid+val).removeClass("text-primary");
-						$('#sucessmsg').html('Product Successfully removed to Whishlist');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 						if(data.msg==1){
 						 $("#addticartitem"+itemid+val).addClass("text-primary");
 						//$('#addwhish').css("color", "yellow");
-						$('#sucessmsg').html('Product Successfully added to Whishlist');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 				}
 
@@ -731,14 +740,14 @@ jQuery.ajax({
 				if(data.msg==2){
 				$('#sucessmsg').show('');
 				$("#addwishlistids"+id+val).removeClass("text-primary");
-				$('#sucessmsg').html('Product Successfully removed to Whishlist');
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 				document.getElementById("sucessmsg").focus();
 				
 				}
 				if(data.msg==1){
 				$('#sucessmsg').show('');
 				 $("#addwishlistids"+id+val).addClass("text-primary");
-				$('#sucessmsg').html('Product Successfully added to Whishlist');
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 				document.getElementById("sucessmsg").focus();				
 				}
 				
@@ -752,7 +761,6 @@ jQuery.ajax({
 }
 function getproduct(id){
 	if(id!=''){
-	
 	jQuery.ajax({
 				url: "<?php echo site_url('category/categorywiseproductslist');?>",
 				type: 'post',

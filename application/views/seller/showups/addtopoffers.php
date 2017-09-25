@@ -82,7 +82,7 @@
             <tr>
                 <th><input type="checkbox" name="select_all" id="example-select-all<?php echo $subcategory->subcategory_id;  ?>">&nbsp;<span class="btn btn-primary">Selectall</span>
 				</th>
-				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">submit</a></div>
+				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $j; ?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">submit</a></div>
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
@@ -99,7 +99,7 @@
 						
 						?>
 					<tr>
-						<td><input value="<?php echo $item_data->item_id; ?>" type="checkbox" id="cat_id[]" name="cat_id[]" ></td>
+						<td><input value="<?php echo $item_data->item_id; ?>" class="chkdata<?php echo $subcategory->subcategory_id;?><?php echo $j; ?>" type="checkbox" id="cat_id[]" name="cat_id[]" ></td>
 						<td><?php echo $item_data->item_name;?></td>
 						<td><?php echo $item_data->item_code;?></td>
 						<td><?php echo $item_data->item_cost;?></td>
@@ -159,6 +159,7 @@
         var regex = /^[0-9]+$/;
         return regex.test(reasontype);
 	}
+	$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $j; ?>').hide();
 	$('#offertypeerror<?php echo $subcategory->subcategory_id;?>').html('');
 	$('#producttypeerror<?php echo $subcategory->subcategory_id;?>').html('');
 	$(function() {
@@ -209,7 +210,19 @@
    // Handle click on checkbox
    $('#example<?php echo $subcategory->subcategory_id;?> tbody').on('click', 'input[type="checkbox"]', function(e){
       var $row = $(this).closest('tr');
- 
+  ckbox = document.getElementsByClassName("chkdata<?php echo $subcategory->subcategory_id;?><?php echo $j; ?>");
+count=0;
+for(var i=0;i<ckbox.length;i++){
+ element = ckbox[i];
+  if(element.checked){
+   count++;
+  }
+}
+if(count>0){
+	$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $j; ?>').show();
+}else{
+	$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $j; ?>').hide();
+}
       // Get row data
       var data = table.row($row).data();
       // Get row ID

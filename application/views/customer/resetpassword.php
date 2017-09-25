@@ -88,11 +88,11 @@ $(document).ready(function() {
             setpassword: {
 					validators: {
 					notEmpty: {
-						message: 'set password is required'
+						message: 'Set password is required'
 					},
 					stringLength: {
                         min: 6,
-                        message: 'set Password must be atleast six character'
+                        message: 'Set Password must be atleast six characters'
                     },
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,

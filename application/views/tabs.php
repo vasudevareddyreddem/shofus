@@ -887,7 +887,7 @@
                     <div class="tab-pane" role="tabpanel" id="step3">
 						<div class="row">
 							<div class="col-md-6">
-								<h3 class="site_co">Thanks for Shoping </h3>
+								<h3 class="site_co">Thanks for Shopping </h3>
 								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
 							</div>
 							<div class="col-md-6">
