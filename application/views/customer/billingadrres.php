@@ -36,7 +36,7 @@
 <div class="pad_bod">
 		<div class="row">
 		<div id="sticky-anchor"></div>
-		<div class="col-md-3" id="sticky">
+		<!--<div class="col-md-3" id="sticky">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Price details</div>
 			<div class="panel-body">
@@ -73,7 +73,7 @@
 				
 			</div>
 		</div>
-		</div>
+		</div>-->
 		
 		<div class="col-md-8 " id="off_set_stic">
 		<div class="panel panel-primary">
@@ -104,6 +104,15 @@
                         </a>
 						<p class="text-center"><b>Billing Address</b> </p>
                     </li>
+					<li role="presentation" class="disabled" >
+						   <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Delivery Charges">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-folder-open"></i>
+                            </span>
+							
+                        </a>
+						<p class="text-center"><b>Delivery Charges</b> </p>
+                    </li>
 
                     <li role="presentation" class="disabled">
                         <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
@@ -113,6 +122,7 @@
                         </a>
 						<p class="text-center"><b>Payment mode </b></p>
                     </li>
+					
                     <li role="presentation" class="disabled">
                         <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4">
                             <span class="round-tab">
@@ -139,7 +149,7 @@
 										  <label >Mobile:</label>
 										  <input type="text" id="mobile" name="mobile" class="form-control" value="<?php echo $customerdetail['cust_mobile'];?>" >
 										</div>
-										<div class="form-group">
+										<!--<div class="form-group">
 										 <label class="control-label">Delivery Location Area</label>
 											<select class="form-control" id="area" name="area">
 											<option value="">Select</option>
@@ -151,10 +161,14 @@
 											<?php } ?>
 											<?php } ?>
 											</select> 
-										</div>
+										</div>-->
 										<div class="form-group">
 										  <label >Address 1:</label>
 										  <input type="text" id="address1" name="address1" class="form-control" value="<?php echo $customerdetail['address1']; ?>"  >
+										</div>
+										<div class="form-group">
+										  <label >Pin code:</label>
+										  <input type="text" id="pincode" name="pincode" class="form-control" value="<?php echo $customerdetail['pincode']; ?>"  >
 										</div>
 										<div class="form-group">
 										  <label >Address 2:</label>
@@ -210,6 +224,18 @@
 					message:'Mobile Number must be 10 to 14 digits'
 					}
                 }
+            },
+				pincode: {
+               validators: {
+				notEmpty: {
+						message: 'Pincode is required'
+					},
+					regexp: {
+					regexp:  /^[0-9]{6}$/,
+					message:'Pincode must be 6 digits'
+					}
+            
+			}
             },
 			area: {
               validators: {

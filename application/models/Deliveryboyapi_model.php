@@ -32,6 +32,21 @@ class Deliveryboyapi_model extends MY_Model
 		$sql1="UPDATE order_items SET rejeted_del_boy_id ='".$cust_id."' WHERE order_item_id = '".$order_item_id."'";
        	return $this->db->query($sql1);
 	}
+	public function order_Packing_status_updated($order_item_id,$status){
+
+		$sql1="UPDATE order_status SET status_packing ='".$status."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
+	}
+	public function order_road_status_updated($order_item_id,$status){
+
+		$sql1="UPDATE order_status SET status_road ='".$status."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
+	}
+	public function order_delivered_status_updated($order_item_id,$status){
+
+		$sql1="UPDATE order_status SET status_deliverd ='".$status."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
+	}
 	public function get_deliver_boy_orders_list($cust_id){
 		$this->db->select('order_items.*,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile')->from('order_items');
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
