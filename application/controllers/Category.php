@@ -1009,6 +1009,10 @@ class Category extends Front_Controller
 		$data['cart_item_ids']=$cart_item_ids;
 		$data['cart_ids']=$cart_ids;
 		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	if(count($wishlist_ids)>0){
@@ -1261,6 +1265,10 @@ function filtersearch(){
 		$data['cart_item_ids']=$cart_item_ids;
 		$data['cart_ids']=$cart_ids;
 		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	if(count($wishlist_ids)>0){
@@ -1484,6 +1492,10 @@ function filtersearch(){
 		$data['cart_item_ids']=$cart_item_ids;
 		$data['cart_ids']=$cart_ids;
 		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	
@@ -1605,6 +1617,10 @@ function filtersearch(){
 		$data['cart_item_ids']=$cart_item_ids;
 		$data['cart_ids']=$cart_ids;
 		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	if(count($wishlist_ids)>0){
