@@ -55,8 +55,8 @@
                          <td><?php echo $profile_details['address2']; ?></td>
                       </tr>
                       <tr>
-                        <td>Delivery Location Area</td>
-                        <td><?php echo $profile_details['location_name']; ?></td>
+                        <td>Pincode</td>
+                        <td><?php echo $profile_details['pincode']; ?></td>
                       </tr>
                      
                      

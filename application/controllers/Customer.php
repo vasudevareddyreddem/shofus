@@ -147,7 +147,7 @@ class Customer extends Front_Controller
 		'cust_propic'=>$profilepic,
 		'address1'=>$post['address1'],
 		'address2'=>$post['address2'],
-		'area'=>$post['area'],
+		'pincode'=>$post['pincode'],
 		);
 		//echo '<pre>';print_r($details);exit;
 		$updatedetails= $this->customer_model->update_deails($customerdetails['customer_id'],$details);

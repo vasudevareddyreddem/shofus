@@ -191,7 +191,7 @@
 			</span>
 		<?php } ?>
 			<?php if($this->session->userdata('userdetails')){ ?>
-			<span class="medias text-center shopping_cart" style="position:relative;"><a href=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+			<span class="medias text-center shopping_cart" style="position:relative;"><a href="<?php echo base_url('customer/cart'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
 				<p>Cart</p></a>
 				<span id="supcount" style="position:absolute;top:-5px;right:-5px;font-size:12px">
 				<?php if(count($cartitemcount)>0){
