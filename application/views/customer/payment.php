@@ -81,7 +81,7 @@
                         </a>
 						<p class="text-center"><b>Check Cart</b> </p>
                     </li>  
-					<li role="presentation" class="" >
+					<li role="presentation" class="disabled" >
 						   <a href="<?php echo base_url('customer/billing'); ?>" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-folder-open"></i>
@@ -89,6 +89,15 @@
 							
                         </a>
 						<p class="text-center"><b>Billing Address</b> </p>
+                    </li>
+					<li role="presentation" class="disabled" >
+						   <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Delivery Charges">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-folder-open"></i>
+                            </span>
+							
+                        </a>
+						<p class="text-center"><b>Delivery Charges</b> </p>
                     </li>
 
                     <li role="presentation" class="active">
