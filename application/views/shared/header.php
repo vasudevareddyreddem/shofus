@@ -189,9 +189,9 @@
 			</i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" />
 			<p>Sign Up/Sign In</p></a>
 			</span>
-		  <?php } ?>
+		 <!-- <?php } ?>
 			<?php if($this->session->userdata('userdetails')){ ?>
-			<span class="medias shopping_cart text-center" style="width:100px;"><a href="<?php echo base_url('customer/cart');?>"><i><img class="" src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i><sup id="supcount" class="sup_log blink-image" style="color:#45b1b5; ">
+			<span class="medias shopping_cart text-center" ><a href="<?php echo base_url('customer/cart');?>"><i><img class="" src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i><sup id="supcount" class="sup_log blink-image" style="color:#45b1b5; ">
 			<?php if(count($cartitemcount)>0){ ?>
 				<?php echo count($cartitemcount)	; ?>
 				</sup>
@@ -204,12 +204,16 @@
 			
 			</span>
 			<?php } else{ ?>
-			<span style="width:100px;" class="medias text-center"><a href="<?php echo base_url('customer');?>"><i class="" aria-hidden="true"><img class="shopping_cart" src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+			<span  class="medias text-center"><a href="<?php echo base_url('customer');?>"><i class="" aria-hidden="true"><img class="shopping_cart" src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
 				<p>Cart</p></a>
 			</span>
 			</a>&nbsp;<sup class="sup"></sup></span>
-			<?php } ?>
-			<span style="width:150px;" class="medias text-center"><a href="<?php echo base_url('customer/nearstores'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
+			<?php } ?>-->
+			<span class="medias text-center shopping_cart" style="position:relative;"><a href=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+				<p>Cart</p></a>
+				<span style="position:absolute;top:-5px;right:-5px;font-size:12px">123</span>
+			</span>	
+			<span " class="medias text-center"><a href="<?php echo base_url('customer/nearstores'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
 				<p>Near by stores</p></a>
 			</span>
 		 </div>
