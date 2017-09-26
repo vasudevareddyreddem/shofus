@@ -651,46 +651,8 @@ $(document).ready(function() {
        
 
 	 <div class="clearfix"></div>
-	 <div class="col-md-3">
-		  <div class="item">
-            <img src="http://img.tjskl.org.cn/pic/z2577d9d-200x200-1/pinarello_lungavita_2010_single_speed_bike.jpg" alt="item" />
-             <h2>Item 1</h2>
-
-            <p>Price: <em>$449</em>
-            </p>
-            <span class=" glyphicon glyphicon-shopping-cart add-to-cart" type="button"></span>
-        </div>
-	 </div> 
-	 <div class="col-md-3">
-		  <div class="item">
-            <div class="box-product">
-              <div class="img-wrapper item">
-                <a href="detail.html">
-                  <img alt="Product" src="http://img.tjskl.org.cn/pic/z2577d9d-200x200-1/pinarello_lungavita_2010_single_speed_bike.jpg">
-                </a>
-              
-                <div class="option">
-                  <a  class="add-to-cart" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart  "></i></a>
-                  <a  data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
-                  <a  data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                </div>
-              </div>
-              <h6><a href="detail.html">IncultGeo Print Polo T-Shirt</a></h6>
-              <div class="price">
-                <div>$13.50 <span class="label-tags"><span class="label label-default">-10%</span></span></div>
-                <span class="price-old">$15.00</span>
-              </div>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <a href="#">(5 reviews)</a>
-              </div>
-            </div>
-        </div>
-	 </div>  
+	  
+	 
           
 </div>
       

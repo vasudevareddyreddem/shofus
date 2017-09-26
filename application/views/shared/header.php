@@ -139,7 +139,7 @@
       </div>
     </div>
   </div>
-      <div class="container1 container-fluid hm_nav">
+      <div class="container1 container-fluid hm_nav" style="height:90px;">
         <div class="navbar-header " style="padding-right:50px;">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
           <a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhour" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
@@ -191,15 +191,15 @@
 			</span>
 		  <?php } ?>
 			<?php if($this->session->userdata('userdetails')){ ?>
-			<span class="medias" style="width:100px;"><a href="<?php echo base_url('customer/cart');?>"><i><img class="shopping_cart" src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i></a>&nbsp;<sup id="supcount" class="sup_log blink-image" style="color:#45b1b5; ">
+			<span class="medias shopping_cart text-center" style="width:100px;"><a href="<?php echo base_url('customer/cart');?>"><i><img class="" src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i><sup id="supcount" class="sup_log blink-image" style="color:#45b1b5; ">
 			<?php if(count($cartitemcount)>0){ ?>
 				<?php echo count($cartitemcount)	; ?>
 				</sup>
-				<p>Cart</p>
+				<p class="text-center">Cart</p>
 			<?php }else{  ?>
 			</sup>
-			<p>&nbsp;&nbsp; Cart &nbsp;&nbsp;</p>
-			<sup class="sup_log"></sup>	
+			<p class="text-center">&nbsp;&nbsp;  Cart </p>
+			<sup class="sup_log"></sup>	</a>
 			<?php } ?>
 			
 			</span>
