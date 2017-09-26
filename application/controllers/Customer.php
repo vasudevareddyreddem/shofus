@@ -1389,13 +1389,8 @@ class Customer extends Front_Controller
 	$logindetails = $this->customer_model->login_details($post['email'],$pass);
 		if(count($logindetails)>0)
 		{			
-			if($this->session->userdata('location_area')!=''){
-					$locationdata= $this->home_model->getlocations();
-					foreach ($locationdata as $list){
-								if ($list['location_name']==$this->session->userdata('location_area')) {
-									$loacationid=$list['location_id'];
-								}
-							}
+			if($this->session->userdata('location_ids')!=''){
+					$loacationid= $this->session->userdata('location_ids');
 					$updatearea = $this->customer_model->update_sear_area($logindetails['customer_id'],$loacationid);	
 				if(count($updatearea)>0){
 					
@@ -2037,27 +2032,65 @@ class Customer extends Front_Controller
 	 
  }
  public function nearstores(){
-	 $locationdatadetails=$this->session->userdata('location_ids');
-	 
 	
-	
-	foreach ($locationdatadetails as $list){
+	 $post=$this->input->post();
+	 if(isset($post['locationarea']) && $post['locationarea']!=''){
+		 $this->session->set_userdata('location_ids',implode(",",$post['locationarea']));
+		 
+		 /*displaying purpose*/
+		 $locationdata= $this->home_model->getlocations();
+		$loacationname=array();
+		foreach ($locationdata as $list){
+			if (in_array($list['location_id'], $post['locationarea'])) {
+				$loacationname[]=$list['location_name'];
+			}
+		}
+		$locationdatadetails=implode(", ",$loacationname);
+		$this->session->set_userdata('location_area',$locationdatadetails);
+		
+		/* displying purpose*/
+		foreach ($post['locationarea'] as $list){
 		if($list!=''){
 			$details=$this->customer_model->get_seller_details($list);
-			
 			if(count($details)>0){
 				foreach ($details as $lis){
 				//echo '<pre>';print_r($lis);exit;
 				$data['seller_list'][$lis['seller_id']]=$lis;
 				$data['seller_list'][$lis['seller_id']]['avg']=$this->customer_model->product_reviews_avg($lis['seller_id']);
 				$data['seller_list'][$lis['seller_id']]['categories']=$this->customer_model->product_categories_list($lis['seller_id']);
-				
 				}
-				
 			}
-		
-		
 		}	
+	  }
+	}else{
+		$customerdetails=$this->session->userdata('userdetails');
+		$detail=$this->customer_model->get_profile_details($customerdetails['customer_id']);
+		//echo '<pre>';print_r($detail);exit;
+		$locations=explode(',',$detail['area']);
+		$locationdata= $this->home_model->getlocations();
+		$loacationname=array();
+		foreach ($locationdata as $list){
+			if (in_array($list['location_id'], $locations)) {
+				$loacationname[]=$list['location_name'];
+			}
+		}
+		$locationdatadetails=implode(", ",$loacationname);
+		$this->session->set_userdata('location_area',$locationdatadetails);
+		foreach ($locations as $list){
+		if($list!=''){
+			$details=$this->customer_model->get_seller_details($list);
+			if(count($details)>0){
+				foreach ($details as $lis){
+				//echo '<pre>';print_r($lis);exit;
+				$data['seller_list'][$lis['seller_id']]=$lis;
+				$data['seller_list'][$lis['seller_id']]['avg']=$this->customer_model->product_reviews_avg($lis['seller_id']);
+				$data['seller_list'][$lis['seller_id']]['categories']=$this->customer_model->product_categories_list($lis['seller_id']);
+				}
+			}
+		}	
+	  }
+
+		
 	}
 	if(isset($data) && $data!=''){
 		$this->template->write_view('content', 'customer/nearstores',$data);
