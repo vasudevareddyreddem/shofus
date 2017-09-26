@@ -67,7 +67,8 @@
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/customer/js/search.js"></script> 
-  <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+  <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script> 
+  <script src="<?php echo base_url(); ?>assets/home/js/cart.js"></script>
 
 </body>
 </html>
