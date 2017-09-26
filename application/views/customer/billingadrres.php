@@ -273,31 +273,6 @@
 });
 
 
-function sticky_relocate() {
-    var window_top = $(window).scrollTop();
-    var footer_top = $("#footer-start").offset().top;
-    var div_top = $('#sticky-anchor').offset().top;
-    var div_height = $("#sticky").height();
-    
-    var padding = 20;  // tweak here or get from margins etc
-    
-    if (window_top + div_height > footer_top - padding)
-        $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
-    else if (window_top > div_top) {
-        $('#sticky').addClass('stick');
-        $('#off_set_stic').addClass('col-md-offset-3');
-        $('#sticky').css({top: 100})
-    } else {
-        $('#off_set_stic').removeClass('col-md-offset-3');
-        $('#sticky').removeClass('stick');
-		$('#sticky').css({top:0})
-    }
-}
-
-$(function () {
-    $(window).scroll(sticky_relocate);
-    sticky_relocate();
-});
 </script>
 
  

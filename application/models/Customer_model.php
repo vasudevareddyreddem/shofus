@@ -443,8 +443,8 @@ class Customer_model extends MY_Model
 		$sql1="UPDATE customers SET subscribe ='".$data."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
 	} 
-	public function update_delivery_chages($cart_id,$amount){
-		$sql1="UPDATE cart SET delivery_amount ='".$amount."' WHERE id = '".$cart_id."'";
+	public function update_delivery_chages($cart_id,$amount,$type){
+		$sql1="UPDATE cart SET delivery_amount ='".$amount."',delivery_type ='".$type."' WHERE id = '".$cart_id."'";
        	return $this->db->query($sql1);
 	}
 	public function get_item_seller_billing_address($seller_id){

@@ -123,7 +123,7 @@ class DeliveryboyApi extends REST_Controller {
 				}
 		}
 		if(count($oreders_list)>0){
-				$message = array('status'=>1,'list'=>$order_lists, 'message'=>'orders list are found');
+				$message = array('status'=>1,'list'=>$order_lists,'count'=>count($order_lists), 'message'=>'orders list are found');
 				$this->response($message, REST_Controller::HTTP_OK);
 		}else{
 		$message = array('status'=>1,'message'=>'You have no delivery orders list');

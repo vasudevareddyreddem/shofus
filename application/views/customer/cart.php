@@ -215,10 +215,10 @@
                   <td colspan="4" class="text-right">Total</td>
                   <td colspan="2"><b><?php echo $total; ?></b></td>
                 </tr> 
-				<tr>
+				<!--<tr>
                   <td colspan="4" class="text-right">Grand Total</td>
                   <td colspan="2"><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></td>
-                </tr>
+                </tr>-->
 				
               </tbody>
             </table>
