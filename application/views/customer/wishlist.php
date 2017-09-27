@@ -21,9 +21,11 @@
 		<div class="col-md-8 col-md-offset-4">
             <div class="well well-sm" style="background:#fff;">
                 <div class="row">
+				
 				<div style="position:absolute;top:20px;right:50px">
-					
-					<button type="submit"><i class="glyphicon glyphicon-shopping-cart tras_col" ></i></button>
+				<?php if($items['item_status']==1 && $items['item_quantity']!=0 ){ ?>
+                   <button style="background:transprent;" type="submit" ><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>&nbsp;
+                    <?php } ?>
 					<a href="<?php echo base_url('customer/deletewishlist/'.base64_encode($items['id'])); ?>"><span class="glyphicon glyphicon-trash tras_col" ></span></a>
 				</div>
                     <div class="col-xs-3 col-md-3 text-center">
