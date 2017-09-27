@@ -35,8 +35,8 @@
 						 echo "Returned"; 
 					  }
 					  ?>
-					  </span>
-						<a href="<?php echo base_url('customer/orederdetails/'.base64_encode($orders['order_item_id'])); ?>"> <span style="background-color:#45b1b9;color:#fff;padding:10px;border-radius:5px;">View</span></a>
+					  </span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="<?php echo base_url('customer/orederdetails/'.base64_encode($orders['order_item_id'])); ?>"> <span style="background-color:#45b1b9;color:#fff;padding:4px 8px;border-radius:5px;">View</span></a>
 				
 					</div>
 					<div class="clearfix"></div>

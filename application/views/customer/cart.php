@@ -226,8 +226,8 @@
           </div>
           <nav aria-label="Shopping Cart Next Navigation">
             <ul class="pager">
-              <li class="previous"><a href="<?php echo base_url(''); ?>"><span aria-hidden="true">&larr;</span> Continue Shopping</a></li>
-              <li class="next"><a href="<?php echo base_url('customer/billing'); ?>">Proceed to Checkout <span aria-hidden="true">&rarr;</span></a></li>
+              <li class="previous"><a style="border:none;background:none;" href="<?php echo base_url(''); ?>"><span class="btn btn-primary btn-small"><span aria-hidden="true">&larr;</span> Continue Shopping</span></a></li>
+              <li class="next"><a style="border:none;background:none;" href="<?php echo base_url('customer/billing'); ?>"><span class="btn btn-primary btn-small">Proceed to Checkout <span aria-hidden="true">&rarr;</span></span></a></li>
             </ul>
           </nav>
 		  
@@ -330,69 +330,7 @@ function productqtyincreae(id){
 }
 
 
-	$(document).ready(function () {
-    //Initialize tooltips
-    $('.nav-tabs > li a[title]').tooltip();
-    
-    //Wizard
-    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-
-        var $target = $(e.target);
-    
-        if ($target.parent().hasClass('disabled')) {
-            return false;
-        }
-    });
-
-    $(".next-step").click(function (e) {
-
-        var $active = $('.wizard .nav-tabs li.active');
-        $active.next().removeClass('disabled');
-        nextTab($active);
-
-    });
-    $(".prev-step").click(function (e) {
-
-        var $active = $('.wizard .nav-tabs li.active');
-        prevTab($active);
-
-    });
-});
-
-function nextTab(elem) {
-    $(elem).next().find('a[data-toggle="tab"]').click();
-}
-function prevTab(elem) {
-    $(elem).prev().find('a[data-toggle="tab"]').click();
-}
-
-
-function sticky_relocate() {
-    var window_top = $(window).scrollTop();
-    var footer_top = $("#footer-start").offset().top;
-    var div_top = $('#sticky-anchor').offset().top;
-    var div_height = $("#sticky").height();
-    
-    var padding = 20;  // tweak here or get from margins etc
-    
-    if (window_top + div_height > footer_top - padding)
-        $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
-    else if (window_top > div_top) {
-        $('#sticky').addClass('stick');
-        $('#off_set_stic').addClass('col-md-offset-3');
-        $('#sticky').css({top: 100})
-    } else {
-        $('#off_set_stic').removeClass('col-md-offset-3');
-        $('#sticky').removeClass('stick');
-		$('#sticky').css({top:0})
-    }
-}
-
-$(function () {
-    $(window).scroll(sticky_relocate);
-    sticky_relocate();
-});
-
+	
 </script>
 
  

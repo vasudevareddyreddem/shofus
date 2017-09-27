@@ -30,13 +30,13 @@
 
 
 <body >
-<div class="pad_bod">
+<div class="pad_bod container">
 		<div class="row" id="updateqty"></div>
 		<div class="row" id="oldcartqty">
 		<div id="sticky-anchorupdateqtyhide"></div>
 		<?php //echo '<pre>';print_r($details);exit; ?>
 		
-		<div class="col-md-8 " id="off_set_stic">
+		<div class="col-md-12 " >
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Payment</div>
 			<div class="panel-body">
@@ -498,8 +498,8 @@
             </table>
 			<nav aria-label="Shopping Cart Next Navigation">
             <ul class="pager">
-              <li class="previous"><a href="<?php echo base_url('customer/billing'); ?>"><span aria-hidden="true">&larr;</span> Back</a></li>
-              <button type="submit" >Proceed to Checkout <span aria-hidden="true">&rarr;</span></button>
+              <li class="previous"><a style="border:none;background:none;" href="<?php echo base_url('customer/billing'); ?>"><span class=" btn btn-primary btn-small"><span aria-hidden="true">&larr;</span> Back</span></a></li>
+              <button class="pull-right btn btn-primary btn-small" type="submit" >Proceed to Checkout <span aria-hidden="true">&rarr;</span></span></button>
             </ul>
           </nav>
 			</form>

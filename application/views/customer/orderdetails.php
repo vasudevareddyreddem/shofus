@@ -267,7 +267,7 @@ tr th:last-child {
 			</div>
 		</div>
 		</div>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		
 
 	 <!-- track end-->
 	   

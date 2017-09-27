@@ -33,7 +33,7 @@
 	
 </div>
 <body >
-<div class="pad_bod">
+<div class="pad_bod container">
 		<div class="row">
 		<div id="sticky-anchor"></div>
 		<!--<div class="col-md-3" id="sticky">
@@ -75,7 +75,7 @@
 		</div>
 		</div>-->
 		
-		<div class="col-md-8 " id="off_set_stic">
+		<div class="col-md-12 " id="off_set_stic">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Payment</div>
 			<div class="panel-body">
@@ -179,8 +179,8 @@
 										
 					<nav aria-label="Shopping Cart Next Navigation">
 						<ul class="pager">
-						  <li class="previous"><a href="<?php echo base_url('customer/cart'); ?>" style="float:left;" >Back</span></a></li>
-						  <li class="next"><button style="float:right;" type="submit">Proceed to Checkout</span></button></li>
+						  <li class="previous"><a style="border:none;background:none;" href="<?php echo base_url('customer/cart'); ?>"><span class=" btn btn-primary btn-small"><span aria-hidden="true">&larr;</span> Back</a></span></li>
+						  <li class="next"><button class="pull-right btn btn-primary btn-small" type="submit">Proceed to Checkout</span><span aria-hidden="true">&rarr;</span></button></li>
 						</ul>
 					</nav>
 		  </form>
