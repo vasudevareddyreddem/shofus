@@ -30,7 +30,7 @@
 
 
 <body >
-<div class="pad_bod">
+<div class="pad_bod container">
 		<div class="row" id="updateqty"></div>
 		<div class="row" id="oldcartqty">
 		<div id="sticky-anchorupdateqtyhide"></div>
@@ -73,7 +73,7 @@
 		</div>
 		</div>-->
 		
-		<div class="col-md-8 " id="off_set_stic">
+		<div class="col-md-12 " id="off_set_stic">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Payment</div>
 			<div class="panel-body">

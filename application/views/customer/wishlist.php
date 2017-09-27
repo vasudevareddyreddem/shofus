@@ -23,11 +23,11 @@
 		<div class="col-md-8 col-md-offset-4">
             <div class="well well-sm" style="background:#fff;">
                 <div class="row">
-				<?php if($items['item_status']==1 && $items['item_quantity']!=0 ){ ?>
-                   <button style="background:transprent;" type="submit" ><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>&nbsp;
-                    <?php } ?>
-				<div style="position:absolute;top:20px;right:50px">
 				
+				<div style="position:absolute;top:20px;right:50px">
+					<?php if($items['item_status']==1 && $items['item_quantity']!=0 ){ ?>
+                   <button style="background:none;position:relative;z-index:1024;border:none;" type="submit" ><span class="glyphicon glyphicon-shopping-cart tras_col" aria-hidden="true"></span></button>&nbsp;
+                    <?php } ?> &nbsp;&nbsp;
 					<a href="<?php echo base_url('customer/deletewishlist/'.base64_encode($items['id'])); ?>"><span class="glyphicon glyphicon-trash tras_col" ></span></a>
 				</div>
                     <div class="col-xs-3 col-md-3 text-center">
