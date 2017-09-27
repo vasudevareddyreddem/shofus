@@ -1,45 +1,8 @@
 
 		<span id="reupdateqty">
-		<div class="col-md-3" id="sticky">
-		<div class="panel panel-primary">
-			<div class="panel-heading ">Price details</div>
-			<div class="panel-body">
-				<div class="pull-left">
-					Price (<?php if(count($cart_items) >0){  echo count($cart_items).'  '.'items';}else{  echo "item";  }?>)
-				</div>
-				<div class="pull-right">
-					<i class="fa fa-inr" aria-hidden="true"></i><?php echo isset($carttotal_amount['pricetotalvalue'])?$carttotal_amount['pricetotalvalue']:''; ?>
-				</div>
-				
-				<div class="clearfix"></div>
-				<div class="mar_t20">
-				<div class="pull-left">
-					Delivery Charges
-				</div>
-				<div class="pull-right">
-					<i class="fa fa-inr" aria-hidden="true"></i><?php echo isset($carttotal_amount['delivertamount'])?$carttotal_amount['delivertamount']:''; ?>
-				</div>
-				</div>
-				<div class="clearfix"></div>
-				<hr>
-				<div class="mar_t20">
-				<div class="pull-left">
-					<b>Amount Payable</b>
-				</div>
-				<div class="pull-right">
-					<i class="fa fa-inr" aria-hidden="true"></i><b>
-				<?php 	$totalpayamount=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
-					echo $totalpayamount;
-				?>
-				</b>
-				</div>
-				</div>
-				
-			</div>
-		</div>
-		</div>
 		
-		<div class="col-md-8 " id="off_set_stic">
+		
+		<div class="col-md-12 " id="off_set_stic">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Payment</div>
 			<div class="panel-body">
@@ -67,6 +30,15 @@
 							
                         </a>
 						<p class="text-center"><b>Billing Address</b> </p>
+                    </li>
+						<li role="presentation" class="disabled" >
+						   <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Delivery Charges">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-folder-open"></i>
+                            </span>
+							
+                        </a>
+						<p class="text-center"><b>Delivery Charges</b> </p>
                     </li>
 
                     <li role="presentation" class="disabled">
@@ -172,10 +144,10 @@
                   <td colspan="4" class="text-right">Total</td>
                   <td colspan="2"><b><?php echo $total; ?></b></td>
                 </tr> 
-				<tr>
+				<!--<tr>
                   <td colspan="4" class="text-right">Grand Total</td>
                   <td colspan="2"><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></td>
-                </tr>
+                </tr>-->
 				
               </tbody>
             </table>
@@ -275,69 +247,6 @@ function productqtyincreae(id){
 	}
 	
 }
-
-$(document).ready(function () {
-    //Initialize tooltips
-    $('.nav-tabs > li a[title]').tooltip();
-    
-    //Wizard
-    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-
-        var $target = $(e.target);
-    
-        if ($target.parent().hasClass('disabled')) {
-            return false;
-        }
-    });
-
-    $(".next-step").click(function (e) {
-
-        var $active = $('.wizard .nav-tabs li.active');
-        $active.next().removeClass('disabled');
-        nextTab($active);
-
-    });
-    $(".prev-step").click(function (e) {
-
-        var $active = $('.wizard .nav-tabs li.active');
-        prevTab($active);
-
-    });
-});
-
-function nextTab(elem) {
-    $(elem).next().find('a[data-toggle="tab"]').click();
-}
-function prevTab(elem) {
-    $(elem).prev().find('a[data-toggle="tab"]').click();
-}
-
-
-function sticky_relocate() {
-    var window_top = $(window).scrollTop();
-    var footer_top = $("#footer-start").offset().top;
-    var div_top = $('#sticky-anchor').offset().top;
-    var div_height = $("#sticky").height();
-    
-    var padding = 20;  // tweak here or get from margins etc
-    
-    if (window_top + div_height > footer_top - padding)
-        $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
-    else if (window_top > div_top) {
-        $('#sticky').addClass('stick');
-        $('#off_set_stic').addClass('col-md-offset-3');
-        $('#sticky').css({top: 100})
-    } else {
-        $('#off_set_stic').removeClass('col-md-offset-3');
-        $('#sticky').removeClass('stick');
-		$('#sticky').css({top:0})
-    }
-}
-
-$(function () {
-    $(window).scroll(sticky_relocate);
-    sticky_relocate();
-});
 
 
 </script>
