@@ -469,6 +469,10 @@ class Customer_model extends MY_Model
 		$sql = "SELECT SUM(delivery_amount) as deliverytotal FROM cart WHERE cust_id ='".$cust_id."'";
 		return $this->db->query($sql)->row_array();	
 	}
+	 public function update_before_loctionsearch($custid,$data){
+		$sql1="UPDATE customers SET area ='".$data."' WHERE customer_id = '".$custid."'";
+       	return $this->db->query($sql1);
+	} 
 	
 }
 ?>
