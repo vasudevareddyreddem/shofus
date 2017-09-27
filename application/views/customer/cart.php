@@ -141,9 +141,10 @@
               <thead>
                 <tr>
                   <th>Product</th>
-                  <th>Product Name</th>
+                  <th style="width:30%">Product Name</th>
                   <th>Quantity</th>
                   <th>Unit price</th>
+                  <th>Delivery Charges</th>
                   <th>SubTotal</th>
                   <th>Action</th>
                 </tr>
@@ -197,6 +198,13 @@
 				  
 			 
 				<td class="unit"><?php echo $items['item_price']; ?> </td>
+				<td class="unit">
+					<div class="radio">
+						<label><input type="radio" name="radio-product" checked="checked"><span> Noraml </span></label>
+						<label><input type="radio" name="radio-product"><span> fast </span></label>
+						
+					</div>
+				</td>
 				<td class="sub"><?php echo $items['total_price']; ?></td>
 		
                   <td class="action">
