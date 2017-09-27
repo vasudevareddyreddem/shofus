@@ -712,8 +712,6 @@ class Customer extends Front_Controller
 						$times[]=isset($characters1['rows'][0]['elements'][0]['duration']['text'])?$characters1['rows'][0]['elements'][0]['duration']['text']:'';
 			
 			}
-			
-			
 			foreach($times as $key=>$value){
 			  //echo '<pre>';print_r($value); 
 			$replacstr[]=str_replace("mins"," ",$value); 
@@ -722,15 +720,8 @@ class Customer extends Front_Controller
 			 asort($replacstr);
 			$arrayfilter=array_filter($replacstr);
 			$min=reset($arrayfilter);
-
-			
-			
 			}
-			
-			
 			/* delivery boy address*/
-			
-			
 			$url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins='".$customeraddress."'&destinations='".urlencode($destinationselleraddress)."'&sensor=false";
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
@@ -904,6 +895,7 @@ class Customer extends Front_Controller
 						'item_price'=>$items['item_price'],
 						'total_price'=>$items['total_price'],
 						'delivery_amount'=>$items['delivery_amount'],
+						'delivery_type'=>$items['delivery_type'],
 						'commission_price'=>$items['commission_price'],
 						'customer_email'=>$customerdetails['cust_email'],
 						'customer_phone'=>$billingaddress['mobile'],
@@ -1776,9 +1768,11 @@ class Customer extends Front_Controller
  
 	public function logout(){
 		
+		$userinfo = $this->session->userdata('userdetails');
+		$this->customer_model->update_before_loctionsearch($userinfo['customer_id'],'');
 		$data = array('admin_id'=> '','admin_name' => '','user_email' => '','seller_id'  => '','seller_name' => '','seller_email' => '','loggedin'  => FALSE);
 		$this->session->set_userdata($data);
-		$userinfo = $this->session->userdata('userdetails');
+		
 		$beforecart =$this->session->userdata('beforecart');
 		$this->session->userdata('location_area');
 		$this->hybridauthlib->logoutAllProviders();

@@ -23,8 +23,9 @@ class Customer_model extends MY_Model
 	/* save orders purpose*/
 	
 	public function order_list($cust_id){
-		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.item_description,products.item_image,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund')->from('order_items');
+		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.item_description,products.item_image,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,sellers.seller_name')->from('order_items');
 		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
 		$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 		$this->db->where('order_items.customer_id', $cust_id);
@@ -468,6 +469,10 @@ class Customer_model extends MY_Model
 		$sql = "SELECT SUM(delivery_amount) as deliverytotal FROM cart WHERE cust_id ='".$cust_id."'";
 		return $this->db->query($sql)->row_array();	
 	}
+	 public function update_before_loctionsearch($custid,$data){
+		$sql1="UPDATE customers SET area ='".$data."' WHERE customer_id = '".$custid."'";
+       	return $this->db->query($sql1);
+	} 
 	
 }
 ?>
