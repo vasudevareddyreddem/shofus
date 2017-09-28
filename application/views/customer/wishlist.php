@@ -19,7 +19,7 @@
 
 
 			<?php endif; ?>
-			<div class="row">
+			<div class="row" style="min-height:500px;">
 				<div class="col-md-8">
 					 <?php 
 			  //echo '<pre>';print_r($whistlist_items);exit;
