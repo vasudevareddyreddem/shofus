@@ -53,7 +53,7 @@ class Deliveryboyapi_model extends MY_Model
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 		$this->db->where('order_items.delivery_boy_id',$cust_id);
-		$this->db->where('order_status.status_deliverd =','0');
+		$this->db->where('order_status.status_deliverd !=',1);
 		return $this->db->get()->result_array();
 	}
 	public function get_deliver_boy_orders_reject_orderlist($cust_id){

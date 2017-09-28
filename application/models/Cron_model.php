@@ -22,6 +22,18 @@ class Cron_model extends MY_Model
 		$sql1="UPDATE order_items SET customer_seller_km ='".$km."', customer_seller_time ='".$time."', customer_seller_timevalue ='".$timevalue."' WHERE order_item_id = '".$orderitem_id."'";
        	return $this->db->query($sql1);
 	}
+	public function getall_deliveries_list(){
+		$this->db->select('customers.customer_id,customers.deliveryboy_current_location')->from('customers');
+		$this->db->where('role_id', 6);
+		$this->db->where('status', 1);
+		return $this->db->get()->result_array();
+		
+	}
+	public function assign_orderto_deliveryboy($dboy_id,$orderitem_id,$status){
+		$sql1="UPDATE order_items SET delivery_boy_assign ='".$status."', delivery_boy_id ='".$dboy_id."' WHERE order_item_id = '".$orderitem_id."'";
+       	return $this->db->query($sql1);
+		
+	}
 	
 
 

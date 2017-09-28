@@ -1190,20 +1190,25 @@ function filtersearch(){
 		$result = array_unique($idslist);
 		
 	//echo '<pre>';print_r($result);exit;
-	foreach ($result as $pids){
-		$products_list[]=$this->category_model->get_product_details($pids);
+	if(isset($idslist) && count($idslist)>0){
+				foreach ($result as $pids){
+					$products_list[]=$this->category_model->get_product_details($pids);
 
+				}
+				$data['subcategory_porduct_list']=$products_list;
+				foreach($data['subcategory_porduct_list'] as $list){
+						//echo '<pre>';print_r($list);
+						$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+						$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+						
+					}
+				
+				$data['avg_count']=$reviewrating;
+				$data['rating_count']=$reviewcount;
+				
+	}else{
+		$data['subcategory_porduct_list']=array();
 	}
-	$data['subcategory_porduct_list']=$products_list;
-	foreach($data['subcategory_porduct_list'] as $list){
-			//echo '<pre>';print_r($list);
-			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
-			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
-			
-		}
-	
-	$data['avg_count']=$reviewrating;
-	$data['rating_count']=$reviewcount;
 	
 	}else{
 	

@@ -101,7 +101,8 @@ class DeliveryboyApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 		$oreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_list($customer_id);
-		
+		//echo $this->db->last_query();exit;
+		//echo '<pre'>print_r($oreders_list);exit;
 		$rejectoreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_reject_list($customer_id);
 		
 		if(count($rejectoreders_list)>0){
@@ -110,7 +111,7 @@ class DeliveryboyApi extends REST_Controller {
 					$orddeliveryids[]=$lists['delivery_boy_id'];
 				}
 				foreach ($oreders_list as $orderlists){
-					//echo '<pre'>print_r($orderlists);
+					
 					
 						if(in_array($orderlists['order_item_id'],$orditemids) && in_array($orderlists['delivery_boy_id'],$orddeliveryids) )
 						{ 
@@ -123,6 +124,7 @@ class DeliveryboyApi extends REST_Controller {
 			
 		}else{
 			foreach ($oreders_list as $lists){
+				
 					$order_lists[]=$lists;
 				}
 		}
@@ -139,7 +141,7 @@ class DeliveryboyApi extends REST_Controller {
 			$finalorderlists[]=array();
 		}
 		
-		if(count($oreders_list)>0){
+		if(count($finalorderlists)>0){
 				$message = array('status'=>1,'list'=>$finalorderlists,'count'=>count($finalorderlists), 'message'=>'orders list are found');
 				$this->response($message, REST_Controller::HTTP_OK);
 		}else{
