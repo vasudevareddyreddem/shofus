@@ -368,17 +368,21 @@ $(document).ready(function(){
 						<div class="col-md-6 ">
 						<div class="form-group ">
 							<label>Add your own Category</label>
+							<input type="hidden" name="categoryexit" id="categoryexit" value="">
+							
 							<table   class="table" id="tab_logic">
 								<tbody>
 									<tr id='addr0'>
 										
 										<td>
-										<input type="text" name='caregoryname[]' id="uff" onchange="checkcategoryvalidation(this.value);" class="form-control"/>
+										<input type="text" onchange="categoryexists(this.value);" name='caregoryname[]' id="uff" class="form-control"/>
 										</td>
 									</tr>
 									<tr id='addr1'></tr>
 								</tbody>
 							</table>
+							<span style="color:red" id="categoryexitserror"></span>
+							
 							</div>
 					
 					</div>
@@ -417,25 +421,36 @@ $(document).ready(function(){
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 	
 <script type="text/javascript">
-function checkcategoryvalidation(id){
+
+function  categoryexists(id){
 	if(id!=''){
-		$.ajax({
-			type: "POST",
-			url: '<?php echo base_url(); ?>seller/subcategory/check_category_exits',
+	
+	$.ajax({
+			
+			url: '<?php echo base_url(); ?>seller/subcategory/check_category_exits.',
 			data: {
 			cartegoryname:id
 			},
+			type: "post",
 			success:function(data)
 			{
-			alert(data.msg);
-
+			if(data==2){
+				$('#categoryexit').val(1);
+				$('#categoryexitserror').html('');
+			}else{
+				$('#categoryexitserror').html('Please use another category name. It is already exits');
+				$('#categoryexit').val(0);
 			}
 
-		});
-		
+			}
+			});
+	}else{
+		$('#categoryexitserror').html('');
+		$('#categoryexit').val(1);
 	}
 	
 }
+
   $(document).ready(function(){
       var i=1;
      $("#add_row").click(function(){
@@ -459,17 +474,20 @@ function checkcategoryvalidation(id){
 function validations(){
 	
 	var areaids=document.getElementById('seller_cat').value;
+	var categoryexist=document.getElementById('categoryexit').value;
   var own=document.getElementById('uff').value;
   //alert(own);
 	if(areaids=='' && own==''){
 		$("#locationmsg").html("Please select a category Or Write Your own category").css("color", "red");
 		return false;
-	}else{
+	}else if(categoryexist==0){
 		$("#locationmsg").html("");
 		return false;
+	}else{
+		$("#categoryexitserror").html("");
+		$("#locationmsg").html("");
+		return true;
 	}
-	
-	return false;
 }
 function removemsg(id){
 	if(id!=''){
@@ -521,6 +539,7 @@ function savecat(val){
 
 
 function chose_own(){
+  alert('hai');
 }
 </script>
 

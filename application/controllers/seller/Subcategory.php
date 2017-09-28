@@ -207,10 +207,10 @@ public function search()
 		
 		$categorydata = $this->subcategory_model->get_already_exits_categories($post['cartegoryname']);
 				if(count($categorydata)>0){
-				$data['msg']=1;	
+				$data=1;	
 				echo json_encode($data);
 				}else{
-					$data['msg']=2;	
+					$data=2;	
 					echo json_encode($data);
 				}
 		
