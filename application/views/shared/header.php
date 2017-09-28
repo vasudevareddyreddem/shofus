@@ -191,33 +191,29 @@
 			</span>
 		  <?php } ?>
 			
-			<!--<span class="medias text-center"><a href="javascript:void(0)" onclick="searchpop();" id="opensearch" data-toggle="modal"  data-target="#locationsearchpopup"  ><i class="" aria-hidden="true" data-toggle="tooltip" title="Location" ><img src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
-				<p>Location</p></a>
-			</span></a></span>-->
 			<span class="medias text-center"><a href="javascript:void(0);" onclick="locationopenpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Change Your Location Here" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
 				<p>Location</p></a>
 			</span></a></span>
 			
 			<?php if($this->session->userdata('userdetails')){ ?>
-			<span class="medias"><a href="<?php echo base_url('customer/cart');?>"><i><img  src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i></a>&nbsp;<sup id="supcount" class="sup_log blink-image" style="color:#45b1b5; ">
-			<?php if(count($cartitemcount)>0){ ?>
-				<?php echo count($cartitemcount)	; ?>
-				</sup>
-				<p>Cart</p>
-				<!--<div class="sprinkle"></div>-->
-			<?php }else{  ?>
-			</sup>
-			<p>&nbsp;&nbsp; Cart &nbsp;&nbsp;</p>
-			<sup class="sup_log"></sup>	
-			<?php } ?>
-			
-			</span>
-			<?php } else{ ?>
-			<span class="medias text-center"><a href="<?php echo base_url('customer');?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+			<span class="medias text-center shopping_cart" style="position:relative;"><a href="<?php echo base_url('customer/cart'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
 				<p>Cart</p></a>
+				<span id="supcount" style="position:absolute;top:-5px;right:-5px;font-size:12px">
+				<?php if(count($cartitemcount)>0){
+						echo count($cartitemcount);
+						}else{ 
+						echo "";
+						}?>
+				
+				</span>
 			</span>
-			</a>&nbsp;<sup class="sup"></sup></span>
-			<?php } ?>
+
+			<?php }else{ ?>
+			<span class="medias text-center shopping_cart" style="position:relative;"><a href=" <?php echo base_url('customer'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+				<p>Cart</p></a>
+				<span style="position:absolute;top:-5px;right:-5px;font-size:12px"></span>
+			</span>
+			<?php } ?>	
 			<span class="medias text-center"><a href="<?php echo base_url('customer/nearstores'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
 				<p>Near by stores</p></a>
 			</span>
@@ -225,21 +221,18 @@
 	</div>
 	  <div class="top-navbar1">
     <div class="container">
+      <?php if(count($qucikjump)>0){ ?>
       <div class=" row qucik_jmp">
-		  <ul class="navbar_1"><li><span style="color:#555">Qucik Jump to </span></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Grocery</a></li>
-			<li><a href="">Food</a></li>
-			<li><a href="">Fashion</a></li>
+	  <?php //echo '<pre>';print_r($qucikjump);exit; ?>
+		  <ul class="navbar_1"><li><span style="color:#555">Quick Jump to </span></li>
+		  <?php foreach($qucikjump as $list){ ?>
+			  <li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id']).'/'.base64_encode('quick').'/'.base64_encode($list['subcategory_id']));?>"><?php echo $list['subcategory_name']; ?></a></li>
+		  <?php } ?>
+			
+			
 		</ul>
 	  </div>
+	<?php } ?>
 	 
     </nav>
 	

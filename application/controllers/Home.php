@@ -61,6 +61,10 @@ public function index()
 		$data['cart_item_ids']=$cart_item_ids;
 		$data['cart_ids']=$cart_ids;
 		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 	if(count($wishlist_ids)>0){
 	foreach ($wishlist_ids as  $list){

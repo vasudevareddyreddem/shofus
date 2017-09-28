@@ -21,10 +21,11 @@ class Customer extends Front_Controller
 
   public function locationsearch(){
 		$post=$this->input->post();
+			if(count($post['locationarea'])==0){
+			redirect('');
+		}
 		
 		$locationdata= $this->home_model->getlocations();
-		
-		//echo '<pre>';print_r($post);exit;
 		$loacationname=array();
 		foreach ($locationdata as $list){
 			if (in_array($list['location_id'], $post['locationarea'])) {
@@ -55,6 +56,10 @@ class Customer extends Front_Controller
 		$data['cart_item_ids']=$cart_item_ids;
 		$data['cart_ids']=$cart_ids;
 		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 		if(count($wishlist_ids)>0){
 		foreach ($wishlist_ids as  $list){
@@ -1764,6 +1769,10 @@ class Customer extends Front_Controller
 		$data['cart_item_ids']=$cart_item_ids;
 		$data['cart_ids']=$cart_ids;
 		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 		$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 		if(count($wishlist_ids)>0){ 

@@ -1245,6 +1245,10 @@ function filtersearch(){
 		$data['cart_item_ids']=$cart_item_ids;
 		$data['cart_ids']=$cart_ids;
 		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	if(count($wishlist_ids)>0){
@@ -1467,6 +1471,10 @@ function filtersearch(){
 		$data['cart_item_ids']=$cart_item_ids;
 		$data['cart_ids']=$cart_ids;
 		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	
@@ -1490,6 +1498,8 @@ function filtersearch(){
  public function subcategoryview(){
 	 
 	
+	$data['quick']=base64_decode($this->uri->segment(4));
+	$data['subcatid']=base64_decode($this->uri->segment(5));
 	//echo '<pre>';print_r($wishlist_ids);exit;
 	$removesearch= $this->category_model->get_all_previous_search_fields();
 	foreach ($removesearch as $list){
@@ -1499,9 +1509,17 @@ function filtersearch(){
 	$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
 	$data['category_name']= $this->category_model->get_category_name($caterory_id);
 	$sid=$this->uri->segment(4);
-	if($sid!=''){
+	if($sid!='' && is_int($sid)){
 		//echo base64_decode($this->uri->segment(4));
 		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,base64_decode($sid));
+		foreach($data['subcategory_porduct_list'] as $list){
+			//echo '<pre>';print_r($list);
+			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+			
+		}
+	}else if(isset($data['subcatid']) && $data['subcatid']!=''){
+		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,'');
 		foreach($data['subcategory_porduct_list'] as $list){
 			//echo '<pre>';print_r($list);
 			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
@@ -1578,6 +1596,10 @@ function filtersearch(){
 		$data['cart_item_ids']=$cart_item_ids;
 		$data['cart_ids']=$cart_ids;
 		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	if(count($wishlist_ids)>0){

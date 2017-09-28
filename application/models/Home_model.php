@@ -613,7 +613,21 @@ $this->db->where('subcategory_id',$id);
 	
 }
 
+public function get_quickjump(){
+	$this->db->select('COUNT(order_items.item_id) as count,products.item_id,products.category_id,products.subcategory_id,category.category_name,subcategories.subcategory_name')->from('order_items');
+	$this->db->join('products', 'products.item_id = order_items.item_id', 'left');	
+	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
+	$this->db->join('category', 'category.category_id = products.category_id', 'left');	
+	$this->db->where('products.item_status',1);
+	$this->db->group_by('order_items.item_id');
+	$this->db->order_by("COUNT(order_items.item_id)", "DESC");
 
+	$this->db->limit(8);
+	return $this->db->get()->result_array();
+		/*$sql="SELECT COUNT(item_id), item_id FROM order_items GROUP BY item_id ORDER BY COUNT(item_id) DESC";
+        return $this->db->query($sql)->result_array();*/
+	
+}
 
 
 

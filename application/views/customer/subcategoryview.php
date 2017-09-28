@@ -1,4 +1,14 @@
+<?php if(isset($quick) && $quick=='quick'){ ?>
+	<script>
+	
+$(document).ready(function() {
+   $('#onclicksubcat<?php echo $subcatid; ?>').click();
+});
+ </script>
+<?php } ?>
 <style>
+
+
 .top-navbar1{
 	display:none;
 }
@@ -56,7 +66,7 @@
 			  <div class="col-md-12 gir_alg" style="border-right:1px solid #45b1b5">
 			  <div class="title text-left mar_t10"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
 			  <?php foreach($subcategory_list as $list){ ?>
-				  <div class="col-md-2"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
+				  <div class="col-md-2" id="onclicksubcat<?php echo $list['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
 					 <div class="catg_sty">
 						<?php echo $list['subcategory_name']; ?>
 					  </div>
@@ -533,7 +543,7 @@
 			
           <div class=" col-md-3 box-product-outer" style="width:23%">
             <div class="box-product">
-              <div class="img-wrapper">
+              <div class="img-wrapper item">
 			   <div class="img_size text-center">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                   <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
@@ -546,12 +556,12 @@
 				</div>
 				<?php } ?>
 				
-				<div class="option">
+				<div class="option ">
 				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
 				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
-				<a style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
 				<?php }else{ ?>	
-				<a style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart"></i></a>                  
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart"></i></a>                  
 				<?php } ?>
 				<?php } ?>
 				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
@@ -626,6 +636,8 @@
 				<?php }} ?>
 			</div>
             </div>
+			
+			
           </div>
 		  </form>
 		  <?php  
@@ -636,13 +648,18 @@
 		  <?php  $cnt++;} ?>
          
        
-         
+       
+
+	 <div class="clearfix"></div>
+	  
+	 
           
 </div>
       
     </div>
 	 </div>
 	 <div class="clearfix"></div>
+	
 	 <br>
 </body>
 <script>
@@ -753,7 +770,6 @@ jQuery.ajax({
 }
 function getproduct(id){
 	if(id!=''){
-	
 	jQuery.ajax({
 				url: "<?php echo site_url('category/categorywiseproductslist');?>",
 				type: 'post',
@@ -824,3 +840,45 @@ inputNumber.addEventListener('change', function(){
 	html5Slider.noUiSlider.set([null, this.value]);
 });
 	</script>
+	<script>
+
+$('.add-to-cart').on('click', function () {
+        var cart = $('.shopping_cart');
+        var imgtodrag = $(this).parent().parent('.item').find("img").eq(0);
+        if (imgtodrag) {
+			//alert();
+            var imgclone = imgtodrag.clone()
+                .offset({
+                top: imgtodrag.offset().top,
+                left: imgtodrag.offset().left
+            })
+                .css({
+                'opacity': '0.5',
+                    'position': 'absolute',
+                    'height': '150px',
+                    'width': '150px',
+                    'z-index': '1026'
+            })
+                .appendTo($('body'))
+                .animate({
+                'top': cart.offset().top + 10,
+                    'left': cart.offset().left + 10,
+                    'width': 75,
+                    'height': 75
+            }, 1000, 'easeInOutExpo');
+            
+            setTimeout(function () {
+                cart.effect("shake", {
+                    times: 2
+                }, 200);
+            }, 1500);
+
+            imgclone.animate({
+                'width': 0,
+                    'height': 0
+            }, function () {
+                $(this).detach()
+            });
+        }
+    });
+</script>
