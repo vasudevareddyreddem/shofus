@@ -1,4 +1,14 @@
 <body >
+<style>
+.carousel .item{
+	height:450px;
+}
+#social-float {
+ 
+}
+
+
+</style>
 <div class="container">
 <?php if($this->session->flashdata('adderror')): ?>
 		<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('adderror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
@@ -9,6 +19,57 @@
 
 
 			<?php endif; ?>
+			<div class="row">
+				<div class="col-md-8">
+					<img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" />
+					<img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" /><img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" />
+					<img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" />
+					<img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" /><img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" />
+				</div>
+		<div class="col-md-4" style=" position:fixed;top:20;right:50px" id="social-float">
+			<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+			<div class='carousel-outer'>
+				<!-- me art lab slider -->
+				<div class='carousel-inner '>
+					<div class='item active'>
+						<img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt=''id="zoom_05"  data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg"/>
+					</div>
+					<div class='item'  id="zoom_05">
+						<img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg" />
+					</div>
+					<div class='item'>
+						<img src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg" />
+					</div>
+						
+					<div class='item'>
+						<img src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg" id="zoom_05"/>
+					</div>
+					<div class='item'>
+						<img src='http://images.asos-media.com/inv/media/5/2/1/3/4603125/gold/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/5/2/1/3/4603125/gold/image1xxl.jpg" id="zoom_05"/>
+					</div>
+					<div class='item'>
+						<img src='http://images.asos-media.com/inv/media/5/3/6/8/4948635/mink/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/5/3/6/8/4948635/mink/image1xxl.jpg" id="zoom_05"/>
+					</div>
+					<div class='item'>
+						<img src='http://images.asos-media.com/inv/media/1/3/0/8/5268031/image2xxl.jpgg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/1/3/0/8/5268031/image2xxl.jpg" id="zoom_05"/>
+					</div>
+					
+				</div>
+					
+				<!-- sag sol -->
+				<a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+					<span class='glyphicon glyphicon-chevron-left'></span>
+				</a>
+				<a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+					<span class='glyphicon glyphicon-chevron-right'></span>
+				</a>
+			</div>
+			
+			
+			</div>
+		</div>
+			</div>
+			<div class="row">
  <?php 
 			  //echo '<pre>';print_r($whistlist_items);exit;
 			  $w=0;foreach($whistlist_items as $items){ ?>
@@ -19,8 +80,8 @@
 				<input type="hidden" name="qty" id="qty" readonly class="form-control text-center" value="1">
 
          
-	<div class="row">
-		<div class="col-md-8 col-md-offset-4">
+	
+		<div class="col-md-8 ">
             <div class="well well-sm" style="background:#fff;">
                 <div class="row">
 				
@@ -62,9 +123,11 @@
 				</div>
 			</div>
         </div>
-	</div>
+	
 	  </form>
 	<?php $w++;} ?>
+	
+	</div>
 		
 	 <!-- track start-->
 </div>
@@ -87,5 +150,19 @@ function qtyincrease(id){
 	
 	
 }
+</script>
+<script>
+function checkOffset() {
+  var a=$(document).scrollTop()+window.innerHeight;
+  var b=$('#footer-start').offset().top;
+  if (a<b) {
+    $('#social-float').css('bottom', '10px');
+  } else {
+    $('#social-float').css('bottom', (10+(a-b))+'px');
+  }
+}
+$(document).ready(checkOffset);
+$(document).scroll(checkOffset);
+
 </script>
 	
