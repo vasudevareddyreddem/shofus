@@ -9,9 +9,7 @@ class Front_Controller extends MY_Controller {
 			parent::__construct();
 				$this->load->library('cart');
 				$this->load->model('home_model');
-				
 				$data['qucikjump']= $this->home_model->get_quickjump();
-				//echo '<pre>';print_r($data);exit;
 				$data['allcategories_list']= $this->home_model->get_all_category_with_products();
 				$data['sidecaregory_list']= $this->home_model->get_sidebar_category_list();
 				$data['locationdata'] = $this->home_model->getlocations();
@@ -27,8 +25,6 @@ class Front_Controller extends MY_Controller {
 					$this->template->set_template('website'); 
 					$this->template->write_view('header', 'shared/header',$data);
 					$this->template->write_view('footer', 'shared/footer');
-					
-
 				}
 
 }

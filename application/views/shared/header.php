@@ -1,4 +1,4 @@
-	<!--wrapper start here -->
+<!--wrapper start here -->
 <style>
  .hi {
   color: green;
@@ -130,7 +130,7 @@
             <li>
 				<a class="tel" href="<?php echo base_url('customer/trackorders');?>"><span class=""><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; Track your order </a></li>&nbsp;
             <li>
-				<a class="" href="mailto:support@cartinhour.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
+				<a class="" href="mailto:support@resalatheme.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhour.com</a>
 			</li>
            
           </ul>
@@ -139,7 +139,7 @@
       </div>
     </div>
   </div>
-      <div class="container1 container-fluid hm_nav" style="height:90px;">
+      <div class="container1 container-fluid hm_nav">
         <div class="navbar-header " style="padding-right:50px;">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
           <a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhour" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
@@ -189,7 +189,12 @@
 			</i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" />
 			<p>Sign Up/Sign In</p></a>
 			</span>
-		<?php } ?>
+		  <?php } ?>
+			
+			<span class="medias text-center"><a href="javascript:void(0);" onclick="locationopenpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Change Your Location Here" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
+				<p>Location</p></a>
+			</span></a></span>
+			
 			<?php if($this->session->userdata('userdetails')){ ?>
 			<span class="medias text-center shopping_cart" style="position:relative;"><a href="<?php echo base_url('customer/cart'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
 				<p>Cart</p></a>
@@ -208,15 +213,15 @@
 				<p>Cart</p></a>
 				<span style="position:absolute;top:-5px;right:-5px;font-size:12px"></span>
 			</span>
-			<?php } ?>			
-			<span " class="medias text-center"><a href="<?php echo base_url('customer/nearstores'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
+			<?php } ?>	
+			<span class="medias text-center"><a href="<?php echo base_url('customer/nearstores'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
 				<p>Near by stores</p></a>
 			</span>
 		 </div>
 	</div>
 	  <div class="top-navbar1">
     <div class="container">
-	<?php if(count($qucikjump)>0){ ?>
+      <?php if(count($qucikjump)>0){ ?>
       <div class=" row qucik_jmp">
 	  <?php //echo '<pre>';print_r($qucikjump);exit; ?>
 		  <ul class="navbar_1"><li><span style="color:#555">Quick Jump to </span></li>
@@ -412,7 +417,7 @@
     </div>
   </div>
 </div>
-<!--<div id="fademaskpurpose"  class="mask_hide"></div>
+<div id="fademaskpurpose"  class="mask_hide"></div>
 <div class="loc_pop_cus" id="removepopuplocation" style="display:none;">
 	<div style="position:absolute;top:-16px;left:58%" > <i class="fa fa-sort-asc " style="font-size:40px;color:#fff;" aria-hidden="true"></i></div>
 	<div class="main" style="width:400px;">
@@ -455,7 +460,7 @@
         </div>
       </form>
     </div>
-	</div>-->
+	</div>
 
  
 
@@ -473,6 +478,7 @@
 <script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script> 
 <script type="text/javascript">
 
+$("#fademaskpurpose").addClass("mask_hide");
 function locationopenpopup (){
 $('#removepopuplocation').show();
 $("#fademaskpurpose").removeClass("mask_hide");
@@ -502,6 +508,7 @@ function validations(){
         jQuery('#address1errormsg').html('Please Select Area');
         return false;
      }
+	 $("#fademaskpurpose").addClass("mask_hide");
     jQuery('#address1errormsg').html(''); 
     jQuery.ajax({
         url: "<?php echo site_url('home/search_location_offers');?>",

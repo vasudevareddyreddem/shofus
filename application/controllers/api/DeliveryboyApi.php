@@ -101,20 +101,24 @@ class DeliveryboyApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 		$oreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_list($customer_id);
+		
 		$rejectoreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_reject_list($customer_id);
+		
 		if(count($rejectoreders_list)>0){
 				foreach ($rejectoreders_list as $lists){
 					$orditemids[]=$lists['order_item_id'];
-					$orddeliveryids[]=$lists['rejeted_del_boy_id'];
+					$orddeliveryids[]=$lists['delivery_boy_id'];
 				}
 				foreach ($oreders_list as $orderlists){
+					//echo '<pre'>print_r($orderlists);
 					
-						if(!in_array($orderlists['order_item_id'],$orditemids) && !in_array($orderlists['rejeted_del_boy_id'],$orddeliveryids) )
+						if(in_array($orderlists['order_item_id'],$orditemids) && in_array($orderlists['delivery_boy_id'],$orddeliveryids) )
 						{ 
-							$order_lists[]=$orderlists;
+							$order_lists[]=array();
 						}else{
-						
+							$order_lists[]=$orderlists;
 						}
+						
 				}
 			
 		}else{
@@ -122,8 +126,21 @@ class DeliveryboyApi extends REST_Controller {
 					$order_lists[]=$lists;
 				}
 		}
+		if(isset($order_lists) && count($order_lists)>0){
+			foreach($order_lists as $lists){
+				
+				
+				if(!empty($lists)) {
+					$finalorderlists[]=$lists;//this means value does not exist or is FALSE
+				}
+				
+			}
+		}else{
+			$finalorderlists[]=array();
+		}
+		
 		if(count($oreders_list)>0){
-				$message = array('status'=>1,'list'=>$order_lists,'count'=>count($order_lists), 'message'=>'orders list are found');
+				$message = array('status'=>1,'list'=>$finalorderlists,'count'=>count($finalorderlists), 'message'=>'orders list are found');
 				$this->response($message, REST_Controller::HTTP_OK);
 		}else{
 		$message = array('status'=>1,'message'=>'You have no delivery orders list');
@@ -153,21 +170,57 @@ class DeliveryboyApi extends REST_Controller {
 		
 		$customer_id=$this->input->get('rejectcustomer_id');
 		$order_item_id=$this->input->get('order_item_id');
+		$status=$this->input->get('status');
 		if($customer_id==''){
 		$message = array('status'=>1,'message'=>'Rejected customer id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else if($order_item_id==''){
 		$message = array('status'=>1,'message'=>'order item id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}else if($status==''){
+		$message = array('status'=>1,'message'=>'status is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
-		$statusupdate=$this->Deliveryboyapi_model->order_status_updated($customer_id,$order_item_id);
-		
-		if(count($statusupdate)>0){
+		if($status==1){
+		$statusupdate=$this->Deliveryboyapi_model->order_status_updated($customer_id,$order_item_id,$status,0);
+		$getall_rejected_list=$this->Deliveryboyapi_model->rejected_lists();
+		if(count($getall_rejected_list)>0){
+			
+			foreach ($getall_rejected_list as $lisd){
+				//echo '<pre>';print_r($lisd);
+				$rrids[]=$lisd['order_item_id'];
+				$rcids[]=$lisd['delivery_boy_id'];
+			}
+			if(in_array($order_item_id, $rrids) && in_array($customer_id, $rcids)){
+				$rejected=1;
+			}else{
+				$addrejected=array(
+				'order_item_id'=>$order_item_id,
+				'delivery_boy_id'=>$customer_id,
+				'created_at'=>date('Y-m-d H:i:s'),
+				);
+				$rejected=$this->Deliveryboyapi_model->insertrected_order_id($addrejected);
+			}
+			
+		}else{
+			
+			$addrejected=array(
+			'order_item_id'=>$order_item_id,
+			'delivery_boy_id'=>$customer_id,
+			'created_at'=>date('Y-m-d H:i:s'),
+			);
+			$rejected=$this->Deliveryboyapi_model->insertrected_order_id($addrejected);
+		}
+		if(count($statusupdate)>0 && count($rejected)>0){
 				$message = array('status'=>1, 'message'=>'Succssfully rejected your ordered item');
 				$this->response($message, REST_Controller::HTTP_OK);
 		}else{
 		$message = array('status'=>1,'message'=>'You have no delivery orders list');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		}else{
+			$message = array('status'=>1,'message'=>'status is wrong. Please try again');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 		
 	}

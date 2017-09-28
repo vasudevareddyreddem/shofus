@@ -512,6 +512,8 @@ public function getregstatus($email)
 		$query = $this->db->get('user');
 		//print_r($query->result()); exit;
 		return $query->row();
+	
+	
 }	
 public function checkEmailExits($email)
 	{
@@ -526,6 +528,8 @@ public function updateforgotstatus($email)
 	$this->db->where('user_email', $email);
      return $this->db->update('user', $data);
 	
+	
+	
 }	
 
 public function updateforgotstatus1($email)
@@ -533,7 +537,11 @@ public function updateforgotstatus1($email)
 	$data = array('forgot_status' => 0);
 	$this->db->where('user_email', $email);
      return $this->db->update('user', $data);
+	
+	
+	
 }	
+
 public function getforgotstatus($email)
 {
 	
@@ -541,7 +549,10 @@ public function getforgotstatus($email)
 		$query = $this->db->get('user');
 		//print_r($query->result()); exit;
 		return $query->row();
+	
+	
 }
+
 
 public function getsingleproduct($id)
 {
@@ -551,6 +562,15 @@ public function getsingleproduct($id)
 		$query = $this->db->get('products');
 		//print_r($query->result()); exit;
 		return $query->row();
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 
@@ -572,6 +592,12 @@ public function getsubcategoryid($id)
 		$query = $this->db->get('products');
 		//print_r($query->result()); exit;
 		return $query->row();	
+	
+	
+	
+	
+	
+	
 }
 
 
@@ -581,9 +607,9 @@ public function getsimilarproducts($id)
 {
 	
 $this->db->where('subcategory_id',$id);
-$query = $this->db->get('products');
-//print_r($query->result()); exit;
-return $query->result();
+		$query = $this->db->get('products');
+		//print_r($query->result()); exit;
+		return $query->result();
 	
 }
 
@@ -602,6 +628,20 @@ public function get_quickjump(){
         return $this->db->query($sql)->result_array();*/
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 }

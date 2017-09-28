@@ -199,7 +199,7 @@ class Customer extends Front_Controller
 					$price	=(($qty) * ($item_price));
 				}
 				$commission_price=(($price)*($products['commission'])/100);
-				/*if($products['category_id']==18){
+				if($products['category_id']==18){
 						if($price <500){
 							$delivery_charges=35;
 						}else{
@@ -214,7 +214,7 @@ class Customer extends Front_Controller
 						}else if($price >1000){
 							$delivery_charges=0;
 						}
-					}*/
+					}
 		if($products['subcategory_id']==53){
 			$uksize=$post['sizevalue'];
 			$size='';
@@ -232,7 +232,7 @@ class Customer extends Front_Controller
 		'item_price'=>$item_price,
 		'total_price'=>$price,
 		'commission_price'=>$commission_price,
-		//'delivery_amount'=>$delivery_charges,
+		'delivery_amount'=>$delivery_charges,
 		'seller_id'=>$products['seller_id'],
 		'color'=>isset($post['colorvalue'])?$post['colorvalue']:'',
 		'size'=>isset($size)?$size:'',
@@ -305,6 +305,22 @@ class Customer extends Front_Controller
 					$price	=(($qty) * ($item_price));
 				}
 				$commission_price=(($price)*($products['commission'])/100);
+				if($products['category_id']==18){
+						if($price <500){
+							$delivery_charges=35;
+						}else{
+							$delivery_charges=0;
+						}
+					}else{
+						
+						if($price <500){
+							$delivery_charges=75;
+						}else if(($price > 500) && ($price < 1000)){
+							$delivery_charges=35;
+						}else if($price >1000){
+							$delivery_charges=0;
+						}
+					}
 				
 		
 		$adddata=array(
@@ -315,7 +331,7 @@ class Customer extends Front_Controller
 		'item_price'=>$item_price,
 		'total_price'=>$price,
 		'commission_price'=>$commission_price,
-		//'delivery_amount'=>$delivery_charges,
+		'delivery_amount'=>$delivery_charges,
 		'seller_id'=>$products['seller_id'],
 		'color'=>isset($post['colorvalue'])?$post['colorvalue']:'',
 		'size'=>isset($size)?$size:'',
@@ -458,6 +474,22 @@ class Customer extends Front_Controller
 					$price	=(($qty) * ($item_price));
 				}
 				$commission_price=(($price)*($products['commission'])/100);
+				if($products['category_id']==18){
+						if($price <500){
+							$delivery_charges=35;
+						}else{
+							$delivery_charges=0;
+						}
+					}else{
+						
+						if($price <500){
+							$delivery_charges=75;
+						}else if(($price > 500) && ($price < 1000)){
+							$delivery_charges=35;
+						}else if($price >1000){
+							$delivery_charges=0;
+						}
+					}
 			
 		
 		//echo "<pre>";print_r($post);exit;
@@ -466,7 +498,7 @@ class Customer extends Front_Controller
 		'item_price'=>$item_price,
 		'commission_price'=>$commission_price,
 		'total_price'=>$price,
-		//'delivery_amount'=>$delivery_charges,
+		'delivery_amount'=>$delivery_charges,
 		);
 		
 		$update= $this->customer_model->update_cart_qty($customerdetails['customer_id'],$post['product_id'],$updatedata);
@@ -515,6 +547,22 @@ class Customer extends Front_Controller
 					$price	=(($qty) * ($item_price));
 				}
 				$commission_price=(($price)*($products['commission'])/100);
+				if($products['category_id']==18){
+						if($price <500){
+							$delivery_charges=35;
+						}else{
+							$delivery_charges=0;
+						}
+					}else{
+						
+						if($price <500){
+							$delivery_charges=75;
+						}else if(($price > 500) && ($price < 1000)){
+							$delivery_charges=35;
+						}else if($price >1000){
+							$delivery_charges=0;
+						}
+					}
 				
 		
 		//echo "<pre>";print_r($post);exit;
@@ -523,7 +571,7 @@ class Customer extends Front_Controller
 		'item_price'=>$item_price,
 		'commission_price'=>$commission_price,
 		'total_price'=>$price,
-		//'delivery_amount'=>$delivery_charges,
+		'delivery_amount'=>$delivery_charges,
 		);
 		
 		$update= $this->customer_model->update_cart_qty($customerdetails['customer_id'],$post['product_id'],$updatedata);
@@ -666,7 +714,8 @@ class Customer extends Front_Controller
 		//echo '<pre>';print_r($details);exit;
 		$this->session->set_userdata('billingaddress',$details);		
 		$this->session->set_flashdata('success','Billing address successfully saved!');
-		redirect('customer/deliverytype');
+		redirect('customer/orderpayment');
+			
 			
 		
 	}else{
@@ -675,111 +724,9 @@ class Customer extends Front_Controller
 	}
 	 
  }
- public function deliverytype(){
-	 
-	
-	if($this->session->userdata('userdetails'))
-	 {
-		$customerdetails=$this->session->userdata('userdetails');
-		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
-		
-		$cnt=1;$min=0;foreach($cart_items as $items){
-			//echo '<pre>';print_r($items);exit;
-			$billingaddress=$this->session->userdata('billingaddress');
-			$customeraddress=$billingaddress['address1'].$billingaddress['address2'].$billingaddress['pincode'];				
-			$selleraddress=$this->customer_model->get_item_seller_billing_address($items['seller_id']);
-			$destinationselleraddress=$selleraddress['addrees1'].', '.$selleraddress['addrees2'].', '.$selleraddress['pin_code'];
 
-			/* delivery boy address*/
-			$deliveryaddress=array();
-			$deliveryaddress=$this->customer_model->get_delivery_address();
-			//echo '<pre>';print_r($deliveryaddress);
-			if(count($deliveryaddress)>0){
-				$kms=$times=array();	$min=0;
-			foreach ($deliveryaddress as $lists){
-					$urls = "https://maps.googleapis.com/maps/api/distancematrix/json?origins='".urlencode($lists['deliveryboy_current_location'])."'&destinations='".urlencode($destinationselleraddress)."'&sensor=false";
-					$ch1 = curl_init();
-					curl_setopt($ch1, CURLOPT_URL, $urls);
-					curl_setopt($ch1, CURLOPT_RETURNTRANSFER, 1);
-					curl_setopt($ch1, CURLOPT_PROXYPORT, 3128);
-					curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST, 0);
-					curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, 0);
-					$response1 = curl_exec($ch1);
-					curl_close($ch1);
-					$characters1 = json_decode($response1, TRUE);
-					//echo '<pre>';print_r($response1);exit;
-						$kms[]=isset($characters1['rows'][0]['elements'][0]['distance']['text'])?$characters1['rows'][0]['elements'][0]['distance']['text']:'';
-						$times[]=isset($characters1['rows'][0]['elements'][0]['duration']['text'])?$characters1['rows'][0]['elements'][0]['duration']['text']:'';
-			
-			}
-			foreach($times as $key=>$value){
-			  //echo '<pre>';print_r($value); 
-			$replacstr[]=str_replace("mins"," ",$value); 
-				
-			}	
-			 asort($replacstr);
-			$arrayfilter=array_filter($replacstr);
-			$min=reset($arrayfilter);
-			}
-			/* delivery boy address*/
-			$url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins='".$customeraddress."'&destinations='".urlencode($destinationselleraddress)."'&sensor=false";
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-			$response = curl_exec($ch);
-			curl_close($ch);
-			$characters = json_decode($response); 
-			$data['details'][$items['id']]=$items;
-			$data['details'][$items['id']]['time']=isset($characters->rows['0']->elements[0]->duration->text)?$characters->rows['0']->elements[0]->duration->text:'0';
-			$data['details'][$items['id']]['km']=isset($characters->rows['0']->elements[0]->distance->text)?$characters->rows['0']->elements[0]->distance->text:'0';
-			$data['details'][$items['id']]['maxtime']=$min+ $data['details'][$items['id']]['time'];
-			//echo $min;exit;
-				
-		$cnt++;}
-		$data['count']=count($data['details']);
-		//echo '<pre>';print_r($data);exit;
-		$this->template->write_view('content', 'customer/delivery',$data);
-		$this->template->render();
-		
-	}else{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('customer');
-	}
-	 
- } 
   
- public function updatedeliveytype(){
-	 
-	
-	if($this->session->userdata('userdetails'))
-	 {
-		$post=$this->input->post();
-		$values=explode("/",$post['product_id']);
-		$delivertcharges=$this->customer_model->update_delivery_chages($values[1],$values[0],$values[2]);
-		$customerdetails=$this->session->userdata('userdetails');
-		$cart_items_total= $this->customer_model->get_cart_item_amount($customerdetails['customer_id']);
-		$cartdelivary_items_charges= $this->customer_model->get_cart_itemdelivery_amount($customerdetails['customer_id']);
-		$amount=($cart_items_total['total']) + ($cartdelivary_items_charges['deliverytotal']);
-		
-		
-		if(count($delivertcharges)>0){
-		$data['msg']=1;	
-		$data['amt']=$amount;	
-		echo json_encode($data); 
-		}else{
-		$data['msg']=0;	
-		echo json_encode($data); 
-		}
 
-	}else{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('customer');
-	}
-	 
- } 
  public function orderpayment(){
 	 if($this->session->userdata('userdetails'))
 	 {
