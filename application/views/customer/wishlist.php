@@ -34,7 +34,7 @@
          
 	
             <div class="well well-sm" style="background:#fff;">
-                <div class="row">
+                <div class="row" style="position:relative">
 				
 				<div style="position:absolute;top:20px;right:50px">
 					<?php if($items['item_status']==1 && $items['item_quantity']!=0 ){ ?>
