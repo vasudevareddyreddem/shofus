@@ -842,7 +842,6 @@ class Customer extends Front_Controller
 						'item_price'=>$items['item_price'],
 						'total_price'=>$items['total_price'],
 						'delivery_amount'=>$items['delivery_amount'],
-						'delivery_type'=>$items['delivery_type'],
 						'commission_price'=>$items['commission_price'],
 						'customer_email'=>$customerdetails['cust_email'],
 						'customer_phone'=>$billingaddress['mobile'],

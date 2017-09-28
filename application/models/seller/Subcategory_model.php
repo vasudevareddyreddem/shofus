@@ -73,7 +73,11 @@ public function search($match)
 	return $query->result();
 }	
 	
-	
+public function get_already_exits_categories($data){
+	$this->db->select('*')->from('category');
+ 	$this->db->where('category_name',$data);
+  	return $this->db->get()->row_array();
+}	
 	
 	
 public function getreferralfee($subcatid){
