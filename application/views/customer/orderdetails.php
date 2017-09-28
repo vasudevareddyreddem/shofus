@@ -62,11 +62,7 @@ tr th:last-child {
 <body >
 <div class="container">
 		<div class="row">
-		<?php //echo base64_decode($this->uri->segment('3'));
-		//echo '<pre>';print_r($item_details);exit;
-		$currentdate=date('Y-m-d h:i:s A');
-		$tomorrow = date('Y-m-d h:i:s A',strtotime($item_details['create_at'] . "+1 days"));
-		 ?>
+		
 		
 	 <!-- track start-->
 <div class="row">
@@ -128,11 +124,20 @@ tr th:last-child {
 		</div>
     
 </div>
+<?php //echo base64_decode($this->uri->segment('3'));
+		//echo '<pre>';print_r($item_details);exit;
+		$currentdate=date('Y-m-d h:i:s A');
+		$tomorrow = date('Y-m-d h:i:s A',strtotime($item_details['create_at'] . "+1 days"));
+		 ?>
 		<div class="col-md-4" >
-		<?php if($item_details['status_deliverd']==4 && $item_details['order_status']!=5 && $currentdate<= $tomorrow){ ?>
+		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']=='' && $currentdate<= $tomorrow){ ?>
 		<div><a class="site_col" href="<?php echo base_url('customer/orderrefund/'.base64_encode($item_details['order_item_id'])); ?>"><h5>Return</h5></a></div>
 		<?php } ?>
 		<p ><a class="site_col" id="review">Review this product</a></p>
+		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']!=''){ ?>
+		<p >Your order status is <?php echo $item_details['status_refund']; ?>  Requested</p>
+		<p >We will contact you within 72 hrs to clarify your request. Please note your request will be accepted only if it falls within the cartinhour return policy. </p>
+		<?php } ?>
 		</div>
 		</div>
 		</div>
@@ -187,7 +192,9 @@ tr th:last-child {
 					</div>
 					<div class="col-md-8">
 						<p><a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
+						<?php if(isset($item_details['color']) && $item_details['color']!=''){ ?>
 						<div>Color: <?php echo isset($item_details['color'])?$item_details['color']:'';  ?></div>
+						<?php } ?>
 						<div>7 Days Exchange</div>
 					
 					</div>
@@ -245,12 +252,13 @@ tr th:last-child {
 						<br>
 					<div class=""><span><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
 					<i class="font_span">
-					<?php $expire = date($item_details['create_at'], strtotime('+1 hour')); ?>
-					Delivery expected by <?php echo isset($expire)?Date('M-d-Y h:i:s A',strtotime(htmlentities($expire))):'';  ?>
+					<?php  $timestamp = strtotime($item_details['create_at']) + 2*60*60;
+						$time = date('H:i:s', $timestamp);?>
+					Delivery expected by <?php echo isset($item_details['create_at'])?Date('M-d-Y',strtotime(htmlentities($item_details['create_at']))):'';  ?><?php echo $time; ?>
 					</i></div>
 					<hr	>
 				<div class="col-md-3 col-md-offset-9">
-						<span class="font_span"><b>Toatal</b></span>&nbsp;&nbsp;
+						<span class="font_span"><b>Total</b></span>&nbsp;&nbsp;
 						<span class="font_span">₹<?php echo $item_details['total_price']+$item_details['delivery_amount']; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
 						<span class="font_span site_col">Savings</span>&nbsp;&nbsp;
 						<span class="font_span">₹<?php echo isset($item_details['discount'])?$item_details['discount']:'';  ?></span>
@@ -259,7 +267,7 @@ tr th:last-child {
 			</div>
 		</div>
 		</div>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		
 
 	 <!-- track end-->
 	   

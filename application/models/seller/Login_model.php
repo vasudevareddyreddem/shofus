@@ -61,6 +61,16 @@ class Login_model extends CI_Model
 		return $this->db->query($sql1);
 	 
  }
+ public function set_update_forgotpassword($sid,$pass,$data) {
+	$sql1="UPDATE sellers SET seller_password ='".md5($pass)."',verification_otp ='".$data."' WHERE seller_id = '".$sid."'";
+		return $this->db->query($sql1);
+	 
+ }
+ public function update_forgotpassword_otp($sid,$pass) {
+	$sql1="UPDATE sellers SET verification_otp ='".$pass."' WHERE seller_id = '".$sid."'";
+		return $this->db->query($sql1);
+	 
+ }
 public function selleruser_login($username, $password) {
 		$sql = "SELECT * FROM sellers WHERE (seller_email ='".$username."' AND seller_password ='".$password."') OR (seller_mobile ='".$username."' AND seller_password ='".$password."')";
 	return $this->db->query($sql)->row_array();

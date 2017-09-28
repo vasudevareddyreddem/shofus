@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="expires" content="timestamp">
 <?php header('Cache-Control: no cache'); ?>
-<title>::Cart in Hour::</title>
+<title>::Cart In Hour::</title>
 <link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico" >
 <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/font-awesome.min.css">
@@ -67,7 +67,8 @@
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/customer/js/search.js"></script> 
-  <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+  <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script> 
+  <script src="<?php echo base_url(); ?>assets/home/js/cart.js"></script>
 
 </body>
 </html>

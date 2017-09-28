@@ -329,7 +329,9 @@ class Customer_model extends MY_Model
 			return $this->db->get()->result_array();
 	}
 	public function get_order_items_refund_list($order_id){
-			$this->db->select('order_status.*')->from('order_status');
+			$this->db->select('order_status.*,products.category_id,products.subcategory_id')->from('order_status');
+			$this->db->join('products', 'products.item_id = order_status.item_id', 'left');
+
 			$this->db->where('order_status.order_item_id', $order_id);
 			return $this->db->get()->row_array();
 	}
@@ -373,6 +375,11 @@ class Customer_model extends MY_Model
 			$this->db->select('*')->from('product_size_list');
 			$this->db->where('item_id', $itemid);
 			$this->db->where('status', 1);
+			return $this->db->get()->result_array();
+	}
+	public function get_uksizes_lists($itemid){
+			$this->db->select('*')->from('product_uksize_list');
+			$this->db->where('item_id', $itemid);
 			return $this->db->get()->result_array();
 	}
 	public function get_product_details_for_subcats($itemid){
@@ -436,7 +443,36 @@ class Customer_model extends MY_Model
 	 public function update_subscribe_customer($custid,$data){
 		$sql1="UPDATE customers SET subscribe ='".$data."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
+	} 
+	public function update_delivery_chages($cart_id,$amount,$type){
+		$sql1="UPDATE cart SET delivery_amount ='".$amount."',delivery_type ='".$type."' WHERE id = '".$cart_id."'";
+       	return $this->db->query($sql1);
 	}
+	public function get_item_seller_billing_address($seller_id){
+		$this->db->select('seller_store_details.seller_id,seller_store_details.addrees1,seller_store_details.addrees2,seller_store_details.pin_code')->from('seller_store_details');
+		$this->db->where('seller_id', $seller_id);
+		return $this->db->get()->row_array();
+	}
+	public function get_delivery_address(){
+		$this->db->select('customers.customer_id,customers.deliveryboy_current_location')->from('customers');
+		$this->db->where('role_id', 6);
+		$this->db->where('status', 1);
+		return $this->db->get()->result_array();
+	}
+	public function get_cart_item_amount($cust_id){
+		
+		$sql = "SELECT SUM(total_price) as total FROM cart WHERE cust_id ='".$cust_id."'";
+		return $this->db->query($sql)->row_array();	
+	}
+	public function get_cart_itemdelivery_amount($cust_id){
+		
+		$sql = "SELECT SUM(delivery_amount) as deliverytotal FROM cart WHERE cust_id ='".$cust_id."'";
+		return $this->db->query($sql)->row_array();	
+	}
+	 public function update_before_loctionsearch($custid,$data){
+		$sql1="UPDATE customers SET area ='".$data."' WHERE customer_id = '".$custid."'";
+       	return $this->db->query($sql1);
+	} 
 	
 }
 ?>

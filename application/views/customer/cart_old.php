@@ -1,6 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
 
-		<span id="reupdateqty">
-		
+<style>
+.panel-title > a:before {
+    float: left !important;
+    font-family: FontAwesome;
+    content:"\f1db";
+    padding-right: 5px;
+}
+
+.panel-title > a:hover, 
+.panel-title > a:active, 
+.panel-title > a:focus  {
+    text-decoration:none;
+}
+// #sticky {
+ 
+    // height:80%;
+
+ 
+// }
+#sticky.stick {
+    position: fixed !important;
+    top: 0;
+    z-index: 10;
+    border-radius: 0 0 0.5em 0.5em;
+}
+</style>
+
+
+<body >
+<div class="pad_bod container">
+		<div class="row" id="updateqty"></div>
+		<div class="row" id="oldcartqty">
+		<div id="sticky-anchorupdateqtyhide"></div>
+		<!--<div class="col-md-3" id="sticky">
+		<div class="panel panel-primary">
+			<div class="panel-heading ">Price details</div>
+			<div class="panel-body">
+				<div class="pull-left">
+					Price (<?php if(count($cart_items) >0){  echo count($cart_items).'  '.'items';}else{  echo "item";  }?>)
+				</div>
+				<div class="pull-right">
+					<i class="fa fa-inr" aria-hidden="true"></i><?php echo isset($carttotal_amount['pricetotalvalue'])?$carttotal_amount['pricetotalvalue']:''; ?>
+				</div>
+				
+				<div class="clearfix"></div>
+				<div class="mar_t20">
+				<div class="pull-left">
+					Delivery Charges
+				</div>
+				<div class="pull-right">
+					<i class="fa fa-inr" aria-hidden="true"></i><?php echo isset($carttotal_amount['delivertamount'])?$carttotal_amount['delivertamount']:''; ?>
+				</div>
+				</div>
+				<div class="clearfix"></div>
+				<hr>
+				<div class="mar_t20">
+				<div class="pull-left">
+					<b>Amount Payable</b>
+				</div>
+				<div class="pull-right">
+					<i class="fa fa-inr" aria-hidden="true"></i><b>
+				<?php 	$totalpayamount=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
+					echo $totalpayamount;
+				?>
+				</b>
+				</div>
+				</div>
+				
+			</div>
+		</div>
+		</div>-->
 		
 		<div class="col-md-12 " id="off_set_stic">
 		<div class="panel panel-primary">
@@ -31,7 +102,7 @@
                         </a>
 						<p class="text-center"><b>Billing Address</b> </p>
                     </li>
-						<li role="presentation" class="disabled" >
+					<li role="presentation" class="disabled" >
 						   <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Delivery Charges">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-folder-open"></i>
@@ -40,7 +111,6 @@
                         </a>
 						<p class="text-center"><b>Delivery Charges</b> </p>
                     </li>
-
                     <li role="presentation" class="disabled">
                         <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                             <span class="round-tab">
@@ -64,16 +134,17 @@
 				 
 				<div class="title"><span>Order Confirmation</span></div>
           <div class="table-responsive">
-		 
+		  
 			
 			<?php if(count($cart_items)>0){   ?>
-           <table class="table table-bordered table-cart">
+            <table class="table table-bordered table-cart">
               <thead>
                 <tr>
                   <th>Product</th>
-                  <th>Product Name</th>
+                  <th style="width:30%">Product Name</th>
                   <th>Quantity</th>
                   <th>Unit price</th>
+                  <th>Delivery Charges</th>
                   <th>SubTotal</th>
                   <th>Action</th>
                 </tr>
@@ -82,8 +153,9 @@
 			  <?php 
 			  //echo '<pre>';print_r($cart_items);exit; 
 			$total='';
+			
 			  $cnt=0;foreach($cart_items as $items){ ?>
-			   <script>$('#qty'+'<?php echo $cnt; ?>').val('<?php echo $items['qty'];  ?>');</script>
+			  <script>$('#qty'+'<?php echo $cnt; ?>').val('');</script>
 			  <input type="hidden" name="orginalqty" id="orginalqty<?php echo $cnt; ?>" value="<?php echo $items['item_quantity']; ?>" >
 
 			  <form action="<?php  echo base_url('customer/updatecart'); ?>" method="post" name="updatecart" id="updatecart">
@@ -126,6 +198,13 @@
 				  
 			 
 				<td class="unit"><?php echo $items['item_price']; ?> </td>
+				<td class="unit">
+					<div class="radio">
+						<label><input type="radio" name="radio-product" checked="checked"><span> Noraml </span></label>
+						<label><input type="radio" name="radio-product"><span> fast </span></label>
+						
+					</div>
+				</td>
 				<td class="sub"><?php echo $items['total_price']; ?></td>
 		
                   <td class="action">
@@ -135,19 +214,19 @@
 				  	
                 </tr>
 				  </form>
-					<?php $total +=$items['total_price']; ?>
+				<?php $total +=$items['total_price']; ?>
 			  <?php $cnt++;}   ?>
                
              
                
                 <tr>
-                  <td colspan="4" class="text-right">Total</td>
-                  <td colspan="2"><b><?php echo $total; ?></b></td>
+                  <td colspan="5" class="text-right"><b>Total</b></td>
+                  <td colspan="3"><b><?php echo $total; ?></b></td>
                 </tr> 
-				<!--<tr>
-                  <td colspan="4" class="text-right">Grand Total</td>
+			<tr>
+                  <td colspan="5" class="text-right">Grand Total</td>
                   <td colspan="2"><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></td>
-                </tr>-->
+                </tr>
 				
               </tbody>
             </table>
@@ -155,8 +234,8 @@
           </div>
           <nav aria-label="Shopping Cart Next Navigation">
             <ul class="pager">
-              <li class="previous"><a href="<?php echo base_url(''); ?>"><span aria-hidden="true">&larr;</span> Continue Shopping</a></li>
-              <li class="next"><a href="<?php echo base_url('customer/billing'); ?>">Proceed to Checkout <span aria-hidden="true">&rarr;</span></a></li>
+              <li class="previous"><a style="border:none;background:none;" href="<?php echo base_url(''); ?>"><span class="btn btn-primary btn-small"><span aria-hidden="true">&larr;</span> Continue Shopping</span></a></li>
+              <li class="next"><a style="border:none;background:none;" href="<?php echo base_url('customer/billing'); ?>"><span class="btn btn-primary btn-small">Proceed to Checkout <span aria-hidden="true">&rarr;</span></span></a></li>
             </ul>
           </nav>
 		  
@@ -171,8 +250,15 @@
 	   </div>
 	   </div>
 	   </div>
-	   </span>
-	   <div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+		
+	   </div>
+	   </div>
+	</div>
+	</div>
+	</div>
+	<div class="clearfix">&nbsp;</div>
+	
 <?php if($this->session->flashdata('productsuccess')): ?>
 			<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 			<?php endif; ?> 
@@ -184,7 +270,6 @@
 			<div class="alt_cus"><div style="display:none;" class="alert_msg animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 <script>
-
 function productqty(id){
 
 	var pid=document.getElementById("product_id"+id).value;
@@ -203,9 +288,11 @@ function productqty(id){
 					form_key : window.FORM_KEY,
 					product_id: pid,
 					qty: qty - 1,
+					ajax: 1,
 					},
 				dataType: 'html',
 				success: function (data) {
+					//$("#oldcartqty").hide();
 					$("#oldcartqty").empty();
 					$("#oldcartqty").empty();
 					$("#oldcartqty").append(data);
@@ -235,9 +322,11 @@ function productqtyincreae(id){
 					form_key : window.FORM_KEY,
 					product_id: pid,
 					qty: qty1 + 1,
+					ajax: 1,
 					},
 				dataType: 'html',
 				success: function (data) {
+					//$("#oldcartqty").hide();
 					$("#oldcartqty").empty();
 					$("#oldcartqty").empty();
 					$("#oldcartqty").append(data);
@@ -249,6 +338,7 @@ function productqtyincreae(id){
 }
 
 
+	
 </script>
 
  

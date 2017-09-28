@@ -149,6 +149,7 @@
 			   
               </tr>
 			   <?php } ?>
+			   <?php if($products_list['subcategory_id']!=53){ ?>
 			  <?php if(count($sizes_list)>0){ ?>
 			   <tr>
                 <td>Size</td>
@@ -169,13 +170,14 @@
               </tr>
 			  
 			  <?php } ?>
+			  <?php } ?>
 			  <?php if(count($uksizes_list)>0){ ?>
 			   <tr>
                 <td>Uk Size</td>
                 <td>
 						<div class="row">
 						<input type="hidden" name="sizevalue" id="sizevalue" value="">
-						<?php $ui=$sizecnt+1;foreach($uksizes_list as $list) { ?>
+						<?php $ui=1;foreach($uksizes_list as $list) { ?>
 						<div style="font-size:17px" id="" class="col-md-1 " >
 						<span  id="sizeslist<?php echo $ui;?>" onclick="sizeselect('<?php echo $ui;?>');sizeselectvalue('<?php echo $list['p_size_name'];?>');"><?php echo $list['p_size_name'];?></span>
 						</div>
@@ -607,17 +609,38 @@ function colorselectvalue(vals){
 function sizeselectvalue(val){
 		document.getElementById("sizevalue").value=val;
 }
-function sizeselect(val){
-	$("#sizeslist"+val).addClass("site_active");
-	var cnt;
-    var nt =<?php echo $bothsizecnt;?>;
-	//var cnt='';
-	for(cnt = 1; cnt <= nt; cnt++){
-		if(cnt!=val){
-			$("#sizeslist"+cnt).removeClass("site_active");
-		}             
+</script>
+ <?php if($products_list['subcategory_id']!=53){ ?>
+	 <script>
+	function sizeselect(val){
+		$("#sizeslist"+val).addClass("site_active");
+		var cnt;
+		var nt =<?php echo $sizecnt;?>;
+		//var cnt='';
+		for(cnt = 1; cnt <= nt; cnt++){
+			if(cnt!=val){
+				$("#sizeslist"+cnt).removeClass("site_active");
+			}             
+		}
 	}
-}
+	</script>
+ <?php }else{ ?>
+ 	 <script>
+	function sizeselect(val){
+		$("#sizeslist"+val).addClass("site_active");
+		var cnt;
+		var nt =<?php echo $uksizecnt;?>;
+		//var cnt='';
+		for(cnt = 1; cnt <= nt; cnt++){
+			if(cnt!=val){
+				$("#sizeslist"+cnt).removeClass("site_active");
+			}             
+		}
+	}
+	</script>
+ <?php } ?>
+<script>
+
 function colorselect(val){
 	$("#colorlist"+val).addClass("col_active");
 	var cnt;

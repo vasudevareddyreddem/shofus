@@ -795,6 +795,7 @@ class Category extends Front_Controller
 	 
 	$post=$this->input->post();
 	$subcategory_porduct_list= $this->category_model->get_search_all_subcategorywise_products();
+	
 	//echo '<pre>';print_r($subcategory_porduct_list);exit;
 	//echo count($subcategory_porduct_list['mini_amount']);exit;
 	$data['cat_subcat_ids']= $this->category_model->get_search_all_subcategory_id();
@@ -811,23 +812,25 @@ class Category extends Front_Controller
 						}
 					}
 					//echo '<pre>';print_r($idslist);exit;
-		$result = array_unique($idslist);
-		
-	//echo '<pre>';print_r($result);exit;
-	foreach ($result as $pids){
-		$products_list[]=$this->category_model->get_product_details($pids);
+					if(isset($idslist) && count($idslist)>0){
+							$result = array_unique($idslist);
+							//echo '<pre>';print_r($result);exit;
+							foreach ($result as $pids){
+								$products_list[]=$this->category_model->get_product_details($pids);
+							}
+								$data['subcategory_porduct_list']=$products_list;
+							foreach($data['subcategory_porduct_list'] as $list){
+								//echo '<pre>';print_r($list);
+								$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+								$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+							}
 
-	}
-	$data['subcategory_porduct_list']=$products_list;
-	foreach($data['subcategory_porduct_list'] as $list){
-			//echo '<pre>';print_r($list);
-			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
-			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
-			
-		}
-	
-	$data['avg_count']=$reviewrating;
-	$data['rating_count']=$reviewcount;
+							$data['avg_count']=$reviewrating;
+							$data['rating_count']=$reviewcount;
+
+					}else{
+						$data['subcategory_porduct_list']=array();
+					}
 	
 	$data['previousdata']= $this->category_model->get_all_previous_search_subcategory_fields();
 	$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
@@ -993,6 +996,23 @@ class Category extends Front_Controller
 
 				
 		
+	}
+	$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	if(count($wishlist_ids)>0){
@@ -1281,6 +1301,7 @@ function filtersearch(){
 	}
 	$post=$this->input->post();
 	$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products_list($post['subcategoryid']);
+	//echo '<pre>';print_r($data['subcategory_porduct_list']);exit;
 	foreach($data['subcategory_porduct_list'] as $list){
 			//echo '<pre>';print_r($list);
 			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);

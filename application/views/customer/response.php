@@ -88,7 +88,7 @@ $('#supcount').hide();
                 <div class="connecting-line"></div>
                 <ul class="nav nav-tabs" role="tablist">
 
-                    <li role="presentation">
+                    <li role="presentation" class="disabled" >
 						 <a href="<?php echo base_url('customer/cart'); ?>" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-shopping-cart"></i>
@@ -97,7 +97,7 @@ $('#supcount').hide();
                         </a>
 						<p class="text-center"><b>Check Cart</b> </p>
                     </li>  
-					<li role="presentation" class="" >
+					<li role="presentation" class="disabled" >
 						   <a href="javascript:void(0);" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-folder-open"></i>
@@ -106,8 +106,17 @@ $('#supcount').hide();
                         </a>
 						<p class="text-center"><b>Billing Address</b> </p>
                     </li>
+					<li role="presentation" class="disabled" >
+						   <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Delivery Charges">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-folder-open"></i>
+                            </span>
+							
+                        </a>
+						<p class="text-center"><b>Delivery Charges</b> </p>
+                    </li>
 
-                    <li role="presentation" class="">
+                    <li role="presentation" class="disabled" >
                         <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-credit-card"></i>
@@ -128,7 +137,7 @@ $('#supcount').hide();
 
          
        <div class="tab-content">
-					<div class="title"><span>Thanks for Shoping</span></div>
+					<div class="title"><span>Thanks for Shopping</span></div>
 					 <?php if($this->session->flashdata('paymentsucess')): ?>
 					<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('paymentsucess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 

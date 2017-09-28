@@ -20,7 +20,7 @@
 	
 </div>
 <body >
-<div class="pad_bod">
+<div class="pad_bod container-fluid">
 		<div class="row">
 		<div class="col-md-3" >
 		<div class="panel panel-primary">
@@ -61,7 +61,7 @@
 		</div>
 		</div>
 		
-		<div class="col-md-9 ">
+		<div class="col-md-8 ">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Payment</div>
 			<div class="panel-body">
@@ -81,7 +81,7 @@
                         </a>
 						<p class="text-center"><b>Check Cart</b> </p>
                     </li>  
-					<li role="presentation" class="" >
+					<li role="presentation" class="disabled" >
 						   <a href="<?php echo base_url('customer/billing'); ?>" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-folder-open"></i>
@@ -89,6 +89,15 @@
 							
                         </a>
 						<p class="text-center"><b>Billing Address</b> </p>
+                    </li>
+					<li role="presentation" class="disabled" >
+						   <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Delivery Charges">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-folder-open"></i>
+                            </span>
+							
+                        </a>
+						<p class="text-center"><b>Delivery Charges</b> </p>
                     </li>
 
                     <li role="presentation" class="active">
@@ -137,8 +146,12 @@
 							<input name="surl" type="hidden" value="<?php echo base_url('customer/success'); ?>" size="64" />
 							<input name="furl" type="hidden" value="<?php echo base_url('customer/paymentfailure'); ?>" size="64" />
 							<input name="curl" type="hidden" value="<?php echo base_url('payu/cancel'); ?>" />
-							<div>
-							<input type="submit" name="submit_form" value="Click Here for Payment" class="btn btn-primary pull-right " style="margin-right:50%">
+							
+							<div class="pull-left" style="padding-left:20px;">
+								<a style="border:none;background:none;" href="<?php echo base_url('customer/billing'); ?>"><span class=" btn btn-primary btn-small"> Back</span></a>
+							</div>
+							<div class="pull-right" style="padding-right:20px;">
+							<input type="submit" name="submit_form" value="Click Here for Payment" class="btn btn-primary  " style="margin-right:50%">
 							</div>
 							</form>
 					</div>
