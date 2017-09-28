@@ -33,10 +33,10 @@
 	
 </div>
 <body >
-<div class="pad_bod container">
+<div class="pad_bod">
 		<div class="row">
 		<div id="sticky-anchor"></div>
-		<!--<div class="col-md-3" id="sticky">
+		<div class="col-md-3" id="sticky">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Price details</div>
 			<div class="panel-body">
@@ -73,9 +73,9 @@
 				
 			</div>
 		</div>
-		</div>-->
+		</div>
 		
-		<div class="col-md-12 " id="off_set_stic">
+		<div class="col-md-8 " id="off_set_stic">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Payment</div>
 			<div class="panel-body">
@@ -104,15 +104,6 @@
                         </a>
 						<p class="text-center"><b>Billing Address</b> </p>
                     </li>
-					<li role="presentation" class="disabled" >
-						   <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Delivery Charges">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
-                            </span>
-							
-                        </a>
-						<p class="text-center"><b>Delivery Charges</b> </p>
-                    </li>
 
                     <li role="presentation" class="disabled">
                         <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
@@ -122,7 +113,6 @@
                         </a>
 						<p class="text-center"><b>Payment mode </b></p>
                     </li>
-					
                     <li role="presentation" class="disabled">
                         <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4">
                             <span class="round-tab">
@@ -149,7 +139,7 @@
 										  <label >Mobile:</label>
 										  <input type="text" id="mobile" name="mobile" class="form-control" value="<?php echo $customerdetail['cust_mobile'];?>" >
 										</div>
-										<!--<div class="form-group">
+										<div class="form-group">
 										 <label class="control-label">Delivery Location Area</label>
 											<select class="form-control" id="area" name="area">
 											<option value="">Select</option>
@@ -161,14 +151,10 @@
 											<?php } ?>
 											<?php } ?>
 											</select> 
-										</div>-->
+										</div>
 										<div class="form-group">
 										  <label >Address 1:</label>
 										  <input type="text" id="address1" name="address1" class="form-control" value="<?php echo $customerdetail['address1']; ?>"  >
-										</div>
-										<div class="form-group">
-										  <label >Pin code:</label>
-										  <input type="text" id="pincode" name="pincode" class="form-control" value="<?php echo $customerdetail['pincode']; ?>"  >
 										</div>
 										<div class="form-group">
 										  <label >Address 2:</label>
@@ -179,8 +165,8 @@
 										
 					<nav aria-label="Shopping Cart Next Navigation">
 						<ul class="pager">
-						  <li class="previous"><a style="border:none;background:none;" href="<?php echo base_url('customer/cart'); ?>"><span class=" btn btn-primary btn-small"><span aria-hidden="true">&larr;</span> Back</a></span></li>
-						  <li class="next"><button class="pull-right btn btn-primary btn-small" type="submit">Proceed to Checkout</span><span aria-hidden="true">&rarr;</span></button></li>
+						  <li class="previous"><a href="<?php echo base_url('customer/cart'); ?>" style="float:left;" >Back</span></a></li>
+						  <li class="next"><button style="float:right;" type="submit">Proceed to Checkout</span></button></li>
 						</ul>
 					</nav>
 		  </form>
@@ -225,18 +211,6 @@
 					}
                 }
             },
-				pincode: {
-               validators: {
-				notEmpty: {
-						message: 'Pincode is required'
-					},
-					regexp: {
-					regexp:  /^[0-9]{6}$/,
-					message:'Pincode must be 6 digits'
-					}
-            
-			}
-            },
 			area: {
               validators: {
 					notEmpty: {
@@ -273,6 +247,31 @@
 });
 
 
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    var footer_top = $("#footer-start").offset().top;
+    var div_top = $('#sticky-anchor').offset().top;
+    var div_height = $("#sticky").height();
+    
+    var padding = 20;  // tweak here or get from margins etc
+    
+    if (window_top + div_height > footer_top - padding)
+        $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
+    else if (window_top > div_top) {
+        $('#sticky').addClass('stick');
+        $('#off_set_stic').addClass('col-md-offset-3');
+        $('#sticky').css({top: 100})
+    } else {
+        $('#off_set_stic').removeClass('col-md-offset-3');
+        $('#sticky').removeClass('stick');
+		$('#sticky').css({top:0})
+    }
+}
+
+$(function () {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});
 </script>
 
  
