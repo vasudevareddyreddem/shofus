@@ -4,39 +4,8 @@
 -moz-box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 }
-
 </style>
 <div class=" container">
-<div class="well">
-	 <form  onSubmit="return validations();" action="<?php echo base_url('customer/nearstores'); ?>" method="post">
-        <div class="form-group">
-		<?php if($this->session->userdata('location_area')!=''){ ?>
-			<div class="row">
-			<div class="col-md-12">
-				<label>Selected locations :</label> &nbsp;<span id="selectedlocation"> : &nbsp;<b class="site_col"><?php echo $this->session->userdata('location_area'); ?></b> </span>
-			</div>
-			</div>
-			<hr>
-		<?php } ?>
-			<div class="row">
-			<div class="col-md-4 col-md-offset-3">
-			  <label >Select Your  Shop location</label>
-		  
-          <select style="border-radius:0"data-placeholder="select your nearest area"  name="locationarea[]" id="locationarea" multiple  class="chosen-select" tabindex="1">
-              <option value=""></option>
-              <?php foreach($locationdata as $location_data) {?>
-			  <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
-          	<?php }  ?>
-            </select>
-			<span id="locationmsg"></span>
-			<button style="top: 25px;position: absolute;right:-60px;border-radius:4px;" type="submit" id="formsubmmition" class="btn btn-primary ">Submit</button>
-			</div>
-			
-			</div>
-        </div>
-      </form>
-	  <div class="clearfix"></div>
-</div>
 	<div class="row">
 	<?php //echo '<pre>';print_r($seller_list);exit;?>
 	<?php  if(count($seller_list)>0){
@@ -65,7 +34,9 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 									<i class="fa fa-star"></i><span class="text-primary"><?php echo number_format($lists['avg']['avg'], 2, '.', ''); ?></span>
 								   
 								  </div>
-								 
+								  <!--<div class="pull-right" style="padding-right:20px;">
+									Dist: &nbsp;5km
+								  </div>-->
 					  
 						</div>
 					  </div>
@@ -86,7 +57,18 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 		<div>No Stores are available. Please  change location search</div>
 
 	<?php }	?>
-	<div class="clearfix"> &nbsp;</div>
+		
+	
+		
+			
+			<div class="clearfix"> &nbsp;</div>
+			
+			
+			
+		
+			
+			
+			
 	</div>
 	</div>
 
