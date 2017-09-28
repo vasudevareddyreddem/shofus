@@ -19,7 +19,7 @@
 
 
 			<?php endif; ?>
-			<div class="row" style="min-height:500px;">
+			<div class="row">
 				<div class="col-md-8">
 					 <?php 
 			  //echo '<pre>';print_r($whistlist_items);exit;
@@ -42,7 +42,7 @@
                     <?php } ?> &nbsp;&nbsp;
 					<a href="<?php echo base_url('customer/deletewishlist/'.base64_encode($items['id'])); ?>"><span class="glyphicon glyphicon-trash tras_col" ></span></a>
 				</div>
-                    <div class="col-xs-3 col-md-3 text-center">
+                   <div class="col-xs-3 col-md-3 text-center">
                         <img src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>" alt="<?php echo $items['item_name']; ?>"
                             class="img-rounded img-responsive" />
                     </div>
