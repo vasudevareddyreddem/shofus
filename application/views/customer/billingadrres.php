@@ -166,7 +166,7 @@
 					<nav aria-label="Shopping Cart Next Navigation">
 						<ul class="pager">
 						  <li class="previous"><a href="<?php echo base_url('customer/cart'); ?>" style="float:left;" >Back</span></a></li>
-						  <li class="next"><button style="float:right;" type="submit">Proceed to Checkout</span></button></li>
+						  <li class="next"><button class="btn btn-primary " style="float:right;" type="submit">Proceed to Checkout</span> &nbsp;<span aria-hidden="true">&rarr;</span></button></li>
 						</ul>
 					</nav>
 		  </form>

@@ -61,7 +61,7 @@
 		</div>
 		</div>
 		
-		<div class="col-md-9 ">
+		<div class="col-md-9 " style="width:70%">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Payment</div>
 			<div class="panel-body">
@@ -137,8 +137,8 @@
 							<input name="surl" type="hidden" value="<?php echo base_url('customer/success'); ?>" size="64" />
 							<input name="furl" type="hidden" value="<?php echo base_url('customer/paymentfailure'); ?>" size="64" />
 							<input name="curl" type="hidden" value="<?php echo base_url('payu/cancel'); ?>" />
-							<div>
-							<input type="submit" name="submit_form" value="Click Here for Payment" class="btn btn-primary pull-right " style="margin-right:50%">
+							<div class=" pull-right" style="padding-right:15px;">
+							<input type="submit" name="submit_form" value="Click Here for Payment" class="btn btn-primary  " style="margin-right:50%">
 							</div>
 							</form>
 					</div>

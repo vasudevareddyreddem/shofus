@@ -219,7 +219,7 @@
           <nav aria-label="Shopping Cart Next Navigation">
             <ul class="pager">
               <li class="previous"><a href="<?php echo base_url(''); ?>"><span aria-hidden="true">&larr;</span> Continue Shopping</a></li>
-              <li class="next"><a href="<?php echo base_url('customer/billing'); ?>">Proceed to Checkout <span aria-hidden="true">&rarr;</span></a></li>
+              <li class="next"><a  href="<?php echo base_url('customer/billing'); ?>">Proceed to Checkout &nbsp;<span aria-hidden="true">&rarr;</span></li>
             </ul>
           </nav>
 		  
@@ -384,7 +384,7 @@ $(function () {
     $(window).scroll(sticky_relocate);
     sticky_relocate();
 });
-
+	
 </script>
 
  

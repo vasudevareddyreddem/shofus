@@ -4987,8 +4987,8 @@ input[type=radio]:checked + span::before {
 
 .pager > li > a,
 .pager > li > span {
-  color: #666;
-  border-bottom: 2px solid #d6d8d9;
+  color: #fff;
+  background:  #45b1b9;
   border-radius: 0;
 }
 
@@ -6319,7 +6319,7 @@ span.round-tab:hover {
 }
 
 .wizard .nav-tabs > li {
-    width: 20%;
+    width: 24%;
 }
 
 .wizard li:after {
