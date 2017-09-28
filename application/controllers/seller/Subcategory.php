@@ -201,5 +201,19 @@ public function search()
             $this->template->render();
 
     }
+	public function check_category_exits(){
+		
+		$post=$this->input->post();
+		
+		$categorydata = $this->subcategory_model->get_already_exits_categories($post['cartegoryname']);
+				if(count($categorydata)>0){
+				$data['msg']=1;	
+				echo json_encode($data);
+				}else{
+					$data['msg']=2;	
+					echo json_encode($data);
+				}
+		
+	}
 
 }

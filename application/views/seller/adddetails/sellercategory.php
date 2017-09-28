@@ -373,7 +373,7 @@ $(document).ready(function(){
 									<tr id='addr0'>
 										
 										<td>
-										<input type="text" name='caregoryname[]' id="uff" class="form-control"/>
+										<input type="text" name='caregoryname[]' id="uff" onchange="checkcategoryvalidation(this.value);" class="form-control"/>
 										</td>
 									</tr>
 									<tr id='addr1'></tr>
@@ -417,6 +417,25 @@ $(document).ready(function(){
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 	
 <script type="text/javascript">
+function checkcategoryvalidation(id){
+	if(id!=''){
+		$.ajax({
+			type: "POST",
+			url: '<?php echo base_url(); ?>seller/subcategory/check_category_exits',
+			data: {
+			cartegoryname:id
+			},
+			success:function(data)
+			{
+			alert(data.msg);
+
+			}
+
+		});
+		
+	}
+	
+}
   $(document).ready(function(){
       var i=1;
      $("#add_row").click(function(){
@@ -447,8 +466,10 @@ function validations(){
 		return false;
 	}else{
 		$("#locationmsg").html("");
-		return true;
+		return false;
 	}
+	
+	return false;
 }
 function removemsg(id){
 	if(id!=''){
@@ -500,7 +521,6 @@ function savecat(val){
 
 
 function chose_own(){
-  alert('hai');
 }
 </script>
 
