@@ -198,9 +198,10 @@
 			<?php if($this->session->userdata('userdetails')){ ?>
 			<span class="medias text-center shopping_cart" style="position:relative;"><a href="<?php echo base_url('customer/cart'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
 				<p>Cart</p></a>
-				<span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #45b1b9;padding:0px 4px;border-radius:25%;color:#45b1b9">
-				<?php if(count($cartitemcount)>0){
-						echo count($cartitemcount);
+				<?php if(count($cartitemcount)>0){ ?>
+						<span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #45b1b9;padding:0px 4px;border-radius:25%;color:#45b1b9">
+					<?php echo count($cartitemcount); ?>
+						<?php
 						}else{ 
 						echo "";
 						}?>

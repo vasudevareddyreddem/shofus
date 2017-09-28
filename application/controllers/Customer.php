@@ -1714,8 +1714,8 @@ class Customer extends Front_Controller
  
 	public function logout(){
 		
-		$userinfo = $this->session->userdata('userdetails');
-		$this->customer_model->update_before_loctionsearch($userinfo['customer_id'],'');
+		//$userinfo = $this->session->userdata('userdetails');
+		//$this->customer_model->update_before_loctionsearch($userinfo['customer_id'],'');
 		$data = array('admin_id'=> '','admin_name' => '','user_email' => '','seller_id'  => '','seller_name' => '','seller_email' => '','loggedin'  => FALSE);
 		$this->session->set_userdata($data);
 		
