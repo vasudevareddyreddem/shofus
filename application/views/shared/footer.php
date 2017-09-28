@@ -111,7 +111,7 @@
     <div class="footer-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12 col-xs-12 coppyright">© 2017 Cart in Hour. All Rights Reserved.</div>
+          <div class="col-sm-12 col-xs-12 coppyright">© 2017 Cart in Hours. All Rights Reserved.</div>
         </div>
         <!--row--> 
       </div>

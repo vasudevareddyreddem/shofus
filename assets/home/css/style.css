@@ -1891,8 +1891,9 @@ footer address em {
 	overflow: hidden;
 	width: 100%;
 	margin: auto;
-	padding: 25px 0;
+	padding:  10px 0;
 	background-color: #1b1e24;
+	
 }
 footer a:hover {
 	text-decoration: none;
@@ -2003,9 +2004,9 @@ footer a:hover {
 	-o-transition: background 400ms ease-in-out;
 }
 footer .coppyright {
-	color: #666;
+	color: #bbb;
 	float: left;
-	font-weight: 200;
+	font-weight: 300;
 	text-align: center;
 }
 /*STARTING POPUP START */
