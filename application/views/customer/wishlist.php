@@ -21,11 +21,65 @@
 			<?php endif; ?>
 			<div class="row">
 				<div class="col-md-8">
-					<img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" />
-					<img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" /><img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" />
-					<img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" />
-					<img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" /><img src="<?php echo base_url(); ?>assets/home/images/test_whish.png" />
+					 <?php 
+			  //echo '<pre>';print_r($whistlist_items);exit;
+			  $w=0;foreach($whistlist_items as $items){ ?>
+			  
+			   <input type="hidden" name="orginalqty" id="orginalqty<?php echo $w; ?>" value="<?php echo $items['item_quantity']; ?>" >
+			  <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+				<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $items['item_id']; ?>" >
+				<input type="hidden" name="wishlist" id="wishlist" value="1" >
+				<input type="hidden" name="qty" id="qty" readonly class="form-control text-center" value="1">
+
+         
+	
+            <div class="well well-sm" style="background:#fff;">
+                <div class="row">
+				
+				<div style="position:absolute;top:20px;right:50px">
+					<?php if($items['item_status']==1 && $items['item_quantity']!=0 ){ ?>
+                   <button style="background:none;position:relative;z-index:1024;border:none;" type="submit" ><span class="glyphicon glyphicon-shopping-cart tras_col" aria-hidden="true"></span></button>&nbsp;
+                    <?php } ?> &nbsp;&nbsp;
+					<a href="<?php echo base_url('customer/deletewishlist/'.base64_encode($items['id'])); ?>"><span class="glyphicon glyphicon-trash tras_col" ></span></a>
 				</div>
+                    <div class="col-xs-3 col-md-3 text-center">
+                        <img src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>" alt="<?php echo $items['item_name']; ?>"
+                            class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-xs-9 col-md-9 section-box">
+                        <div  class="pull-left whish_head">
+                            <?php echo $items['item_name']; ?></div>
+							<div class="clearfix">&nbsp;</div><brs>
+							<div>
+							
+						<?php 
+								$currentdate=date('Y-m-d h:i:s A');
+										if($items['offer_expairdate']>=$currentdate){
+											$item_price= ($items['item_cost']-$items['offer_amount']);
+											$percentage= $items['offer_percentage'];
+											$orginal_price=$items['item_cost'];
+										}else{
+											$item_price= $items['special_price'];
+											$prices= ($items['item_cost']-$items['special_price']);
+											$percentage= (($prices) /$items['item_cost'])*100;
+											$orginal_price=$items['item_cost'];
+										}
+									?>
+								<span style="font-size:20px;font-weight:500">₹<?php echo $item_price ; ?></span> &nbsp;&nbsp;
+								<span class="price-old"style="font-size:16px;color:#bbb">₹ <?php echo $orginal_price ; ?></span>&nbsp;&nbsp;
+								<span class="site_col" style="font-size:18px;"><?php echo number_format($percentage, 2, '.', ''); ?>% off</span>&nbsp;&nbsp;
+							</div>
+                        
+                    </div>
+				</div>
+			</div>
+      
+	  </form>
+			  
+			  
+			  
+			  <?php $w++;} ?>
+			  </div>
 		<div class="col-md-4" style=" position:fixed;top:20;right:50px" id="social-float">
 			<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
 			<div class='carousel-outer'>
@@ -69,65 +123,7 @@
 			</div>
 		</div>
 			</div>
-			<div class="row">
- <?php 
-			  //echo '<pre>';print_r($whistlist_items);exit;
-			  $w=0;foreach($whistlist_items as $items){ ?>
-			  <input type="hidden" name="orginalqty" id="orginalqty<?php echo $w; ?>" value="<?php echo $items['item_quantity']; ?>" >
-			  <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
-				<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $items['item_id']; ?>" >
-				<input type="hidden" name="wishlist" id="wishlist" value="1" >
-				<input type="hidden" name="qty" id="qty" readonly class="form-control text-center" value="1">
-
-         
-	
-		<div class="col-md-8 ">
-            <div class="well well-sm" style="background:#fff;">
-                <div class="row">
-				
-				<div style="position:absolute;top:20px;right:50px">
-					<?php if($items['item_status']==1 && $items['item_quantity']!=0 ){ ?>
-                   <button style="background:none;position:relative;z-index:1024;border:none;" type="submit" ><span class="glyphicon glyphicon-shopping-cart tras_col" aria-hidden="true"></span></button>&nbsp;
-                    <?php } ?> &nbsp;&nbsp;
-					<a href="<?php echo base_url('customer/deletewishlist/'.base64_encode($items['id'])); ?>"><span class="glyphicon glyphicon-trash tras_col" ></span></a>
-				</div>
-                    <div class="col-xs-3 col-md-3 text-center">
-                        <img src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>" alt="<?php echo $items['item_name']; ?>"
-                            class="img-rounded img-responsive" />
-                    </div>
-                    <div class="col-xs-9 col-md-9 section-box">
-                        <div  class="pull-left whish_head">
-                            <?php echo $items['item_name']; ?></div>
-							<div class="clearfix">&nbsp;</div><brs>
-							<div>
-							
-						<?php 
-								$currentdate=date('Y-m-d h:i:s A');
-										if($items['offer_expairdate']>=$currentdate){
-											$item_price= ($items['item_cost']-$items['offer_amount']);
-											$percentage= $items['offer_percentage'];
-											$orginal_price=$items['item_cost'];
-										}else{
-											$item_price= $items['special_price'];
-											$prices= ($items['item_cost']-$items['special_price']);
-											$percentage= (($prices) /$items['item_cost'])*100;
-											$orginal_price=$items['item_cost'];
-										}
-									?>
-								<span style="font-size:20px;font-weight:500">₹<?php echo $item_price ; ?></span> &nbsp;&nbsp;
-								<span class="price-old"style="font-size:16px;color:#bbb">₹ <?php echo $orginal_price ; ?></span>&nbsp;&nbsp;
-								<span class="site_col" style="font-size:18px;"><?php echo number_format($percentage, 2, '.', ''); ?>% off</span>&nbsp;&nbsp;
-							</div>
-                        
-                    </div>
-				</div>
-			</div>
-        </div>
-	
-	  </form>
-	<?php $w++;} ?>
-	
-	</div>
+		
 		
 	 <!-- track start-->
 </div>

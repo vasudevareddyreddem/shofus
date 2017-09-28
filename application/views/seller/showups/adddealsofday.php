@@ -321,6 +321,10 @@ if(count>0){
 					if (!IsMobile<?php echo $subcategory->subcategory_id;?>(offerAmt)) {
 					$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter Correct Offer Percentages");
 					return false;
+					}else if(offerAmt<=0){
+						$("#offeramounterror<?php echo $subcategory->subcategory_id;?>").html("Please Enter Correct Offer Percentages");
+					return false;
+						
 					} 
 			 }
 			 if(offerAmt >100){
