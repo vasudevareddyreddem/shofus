@@ -1187,10 +1187,11 @@ function filtersearch(){
 						$products[]=$li;
 					}
 		}
+		if(isset($idslist) && count($idslist)>0){
 		$result = array_unique($idslist);
 		
 	//echo '<pre>';print_r($result);exit;
-	if(isset($idslist) && count($idslist)>0){
+	
 				foreach ($result as $pids){
 					$products_list[]=$this->category_model->get_product_details($pids);
 
