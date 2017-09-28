@@ -1,5 +1,12 @@
  
-
+<style>
+.links li>a{
+	font-size:14px !important;
+	font-weight:400 !important;
+	padding:5px;
+	
+}
+</style>
   <!--footer start here -->
   <footer>
     <div class="footer-inner" id="footer-start">
@@ -42,15 +49,15 @@
         </div>
         <!--footer-column-last--> 
       </div>
-      <div class="container_main">
+      <div class="container_main" style="margin-top:50px;">
         <div class="row">
-          <div class="col-sm-8 col-xs-12 col-lg-12">
-            <div class="footer-column">
+          <div class="col-sm-8 col-xs-12 col-lg-12" >
+            <div class="footer-column" >
               <h4>About Company</h4>
-              <p>Krupa Towers Building, A-11&A-12,
-                NO:201, 3rd Floor, 1st Road,
-                Western Hills, Near JNTU, Addagutta,
-                Kukatpally, Hyderabad,
+              <p style="font-size:15px;font-weight:300">Plot No. 177, Sri Vani Nilayam,
+                1st floor,Beside Sri Chaitanya High School,
+                Sardar Patel Nagar, Nizampet Road,
+                after JNTU , Hyderabad,
                 Telangana, 500072</p>
               <div class="social">
                 <ul class="link">
@@ -61,9 +68,9 @@
                 </ul>
               </div>
             </div>
-            <div class="footer-column">
+            <div class="footer-column" >
               <h4>Quick Links</h4>
-              <ul class="links">
+              <ul class="links" >
                 <li class="first"><a href="#">Home</a></li>
                 <li><a href="#">Food </a></li>
                 <li><a href="#">Fashion</a></li>
