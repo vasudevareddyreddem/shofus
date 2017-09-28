@@ -845,7 +845,8 @@ class Customer extends Front_Controller
 						'commission_price'=>$items['commission_price'],
 						'customer_email'=>$customerdetails['cust_email'],
 						'customer_phone'=>$billingaddress['mobile'],
-						'customer_address'=>$billingaddress['address1'],
+						'customer_address'=>$billingaddress['address1'].' '.$billingaddress['address2'],
+						'area'=>$billingaddress['area'],
 						'order_status'=>1,
 						'color'=>$items['color'],
 						'size'=>$items['size'],
@@ -1973,64 +1974,27 @@ class Customer extends Front_Controller
  }
  public function nearstores(){
 	
-	 $post=$this->input->post();
-	 if(isset($post['locationarea']) && $post['locationarea']!=''){
-		 $this->session->set_userdata('location_ids',implode(",",$post['locationarea']));
-		 
-		 /*displaying purpose*/
-		 $locationdata= $this->home_model->getlocations();
-		$loacationname=array();
-		foreach ($locationdata as $list){
-			if (in_array($list['location_id'], $post['locationarea'])) {
-				$loacationname[]=$list['location_name'];
-			}
-		}
-		$locationdatadetails=implode(", ",$loacationname);
-		$this->session->set_userdata('location_area',$locationdatadetails);
-		
-		/* displying purpose*/
-		foreach ($post['locationarea'] as $list){
+	  $locationdatadetails=$this->session->userdata('location_ids');
+	 
+	
+	
+	foreach ($locationdatadetails as $list){
 		if($list!=''){
 			$details=$this->customer_model->get_seller_details($list);
+			
 			if(count($details)>0){
 				foreach ($details as $lis){
 				//echo '<pre>';print_r($lis);exit;
 				$data['seller_list'][$lis['seller_id']]=$lis;
 				$data['seller_list'][$lis['seller_id']]['avg']=$this->customer_model->product_reviews_avg($lis['seller_id']);
 				$data['seller_list'][$lis['seller_id']]['categories']=$this->customer_model->product_categories_list($lis['seller_id']);
+				
 				}
+				
 			}
-		}	
-	  }
-	}else{
-		$customerdetails=$this->session->userdata('userdetails');
-		$detail=$this->customer_model->get_profile_details($customerdetails['customer_id']);
-		//echo '<pre>';print_r($detail);exit;
-		$locations=explode(',',$detail['area']);
-		$locationdata= $this->home_model->getlocations();
-		$loacationname=array();
-		foreach ($locationdata as $list){
-			if (in_array($list['location_id'], $locations)) {
-				$loacationname[]=$list['location_name'];
-			}
-		}
-		$locationdatadetails=implode(", ",$loacationname);
-		$this->session->set_userdata('location_area',$locationdatadetails);
-		foreach ($locations as $list){
-		if($list!=''){
-			$details=$this->customer_model->get_seller_details($list);
-			if(count($details)>0){
-				foreach ($details as $lis){
-				//echo '<pre>';print_r($lis);exit;
-				$data['seller_list'][$lis['seller_id']]=$lis;
-				$data['seller_list'][$lis['seller_id']]['avg']=$this->customer_model->product_reviews_avg($lis['seller_id']);
-				$data['seller_list'][$lis['seller_id']]['categories']=$this->customer_model->product_categories_list($lis['seller_id']);
-				}
-			}
-		}	
-	  }
-
 		
+		
+		}	
 	}
 	if(isset($data) && $data!=''){
 		$this->template->write_view('content', 'customer/nearstores',$data);
