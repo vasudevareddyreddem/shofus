@@ -693,7 +693,7 @@ transform: translateZ(-200px);
 }
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
 	border: none;
-	background: none repeat scroll 0 0 #88be4c;
+	background-color:#45b1b9 ;
 	color: #fff !important;
 }
 /* #login, .form-group, label { */
