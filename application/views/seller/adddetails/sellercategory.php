@@ -438,7 +438,7 @@ function  categoryexists(id){
 				$('#categoryexit').val(1);
 				$('#categoryexitserror').html('');
 			}else{
-				$('#categoryexitserror').html('Please use another category name. It is already exits');
+				$('#categoryexitserror').html('Please use another category name. It is already exist');
 				$('#categoryexit').val(0);
 			}
 
@@ -454,7 +454,7 @@ function  categoryexists(id){
   $(document).ready(function(){
       var i=1;
      $("#add_row").click(function(){
-      $('#addr'+i).html("<td><input  name='caregoryname[]' id='uff' type='text' class='form-control input-md'></td>");
+      $('#addr'+i).html("<td><input  name='caregoryname[]' autocomplete='off' id='uff' type='text' class='form-control input-md'></td>");
         
       $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
       $('#deletediv').show('');
