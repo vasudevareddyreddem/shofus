@@ -375,7 +375,7 @@ $(document).ready(function(){
 									<tr id='addr0'>
 										
 										<td>
-										<input type="text" onchange="categoryexists(this.value);" name='caregoryname[]' id="uff" class="form-control"/>
+										<input type="text" autocomplete="off" onkeyup="categoryexists(this.value);" name='caregoryname[]' id="uff" class="form-control"/>
 										</td>
 									</tr>
 									<tr id='addr1'></tr>
@@ -427,7 +427,7 @@ function  categoryexists(id){
 	
 	$.ajax({
 			
-			url: '<?php echo base_url(); ?>seller/subcategory/check_category_exits.',
+			url: '<?php echo base_url(); ?>seller/subcategory/check_category_exits',
 			data: {
 			cartegoryname:id
 			},
@@ -472,7 +472,6 @@ function  categoryexists(id){
 
 });
 function validations(){
-	
 	var areaids=document.getElementById('seller_cat').value;
 	var categoryexist=document.getElementById('categoryexit').value;
   var own=document.getElementById('uff').value;
@@ -480,9 +479,12 @@ function validations(){
 	if(areaids=='' && own==''){
 		$("#locationmsg").html("Please select a category Or Write Your own category").css("color", "red");
 		return false;
-	}else if(categoryexist==0){
+	}else if(categoryexist!=''){
+		if(categoryexist==0){
 		$("#locationmsg").html("");
 		return false;
+		
+		}
 	}else{
 		$("#categoryexitserror").html("");
 		$("#locationmsg").html("");

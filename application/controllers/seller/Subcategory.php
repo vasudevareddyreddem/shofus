@@ -204,6 +204,7 @@ public function search()
 	public function check_category_exits(){
 		
 		$post=$this->input->post();
+		//echo '<pre>';print_r($post);exit;
 		
 		$categorydata = $this->subcategory_model->get_already_exits_categories($post['cartegoryname']);
 				if(count($categorydata)>0){
