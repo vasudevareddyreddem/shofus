@@ -63,7 +63,7 @@ $(document).ready(function() {
 	 <div class="row ">
 			<div class="col-md-12  ">
 			  
-			  <div class="col-md-12 gir_alg" style="border-right:1px solid #45b1b5">
+			  <div class="col-md-12 gir_alg" >
 			  <div class="title text-left mar_t10"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
 			  <?php foreach($subcategory_list as $list){ ?>
 				  <div class="col-md-2" id="onclicksubcat<?php echo $list['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
