@@ -191,167 +191,167 @@ public function item_status(){
 		//echo '<pre>';print_r($images);exit;
 		if($post['product_theme23'] || $post['product_theme12'] || $post['product_theme'] ||$post['product_theme1'] || $post['product_theme2'] || $post['product_theme3'] || $post['product_theme4'] || $post['product_theme5']){
 	
-	if($post['product_theme23']!=''){
+	if(isset($post['product_theme23']) && $post['product_theme23']!=''){
 	$pthem=$post['product_theme23'];		
 	}
-	if($post['product_theme12']!=''){
+	if(isset($post['product_theme12']) && $post['product_theme12']!=''){
 	$pthem=$post['product_theme12'];		
 	}
-	if($post['product_theme']!=''){
+	if(isset($post['product_theme']) && $post['product_theme']!=''){
 	$pthem=$post['product_theme'];		
 	}
-	if($post['product_theme1']!=''){
+	if(isset($post['product_theme1']) && $post['product_theme1']!=''){
 	$pthem=$post['product_theme1'];		
 	}
-	if($post['product_theme2']!=''){
+	if(isset($post['product_theme2']) && $post['product_theme2']!=''){
 	$pthem=$post['product_theme2'];		
-	}if($post['product_theme3']!=''){
+	}if(isset($post['product_theme3']) && $post['product_theme3']!=''){
 	$pthem=$post['product_theme3'];		
-	}if($post['product_theme4']!=''){
+	}if(isset($post['product_theme4']) && $post['product_theme4']!=''){
 	$pthem=$post['product_theme4'];		
-	}if($post['product_theme5']!=''){
+	}if(isset($post['product_theme5']) && $post['product_theme5']!=''){
 	$pthem=$post['product_theme5'];		
 	}
 }
 if($post['product_type71'] || $post['product_type1'] || $post['product_type2'] || $post['product_type3'] || $post['product_type4'] || $post['product_type5'] || $post['product_type6'] || $post['product_type7'] || $post['product_type8']){
 	
-	if($post['product_type71']!=''){
+	if(isset($post['product_type71']) && $post['product_type71']!=''){
 	$ptype=$post['product_type71'];		
 	}
-	if($post['product_type2']!=''){
+	if(isset($post['product_type2']) && $post['product_type2']!=''){
 	$ptype=$post['product_type2'];		
 	}
-	if($post['product_type3']!=''){
+	if(isset($post['product_type3']) && $post['product_type3']!=''){
 	$ptype=$post['product_type3'];		
 	}
-	if($post['product_type4']!=''){
+	if(isset($post['product_type4']) && $post['product_type4']!=''){
 	$ptype=$post['product_type4'];		
 	}
-	if($post['product_type5']!=''){
+	if(isset($post['product_type5']) && $post['product_type5']!=''){
 	$ptype=$post['product_type5'];		
 	}
-	if($post['product_type6']!=''){
+	if(isset($post['product_type6']) && $post['product_type6']!=''){
 	$ptype=$post['product_type6'];		
 	}
-	if($post['product_type7']!=''){
+	if(isset($post['product_type7']) && $post['product_type7']!=''){
 	$ptype=$post['product_type7'];		
 	}
-	if($post['product_type8']!=''){
+	if(isset($post['product_type8']) && $post['product_type8']!=''){
 	$ptype=$post['product_type8'];		
 	}
 	
 }
 if($post['product_occasion1'] || $post['product_occasion2']){
 	
-	if($post['product_occasion1']!=''){
+	if(isset($post['product_occasion1']) && $post['product_occasion1']!=''){
 	$poccasion=$post['product_occasion1'];		
 	}
-	if($post['product_occasion2']!=''){
+	if(isset($post['product_occasion2']) && $post['product_occasion2']!=''){
 	$poccasion=$post['product_occasion2'];		
 	}
 }
 if($post['primary_camera1'] || $post['primary_camera2']){
 	
-	if($post['primary_camera1']!=''){
+	if(isset($post['primary_camera1']) && $post['primary_camera1']!=''){
 	$primary=$post['primary_camera1'];		
 	}
-	if($post['primary_camera2']!=''){
+	if(isset($post['primary_camera2']) && $post['primary_camera2']!=''){
 	$primary=$post['primary_camera2'];		
 	}
 }
 if($post['battery_capacity1'] || $post['battery_capacity2']){
 	
-	if($post['battery_capacity1']!=''){
+	if(isset($post['battery_capacity1']) && $post['battery_capacity1']!=''){
 	$baterycapacity=$post['battery_capacity1'];		
 	}
-	if($post['battery_capacity2']!=''){
+	if(isset($post['battery_capacity2']) && $post['battery_capacity2']!=''){
 	$baterycapacity=$post['battery_capacity2'];		
 	}
 }
 if($post['product_processor_brand1'] || $post['product_processor_brand2']){
 	
-	if($post['product_processor_brand1']!=''){
+	if(isset($post['product_processor_brand1']) && $post['product_processor_brand1']!=''){
 	$processerband=$post['product_processor_brand1'];		
 	}
-	if($post['product_processor_brand2']!=''){
+	if(isset($post['product_processor_brand2']) && $post['product_processor_brand2']!=''){
 	$processerband=$post['product_processor_brand2'];		
 	}
 }
 if($post['product_packof1'] || $post['product_packof2']){
 	
-	if($post['product_packof1']!=''){
+	if(isset($post['product_packof1']) && $post['product_packof1']!=''){
 	$packof=$post['product_packof1'];		
 	}
-	if($post['product_packof2']!=''){
+	if(isset($post['product_packof2']) && $post['product_packof2']!=''){
 	$packof=$post['product_packof2'];		
 	}
 }
 if($post['dial_shape1'] || $post['dial_shape2']){
 	
-	if($post['dial_shape1']!=''){
+	if(isset($post['dial_shape1']) && $post['dial_shape1']!=''){
 	$dialshape=$post['dial_shape1'];		
 	}
-	if($post['dial_shape2']!=''){
+	if(isset($post['dial_shape2']) && $post['dial_shape2']!=''){
 	$dialshape=$post['dial_shape2'];		
 	}
 }
 if(isset($post['material1']) || isset($post['material2'])){
 	
-	if($post['material1']!=''){
+	if(isset($post['material1']) && $post['material1']!=''){
 	$material=$post['material1'];		
 	}
-	if($post['material2']!=''){
+	if(isset($post['material2']) && $post['material2']!=''){
 	$material=$post['material2'];		
 	}
 }
 if($post['product_display_size1'] || $post['product_display_size2'] || $post['product_display_size3']){
 	
-	if($post['product_display_size1']!=''){
+	if(isset($post['product_display_size1']) && $post['product_display_size1']!=''){
 	$display_sizes=$post['product_display_size1'];		
 	}
-	if($post['product_display_size2']!=''){
+	if(isset($post['product_display_size2']) && $post['product_display_size2']!=''){
 	$display_sizes=$post['product_display_size2'];		
 	}
-	if($post['product_display_size3']!=''){
+	if(isset($post['product_display_size3']) && $post['product_display_size3']!=''){
 	$display_sizes=$post['product_display_size3'];		
 	}
 }
 if($post['operating_system1'] || $post['operating_system2'] || $post['operating_system3']){
 	
-	if($post['operating_system1']!=''){
+	if(isset($post['operating_system1']) && $post['operating_system1']!=''){
 	$os=$post['operating_system1'];		
 	}
-	if($post['operating_system2']!=''){
+	if(isset($post['operating_system2']) && $post['operating_system2']!=''){
 	$os=$post['operating_system2'];		
 	}
-	if($post['operating_system3']!=''){
+	if(isset($post['operating_system3']) && $post['operating_system3']!=''){
 	$os=$post['operating_system3'];		
 	}
 }
 if($post['product_ram1'] || $post['product_ram2'] || $post['product_ram3']){
 	
-	if($post['product_ram1']!=''){
+	if(isset($post['product_ram1']) && $post['product_ram1']!=''){
 	$ram=$post['product_ram1'];		
 	}
-	if($post['product_ram2']!=''){
+	if(isset($post['product_ram2']) && $post['product_ram2']!=''){
 	$ram=$post['product_ram2'];		
 	}
-	if($post['product_ram3']!=''){
+	if(isset($post['product_ram3']) && $post['product_ram3']!=''){
 	$ram=$post['product_ram3'];		
 	}
 }
 if(isset($post['internal_storage1']) || isset($post['internal_storage2']) || isset($post['internal_storage3']) || isset($post['internal_storage4'])){
 	
-	if($post['internal_storage1']!=''){
+	if(isset($post['internal_storage1']) && $post['internal_storage1']!=''){
 	$internalstorages=$post['internal_storage1'];		
 	}
-	if($post['internal_storage2']!=''){
+	if(isset($post['internal_storage2']) && $post['internal_storage2']!=''){
 	$internalstorages=$post['internal_storage2'];		
 	}
-	if($post['internal_storage3']!=''){
+	if(isset($post['internal_storage3']) && $post['internal_storage3']!=''){
 	$internalstorages=$post['internal_storage3'];		
 	}
-	if($post['internal_storage4']!=''){
+	if(isset($post['internal_storage4']) && $post['internal_storage4']!=''){
 	$internalstorages=$post['internal_storage4'];		
 	}
 }
@@ -489,7 +489,7 @@ if(isset($post['internal_storage1']) || isset($post['internal_storage2']) || iss
 						);
 						$results=$this->inventory_model->insert_cat_data($data);
 						}
-						if(count($post['sizes'])>0){
+						if(isset($post['sizes']) && count($post['sizes'])>0){
 							$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
 						
 							foreach (explode(",",$sizesdata) as $sizess){
@@ -502,7 +502,7 @@ if(isset($post['internal_storage1']) || isset($post['internal_storage2']) || iss
 							$this->products_model->insert_product_sizes($addsizesdata);
 							}
 						}
-						if(count($post['ussizes'])>0){
+						if(isset($post['ussizes']) && count($post['ussizes'])>0){
 							$uksizesdata = str_replace(array('[', ']','"'), array(''), $post['ussizes']);
 						
 							foreach (explode(",",$uksizesdata) as $uksizess){
@@ -516,7 +516,7 @@ if(isset($post['internal_storage1']) || isset($post['internal_storage2']) || iss
 							}
 						}
 						
-						if(count($post['colors'])>0){
+						if(isset($post['colors']) && count($post['colors'])>0){
 							$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
 							foreach (explode(",",$colordata) as $colorss){
 
@@ -530,7 +530,7 @@ if(isset($post['internal_storage1']) || isset($post['internal_storage2']) || iss
 						}
 
 						
-						if(count($post['specificationname'])>0){
+						if(isset($post['specificationname']) && count($post['specificationname'])>0){
 							$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
 							foreach ($productspecificationlist as $key=>$list){
 
