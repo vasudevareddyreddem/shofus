@@ -375,7 +375,7 @@ $(document).ready(function(){
 									<tr id='addr0'>
 										
 										<td>
-										<input type="text" onchange="categoryexists(this.value);" name='caregoryname[]' id="uff" class="form-control"/>
+										<input type="text" autocomplete="off" onkeyup="categoryexists(this.value);" name='caregoryname[]' id="uff" class="form-control"/>
 										</td>
 									</tr>
 									<tr id='addr1'></tr>
