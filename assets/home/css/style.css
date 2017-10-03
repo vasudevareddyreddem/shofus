@@ -4777,7 +4777,7 @@ input[type=radio]:checked + span::before {
 .price-old:before {
   position: absolute;
   width: 100%;
-  height: 60%;
+  height: 46%;
   content: '';
   border-bottom: 1px solid #666;
 }
@@ -5207,9 +5207,9 @@ input[type=radio]:checked + span::before {
 }
 
 .btn-theme {
-  color: #fff;
-  background-color: #45b1b5;
-  border-color: #00897b;
+  color: #333;
+  background-color: #eee;
+  border-color: #bbb;
 }
 .btn-theme:focus, .btn-theme.focus {
   color: #fff;
@@ -5593,7 +5593,7 @@ box-shadow: 0px 0px 11px 2px rgba(214,211,214,1);
 .gc-display-area {
     position: absolute;
     overflow: hidden;
-    border: 2px solid #F5F5F5;
+    /* border: 2px solid #F5F5F5; */
     padding: 2px;
     background-color: #fff;
 	

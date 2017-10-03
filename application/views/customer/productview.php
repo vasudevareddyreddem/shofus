@@ -46,12 +46,20 @@
 	
 	
 }
+.jain_container {
+    margin: 0px;
+    padding: 0px;
+    background: #fff;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	border-top:none;
+}
 </style>
 
-<div class="pad_bod" style="margin:0;padding:0" >
-		<div class="">
-		<div id="sticky-anchor"></div>
-		<div class="col-md-3 z_ind " id="sticky">
+<div class="pad_bod" style="margin:0;padding:0; " >
+		<div class="" >
+		
+		<div class="col-md-3 z_ind " ">
 			<ul id="glasscase" class="gc-start">
                     <li>
 						<img class="img-responsive" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>"/>
@@ -69,7 +77,7 @@
 		</div>
         <!-- End Image List -->
 
-        <div class="col-md-8 " id="con_scrol">
+        <div class="col-md-5 " id="con_scrol">
           <?php if($this->session->flashdata('success')): ?>
 			<div class="alt_cus"> <div class="alert_msg animated slideInUp btn_suc "> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 			<?php endif; ?>
@@ -105,10 +113,8 @@
             <tbody>
               <tr>
                 <td>Price</td>
-                <td>
-                    <div><?php echo $item_price; ?><span class="label label-default arrowed">-<?php echo number_format($percentage, 2, '.', ''); ?>%</span></div>
-				<div class="price">
-                    <span class="price-old"><?php echo $orginal_price; ?></span>
+                <td><div class="price">
+                    <div class="site_col"><span style="font-weight:400;font-size:23px;"> ₹ <?php echo $item_price; ?></span> &nbsp;<span class="price-old"><?php echo $orginal_price; ?></span> <span class="text-success"><?php echo number_format($percentage, 2, '.', ''); ?>% Off</span></div>
                   </div>
 				</td>
               </tr>
@@ -116,7 +122,7 @@
 			 
 			   
 			
-                <td>Availability</td>
+                <td>Sold By</td>
                 <td><span class="label label-success arrowed">
 				 <?php if($products_list['item_status']==1 && $products_list['item_quantity']!=0){ 
 					echo "Ready Stock";
@@ -239,17 +245,46 @@
                 </td>
               </tr>
 			 </form>
-			 <div class="clearfix">&nbsp;</div>
-			  <table class="table table-bordered">
+			 
+        </div>
+	
+        <div class="col-md-3" style="border:1px solid #ddd;padding:20px">
+			<span><img src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
+			<span style="font-weight:500;font-size:18px">Delivery by 3rd Oct,2017</span>
+			<div class="clearfix">&nbsp;</div>
+			<div style="border:1px solid #ddd;padding:10px">
+				<input style="border:none;font-size:17px;" type="text" value="Pincode 500062"><span class="pull-right"><a class="site_col" style="cursor:pointer">Change</a></span>
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			<div>
+				<ul>
+					<li>Shipping Fee ₹ 50</li>
+					<li>COD is available for this merchant</li>
+				</ul>
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			<div>
+				<button class="btn btn-warning col-md-6" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i>  ADD TO CART</button> 
+				<button class="btn  btn-primary col-md-6 pull-right" style="width: 48%;" type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
+			</div>
+			
+        </div>
+        </div>
+		
+	
+
+        <div class="col-md-8" style="margin-top:10px;padding:0">
+	<div class="">		 
+<table class="table table-bordered">
   
     <tbody>
-      <tr>
-        <th>Specifications</th>
+      <tr style="border-bottom:1px solid #ddd">
+        <th>Summary</th>
       </tr>
       <tr>
         <td>
 			<div class="row">
-				<h4 style="padding:0px 15px">General</h4>
+				<h5 style="padding:0px 15px">General</h5>
 			</div>
 			<?php $i=0;foreach($products_specufucation as $list){  ?>
 			<?php if($i<=3){ ?>
@@ -265,7 +300,7 @@
 			<?php $i++;} ?>
 				
 				
-			</div>
+			
 			
 		</td>
         
@@ -306,14 +341,12 @@
     
     </tbody>
   </table>
-			
-        </div>
-
-        <div class="col-md-8 col-md-offset-3 mar_t20" >
+		</div>	
 <?php //echo '<pre>';print_r($products_list);exit;?>
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">Description</a></li>
+			<li role="presentation" class=""><a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">Specifications</a></li>
             <li role="presentation"><a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">Detail</a></li>
             <li role="presentation"><a href="#review" aria-controls="review" role="tab" data-toggle="tab">Reviews (<?php echo count($products_reviews); ?>)</a></li>
           </ul>
@@ -517,7 +550,7 @@
 
         </div>
           </div>
-          </div>
+         
           </div>
 		  <div class="clearfix"></div>
 		  <!--alert text -->
@@ -539,9 +572,251 @@
         </div>
 			
 	  </div>
+	  </div>
+	  
+    <div class="container-fluid" style="margin-top:10px;"> 
+	 <section>
+      <div class="best-pro slider-items-products container_main">
+        <div class="new_title">
+          <h2>Similar Products</h2>
+        </div>
+		     <div id="best-seller" class="product-flexslider hidden-buttons">
+          <div class="slider-items slider-width-col4 products-grid">
+		
+			<div class="item ">
+          <div class=" box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper  img_hover item">
+			  <div class="img_size">
+                <a href="http://localhost/cartinhour/category/productview/MzA2">
+               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
+				 
+           
+                </a>
+				</div>
+              
+								
+				<div class="option">
+									
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
+					
+												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
+					
+				</div>
+              </div>
+              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
+				<div class="price">
+               
+				<div class="text-center" style="color:#187a7d;">₹ 800.00 
+			 &nbsp;
+			<span class="price-old">₹ 450.00</span>
+				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
+							</div>
+				<div class="clearfix"></div>
+            
+              </div>
+            
+            </div>
+          </div>
+            </div>
+         
+		
+			<div class="item ">
+          <div class=" box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper  img_hover item">
+			  <div class="img_size">
+                <a href="http://localhost/cartinhour/category/productview/MzA2">
+               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
+				 
+           
+                </a>
+				</div>
+              
+								
+				<div class="option">
+									
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
+					
+												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
+					
+				</div>
+              </div>
+              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
+				<div class="price">
+               
+				<div class="text-center" style="color:#187a7d;">₹ 800.00 
+			 &nbsp;
+			<span class="price-old">₹ 450.00</span>
+				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
+							</div>
+				<div class="clearfix"></div>
+            
+              </div>
+            
+            </div>
+          </div>
+            </div>
+       
+	
+			<div class="item ">
+          <div class=" box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper  img_hover item">
+			  <div class="img_size">
+                <a href="http://localhost/cartinhour/category/productview/MzA2">
+               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
+				 
+           
+                </a>
+				</div>
+              
+								
+				<div class="option">
+									
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
+					
+												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
+					
+				</div>
+              </div>
+              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
+				<div class="price">
+               
+				<div class="text-center" style="color:#187a7d;">₹ 800.00 
+			 &nbsp;
+			<span class="price-old">₹ 450.00</span>
+				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
+							</div>
+				<div class="clearfix"></div>
+            
+              </div>
+            
+            </div>
+          </div>
+            </div>
+     
+			
+			<div class="item ">
+          <div class=" box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper  img_hover item">
+			  <div class="img_size">
+                <a href="http://localhost/cartinhour/category/productview/MzA2">
+               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
+				 
+           
+                </a>
+				</div>
+              
+								
+				<div class="option">
+									
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
+					
+												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
+					
+				</div>
+              </div>
+              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
+				<div class="price">
+               
+				<div class="text-center" style="color:#187a7d;">₹ 800.00 
+			 &nbsp;
+			<span class="price-old">₹ 450.00</span>
+				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
+							</div>
+				<div class="clearfix"></div>
+            
+              </div>
+            
+            </div>
+          </div>
+            </div>
+           
+			
+			<div class="item ">
+          <div class=" box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper  img_hover item">
+			  <div class="img_size">
+                <a href="http://localhost/cartinhour/category/productview/MzA2">
+               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
+				 
+           
+                </a>
+				</div>
+              
+								
+				<div class="option">
+									
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
+					
+												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
+					
+				</div>
+              </div>
+              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
+				<div class="price">
+               
+				<div class="text-center" style="color:#187a7d;">₹ 800.00 
+			 &nbsp;
+			<span class="price-old">₹ 450.00</span>
+				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
+							</div>
+				<div class="clearfix"></div>
+            
+              </div>
+            
+            </div>
+          </div>
+            </div>
+        
+			
+			<div class="item ">
+          <div class=" box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper  img_hover item">
+			  <div class="img_size">
+                <a href="http://localhost/cartinhour/category/productview/MzA2">
+               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
+				 
+           
+                </a>
+				</div>
+              
+								
+				<div class="option">
+									
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
+					
+												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
+					
+				</div>
+              </div>
+              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
+				<div class="price">
+               
+				<div class="text-center" style="color:#187a7d;">₹ 800.00 
+			 &nbsp;
+			<span class="price-old">₹ 450.00</span>
+				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
+							</div>
+				<div class="clearfix"></div>
+            
+              </div>
+            
+            </div>
+          </div>
           
+            </div>
+            </div>
+            </div>
+            </div>
+    </div>	
+	</section>
 
-
+<div class="clearfix">&nbsp;</div>
 
 <script type="text/javascript">
 
