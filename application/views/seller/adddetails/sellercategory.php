@@ -427,7 +427,7 @@ function  categoryexists(id){
 	
 	$.ajax({
 			
-			url: '<?php echo base_url(); ?>seller/subcategory/check_category_exits.',
+			url: '<?php echo base_url(); ?>seller/subcategory/check_category_exits',
 			data: {
 			cartegoryname:id
 			},
@@ -472,7 +472,6 @@ function  categoryexists(id){
 
 });
 function validations(){
-	
 	var areaids=document.getElementById('seller_cat').value;
 	var categoryexist=document.getElementById('categoryexit').value;
   var own=document.getElementById('uff').value;

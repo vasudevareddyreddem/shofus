@@ -188,7 +188,7 @@
               </div>
               <div class="clearfix"></div>
 			  <label>&nbsp;</label>
-              <input type="bitton" onclick="newregister();" class="btn btn-primary  btn-block  " name="register_do" id="register_do" value="Register">
+              <input type="button" onclick="newregister();" class="btn btn-primary  btn-block  " name="register_do" id="register_do" value="Register">
               <!-- <button class="btn btn-primary btn-sm mar_t10" type="submit">Get OTP</button> -->
               </form>
             </div>
