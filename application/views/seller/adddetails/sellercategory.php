@@ -479,9 +479,12 @@ function validations(){
 	if(areaids=='' && own==''){
 		$("#locationmsg").html("Please select a category Or Write Your own category").css("color", "red");
 		return false;
-	}else if(categoryexist==0){
+	}else if(categoryexist!=''){
+		if(categoryexist==0){
 		$("#locationmsg").html("");
 		return false;
+		
+		}
 	}else{
 		$("#categoryexitserror").html("");
 		$("#locationmsg").html("");
