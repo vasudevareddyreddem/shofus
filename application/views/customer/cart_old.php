@@ -30,11 +30,11 @@
 
 
 <body >
-<div class="pad_bod container">
+<div class="pad_bod">
 		<div class="row" id="updateqty"></div>
 		<div class="row" id="oldcartqty">
 		<div id="sticky-anchorupdateqtyhide"></div>
-		<!--<div class="col-md-3" id="sticky">
+		<div class="col-md-3" id="sticky">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Price details</div>
 			<div class="panel-body">
@@ -71,9 +71,9 @@
 				
 			</div>
 		</div>
-		</div>-->
+		</div>
 		
-		<div class="col-md-12 " id="off_set_stic">
+		<div class="col-md-8 " id="off_set_stic">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Payment</div>
 			<div class="panel-body">
@@ -102,15 +102,7 @@
                         </a>
 						<p class="text-center"><b>Billing Address</b> </p>
                     </li>
-					<li role="presentation" class="disabled" >
-						   <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Delivery Charges">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
-                            </span>
-							
-                        </a>
-						<p class="text-center"><b>Delivery Charges</b> </p>
-                    </li>
+
                     <li role="presentation" class="disabled">
                         <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                             <span class="round-tab">
@@ -141,10 +133,9 @@
               <thead>
                 <tr>
                   <th>Product</th>
-                  <th style="width:30%">Product Name</th>
+                  <th>Product Name</th>
                   <th>Quantity</th>
                   <th>Unit price</th>
-                  <th>Delivery Charges</th>
                   <th>SubTotal</th>
                   <th>Action</th>
                 </tr>
@@ -198,13 +189,6 @@
 				  
 			 
 				<td class="unit"><?php echo $items['item_price']; ?> </td>
-				<td class="unit">
-					<div class="radio">
-						<label><input type="radio" name="radio-product" checked="checked"><span> Noraml </span></label>
-						<label><input type="radio" name="radio-product"><span> fast </span></label>
-						
-					</div>
-				</td>
 				<td class="sub"><?php echo $items['total_price']; ?></td>
 		
                   <td class="action">
@@ -220,11 +204,11 @@
              
                
                 <tr>
-                  <td colspan="5" class="text-right"><b>Total</b></td>
-                  <td colspan="3"><b><?php echo $total; ?></b></td>
+                  <td colspan="4" class="text-right">Total</td>
+                  <td colspan="2"><b><?php echo $total; ?></b></td>
                 </tr> 
-			<tr>
-                  <td colspan="5" class="text-right">Grand Total</td>
+				<tr>
+                  <td colspan="4" class="text-right">Grand Total</td>
                   <td colspan="2"><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></td>
                 </tr>
 				
@@ -234,8 +218,8 @@
           </div>
           <nav aria-label="Shopping Cart Next Navigation">
             <ul class="pager">
-              <li class="previous"><a style="border:none;background:none;" href="<?php echo base_url(''); ?>"><span class="btn btn-primary btn-small"><span aria-hidden="true">&larr;</span> Continue Shopping</span></a></li>
-              <li class="next"><a style="border:none;background:none;" href="<?php echo base_url('customer/billing'); ?>"><span class="btn btn-primary btn-small">Proceed to Checkout <span aria-hidden="true">&rarr;</span></span></a></li>
+              <li class="previous"><a href="<?php echo base_url(''); ?>"><span aria-hidden="true">&larr;</span> Continue Shopping</a></li>
+              <li class="next"><a  href="<?php echo base_url('customer/billing'); ?>">Proceed to Checkout &nbsp;<span aria-hidden="true">&rarr;</span></li>
             </ul>
           </nav>
 		  
@@ -338,6 +322,68 @@ function productqtyincreae(id){
 }
 
 
+	$(document).ready(function () {
+    //Initialize tooltips
+    $('.nav-tabs > li a[title]').tooltip();
+    
+    //Wizard
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+
+    $(".next-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+
+    });
+    $(".prev-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        prevTab($active);
+
+    });
+});
+
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+}
+
+
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    var footer_top = $("#footer-start").offset().top;
+    var div_top = $('#sticky-anchor').offset().top;
+    var div_height = $("#sticky").height();
+    
+    var padding = 20;  // tweak here or get from margins etc
+    
+    if (window_top + div_height > footer_top - padding)
+        $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
+    else if (window_top > div_top) {
+        $('#sticky').addClass('stick');
+        $('#off_set_stic').addClass('col-md-offset-3');
+        $('#sticky').css({top: 100})
+    } else {
+        $('#off_set_stic').removeClass('col-md-offset-3');
+        $('#sticky').removeClass('stick');
+		$('#sticky').css({top:0})
+    }
+}
+
+$(function () {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});
 	
 </script>
 

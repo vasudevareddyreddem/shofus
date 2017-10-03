@@ -55,7 +55,7 @@
         <!--<a class="navbar-brand" href="#">Brand</a>--> 
       </div>
      <!-- customise toogle start-->
-      <div class=" cust_togg_menu" style="display:none">
+      <div class=" " style="display:none">
            <ul class=" ">
           <li class="active"><a href="<?php echo base_url('seller/login');?>#home_scr">HOME <span class="sr-only">(current)</span></a></li>
          <!-- <li><a href="#benifits_sc">BENIFITS</a></li>-->
