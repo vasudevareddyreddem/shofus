@@ -8,7 +8,7 @@
 <?php header('Cache-Control: no cache'); ?>
 <title>::Cart In Hour::</title>
 <link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico" >
-<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
+
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/customer/css/animate.css">
 <!--Style start here -->
