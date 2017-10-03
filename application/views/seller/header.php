@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>::Cart In Hour::</title>
 <link rel="icon" href="<?php echo base_url();?>assets/seller_login/images/fav.ico" type="image/x-icon" />
-
+<link href="https://fonts.googleapis.com/css?family=Mogra|Roboto" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/seller_login/css/font-awesome.min.css" />
 <!--style start here -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/seller_login/css/bootstrap.min.css" />
@@ -162,8 +162,11 @@
 						  <div style="font-size:15px;margin-bottom:10px;">OTP CODE:
 							<input type="text" class="form-control" id="otp_number" name="otp_number">
 						 </div>
-						  <div style="font-size:15px;margin-bottom:10px">Set Password:
+						  <div style="font-size:15px;margin-bottom:10px">Password:
 							<input type="password" class="form-control" id="forgot_password" name="forgot_password">
+						 </div>
+						 <div style="font-size:15px;margin-bottom:10px">Confirm Password:
+							<input type="password" class="form-control" id="confirm_password" name="confirm_password">
 						 </div>
 						</span>
 						
@@ -444,6 +447,7 @@ function emailchecking(reasontype) {
 	 if(styles==''){
 		  var otpval = document.getElementById('otp_number').value;
 		  var passwords = document.getElementById('forgot_password').value;
+		  var confirmpasswords = document.getElementById('confirm_password').value;
 		 if(otpval==''){
              $("#forgoterror").html("Please OTP value").css("color", "red");
               return false;
@@ -456,6 +460,19 @@ function emailchecking(reasontype) {
 				  
 			  }else{
 				 $("#forgoterror").html("Password length must be at least six characters").css("color", "red");
+				 return false;
+			  }
+			  
+			  
+		  }
+		  if(confirmpasswords==''){
+             $("#forgoterror").html("Please Enter your Confirmpassword").css("color", "red");
+              return false;
+          }else if(passwords!=''){
+			  if(confirmpasswords.length>5){
+				  
+			  }else{
+				 $("#forgoterror").html("Confirmpassword length must be at least six characters").css("color", "red");
 				 return false;
 			  }
 			  
@@ -494,6 +511,7 @@ function emailchecking(reasontype) {
                     mobile_number: jQuery('#forgot_mobile').val(),
                     otp: jQuery('#otp_number').val(),
                     password: jQuery('#forgot_password').val(),
+                    conpassword: jQuery('#confirm_password').val(),
                     option: 0,
                     },
                     
@@ -519,6 +537,7 @@ function emailchecking(reasontype) {
 							$("#forgoterror").html('');
 							$("#forgot_mobile").val('');
 							$("#forgot_password").val('');
+							$("#confirm_password").val('');
 							$("#otp_number").val('');
 							$("#otp_code").hide();
 							$("#temp_pass").hide();
@@ -527,6 +546,9 @@ function emailchecking(reasontype) {
 						}if(data.pass==0){
 							document.getElementById("unableloginfield").disabled = false;
                             $("#forgoterror").html("Your entered  OTP code is wrong. Please try again").css("color", "red");
+						}if(data.conpass==0){
+							document.getElementById("unableloginfield").disabled = false;
+                            $("#forgoterror").html("password and confirm password was not matched. Please try again").css("color", "red");
 						}
                     }
                     

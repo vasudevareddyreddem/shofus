@@ -521,26 +521,39 @@ $result = $you_make - $actual_price;
 			}
 		}else if($post['otp']!='' && $post['password']!=''){
 			if($post['option']==1){
-				$checkemail=$this->login_model->verify_email($post['mobile_number']);
-				if($checkemail['verification_otp']==$post['otp']){
-					$updatepass=$this->login_model->set_update_forgotpassword($checkemail['seller_id'],$post['password'],'');
-					$data['pass']=1;
-					echo json_encode($data);
+				
+				if(md5($post['password'])==md5($post['conpassword'])){
+					$checkemail=$this->login_model->verify_email($post['mobile_number']);
+					if($checkemail['verification_otp']==$post['otp']){
+						$updatepass=$this->login_model->set_update_forgotpassword($checkemail['seller_id'],$post['password'],'');
+						$data['pass']=1;
+						echo json_encode($data);
+					}else{
+						$data['pass']=0;
+						echo json_encode($data);
+					}
 				}else{
-					$data['pass']=0;
+					$data['conpass']=0;
 					echo json_encode($data);
 				}
 				
 			}else if($post['option']==0){
-				$checkmobile=$this->login_model->verify_mobile($post['mobile_number']);
-				if($checkmobile['verification_otp']==$post['otp']){
-					$updatepass=$this->login_model->set_update_forgotpassword($checkmobile['seller_id'],$post['password'],'');
-					$data['pass']=1;
-					echo json_encode($data);
+				if(md5($post['password'])==md5($post['conpassword'])){
+						$checkmobile=$this->login_model->verify_mobile($post['mobile_number']);
+					if($checkmobile['verification_otp']==$post['otp']){
+						$updatepass=$this->login_model->set_update_forgotpassword($checkmobile['seller_id'],$post['password'],'');
+						$data['pass']=1;
+						echo json_encode($data);
+					}else{
+						$data['pass']=0;
+						echo json_encode($data);
+					}
+					
 				}else{
-					$data['pass']=0;
+					$data['conpass']=0;
 					echo json_encode($data);
-				}				
+				}
+								
 				
 			}
 			

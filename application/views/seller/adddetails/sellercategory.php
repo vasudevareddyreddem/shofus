@@ -438,7 +438,7 @@ function  categoryexists(id){
 				$('#categoryexit').val(1);
 				$('#categoryexitserror').html('');
 			}else{
-				$('#categoryexitserror').html('Please use another category name. It is already exits');
+				$('#categoryexitserror').html('Please use another category name. It is already exist');
 				$('#categoryexit').val(0);
 			}
 
