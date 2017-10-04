@@ -963,7 +963,7 @@ class CustomerApi extends REST_Controller {
 				$resetpassword = $this->Customerapi_model->update_password($password,$customer_id);
 				if(count($resetpassword)>0){
 					$this->Customerapi_model->update_password_remove_otp($customer_id,'');
-					$message = array('status'=>1,'message'=>'Password successfully Updated');
+					$message = array('status'=>1,'customer_id'=>$customer_id,'message'=>'Password successfully Updated');
 					$this->response($message, REST_Controller::HTTP_OK);	
 				}else{
 					$message = array('status'=>0,'message'=>'Technical problem will occurred .Please try again');

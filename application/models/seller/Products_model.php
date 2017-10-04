@@ -19,7 +19,12 @@ class Products_model extends MY_Model
 
 	}
 
-	function get_name_existss($name)
+	function get_sae_product_details($name,$catid,$subcat)
+    {
+	   $sql = "SELECT * FROM products WHERE category_id ='".$catid."' AND subcategory_id='".$subcat."' AND item_name='".$name."' ORDER BY item_id DESC LIMIT 1";
+        return $this->db->query($sql)->row_array();
+     }
+	 function get_name_existss($name)
     {
 	   $sql = "SELECT * FROM category WHERE category_name ='".$name."' AND status='1'";
         return $this->db->query($sql)->row_array();
