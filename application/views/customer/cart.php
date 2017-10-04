@@ -83,29 +83,58 @@
 	border-top:none;
    
 }
-// modal csss
-.modal  {
-    /*   display: block;*/
-    padding-right: 0px;
-    background-color: rgba(4, 4, 4, 0.8); 
-    }
-   
-    .modal-dialog {
-            top: 20%;
-                width: 100%;
-    position: absolute;
-        }
-        .modal-content {
-                border-radius: 0px;
-                border: none;
-    top: 40%;
-            }
-            .modal-body {
-                    background-color: #0f8845;
-    color: white;
-                }
-               
+.mat-div {
+  padding: 0;
+  position: relative;
+}
 
+.mat-div:after, .mat-div:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #e2e2e2; 
+  bottom: 0;
+  left: 0;
+  transition: all 0.5s;
+}
+
+.mat-div::after {
+  background-color: #4a5c63;
+  transform: scaleX(0);
+}
+
+.mat-label {
+  display: block;
+  font-size: 16px;
+  transform: translateY(25px);
+  color: #45b1b9;
+  transition: all 0.5s;
+}
+
+.mat-input {
+  position: relative;
+  background: transparent;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 0;
+  font-size: 16px;
+}
+
+.is-active::after {
+  transform: scaleX(1);
+}
+
+.is-active .mat-label {
+  color: #4a5c63;
+}
+
+.is-completed .mat-label {
+  font-size: 12px;
+  transform: translateY(0);
+}
 </style>
 <div class="container">
     <div class="row">
@@ -337,9 +366,90 @@
                 <div class="bhoechie-tab-content">
                     <center>
 		<div class="col-sm-12 col-xs-12 login-register-form m-b-3 text-left">
+		<div class="row">
+		 <div class="title"><span>Select a Delivery Address</span></div>
+			<div class="col-md-6" id="hide_add">
+				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
+				<div style="padding-bottom:10px;">
+					<div class="checkbox pull-left">
+					  <label>
+							<input type="checkbox" checked="checked">
+							<span style="font-weight:500"> &nbsp; Carinhour</span>
+					  </label>
+					</div>
+								
+					<div class="pull-right" >
+						<a style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
+					</div>
+					<i id="hide_add_btn" style="position:absolute;top:5px; right:20px;background:#f5f5f5;border-radius:25px; padding:5px;opacity:0.5;cursor:pointer" class="fa fa-times" aria-hidden="true"></i>
+				</div>
+				<div class="clearfix"> &nbsp;	</div>
+				<div class="" style="border-top:1px solid #ddd;"> &nbsp;</div>
+					<div><b>bayapureddy</b></div>	
+					<div>Plot no 177 srivani nilayam</div>	
+					<div>Sardar Vallabhbhai Patel,</div>	
+					<div>Hyderabad-500082</div>	
+					<div>Telangana</div>
+					<br>					
+					<div>8500226782</div>	
+				</div>
+			</div>
+			<div class="col-md-6  ">
+				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
+				<div style="padding-bottom:10px;">
+					<div class="checkbox pull-left">
+					  <label>
+							<input type="checkbox" checked="checked">
+							<span style="font-weight:500"> &nbsp; Carinhourssss</span>
+					  </label>
+					</div>
+								
+					<div class="pull-right" >
+						<a style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
+					</div>
+					<i  style="position:absolute;top:5px; right:20px;background:#f5f5f5;border-radius:25px; padding:5px;opacity:0.5;cursor:pointer" class="fa fa-times" aria-hidden="true"></i>
+				</div>
+				<div class="clearfix"> &nbsp;	</div>
+				<div class="" style="border-top:1px solid #ddd;"> &nbsp;</div>
+					<div><b>bayapureddy</b></div>	
+					<div>Plot no 177 srivani nilayam</div>	
+					<div>Sardar Vallabhbhai Patel,</div>	
+					<div>Hyderabad-500082</div>	
+					<div>Telangana</div>
+					<br>					
+					<div>8500226782</div>	
+				</div>
+			</div>
+			
+			
+			
+		</div>
+			<div class="clearfix"> &nbsp;	</div>
           <div class="title"><span>Please Enter Your Information</span></div>
-          <form>
-            <div class="form-group">
+          <form id="check_for" name="check_for" action="">
+			<div class="mat-div form-group">
+				 <label for="first-name" class="mat-label">First Name</label>
+				<input type="text" class="mat-input" id="name" name="name" >
+		    </div>
+			<div class="mat-div form-group">
+				 <label for="first-name" class="mat-label">First Name</label>
+				<input type="text" class="mat-input" id="first-name">
+		    </div>
+			<div class="mat-div form-group">
+				 <label for="first-name" class="mat-label">First Name</label>
+				<input type="text" class="mat-input" id="first-name">
+		    </div>
+			<div class="mat-div form-group ">
+				 <label for="first-name" class="mat-label">First Name</label>
+				<input type="text" class="mat-input" id="first-name">
+		    </div>
+			<div class="mat-div form-group">
+				 <label for="first-name" class="mat-label">First Name</label>
+				<input type="text" class="mat-input" id="first-name">
+		    </div>
+			   
+			   
+            <!--<div class="form-group">
               <label for="emailInputLogin">Email address</label>
               <input type="email" class="form-control" id="emailInputLogin" placeholder="Email">
             </div>
@@ -370,6 +480,7 @@
               <label for="passwordInputLogin">Password</label>
               <input type="password" class="form-control" id="passwordInputLogin" placeholder="Password">
             </div>
+			-->
              <button type="submit" class="btn btn-primary "> Back</button>
           <button class="pull-right btn btn-primary btn-small" type="submit">Proceed to Checkout</span><span aria-hidden="true">&rarr;</span></button>
          
@@ -465,34 +576,74 @@
 		
     </div>
 </div>
-<div style="">
-	<div class="container">
 
-    
-    <div class="row">
-        <!-- Large modal -->
-
-
-<div class="modal fadeInUp animated  bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    
-      <div class="modal-body">
-     
-      <H2>Battery Low!</H2>
-      <h4>Your Laptop battery is less then 10%.Recharge the battery.</h4>
-     
-      </div>
-    </div>
-  </div>
-</div>
-    </div>
-    
-    
-</div>
-</div>
 
 <script>
+
+
+	$(document).ready(function() {
+    $('#check_for').bootstrapValidator({
+       
+        fields: {
+            
+             name: {
+              validators: {
+					notEmpty: {
+						message: 'Name is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Name can only consist of alphanumaric, space and dot'
+					}
+                }
+            },
+			mobile: {
+              validators: {
+					 notEmpty: {
+						message: 'Mobile Number is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]{10}$/,
+					message:'Mobile Number must be 10 to 14 digits'
+					}
+                }
+            },
+			area: {
+              validators: {
+					notEmpty: {
+						message: 'Please select an area'
+					}
+                }
+            },
+			address1: {
+				validators: {
+					notEmpty: {
+						message: 'Address1 is required'
+					},
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message: 'Address1 wont allow <> [] = % '
+					}
+				
+				}
+			},
+			address2: {
+				validators: {
+					
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message: 'Address2 wont allow <> [] = % '
+					}
+				
+				}
+			}
+			
+			
+        }
+    });
+});
+
+
     $(document).ready(function() {
         $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
             e.preventDefault();
@@ -599,4 +750,22 @@ function checkOffset() {
 $(document).ready(checkOffset);
 $(document).scroll(checkOffset);
 
+</script>
+<script>
+$(document).ready(function(){
+    $("#hide_add_btn").click(function(){
+        $("#hide_add").hide();
+    });
+});
+</script>
+<script>
+$(".mat-input").focus(function(){
+  $(this).parent().addClass("is-active is-completed");
+});
+
+$(".mat-input").focusout(function(){
+  if($(this).val() === "")
+    $(this).parent().removeClass("is-completed");
+  $(this).parent().removeClass("is-active");
+})
 </script>
