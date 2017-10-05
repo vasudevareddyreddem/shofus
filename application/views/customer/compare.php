@@ -66,7 +66,20 @@
       <div><h3>Compare Products</h3></div>
     </div>
   </div>
-  <?php //echo '<pre>';print_r($compore_products);exit; ?>
+  <?php //echo '<pre>';print_r($compore_products);exit;
+
+$currentdate=date('Y-m-d h:i:s A');
+				if($compore_products['offer_expairdate']>=$currentdate){
+				$item_price= ($compore_products['item_cost']-$compore_products['offer_amount']);
+				$percentage= $compore_products['offer_percentage'];
+				$orginal_price=$compore_products['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $compore_products['special_price'];
+					$prices= ($compore_products['item_cost']-$compore_products['special_price']);
+					$percentage= (($prices) /$compore_products['item_cost'])*100;
+					$orginal_price=$compore_products['item_cost'];
+				}  ?>
 
     <div class="row">
         <div class="col-md-4 text-center">
@@ -82,10 +95,10 @@
                         <?php echo $compore_products[ 'item_name'];?>
                     </li>
                     <li class="list-group-item">Product Price:
-                        <?php echo ($compore_products[ 'item_cost']); ?>
+                        <?php echo ($item_price); ?>
                     </li>
                     <li class="list-group-item">Product Code:
-                        <?php echo $compore_products[ 'item_code']; ?>
+                        <?php echo $compore_products[ 'product_code']; ?>
                     </li>
 					</a>
 					

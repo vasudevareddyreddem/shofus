@@ -1,4 +1,16 @@
- 
+ <?php 
+ $currentdate=date('Y-m-d h:i:s A');
+				if($compare_one['offer_expairdate']>=$currentdate){
+				$item_price= ($compare_one['item_cost']-$compare_one['offer_amount']);
+				$percentage= $compare_one['offer_percentage'];
+				$orginal_price=$compare_one['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $compare_one['special_price'];
+					$prices= ($compare_one['item_cost']-$compare_one['special_price']);
+					$percentage= (($prices) /$compare_one['item_cost'])*100;
+					$orginal_price=$compare_one['item_cost'];
+				}  ?>
  <div class="panel panel-default panel-pricing">
  
 		<div class="panel-heading">
@@ -15,7 +27,7 @@
 				<?php echo $compare_one[ 'item_cost']; ?>
 			</li>
 			<li class="list-group-item">Product Code:
-				<?php echo $compare_one[ 'item_code']; ?>
+				<?php echo $compare_one[ 'product_code']; ?>
 			</li>
 			
 			</a>

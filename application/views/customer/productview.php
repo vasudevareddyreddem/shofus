@@ -84,7 +84,7 @@
               
 			<?php endif; ?>
 			<input type="hidden" name="orginalproductqty" id="orginalproductqty" value="<?php echo $products_list['item_quantity']; ?>" >
-          <div class="title-detail"><?php echo $products_list['item_name']; ?></div>
+          <div class="title-detail"><?php echo $products_list['item_name']; ?>&nbsp; <?php echo isset($products_list['colour'])?$products_list['colour']:''; ?>&nbsp; <?php echo isset($products_list['internal_memeory'])?$products_list['internal_memeory']:''; ?></div>
 		  <?php if(count($colors_list)>0){ ?>
 		  <form action="<?php echo base_url('customer/addcart'); ?>" onsubmit="return validation();" method="Post" name="addtocart" id="addtocart" >
 		  <?php }else{ ?>
@@ -117,11 +117,9 @@
 				</td>
               </tr>
               <tr>
-			 
-			   
-			
-                <td>Sold By</td>
-                <td><span class="label label-success arrowed">
+			 <td>Sold By</td>
+                <td>
+				<span class="label label-success arrowed">
 				 <?php if($products_list['item_status']==1 && $products_list['item_quantity']!=0){ 
 					echo "Ready Stock";
 					}
@@ -130,10 +128,45 @@
 					}
 					?>
 				
-				</span></td>
+				</span>
+				</td>
+				</tr>
 				
-			   
-              </tr>
+				  <?php 
+				  if(isset($sameproducts_list) && count($sameproducts_list)>0){
+				  if($products_list['category_id']==20){ ?>
+						
+						<tr>
+							<td>Color </td>
+							<td>
+								<div class="row">
+								<?php foreach ($sameproducts_list as $lists){ ?>
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"    class="col-md-2 img_c-l_siz" style="background-color:<?php echo $lists['colour']; ?>"></a>
+								<?php   } ?>
+								</div>
+							</td>
+						</tr>
+						
+				  <?php } ?>
+				  <?php if($products_list['category_id']==20){ ?>
+						
+						<tr>
+							<td>Size </td>
+							<td>
+								<div class="row">
+								<?php foreach ($sameproducts_list as $lists){ ?>
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:17px"  class="col-md-1 " >
+								<span ><?php echo $lists['internal_memeory'];?></span>
+								</div></a>
+								<?php   } ?>
+								</div>
+							</td>
+						</tr>
+						
+				  <?php }  }?>
+				
+				
+				
 			  <?php if(count($colors_list)>0){ ?>
 			   <tr>
                 <td>Color</td>
@@ -195,28 +228,7 @@
               </tr>
 			  
 			  <?php } ?>
-              <?php if($products_list['item_status']==1 && $products_list['item_quantity']!=0){ ?>
-			  <tr>
-			  <input type="hidden" name="orginalqty" id="orginalqty" value="<?php echo $products_list['item_quantity']; ?>">
-                <td>Quantity</td>
-                <td>
-                  <div class="input-qty">
-						<div class="input-group number-spinner">
-							<span class="input-group-btn data-dwn">
-								<a class="btn btn-primary " onclick="productqty();" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
-							</span>
-							<input type="text" name="qty" id="qty" readonly class="form-control text-center" value="1" min="1" max="<?php echo $products_list['item_quantity']; ?>">
-							<span class="input-group-btn data-up">
-								<a class="btn btn-primary " onclick="productqtyincreae();" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
-							</span>
-							
-						</div>
-						
-                  </div>
-				  <span style="color:red;" id="qtymesage"></span>
-                </td>
-              </tr>
-			  <?php } ?>
+             
 			
          
             </tbody>
@@ -226,12 +238,8 @@
                 <td></td>
                 <td>
 				<?php 
-				$customerdetails=$this->session->userdata('userdetails');
-				//echo $customerdetails['customer_id'];exit;
-				if($products_list['item_quantity']!=0 && $products_list['item_status']!=0 ){ ?>
-				     <button class="btn btn-theme m-b-1" type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-
-				<?php } ?>
+				$customerdetails=$this->session->userdata('userdetails');  ?>
+				
 				  <a href="" id="compare" class="btn btn-theme m-b-1" type="button" ><i class="fa fa-align-left"></i> Add to Compare</a>
                   <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>"> 
 				<?php 	if (in_array($products_list['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)  ) { ?>
@@ -242,7 +250,7 @@
 				 
                 </td>
               </tr>
-			 </form>
+			 
 			 
         </div>
 	
@@ -261,12 +269,15 @@
 				</ul>
 			</div>
 			<div class="clearfix">&nbsp;</div>
+			<?php if($products_list['item_quantity']!=0 && $products_list['item_status']!=0 ){ ?>
 			<div>
 				<button class="btn btn-warning col-md-6" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i>  ADD TO CART</button> 
 				<button class="btn  btn-primary col-md-6 pull-right" style="width: 48%;" type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
 			</div>
+			<?php } ?>
 			
         </div>
+		 </form>
         </div>
 		
 	
@@ -282,60 +293,12 @@
       <tr>
         <td>
 			<div class="row">
-				<h5 style="padding:0px 15px">General</h5>
-			</div>
-			<?php $i=0;foreach($products_specufucation as $list){  ?>
-			<?php if($i<=3){ ?>
-			<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					<?php echo $list['spc_name']; ?>
-				</div>
-				<div class="col-md-5">
-					<?php echo $list['spc_value']; ?>
-				</div>
-			</div>
-			<?php } ?>
-			<?php $i++;} ?>
-				
-				
-			
-			
-		</td>
-        
-      </tr>
-	  <?php if (count($products_specufucation)>4){ ?>
-	   <tr class="read_div" style="display:none;">
-        <td>
-			<div class="row">
-				<h4 style="padding:0px 15px">More specifications</h4>
-			</div>
-				<?php $i=0;foreach($products_specufucation as $list){  ?>
-			<?php if($i>3){ ?>
-			<div class="row" style="margin-top:15px;">
-				<div class="col-md-3">
-					<?php echo $list['spc_name']; ?>
-				</div>
-				<div class="col-md-5">
-					<?php echo $list['spc_value']; ?>
-				</div>
-			</div>
-				
-			<?php } ?>
-			<?php $i++;} ?>	
-		
-			
-		</td>
-        
-      </tr>
-	     <tr>
-        <td>
-			<div class=" read_mor">
-				Read more...
+				<h5 style="padding:0px 15px"><?php echo isset($products_list['highlights'])?$products_list['highlights']:''; ?></h5>
 			</div>
 		</td>
         
       </tr>
-	  <?php } ?>
+	
     
     </tbody>
   </table>
@@ -366,32 +329,303 @@
 				 <table class="table table-bordered">
                 <tbody>
                       <tr>
-                        <td>Item Name</td>
+                        <td>product Name</td>
                         <td><?php echo $products_list['item_name']; ?></td>
                       </tr>
-                      <tr>
-                        <td>Item Cost</td>
-                        <?php if(date('m/d/Y') <= $products_list['offer_expairdate'] && date('H:ia')<= $products_list['offer_time']) {?>
-                        	<td><?php echo ($products_list['item_cost'])-($products_list['offer_amount']); ?></td>
-                        	<?php }else{ ?>
-                        		<td><?php echo $products_list['item_cost']; ?></td>
-                        		<?php }?>
+                      <?php if(isset($products_list['brand']) && $products_list['brand']!=''){ ?>
+					  <tr>
+                        <td>Brand</td>
+                        <td><?php echo $products_list['brand']; ?></td>
                       </tr>
-                      <tr>
-                        <td>Item Status</td>
-							<td>
-							<?php if($products_list['item_status']==1){ 
-							echo "Ready Stock";
-							}
-							else{
-							echo "Out of Stock";
-							}				?>
-							</td>
-                      </tr>
-                      <tr>
-                        <td>Item Code</td>
+					  <?php } ?>
+					  <?php if(isset($products_list['product_code']) && $products_list['product_code']!=''){ ?>
+					  <tr>
+                        <td>Product Code</td>
                         <td><?php echo $products_list['product_code']; ?></td>
                       </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['Processor']) && $products_list['Processor']!=''){ ?>
+					  <tr>
+                        <td>Processor</td>
+                        <td><?php echo $products_list['Processor']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['screen_size']) && $products_list['screen_size']!=''){ ?>
+					  <tr>
+                        <td>Screen Size</td>
+                        <td><?php echo $products_list['screen_size']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['internal_memeory']) && $products_list['internal_memeory']!=''){ ?>
+					  <tr>
+                        <td>Internal Memory</td>
+                        <td><?php echo $products_list['internal_memeory']; ?></td>
+                      </tr>
+					  <?php } ?> 
+					  <?php if(isset($products_list['camera']) && $products_list['camera']!=''){ ?>
+					  <tr>
+                        <td>Camera</td>
+                        <td><?php echo $products_list['camera']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['sim_type']) && $products_list['sim_type']!=''){ ?>
+					  <tr>
+                        <td>Sim Type</td>
+                        <td><?php echo $products_list['sim_type']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['os']) && $products_list['os']!=''){ ?>
+					  <tr>
+                        <td>OS</td>
+                        <td><?php echo $products_list['os']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['colour']) && $products_list['colour']!=''){ ?>
+					  <tr>
+                        <td>Colour</td>
+                        <td><?php echo $products_list['colour']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['ram']) && $products_list['ram']!=''){ ?>
+					  <tr>
+                        <td>RAM</td>
+                        <td><?php echo $products_list['ram']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['model_name']) && $products_list['model_name']!=''){ ?>
+					  <tr>
+                        <td>Model Name</td>
+                        <td><?php echo $products_list['model_name']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['model_id']) && $products_list['model_id']!=''){ ?>
+					  <tr>
+                        <td>Model ID</td>
+                        <td><?php echo $products_list['model_id']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['internal_memory']) && $products_list['internal_memory']!=''){ ?>
+					  <tr>
+                        <td>Internal Memory</td>
+                        <td><?php echo $products_list['internal_memory']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['expand_memory']) && $products_list['expand_memory']!=''){ ?>
+					  <tr>
+                        <td>Expandable Memory</td>
+                        <td><?php echo $products_list['expand_memory']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['primary_camera']) && $products_list['primary_camera']!=''){ ?>
+					  <tr>
+                        <td>Primary Camera</td>
+                        <td><?php echo $products_list['primary_camera']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['secondary_camera']) && $products_list['secondary_camera']!=''){ ?>
+					  <tr>
+                        <td>Secondary Camera</td>
+                        <td><?php echo $products_list['secondary_camera']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['video_recording']) && $products_list['video_recording']!=''){ ?>
+					  <tr>
+                        <td>Video Recording</td>
+                        <td><?php echo $products_list['video_recording']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['hd_recording']) && $products_list['hd_recording']!=''){ ?>
+					  <tr>
+                        <td>HD Recording</td>
+                        <td><?php echo $products_list['hd_recording']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['flash']) && $products_list['flash']!=''){ ?>
+					  <tr>
+                        <td>Flash</td>
+                        <td><?php echo $products_list['flash']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['other_camera_features']) && $products_list['other_camera_features']!=''){ ?>
+					  <tr>
+                        <td>Other Camera Features</td>
+                        <td><?php echo $products_list['other_camera_features']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['battery_capacity']) && $products_list['battery_capacity']!=''){ ?>
+					  <tr>
+                        <td>Battery Capacity</td>
+                        <td><?php echo $products_list['battery_capacity']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['talk_time']) && $products_list['talk_time']!=''){ ?>
+					  <tr>
+                        <td>Talk Time</td>
+                        <td><?php echo $products_list['talk_time']; ?></td>
+                      </tr>
+					  <?php } ?> 
+					  <?php if(isset($products_list['standby_time']) && $products_list['standby_time']!=''){ ?>
+					  <tr>
+                        <td>Standby Time</td>
+                        <td><?php echo $products_list['standby_time']; ?></td>
+                      </tr>
+					  <?php } ?> 
+					  <?php if(isset($products_list['operating_frequency']) && $products_list['operating_frequency']!=''){ ?>
+					  <tr>
+                        <td>Operating Frequency</td>
+                        <td><?php echo $products_list['operating_frequency']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['preinstalled_browser']) && $products_list['preinstalled_browser']!=''){ ?>
+					  <tr>
+                        <td>Preinstalled Browser</td>
+                        <td><?php echo $products_list['preinstalled_browser']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['2g']) && $products_list['2g']!=''){ ?>
+					  <tr>
+                        <td>2G</td>
+                        <td><?php echo $products_list['2g']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['3g']) && $products_list['3g']!=''){ ?>
+					  <tr>
+                        <td>3G</td>
+                        <td><?php echo $products_list['3g']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['4g']) && $products_list['4g']!=''){ ?>
+					  <tr>
+                        <td>4G</td>
+                        <td><?php echo $products_list['4g']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['wifi']) && $products_list['wifi']!=''){ ?>
+					  <tr>
+                        <td>Wifi</td>
+                        <td><?php echo $products_list['wifi']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['gps']) && $products_list['gps']!=''){ ?>
+					  <tr>
+                        <td>Gps</td>
+                        <td><?php echo $products_list['gps']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['glonass']) && $products_list['glonass']!=''){ ?>
+					  <tr>
+                        <td>GLONASS</td>
+                        <td><?php echo $products_list['glonass']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['bluetooth']) && $products_list['bluetooth']!=''){ ?>
+					  <tr>
+                        <td>Bluetooth</td>
+                        <td><?php echo $products_list['bluetooth']; ?></td>
+                      </tr>
+					  <?php } ?> 
+					  <?php if(isset($products_list['nfc']) && $products_list['nfc']!=''){ ?>
+					  <tr>
+                        <td>NFC</td>
+                        <td><?php echo $products_list['nfc']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['usb_connectivity']) && $products_list['usb_connectivity']!=''){ ?>
+					  <tr>
+                        <td>USB Connectivity</td>
+                        <td><?php echo $products_list['usb_connectivity']; ?></td>
+                      </tr>
+					  <?php } ?> 
+					  <?php if(isset($products_list['music_player']) && $products_list['music_player']!=''){ ?>
+					  <tr>
+                        <td>Music Player</td>
+                        <td><?php echo $products_list['music_player']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['video_player']) && $products_list['video_player']!=''){ ?>
+					  <tr>
+                        <td>Video Player</td>
+                        <td><?php echo $products_list['video_player']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['audio_jack']) && $products_list['audio_jack']!=''){ ?>
+					  <tr>
+                        <td>Audio Jack</td>
+                        <td><?php echo $products_list['audio_jack']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['gpu']) && $products_list['gpu']!=''){ ?>
+					  <tr>
+                        <td>GPU</td>
+                        <td><?php echo $products_list['gpu']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['sim_size']) && $products_list['sim_size']!=''){ ?>
+					  <tr>
+                        <td>Sim Size</td>
+                        <td><?php echo $products_list['sim_size']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['sim_supported']) && $products_list['sim_supported']!=''){ ?>
+					  <tr>
+                        <td>Sim Supported</td>
+                        <td><?php echo $products_list['sim_supported']; ?></td>
+                      </tr>
+					  <?php } ?> 
+					  <?php if(isset($products_list['call_memory']) && $products_list['call_memory']!=''){ ?>
+					  <tr>
+                        <td>Call Memory</td>
+                        <td><?php echo $products_list['call_memory']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['sms_memory']) && $products_list['sms_memory']!=''){ ?>
+					  <tr>
+                        <td>SMS Memory</td>
+                        <td><?php echo $products_list['sms_memory']; ?></td>
+                      </tr>
+					  <?php } ?> 
+					  <?php if(isset($products_list['phone_book_memory']) && $products_list['phone_book_memory']!=''){ ?>
+					  <tr>
+                        <td>Phone Book Memory</td>
+                        <td><?php echo $products_list['phone_book_memory']; ?></td>
+                      </tr>
+					  <?php } ?> 
+					  <?php if(isset($products_list['sensors']) && $products_list['sensors']!=''){ ?>
+					  <tr>
+                        <td>Sensors</td>
+                        <td><?php echo $products_list['sensors']; ?></td>
+                      </tr>
+					  <?php } ?> 
+					  <?php if(isset($products_list['java']) && $products_list['java']!=''){ ?>
+					  <tr>
+                        <td>Java</td>
+                        <td><?php echo $products_list['java']; ?></td>
+                      </tr>
+					  <?php } ?>
+					   <?php if(isset($products_list['insales_package']) && $products_list['insales_package']!=''){ ?>
+					  <tr>
+                        <td>In Sales Package</td>
+                        <td><?php echo $products_list['insales_package']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['dislay_resolution']) && $products_list['dislay_resolution']!=''){ ?>
+					  <tr>
+                        <td>Display & resolution</td>
+                        <td><?php echo $products_list['dislay_resolution']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['display_type']) && $products_list['display_type']!=''){ ?>
+					  <tr>
+                        <td>Display Type</td>
+                        <td><?php echo $products_list['display_type']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['colour']) && $products_list['colour']!=''){ ?>
+					  <tr>
+                        <td>Colors</td>
+                        <td><?php echo $products_list['colour']; ?></td>
+                      </tr>
+					  <?php } ?>
 					  
                     </tbody>
                   </table>
@@ -405,32 +639,18 @@
                  <table class="table table-bordered">
                 <tbody>
                       <tr>
-                        <td>Item Name</td>
-                        <td><?php echo $products_list['item_name']; ?></td>
+                        <td>Warranty Summary</td>
+                        <td><?php echo isset($products_list['warranty_summary'])?$products_list['warranty_summary']:''; ?></td>
                       </tr>
-                      <tr>
-                        <td>Item Cost</td>
-                        <?php if(date('m/d/Y') <= $products_list['offer_expairdate'] && date('H:ia')<= $products_list['offer_time']) {?>
-                        	<td><?php echo ($products_list['item_cost'])-($products_list['offer_amount']); ?></td>
-                        	<?php }else{ ?>
-                        		<td><?php echo $products_list['item_cost']; ?></td>
-                        		<?php }?>
+					  <tr>
+                        <td>Warranty Type</td>
+                        <td><?php echo isset($products_list['warranty_type'])?$products_list['warranty_type']:''; ?></td>
                       </tr>
-                      <tr>
-                        <td>Item Status</td>
-							<td>
-							<?php if($products_list['item_status']==1){ 
-							echo "Ready Stock";
-							}
-							else{
-							echo "Out of Stock";
-							}				?>
-							</td>
+					  <tr>
+                        <td>Service Type</td>
+                        <td><?php echo isset($products_list['service_type'])?$products_list['service_type']:''; ?></td>
                       </tr>
-                      <tr>
-                        <td>Item Code</td>
-                        <td><?php echo $products_list['product_code']; ?></td>
-                      </tr>
+                     
 					  
                     </tbody>
                   </table>
@@ -438,38 +658,8 @@
               </div>
 			  <div role="tabpanel" class="tab-pane" id="returnpolices">
                 <div class="well">
-                  <table class="table table-bordered">
-                <tbody>
-                      <tr>
-                        <td>Item Name</td>
-                        <td><?php echo $products_list['item_name']; ?></td>
-                      </tr>
-                      <tr>
-                        <td>Item Cost</td>
-                        <?php if(date('m/d/Y') <= $products_list['offer_expairdate'] && date('H:ia')<= $products_list['offer_time']) {?>
-                        	<td><?php echo ($products_list['item_cost'])-($products_list['offer_amount']); ?></td>
-                        	<?php }else{ ?>
-                        		<td><?php echo $products_list['item_cost']; ?></td>
-                        		<?php }?>
-                      </tr>
-                      <tr>
-                        <td>Item Status</td>
-							<td>
-							<?php if($products_list['item_status']==1){ 
-							echo "Ready Stock";
-							}
-							else{
-							echo "Out of Stock";
-							}				?>
-							</td>
-                      </tr>
-                      <tr>
-                        <td>Item Code</td>
-                        <td><?php echo $products_list['product_code']; ?></td>
-                      </tr>
-					  
-                    </tbody>
-                  </table>
+                      <p><?php echo isset($products_list['return_policy'])?$products_list['return_policy']:''; ?></p>
+
                 </div>
               </div>
               <!-- End Detail Tab Content -->
@@ -581,35 +771,61 @@
         </div>
 		     <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
+		  <?Php $cnt=1;foreach ($similarproducts_list as $productslist) { 
+		  
+		  $currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
+				}
+		  
+		  
+		  
+		  ?>
 		
 			<div class="item ">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover item">
 			  <div class="img_size">
-                <a href="http://localhost/cartinhour/category/productview/MzA2">
-               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
+                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+               <img class="" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
 				 
            
                 </a>
 				</div>
               
 								
-				<div class="option">
-									
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
-					
-												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
-					
+				<div class="option ">
+				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
+				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+				<?php }else{ ?>	
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart"></i></a>                  
+				<?php } ?>
+				<?php } ?>
+				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+				<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart text-primary"></i></a> 
+				<?php }else{ ?>	
+				<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart "></i></a> 
+				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
+              <h6>
+			  <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
 				<div class="price">
                
-				<div class="text-center" style="color:#187a7d;">₹ 800.00 
+				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?>
 			 &nbsp;
-			<span class="price-old">₹ 450.00</span>
-				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
+			<span class="price-old">₹  <?php echo $orginal_price; ?></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
 							</div>
 				<div class="clearfix"></div>
             
@@ -618,197 +834,9 @@
             </div>
           </div>
             </div>
+			
+			<?php $cnt++;} ?>
          
-		
-			<div class="item ">
-          <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover item">
-			  <div class="img_size">
-                <a href="http://localhost/cartinhour/category/productview/MzA2">
-               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
-				 
-           
-                </a>
-				</div>
-              
-								
-				<div class="option">
-									
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
-					
-												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
-					
-				</div>
-              </div>
-              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
-				<div class="price">
-               
-				<div class="text-center" style="color:#187a7d;">₹ 800.00 
-			 &nbsp;
-			<span class="price-old">₹ 450.00</span>
-				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
-							</div>
-				<div class="clearfix"></div>
-            
-              </div>
-            
-            </div>
-          </div>
-            </div>
-       
-	
-			<div class="item ">
-          <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover item">
-			  <div class="img_size">
-                <a href="http://localhost/cartinhour/category/productview/MzA2">
-               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
-				 
-           
-                </a>
-				</div>
-              
-								
-				<div class="option">
-									
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
-					
-												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
-					
-				</div>
-              </div>
-              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
-				<div class="price">
-               
-				<div class="text-center" style="color:#187a7d;">₹ 800.00 
-			 &nbsp;
-			<span class="price-old">₹ 450.00</span>
-				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
-							</div>
-				<div class="clearfix"></div>
-            
-              </div>
-            
-            </div>
-          </div>
-            </div>
-     
-			
-			<div class="item ">
-          <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover item">
-			  <div class="img_size">
-                <a href="http://localhost/cartinhour/category/productview/MzA2">
-               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
-				 
-           
-                </a>
-				</div>
-              
-								
-				<div class="option">
-									
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
-					
-												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
-					
-				</div>
-              </div>
-              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
-				<div class="price">
-               
-				<div class="text-center" style="color:#187a7d;">₹ 800.00 
-			 &nbsp;
-			<span class="price-old">₹ 450.00</span>
-				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
-							</div>
-				<div class="clearfix"></div>
-            
-              </div>
-            
-            </div>
-          </div>
-            </div>
-           
-			
-			<div class="item ">
-          <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover item">
-			  <div class="img_size">
-                <a href="http://localhost/cartinhour/category/productview/MzA2">
-               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
-				 
-           
-                </a>
-				</div>
-              
-								
-				<div class="option">
-									
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
-					
-												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
-					
-				</div>
-              </div>
-              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
-				<div class="price">
-               
-				<div class="text-center" style="color:#187a7d;">₹ 800.00 
-			 &nbsp;
-			<span class="price-old">₹ 450.00</span>
-				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
-							</div>
-				<div class="clearfix"></div>
-            
-              </div>
-            
-            </div>
-          </div>
-            </div>
-        
-			
-			<div class="item ">
-          <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover item">
-			  <div class="img_size">
-                <a href="http://localhost/cartinhour/category/productview/MzA2">
-               <img class="" src="http://localhost/cartinhour/uploads/products/15043399821.JPG"> 
-				 
-           
-                </a>
-				</div>
-              
-								
-				<div class="option">
-									
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('306','18','5');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem3065" class="fa fa-shopping-cart"></i></a>                  
-					
-												<a href="javascript:void(0);" onclick="addwhishlidt('306','5');" id="addwhish306" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids3065" class="fa fa-heart text-primary"></i></a> 
-					
-				</div>
-              </div>
-              <h6><a href="http://localhost/cartinhour/category/productview/MzA2">cake</a></h6>
-				<div class="price">
-               
-				<div class="text-center" style="color:#187a7d;">₹ 800.00 
-			 &nbsp;
-			<span class="price-old">₹ 450.00</span>
-				<span class="label-tags"><p class=" text-success"> -77.78% off</p></span>
-							</div>
-				<div class="clearfix"></div>
-            
-              </div>
-            
-            </div>
-          </div>
-          
-            </div>
             </div>
             </div>
             </div>
@@ -818,38 +846,80 @@
 <div class="clearfix">&nbsp;</div>
 
 <script type="text/javascript">
+function itemaddtocart(itemid,catid,val){
 
-	function productqty(){
+jQuery.ajax({
+        url: "<?php echo site_url('customer/onclickaddcart');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+          producr_id: itemid,
+		  category_id: catid,
+		  qty: '1',
+          },
+        dataType: 'json',
+        success: function (data) {
+           if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+						jQuery('#sucessmsg').show();
+						$("#supcount").empty();
+						$("#supcount").append(data.count);
+						if(data.msg==2){
+						$("#addticartitem"+itemid+val).removeClass("text-primary");
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						}
+						if(data.msg==1){
+						 $("#addticartitem"+itemid+val).addClass("text-primary");
+						//$('#addwhish').css("color", "yellow");
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						}
+				}
 
-	var qtycnt=document.getElementById("qty").value;
-	var qty=parseInt(qtycnt);
-	if(qty==1){
-		
-		$('#qty').val(qty);
-	}else{
-		$('#qty').val(qty - 1);
-		$("#qtymesage"+id).html('');
-			
-	}
-	
-	
-}
-function productqtyincreae(){
-	var qtycnt1=document.getElementById("qty").value;
-	var orginalqtycnt=document.getElementById("orginalqty").value;
-	var qty1=parseInt(qtycnt1);
-	if(qty1==orginalqtycnt){
-		$("#qtymesage").html("Avaiable  Quantity is " +orginalqtycnt);
-	}else if(qty1==10){
-	$("#qtymesage").html("Maximum allowed Quantity is 10 ");
-	}else{
-		$("#qtymesage").html("");
-		$('#qty').val(qty1 + 1);
-		
-	}
-	
-}
+        }
+      });
+
+ }
+ function addwhishlidts(id,val){
+jQuery.ajax({
+			url: "<?php echo site_url('customer/addwhishlist');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				item_id: id,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+				if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+				jQuery('#sucessmsg').show();
+				//alert(data.msg);
+				if(data.msg==2){
+				$('#sucessmsg').show('');
+				$("#addwishlistids"+id+val).removeClass("text-primary");
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+				document.getElementById("sucessmsg").focus();
 				
+				}
+				if(data.msg==1){
+				$('#sucessmsg').show('');
+				 $("#addwishlistids"+id+val).addClass("text-primary");
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+				document.getElementById("sucessmsg").focus();				
+				}
+				
+				}
+			
+
+			}
+		});
+	
+	
+}
+
+
+			
 
 function validation(){
 var color=$('#colorvalue').val();
