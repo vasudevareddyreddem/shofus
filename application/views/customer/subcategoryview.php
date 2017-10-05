@@ -53,6 +53,173 @@ $(document).ready(function() {
 .wish{
 	color:#ef5350;
 }
+#slider-text{
+  padding-top: 40px;
+  display: block;
+}
+#slider-text .col-md-6{
+  overflow: hidden;
+}
+
+#slider-text h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: 3px;
+  margin: 30px auto;
+  padding-left: 40px;
+}
+#slider-text h2::after{
+  border-top: 2px solid #c7c7c7;
+  content: "";
+  position: absolute;
+  bottom: 35px;
+  width: 100%;
+  }
+
+#itemslider h4{
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  margin: 10px auto 3px;
+}
+#itemslider h5{
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  margin: 3px auto 2px;
+}
+#itemslider h6{
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;;
+  font-size: 10px;
+  margin: 2px auto 5px;
+}
+.badge {
+  background: #b20c0c;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  line-height: 31px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  border: 2px solid #FFF;
+  box-shadow: 0 0 0 1px #b20c0c;
+  top: 5px;
+  right: 25%;
+}
+#slider-control img{
+  padding-top: 60%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 992px){
+#slider-control img {
+  padding-top: 70px;
+  margin: 0 auto;
+}
+}
+
+.carousel-showmanymoveone .carousel-control {
+  width: 4%;
+  background-image: none;
+}
+.carousel-showmanymoveone .carousel-control.left {
+  margin-left: 5px;
+}
+.carousel-showmanymoveone .carousel-control.right {
+  margin-right: 5px;
+}
+.carousel-showmanymoveone .cloneditem-1,
+.carousel-showmanymoveone .cloneditem-2,
+.carousel-showmanymoveone .cloneditem-3,
+.carousel-showmanymoveone .cloneditem-4,
+.carousel-showmanymoveone .cloneditem-5 {
+  display: none;
+}
+@media all and (min-width: 768px) {
+  .carousel-showmanymoveone .carousel-inner > .active.left,
+  .carousel-showmanymoveone .carousel-inner > .prev {
+    left: -50%;
+  }
+  .carousel-showmanymoveone .carousel-inner > .active.right,
+  .carousel-showmanymoveone .carousel-inner > .next {
+    left: 50%;
+  }
+  .carousel-showmanymoveone .carousel-inner > .left,
+  .carousel-showmanymoveone .carousel-inner > .prev.right,
+  .carousel-showmanymoveone .carousel-inner > .active {
+    left: 0;
+  }
+  .carousel-showmanymoveone .carousel-inner .cloneditem-1 {
+    display: block;
+  }
+}
+@media all and (min-width: 768px) and (transform-3d), all and (min-width: 768px) and (-webkit-transform-3d) {
+  .carousel-showmanymoveone .carousel-inner > .item.active.right,
+  .carousel-showmanymoveone .carousel-inner > .item.next {
+    -webkit-transform: translate3d(50%, 0, 0);
+    transform: translate3d(50%, 0, 0);
+    left: 0;
+  }
+  .carousel-showmanymoveone .carousel-inner > .item.active.left,
+  .carousel-showmanymoveone .carousel-inner > .item.prev {
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+    left: 0;
+  }
+  .carousel-showmanymoveone .carousel-inner > .item.left,
+  .carousel-showmanymoveone .carousel-inner > .item.prev.right,
+  .carousel-showmanymoveone .carousel-inner > .item.active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    left: 0;
+  }
+}
+@media all and (min-width: 992px) {
+  .carousel-showmanymoveone .carousel-inner > .active.left,
+  .carousel-showmanymoveone .carousel-inner > .prev {
+    left: -16.666%;
+  }
+  .carousel-showmanymoveone .carousel-inner > .active.right,
+  .carousel-showmanymoveone .carousel-inner > .next {
+    left: 16.666%;
+  }
+  .carousel-showmanymoveone .carousel-inner > .left,
+  .carousel-showmanymoveone .carousel-inner > .prev.right,
+  .carousel-showmanymoveone .carousel-inner > .active {
+    left: 0;
+  }
+  .carousel-showmanymoveone .carousel-inner .cloneditem-2,
+  .carousel-showmanymoveone .carousel-inner .cloneditem-3,
+  .carousel-showmanymoveone .carousel-inner .cloneditem-4,
+  .carousel-showmanymoveone .carousel-inner .cloneditem-5,
+  .carousel-showmanymoveone .carousel-inner .cloneditem-6  {
+    display: block;
+  }
+}
+@media all and (min-width: 992px) and (transform-3d), all and (min-width: 992px) and (-webkit-transform-3d) {
+  .carousel-showmanymoveone .carousel-inner > .item.active.right,
+  .carousel-showmanymoveone .carousel-inner > .item.next {
+    -webkit-transform: translate3d(16.666%, 0, 0);
+    transform: translate3d(16.666%, 0, 0);
+    left: 0;
+  }
+  .carousel-showmanymoveone .carousel-inner > .item.active.left,
+  .carousel-showmanymoveone .carousel-inner > .item.prev {
+    -webkit-transform: translate3d(-16.666%, 0, 0);
+    transform: translate3d(-16.666%, 0, 0);
+    left: 0;
+  }
+  .carousel-showmanymoveone .carousel-inner > .item.left,
+  .carousel-showmanymoveone .carousel-inner > .item.prev.right,
+  .carousel-showmanymoveone .carousel-inner > .item.active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    left: 0;
+  }
+}
 </style>
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
@@ -60,6 +227,8 @@ $(document).ready(function() {
 <body >
 	  <div class="container-fluid fluid_mod " id="containerhigh"></div>
 	 <div class="container-fluid fluid_mod " id="containerhighold">
+	 
+
 	 <div class="row ">
 			<div class="col-md-12  ">
 			  
@@ -67,10 +236,13 @@ $(document).ready(function() {
 			  <div class="title text-left mar_t10"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
 			  <?php foreach($subcategory_list as $list){ ?>
 				  <div class="col-md-2" id="onclicksubcat<?php echo $list['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
-					 <div class="catg_sty">
+				   <div class="text-center"> <!--catg_sty-->
+					  <div style="padding-bottom:10px">
+							<img src="<?php echo base_url(); ?>assets/home/images/logo.png" />
+					  </div>
+					
 						<?php echo $list['subcategory_name']; ?>
 					  </div>
-					  <img  style="position:absolute;top:0;left:5px;width:50px;background:#ddd" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGwAAABUCAYAAABnT9INAAAAAXNSR0IArs4c6QAABMZJREFUeAHtnc9rXFUUx7/3zSQZgr+KxRaNwQF/YAuN02qblRWpP6qLCiK40I3+AUmjZqEuXLgSNE3AtQsXrnSposYqKtpAm0SpguCqLmwRgr+ayfy6nheMnPvmJdPXvJlwku+DZM6979x7z3w+7728yeINwI0ESIAESIAESIAESIAESIAESIAESIAESIAESIAEOhNwnVNSMirjx9FqvQ2PcspednUm8BscXsbizDudU8OM7MKeeq0fPy9dgvfXh1OxlYmAcw2UBso488avWcZFWZJXc3/5Y5iyMlNrH+B9EdX6vvYdG/dkF9Z02cdsXMPO3euRmWUxF1rOvS9n3Q+5zLVdJ3HuVmH0/GbfXj7CIhE2P/3eZovZ1uMPToyi0di0sMyn5LaGauDNUZgBSbpECtM0DMQUZkCSLpHCNA0DMYUZkKRLpDBNw0BMYQYk6RIpTNMwEFOYAUm6RArTNAzEFGZAki6RwjQNAzGFGZCkS6QwTcNATGEGJOkSKUzTMBBTmAFJukQK0zQMxBRmQJIukcI0DQMxhRmQpEukME3DQExhBiTpEilM0zAQU5gBSbpECtM0DMQUZkCSLpHCNA0DMYUZkKRLpDBNw0BMYQYk6RIpTNMwEFOYAUm6RArTNAzEFGZAki6RwjQNAzGFGZCkS6QwTcNATGEGJOkSKUzTMBBTmAFJukQK0zQMxBRmQJIukcI0DQNxPk9z8ziMynjdwPvduhJbrTvyWPwqhDX2ty3cao1LX/zDLQsB17pb0j/OMqSQJRmVsfvlwcwfyJi+TOOYnE7A4Rj2jJ7HxTM/pSe09175Q5oPjB2R4Z8C/trENCtw0bfytM1mop/NgEB8u9A8LL8S/FwNBfcE5k99FKSv07gyYSMTFVnsc5FyQ2KeJUTRg1g4tZDoZzONwKGxYdTxlRz0w8Fu55aF43HMT30Z9Kc0OgsbOSl/s1pfiKzdwXiHP4HCQ1icmgv6826c9tegviKX4tZ1eU8dzBcJyn7M4ejghaA/78bBk7ej0RRp2BtO7f6SK9WxTjw3FjYycSd8I7YeTu7cP9L3KBanvw4Xzbl1Wg6S+vKcHCzlnGdOn865KhCdwMOlT9ITcuqNTwLfjLnemJhxCUX3AM5Nf5/o/7+5/uewAy+WRdasZIaygCoif6LrsuISG8vP9ExWvJ73JbmaTMZhV7fFqfMo4hH5dgi5SgXbLjTlPuHesbuCXtVIF3ZkcgiuFssaUrkSyh/ICE9ifibe1/3Nu7+7v0hiBY/erHlu5qzwfFykXQ4q8P4m1PxnuGf8tqD/v0a7sPte2otqdbbte1Xir55w/mkszHyYNlFX+sqld2VeuTPt1eYuoK/wSq9WW71KOblDBFYSaw6h5WdRmbw50S9+9Xbohd3ybPX4BqP9wzHcRUmVo2ILtv7+AUSFq/iQn6FW3/RYqYVHe4bhm0p1GBHmt7TN4fAjin1HcfbN39f2hRAa9bfkzEqRFaf7PfLrsbWBPX2tJQ/Anq7e/cX8Okt47JMTaEr2PruWEV4S/RYJWauGr+0EEk5CYXDftI9gz5YScD5wEl4SS4PPoXr5Vbn8jcK5wpYWutMXX/1Xn/sOA4Ov73QUfP8kQAIkQAIkQAIkQAKdCPwLm0HrVPVw6EIAAAAASUVORK5CYII=">
 				  </div> 
 			  <?php } ?>
 			</div>
