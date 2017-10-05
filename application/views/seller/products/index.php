@@ -36,7 +36,6 @@
 	
       <!--<h1 class="head_title">My Listings</h1>-->
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
-	 <div><?php echo $this->session->flashdata('message');?></div>
       <div class="faq">
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
  <?php if($this->session->flashdata('success')): ?>
@@ -76,7 +75,7 @@
         <thead>
             <tr>
                 <th>Item Name</th>
-                <th>Item Code</th>
+                <th>Product Code</th>
                 <th>Item Cost</th>
                 <th>Offer Amount</th>
                 <th>Combo offer item Name</th>
@@ -96,7 +95,7 @@
 						?>
 					<tr>
 						<td><?php echo $item_data->item_name;?></td>
-						<td><?php echo $item_data->item_code;?></td>
+						<td><?php echo $item_data->product_code;?></td>
 						<td><?php echo $item_data->item_cost;?></td>
 						<td><?php echo $item_data->offer_amount;?></td>
 						<td><?php if($item_data->offer_combo_item_id !=4 && $item_data->offer_combo_item_id !='' && $item_data->offer_combo_item_id!=0){ echo $item_data->offer_combo_item_name; }else{ echo ""; }?></td>

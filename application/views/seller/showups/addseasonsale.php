@@ -120,7 +120,7 @@ tfoot input {
 					<tr>
 						<td><input class="chkdata<?php echo $subcategory->subcategory_id;?><?php echo $kk; ?>" value="<?php echo $item_data->item_id; ?>" type="checkbox" id="cat_id[]" name="cat_id[]" ></td>
 						<td><?php echo $item_data->item_name;?></td>
-						<td><?php echo $item_data->item_code;?></td>
+						<td><?php echo $item_data->product_code;?></td>
 						<td><?php echo $item_data->item_cost;?></td>
 						<td><?php echo $item_data->offer_amount;?></td>
 						<td>
@@ -129,7 +129,7 @@ tfoot input {
         elseif($item_data->offer_type=='3'){ ?><?php echo "Flat Price Offer";  ?> <?php }
         elseif($item_data->offer_type=='4'){ ?><?php echo "Combo Discount";  ?> <?php }
         else{
-          echo "NULL";
+          echo "";
         } ?>
 						</td>
 						<td><?php echo $item_data->offer_expairdate;?>,&nbsp;<?php echo $item_data->offer_time;?></td>

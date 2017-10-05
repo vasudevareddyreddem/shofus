@@ -39,7 +39,7 @@
 	 <div><?php echo $this->session->flashdata('message');?></div>
       <div class="faq">
 	  <?php //echo '<pre>';print_r($catitemdata1);exit;  ?>
- <?php if($this->session->flashdata('success')): ?>
+<?php if($this->session->flashdata('success')): ?>
 					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('success');?></div>	
@@ -84,7 +84,6 @@
 				</th>
 				<div style="padding:15px 0px" id="submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>"><a class="btn btn-primary" data-toggle="modal" data-target="#offerspopup<?php echo $subcategory->subcategory_id;?>"   type="button">Submit</a></div>
 				<th>Item Name</th>
-				 <th>Sku Id</th>
                 <th>Special price</th>
                 <th>Item Code</th>
                 <th>Offer Amount</th>
@@ -103,9 +102,8 @@
 					<tr>
 						<td><input value="<?php echo $item_data->item_id; ?>" class="chkdata<?php echo $subcategory->subcategory_id;?><?php echo $cnt; ?>" type="checkbox" id="cat_id[]" name="cat_id[]" ></td>
 						<td><?php echo $item_data->item_name;?></td>
-						<td><?php echo $item_data->skuid;?></td>
 						<td><?php echo $item_data->special_price;?></td>
-						<td><?php echo $item_data->item_code;?></td>
+						<td><?php echo $item_data->product_code;?></td>
 						<td><?php echo $item_data->item_cost;?></td>
 						<td><?php echo $item_data->offer_amount;?></td>
 						<td><?php if($item_data->offer_combo_item_id !=4 && $item_data->offer_combo_item_id !='' && $item_data->offer_combo_item_id!=0){ echo $item_data->offer_combo_item_name; }else{ echo ""; }?></td>

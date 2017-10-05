@@ -26,7 +26,6 @@
                  <th>Subcategory</th>
                 <th>Product Name</th>
                  <th>Product code</th>
-                <th>Description</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Image</th>
@@ -47,8 +46,7 @@
                    <td><?php  echo $approvalrequest_data->category_name; ?></td>
 				   <td><?php  echo $approvalrequest_data->subcategory_name; ?></td>
 				   <td><?php  echo $approvalrequest_data->item_name; ?></td>
-				   <td><?php  echo $approvalrequest_data->item_code; ?></td>
-				   <td><?php  echo $approvalrequest_data->item_description; ?></td>
+				   <td><?php  echo $approvalrequest_data->product_code; ?></td>
                    <td><?php  echo $approvalrequest_data->item_quantity; ?></td>
 				   <td><?php  echo $approvalrequest_data->item_cost; ?></td>
 				    <?php if($approvalrequest_data->item_image == "") {  ?>
