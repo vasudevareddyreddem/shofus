@@ -671,6 +671,7 @@ class Customer extends Front_Controller
 			$data['locationdata'] = $this->home_model->getlocations();
 			$data['customerdetail']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
 			$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+			$data['billingaddresslis']= $this->customer_model->get_customer_billing_list($customerdetails['customer_id']);
 
 			//echo '<pre>';print_r($data);exit;
 			$this->template->write_view('content', 'customer/billingadrres',$data);
@@ -696,11 +697,50 @@ class Customer extends Front_Controller
 		$post=$this->input->post();
 		//echo '<pre>';print_r($customerdetails);exit;
 		//echo '<pre>';print_r($post);exit;
+		
+		 if(isset($post['addressid']) && $post['addressid']!=''){
+			 $updtata=array(
+			 'title'=>$post['title'],
+			'name'=>$post['name'],
+			'emal_id'=>$post['email'],
+			'mobile'=>$post['mobile'],
+			'address1'=>$post['address1'],
+			'address2'=>$post['address2'],
+			'pincode'=>$post['pincode'],
+			'city'=>$post['city'],
+			'state'=>$post['state'],
+			);
+			$addressupdatedetails= $this->customer_model->update_address_deails($post['addressid'],$updtata);
+		}
+		 if(isset($post['featurepurpose']) && $post['featurepurpose']!='' && $post['addressid']==0){
+			 $savenewadd=array(
+			'cust_id'=>$customerdetails['customer_id'],
+			'emal_id'=>$customerdetails['cust_email'],
+			 'title'=>$post['title'],
+			'name'=>$post['name'],
+			'mobile'=>$post['mobile'],
+			'address1'=>$post['address1'],
+			'address2'=>$post['address2'],
+			'pincode'=>$post['pincode'],
+			'city'=>$post['city'],
+			'state'=>$post['state'],
+			'create-at'=>date('Y-m-d H:i:s'),
+			);
+			$addnewadd= $this->customer_model->save_new_address($savenewadd);
+
+			 
+		 }
 		if($customerdetails['address1']=='' || $customerdetails['address2']==''){
 			
 			$details=array(
+			'title'=>$post['title'],
+			'name'=>$post['name'],
+			'mobile'=>$post['mobile'],
 			'address1'=>$post['address1'],
 			'address2'=>$post['address2'],
+			'pincode'=>$post['pincode'],
+			'city'=>$post['city'],
+			'state'=>$post['state'],
 			'area'=>$post['area'],
 			);
 			$updatedetails= $this->customer_model->update_deails($customerdetails['customer_id'],$details);
@@ -714,6 +754,8 @@ class Customer extends Front_Controller
 		'address1'=>$post['address1'],
 		'pincode'=>$post['pincode'],
 		'address2'=>$post['address2'],
+		'city'=>$post['city'],
+		'state'=>$post['state'],
 		'area'=>$post['area'],
 		'create-at'=>date('Y-m-d H:i:s'),
 		);
@@ -2045,6 +2087,33 @@ class Customer extends Front_Controller
 	 }
 
 	 
+ }
+ public function getbillingaddress(){
+	 
+	  $customerdetails=$this->session->userdata('userdetails');
+	  $post=$this->input->post();
+	  $address=$this->customer_model->get_customer_billingaddress($post['addid'],$customerdetails['customer_id']);
+		if(count($address)>0){
+			$data['msg']=1;
+			$data=$address;							
+			echo json_encode($data);
+		}else{
+			$data['msg']=0;
+			echo json_encode($data);
+		}
+ } 
+ public function removebillingaddress(){
+	 
+	  $customerdetails=$this->session->userdata('userdetails');
+	  $post=$this->input->post();
+	  $deleteaddress=$this->customer_model->remove_customer_billingaddress($post['addid'],$customerdetails['customer_id']);
+		if(count($deleteaddress)>0){
+			$data['msg']=1;
+			echo json_encode($data);
+		}else{
+			$data['msg']=0;
+			echo json_encode($data);
+		}
  }
 
 

@@ -85,6 +85,14 @@ class Customer_model extends MY_Model
 		$this->db->where('customer_id', $custid);
 		return $this->db->update('customers', $data);
 	}
+	public function update_address_deails($addid,$data){
+		$this->db->where('address_id', $addid);
+		return $this->db->update('customer_address', $data);
+	}
+	public function save_new_address($data){
+		$this->db->insert('customer_address', $data);
+		return $insert_id = $this->db->insert_id();
+	}
 	public function get_customer_details($custid){
 		$this->db->select('*')->from('customers');
 		$this->db->where('customer_id',$custid);
@@ -280,6 +288,17 @@ class Customer_model extends MY_Model
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
+	public function get_customer_billing_list($cust_id){
+		$this->db->select('*')->from('customer_address');
+		$this->db->where('cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
+	public function get_customer_billingaddress($addid,$cust_id){
+		$this->db->select('*')->from('customer_address');
+		$this->db->where('address_id', $addid);
+		$this->db->where('cust_id', $cust_id);
+        return $this->db->get()->row_array();
+	}
 	public function get_cart_Items_names($cust_id){
 		$this->db->select('products.item_name')->from('cart');
 		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
@@ -474,6 +493,10 @@ class Customer_model extends MY_Model
 		$sql1="UPDATE customers SET area ='".$data."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
 	} 
+	public function remove_customer_billingaddress($addid,$cust_id){
+		$sql1="DELETE FROM customer_address WHERE address_id = '".$addid."' AND  cust_id = '".$cust_id."'";
+		return $this->db->query($sql1);
+	}
 	
 }
 ?>

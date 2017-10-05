@@ -137,6 +137,7 @@
 }
 
 </style>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
@@ -173,116 +174,52 @@
 		<div class="col-sm-12 col-xs-12 login-register-form m-b-3 text-left">
 		<div class="row">
 		 <div class="title"><span>Select a Delivery Address</span></div>
-			<div class="col-md-6" id="hide_add">
+		 
+		 <?php $cnt=1;foreach($billingaddresslis as $addlist) { ?>
+			<div class="col-md-6" id="hide_add<?php echo $cnt; ?>">
 				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
 				<div style="padding-bottom:10px;">
 					<div class="checkbox pull-left">
 					  <label>
 							<input type="checkbox" checked="checked">
-							<span style="font-weight:500"> &nbsp; Carinhour</span>
+							<span style="font-weight:500"> &nbsp; <?php echo $addlist['title']; ?></span>
 					  </label>
 					</div>
 								
 					<div class="pull-right" >
-						<a style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
+						<a onclick="changebillingaddress('<?php echo $addlist['address_id']; ?>','<?php echo $cnt;?>')" style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
 					</div>
-					<i id="hide_add_btn" style="position:absolute;top:5px; right:20px;background:#f5f5f5;border-radius:25px; padding:5px;opacity:0.5;cursor:pointer" class="fa fa-times" aria-hidden="true"></i>
+					<i id="hide_add_btn<?php echo $cnt; ?>" onclick="removebillingaddress('<?php echo $addlist['address_id']; ?>','<?php echo $cnt;?>');" style="position:absolute;top:5px; right:20px;background:#f5f5f5;border-radius:25px; padding:5px;opacity:0.5;cursor:pointer" class="fa fa-times" aria-hidden="true"></i>
 				</div>
 				<div class="clearfix"> &nbsp;	</div>
 				<div class="" style="border-top:1px solid #ddd;"> &nbsp;</div>
-					<div><b>bayapureddy</b></div>	
-					<div>Plot no 177 srivani nilayam</div>	
-					<div>Sardar Vallabhbhai Patel,</div>	
-					<div>Hyderabad-500082</div>	
-					<div>Telangana</div>
+					<div><b><?php echo $addlist['name']; ?></b></div>	
+					<div><?php echo $addlist['address1']; ?></div>	
+					<div><?php echo $addlist['address2']; ?>,</div>	
+					<div><?php echo $addlist['city']; ?>-<?php echo $addlist['pincode']; ?></div>	
+					<div><?php echo $addlist['state']; ?></div>
 					<br>					
-					<div>8500226782</div>	
+					<div><?php echo $addlist['mobile']; ?></div>	
 				</div>
 			</div>
-			<div class="col-md-6  ">
-				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
-				<div style="padding-bottom:10px;">
-					<div class="checkbox pull-left">
-					  <label>
-							<input type="checkbox" checked="checked">
-							<span style="font-weight:500"> &nbsp; Carinhourssss</span>
-					  </label>
-					</div>
-								
-					<div class="pull-right" >
-						<a style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
-					</div>
-					<i  style="position:absolute;top:5px; right:20px;background:#f5f5f5;border-radius:25px; padding:5px;opacity:0.5;cursor:pointer" class="fa fa-times" aria-hidden="true"></i>
-				</div>
-				<div class="clearfix"> &nbsp;	</div>
-				<div class="" style="border-top:1px solid #ddd;"> &nbsp;</div>
-					<div><b>bayapureddy</b></div>	
-					<div>Plot no 177 srivani nilayam</div>	
-					<div>Sardar Vallabhbhai Patel,</div>	
-					<div>Hyderabad-500082</div>	
-					<div>Telangana</div>
-					<br>					
-					<div>8500226782</div>	
-				</div>
-			</div><div class="col-md-6  ">
-				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
-				<div style="padding-bottom:10px;">
-					<div class="checkbox pull-left">
-					  <label>
-							<input type="checkbox" checked="checked">
-							<span style="font-weight:500"> &nbsp; Carinhourssss</span>
-					  </label>
-					</div>
-								
-					<div class="pull-right" >
-						<a style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
-					</div>
-					<i  style="position:absolute;top:5px; right:20px;background:#f5f5f5;border-radius:25px; padding:5px;opacity:0.5;cursor:pointer" class="fa fa-times" aria-hidden="true"></i>
-				</div>
-				<div class="clearfix"> &nbsp;	</div>
-				<div class="" style="border-top:1px solid #ddd;"> &nbsp;</div>
-					<div><b>bayapureddy</b></div>	
-					<div>Plot no 177 srivani nilayam</div>	
-					<div>Sardar Vallabhbhai Patel,</div>	
-					<div>Hyderabad-500082</div>	
-					<div>Telangana</div>
-					<br>					
-					<div>8500226782</div>	
-				</div>
-			</div><div class="col-md-6  ">
-				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
-				<div style="padding-bottom:10px;">
-					<div class="checkbox pull-left">
-					  <label>
-							<input type="checkbox" checked="checked">
-							<span style="font-weight:500"> &nbsp; Carinhourssss</span>
-					  </label>
-					</div>
-								
-					<div class="pull-right" >
-						<a style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
-					</div>
-					<i  style="position:absolute;top:5px; right:20px;background:#f5f5f5;border-radius:25px; padding:5px;opacity:0.5;cursor:pointer" class="fa fa-times" aria-hidden="true"></i>
-				</div>
-				<div class="clearfix"> &nbsp;	</div>
-				<div class="" style="border-top:1px solid #ddd;"> &nbsp;</div>
-					<div><b>bayapureddy</b></div>	
-					<div>Plot no 177 srivani nilayam</div>	
-					<div>Sardar Vallabhbhai Patel,</div>	
-					<div>Hyderabad-500082</div>	
-					<div>Telangana</div>
-					<br>					
-					<div>8500226782</div>	
-				</div>
-			</div>
+			
+		 <?php $cnt++;} ?>
+			
+			
+			
 			
 			
 			
 		</div>
-			<div class="clearfix"> &nbsp;	</div>
-          <div class="title"><span>Please Enter Your Information</span></div>
+		<div class="clearfix"> &nbsp;	</div>
+		<div id="newbillingaddress" >
+         <div class="title"><span>Please Enter Your Information</span></div>
 		<form action="<?php echo base_url('customer/billingaddresspost'); ?>" method="post" name="billingaddress" id="billingaddress">
-		
+			<input type="hidden" id="addressid" name="addressid" value="0">
+			<div class="mat-div form-group">
+				 <label for="first-name" class="mat-label">Address Title</label>
+					 <input type="text" id="title" name="title" class="mat-input" value="">
+		    </div>
 			<div class="mat-div form-group">
 				 <label for="first-name" class="mat-label">Name</label>
 					 <input type="text" id="name" name="name" class="mat-input" value="">
@@ -299,12 +236,32 @@
 				 <label for="first-name" class="mat-label">Address2</label>
 				<input type="text" class="mat-input" id="address2" name="address2" value="" >
 		    </div>
+			<div class="mat-div form-group ">
+				 <label for="first-name" class="mat-label">Pincode</label>
+				<input type="text" class="mat-input" id="pincode" name="pincode" value="" >
+		    </div>
+			<div class="mat-div form-group ">
+				 <label for="first-name" class="mat-label">City</label>
+				<input type="text" class="mat-input" id="city" name="city" value="" >
+		    </div>
+			<div class="mat-div form-group ">
+				 <label for="first-name" class="mat-label">State</label>
+				<input type="text" class="mat-input" id="state" name="state" value="" >
+		    </div>
+			<div class="">
+			<label>
+				<input type="checkbox" name="featurepurpose" id="featurepurpose">
+				<span style="font-weight:500"> &nbsp; Feature purpose</span>
+			</label>
+			</div>
+			
 			
              <a href="#" class="btn btn-primary "> Back</a>
           <button class="pull-right btn btn-primary btn-small" type="submit">Proceed to Checkout</span><span aria-hidden="true">&rarr;</span></button>
          
           </form>
         </div>
+      
            </center>
       </div>
 
@@ -375,13 +332,77 @@
 
 <script>
 
+function removebillingaddress(aid,cnt){
+	jQuery.ajax({
+        url: "<?php echo site_url('customer/removebillingaddress');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+          addid: aid,
+          },
+        dataType: 'json',
+        success: function (data) {
+			if(data.msg==1){
+			$('#sucessmsg').show();
+			$('#hide_add'+cnt).hide();
+			$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Saved  Address successfully deleted. <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+			}else if(data.msg==0){
+			$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Please try again after some time. <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+
+			}
+		}
+      });
+	
+}
+function changebillingaddress(aid,cnt){
+	jQuery.ajax({
+        url: "<?php echo site_url('customer/getbillingaddress');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+          addid: aid,
+          },
+        dataType: 'json',
+        success: function (data) {
+			if(data.msg=1){
+				$('#addressid').val(data.address_id);
+				$('#title').val(data.title);
+				$('#name').val(data.name);
+				$('#mobile').val(data.mobile);
+				$('#address1').val(data.address1);
+				$('#address2').val(data.address2);
+				$('#pincode').val(data.pincode);
+				$('#city').val(data.city);
+				$('#state').val(data.state);
+				
+			}else{
+				
+			}
+           
+
+        }
+      });
+	
+}
+
 
 	$(document).ready(function() {
     $('#billingaddress').bootstrapValidator({
        
         fields: {
             
-             name: {
+             title: {
+              validators: {
+					notEmpty: {
+						message: 'Title is required'
+					},
+                   regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Title can only consist of alphanumaric, space and dot'
+					}
+                }
+            },
+			name: {
               validators: {
 					notEmpty: {
 						message: 'Name is required'
@@ -403,13 +424,7 @@
 					}
                 }
             },
-			area: {
-              validators: {
-					notEmpty: {
-						message: 'Please select an area'
-					}
-                }
-            },
+			
 			address1: {
 				validators: {
 					notEmpty: {
@@ -424,10 +439,64 @@
 			},
 			address2: {
 				validators: {
+					notEmpty: {
+						message: 'Address1 is required'
+					},
 					
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
 					message: 'Address2 wont allow <> [] = % '
+					}
+				
+				}
+			},
+			address2: {
+				validators: {
+					notEmpty: {
+						message: 'Address1 is required'
+					},
+					
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message: 'Address2 wont allow <> [] = % '
+					}
+				
+				}
+			},
+			pincode: {
+               validators: {
+				notEmpty: {
+						message: 'Pincode is required'
+					},
+					regexp: {
+					regexp:  /^[0-9]{6}$/,
+					message:'Pincode must be 6 digits'
+					}
+            
+				}
+            },
+			city: {
+				validators: {
+					notEmpty: {
+						message: 'city is required'
+					},
+					
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message: 'city wont allow <> [] = % '
+					}
+				
+				}
+			},
+			state: {
+				validators: {
+					notEmpty: {
+						message: 'city is required'
+					},
+					
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message: 'city wont allow <> [] = % '
 					}
 				
 				}
