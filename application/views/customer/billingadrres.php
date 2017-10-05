@@ -181,7 +181,7 @@
 				<div style="padding-bottom:10px;">
 					<div class="checkbox pull-left">
 					  <label>
-							<input type="checkbox" checked="checked">
+							<input type="radio" name="billingadress" >
 							<span style="font-weight:500"> &nbsp; <?php echo $addlist['title']; ?></span>
 					  </label>
 					</div>
@@ -606,7 +606,7 @@ function checkOffset() {
   var a=$(document).scrollTop()+window.innerHeight;
   var b=$('#footer-start').offset().top;
   if (a<b) {
-    $('#social-float').css('bottom', '34%');
+    $('#social-float').css('bottom', '80px');
   } else {
     $('#social-float').css('bottom', (10+(a-b))+'px');
   }
