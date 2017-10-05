@@ -7,7 +7,25 @@ class Category_model extends MY_Model
 		$this->load->database("default");
 	}
 	
-	
+	public function get_same_products($subcat,$name,$item_id)
+	{
+		$this->db->select('*')->from('products');
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_name', $name);
+		$this->db->where('item_id !=', $item_id);
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_simular_products($subcat,$name,$item_id)
+	{
+	$pname=substr($name, 0, 4);
+		$this->db->select('*')->from('products');
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->like('item_name', $pname);
+		$this->db->where('item_id !=', $item_id);
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
+	}
 	/* for subcategory wise*/
 	public function get_sensor_type_list($catid,$subcat)
 	{

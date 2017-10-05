@@ -1695,6 +1695,8 @@ function filtersearch(){
 
 	//echo '<pre>';print_r($pid);exit;
 	$data['products_list']= $this->category_model->get_products($pid);
+	$data['similarproducts_list']= $this->category_model->get_simular_products($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
+	$data['sameproducts_list']= $this->category_model->get_same_products($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
 	$data['products_reviews']= $this->category_model->get_products_reviews($pid);
 	$data['products_specufucation']= $this->category_model->get_products_specifications_list($pid);
 	$data['sizes_list']= $this->category_model->get_products_sizes_list($pid);
