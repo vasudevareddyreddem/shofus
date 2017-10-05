@@ -136,6 +136,16 @@
   transform: translateY(0);
 }
 </style>
+<?php if($this->session->flashdata('productsuccess')): ?>
+			<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
+			<?php endif; ?> 
+			<?php if($this->session->flashdata('qtyerror')): ?>
+				<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+
+			<?php endif; ?>
+			
+			<div class="alt_cus"><div style="display:none;" class="alert_msg animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
@@ -146,18 +156,18 @@
                         <h4 class="glyphicon glyphicon-shopping-cart"></h4>
                         <br/>Check Cart
                     </a>
-                    <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-folder-open"></h4>
+                    <div href="#"  class="list-group-item text-center">
+                        <h4 class="glyphicon glyphicon-folder-open site_col"></h4>
                         <br/>Billing Address
-                    </a>
-                    <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-credit-card"></h4>
+                    </div>
+                    <div href="#" class="list-group-item text-center">
+                        <h4 class="glyphicon glyphicon-credit-card site_col"></h4>
                         <br/>Payment mode
-                    </a>
-                    <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-ok"></h4>
+                    </div>
+                    <div href="#" class="list-group-item text-center">
+                        <h4 class="glyphicon glyphicon-ok site_col"></h4>
                         <br/>Thanks for Shopping
-                    </a>
+                    </div>
 
                 </div>
             </div>
@@ -173,76 +183,23 @@
                                     <div class="pull-left">
                                         <h4>My Cart</h4>
                                     </div>
-                                   <!--	 <div class="pull-right" style="line-height:40px;">
-                                        <span style="font-size:17px; " class="glyphicon glyphicon-map-marker site_col"></span> &nbsp;
-                                        <input style="border:none;background:transparent;font-size:17px;width:100px;" onclick="pincodechange();" type="text" value="500072" />
-                                        <a id="hide_loc">
-                                            <span style="color:#45b1b9;font-weight:500;cursor:pointer">Change</span>
-                                        </a>
-                                        <a id="show_loc" style="display:none;">
-                                            <span style="color:#45b1b9;font-weight:500;cursor:pointer">Check</span>
-                                        </a>
-
-                                    </div>-->
+                          
                                     <div class="clearfix"></div>
                                 </div>
-								<div class="loop" style="">
-                                <div class="panel-body">
-                                    <table class="table borderless">
-
-                                        <tbody>
-                                            <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                                            <tr>
-                                                <td class="col-md-2">
-                                                    <div class="media">
-                                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaGHtakM-MNkXnCwvKIRpXPCWUk5IZpmo_vsfNm8RNVdWFP5zV" style="width: 72px; height: 72px;"> </a>
-
-                                                    </div>
-                                                    <br>
-                                                    <div style="width:90px" class="input-group">
-                                                        <span class="input-group-btn">
-											  <button style="width:20px;padding:6px;"type="button" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
-												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
-                                                        </button>
-                                                        </span>
-                                                        <input type="text" name="quant[2]" class="form-control input-number" value="10" min="1" max="100">
-                                                        <span class="input-group-btn">
-											  <button style="width:20px;padding:6px" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
-												  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
-                                                        </button>
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td class="text-left" style="width:250px;">
-                                                    <p class="" style="font-size:17px;font-weight:500">Drapes Crepe Printed Salwar Suit Dupatta Material</p>
-                                                    <p>brand</p>
-                                                    <p>brand</p>
-                                                    <p><span style="font-size:20px;font-weight:500">₹522</span> &nbsp;&nbsp;
-                                                        <span class="price-old" style="font-size:16px;color:#bbb">₹ 655</span>&nbsp;&nbsp;
-                                                        <span class="site_col" style="font-size:18px;">10% off</span>&nbsp;&nbsp;</p>
-
-
-                                                </td>
-
-
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="panel-footer text-center" style="background:#fff;">
-                                    <div class="pull-left">
-                                        <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span>Lorem Ipsum</span>
-                                    </div>
-                                    <div class="pull-right">
-                                        <button type="button" class="btn btn-danger btn-small">Remove</button>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
+								<?php $total='';foreach($cart_items as $productslist){ 
 								
-                                </div>
-								
-								
+								$currentdate=date('Y-m-d h:i:s A');
+								if($productslist['offer_expairdate']>=$currentdate){
+									$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+									$percentage= $productslist['offer_percentage'];
+									$orginal_price=$productslist['item_cost'];
+								}else{
+									//echo "expired";
+									$item_price= $productslist['special_price'];
+									$prices= ($productslist['item_cost']-$productslist['special_price']);
+									$percentage= (($prices) /$productslist['item_cost'])*100;
+									$orginal_price=$productslist['item_cost'];
+								}?>
 								<div class="loop" style="border-top: 1px solid #ddd;">
                                 <div class="panel-body">
                                     <table class="table borderless">
@@ -252,13 +209,13 @@
                                             <tr>
                                                 <td class="col-md-2">
                                                     <div class="media">
-                                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaGHtakM-MNkXnCwvKIRpXPCWUk5IZpmo_vsfNm8RNVdWFP5zV" style="width: 72px; height: 72px;"> </a>
+                                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" style="width: 72px; height: 72px;"> </a>
 
                                                     </div>
                                                     <br>
                                                     <div style="width:90px" class="input-group">
                                                         <span class="input-group-btn">
-											  <button style="width:20px;padding:6px;"type="button" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
+														<button style="width:20px;padding:6px;"type="button" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
 												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
                                                         </button>
                                                         </span>
@@ -271,12 +228,11 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-left" style="width:250px;">
-                                                    <p class="" style="font-size:17px;font-weight:500">Drapes Crepe Printed Salwar Suit Dupatta Material</p>
-                                                    <p>brand</p>
-                                                    <p>brand</p>
-                                                    <p><span style="font-size:20px;font-weight:500">₹522</span> &nbsp;&nbsp;
-                                                        <span class="price-old" style="font-size:16px;color:#bbb">₹ 655</span>&nbsp;&nbsp;
-                                                        <span class="site_col" style="font-size:18px;">10% off</span>&nbsp;&nbsp;</p>
+                                                    <p class="" style="font-size:17px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&nbsp;<?php echo isset($productslist['product_code'])?$productslist['product_code']:''; ?></p>
+                                                    <p><?php echo isset($productslist['brand'])?$productslist['brand']:''; ?></p>
+                                                    <p><span style="font-size:20px;font-weight:500">₹<?php echo $item_price; ?></span> &nbsp;&nbsp;
+                                                        <span class="price-old" style="font-size:16px;color:#bbb">₹ <?php echo $orginal_price; ?></span>&nbsp;&nbsp;
+                                                        <span class="site_col" style="font-size:18px;"><?php echo number_format($percentage, 2, '.', ''); ?>% off</span>&nbsp;&nbsp;</p>
 
 
                                                 </td>
@@ -289,71 +245,19 @@
                                 </div>
                                 <div class="panel-footer text-center" style="background:#fff;">
                                     <div class="pull-left">
-                                        <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span>Lorem Ipsum</span>
+                                        <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span><?php echo isset($productslist['seller_name'])?$productslist['seller_name']:''; ?></span>
                                     </div>
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-danger btn-small">Remove</button>
+                                        <a href="<?php echo base_url('customer/deletecart/'.base64_encode($productslist['item_id']).'/'.base64_encode($productslist['id'])); ?>" type="button" class="btn btn-danger btn-small">Remove</a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
 								
                                 </div>
 								
-								<div class="loop" style="border-top: 1px solid #ddd;">
-                                <div class="panel-body">
-                                    <table class="table borderless">
-
-                                        <tbody>
-                                            <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                                            <tr>
-                                                <td class="col-md-2">
-                                                    <div class="media">
-                                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaGHtakM-MNkXnCwvKIRpXPCWUk5IZpmo_vsfNm8RNVdWFP5zV" style="width: 72px; height: 72px;"> </a>
-
-                                                    </div>
-                                                    <br>
-                                                    <div style="width:90px" class="input-group">
-                                                        <span class="input-group-btn">
-											  <button style="width:20px;padding:6px;"type="button" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
-												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
-                                                        </button>
-                                                        </span>
-                                                        <input type="text" name="quant[2]" class="form-control input-number" value="10" min="1" max="100">
-                                                        <span class="input-group-btn">
-											  <button style="width:20px;padding:6px" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
-												  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
-                                                        </button>
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td class="text-left" style="width:250px;">
-                                                    <p class="" style="font-size:17px;font-weight:500">Drapes Crepe Printed Salwar Suit Dupatta Material</p>
-                                                    <p>brand</p>
-                                                    <p>brand</p>
-                                                    <p><span style="font-size:20px;font-weight:500">₹522</span> &nbsp;&nbsp;
-                                                        <span class="price-old" style="font-size:16px;color:#bbb">₹ 655</span>&nbsp;&nbsp;
-                                                        <span class="site_col" style="font-size:18px;">10% off</span>&nbsp;&nbsp;</p>
-
-
-                                                </td>
-
-
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="panel-footer text-center" style="background:#fff;">
-                                    <div class="pull-left">
-                                        <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span>Lorem Ipsum</span>
-                                    </div>
-                                    <div class="pull-right">
-                                        <button type="button" class="btn btn-danger btn-small">Remove</button>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
+								<?php $total +=$productslist['total_price']; ?>
+								<?php } ?>
 								
-                                </div>
 								
 								
 								
@@ -362,149 +266,7 @@
                         </div>
                     </center>
                 </div>
-                <!-- train section -->
-                <div class="bhoechie-tab-content">
-                    <center>
-		<div class="col-sm-12 col-xs-12 login-register-form m-b-3 text-left">
-		<div class="row">
-		 <div class="title"><span>Select a Delivery Address</span></div>
-			<div class="col-md-6" id="hide_add">
-				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
-				<div style="padding-bottom:10px;">
-					<div class="checkbox pull-left">
-					  <label>
-							<input type="checkbox" checked="checked">
-							<span style="font-weight:500"> &nbsp; Carinhour</span>
-					  </label>
-					</div>
-								
-					<div class="pull-right" >
-						<a style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
-					</div>
-					<i id="hide_add_btn" style="position:absolute;top:5px; right:20px;background:#f5f5f5;border-radius:25px; padding:5px;opacity:0.5;cursor:pointer" class="fa fa-times" aria-hidden="true"></i>
-				</div>
-				<div class="clearfix"> &nbsp;	</div>
-				<div class="" style="border-top:1px solid #ddd;"> &nbsp;</div>
-					<div><b>bayapureddy</b></div>	
-					<div>Plot no 177 srivani nilayam</div>	
-					<div>Sardar Vallabhbhai Patel,</div>	
-					<div>Hyderabad-500082</div>	
-					<div>Telangana</div>
-					<br>					
-					<div>8500226782</div>	
-				</div>
-			</div>
-			<div class="col-md-6  ">
-				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
-				<div style="padding-bottom:10px;">
-					<div class="checkbox pull-left">
-					  <label>
-							<input type="checkbox" checked="checked">
-							<span style="font-weight:500"> &nbsp; Carinhourssss</span>
-					  </label>
-					</div>
-								
-					<div class="pull-right" >
-						<a style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
-					</div>
-					<i  style="position:absolute;top:5px; right:20px;background:#f5f5f5;border-radius:25px; padding:5px;opacity:0.5;cursor:pointer" class="fa fa-times" aria-hidden="true"></i>
-				</div>
-				<div class="clearfix"> &nbsp;	</div>
-				<div class="" style="border-top:1px solid #ddd;"> &nbsp;</div>
-					<div><b>bayapureddy</b></div>	
-					<div>Plot no 177 srivani nilayam</div>	
-					<div>Sardar Vallabhbhai Patel,</div>	
-					<div>Hyderabad-500082</div>	
-					<div>Telangana</div>
-					<br>					
-					<div>8500226782</div>	
-				</div>
-			</div>
-			
-			
-			
-		</div>
-			<div class="clearfix"> &nbsp;	</div>
-          <div class="title"><span>Please Enter Your Information</span></div>
-          <form id="check_for" name="check_for" action="">
-			<div class="mat-div form-group">
-				 <label for="first-name" class="mat-label">First Name</label>
-				<input type="text" class="mat-input" id="name" name="name" >
-		    </div>
-			<div class="mat-div form-group">
-				 <label for="first-name" class="mat-label">First Name</label>
-				<input type="text" class="mat-input" id="first-name">
-		    </div>
-			<div class="mat-div form-group">
-				 <label for="first-name" class="mat-label">First Name</label>
-				<input type="text" class="mat-input" id="first-name">
-		    </div>
-			<div class="mat-div form-group ">
-				 <label for="first-name" class="mat-label">First Name</label>
-				<input type="text" class="mat-input" id="first-name">
-		    </div>
-			<div class="mat-div form-group">
-				 <label for="first-name" class="mat-label">First Name</label>
-				<input type="text" class="mat-input" id="first-name">
-		    </div>
-			   
-			   
-            <!--<div class="form-group">
-              <label for="emailInputLogin">Email address</label>
-              <input type="email" class="form-control" id="emailInputLogin" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label for="passwordInputLogin">Password</label>
-              <input type="password" class="form-control" id="passwordInputLogin" placeholder="Password">
-            </div>
-			 <div class="form-group">
-              <label for="emailInputLogin">Email address</label>
-              <input type="email" class="form-control" id="emailInputLogin" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label for="passwordInputLogin">Password</label>
-              <input type="password" class="form-control" id="passwordInputLogin" placeholder="Password">
-            </div> <div class="form-group">
-              <label for="emailInputLogin">Email address</label>
-              <input type="email" class="form-control" id="emailInputLogin" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label for="passwordInputLogin">Password</label>
-              <input type="password" class="form-control" id="passwordInputLogin" placeholder="Password">
-            </div>
-			 <div class="form-group">
-              <label for="emailInputLogin">Email address</label>
-              <input type="email" class="form-control" id="emailInputLogin" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label for="passwordInputLogin">Password</label>
-              <input type="password" class="form-control" id="passwordInputLogin" placeholder="Password">
-            </div>
-			-->
-             <button type="submit" class="btn btn-primary "> Back</button>
-          <button class="pull-right btn btn-primary btn-small" type="submit">Proceed to Checkout</span><span aria-hidden="true">&rarr;</span></button>
-         
-          </form>
-        </div>
-                    </center>
-                </div>
-
-                <!-- hotel search -->
-                <div class="bhoechie-tab-content">
-                    <center>
-                        <h1 class="glyphicon glyphicon-home" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                        <h3 style="margin-top: 0;color:#55518a">Hotel Directory</h3>
-                    </center>
-                </div>
-
-                <div class="bhoechie-tab-content">
-                    <center>
-                        <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                        <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
-                    </center>
-                </div>
+               
             </div>
 			
         </div>
@@ -524,7 +286,7 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span>50</span>
+					<span><?php echo $total; ?></span>
 				</div>
 				</div>
 			</div>
@@ -536,7 +298,7 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span>50</span>
+					<span><?php echo $carttotal_amount['delivertamount']; ?></span>
 				</div>
 				</div>
 			</div>
@@ -549,7 +311,7 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><b>50</b></span>
+					<span><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></span>
 				</div>
 				</div>
 				<div class="clearfix">&nbsp;</div>
@@ -567,8 +329,8 @@
 			<div class="clearfix">&nbsp;</div>
 	
 			<div>
-				<button class="btn btn-warning col-md-6" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i>  ADD TO CART</button> 
-				<button class="btn  btn-primary col-md-6 pull-right" data-toggle="modal" data-target=".bs-example-modal-lg" style="width: 48%;" type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
+				<button class="btn btn-warning col-md-6" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i> Continue Shopping</button> 
+				<button class="btn  btn-primary col-md-6 pull-right" data-toggle="modal" data-target=".bs-example-modal-lg" style="width: 48%;" type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</button>
 			</div>
 			</div>
 		
