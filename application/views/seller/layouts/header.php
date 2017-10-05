@@ -104,7 +104,8 @@
         <script src="<?php echo base_url(); ?>assets/seller/plugins/datamaps/topojson.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>assets/seller/plugins/datamaps/datamaps.all.min.js" type="text/javascript"></script>
 
-        <script src="<?php echo base_url(); ?>assets/seller/dist/js/custom.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>assets/seller/dist/js/custom.js" type="text/javascript"></script> 
+		
         <script>
                 "use strict"; // Start of use strict
                 // notification

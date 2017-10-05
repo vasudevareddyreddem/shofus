@@ -20,7 +20,68 @@
 #ussizes{
 	width:100% !important;
 }
+
+
+
+
+.typeahead, .tt-query, .tt-hint {
+	
+	width: 495px;
+	
+}
+
+
+
+.tt-menu {
+	background-color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	margin-top: 12px;
+	padding: 8px 0;
+	width: 495px;
+}
+.tt-suggestion {
+	font-size: 22px;  /* Set suggestion dropdown font size */
+	padding: 3px 20px;
+}
+.tt-suggestion:hover {
+	cursor: pointer;
+	background-color: #0097CF;
+	color: #FFFFFF;
+}
+.tt-suggestion p {
+	margin: 0;
+}
+
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+    // Defining the local dataset
+    var cars = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
+    
+    // Constructing the suggestion engine
+    var cars = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: cars
+    });
+    
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'cars',
+        source: cars
+    });
+});  
+
+
+</script>
+
 <div class="content-wrapper mar_t_con"  >
 	<section class="content-header">
 		<div class="header-icon">
@@ -144,7 +205,8 @@
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					   <label for="exampleInputEmail1">prodcut Name</label>
-						<input type="text" class="form-control" onchange="getoldproduct_details(this.value);" name="product_name" id="product_name" >
+					   
+						<input type="text" class="form-control typeahead tt-query"  autocomplete="off" spellcheck="false" onchange="getoldproduct_details(this.value);" name="product_name" id="product_name" >
 				</div>
 			</div>
 			<div class=" col-md-6 ">
@@ -930,7 +992,12 @@ $(document).ready(function(){
 	 });
 
 });		
+
+
+
+
 </script>
+<script src="<?php echo base_url(); ?>assets/seller/dist/js/typeahead.bundle.js" type="text/javascript"></script>
   
 
 
