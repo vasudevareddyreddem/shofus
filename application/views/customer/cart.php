@@ -261,6 +261,8 @@
 								
 								
 								
+								
+								
                             </div>
                             <!--SHIPPING METHOD END-->
                         </div>
@@ -329,8 +331,8 @@
 			<div class="clearfix">&nbsp;</div>
 	
 			<div>
-				<button class="btn btn-warning col-md-6" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i> Continue Shopping</button> 
-				<button class="btn  btn-primary col-md-6 pull-right" data-toggle="modal" data-target=".bs-example-modal-lg" style="width: 48%;" type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</button>
+				<a href="<?php echo base_url(''); ?>" class="btn btn-warning col-md-6" style="width:48%;" ><i class="fa fa-shopping-cart"></i> Continue Shopping</a> 
+				<a href="<?php echo base_url('customer/billing'); ?>" class="btn  btn-primary col-md-6 pull-right"  style="width: 48%;" ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</a>
 			</div>
 			</div>
 		
@@ -342,68 +344,6 @@
 
 <script>
 
-
-	$(document).ready(function() {
-    $('#check_for').bootstrapValidator({
-       
-        fields: {
-            
-             name: {
-              validators: {
-					notEmpty: {
-						message: 'Name is required'
-					},
-                   regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Name can only consist of alphanumaric, space and dot'
-					}
-                }
-            },
-			mobile: {
-              validators: {
-					 notEmpty: {
-						message: 'Mobile Number is required'
-					},
-                    regexp: {
-					regexp:  /^[0-9]{10}$/,
-					message:'Mobile Number must be 10 to 14 digits'
-					}
-                }
-            },
-			area: {
-              validators: {
-					notEmpty: {
-						message: 'Please select an area'
-					}
-                }
-            },
-			address1: {
-				validators: {
-					notEmpty: {
-						message: 'Address1 is required'
-					},
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message: 'Address1 wont allow <> [] = % '
-					}
-				
-				}
-			},
-			address2: {
-				validators: {
-					
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message: 'Address2 wont allow <> [] = % '
-					}
-				
-				}
-			}
-			
-			
-        }
-    });
-});
 
 
     $(document).ready(function() {
@@ -418,8 +358,7 @@
     });
 </script>
 <script>
-    //plugin bootstrap minus and plus
-    //http://jsfiddle.net/laelitenetwork/puJ6G/
+
     $('.btn-number').click(function(e) {
         e.preventDefault();
 

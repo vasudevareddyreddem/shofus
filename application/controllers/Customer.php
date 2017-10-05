@@ -423,8 +423,14 @@ class Customer extends Front_Controller
 			
 		}
 		//echo '<pre>';print_r($data);exit;
+		if(count($data['cart_items'])>0){
 		$this->template->write_view('content', 'customer/cart', $data);
-		$this->template->render();
+		$this->template->render();	
+		}else{
+			$this->session->set_flashdata('success','No Item In the cart.');
+			redirect('');
+		}
+		
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('customer');
