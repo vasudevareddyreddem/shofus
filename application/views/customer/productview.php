@@ -57,7 +57,7 @@
 <div class="pad_bod" style="margin:0;padding:0; " >
 		<div class="" >
 		
-		<div class="col-md-3 z_ind ">
+		<div class="col-md-3 z_ind " style="position:fixed;top:20;" id="social-float">
 			<ul id="glasscase" class="gc-start">
                     <li>
 						<img class="img-responsive" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>"/>
@@ -75,7 +75,7 @@
 		</div>
         <!-- End Image List -->
 
-        <div class="col-md-5 " id="con_scrol">
+        <div class="col-md-5 col-md-offset-3 " id="con_scrol">
           <?php if($this->session->flashdata('success')): ?>
 			<div class="alt_cus"> <div class="alert_msg animated slideInUp btn_suc "> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 			<?php endif; ?>
@@ -283,7 +283,7 @@
 		
 	
 
-        <div class="col-md-8" style="margin-top:10px;padding:0">
+        <div class="col-md-8 col-md-offset-3" style="margin-top:10px;padding:0">
 	<div class="">		 
 <table class="table table-bordered">
   
@@ -764,7 +764,7 @@
 	  </div>
 	  </div>
 	  
-    <div class="container-fluid" style="margin-top:10px;"> 
+    <div class="container-fluid" style="margin-top:10px;" id="footer-start"> 
 	 <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
@@ -2549,3 +2549,17 @@ $(document).ready(function() {
         });
     </script>
 
+<script>
+function checkOffset() {
+  var a=$(document).scrollTop()+window.innerHeight;
+  var b=$('#footer-start').offset().top;
+  if (a<b) {
+    $('#social-float').css('bottom', '20%');
+  } else {
+    $('#social-float').css('bottom', (10+(a-b))+'px');
+  }
+}
+$(document).ready(checkOffset);
+$(document).scroll(checkOffset);
+
+</script>
