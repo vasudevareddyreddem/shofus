@@ -606,7 +606,7 @@ function checkOffset() {
   var a=$(document).scrollTop()+window.innerHeight;
   var b=$('#footer-start').offset().top;
   if (a<b) {
-    $('#social-float').css('bottom', '80px');
+    $('#social-float').css('bottom', '34%');
   } else {
     $('#social-float').css('bottom', (10+(a-b))+'px');
   }
