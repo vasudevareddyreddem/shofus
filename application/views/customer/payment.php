@@ -249,8 +249,8 @@
 			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery by with in <?php echo $this->session->userdata('time');?></span>
 			<span style="font-weight:500;font-size:17px" id="deliverymsg" style="display:none;"></span>
 			<div class="clearfix">&nbsp;</div>
-			<div style="border:1px solid #ddd;padding:10px">
-				Pincode:<input style="border:none;font-size:17px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=" <?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
+			<div style="border:1px solid #ddd;padding:10px " >
+				Pincode:<input readonly style="border:none;font-size:17px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=" <?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col"  style="text-decoration:none;">check</a></span>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
