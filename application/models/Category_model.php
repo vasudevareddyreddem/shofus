@@ -7,6 +7,13 @@ class Category_model extends MY_Model
 		$this->load->database("default");
 	}
 	
+	public function get_area_pincodes($pin)
+	{
+		$this->db->select('*')->from('pincodes_list');
+		$this->db->where('pincode',$pin);
+		$this->db->where('status',1);
+		return $this->db->get()->row_array();
+	}
 	public function get_same_products($subcat,$name,$item_id)
 	{
 		$this->db->select('*')->from('products');

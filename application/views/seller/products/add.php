@@ -55,32 +55,7 @@
 }
 
 </style>
-<script type="text/javascript">
-$(document).ready(function(){
-    // Defining the local dataset
-    var cars = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
-    
-    // Constructing the suggestion engine
-    var cars = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: cars
-    });
-    
-    // Initializing the typeahead
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true, /* Enable substring highlighting */
-        minLength: 1 /* Specify minimum characters required for showing result */
-    },
-    {
-        name: 'cars',
-        source: cars
-    });
-});  
 
-
-</script>
 
 <div class="content-wrapper mar_t_con"  >
 	<section class="content-header">
@@ -178,6 +153,7 @@ $(document).ready(function(){
 			</div>
 			<div class="clearfix"></div>
 			<div class="form-group col-md-6 nopaddingRight san-lg">
+			<input type="hidden" id="nametypeahead" name="nametypeahead" value="">
 				<label for="exampleInputEmail1">Sub Category </label>
 				<select class="form-control" onchange="getspecialinputs(this.value);getinputfiledshideshow(this.value);removeextrafields(this.value);" id="subcategorylist" name="subcategorylist" >
 				<option value="">Select Subcategory </option>
@@ -234,7 +210,33 @@ $(document).ready(function(){
   <!--main content end--> 
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
-   <script type="text/javascript">
+ <script type="text/javascript">
+
+$(document).ready(function(){
+    // Defining the local dataset
+    var cars = [<?php echo "'".$pdata."'"; ?>];
+    
+    // Constructing the suggestion engine
+    var cars = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: cars
+    });
+    
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'cars',
+        source: cars
+    });
+});  
+
+
+
     jQuery.ajax({
 				url: "<?php echo site_url('seller/products/getolditemdata');?>",
 				type: 'post',
@@ -584,6 +586,7 @@ function getinputfiledshideshow(ids){
 	
 }
 function getspecialinputs(ids){
+	$('#nametypeahead').val(ids);
 	if(ids==7 || ids==24){
 		$('#sizesid').hide();
 		$('#colorid').hide();

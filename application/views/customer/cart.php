@@ -274,11 +274,11 @@
         </div>
 		
 		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
-				<span><img src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
-			<span style="font-weight:500;font-size:17px">Delivery by 10AM-11AM ,3rd Oct,2017</span>
+				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
+			<span style="font-weight:500;font-size:17px" id="deliverymsg"></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
-				<input style="border:none;font-size:17px;" type="text" value="Pincode 500062"><span class="pull-right"><a class="site_col" style="cursor:pointer">Change</a></span>
+				Pincode:<input style="border:none;font-size:17px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=""><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
@@ -323,8 +323,9 @@
 				<div class="">
 					<div class="clearfix">&nbsp;</div>
 						<div style="border-bottom:1px solid #ddd;padding:10px">
-							<input style="border:none;" type="text" placeholder="Enter Promo Code"><span class="pull-right"><a class="site_col" style="cursor:pointer">Apply</a></span>
-						</div>
+							<input style="border:none;" id="couponcode" name="couponcode" onkeyup="removecouponmsg();" type="text" value="" placeholder="Enter Promo Code"><span class="pull-right"><a class="site_col" onclick="couponcodeapply();" style="cursor:pointer">Apply</a></span>
+						
+						</div><span id="couponerrormsg"></span>
 			<div class="clearfix">&nbsp;</div>
 				</div>
 			</div>
@@ -343,8 +344,64 @@
 
 
 <script>
+$('#deliverymsg').html('Check ypur delivery Status').css("color", "black");
+function delveryerrormsg(){
+$('#imgdisplaying').show();
+$('#deliverymsg').html('Check ypur delivery Status').css("color", "black");
+}
+function removecouponmsg(){
+	$('#couponerrormsg').html('');
+}
+function couponcodeapply(){
+	var coupon=$('#couponcode').val();
+	if(coupon==''){
+		$('#couponerrormsg').html('Promo Code is required.').css("color", "red");
+		return false;
+	}else if(coupon.length ==6){
+		$('#couponerrormsg').html('Promo Code is invalid. Please use another one').css("color", "red");
+	}else{
+		$('#couponerrormsg').html('Promo Code lenth must be 6 characters.').css("color", "red");
+		return false;
+	}
+	
+}
+function getareapincode(val){
+	var pin=$('#checkpincode').val();
+	$('#imgdisplaying').hide();
+	$('#deliverymsg').html('');
+	
+	if(pin==''){
+		$('#deliverymsg').html('Pincode is required.').css("color", "red");
+		return false;
+	}
+	
+	if(pin.length ==6){
+		jQuery.ajax({
+        url: "<?php echo site_url('category/checkpincodes');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+          pincode: val,
+          },
+        dataType: 'json',
+        success: function (data) {
+			$('#imgdisplaying').show();
+			if(data.msg==1){
+				
+				$('#deliverymsg').html('Delivery by with in ' +data.time).css("color", "black");
+				
+			}else{
+				$('#deliverymsg').html('Delivery by with in 4 hours').css("color", "black");
+			}
+         
 
-
+        }
+      });
+	}else{
+		$('#deliverymsg').html('Pincode lenth must be 6 digits only.').css("color", "red");
+		
+	}
+}
 
     $(document).ready(function() {
         $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {

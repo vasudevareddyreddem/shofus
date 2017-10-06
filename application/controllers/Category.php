@@ -1804,6 +1804,24 @@ function filtersearch(){
 		$this->load->view('customer/comparetwo',$data);
   		
 
+	}
+	public function checkpincodes()
+	{
+		$pinid=$this->input->post('pincode');
+		$pinode_list= $this->category_model->get_area_pincodes($pinid);
+		$this->session->set_userdata('pincode',$pinid);	
+		//echo '<pre>';print_r($pinode_list);
+		if (count($pinode_list)>0) {
+				$data['msg']=1;
+				$data['time']=$pinode_list['hours'];
+				echo json_encode($data);
+			}else{
+				$data['msg']=0;
+				$data['time']='';
+				echo json_encode($data);
+			}
+  		
+
 	}	
 }
 ?>

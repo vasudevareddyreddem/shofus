@@ -52,8 +52,17 @@ class Products extends Admin_Controller {
 		$size_details = $this->products_model->get_sizes_list();
 		$uksize_details = $this->products_model->get_uksizes_list();
 		$data['items'] = $this->products_model->auto_items();
-		//echo $this->db->last-query();exit;
-		//echo '<pre>';print_r($size_details);exit;
+		$result=$this->products_model->get_typeahead_products();
+		if(isset($result) && count($result)>0){
+		foreach ($result as $list){
+			
+			$pnames[]=$list['item_name'];
+			
+		}
+		$data['pdata']=implode("','",$pnames);
+		}else{
+			$data['pdata']='';
+		}
 		foreach($color_details  as $colors){
 			
 			$color_list[]=$colors['color_name'];
@@ -1533,6 +1542,7 @@ public function returns()
 			echo json_encode($data);
 		}
 
-	}	
+	}
+		
 
 }

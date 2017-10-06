@@ -1,4 +1,8 @@
-<?php //echo '<pre>';print_r($item_details);exit; ?>
+
+<script>
+
+$('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_details['item_cost']:''; ?>);
+</script><?php //echo '<pre>';print_r($item_details);exit; ?>
 	<div class="row">
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">

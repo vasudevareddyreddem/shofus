@@ -18,7 +18,12 @@ class Products_model extends MY_Model
 	parent::__construct();
 
 	}
-
+	public function get_typeahead_products()
+	{
+		$this->db->select('products.item_name')->from('products');
+		$this->db->where('item_status',1);
+        return $this->db->get()->result_array();
+	}
 	function get_sae_product_details($name,$catid,$subcat)
     {
 	   $sql = "SELECT * FROM products WHERE category_id ='".$catid."' AND subcategory_id='".$subcat."' AND item_name='".$name."' ORDER BY item_id DESC LIMIT 1";
