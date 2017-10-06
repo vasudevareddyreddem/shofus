@@ -695,8 +695,25 @@ class Customer extends Front_Controller
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
 		$post=$this->input->post();
+		if(isset($post['billingaddressid']) && $post['billingaddressid']!=''){
+			$getaddress= $this->customer_model->get_customer_select_address($post['billingaddressid']);
+				$details=array(
+				'cust_id'=>$customerdetails['customer_id'],
+				'name'=>$getaddress['name'],
+				'emal_id'=>$getaddress['emal_id'],
+				'mobile'=>$getaddress['mobile'],
+				'address1'=>$getaddress['address1'],
+				'pincode'=>$getaddress['pincode'],
+				'address2'=>$getaddress['address2'],
+				'city'=>$getaddress['city'],
+				'state'=>$getaddress['state'],
+				'area'=>$getaddress['area'],
+				'create-at'=>date('Y-m-d H:i:s'),
+				);
+		
+		$this->session->set_userdata('billingaddress',$details);
+		}else{
 		//echo '<pre>';print_r($customerdetails);exit;
-		//echo '<pre>';print_r($post);exit;
 		
 		 if(isset($post['addressid']) && $post['addressid']!=''){
 			 $updtata=array(
@@ -759,8 +776,13 @@ class Customer extends Front_Controller
 		'area'=>$post['area'],
 		'create-at'=>date('Y-m-d H:i:s'),
 		);
+		
+	
+		
 		//echo '<pre>';print_r($details);exit;
-		$this->session->set_userdata('billingaddress',$details);		
+		$this->session->set_userdata('billingaddress',$details);
+
+		}		
 		$this->session->set_flashdata('success','Billing address successfully saved!');
 		redirect('customer/orderpayment');
 			

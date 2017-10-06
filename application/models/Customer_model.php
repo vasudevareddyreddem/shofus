@@ -498,6 +498,11 @@ class Customer_model extends MY_Model
 		$sql1="DELETE FROM customer_address WHERE address_id = '".$addid."' AND  cust_id = '".$cust_id."'";
 		return $this->db->query($sql1);
 	}
+	public function get_customer_select_address($id){
+		$this->db->select('*')->from('customer_address');
+		$this->db->where('address_id',$id);
+		return $this->db->get()->row_array();
+	}
 	
 }
 ?>

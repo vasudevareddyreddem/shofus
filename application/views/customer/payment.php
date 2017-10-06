@@ -226,12 +226,12 @@
         </div>
 		
 		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
-				<span><img src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
+				<!--<span><img src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px">Delivery by 10AM-11AM ,3rd Oct,2017</span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
 				<input style="border:none;font-size:17px;" type="text" value="Pincode 500062"><span class="pull-right"><a class="site_col" style="cursor:pointer">Change</a></span>
-			</div>
+			</div>-->
 			<div class="clearfix">&nbsp;</div>
 			<div>
 				<div class="mar_t10">
@@ -281,6 +281,7 @@
 		
 		
     </div>
+</div>
 </div>
 
 

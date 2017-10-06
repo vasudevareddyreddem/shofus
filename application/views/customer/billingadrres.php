@@ -181,7 +181,7 @@
 				<div style="padding-bottom:10px;">
 					<div class="checkbox pull-left">
 					  <label>
-							<input type="radio" name="billingadress" >
+							<input type="checkbox" name="billingadress" id="billingadress<?php echo $addlist['address_id']; ?>" onclick="getbillingaddress_id(this.value);" value="<?php echo $addlist['address_id']; ?>" >
 							<span style="font-weight:500"> &nbsp; <?php echo $addlist['title']; ?></span>
 					  </label>
 					</div>
@@ -211,7 +211,7 @@
 			
 			
 		</div>
-		<div class="clearfix"> &nbsp;	</div>
+		<div class="clearfix"> &nbsp;</div>
 		<div id="newbillingaddress" >
          <div class="title"><span>Please Enter Your Information</span></div>
 		<form action="<?php echo base_url('customer/billingaddresspost'); ?>" method="post" name="billingaddress" id="billingaddress">
@@ -222,23 +222,23 @@
 		    </div>
 			<div class="mat-div form-group">
 				 <label for="first-name" class="mat-label">Name</label>
-					 <input type="text" id="name" name="name" class="mat-input" value="">
+					 <input type="text" id="name" name="name" class="mat-input" value="<?php echo isset($customerdetail['cust_firstname'])?$customerdetail['cust_firstname']:'';?>">
 		    </div>
 			<div class="mat-div form-group">
 				 <label for="first-name" class="mat-label">Mobile</label>
-				 <input type="text" id="mobile" name="mobile" class="mat-input" value="" >
+				 <input type="text" id="mobile" name="mobile" class="mat-input" value="<?php echo isset($customerdetail['cust_mobile'])?$customerdetail['cust_mobile']:'';?>" >
 		    </div>
 			<div class="mat-div form-group">
 				 <label for="first-name" class="mat-label">Address1</label>
-				<input type="text" id="address1" name="address1" class="mat-input" value=""  >
+				<input type="text" id="address1" name="address1" class="mat-input" value="<?php echo isset($customerdetail['address1'])?$customerdetail['address1']:'';?>"  >
 		    </div>
 			<div class="mat-div form-group ">
 				 <label for="first-name" class="mat-label">Address2</label>
-				<input type="text" class="mat-input" id="address2" name="address2" value="" >
+				<input type="text" class="mat-input" id="address2" name="address2" value="<?php echo isset($customerdetail['address2'])?$customerdetail['address2']:'';?>" >
 		    </div>
 			<div class="mat-div form-group ">
 				 <label for="first-name" class="mat-label">Pincode</label>
-				<input type="text" class="mat-input" id="pincode" name="pincode" value="" >
+				<input type="text" class="mat-input" id="pincode" name="pincode" value="<?php echo isset($customerdetail['pincode'])?$customerdetail['pincode']:'';?>" >
 		    </div>
 			<div class="mat-div form-group ">
 				 <label for="first-name" class="mat-label">City</label>
@@ -248,6 +248,7 @@
 				 <label for="first-name" class="mat-label">State</label>
 				<input type="text" class="mat-input" id="state" name="state" value="" >
 		    </div>
+			
 			<div class="">
 			<label>
 				<input type="checkbox" name="featurepurpose" id="featurepurpose">
@@ -316,6 +317,14 @@
 				</div>
 				</div>
 				<div class="clearfix">&nbsp;</div>
+				<div class="clearfix">&nbsp;</div>
+				<div id="skipdeliveraddress" style="display:none;">
+				<form action="<?php echo base_url('customer/billingaddresspost/'); ?>" method="post">
+				<input type="hidden" name="billingaddressid" id="billingaddressid" value="">
+					<a href="<?php echo base_url('customer/cart'); ?>" class="btn btn-warning col-md-6" style="width:48%;" >Back</a> 
+					<button  type="submit"  class="btn  btn-primary col-md-6 pull-right"  style="width: 48%;" ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Payment</button>
+				</form>
+				</div>
 			</div>
 			
 			
@@ -331,7 +340,26 @@
 
 
 <script>
+$("input:checkbox").on('click', function() {
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+	$('#newbillingaddress').hide();
+	$('#skipdeliveraddress').show();
+	
+  } else {
+	 $('#newbillingaddress').show();
+	 $('#skipdeliveraddress').hide();
+    $box.prop("checked", false);
+  }
+});
 
+function getbillingaddress_id(id){
+	$('#billingaddressid').val(id);
+	
+}
 function removebillingaddress(aid,cnt){
 	jQuery.ajax({
         url: "<?php echo site_url('customer/removebillingaddress');?>",
