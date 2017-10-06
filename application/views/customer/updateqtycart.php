@@ -454,7 +454,7 @@ function getareapincode(val){
         type: 'post',
           data: {
           form_key : window.FORM_KEY,
-          pincode: val,
+          pincode: pin,
           },
         dataType: 'json',
         success: function (data) {

@@ -143,23 +143,23 @@
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
-                    <a href="#" class="list-group-item text-center">
+                    <div href="#" class="list-group-item text-center">
 
-                        <h4 class="glyphicon glyphicon-shopping-cart"></h4>
+                        <h4 class="glyphicon glyphicon-shopping-cart site_col"></h4>
                         <br/>Check Cart
-                    </a>
-                    <a href="#" class="list-group-item active text-center">
+                    </div>
+                    <div href="#" class="list-group-item active text-center">
                         <h4 class="glyphicon glyphicon-folder-open"></h4>
                         <br/>Billing Address
-                    </a>
-                    <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-credit-card"></h4>
+                     </div>
+                    <div href="#" class="list-group-item text-center">
+                        <h4 class="glyphicon glyphicon-credit-card site_col"></h4>
                         <br/>Payment mode
-                    </a>
-                    <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-ok"></h4>
+                     </div>
+                    <div href="#" class="list-group-item text-center">
+                        <h4 class="glyphicon glyphicon-ok site_col"></h4>
                         <br/>Thanks for Shopping
-                    </a>
+                     </div>
 
                 </div>
             </div>
@@ -251,7 +251,7 @@
 			
 			<div class="">
 			<label>
-				<input type="checkbox" name="featurepurpose" id="featurepurpose">
+				<input type="radio" name="featurepurpose" id="featurepurpose">
 				<span style="font-weight:500"> &nbsp; Feature purpose</span>
 			</label>
 			</div>
@@ -274,11 +274,12 @@
         </div>
 		
 		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
-				<span><img src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
-			<span style="font-weight:500;font-size:17px">Delivery by 10AM-11AM ,3rd Oct,2017</span>
+				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
+			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery by with in <?php echo $this->session->userdata('time');?></span>
+			<span style="font-weight:500;font-size:17px" id="deliverymsg" style="display:none;"></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
-				<input style="border:none;font-size:17px;" type="text" value="Pincode 500062"><span class="pull-right"><a class="site_col" style="cursor:pointer">Change</a></span>
+				Pincode:<input style="border:none;font-size:17px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=" <?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
@@ -355,6 +356,56 @@ $("input:checkbox").on('click', function() {
     $box.prop("checked", false);
   }
 });
+var pincodeformat =/^[0-9]+$/;
+function delveryerrormsg(){
+$('#imgdisplaying').show();
+$('#oldmsg').hide();
+$('#deliverymsg').html('Check your delivery Status').css("color", "black");
+}
+function getareapincode(val){
+	$('#oldmsg').hide();
+	var pin=$('#checkpincode').val();
+	$('#imgdisplaying').hide();
+	$('#deliverymsg').html('');
+	
+	if(pin==''){
+		$('#deliverymsg').html('Pincode is required.').css("color", "red");
+		return false;
+	}
+	
+	if(pin.length ==6){
+		if(!pin.match(pincodeformat)) 
+			{
+			$('#deliverymsg').html('Please enter correct pincode.').css("color", "red");
+			return false;
+			}
+
+		jQuery.ajax({
+        url: "<?php echo site_url('category/checkpincodes');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+          pincode: pin,
+          },
+        dataType: 'json',
+        success: function (data) {
+			$('#imgdisplaying').show();
+			if(data.msg==1){
+				
+				$('#deliverymsg').html('Delivery by with in ' +data.time).css("color", "black");
+				
+			}else{
+				$('#deliverymsg').html('Delivery by with in 4 hours').css("color", "black");
+			}
+         
+
+        }
+      });
+	}else{
+		$('#deliverymsg').html('Pincode lenth must be 6 digits only.').css("color", "red");
+		
+	}
+}
 
 function getbillingaddress_id(id){
 	$('#billingaddressid').val(id);
