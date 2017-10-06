@@ -46,7 +46,7 @@
         background-image: #45b1b9;
         color: #ffffff;
     }
-    div.bhoechie-tab-menu div.list-group>a.active:after {
+    div.bhoechie-tab-menu div.list-group>div.active:after {
         content: '';
         position: absolute;
         left: 100%;
@@ -135,6 +135,7 @@
   font-size: 12px;
   transform: translateY(0);
 }
+
 </style>
 <div class="container">
     <div class="row">
