@@ -146,8 +146,8 @@
 			<?php endif; ?>
 			
 			<div class="alt_cus"><div style="display:none;" class="alert_msg animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
-
-<div class="container" id="oldcartqty">
+<span id="oldcartqty">
+<div class="container" >
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
@@ -355,6 +355,7 @@
 		
     </div>
 </div>
+</span>
 
 
 <script>
