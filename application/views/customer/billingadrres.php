@@ -273,7 +273,7 @@
 			
         </div>
 		
-		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
+		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding-top:10px;width:30%" id="social-float">
 				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery by with in <?php echo $this->session->userdata('time');?></span>
 			<span style="font-weight:500;font-size:17px" id="deliverymsg" style="display:none;"></span>
@@ -307,7 +307,7 @@
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			
-			<div class="mar_t10" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:8px 0px; " >
+			<div class="mar_t10" style="border-top:1px solid #ddd;padding:8px 0px; " >
 				<div class="" >
 				<div class="pull-left">
 					<b>Order Total</b>
@@ -318,8 +318,7 @@
 				</div>
 				</div>
 				<div class="clearfix">&nbsp;</div>
-				<div class="clearfix">&nbsp;</div>
-				<div id="skipdeliveraddress" style="display:none;">
+				<div id="skipdeliveraddress" style="display:none;padding:20px 0px;">
 				<form action="<?php echo base_url('customer/billingaddresspost/'); ?>" method="post">
 				<input type="hidden" name="billingaddressid" id="billingaddressid" value="">
 					<a href="<?php echo base_url('customer/cart'); ?>" class="btn btn-warning col-md-6" style="width:48%;" >Back</a> 
