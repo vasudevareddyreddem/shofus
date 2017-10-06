@@ -153,7 +153,7 @@
                 <div class="list-group">
                     <div href="#" class="list-group-item  text-center">
 
-                        <h4 class="glyphicon glyphicon-shopping-cart"></h4>
+                        <h4 class="glyphicon glyphicon-shopping-cart site_col"></h4>
                         <br/>Check Cart
                     </div>
                     <div href="#"  class="list-group-item text-center">
@@ -165,7 +165,7 @@
                         <br/>Payment mode
                     </div>
                     <div href="#" class="list-group-item active text-center">
-                        <h4 class="glyphicon glyphicon-ok site_col"></h4>
+                        <h4 class="glyphicon glyphicon-ok site_col "></h4>
                         <br/>Thanks for Shopping
                     </div>
 
@@ -216,6 +216,9 @@
                                 <div class="panel-footer text-center" style="background:#fff;">
                                     <div class="pull-left">
                                         <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span><?php echo isset($productslist['seller_name'])?$productslist['seller_name']:''; ?></span>
+                                    </div>
+									<div class="pull-right">
+                                        <a href="<?php echo base_url('customer/orederdetails/'.base64_encode($productslist['order_item_id'])); ?>"><span style="color:#888;font-size:17px">Track</span></a>
                                     </div>
                                  
                                     <div class="clearfix"></div>

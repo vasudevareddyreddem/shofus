@@ -646,7 +646,7 @@ class Customer extends Front_Controller
 	 
  }
  public function billing(){
-	 
+	
 	
 	if($this->session->userdata('userdetails'))
 	 {
@@ -689,7 +689,6 @@ class Customer extends Front_Controller
 	 
  } 
  public function billingaddresspost(){
-	 
 	
 	if($this->session->userdata('userdetails'))
 	 {
@@ -953,6 +952,9 @@ class Customer extends Front_Controller
 						'mobile'=>$billingaddress['mobile'],
 						'address1'=>$billingaddress['address1'],
 						'address2'=>$billingaddress['address2'],
+						'city'=>$billingaddress['city'],
+						'pincode'=>$billingaddress['pincode'],
+						'state'=>$billingaddress['state'],
 						'area'=>$billingaddress['area'],
 						'create-at'=>date('Y-m-d H:i:s'),
 					);
