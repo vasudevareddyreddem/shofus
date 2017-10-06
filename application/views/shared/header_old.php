@@ -140,13 +140,11 @@
     </div>
   </div>
       <div class="container1 container-fluid hm_nav">
-        <div class="navbar-header pull-left" style="padding-right:50px;">
-			  <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>-->
-			  <a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a>
-		  </div>
+        <div class="navbar-header " style="padding-right:50px;">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>
+          <a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a> </div>
         <div class="pull-left searc_width" >
-          <div class=" navbar-collapse" >
-          <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="row">
             <div  >
 			<div class="form-horizontal form-horizontal_x">
@@ -164,8 +162,6 @@
             </div>
           </div>
         </div>
-		
-		  <div class="clearfix hide_clear" style="padding-bottom:10px;"></div>
 		  <div class="medias list_ad ">
 		  
 		  <?php if($this->session->userdata('userdetails')){ ?>
