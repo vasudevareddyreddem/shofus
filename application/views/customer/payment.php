@@ -174,15 +174,32 @@
                 <center>
                   
                             <!--SHIPPING METHOD-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading " style="background-color:#fff;">
+                            <div class="">
+                                <div >
 
-                                    <div class="pull-left">
-                                        <h4>Payment</h4>
+                                    <div class="text-center">
+                                      
+										<img style="width:20%" src="<?php echo base_url(); ?>assets/home/images/payment_img.png" />
                                     </div>
-                          
+									<div class="row" style="margin-top:50px;">
+									 <div class="radio">
+										<label class="col-md-4">
+											<input type="radio" name="radio-product" checked="checked"><span>Radio 1</span>
+										</label>
+										<label class="col-md-4">
+											<input type="radio" name="radio-product" checked=""><span>Radio 1</span>
+										</label>
+										<label class="col-md-4">
+											<input type="radio" name="radio-product" checked=""><span>Radio 1</span>
+										</label>
+									 </div>
+									 
+										
+										  
+										</div>
+									</div>
                                     <div class="clearfix"></div>
-                                </div>
+                                
 								<form method="post" name="payuForm" action="https://test.payu.in/_payment">
 							<input name="key" type="hidden" value="<?php echo $this->config->item('MERCHANTKEY'); ?>" />
 							<input name="txnid" type="hidden"  value="<?php echo $txnid; ?>" />
@@ -201,12 +218,14 @@
 							<input name="surl" type="hidden" value="<?php echo base_url('customer/success'); ?>" size="64" />
 							<input name="furl" type="hidden" value="<?php echo base_url('customer/paymentfailure'); ?>" size="64" />
 							<input name="curl" type="hidden" value="<?php echo base_url('payu/cancel'); ?>" />
-							<div class=" pull-right" style="padding-right:15px;">
-							  <a href="<?php echo base_url('customer/billing'); ?>" class="btn btn-primary "> Back</a>
+							<div  style="padding:50px 15px;margin-top:50px;border-top:1px solid #ddd;">
+							  <a  href="<?php echo base_url('customer/billing'); ?>" class="btn btn-primary pull-left"> Back</a>
 							<button class="pull-right btn btn-primary btn-small" name="submit_form" type="submit">Proceed to Payment</span><span aria-hidden="true">&rarr;</span></button>
          
 							</div>
 							</form>
+							<div class="clearfix"></div>
+							</div>
 							
 								
 								
@@ -279,7 +298,7 @@
 			</div>
 		
 		
-		
+		<div class="clearfix"></div><br>
     </div>
 </div>
 </div>
@@ -386,9 +405,9 @@ function checkOffset() {
   var a=$(document).scrollTop()+window.innerHeight;
   var b=$('#footer-start').offset().top;
   if (a<b) {
-    $('#social-float').css('bottom', '80px');
+    $('#social-float').css('bottom', '150px');
   } else {
-    $('#social-float').css('bottom', (10+(a-b))+'px');
+    $('#social-float').css('bottom', (50+'px');
   }
 }
 $(document).ready(checkOffset);
