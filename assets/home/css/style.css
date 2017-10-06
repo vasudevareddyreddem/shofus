@@ -1,6 +1,34 @@
+/* accordation start	 */
+
+.panel-title > a:before {
+    float: right !important;
+    font-family: FontAwesome;
+    content:"\f055";
+    padding-right: 5px;
+	color:#45b1b9;
+	
+}
+.panel-title > a.collapsed:before {
+    float: right !important;
+    content:"\f056";
+}
+.panel-title > a:hover, 
+.panel-title > a:active, 
+.panel-title > a:focus  {
+    text-decoration:none;
+	color:#45b1b9;
+}
+
+/* accordation end	 */
+
 .hide_clear{
 		display:none;
 	}
+.pin_in{
+	
+	font-size:17px;
+	width:150px
+}	
 .see_more{
 	position:absolute;
 	top:15px;
