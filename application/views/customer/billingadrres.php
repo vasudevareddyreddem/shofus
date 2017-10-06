@@ -46,7 +46,7 @@
         background-image: #45b1b9;
         color: #ffffff;
     }
-    div.bhoechie-tab-menu div.list-group>a.active:after {
+    div.bhoechie-tab-menu div.list-group>div.active:after {
         content: '';
         position: absolute;
         left: 100%;
@@ -143,21 +143,21 @@
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
-                    <div href="#" class="list-group-item text-center">
+                    <div href="#" class="list-group-item text-center step_com " >
 
-                        <h4 class="glyphicon glyphicon-shopping-cart site_col"></h4>
+                        <h4 class="glyphicon glyphicon-shopping-cart "></h4>
                         <br/>Check Cart
                     </div>
-                    <div href="#" class="list-group-item active text-center">
+                    <div href="#" class="list-group-item active step_com text-center">
                         <h4 class="glyphicon glyphicon-folder-open"></h4>
                         <br/>Billing Address
                      </div>
                     <div href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-credit-card site_col"></h4>
+                        <h4 class="glyphicon glyphicon-credit-card "></h4>
                         <br/>Payment mode
                      </div>
                     <div href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-ok site_col"></h4>
+                        <h4 class="glyphicon glyphicon-ok "></h4>
                         <br/>Thanks for Shopping
                      </div>
 

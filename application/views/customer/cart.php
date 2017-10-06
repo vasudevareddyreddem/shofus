@@ -151,11 +151,11 @@
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
-                    <a href="#" class="list-group-item active text-center">
+                    <div href="#" class="list-group-item active text-center">
 
                         <h4 class="glyphicon glyphicon-shopping-cart"></h4>
                         <br/>Check Cart
-                    </a>
+                    </div>
                     <div href="#"  class="list-group-item text-center">
                         <h4 class="glyphicon glyphicon-folder-open site_col"></h4>
                         <br/>Billing Address

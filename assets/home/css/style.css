@@ -20,7 +20,11 @@
 }
 
 /* accordation end	 */
-
+.step_com{
+	background:#45b1b9;
+	color:#fff;
+	border-bottom:2px solid #fff;
+}
 .hide_clear{
 		display:none;
 	}
