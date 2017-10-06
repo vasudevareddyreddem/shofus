@@ -260,7 +260,11 @@
 			<span style="font-weight:500;font-size:18px" id="deliverymsg"></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
-				Pincode:<input style="border:none;font-size:17px;" maxlength="6" onkeyup="removecouponmsg();" id="checkpincode" name="checkpincode" type="text" value=""><span class="pull-right"><a class="site_col" style="cursor:pointer" onclick="getareapincode();">check</a></span>
+			<div class="pull-left">
+				<b>Pincode:</b><input class="pin_in" style="border:none;" maxlength="6" onkeyup="removecouponmsg();" id="checkpincode" name="checkpincode" type="text" value="">
+				</div>
+				<div class="pull-right"><a class="site_col" style="cursor:pointer" onclick="getareapincode();">check</a></div>
+				<div class="clearfix">&nbsp;</div>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
@@ -327,6 +331,49 @@
               </div> 
 			  <div role="tabpanel" class="tab-pane" id="specification">
                  <div class="well">
+				<div >
+				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingOne">
+							 <h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						  Collapsible Group Item #1
+						</a>
+					  </h4>
+
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+							<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.le VHS.</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingTwo">
+							 <h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						  Collapsible Group Item #2
+						</a>
+					  </h4>
+
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+							<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingThree">
+							 <h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						  Collapsible Group Item #3
+						</a>
+					  </h4>
+
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+							<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </div>
+						</div>
+					</div>
+				</div>
+				</div>
 				 <table class="table table-bordered">
                 <tbody>
                       <tr>
