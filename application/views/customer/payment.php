@@ -184,13 +184,13 @@
 									<div class="row" style="margin-top:50px;">
 									 <div class="radio">
 										<label class="col-md-4">
-											<input type="radio" name="radio-product" checked="checked"><span>Cash On Delivery</span>
+											<input type="radio" name="radio-product" name="payment" checked="" value="2"><span>Cash On Delivery</span>
 										</label>
 										<label class="col-md-4">
-											<input type="radio" name="radio-product" checked=""><span>Swipe on Delivery</span>
+											<input type="radio" name="radio-product" name="payment" checked="" value="2"><span>Swipe on Delivery</span>
 										</label>
 										<label class="col-md-4">
-											<input type="radio" name="radio-product" checked=""><span>Paytm</span>
+											<input type="radio" name="radio-product" name="payment" checked="" value="2"><span>Paytm</span>
 										</label>
 									 </div>
 									 
@@ -245,7 +245,7 @@
         </div>
 		
 		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
-				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
+			<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery by with in <?php echo $this->session->userdata('time');?></span>
 			<span style="font-weight:500;font-size:17px" id="deliverymsg" style="display:none;"></span>
 			<div class="clearfix">&nbsp;</div>
