@@ -146,7 +146,7 @@
 			
 			<div class="alt_cus"><div style="display:none;" class="alert_msg animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
-<div class="container">
+<div class="container" id="oldcartqty">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
@@ -186,7 +186,11 @@
                           
                                     <div class="clearfix"></div>
                                 </div>
-								<?php $total='';foreach($cart_items as $productslist){ 
+								<?php $total='';
+								$cnt=0;
+								foreach($cart_items as $productslist){ 
+								
+								//echo '<pre>';print_r($productslist);exit;
 								
 								$currentdate=date('Y-m-d h:i:s A');
 								if($productslist['offer_expairdate']>=$currentdate){
@@ -200,6 +204,11 @@
 									$percentage= (($prices) /$productslist['item_cost'])*100;
 									$orginal_price=$productslist['item_cost'];
 								}?>
+								<script>$('#qty'+'<?php echo $cnt; ?>').val('');</script>
+								<input type="hidden" name="orginalqty" id="orginalqty<?php echo $cnt; ?>" value="<?php echo $productslist['item_quantity']; ?>" >
+
+								<input type="hidden" name="product_id" id="product_id<?php echo $cnt; ?>"  value="<?php echo $productslist['item_id']; ?>">
+
 								<div class="loop" style="border-top: 1px solid #ddd;">
                                 <div class="panel-body">
                                     <table class="table borderless">
@@ -213,19 +222,20 @@
 
                                                     </div>
                                                     <br>
-                                                    <div style="width:90px" class="input-group">
+                                                   <div style="width:90px" class="input-group">
                                                         <span class="input-group-btn">
-														<button style="width:20px;padding:6px;"type="button" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
+														<button style="width:20px;padding:6px;"type="button" onclick="productqty('<?php echo $cnt; ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
 												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
                                                         </button>
                                                         </span>
-                                                        <input type="text" name="quant[2]" class="form-control input-number" value="10" min="1" max="100">
+                                                        <input type="text" name="qty" id="qty<?php echo $cnt; ?>" readonly  class="form-control input-number" value="<?php echo $productslist['qty'];  ?>" min="1" max="<?php echo $productslist['item_quantity']; ?>">
                                                         <span class="input-group-btn">
-											  <button style="width:20px;padding:6px" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
+											  <button style="width:20px;padding:6px" onclick="productqtyincreae('<?php echo $cnt; ?>');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
 												  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
                                                         </button>
                                                         </span>
                                                     </div>
+													  <span style="color:red;" id="qtymesage<?php echo $cnt; ?>"></span>
                                                 </td>
                                                 <td class="text-left" style="width:250px;">
                                                     <p class="" style="font-size:17px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&nbsp;<?php echo isset($productslist['product_code'])?$productslist['product_code']:''; ?></p>
@@ -255,8 +265,10 @@
 								
                                 </div>
 								
-								<?php $total +=$productslist['total_price']; ?>
-								<?php } ?>
+								<?php 
+								$cnt++;
+								$total +=$productslist['total_price']; 
+								 } ?>
 								
 								
 								
@@ -344,6 +356,75 @@
 
 
 <script>
+function productqty(id){
+	
+
+	var pid=document.getElementById("product_id"+id).value;
+	var qtycnt=document.getElementById("qty"+id).value;
+	var qty=parseInt(qtycnt);
+	if(qty==1){
+		
+		$('#qty'+id).val(qty);
+	}else{
+		$('#qty'+id).val(qty - 1);
+		$("#qtymesage"+id).html('');
+			jQuery.ajax({
+				url: "<?php echo site_url('customer/qtyupdatecart');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					product_id: pid,
+					qty: qty - 1,
+					ajax: 1,
+					},
+				dataType: 'html',
+				success: function (data) {
+					//$("#oldcartqty").hide();
+					$("#oldcartqty").empty();
+					$("#oldcartqty").empty();
+					$("#oldcartqty").append(data);
+				
+				}
+			});
+	}
+	
+	
+}
+function productqtyincreae(id){
+	var pid=document.getElementById("product_id"+id).value;
+	var qtycnt1=document.getElementById("qty"+id).value;
+	var orginalqtycnt=document.getElementById("orginalqty"+id).value;
+	var qty1=parseInt(qtycnt1);
+	if(qty1==orginalqtycnt){
+		$("#qtymesage"+id).html("Avaiable  Quantity is " +orginalqtycnt);
+	}else if(qty1==10){
+	$("#qtymesage"+id).html("Maximum allowed Quantity is 10 ");
+	}else{
+		$("#qtymesage"+id).html("");
+		$('#qty'+id).val(qty1 + 1);
+			jQuery.ajax({
+				url: "<?php echo site_url('customer/qtyupdatecart');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					product_id: pid,
+					qty: qty1 + 1,
+					ajax: 1,
+					},
+				dataType: 'html',
+				success: function (data) {
+					//$("#oldcartqty").hide();
+					$("#oldcartqty").empty();
+					$("#oldcartqty").empty();
+					$("#oldcartqty").append(data);
+				
+				}
+			});
+	}
+	
+}
+
+var pincodeformat =/^[0-9]+$/;
 $('#deliverymsg').html('Check ypur delivery Status').css("color", "black");
 function delveryerrormsg(){
 $('#imgdisplaying').show();
@@ -376,6 +457,12 @@ function getareapincode(val){
 	}
 	
 	if(pin.length ==6){
+		if(!pin.match(pincodeformat)) 
+			{
+			$('#deliverymsg').html('Please enter correct pincode.').css("color", "red");
+			return false;
+			}
+
 		jQuery.ajax({
         url: "<?php echo site_url('category/checkpincodes');?>",
         type: 'post',
@@ -414,80 +501,7 @@ function getareapincode(val){
         });
     });
 </script>
-<script>
 
-    $('.btn-number').click(function(e) {
-        e.preventDefault();
-
-        fieldName = $(this).attr('data-field');
-        type = $(this).attr('data-type');
-        var input = $("input[name='" + fieldName + "']");
-        var currentVal = parseInt(input.val());
-        if (!isNaN(currentVal)) {
-            if (type == 'minus') {
-
-                if (currentVal > input.attr('min')) {
-                    input.val(currentVal - 1).change();
-                }
-                if (parseInt(input.val()) == input.attr('min')) {
-                    $(this).attr('disabled', true);
-                }
-
-            } else if (type == 'plus') {
-
-                if (currentVal < input.attr('max')) {
-                    input.val(currentVal + 1).change();
-                }
-                if (parseInt(input.val()) == input.attr('max')) {
-                    $(this).attr('disabled', true);
-                }
-
-            }
-        } else {
-            input.val(0);
-        }
-    });
-    $('.input-number').focusin(function() {
-        $(this).data('oldValue', $(this).val());
-    });
-    $('.input-number').change(function() {
-
-        minValue = parseInt($(this).attr('min'));
-        maxValue = parseInt($(this).attr('max'));
-        valueCurrent = parseInt($(this).val());
-
-        name = $(this).attr('name');
-        if (valueCurrent >= minValue) {
-            $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
-        } else {
-            alert('Sorry, the minimum value was reached');
-            $(this).val($(this).data('oldValue'));
-        }
-        if (valueCurrent <= maxValue) {
-            $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
-        } else {
-            alert('Sorry, the maximum value was reached');
-            $(this).val($(this).data('oldValue'));
-        }
-
-
-    });
-    $(".input-number").keydown(function(e) {
-        // Allow: backspace, delete, tab, escape, enter and .
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
-            // Allow: Ctrl+A
-            (e.keyCode == 65 && e.ctrlKey === true) ||
-            // Allow: home, end, left, right
-            (e.keyCode >= 35 && e.keyCode <= 39)) {
-            // let it happen, don't do anything
-            return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-            e.preventDefault();
-        }
-    });
-</script>
 <script>
     function pincodechange(val) {
         $("#hide_loc").hide();

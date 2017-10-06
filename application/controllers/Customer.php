@@ -668,7 +668,7 @@ class Customer extends Front_Controller
 		//echo '<pre>';print_r($cart_items);
 		//exit;
 		if(count($cart_items)>0){
-			$data['locationdata'] = $this->home_model->getlocations();
+			//$data['locationdata'] = $this->home_model->getlocations();
 			$data['customerdetail']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
 			$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
 			$data['billingaddresslis']= $this->customer_model->get_customer_billing_list($customerdetails['customer_id']);

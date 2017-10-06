@@ -1,216 +1,341 @@
+<style>
+    /*  bhoechie tab */
+    
+    div.bhoechie-tab-container {
+        z-index: 10;
+        background-color: #ffffff;
+        padding: 0 !important;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        border: 1px solid #ddd;
+        // margin-top: 20px;
+        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        background-clip: padding-box;
+        opacity: 0.97;
+        filter: alpha(opacity=97);
+    }
+    div.bhoechie-tab-menu {
+        padding-right: 0;
+        padding-left: 0;
+        padding-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group {
+        margin-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a {
+        margin-bottom: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a .glyphicon,
+    div.bhoechie-tab-menu div.list-group>a .fa {
+        color: #45b1b9;
+    }
+    div.bhoechie-tab-menu div.list-group>a:first-child {
+        border-top-right-radius: 0;
+        -moz-border-top-right-radius: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a:last-child {
+        border-bottom-right-radius: 0;
+        -moz-border-bottom-right-radius: 0;
+    }
+    div.bhoechie-tab-menu div.list-group>a.active,
+    div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
+    div.bhoechie-tab-menu div.list-group>a.active .fa {
+        background-color: #45b1b9;
+        background-image: #45b1b9;
+        color: #ffffff;
+    }
+    div.bhoechie-tab-menu div.list-group>a.active:after {
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        margin-top: -13px;
+        border-left: 0;
+        border-bottom: 13px solid transparent;
+        border-top: 13px solid transparent;
+        border-left: 10px solid #45b1b9;
+    }
+    div.bhoechie-tab-content {
+        background-color: #ffffff;
+        /* border: 1px solid #eeeeee; */
+        
+        padding-left: 20px;
+        padding-top: 10px;
+    }
+    div.bhoechie-tab div.bhoechie-tab-content:not(.active) {
+        display: none;
+    }
+    .table>tbody>tr>td,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>td,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>thead>tr>th {
+        border-top: none;
+    }
+	.panel-body {
+		padding: 0px 15px 0px 15px;		
+	}
+	.panel-footer {
+    padding:0px 15px 15px 20px;
+	border-top:none;
+   
+}
+.mat-div {
+  padding: 0;
+  position: relative;
+}
 
-		<span id="reupdateqty">
-		<div class="col-md-3" id="sticky">
-		<div class="panel panel-primary">
-			<div class="panel-heading ">Price details</div>
-			<div class="panel-body">
+.mat-div:after, .mat-div:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #e2e2e2; 
+  bottom: 0;
+  left: 0;
+  transition: all 0.5s;
+}
+
+.mat-div::after {
+  background-color: #4a5c63;
+  transform: scaleX(0);
+}
+
+.mat-label {
+  display: block;
+  font-size: 16px;
+  transform: translateY(25px);
+  color: #45b1b9;
+  transition: all 0.5s;
+}
+
+.mat-input {
+  position: relative;
+  background: transparent;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 0;
+  font-size: 16px;
+}
+
+.is-active::after {
+  transform: scaleX(1);
+}
+
+.is-active .mat-label {
+  color: #4a5c63;
+}
+
+.is-completed .mat-label {
+  font-size: 12px;
+  transform: translateY(0);
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active text-center">
+
+                        <h4 class="glyphicon glyphicon-shopping-cart"></h4>
+                        <br/>Check Cart
+                    </a>
+                    <div href="#"  class="list-group-item text-center">
+                        <h4 class="glyphicon glyphicon-folder-open site_col"></h4>
+                        <br/>Billing Address
+                    </div>
+                    <div href="#" class="list-group-item text-center">
+                        <h4 class="glyphicon glyphicon-credit-card site_col"></h4>
+                        <br/>Payment mode
+                    </div>
+                    <div href="#" class="list-group-item text-center">
+                        <h4 class="glyphicon glyphicon-ok site_col"></h4>
+                        <br/>Thanks for Shopping
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+                <!-- flight section -->
+                <div class="bhoechie-tab-content active">
+                    <center>
+                        <div class="">
+                            <!--SHIPPING METHOD-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading " style="background-color:#fff;">
+
+                                    <div class="pull-left">
+                                        <h4>My Cart</h4>
+                                    </div>
+                          
+                                    <div class="clearfix"></div>
+                                </div>
+								<?php $cnt=0;$total='';foreach($cart_items as $productslist){ 
+								
+								$currentdate=date('Y-m-d h:i:s A');
+								if($productslist['offer_expairdate']>=$currentdate){
+									$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+									$percentage= $productslist['offer_percentage'];
+									$orginal_price=$productslist['item_cost'];
+								}else{
+									//echo "expired";
+									$item_price= $productslist['special_price'];
+									$prices= ($productslist['item_cost']-$productslist['special_price']);
+									$percentage= (($prices) /$productslist['item_cost'])*100;
+									$orginal_price=$productslist['item_cost'];
+								}?>
+								<input type="hidden" name="orginalqty" id="orginalqty<?php echo $cnt; ?>" value="<?php echo $productslist['item_quantity']; ?>" >
+
+								<input type="hidden" name="product_id" id="product_id<?php echo $cnt; ?>"  value="<?php echo $productslist['item_id']; ?>">
+
+								<div class="loop" style="border-top: 1px solid #ddd;">
+                                <div class="panel-body">
+                                    <table class="table borderless">
+
+                                        <tbody>
+                                            <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                            <tr>
+                                                <td class="col-md-2">
+                                                    <div class="media">
+                                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" style="width: 72px; height: 72px;"> </a>
+
+                                                    </div>
+                                                    <br>
+                                                   <div style="width:90px" class="input-group">
+                                                        <span class="input-group-btn">
+														<button style="width:20px;padding:6px;"type="button" onclick="productqty('<?php echo $cnt; ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
+												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
+                                                        </button>
+                                                        </span>
+                                                        <input type="text" name="qty" id="qty<?php echo $cnt; ?>" readonly  class="form-control input-number" value="<?php echo $productslist['qty'];  ?>" min="1" max="<?php echo $productslist['item_quantity']; ?>">
+                                                        <span class="input-group-btn">
+											  <button style="width:20px;padding:6px" onclick="productqtyincreae('<?php echo $cnt; ?>');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
+												  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
+                                                        </button>
+                                                        </span>
+                                                    </div>
+													  <span style="color:red;" id="qtymesage<?php echo $cnt; ?>"></span>
+                                                </td>
+                                                <td class="text-left" style="width:250px;">
+                                                    <p class="" style="font-size:17px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&nbsp;<?php echo isset($productslist['product_code'])?$productslist['product_code']:''; ?></p>
+                                                    <p><?php echo isset($productslist['brand'])?$productslist['brand']:''; ?></p>
+                                                    <p><span style="font-size:20px;font-weight:500">₹<?php echo $item_price; ?></span> &nbsp;&nbsp;
+                                                        <span class="price-old" style="font-size:16px;color:#bbb">₹ <?php echo $orginal_price; ?></span>&nbsp;&nbsp;
+                                                        <span class="site_col" style="font-size:18px;"><?php echo number_format($percentage, 2, '.', ''); ?>% off</span>&nbsp;&nbsp;</p>
+
+
+                                                </td>
+
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="panel-footer text-center" style="background:#fff;">
+                                    <div class="pull-left">
+                                        <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span><?php echo isset($productslist['seller_name'])?$productslist['seller_name']:''; ?></span>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="<?php echo base_url('customer/deletecart/'.base64_encode($productslist['item_id']).'/'.base64_encode($productslist['id'])); ?>" type="button" class="btn btn-danger btn-small">Remove</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+								
+                                </div>
+								
+								<?php $total +=$productslist['total_price']; ?>
+								<?php $cnt++;} ?>
+								
+								
+								
+								
+								
+								
+                            </div>
+                            <!--SHIPPING METHOD END-->
+                        </div>
+                    </center>
+                </div>
+               
+            </div>
+			
+        </div>
+		
+		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
+				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
+			<span style="font-weight:500;font-size:17px" id="deliverymsg"></span>
+			<div class="clearfix">&nbsp;</div>
+			<div style="border:1px solid #ddd;padding:10px">
+				Pincode:<input style="border:none;font-size:17px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=""><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			<div>
+				<div class="mar_t10">
 				<div class="pull-left">
-					Price (<?php if(count($cart_items) >0){  echo count($cart_items).'  '.'items';}else{  echo "item";  }?>)
+					Subtotal
 				</div>
 				<div class="pull-right">
-					<i class="fa fa-inr" aria-hidden="true"></i><?php echo isset($carttotal_amount['pricetotalvalue'])?$carttotal_amount['pricetotalvalue']:''; ?>
+					<span>₹</span>
+					<span><?php echo $total; ?></span>
 				</div>
-				
-				<div class="clearfix"></div>
-				<div class="mar_t20">
+				</div>
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			<div>
+				<div class="mar_t10">
 				<div class="pull-left">
 					Delivery Charges
 				</div>
 				<div class="pull-right">
-					<i class="fa fa-inr" aria-hidden="true"></i><?php echo isset($carttotal_amount['delivertamount'])?$carttotal_amount['delivertamount']:''; ?>
+					<span>₹</span>
+					<span><?php echo $carttotal_amount['delivertamount']; ?></span>
 				</div>
 				</div>
-				<div class="clearfix"></div>
-				<hr>
-				<div class="mar_t20">
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			
+			<div class="mar_t10" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:8px 0px; " >
+				<div class="" >
 				<div class="pull-left">
-					<b>Amount Payable</b>
+					<b>Order Total</b>
 				</div>
 				<div class="pull-right">
-					<i class="fa fa-inr" aria-hidden="true"></i><b>
-				<?php 	$totalpayamount=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
-					echo $totalpayamount;
-				?>
-				</b>
+					<span>₹</span>
+					<span><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></span>
 				</div>
 				</div>
-				
+				<div class="clearfix">&nbsp;</div>
 			</div>
-		</div>
-		</div>
-		
-		<div class="col-md-8 " id="off_set_stic">
-		<div class="panel panel-primary">
-			<div class="panel-heading ">Payment</div>
-			<div class="panel-body">
-			<section>
-        <div class="wizard">
-           
-            <div class="wizard-inner">
-                <div class="connecting-line"></div>
-                <ul class="nav nav-tabs" role="tablist">
-
-                    <li role="presentation" class="active">
-						 <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-shopping-cart"></i>
-                            </span>
-							
-                        </a>
-						<p class="text-center"><b>Check Cart</b> </p>
-                    </li>  
-					<li role="presentation" class="disabled" >
-						   <a href="javascript:void(0);" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
-                            </span>
-							
-                        </a>
-						<p class="text-center"><b>Billing Address</b> </p>
-                    </li>
-
-                    <li role="presentation" class="disabled">
-                        <a href="javascript:void(0);" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-credit-card"></i>
-                            </span>
-                        </a>
-						<p class="text-center"><b>Payment mode </b></p>
-                    </li>
-                    <li role="presentation" class="disabled">
-                        <a href="javascript:void(0);" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-ok"></i>
-                            </span>
-                        </a>
-						<p class="text-center"><b>Thanks for Shopping </b></p>
-                    </li>
-                </ul>
-            </div>
-
-                <div class="tab-content">
-				 
-				<div class="title"><span>Order Confirmation</span></div>
-          <div class="table-responsive">
-		 
 			
-			<?php if(count($cart_items)>0){   ?>
-           <table class="table table-bordered table-cart">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Product Name</th>
-                  <th>Quantity</th>
-                  <th>Unit price</th>
-                  <th>SubTotal</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-			  <?php 
-			  //echo '<pre>';print_r($cart_items);exit; 
-			$total='';
-			  $cnt=0;foreach($cart_items as $items){ ?>
-			   <script>$('#qty'+'<?php echo $cnt; ?>').val('<?php echo $items['qty'];  ?>');</script>
-			  <input type="hidden" name="orginalqty" id="orginalqty<?php echo $cnt; ?>" value="<?php echo $items['item_quantity']; ?>" >
-
-			  <form action="<?php  echo base_url('customer/updatecart'); ?>" method="post" name="updatecart" id="updatecart">
-
-			  <input type="hidden" name="product_id" id="product_id<?php echo $cnt; ?>"  value="<?php echo $items['item_id']; ?>">
-                <tr>
-                  <td class="img-cart">
-                    <a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>">
-                      <img src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>" class="img-thumbnail">
-                    </a>
-                  </td>
-                  <td>
-                    <p><a href="<?php echo base_url('category/productview/'.base64_encode($items['item_id'])); ?>" class="d-block"><?php echo $items['item_name']; ?></a></p>
-                  </td>
-				  
-				  <?Php if($items['item_qty']!=0){ ?>
-					     <td class="input-qty">
-				   <div class="input-qty">
-						<div class="input-group number-spinner">
-							<span class="input-group-btn data-dwn">
-								<a class="btn btn-primary" onclick="productqty('<?php echo $cnt; ?>');" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
-							</span>
-							<input type="text" name="qty" id="qty<?php echo $cnt; ?>" readonly class="form-control text-center" value="<?php echo $items['qty'];  ?>" min="1" max="<?php echo $items['item_quantity']; ?>">
-							<span class="input-group-btn data-up">
-								<a class="btn btn-primary" onclick="productqtyincreae('<?php echo $cnt; ?>');" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
-							</span>
-						</div>
-                  </div>
-				  <span style="color:red;" id="qtymesage<?php echo $cnt; ?>"></span>
-				 </td>
-					  
-					  
-				  <?php }else{ ?>
-				  		<td class="input-qty"><span class="label label-warning arrowed"> Out of Stock</span></td>
-
-				
-				  <?php } ?>
-                  
-				  
-				  
-			 
-				<td class="unit"><?php echo $items['item_price']; ?> </td>
-				<td class="sub"><?php echo $items['total_price']; ?></td>
+			<div>
+				<div class="">
+					<div class="clearfix">&nbsp;</div>
+						<div style="border-bottom:1px solid #ddd;padding:10px">
+							<input style="border:none;" id="couponcode" name="couponcode" onkeyup="removecouponmsg();" type="text" value="" placeholder="Enter Promo Code"><span class="pull-right"><a class="site_col" onclick="couponcodeapply();" style="cursor:pointer">Apply</a></span>
+						
+						</div><span id="couponerrormsg"></span>
+			<div class="clearfix">&nbsp;</div>
+				</div>
+			</div>
+			<div class="clearfix">&nbsp;</div>
+	
+			<div>
+				<a href="<?php echo base_url(''); ?>" class="btn btn-warning col-md-6" style="width:48%;" ><i class="fa fa-shopping-cart"></i> Continue Shopping</a> 
+				<a href="<?php echo base_url('customer/billing'); ?>" class="btn  btn-primary col-md-6 pull-right"  style="width: 48%;" ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</a>
+			</div>
+			</div>
 		
-                  <td class="action">
-				  <!--<button style="background:transprent;" type="submit" ><i class="fa fa-refresh"></i></button>&nbsp;-->
-                    <a href="<?php echo base_url('customer/deletecart/'.base64_encode($items['item_id']).'/'.base64_encode($items['id'])); ?>" class="text-danger" data-toggle="tooltip" data-placement="top" data-original-title="Remove"><i class="fa fa-trash-o"></i></a>
-                  </td>
-				  	
-                </tr>
-				  </form>
-					<?php $total +=$items['total_price']; ?>
-			  <?php $cnt++;}   ?>
-               
-             
-               
-                <tr>
-                  <td colspan="4" class="text-right">Total</td>
-                  <td colspan="2"><b><?php echo $total; ?></b></td>
-                </tr> 
-				<tr>
-                  <td colspan="4" class="text-right">Grand Total</td>
-                  <td colspan="2"><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></td>
-                </tr>
-				
-              </tbody>
-            </table>
-			</form>
-          </div>
-          <nav aria-label="Shopping Cart Next Navigation">
-            <ul class="pager">
-              <li class="previous"><a href="<?php echo base_url(''); ?>"><span aria-hidden="true">&larr;</span> Continue Shopping</a></li>
-              <li class="next"><a href="<?php echo base_url('customer/billing'); ?>">Proceed to Checkout <span aria-hidden="true">&rarr;</span></a></li>
-            </ul>
-          </nav>
-		  
-		<?php }else{ ?>
-		</tr> No Item In the cart. click on <a  class="site_col" href="<?php echo base_url(''); ?>"> &nbsp;<b> Continue shopping</b></a> </tr>
-		<?php } ?>
-		<div class="clearfix"></div>
-                </div>
-         
-        </div>
-    </section>
-	   </div>
-	   </div>
-	   </div>
-	   </span>
-	   <div class="clearfix">&nbsp;</div>
-<?php if($this->session->flashdata('productsuccess')): ?>
-			<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
-			<?php endif; ?> 
-			<?php if($this->session->flashdata('qtyerror')): ?>
-				<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
-
-			<?php endif; ?>
-			
-			<div class="alt_cus"><div style="display:none;" class="alert_msg animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
-
+		
+		
+    </div>
+</div>
 <script>
 
 function productqty(id){
@@ -276,70 +401,122 @@ function productqtyincreae(id){
 	
 }
 
-$(document).ready(function () {
-    //Initialize tooltips
-    $('.nav-tabs > li a[title]').tooltip();
-    
-    //Wizard
-    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+var pincodeformat =/^[0-9]+$/;
+$('#deliverymsg').html('Check ypur delivery Status').css("color", "black");
+function delveryerrormsg(){
+$('#imgdisplaying').show();
+$('#deliverymsg').html('Check ypur delivery Status').css("color", "black");
+}
+function removecouponmsg(){
+	$('#couponerrormsg').html('');
+}
+function couponcodeapply(){
+	var coupon=$('#couponcode').val();
+	if(coupon==''){
+		$('#couponerrormsg').html('Promo Code is required.').css("color", "red");
+		return false;
+	}else if(coupon.length ==6){
+		$('#couponerrormsg').html('Promo Code is invalid. Please use another one').css("color", "red");
+	}else{
+		$('#couponerrormsg').html('Promo Code lenth must be 6 characters.').css("color", "red");
+		return false;
+	}
+	
+}
+function getareapincode(val){
+	var pin=$('#checkpincode').val();
+	$('#imgdisplaying').hide();
+	$('#deliverymsg').html('');
+	
+	if(pin==''){
+		$('#deliverymsg').html('Pincode is required.').css("color", "red");
+		return false;
+	}
+	
+	if(pin.length ==6){
+			if(!pin.match(pincodeformat)) 
+			{
+			$('#deliverymsg').html('Please enter correct pincode.').css("color", "red");
+			return false;
+			}
 
-        var $target = $(e.target);
-    
-        if ($target.parent().hasClass('disabled')) {
-            return false;
+		jQuery.ajax({
+        url: "<?php echo site_url('category/checkpincodes');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+          pincode: val,
+          },
+        dataType: 'json',
+        success: function (data) {
+			$('#imgdisplaying').show();
+			if(data.msg==1){
+				
+				$('#deliverymsg').html('Delivery by with in ' +data.time).css("color", "black");
+				
+			}else{
+				$('#deliverymsg').html('Delivery by with in 4 hours').css("color", "black");
+			}
+         
+
         }
-    });
-
-    $(".next-step").click(function (e) {
-
-        var $active = $('.wizard .nav-tabs li.active');
-        $active.next().removeClass('disabled');
-        nextTab($active);
-
-    });
-    $(".prev-step").click(function (e) {
-
-        var $active = $('.wizard .nav-tabs li.active');
-        prevTab($active);
-
-    });
-});
-
-function nextTab(elem) {
-    $(elem).next().find('a[data-toggle="tab"]').click();
-}
-function prevTab(elem) {
-    $(elem).prev().find('a[data-toggle="tab"]').click();
+      });
+	}else{
+		$('#deliverymsg').html('Pincode lenth must be 6 digits only.').css("color", "red");
+		
+	}
 }
 
-
-function sticky_relocate() {
-    var window_top = $(window).scrollTop();
-    var footer_top = $("#footer-start").offset().top;
-    var div_top = $('#sticky-anchor').offset().top;
-    var div_height = $("#sticky").height();
-    
-    var padding = 20;  // tweak here or get from margins etc
-    
-    if (window_top + div_height > footer_top - padding)
-        $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
-    else if (window_top > div_top) {
-        $('#sticky').addClass('stick');
-        $('#off_set_stic').addClass('col-md-offset-3');
-        $('#sticky').css({top: 100})
-    } else {
-        $('#off_set_stic').removeClass('col-md-offset-3');
-        $('#sticky').removeClass('stick');
-		$('#sticky').css({top:0})
-    }
-}
-
-$(function () {
-    $(window).scroll(sticky_relocate);
-    sticky_relocate();
-});
-
-
+    $(document).ready(function() {
+        $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+            e.preventDefault();
+            $(this).siblings('a.active').removeClass("active");
+            $(this).addClass("active");
+            var index = $(this).index();
+            $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+            $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+        });
+    });
 </script>
 
- 
+<script>
+    function pincodechange(val) {
+        $("#hide_loc").hide();
+        $("#show_loc").show();
+    }
+</script>
+<script>
+
+function checkOffset() {
+  var a=$(document).scrollTop()+window.innerHeight;
+  var b=$('#footer-start').offset().top;
+  if (a<b) {
+    $('#social-float').css('bottom', '80px');
+  } else {
+    $('#social-float').css('bottom', (10+(a-b))+'px');
+  }
+}
+$(document).ready(checkOffset);
+$(document).scroll(checkOffset);
+
+</script>
+<script>
+$(document).ready(function(){
+    $("#hide_add_btn").click(function(){
+        $("#hide_add").hide();
+    });
+});
+</script>
+<script>
+$(".mat-input").focus(function(){
+  $(this).parent().addClass("is-active is-completed");
+});
+
+$(".mat-input").focusout(function(){
+  if($(this).val() === "")
+    $(this).parent().removeClass("is-completed");
+  $(this).parent().removeClass("is-active");
+})
+</script>
+
+

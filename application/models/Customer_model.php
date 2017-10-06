@@ -23,7 +23,7 @@ class Customer_model extends MY_Model
 	/* save orders purpose*/
 	
 	public function order_list($cust_id){
-		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.item_description,products.item_image,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,sellers.seller_name')->from('order_items');
+		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.description,products.item_image,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,sellers.seller_name')->from('order_items');
 		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
 		$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
@@ -33,8 +33,9 @@ class Customer_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_order_items($order_id){
-		$this->db->select('order_items.*,products.item_name,products.item_description,products.item_image')->from('order_items');
+		$this->db->select('order_items.*,products.item_name,products.description,products.item_image,products.product_code,products.brand,sellers.seller_name')->from('order_items');
 		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
 		$this->db->where('order_items.order_id', $order_id);
 		return $this->db->get()->result_array();
 	}
