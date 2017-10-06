@@ -333,7 +333,16 @@
 			</div>
 		
 		
-		
+		<?php if($this->session->flashdata('productsuccess')): ?>
+			<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
+			<?php endif; ?> 
+			<?php if($this->session->flashdata('qtyerror')): ?>
+				<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+
+			<?php endif; ?>
+			
+			<div class="alt_cus"><div style="display:none;" class="alert_msg animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+
     </div>
 </div>
 <script>
@@ -402,10 +411,10 @@ function productqtyincreae(id){
 }
 
 var pincodeformat =/^[0-9]+$/;
-$('#deliverymsg').html('Check ypur delivery Status').css("color", "black");
+$('#deliverymsg').html('Check your delivery Status').css("color", "black");
 function delveryerrormsg(){
 $('#imgdisplaying').show();
-$('#deliverymsg').html('Check ypur delivery Status').css("color", "black");
+$('#deliverymsg').html('Check your delivery Status').css("color", "black");
 }
 function removecouponmsg(){
 	$('#couponerrormsg').html('');

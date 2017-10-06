@@ -1809,13 +1809,17 @@ function filtersearch(){
 	{
 		$pinid=$this->input->post('pincode');
 		$pinode_list= $this->category_model->get_area_pincodes($pinid);
-		$this->session->set_userdata('pincode',$pinid);	
+		
 		//echo '<pre>';print_r($pinode_list);
 		if (count($pinode_list)>0) {
+				$this->session->set_userdata('pincode',$pinid);	
+				$this->session->set_userdata('time',$pinode_list['hours']);	
 				$data['msg']=1;
 				$data['time']=$pinode_list['hours'];
 				echo json_encode($data);
 			}else{
+				$this->session->set_userdata('pincode','');
+				$this->session->set_userdata('time','');
 				$data['msg']=0;
 				$data['time']='';
 				echo json_encode($data);

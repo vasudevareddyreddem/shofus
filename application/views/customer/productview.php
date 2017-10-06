@@ -848,10 +848,10 @@
 
 <script type="text/javascript">
 var pincodeformat =/^[0-9]+$/;
-$('#deliverymsg').html('Check ypur delivery Status').css("color", "black");
+$('#deliverymsg').html('Check your delivery Status').css("color", "black");
 function removecouponmsg(){
 	$('#imgdisplaying').show();
-	$('#deliverymsg').html('Check ypur delivery Status').css("color", "black");
+	$('#deliverymsg').html('Check your delivery Status').css("color", "black");
 }
 function getareapincode(val){
 	var pin=$('#checkpincode').val();
