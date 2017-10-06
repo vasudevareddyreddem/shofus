@@ -380,6 +380,10 @@ class Customerapi_model extends MY_Model
 	$sql = "SELECT * FROM customers WHERE (cust_email ='".$email."') OR (cust_mobile ='".$email."')";
 	return $this->db->query($sql)->row_array();		
 	}
+	public function forgot_customer_id($cid){
+	$sql = "SELECT * FROM customers WHERE customer_id ='".$cid."'";
+	return $this->db->query($sql)->row_array();		
+	}
 	public function login_verficationcode_mobile_save($mobile,$cid,$vericiationcode){
 		$sql1="UPDATE customers SET forgot_verification ='".$vericiationcode."' WHERE cust_mobile = '".$mobile."' AND customer_id = '".$cid."'";
        	return $this->db->query($sql1);

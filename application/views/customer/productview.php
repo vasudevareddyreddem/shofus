@@ -335,46 +335,15 @@
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingOne">
-							 <h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						  Collapsible Group Item #1
-						</a>
-					  </h4>
-
+							<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							General
+							</a>
+							</h4>
 						</div>
 						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-							<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.le VHS.</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingTwo">
-							 <h4 class="panel-title">
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						  Collapsible Group Item #2
-						</a>
-					  </h4>
-
-						</div>
-						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingThree">
-							 <h4 class="panel-title">
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						  Collapsible Group Item #3
-						</a>
-					  </h4>
-
-						</div>
-						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-							<div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </div>
-						</div>
-					</div>
-				</div>
-				</div>
-				 <table class="table table-bordered">
+							<div class="panel-body">
+							<table class="table table-bordered">
                 <tbody>
                       <tr>
                         <td>product Name</td>
@@ -452,231 +421,394 @@
                         <td><?php echo $products_list['model_id']; ?></td>
                       </tr>
 					  <?php } ?>
-					  <?php if(isset($products_list['internal_memory']) && $products_list['internal_memory']!=''){ ?>
-					  <tr>
-                        <td>Internal Memory</td>
-                        <td><?php echo $products_list['internal_memory']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['expand_memory']) && $products_list['expand_memory']!=''){ ?>
-					  <tr>
-                        <td>Expandable Memory</td>
-                        <td><?php echo $products_list['expand_memory']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['primary_camera']) && $products_list['primary_camera']!=''){ ?>
-					  <tr>
-                        <td>Primary Camera</td>
-                        <td><?php echo $products_list['primary_camera']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['secondary_camera']) && $products_list['secondary_camera']!=''){ ?>
-					  <tr>
-                        <td>Secondary Camera</td>
-                        <td><?php echo $products_list['secondary_camera']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['video_recording']) && $products_list['video_recording']!=''){ ?>
-					  <tr>
-                        <td>Video Recording</td>
-                        <td><?php echo $products_list['video_recording']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['hd_recording']) && $products_list['hd_recording']!=''){ ?>
-					  <tr>
-                        <td>HD Recording</td>
-                        <td><?php echo $products_list['hd_recording']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['flash']) && $products_list['flash']!=''){ ?>
-					  <tr>
-                        <td>Flash</td>
-                        <td><?php echo $products_list['flash']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['other_camera_features']) && $products_list['other_camera_features']!=''){ ?>
-					  <tr>
-                        <td>Other Camera Features</td>
-                        <td><?php echo $products_list['other_camera_features']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['battery_capacity']) && $products_list['battery_capacity']!=''){ ?>
-					  <tr>
-                        <td>Battery Capacity</td>
-                        <td><?php echo $products_list['battery_capacity']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['talk_time']) && $products_list['talk_time']!=''){ ?>
-					  <tr>
-                        <td>Talk Time</td>
-                        <td><?php echo $products_list['talk_time']; ?></td>
-                      </tr>
-					  <?php } ?> 
-					  <?php if(isset($products_list['standby_time']) && $products_list['standby_time']!=''){ ?>
-					  <tr>
-                        <td>Standby Time</td>
-                        <td><?php echo $products_list['standby_time']; ?></td>
-                      </tr>
-					  <?php } ?> 
-					  <?php if(isset($products_list['operating_frequency']) && $products_list['operating_frequency']!=''){ ?>
-					  <tr>
-                        <td>Operating Frequency</td>
-                        <td><?php echo $products_list['operating_frequency']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['preinstalled_browser']) && $products_list['preinstalled_browser']!=''){ ?>
-					  <tr>
-                        <td>Preinstalled Browser</td>
-                        <td><?php echo $products_list['preinstalled_browser']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['2g']) && $products_list['2g']!=''){ ?>
-					  <tr>
-                        <td>2G</td>
-                        <td><?php echo $products_list['2g']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['3g']) && $products_list['3g']!=''){ ?>
-					  <tr>
-                        <td>3G</td>
-                        <td><?php echo $products_list['3g']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['4g']) && $products_list['4g']!=''){ ?>
-					  <tr>
-                        <td>4G</td>
-                        <td><?php echo $products_list['4g']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['wifi']) && $products_list['wifi']!=''){ ?>
-					  <tr>
-                        <td>Wifi</td>
-                        <td><?php echo $products_list['wifi']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['gps']) && $products_list['gps']!=''){ ?>
-					  <tr>
-                        <td>Gps</td>
-                        <td><?php echo $products_list['gps']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['glonass']) && $products_list['glonass']!=''){ ?>
-					  <tr>
-                        <td>GLONASS</td>
-                        <td><?php echo $products_list['glonass']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['bluetooth']) && $products_list['bluetooth']!=''){ ?>
-					  <tr>
-                        <td>Bluetooth</td>
-                        <td><?php echo $products_list['bluetooth']; ?></td>
-                      </tr>
-					  <?php } ?> 
-					  <?php if(isset($products_list['nfc']) && $products_list['nfc']!=''){ ?>
-					  <tr>
-                        <td>NFC</td>
-                        <td><?php echo $products_list['nfc']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['usb_connectivity']) && $products_list['usb_connectivity']!=''){ ?>
-					  <tr>
-                        <td>USB Connectivity</td>
-                        <td><?php echo $products_list['usb_connectivity']; ?></td>
-                      </tr>
-					  <?php } ?> 
-					  <?php if(isset($products_list['music_player']) && $products_list['music_player']!=''){ ?>
-					  <tr>
-                        <td>Music Player</td>
-                        <td><?php echo $products_list['music_player']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['video_player']) && $products_list['video_player']!=''){ ?>
-					  <tr>
-                        <td>Video Player</td>
-                        <td><?php echo $products_list['video_player']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['audio_jack']) && $products_list['audio_jack']!=''){ ?>
-					  <tr>
-                        <td>Audio Jack</td>
-                        <td><?php echo $products_list['audio_jack']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['gpu']) && $products_list['gpu']!=''){ ?>
-					  <tr>
-                        <td>GPU</td>
-                        <td><?php echo $products_list['gpu']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['sim_size']) && $products_list['sim_size']!=''){ ?>
-					  <tr>
-                        <td>Sim Size</td>
-                        <td><?php echo $products_list['sim_size']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['sim_supported']) && $products_list['sim_supported']!=''){ ?>
-					  <tr>
-                        <td>Sim Supported</td>
-                        <td><?php echo $products_list['sim_supported']; ?></td>
-                      </tr>
-					  <?php } ?> 
-					  <?php if(isset($products_list['call_memory']) && $products_list['call_memory']!=''){ ?>
-					  <tr>
-                        <td>Call Memory</td>
-                        <td><?php echo $products_list['call_memory']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['sms_memory']) && $products_list['sms_memory']!=''){ ?>
-					  <tr>
-                        <td>SMS Memory</td>
-                        <td><?php echo $products_list['sms_memory']; ?></td>
-                      </tr>
-					  <?php } ?> 
-					  <?php if(isset($products_list['phone_book_memory']) && $products_list['phone_book_memory']!=''){ ?>
-					  <tr>
-                        <td>Phone Book Memory</td>
-                        <td><?php echo $products_list['phone_book_memory']; ?></td>
-                      </tr>
-					  <?php } ?> 
-					  <?php if(isset($products_list['sensors']) && $products_list['sensors']!=''){ ?>
-					  <tr>
-                        <td>Sensors</td>
-                        <td><?php echo $products_list['sensors']; ?></td>
-                      </tr>
-					  <?php } ?> 
-					  <?php if(isset($products_list['java']) && $products_list['java']!=''){ ?>
-					  <tr>
-                        <td>Java</td>
-                        <td><?php echo $products_list['java']; ?></td>
-                      </tr>
-					  <?php } ?>
-					   <?php if(isset($products_list['insales_package']) && $products_list['insales_package']!=''){ ?>
-					  <tr>
-                        <td>In Sales Package</td>
-                        <td><?php echo $products_list['insales_package']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['dislay_resolution']) && $products_list['dislay_resolution']!=''){ ?>
-					  <tr>
-                        <td>Display & resolution</td>
-                        <td><?php echo $products_list['dislay_resolution']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['display_type']) && $products_list['display_type']!=''){ ?>
-					  <tr>
-                        <td>Display Type</td>
-                        <td><?php echo $products_list['display_type']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  <?php if(isset($products_list['colour']) && $products_list['colour']!=''){ ?>
-					  <tr>
-                        <td>Colors</td>
-                        <td><?php echo $products_list['colour']; ?></td>
-                      </tr>
-					  <?php } ?>
-					  
-                    </tbody>
+							</tbody>
                   </table>
+							
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingTwo">
+							 <h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						  Memory
+						</a>
+					  </h4>
+
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+							<div class="panel-body">
+							<table class="table table-bordered">
+								<tbody>
+								<?php if(isset($products_list['internal_memory']) && $products_list['internal_memory']!=''){ ?>
+												  <tr>
+													<td>Internal Memory</td>
+													<td><?php echo $products_list['internal_memory']; ?></td>
+												  </tr>
+												  <?php } ?>
+												  <?php if(isset($products_list['expand_memory']) && $products_list['expand_memory']!=''){ ?>
+												  <tr>
+													<td>Expandable Memory</td>
+													<td><?php echo $products_list['expand_memory']; ?></td>
+												  </tr>
+												  <?php } ?>
+								
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingThree">
+							 <h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						  Camera & Video Features
+						</a>
+					  </h4>
+
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+							<div class="panel-body">
+							
+							<table class="table table-bordered">
+									<tbody>
+									<?php if(isset($products_list['primary_camera']) && $products_list['primary_camera']!=''){ ?>
+													  <tr>
+														<td>Primary Camera</td>
+														<td><?php echo $products_list['primary_camera']; ?></td>
+													  </tr>
+													  <?php } ?>
+													  <?php if(isset($products_list['secondary_camera']) && $products_list['secondary_camera']!=''){ ?>
+													  <tr>
+														<td>Secondary Camera</td>
+														<td><?php echo $products_list['secondary_camera']; ?></td>
+													  </tr>
+													  <?php } ?>
+													  <?php if(isset($products_list['video_recording']) && $products_list['video_recording']!=''){ ?>
+													  <tr>
+														<td>Video Recording</td>
+														<td><?php echo $products_list['video_recording']; ?></td>
+													  </tr>
+													  <?php } ?>
+													  <?php if(isset($products_list['hd_recording']) && $products_list['hd_recording']!=''){ ?>
+													  <tr>
+														<td>HD Recording</td>
+														<td><?php echo $products_list['hd_recording']; ?></td>
+													  </tr>
+													  <?php } ?>
+													  <?php if(isset($products_list['flash']) && $products_list['flash']!=''){ ?>
+													  <tr>
+														<td>Flash</td>
+														<td><?php echo $products_list['flash']; ?></td>
+													  </tr>
+													  <?php } ?>
+													  <?php if(isset($products_list['other_camera_features']) && $products_list['other_camera_features']!=''){ ?>
+													  <tr>
+														<td>Other Camera Features</td>
+														<td><?php echo $products_list['other_camera_features']; ?></td>
+													  </tr>
+													  <?php } ?>
+									
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingFour">
+							 <h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+						  Battery & Power Features
+						</a>
+					  </h4>
+
+						</div>
+						<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+							<div class="panel-body">
+							<table class="table table-bordered">
+								<tbody>
+								<?php if(isset($products_list['battery_capacity']) && $products_list['battery_capacity']!=''){ ?>
+												  <tr>
+													<td>Battery Capacity</td>
+													<td><?php echo $products_list['battery_capacity']; ?></td>
+												  </tr>
+												  <?php } ?>
+												  <?php if(isset($products_list['talk_time']) && $products_list['talk_time']!=''){ ?>
+												  <tr>
+													<td>Talk Time</td>
+													<td><?php echo $products_list['talk_time']; ?></td>
+												  </tr>
+												  <?php } ?> 
+												  <?php if(isset($products_list['standby_time']) && $products_list['standby_time']!=''){ ?>
+												  <tr>
+													<td>Standby Time</td>
+													<td><?php echo $products_list['standby_time']; ?></td>
+												  </tr>
+												  <?php } ?> 
+								
+								</tbody>
+							</table>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingFive">
+							 <h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+						 Internet & Connectivity
+						</a>
+					  </h4>
+
+						</div>
+						<div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+							<div class="panel-body">
+							<table class="table table-bordered">
+							<tbody>
+							<?php if(isset($products_list['operating_frequency']) && $products_list['operating_frequency']!=''){ ?>
+											  <tr>
+												<td>Operating Frequency</td>
+												<td><?php echo $products_list['operating_frequency']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['preinstalled_browser']) && $products_list['preinstalled_browser']!=''){ ?>
+											  <tr>
+												<td>Preinstalled Browser</td>
+												<td><?php echo $products_list['preinstalled_browser']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['2g']) && $products_list['2g']!=''){ ?>
+											  <tr>
+												<td>2G</td>
+												<td><?php echo $products_list['2g']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['3g']) && $products_list['3g']!=''){ ?>
+											  <tr>
+												<td>3G</td>
+												<td><?php echo $products_list['3g']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['4g']) && $products_list['4g']!=''){ ?>
+											  <tr>
+												<td>4G</td>
+												<td><?php echo $products_list['4g']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['wifi']) && $products_list['wifi']!=''){ ?>
+											  <tr>
+												<td>Wifi</td>
+												<td><?php echo $products_list['wifi']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['gps']) && $products_list['gps']!=''){ ?>
+											  <tr>
+												<td>Gps</td>
+												<td><?php echo $products_list['gps']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['glonass']) && $products_list['glonass']!=''){ ?>
+											  <tr>
+												<td>GLONASS</td>
+												<td><?php echo $products_list['glonass']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['bluetooth']) && $products_list['bluetooth']!=''){ ?>
+											  <tr>
+												<td>Bluetooth</td>
+												<td><?php echo $products_list['bluetooth']; ?></td>
+											  </tr>
+											  <?php } ?> 
+											  <?php if(isset($products_list['nfc']) && $products_list['nfc']!=''){ ?>
+											  <tr>
+												<td>NFC</td>
+												<td><?php echo $products_list['nfc']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['usb_connectivity']) && $products_list['usb_connectivity']!=''){ ?>
+											  <tr>
+												<td>USB Connectivity</td>
+												<td><?php echo $products_list['usb_connectivity']; ?></td>
+											  </tr>
+											  <?php } ?> 
+							
+							</tbody>
+						</table>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingSix">
+							 <h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+						 Multimedia Features
+						</a>
+					  </h4>
+
+						</div>
+						<div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+							<div class="panel-body">
+							<table class="table table-bordered">
+								<tbody>
+								<?php if(isset($products_list['music_player']) && $products_list['music_player']!=''){ ?>
+												  <tr>
+													<td>Music Player</td>
+													<td><?php echo $products_list['music_player']; ?></td>
+												  </tr>
+												  <?php } ?>
+												  <?php if(isset($products_list['video_player']) && $products_list['video_player']!=''){ ?>
+												  <tr>
+													<td>Video Player</td>
+													<td><?php echo $products_list['video_player']; ?></td>
+												  </tr>
+												  <?php } ?>
+												  <?php if(isset($products_list['audio_jack']) && $products_list['audio_jack']!=''){ ?>
+												  <tr>
+													<td>Audio Jack</td>
+													<td><?php echo $products_list['audio_jack']; ?></td>
+												  </tr>
+												  <?php } ?>
+								
+								</tbody>
+							</table>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingSeven">
+							 <h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+						Additional Features
+						</a>
+					  </h4>
+
+						</div>
+						<div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+							<div class="panel-body">
+							<table class="table table-bordered">
+							<tbody>
+							<?php if(isset($products_list['gpu']) && $products_list['gpu']!=''){ ?>
+											  <tr>
+												<td>GPU</td>
+												<td><?php echo $products_list['gpu']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['sim_size']) && $products_list['sim_size']!=''){ ?>
+											  <tr>
+												<td>Sim Size</td>
+												<td><?php echo $products_list['sim_size']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['sim_supported']) && $products_list['sim_supported']!=''){ ?>
+											  <tr>
+												<td>Sim Supported</td>
+												<td><?php echo $products_list['sim_supported']; ?></td>
+											  </tr>
+											  <?php } ?> 
+											  <?php if(isset($products_list['call_memory']) && $products_list['call_memory']!=''){ ?>
+											  <tr>
+												<td>Call Memory</td>
+												<td><?php echo $products_list['call_memory']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['sms_memory']) && $products_list['sms_memory']!=''){ ?>
+											  <tr>
+												<td>SMS Memory</td>
+												<td><?php echo $products_list['sms_memory']; ?></td>
+											  </tr>
+											  <?php } ?> 
+											  <?php if(isset($products_list['phone_book_memory']) && $products_list['phone_book_memory']!=''){ ?>
+											  <tr>
+												<td>Phone Book Memory</td>
+												<td><?php echo $products_list['phone_book_memory']; ?></td>
+											  </tr>
+											  <?php } ?> 
+											  <?php if(isset($products_list['sensors']) && $products_list['sensors']!=''){ ?>
+											  <tr>
+												<td>Sensors</td>
+												<td><?php echo $products_list['sensors']; ?></td>
+											  </tr>
+											  <?php } ?> 
+											  <?php if(isset($products_list['java']) && $products_list['java']!=''){ ?>
+											  <tr>
+												<td>Java</td>
+												<td><?php echo $products_list['java']; ?></td>
+											  </tr>
+											  <?php } ?>
+							
+							</tbody>
+						</table>
+							
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingEight">
+							 <h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+						In the Box
+						</a>
+					  </h4>
+
+						</div>
+						<div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+							<div class="panel-body">
+								<table class="table table-bordered">
+									<tbody>
+									<?php if(isset($products_list['insales_package']) && $products_list['insales_package']!=''){ ?>
+													  <tr>
+														<td>In Sales Package</td>
+														<td><?php echo $products_list['insales_package']; ?></td>
+													  </tr>
+													  <?php } ?>
+									
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingNine">
+							 <h4 class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+						 Display & Resolution
+						</a>
+					  </h4>
+
+						</div>
+						<div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+							<div class="panel-body">
+							<table class="table table-bordered">
+							<tbody>
+							<?php if(isset($products_list['dislay_resolution']) && $products_list['dislay_resolution']!=''){ ?>
+											  <tr>
+												<td>Display & resolution</td>
+												<td><?php echo $products_list['dislay_resolution']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['display_type']) && $products_list['display_type']!=''){ ?>
+											  <tr>
+												<td>Display Type</td>
+												<td><?php echo $products_list['display_type']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['colour']) && $products_list['colour']!=''){ ?>
+											  <tr>
+												<td>Colors</td>
+												<td><?php echo $products_list['colour']; ?></td>
+											  </tr>
+											  <?php } ?>
+							
+							</tbody>
+						</table>
+							
+							</div>
+						</div>
+					</div>
+					
+					
+				</div>
+				</div>
+				 
                 </div>
               </div>
               <!-- End Description Tab Content -->
