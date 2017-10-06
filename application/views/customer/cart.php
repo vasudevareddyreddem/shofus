@@ -46,7 +46,7 @@
         background-image: #45b1b9;
         color: #ffffff;
     }
-    div.bhoechie-tab-menu div.list-group>a.active:after {
+    div.bhoechie-tab-menu div.list-group>div.active:after {
         content: '';
         position: absolute;
         left: 100%;
@@ -135,6 +135,7 @@
   font-size: 12px;
   transform: translateY(0);
 }
+
 </style>
 <?php if($this->session->flashdata('productsuccess')): ?>
 			<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
