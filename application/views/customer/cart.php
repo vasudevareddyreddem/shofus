@@ -274,11 +274,11 @@
         </div>
 		
 		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
-				<span><img id="imgdisplaying" style="display:none" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
+				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="deliverymsg"></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
-				Pincode:<input style="border:none;font-size:17px;" id="checkpincode" name="checkpincode" type="text" value=""><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
+				Pincode:<input style="border:none;font-size:17px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=""><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
@@ -344,6 +344,11 @@
 
 
 <script>
+$('#deliverymsg').html('Check ypur delivery Status').css("color", "black");
+function delveryerrormsg(){
+$('#imgdisplaying').show();
+$('#deliverymsg').html('Check ypur delivery Status').css("color", "black");
+}
 function removecouponmsg(){
 	$('#couponerrormsg').html('');
 }
