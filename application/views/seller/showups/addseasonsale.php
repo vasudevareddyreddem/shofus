@@ -132,7 +132,7 @@ tfoot input {
           echo "";
         } ?>
 						</td>
-						<td><?php echo $item_data->offer_expairdate;?>,&nbsp;<?php echo $item_data->offer_time;?></td>
+						<td><?php echo $item_data->offer_expairdate;?></td>
 
 					</tr>
 				  <?php $k++; } ?>

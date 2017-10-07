@@ -2191,6 +2191,37 @@ class Customerapi_model extends MY_Model
 			return $this->db->get()->result_array(); 
 		 
 	 }
+	 
+	 public function get_same_products($subcat,$name,$item_id)
+	{
+		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.colour,products.internal_memory')->from('products');
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_name', $name);
+		$this->db->where('item_id !=', $item_id);
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_pincode_details($pincode)
+	{
+		$this->db->select('*')->from('pincodes_list');
+		$this->db->where('pincode', $pincode);
+		$this->db->where('status',1);
+		return $this->db->get()->row_array();
+	}
+	public function get_customer_billing_list($cust_id){
+		$this->db->select('*')->from('customer_address');
+		$this->db->where('cust_id', $cust_id);
+        return $this->db->get()->result_array();
+	}
+	public function check_customer_exits($cust_id){
+		$this->db->select('*')->from('customers');
+		$this->db->where('customer_id', $cust_id);
+        return $this->db->get()->row_array();
+	}
+	public function save_new_address($data){
+		$this->db->insert('customer_address', $data);
+		return $insert_id = $this->db->insert_id();
+	}
 	
 		
 	

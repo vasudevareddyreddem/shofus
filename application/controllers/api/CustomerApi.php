@@ -664,6 +664,9 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 		$product_details=$this->Customerapi_model->product_details($item_id);
+		$sameproducts_list= $this->Customerapi_model->get_same_products($product_details['subcategory_id'],$product_details['item_name'],$product_details['item_id']);
+
+		//echo '<pre>';print_r($sameproducts_list);exit;
 		$color_list=$this->Customerapi_model->get_product_color_details($item_id);
 		$size_list=$this->Customerapi_model->get_product_size_details($item_id);
 		$specification_list=$this->Customerapi_model->get_product_specification_details($item_id);
@@ -671,7 +674,7 @@ class CustomerApi extends REST_Controller {
 		//echo '<pre>';print_r($wishlist);exit;
 		if(count($product_details)>0){
 		
-			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list);
+			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list,'sameproducts_list'=>$sameproducts_list);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'product Id is not valid one');
@@ -1678,6 +1681,8 @@ class CustomerApi extends REST_Controller {
 						'phone'=>$phone,
 						'order_status'=>1,
 						'hash'=>$hash,
+						'payment_type'=>1,
+						'amount_status'=>1,
 						'created_at'=>date('Y-m-d H:i:s'),
 					);
 					
@@ -2303,6 +2308,250 @@ class CustomerApi extends REST_Controller {
 								$message = array('status'=>1,'message'=>'customer id not exist. please try again');
 								$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 							}
+			}
+			public function checkdelivery_status_post(){
+					$pincode=$this->input->get('pincode');
+					if($pincode==''){
+					$message = array('status'=>1,'message'=>'pincode is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					$checkpincode = $this->Customerapi_model->get_pincode_details($pincode);
+					if(count($checkpincode)>0){
+
+					$message = array('status'=>1,'time'=>$checkpincode['hours']);
+					$this->response($message, REST_Controller::HTTP_OK);
+
+					}else{
+					$message = array('status'=>1,'time'=>'4 hours');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+			}
+			public function billing_address_list_post(){
+					$customer_id=$this->input->get('customer_id');
+					if($customer_id==''){
+					$message = array('status'=>1,'message'=>'customer id is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					$billingaddress = $this->Customerapi_model->get_customer_billing_list($customer_id);
+					if(count($billingaddress)>0){
+						$message = array('status'=>1,'list'=>$billingaddress,'message'=>'billing address list');
+						$this->response($message, REST_Controller::HTTP_OK);
+
+					}else{
+					$message = array('status'=>1,'message'=>'billing address not found');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+			}
+			public function billing_address_save_post(){
+					$customer_id=$this->input->get('customer_id');
+					$title=$this->input->get('title');
+					$name=$this->input->get('name');
+					$mobile=$this->input->get('mobile');
+					$address1=$this->input->get('address1');
+					$address2=$this->input->get('address2');
+					$pincode=$this->input->get('pincode');
+					$city=$this->input->get('city');
+					$state=$this->input->get('state');
+					if($customer_id==''){
+					$message = array('status'=>1,'message'=>'Customer id is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($title==''){
+					$message = array('status'=>1,'message'=>'Title is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($name==''){
+					$message = array('status'=>1,'message'=>'Name is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($mobile==''){
+					$message = array('status'=>1,'message'=>'mobile is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($address1==''){
+					$message = array('status'=>1,'message'=>'Address1 is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($address2==''){
+					$message = array('status'=>1,'message'=>'Address2 is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($pincode==''){
+					$message = array('status'=>1,'message'=>'pincode is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($city==''){
+					$message = array('status'=>1,'message'=>'city is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($state==''){
+					$message = array('status'=>1,'message'=>'state is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					$billingaddress = $this->Customerapi_model->check_customer_exits($customer_id);
+					if(count($billingaddress)>0){
+						
+						$savenewadd=array(
+							'cust_id'=>$billingaddress['customer_id'],
+							'emal_id'=>$billingaddress['cust_email'],
+							'title'=>$title,
+							'name'=>$name,
+							'mobile'=>$mobile,
+							'address1'=>$address1,
+							'address2'=>$address2,
+							'pincode'=>$pincode,
+							'city'=>$city,
+							'state'=>$state,
+							'create-at'=>date('Y-m-d H:i:s'),
+						);
+						$addnewadd= $this->Customerapi_model->save_new_address($savenewadd);
+						if(count($addnewadd)>0){
+							$message = array('status'=>1,'address_id'=>$addnewadd,'message'=>'Your billing address was saved successfully ');
+						$this->response($message, REST_Controller::HTTP_OK);
+							
+						}else{
+							$message = array('status'=>1,'message'=>'Technical problem will occurred. please try again after some time');
+						$this->response($message, REST_Controller::HTTP_OK);
+						}
+						
+						
+						
+
+					}else{
+					$message = array('status'=>1,'message'=>'Customer not found. please  try again');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+			}
+			public function orderpaymenttype_post(){
+					$customer_id=$this->input->get('customer_id');
+					$payment_type=$this->input->get('payment_type');
+					$name=$this->input->get('name');
+					$mobile=$this->input->get('mobile');
+					$address1=$this->input->get('address1');
+					$address2=$this->input->get('address2');
+					$pincode=$this->input->get('pincode');
+					$city=$this->input->get('city');
+					$state=$this->input->get('state');
+					if($customer_id==''){
+					$message = array('status'=>1,'message'=>'Customer id is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($payment_type==''){
+					$message = array('status'=>1,'message'=>'Payment Type is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($name==''){
+					$message = array('status'=>1,'message'=>'Name is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($mobile==''){
+					$message = array('status'=>1,'message'=>'mobile is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($address1==''){
+					$message = array('status'=>1,'message'=>'Address1 is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($address2==''){
+					$message = array('status'=>1,'message'=>'Address2 is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($pincode==''){
+					$message = array('status'=>1,'message'=>'pincode is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($city==''){
+					$message = array('status'=>1,'message'=>'city is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($state==''){
+					$message = array('status'=>1,'message'=>'state is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					
+					$ordersucess=array(
+					'customer_id'=>$customer_id,
+					'transaction_id'=>'',
+					'net_amount'=>'',
+					'total_price'=>'',
+					'discount'=>'',
+					'bank_reference_number'=>'',
+					'payment_mode'=>'',
+					'card_number'=>'',
+					'email'=>'',
+					'phone'=>'',
+					'order_status'=>1,
+					'hash'=>'',
+					'payment_type'=>$payment_type,
+					'amount_status'=>0,
+					'created_at'=>date('Y-m-d H:i:s'),
+				);
+				$saveorder=$this->Customerapi_model->save_order_success($ordersucess);
+				$cart_items= $this->Customerapi_model->get_cart_products($customer_id);
+				$customerdetails= $this->Customerapi_model->get_customer_details($customer_id);
+				//echo '<pre>';print_r($cart_items);exit;
+				foreach($cart_items as $items){
+					$orderitems=array(
+						'order_id'=>$saveorder,
+						'item_id'=>$items['item_id'],
+						'seller_id'=>$items['seller_id'],
+						'customer_id'=>$items['cust_id'],
+						'qty'=>$items['qty'],
+						'item_price'=>$items['item_price'],
+						'total_price'=>$items['total_price'],
+						'delivery_amount'=>$items['delivery_amount'],
+						'commission_price'=>$items['commission_price'],
+						'customer_email'=>$customerdetails['cust_email'],
+						'customer_phone'=>$mobile,
+						'pincode'=>$pincode,
+						'city'=>$city,
+						'state'=>$state,
+						'customer_address'=>$address1.' '.$address2,
+						'order_status'=>1,
+						'color'=>$items['color'],
+						'size'=>$items['size'],
+						'create_at'=>date('Y-m-d H:i:s'),
+					);
+					//echo '<pre>';print_r($orderitems);exit;
+					$item_qty=$this->Customerapi_model->get_item_details($items['item_id']);
+					$less_qty=$item_qty['item_quantity']-$items['qty'];
+					//echo '<pre>';print_r($item_qty);
+					//echo '<pre>';print_r($less_aty);
+					//exit;
+					$this->Customerapi_model->update_tem_qty_after_purchasingorder($items['item_id'],$less_qty,$items['seller_id']);
+					$save= $this->Customerapi_model->save_order_items_list($orderitems);
+					$statu=array(
+						'order_item_id'=>$save,
+						'order_id'=>$saveorder,
+						'item_id'=>$items['item_id'],
+						'status_confirmation'=>1,
+						'create_time'=>date('Y-m-d h:i:s A'),
+						'update_time'=>date('Y-m-d h:i:s A'),
+					);
+					$save= $this->Customerapi_model->save_order_item_status_list($statu);
+					
+					
+				}
+				
+				/*for billing address*/
+				$orderbilling=array(
+						'cust_id'=>$customer_id,
+						'order_id'=>$saveorder,
+						'name'=>$name,
+						'mobile'=>$mobile,
+						'address1'=>$address1,
+						'address2'=>$address2,
+						//'area'=>$area,
+						'emal_id'=>$customerdetails['cust_email'],
+						'pincode'=>$pincode,
+						'city'=>$city,
+						'state'=>$state,
+						'create-at'=>date('Y-m-d H:i:s'),
+					);
+				$saveorderbillingaddress= $this->Customerapi_model->save_order_billing_address($orderbilling);
+			$message = array('status'=>1,'orderid'=>$saveorder,'message'=>'Payment successfully completed!');
+			$this->response($message, REST_Controller::HTTP_OK);
+				
 			}
 
 
