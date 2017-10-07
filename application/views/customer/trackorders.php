@@ -101,8 +101,27 @@ tr th:last-child {
 
 					</tr>
 					<tr>
-					<th>Amount Paid</th>
-					<td>₹<?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>through <?php echo isset($item_details['payment_mode'])?$item_details['payment_mode']:'';  ?></td>
+						<th>Amount </th>
+						<?php if(isset($item_details['payment_type']) && $item_details['payment_type']==4){ ?>
+						<td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; Paytm</td>
+						<?php }else if(isset($item_details['payment_type']) && $item_details['payment_type']==3){ ?>
+						<td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; Swipe on Delivery</td>
+						<?php }else if(isset($item_details['payment_type']) && $item_details['payment_type']==2){ ?>
+						<td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; Cash On Delivery</td>
+						<?php }else if(isset($item_details['payment_type']) && $item_details['payment_type']==1){ ?>
+						<td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; <?php echo isset($item_details['payment_mode'])?$item_details['payment_mode']:'';  ?></td>
+						<?php } ?>
+					</tr>
+					<tr>
+						<th>Amount Status </th>
+						<td><?php
+						if(isset($item_details['amount_status']) && $item_details['amount_status']==1){
+						echo "Paid";
+						}else{
+						echo "Pending";
+
+						}  ?>
+					</td>
 
 					</tr>
 					<tr>
@@ -123,8 +142,8 @@ tr th:last-child {
 					<p><strong>Address2 :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
 					<?php } ?>
 					<p><strong>Phone :<?php echo isset($item_details['mobile'])?$item_details['mobile']:'';  ?></strong></p>
-					<p><strong>Delivery location area :<?php echo isset($item_details['location_name'])?$item_details['location_name']:'';  ?></strong></p>
-					</div>
+					<!--<p><strong>Delivery location area :<?php echo isset($item_details['location_name'])?$item_details['location_name']:'';  ?></strong></p>
+					--></div>
 
 				</div>
 				<div class="col-md-4" >
