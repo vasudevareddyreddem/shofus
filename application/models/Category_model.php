@@ -893,7 +893,7 @@ class Category_model extends MY_Model
 	$this->db->group_by('subcat_wise_fliter_search.size');
 	$this->db->group_by('subcat_wise_fliter_search.color');
 	$this->db->group_by('subcat_wise_fliter_search.compatible_mobiles');
-	$this->db->group_by('subcat_wise_fliter_search.producttype');
+	/*$this->db->group_by('subcat_wise_fliter_search.producttype');
 	$this->db->group_by('subcat_wise_fliter_search.mega_pixel');
 	$this->db->group_by('subcat_wise_fliter_search.sensor_type');
 	$this->db->group_by('subcat_wise_fliter_search.battery_type');
@@ -940,7 +940,7 @@ class Category_model extends MY_Model
 	$this->db->group_by('subcat_wise_fliter_search.gemstones');
 	$this->db->group_by('subcat_wise_fliter_search.strap_color');
 	$this->db->group_by('subcat_wise_fliter_search.dial_color');
-	$this->db->group_by('subcat_wise_fliter_search.packof');
+	$this->db->group_by('subcat_wise_fliter_search.packof');*/
 	$query=$this->db->get()->result_array();
 		foreach ($query as $sorting){
 			
@@ -960,7 +960,7 @@ class Category_model extends MY_Model
 			if($sorting['discount']!=''){
 			$return['discount'][] = $this->get_subcategorydiscount($sorting['discount'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
-			if($sorting['compatible_mobiles']!=''){
+			/*if($sorting['compatible_mobiles']!=''){
 			$return['compatible_mobiles'][] = $this->get_subcategorymobileacc($sorting['compatible_mobiles'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
 			if($sorting['producttype']!=''){
@@ -1103,7 +1103,7 @@ class Category_model extends MY_Model
 			if($sorting['packof']!=''){
 			$return['packof'][] = $this->get_subcategorypackof($sorting['packof'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
-			
+			*/
 			
 			$return['mini_amount'][] = $this->get_subcategoryamount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id'],$sorting['subcategory_id']);
 			$return['status'][] = $this->get_subcategorystatus($sorting['status'],$sorting['category_id'],$sorting['subcategory_id']);

@@ -1353,8 +1353,69 @@ function filtersearch(){
 		$data['color_list']= $this->category_model->get_all_color_list_sub($caterory_id,$subcaterory_id);
 		$data['minimum_price'] = reset($data['price_list']);
 		$data['maximum_price'] = end($data['price_list']);
-		if($subcaterory_id==40){
-				
+		if($subcaterory_id==30){
+		$data['comatability_mobile_list']= $this->category_model->get_comatability_mobile_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==34){
+		$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+		$data['megapuxel_list']= $this->category_model->get_mega_pixel_list($caterory_id,$subcaterory_id);
+		$data['sensor_type']= $this->category_model->get_sensor_type_list($caterory_id,$subcaterory_id);
+		$data['battery_type']= $this->category_model->get_battery_type_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==35){
+		$data['display_size']= $this->category_model->get_display_size_list($caterory_id,$subcaterory_id);
+		$data['connectivity_list']= $this->category_model->get_conncetivity_list($caterory_id,$subcaterory_id);
+		$data['ram_list']= $this->category_model->get_ram_list($caterory_id,$subcaterory_id);
+		$data['voice_calling_facility']= $this->category_model->get_voice_calling_facility_list($caterory_id,$subcaterory_id);
+		$data['operating_system']= $this->category_model->get_os_list($caterory_id,$subcaterory_id);
+		$data['internal_storage']= $this->category_model->get_internal_storage_list($caterory_id,$subcaterory_id);
+		$data['battery_capacity']= $this->category_model->get_battery_capacity_list($caterory_id,$subcaterory_id);
+		$data['primary_camera']= $this->category_model->get_primary_camera_list($caterory_id,$subcaterory_id);
+		$data['processor_clock_speed']= $this->category_model->get_processor_clock_speed_list($caterory_id,$subcaterory_id);
+
+		}
+		if($subcaterory_id==36){
+		$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+		$data['wireless_speed']= $this->category_model->get_wireless_speed_list($caterory_id,$subcaterory_id);
+		$data['frequency_band']= $this->category_model->get_frequency_band_list($caterory_id,$subcaterory_id);
+		$data['broadband_compatibility']= $this->category_model->get_broadband_compatibility_list($caterory_id,$subcaterory_id);
+		$data['usb_ports']= $this->category_model->get_usb_ports_list($caterory_id,$subcaterory_id);
+		$data['frequency_list']= $this->category_model->get_frequency_list_list($caterory_id,$subcaterory_id);
+		$data['antennae_list']= $this->category_model->get_antennae_list($caterory_id,$subcaterory_id);
+
+		}
+		if($subcaterory_id==39){
+			$data['display_size']= $this->category_model->get_display_size_list($caterory_id,$subcaterory_id);
+			$data['processor_list']= $this->category_model->get_processor_list($caterory_id,$subcaterory_id);
+			$data['ram_list']= $this->category_model->get_ram_list($caterory_id,$subcaterory_id);
+			$data['operating_system']= $this->category_model->get_os_list($caterory_id,$subcaterory_id);
+			$data['processor_brand']= $this->category_model->get_processor_brand_list($caterory_id,$subcaterory_id);
+			$data['lifestyle_list']= $this->category_model->get_lifestyle_list($caterory_id,$subcaterory_id);
+			$data['storage_type']= $this->category_model->get_storage_type_list($caterory_id,$subcaterory_id);
+			$data['graphics_memory']= $this->category_model->get_graphics_memory_list($caterory_id,$subcaterory_id);
+			$data['touch_screen']= $this->category_model->get_touch_screen_list($caterory_id,$subcaterory_id);
+			$data['weight_list']= $this->category_model->get_weight_list($caterory_id,$subcaterory_id);
+			$data['internal_storage']= $this->category_model->get_internal_storage_list($caterory_id,$subcaterory_id);
+			$data['memory_type']= $this->category_model->get_memory_type_list($caterory_id,$subcaterory_id);
+			$data['ram_type']= $this->category_model->get_ram_typee_list($caterory_id,$subcaterory_id);
+		}if($subcaterory_id==40){
+				$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+				$data['ram_list']= $this->category_model->get_ram_list($caterory_id,$subcaterory_id);
+				$data['operating_system']= $this->category_model->get_os_list($caterory_id,$subcaterory_id);
+				$data['internal_storage']= $this->category_model->get_internal_storage_list($caterory_id,$subcaterory_id);
+				$data['display_size']= $this->category_model->get_display_size_list($caterory_id,$subcaterory_id);
+				$data['battery_capacity']= $this->category_model->get_battery_capacity_list($caterory_id,$subcaterory_id);
+				$data['network_type']= $this->category_model->get_network_type_list($caterory_id,$subcaterory_id);
+				$data['speciality_list']= $this->category_model->get_speciality_list($caterory_id,$subcaterory_id);
+				$data['primary_camera']= $this->category_model->get_primary_camera_list($caterory_id,$subcaterory_id);
+				$data['operating_system_version_name']= $this->category_model->get_operating_system_version_name_list($caterory_id,$subcaterory_id);
+				$data['processor_brand']= $this->category_model->get_processor_brand_list($caterory_id,$subcaterory_id);
+				$data['resolution_type']= $this->category_model->get_resolution_type_list($caterory_id,$subcaterory_id);
+				$data['secondary_camera']= $this->category_model->get_secondary_camera_list($caterory_id,$subcaterory_id);
+				$data['sim_type']= $this->category_model->get_sim_type_list($caterory_id,$subcaterory_id);
+				$data['clock_speed']= $this->category_model->get_clock_speed_list($caterory_id,$subcaterory_id);
+				$data['cores']= $this->category_model->get_cores_list($caterory_id,$subcaterory_id);
+
 			}
 		
 	}else if($caterory_id==19){
@@ -1367,7 +1428,60 @@ function filtersearch(){
 		$data['sizes_list']= $this->category_model->get_all_size_list_sub($caterory_id,$subcaterory_id);
 		$data['minimum_price'] = reset($data['price_list']);
 		$data['maximum_price'] = end($data['price_list']);
-		
+		if($subcaterory_id!=10 ||$subcaterory_id!=53){
+			
+			$data['ideal_for']= $this->category_model->get_ideal_for_sub($caterory_id,$subcaterory_id);
+
+		}
+		if($subcaterory_id==8 || $subcaterory_id==14 || $subcaterory_id==19 || $subcaterory_id==20 || $subcaterory_id==52 || $subcaterory_id==28 || $subcaterory_id==29){
+			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
+			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==10){
+			$data['dial_shape']= $this->category_model->get_dial_shape_list($caterory_id,$subcaterory_id);
+			$data['compatibleos']= $this->category_model->get_compatibleos_list($caterory_id,$subcaterory_id);
+			$data['usage_list']= $this->category_model->get_usage_list($caterory_id,$subcaterory_id);
+			$data['display_type']= $this->category_model->get_display_type_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==11 || $subcaterory_id==21 || $subcaterory_id==25){
+			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==53){
+			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
+			$data['occasion']= $this->category_model->get_occasion_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==13 || $subcaterory_id==16 || $subcaterory_id==17 || $subcaterory_id==23){
+			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==15){
+			$data['material']= $this->category_model->get_material_list($caterory_id,$subcaterory_id);
+			$data['gemstones']= $this->category_model->get_gemstones_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==50){
+			$data['strap_color']= $this->category_model->get_strap_color_list($caterory_id,$subcaterory_id);
+			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+			$data['material']= $this->category_model->get_material_list($caterory_id,$subcaterory_id);
+			$data['dial_shape']= $this->category_model->get_dial_shape_list($caterory_id,$subcaterory_id);
+			$data['dial_color']= $this->category_model->get_dial_color_list($caterory_id,$subcaterory_id);
+
+
+		}
+		if($subcaterory_id==22){
+			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
+			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+			$data['packof']= $this->category_model->get_packof_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==51){
+			$data['theme_list']= $this->category_model->get_theme_list($caterory_id,$subcaterory_id);
+			$data['producttype_list']= $this->category_model->get_type_mobile_list($caterory_id,$subcaterory_id);
+			$data['packof']= $this->category_model->get_packof_list($caterory_id,$subcaterory_id);
+			$data['occasion']= $this->category_model->get_occasion_list($caterory_id,$subcaterory_id);
+		}
+		if($subcaterory_id==27){
+			$data['dial_shape']= $this->category_model->get_dial_shape_list($caterory_id,$subcaterory_id);
+			$data['usage_list']= $this->category_model->get_usage_list($caterory_id,$subcaterory_id);
+			$data['display_type']= $this->category_model->get_display_type_list($caterory_id,$subcaterory_id);
+		}
 		
 		
 		
