@@ -368,7 +368,7 @@ class Customer_model extends MY_Model
 			return $this->db->get()->result_array();
 	}
 	public function get_order_items_list($custid,$order_id){
-			$this->db->select('order_items.*,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name')->from('order_items');
+			$this->db->select('order_items.*,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,orders.payment_type,orders.amount_status,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name')->from('order_items');
 			$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 			$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
 			$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');

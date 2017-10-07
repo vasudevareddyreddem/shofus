@@ -81,6 +81,7 @@ tr th:last-child {
 <div class="col-md-4" style="border-right:1px solid #45b1b5">
 <table class="table " >
 	<div><h5>ORDER DETAILS</h5></div>
+	<?php //echo '<pre>';print_r($item_details);exit; ?>
     <tbody>
       <tr>
        <th>Order ID</th>
@@ -98,13 +99,32 @@ tr th:last-child {
         
       </tr>
       <tr>
-        <th>Amount Paid</th>
-        <td>₹<?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; <?php echo isset($item_details['payment_mode'])?$item_details['payment_mode']:'';  ?></td>
-        
+        <th>Amount </th>
+		<?php if(isset($item_details['payment_type']) && $item_details['payment_type']==4){ ?>
+			<td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; Paytm</td>
+		<?php }else if(isset($item_details['payment_type']) && $item_details['payment_type']==3){ ?>
+		<td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; Swipe on Delivery</td>
+		<?php }else if(isset($item_details['payment_type']) && $item_details['payment_type']==2){ ?>
+		<td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; Cash On Delivery</td>
+		<?php }else if(isset($item_details['payment_type']) && $item_details['payment_type']==1){ ?>
+        <td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; <?php echo isset($item_details['payment_mode'])?$item_details['payment_mode']:'';  ?></td>
+        <?php } ?>
+      </tr>
+	  <tr>
+        <th>Amount Status </th>
+			<td><?php
+		if(isset($item_details['amount_status']) && $item_details['amount_status']==1){
+			echo "Paid";
+		}else{
+			echo "Pending";
+			
+		}  ?>
+		</td>
+		
       </tr>
 	  <tr>
         <th>Delivery Amount</th>
-        <td>₹<?php echo isset($item_details['delivery_amount'])?$item_details['delivery_amount']:'';  ?></td>
+        <td>₹ <?php echo isset($item_details['delivery_amount'])?$item_details['delivery_amount']:'';  ?></td>
         
       </tr>
     </tbody>
@@ -120,8 +140,8 @@ tr th:last-child {
 			<p><strong>Address2 :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
 			<?php } ?>
 			<p><strong>Phone :<?php echo isset($item_details['mobile'])?$item_details['mobile']:'';  ?></strong></p>
-			<p><strong>Delivery location area :<?php echo isset($item_details['location_name'])?$item_details['location_name']:'';  ?></strong></p>
-		</div>
+			<!--<p><strong>Delivery location area :<?php echo isset($item_details['location_name'])?$item_details['location_name']:'';  ?></strong></p>
+		--></div>
     
 </div>
 <?php //echo base64_decode($this->uri->segment('3'));
@@ -253,8 +273,8 @@ tr th:last-child {
 					<div class=""><span><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
 					<i class="font_span">
 					<?php  $timestamp = strtotime($item_details['create_at']) + 2*60*60;
-						$time = date('H:i:s', $timestamp);?>
-					Delivery expected by <?php echo isset($item_details['create_at'])?Date('M-d-Y',strtotime(htmlentities($item_details['create_at']))):'';  ?><?php echo $time; ?>
+						$time = date('g:i a', $timestamp);?>
+					Delivery expected by <?php echo isset($item_details['create_at'])?Date('M-d-Y',strtotime(htmlentities($item_details['create_at']))):'';  ?>  <?php echo $time; ?>
 					</i></div>
 					<hr	>
 				<div class="col-md-3 col-md-offset-9">

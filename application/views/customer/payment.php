@@ -1,142 +1,3 @@
-<style>
-    /*  bhoechie tab */
-    
-    div.bhoechie-tab-container {
-        z-index: 10;
-        background-color: #ffffff;
-        padding: 0 !important;
-        border-radius: 4px;
-        -moz-border-radius: 4px;
-        border: 1px solid #ddd;
-        // margin-top: 20px;
-        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-        -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-        background-clip: padding-box;
-        opacity: 0.97;
-        filter: alpha(opacity=97);
-    }
-    div.bhoechie-tab-menu {
-        padding-right: 0;
-        padding-left: 0;
-        padding-bottom: 0;
-    }
-    div.bhoechie-tab-menu div.list-group {
-        margin-bottom: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a {
-        margin-bottom: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a .glyphicon,
-    div.bhoechie-tab-menu div.list-group>a .fa {
-        color: #45b1b9;
-    }
-    div.bhoechie-tab-menu div.list-group>a:first-child {
-        border-top-right-radius: 0;
-        -moz-border-top-right-radius: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a:last-child {
-        border-bottom-right-radius: 0;
-        -moz-border-bottom-right-radius: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a.active,
-    div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
-    div.bhoechie-tab-menu div.list-group>a.active .fa {
-        background-color: #45b1b9;
-        background-image: #45b1b9;
-        color: #ffffff;
-    }
-    div.bhoechie-tab-menu div.list-group>div.active:after {
-        content: '';
-        position: absolute;
-        left: 100%;
-        top: 50%;
-        margin-top: -13px;
-        border-left: 0;
-        border-bottom: 13px solid transparent;
-        border-top: 13px solid transparent;
-        border-left: 10px solid #45b1b9;
-    }
-    div.bhoechie-tab-content {
-        background-color: #ffffff;
-        /* border: 1px solid #eeeeee; */
-        
-        padding-left: 20px;
-        padding-top: 10px;
-    }
-    div.bhoechie-tab div.bhoechie-tab-content:not(.active) {
-        display: none;
-    }
-    .table>tbody>tr>td,
-    .table>tbody>tr>th,
-    .table>tfoot>tr>td,
-    .table>tfoot>tr>th,
-    .table>thead>tr>td,
-    .table>thead>tr>th {
-        border-top: none;
-    }
-	.panel-body {
-		padding: 0px 15px 0px 15px;		
-	}
-	.panel-footer {
-    padding:0px 15px 15px 20px;
-	border-top:none;
-   
-}
-.mat-div {
-  padding: 0;
-  position: relative;
-}
-
-.mat-div:after, .mat-div:before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: #e2e2e2; 
-  bottom: 0;
-  left: 0;
-  transition: all 0.5s;
-}
-
-.mat-div::after {
-  background-color: #4a5c63;
-  transform: scaleX(0);
-}
-
-.mat-label {
-  display: block;
-  font-size: 16px;
-  transform: translateY(25px);
-  color: #45b1b9;
-  transition: all 0.5s;
-}
-
-.mat-input {
-  position: relative;
-  background: transparent;
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 8px 0;
-  font-size: 16px;
-}
-
-.is-active::after {
-  transform: scaleX(1);
-}
-
-.is-active .mat-label {
-  color: #4a5c63;
-}
-
-.is-completed .mat-label {
-  font-size: 12px;
-  transform: translateY(0);
-}
-
-</style>
 
 <div class="container">
     <div class="row">
@@ -181,16 +42,19 @@
                                       
 										<img style="width:20%" src="<?php echo base_url(); ?>assets/home/images/payment_img.png" />
                                     </div>
+									
+									<form action="<?php echo base_url('customer/orderpaymenttype'); ?>" method="post" onSubmit="return checkvalidation(this.form);">
 									<div class="row" style="margin-top:50px;">
+									<span id="paymenterrormsg" style="color:red"></span>
 									 <div class="radio">
 										<label class="col-md-4">
-											<input type="radio" name="radio-product" name="payment" checked="" value="2"><span>Cash On Delivery</span>
+											<input type="radio" id="radio1"  name="payment"  value="2"><span>Cash On Delivery</span>
 										</label>
 										<label class="col-md-4">
-											<input type="radio" name="radio-product" name="payment" checked="" value="2"><span>Swipe on Delivery</span>
+											<input type="radio" id="radio2" name="payment"  value="3"><span>Swipe on Delivery</span>
 										</label>
 										<label class="col-md-4">
-											<input type="radio" name="radio-product" name="payment" checked="" value="2"><span>Paytm</span>
+											<input type="radio" id="radio3" name="payment"  value="4"><span>Paytm</span>
 										</label>
 									 </div>
 									 
@@ -199,8 +63,15 @@
 										</div>
 									</div>
                                     <div class="clearfix"></div>
+									
+									
+							<div  style="padding:50px 15px;margin-top:25px;border-top:1px solid #ddd;">
+							  <a  href="<?php echo base_url('customer/billing'); ?>" class="btn btn-primary pull-left"> Back</a>
+							<button class="pull-right btn btn-primary btn-small" name="submit_form" type="submit">Proceed to Payment</span><span aria-hidden="true">&rarr;</span></button>
+         
+							</form>
                                 
-								<form method="post" name="payuForm" action="https://test.payu.in/_payment">
+							<!--<form method="post" name="payuForm" action="https://test.payu.in/_payment">
 							<input name="key" type="hidden" value="<?php echo $this->config->item('MERCHANTKEY'); ?>" />
 							<input name="txnid" type="hidden"  value="<?php echo $txnid; ?>" />
 							<input type="hidden" name="hash" value="<?php echo $hash; ?>"/>
@@ -223,7 +94,8 @@
 							<button class="pull-right btn btn-primary btn-small" name="submit_form" type="submit">Proceed to Payment</span><span aria-hidden="true">&rarr;</span></button>
          
 							</div>
-							</form>
+							</form>-->
+							
 							<div class="clearfix"></div>
 							</div>
 							
@@ -306,7 +178,25 @@
 
 
 <script>
+function checkvalidation(form){
+	
+if ($("#radio1").prop("checked")) {
+	$('#paymenterrormsg').html('');
+   return true;
+}else if ($("#radio2").prop("checked")) {
+	$('#paymenterrormsg').html('');
+   return true;
+}else if ($("#radio3").prop("checked")) {
+	$('#paymenterrormsg').html('');
+   return true;
+}else{
+	$('#paymenterrormsg').html('Please select a payment mode method')
+	return false;
+}
 
+
+	
+}
 
     $(document).ready(function() {
         $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {

@@ -881,6 +881,8 @@ class Customer extends Front_Controller
 						'phone'=>$_POST['phone'],
 						'order_status'=>1,
 						'hash'=>$_POST['hash'],
+						'payment_type'=>1,
+						'amount_status'=>1,
 						'created_at'=>date('Y-m-d H:i:s'),
 					);
 				$saveorder= $this->customer_model->save_order_success($ordersucess);
@@ -987,6 +989,104 @@ class Customer extends Front_Controller
 	}
 	 
 	 
+ }
+ 
+ 
+ public function orderpaymenttype(){
+	 if($this->session->userdata('userdetails'))
+	 {
+		$billingaddress=$this->session->userdata('billingaddress');	
+		$customerdetails=$this->session->userdata('userdetails');
+		$post=$this->input->post();
+		//echo '<pre>';print_r($post);exit;
+				$ordersucess=array(
+					'customer_id'=>$customerdetails['customer_id'],
+					'transaction_id'=>'',
+					'net_amount'=>'',
+					'total_price'=>'',
+					'discount'=>'',
+					'bank_reference_number'=>'',
+					'payment_mode'=>'',
+					'card_number'=>'',
+					'email'=>'',
+					'phone'=>'',
+					'order_status'=>1,
+					'hash'=>'',
+					'payment_type'=>$post['payment'],
+					'amount_status'=>0,
+					'created_at'=>date('Y-m-d H:i:s'),
+				);
+				$saveorder= $this->customer_model->save_order_success($ordersucess);
+				
+				$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+				//echo '<pre>';print_r($cart_items);exit;
+				foreach($cart_items as $items){
+					$orderitems=array(
+						'order_id'=>$saveorder,
+						'item_id'=>$items['item_id'],
+						'seller_id'=>$items['seller_id'],
+						'customer_id'=>$items['cust_id'],
+						'qty'=>$items['qty'],
+						'item_price'=>$items['item_price'],
+						'total_price'=>$items['total_price'],
+						'delivery_amount'=>$items['delivery_amount'],
+						'commission_price'=>$items['commission_price'],
+						'customer_email'=>$customerdetails['cust_email'],
+						'customer_phone'=>$billingaddress['mobile'],
+						'customer_address'=>$billingaddress['address1'].' '.$billingaddress['address2'],
+						'area'=>$billingaddress['area'],
+						'order_status'=>1,
+						'color'=>$items['color'],
+						'size'=>$items['size'],
+						'uksize'=>$items['uksize'],
+						'create_at'=>date('Y-m-d H:i:s'),
+					);
+					//echo '<pre>';print_r($orderitems);exit;
+					$item_qty=$this->customer_model->get_item_details($items['item_id']);
+					$less_qty=$item_qty['item_quantity']-$items['qty'];
+					//echo '<pre>';print_r($item_qty);
+					//echo '<pre>';print_r($less_aty);
+					//exit;
+					$this->customer_model->update_tem_qty_after_purchasingorder($items['item_id'],$less_qty,$items['seller_id']);
+					$save= $this->customer_model->save_order_items_list($orderitems);
+					$statu=array(
+						'order_item_id'=>$save,
+						'order_id'=>$saveorder,
+						'item_id'=>$items['item_id'],
+						'status_confirmation'=>1,
+						'create_time'=>date('Y-m-d h:i:s A'),
+						'update_time'=>date('Y-m-d h:i:s A'),
+					);
+					$save= $this->customer_model->save_order_item_status_list($statu);
+					
+					
+				}
+				/*for billing address*/
+				$orderbilling=array(
+						'cust_id'=>$billingaddress['cust_id'],
+						'order_id'=>$saveorder,
+						'name'=>$billingaddress['name'],
+						'emal_id'=>$billingaddress['emal_id'],
+						'mobile'=>$billingaddress['mobile'],
+						'address1'=>$billingaddress['address1'],
+						'address2'=>$billingaddress['address2'],
+						'city'=>$billingaddress['city'],
+						'pincode'=>$billingaddress['pincode'],
+						'state'=>$billingaddress['state'],
+						'area'=>$billingaddress['area'],
+						'create-at'=>date('Y-m-d H:i:s'),
+					);
+					$saveorderbillingaddress= $this->customer_model->save_order_billing_address($orderbilling);
+					
+				/*for billing address*/
+				$this->session->set_flashdata('paymentsucess','Payment successfully completed!');
+				redirect('customer/ordersuccess/'.base64_encode($saveorder));
+	
+	  
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('customer');
+	} 
  }
  public function paymentfailure(){
 	 if($this->session->userdata('userdetails'))

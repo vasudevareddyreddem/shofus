@@ -80,11 +80,10 @@
                      
 							
 							<div>
-								<span style="font-size:18px;">
-								<?php $timestamp = strtotime($orders['create_at']) + 24*2*60*60;
-										$time = date('H:i:s A', $timestamp);
-
-								?>
+								<span style="font-size:16px;">
+					
+								<?php  $timestamp = strtotime($orders['create_at']) + 2*60*60;
+									$time = date('g:i a', $timestamp);?>
 								Delivered on <?php echo isset($orders['create_at'])?Date('M-d-Y',strtotime(htmlentities($orders['create_at']))):'';  ?> <?php echo $time; ?>
 								
 								

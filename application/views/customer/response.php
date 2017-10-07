@@ -1,141 +1,4 @@
-<style>
-    /*  bhoechie tab */
-    
-    div.bhoechie-tab-container {
-        z-index: 10;
-        background-color: #ffffff;
-        padding: 0 !important;
-        border-radius: 4px;
-        -moz-border-radius: 4px;
-        border: 1px solid #ddd;
-        // margin-top: 20px;
-        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-        -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-        background-clip: padding-box;
-        opacity: 0.97;
-        filter: alpha(opacity=97);
-    }
-    div.bhoechie-tab-menu {
-        padding-right: 0;
-        padding-left: 0;
-        padding-bottom: 0;
-    }
-    div.bhoechie-tab-menu div.list-group {
-        margin-bottom: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a {
-        margin-bottom: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a .glyphicon,
-    div.bhoechie-tab-menu div.list-group>a .fa {
-        color: #45b1b9;
-    }
-    div.bhoechie-tab-menu div.list-group>a:first-child {
-        border-top-right-radius: 0;
-        -moz-border-top-right-radius: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a:last-child {
-        border-bottom-right-radius: 0;
-        -moz-border-bottom-right-radius: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a.active,
-    div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
-    div.bhoechie-tab-menu div.list-group>a.active .fa {
-        background-color: #45b1b9;
-        background-image: #45b1b9;
-        color: #ffffff;
-    }
-    div.bhoechie-tab-menu div.list-group>a.active:after {
-        content: '';
-        position: absolute;
-        left: 100%;
-        top: 50%;
-        margin-top: -13px;
-        border-left: 0;
-        border-bottom: 13px solid transparent;
-        border-top: 13px solid transparent;
-        border-left: 10px solid #45b1b9;
-    }
-    div.bhoechie-tab-content {
-        background-color: #ffffff;
-        /* border: 1px solid #eeeeee; */
-        
-        padding-left: 20px;
-        padding-top: 10px;
-    }
-    div.bhoechie-tab div.bhoechie-tab-content:not(.active) {
-        display: none;
-    }
-    .table>tbody>tr>td,
-    .table>tbody>tr>th,
-    .table>tfoot>tr>td,
-    .table>tfoot>tr>th,
-    .table>thead>tr>td,
-    .table>thead>tr>th {
-        border-top: none;
-    }
-	.panel-body {
-		padding: 0px 15px 0px 15px;		
-	}
-	.panel-footer {
-    padding:0px 15px 15px 20px;
-	border-top:none;
-   
-}
-.mat-div {
-  padding: 0;
-  position: relative;
-}
 
-.mat-div:after, .mat-div:before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: #e2e2e2; 
-  bottom: 0;
-  left: 0;
-  transition: all 0.5s;
-}
-
-.mat-div::after {
-  background-color: #4a5c63;
-  transform: scaleX(0);
-}
-
-.mat-label {
-  display: block;
-  font-size: 16px;
-  transform: translateY(25px);
-  color: #45b1b9;
-  transition: all 0.5s;
-}
-
-.mat-input {
-  position: relative;
-  background: transparent;
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 8px 0;
-  font-size: 16px;
-}
-
-.is-active::after {
-  transform: scaleX(1);
-}
-
-.is-active .mat-label {
-  color: #4a5c63;
-}
-
-.is-completed .mat-label {
-  font-size: 12px;
-  transform: translateY(0);
-}
-</style>
 <?php if($this->session->flashdata('productsuccess')): ?>
 			<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 			<?php endif; ?> 
@@ -151,21 +14,21 @@
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
-                    <div href="#" class="list-group-item  text-center">
+                    <div href="#" class="list-group-item  text-center step_com">
 
-                        <h4 class="glyphicon glyphicon-shopping-cart site_col"></h4>
+                        <h4 class="glyphicon glyphicon-shopping-cart "></h4>
                         <br/>Check Cart
                     </div>
-                    <div href="#"  class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-folder-open site_col"></h4>
+                    <div href="#"  class="list-group-item text-center step_com">
+                        <h4 class="glyphicon glyphicon-folder-open "></h4>
                         <br/>Billing Address
                     </div>
-                    <div href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-credit-card site_col"></h4>
+                    <div href="#" class="list-group-item text-center step_com">
+                        <h4 class="glyphicon glyphicon-credit-card "></h4>
                         <br/>Payment mode
                     </div>
                     <div href="#" class="list-group-item active text-center">
-                        <h4 class="glyphicon glyphicon-ok site_col "></h4>
+                        <h4 class="glyphicon glyphicon-ok "></h4>
                         <br/>Thanks for Shopping
                     </div>
 
