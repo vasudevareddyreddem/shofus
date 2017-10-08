@@ -77,11 +77,14 @@
 				<?php } ?>
 				<?php } ?>
 				
-				<li id="hover_li" class=" spin ">
+				<!--<li id="hover_li" class=" spin ">-->
+				<li id="" class=" spin ">
 					<a  class="menu_ti2  ">
 						<span   ><img class=" circ_icon"src="<?php echo base_url(); ?>assets/home/images/more_cat.png" />
 						</span>
-						<span class="menu_tit">MORE CATEGORIES</span>
+						<span style="position:relative" class="menu_tit">More Categories
+						<span style="position:absolute;top:0;left:20px;font-size:12px;">Coming Soon</span>
+						</span>
 					</a>
 					<ul id="left_box" class="right_cust" style="display:none">
 						
