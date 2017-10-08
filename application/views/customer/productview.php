@@ -57,7 +57,7 @@
 <div class="pad_bod" style="margin:0;padding:0; " >
 		<div class="" >
 		
-		<div class="col-md-3 z_ind " style="position:fixed;top:20;" id="social-float">
+		<div class="col-md-3 z_ind " style="position:fixed;top:40; " id="social-float">
 			<ul id="glasscase" class="gc-start">
                     <li>
 						<img class="img-responsive" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>"/>
@@ -334,16 +334,16 @@
 				<div >
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingOne">
+						<div  data-toggle="collapse" data-parent="" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="panel-heading" role="tab" id="headingOne" style="cursor:pointer;">
 							<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							<a data-toggle="collapse" data-parent="" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 							General
 							</a>
 							</h4>
 						</div>
 						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 							<div class="panel-body">
-							<table class="table table-bordered">
+							<table class="table table-bordered mar_t10">
                 <tbody>
                       <tr>
                         <td>product Name</td>
@@ -428,9 +428,9 @@
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingTwo">
+						<div  data-toggle="collapse" data-parent="" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="panel-heading" role="tab" id="headingTwo" style="cursor:pointer;">
 							 <h4 class="panel-title">
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<a class="collapsed" >
 						  Memory
 						</a>
 					  </h4>
@@ -438,7 +438,7 @@
 						</div>
 						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 							<div class="panel-body">
-							<table class="table table-bordered">
+							<table class="table table-bordered mar_t10">
 								<tbody>
 								<?php if(isset($products_list['internal_memory']) && $products_list['internal_memory']!=''){ ?>
 												  <tr>
@@ -459,9 +459,9 @@
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingThree">
+						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="tab" id="headingThree" style="cursor:pointer;">
 							 <h4 class="panel-title">
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						<a class="collapsed" >
 						  Camera & Video Features
 						</a>
 					  </h4>
@@ -470,7 +470,7 @@
 						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 							<div class="panel-body">
 							
-							<table class="table table-bordered">
+							<table class="table table-bordered mar_t10">
 									<tbody>
 									<?php if(isset($products_list['primary_camera']) && $products_list['primary_camera']!=''){ ?>
 													  <tr>
@@ -515,9 +515,9 @@
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingFour">
+						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour" role="tab" id="headingFour" style="cursor:pointer;">
 							 <h4 class="panel-title">
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+						<a class="collapsed" >
 						  Battery & Power Features
 						</a>
 					  </h4>
@@ -525,7 +525,7 @@
 						</div>
 						<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
 							<div class="panel-body">
-							<table class="table table-bordered">
+							<table class="table table-bordered mar_t10">
 								<tbody>
 								<?php if(isset($products_list['battery_capacity']) && $products_list['battery_capacity']!=''){ ?>
 												  <tr>
@@ -552,9 +552,9 @@
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingFive">
+						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive" role="tab" id="headingFive" style="cursor:pointer;">
 							 <h4 class="panel-title">
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+						<a class="collapsed" >
 						 Internet & Connectivity
 						</a>
 					  </h4>
@@ -562,7 +562,7 @@
 						</div>
 						<div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
 							<div class="panel-body">
-							<table class="table table-bordered">
+							<table class="table table-bordered mar_t10">
 							<tbody>
 							<?php if(isset($products_list['operating_frequency']) && $products_list['operating_frequency']!=''){ ?>
 											  <tr>
@@ -637,9 +637,9 @@
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingSix">
+						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix" role="tab" id="headingSix" style="cursor:pointer;">
 							 <h4 class="panel-title">
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+						<a class="collapsed" >
 						 Multimedia Features
 						</a>
 					  </h4>
@@ -647,7 +647,7 @@
 						</div>
 						<div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
 							<div class="panel-body">
-							<table class="table table-bordered">
+							<table class="table table-bordered mar_t10">
 								<tbody>
 								<?php if(isset($products_list['music_player']) && $products_list['music_player']!=''){ ?>
 												  <tr>
@@ -674,9 +674,9 @@
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingSeven">
+						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven" role="tab" id="headingSeven" style="cursor:pointer;">
 							 <h4 class="panel-title">
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+						<a class="collapsed" >
 						Additional Features
 						</a>
 					  </h4>
@@ -684,7 +684,7 @@
 						</div>
 						<div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
 							<div class="panel-body">
-							<table class="table table-bordered">
+							<table class="table table-bordered mar_t10">
 							<tbody>
 							<?php if(isset($products_list['gpu']) && $products_list['gpu']!=''){ ?>
 											  <tr>
@@ -742,9 +742,9 @@
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingEight">
+						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight" role="tab" id="headingEight" style="cursor:pointer;">
 							 <h4 class="panel-title">
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+						<a class="collapsed" >
 						In the Box
 						</a>
 					  </h4>
@@ -752,7 +752,7 @@
 						</div>
 						<div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
 							<div class="panel-body">
-								<table class="table table-bordered">
+								<table class="table table-bordered mar_t10">
 									<tbody>
 									<?php if(isset($products_list['insales_package']) && $products_list['insales_package']!=''){ ?>
 													  <tr>
@@ -767,9 +767,9 @@
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="headingNine">
+						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine" role="tab" id="headingNine" style="cursor:pointer;">
 							 <h4 class="panel-title">
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+						<a class="collapsed" >
 						 Display & Resolution
 						</a>
 					  </h4>
@@ -777,7 +777,7 @@
 						</div>
 						<div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
 							<div class="panel-body">
-							<table class="table table-bordered">
+							<table class="table table-bordered mar_t10">
 							<tbody>
 							<?php if(isset($products_list['dislay_resolution']) && $products_list['dislay_resolution']!=''){ ?>
 											  <tr>
@@ -1263,31 +1263,6 @@ $(document).ready(function(){
 
 
 
-function sticky_relocate() {
-    var window_top = $(window).scrollTop();
-    var footer_top = $("#footer-start").offset().top;
-    var div_top = $('#sticky-anchor').offset().top;
-    var div_height = $("#sticky").height();
-    
-    var padding = 20;  // tweak here or get from margins etc
-    
-    if (window_top + div_height > footer_top - padding)
-        $('#sticky').css({top: (window_top + div_height - footer_top + padding) * -1})
-    else if (window_top > div_top) {
-        $('#sticky').addClass('stick');
-        $('#con_scrol').addClass('col-md-offset-3');
-        $('#sticky').css({top: 90})
-    } else {
-        $('#sticky').removeClass('stick');
-        $('#con_scrol').removeClass('col-md-offset-3');
-		$('#sticky').css({top:0})
-    }
-}
-
-$(function () {
-    $(window).scroll(sticky_relocate);
-    sticky_relocate();
-});
 
 $(document).ready(function() {
     $('#addreview').bootstrapValidator({
@@ -2780,7 +2755,7 @@ function checkOffset() {
   var a=$(document).scrollTop()+window.innerHeight;
   var b=$('#footer-start').offset().top;
   if (a<b) {
-    $('#social-float').css('bottom', '20%');
+    $('#social-float').css('bottom', '15%');
   } else {
     $('#social-float').css('bottom', (10+(a-b))+'px');
   }
