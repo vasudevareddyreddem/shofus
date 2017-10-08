@@ -392,6 +392,119 @@ class Customer extends Front_Controller
 	 
  }
  /*onclick purpose*/
+ public function productviewonclickaddcart(){
+	 $post=$this->input->post();
+	 //echo '<pre>';print_r($post);exit;
+	if($this->session->userdata('userdetails')=='')
+	 {
+		$this->session->set_userdata('beforecart',$post);
+	 }
+	if($this->session->userdata('userdetails'))
+	 {
+		 
+		
+		$customerdetails=$this->session->userdata('userdetails');
+		
+		$post=$this->input->post();
+		//echo '<pre>';print_r($post);exit;
+		$products= $this->customer_model->get_product_details($post['producr_id']);
+			$qty=$post['qty'];
+			
+		
+			$currentdate=date('Y-m-d h:i:s A');
+				if($products['offer_expairdate']>=$currentdate){
+						$item_price= ($products['item_cost']-$products['offer_amount']);
+						$price	=(($qty) * ($item_price));
+				}else{
+					//echo "expired";
+					$item_price= $products['special_price'];
+					$price	=(($qty) * ($item_price));
+				}
+				$commission_price=(($price)*($products['commission'])/100);
+				if($products['category_id']==18){
+						if($price <500){
+							$delivery_charges=35;
+						}else{
+							$delivery_charges=0;
+						}
+					}else{
+						
+						if($price <500){
+							$delivery_charges=75;
+						}else if(($price > 500) && ($price < 1000)){
+							$delivery_charges=35;
+						}else if($price >1000){
+							$delivery_charges=0;
+						}
+					}
+				
+		
+		$adddata=array(
+		'cust_id'=>$customerdetails['customer_id'],
+		'item_id'=>$post['producr_id'],
+		'qty'=>$post['qty'],
+		'item_qty'=>$products['item_quantity'],
+		'item_price'=>$item_price,
+		'total_price'=>$price,
+		'commission_price'=>$commission_price,
+		'delivery_amount'=>$delivery_charges,
+		'seller_id'=>$products['seller_id'],
+		'color'=>isset($post['colorvalue'])?$post['colorvalue']:'',
+		'size'=>isset($size)?$size:'',
+		'uksize'=>isset($uksize)?$uksize:'',
+		'category_id'=>$products['category_id'],
+		'create_at'=>date('Y-m-d H:i:s'),
+		);
+		//echo '<pre>';print_r($adddata);exit;
+		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+			if(count($cart_items)>0){
+					foreach($cart_items as $pids) { 
+								
+									$rid[]=$pids['item_id'];
+					}
+				if(in_array($post['producr_id'],$rid)){
+					
+						$this->session->set_flashdata('productsuccess','Product already exits');
+						$data['msg']=2;
+						echo json_encode($data);
+					
+				
+
+				}else{
+					
+					$save= $this->customer_model->cart_products_save($adddata);
+					$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+					if(count($save)>0){
+						$this->session->set_flashdata('productsuccess','Product Successfully added to the cart');
+						$data['msg']=1;	
+						$data['count']=count($countlist);	
+						echo json_encode($data);
+					
+
+					}
+				
+				}
+			}else{
+				$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+				$save= $this->customer_model->cart_products_save($adddata);
+			if(count($save)>0){
+				$data['msg']=1;
+				$data['count']=count($countlist);					
+				echo json_encode($data);
+			
+
+			}
+			}
+			
+			
+	
+		
+	 }else{
+		 $data['msg']=0;	
+		echo json_encode($data);
+	} 
+	 
+ }
  public function orders(){
 	 
 	 if($this->session->userdata('userdetails'))
@@ -1897,9 +2010,6 @@ class Customer extends Front_Controller
 		$beforecart =$this->session->userdata('beforecart');
 		$this->session->userdata('location_area');
 		$this->hybridauthlib->logoutAllProviders();
-		$this->session->sess_destroy();	
-		//echo '<pre>';print_r($userinfo );exit;
-        $this->session->unset_userdata($userinfo);
         $this->session->unset_userdata($beforecart);
         $this->session->unset_userdata('location_area');
 		$this->session->sess_destroy('userdetails');

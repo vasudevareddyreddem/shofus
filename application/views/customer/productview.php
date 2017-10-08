@@ -55,6 +55,7 @@
 </style>
 
 <div class="pad_bod" style="margin:0;padding:0; " >
+<div id="sucessmsg" style="display:none;"></div>
 		<div class="" >
 		
 		<div class="col-md-3 z_ind " style="position:fixed;top:40; " id="social-float">
@@ -70,6 +71,18 @@
 					</li> 
 					<li>
 						<img src="<?php echo base_url('uploads/products/'.$products_list['item_image3']); ?>" alt="Text" />
+					</li>
+					<li>
+						<img src="<?php echo base_url('uploads/products/'.$products_list['item_image4']); ?>" alt="Text" />
+					</li>
+					<li>
+						<img src="<?php echo base_url('uploads/products/'.$products_list['item_image5']); ?>" alt="Text" />
+					</li>
+					<li>
+						<img src="<?php echo base_url('uploads/products/'.$products_list['item_image6']); ?>" alt="Text" />
+					</li>
+					<li>
+						<img src="<?php echo base_url('uploads/products/'.$products_list['item_image7']); ?>" alt="Text" />
 					</li>  
 			</ul>
 		</div>
@@ -244,7 +257,7 @@
 				  <a href="" id="compare" class="btn btn-theme m-b-1" type="button" ><i class="fa fa-align-left"></i> Add to Compare</a>
                   <input type="hidden" name="compare_id" id="compare_id"  value="<?php echo $products_list['item_id']; ?>"> 
 				<?php 	if (in_array($products_list['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)  ) { ?>
-					<a href="javascript:void(0);" style="color:yellow;" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" id="addwhish" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
+					<a href="javascript:void(0);" style="color:#45b1b9;" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" id="addwhish" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
 					<?php }else{ ?>	
 					<a href="javascript:void(0);" onclick="addwhishlidt(<?php echo $products_list['item_id']; ?>);" id="addwhish" class="btn btn-theme m-b-1" type="button"><i class="fa fa-heart"></i>Add to Wishlist</a>  
 					<?php } ?>			  
@@ -276,7 +289,7 @@
 			<div class="clearfix">&nbsp;</div>
 			<?php if($products_list['item_quantity']!=0 && $products_list['item_status']!=0 ){ ?>
 			<div>
-				<button class="btn btn-warning col-md-6" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i>  ADD TO CART</button> 
+				<a class="btn btn-warning col-md-6" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
 				<button class="btn  btn-primary col-md-6 pull-right" style="width: 48%;" type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
 			</div>
 			<?php } ?>
@@ -1073,6 +1086,37 @@ function getareapincode(val){
 		
 	}
 }
+function singleitemaddtocart(itemid,catid,val){
+
+jQuery.ajax({
+        url: "<?php echo site_url('customer/productviewonclickaddcart');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+          producr_id: itemid,
+		  category_id: catid,
+		  qty: '1',
+          },
+        dataType: 'json',
+        success: function (data) {
+           if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+						jQuery('#sucessmsg').show();
+						$("#supcount").empty();
+						$("#supcount").append(data.count);
+						if(data.msg==2){
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> Product already exits <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						}
+						if(data.msg==1){
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product added successfully <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						}
+				}
+
+        }
+      });
+
+ }
 function itemaddtocart(itemid,catid,val){
 
 jQuery.ajax({
@@ -1243,7 +1287,7 @@ jQuery.ajax({
 					$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 					}
 					if(data.msg==1){
-					$('#addwhish').css("color", "yellow");
+					$('#addwhish').css("color", "#45b1b9");
 					$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 	
 					}

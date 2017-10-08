@@ -33,9 +33,10 @@ class Customer_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_order_items($order_id){
-		$this->db->select('order_items.*,products.item_name,products.description,products.item_image,products.product_code,products.brand,sellers.seller_name')->from('order_items');
+		$this->db->select('order_items.*,products.item_name,products.description,products.item_image,products.product_code,products.brand,sellers.seller_name,seller_store_details.store_name')->from('order_items');
 		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');
 		$this->db->where('order_items.order_id', $order_id);
 		return $this->db->get()->result_array();
 	}
@@ -113,7 +114,9 @@ class Customer_model extends MY_Model
         return $this->db->query($sql)->row_array(); 
 	}
 	public function update_sear_area($custid,$areaid){
-		$sql1="UPDATE customers SET area ='".$areaid."' WHERE customer_id = '".$custid."'";
+		
+		//print_r($areaid);exit;
+		$sql1="UPDATE customers SET area ='".$areaid[0]."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
 	}
 	public function set_password($custid,$roleid,$pass){
@@ -283,9 +286,10 @@ class Customer_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_cart_products($cust_id){
-		$this->db->select('cart.*,products.item_name,products.product_code,products.special_price,products.brand,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,products.offer_expairdate,products.offer_time,products.item_quantity,sellers.seller_name')->from('cart');
+		$this->db->select('cart.*,products.item_name,products.product_code,products.special_price,products.brand,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,products.offer_expairdate,products.offer_time,products.item_quantity,seller_store_details.store_name')->from('cart');
 		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
