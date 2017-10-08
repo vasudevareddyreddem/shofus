@@ -231,9 +231,10 @@
     <div class="container">
       <?php if(count($qucikjump)>0){ ?>
       <div class=" row qucik_jmp">
-	  <?php //echo '<pre>';print_r($qucikjump);exit; ?>
+	  
 		  <ul class="navbar_1"><li><span style="color:#555">Quick Jump to </span></li>
 		  <?php foreach($qucikjump as $list){ ?>
+		  <?php //echo '<pre>';print_r($list);exit; ?>
 			  <li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id']).'/'.base64_encode('quick').'/'.base64_encode($list['subcategory_id']));?>"><?php echo $list['subcategory_name']; ?></a></li>
 		  <?php } ?>
 			

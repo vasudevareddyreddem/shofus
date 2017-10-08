@@ -212,7 +212,7 @@ class Customerapi_model extends MY_Model
 	}
 
 	public function get_customer_whishlists($cust_id){
-		$this->db->select('item_wishlist.*,products.item_name,products.skuid,products.item_cost,products.offer_amount,products.item_image')->from('item_wishlist');
+		$this->db->select('item_wishlist.*,products.item_name,products.item_cost,products.offer_amount,products.item_image')->from('item_wishlist');
 		$this->db->join('products', 'products.item_id = item_wishlist.item_id', 'left');
 		$this->db->where('item_wishlist.cust_id', $cust_id);
         return $this->db->get()->result_array();

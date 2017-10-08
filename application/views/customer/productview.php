@@ -485,16 +485,28 @@
 							
 							<table class="table table-bordered mar_t10">
 									<tbody>
-									<?php if(isset($products_list['primary_camera']) && $products_list['primary_camera']!=''){ ?>
+													<?php if(isset($products_list['primary_camera']) && $products_list['primary_camera']!=''){ ?>
 													  <tr>
 														<td>Primary Camera</td>
 														<td><?php echo $products_list['primary_camera']; ?></td>
+													  </tr>
+													  <?php } ?>
+													  <?php if(isset($products_list['primary_camera_feature']) && $products_list['primary_camera_feature']!=''){ ?>
+													  <tr>
+														<td>Primary Camera Features</td>
+														<td><?php echo $products_list['primary_camera_feature']; ?></td>
 													  </tr>
 													  <?php } ?>
 													  <?php if(isset($products_list['secondary_camera']) && $products_list['secondary_camera']!=''){ ?>
 													  <tr>
 														<td>Secondary Camera</td>
 														<td><?php echo $products_list['secondary_camera']; ?></td>
+													  </tr>
+													  <?php } ?> 
+													  <?php if(isset($products_list['secondary_camera_feature']) && $products_list['secondary_camera_feature']!=''){ ?>
+													  <tr>
+														<td>Secondary Camera Features</td>
+														<td><?php echo $products_list['secondary_camera_feature']; ?></td>
 													  </tr>
 													  <?php } ?>
 													  <?php if(isset($products_list['video_recording']) && $products_list['video_recording']!=''){ ?>
@@ -619,10 +631,16 @@
 												<td><?php echo $products_list['gps']; ?></td>
 											  </tr>
 											  <?php } ?>
-											  <?php if(isset($products_list['glonass']) && $products_list['glonass']!=''){ ?>
+											  <?php if(isset($products_list['edge']) && $products_list['edge']!=''){ ?>
 											  <tr>
-												<td>GLONASS</td>
-												<td><?php echo $products_list['glonass']; ?></td>
+												<td>Edge</td>
+												<td><?php echo $products_list['edge']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['edge_features']) && $products_list['edge_features']!=''){ ?>
+											  <tr>
+												<td>Edge Features</td>
+												<td><?php echo $products_list['edge_features']; ?></td>
 											  </tr>
 											  <?php } ?>
 											  <?php if(isset($products_list['bluetooth']) && $products_list['bluetooth']!=''){ ?>

@@ -647,7 +647,14 @@ class CustomerApi extends REST_Controller {
 					
 					
 					//echo '<pre>';print_r($item_details);exit;
-					$message = array('status'=>1,'message'=>'order details are found','order details'=>$item_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uksize_list);
+					$message = array(
+					'status'=>1,'message'=>'order details are found',
+					'order details'=>$item_details,
+					'colorlist'=>isset($color_list)?$color_list:'',
+					'sizelist'=>isset($size_list)?$size_list:'',
+					'uksizelist'=>isset($uksize_list)?$uksize_list:'',
+					
+					);
 					$this->response($message,REST_Controller::HTTP_OK);
 				}else{
 					$message = array('status'=>0,'message'=>'You have no permissions');

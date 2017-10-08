@@ -9,7 +9,22 @@ class Front_Controller extends MY_Controller {
 			parent::__construct();
 				$this->load->library('cart');
 				$this->load->model('home_model');
-				$data['qucikjump']= $this->home_model->get_quickjump();
+				$qucikjumplist= $this->home_model->get_quickjump();
+				if(isset($qucikjumplist) && count($qucikjumplist)>0){
+				foreach ($qucikjumplist as $list){
+					 $sids[]=$list['subcategory_id'];
+				}
+				$subids=array_unique($sids);
+				foreach($subids as $lists){
+					$qucikjumps[]= $this->home_model->get_quickjump_details($lists);
+					
+				}
+				$data['qucikjump']=$qucikjumps;	
+					
+				}else{
+				$data['qucikjump']=array();
+				}
+				 
 				$data['allcategories_list']= $this->home_model->get_all_category_with_products();
 				$data['sidecaregory_list']= $this->home_model->get_sidebar_category_list();
 				$data['locationdata'] = $this->home_model->getlocations();

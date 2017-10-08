@@ -52,10 +52,12 @@ class Deliveryboyapi_model extends MY_Model
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
-		$this->db->join('orders', 'orders.order_id = orders.order_id', 'left');
+		$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
+		$this->db->where('order_items.delivery_boy_id',$cust_id);
 		$this->db->where('order_status.status_deliverd !=',1);
 		return $this->db->get()->result_array();
 	}
+	
 	public function get_deliver_boy_orders_reject_orderlist($cust_id){
 		$this->db->select('order_items.*,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile')->from('order_items');
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
@@ -79,6 +81,15 @@ class Deliveryboyapi_model extends MY_Model
 	public function rejected_lists(){
 		$this->db->select('*')->from('rejected_orders_list');
 		return $this->db->get()->result_array();
+	}
+	public function get_order_details($id){
+		$this->db->select('*')->from('order_items');
+		$this->db->where('order_item_id',$id);
+		return $this->db->get()->row_array();
+	}
+	public function get_order_details_status($order_item_id,$amount,$status){
+		$sql1="UPDATE order_items SET amount_status_paid ='".$status."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
 	}
 	
 		
