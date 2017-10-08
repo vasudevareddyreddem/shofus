@@ -970,10 +970,12 @@ function filtersearch(){
 	 
 	$pid=base64_decode($this->uri->segment(3));
 
-	//echo '<pre>';print_r($pid);exit;
+	//
 	$data['products_list']= $this->category_model->get_products($pid);
 	$data['similarproducts_list']= $this->category_model->get_simular_products($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
-	$data['sameproducts_list']= $this->category_model->get_same_products($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
+	$data['sameproducts_color_list']= $this->category_model->get_same_products_color($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
+	$data['sameproducts_size_list']= $this->category_model->get_same_products_size($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
+	//echo '<pre>';print_r($data['sameproducts_size_list']);exit;
 	$data['products_reviews']= $this->category_model->get_products_reviews($pid);
 	$data['products_specufucation']= $this->category_model->get_products_specifications_list($pid);
 	$data['sizes_list']= $this->category_model->get_products_sizes_list($pid);

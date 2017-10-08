@@ -147,28 +147,30 @@
 				</tr>
 				
 				  <?php 
-				  if(isset($sameproducts_list) && count($sameproducts_list)>0){
+				  if(isset($sameproducts_color_list) && count($sameproducts_color_list)>0){
 				  if($products_list['category_id']==20){ ?>
 						
 						<tr>
 							<td>Color </td>
 							<td>
 								<div class="row">
-								<?php foreach ($sameproducts_list as $lists){ ?>
+								<?php foreach ($sameproducts_color_list as $lists){ ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"    class="col-md-2 img_c-l_siz" style="background-color:<?php echo $lists['colour']; ?>"></a>
 								<?php   } ?>
 								</div>
 							</td>
 						</tr>
 						
-				  <?php } ?>
-				  <?php if($products_list['category_id']==20){ ?>
+				  <?php }  }?>
+				  <?php 
+				  if(isset($sameproducts_size_list) && count($sameproducts_size_list)>0){
+				  if($products_list['category_id']==20){ ?>
 						
 						<tr>
 							<td>Size </td>
 							<td>
 								<div class="row">
-								<?php foreach ($sameproducts_list as $lists){ ?>
+								<?php foreach ($sameproducts_size_list as $lists){ ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:17px"  class="col-md-1 " >
 								<span ><?php echo $lists['internal_memeory'];?></span>
 								</div></a>

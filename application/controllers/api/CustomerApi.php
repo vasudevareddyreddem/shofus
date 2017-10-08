@@ -681,7 +681,7 @@ class CustomerApi extends REST_Controller {
 		//echo '<pre>';print_r($wishlist);exit;
 		if(count($product_details)>0){
 		
-			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list,'sameproducts_list'=>$sameproducts_list);
+			$message = array('status'=>1,'path'=>'http://cartinhours.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list,'sameproducts_list'=>$sameproducts_list);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'product Id is not valid one');
@@ -928,7 +928,7 @@ class CustomerApi extends REST_Controller {
 						
 							$msg='Greetings! You are just a step away from accessing your Cartinhour account We are sharing a verification code to access your account. Once you have verified the code, you will be prompted to set a new password immediately. This is to ensure that only you have access to your account. Verification code is: '.$six_digit_random_number;
 							$this->load->library('email');
-							$this->email->from('admin@cartinhour.com', 'CartInHour');
+							$this->email->from('admin@cartinhours.com', 'CartInHour');
 							$this->email->to($email);
 							$this->email->subject('CartInHour - Forgot Password');
 							$html =$msg;
@@ -1043,7 +1043,7 @@ class CustomerApi extends REST_Controller {
 
 					$saveprofile = $this->Customerapi_model->save_customer_profile($customer_id,$saveprofile);
 					if(count($saveprofile)>0){
-						$message = array('status'=>1,'imagepath'=>'http://cartinhour.com/uploads/profile/','customer_id'=>$customer_id,'message'=>'profile successfully Updated');
+						$message = array('status'=>1,'imagepath'=>'http://cartinhours.com/uploads/profile/','customer_id'=>$customer_id,'message'=>'profile successfully Updated');
 						$this->response($message, REST_Controller::HTTP_OK);	
 					}else{
 						$message = array('status'=>0,'message'=>'Technical problem will occurred .Please try again');
@@ -1100,7 +1100,7 @@ class CustomerApi extends REST_Controller {
 		//echo '<pre>';print_r($wishlist);exit;
 		if(count($cust_details)>0){
 		
-			$message = array('status'=>1,'profilepicpath'=>'http://cartinhour.com/uploads/profile/','message'=>'customer profile details','details'=>$cust_details);
+			$message = array('status'=>1,'profilepicpath'=>'http://cartinhours.com/uploads/profile/','message'=>'customer profile details','details'=>$cust_details);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'Customer details  not found');
@@ -1131,7 +1131,7 @@ class CustomerApi extends REST_Controller {
 			$message = array(
 				'status'=>1,
 				'banners_list'=>$banners,
-				'path'=>'http://cartinhour.com/uploads/banners/'
+				'path'=>'http://cartinhours.com/uploads/banners/'
 			);
 			$this->response($message, REST_Controller::HTTP_OK);	
 			
@@ -1150,9 +1150,9 @@ class CustomerApi extends REST_Controller {
 			$message = array(
 				'status'=>1,
 				'top_offers'=>$top_offers,
-				'path'=>'http://cartinhour.com/uploads/products/'
+				'path'=>'http://cartinhours.com/uploads/products/'
 			);
-			//$top_offers['path']='http://cartinhour.com/uploads/productsimages/';
+			//$top_offers['path']='http://cartinhours.com/uploads/productsimages/';
 			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
@@ -1169,9 +1169,9 @@ class CustomerApi extends REST_Controller {
 			$message = array(
 				'status'=>1,
 				'dealsoftheday'=>$deals,
-				'path'=>'http://cartinhour.com/uploads/products/'
+				'path'=>'http://cartinhours.com/uploads/products/'
 			);
-			//$deals['path']='http://cartinhour.com/uploads/productsimages/';
+			//$deals['path']='http://cartinhours.com/uploads/productsimages/';
 			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
@@ -1188,9 +1188,9 @@ class CustomerApi extends REST_Controller {
 			$message = array(
 				'status'=>1,
 				'Seasonsales'=>$ssales,
-				'path'=>'http://cartinhour.com/uploads/products/'
+				'path'=>'http://cartinhours.com/uploads/products/'
 			);
-			//$ssales['path']='http://cartinhour.com/uploads/productsimages/';
+			//$ssales['path']='http://cartinhours.com/uploads/productsimages/';
 			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
@@ -1209,9 +1209,9 @@ class CustomerApi extends REST_Controller {
 			$message = array(
 				'status'=>1,
 				'Trendingproducts'=>$treding,
-				'path'=>'http://cartinhour.com/uploads/products/'
+				'path'=>'http://cartinhours.com/uploads/products/'
 			);
-			//$treding['path']='http://cartinhour.com/uploads/productsimages/';
+			//$treding['path']='http://cartinhours.com/uploads/productsimages/';
 			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
@@ -1230,9 +1230,9 @@ class CustomerApi extends REST_Controller {
 			$message = array(
 				'status'=>1,
 				'offersforyou'=>$offers,
-				'path'=>'http://cartinhour.com/uploads/product/'
+				'path'=>'http://cartinhours.com/uploads/product/'
 			);
-			//$offers['path']='http://cartinhour.com/uploads/productsimages/';
+			//$offers['path']='http://cartinhours.com/uploads/productsimages/';
 			$this->response($message, REST_Controller::HTTP_OK);	
 			
 		}else{
@@ -1251,7 +1251,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'single_product'=>$single_product,
-					'path'=>'http://cartinhour.com/uploads/products/'
+					'path'=>'http://cartinhours.com/uploads/products/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 		}else{
@@ -1314,7 +1314,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'categories'=>$categories,
-					'path' =>'http://cartinhour.com/assets/categoryimages/'
+					'path' =>'http://cartinhours.com/assets/categoryimages/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -1333,7 +1333,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'Subcategories'=>$subcategories,
-					'path' =>'http://cartinhour.com/assets/subcategoryimages/'
+					'path' =>'http://cartinhours.com/assets/subcategoryimages/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -1356,7 +1356,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'Subcategorie Items'=>$subcategorie_items,
-					'path'=>'http://cartinhour.com/uploads/products/'
+					'path'=>'http://cartinhours.com/uploads/products/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -1379,7 +1379,7 @@ class CustomerApi extends REST_Controller {
 				(
 					'status'=>1,
 					'products'=>$catwisepro,
-					'path'=>'http://cartinhour.com/uploads/products/'
+					'path'=>'http://cartinhours.com/uploads/products/'
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -1403,7 +1403,7 @@ class CustomerApi extends REST_Controller {
 				$message = array
 				(
 					'status'=>1,
-					'path'=>'http://cartinhour.com/uploads/products/',
+					'path'=>'http://cartinhours.com/uploads/products/',
 					'location_top_offers'=>$top_offer_location,
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -1424,7 +1424,7 @@ class CustomerApi extends REST_Controller {
 				$message = array
 				(
 					'status'=>1,
-					'path'=>'http://cartinhour.com/uploads/products/',
+					'path'=>'http://cartinhours.com/uploads/products/',
 					'location_deals ofthe day'=>$deals_of_the_day_location,
 					
 				);
@@ -1446,7 +1446,7 @@ class CustomerApi extends REST_Controller {
 				$message = array
 				(
 					'status'=>1,
-					'path'=>'http://cartinhour.com/uploads/products/',
+					'path'=>'http://cartinhours.com/uploads/products/',
 					'location_season sales'=>$season_sales_location,
 					
 				);
@@ -1468,7 +1468,7 @@ class CustomerApi extends REST_Controller {
 				$message = array
 				(
 					'status'=>1,
-					'path'=>'http://cartinhour.com/uploads/products/',
+					'path'=>'http://cartinhours.com/uploads/products/',
 					'location_treading'=>$treanding_location,
 					
 				);
@@ -1491,7 +1491,7 @@ class CustomerApi extends REST_Controller {
 				$message = array
 				(
 					'status'=>1,
-					'path'=>'http://cartinhour.com/uploads/products/',
+					'path'=>'http://cartinhours.com/uploads/products/',
 					'location_offer for you'=>$offers_for_you_location,
 					
 				);
@@ -1512,7 +1512,7 @@ class CustomerApi extends REST_Controller {
 			$message = array(
 				'status'=>1,
 				'Temp Cart'=>$tempcart,
-				'path'=>'http://cartinhour.com/uploads/products/'
+				'path'=>'http://cartinhours.com/uploads/products/'
 			);
 			$this->response($message, REST_Controller::HTTP_OK);	
 			
@@ -1549,7 +1549,7 @@ class CustomerApi extends REST_Controller {
 						'Location_Season Sales'=>$season_sales_location,
 						'Location_Tranding Products'=>$treanding_location,
 						'Location_Offers For You'=>$offers_for_you_location,
-						'path'=>'http://cartinhour.com/uploads/products/'
+						'path'=>'http://cartinhours.com/uploads/products/'
 		 			)
 		 			
 		 		);
@@ -1579,7 +1579,7 @@ class CustomerApi extends REST_Controller {
 						'Season Sales'=>$ssales,
 						'Tranding Products'=>$treding,
 						'Offers For You'=>$offers,
-						'path'=>'http://cartinhour.com/uploads/products/'
+						'path'=>'http://cartinhours.com/uploads/products/'
 		 			)
 		 			
 		 		);
