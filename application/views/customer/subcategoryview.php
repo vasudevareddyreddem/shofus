@@ -231,14 +231,14 @@ $(document).ready(function() {
 
 	 <div class="row ">
 			<div class="col-md-12  ">
-			  
+			  <?php //echo '<pre>';print_r($subcategory_list);exit; ?>
 			  <div class="col-md-12 gir_alg" >
 			  <div class="title text-left mar_t10"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
 			  <?php foreach($subcategory_list as $list){ ?>
 				  <div class="col-md-2" id="onclicksubcat<?php echo $list['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
 				   <div class="text-center"> <!--catg_sty-->
 					  <div style="padding-bottom:10px">
-							<img src="<?php echo base_url(); ?>assets/home/images/logo.png" />
+							<img src="<?php echo base_url('assets/subcategoryimages/'.$list['subcategory_image']); ?>" />
 					  </div>
 					
 						<?php echo $list['subcategory_name']; ?>
