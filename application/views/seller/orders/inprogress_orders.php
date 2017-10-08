@@ -84,11 +84,11 @@
                   </table></td>
 				  <td class="text-center" style="color:font-weight:bold">
 			
-				<?php if($orders_data->status_confirmation==1 && $orders_data->status_packing=='' && $orders_data->status_road=='' && $orders_data->status_deliverd==''){
+				<?php if($orders_data->status_confirmation==1 && $orders_data->status_packing==''){
 					echo "Order confirmed ";  
-				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road=='' && $orders_data->status_deliverd==''){
+				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road=='' ){
 					  echo "Packing Order";
-				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road==3 && $orders_data->status_deliverd==''){
+				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road==3 && $orders_data->status_deliverd=='' || $orders_data->status_deliverd==0){
 					  echo "Order on Road";
 				  }else if($orders_data->status_confirmation==1 && $orders_data->status_packing==2 && $orders_data->status_road==3 && $orders_data->status_deliverd==4){
 					  echo "Delivered";
