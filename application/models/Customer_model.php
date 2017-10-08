@@ -23,9 +23,10 @@ class Customer_model extends MY_Model
 	/* save orders purpose*/
 	
 	public function order_list($cust_id){
-		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.description,products.item_image,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,sellers.seller_name')->from('order_items');
+		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.description,products.item_image,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,sellers.seller_name,seller_store_details.store_name')->from('order_items');
 		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');
 		$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 		$this->db->where('order_items.customer_id', $cust_id);
@@ -70,6 +71,11 @@ class Customer_model extends MY_Model
 	public function save_billing_deails($data){
 		$this->db->insert('billing_address', $data);
 		return $insert_id = $this->db->insert_id();
+	}
+	public function get_status_save_order_success($id){
+		$this->db->select('orders.amount_status,orders.payment_type')->from('orders');
+		$this->db->where('order_id',$id);
+		return $this->db->get()->row_array();
 	}
 	public function get_billing_details($custid){
 		$this->db->select('billing_address.*,locations.location_name')->from('billing_address');

@@ -419,7 +419,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
 			//echo "expired";
 				$item_price= $productslist['special_price'];
 				$prices= ($productslist['item_cost']-$productslist['special_price']);
-				$percentage= (($prices) /$productslist['item_cost'])*100;
+				$percentage= (($prices) /($productslist['item_cost']))*100;
 				$orginal_price=$productslist['item_cost'];
 			}
 

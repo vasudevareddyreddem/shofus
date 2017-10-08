@@ -23,13 +23,14 @@
 					</div>
 					<div class="pull-right"> 
 					<span style="font-size:17px;">status :</span>
-					<span class="site_col"><?php if($orders['order_status']==1 && $orders['status_packing']=='' && $orders['status_road']=='' && $orders['status_deliverd']==''){
+					<span class="site_col">
+					<?php if($orders['status_confirmation']==1 && $orders['status_packing']==''){
 						echo "Order confirmed ";  
-					  }else if($orders['order_status']==1 && $orders['status_packing']==2 && $orders['status_road']=='' && $orders['status_deliverd']==''){
+					  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==''){
 						  echo "Packing Order";
-					  }else if($orders['order_status']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']==''){
+					  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']=='' || $orders['status_deliverd']==0){
 						  echo "Order on Road";
-					  }else if($orders['order_status']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']==4){
+					  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']==4){
 						  echo "Delivered";
 					  }else{
 						 echo "Returned"; 
@@ -61,7 +62,7 @@
 							<?php } ?>
 							<div>
 							<span class="tras_col">
-								Seller : <?php echo $orders['seller_name']; ?>
+								Seller : <?php echo $orders['store_name']; ?>
 							</span>
 							</div>
 						

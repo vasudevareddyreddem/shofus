@@ -102,9 +102,7 @@ class DeliveryboyApi extends REST_Controller {
 		}
 		$oreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_list($customer_id);
 		//echo $this->db->last_query();exit;
-		//echo '<pre'>print_r($oreders_list);exit;
 		$rejectoreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_reject_list($customer_id);
-		
 		if(count($rejectoreders_list)>0){
 				foreach ($rejectoreders_list as $lists){
 					$orditemids[]=$lists['order_item_id'];
@@ -123,7 +121,11 @@ class DeliveryboyApi extends REST_Controller {
 				}
 			
 		}else{
-			foreach ($oreders_list as $lists){
+			echo "dfdfd";
+			echo '<pre>';print_r($oreders_list);exit;
+				$rrids[]=$lisd['order_item_id'];
+			foreach($oreders_list as $lists){
+				
 				
 					$order_lists[]=$lists;
 				}
@@ -308,6 +310,11 @@ class DeliveryboyApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 		
+		
+	}
+	public function deliverycashpayment_post(){
+		
+		echo 'ghfg';exit;
 		
 	}
 

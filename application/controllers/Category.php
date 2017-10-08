@@ -828,7 +828,8 @@ function filtersearch(){
 			
 		}
 	}else{
-		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,$sid);
+		//echo 'fgfd';exit;
+		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,base64_decode($sid));
 		foreach($data['subcategory_porduct_list'] as $list){
 			//echo '<pre>';print_r($list);
 			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
@@ -836,6 +837,8 @@ function filtersearch(){
 			
 		}
 	}
+	
+	//echo '<pre>';print_r($data);exit;
 	if(isset($reviewrating) && count($reviewrating)>0){
 		$data['avg_count']=$reviewrating;
 	}
