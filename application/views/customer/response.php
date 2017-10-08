@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="panel-footer text-center" style="background:#fff;">
                                     <div class="pull-left">
-                                        <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span><?php echo isset($productslist['seller_name'])?$productslist['seller_name']:''; ?></span>
+                                        <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span><?php echo isset($productslist['store_name'])?$productslist['store_name']:''; ?></span>
                                     </div>
 									<div class="pull-right">
                                         <a href="<?php echo base_url('customer/orederdetails/'.base64_encode($productslist['order_item_id'])); ?>"><span style="color:#888;font-size:17px">Track</span></a>

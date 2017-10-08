@@ -33,9 +33,10 @@ class Customer_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_order_items($order_id){
-		$this->db->select('order_items.*,products.item_name,products.description,products.item_image,products.product_code,products.brand,sellers.seller_name')->from('order_items');
+		$this->db->select('order_items.*,products.item_name,products.description,products.item_image,products.product_code,products.brand,sellers.seller_name,seller_store_details.store_name')->from('order_items');
 		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');
 		$this->db->where('order_items.order_id', $order_id);
 		return $this->db->get()->result_array();
 	}
