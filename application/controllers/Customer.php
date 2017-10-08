@@ -485,10 +485,11 @@ class Customer extends Front_Controller
 				
 				}
 			}else{
-			
+				$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 				$save= $this->customer_model->cart_products_save($adddata);
 			if(count($save)>0){
-				$data['msg']=1;	
+				$data['msg']=1;
+				$data['count']=count($countlist);					
 				echo json_encode($data);
 			
 
