@@ -718,7 +718,7 @@ class Customer extends Front_Controller
 			 $updtata=array(
 			 'title'=>$post['title'],
 			'name'=>$post['name'],
-			'emal_id'=>$post['email'],
+			'emal_id'=>$customerdetails['cust_email'],
 			'mobile'=>$post['mobile'],
 			'address1'=>$post['address1'],
 			'address2'=>$post['address2'],
@@ -749,15 +749,12 @@ class Customer extends Front_Controller
 		if($customerdetails['address1']=='' || $customerdetails['address2']==''){
 			
 			$details=array(
-			'title'=>$post['title'],
-			'name'=>$post['name'],
-			'mobile'=>$post['mobile'],
 			'address1'=>$post['address1'],
 			'address2'=>$post['address2'],
 			'pincode'=>$post['pincode'],
 			'city'=>$post['city'],
 			'state'=>$post['state'],
-			'area'=>$post['area'],
+			'area'=>isset($post['area'])?$post['area']:'',
 			);
 			$updatedetails= $this->customer_model->update_deails($customerdetails['customer_id'],$details);
 

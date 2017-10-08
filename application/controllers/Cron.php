@@ -96,6 +96,19 @@ class Cron extends Front_Controller
 		
 	public function testing(){
 		
+		$this->load->library('email');
+		$this->email->from('cartinhours.com');
+		$this->email->to('gvijayaraghavareddy7@gmail.com');
+		$this->email->subject("testing");
+		$body = 'helllo vijay';
+		$this->email->message($body);
+		if ($this->email->send())
+		{
+		echo 'email send';
+		}
+	}
+	/*public function testing(){
+		
 			
 					$msg='hello ho';
 					$mobile=8500050944;
@@ -108,7 +121,7 @@ class Cron extends Front_Controller
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					//echo '<pre>';print_r($ch);exit;
 					$server_output = curl_exec ($ch);
-	}
+	}*/
  
 
   

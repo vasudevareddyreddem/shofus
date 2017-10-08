@@ -257,7 +257,13 @@ $(document).ready(function(){
    function getoldproduct_details(val){
 	   var subcategory=document.getElementById('subcategorylist').value;
 	   var categoryids=document.getElementById('category_id').value;
-	   jQuery.ajax({
+	   var categoryids=document.getElementById('category_id').value;
+	   var special_prices=document.getElementById('special_price').value;
+	   var pqtys=document.getElementById('pqty').value;
+	    if(special_prices!='' && pqtys!=''){
+		}else{
+			
+			jQuery.ajax({
 				url: "<?php echo site_url('seller/products/getolditemdata');?>",
 				type: 'post',
 				data: {
@@ -274,6 +280,8 @@ $(document).ready(function(){
 					
 				}
 			});
+		}
+	   
 	   
    }
    
