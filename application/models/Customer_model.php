@@ -113,7 +113,9 @@ class Customer_model extends MY_Model
         return $this->db->query($sql)->row_array(); 
 	}
 	public function update_sear_area($custid,$areaid){
-		$sql1="UPDATE customers SET area ='".$areaid."' WHERE customer_id = '".$custid."'";
+		
+		//print_r($areaid);exit;
+		$sql1="UPDATE customers SET area ='".$areaid[0]."' WHERE customer_id = '".$custid."'";
        	return $this->db->query($sql1);
 	}
 	public function set_password($custid,$roleid,$pass){
