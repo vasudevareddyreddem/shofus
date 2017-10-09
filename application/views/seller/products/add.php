@@ -299,7 +299,7 @@ $(document).ready(function(){
 		   }else{
 			  return true;
 		   }
-		  // return false;
+		   
 	   }
 	   
 	   function enablesubbmit(){
@@ -845,7 +845,7 @@ function getspecialinputs(ids){
                             message: 'Special price must be less than or equal to price'
                         }
                 }
-			},
+			}
 			
 		
         }
