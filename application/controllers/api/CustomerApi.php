@@ -1992,7 +1992,8 @@ class CustomerApi extends REST_Controller {
 					$data['discount_list']= $this->Customerapi_model->get_all_discount_list($category_id);
 					$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
 					$data['offer_list']= $this->Customerapi_model->get_all_offer_list($category_id);
-					$data['color_list']= $this->Customerapi_model->get_all_color_list($category_id);
+					//$data['color_list']= $this->Customerapi_model->get_all_color_list($category_id);
+					$data['color_list']= $this->Customerapi_model->get_all_colours_list($category_id);
 					$data['minimum_price'] = reset($data['price_list']);
 					$data['maximum_price'] = end($data['price_list']);
 					$iospurpose=array_merge($data['brand_list'][0],$data['price_list'][0],$data['discount_list'][0],array('Instock'=>1,'Out of stock'=>0),$data['offer_list'][0],$data['color_list'][0],array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));

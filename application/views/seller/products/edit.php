@@ -27,7 +27,7 @@
 			<i class="pe-7s-note2"></i>
 		</div>
 		<div class="header-title">
-			<form name="" action="#" method="get" class="sidebar-form search-box pull-right hidden-md hidden-lg hidden-sm">
+			<form name=""  action="#" method="get" class="sidebar-form search-box pull-right hidden-md hidden-lg hidden-sm">
 				<div class="input-group">
 					<input type="text" name="q" class="form-control" placeholder="Search...">
 					<span class="input-group-btn">
@@ -53,7 +53,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('error');?></div>
 			<?php endif; ?>
-	<form name="addproduct" id="addproduct" action="<?php echo base_url('seller/products/update/'); ?>" method="post" enctype="multipart/form-data" >
+	<form name="addproduct" id="addproduct" onsubmit="return validateForm()" action="<?php echo base_url('seller/products/update/'); ?>" method="post" enctype="multipart/form-data" >
 <?php //echo '<pe>';print_r($productdetails['subcategory_id']);?>
 <?php //echo '<pe>';print_r($productdetails['category_id']);?>
 						<input type="hidden" name="product_id" id="product_id" value="<?php echo isset($productdetails['item_id'])?$productdetails['item_id']:''; ?>">				
@@ -680,7 +680,17 @@
 	
 
   <script>
-  
+  function validateForm(){
+		   var price=document.getElementById('product_price').value;
+		   var specialprice=document.getElementById('special_price').value;
+		   if(Number(specialprice) > Number(price)){
+			  $('#errormsgvalidation').html('special price must be less than price');
+			  return false;
+		   }else{
+			  return true;
+		   }
+		   
+	   }
   function removeextrafields(){
 	  
 	   $('#productname').val('');

@@ -7,7 +7,7 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Special price</label>
-					<input onkeyup="enablesubbmit();" type="text" class="form-control" id="special_price" name="special_price" value="<?php echo isset($item_details['special_price'])?$item_details['special_price']:''; ?>" >
+					<input onkeyup="enablesubbmit();" autocomplete="off" type="text" class="form-control" id="special_price" name="special_price" value="<?php echo isset($item_details['special_price'])?$item_details['special_price']:''; ?>" >
 				</div>
 				<span style="color:red;" id="errormsgvalidation"></span>
 			</div>
@@ -505,6 +505,65 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	</div>
 	
 
+<script>
+$(document).ready(function() {
+
+    $('#addproduct').bootstrapValidator({
+       
+        fields: {
+            category_id: {
+					validators: {
+					notEmpty: {
+					message: 'Please select a category'
+					}
+				}
+			},
+			subcategorylist: {
+					validators: {
+					notEmpty: {
+					message: 'Please select a subcategory'
+					}
+				}
+			},
+		
+			
+			product_name: {
+					validators: {
+					notEmpty: {
+						message: 'Product name is required'
+					}
+                  
+				}
+			},
+			product_price: {
+					validators: {
+					notEmpty: {
+						message: 'Price is required'
+					},
+                   regexp: {
+					regexp: /^[0-9.,]+$/,
+					message: 'Price  can only consist of digits'
+					}
+				}
+			},
+			special_price: {
+					validators: {
+						notEmpty: {
+						message: 'Special Price is required'
+					},
+                    between: {
+                            min: 1,
+                            max: 'product_price',
+                            message: 'Special price must be less than or equal to price'
+                        }
+                }
+			}
+			
+		
+        }
+    });
+});
+</script>
 
 	
 
