@@ -95,15 +95,15 @@ $("#fademaskpurpose").removeClass("mask_hide");
 					
 					?>
 					<a href="<?php echo base_url('category/productview/'.base64_encode($tops['item_id'])); ?>">
-					<div class="item" style="border: 1px #ddd solid;">
-					<div style="position:absolute;top:0;left:15px;z-index: 1024;">
+					<div class="item" >
+					<div style="position:absolute;top:0;left:25px;z-index: 1024;">
 							<div style="background:#ddd;border-radius:50%;height:20px;height:20px;color:#fff;"> <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-danger arrowed-right"><?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
+                  <span class="label-tags"><span class="label label-primary arrowed-right"><?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
                 </div></div>
 						</div>
 					<div class="pro-img img-wrapper  img_hover"><img class="img-responsive" src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
 					</div>
-					<div class="pro-info" style="border-top:1px solid #ddd;"><?php echo $tops['item_name']; ?></div>
+					<div class="pro-info" ><?php echo $tops['item_name']; ?></div>
 					</div>
 					</a>
 					<?php } ?>
@@ -146,7 +146,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
 		<div class="item">
           <div class=" box-product-outer" >
             <div class="box-product">
-              <div class="img-wrapper  img_hover item">
+              <div class="img-wrapper  img_hover item" style="position:relative">
 			  <div class="img_size">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                <img class="" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
@@ -156,7 +156,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
 				</div>
               
 				<?php if($productslist['item_quantity']<=0){ ?>
-				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
+				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
 				<?php } ?>
@@ -266,7 +266,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
 				</div>
             
               <?php if($productslist['item_quantity']<=0){ ?>
-				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
+				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
 				<?php } ?>
@@ -357,7 +357,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
 				</div>
                
                <?php if($productslist['item_quantity']<=0){ ?>
-				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
+				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
 				<?php } ?>
@@ -441,7 +441,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
 				</div>
              
                 <?php if($productslist['item_quantity']<=0){ ?>
-				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
+				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
 				<?php } ?>
