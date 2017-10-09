@@ -131,7 +131,12 @@
 				</td>
               </tr>
               <tr>
-			 <td>Sold By</td>
+			 <td>Sold By:</td>
+			 <td><span ><?php echo $products_list['store_name'];?></span></td>
+			
+			 </tr>
+			 <tr>
+			  <td>Status</td>
                 <td>
 				<span class="label label-success arrowed">
 				 <?php if($products_list['item_status']==1 && $products_list['item_quantity']!=0){ 
@@ -152,18 +157,12 @@
 						
 						<tr>
 							<td>Color </td>
-							<!--<td>
-								<div class="row">
-								<?php foreach ($sameproducts_color_list as $lists){ ?>
-								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"    class="col-md-2 img_c-l_siz" style="background-color:<?php echo $lists['colour']; ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="Black"></a>
-								<?php   } ?>
-								</div>
-							</td>-->
+							
 							<td>
 								<div class="row">
 								<?php foreach ($sameproducts_color_list as $lists){ ?>
-								<a class="col-md-2" href="" data-toggle="myToolTip" data-placement="top" data-html="true"  title="Black">
-									<img style="height:auto;width:32px;" class="img-responsive" src="http://cartinhours.com/uploads/products/mi-redmi-note-4-na-original-imaeqdxgrdhxgkcx.jpeg" />
+								<a class="col-md-2" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="Black">
+									<img style="height:auto;width:32px;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
 								<?php   } ?>
 								</div>
@@ -286,7 +285,7 @@
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
 			<div class="pull-left">
-				<b>Pincode:</b><input class="pin_in" style="border:none;" maxlength="6" onkeyup="removecouponmsg();" id="checkpincode" name="checkpincode" type="text" value="">
+				<b>Pincode:</b><input class="pin_in" style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd" maxlength="6" onkeyup="removecouponmsg();" id="checkpincode" name="checkpincode" type="text" value="">
 				</div>
 				<div class="pull-right"><a class="site_col" style="cursor:pointer" onclick="getareapincode();">check</a></div>
 				<div class="clearfix">&nbsp;</div>

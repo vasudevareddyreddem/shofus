@@ -42,7 +42,7 @@ public function index()
 	$data['trending_products'] = $this->home_model->get_trending_products();
 	$data['offer_for_you'] = $this->home_model->get_offer_for_you();
 	$data['deals_of_the_day'] = $this->home_model->get_deals_of_the_day();
-	$data['season_sales'] = $this->home_model->get_season_sales();
+	$data['season_sales'] = $this->home_model->get_season_sales	();
 	$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		
 	
@@ -120,18 +120,28 @@ public function search_location_offers()
 		$data['cart_item_ids']=$cart_item_ids;
 		$data['cart_ids']=$cart_ids;
 		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
 	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
-	foreach ($wishlist_ids as  $list){
-		$customer_ids_list[]=$list['cust_id'];
-		$whishlist_item_ids_list[]=$list['item_id'];
-		$whishlist_ids_list[]=$list['id'];
+	if(count($wishlist_ids)>0){
+		foreach ($wishlist_ids as  $list){
+			$customer_ids_list[]=$list['cust_id'];
+			$whishlist_item_ids_list[]=$list['item_id'];
+			$whishlist_ids_list[]=$list['id'];
+		}
+		$data['customer_ids_list']=$customer_ids_list;
+		$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+		$data['whishlist_ids_list']=$whishlist_ids_list;
+		
+	}else{
+		$data['customer_ids_list']=array();
+		$data['whishlist_item_ids_list']=array();
+		$data['whishlist_ids_list']=array();
 	}
 	$data['locationnames']=$locationdatadetails;
-	//echo '<pre>';print_r($customer_ids_list);exit;
-	$data['customer_ids_list']=$customer_ids_list;
-	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
-	$data['whishlist_ids_list']=$whishlist_ids_list;
 	$this->load->view('home/locationsearch',$data);
 
 }
