@@ -147,28 +147,30 @@
 				</tr>
 				
 				  <?php 
-				  if(isset($sameproducts_list) && count($sameproducts_list)>0){
+				  if(isset($sameproducts_color_list) && count($sameproducts_color_list)>0){
 				  if($products_list['category_id']==20){ ?>
 						
 						<tr>
 							<td>Color </td>
 							<td>
 								<div class="row">
-								<?php foreach ($sameproducts_list as $lists){ ?>
+								<?php foreach ($sameproducts_color_list as $lists){ ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"    class="col-md-2 img_c-l_siz" style="background-color:<?php echo $lists['colour']; ?>"></a>
 								<?php   } ?>
 								</div>
 							</td>
 						</tr>
 						
-				  <?php } ?>
-				  <?php if($products_list['category_id']==20){ ?>
+				  <?php }  }?>
+				  <?php 
+				  if(isset($sameproducts_size_list) && count($sameproducts_size_list)>0){
+				  if($products_list['category_id']==20){ ?>
 						
 						<tr>
 							<td>Size </td>
 							<td>
 								<div class="row">
-								<?php foreach ($sameproducts_list as $lists){ ?>
+								<?php foreach ($sameproducts_size_list as $lists){ ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:17px"  class="col-md-1 " >
 								<span ><?php echo $lists['internal_memeory'];?></span>
 								</div></a>
@@ -485,16 +487,28 @@
 							
 							<table class="table table-bordered mar_t10">
 									<tbody>
-									<?php if(isset($products_list['primary_camera']) && $products_list['primary_camera']!=''){ ?>
+													<?php if(isset($products_list['primary_camera']) && $products_list['primary_camera']!=''){ ?>
 													  <tr>
 														<td>Primary Camera</td>
 														<td><?php echo $products_list['primary_camera']; ?></td>
+													  </tr>
+													  <?php } ?>
+													  <?php if(isset($products_list['primary_camera_feature']) && $products_list['primary_camera_feature']!=''){ ?>
+													  <tr>
+														<td>Primary Camera Features</td>
+														<td><?php echo $products_list['primary_camera_feature']; ?></td>
 													  </tr>
 													  <?php } ?>
 													  <?php if(isset($products_list['secondary_camera']) && $products_list['secondary_camera']!=''){ ?>
 													  <tr>
 														<td>Secondary Camera</td>
 														<td><?php echo $products_list['secondary_camera']; ?></td>
+													  </tr>
+													  <?php } ?> 
+													  <?php if(isset($products_list['secondary_camera_feature']) && $products_list['secondary_camera_feature']!=''){ ?>
+													  <tr>
+														<td>Secondary Camera Features</td>
+														<td><?php echo $products_list['secondary_camera_feature']; ?></td>
 													  </tr>
 													  <?php } ?>
 													  <?php if(isset($products_list['video_recording']) && $products_list['video_recording']!=''){ ?>
@@ -619,10 +633,16 @@
 												<td><?php echo $products_list['gps']; ?></td>
 											  </tr>
 											  <?php } ?>
-											  <?php if(isset($products_list['glonass']) && $products_list['glonass']!=''){ ?>
+											  <?php if(isset($products_list['edge']) && $products_list['edge']!=''){ ?>
 											  <tr>
-												<td>GLONASS</td>
-												<td><?php echo $products_list['glonass']; ?></td>
+												<td>Edge</td>
+												<td><?php echo $products_list['edge']; ?></td>
+											  </tr>
+											  <?php } ?>
+											  <?php if(isset($products_list['edge_features']) && $products_list['edge_features']!=''){ ?>
+											  <tr>
+												<td>Edge Features</td>
+												<td><?php echo $products_list['edge_features']; ?></td>
 											  </tr>
 											  <?php } ?>
 											  <?php if(isset($products_list['bluetooth']) && $products_list['bluetooth']!=''){ ?>

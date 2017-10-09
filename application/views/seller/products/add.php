@@ -211,7 +211,12 @@
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
  <script type="text/javascript">
-
+function changememory(id){
+	$('#internal_memory').val(id);
+}
+function changesimtype(id){
+	$('#sim_supported').val(id);
+}
 $(document).ready(function(){
     // Defining the local dataset
     var cars = [<?php echo "'".$pdata."'"; ?>];
@@ -824,7 +829,7 @@ function getspecialinputs(ids){
 						message: 'Price is required'
 					},
                    regexp: {
-					regexp: /^[0-9.]+$/,
+					regexp: /^[0-9.,]+$/,
 					message: 'Price  can only consist of digits'
 					}
 				}

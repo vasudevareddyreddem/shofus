@@ -113,7 +113,7 @@ tr th:last-child {
 	  <tr>
         <th>Amount Status </th>
 			<td><?php
-		if(isset($item_details['amount_status']) && $item_details['amount_status']==1){
+		if(isset($item_details['amount_status_paid']) && $item_details['amount_status_paid']==1){
 			echo "Paid";
 		}else{
 			echo "Pending";

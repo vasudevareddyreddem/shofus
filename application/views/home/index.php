@@ -409,6 +409,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
     
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
+		  <?php //echo '<pre>';print_r($season_sales);exit; ?>
       <?php $s=1;foreach($season_sales as $productslist)  { 
 			$currentdate=date('Y-m-d h:i:s A');
 			if($productslist['offer_expairdate']>=$currentdate){
@@ -419,7 +420,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
 			//echo "expired";
 				$item_price= $productslist['special_price'];
 				$prices= ($productslist['item_cost']-$productslist['special_price']);
-				$percentage= (($prices) /$productslist['item_cost'])*100;
+				$percentage= (($prices) /($productslist['item_cost']))*100;
 				$orginal_price=$productslist['item_cost'];
 			}
 

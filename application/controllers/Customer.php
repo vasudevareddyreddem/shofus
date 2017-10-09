@@ -540,6 +540,8 @@ class Customer extends Front_Controller
 		$this->template->write_view('content', 'customer/cart', $data);
 		$this->template->render();	
 		}else{
+			$this->session->set_userdata('pincode','');
+			$this->session->set_userdata('time','');
 			$this->session->set_flashdata('success','No Item In the cart.');
 			redirect('');
 		}
@@ -996,6 +998,7 @@ class Customer extends Front_Controller
 						'created_at'=>date('Y-m-d H:i:s'),
 					);
 				$saveorder= $this->customer_model->save_order_success($ordersucess);
+				$getsaveorderstatus= $this->customer_model->get_status_save_order_success($saveorder);
 				
 				//echo '<pre>';print_r($saveorder);exit;
 				/* order sms*/
@@ -1023,6 +1026,8 @@ class Customer extends Front_Controller
 						'item_price'=>$items['item_price'],
 						'total_price'=>$items['total_price'],
 						'delivery_amount'=>$items['delivery_amount'],
+						'payment_type'=>$getsaveorderstatus['payment_type'],
+						'amount_status_paid'=>$getsaveorderstatus['amount_status'],
 						'commission_price'=>$items['commission_price'],
 						'customer_email'=>$customerdetails['cust_email'],
 						'customer_phone'=>$billingaddress['mobile'],
@@ -1129,9 +1134,9 @@ class Customer extends Front_Controller
 					'created_at'=>date('Y-m-d H:i:s'),
 				);
 				$saveorder= $this->customer_model->save_order_success($ordersucess);
-				
+				$getsaveorderstatus= $this->customer_model->get_status_save_order_success($saveorder);
 				$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
-				//echo '<pre>';print_r($cart_items);exit;
+				
 				foreach($cart_items as $items){
 					$orderitems=array(
 						'order_id'=>$saveorder,
@@ -1143,6 +1148,8 @@ class Customer extends Front_Controller
 						'total_price'=>$items['total_price'],
 						'delivery_amount'=>$items['delivery_amount'],
 						'commission_price'=>$items['commission_price'],
+						'payment_type'=>$getsaveorderstatus['payment_type'],
+						'amount_status_paid'=>$getsaveorderstatus['amount_status'],
 						'customer_email'=>$customerdetails['cust_email'],
 						'customer_phone'=>$billingaddress['mobile'],
 						'customer_address'=>$billingaddress['address1'].' '.$billingaddress['address2'],

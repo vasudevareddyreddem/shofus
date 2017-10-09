@@ -298,8 +298,22 @@
 		</div>
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Secondary Camera</label>
+				<label for="exampleInputEmail1">Primary Camera Features</label>
+				<input type="text" class="form-control" id="primary_camera_feature" name="primary_camera_feature" value="<?php echo isset($productdetails['primary_camera_feature'])?$productdetails['primary_camera_feature']:''; ?>" >
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Secondary Camera</label>
 				<input type="text" class="form-control" id="secondary_camera" name="secondary_camera" value="<?php echo isset($productdetails['secondary_camera'])?$productdetails['secondary_camera']:''; ?>" >
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Secondary Camera Features </label>
+				<input type="text" class="form-control" id="secondary_camera_feature" name="secondary_camera_feature" value="<?php echo isset($productdetails['secondary_camera_feature'])?$productdetails['secondary_camera_feature']:''; ?>" >
 			</div>
 		</div>
 	</div>
@@ -406,8 +420,8 @@
 		</div>
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">GLONASS</label>
-				<input type="text" class="form-control" id="glonass" name="glonass" value="<?php echo isset($productdetails['glonass'])?$productdetails['glonass']:''; ?>" >
+				 <label for="exampleInputEmail1">USB Connectivity</label>
+				<input type="text" class="form-control" id="usb_connectivity" name="usb_connectivity" value="<?php echo isset($productdetails['usb_connectivity'])?$productdetails['usb_connectivity']:''; ?>" >
 			</div>
 		</div>
 	</div>
@@ -428,8 +442,14 @@
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">USB Connectivity</label>
-				<input type="text" class="form-control" id="usb_connectivity" name="usb_connectivity" value="<?php echo isset($productdetails['usb_connectivity'])?$productdetails['usb_connectivity']:''; ?>" >
+				<label for="exampleInputEmail1">Edge</label>
+				<input type="text" class="form-control" id="edge" name="edge" value="<?php echo isset($productdetails['edge'])?$productdetails['edge']:''; ?>" >
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Edge Features</label>
+				<input type="text" class="form-control" id="edge_features" name="edge_features" value="<?php echo isset($productdetails['edge_features'])?$productdetails['edge_features']:''; ?>" >
 			</div>
 		</div>
 	</div>

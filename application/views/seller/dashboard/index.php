@@ -110,8 +110,8 @@
                                             <td><?php  echo $order_data->cust_firstname .' '. $order_data->cust_lastname; ?></td>
                                             <td><?php  echo $order_data->item_name; ?></td>
                                             <td><?php  echo $order_data->total_price; ?></td>
-                                            <td></td>                                              </tr>
-                                        <?php $SNO++; } ?>
+                                            <td><?php  echo $order_data->delivery_boy_id; ?></td>
+                                       <?php $SNO++; } ?>
 							</tbody>
                     </table>
                 </div>

@@ -99,7 +99,7 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Screen Size</label>
-				<input type="text" class="form-control" id="screen_size" name="screen_size" value="<?php echo isset($item_details['screen_size'])?$item_details['screen_size']:''; ?>" >
+				<input type="text" class="form-control"  id="screen_size" name="screen_size" value="<?php echo isset($item_details['screen_size'])?$item_details['screen_size']:''; ?>" >
 			</div>
 		</div>
 	</div>
@@ -107,13 +107,13 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				 <label for="exampleInputEmail1">Internal Memory</label>
-				<input type="text" class="form-control" id="internal_memeory" name="internal_memeory" value="<?php echo isset($item_details['internal_memeory'])?$item_details['internal_memeory']:''; ?>" >
+				<input type="text" class="form-control" onchange="changememory(this.value);" id="internal_memeory" name="internal_memeory" value="<?php echo isset($item_details['internal_memeory'])?$item_details['internal_memeory']:''; ?>" >
 			</div>
 		</div>
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Camera</label>
-				<input type="text" class="form-control" id="camera" name="camera" value="<?php echo isset($item_details['camera'])?$item_details['camera']:''; ?>" >
+				<input type="text" class="form-control"  id="camera" name="camera" value="<?php echo isset($item_details['camera'])?$item_details['camera']:''; ?>" >
 			</div>
 		</div>
 	</div>
@@ -121,7 +121,7 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				 <label for="exampleInputEmail1">Sim Type</label>
-				<input type="text" class="form-control" id="sim_type" name="sim_type" value="<?php echo isset($item_details['sim_type'])?$item_details['sim_type']:''; ?>" >
+				<input type="text" class="form-control" onchange="changesimtype(this.value);" id="sim_type" name="sim_type" value="<?php echo isset($item_details['sim_type'])?$item_details['sim_type']:''; ?>" >
 			</div>
 		</div>
 		<div class="col-md-6 form-group">
@@ -184,8 +184,22 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 		</div>
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Secondary Camera</label>
+				<label for="exampleInputEmail1">Primary Camera Features</label>
+				<input type="text" class="form-control" id="primary_camera_feature" name="primary_camera_feature" value="<?php echo isset($item_details['primary_camera_feature'])?$item_details['primary_camera_feature']:''; ?>" >
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Secondary Camera</label>
 				<input type="text" class="form-control" id="secondary_camera" name="secondary_camera" value="<?php echo isset($item_details['secondary_camera'])?$item_details['secondary_camera']:''; ?>" >
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Secondary Camera Features </label>
+				<input type="text" class="form-control" id="secondary_camera_feature" name="secondary_camera_feature" value="<?php echo isset($item_details['secondary_camera_feature'])?$item_details['secondary_camera_feature']:''; ?>" >
 			</div>
 		</div>
 	</div>
@@ -292,8 +306,8 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 		</div>
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">GLONASS</label>
-				<input type="text" class="form-control" id="glonass" name="glonass" value="<?php echo isset($item_details['glonass'])?$item_details['glonass']:''; ?>" >
+				 <label for="exampleInputEmail1">USB Connectivity</label>
+				<input type="text" class="form-control" id="usb_connectivity" name="usb_connectivity" value="<?php echo isset($item_details['usb_connectivity'])?$item_details['usb_connectivity']:''; ?>" >
 			</div>
 		</div>
 	</div>
@@ -314,8 +328,14 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">USB Connectivity</label>
-				<input type="text" class="form-control" id="usb_connectivity" name="usb_connectivity" value="<?php echo isset($item_details['usb_connectivity'])?$item_details['usb_connectivity']:''; ?>" >
+				<label for="exampleInputEmail1">Edge</label>
+				<input type="text" class="form-control" id="edge" name="edge" value="<?php echo isset($item_details['edge'])?$item_details['edge']:''; ?>" >
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Edge Features</label>
+				<input type="text" class="form-control" id="edge_features" name="edge_features" value="<?php echo isset($item_details['edge_features'])?$item_details['edge_features']:''; ?>" >
 			</div>
 		</div>
 	</div>
@@ -360,7 +380,7 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Sim Supported</label>
+				 <label for="exampleInputEmail1">Sim Type</label>
 				<input type="text" class="form-control" id="sim_supported" name="sim_supported"  value="<?php echo isset($item_details['sim_supported'])?$item_details['sim_supported']:''; ?>" >
 			</div>
 		</div>
