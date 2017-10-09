@@ -34,7 +34,7 @@
                     <center>
 		<div class="col-sm-12 col-xs-12 login-register-form m-b-3 text-left">
 		<div class="row">
-		 <div class="title"><span>Select a Delivery Address</span></div>
+		 <div class="title"><span>Saved address</span></div>
 		 
 		 <?php $cnt=1;foreach($billingaddresslis as $addlist) { ?>
 			<div class="col-md-6" id="hide_add<?php echo $cnt; ?>">
@@ -74,7 +74,7 @@
 		</div>
 		<div class="clearfix"> &nbsp;</div>
 		<div id="newbillingaddress" >
-         <div class="title"><span>Please Enter Your Information</span></div>
+         <div class="title"><span>Add New Address</span></div>
 		<form action="<?php echo base_url('customer/billingaddresspost'); ?>" method="post" name="billingaddress" id="billingaddress">
 			<input type="hidden" id="addressid" name="addressid" value="0">
 			<div class="mat-div form-group">
