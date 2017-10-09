@@ -768,6 +768,12 @@ class Customer extends Front_Controller
 
 		$customerdetails=$this->session->userdata('userdetails');
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		
+		if(count($cart_items)<=0){
+			$this->session->set_flashdata('success','No Item In the cart.');
+			redirect('');
+			
+		}
 		foreach ($cart_items as $list){
 			
 			$productsdetails= $this->customer_model->get_product_details($list['item_id']);
@@ -915,6 +921,12 @@ class Customer extends Front_Controller
 		
 		/* out of stock products pupose*/
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		
+		if(count($cart_items)<=0){
+			$this->session->set_flashdata('success','No Item In the cart.');
+			redirect('');
+			
+		}
 		foreach ($cart_items as $list){
 			
 			$productsdetails= $this->customer_model->get_product_details($list['item_id']);
@@ -1232,6 +1244,11 @@ class Customer extends Front_Controller
 	//echo '<pre>';print_r($billinginnfo);exit;
 	  $customerdetails=$this->session->userdata('userdetails');
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		if(count($cart_items)<=0){
+			$this->session->set_flashdata('success','No Item In the cart.');
+			redirect('');
+			
+		}
 		//echo '<pre>';print_r($cart_items);exit;
 		foreach($cart_items as $items){
 		$delete= $this->customer_model->after_payment_cart_item($customerdetails['customer_id'],$items['item_id'],$items['id']);
