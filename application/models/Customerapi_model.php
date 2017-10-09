@@ -729,6 +729,16 @@ class Customerapi_model extends MY_Model
 		return $this->db->get()->result_array();
 		
 	}
+	public function get_all_colours_list($catid){
+		
+		$this->db->select('(products.colour) as color_name')->from('products');
+		$this->db->where('category_id',$catid);
+		$this->db->where('item_status',1);
+		$this->db->where('colour!=','');
+		$this->db->group_by('colour');
+		return $this->db->get()->result_array();
+		
+	}
 
 	public function get_all_price_list($catid)
 	{

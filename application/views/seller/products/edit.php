@@ -683,7 +683,7 @@
   function validateForm(){
 		   var price=document.getElementById('product_price').value;
 		   var specialprice=document.getElementById('special_price').value;
-		   if(specialprice>price){
+		   if(Number(specialprice) > Number(price)){
 			  $('#errormsgvalidation').html('special price must be less than price');
 			  return false;
 		   }else{
