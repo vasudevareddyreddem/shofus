@@ -81,7 +81,7 @@
                                             <tr>
                                                 <td class="col-md-2">
                                                     <div class="media">
-                                                        <a class="thumbnail pull-left" href="#"> <img class="media-object img-responsive" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" style="width: 72px; height: 72px;"> </a>
+                                                        <a class="thumbnail pull-left" href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"> <img class="media-object img-responsive" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" style="width: 72px; height: 72px;"> </a>
 
                                                     </div>
                                                     <br>
