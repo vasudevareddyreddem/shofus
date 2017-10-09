@@ -1592,8 +1592,9 @@ class Category_model extends MY_Model
 	}
 	public function get_products($pid){
 		
-		$this->db->select('products.*,item_wishlist.yes')->from('products');
+		$this->db->select('products.*,item_wishlist.yes,seller_store_details.store_name')->from('products');
 		$this->db->join('item_wishlist', 'item_wishlist.item_id = products.item_id', 'left'); //
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left'); //
 		$this->db->where('products.item_id',$pid);
 		return $this->db->get()->row_array();
 	}

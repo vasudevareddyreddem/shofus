@@ -131,7 +131,12 @@
 				</td>
               </tr>
               <tr>
-			 <td>Sold By</td>
+			 <td>Sold By:</td>
+			 <td><span ><?php echo $products_list['store_name'];?></span></td>
+			
+			 </tr>
+			 <tr>
+			  <td>Status</td>
                 <td>
 				<span class="label label-success arrowed">
 				 <?php if($products_list['item_status']==1 && $products_list['item_quantity']!=0){ 
