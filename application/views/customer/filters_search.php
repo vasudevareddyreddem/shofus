@@ -784,7 +784,7 @@ jQuery.ajax({
 				if(data.msg==1){
 				$('#sucessmsg').show('');
 				 $("#addwishlistids"+id+val).addClass("text-primary");
-						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to added <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 				document.getElementById("sucessmsg").focus();				
 				}
 			
