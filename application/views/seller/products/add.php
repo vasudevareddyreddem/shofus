@@ -180,7 +180,7 @@
 	<div class="row">
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
-					   <label for="exampleInputEmail1">prodcut Name</label>
+					   <label for="exampleInputEmail1">product Name</label>
 					   
 						<input type="text" class="form-control typeahead tt-query"  autocomplete="off" spellcheck="false" onchange="getoldproduct_details(this.value);" name="product_name" id="product_name" >
 				</div>
