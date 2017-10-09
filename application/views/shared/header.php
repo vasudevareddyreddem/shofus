@@ -178,7 +178,7 @@
 				</a>
 						
 			</span>
-			<div class="user_sow" id="user_sow" >
+			<div id="user_sow" style="display:none;">
 							<ul class="log_list" >
 								<span class="top_fix_niv glyphicon glyphicon-triangle-top"></span>
 								<li class="font_list"><a href="<?php echo base_url('customer/account');?>">  <span >My Account</span> </a></li>
@@ -795,11 +795,11 @@ $("#modal-8").show();
 		});
 		});
 
-// $(document).ready(function(){
-    // $(".user_log").click(function(){
-        // $("#user_sow").fadeToggle();
-    // });
-// });
+$(document).ready(function(){
+    $(".user_log").click(function(){
+        $("#user_sow").fadeToggle();
+    });
+});
 
 </script>
 <script>

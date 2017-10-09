@@ -137,8 +137,9 @@
   width: 100%;
   border: none;
   outline: none;
-  padding: 8px 0;
+  padding: 0;
   font-size: 16px;
+      margin-top: 20px ;
 }
 
 .is-active::after {
@@ -1923,6 +1924,7 @@ footer {
 	overflow: hidden;
 	color: #fff;
 	background: #252932;
+	z-index:1028;
 }
 footer .footer-inner {
 	margin: auto;

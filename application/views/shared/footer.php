@@ -49,7 +49,7 @@
         </div>
         <!--footer-column-last--> 
       </div>
-      <div class="container_main" style="margin-top:50px;">
+      <div class="container_main" style="margin-top:50px;" >
         <div class="row">
           <div class="col-sm-8 col-xs-12 col-lg-12" >
             <div class="footer-column" >

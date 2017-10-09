@@ -175,7 +175,7 @@
     </div>
 </div>
 </div>
-
+<div class="clearfix"></div><br>
 
 <script>
 function checkvalidation(form){
@@ -322,4 +322,19 @@ $(".mat-input").focusout(function(){
     $(this).parent().removeClass("is-completed");
   $(this).parent().removeClass("is-active");
 })
+</script>
+<script>
+
+function checkOffset() {
+  var a=$(document).scrollTop()+window.innerHeight;
+  var b=$('#footer-start').offset().top;
+  if (a<b) {
+    $('#social-float').css('bottom', '140px');
+  } else {
+    $('#social-float').css('bottom', (140+(a-b))+'px');
+  }
+}
+$(document).ready(checkOffset);
+$(document).scroll(checkOffset);
+
 </script>

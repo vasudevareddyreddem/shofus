@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container widt_cus_998">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
                     <div href="#" class="list-group-item text-center step_com " >
@@ -198,7 +198,7 @@
 		
     </div>
 </div>
-
+<div class="clearfix">&nbsp;</div>
 
 <script>
 $("input:checkbox").on('click', function() {
@@ -568,4 +568,19 @@ $(".mat-input").focusout(function(){
     $(this).parent().removeClass("is-completed");
   $(this).parent().removeClass("is-active");
 })
+</script>
+<script>
+
+function checkOffset() {
+  var a=$(document).scrollTop()+window.innerHeight;
+  var b=$('#footer-start').offset().top;
+  if (a<b) {
+    $('#social-float').css('bottom', '160px');
+  } else {
+    $('#social-float').css('bottom', (160+(a-b))+'px');
+  }
+}
+$(document).ready(checkOffset);
+$(document).scroll(checkOffset);
+
 </script>

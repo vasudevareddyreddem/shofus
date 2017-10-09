@@ -1,7 +1,20 @@
-s
+
 <div class="container">
-    <div class="row"
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
+<style>
+div.bhoechie-tab-menu div.list-group>a.active:after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    margin-top: -13px;
+    border-left: 0;
+    border-bottom: 13px solid transparent;
+    border-top: 13px solid transparent;
+    border-left: 10px solid #45b1b9;
+}
+</style>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container widt_cus_998">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
                     <a href="#" class="list-group-item active text-center">
@@ -24,7 +37,7 @@ s
 
                 </div>
             </div>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab" style="min-height:500px">
                 <!-- flight section -->
                 <div class="bhoechie-tab-content active">
                     <center>
@@ -66,7 +79,7 @@ s
                                             <tr>
                                                 <td class="col-md-2">
                                                     <div class="media">
-                                                        <a class="thumbnail pull-left" href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"> <img class="media-object" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" style="width: 72px; height: 72px;"> </a>
+                                                        <a class=" thumbnail" href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"> <img  style="height:80px;width:auto;" class="media-object" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" style="width: 72px; height: 72px;"> </a>
 
                                                     </div>
                                                     <br>
@@ -200,17 +213,18 @@ s
 		
 		
 		<?php if($this->session->flashdata('productsuccess')): ?>
-			<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
+			<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> <?php echo $this->session->flashdata('productsuccess');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 			<?php endif; ?> 
 			<?php if($this->session->flashdata('qtyerror')): ?>
-				<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+				<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 			<?php endif; ?>
 			
-			<div class="alt_cus"><div style="display:none;" class="alert_msg animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+			<div class="alt_cus"><div style="display:none;" class="alert_msg1 animated slideInUp btn_war" id="qtymesage"> &nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
     </div>
-</div>
+    </div>
+
 <script>
 
 function productqty(id){
@@ -371,7 +385,7 @@ function checkOffset() {
   if (a<b) {
     $('#social-float').css('bottom', '80px');
   } else {
-    $('#social-float').css('bottom', (10+(a-b))+'px');
+    $('#social-float').css('bottom', (80+(a-b))+'px');
   }
 }
 $(document).ready(checkOffset);
