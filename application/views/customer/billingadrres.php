@@ -23,6 +23,7 @@
 
                 </div>
             </div>
+			
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
 			
 			
@@ -42,7 +43,7 @@
 					<div class="checkbox pull-left">
 					  <label>
 							<input type="checkbox" name="billingadress" id="billingadress<?php echo $addlist['address_id']; ?>" onclick="getbillingaddress_id(this.value);" value="<?php echo $addlist['address_id']; ?>" >
-							<span style="font-weight:500"> &nbsp; <?php echo $addlist['title']; ?></span>
+							<span style="font-weight:500"> &nbsp; <?php if(isset($addlist['title']) && $addlist['title']!=''){ echo $addlist['title']; }else{ echo $addlist['name'];}; ?></span>
 					  </label>
 					</div>
 								
@@ -331,10 +332,7 @@ function changebillingaddress(aid,cnt){
             
              title: {
               validators: {
-					notEmpty: {
-						message: 'Title is required'
-					},
-                   regexp: {
+					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
 					message: 'Title can only consist of alphanumaric, space and dot'
 					}
@@ -544,9 +542,9 @@ function checkOffset() {
   var a=$(document).scrollTop()+window.innerHeight;
   var b=$('#footer-start').offset().top;
   if (a<b) {
-    $('#social-float').css('bottom', '80px');
+    $('#social-float').css('bottom', '150px');
   } else {
-    $('#social-float').css('bottom', (10+(a-b))+'px');
+    $('#social-float').css('bottom', (10+'px');
   }
 }
 $(document).ready(checkOffset);
