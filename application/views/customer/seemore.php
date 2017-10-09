@@ -1,6 +1,4 @@
-<div >
-<div class="" >
-		
+
 	<div class="cart_bdy"> 
     <!--Top Category slider Start-->
     <div class="top-cate">
@@ -37,13 +35,13 @@
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
 			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
 			<input type="hidden" name="qty" id="qty" value="1" >
-                <div class="col-md-2 ">
+                <div class="col-md-2 " style="width:20%">
 				
 				<div class="item">
           <div class=" box-product-outer" >
             <div class="box-product">
               <div class="img-wrapper  img_hover">
-              <div class="img_size">
+              <div class="img_size text-center">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
 				 
@@ -52,7 +50,7 @@
 				</div>
                
 				<?php if($productslist['item_quantity']<=0){ ?>
-				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
+				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
 				<?php } ?>
@@ -106,16 +104,15 @@
       </div>
     </div>
     <!--Top Category silder End--> 
-  </div>
- </div>
-   </div>
+
+
   
 
  
   
 <!--home page product scroller start here --> 
 
-</html>
+
 
 <script type="text/javascript">
 function addwhishlidt(id,val){

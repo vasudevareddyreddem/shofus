@@ -7,10 +7,10 @@ $("#fademaskpurpose").removeClass("mask_hide");
 <?php 	} ?>
 	
 <?php if($this->session->flashdata('success')): ?>
-			<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
+			<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 			<?php endif; ?> 
 			<?php if($this->session->flashdata('qtyerror')): ?>
-				<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+				<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 			<?php endif; ?>
 
@@ -156,7 +156,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
 				</div>
               
 				<?php if($productslist['item_quantity']<=0){ ?>
-			
+				
 				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
@@ -205,6 +205,8 @@ $("#fademaskpurpose").removeClass("mask_hide");
             <!-- End Item --> 
           </div>
         </div>
+		<div class="clearfix"></div>
+        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
 	
@@ -314,6 +316,8 @@ $("#fademaskpurpose").removeClass("mask_hide");
             
           </div>
         </div>
+		<div class="clearfix"></div>
+        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
 
@@ -401,6 +405,8 @@ $("#fademaskpurpose").removeClass("mask_hide");
       <?php  $d++;} ?>
           </div>
         </div>
+		<div class="clearfix"></div>
+        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
    <section>
@@ -486,6 +492,8 @@ $("#fademaskpurpose").removeClass("mask_hide");
       <?php $s++; } ?>
           </div>
         </div>
+		<div class="clearfix"></div>
+        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
   </div>
