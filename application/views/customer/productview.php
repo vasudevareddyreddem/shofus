@@ -152,10 +152,19 @@
 						
 						<tr>
 							<td>Color </td>
+							<!--<td>
+								<div class="row">
+								<?php foreach ($sameproducts_color_list as $lists){ ?>
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"    class="col-md-2 img_c-l_siz" style="background-color:<?php echo $lists['colour']; ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="Black"></a>
+								<?php   } ?>
+								</div>
+							</td>-->
 							<td>
 								<div class="row">
 								<?php foreach ($sameproducts_color_list as $lists){ ?>
-								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"    class="col-md-2 img_c-l_siz" style="background-color:<?php echo $lists['colour']; ?>"></a>
+								<a class="col-md-2" href="" data-toggle="myToolTip" data-placement="top" data-html="true"  title="Black">
+									<img style="height:auto;width:32px;" class="img-responsive" src="http://cartinhours.com/uploads/products/mi-redmi-note-4-na-original-imaeqdxgrdhxgkcx.jpeg" />
+								</a>
 								<?php   } ?>
 								</div>
 							</td>
@@ -171,10 +180,11 @@
 							<td>
 								<div class="row">
 								<?php foreach ($sameproducts_size_list as $lists){ ?>
-								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:17px"  class="col-md-1 " >
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px"  class="col-md-3 " >
 								<span ><?php echo $lists['internal_memeory'];?></span>
 								</div></a>
 								<?php   } ?>
+								
 								</div>
 							</td>
 						</tr>
