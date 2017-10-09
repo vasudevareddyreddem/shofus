@@ -1,144 +1,6 @@
-<style>
-    /*  bhoechie tab */
-    
-    div.bhoechie-tab-container {
-        z-index: 10;
-        background-color: #ffffff;
-        padding: 0 !important;
-        border-radius: 4px;
-        -moz-border-radius: 4px;
-        border: 1px solid #ddd;
-        // margin-top: 20px;
-        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-        -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-        background-clip: padding-box;
-        opacity: 0.97;
-        filter: alpha(opacity=97);
-    }
-    div.bhoechie-tab-menu {
-        padding-right: 0;
-        padding-left: 0;
-        padding-bottom: 0;
-    }
-    div.bhoechie-tab-menu div.list-group {
-        margin-bottom: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a {
-        margin-bottom: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a .glyphicon,
-    div.bhoechie-tab-menu div.list-group>a .fa {
-        color: #45b1b9;
-    }
-    div.bhoechie-tab-menu div.list-group>a:first-child {
-        border-top-right-radius: 0;
-        -moz-border-top-right-radius: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a:last-child {
-        border-bottom-right-radius: 0;
-        -moz-border-bottom-right-radius: 0;
-    }
-    div.bhoechie-tab-menu div.list-group>a.active,
-    div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
-    div.bhoechie-tab-menu div.list-group>a.active .fa {
-        background-color: #45b1b9;
-        background-image: #45b1b9;
-        color: #ffffff;
-    }
-    div.bhoechie-tab-menu div.list-group>div.active:after {
-        content: '';
-        position: absolute;
-        left: 100%;
-        top: 50%;
-        margin-top: -13px;
-        border-left: 0;
-        border-bottom: 13px solid transparent;
-        border-top: 13px solid transparent;
-        border-left: 10px solid #45b1b9;
-    }
-    div.bhoechie-tab-content {
-        background-color: #ffffff;
-        /* border: 1px solid #eeeeee; */
-        
-        padding-left: 20px;
-        padding-top: 10px;
-    }
-    div.bhoechie-tab div.bhoechie-tab-content:not(.active) {
-        display: none;
-    }
-    .table>tbody>tr>td,
-    .table>tbody>tr>th,
-    .table>tfoot>tr>td,
-    .table>tfoot>tr>th,
-    .table>thead>tr>td,
-    .table>thead>tr>th {
-        border-top: none;
-    }
-	.panel-body {
-		padding: 0px 15px 0px 15px;		
-	}
-	.panel-footer {
-    padding:0px 15px 15px 20px;
-	border-top:none;
-   
-}
-.mat-div {
-  padding: 0;
-  position: relative;
-}
-
-.mat-div:after, .mat-div:before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: #e2e2e2; 
-  bottom: 0;
-  left: 0;
-  transition: all 0.5s;
-}
-
-.mat-div::after {
-  background-color: #4a5c63;
-  transform: scaleX(0);
-}
-
-.mat-label {
-  display: block;
-  font-size: 16px;
-  transform: translateY(25px);
-  color: #45b1b9;
-  transition: all 0.5s;
-}
-
-.mat-input {
-  position: relative;
-  background: transparent;
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 8px 0;
-  font-size: 16px;
-}
-
-.is-active::after {
-  transform: scaleX(1);
-}
-
-.is-active .mat-label {
-  color: #4a5c63;
-}
-
-.is-completed .mat-label {
-  font-size: 12px;
-  transform: translateY(0);
-}
-
-</style>
+s
 <div class="container">
-    <div class="row">
+    <div class="row"
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
@@ -204,7 +66,7 @@
                                             <tr>
                                                 <td class="col-md-2">
                                                     <div class="media">
-                                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" style="width: 72px; height: 72px;"> </a>
+                                                        <a class="thumbnail pull-left" href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"> <img class="media-object" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" style="width: 72px; height: 72px;"> </a>
 
                                                     </div>
                                                     <br>
@@ -269,12 +131,15 @@
 			
         </div>
 		
-		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
+	<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
 				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="deliverymsg"></span>
+			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivered with in <?php echo $this->session->userdata('time');?></span>
+
+			<span style="font-weight:500;font-size:17px" id="olddeliverymsg"><?php ?></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
-				Pincode:<input style="border:none;font-size:17px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=""><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
+				Pincode:<input style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=""><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
@@ -415,6 +280,7 @@ var pincodeformat =/^[0-9]+$/;
 $('#deliverymsg').html('Check your delivery Status').css("color", "black");
 function delveryerrormsg(){
 $('#imgdisplaying').show();
+$('#oldmsg').hide();
 $('#deliverymsg').html('Check your delivery Status').css("color", "black");
 }
 function removecouponmsg(){
@@ -435,8 +301,10 @@ function couponcodeapply(){
 }
 function getareapincode(val){
 	var pin=$('#checkpincode').val();
+	$('#oldmsg').hide();
 	$('#imgdisplaying').hide();
 	$('#deliverymsg').html('');
+	
 	
 	if(pin==''){
 		$('#deliverymsg').html('Pincode is required.').css("color", "red");
