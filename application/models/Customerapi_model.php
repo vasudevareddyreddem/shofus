@@ -212,7 +212,7 @@ class Customerapi_model extends MY_Model
 	}
 
 	public function get_customer_whishlists($cust_id){
-		$this->db->select('item_wishlist.*,products.item_name,products.skuid,products.item_cost,products.offer_amount,products.item_image')->from('item_wishlist');
+		$this->db->select('item_wishlist.*,products.item_name,products.item_cost,products.offer_amount,products.item_image')->from('item_wishlist');
 		$this->db->join('products', 'products.item_id = item_wishlist.item_id', 'left');
 		$this->db->where('item_wishlist.cust_id', $cust_id);
         return $this->db->get()->result_array();
@@ -405,7 +405,7 @@ class Customerapi_model extends MY_Model
        	return $this->db->query($sql1);
 	}
 	public function order_list($cust_id){
-		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.item_description,products.item_image')->from('order_items');
+		$this->db->select('order_items.*,orders.transaction_id,products.item_name,products.description,products.item_image')->from('order_items');
 		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 		$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
 		$this->db->where('order_items.customer_id', $cust_id);

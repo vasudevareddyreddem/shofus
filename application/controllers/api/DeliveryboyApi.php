@@ -102,9 +102,7 @@ class DeliveryboyApi extends REST_Controller {
 		}
 		$oreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_list($customer_id);
 		//echo $this->db->last_query();exit;
-		//echo '<pre'>print_r($oreders_list);exit;
 		$rejectoreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_reject_list($customer_id);
-		
 		if(count($rejectoreders_list)>0){
 				foreach ($rejectoreders_list as $lists){
 					$orditemids[]=$lists['order_item_id'];
@@ -123,15 +121,15 @@ class DeliveryboyApi extends REST_Controller {
 				}
 			
 		}else{
-			foreach ($oreders_list as $lists){
+		
+			foreach($oreders_list as $lists){
+				
 				
 					$order_lists[]=$lists;
 				}
 		}
 		if(isset($order_lists) && count($order_lists)>0){
 			foreach($order_lists as $lists){
-				
-				
 				if(!empty($lists)) {
 					$finalorderlists[]=$lists;//this means value does not exist or is FALSE
 				}
@@ -308,6 +306,43 @@ class DeliveryboyApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 		
+		
+	}
+	public function deliverycashpayment_post(){
+		
+		$order_item_id=$this->input->get('order_item_id');
+		$amount=$this->input->get('amount');
+		$status=$this->input->get('status');
+		$amountstatus=$this->input->get('amountstatus');
+		if($order_item_id==''){
+		$message = array('status'=>1,'message'=>'order item id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}else if($amount==''){
+		$message = array('status'=>1,'message'=>'Amount is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}else if($amountstatus==''){
+		$message = array('status'=>1,'message'=>'Amountstatus is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$getdetails=$this->Deliveryboyapi_model->get_order_details($order_item_id);
+		
+		$totalamt=$getdetails['total_price']+$getdetails['delivery_amount'];
+		if($totalamt==$amount){
+			$getdetails=$this->Deliveryboyapi_model->get_order_details_status($order_item_id,$amount,$amountstatus);
+			if(count($getdetails)>0){
+					$message = array('status'=>1, 'message'=>'Order Amount status Succssfully updated');
+					$this->response($message, REST_Controller::HTTP_OK);
+			}else{
+				$message = array('status'=>1,'message'=>'technical problem will occured .try again after some time');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			
+		}else{
+			$message = array('status'=>1,'message'=>'Please enter correct amount');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		
+
 		
 	}
 

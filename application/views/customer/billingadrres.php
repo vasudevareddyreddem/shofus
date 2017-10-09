@@ -117,7 +117,7 @@
 			</div>
 			
 			
-             <a href="#" class="btn btn-primary "> Back</a>
+             <a href="<?php echo base_url('customer/cart'); ?>" class="btn btn-primary "> Back</a>
           <button class="pull-right btn btn-primary btn-small" type="submit">Proceed to Checkout</span><span aria-hidden="true">&rarr;</span></button>
          
           </form>

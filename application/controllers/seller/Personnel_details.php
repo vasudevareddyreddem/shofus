@@ -348,6 +348,7 @@ public function personal_details_updatebd()
 	'seller_bank_account' => $post['bank_account'],
 	'seller_account_name' => $post['account_name'],
     'seller_aaccount_ifsc_code' => $post['ifsccode'],
+    'bank_complete' => 1,
 	);
 	$result=$this->Personnel_details_model->updatebd($sid,$data);
 	if(count($result)>0)

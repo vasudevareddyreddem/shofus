@@ -76,6 +76,7 @@ public function search($match)
 public function get_already_exits_categories($data){
 	$this->db->select('*')->from('category');
  	$this->db->where('category_name',$data);
+ 	$this->db->where('status',1);
   	return $this->db->get()->row_array();
 }	
 	

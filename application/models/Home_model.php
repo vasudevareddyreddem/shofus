@@ -628,6 +628,14 @@ public function get_quickjump(){
         return $this->db->query($sql)->result_array();*/
 	
 }
+public function get_quickjump_details($subcatid){
+	$this->db->select('*')->from('subcategories');
+	$this->db->where('subcategory_id',$subcatid);
+	return $this->db->get()->row_array();
+		/*$sql="SELECT COUNT(item_id), item_id FROM order_items GROUP BY item_id ORDER BY COUNT(item_id) DESC";
+        return $this->db->query($sql)->result_array();*/
+	
+}
 
 
 
