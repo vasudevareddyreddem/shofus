@@ -1,7 +1,22 @@
 .mar_t10{
 	margin-top:10px;
 }
-
+.out_of_stoc{
+	    background: #45b1b5;
+    border-radius: 52px 0px;
+    color: #fff;
+    padding: 2px 31px;
+    position: fixed;
+    top: 120px;
+}
+.out_of_stoc:hover{
+	    background: #4a5c63;
+    border-radius: 52px 0px;
+    color: #fff;
+    padding: 2px 31px;
+    position: fixed;
+    top: 120px;
+}
 /*cart and payment and billig and thanksupu css*/
  div.bhoechie-tab-container {
         z-index: 10;
@@ -180,7 +195,7 @@
 .see_more{
 	position:absolute;
 	top:15px;
-	right:10px;
+	right:115px;
 	border-right: 2px solid #4a5c63;
 	border-radius: 16px 0px 0px 16px !important;
 }
@@ -1198,6 +1213,9 @@ a.offers_link {
 	/* -webkit-transition: all 0.5s ease 0s; */
 	cursor: pointer
 }
+.pro-info{
+	margin-top:10px;
+}
 .featured-pro .pro-img .pro-info {
 	color: #333;
 	font-size: 12px;
@@ -1446,7 +1464,7 @@ a.offers_link {
 	padding: 0px 10px;
 	position: relative;
 	margin-top: 0px;
-	padding-bottom: 42px;
+	padding-bottom: 15px;
 	background-color: #fff;
 	border-width: 1px;
 	border-style: solid;
@@ -1490,7 +1508,7 @@ a.offers_link {
 	margin-left: 0;
 }
 #best-seller .owl-item .item {
-	float: left;
+	/* float: left; */
 	background: #FFF;
 	margin-top: 20px;
 }
@@ -4550,7 +4568,7 @@ input[type=radio]:checked + span::before {
 }
 
 .label-primary.arrowed-right:after {
-  border-left-color: #337ab7;
+  border-left-color: #45b1b9;
 }
 
 .label-success.arrowed:before {
@@ -4843,7 +4861,7 @@ input[type=radio]:checked + span::before {
 
 .box-product-outer {
   margin: 5px;
-  padding: 15px;
+  padding: 5px 15px;
   /* border: 1px solid #e4ebf3; */
   border-radius: 0;
   /* &:hover {
@@ -4870,7 +4888,8 @@ input[type=radio]:checked + span::before {
 .img_size img{
 	max-width:100% ;
 	max-height:100% ;
-	margin:0 auto;
+	margin:0 auto !important;
+	
 }
 .img_size{
 	
@@ -6216,7 +6235,7 @@ and (max-device-width : 1024px)
     overflow: hidden;
 	
     z-index: 1000;
-	width:50% !important;
+	width:300px !important;
 	height:25% !important;
     cursor: crosshair;
     background: #CECECE;
@@ -6231,7 +6250,7 @@ and (max-device-width : 1024px)
 .gc-zoom {
     position: absolute;
     /overflow: hidden;
-    width: 1000px !important;
+    width:900px !important;
     height: 400px !important;
     z-index: 1040 !important;
     border: 2px solid #f5f5f5;
@@ -6369,7 +6388,7 @@ and (max-device-width : 1024px)
 }
 
 .glass-case ul li.gc-active, .glass-case ul li.gc-active:hover {
-    border-color: #669966;
+    border-color: #45b1b9;
     cursor: default;
 }
 
@@ -6377,6 +6396,8 @@ and (max-device-width : 1024px)
     position: relative;
     top: 50%;
     left: 50%;
+	width:auto;
+	height:100%;
 }
 /*********************OVERLAY***************************/
 .gc-overlay-area {

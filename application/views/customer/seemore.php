@@ -1,6 +1,3 @@
-
-
-
 <div >
 <div class="" >
 		
@@ -46,11 +43,13 @@
           <div class=" box-product-outer" >
             <div class="box-product">
               <div class="img-wrapper  img_hover">
+              <div class="img_size">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
-               <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
+               <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
 				 
            
                 </a>
+				</div>
                
 				<?php if($productslist['item_quantity']<=0){ ?>
 				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
