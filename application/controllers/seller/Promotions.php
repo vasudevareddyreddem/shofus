@@ -36,7 +36,9 @@ class Promotions extends Admin_Controller {
 		//echo '<pre>';print_r($post);exit;
 		$var=array_values($post['cat_id']);
 		foreach ($var as $value) {
-			$int[] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
+			if(strlen($value)<=15){
+			$int[] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);	
+			}
 		}
 		foreach (array_unique($int) as $cat_ida) {
 			
@@ -98,7 +100,9 @@ class Promotions extends Admin_Controller {
 		//echo '<pre>';print_r($post);
 		$var=array_values($post['cat_id']);
 		foreach ($var as $value) {
-			$int[] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
+			if(strlen($value)<=15){
+			$int[] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);	
+			}
 		}
 		foreach (array_unique($int) as $cat_ida) {
 		$itemcheck=$this->Promotions_model->item_already_exits($cat_ida);
@@ -166,10 +170,12 @@ class Promotions extends Admin_Controller {
 public function addtopoffers()
 	{
 		$post=$this->input->post();
-		//echo '<pre>';print_r($post);
 		$var=array_values($post['cat_id']);
 		foreach ($var as $value) {
-			$int[] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
+			if(strlen($value)<=15){
+			$int[] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);	
+			}
+			
 		}
 		foreach (array_unique($int) as $cat_ida) {
 		$itemcheck=$this->Promotions_model->topoffer_item_already_exits($cat_ida);
@@ -238,7 +244,9 @@ public function dealsoftheday()
 		//echo '<pre>';print_r($post);
 		$var=array_values($post['cat_id']);
 		foreach ($var as $value) {
-			$int[] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
+			if(strlen($value)<=15){
+			$int[] = filter_var($value, FILTER_SANITIZE_NUMBER_INT);	
+			}
 		}
 		foreach (array_unique($int) as $cat_ida) {
 		$itemcheck=$this->Promotions_model->dealsoftheday_item_already_exits($cat_ida);

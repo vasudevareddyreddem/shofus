@@ -16,7 +16,7 @@ class Category_model extends MY_Model
 	}
 	public function get_same_products_color($subcat,$name,$item_id)
 	{
-		$this->db->select('products.item_id,products.internal_memeory,products.colour,products.subcategory_id')->from('products');
+		$this->db->select('products.item_id,products.internal_memeory,products.colour,products.subcategory_id,products.item_image')->from('products');
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('item_name', $name);
 		$this->db->group_by('colour');
@@ -25,7 +25,7 @@ class Category_model extends MY_Model
 	}
 	public function get_same_products_size($subcat,$name,$item_id)
 	{
-		$this->db->select('products.item_id,products.internal_memeory,products.colour,products.subcategory_id')->from('products');
+		$this->db->select('products.item_id,products.internal_memeory,products.colour,products.subcategory_id,products.item_image')->from('products');
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('item_name', $name);
 		$this->db->group_by('internal_memeory');
