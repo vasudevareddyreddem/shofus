@@ -44,9 +44,9 @@
 				</div>
 				<hr style="margin:0px 10px 10px 0px;border-top:1px solid #ddd;">
 			
-                    <div class="col-xs-2 col-md-2 text-center">
-                        <img src="<?php echo base_url('uploads/products/'.$orders['item_image']); ?>" alt="<?php echo $orders['item_image']; ?>"
-                            class="img-rounded img-responsive" />
+                    <div class="col-xs-2 col-md-2 text-center" style="width:80px;height:auto;padding-bottom:10px;">
+                        <img  src="<?php echo base_url('uploads/products/'.$orders['item_image']); ?>" alt="<?php echo $orders['item_image']; ?>"
+                            class="img-rounded img-responsive thumbnail" />
                     </div>
                     <div class="col-xs-5 col-md-5 section-box">
                         <div  class=" whish_head">
@@ -100,7 +100,7 @@
                         
                     </div>
 					
-				<div class="clearfix"></div>
+				<div class="clearfix"> &nbsp;</div>
 				<hr style="margin:0px 10px 10px 0px;border-top:1px solid #ddd;">
 				<div class="pull-left tras_col">Ordered On <?php echo isset($orders['create_at'])?Date('D,M,Y h:i:s A',strtotime(htmlentities($orders['create_at']))):'';  ?>
 				</div>
