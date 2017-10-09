@@ -716,7 +716,7 @@ $(document).ready(function() {
 			
           <div class=" col-md-3 box-product-outer" style="width:23%">
             <div class="box-product">
-              <div class="img-wrapper item">
+              <div class="img-wrapper item" style="position:relative" >
 			   <div class="img_size text-center">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                   <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
@@ -724,7 +724,7 @@ $(document).ready(function() {
 				</div>
               
 				<?php if($productslist['item_quantity']<=0){ ?>
-				<div style="background:#45b1b5;color:#fff;padding:2px;" class="text-center">
+				<div  class="text-center out_of_stoc" style="position:absolute;top:60px">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
 				<?php } ?>

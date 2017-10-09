@@ -1,3 +1,4 @@
+
 .mar_t10{
 	margin-top:10px;
 }
@@ -195,7 +196,7 @@
 .see_more{
 	position:absolute;
 	top:15px;
-	right:115px;
+	right:5px;
 	border-right: 2px solid #4a5c63;
 	border-radius: 16px 0px 0px 16px !important;
 }
@@ -4831,7 +4832,7 @@ input[type=radio]:checked + span::before {
 .owl-theme .owl-controls {
   position: absolute;
   top: 1px;
-  right: 1px;
+  right: 100px;
   margin-top: 0;
 }
 .owl-theme .owl-controls .owl-nav [class*='owl-'] {
