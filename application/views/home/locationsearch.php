@@ -25,15 +25,15 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 <script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
 
-<body class="bac_img">
-<div  style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-            </button>
-		</div>
+
+	<div  style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						  <span aria-hidden="true">&times;</span>
+				</button>
+	</div>
   <?php $customerdetails=$this->session->userdata('userdetails'); ?>
   <!--header part end here --> 
   <!--body part start here -->
- <div class="cart_bdy" id="location_seacrh">
+ <div class="" id="location_seacrh">
     <!--Top Category slider Start--><div id="sucessmsg" style="display:none;"></div>
     <div class="top-cate">
       <div class="featured-pro container_main">
@@ -56,7 +56,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 			  </div>
             </div>
 			<div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary " style="position:absolute;top:15px;right:10px"> See More</button></a>
+        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
               
           </div>
         </div>
@@ -94,13 +94,14 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 		<div class="item">
           <div class=" box-product-outer" >
             <div class="box-product">
-              <div class="img-wrapper  img_hover">
+              <div class="img-wrapper  img_hover item" style="position:relative">
+			  <div class="img_size">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
 				 
            
                 </a>
-               
+               </div>
 				<?php if($productslist['item_quantity']<=0){ ?>
 				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
@@ -152,6 +153,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
             <!-- End Item --> 
           </div>
         </div>
+		<div class="clearfix"></div>
+        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
     <section>
@@ -186,12 +189,13 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 		   <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
-              <div class="img-wrapper  img_hover">
+               <div class="img-wrapper  img_hover item" style="position:relative">
+			  <div class="img_size">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                    <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
            
                 </a>
-               
+               </div>
               <?php if($productslist['item_quantity']<=0){ ?>
 				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
@@ -239,6 +243,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
             
           </div>
         </div>
+		<div class="clearfix"></div>
+        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
 
@@ -276,11 +282,13 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
            <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
-              <div class="img-wrapper  img_hover">
+              <div class="img-wrapper  img_hover item" style="position:relative">
+			  <div class="img_size">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                    <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
            
                 </a>
+				</div>
                 
                <?php if($productslist['item_quantity']<=0){ ?>
 				<div  class="text-center out_of_stoc">
@@ -324,6 +332,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
       <?php  $d++;} ?>
           </div>
         </div>
+		<div class="clearfix"></div>
+        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
 	 <section>
@@ -361,10 +371,12 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
                <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
-              <div class="img-wrapper  img_hover">
+             <div class="img-wrapper  img_hover item" style="position:relative">
+			  <div class="img_size">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                    <img class="thumbnail"src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                 </a>
+				</div>
                
                 <?php if($productslist['item_quantity']<=0){ ?>
 				<div  class="text-center out_of_stoc">
@@ -409,6 +421,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 		<?php  $s++;} ?>
           </div>
         </div>
+		<div class="clearfix"></div>
+        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
   </div>

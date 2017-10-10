@@ -611,10 +611,12 @@
 			
           <div class=" col-md-3 box-product-outer" style="width:23%">
             <div class="box-product">
-              <div class="img-wrapper">
+             <div class="img-wrapper  img_hover item" style="position:relative">
+			  <div class="text-center img_size">
                 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                   <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                 </a>
+				</div>
                 
 				<?php if($productslist['item_quantity']<=0){ ?>
 				<div  class="text-center out_of_stoc">

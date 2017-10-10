@@ -4,6 +4,13 @@
 	padding-right:0;
 	cursor:pointer;
 }
+
+.del_und {
+	margin: 6px 0 10px;
+    padding-top: 12px;
+    border-top: 1px solid #45b1b9;
+	text-align:left;
+}
 .label_col{
 	color:#aaa
 }
@@ -18,16 +25,16 @@
 	    background: #ddd;
     border-radius: 52px 0px;
     color: #fff;
-    padding: 2px 31px;
-    position: fixed;
+    padding: 2px 20px;
+    position: absolute;
     top: 120px;
 }
 .out_of_stoc:hover{
 	    background: #4a5c63;
     border-radius: 52px 0px;
     color: #fff;
-    padding: 2px 31px;
-    position: fixed;
+    padding: 2px 20px;
+    position: absolute;
     top: 120px;
 }
 /*cart and payment and billig and thanksupu css*/
