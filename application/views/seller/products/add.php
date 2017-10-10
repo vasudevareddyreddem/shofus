@@ -24,10 +24,8 @@
 
 
 
-.typeahead, .tt-query, .tt-hint {
-	
-	width: 495px;
-	
+.twitter-typeahead{
+	display: block !important;
 }
 
 
@@ -42,7 +40,7 @@
 	width: 495px;
 }
 .tt-suggestion {
-	font-size: 22px;  /* Set suggestion dropdown font size */
+	font-size: 16px;  /* Set suggestion dropdown font size */
 	padding: 3px 20px;
 }
 .tt-suggestion:hover {
@@ -182,7 +180,7 @@
 				<div class="form-group nopaddingRight san-lg">
 					   <label for="exampleInputEmail1">product Name</label>
 					   
-						<input type="text" class="form-control typeahead tt-query"  autocomplete="off" spellcheck="false" onchange="getoldproduct_details(this.value);" name="product_name" id="product_name" >
+						<input  style="font-size:16px" type="text" class="form-control typeahead tt-query"  autocomplete="off" spellcheck="false" onchange="getoldproduct_details(this.value);" name="product_name" id="product_name" >
 				</div>
 			</div>
 			<div class=" col-md-6 ">

@@ -825,13 +825,13 @@ $("#hover_li1").hover(function(){
 
 <script type="text/javascript" language="javascript">
    $(window).scroll(function() {
-if ($(this).scrollTop() > 10) {
+if ($(this).scrollTop() > 50) {
 $('.hm_nav').addClass('affix');
-$('.hm_nav').addClass('animated zoomLeft');
+$('.hm_nav').addClass('animated fadeInDown');
 }
 else{
-$('.hm_nav').removeClass('affix');
-$('.hm_nav').removeClass('animated zoomLeft');
+$('.hm_nav').removeClass('fadeInDown');
+$('.hm_nav').removeClass('animated affix	');
 }
  });
 </script>

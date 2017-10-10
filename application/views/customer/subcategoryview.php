@@ -48,7 +48,7 @@ $(document).ready(function() {
 #input-number {
 	padding: 7px;
 	margin: 15px 5px 5px;
-	width: 70px;
+	width: 110px;
 }
 .wish{
 	color:#ef5350;

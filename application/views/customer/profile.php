@@ -1,16 +1,5 @@
-
-<header>
-<!--wrapper start here -->
-
-<div class="wrapper"> 
-  <!--header part start here -->
-  <div class="jain_container">
-    
-
-</header>
-
-
-<div class="pad_bod">
+<!--<div class="jain_container">
+  <div class="pad_bod">
 		<div class="row">
 		<?php //echo '<pre>';print_r($profile_details);exit; ?>
 			 <div class="panel panel-info">
@@ -73,5 +62,183 @@
           </div>
 	   </div>
 </div>
+</div>-->
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-3" >
+		<div>	
+			<li class="list-group-item " style="border-top:2px solid #45b1b9;">
+        		<div class=" col-md-4">
+        			
+                  	<img class="img-responsive thumbnail" src="http://www.abc.net.au/news/image/8314104-1x1-940x940.jpg"/>
+        		</div>
+				<div class="col-md-8 ">
+        			<p class="site_col">admin</p>
+                  	<p><strong>First Last Name</strong></p>
+        			
+        		</div>
+				<span class=" badge badge-warning">Lorem Ipsum</span> <span class=" badge badge-info">Lorem Ipsum	</span>
+				<div class="clearfix">&nbsp;</div>
+			</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+				<div class="pull-left"><b>Personal Information</b></div>
+				<div class="pull-right">
+					<button class="btn btn-primary btn-xs" style="border-radius:5px;">Edit</button>
+				</div>
+				<div class="clearfix"></div>
+		  </div>
+		  <div class="panel-body" style="padding:20px 5px;">
+		  <div class="col-md-8">
+			<table class="table ">
+			<tbody>
+			  <tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr><tr>
+				<td class="label_col">NAME</td>
+				<td>Bayapu reddy</td>
+			  </tr>
+			</tbody>
+			</table>
+		  </div>
+		  </div>
+		</div>
+	</div>
+	<div class="col-md-3" >
+		
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		<div>	
+			<li class="list-group-item list_si" >
+			<i class="fa fa-chevron-right  pull-right col_fa"></i>My Orders</li>
+		</div>
+		
+	</div>
+	
+  </div>
+</div>
+<div class="clearfix">&nbsp;</div>
 
 	
