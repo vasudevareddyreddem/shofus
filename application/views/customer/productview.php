@@ -285,7 +285,7 @@
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
 			<div class="pull-left">
-				<b>Pincode:</b><input class="pin_in" style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd" maxlength="6" onkeyup="removecouponmsg();" id="checkpincode" name="checkpincode" type="text" value="">
+				<b>Pincode:</b> &nbsp; &nbsp;<input class="pin_in" style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd" maxlength="6" onkeyup="removecouponmsg();" id="checkpincode" name="checkpincode" type="text" value="">
 				</div>
 				<div class="pull-right"><a class="site_col" style="cursor:pointer" onclick="getareapincode();">check</a></div>
 				<div class="clearfix">&nbsp;</div>

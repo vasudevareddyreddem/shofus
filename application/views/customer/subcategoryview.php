@@ -724,7 +724,7 @@ $(document).ready(function() {
 				</div>
               
 				<?php if($productslist['item_quantity']<=0){ ?>
-				<div  class="text-center out_of_stoc">
+				<div  class="text-center out_of_stoc" style="position:absolute;">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
 				<?php } ?>

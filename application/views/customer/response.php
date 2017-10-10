@@ -105,6 +105,24 @@
             </div>
 			
         </div>
+		<div class="col-md-4">
+			<div >	
+				<li class="list-group-item"style="border-top:2px solid #45b1b9">
+					<div class="text-center" style="margin:0 auto;">
+						<img class="img-responsive"src="<?php echo base_url(); ?>assets/home/images/thanks_sho.png" />
+						<h2 class="site_col">Thanks for Shopping</h2>
+					</div>
+					<hr>
+					<div class="">
+						<h3>Dummy heading</h3>
+						<p>ffsdfsdafsafsdafdasf</p>
+						<p>ffsdfsdafsafsdafdasf</p>
+						<p>ffsdfsdafsafsdafdasf</p>
+					</div>
+				</li>
+				
+			</div>
+		</div>
 		
 		
 		
