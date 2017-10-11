@@ -4,7 +4,12 @@
 $('#removepopuplocation').show();
 $("#fademaskpurpose").removeClass("mask_hide");
 </script>
+
 <?php 	} ?>
+<script>
+$("#selectedlocation").empty();
+$("#selectedlocation").append('<?php echo $locationnames; ?>');
+</script>
 	
 <?php if($this->session->flashdata('success')): ?>
 			<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
@@ -110,7 +115,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
 				</div>
             </div>
       <div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
+        <a href="<?php echo base_url('customer/seemore/'.base64_encode('top').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
           </div>
         </div>
       </div>
@@ -206,7 +211,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
           </div>
         </div>
 		<div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
+        <a href="<?php echo base_url('customer/seemore/'.base64_encode('tren').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
 	
@@ -317,7 +322,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
           </div>
         </div>
 		<div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
+        <a href="<?php echo base_url('customer/seemore/'.base64_encode('offer').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
 
@@ -406,7 +411,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
           </div>
         </div>
 		<div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
+        <a href="<?php echo base_url('customer/seemore/'.base64_encode('deal').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
    <section>
@@ -418,7 +423,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
 		  <?php //echo '<pre>';print_r($season_sales);exit; ?>
-      <?php $s=1;foreach($season_sales as $productslist)  { 
+      <?php $s=1;foreach($season_sales as $productslist){ 
 			$currentdate=date('Y-m-d h:i:s A');
 			if($productslist['offer_expairdate']>=$currentdate){
 				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
@@ -493,7 +498,7 @@ $("#fademaskpurpose").removeClass("mask_hide");
           </div>
         </div>
 		<div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
+        <a href="<?php echo base_url('customer/seemore/'.base64_encode('season').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
   </div>

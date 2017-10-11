@@ -35,13 +35,13 @@ class Customer extends Front_Controller
 		$locationdatadetails=implode(", ",$loacationname);
 		$this->session->set_userdata('location_area',$locationdatadetails);
 		$this->session->set_userdata('location_ids',$post['locationarea']);
-		//echo $this->session->userdata('location_area');exit;
 		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		$data['top_offers']= $this->customer_model->get_product_search_top_offers($post['locationarea']);
 		$data['tredings']= $this->customer_model->get_product_search_tredings($post['locationarea']);
 		$data['offers']= $this->customer_model->get_product_search_offers_for_you($post['locationarea']);
 		$data['deals_of_day']= $this->customer_model->get_product_search_deals_day($post['locationarea']);
 	  	$data['season_sales']= $this->customer_model->get_product_search_seaaon_sales($post['locationarea']);
+		$data['seemore']=$post['locationarea'];
 		//echo '<pre>';print_r($data);exit;
 		$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 		$cartitemids= $this->category_model->get_all_cart_lists_ids();
@@ -68,7 +68,6 @@ class Customer extends Front_Controller
 			$whishlist_ids_list[]=$list['id'];
 		}
 		
-	//echo '<pre>';print_r($customer_ids_list);exit;
 		$data['customer_ids_list']=$customer_ids_list;
 		$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 		$data['whishlist_ids_list']=$whishlist_ids_list;
@@ -2157,15 +2156,37 @@ class Customer extends Front_Controller
 
 	public function seemore(){
 		
-		if($this->session->userdata('userdetails')){
-			$customerdetails=$this->session->userdata('userdetails');
-			$details = $this->customer_model->get_profile_details($customerdetails['customer_id']);
-			$data['topoffers'] = $this->home_model->get_search_top_offers($details['area']);
-			
-		}else{
-			$data['topoffers'] = $this->home_model->get_top_offers();
 		
+		$post=$this->input->post();
+		$type=base64_decode($this->uri->segment(3));
+		$location=base64_decode($this->uri->segment(4));
+		$ids=$this->session->userdata('location_ids');
+		if($type=='top' && $location!='location'){
+		$data['products'] = $this->home_model->get_top_offers($location);
+		}else{
+			$data['products'] = $this->home_model->get_search_top_offers($ids);
 		}
+		if($type=='tren' && $location!='location'){
+			$data['products'] = $this->home_model->get_trending_products($location);
+		}else{
+			$data['products'] = $this->home_model->get_search_trending_products($ids);
+		}
+		if($type=='offer' && $location!='location'){
+			$data['products'] = $this->home_model->get_offer_for_you($location);
+		}else{
+			$data['products'] = $this->home_model->get_search_offer_for_you($ids);
+		}
+		if($type=='deal' && $location!='location'){
+			$data['products'] = $this->home_model->get_deals_of_the_day($location);
+		}else{
+			$data['products'] = $this->home_model->get_search_deals_of_the_day($ids);
+		}
+		if($type=='season' && $location!='location'){
+			$data['products'] = $this->home_model->get_season_offers($location);
+		}else{
+			$data['products'] = $this->home_model->get_search_season_sales($ids);
+		}
+		$data['type'] = $type;
 		$cartitemids= $this->category_model->get_all_cart_lists_ids();
 		if(count($cartitemids)>0){
 		foreach($cartitemids as $list){

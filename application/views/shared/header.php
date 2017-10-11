@@ -246,186 +246,10 @@
     </nav>
 	
 	 
-	
-	
-	<!-- Login popup start here -->
-	
-	<!-- Modal -->
-<div class="modal animated  zoomIn" id="sin_log" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="md-content">
-    <div id="log_sign"> 
-      
-      <!-- Nav tabs -->
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#login" aria-controls="home" role="tab" data-toggle="tab"> <i class="fa fa-lock" aria-hidden="true"></i> Login</a></li>
-        <li role="presentation"><a href="#signup" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
-      </ul>
-      
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="login">
-		 <div id="login-response" style="font-size:100%;"></div>
-          <form id="login-form" method="post">
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="text" class="form-control" name="login_email" id="login_email">
-			  <span class="all_errors"><p id="NameErr1" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="pwd">Password:</label>
-              <label class="pull-right" id="frgt_pass"><a href="#" class="pull-right" style="text-decoration: none;"><i class="icon-question-sign"></i>&nbsp; <i class="fa fa-question-circle" aria-hidden="true"></i> Forgot Password ?</a> </label>
-              <input type="password" class="form-control" name="login_password" id="login_password">
-			  <span class="all_errors"><p id="PasswordErr5" class="Error_msge"></p></span>
-            </div>
-            <!--<div class="checkbox">
-              <label>
-                <input type="checkbox">
-                Remember me</label>
-            </div>-->
-            <button type="submit" class="btn btn-danger cls pull-left" id="login_submit" name="submit">SIGN IN</button>
-          </form>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="signup">
-		<div id="signup-response" style="font-size:100%;"></div>
-          <form method="post" id="register-form">
-            <div class="form-group">
-              <label for="user name">User Name:</label>
-              <input type="text" name="user_name" id="user_name" class="form-control">
-			  <span class="all_errors"><p id="NameErr" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="text" class="form-control" name="user_email" id="user_email">
-			  <span class="all_errors"><p id="EmailErr" class="Error_msge"></p></span>
-            </div>
-			 <div class="form-group">
-              <label for="phone">Phone No:</label>
-              <input type="text" class="form-control" name="user_phone" id="user_phone">
-			  <span class="all_errors"><p id="PhoneErr" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="password">Password:</label>
-              <input type="password" class="form-control" name="user_password" id="user_password">
-			  <span class="all_errors"><p id="PassErr1" class="Error_msge"></p></span>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" id="chkterms2">
-                By signing up I agree to terms & conditions</label>
-				<span class="all_errors"><p id="TermsErr" class="Error_msge"></p></span>
-            </div>
-            <button type="submit" class="btn btn-danger cls pull-left" id="register_submit" name="submit">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div id="show_pass" style="display: none;">
-      
-	  <button class="md-close pull-right miy" style="margin-bottom: 15px;">Close me!</button>
-      Forgot Your Password ?
-	  <div id="lost-response" style="font-size:100%;"></div>
-	  <form method="post" id="lost-form">
-      <div class="form-group">
-        <input type="password" class="form-control" name="lost_email" id="lost_email" placeholder="Please Enter Your Email Here">
-      </div>
-      <button type="submit" class="btn btn-danger cls pull-left" id="lost_submit">Submit</button>
-	  </form>
-      <label id="show_login" class="pull-right lgo"><i class="fa fa-user-plus"></i> Login</label>
-    </div>
-  </div> 	
-  </div>
-</div>
+
 	
 	<!-- end popup start here -->   
-	
-	
-	<!-- Login popup start here -->
-<div class="md-modal md-effect-8" id="modal-8">
-  <div class="md-content">
-    <div id="log_sign"> 
-      
-      <!-- Nav tabs -->
-      <button class="md-close pull-right miy">Close me!</button>
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#login" aria-controls="home" role="tab" data-toggle="tab"> <i class="fa fa-lock" aria-hidden="true"></i> Login</a></li>
-        <li role="presentation"><a href="#signup" aria-controls="profile" role="tab" data-toggle="tab"> <i class="fa fa-user" aria-hidden="true"></i> Sign Up</a></li>
-      </ul>
-      
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="login">
-		 <div id="login-response" style="font-size:100%;"></div>
-          <form id="login-form" method="post">
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="text" class="form-control" name="login_email" id="login_email">
-			  <span class="all_errors"><p id="NameErr1" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="pwd">Password:</label>
-              <label class="pull-right" id="frgt_pass"><a href="#" class="pull-right" style="text-decoration: none;"><i class="icon-question-sign"></i>&nbsp; <i class="fa fa-question-circle" aria-hidden="true"></i> Forgot Password ?</a> </label>
-              <input type="password" class="form-control" name="login_password" id="login_password">
-			  <span class="all_errors"><p id="PasswordErr5" class="Error_msge"></p></span>
-            </div>
-            <!--<div class="checkbox">
-              <label>
-                <input type="checkbox">
-                Remember me</label>
-            </div>-->
-            <button type="submit" class="btn btn-danger cls pull-left" id="login_submit" name="submit">SIGN IN</button>
-          </form>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="signup">
-		<div id="signup-response" style="font-size:100%;"></div>
-          <form method="post" id="register-form">
-            <div class="form-group">
-              <label for="user name">User Name:</label>
-              <input type="text" name="user_name" id="user_name" class="form-control">
-			  <span class="all_errors"><p id="NameErr" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="text" class="form-control" name="user_email" id="user_email">
-			  <span class="all_errors"><p id="EmailErr" class="Error_msge"></p></span>
-            </div>
-			 <div class="form-group">
-              <label for="phone">Phone No:</label>
-              <input type="text" class="form-control" name="user_phone" id="user_phone">
-			  <span class="all_errors"><p id="PhoneErr" class="Error_msge"></p></span>
-            </div>
-            <div class="form-group">
-              <label for="password">Password:</label>
-              <input type="password" class="form-control" name="user_password" id="user_password">
-			  <span class="all_errors"><p id="PassErr1" class="Error_msge"></p></span>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" id="chkterms2">
-                By signing up I agree to terms & conditions</label>
-				<span class="all_errors"><p id="TermsErr" class="Error_msge"></p></span>
-            </div>
-            <button type="submit" class="btn btn-danger cls pull-left" id="register_submit" name="submit">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div id="show_pass" style="display: none;">
-      
-	  <button class="md-close pull-right miy" style="margin-bottom: 15px;">Close me!</button>
-      Forgot Your Password ?
-	  <div id="lost-response" style="font-size:100%;"></div>
-	  <form method="post" id="lost-form">
-      <div class="form-group">
-        <input type="password" class="form-control" name="lost_email" id="lost_email" placeholder="Please Enter Your Email Here">
-      </div>
-      <button type="submit" class="btn btn-danger cls pull-left" id="lost_submit">Submit</button>
-	  </form>
-      <label id="show_login" class="pull-right lgo"><i class="fa fa-user-plus"></i> Login</label>
-    </div>
-  </div>
-</div>
+
 <div id="fademaskpurpose"  class="mask_hide"></div>
 <div class="loc_pop_cus" id="removepopuplocation" style="display:none;">
 	<div style="position:absolute;top:-16px;left:58%" > <i class="fa fa-sort-asc " style="font-size:40px;color:#fff;" aria-hidden="true"></i></div>
@@ -433,14 +257,19 @@
       <div class="row">
         <div class="">
 			<div class="form-group">
+				<form id="form1" action="<?php echo base_url(''); ?>" method="post">
+
 			  <label for="sel1">Select Your Delivery Location:</label>
-				<select onchange="selectsearchlocation(this.value);" name="locationid" id="locationid" class="validate-select sel_are">
+			  <input type="hidden" type="">
+				<select onchange="document.getElementById('form1').submit()" name="locationid" id="locationid" class="validate-select sel_are">
 				<option value="">Select Area </option>
 				<?php foreach($locationdata as $location_data) {?>
 				<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
 
 				<?php } ?>
 				</select>
+				
+				</form>
 			</div> 
         </div>
        
@@ -510,35 +339,7 @@ function validations(){
 
 }
 
- function selectsearchlocation(id){
-	 
-    if(id==''){
-		 jQuery('#address1errormsg').show();
-        jQuery('#address1errormsg').html('Please Select Area');
-        return false;
-     }
-	 $("#fademaskpurpose").addClass("mask_hide");
-    jQuery('#address1errormsg').html(''); 
-    jQuery.ajax({
-        url: "<?php echo site_url('home/search_location_offers');?>",
-        type: 'post',
-        data: {
-          form_key : window.FORM_KEY,
-          area: id,
-          },
-        dataType: 'html',
-        success: function (data) {
-          jQuery('.popup1').hide();
-          jQuery('#fade').hide();
-          $("#removepopuplocation").hide();
-		  $("#location_seacrhs").empty();
-          $("#location_seacrhs").show();
-          $("#location_seacrhs").append(data);
 
-        }
-      });
-
- }
 
 function searchfunction(val){
 	$('#addingdropdown').hide();
@@ -596,204 +397,7 @@ $("#modal-8").show();
 	
 
 <script type="text/javascript" language="javascript">
-      $(document).ready(function(){
-    $('#register_submit').click(function(e){
-    e.preventDefault();
  
-    //if ($('#chkterms2').is(':checked')) {
-    var user_name = $("#user_name").val();
-    var user_email= $("#user_email").val();
-	var user_phone = $("#user_phone").val();
-    var user_password = $("#user_password").val();
-	var terms_conditions = $('#chkterms2').is(':checked');
-     
-    
-    var letters = /^[0-9a-zA-Z]+$/; 
-    var number = /^\d{10}$/;
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var name=/^[^-\s][a-zA-Z0-9_\s-]+$/;
-    var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-    
-    if (user_name == "")
-    {
-    $("#NameErr").html("Enter Your Name ").css("color", "red");
-    $("#user_name").focus();
-    return false;
-    }
-    else{
-      if(user_name!="" && user_name.match(letters)) 
-      {
-        $("#NameErr").html("");
-      }
-      else{
-        
-        $("#NameErr").html("Name Accepts Alphanumeric Only");
-        $("#user_name").focus();
-        return false;
-        }
-    }
-    
-    
-    if (user_email == "")
-    {
-    $("#EmailErr").html("Enter Your Email ID ").css("color", "red");
-    $("#user_email").focus();
-    return false;
-    }
-    else{
-      if(user_email!="" && user_email.match(mailformat)) 
-      {
-        $("#EmailErr").html("");
-      }
-      else{
-        
-        $("#EmailErr").html("Invalid Email Format");
-        $("#user_email").focus();
-        return false;
-        }
-      
-    }
-	
-	
-	
-	if (user_phone == "")
-    {
-    $("#PhoneErr").html("Enter Your Phone Number").css("color", "red");
-    $("#user_phone").focus();
-    return false;
-    }
-    else{
-      if(user_phone!="" && user_phone.match(number)) 
-      {
-        $("#PhoneErr").html("");
-      }
-      else{
-        
-        $("#PhoneErr").html("Invalid Phone Number");
-        $("#user_phone").focus();
-        return false;
-        }
-      
-    }
-    
-   
-    /************************************************************************/
-      if(user_password==""){
-      $("#PassErr1").html("Enter Your Password ").css("color", "red");
-      $("#user_password").focus();
-      return false; 
-      }
-      else{
-      if(user_password!="" && user_password.match(strongRegex)) 
-      {
-      $("#PassErr1").html("");
-      }
-      else{
-      $("#PassErr1").html("Password minimum length is 8 characters and should contain letters (One Letter in Caps), symbols, numbers");
-      $("#user_password").focus();
-      return false;
-      } 
-      }
-	  if (terms_conditions == "")
-		{
-		$("#TermsErr").html("Please Accept Terms & Conditions").css("color", "red");
-		return false;
-		}
-		else{
-			$("#TermsErr").html("");
-		}
-  
-    $.ajax({
-    type: "POST",
-    url: '<?php echo base_url() ?>Home/signup',
-    data: {user_name:user_name,user_email:user_email,user_phone:user_phone,user_password:user_password},
-    success:function(data)
-    {
-      //alert(data);
-    if(data == 1)
-    {
-      
-    $("#signup-response").html("You are Successfully Registered! Please Login to Continue. ").css("color", "green");
-    $('#register-form')[0].reset();
-    }
-
-    else if(data == 2){
-    
-    $("#EmailErr").html("The Mail Id you gave is already registered, Please try again.").css("color", "red");
-    $("#user_email").val("");
-    $('#register-form')[0].reset();
-    
-    }
-    else
-    {
-    $("#signup-response").html("Oops! Error.  Please try again later").css("color", "red");
-    
-    $('#register-form')[0].reset();
-
-    }
-    
-    },
-    error:function()
-    {
-    //alert('fail');
-    $("#signup-response").html("Please try again later for signup").css("color", "red");
-
-    $('#register-form')[0].reset();
-    }
-    });
-    });
-    
-    });
-  
-
-		$(document).ready(function(){
-		$("#login_submit").click(function(e){
-		e.preventDefault();
-		
-		var user_email= $("#login_email").val();
-		var user_password = $("#login_password").val();
-		if (user_email == "")
-    {
-    $("#NameErr1").html("Enter Email").css("color", "red");
-    $("#login_email").focus();
-    return false;
-    }
-    else{
-      $("#NameErr1").html("");
-    }
-	if (user_password == "")
-    {
-    $("#PasswordErr5").html("Enter Password").css("color", "red");
-    $("#login_password").focus();
-    return false;
-    }
-    else{
-      $("#PasswordErr5").html("");
-    }
-		$.ajax({
-		type: "POST",
-		url: '<?php echo base_url() ?>Home/login',
-		data: {user_email:user_email,user_password:user_password},
-		success:function(data)
-		{
-		if(data == 1)
-		{
-			location.reload();
-		}
-		else{
-		
-		$("#login-response").html("Invalid User Name or Password").css("color", "red");
-		$('#login-form')[0].reset();	
-		}
-		},
-		error:function()
-		{
-		//$("#signupsuccess").html("Oops! Error.  Please try again later!!!");
-		}
-		});
-		
-		});
-		});
 
 $(document).ready(function(){
     $(".user_log").click(function(){

@@ -25,7 +25,7 @@ $("#fademaskpurpose").addClass("mask_hide");
       <div class="carousel-inner">
 
         
-        <?php //echo '<pre>';print_r($homepage_banner);exit; ?>
+        <?php //echo '<pre>';print_r($seemore);exit; ?>
         <?php $c=0;foreach($homepage_banner as $images){  ?>
         
         <?php if($c==0){  ?>
@@ -107,7 +107,7 @@ $("#fademaskpurpose").addClass("mask_hide");
 		 
       </div>
       <div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore'); ?>"><button class="btn btn-primary " style="position:absolute;top:15px;right:10px"> See More</button></a>
+        <a href="<?php echo base_url('customer/seemore/'.base64_encode('top').'/'.base64_encode('location')); ?>"><button class="btn btn-primary " style="position:absolute;top:15px;right:10px"> See More</button></a>
 
              <?php } else{ ?>
        <div style="text-align:center;">No Products are Avaiable</div>
@@ -200,11 +200,14 @@ $("#fademaskpurpose").addClass("mask_hide");
 			</form>
 			
 		   <?php $t++;} ?>
+		 
             
            
           
           </div>
         </div>
+	<a href="<?php echo base_url('customer/seemore/'.base64_encode('tren').'/'.base64_encode('location')); ?>"><button class="btn btn-primary " style="position:absolute;top:15px;right:10px"> See More</button></a>
+
       </div>
     </section> 
      <section>
@@ -292,6 +295,8 @@ $("#fademaskpurpose").addClass("mask_hide");
             
           </div>
         </div>
+		 <a href="<?php echo base_url('customer/seemore/'.base64_encode('offer').'/'.base64_encode('location')); ?>"><button class="btn btn-primary " style="position:absolute;top:15px;right:10px"> See More</button></a>
+
       </div>
     </section>
 
@@ -378,6 +383,8 @@ $("#fademaskpurpose").addClass("mask_hide");
       <?php  $d++;} ?>
           </div>
         </div>
+				        <a href="<?php echo base_url('customer/seemore/'.base64_encode('deal').'/'.base64_encode('location')); ?>"><button class="btn btn-primary " style="position:absolute;top:15px;right:10px"> See More</button></a>
+
       </div>
     </section>
 	  <section>
@@ -463,6 +470,8 @@ $("#fademaskpurpose").addClass("mask_hide");
 		<?php  $s++;} ?>
           </div>
         </div>
+		 <a href="<?php echo base_url('customer/seemore/'.base64_encode('season').'/'.base64_encode('location')); ?>"><button class="btn btn-primary " style="position:absolute;top:15px;right:10px"> See More</button></a>
+
       </div>
     </section>
   </div>

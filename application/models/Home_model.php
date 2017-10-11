@@ -123,44 +123,68 @@ class Home_model extends CI_Model
 		return $this->db->get()->result_array();
 	
 	}
-	public function get_top_offers()
+	public function get_season_offers($id)
+	{
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('season_sales.*,products.*')->from('season_sales');
+		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
+		$this->db->where('seller_location_area',$id);
+		$this->db->order_by('season_sales.offer_percentage ASC');
+		$this->db->where('season_sales.preview_ok',1);
+		$this->db->where('products.item_status',1);
+		$this->db->where('season_sales.expairdate >=', $curr_date);
+		return $this->db->get()->result_array();
+	
+	}
+	public function get_top_offers($id)
 	{
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('top_offers.*,products.*')->from('top_offers');
 		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
 		$this->db->order_by('top_offers.offer_percentage ASC');
+		if(isset($id) && $id!=''){
+		$this->db->where('products.seller_location_area',$id);	
+		}
 		$this->db->where('top_offers.preview_ok',1);
 		$this->db->where('products.item_status',1);
 		$this->db->where('top_offers.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
 
 	}
-	public function get_trending_products()
+	public function get_trending_products($id)
 	{
 		$this->db->select('*')->from('products');
-        $this->db->where('admin_status','0');
+		if(isset($id) && $id!=''){
+		$this->db->where('products.seller_location_area',$id);	
+		}
 		$this->db->order_by('products.offer_percentage ASC');
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 
 	}
-	public function get_offer_for_you()
+	public function get_offer_for_you($id)
 	{
 		$this->db->select('*')->from('products');
-        $this->db->where('admin_status','0');
+        if(isset($id) && $id!=''){
+		$this->db->where('products.seller_location_area',$id);	
+		}
 		$this->db->order_by('products.offer_percentage ASC');
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 
 	}
-	public function get_deals_of_the_day()
+	public function get_deals_of_the_day($id)
 	{
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('deals_ofthe_day.*,products.*')->from('deals_ofthe_day');
 		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
 		$this->db->order_by('deals_ofthe_day.offer_percentage DESC');
+		if(isset($id) && $id!=''){
+		$this->db->where('products.seller_location_area',$id);	
+		}
 		$this->db->where('deals_ofthe_day.preview_ok',1);
 		$this->db->where('products.item_status',1);
 		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);

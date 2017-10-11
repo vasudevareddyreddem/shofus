@@ -8,16 +8,35 @@
                       <span aria-hidden="true">&times;</span>
             </button>
 		</div>
-		<?php //echo '<pre>';print_r($topoffers);exit; ?>
+		<?php //echo '<pre>';print_r($topoffers);exit;  ?>
+		
+		 <?php if(isset($type) && $type=='top'){?>
             <div class="new_title">
               <h2>Top Offers </h2>
             </div>
+		 <?php }else if(isset($type) && $type=='tren'){?>
+		 <div class="new_title">
+              <h2>Trending products </h2>
+            </div>
+		 <?php }else if(isset($type) && $type=='offer'){?>
+		 <div class="new_title">
+              <h2>Offers for You</h2>
+            </div>
+		<?php }else if(isset($type) && $type=='deal'){?>
+		 <div class="new_title">
+              <h2>Deals of the Day </h2>
+            </div>
+		 <?php }else if(isset($type) && $type=='season'){?>
+		 <div class="new_title">
+              <h2>Season Sales </h2>
+            </div>
+		 <?php } ?>
         
               <div class="row">
 			  
 			  <?php 
 			  $customerdetails=$this->session->userdata('userdetails');
-			 $s=6; foreach ($topoffers as $productslist){
+			 $s=6; foreach ($products as $productslist){
 				$currentdate=date('Y-m-d h:i:s A');
 				if($productslist['offer_expairdate']>=$currentdate){
 				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
