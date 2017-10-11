@@ -97,7 +97,7 @@
               
 			<?php endif; ?>
 			<input type="hidden" name="orginalproductqty" id="orginalproductqty" value="<?php echo $products_list['item_quantity']; ?>" >
-          <div class="title-detail"><?php echo $products_list['item_name']; ?>&nbsp; <?php echo isset($products_list['colour'])?$products_list['colour']:''; ?>&nbsp; <?php echo isset($products_list['internal_memeory'])?$products_list['internal_memeory']:''; ?></div>
+          <div class="title-detail"><?php echo $products_list['item_name']; ?>&nbsp; <?php echo isset($products_list['colour'])?$products_list['colour']:''; ?>&nbsp; <?php echo isset($products_list['internal_memeory'])?$products_list['internal_memeory']:''; ?>&nbsp; <?php echo isset($products_list['internal_memeory'])?'Ram '.$products_list['ram']:''; ?></div>
 		  <?php if(count($colors_list)>0){ ?>
 		  <form action="<?php echo base_url('customer/addcart'); ?>" onsubmit="return validation();" method="Post" name="addtocart" id="addtocart" >
 		  <?php }else{ ?>
@@ -181,6 +181,25 @@
 								<?php foreach ($sameproducts_size_list as $lists){ ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px"  class="col-md-3 " >
 								<span ><?php echo $lists['internal_memeory'];?></span>
+								</div></a>
+								<?php   } ?>
+								
+								</div>
+							</td>
+						</tr>
+						
+				  <?php }  }?>
+				  <?php 
+				  if(isset($sameproducts_ram_list) && count($sameproducts_ram_list)>0){
+				  if($products_list['category_id']==20){ ?>
+						
+						<tr>
+							<td>RAM </td>
+							<td>
+								<div class="row">
+								<?php foreach ($sameproducts_ram_list as $lists){ ?>
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px"  class="col-md-3 " >
+								<span ><?php echo $lists['ram'];?></span>
 								</div></a>
 								<?php   } ?>
 								
