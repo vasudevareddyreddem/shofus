@@ -225,6 +225,7 @@
 
 
 <script>
+$(".alert_msg1").fadeOut(5000);
 function productqty(id){
 	
 

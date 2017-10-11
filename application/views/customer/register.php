@@ -190,6 +190,7 @@
 
 </html>
 	<script type="text/javascript">
+	$(".alert_msg1").fadeOut(5000);
 $(document).ready(function() {
     $('#customerregister').bootstrapValidator({
        

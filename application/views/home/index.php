@@ -505,7 +505,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 </body>
 
 <script type="text/javascript">
-
+$(".alert_msg1").fadeOut(5000);
+$("#sucessmsg").fadeOut(500);
  function itemaddtocart(itemid,catid,val){
 
 jQuery.ajax({
