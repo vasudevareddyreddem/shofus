@@ -148,16 +148,18 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
 			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
 			<input type="hidden" name="qty" id="qty" value="1" >
+			<a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
 		<div class="item">
+		       
           <div class=" box-product-outer" >
             <div class="box-product">
               <div class="img-wrapper  img_hover item" style="position:relative">
 			  <div class="img_size">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+         
                <img class="" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
 				 
            
-                </a>
+               
 				</div>
               
 				<?php if($productslist['item_quantity']<=0){ ?>
@@ -199,7 +201,9 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
             
             </div>
           </div>
+		  
             </div>
+			 </a>
 			
 			
 			</form>
@@ -262,16 +266,16 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
 			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
 			<input type="hidden" name="qty" id="qty" value="1" >
-			
+			 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
 		   <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover item">
 			  <div class="img_size">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+               
                    <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
            
-                </a>
+                
 				</div>
             
               <?php if($productslist['item_quantity']<=0){ ?>
@@ -311,7 +315,9 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
          
             </div>
           </div>
+		  
             </div>
+			</a>
 			<!--</form>-->
 			
       
@@ -355,16 +361,16 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
 			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
 			<input type="hidden" name="qty" id="qty" value="1" >
-			
+			<a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
            <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover item">
 			  <div class="img_size">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+                
                    <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
            
-                </a>
+              
 				</div>
                
                <?php if($productslist['item_quantity']<=0){ ?>
@@ -405,6 +411,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
             </div>
           </div>
             </div>
+			  </a>
 			<!--</form>-->
             
       <?php  $d++;} ?>
@@ -443,15 +450,15 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
 			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
 			<input type="hidden" name="qty" id="qty" value="1" >
-			
+			<a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                <div class="item">
           <div class=" box-product-outer">
             <div class="box-product">
               <div class="img-wrapper  img_hover">
 			  <div class="img_size">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+                
                    <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
-                </a>
+               
 				</div>
              
                 <?php if($productslist['item_quantity']<=0){ ?>
@@ -492,6 +499,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
             </div>
           </div>
             </div>
+			 </a>
 			</form>
             
       <?php $s++; } ?>
@@ -639,6 +647,8 @@ jQuery.ajax({
         }
     });
 
+	
 </script>
+
 
 
