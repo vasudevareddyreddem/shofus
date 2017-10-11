@@ -111,6 +111,11 @@ class Customer_model extends MY_Model
 		$this->db->where('cust_email',$email);
 		return $this->db->get()->row_array();
 	}
+	public function mobile_unique_check($mobile){
+		$this->db->select('*')->from('customers');
+		$this->db->where('cust_mobile',$mobile);
+		return $this->db->get()->row_array();
+	}
 	public function email_check($email){
 		$sql="SELECT * FROM customers WHERE cust_email ='".$email."'";
         return $this->db->query($sql)->row_array(); 

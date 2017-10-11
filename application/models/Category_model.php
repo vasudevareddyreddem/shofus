@@ -32,6 +32,15 @@ class Category_model extends MY_Model
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
 	}
+	public function get_same_products_ram($subcat,$name,$item_id)
+	{
+		$this->db->select('products.item_id,products.ram,products.subcategory_id,products.item_image')->from('products');
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_name', $name);
+		$this->db->group_by('ram');
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
+	}
 	public function get_simular_products($subcat,$name,$item_id)
 	{
 	$pname=substr($name, 0, 4);

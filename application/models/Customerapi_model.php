@@ -303,13 +303,24 @@ class Customerapi_model extends MY_Model
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
+		
+		
 	}
+	
 	
 	public function offers_for_you_product_search($location_id){
 	$this->db->select('products.*')->from('products');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
+		
+	}
+	
+	public function get_trendingproduct_details($id){
+		 $this->db->select('products.*')->from('products');
+		$this->db->where_in('item_id',$id);
+		$this->db->order_by('products.offer_percentage desc');
+		return $this->db->get()->row_array();
 	}
 
 	public function get_product_details($itemid){

@@ -97,7 +97,7 @@
               
 			<?php endif; ?>
 			<input type="hidden" name="orginalproductqty" id="orginalproductqty" value="<?php echo $products_list['item_quantity']; ?>" >
-          <div class="title-detail"><?php echo $products_list['item_name']; ?>&nbsp; <?php echo isset($products_list['colour'])?$products_list['colour']:''; ?>&nbsp; <?php echo isset($products_list['internal_memeory'])?$products_list['internal_memeory']:''; ?></div>
+          <div class="title-detail"><?php echo $products_list['item_name']; ?>&nbsp; <?php echo isset($products_list['colour'])?$products_list['colour']:''; ?>&nbsp; <?php echo isset($products_list['internal_memeory'])?$products_list['internal_memeory']:''; ?>&nbsp; <?php echo isset($products_list['internal_memeory'])?'Ram '.$products_list['ram']:''; ?></div>
 		  <?php if(count($colors_list)>0){ ?>
 		  <form action="<?php echo base_url('customer/addcart'); ?>" onsubmit="return validation();" method="Post" name="addtocart" id="addtocart" >
 		  <?php }else{ ?>
@@ -181,6 +181,25 @@
 								<?php foreach ($sameproducts_size_list as $lists){ ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px"  class="col-md-3 " >
 								<span ><?php echo $lists['internal_memeory'];?></span>
+								</div></a>
+								<?php   } ?>
+								
+								</div>
+							</td>
+						</tr>
+						
+				  <?php }  }?>
+				  <?php 
+				  if(isset($sameproducts_ram_list) && count($sameproducts_ram_list)>0){
+				  if($products_list['category_id']==20){ ?>
+						
+						<tr>
+							<td>RAM </td>
+							<td>
+								<div class="row">
+								<?php foreach ($sameproducts_ram_list as $lists){ ?>
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px"  class="col-md-3 " >
+								<span ><?php echo $lists['ram'];?></span>
 								</div></a>
 								<?php   } ?>
 								
@@ -278,8 +297,9 @@
 			 
 			 
         </div>
-	
-        <div class="col-md-3" style="border:1px solid #ddd;padding:20px">
+				<?php if($products_list['item_quantity']!=0 && $products_list['item_status']!=0 ){ ?>
+
+        <div class="col-md-3" style="border:1px solid #ddd;padding:20px;">
 			<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:18px" id="deliverymsg"></span>
 			<div class="clearfix">&nbsp;</div>
@@ -298,14 +318,14 @@
 				</ul>
 			</div>
 			<div class="clearfix">&nbsp;</div>
-			<?php if($products_list['item_quantity']!=0 && $products_list['item_status']!=0 ){ ?>
 			<div>
 				<a class="btn btn-warning col-md-6" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
 				<button class="btn  btn-primary col-md-6 pull-right" style="width: 48%;" type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
 			</div>
-			<?php } ?>
+			
 			
         </div>
+		<?php } ?>
 		 </form>
         </div>
 		
@@ -1101,10 +1121,10 @@ function getareapincode(val){
 			$('#imgdisplaying').show();
 			if(data.msg==1){
 				
-				$('#deliverymsg').html('Delivery by with in ' +data.time).css("color", "black");
+				$('#deliverymsg').html('Delivered by within ' +data.time).css("color", "black");
 				
 			}else{
-				$('#deliverymsg').html('Delivery by with in 4 hours').css("color", "black");
+				$('#deliverymsg').html('Delivered by within 4 hours').css("color", "black");
 			}
          
 

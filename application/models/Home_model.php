@@ -38,6 +38,7 @@ class Home_model extends CI_Model
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
 	//$this->db->where('item_name',$areaid);
 	$this->db->like('item_name', $areaid);
+	$this->db->where('products.item_status',1);
 	return $this->db->get()->result_array();
 	//echo $this->db->last_query();exit; 
 
@@ -47,6 +48,7 @@ class Home_model extends CI_Model
 	$this->db->select('category.category_name,subcategories.category_id,subcategories.subcategory_id,subcategories.subcategory_name,subcategories.yes')->from('subcategories');
 	$this->db->join('category', 'category.category_id = subcategories.category_id', 'left');
 	$this->db->like('subcategory_name', $areaid);
+	$this->db->where('subcategories.status',1);
 	return $this->db->get()->result_array();
 	//echo $this->db->last_query();exit; 
 	}
