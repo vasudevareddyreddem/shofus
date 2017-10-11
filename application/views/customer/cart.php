@@ -265,7 +265,7 @@ function productqtyincreae(id){
 	var orginalqtycnt=document.getElementById("orginalqty"+id).value;
 	var qty1=parseInt(qtycnt1);
 	if(qty1==orginalqtycnt){
-		$("#qtymesage"+id).html("Avaiable  Quantity is " +orginalqtycnt);
+		$("#qtymesage"+id).html("Available Quantity is " +orginalqtycnt);
 	}else if(qty1==10){
 	$("#qtymesage"+id).html("Maximum allowed Quantity is 10 ");
 	}else{
