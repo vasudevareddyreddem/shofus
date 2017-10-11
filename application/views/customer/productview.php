@@ -97,7 +97,7 @@
               
 			<?php endif; ?>
 			<input type="hidden" name="orginalproductqty" id="orginalproductqty" value="<?php echo $products_list['item_quantity']; ?>" >
-          <div class="title-detail"><?php echo $products_list['item_name']; ?>&nbsp; <?php echo isset($products_list['colour'])?$products_list['colour']:''; ?>&nbsp; <?php echo isset($products_list['internal_memeory'])?$products_list['internal_memeory']:''; ?>&nbsp; <?php echo isset($products_list['internal_memeory'])?'('.$products_list['ram'].'Ram'.')':''; ?></div>
+          <div class="title-detail"><?php echo $products_list['item_name']; ?>&nbsp; <?php echo isset($products_list['colour'])?$products_list['colour']:''; ?>&nbsp; <?php echo isset($products_list['internal_memeory'])?$products_list['internal_memeory']:''; ?>&nbsp; <?php echo isset($products_list['ram'])?'('.$products_list['ram'].'Ram'.')':''; ?></div>
 		  <?php if(count($colors_list)>0){ ?>
 		  <form action="<?php echo base_url('customer/addcart'); ?>" onsubmit="return validation();" method="Post" name="addtocart" id="addtocart" >
 		  <?php }else{ ?>
