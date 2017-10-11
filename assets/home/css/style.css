@@ -7535,23 +7535,6 @@ box-shadow: -2px 6px 39px -8px rgba(0,0,0,0.75);
   animation-iteration-count: 1;
   animation-delay: 5s;
 	}
-	@-webkit-keyframes seconds {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    left: -9999px; 
-  }
-}
-@keyframes seconds {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    left: -9999px; 
-  }
 	
 /* alert page end  */
 

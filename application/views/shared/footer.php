@@ -16,7 +16,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col"> 
               <!-- Footer Payment Link -->
               <div class="payment-accept">
-                <div><img src="<?php echo base_url(); ?>assets/home/images/payment-1.png" alt=""> <img src="<?php echo base_url(); ?>assets/home/images/payment-2.png" alt=""> <img src="<?php echo base_url(); ?>assets/home/images/payment-3.png" alt=""> <img src="<?php echo base_url(); ?>assets/home/images/payment-4.png" alt=""></div>
+                <div><img title="Cash On Delivery" style="cursor:pointer" src="<?php echo base_url(); ?>assets/home/images/payment-1.png" alt=""> &nbsp;&nbsp;<img style="cursor:pointer" title="Swipe On Delivery" src="<?php echo base_url(); ?>assets/home/images/payment-2.png" alt=""> </div>
               </div>
             </div>
             <!-- Footer Newsletter -->
@@ -72,29 +72,28 @@
               <h4>Quick Links</h4>
               <ul class="links" >
                 <li class="first"><a href="#">Home</a></li>
-                <li><a href="#">Food </a></li>
-                <li><a href="#">Fashion</a></li>
+              
                 <li><a href="#">Electronics</a></li>
-                <li class="last"><a href="#">Grocery</a></li>
+                
               </ul>
             </div>
             <div class="footer-column">
               <h4>Style Advisor</h4>
               <ul class="links">
-                <li class="first"><a href="#">Your Account</a></li>
-                <li><a href="#">Information</a></li>
-                <li><a href="#">Addresses</a></li>
-                <li><a href="#">Discount</a></li>
-                <li class="last"><a href="#">Orders History</a></li>
+                <li class="first"><a href="#">My Account</a></li>
+                <li><a href="#">My Cart</a></li>
+                <li><a href="#">My Orders</a></li>
+                <li><a href="#">Track</a></li>
+                <li class="last"><a href="#">My Wishlist</a></li>
               </ul>
             </div>
             <div class="footer-column">
               <h4>Information</h4>
               <ul class="links">
-                <li class="first"><a title="Site Map" href="#">Site Map</a></li>
+                <li class="first"><a title="Site Map" href="#">Careers</a></li>
+				<li><a href="#">About Us</a></li>
                 <li><a href="#">Search Terms</a></li>
-                <li><a href="#">Advanced Search</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="#">Sale with us </a></li>
                 <li><a href="#">Contact Us</a></li>
               </ul>
             </div>
@@ -108,15 +107,15 @@
     </div>
     <!--footer-inner-->
     
-    <div class="footer-bottom">
+    <!--<div class="footer-bottom">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-xs-12 coppyright">© 2017 Cart in Hours. All Rights Reserved.</div>
         </div>
-        <!--row--> 
+        
       </div>
-      <!--container--> 
-    </div>
+     
+    </div>-->
     <!--footer-bottom--> 
     <!-- BEGIN SIMPLE FOOTER --> 
   </footer>
