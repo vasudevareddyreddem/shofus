@@ -6255,7 +6255,7 @@ and (max-device-width : 1024px)
     overflow: hidden;
 	
     z-index: 1000;
-	width:300px !important;
+	width:500px !important;
 	height:25% !important;
     cursor: crosshair;
     background: #CECECE;
