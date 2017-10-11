@@ -39,7 +39,7 @@ class Front_Controller extends MY_Controller {
 					//echo '<pre>';print_r($data);exit;
 					$this->template->set_template('website'); 
 					$this->template->write_view('header', 'shared/header',$data);
-					$this->template->write_view('footer', 'shared/footer');
+					$this->template->write_view('footer', 'shared/footer',$data['sidecaregory_list']);
 				}
 
 }

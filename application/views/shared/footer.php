@@ -61,30 +61,32 @@
                 Telangana, 500072</p>
               <div class="social">
                 <ul class="link">
-                  <li class="fb pull-left"><a target="_blank" href="#" title="Facebook"></a></li>
-                  <li class="tw pull-left"><a target="_blank" href="#" title="Twitter"></a></li>
-                  <li class="googleplus pull-left"><a target="_blank" href="#" title="GooglePlus"></a></li>
-                  <li class="linkedin pull-left"><a target="_blank" href="#" title="Linkedin"></a></li>
+                  <li class="fb pull-left"><a target="_blank" href="https://www.facebook.com/cartin.hours.7" target="_blank" title="Facebook"></a></li>
+                  <li class="tw pull-left"><a target="_blank" href="https://twitter.com/cartinhours" target="_blank" title="Twitter"></a></li>
+                  <li class="googleplus pull-left"><a target="_blank" href="https://plus.google.com/u/0/106334687276812209130" target="_blank" title="GooglePlus"></a></li>
+                  <!--<li class="linkedin pull-left"><a target="_blank" href="#" title="Linkedin"></a></li>-->
                 </ul>
               </div>
             </div>
             <div class="footer-column" >
               <h4>Quick Links</h4>
               <ul class="links" >
-                <li class="first"><a href="#">Home</a></li>
-              
-                <li><a href="#">Electronics</a></li>
+                <li class="first"><a href="<?php echo base_url(); ?>">Home</a></li>
+				
+				<?php foreach ($sidecaregory_list as $list){				?>
+                  <li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id'])); ?>"><?php echo $list['category_name']; ?></a></li>
+				<?php } ?>
                 
               </ul>
             </div>
             <div class="footer-column">
               <h4>Style Advisor</h4>
               <ul class="links">
-                <li class="first"><a href="#">My Account</a></li>
-                <li><a href="#">My Cart</a></li>
-                <li><a href="#">My Orders</a></li>
-                <li><a href="#">Track</a></li>
-                <li class="last"><a href="#">My Wishlist</a></li>
+                <li class="first"><a href="<?php echo base_url('customer/account');?>">My Account</a></li>
+                <li><a href="<?php echo base_url('customer/cart');?>">My Cart</a></li>
+                <li><a href="<?php echo base_url('customer/orders');?>">My Orders</a></li>
+                <li><a href="<?php echo base_url('customer/trackorders');?>">Track</a></li>
+                <li class="last"><a href="<?php echo base_url('customer/wishlist'); ?>">My Wishlist</a></li>
               </ul>
             </div>
             <div class="footer-column">
@@ -93,8 +95,8 @@
                 <li class="first"><a title="Site Map" href="#">Careers</a></li>
 				<li><a href="#">About Us</a></li>
                 <li><a href="#">Search Terms</a></li>
-                <li><a href="#">Sale with us </a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="<?php echo base_url('seller/login');?>">Sale with us </a></li>
+                <li><a href="<?php echo base_url('customer/contactus'); ?>">Contact Us</a></li>
               </ul>
             </div>
           </div>
@@ -105,23 +107,9 @@
       
       <!--container--> 
     </div>
-    <!--footer-inner-->
-    
-    <!--<div class="footer-bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 col-xs-12 coppyright">© 2017 Cart in Hours. All Rights Reserved.</div>
-        </div>
-        
-      </div>
      
-    </div>-->
-    <!--footer-bottom--> 
-    <!-- BEGIN SIMPLE FOOTER --> 
   </footer>
-  <!--footer end here --> 
   
-  <!--body part end here --> 
 </div>
 
 
