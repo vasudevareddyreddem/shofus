@@ -95,7 +95,7 @@
                 <li class="first"><a title="Site Map" href="#">Careers</a></li>
 				<li><a href="#">About Us</a></li>
                 <li><a href="#">Search Terms</a></li>
-                <li><a href="<?php echo base_url('seller/login');?>">Sale with us </a></li>
+                <li><a href="http://seller.cartinhours.com/seller/login" target="_blank">Sale with us </a></li>
                 <li><a href="<?php echo base_url('customer/contactus'); ?>">Contact Us</a></li>
               </ul>
             </div>
