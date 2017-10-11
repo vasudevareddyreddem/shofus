@@ -278,8 +278,9 @@
 			 
 			 
         </div>
-	
-        <div class="col-md-3" style="border:1px solid #ddd;padding:20px">
+				<?php if($products_list['item_quantity']!=0 && $products_list['item_status']!=0 ){ ?>
+
+        <div class="col-md-3" style="border:1px solid #ddd;padding:20px;">
 			<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:18px" id="deliverymsg"></span>
 			<div class="clearfix">&nbsp;</div>
@@ -298,14 +299,14 @@
 				</ul>
 			</div>
 			<div class="clearfix">&nbsp;</div>
-			<?php if($products_list['item_quantity']!=0 && $products_list['item_status']!=0 ){ ?>
 			<div>
 				<a class="btn btn-warning col-md-6" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
 				<button class="btn  btn-primary col-md-6 pull-right" style="width: 48%;" type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
 			</div>
-			<?php } ?>
+			
 			
         </div>
+		<?php } ?>
 		 </form>
         </div>
 		
