@@ -776,11 +776,12 @@
 			<input type="hidden" name="qty" id="qty" value="1" >
 			
           <div class=" col-md-3 box-product-outer" style="width:23%">
+		  <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
             <div class="box-product">
               <div class="img-wrapper">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+                
                   <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
-                </a>
+               
                
 				<?php if($productslist['item_quantity']<=0){ ?>
 				<div  class="text-center out_of_stoc">
@@ -870,6 +871,7 @@
 				<?php } ?>
 			</div>
             </div>
+			 </a>
           </div>
 		  </form>
 		  <?php  

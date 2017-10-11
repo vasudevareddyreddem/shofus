@@ -715,12 +715,13 @@ $(document).ready(function() {
 			<input type="hidden" name="qty" id="qty" value="1" >
 			
           <div class=" col-md-3 box-product-outer" style="width:23%">
+		   <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
             <div class="box-product">
               <div class="img-wrapper item" style="position:relative" >
 			   <div class="img_size text-center">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+               
                   <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
-                </a>
+                
 				</div>
               
 				<?php if($productslist['item_quantity']<=0){ ?>
@@ -809,7 +810,7 @@ $(document).ready(function() {
 				<?php }} ?>
 			</div>
             </div>
-			
+			</a>
 			
           </div>
 		  </form>
