@@ -1101,10 +1101,10 @@ function getareapincode(val){
 			$('#imgdisplaying').show();
 			if(data.msg==1){
 				
-				$('#deliverymsg').html('Delivery by with in ' +data.time).css("color", "black");
+				$('#deliverymsg').html('Delivered by within ' +data.time).css("color", "black");
 				
 			}else{
-				$('#deliverymsg').html('Delivery by with in 4 hours').css("color", "black");
+				$('#deliverymsg').html('Delivered by within 4 hours').css("color", "black");
 			}
          
 
