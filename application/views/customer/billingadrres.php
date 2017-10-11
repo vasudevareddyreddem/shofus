@@ -33,6 +33,8 @@
          <div class="bhoechie-tab-content active">
                     <center>
 		<div class="col-sm-12 col-xs-12 login-register-form m-b-3 text-left">
+		<?php 
+		if(count($billingaddresslis)>0){ ?>
 		<div class="row">
 		 <div class="title"><span>Saved address</span></div>
 		 
@@ -65,13 +67,9 @@
 			</div>
 			
 		 <?php $cnt++;} ?>
-			
-			
-			
-			
-			
-			
 		</div>
+		
+		<?php } ?>
 		<div class="clearfix"> &nbsp;</div>
 		<div id="newbillingaddress" >
          <div class="title"><span>Add New Address</span></div>
@@ -376,7 +374,7 @@ function changebillingaddress(aid,cnt){
 			address2: {
 				validators: {
 					notEmpty: {
-						message: 'Address1 is required'
+						message: 'Address2 is required'
 					},
 					
 					regexp: {
@@ -386,19 +384,7 @@ function changebillingaddress(aid,cnt){
 				
 				}
 			},
-			address2: {
-				validators: {
-					notEmpty: {
-						message: 'Address1 is required'
-					},
-					
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message: 'Address2 wont allow <> [] = % '
-					}
-				
-				}
-			},
+			
 			pincode: {
                validators: {
 				notEmpty: {
