@@ -2406,6 +2406,32 @@ class Customer extends Front_Controller
 			echo json_encode($data);
 		}
  }
+  public function contactus(){
+	  $this->template->write_view('content', 'customer/contactus');
+	  $this->template->render(); 
+  }
+
+  public function contactuspost(){
+	  $customerdetails=$this->session->userdata('userdetails');
+	  $post=$this->input->post();
+	  $details=array(
+	  'customer_id'=>isset($customerdetails['customer_id'])?$customerdetails['customer_id']:'',
+	  'name'=>$post['name'],
+	  'email'=>$post['email'],
+	  'subject'=>$post['Subject'],
+	  'message'=>$post['message'],
+	  'create_at'=>date('Y-m-d H:i:s'),
+	  );
+	   $savecontactus=$this->customer_model->save_customer_contactus($details);
+	   if(count($savecontactus)>0){
+		   $this->session->set_flashdata('success','Your query submitted successfully');
+			redirect('customer/contactus'); 
+	   }else{
+			$this->session->set_flashdata('qtyerror','Technical problem will occurred. please try again');
+			redirect('customer/contactus'); 
+	   }
+
+  }
 
 
 
