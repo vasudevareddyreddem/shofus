@@ -61,17 +61,17 @@
                 Telangana, 500072</p>
               <div class="social">
                 <ul class="link">
-                  <li class="fb pull-left"><a target="_blank" href="#" title="Facebook"></a></li>
-                  <li class="tw pull-left"><a target="_blank" href="#" title="Twitter"></a></li>
-                  <li class="googleplus pull-left"><a target="_blank" href="#" title="GooglePlus"></a></li>
-                  <li class="linkedin pull-left"><a target="_blank" href="#" title="Linkedin"></a></li>
+                  <li class="fb pull-left"><a target="_blank" href="https://www.facebook.com/cartin.hours.7" target="_blank" title="Facebook"></a></li>
+                  <li class="tw pull-left"><a target="_blank" href="https://twitter.com/cartinhours" target="_blank" title="Twitter"></a></li>
+                  <li class="googleplus pull-left"><a target="_blank" href="https://plus.google.com/u/0/106334687276812209130" target="_blank" title="GooglePlus"></a></li>
+                  <!--<li class="linkedin pull-left"><a target="_blank" href="#" title="Linkedin"></a></li>-->
                 </ul>
               </div>
             </div>
             <div class="footer-column" >
               <h4>Quick Links</h4>
               <ul class="links" >
-                <li class="first"><a href="#">Home</a></li>
+                <li class="first"><a href="<?php echo base_url(); ?>">Home</a></li>
               
                 <li><a href="#">Electronics</a></li>
                 
