@@ -7523,17 +7523,29 @@ height:450px;
 		padding:10px;
 		left:60px;
 		z-index:1200;
-		-webkit-box-shadow: -2px 6px 39px -8px rgba(0,0,0,0.75);
+		-nimation:signup-response 0.5s 1;
+    -webkit-animation:signup-response 0.5s 1;
+    animation-fill-mode: forwards;
+
+    animation-delay:5s;
+    -webkit-animation-delay:5s; /* Safari and Chrome */
+    -webkit-animation-fill-mode: forwards;
+	webkit-box-shadow: -2px 6px 39px -8px rgba(0,0,0,0.75);
 -moz-box-shadow: -2px 6px 39px -8px rgba(0,0,0,0.75);
 box-shadow: -2px 6px 39px -8px rgba(0,0,0,0.75);
+
 	}
+	@keyframes signup-response{
+    from {opacity :1;}
+    to {opacity :0;}
+}
+
+@-webkit-keyframes signup-response{
+    from {opacity :1;}
+    to {opacity :0;}
+}
 	.alt_cus {
-		-webkit-animation: seconds 1.0s forwards;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-delay:5s;
-  animation: seconds 1.0s forwards;
-  animation-iteration-count: 1;
-  animation-delay: 5s;
+	
 	}
 	
 	

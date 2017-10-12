@@ -12,10 +12,10 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 </script>
 	
 <?php if($this->session->flashdata('success')): ?>
-			<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
+			<div class="alt_cus"><div class="alert_msg1  btn_suc animated slideInUp"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 			<?php endif; ?> 
 			<?php if($this->session->flashdata('qtyerror')): ?>
-				<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+				<div class="alt_cus"><div class="alert_msg1  btn_war animated slideInUp"> <?php echo $this->session->flashdata('qtyerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 			<?php endif; ?>
 
@@ -535,12 +535,12 @@ jQuery.ajax({
 						$("#supcount").append(data.count);
 						if(data.msg==2){
 						$("#addticartitem"+itemid+val).removeClass("text-primary");
-						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to Cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_suc"> Product Successfully Removed to Cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 						if(data.msg==1){
 						 $("#addticartitem"+itemid+val).addClass("text-primary");
 						//$('#addwhish').css("color", "yellow");
-						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to Cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_suc"> Product Successfully added to Cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 				}
 
@@ -572,12 +572,12 @@ jQuery.ajax({
 						//alert(data.msg);
 						if(data.msg==2){
 						$("#addwishlistids"+id+val).removeClass("text-primary");
-						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_suc"> Product Successfully Removed to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 						if(data.msg==1){
 						 $("#addwishlistids"+id+val).addClass("text-primary");
 						//$('#addwhish').css("color", "yellow");
-						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_suc"> Product Successfully added to Whishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 				}
       
@@ -646,6 +646,7 @@ jQuery.ajax({
             });
         }
     });
+	
 
 	
 </script>
