@@ -776,11 +776,12 @@
 			<input type="hidden" name="qty" id="qty" value="1" >
 			
           <div class=" col-md-3 box-product-outer" style="width:23%">
+		  <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
             <div class="box-product">
               <div class="img-wrapper">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+                
                   <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
-                </a>
+               
                
 				<?php if($productslist['item_quantity']<=0){ ?>
 				<div  class="text-center out_of_stoc">
@@ -803,7 +804,7 @@
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?>&nbsp;<?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
               <div class="price">
                
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
@@ -870,6 +871,7 @@
 				<?php } ?>
 			</div>
             </div>
+			 </a>
           </div>
 		  </form>
 		  <?php  

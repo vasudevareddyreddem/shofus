@@ -518,6 +518,10 @@ class Customer_model extends MY_Model
 		$this->db->where('address_id',$id);
 		return $this->db->get()->row_array();
 	}
+	public function save_customer_contactus($data){
+		$this->db->insert('customercontactus', $data);
+		return $insert_id = $this->db->insert_id();
+	}
 	
 }
 ?>

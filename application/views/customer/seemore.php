@@ -55,17 +55,17 @@
 			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
 			<input type="hidden" name="qty" id="qty" value="1" >
                 <div class="col-md-2 " style="width:20%">
-				
+				 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
 				<div class="item">
           <div class=" box-product-outer" >
             <div class="box-product">
               <div class="img-wrapper  img_hover">
               <div class="img_size text-center">
-                <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+               
                <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
 				 
            
-                </a>
+               
 				</div>
                
 				<?php if($productslist['item_quantity']<=0){ ?>
@@ -89,7 +89,7 @@
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?>&nbsp;<?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
 				  <div class="price">
                
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
@@ -105,6 +105,7 @@
             </div>
           </div>
             </div>
+			 </a>
 				
 				</form>
                  
