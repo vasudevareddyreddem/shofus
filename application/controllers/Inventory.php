@@ -1838,7 +1838,7 @@ public function servicerequestview(){
 		$userinfo = $this->session->userdata('userdetails');
 		//echo '<pre>';print_r($userinfo );exit;
         $this->session->unset_userdata($userinfo);
-		$this->session->sess_destroy('userdetails');
+		//$this->session->sess_destroy('userdetails');
 		$this->session->unset_userdata('userdetails');
         redirect('admin/login');
 	}
@@ -2099,6 +2099,190 @@ public function servicerequestview(){
 		 redirect('admin/login');
 	}
   }
+  public function addbannerslist()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		$data['bannerslist']=$this->inventory_model->get_save_mobileapp_banners_list();
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/mobileappbannerlist',$data);
+		$this->load->view('customer/inventry/footer');
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
+  public function addbanners()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		
+		$data['bannerslist']=$this->inventory_model->get_save_mobileapp_banners_list();
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/addmobilebanners');
+		$this->load->view('customer/inventry/footer');
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  } 
+  public function addbannerspost()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		
+		$post=$this->input->post();
+		
+		if($_FILES['img1']['name']!=''){
+				$img1=$_FILES['img1']['name'];
+				move_uploaded_file($_FILES['img1']['tmp_name'],"assets/appbanners/" .$_FILES['img1']['name']);
+			}else{
+				$img1='';
+			}
+		if($_FILES['img2']['name']!=''){
+				$img2=$_FILES['img2']['name'];
+				move_uploaded_file($_FILES['img2']['tmp_name'],"assets/appbanners/" .$_FILES['img2']['name']);
+			}else{
+				$img2='';
+			}
+		if($_FILES['img3']['name']!=''){
+				$img3=$_FILES['img3']['name'];
+				move_uploaded_file($_FILES['img3']['tmp_name'],"assets/appbanners/" .$_FILES['img3']['name']);
+			}else{
+				$img3='';
+			}
+		if($_FILES['img4']['name']!=''){
+				$img4=$_FILES['img4']['name'];
+				move_uploaded_file($_FILES['img4']['tmp_name'],"assets/appbanners/" .$_FILES['img4']['name']);
+			}else{
+				$img4='';
+			}
+		if($_FILES['img5']['name']!=''){
+				$img5=$_FILES['img5']['name'];
+				move_uploaded_file($_FILES['img5']['tmp_name'],"assets/appbanners/" .$_FILES['img5']['name']);
+			}else{
+				$img5='';
+			}
+		if($_FILES['img6']['name']!=''){
+				$img6=$_FILES['img6']['name'];
+				move_uploaded_file($_FILES['img6']['tmp_name'],"assets/appbanners/" .$_FILES['img6']['name']);
+			}else{
+				$img6='';
+			}
+		if($_FILES['img7']['name']!=''){
+				$img7=$_FILES['img7']['name'];
+				move_uploaded_file($_FILES['img7']['tmp_name'],"assets/appbanners/" .$_FILES['img7']['name']);
+			}else{
+				$img7='';
+			}
+		if($_FILES['img8']['name']!=''){
+				$img8=$_FILES['img8']['name'];
+				move_uploaded_file($_FILES['img8']['tmp_name'], "assets/appbanners/" .$_FILES['img8']['name']);
+			}else{
+				$img8='';
+			}
+		if($_FILES['img9']['name']!=''){
+				$img9=$_FILES['img9']['name'];
+				move_uploaded_file($_FILES['img9']['tmp_name'], "assets/appbanners/" .$_FILES['img9']['name']);
+			}else{
+				$img9='';
+			}
+			if(isset($img1) && $img1!=''){
+				$detais=array('img1'=>isset($img1)?$img1:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_mobileapp_banners_list($detais);
+			}
+			if(isset($img2) && $img2!=''){
+				$detais=array('img1'=>isset($img2)?$img2:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_mobileapp_banners_list($detais);
+			}
+			if(isset($img3) && $img3!=''){
+				$detais=array('img1'=>isset($img3)?$img3:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_mobileapp_banners_list($detais);
+			}
+			if(isset($img4) && $img4!=''){
+				$detais=array('img1'=>isset($img4)?$img4:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_mobileapp_banners_list($detais);
+			}
+			if(isset($img5) && $img5!=''){
+				$detais=array('img1'=>isset($img5)?$img5:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_mobileapp_banners_list($detais);
+			}
+			if(isset($img6) && $img6!=''){
+				$detais=array('img1'=>isset($img6)?$img6:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_mobileapp_banners_list($detais);
+			}
+			if(isset($img7) && $img7!=''){
+				$detais=array('img1'=>isset($img7)?$img7:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_mobileapp_banners_list($detais);
+			}
+			if(isset($img8) && $img8!=''){
+				$detais=array('img1'=>isset($img8)?$img8:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_mobileapp_banners_list($detais);
+			}
+			if(isset($img9) && $img9!=''){
+				$detais=array('img1'=>isset($img9)?$img9:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_mobileapp_banners_list($detais);
+			}
+			
+				
+				if(count($savedata)>0){
+					$this->session->set_flashdata('success','banners Successfully Added');
+					redirect('inventory/addbannerslist');
+				}else{
+					$this->session->set_flashdata('error',' some technical problem will occured. Please try again');
+					redirect('inventory/addbanners');
+					
+				}
+				
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
+  public function addbannerstatus()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$imageid = base64_decode($this->uri->segment(3));
+				$status = base64_decode($this->uri->segment(4));
+				//echo "<pre>";print_r($offerid);exit;
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				$updatestatus=$this->inventory_model->update_bannerimg_status($imageid,$status);
+				
+				
+				//echo $this->db->last_query();exit;
+				if(count($updatestatus)>0)
+				{
+					if($status==0)
+					{
+						$this->session->set_flashdata('success'," Image successfully deactivate");
+					}else{
+						$this->session->set_flashdata('success',"Image successfully activate");
+					}
+					redirect('inventory/addbannerslist');
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
+	}
  
 
 

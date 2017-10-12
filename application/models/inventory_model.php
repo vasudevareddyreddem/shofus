@@ -719,5 +719,20 @@ class Inventory_model extends MY_Model
 		return $this->db->query($sql1);
 	}
 	
+	function save_mobileapp_banners_list($data){
+		$this->db->insert('appbanners_list', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	function get_save_mobileapp_banners_list(){
+		$this->db->select('*')->from('appbanners_list');
+		//$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
+	function update_bannerimg_status($item_id,$data)
+	{
+		$sql1="UPDATE appbanners_list SET status ='".$data."'WHERE id = '".$item_id."'";
+		return $this->db->query($sql1);
+	}
+	
 }
 ?>	
