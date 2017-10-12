@@ -224,13 +224,13 @@ class Customer extends Front_Controller
 							$delivery_charges=0;
 						}
 					}
-		if($products['subcategory_id']==53){
+		if(isset($products['subcategory_id']) && $products['subcategory_id']==53){
 			$uksize=$post['sizevalue'];
 			$size='';
 			
 		}else{
 			$uksize='';
-			$size=$post['sizevalue'];
+			$size=$products['internal_memory'];
 		}
 		
 		$adddata=array(
@@ -243,28 +243,38 @@ class Customer extends Front_Controller
 		'commission_price'=>$commission_price,
 		'delivery_amount'=>$delivery_charges,
 		'seller_id'=>$products['seller_id'],
-		'color'=>isset($post['colorvalue'])?$post['colorvalue']:'',
+		'color'=>isset($products['colour'])?$products['colour']:'',
 		'size'=>isset($size)?$size:'',
 		'uksize'=>isset($uksize)?$uksize:'',
 		'category_id'=>$products['category_id'],
 		'create_at'=>date('Y-m-d H:i:s'),
 		);
 		//echo '<pre>';print_r($adddata);exit;
-		$data['cart_items']= $this->customer_model->get_cart_products($customerdetails['customer_id']);
-		
-			foreach($data['cart_items'] as $pids) { 
-						
-							$rid[]=$pids['item_id'];
-			}
-		if(in_array($post['producr_id'],$rid)){
+		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		if(count($cart_items)>0){
 			
-			if(isset($post['wishlist']) && $post['wishlist']=!'' ){
-			$this->session->set_flashdata('adderror','Product already added to the cart');
-			redirect('customer/wishlist');	
-			}else{
+				foreach($cart_items as $pids) { 
+							
+								$rid[]=$pids['item_id'];
+				}
+			if(in_array($post['producr_id'],$rid)){
 				
-			$this->session->set_flashdata('error','Product already Exits');
-			redirect('category/productview/'.base64_encode($post['producr_id']));	
+				if(isset($post['wishlist']) && $post['wishlist']=!'' ){
+				$this->session->set_flashdata('adderror','Product already added to the cart');
+				redirect('customer/wishlist');	
+				}else{
+					
+				$this->session->set_flashdata('error','Product already Exits');
+				redirect('category/productview/'.base64_encode($post['producr_id']));	
+				}
+				
+			}else{
+				$save= $this->customer_model->cart_products_save($adddata);
+				if(count($save)>0){
+				$this->session->set_flashdata('productsuccess','Product Successfully added to the cart');
+				redirect('customer/cart');
+				}
+			
 			}
 			
 		}else{
@@ -836,7 +846,7 @@ class Customer extends Front_Controller
 				'address2'=>$getaddress['address2'],
 				'city'=>$getaddress['city'],
 				'state'=>$getaddress['state'],
-				'area'=>$getaddress['area'],
+				'area'=>isset($getaddress['area'])?$getaddress['area']:'',
 				'create-at'=>date('Y-m-d H:i:s'),
 				);
 		
@@ -899,7 +909,7 @@ class Customer extends Front_Controller
 		'address2'=>$post['address2'],
 		'city'=>$post['city'],
 		'state'=>$post['state'],
-		'area'=>$post['area'],
+		'area'=>isset($post['area'])?$post['area']:'',
 		'create-at'=>date('Y-m-d H:i:s'),
 		);
 		

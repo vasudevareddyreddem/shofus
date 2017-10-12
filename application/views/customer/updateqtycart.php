@@ -226,7 +226,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
     </div>
 
 <script>
-
+ $(".alert_msg1").fadeOut(5000);
 function productqty(id){
 
 	var pid=document.getElementById("product_id"+id).value;

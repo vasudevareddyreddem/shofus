@@ -97,7 +97,7 @@ $("#fademaskpurpose").addClass("mask_hide");
 					<img class="img-responsive" src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
 					
 					</div>
-					<div class="pro-info" style="border-top:1px solid #ddd;background:#4a5f67;color:#fff;padding:2px;"><?php echo $tops['item_name']; ?></div>
+					<div class="pro-info" style="border-top:1px solid #ddd;background:#4a5f67;color:#fff;padding:2px;"><?php echo $tops['item_name']; ?>&nbsp;<?php echo isset($tops['colour'])?$tops['colour']:''; ?>&nbsp; <?php echo isset($tops['internal_memeory'])?$tops['internal_memeory']:''; ?>&nbsp; <?php echo isset($tops['ram'])?'('.$tops['ram'].'Ram'.')':''; ?></div>
 					</div>
 					</a>
 					
@@ -180,7 +180,7 @@ $("#fademaskpurpose").addClass("mask_hide");
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?>&nbsp;<?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
               <div class="price">
                
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
@@ -271,7 +271,7 @@ $("#fademaskpurpose").addClass("mask_hide");
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?>&nbsp;<?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
                 <div class="price">
                
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
@@ -363,7 +363,7 @@ $("#fademaskpurpose").addClass("mask_hide");
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?>&nbsp;<?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
                 <div class="price">
                
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
@@ -451,7 +451,7 @@ $("#fademaskpurpose").addClass("mask_hide");
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?>&nbsp;<?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
                <div class="price">
                
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
