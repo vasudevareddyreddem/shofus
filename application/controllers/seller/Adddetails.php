@@ -240,6 +240,7 @@ class Adddetails extends Seller_adddetails{
 			}else{
 			$gstimg=$seller_upload_file['gstinimage'];
 			}
+			if(isset($post['other_shops_location']) && $post['other_shops_location']!=''){
 			$location_name = $post['other_shops_location'];
 			//echo '<pre>';print_r($location_name);exit;
 			$lock_string = implode(",", $location_name);
@@ -250,6 +251,8 @@ class Adddetails extends Seller_adddetails{
 			{
 			    $location_array[] = array('other_shops_location' =>$store_locations);
 			}
+			
+			}
 		
 		//echo '<pre>';print_r($location_array);exit;
 			$data = array(
@@ -259,7 +262,7 @@ class Adddetails extends Seller_adddetails{
 			'area' => $post['areacode'],    
 			'pin_code' => $post['pincode'],    
 			'other_shops'  =>$post['other_shops'],
-			'other_shops_location'  =>$store_locations,
+			'other_shops_location'  =>isset($store_locations)?$store_locations:'',
 			//'deliveryes'  =>$post['deliveryes'],
 			'weblink'  =>$post['weblink'],
 			'tin_vat'  =>$post['tin'],
