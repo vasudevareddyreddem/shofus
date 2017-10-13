@@ -231,7 +231,7 @@ $(document).ready(function() {
 
 	 <div class="row ">
 			<div class="col-md-12  ">
-			  <?php //echo '<pre>';print_r($subcategory_list);exit; ?>
+			  <?php //echo '<pre>';print_r($minimum_price['item_cost']);exit; ?>
 			  <div class="col-md-12 gir_alg" >
 			  <div class="title text-left mar_t10"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
 			  <?php foreach($subcategory_list as $list){ ?>

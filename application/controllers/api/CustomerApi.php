@@ -475,7 +475,13 @@ class CustomerApi extends REST_Controller {
 				$message = array('status'=>1,'message'=>'Customer having  no products in the cart');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}else{
-				$message = array('status'=>1,'message'=>'cart items list','list'=>$item_lists,'count'=>$item_lists_count['count']);
+				$message = array(
+				'status'=>1,
+				'message'=>'cart items list',
+				'list'=>$item_lists,
+				'count'=>$item_lists_count['count'],
+				'path'=>'http://cartinhours.com/uploads/products/'
+				);
 				$this->response($message,REST_Controller::HTTP_OK);
 			}
 		}else{
@@ -583,7 +589,7 @@ class CustomerApi extends REST_Controller {
 			$message = array('status'=>1,'message'=>'Customer having  no products in the wishlist');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else{
-			$message = array('status'=>1,'message'=>'wishlist items list','list'=>$wishlist,'count'=>$wishlistcount['count']);
+			$message = array('status'=>1,'message'=>'wishlist items list','list'=>$wishlist,'count'=>$wishlistcount['count'],'path'=>'http://cartinhours.com/uploads/products/');
 			$this->response($message,REST_Controller::HTTP_OK);
 		}
 		}else{
@@ -1972,8 +1978,8 @@ class CustomerApi extends REST_Controller {
 					$data['myrestaurant']= $this->Customerapi_model->get_all_myrestaurant_list($category_id);
 					$data['price_list']= $this->Customerapi_model->get_all_price_list($category_id);
 					$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-					$data['minimum_price'] = reset($data['price_list']);
-					$data['maximum_price'] = end($data['price_list']);
+					$data['minimum_price'] = end($data['price_list']);
+					$data['maximum_price'] = reset($data['price_list']);
 					$iospurpose=array_merge($data['cusine_list'][0],$data['myrestaurant'][0],$data['price_list'][0],array('Instock'=>1,'Out of stock'=>0),array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));
 
 				}else if($category_id==21){
@@ -1982,8 +1988,8 @@ class CustomerApi extends REST_Controller {
 					$data['discount_list']= $this->Customerapi_model->get_all_discount_list($category_id);
 					$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
 					$data['offer_list']= $this->Customerapi_model->get_all_offer_list($category_id);
-					$data['minimum_price'] = reset($data['price_list']);
-					$data['maximum_price'] = end($data['price_list']);
+					$data['minimum_price'] = end($data['price_list']);
+					$data['maximum_price'] = reset($data['price_list']);
 					$iospurpose=array_merge($data['brand_list'][0],$data['price_list'][0],$data['discount_list'][0],array('Instock'=>1,'Out of stock'=>0),$data['offer_list'][0],array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));
 
 				}else if($category_id==20){
@@ -1994,8 +2000,8 @@ class CustomerApi extends REST_Controller {
 					$data['offer_list']= $this->Customerapi_model->get_all_offer_list($category_id);
 					//$data['color_list']= $this->Customerapi_model->get_all_color_list($category_id);
 					$data['color_list']= $this->Customerapi_model->get_all_colours_list($category_id);
-					$data['minimum_price'] = reset($data['price_list']);
-					$data['maximum_price'] = end($data['price_list']);
+					$data['minimum_price'] = end($data['price_list']);
+					$data['maximum_price'] = reset($data['price_list']);
 					$iospurpose=array_merge($data['brand_list'][0],$data['price_list'][0],$data['discount_list'][0],array('Instock'=>1,'Out of stock'=>0),$data['offer_list'][0],$data['color_list'][0],array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));
 
 				}else if($category_id==19){
@@ -2006,8 +2012,8 @@ class CustomerApi extends REST_Controller {
 					$data['offer_list']= $this->Customerapi_model->get_all_offer_list($category_id);
 					$data['color_list']= $this->Customerapi_model->get_all_color_list($category_id);
 					$data['sizes_list']= $this->Customerapi_model->get_all_size_list($category_id);
-					$data['minimum_price'] = reset($data['price_list']);
-					$data['maximum_price'] = end($data['price_list']);
+					$data['minimum_price'] = end($data['price_list']);
+					$data['maximum_price'] = reset($data['price_list']);
 					$iospurpose=array_merge($data['brand_list'][0],$data['price_list'][0],$data['discount_list'][0],array('Instock'=>1,'Out of stock'=>0),$data['offer_list'][0],$data['color_list'][0],$data['sizes_list'][0],array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));
 
 				}else{

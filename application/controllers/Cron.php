@@ -14,13 +14,18 @@ class Cron extends Front_Controller
 	}
 	
 	public function index (){
+		
 		$unassignorder_list= $this->Cron_model->getall_unasigned_order_list();
+		$selleraddress='';
 		foreach($unassignorder_list as $unaslists){
-			$customeraddress=$unaslists['customer_address'].' '.$unaslists['customerpincode'];
-			$selleraddress=$unaslists['selleradd1'].' '.$unaslists['selleradd2'].' '.$unaslists['sellerpincode'];
+			
+			$customeraddress=$unaslists['customer_address'].'&nbsp;'.$unaslists['city'].'&nbsp;'.$unaslists['state'].'&nbsp;'.$unaslists['pincode'];
+			 $selleraddress=$unaslists['selleradd2'];
+			//echo '<pre>';print_r($unaslists);exit;
+			//echo '<pre>';print_r($unaslists);exit;
 			if($unaslists['customer_seller_km']=='' && $unaslists['customer_seller_time']=='' && $unaslists['customer_seller_timevalue']==''){
 			/*customer to seller address*/
-					$urls = "https://maps.googleapis.com/maps/api/distancematrix/json?origins='".urlencode($customeraddress)."'&destinations='".urlencode($selleraddress)."'&key=AIzaSyBYkh0t1B_RRskD4WkvHSiGAPRjt-WVJrU&sensor=false";
+					 $urls = "https://maps.googleapis.com/maps/api/distancematrix/json?origins='".urlencode($customeraddress)."'&destinations='".urlencode($selleraddress)."'&key=AIzaSyBaHdfHglhoERINejBYkHOocaFEsxp8L28&sensor=false";
 					$ch1 = curl_init();
 					curl_setopt($ch1, CURLOPT_URL, $urls);
 					curl_setopt($ch1, CURLOPT_RETURNTRANSFER, 1);
@@ -30,12 +35,14 @@ class Cron extends Front_Controller
 					$response = curl_exec($ch1);
 					curl_close($ch1);
 					$characters1 = json_decode($response, TRUE);
+					//echo '<pre>';print_r($characters1);exit;
 					$km=isset($characters1['rows'][0]['elements'][0]['distance']['text'])?$characters1['rows'][0]['elements'][0]['distance']['text']:'';
 					$time=isset($characters1['rows'][0]['elements'][0]['duration']['text'])?$characters1['rows'][0]['elements'][0]['duration']['text']:'';
 					$timevalue=isset($characters1['rows'][0]['elements'][0]['duration']['value'])?$characters1['rows'][0]['elements'][0]['duration']['value']:'';
 					
 					$this->Cron_model->update_delivery_time($unaslists['order_item_id'],$km,$time,$timevalue);
 			}
+			
 			/*customer to seller address*/
 			}
 	}
@@ -51,7 +58,7 @@ class Cron extends Front_Controller
 					$deliveryadd=$dylist['deliveryboy_current_location'];
 					$cutomertimevalue=$dlist['customer_seller_timevalue'];
 					$cutomertime=$dlist['customer_seller_time'];
-					$selleraddress=$dlist['selleradd1'].' '.$dlist['selleradd2'].' '.$dlist['sellerpincode'];
+					$selleraddress=$dlist['selleradd2'];
 				/* seller to delivery address*/
 					$urls1 = "https://maps.googleapis.com/maps/api/distancematrix/json?origins='".urlencode($deliveryadd)."'&destinations='".urlencode($selleraddress)."'&key=AIzaSyBYkh0t1B_RRskD4WkvHSiGAPRjt-WVJrU&sensor=false";
 					$ch2 = curl_init();
@@ -63,6 +70,7 @@ class Cron extends Front_Controller
 					$response2 = curl_exec($ch2);
 					curl_close($ch2);
 					$characters2 = json_decode($response2, TRUE);
+					//echo '<pre>';print_r($characters2);exit;
 					$dkm[]=isset($characters2['rows'][0]['elements'][0]['distance']['text'])?$characters2['rows'][0]['elements'][0]['distance']['text']:'';
 					$dtime[]=isset($characters2['rows'][0]['elements'][0]['duration']['text'])?$characters2['rows'][0]['elements'][0]['duration']['text']:'';
 					$data[$dylist['customer_id']]['dtimevalue']=isset($characters2['rows'][0]['elements'][0]['duration']['value'])?$characters2['rows'][0]['elements'][0]['duration']['value']:'';
@@ -81,7 +89,23 @@ class Cron extends Front_Controller
 					
 				}
 				$mindistancedboyid = min($priceprod);
-				$this->Cron_model->assign_orderto_deliveryboy($mindistancedboyid['dboyid'],$dlist['order_item_id'],1);
+				if($mindistancedboyid['dboyid']!=0){
+				$success=$this->Cron_model->assign_orderto_deliveryboy($mindistancedboyid['dboyid'],$dlist['order_item_id'],1);
+					
+					if(count($success)>0){
+					$this->load->library('email');
+						$this->email->from('cartinhours.com');
+						$this->email->to('pushkar.avi@gmail.com');
+						$this->email->subject("Assign order");
+						$body = 'Cartinhours added another order to you.please check once';
+						$this->email->message($body);
+						if ($this->email->send())
+						{
+						echo 'email send';
+						}
+						
+					}
+				}
 				
 
 				

@@ -70,6 +70,15 @@
             <li><a href="<?php echo base_url('inventory/productquantity'); ?>"><i class="fa fa-circle-o"></i>Product Quantity</a></li>
           </ul>
         </li>
+		<li class="treeview">
+          <a href="<?php echo base_url('inventory/addbannerslist');?>">
+            <i class="fa fa-table"></i> <span>App Banners</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
