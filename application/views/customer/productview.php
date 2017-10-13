@@ -126,7 +126,7 @@
               <tr>
                 <td>Price</td>
                 <td><div class="price">
-                    <div class="site_col"><span style="font-weight:400;font-size:23px;"> ₹ <?php echo $item_price; ?></span> &nbsp;<span class="price-old"><?php echo $orginal_price; ?></span> <span class="text-success"><?php echo number_format($percentage, 2, '.', ''); ?>% Off</span></div>
+                    <div class="site_col"><span style="font-weight:400;font-size:23px;"> ₹<?php echo number_format($item_price, 2 ); ?></span> &nbsp;<span class="price-old"><?php echo $orginal_price; ?></span> <span class="text-success"><?php echo number_format($percentage, 2, '.', ''); ?>% Off</span></div>
                   </div>
 				</td>
               </tr>

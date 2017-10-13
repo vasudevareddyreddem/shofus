@@ -19,7 +19,7 @@
             <div class="well well-sm ord_del" style="background:#fff;">
                 <div style="padding:20px;">
 					<div class="pull-left">
-						<span style="background-color:#45b1b9;color:#fff;padding:10px;border-radius:5px;"><?php echo Date('Ymd');?><?php echo $orders['order_item_id']; ?></span>
+						<span style="background-color:#45b1b9;color:#fff;padding:10px;border-radius:5px;"><b>ORDER ID:&nbsp; </b><?php echo Date('Ymd');?><?php echo $orders['order_item_id']; ?></span>
 					</div>
 					<div class="pull-right"> 
 					<span style="font-size:17px;">status :</span>
@@ -72,7 +72,7 @@
                      
 							
 							<div>
-								<span style="font-size:18px;">₹<?php echo $orders['total_price']; ?></span> &nbsp;&nbsp;
+								<span style="font-size:18px;">₹<?php echo number_format($orders['total_price'], 2 ); ?></span> &nbsp;&nbsp;
 								
 							</div>
                         
@@ -102,7 +102,7 @@
 					
 				<div class="clearfix"> &nbsp;</div>
 				<hr style="margin:0px 10px 10px 0px;border-top:1px solid #ddd;">
-				<div class="pull-left tras_col">Ordered On <?php echo isset($orders['create_at'])?Date('D,M,Y h:i:s A',strtotime(htmlentities($orders['create_at']))):'';  ?>
+				<div class="pull-left tras_col">Ordered On <?php echo isset($orders['create_at'])?Date('d-M-Y h:i:s A',strtotime(htmlentities($orders['create_at']))):'';  ?>
 				</div>
 				<div class="pull-right"><span style="font-size:17px;font-weight:500;color:#bbb">Order Total :  </span> &nbsp;<span style="font-size:16px;font-weight:400" class="site_col">₹<?php echo $orders['total_price'] ?></span>
 				</div>

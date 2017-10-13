@@ -104,8 +104,8 @@
                                                 <td class="text-left" style="width:250px;">
                                                     <p class="" style="font-size:17px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&nbsp;<?php echo isset($productslist['product_code'])?$productslist['product_code']:''; ?></p>
                                                     <p><?php echo isset($productslist['brand'])?$productslist['brand']:''; ?></p>
-                                                    <p><span style="font-size:20px;font-weight:500">₹<?php echo $item_price; ?></span> &nbsp;&nbsp;
-                                                        <span class="price-old" style="font-size:16px;color:#bbb">₹ <?php echo $orginal_price; ?></span>&nbsp;&nbsp;
+                                                    <p><span style="font-size:20px;font-weight:500">₹<?php echo number_format($item_price, 2 ); ?></span> &nbsp;&nbsp;
+                                                        <span class="price-old" style="font-size:16px;color:#bbb">₹ <?php echo number_format($orginal_price, 2 ); ?></span>&nbsp;&nbsp;
                                                         <span class="site_col" style="font-size:18px;"><?php echo number_format($percentage, 2, '.', ''); ?>% off</span>&nbsp;&nbsp;</p>
 
 
