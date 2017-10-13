@@ -52,7 +52,7 @@
 			<div id="html5"  name="html5" onclick="submobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
 
 			</div>
-			<select id="input-select" name="min_amount" >
+			<select id="input-select" onchange="submobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
 			<?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 			<?php } ?>
@@ -1423,9 +1423,9 @@
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?>&nbsp;<?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
               <div class="price">
                
-				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
+				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
 			<?php if($percentage!=''){ ?> &nbsp;
-			<span class="price-old">₹ <?php echo $orginal_price; ?></span>
+			<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
 				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
 			<?Php }else{ ?>
 			<?php } ?>

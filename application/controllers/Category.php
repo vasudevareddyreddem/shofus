@@ -427,6 +427,19 @@ public function categorywiseearch(){
 					foreach ($removesearch as $list){
 						$this->category_model->update_status_privous_searchdata($list['id'],$post['productsvalues']);
 					} 
+				}else{
+					
+					$removesearch= $this->category_model->get_all_previous_search_fields();
+					if(count($removesearch)>0){
+					if(isset($removesearch[0]['status']) && $removesearch[0]['status']==''){
+						$status=1;
+					}else{
+						$status=$removesearch[0]['status'];
+					}
+					
+					}else{
+						$status=1;
+					}
 				}
 				if(isset($post['searchvalue']) && $post['searchvalue']=='cusine' && $post['unchecked']!='uncheck'){
 					$cus=$post['productsvalues'];
@@ -565,8 +578,7 @@ function filtersearch(){
 		foreach ($catid as $lists){
 		$categoryids=$lists['category_id'];
 		}
-		//echo count($subcategory_porduct_list);
-		if(count($subcategory_porduct_list)>2){
+		
 		foreach ($subcategory_porduct_list as $lists){
 				foreach ($lists as $li){
 						$idslist[]=$li['item_id'];
@@ -597,10 +609,6 @@ function filtersearch(){
 		$data['subcategory_porduct_list']=array();
 	}
 	
-	}else{
-	
-	$data['subcategory_porduct_list']=array();
-	}
 	
 	$data['previousdata']= $this->category_model->get_all_previous_search_fields();
 	$caterory_id=$categoryid;
