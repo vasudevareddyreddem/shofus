@@ -65,8 +65,7 @@
                                                     <p class="" style="font-size:17px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&nbsp;<?php echo isset($productslist['product_code'])?$productslist['product_code']:''; ?></p>
                                                     <p><?php echo isset($productslist['brand'])?$productslist['brand']:''; ?></p>
                                                     <p>
-													<span style="font-size:20px;font-weight:500">₹<?php echo $productslist['total_price']; ?></span> &nbsp;&nbsp;
-                            
+													<span style="font-size:20px;font-weight:500">₹<?php echo number_format($productslist['total_price'], 2); ?></span> &nbsp;&nbsp;
 
                                                 </td>
 
@@ -110,7 +109,15 @@
 				<li class="list-group-item"style="border-top:2px solid #45b1b9">
 					<div class="text-center" style="margin:0 auto;">
 						<img style="margin:0 auto;" class="img-responsive"src="<?php echo base_url(); ?>assets/home/images/thanks_sho.png" />
-						<p class="del_und">Delivered on Oct-10-2017 5:31 pm</p>
+						<p class="del_und">
+										
+							<?php  $timestamp = strtotime($productslist['create_at']) + 2*60*60;
+								$time = date('g:i a', $timestamp);?>
+							Delivered on <?php echo isset($productslist['create_at'])?Date('M-d-Y',strtotime(htmlentities($productslist['create_at']))):'';  ?> <?php echo $time; ?>
+							
+							</p>						
+											
+
 					</div>
 					
 				</li>

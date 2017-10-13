@@ -1423,9 +1423,9 @@
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?>&nbsp;<?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
               <div class="price">
                
-				<div class="text-center" style="color:#187a7d;">₹ <?php echo ($item_price); ?> 
+				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
 			<?php if($percentage!=''){ ?> &nbsp;
-			<span class="price-old">₹ <?php echo $orginal_price; ?></span>
+			<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
 				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
 			<?Php }else{ ?>
 			<?php } ?>

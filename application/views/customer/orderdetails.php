@@ -101,13 +101,13 @@ tr th:last-child {
       <tr>
         <th>Amount </th>
 		<?php if(isset($item_details['payment_type']) && $item_details['payment_type']==4){ ?>
-			<td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; Paytm</td>
+			<td>₹ <?php echo number_format($item_details['total_price'], 2); ?>   through &nbsp; Paytm</td>
 		<?php }else if(isset($item_details['payment_type']) && $item_details['payment_type']==3){ ?>
-		<td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; Swipe on Delivery</td>
+		<td>₹ <?php echo number_format($item_details['total_price'], 2); ?>  through &nbsp; Swipe on Delivery</td>
 		<?php }else if(isset($item_details['payment_type']) && $item_details['payment_type']==2){ ?>
-		<td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; Cash On Delivery</td>
+		<td>₹ <?php echo number_format($item_details['total_price'], 2); ?>  through &nbsp; Cash On Delivery</td>
 		<?php }else if(isset($item_details['payment_type']) && $item_details['payment_type']==1){ ?>
-        <td>₹ <?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?>   through &nbsp; <?php echo isset($item_details['payment_mode'])?$item_details['payment_mode']:'';  ?></td>
+        <td>₹ <?php echo number_format($item_details['total_price'], 2); ?>  through &nbsp; <?php echo isset($item_details['payment_mode'])?$item_details['payment_mode']:'';  ?></td>
         <?php } ?>
       </tr>
 	  <tr>
