@@ -1127,6 +1127,8 @@ class Category_model extends MY_Model
 	$this->db->group_by('fliter_search.color');
 	$query=$this->db->get()->result_array();
 		foreach ($query as $sorting){
+			
+			//echo $sorting['status'];exit;
 			//echo '<pre>';print_r($sorting);exit;
 			if($sorting['cusine']!=''){
 				$return['cusine'] = $this->get_cusine($sorting['cusine'],$sorting['category_id']);
@@ -1135,13 +1137,13 @@ class Category_model extends MY_Model
 				$return['restraent'] = $this->get_restraent($sorting['restraent'],$sorting['category_id']);
 			}
 			if($sorting['offers']!=''){
-			$return['offers'] = $this->get_offers($sorting['offers'],$sorting['category_id']);
+			$return['offers'] = $this->get_offers($sorting['offers'],$sorting['category_id'],$sorting['status']);
 			}
 			if($sorting['brand']!=''){
-			$return['brand'] = $this->get_brands($sorting['brand'],$sorting['category_id']);
+			$return['brand'] = $this->get_brands($sorting['brand'],$sorting['category_id'],$sorting['status']);
 			}
 			if($sorting['discount']!=''){
-			$return['discount'] = $this->get_discounts($sorting['discount'],$sorting['category_id']);
+			$return['discount'] = $this->get_discounts($sorting['discount'],$sorting['category_id'],$sorting['status']);
 			}
 			if($sorting['color']!=''){
 				$return['color'] = $this->get_colors($sorting['color'],$sorting['category_id']);
@@ -1159,28 +1161,28 @@ class Category_model extends MY_Model
 		}
 		
 	}
-	public function get_offers($offer,$cid){
+	public function get_offers($offer,$cid,$status){
 		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
+		$this->db->where('item_status',$status);
 		$this->db->where('offers',$offer);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
 		
 	}
-	public function get_brands($brand,$cid){
+	public function get_brands($brand,$cid,$status){
 		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
+		$this->db->where('item_status',$status);
 		$this->db->where('brand',$brand);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
 		
 	}
-	public function get_discounts($discount,$cid){
+	public function get_discounts($discount,$cid,$status){
 		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
+		$this->db->where('item_status',$status);
 		$this->db->where('discount',$discount);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
@@ -1210,10 +1212,12 @@ class Category_model extends MY_Model
 		$this->db->select('*')->from('products');
 		if($status!=0){
 			$this->db->where('item_quantity !=',0);
+			$this->db->where('item_status',1);
 		}else{
-		$this->db->where('item_quantity=',0);	
+		$this->db->where('item_quantity=',0);
+			$this->db->where('item_status',1);		
 		}
-		$this->db->where('item_status',1);
+		//$this->db->where('item_status',1);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
 		
