@@ -263,7 +263,7 @@ $(document).ready(function() {
 			<div id="html5"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
 
 			</div>
-			<select id="input-select" name="min_amount" >
+			<select id="input-select" onchange="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
 			<?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 			<?php } ?>
@@ -872,7 +872,6 @@ jQuery.ajax({
 
  }
 function mobileaccessories(val,status,check){
-	
 	jQuery.ajax({
 		
 				url: "<?php echo site_url('category/categorywiseearch');?>",
