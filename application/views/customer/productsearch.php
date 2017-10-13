@@ -86,10 +86,10 @@ $("#fademaskpurpose").addClass("mask_hide");
 
 		?>
         <a href="<?php echo base_url('category/productview/'.base64_encode($tops['item_id'])); ?>">
-					<div class="item" style="border: 1px solid #ddd ;">
+					<div class="item" >
 						<div style="position:absolute;top:0;left:15px;z-index: 1024;">
 							<div style="background:#ddd;border-radius:50%;height:20px;height:20px;color:#fff;"> <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-danger arrowed-right"><?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
+                  <span class="label-tags"><span class="label label-primary arrowed-right"><?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
                 </div></div>
 						</div>
 					<div class="pro-img img-wrapper  img_hover">
@@ -97,7 +97,7 @@ $("#fademaskpurpose").addClass("mask_hide");
 					<img class="img-responsive" src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
 					
 					</div>
-					<div class="pro-info" style="border-top:1px solid #ddd;background:#4a5f67;color:#fff;padding:2px;"><?php echo $tops['item_name']; ?>&nbsp;<?php echo isset($tops['colour'])?$tops['colour']:''; ?>&nbsp; <?php echo isset($tops['internal_memeory'])?$tops['internal_memeory']:''; ?>&nbsp; <?php echo isset($tops['ram'])?'('.$tops['ram'].'Ram'.')':''; ?></div>
+					<div class="pro-info" style="padding:2px;"><?php echo $tops['item_name']; ?>&nbsp;<?php echo isset($tops['colour'])?$tops['colour']:''; ?>&nbsp; <?php echo isset($tops['internal_memeory'])?$tops['internal_memeory']:''; ?>&nbsp; <?php echo isset($tops['ram'])?'('.$tops['ram'].'Ram'.')':''; ?></div>
 					</div>
 					</a>
 					
@@ -122,7 +122,7 @@ $("#fademaskpurpose").addClass("mask_hide");
      <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
-          <h2>Treding Products</h2>
+          <h2>TRENDING PRODUCTS </h2>
         </div>
         <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
         <div id="best-seller" class="product-flexslider hidden-buttons">
