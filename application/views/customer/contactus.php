@@ -1,4 +1,4 @@
-
+<!--
 <style>
 .panel-title > a:before {
     float: left !important;
@@ -14,10 +14,10 @@
 }
 </style>
 <header>
-<!--wrapper start here -->
+
 
 <div class="wrapper"> 
-  <!--header part start here -->
+  
   <div class="jain_container">
     
 
@@ -43,7 +43,7 @@
 			<div  style="padding:10px 15px;">
 			<section>
         <div class="wizard">
-           <?php //echo '<pre>';print_r($profile_details);exit; ?>
+           <?php  ?>
                 <div class="tab-content">
                    
 					<?php if($this->session->flashdata('errormsg')): ?>
@@ -74,7 +74,7 @@
 
 
                         <div style="margin-top:10px" class="form-group">
-                            <!-- Button -->
+                       
 
                             <div class="col-sm-12 controls">
                                 <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit"> Submit</button>
@@ -96,7 +96,59 @@
 	   </div>
 	   </div>
 	</div>
+-->
+<div class="container">
+	<div class="row well" style="background:#fff;">
+		
 
+        <!-- Contact Form -->
+        <div class="col-sm-8">
+          <div class="title"><span>Contact Us</span></div>
+          <form>
+            <div class="form-group">
+              <label for="nameInput">Name (*)</label>
+              <input type="text" class="form-control" id="nameInput" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <label for="emailInput">Email Address (*)</label>
+              <input type="email" class="form-control" id="emailInput" placeholder="Email Address">
+            </div>
+            <div class="form-group">
+              <label for="subjectInput">Subject</label>
+              <input type="text" class="form-control" id="subjectInput" placeholder="Subject">
+            </div>
+            <div class="form-group">
+              <label for="notesInput">Message (*)</label>
+              <textarea class="form-control" rows="3" id="notesInput"></textarea>
+            </div>
+            <button type="button" class="btn btn-theme pull-right">Send <i class="fa fa-arrow-circle-right"></i></button>
+          </form>
+        </div>
+        <!-- End Contact Form -->
+
+        <div class="clearfix visible-xs"></div>
+
+        <!-- Contact Info -->
+        <div class="col-sm-4">
+          <div class="title"><span>Contact Info</span></div>
+          <ul class="list-group list-group-nav">
+            <li class="list-group-item">&raquo; 212 Lorem Ipsum. Dolor Sit, Amet</li>
+            <li class="list-group-item">&raquo; +123-456-789</li>
+            <li class="list-group-item">&raquo; cs@domain.tld</li>
+          </ul>
+
+          <!-- Location Map -->
+          <div class="title"><span>Our Location</span></div>
+          <div class="embed-responsive embed-responsive-4by3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15220.911859576927!2d78.38824!3d17.496628!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe33ae6c3ea74c04e!2scartinhours.com!5e0!3m2!1sen!2sin!4v1507880221492" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+          </div>
+          <!-- End Location Map -->
+
+        </div>
+        <!-- End Contact Info -->
+
+      </div>
+</div>
 	<script type="text/javascript">
 
 $(document).ready(function() {
