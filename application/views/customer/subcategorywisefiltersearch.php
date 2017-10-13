@@ -779,9 +779,9 @@
 		  <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
             <div class="box-product">
               <div class="img-wrapper">
-                
+                   <div class="img_size text-center">
                   <img alt="Product" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
-               
+               </div>
                
 				<?php if($productslist['item_quantity']<=0){ ?>
 				<div  class="text-center out_of_stoc">
