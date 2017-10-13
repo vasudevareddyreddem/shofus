@@ -934,6 +934,8 @@ class Category_model extends MY_Model
 			$return['size'] = $this->get_sizes($sorting['size'],$sorting['category_id']);
 			}
 			$return['mini_amount'] = $this->get_amount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
+			
+			//Echo $this->db->last_query();exit;
 			$return['status'] = $this->get_status($sorting['status'],$sorting['category_id']);
 			
 		}
@@ -1027,8 +1029,8 @@ class Category_model extends MY_Model
 	
 	/* food categorywise*/
 	public function get_amount($min_amunt,$max_amount,$cid){
-		
-		$sql = "SELECT * FROM products WHERE category_id ='".$cid."' AND item_status ='1' AND  item_cost BETWEEN '".$min_amunt."' AND '".$max_amount."'";
+		$min_amt=(($min_amunt)+1);
+		$sql = "SELECT * FROM products WHERE category_id ='".$cid."' AND item_status ='1' AND  item_cost BETWEEN '".$min_amt."' AND '".$max_amount."'";
 		return $this->db->query($sql)->result_array();
 		//echo $this->db->last_query();exit;
 	}

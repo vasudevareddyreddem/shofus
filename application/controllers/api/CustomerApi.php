@@ -2310,14 +2310,14 @@ class CustomerApi extends REST_Controller {
 					}
 					$forgotpasscheck = $this->Customerapi_model->forgot_customer_id($customer_id);
 					if(count($forgotpasscheck)>0){
-									echo $six_digit_random_number = mt_rand(100000, 999999);
+									$six_digit_random_number = mt_rand(100000, 999999);
 									$username=$this->config->item('smsusername');
 									$pass=$this->config->item('smspassword');
 										$msg=' Your cartinhour verification code is '.$six_digit_random_number;
 										$ch = curl_init();
 										curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 										curl_setopt($ch, CURLOPT_POST, 1);
-										curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobile['cust_mobile'].'&text='.$msg.'&priority=ndnd&stype=normal');
+										curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$forgotpasscheck['cust_mobile'].'&text='.$msg.'&priority=ndnd&stype=normal');
 										curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 										$server_output = curl_exec ($ch);
 										curl_close ($ch);
