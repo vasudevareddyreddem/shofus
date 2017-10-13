@@ -39,6 +39,8 @@
 		 <div class="title"><span>Saved address</span></div>
 		 
 		 <?php $cnt=1;foreach($billingaddresslis as $addlist) { ?>
+		 
+		 <?php if($cnt<=4){ ?>
 			<div class="col-md-6" id="hide_add<?php echo $cnt; ?>">
 				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
 				<div style="padding-bottom:10px;">
@@ -66,7 +68,41 @@
 				</div>
 			</div>
 			
+		 <?php } ?>
+		
+			<div class="col-md-6 moreadd" id="hide_add<?php echo $cnt; ?>" style="display:none;">
+				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
+				<div style="padding-bottom:10px;">
+					<div class="checkbox pull-left">
+					  <label>
+							<input type="checkbox" name="billingadress" id="billingadress<?php echo $addlist['address_id']; ?>" onclick="getbillingaddress_id(this.value);" value="<?php echo $addlist['address_id']; ?>" >
+							<span style="font-weight:500"> &nbsp; <?php if(isset($addlist['title']) && $addlist['title']!=''){ echo $addlist['title']; }else{ echo $addlist['name'];}; ?></span>
+					  </label>
+					</div>
+								
+					<div class="pull-right" >
+						<a onclick="changebillingaddress('<?php echo $addlist['address_id']; ?>','<?php echo $cnt;?>')" style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
+					</div>
+					<i id="hide_add_btn<?php echo $cnt; ?>" onclick="removebillingaddress('<?php echo $addlist['address_id']; ?>','<?php echo $cnt;?>');" style="position:absolute;top:5px; right:20px;background:#f5f5f5;border-radius:25px; padding:5px;opacity:0.5;cursor:pointer" class="fa fa-times" aria-hidden="true"></i>
+				</div>
+				<div class="clearfix"> &nbsp;	</div>
+				<div class="" style="border-top:1px solid #ddd;"> &nbsp;</div>
+					<div><b><?php echo $addlist['name']; ?></b></div>	
+					<div><?php echo $addlist['address1']; ?></div>	
+					<div><?php echo $addlist['address2']; ?>,</div>	
+					<div><?php echo $addlist['city']; ?>-<?php echo $addlist['pincode']; ?></div>	
+					<div><?php echo $addlist['state']; ?></div>
+					<br>					
+					<div><?php echo $addlist['mobile']; ?></div>	
+				</div>
+			</div>
+		
 		 <?php $cnt++;} ?>
+		 <?php 
+		if(count($billingaddresslis)>4){ ?>
+		<div class="title"><span id="changeslable" onclick="showmoreaddress(); ">See more</span></div>
+		<div class="title"><span id="changeslableless" style="display:none;" onclick="showmoreaddress1(); ">See Less</span></div>
+		<?php } ?>
 		</div>
 		
 		<?php } ?>
@@ -199,6 +235,17 @@
 <div class="clearfix">&nbsp;</div>
 
 <script>
+
+function showmoreaddress(){
+	$('.moreadd').toggle();
+	$('#changeslableless').show();
+	$('#changeslable').hide();
+}
+function showmoreaddress1(){
+	$('.moreadd').toggle();
+	$('#changeslableless').hide();
+	$('#changeslable').show();
+}
 $("input:checkbox").on('click', function() {
   var $box = $(this);
   if ($box.is(":checked")) {
