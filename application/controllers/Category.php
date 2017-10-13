@@ -26,6 +26,19 @@ class Category extends Front_Controller
 					foreach ($removesearch as $list){
 						$this->category_model->update_status_privous_subcategorysearchdata($list['id'],$post['productsvalues']);
 					} 
+				}else{
+					
+					$removesearch= $this->category_model->get_all_previous_subcategorywise_search_fields();
+					if(count($removesearch)>0){
+					if(isset($removesearch[0]['status']) && $removesearch[0]['status']==''){
+						$status=1;
+					}else{
+						$status=$removesearch[0]['status'];
+					}
+					
+					}else{
+						$status=1;
+					}
 				}
 				if(isset($post['searchvalue']) && $post['searchvalue']=='cusine' && $post['unchecked']!='uncheck'){
 					$cus=$post['productsvalues'];
