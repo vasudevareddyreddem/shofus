@@ -2567,6 +2567,21 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_OK);
 				
 			}
+			
+			
+			public function mobilehomebanners_get(){
+				
+				$bannerslist= $this->Customerapi_model->get_home_banners_list();
+				if(count($bannerslist)>0){
+					$message = array('status'=>1,'list'=>$bannerslist,'message'=>'banners list are available');
+				$this->response($message, REST_Controller::HTTP_OK);
+					
+				}else{
+					$message = array('status'=>1,'message'=>'No banners are available');
+				$this->response($message, REST_Controller::HTTP_OK);
+				}
+					
+			}
 
 
 

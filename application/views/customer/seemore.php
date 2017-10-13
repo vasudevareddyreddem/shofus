@@ -16,7 +16,7 @@
             </div>
 		 <?php }else if(isset($type) && $type=='tren'){?>
 		 <div class="new_title">
-              <h2>Trending products </h2>
+              <h2>Trending Products </h2>
             </div>
 		 <?php }else if(isset($type) && $type=='offer'){?>
 		 <div class="new_title">

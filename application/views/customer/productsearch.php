@@ -122,7 +122,7 @@ $("#fademaskpurpose").addClass("mask_hide");
      <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
-          <h2>Treding Products</h2>
+          <h2>Trending Products</h2>
         </div>
         <!--<div class="cate-banner-img"><img src="images/category-banner.jpg" alt="Retis lapen casen"></div>-->
         <div id="best-seller" class="product-flexslider hidden-buttons">

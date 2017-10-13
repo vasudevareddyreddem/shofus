@@ -126,7 +126,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
     <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
-          <h2>Trending products</h2>
+          <h2>Trending Products</h2>
         </div>
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">

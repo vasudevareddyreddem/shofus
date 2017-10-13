@@ -2245,6 +2245,12 @@ class Customerapi_model extends MY_Model
 		return $insert_id = $this->db->insert_id();
 	}
 	
+	public function get_home_banners_list(){
+		$this->db->select('*')->from('appbanners_list');
+		$this->db->where('status', 1);
+        return $this->db->get()->result_array();
+	}
+	
 		
 	
 

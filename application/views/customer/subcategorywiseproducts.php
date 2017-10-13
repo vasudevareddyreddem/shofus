@@ -36,7 +36,6 @@
 }
 
 </style>
-
 	
 	 <div class=" clearfix"></div>
 	 <!-- Filter Sidebar -->
@@ -54,7 +53,7 @@
 
 			</div>
 			<select id="input-select" name="min_amount" >
-			<?php for( $i=floor($minimum_price); $i<=floor($maximum_price); $i+=500 ){  ?>
+			<?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 			<?php } ?>
 			
@@ -1614,7 +1613,7 @@ function submobileaccessories(val,status,check){
 		var select = document.getElementById('input-select');
 
 // Append the option elements
-for ( var i = '<?php echo floor($minimum_price); ?>'; i <= '<?php echo floor($maximum_price); ?>'; i++ ){
+for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php echo floor($maximum_price['item_cost']); ?>'; i++ ){
 
 	var option = document.createElement("option");
 		option.text = i;
@@ -1626,11 +1625,11 @@ for ( var i = '<?php echo floor($minimum_price); ?>'; i <= '<?php echo floor($ma
 		var html5Slider = document.getElementById('html5');
 
 noUiSlider.create(html5Slider, {
-	start: [ '<?php echo floor($minimum_price); ?>', '<?php echo floor($maximum_price); ?>' ],
+	start: [ '<?php echo floor($minimum_price['item_cost']); ?>', '<?php echo floor($maximum_price['item_cost']); ?>' ],
 	connect: true,
 	range: {
-		'min': <?php echo floor($minimum_price); ?>,
-		'max': <?php echo floor($maximum_price); ?>
+		'min': <?php echo floor($minimum_price['item_cost']); ?>,
+		'max': <?php echo floor($maximum_price['item_cost']); ?>
 	}
 });
 
