@@ -436,6 +436,11 @@ class Category_model extends MY_Model
 		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('internal_memeory',$internal_memeory);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -446,6 +451,11 @@ class Category_model extends MY_Model
 	public function get_subcategoryProcessor($Processor,$cid,$subcat,$staus){
 		
 		$this->db->select('*')->from('products');
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('item_status',$staus);
 		$this->db->where('Processor',$Processor);
 		$this->db->where('subcategory_id',$subcat);
@@ -458,6 +468,11 @@ class Category_model extends MY_Model
 		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('screen_size',$screen_size);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -469,6 +484,11 @@ class Category_model extends MY_Model
 		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('camera',$camera);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -480,6 +500,11 @@ class Category_model extends MY_Model
 		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('sim_type',$sim_type);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -491,6 +516,11 @@ class Category_model extends MY_Model
 		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('os',$os);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -502,6 +532,11 @@ class Category_model extends MY_Model
 		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('colour',$colour);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -513,6 +548,11 @@ class Category_model extends MY_Model
 		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('discount',$discount);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -524,6 +564,11 @@ class Category_model extends MY_Model
 		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('brand',$brand);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -535,6 +580,11 @@ class Category_model extends MY_Model
 		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('offers',$offer);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -545,6 +595,11 @@ class Category_model extends MY_Model
 	public function get_subcategoryram($ram,$cid,$subcat,$staus){
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('ram',$ram);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -569,7 +624,11 @@ class Category_model extends MY_Model
 	/* food categorywise*/
 	public function get_subcategoryamount($min_amunt,$max_amount,$cid,$subcat,$status){
 		$min_amt=(($min_amunt)+1);
-		$sql = "SELECT * FROM products WHERE special_price BETWEEN '".$min_amt."' AND '".$max_amount."' AND category_id ='".$cid."' AND  subcategory_id ='".$subcat."' AND item_status ='".$status."'";
+		if($status==0){
+			$sql = "SELECT * FROM products WHERE special_price BETWEEN '".$min_amt."' AND '".$max_amount."' AND category_id ='".$cid."' AND  subcategory_id ='".$subcat."' AND item_status ='".$status."' AND item_quantity ='0'";
+		}else{
+			$sql = "SELECT * FROM products WHERE special_price BETWEEN '".$min_amt."' AND '".$max_amount."' AND category_id ='".$cid."' AND  subcategory_id ='".$subcat."' AND item_status ='".$status."' AND item_quantity >'0'";
+		}
 		return $this->db->query($sql)->result_array();
 		//echo $this->db->last_query();exit;
 	}
