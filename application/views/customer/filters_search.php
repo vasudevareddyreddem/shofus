@@ -50,12 +50,16 @@
 			<div class="col-md-12  ">
 			<?php //echo base64_decode($category_id);exit; ?>
 			  <?php //echo '<pre>';print_r($subcategory_list);exit; ?>
-			  <div class="col-md-12 gir_alg" style="border-right:1px solid #45b1b5">
+			  <div class="col-md-12 gir_alg" >
 			  <div class="title text-left mar_t10"><span>Sub Categories list</span></div>
 			  <?php foreach($subcategory_list as $list){ ?>
-				  <div class="col-md-2"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
-					 <div class="catg_sty">
-						<?php echo $list['subcategory_name']; ?>
+				  <div class="col-md-2" style="cursor:pointer"   onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
+					<div class="text-center sub_ac_tag"> <!--catg_sty-->
+					  <div style="padding-bottom:10px;">
+							<img style="height:60px;width:auto;" src="<?php echo base_url('assets/subcategoryimages/'.$list['subcategory_image']); ?>" />
+					  </div>
+					
+						<a><?php echo $list['subcategory_name']; ?></a>
 					  </div>
 				  </div> 
 			  <?php } ?>
@@ -99,7 +103,7 @@
 		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
 			
 			<div class="example">
-			<h3>Price</h3>
+			<h3 class="text-left pad_0" >Price</h3>
 			<div id="html5"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
 
 			</div>

@@ -235,13 +235,13 @@ $(document).ready(function() {
 			  <div class="col-md-12 gir_alg" >
 			  <div class="title text-left mar_t10"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
 			  <?php foreach($subcategory_list as $list){ ?>
-				  <div class="col-md-2" id="onclicksubcat<?php echo $list['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
-				   <div class="text-center"> <!--catg_sty-->
-					  <div style="padding-bottom:10px">
-							<img src="<?php echo base_url('assets/subcategoryimages/'.$list['subcategory_image']); ?>" />
+				  <div class="col-md-2" style="cursor:pointer" id="onclicksubcat<?php echo $list['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
+				   <div class="text-center sub_ac_tag"> <!--catg_sty-->
+					  <div style="padding-bottom:10px;">
+							<img style="height:60px;width:auto;" src="<?php echo base_url('assets/subcategoryimages/'.$list['subcategory_image']); ?>" />
 					  </div>
 					
-						<?php echo $list['subcategory_name']; ?>
+						<a><?php echo $list['subcategory_name']; ?></a>
 					  </div>
 				  </div> 
 			  <?php } ?>
@@ -259,7 +259,7 @@ $(document).ready(function() {
 			
 		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
 			<div class="example">
-			<h3>Price</h3>
+			<h3 class="text-left pad_0"style="padding:0;margin:0z">Price</h3>
 			<div id="html5"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
 
 			</div>

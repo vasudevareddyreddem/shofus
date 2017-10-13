@@ -1,3 +1,10 @@
+.sub_ac_tag a:hover{
+	color:#45b1b9;
+	text-decoration:none;
+}
+.pad_0{
+	line-height:20px !important;
+}
 .list_si{
 	border-left:2px solid #45b1b9;
 	margin-top:5px;

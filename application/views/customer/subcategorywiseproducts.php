@@ -48,7 +48,7 @@
 				
 			<form action="<?php echo  base_url('category/subcategorywiseearch'); ?>" method="POST" >
 			<div class="example">
-			<h3>Price</h3>
+			<h3 class="text-left pad_0" >Price</h3>
 			<div id="html5"  name="html5" onclick="submobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
 
 			</div>
