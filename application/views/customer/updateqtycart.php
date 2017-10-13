@@ -291,7 +291,7 @@ function productqtyincreae(id){
 }
 
 var pincodeformat =/^[0-9]+$/;
-$('#deliverymsg').html('Check your delivery Status').css("color", "black");
+//$('#deliverymsg').html('Check your delivery Status').css("color", "black");
 function delveryerrormsg(){
 $('#imgdisplaying').show();
 $('#oldmsg').hide();
