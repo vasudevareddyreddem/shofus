@@ -100,8 +100,10 @@
 		 <?php $cnt++;} ?>
 		 <?php 
 		if(count($billingaddresslis)>4){ ?>
-		<div class="title"><span id="changeslable" onclick="showmoreaddress(); ">See more</span></div>
-		<div class="title"><span id="changeslableless" style="display:none;" onclick="showmoreaddress1(); ">See Less</span></div>
+		<div class="clearfix"></div>
+		<br>
+		<span class="btn btn-primary btn-sm pull-right" id="changeslable" onclick="showmoreaddress(); ">See more</span>
+		<span class="btn btn-primary btn-sm pull-right" id="changeslableless" style="display:none;" onclick="showmoreaddress1(); ">See Less</span>
 		<?php } ?>
 		</div>
 		
