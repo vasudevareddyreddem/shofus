@@ -134,7 +134,7 @@
 		
 		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding-top:10px;width:30%" id="social-float">
 				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
-			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivered within <?php echo $this->session->userdata('time');?></span>
+			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery within <?php echo $this->session->userdata('time');?></span>
 			<span style="font-weight:500;font-size:17px" id="deliverymsg" style="display:none;"></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
@@ -250,10 +250,10 @@ function getareapincode(val){
 			$('#imgdisplaying').show();
 			if(data.msg==1){
 				
-				$('#deliverymsg').html('Delivered by within ' +data.time).css("color", "black");
+				$('#deliverymsg').html('Delivery within ' +data.time).css("color", "black");
 				
 			}else{
-				$('#deliverymsg').html('Delivered by within 4 hours').css("color", "black");
+				$('#deliverymsg').html('DDelivery within 4 hours').css("color", "black");
 			}
          
 

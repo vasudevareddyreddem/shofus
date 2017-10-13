@@ -152,7 +152,7 @@
 		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
 				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="deliverymsg"></span>
-			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivered by within <?php echo $this->session->userdata('time');?></span>
+			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery  by within <?php echo $this->session->userdata('time');?></span>
 
 			<span style="font-weight:500;font-size:17px" id="olddeliverymsg"><?php ?></span>
 			<div class="clearfix">&nbsp;</div>
