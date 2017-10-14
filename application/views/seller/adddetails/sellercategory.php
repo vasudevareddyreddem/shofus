@@ -416,7 +416,7 @@ $(document).ready(function(){
 
    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
-	<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+	<script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script>
     <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
 	
