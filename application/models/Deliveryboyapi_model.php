@@ -87,8 +87,8 @@ class Deliveryboyapi_model extends MY_Model
 		$this->db->where('order_item_id',$id);
 		return $this->db->get()->row_array();
 	}
-	public function get_order_details_status($order_item_id,$amount,$status){
-		$sql1="UPDATE order_items SET amount_status_paid ='".$status."' WHERE order_item_id = '".$order_item_id."'";
+	public function get_order_details_status($order_item_id,$amount,$status,$payment){
+		$sql1="UPDATE order_items SET amount_status_paid ='".$status."', payment_type ='".$payment."' WHERE order_item_id = '".$order_item_id."'";
        	return $this->db->query($sql1);
 	}
 	

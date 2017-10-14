@@ -369,6 +369,13 @@ class Category_model extends MY_Model
 	$this->db->group_by('subcat_wise_fliter_search.size');
 	$this->db->group_by('subcat_wise_fliter_search.color');
 	$this->db->group_by('subcat_wise_fliter_search.ram');
+	$this->db->group_by('subcat_wise_fliter_search.colour');
+	$this->db->group_by('subcat_wise_fliter_search.os');
+	$this->db->group_by('subcat_wise_fliter_search.sim_type');
+	$this->db->group_by('subcat_wise_fliter_search.camera');
+	$this->db->group_by('subcat_wise_fliter_search.internal_memeory');
+	$this->db->group_by('subcat_wise_fliter_search.screen_size');
+	$this->db->group_by('subcat_wise_fliter_search.Processor');
 	$query=$this->db->get()->result_array();
 		foreach ($query as $sorting){
 			
@@ -380,20 +387,42 @@ class Category_model extends MY_Model
 				$return['restraent'][] = $this->get_subcategoryrestraent($sorting['restraent'],$sorting['category_id'],$sorting['subcategory_id']);
 			}
 			if($sorting['offers']!=''){
-			$return['offers'][] = $this->get_subcategoryoffers($sorting['offers'],$sorting['category_id'],$sorting['subcategory_id']);
+			$return['offers'][] = $this->get_subcategoryoffers($sorting['offers'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
 			}
 			if($sorting['brand']!=''){
-			$return['brand'][] = $this->get_subcategorybrand($sorting['brand'],$sorting['category_id'],$sorting['subcategory_id']);
+			$return['brand'][] = $this->get_subcategorybrand($sorting['brand'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
 			}
 			if($sorting['discount']!=''){
-			$return['discount'][] = $this->get_subcategorydiscount($sorting['discount'],$sorting['category_id'],$sorting['subcategory_id']);
+			$return['discount'][] = $this->get_subcategorydiscount($sorting['discount'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
 			}
 			if($sorting['ram']!=''){
-			$return['ram'][] = $this->get_subcategoryram($sorting['ram'],$sorting['category_id'],$sorting['subcategory_id']);
+			$return['ram'][] = $this->get_subcategoryram($sorting['ram'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
+			}
+			if($sorting['colour']!=''){
+			$return['colour'][] = $this->get_subcategorycolour($sorting['colour'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
+			}
+			if($sorting['os']!=''){
+			$return['os'][] = $this->get_subcategoryos($sorting['os'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
+			}
+			if($sorting['sim_type']!=''){
+			$return['sim_type'][] = $this->get_subcategorysim_type($sorting['sim_type'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
+			}
+			if($sorting['camera']!=''){
+			$return['camera'][] = $this->get_subcategorycamera($sorting['camera'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
+			}
+			if($sorting['internal_memeory']!=''){
+			$return['internal_memeory'][] = $this->get_subcategoryinternal_memeory($sorting['internal_memeory'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
+			}
+			if($sorting['screen_size']!=''){
+			$return['screen_size'][] = $this->get_subcategoryscreen_size($sorting['screen_size'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
+			}
+			if($sorting['Processor']!=''){
+			$return['Processor'][] = $this->get_subcategoryProcessor($sorting['Processor'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
 			}
 			
 			
-			$return['mini_amount'][] = $this->get_subcategoryamount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id'],$sorting['subcategory_id']);
+			$return['mini_amount'][] = $this->get_subcategoryamount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id'],$sorting['subcategory_id'],$sorting['status']);
+			//echo $this->db->last_query();exit;
 			$return['status'][] = $this->get_subcategorystatus($sorting['status'],$sorting['category_id'],$sorting['subcategory_id']);
 			//echo $this->db->last_query();exit;
 		}
@@ -403,382 +432,127 @@ class Category_model extends MY_Model
 		}
 		
 	}
+	public function get_subcategoryinternal_memeory($internal_memeory,$cid,$subcat,$staus){
 		
-	public function get_subcategorypackof($packof,$cid,$subcat){
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('packof',$packof);
+		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
+		$this->db->where('internal_memeory',$internal_memeory);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
+		//echo '<pre>';print_r($qq);exit;
+		
 	}
-	public function get_subcategorydial_color($dial_color,$cid,$subcat){
+	public function get_subcategoryProcessor($Processor,$cid,$subcat,$staus){
+		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('dial_color',$dial_color);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
+		$this->db->where('item_status',$staus);
+		$this->db->where('Processor',$Processor);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
+		//echo '<pre>';print_r($qq);exit;
+		
 	}
-	public function get_subcategorystrap_color($strap_color,$cid,$subcat){
+	public function get_subcategoryscreen_size($screen_size,$cid,$subcat,$staus){
+		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('strap_color',$strap_color);
+		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
+		$this->db->where('screen_size',$screen_size);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
+		//echo '<pre>';print_r($qq);exit;
+		
 	}
-	public function get_subcategorygemstones($gemstones,$cid,$subcat){
+	public function get_subcategorycamera($camera,$cid,$subcat,$staus){
+		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('gemstones',$gemstones);
+		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
+		$this->db->where('camera',$camera);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
+		//echo '<pre>';print_r($qq);exit;
+		
 	}
-	public function get_subcategorymaterial($material,$cid,$subcat){
+	public function get_subcategorysim_type($sim_type,$cid,$subcat,$staus){
+		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('material',$material);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategoryideal_for($ideal_for,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('ideal_for',$ideal_for);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryoccasion($occasion,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('occasion',$occasion);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategorydisplay_type($display_type,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('display_type',$display_type);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategoryusages($usages,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('usages',$usages);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategorycompatibleos($compatibleos,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('compatibleos',$compatibleos);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategorydial_shape($dial_shape,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('dial_shape',$dial_shape);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategorytheme($theme,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('theme',$theme);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategorycores($cores,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('cores',$cores);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategoryclock_speed($clock_speed,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('clock_speed',$clock_speed);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategorysim_type($sim_type,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
+		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('sim_type',$sim_type);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
+		//echo '<pre>';print_r($qq);exit;
+		
 	}
-	public function get_subcategorysecondary_camera($secondary_camera,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('secondary_camera',$secondary_camera);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategoryresolution_type($resolution_type,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('resolution_type',$resolution_type);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategoryoperating_system_version_name($operating_system_version_name,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('operating_system_version_name',$operating_system_version_name);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategoryspeciality($speciality,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('speciality',$speciality);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategorynetwork_type($network_type,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('network_type',$network_type);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}	
-	public function get_subcategoryram_type($ram_type,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('ram_type',$ram_type);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategorymemory_type($memory_type,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('memory_type',$memory_type);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategoryweight($weight,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('weight',$weight);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategorytouch_screen($touch_screen,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('touch_screen',$touch_screen);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategorygraphics_memory($graphics_memory,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('graphics_memory',$graphics_memory);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategorystorage_type($storage_type,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('storage_type',$storage_type);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategorylife_style($life_style,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('life_style',$life_style);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryprocessor_brand($processor_brand,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('processor_brand',$processor_brand);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryprocessor($processor,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('processor',$processor);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategoryantennae($antennae,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('antennae',$antennae);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategoryfrequency($frequency,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('frequency',$frequency);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryusb_ports($usb_ports,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('usb_ports',$usb_ports);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategorybroadband_compatibility($broadband_compatibility,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('broadband_compatibility',$broadband_compatibility);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryfrequency_band($frequency_band,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('frequency_band',$frequency_band);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategorywireless_speed($wireless_speed,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('wireless_speed',$wireless_speed);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryprocessor_clock_speed($processor_clock_speed,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('processor_clock_speed',$processor_clock_speed);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryprimary_camera($primary_camera,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('primary_camera',$primary_camera);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategorybattery_capacity($battery_capacity,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('battery_capacity',$battery_capacity);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryinternal_storage($internal_storage,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('internal_storage',$internal_storage);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryoperatingsystem($operatingsystem,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('operatingsystem',$operatingsystem);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryram($ram,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('ram',$ram);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryvoice_calling_facility($voice_calling_facility,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('voice_calling_facility',$voice_calling_facility);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategoryconnectivity($connectivity,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('connectivity',$connectivity);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategorydisplay_size($display_size,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('display_size',$display_size);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategorybattery_type($battery_type,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('battery_type',$battery_type);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategorysensor_type($sensor_type,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('sensor_type',$sensor_type);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategorymobileacc($mobileacc,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('compatible_mobiles',$mobileacc);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	public function get_subcategoryproducttype($producttype,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('producttype',$producttype);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}public function get_subcategorymega_pixel($mega_pixel,$cid,$subcat){
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('mega_pixel',$mega_pixel);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-	}
-	
-	/*sub*/
-	public function get_subcategorydiscount($discount,$cid,$subcat){
+	public function get_subcategoryos($os,$cid,$subcat,$staus){
 		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
+		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
+		$this->db->where('os',$os);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+		//echo '<pre>';print_r($qq);exit;
+		
+	}
+	public function get_subcategorycolour($colour,$cid,$subcat,$staus){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
+		$this->db->where('colour',$colour);
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('category_id',$cid);
+		return $this->db->get()->result_array();
+		//echo '<pre>';print_r($qq);exit;
+		
+	}
+	public function get_subcategorydiscount($discount,$cid,$subcat,$staus){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('discount',$discount);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -786,10 +560,15 @@ class Category_model extends MY_Model
 		//echo '<pre>';print_r($qq);exit;
 		
 	}
-	public function get_subcategorybrand($brand,$cid,$subcat){
+	public function get_subcategorybrand($brand,$cid,$subcat,$staus){
 		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
+		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('brand',$brand);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -797,10 +576,15 @@ class Category_model extends MY_Model
 		//echo '<pre>';print_r($qq);exit;
 		
 	}
-	public function get_subcategoryoffers($offer,$cid,$subcat){
+	public function get_subcategoryoffers($offer,$cid,$subcat,$staus){
 		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
+		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
 		$this->db->where('offers',$offer);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
@@ -808,35 +592,29 @@ class Category_model extends MY_Model
 		//echo '<pre>';print_r($qq);exit;
 		
 	}
-	public function get_subcategorycusine($cusine,$cid,$subcat){
-		
+	public function get_subcategoryram($ram,$cid,$subcat,$staus){
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('cusine',$cusine);
+		$this->db->where('item_status',$staus);
+		if($staus!==0){
+		$this->db->where('item_quantity',0);	
+		}else{
+			$this->db->where('item_quantity >',0);
+		}
+		$this->db->where('ram',$ram);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
-	}
-	public function get_subcategoryrestraent($restraent,$cid,$subcat){
-		
-		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
-		$this->db->where('seller_id',$restraent);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('category_id',$cid);
-		return $this->db->get()->result_array();
-		
 	}
 	public function get_subcategorystatus($status,$cid,$subcat){
 		$this->db->select('*')->from('products');
 		if($status!=0){
 			$this->db->where('item_quantity !=',0);
+			$this->db->where('item_quantity=',1);
 		}else{
-		$this->db->where('item_quantity=',0);	
+		$this->db->where('item_quantity=',0);
+		$this->db->where('item_status',1);		
 		}
-		$this->db->where('item_status',1);
+		
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
@@ -844,9 +622,13 @@ class Category_model extends MY_Model
 	}
 	
 	/* food categorywise*/
-	public function get_subcategoryamount($min_amunt,$max_amount,$cid,$subcat){
-		
-		$sql = "SELECT * FROM products WHERE category_id ='".$cid."' AND  subcategory_id ='".$subcat."' AND item_status ='1' AND  item_cost BETWEEN '".$min_amunt."' AND '".$max_amount."'";
+	public function get_subcategoryamount($min_amunt,$max_amount,$cid,$subcat,$status){
+		$min_amt=(($min_amunt)+1);
+		if($status==0){
+			$sql = "SELECT * FROM products WHERE special_price BETWEEN '".$min_amt."' AND '".$max_amount."' AND category_id ='".$cid."' AND  subcategory_id ='".$subcat."' AND item_status ='".$status."' AND item_quantity ='0'";
+		}else{
+			$sql = "SELECT * FROM products WHERE special_price BETWEEN '".$min_amt."' AND '".$max_amount."' AND category_id ='".$cid."' AND  subcategory_id ='".$subcat."' AND item_status ='".$status."' AND item_quantity >'0'";
+		}
 		return $this->db->query($sql)->result_array();
 		//echo $this->db->last_query();exit;
 	}
@@ -1152,6 +934,8 @@ class Category_model extends MY_Model
 			$return['size'] = $this->get_sizes($sorting['size'],$sorting['category_id']);
 			}
 			$return['mini_amount'] = $this->get_amount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
+			
+			//Echo $this->db->last_query();exit;
 			$return['status'] = $this->get_status($sorting['status'],$sorting['category_id']);
 			
 		}
@@ -1245,8 +1029,8 @@ class Category_model extends MY_Model
 	
 	/* food categorywise*/
 	public function get_amount($min_amunt,$max_amount,$cid){
-		
-		$sql = "SELECT * FROM products WHERE category_id ='".$cid."' AND item_status ='1' AND  item_cost BETWEEN '".$min_amunt."' AND '".$max_amount."'";
+		$min_amt=(($min_amunt)+1);
+		$sql = "SELECT * FROM products WHERE category_id ='".$cid."' AND item_status ='1' AND  item_cost BETWEEN '".$min_amt."' AND '".$max_amount."'";
 		return $this->db->query($sql)->result_array();
 		//echo $this->db->last_query();exit;
 	}

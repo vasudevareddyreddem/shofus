@@ -3,10 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class inventory extends CI_Controller 
 {	
 	public function __construct() 
-  {
-
-		parent::__construct();
-		$this->load->library('email');	
+	{		parent::__construct();
 		$this->load->helper(array('url','html','form'));
 		$this->load->library('session','form_validation');
 		$this->load->library('email');
@@ -16,35 +13,26 @@ class inventory extends CI_Controller
 		if($this->session->userdata('userdetails'))
 		{
 		$logindetail=$this->session->userdata('userdetails');
-		
 		$data['customerdetails'] = $this->customer_model->get_profile_details($logindetail['customer_id']);
 		$data['unreadcount'] = $this->inventory_model->get_Unread_notification_count();
-		//echo '<pre>';print_r($data);exit;
 		$this->load->view('customer/inventry/header',$data);
 		} 
-			
- }
+}
 	public function account(){
-	 
 	 if($this->session->userdata('userdetails'))
-	 {
-		$customerdetails=$this->session->userdata('userdetails');
+	 {$customerdetails=$this->session->userdata('userdetails');
 		$data['profile_details']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
-
-			$this->load->view('customer/inventry/sidebar');
+				$this->load->view('customer/inventry/sidebar');
 			$this->load->view('customer/inventry/profile',$data);
 			$this->load->view('customer/inventry/footer');
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('customer');
 	} 
-	 
- }
+}
   public function editprofile(){
-	 
 	 if($this->session->userdata('userdetails'))
-	 {
-		$customerdetails=$this->session->userdata('userdetails');
+	 {$customerdetails=$this->session->userdata('userdetails');
 		$data['profile_details']= $this->customer_model->get_profile_details($customerdetails['customer_id']);
 		$this->load->view('customer/inventry/sidebar');
 		$this->load->view('customer/inventry/editprofile',$data);
@@ -53,10 +41,8 @@ class inventory extends CI_Controller
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login');
 	} 
-	 
- }
+}
  public function changepassword(){
-	
 	if($this->session->userdata('userdetails'))
 		{
 		$this->load->view('customer/inventry/sidebar');
@@ -67,12 +53,9 @@ class inventory extends CI_Controller
 		 redirect('admin/login');
 		}
 } 
-
-
 public function changepasswordpost(){
 		if($this->session->userdata('userdetails'))
 		{
-			
 		$post = $this->input->post();
 		$this->form_validation->set_rules('oldpassword', 'oldpassword', 'required|min_length[6]');
 		$this->form_validation->set_rules('newpassword', 'newpassword', 'required|min_length[6]');
@@ -117,18 +100,15 @@ public function changepasswordpost(){
 					$this->session->set_flashdata('passworderror',"Your Old password is incorrect. Please try again.");
 					redirect('inventory/changepassword');
 				}
-		
-		 }
+		}
 		}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login');
 		}
 	}
  public function updateprofilepost(){
-	 
-	 if($this->session->userdata('userdetails'))
-	 {
-		$customerdetails=$this->session->userdata('userdetails');
+	if($this->session->userdata('userdetails'))
+	 {$customerdetails=$this->session->userdata('userdetails');
 		$post=$this->input->post();
 		
 		if($post['email']!=$customerdetails['cust_email']){
@@ -137,15 +117,11 @@ public function changepasswordpost(){
 				$this->session->set_flashdata('errormsg','Email id already exits.please use another Email id');
 				redirect('inventory/editprofile');
 			}
-			
 		}
-		
-		
 		$cust_upload_file= $this->customer_model->get_profile_details($customerdetails['customer_id']);
 		if($_FILES['profile']['name']!=''){
 			$profilepic=$_FILES['profile']['name'];
 			move_uploaded_file($_FILES['profile']['tmp_name'], "uploads/profile/" . $_FILES['profile']['name']);
-
 			}else{
 			$profilepic=$cust_upload_file['cust_propic'];
 			}
@@ -164,20 +140,15 @@ public function changepasswordpost(){
 			$this->session->set_flashdata('success','Profile Successfully updated');
 			redirect('inventory/account');
 		}
-
-		//echo '<pre>';print_r($post);exit;
+	//echo '<pre>';print_r($post);exit;
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login');
 	} 
-	 
- }
-  public function dashboard(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
-	 {		
-	 	$check = $this->session->userdata('userdetails');
+}
+public function dashboard(){
+  	if($this->session->userdata('userdetails'))
+	 {	$check = $this->session->userdata('userdetails');
 	 	//print_r($that);exit;
 	 	if($check['role_id']==5){
 	 	$data['category'] = $this->inventory_model->get_seller_categories();
@@ -193,16 +164,11 @@ public function changepasswordpost(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-
-  }
+}
   
   public function sellerlist()
-	{
-		
-		if($this->session->userdata('userdetails'))
-		{	
-			$check = $this->session->userdata('userdetails');
+	{if($this->session->userdata('userdetails'))
+		{	$check = $this->session->userdata('userdetails');
 				if($check['role_id']==5)
 				{
 					$data['seller_details'] = $this->inventory_model->get_all_seller_details();
@@ -219,8 +185,7 @@ public function changepasswordpost(){
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login');
 			} 
-
-	}
+}
   public function categorywisesellers()
 	{
 		$cid = base64_decode($this->uri->segment(3));
@@ -231,11 +196,8 @@ public function changepasswordpost(){
 	  	$this->load->view('customer/inventry/category_wise_sellers',$data);
 	  	$this->load->view('customer/inventry/footer');
 	}
-  
-  public function sellerdetails(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+   public function sellerdetails(){
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -249,18 +211,14 @@ public function changepasswordpost(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
+	}
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   } 
   public function sellerservicerequests(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -273,20 +231,15 @@ public function changepasswordpost(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
+	}
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   }
-  
   /* notification purpose*/
   public function sellernitificationlist(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -299,19 +252,15 @@ public function changepasswordpost(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
+	 
 	  }
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   }
-  
-    public function adminnotificationreply(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  public function adminnotificationreply(){
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -338,19 +287,13 @@ public function changepasswordpost(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
-	  else{
+	} else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   }
-
   public function notificationview(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -360,7 +303,6 @@ public function changepasswordpost(){
 					//echo '<pre>';print_r($lastestnotication);
 					foreach($allnitiyes as $notify){
 						$this->inventory_model->notifciations_read_count($notify['notification_id'],0);
-						
 					}
 				$this->load->view('customer/inventry/sidebar');
 				$this->load->view('customer/inventry/adminnotificationview',$data);
@@ -369,20 +311,15 @@ public function changepasswordpost(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
-	  else{
+	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   }
 public function servicerequestview(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
-			$logindetail=$this->session->userdata('userdetails');
+		$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
 				$data['request_details'] = $this->inventory_model->get_notification_details(base64_decode($this->uri->segment(3)));
 				//echo '<pre>';print_r($data);exit;
@@ -393,18 +330,13 @@ public function servicerequestview(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
-	  else{
+	 } else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   }  
   public function servicerequestreply(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -420,22 +352,16 @@ public function servicerequestview(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
-	  else{
+	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   } 
   public function servicerequestpost(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
-				
 				$post=$this->input->post();
 				$seller_id=base64_decode($post['seller_id']);
 				$sevice_id=base64_decode($post['serviceid']);
@@ -459,26 +385,19 @@ public function servicerequestview(){
 					$this->session->set_flashdata('success','Notification reply Successfully sent!');
 					redirect('inventory/sellerservicerequests'); 
 				 }
-
-				
-			}else{
+				}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
+		}
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   }
   public function status(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
-		
 		$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
@@ -489,14 +408,11 @@ public function servicerequestview(){
 					}else{
 					$status=1;
 					}
-					
 					$data=array('status'=>$status);
-					
 					$updatestatus=$this->inventory_model->update_seller_status($id,$data);
 					$product_list=$this->inventory_model->get_seller_products_list($id);
 					//echo '<pre>';print_r($product_list);exit;
-					
-					if(count($updatestatus)>0){
+						if(count($updatestatus)>0){
 						foreach($product_list as $list){
 							$updatestatus=$this->inventory_model->activate_product_status($list['item_id'],$id,$status);
 						}
@@ -511,12 +427,7 @@ public function servicerequestview(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-		
-	
-		
-
-	  }
+	}
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
@@ -539,8 +450,7 @@ public function servicerequestview(){
 					//echo '<pre>';print_r(base64_decode($this->uri->segment(5)));exit;
 					$updatestatus=$this->inventory_model->update_category_status($id,$data);
 					//echo $this->db->last_query();exit;
-					
-					if(count($updatestatus)>0){
+						if(count($updatestatus)>0){
 						
 						if($this->uri->segment(5)!='' && base64_decode($this->uri->segment(5))==1){
 							$catdata=$this->inventory_model->get_category_details($id);
@@ -554,8 +464,7 @@ public function servicerequestview(){
 						}else{
 							$submsg='Category deactivation successfully';
 						}
-						
-						$data = array(
+							$data = array(
 						'seller_id' => $catdata['seller_id'],
 						'seller_category_id'=> $catdata['category_id'],
 						'category_name'=> $catdata['category_name'],
@@ -575,7 +484,6 @@ public function servicerequestview(){
 						$contact = $this->adddetails_model->save_notifciations($addnotifications);
 						$data=array('first_time'=>0);
 						$this->inventory_model->update_category_status($id,$data);
-
 						}
 						if($status==1){
 							$this->session->set_flashdata('success'," Category activation successfully");
@@ -764,12 +672,10 @@ public function servicerequestview(){
 						if(count($alreadyexits)>0){
 							$this->session->set_flashdata('error',"Sub category Name already exits.please use another Sub category Name.");
 							redirect('inventory/addsubcategory');
-							
 						}
 					if($_FILES['sub_image']['name']!=''){
 					$subimg=$_FILES['sub_image']['name'];
 					move_uploaded_file($_FILES['sub_image']['tmp_name'], "assets/subcategoryimages/" . $_FILES['sub_image']['name']);
-
 					}else{
 					$subimg='';
 					}
@@ -786,7 +692,6 @@ public function servicerequestview(){
 					$results=$this->inventory_model->save_sub_categories($addsubcat);
 					//echo "<pre>";print_r($post);exit;
 					if(count($results)>0){
-
 					$this->session->set_flashdata('success',"SubCategory Successfully Added");
 					redirect('inventory/subcategorieslist');
 					}
@@ -801,9 +706,7 @@ public function servicerequestview(){
   }
   
   public function subcategoryview(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -816,18 +719,14 @@ public function servicerequestview(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
+	 }
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   }
   public function categoryview(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -840,18 +739,14 @@ public function servicerequestview(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
+	}
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   }
   public function subcategorylistview(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -864,18 +759,14 @@ public function servicerequestview(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
+	 }
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   }
   public function subcategorieslist(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -888,16 +779,13 @@ public function servicerequestview(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
+	 }
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 	} 
   } 
-  
-   public function updatecategorypost(){
+    public function updatecategorypost(){
   	if($this->session->userdata('userdetails'))
 	 {		
 		$logindetail=$this->session->userdata('userdetails');
@@ -985,12 +873,7 @@ public function servicerequestview(){
 		 redirect('admin/login	');
 		} 
   }
-
-	
-
-	
-
-	public function seller_id_database()
+public function seller_id_database()
 	{
 		$data['database_id'] = $this->inventory_model->get_seller_databaseid();
 		//echo "<pre>";print_r($data);exit;
@@ -998,9 +881,7 @@ public function servicerequestview(){
 	   	$this->load->view('customer/inventry/seller_databaseid',$data);
 	   	$this->load->view('customer/inventry/footer');
 	}
-
-
-	public function sellerpayments()
+public function sellerpayments()
 	{
 		$data['seller_payment'] = $this->inventory_model->get_seller_payments();
 		//echo "<pre>";print_r($data);exit;
@@ -1009,9 +890,7 @@ public function servicerequestview(){
 	   	$this->load->view('customer/inventry/footer');
 	}
  public function sellerpaymentdetails(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -1024,9 +903,7 @@ public function servicerequestview(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
+		}
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
@@ -1048,7 +925,6 @@ public function servicerequestview(){
 	   	$this->load->view('customer/inventry/catalog_management',$data);
 	   	$this->load->view('customer/inventry/footer');
 	}
-
 	public function both()
 	{
 		$data['both'] = $this->inventory_model->get_both();
@@ -1057,10 +933,7 @@ public function servicerequestview(){
 	   	$this->load->view('customer/inventry/both',$data);
 	   	$this->load->view('customer/inventry/footer');
 	}
-
-
-	
-	public function bannerpreview(){
+public function bannerpreview(){
 		if($this->session->userdata('userdetails'))
 	 	{		
 			$logindetail=$this->session->userdata('userdetails');
@@ -1083,8 +956,7 @@ public function servicerequestview(){
 		}
 		
 	}
-
-	public function homepagepreview()
+public function homepagepreview()
 	{
 		if($this->session->userdata('userdetails'))
 	 	{		
@@ -1113,8 +985,7 @@ public function servicerequestview(){
 		}
 		
 	}
-
-	/*top offers*/
+/*top offers*/
 	public function topoffers()
 	{
 		if($this->session->userdata('userdetails'))
@@ -1208,10 +1079,7 @@ public function servicerequestview(){
 		 	redirect('admin/login	');
 		} 	
 	}
-
-
-
-	public function overaall_topoffers_home_page_status()
+public function overaall_topoffers_home_page_status()
 	{
 		if($this->session->userdata('userdetails'))
 	 	{		
@@ -1239,7 +1107,6 @@ public function servicerequestview(){
 					//echo $this->db->last_query();exit;
 					}
 				}
-				
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
@@ -1262,8 +1129,6 @@ public function servicerequestview(){
 		 	redirect('admin/login	');
 		} 	
 	}
-	
-
 	/* season sales */
 	public function seasonsales()
 	{
@@ -1703,7 +1568,6 @@ public function servicerequestview(){
 		 	redirect('admin/login	');
 		} 	
 	}
-
 	public function banner_delete(){
 		if($this->session->userdata('userdetails'))
 	 	{		
@@ -1739,21 +1603,16 @@ public function servicerequestview(){
 				
 			}else
 			{
-				$this->session->set_flashdata('loginerror','you have  no permissions');
-				redirect('admin/login');
+			$this->session->set_flashdata('loginerror','you have  no permissions');
+			redirect('admin/login');
 			}
 	 	}else
 	 	{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login	');
 		}
-		
-	}
-	
-	
-	
+		}
 	public function previewok(){
-		
 		$post=$this->input->post();
 		//echo '<pre>';print_r($post);
 		if(count($post)>0){ 
@@ -1767,7 +1626,6 @@ public function servicerequestview(){
 				$this->inventory_model->update_topoffers_preview_ok($list,1);
 			}
 		}
-		
 		$overrdeals_of_the_day=$this->inventory_model->get_deals_of_the_day_update_preview_ok();
 		foreach($overrdeals_of_the_day as $list){
 			$this->inventory_model->set_deals_of_the_day_update_preview_notok($list['deal_offer_id'],0);
@@ -1777,7 +1635,6 @@ public function servicerequestview(){
 				$this->inventory_model->update_deals_of_the_day_preview_ok($list,1);
 			}
 		}
-		
 		$overrseason_sales=$this->inventory_model->get_season_sales_update_preview_ok();
 		foreach($overrseason_sales as $list){
 			$this->inventory_model->set_season_sales_update_preview_notok($list['season_sales_id'],0);
@@ -1787,7 +1644,6 @@ public function servicerequestview(){
 				$this->inventory_model->update_season_sales_preview_ok($list,1);
 			}
 		}
-		
 		$overrbannerimage=$this->inventory_model->get_banner_update_preview_ok();
 		foreach($overrbannerimage as $list){
 			$this->inventory_model->set_banner_update_preview_notok($list['image_id'],0);
@@ -1803,15 +1659,10 @@ public function servicerequestview(){
 			$this->session->set_flashdata('error','Plase select products for home page preview');
 			redirect('inventory/homepagepreview');
 		}
-		
-		//echo '<pre>';print_r($post);exit;
 	}
 	/* home page banner*/
-
-	 public function categorieslist(){
-  	
-	 
-	if($this->session->userdata('userdetails'))
+public function categorieslist(){
+  	if($this->session->userdata('userdetails'))
 	 {		
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5){
@@ -1825,41 +1676,30 @@ public function servicerequestview(){
 				$this->session->set_flashdata('loginerror','you have  no permissions');
 				redirect('admin/login');
 		}
-		
-	  
-	  }
+	}
 	  else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login');
 	} 
   }
-		public function logout(){
-		
-		$userinfo = $this->session->userdata('userdetails');
+public function logout(){
+	$userinfo = $this->session->userdata('userdetails');
 		//echo '<pre>';print_r($userinfo );exit;
         $this->session->unset_userdata($userinfo);
 		//$this->session->sess_destroy('userdetails');
 		$this->session->unset_userdata('userdetails');
         redirect('admin/login');
 	}
-	
-		public function subimportcategory(){
-			
-		$post=$this->input->post();
+public function subimportcategory(){
+	$post=$this->input->post();
 		$logindetail=$this->session->userdata('userdetails');
-
-			
-	if((!empty($_FILES["importcategoryfile"])) && ($_FILES['importcategoryfile']['error'] == 0)) {
-				
+if((!empty($_FILES["importcategoryfile"])) && ($_FILES['importcategoryfile']['error'] == 0)) {
 				$limitSize	= 1000000000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
 				$fileName	= basename($_FILES['importcategoryfile']['name']);
 				$fileSize	= $_FILES["importcategoryfile"]["size"];
 				$fileExt	= substr($fileName, strrpos($fileName, '.') + 1);
-				
 				if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
-					
-						include( 'simplexlsx.class.php');
-
+					include( 'simplexlsx.class.php');
 					$getWorksheetName = array();
 					$xlsx = new SimpleXLSX( $_FILES['importcategoryfile']['tmp_name'] );
 					$getWorksheetName = $xlsx->getWorksheetName();
@@ -1872,9 +1712,7 @@ public function servicerequestview(){
 						foreach($arry as $key=>$fields)
 							{
 								if(isset($fields[0]) && $fields[0]!=''){
-								
-									$totalfields[] = $fields;	
-									
+								$totalfields[] = $fields;	
 									if(empty($fields[0])) {
 										$data['errors'][]="Subcategory Name is required. Row Id is :  ".$key.'<br>';
 										$error=1;
@@ -1885,10 +1723,7 @@ public function servicerequestview(){
 										$data['errors'][]='Subcategory Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
 										$error=1;
 										}
-
 									}
-										
-									
 									if(empty($fields[1])) {
 										$data['errors'][]="Commision is required. Row Id is :  ".$key.'<br>';
 										$error=1;
@@ -1900,7 +1735,6 @@ public function servicerequestview(){
 										$error=1;
 										}
 									}
-									
 								}else{
 									$data['errors'][]='Please Fillout all Fields';
 									$this->session->set_flashdata('addsuccess',$data['errors']);
@@ -1911,18 +1745,14 @@ public function servicerequestview(){
 								$this->session->set_flashdata('addsuccess',$data['errors']);
 								redirect('inventory/addsubcategory');	
 								}
-						
-						
 						}
 						
 						
 					}
 	}
-					
 					if(count($data['errors'])<=0){
 						foreach($totalfields as $data){
-							
-							//echo "<pre>";print_r($fieldss);
+								//echo "<pre>";print_r($fieldss);
 							$addsubcat = array(
 							'category_id' => $post['category_list'], 
 							'subcategory_name' =>$data[0],
@@ -1945,27 +1775,18 @@ public function servicerequestview(){
 				}
 				
 	       }
-		   
-		   
-		   
-		   	public function importcategory(){
+		 public function importcategory(){
 			
 		$post=$this->input->post();
 		//echo '<pre>';print_r($_FILES);exit;
 		$logindetail=$this->session->userdata('userdetails');
-
-			
 	if((!empty($_FILES["importaegoryfile"])) && ($_FILES['importaegoryfile']['error'] == 0)) {
-				
 				$limitSize	= 1000000000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
 				$fileName	= basename($_FILES['importaegoryfile']['name']);
 				$fileSize	= $_FILES["importaegoryfile"]["size"];
 				$fileExt	= substr($fileName, strrpos($fileName, '.') + 1);
-				
 				if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
-					
-						include( 'simplexlsx.class.php');
-
+					include( 'simplexlsx.class.php');
 					$getWorksheetName = array();
 					$xlsx = new SimpleXLSX( $_FILES['importaegoryfile']['tmp_name'] );
 					$getWorksheetName = $xlsx->getWorksheetName();
@@ -1978,11 +1799,7 @@ public function servicerequestview(){
 						foreach($arry as $key=>$fields)
 							{
 								if(isset($fields[0]) && $fields[0]!=''){
-								
-									$totalfields[] = $fields;	
-									
-									
-									
+								$totalfields[] = $fields;	
 									if(empty($fields[0])) {
 										$data['errors'][]="category Name is required. Row Id is :  ".$key.'<br>';
 										$error=1;
@@ -2044,11 +1861,7 @@ public function servicerequestview(){
 				}
 				
 	       }
-    	
-  
- 	
-
-  public function productquantity(){ 
+ public function productquantity(){ 
 	if($this->session->userdata('userdetails'))
 	{		
 		$data['quantity'] = $this->inventory_model->total_quantity();
@@ -2061,9 +1874,7 @@ public function servicerequestview(){
 		 redirect('admin/login');
 	} 
   }
-
-
-  public function categorywisequantity()
+ public function categorywisequantity()
   {
   	if($this->session->userdata('userdetails'))
 	{	$sellerid = base64_decode($this->uri->segment(3));
@@ -2073,7 +1884,6 @@ public function servicerequestview(){
 		$this->load->view('customer/inventry/sidebar');
 		$this->load->view('customer/inventry/categorywise_quantity',$data);
 		$this->load->view('customer/inventry/footer');
-		
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login');
@@ -2233,10 +2043,7 @@ public function servicerequestview(){
 				}else{
 					$this->session->set_flashdata('error',' some technical problem will occured. Please try again');
 					redirect('inventory/addbanners');
-					
 				}
-				
-		
 	}else{
 		 $this->session->set_flashdata('loginerror','Please login to continue');
 		 redirect('admin/login');
@@ -2259,8 +2066,6 @@ public function servicerequestview(){
 					$status=1;
 				}
 				$updatestatus=$this->inventory_model->update_bannerimg_status($imageid,$status);
-				
-				
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
@@ -2283,10 +2088,5 @@ public function servicerequestview(){
 		 	redirect('admin/login	');
 		} 	
 	}
- 
-
-
-
-
 }		
 ?>

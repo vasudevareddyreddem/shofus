@@ -1,12 +1,8 @@
 <footer class="footer ">
-    <strong>Copyright &copy; 2016- <?php echo date('Y');?> &nbsp;<strong >cartinhour &nbsp;</strong> All rights
+    <strong>Copyright@cartinhours.com</strong> All rights
     reserved.
 </footer>
-
-
-
 <!-- core functionality purpose-->
-
 <script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
 
 <script src="<?php echo base_url(); ?>assets/vendor/inventry/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>

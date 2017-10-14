@@ -1,5 +1,4 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -2255,3 +2254,5 @@ abstract class REST_Controller extends CI_Controller {
         }
     }
 }
+
+?>

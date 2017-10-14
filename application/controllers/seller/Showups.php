@@ -1,14 +1,8 @@
-
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 @include_once( APPPATH . 'controllers/seller/Admin_Controller.php');
-
-
 class Showups extends Admin_Controller {
-
-	
-	public function __construct() {
+public function __construct() {
 		parent::__construct();
 		$this->load->helper('security');
 		$this->load->helper(array('url','html','form'));
@@ -16,12 +10,8 @@ class Showups extends Admin_Controller {
 		$this->load->model('seller/showups_model');
 		$this->load->model('seller/Promotions_model');
 		$this->load->model('seller/products_model');
-		
-		
-		
 	}
-
-	public function homepagebanner()
+public function homepagebanner()
 	{
 		$data['seller_banner'] = $this->showups_model->seller_homebanners();
 		$data['banner_button']=$this->showups_model->banner_count(date('Y-m-d'));
@@ -35,10 +25,7 @@ class Showups extends Admin_Controller {
 		$this->template->write_view('content', 'seller/showups/addhomebanner',$data);
 		$this->template->render();
 	}
-
-	
-
-	public function save_banner(){
+public function save_banner(){
 		
 		$bannercheck=$this->showups_model->banner_exits($_FILES['home_banner']['name']);
 		if(count($bannercheck)>0){
@@ -51,7 +38,6 @@ class Showups extends Admin_Controller {
 					$date1 = strtotime($date);
 					$date2 = strtotime("+1 day", $date1);
 						move_uploaded_file($_FILES['home_banner']['tmp_name'], "uploads/banners/" . $_FILES['home_banner']['name']);
-
 					$data=array(         
 						'seller_id' => $this->session->userdata('seller_id'),
 						'intialdate'=>date("Y-m-d H:i:s"),  
@@ -74,12 +60,7 @@ class Showups extends Admin_Controller {
 					$this->session->set_flashdata('deactive',"while adding it should come like 1 of 6 , 2 of 6...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
 					redirect('seller/showups/homepagebanner');
 				}
-			
 		}
-
-		
-		
-
 	}
 	public function banner_status()
 	{
@@ -138,11 +119,6 @@ class Showups extends Admin_Controller {
 						}
 		}
 		
-		
-		
-		
-
-
 	}
 
 	public function banner_delete()
@@ -182,9 +158,7 @@ class Showups extends Admin_Controller {
 		$this->template->write_view('content', 'seller/showups/active_topoffers',$data);
 		$this->template->render();
 	}
-
-
-	public function topofferactive(){
+public function topofferactive(){
 		$itemid = base64_decode($this->uri->segment(4));
 		$status = base64_decode($this->uri->segment(5));
 		//echo "<pre>";print_r($status);exit;
@@ -199,17 +173,7 @@ class Showups extends Admin_Controller {
 			'status'=>$status
 		);
 			$updatestatus=$this->showups_model->update_topoffers_status($itemid,$data);
-		//echo "<pre>";print_r($status);exit;
 		
-		//echo "<pre>";print_r($data);exit;
-		// if($status==1){
-		// 	$this->session->set_flashdata('deactive'," No premition");
-		// 	redirect('seller/showups/activetopoffers');
-		// 	//echo 'No premition';
-		// }else{
-			
-		// }
-		//echo "<pre>";print_r($updatestatus);exit;
 		if(count($updatestatus)>0)
 				{
 					if($status==1)
@@ -220,9 +184,6 @@ class Showups extends Admin_Controller {
 					}
 					redirect('seller/showups/topoffers');
 				}
-		
-
-
 	}
 
 	public function addtopoffers()
@@ -246,14 +207,7 @@ class Showups extends Admin_Controller {
 		$this->template->write_view('content', 'seller/showups/dealsofday',$data);
 		$this->template->render();
 	}
-	// public function activedealsofday(){
-	// 	$data['seller_prducts']=$this->showups_model->get_deals_of_day_data($this->session->userdata('seller_id'));
-	// 	 $data['catitemdata'] = $this->showups_model->getdeals_ofthe_day();
-	//    $data['catitemdata1'] = $this->showups_model->getdeals_ofthe_day();
-	// 	$data['cnt']= count($data['catitemdata1']);
-	// 	$this->template->write_view('content', 'seller/showups/active_dealsofday',$data);
-	// 	$this->template->render();
-	// }
+
 	public function dealsofdayactive(){
 		$itemid = base64_decode($this->uri->segment(4));
 		$status = base64_decode($this->uri->segment(5));
@@ -269,17 +223,7 @@ class Showups extends Admin_Controller {
 			'status'=>$status
 		);
 			$updatestatus=$this->showups_model->update_deals_ofthe_day_status($itemid,$data);
-		//echo "<pre>";print_r($status);exit;
-		
-		//echo "<pre>";print_r($data);exit;
-		// if($status==1){
-		// 	$this->session->set_flashdata('deactive'," No premition");
-		// 	redirect('seller/showups/activedealsofday');
-		// 	//echo 'No premition';
-		// }else{
-			
-		// }
-		//echo "<pre>";print_r($updatestatus);exit;
+	
 		if(count($updatestatus)>0)
 				{
 					if($status==1)
@@ -311,16 +255,7 @@ class Showups extends Admin_Controller {
 		$this->template->write_view('content', 'seller/showups/seasonsale',$data);
 		$this->template->render();
 	}
-	// public function activeseasonsale(){
-	// 	$data['seller_prducts']=$this->showups_model->get_season_sales_data($this->session->userdata('seller_id'));
-	// 	 $data['catitemdata'] = $this->showups_model->getseason_sales();
-	//    $data['catitemdata1'] = $this->showups_model->getseason_sales();
-	// 	$data['cnt']= count($data['catitemdata1']);
-	// 	$this->template->write_view('content', 'seller/showups/active_seasonsale',$data);
-	// 	$this->template->render();
-	// }
-
-	public function seasonsaleactive(){
+public function seasonsaleactive(){
 		$itemid = base64_decode($this->uri->segment(4));
 		$status = base64_decode($this->uri->segment(5));
 		//echo "<pre>";print_r($status);exit;
@@ -335,17 +270,7 @@ class Showups extends Admin_Controller {
 			'status'=>$status
 		);
 			$updatestatus=$this->showups_model->update_season_sales_status($itemid,$data);
-		//echo "<pre>";print_r($status);exit;
-		
-		//echo "<pre>";print_r($data);exit;
-		// if($status==1){
-		// 	$this->session->set_flashdata('deactive'," No premition");
-		// 	redirect('seller/showups/activeseasonsale');
-		// 	//echo 'No premition';
-		// }else{
-			
-		// }
-		//echo "<pre>";print_r($updatestatus);exit;
+
 		if(count($updatestatus)>0)
 				{
 					if($status==1)

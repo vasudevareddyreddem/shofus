@@ -1,5 +1,4 @@
 <?php
-
 use Instamojo;
 
 class Instamojo {

@@ -54,10 +54,8 @@ public function loginpost()
 			 $result   = $this->login_model->authenticate($post['email'],$post['password']);
 			 if(count($result)>0){				 
 				 $data = array(
-				'admin_id'    => $result['admin_id'],
-				'admin_id'    => $result['admin_id'],
-				'admin_name'  => $result['admin_name'],
-				'admin_email' => $result['admin_email'],
+				'admin_id'    => $result['customer_id'],
+				'admin_email' => $result['cust_email'],
 				'loggedin'   => TRUE,
 				);
 				$this->session->set_userdata($data);
@@ -76,15 +74,8 @@ public function loginpost()
 			}
 			
 		}
-
-
-			
-
 }
-
-
- public function logout() {
-
+public function logout() {
 	$data = array(
 	'admin_id'        => '',
 	'admin_name'  => '',

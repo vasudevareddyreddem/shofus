@@ -147,7 +147,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 	<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
 				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="deliverymsg"></span>
-			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivered within <?php echo $this->session->userdata('time');?></span>
+			<span style="font-weight:500;font-size:17px" id="oldmsg">	delivery within <?php echo $this->session->userdata('time');?></span>
 
 			<span style="font-weight:500;font-size:17px" id="olddeliverymsg"><?php ?></span>
 			<div class="clearfix">&nbsp;</div>
@@ -162,7 +162,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><?php echo $total; ?></span>
+					<span><?php echo number_format($total, 2); ?></span>
 				</div>
 				</div>
 			</div>
@@ -174,7 +174,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><?php echo $carttotal_amount['delivertamount']; ?></span>
+					<span><?php echo number_format($carttotal_amount['delivertamount'], 2); ?></span>
 				</div>
 				</div>
 			</div>
@@ -187,7 +187,11 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></span>
+					<span><b>
+					<?php $amt=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
+					echo number_format($amt, 2);
+					?>
+					</b></span>
 				</div>
 				</div>
 				<div class="clearfix">&nbsp;</div>
@@ -344,10 +348,10 @@ function getareapincode(val){
 			$('#imgdisplaying').show();
 			if(data.msg==1){
 				
-				$('#deliverymsg').html('Delivered by within ' +data.time).css("color", "black");
+				$('#deliverymsg').html('delivery within ' +data.time).css("color", "black");
 				
 			}else{
-				$('#deliverymsg').html('Delivered by within 4 hours').css("color", "black");
+				$('#deliverymsg').html('delivery within 4 hours').css("color", "black");
 			}
          
 

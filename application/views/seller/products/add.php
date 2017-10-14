@@ -287,15 +287,31 @@ $(document).ready(function(){
 	   
 	   
    }
-   
+   function IsMobile(reasontype) {
+        var regex = /^[0-9]+$/;
+        return regex.test(reasontype);
+        }
 	    function validateForm(){
 		   var price=document.getElementById('product_price').value;
 		   var specialprice=document.getElementById('special_price').value;
-		   if(Number(specialprice) > Number(price)){
-			  $('#errormsgvalidation').html('special price must be less than price');
+		   if(specialprice==''){
+			   $('#errormsgvalidation').html('Please enter special price');
 			  return false;
 		   }else{
-			  return true;
+			   
+			   
+			   if (!IsMobile(specialprice)) {
+            $("#errormsgvalidation").html("Please Enter Correct special price").css("color", "red");
+            jQuery('#seller_mobile').focus();
+            return false;
+            } 
+			   if(Number(specialprice) > Number(price)){
+				  $('#errormsgvalidation').html('special price must be less than price');
+				  return false;
+			   }else{
+				  return true;
+			   }
+		   
 		   }
 		  // return false;
 	   }

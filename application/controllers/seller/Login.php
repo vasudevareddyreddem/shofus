@@ -16,17 +16,7 @@ class Login extends CI_Controller {
 	$this->load->model('seller/login_model');
 	$this->load->model('seller/subcategory_model');
 	
-	$incompleteregisters=$this->login_model->get_all_seller_registers();
 	
-	foreach($incompleteregisters as $all_lists){
-		$sellerdetails=$this->login_model->delete_pending_seller_details($all_lists['seller_id']);
-		$storedetails=$this->login_model->delete_pending_seller_store_details($all_lists['seller_id']);
-		$incompletecat=$this->login_model->get_pending_seller_cat_details($all_lists['seller_id']);
-		foreach($incompletecat as $all_subcategory){
-			$deletependingcats=$this->login_model->delete_pending_seller_cat_details($all_subcategory['seller_cat_id']);
-		}
-        $this->session->unset_userdata('seller_id');
-	}
 	//echo '<pre>';print_r($incompleteregisters); exit;     
 }
 
@@ -562,6 +552,20 @@ $result = $you_make - $actual_price;
 		
 
 
+	}
+	
+	public function pendingsellers_list(){
+		$incompleteregisters=$this->login_model->get_all_seller_registers();
+	
+	foreach($incompleteregisters as $all_lists){
+		$sellerdetails=$this->login_model->delete_pending_seller_details($all_lists['seller_id']);
+		$storedetails=$this->login_model->delete_pending_seller_store_details($all_lists['seller_id']);
+		$incompletecat=$this->login_model->get_pending_seller_cat_details($all_lists['seller_id']);
+		foreach($incompletecat as $all_subcategory){
+			$deletependingcats=$this->login_model->delete_pending_seller_cat_details($all_subcategory['seller_cat_id']);
+		}
+        $this->session->unset_userdata('seller_id');
+	}
 	}
 
 

@@ -1,27 +1,21 @@
 <?php
 class Inventory_model extends MY_Model
 {
-	function __construct() 
+function __construct() 
 	{
 		parent::__construct();
 		$this->load->database("default");
 	}
-	
-	
 	public function get_all_categories_list()
 	{
 		$this->db->select('*')->from('category');
-	
 	$query= $this->db->get()->result_array();
 		 foreach ($query as $category)
         {
-      //echo "<pre>";print_r($category);exit;
 			$return[$category['category_id']] = $category;
-
 			$return[$category['category_id']]['activecount'] = $this->get_activeunreadcounts($category['category_id']);
 			$return[$category['category_id']]['inactivecount'] = $this->get_inactiveunreadcounts($category['category_id']);
-        
-		}
+        }
 		if(!empty($return))
 		{
 		return $return;
@@ -41,10 +35,6 @@ class Inventory_model extends MY_Model
 		$this->db->where('status',0);
 		return $this->db->get()->result_array();
 	}
-	
-	
-	
-	
 	public function get_categort_details($catid)
 	{
 		$this->db->select('*')->from('category');
@@ -155,26 +145,22 @@ class Inventory_model extends MY_Model
 		$this->db->where('service_id', $servoceid);
 		return $this->db->update('request_for_services', $data);
 	}
-	
 	public function get_seller_categories()
 	{
 		$this->db->select('*')->from('category');
 		$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
-
 	public function get_categorywiseseller_list($cid){
 	$this->db->select('seller_categories.*,sellers.*')->from('seller_categories');
 	$this->db->join('sellers', 'sellers.seller_id = seller_categories.seller_id', 'left');
 	$this->db->where('seller_category_id', $cid);
 	$this->db->where('sellers.status', 1);
     return $this->db->get()->result_array();
-
 	}
 	public function get_seller_databaseid()
 	{
-	
-		 $sqll = $this->db->query("SELECT sellers.*,seller_store_details.*,GROUP_CONCAT(seller_categories.category_name ORDER BY seller_categories.category_name SEPARATOR ', ') AS categoryname 
+		$sqll = $this->db->query("SELECT sellers.*,seller_store_details.*,GROUP_CONCAT(seller_categories.category_name ORDER BY seller_categories.category_name SEPARATOR ', ') AS categoryname 
 		 FROM seller_categories LEFT JOIN sellers ON seller_categories.seller_id =sellers.seller_id LEFT JOIN seller_store_details ON 
 		 	seller_store_details.seller_id = sellers.seller_id GROUP BY sellers.seller_id");
 		 return $sqll->result_array();
@@ -217,7 +203,6 @@ class Inventory_model extends MY_Model
 		$this->db->where('request_for_services.select_plan','Both');
 		return $this->db->get()->result();
 	}
-	
 	public function get_banner_preview()
 	{
 		$this->db->select('*')->from('home_banner');
@@ -226,8 +211,6 @@ class Inventory_model extends MY_Model
 		$this->db->limit(3);
 		return $this->db->get()->result();
 	}
-	
-	
 	/*notification puroose*/
 	public function get_sellernotification_list()
 	{
@@ -240,11 +223,9 @@ class Inventory_model extends MY_Model
         {
       //echo "<pre>";print_r($category);exit;
 			$return[$category['seller_id']] = $category;
-
 			$return[$category['seller_id']]['count'] = $this->get_unreadcount($category['seller_id']);
 			$return[$category['seller_id']]['lastone'] = $this->get_latestmessage($category['seller_id']);
-        
-		}
+        }
 		if(!empty($return))
 		{
 		return $return;
@@ -305,7 +286,6 @@ class Inventory_model extends MY_Model
 		return $this->db->query($sql)->row_array(); 
 	}
 	/*notification puroose*/
-	
 	/* top offers */
 	public function get_top_offers_list(){
 			$date = new DateTime("now");
@@ -323,8 +303,7 @@ class Inventory_model extends MY_Model
 			$return[$offers['seller_id']] = $offers;
 
 			$return[$offers['seller_id']]['count'] = $this->get_tophomepage_active_count($offers['seller_id']);
-        
-		}
+       }
 		if(!empty($return))
 		{
 		return $return;
@@ -364,8 +343,6 @@ class Inventory_model extends MY_Model
 		$sql1="UPDATE sellers SET readcount ='".$data."' WHERE seller_id = '".$sid."'";
 		return $this->db->query($sql1);
 	}
-	
-	
 	/* offer list purpose*/
 	public function get_season_offers_list(){
 		$date = new DateTime("now");
@@ -382,14 +359,12 @@ class Inventory_model extends MY_Model
 			$return[$offers['seller_id']] = $offers;
 
 			$return[$offers['seller_id']]['count'] = $this->get_homepage_active_count($offers['seller_id']);
-        
-		}
+       }
 		if(!empty($return))
 		{
 		return $return;
 		}
 	}
-	
 	public function get_homepage_active_count($sid)
 	{
 		$date = new DateTime("now");
@@ -400,7 +375,6 @@ class Inventory_model extends MY_Model
 		$this->db->where('season_sales.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
 	}
-	
 	public function get_season_sales_details_list($sid){
 		$this->db->select('season_sales.*,products.item_name,category.category_name,sellers.seller_rand_id')->from('season_sales');
 		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
@@ -410,7 +384,6 @@ class Inventory_model extends MY_Model
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		return $this->db->get()->result_array();
 	}
-	
 	/*---*/
 	/* dealsoffer list purpose*/
 	public function get_delasoftheday_offers_list(){
@@ -421,7 +394,6 @@ class Inventory_model extends MY_Model
 		 $this->db->group_by('deals_ofthe_day.seller_id');
 		 $this->db->where('sellers.status', 1);
 		 $this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
-
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		$query=$this->db->get()->result_array();
 		 foreach ($query as $offers)
@@ -430,14 +402,12 @@ class Inventory_model extends MY_Model
 			$return[$offers['seller_id']] = $offers;
 
 			$return[$offers['seller_id']]['count'] = $this->get_delasoftheday_homepage_active_count($offers['seller_id']);
-        
-		}
+        }
 		if(!empty($return))
 		{
 		return $return;
 		}
 	}
-	
 	public function get_delasoftheday_homepage_active_count($sid)
 	{
 		$date = new DateTime("now");
@@ -448,7 +418,6 @@ class Inventory_model extends MY_Model
 		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
 	}
-	
 	public function get_dealsoftheday_details_list($sid){
 		$this->db->select('deals_ofthe_day.*,products.item_name,category.category_name,sellers.seller_rand_id')->from('deals_ofthe_day');
 		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
@@ -468,10 +437,8 @@ class Inventory_model extends MY_Model
 		$sql1="UPDATE deals_ofthe_day SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
 		return $this->db->query($sql1);
 	}
-	
 	/*---*/
 	/* home page banner purpose*/
-	
 	public function get_seller_banners(){
 	$date = new DateTime("now");
 		$curr_date = $date->format('Y-m-d h:i:s A');
@@ -495,7 +462,6 @@ class Inventory_model extends MY_Model
 			return $return;
 		}
 		}
-	
 	public function get_homepage_banner_active_count($sid)
 	{
 		$date = new DateTime("now");
@@ -513,7 +479,6 @@ class Inventory_model extends MY_Model
 		//$this->db->order_by('order_items.seller_id', 'ASC'); 
 		return $this->db->get()->result_array();
 	}
-	
 	public function update_banner_status($sid,$imageid,$data)
 	{
 		$sql1="UPDATE home_banner SET home_page_status ='".$data."' WHERE seller_id = '".$sid."' AND image_id='".$imageid."'";
@@ -529,8 +494,7 @@ class Inventory_model extends MY_Model
 		$sql1="UPDATE home_banner SET status ='".$status."'WHERE image_id  = '".$id."' AND seller_id = '".$sid."'";
 		return $this->db->query($sql1);
 	}
-
-	public function delete_banner($id,$sid)
+public function delete_banner($id,$sid)
 	{
 		$sql1="DELETE FROM home_banner WHERE image_id  = '".$id."' AND seller_id = '".$sid."'";
 		return $this->db->query($sql1);
@@ -547,7 +511,6 @@ class Inventory_model extends MY_Model
 		$this->db->order_by('top_offers.offer_percentage desc');
 		$this->db->where('top_offers.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
-
 	}
 	public function get_deals_of_the_day_preview()
 	{
@@ -559,7 +522,6 @@ class Inventory_model extends MY_Model
 		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
 		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
-
 	}
 	public function get_season_sales_preview()
 	{
@@ -571,7 +533,6 @@ class Inventory_model extends MY_Model
 		$this->db->order_by('season_sales.offer_percentage desc');
 		$this->db->where('season_sales.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
-
 	}
 	public function get_banner_preview_display()
 	{
@@ -582,11 +543,8 @@ class Inventory_model extends MY_Model
 		$this->db->order_by('home_banner.created_at desc');
 		$this->db->where('home_banner.expairydate >=', $curr_date);
 		return $this->db->get()->result_array();
-
 	}
 	/* home page preview purpose*/
-	
-	
 	public function update_seasonsales_status_ok($sid,$pid,$data,$data1)
 	{
 		$sql1="UPDATE season_sales SET home_page_status ='".$data."',preview_ok ='".$data1."' WHERE seller_id = '".$sid."' AND item_id='".$pid."'";
@@ -614,7 +572,6 @@ class Inventory_model extends MY_Model
 		$sql1="UPDATE top_offers SET preview_ok ='".$data."' WHERE item_id='".$pid."'";
 		return $this->db->query($sql1);
 	}
-	
 	public function get_deals_of_the_day_update_preview_ok()
 	{
 		$this->db->select('*')->from('deals_ofthe_day');
@@ -663,8 +620,6 @@ class Inventory_model extends MY_Model
 		$sql1="UPDATE home_banner SET preview_ok ='".$data."' WHERE image_id='".$imageid."'";
 		return $this->db->query($sql1);
 	}
-
-
 	/* product quantity querys */
 	public function total_quantity()
 	{
@@ -675,7 +630,6 @@ class Inventory_model extends MY_Model
 		 $this->db->where('products.item_status', 1);
 		return $this->db->get()->result_array();
 	}
-
 	public function categorywise_quantity($id)
 	{
 		$this->db->select('products.seller_id,products.category_id,sellers.seller_name,sellers.seller_rand_id,category.category_name,subcategories.subcategory_name,sum(products.item_quantity)as qty ,products.item_name')->from('products');
@@ -699,7 +653,6 @@ class Inventory_model extends MY_Model
 		 $this->db->where('products.item_status', 1);
 		return $this->db->get()->result_array();
 	}
-
 	function getoldimage($cat_id,$sub_id)
 	{
 		$this->db->select('*')->from('subcategories');
@@ -733,6 +686,5 @@ class Inventory_model extends MY_Model
 		$sql1="UPDATE appbanners_list SET status ='".$data."'WHERE id = '".$item_id."'";
 		return $this->db->query($sql1);
 	}
-	
 }
 ?>	

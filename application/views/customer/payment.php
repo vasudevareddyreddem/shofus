@@ -118,7 +118,7 @@
 		
 		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
 			<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
-			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivered by within <?php echo $this->session->userdata('time');?></span>
+			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery within <?php echo $this->session->userdata('time');?></span>
 			<span style="font-weight:500;font-size:17px" id="deliverymsg" style="display:none;"></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px " >
@@ -132,7 +132,7 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><?php echo $carttotal_amount['pricetotalvalue']; ?></span>
+					<span><?php echo number_format($carttotal_amount['pricetotalvalue'], 2); ?></span>
 				</div>
 				</div>
 			</div>
@@ -144,7 +144,7 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><?php echo $carttotal_amount['delivertamount']; ?></span>
+					<span><?php echo number_format($carttotal_amount['delivertamount'], 2); ?></span>
 				</div>
 				</div>
 			</div>
@@ -157,9 +157,10 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><b><?php echo ($carttotal_amount['pricetotalvalue']) + ($carttotal_amount['delivertamount']) ?></b></span>
-
-				</div>
+						<?php $amt=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
+					echo number_format($amt, 2);
+					?>
+					</div>
 				</div>
 				<div class="clearfix">&nbsp;</div>
 			</div>
