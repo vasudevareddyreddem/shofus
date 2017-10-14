@@ -146,11 +146,5 @@ class Cron extends Front_Controller
 					//echo '<pre>';print_r($ch);exit;
 					$server_output = curl_exec ($ch);
 	}*/
- 
-
-  
-
-
-
 }		
 ?>

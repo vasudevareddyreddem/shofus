@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 require APPPATH.'/third_party/hybridauth/Hybrid/Auth.php';
 
 class HybridAuthLib extends Hybrid_Auth
@@ -32,3 +31,5 @@ class HybridAuthLib extends Hybrid_Auth
 
 /* End of file HybridAuthLib.php */
 /* Location: ./application/libraries/HybridAuthLib.php */
+
+?>

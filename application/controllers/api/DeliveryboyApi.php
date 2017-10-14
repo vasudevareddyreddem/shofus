@@ -312,8 +312,9 @@ class DeliveryboyApi extends REST_Controller {
 		
 		$order_item_id=$this->input->get('order_item_id');
 		$amount=$this->input->get('amount');
-		$status=$this->input->get('status');
 		$amountstatus=$this->input->get('amountstatus');
+		$payment_type=$this->input->get('payment_type');
+		$payment_type=$this->input->get('payment_type');
 		if($order_item_id==''){
 		$message = array('status'=>1,'message'=>'order item id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -323,12 +324,15 @@ class DeliveryboyApi extends REST_Controller {
 		}else if($amountstatus==''){
 		$message = array('status'=>1,'message'=>'Amountstatus is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}else if($payment_type==''){
+		$message = array('status'=>1,'message'=>'Payment type is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 		$getdetails=$this->Deliveryboyapi_model->get_order_details($order_item_id);
 		
 		$totalamt=$getdetails['total_price']+$getdetails['delivery_amount'];
 		if($totalamt==$amount){
-			$getdetails=$this->Deliveryboyapi_model->get_order_details_status($order_item_id,$amount,$amountstatus);
+			$getdetails=$this->Deliveryboyapi_model->get_order_details_status($order_item_id,$amount,$amountstatus,$payment_type);
 			if(count($getdetails)>0){
 					$message = array('status'=>1, 'message'=>'Order Amount status Succssfully updated');
 					$this->response($message, REST_Controller::HTTP_OK);
