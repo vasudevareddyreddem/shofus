@@ -45,8 +45,8 @@ $config =
 
 			"Facebook" => array (
 				"enabled" => true,
-				//"keys"    => array ( "id" => '1516692405064355', "secret" => '54dab4497a9c59cfa29e6a222ee5fbc0' ),
-				"keys"    => array ( "id" => '146448219424893', "secret" => '4d8dff6476ebbade92c1e816cf2994ad' ),
+				"keys"    => array ( "id" => '1516692405064355', "secret" => '54dab4497a9c59cfa29e6a222ee5fbc0' ),
+				//"keys"    => array ( "id" => '146448219424893', "secret" => '4d8dff6476ebbade92c1e816cf2994ad' ),
 			),
 
 			"Twitter" => array (
