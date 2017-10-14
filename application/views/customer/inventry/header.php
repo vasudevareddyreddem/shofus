@@ -80,5 +80,6 @@
           <!-- Control Sidebar Toggle Button -->
         </ul>
       </div>
-	</nav>
+
+    </nav>
   </header>

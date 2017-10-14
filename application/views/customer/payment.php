@@ -132,7 +132,7 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><?php echo $carttotal_amount['pricetotalvalue']; ?></span>
+					<span><?php echo number_format($carttotal_amount['pricetotalvalue'], 2); ?></span>
 				</div>
 				</div>
 			</div>
@@ -144,7 +144,7 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><?php echo $carttotal_amount['delivertamount']; ?></span>
+					<span><?php echo number_format($carttotal_amount['delivertamount'], 2); ?></span>
 				</div>
 				</div>
 			</div>
@@ -157,9 +157,10 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><b><?php echo ($carttotal_amount['pricetotalvalue']) + ($carttotal_amount['delivertamount']) ?></b></span>
-
-				</div>
+						<?php $amt=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
+					echo number_format($amt, 2);
+					?>
+					</div>
 				</div>
 				<div class="clearfix">&nbsp;</div>
 			</div>

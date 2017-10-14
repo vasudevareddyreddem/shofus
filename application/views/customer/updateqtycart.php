@@ -162,7 +162,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><?php echo $total; ?></span>
+					<span><?php echo number_format($total, 2); ?></span>
 				</div>
 				</div>
 			</div>
@@ -174,7 +174,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><?php echo $carttotal_amount['delivertamount']; ?></span>
+					<span><?php echo number_format($carttotal_amount['delivertamount'], 2); ?></span>
 				</div>
 				</div>
 			</div>
@@ -187,7 +187,11 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></span>
+					<span><b>
+					<?php $amt=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
+					echo number_format($amt, 2);
+					?>
+					</b></span>
 				</div>
 				</div>
 				<div class="clearfix">&nbsp;</div>

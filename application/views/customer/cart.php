@@ -167,7 +167,7 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><?php echo $total; ?></span>
+					<span><?php echo number_format($total, 2); ?></span>
 				</div>
 				</div>
 			</div>
@@ -179,7 +179,7 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><?php echo $carttotal_amount['delivertamount']; ?></span>
+					<span><?php echo number_format($carttotal_amount['delivertamount'], 2); ?></span>
 				</div>
 				</div>
 			</div>
@@ -192,7 +192,11 @@
 				</div>
 				<div class="pull-right">
 					<span>₹</span>
-					<span><b><?php echo $carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount']; ?></b></span>
+					<span><b>
+					<?php $amt=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
+					echo number_format($amt, 2);
+					?>
+					</b></span>
 				</div>
 				</div>
 				<div class="clearfix">&nbsp;</div>
@@ -347,10 +351,10 @@ function getareapincode(val){
 			$('#imgdisplaying').show();
 			if(data.msg==1){
 				
-				$('#deliverymsg').html('Delivered by within ' +data.time).css("color", "black");
+				$('#deliverymsg').html('delivery within ' +data.time).css("color", "black");
 				
 			}else{
-				$('#deliverymsg').html('Delivered by within 4 hours').css("color", "black");
+				$('#deliverymsg').html('delivery within 4 hours').css("color", "black");
 			}
          
 
