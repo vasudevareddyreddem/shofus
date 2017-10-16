@@ -117,9 +117,9 @@ public function forgotpassword()
 	if(count($users)>0)
 	{
 		$this->load->library('email');
-		$this->email->from('admin@cartinhour.com', 'CartInHour');
+		$this->email->from('admin@cartinhours.com', 'CartInHours');
 		$this->email->to($email);
-		$this->email->subject('CartInHour - Forgot Password');
+		$this->email->subject('CartInHours - Forgot Password');
 		$html = "Click this link to reset your password. ".site_url('admin/login/changepwd?code='.base64_encode($email).'__'.base64_encode($users['customer_id']));
 		//echo $html;exit;
 		$this->email->message($html);

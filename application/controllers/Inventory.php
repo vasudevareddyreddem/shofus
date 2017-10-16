@@ -371,9 +371,9 @@ public function servicerequestview(){
 				$this->load->library('email');
 				$this->email->set_newline("\r\n");
 				$this->email->set_mailtype("html");
-				$this->email->from('cartinhor@gmail.com');
+				$this->email->from('cartinhours@gmail.com');
 				$this->email->to($seller_details['seller_email']);
-				$this->email->subject('Cartinhour - Notification reply');
+				$this->email->subject('Cartinhours - Notification reply');
 				//$html = "Your profile successfully Updated!";
 				$html = "Hello <b>".$seller_details['seller_name']." </b><br />".$post['serivcerequest']."";
 				$this->email->message($html);

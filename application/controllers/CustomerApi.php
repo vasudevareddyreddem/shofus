@@ -671,7 +671,7 @@ class CustomerApi extends REST_Controller {
 		//echo '<pre>';print_r($wishlist);exit;
 		if(count($product_details)>0){
 		
-			$message = array('status'=>1,'path'=>'http://cartinhour.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list);
+			$message = array('status'=>1,'path'=>'https://cartinhours.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'product Id is not valid one');
@@ -901,7 +901,7 @@ class CustomerApi extends REST_Controller {
 					$username=$this->config->item('smsusername');
 					$pass=$this->config->item('smspassword');
 					if($mobile!=''){		
-						$msg=' Your cartinhour verification code is '.$six_digit_random_number;
+						$msg=' Your cartinhours verification code is '.$six_digit_random_number;
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 						curl_setopt($ch, CURLOPT_POST, 1);
@@ -916,11 +916,11 @@ class CustomerApi extends REST_Controller {
 
 					}else if(isset($email) && $email!=''){
 						
-							$msg='Greetings! You are just a step away from accessing your Cartinhour account We are sharing a verification code to access your account. Once you have verified the code, you will be prompted to set a new password immediately. This is to ensure that only you have access to your account. Verification code is: '.$six_digit_random_number;
+							$msg='Greetings! You are just a step away from accessing your Cartinhours account We are sharing a verification code to access your account. Once you have verified the code, you will be prompted to set a new password immediately. This is to ensure that only you have access to your account. Verification code is: '.$six_digit_random_number;
 							$this->load->library('email');
-							$this->email->from('admin@cartinhour.com', 'CartInHour');
+							$this->email->from('admin@cartinhours.com', 'CartInHours');
 							$this->email->to($email);
-							$this->email->subject('CartInHour - Forgot Password');
+							$this->email->subject('CartInHours - Forgot Password');
 							$html =$msg;
 							//echo $html;exit;
 							$this->email->message($html);

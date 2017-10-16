@@ -662,13 +662,14 @@ class Category_model extends MY_Model
 		$this->db->insert('fliter_search', $data);
 		return $insert_id = $this->db->insert_id();
 	}
-	public function get_all_subcategory_list()
+	public function get_all_subcategory_list($ip)
 	{
 	
 	$this->db->select('category.category_id,subcategory_name,subcategories.subcategory_id')->from('fliter_search');
 	$this->db->join('category', 'category.category_id =fliter_search.category_id', 'left');
 	$this->db->join('subcategories', 'subcategories.category_id = category.category_id', 'left');
 	$this->db->group_by('fliter_search.category_id');
+	$this->db->where('fliter_search.Ip_address',$ip);
 	$query=$this->db->get()->result_array();
 	foreach($query as $subcategory)
 	{
@@ -897,7 +898,7 @@ class Category_model extends MY_Model
 	{
 	
 	$this->db->select('fliter_search.*')->from('fliter_search');
-	$this->db->group_by('fliter_search.cusine');
+	//$this->db->group_by('fliter_search.cusine');
 	$this->db->group_by('fliter_search.restraent');
 	$this->db->group_by('fliter_search.mini_amount');
 	$this->db->group_by('fliter_search.max_amount');
@@ -912,9 +913,9 @@ class Category_model extends MY_Model
 			
 			//echo $sorting['status'];exit;
 			//echo '<pre>';print_r($sorting);exit;
-			if($sorting['cusine']!=''){
+			/*if($sorting['cusine']!=''){
 				$return['cusine'] = $this->get_cusine($sorting['cusine'],$sorting['category_id']);
-			}
+			}*/
 			if($sorting['restraent']!=''){
 				$return['restraent'] = $this->get_restraent($sorting['restraent'],$sorting['category_id']);
 			}

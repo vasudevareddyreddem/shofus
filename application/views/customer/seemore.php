@@ -152,12 +152,12 @@ jQuery.ajax({
 						//alert(data.msg);
 						if(data.msg==2){
 							$("#addwishlistids"+id+val).removeClass("text-primary");
-						$('#sucessmsg').html('Product Successfully removed to Whishlist');  
+						$('#sucessmsg').html('Product Successfully removed to wishlist');  
 						}
 						if(data.msg==1){
 						 $("#addwishlistids"+id+val).addClass("text-primary");
 						//$('#addwhish').css("color", "yellow");
-						$('#sucessmsg').html('Product Successfully added to Whishlist');  
+						$('#sucessmsg').html('Product Successfully added to wishlist');  
 						}
 				}
 

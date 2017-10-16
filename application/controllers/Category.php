@@ -581,7 +581,7 @@ public function categorywiseearch(){
 function filtersearch(){
 
 	$data=array();
-	$data['subcategory_list']= $this->category_model->get_all_subcategory_list();
+	$data['subcategory_list']= $this->category_model->get_all_subcategory_list($this->input->ip_address());
 	$subcategory_porduct_list= $this->category_model->get_search_all_subcategory_products();
 	$catid= $this->category_model->get_search_all_category_id();
 	//echo '<pre>';print_r($subcategory_porduct_list);exit;
