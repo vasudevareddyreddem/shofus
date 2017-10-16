@@ -79,7 +79,7 @@ public function insert() {
 		$message = "Dear User,\nYou are Registered Successfully. \n Your Password is : " .$six_digit_random_number. "\n\n Thanks,\nCart In Hour Team";
 		
 		//send mail
-		$this->email->from($from_email, 'CartinHour');
+		$this->email->from($from_email, 'CartinHours');
 		
 				$this->email->to($this->input->post('seller_email'));
 				$this->email->subject($subject);
@@ -480,7 +480,7 @@ $six_digit_random_number = mt_rand(100000, 999999);
 		
 		//send mail
 		$this->email->set_mailtype("html");
-		$this->email->from($from_email, 'CartinHour');
+		$this->email->from($from_email, 'CartinHours');
 		
 				$this->email->to($to_email);
 				$this->email->subject($subject);
@@ -548,7 +548,7 @@ $to_email = $email;
 		
 		//send mail
 		$this->email->set_mailtype("html");
-		$this->email->from($from_email, 'CartinHour');
+		$this->email->from($from_email, 'CartinHours');
 		
 				$this->email->to($to_email);
 				$this->email->subject($subject);

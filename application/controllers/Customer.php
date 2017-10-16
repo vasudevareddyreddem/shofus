@@ -1035,7 +1035,7 @@ class Customer extends Front_Controller
 				/* order sms*/
 				/*$username=$this->config->item('smsusername');
 				$pass=$this->config->item('smspassword');
-				$msg='Order received:we have received your order for '.$_POST['productinfo'].' with order id '.$saveorder.' Amounting to '.$_POST['net_amount_debit'].' You can manage your order at http://cartinhour.com';
+				$msg='Order received:we have received your order for '.$_POST['productinfo'].' with order id '.$saveorder.' Amounting to '.$_POST['net_amount_debit'].' You can manage your order at http://cartinhours.com';
 				$ch = curl_init();
 					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 					curl_setopt($ch, CURLOPT_POST, 1);
@@ -1888,11 +1888,11 @@ class Customer extends Front_Controller
 				redirect( 'customer/resetpassword/'.base64_encode($mobile).'/'.base64_encode($forgotpass['customer_id'])); 
 					
 				}else if(isset($email) && $email!=''){
-						$msg='Greetings! You are just a step away from accessing your Cartinhour account We are sharing a verification code to access your account. Once you have verified the code, you will be prompted to set a new password immediately. This is to ensure that only you have access to your account. '.$six_digit_random_number;
+						$msg='Greetings! You are just a step away from accessing your Cartinhours account We are sharing a verification code to access your account. Once you have verified the code, you will be prompted to set a new password immediately. This is to ensure that only you have access to your account. '.$six_digit_random_number;
 						$this->load->library('email');
-						$this->email->from('admin@cartinhour.com', 'CartInHour');
+						$this->email->from('admin@cartinhours.com', 'CartInHours');
 						$this->email->to($email);
-						$this->email->subject('CartInHour - Forgot Password');
+						$this->email->subject('CartInHours - Forgot Password');
 						$html =$msg;
 						//echo $html;exit;
 						$this->email->message($html);
@@ -1958,9 +1958,9 @@ class Customer extends Front_Controller
 						if(count($users)>0)
 						{
 						$this->load->library('email');
-						$this->email->from('admin@cartinhour.com', 'CartInHour');
+						$this->email->from('admin@cartinhours.com', 'CartInHours');
 						$this->email->to(base64_decode($post['email']));
-						$this->email->subject('CartInHour - Forgot Password');
+						$this->email->subject('CartInHours - Forgot Password');
 						$html = "Pasword Successfully changed";
 						//echo $html;exit;
 						$this->email->message($html);

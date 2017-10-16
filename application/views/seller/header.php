@@ -580,7 +580,8 @@ function emailchecking(reasontype) {
                     form_key : window.FORM_KEY,
                     mobile_number: jQuery('#forgot_mobile').val(),
 					otp: jQuery('#otp_number').val(),
-                    pasword: jQuery('#forgot_password').val(),
+					password: jQuery('#forgot_password').val(),
+                    conpassword: jQuery('#confirm_password').val(),
                     option: 1,
                     },
                     
