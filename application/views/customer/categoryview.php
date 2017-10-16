@@ -217,11 +217,11 @@ jQuery.ajax({
 				//alert(data.msg);
 				if(data.msg==2){
 				$('#addwhish').css("color", "");
-				$('#sucessmsg').html('Product Successfully removed to Whishlist');	
+				$('#sucessmsg').html('Product Successfully removed to wishlist');	
 				}
 				if(data.msg==1){
 				$('#addwhish').css("color", "#ef5350");
-				$('#sucessmsg').html('Product Successfully added to Whishlist');	
+				$('#sucessmsg').html('Product Successfully added to wishlist');	
 				}
 			
 
