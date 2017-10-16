@@ -582,6 +582,7 @@ class Customer extends Front_Controller
 		$this->template->write_view('content', 'customer/wishlist', $data);
 		$this->template->render();
 		}else{
+			$this->session->set_flashdata('success','No Item In Wishlist.');
 			redirect('');
 		}
 	}else{

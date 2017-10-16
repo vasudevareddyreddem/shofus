@@ -513,6 +513,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 </body>
 
 <script type="text/javascript">
+
+$('.slideInUp').fadeout(5000);
  function itemaddtocart(itemid,catid,val){
 
 jQuery.ajax({
