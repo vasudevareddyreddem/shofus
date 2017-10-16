@@ -41,8 +41,16 @@ class CustomerApi extends REST_Controller {
 		}
 		$cheking =$this->Customerapi_model->mobile_checking($username);
 		if(count($cheking)>0){
-				$message = array('status'=>0,'message'=>'Mobile number / Email id already exits!');
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			
+			$checkemail =filter_var($username, FILTER_VALIDATE_EMAIL);
+				if($checkemail==''){
+					$message = array('status'=>0,'message'=>'Mobile number already exits!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}else{
+					$message = array('status'=>0,'message'=>'Email id already exits!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}
+				
 		}else{
 			$email =filter_var($username, FILTER_VALIDATE_EMAIL);
 				if($email==''){
@@ -65,7 +73,7 @@ class CustomerApi extends REST_Controller {
 						$message = array('status'=>1,'cust_id'=>$customerdetails, 'message'=>'Registration successfully completed!');
 						$this->response($message, REST_Controller::HTTP_OK);
 					}else{
-						$message = array('status'=>0,'message'=>'!Invalida login details.Please try again');
+						$message = array('status'=>0,'message'=>'Invalid login details.Please try again');
 						$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 				}
 			
@@ -92,7 +100,7 @@ class CustomerApi extends REST_Controller {
 						$message = array('status'=>1,'details'=>$logindetails, 'message'=>'Logged in Successfully');
 						$this->response($message, REST_Controller::HTTP_OK);
 					}else{
-						$message = array('status'=>0,'message'=>'!Invalida login details.Please try again');
+						$message = array('status'=>0,'message'=>'Invalid login details.Please try again');
 						$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	
@@ -1793,7 +1801,7 @@ class CustomerApi extends REST_Controller {
 			$discount=$this->input->get('discount');
 			$color=$this->input->get('color');
 			$size=$this->input->get('size');
-			$status=$this->input->get('status');
+			$statuss=$this->input->get('status');
 			
 			if($Ip_address==''){
 			$message = array('status'=>1,'message'=>'Ip address is required!');
@@ -1809,7 +1817,11 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 			
-			
+			if($statuss==''){
+				$status=1;
+			}else{
+				$status=$statuss;
+			}
 			/*once change category id delete old data*/
 			$getcategory_id= $this->Customerapi_model->get_subcategory_id_filterssearh($Ip_address);
 			if(count($getcategory_id)>0){
@@ -1936,7 +1948,7 @@ class CustomerApi extends REST_Controller {
 					if(count($filtersdata)>0){
 						$removesearch= $this->Customerapi_model->get_all_previous_search_fields($Ip_address);
 							foreach ($removesearch as $list){
-								$this->Customerapi_model->update_amount_privous_searchdata($mini_amount,$max_amount,$list['id']);
+								$this->Customerapi_model->update_amount_privous_searchdata($mini_amount,$max_amount,$list['id'],$status);
 
 							}
 

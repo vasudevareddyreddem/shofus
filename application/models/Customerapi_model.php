@@ -549,21 +549,22 @@ class Customerapi_model extends MY_Model
 			$dat['res'][]=$this->get_restraentlist($listing['restraent'],$listing['category_id']);
 			}
 			if($listing['offers']!=''){
-			$dat['offers'][]= $this->get_offersapi($listing['offers'],$listing['category_id']);
+			$dat['offers'][]= $this->get_offersapi($listing['offers'],$listing['category_id'],$listing['status']);
 			}
 			if($listing['brand']!=''){
-			$dat['brand'][] = $this->get_brandsapi($listing['brand'],$listing['category_id']);
+			$dat['brand'][] = $this->get_brandsapi($listing['brand'],$listing['category_id'],$listing['status']);
 			}
 			if($listing['discount']!=''){
-			$dat['discount'][] = $this->get_discountsapi($listing['discount'],$listing['category_id']);
+			$dat['discount'][] = $this->get_discountsapi($listing['discount'],$listing['category_id'],$listing['status']);
 			}
 			if($listing['color']!=''){
-			$dat['color'][] = $this->get_colorsapi($listing['color'],$listing['category_id']);
+			$dat['color'][] = $this->get_colorsapi($listing['color'],$listing['category_id'],$listing['status']);
 			}
 			if($listing['size']!=''){
 			$dat['size'][] = $this->get_sizesapi($listing['size'],$listing['category_id']);
 			}
-			$dat['mini_amount'][] = $this->get_amountapi($listing['mini_amount'],$listing['max_amount'],$listing['category_id']);
+			$dat['mini_amount'][] = $this->get_amountapi($listing['mini_amount'],$listing['max_amount'],$listing['category_id'],$listing['status']);
+			//echo $this->db->last_query();exit;
 			if($listing['status']!=''){
 			$dat['status'][] = $this->get_statusapi($listing['status'],$listing['category_id']);
 			}
@@ -594,9 +595,9 @@ class Customerapi_model extends MY_Model
 		return $this->db->get()->result_array();
 		
 	}
-	public function get_offersapi($offer,$cid){
+	public function get_offersapi($offer,$cid,$status){
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
+		$this->db->where('item_status',$status);
 		$this->db->where('offers',$offer);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
@@ -618,19 +619,19 @@ class Customerapi_model extends MY_Model
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
 	}
-	public function get_brandsapi($brand,$cid){
+	public function get_brandsapi($brand,$cid,$status){
 		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
+		$this->db->where('item_status',$status);
 		$this->db->where('brand',$brand);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
 		
 	}
-	public function get_discountsapi($discount,$cid){
+	public function get_discountsapi($discount,$cid,$status){
 		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_status',1);
+		$this->db->where('item_status',$status);
 		$this->db->where('discount',$discount);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
@@ -646,12 +647,11 @@ class Customerapi_model extends MY_Model
 		return $this->db->get()->result_array();
 		
 	}
-	public function get_colorsapi($color,$cid){
+	public function get_colorsapi($color,$cid,$status){
 		
-		$this->db->select('products.*')->from('product_color_list');
-		$this->db->join('products', 'products.item_id = product_color_list.item_id', 'left'); //
-		$this->db->where('products.item_status',1);
-		$this->db->where('product_color_list.color_name',$color);
+		$this->db->select('products.*')->from('products');
+		$this->db->where('products.item_status',$status);
+		$this->db->where('products.colour',$color);
 		$this->db->where('products.category_id',$cid);
 		return $this->db->get()->result_array();
 		
@@ -660,23 +660,25 @@ class Customerapi_model extends MY_Model
 		$this->db->select('*')->from('products');
 		if($status!=0){
 			$this->db->where('item_quantity !=',0);
+			$this->db->where('item_status',1);
 		}else{
-		$this->db->where('item_quantity=',0);	
+		$this->db->where('item_quantity=',0);
+		$this->db->where('item_status',1);		
 		}
-		$this->db->where('item_status',1);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
 		
 	}
-	public function get_amountapi($min_amunt,$max_amount,$cid){
+	public function get_amountapi($min_amunt,$max_amount,$cid,$status){
 		
-		$sql = "SELECT * FROM products WHERE category_id ='".$cid."' AND item_status ='1' AND  item_cost BETWEEN '".$min_amunt."' AND '".$max_amount."'";
+		$min_amt=(($min_amunt)+1);
+		$sql = "SELECT * FROM products WHERE category_id ='".$cid."' AND item_status ='".$status."' AND  item_cost BETWEEN '".$min_amt."' AND '".$max_amount."'";
 		return $this->db->query($sql)->result_array();
 		//echo $this->db->last_query();exit;
 	}
-		public function update_amount_privous_searchdata($min,$max,$id)
+		public function update_amount_privous_searchdata($min,$max,$id,$status)
 	{
-		$sql1="UPDATE fliter_search SET mini_amount ='".$min."', max_amount ='".$max."' WHERE id ='".$id."'";
+		$sql1="UPDATE fliter_search SET mini_amount ='".$min."', max_amount ='".$max."', status ='".$status."' WHERE id ='".$id."'";
 		return $this->db->query($sql1);
 	}
 	public function get_all_previous_search_fields($ipadd)
