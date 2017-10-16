@@ -7065,6 +7065,7 @@ position:fixed;
 bottom:40px;
 right:50px;
 display: none;
+z-index:1025;
  }
  .log_list{
 position: fixed;
