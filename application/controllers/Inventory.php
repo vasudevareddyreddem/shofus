@@ -2071,9 +2071,9 @@ if((!empty($_FILES["importcategoryfile"])) && ($_FILES['importcategoryfile']['er
 				{
 					if($status==0)
 					{
-						$this->session->set_flashdata('success'," Image successfully deactivate");
+						$this->session->set_flashdata('success'," Image successfully deactivated");
 					}else{
-						$this->session->set_flashdata('success',"Image successfully activate");
+						$this->session->set_flashdata('success',"image successfully activated");
 					}
 					redirect('inventory/addbannerslist');
 				}
