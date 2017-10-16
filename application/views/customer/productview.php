@@ -51,6 +51,15 @@
     padding: 0px;
     background: #fff;
 }
+.img_col{
+	border: 1px solid #ddd;
+	padding:2px;
+	
+}
+.img_col:hover{
+	border: 1px solid #45b1b9;
+	padding:2px;
+}
 
 </style>
 
@@ -161,8 +170,8 @@
 							<td>
 								<div class="row">
 								<?php foreach ($sameproducts_color_list as $lists){ ?>
-								<a class="col-md-2" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="Black">
-									<img style="height:auto;width:32px;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
+								<a class="col-md-2 img_col" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="Black">
+									<img style="height:auto;width:32px;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
 								<?php   } ?>
 								</div>
@@ -179,9 +188,11 @@
 							<td>
 								<div class="row">
 								<?php foreach ($sameproducts_size_list as $lists){ ?>
-								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px"  class="col-md-3 " >
-								<span ><?php echo $lists['internal_memeory'];?></span>
-								</div></a>
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>">
+									<div style="font-size:16px"  class="col-md-2 img_col text-center" >
+									<span  ><?php echo $lists['internal_memeory'];?></span>
+									</div>
+								</a>
 								<?php   } ?>
 								
 								</div>
@@ -198,7 +209,7 @@
 							<td>
 								<div class="row">
 								<?php foreach ($sameproducts_ram_list as $lists){ ?>
-								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px"  class="col-md-3 " >
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px"  class="col-md-2 img_col text-center" >
 								<span ><?php echo $lists['ram'];?></span>
 								</div></a>
 								<?php   } ?>
@@ -369,8 +380,56 @@
               <!-- Description Tab Content -->
               <div role="tabpanel" class="tab-pane active" id="desc">
                  <div class="well">
-                  <p>
-                  <?php echo $products_list['description']; ?> </p>
+					<div class="row">
+					<div class="col-md-9">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+							<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop </p>
+						</div>
+						<div class="col-md-3">
+							<img class="img-responsive" src="https://rukminim1.flixcart.com/image/200/200/j7rxpjk0/mobile/g/t/d/mi-redmi-note-4-mzb5254in-mzb5545in-280x210-imaexxuxgz9dhhbz.jpeg?q=90">
+						</div>
+						
+					</div>
+					<hr style="border-top:1px solid #ddd;">
+					<div class="row">
+					
+						<div class="col-md-3">
+							<img class="img-responsive" src="https://rukminim1.flixcart.com/image/200/200/j7rxpjk0/mobile/g/t/d/mi-redmi-note-4-mzb5254in-mzb5545in-280x210-imaexxuxgz9dhhbz.jpeg?q=90">
+						</div>
+						<div class="col-md-9">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+							<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop </p>
+						</div>
+						
+					</div>
+					<hr style="border-top:1px solid #ddd;">
+					<div class="row">
+					<div class="col-md-9">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+							<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop </p>
+						</div>
+						<div class="col-md-3">
+							<img class="img-responsive" src="https://rukminim1.flixcart.com/image/200/200/j7rxpjk0/mobile/g/t/d/mi-redmi-note-4-mzb5254in-mzb5545in-280x210-imaexxuxgz9dhhbz.jpeg?q=90">
+						</div>
+						
+					</div>
+					<hr style="border-top:1px solid #ddd;">
+					<div class="row">
+					
+						<div class="col-md-3">
+							<img class="img-responsive" src="https://rukminim1.flixcart.com/image/200/200/j7rxpjk0/mobile/g/t/d/mi-redmi-note-4-mzb5254in-mzb5545in-280x210-imaexxuxgz9dhhbz.jpeg?q=90">
+						</div>
+						<div class="col-md-9">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+							<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop </p>
+						</div>
+						<div class="clearfix"> &nbsp;</div>
+						<div style="" >
+							<a class="pull-right text-primary" style="margin-right:50px;border:1px solid #45b1b9;padding:6px 10px;" href="">Read more</a>
+						</div>
+					</div>
+                  <!--<p>
+                  <?php echo $products_list['description']; ?> </p>-->
                 </div>
               </div> 
 			  <div role="tabpanel" class="tab-pane" id="specification">
@@ -989,7 +1048,7 @@
 		  <!--alert text ednd -->
 		  <div class="clearfix"></div>
 		  <div class="compar_btn" id="compar_btn" >
-	 		<div class="btn-group show-on-hover">
+	 		<div class="btn-group show-on-hover" style="margin:0">
 	 		<!-- <a href="javascript:void(0);" onclick="getcategoryid(<?php echo $products_list['category_id']; ?>);"  class="btn btn-primary" ><?php echo $products_list['item_name'];?>&nbsp;<span><?php echo count($products_list['item_id']) ?></span> 
           </a> -->
           <a href="<?php echo base_url('category/productscompare/'.base64_encode($products_list['item_id']).'/'.base64_encode($products_list['category_id'])); ?>"  class="btn btn-primary" >Click Here To Compare<!-- <?php echo $products_list['item_name'];?>&nbsp;<span><?php echo count($products_list['item_id']) ?> --></span> 
