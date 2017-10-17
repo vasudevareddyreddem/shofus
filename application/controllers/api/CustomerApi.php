@@ -761,7 +761,7 @@ class CustomerApi extends REST_Controller {
 		//echo $this->db->last_query();exit;
 		if(count($relatedproducts)>0){
 		
-			$message = array('status'=>1,'message'=>'related product list details','list'=>$relatedproducts);
+			$message = array('status'=>1,'message'=>'related product list details','list'=>$relatedproducts,'path'=>'https://cartinhours.com/uploads/products/');
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>1,'message'=>'No related product list ');
