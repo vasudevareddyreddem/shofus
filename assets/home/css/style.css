@@ -6260,7 +6260,6 @@ and (max-device-width : 1024px)
 .gc-lens {
     position: absolute;
     overflow: hidden;
-	
     z-index: 1000;
 	width:300px !important;
 	height:25% !important;
@@ -6309,6 +6308,11 @@ and (max-device-width : 1024px)
     .gc-zoom-container img {
         position: relative;
         max-width: none !important;
+		    cursor: crosshair;
+ 
+    max-width: 416px;
+    display: inline-block;
+    vertical-align: top;
     }
 
 .gc-thumbs-area {
@@ -7065,7 +7069,6 @@ position:fixed;
 bottom:40px;
 right:50px;
 display: none;
-z-index:1025;
  }
  .log_list{
 position: fixed;
