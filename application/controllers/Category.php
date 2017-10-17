@@ -1031,6 +1031,7 @@ function filtersearch(){
 	//echo '<pre>';print_r($data['sameproducts_size_list']);exit;
 	$data['products_reviews']= $this->category_model->get_products_reviews($pid);
 	$data['products_specufucation']= $this->category_model->get_products_specifications_list($pid);
+	$data['products_desc_list']= $this->category_model->get_products_desc_list($pid);
 	$data['sizes_list']= $this->category_model->get_products_sizes_list($pid);
 	$data['uksizes_list']= $this->category_model->get_products_uksizes_list($pid);
 	$data['colors_list']= $this->category_model->get_products_colos_list($pid);
