@@ -53,6 +53,7 @@
 }
 
 </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
 
 
 <div class="content-wrapper mar_t_con"  >
