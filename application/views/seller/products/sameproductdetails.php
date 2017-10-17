@@ -1,4 +1,8 @@
-
+<style>
+	.pad_btn{
+		padding:9px 12px;
+	}
+</style>
 <script>
 
 $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_details['item_cost']:''; ?>);
@@ -74,13 +78,14 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	</div>
 	<hr>
 	<label for="exampleInputEmail1">Specifications :</label><br>
-		<div class="panel panel-default">
-  <div class="panel-body">
+	
+ 
   
   <div id="education_fields"></div>
+  <div class="row">
       <div class="col-sm-6 nopadding">
 		<div class="form-group">
-			<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name">
+			<textarea type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name"></textarea>
 		</div>
 	  </div>
 
@@ -88,13 +93,15 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 <div class="col-sm-6 nopadding">
   <div class="form-group">
     <div class="input-group">
-     			<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name">
+     			<input type="file" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name">
 
       <div class="input-group-btn">
-        <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+        <button style="" class="btn  pad_btn btn-success 
+" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
       </div>
     </div>
   </div>
+</div>
 </div>
 <div class="clear"></div>
 	<div class="row">
@@ -536,7 +543,7 @@ function education_fields() {
     var divtest = document.createElement("div");
 	divtest.setAttribute("class", "form-group removeclass"+room);
 	var rdiv = 'removeclass'+room;
-    divtest.innerHTML = '<div class="col-sm-6 nopadding"><div class="form-group"> <input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name"></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div class="input-group">  <input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
+    divtest.innerHTML = '<div class="row"><div class="col-sm-6 nopadding"><div class="form-group"> <textarea type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name"></textarea></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div class="input-group">  <input type="file" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name"><div class="input-group-btn"> <button class="btn btn-danger pad_btn" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div></div><div class="clear"></div>';
     
     objTo.appendChild(divtest)
 }
