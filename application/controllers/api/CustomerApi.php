@@ -957,9 +957,9 @@ class CustomerApi extends REST_Controller {
 			
 		}else{
 				if($email!=''){
-					$message = array('status'=>0,'message'=>'Invalid Email Id. Please use another Email Id');
+					$message = array('status'=>0,'message'=>'Email Id is not registered');
 				}else if($mobile!=''){
-					$message = array('status'=>0,'message'=>'Invalid Mobile Number. Please use another Mobile Number');
+					$message = array('status'=>0,'message'=>'Mobile Number is not registered');
 				}
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
@@ -2337,7 +2337,7 @@ class CustomerApi extends REST_Controller {
 										//echo '<pre>';print_r($server_output);
 										$this->Customerapi_model->login_verficationcode_mobile_save($forgotpasscheck['cust_mobile'],$forgotpasscheck['customer_id'],$six_digit_random_number);
 										
-										$message = array('status'=>1,'customer_id'=>$forgotpasscheck['customer_id'],'message'=>'Verification code send to your MobileNumber Id.check it once');
+										$message = array('status'=>1,'customer_id'=>$forgotpasscheck['customer_id'],'message'=>'Verification code sent to your mobile number check it once');
 										$this->response($message, REST_Controller::HTTP_OK);
 							
 							}else{

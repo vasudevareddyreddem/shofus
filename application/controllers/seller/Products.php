@@ -173,6 +173,10 @@ public function item_status(){
 
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
+	
+		//echo '<pre>';print_r($_FILES);
+		//echo '<pre>';print_r($productspecificationlist);
+		//exit;
 		
 		$discount= ($post['product_price']-$post['special_price']);
 		$offers= (($discount) /$post['product_price'])*100;
@@ -238,7 +242,7 @@ public function item_status(){
 			'discount' => isset($discount)?$discount:'',
 			'item_quantity' =>isset($post['pqty'])?$post['pqty']:'',
 			'highlights' =>isset($post['highlights'])?$post['highlights']:'',
-			'description' =>isset($post['description'])?$post['description']:'',
+			//'description' =>isset($post['description'])?$post['description']:'',
 			'item_status' => 1,
 			'warranty_summary' => isset($post['warranty_summary'])?$post['warranty_summary']:'',
 			'warranty_type' =>isset($post['warranty_type'])?$post['warranty_type']:'',
@@ -314,8 +318,17 @@ public function item_status(){
 			$results=$this->products_model->insert($data);
 			if(count($results)>0)
 			{	
-						
-						
+					if($_FILES['descimg']['name']!='')
+					{
+						$i=0;
+						foreach($_FILES['descimg']['name'] as $file){
+						if(!empty($file))
+						   {     
+							 move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "assets/descriptionimages/" . $_FILES['descimg']['name'][$i]);
+							}
+							$i++;
+						}
+					}
 						if($post['addcategoryname']!=''){
 						$data = array(
 						'category_name' => $post['addcategoryname'], 
@@ -356,59 +369,23 @@ public function item_status(){
 						);
 						$results=$this->inventory_model->insert_cat_data($data);
 						}
-						if(isset($post['sizes']) && count($post['sizes'])>0){
-							$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
 						
-							foreach (explode(",",$sizesdata) as $sizess){
-
-							$addsizesdata=array(
-							'item_id' =>$results,
-							'p_size_name' => $sizess,
-							'create_at' => date('Y-m-d H:i:s'),
-							);
-							$this->products_model->insert_product_sizes($addsizesdata);
-							}
-						}
-						if(isset($post['ussizes']) && count($post['ussizes'])>0){
-							$uksizesdata = str_replace(array('[', ']','"'), array(''), $post['ussizes']);
 						
-							foreach (explode(",",$uksizesdata) as $uksizess){
+						if(isset($post['description']) && count($post['description'])>0){
+								$productspecificationlist= array_combine($post['description'],$_FILES['descimg']['name']);
 
-							$adduksizesdata=array(
-							'item_id' =>$results,
-							'p_size_name' => $uksizess,
-							'create_at' => date('Y-m-d H:i:s'),
-							);
-							$this->products_model->insert_product_uksizes($adduksizesdata);
-							}
-						}
-						
-						if(isset($post['colors']) && count($post['colors'])>0){
-							$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
-							foreach (explode(",",$colordata) as $colorss){
-
-							$addcolorsdata=array(
-							'item_id' =>$results,
-							'color_name' => $colorss,
-							'create_at' => date('Y-m-d H:i:s'),
-							);
-							$this->products_model->insert_product_colors($addcolorsdata);
-							}
-						}
-
-						
-						if(isset($post['specificationname']) && count($post['specificationname'])>0){
-							$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
 							foreach ($productspecificationlist as $key=>$list){
 
-							if($list!=''){
-								$addspc=array(
+							if($key!=''){
+								$adddesc=array(
 								'item_id' =>$results,
-								'spc_name' => $list,
-								'spc_value' => $key,
+								'description' => $key,
+								'image' => $list,
 								'create_at' => date('Y-m-d H:i:s'),
+								'status' =>1,
 								);
-								$this->products_model->insert_product_spcifications($addspc);
+								//echo '<pre>';print_r($adddesc);exit;
+								$this->products_model->insert_product_descriptions($adddesc);
 								
 							}
 						}
@@ -439,8 +416,8 @@ public function edit()
 	$data['productcolors']=$this->products_model->get_product_colors($productid);
 	$data['productsizes']=$this->products_model->get_product_sizes($productid);
 	$data['productuksizes']=$this->products_model->get_product_uksizes($productid);
-	$data['productspcification']=$this->products_model->get_product_spc($productid);
-	//echo '<pre>';print_r($data['productdetails']);exit;
+	$data['productdescriptions']=$this->products_model->get_product_desc($productid);
+	//echo '<pre>';print_r($data['productdescriptions']);exit;
 	
 		//echo '<pre>';print_r($data);exit;
 		$sid = $this->session->userdata('seller_id'); 
@@ -543,8 +520,8 @@ public function update()
 	//$id = $this->uri->segment(4);
 	$post=$this->input->post();
 	
-	//echo '<pre>';print_r($post);
-	//echo '<pre>';print_r($_FILES);exit;
+	//echo '<pre>';print_r($post['description']);
+	//echo '<pre>';print_r($_FILES);
 	
 	$productdetails=$this->products_model->getproductdata($post['product_id']);
 		if($_FILES['picture1']['name']!=''){
@@ -625,7 +602,7 @@ public function update()
 			'discount' => isset($discount)?$discount:'',
 			'item_quantity' =>isset($post['pqty'])?$post['pqty']:'',
 			'highlights' =>isset($post['highlights'])?$post['highlights']:'',
-			'description' =>isset($post['description'])?$post['description']:'',
+			//'description' =>isset($post['description'])?$post['description']:'',
 			'item_status' => 1,
 			'warranty_summary' => isset($post['warranty_summary'])?$post['warranty_summary']:'',
 			'warranty_type' =>isset($post['warranty_type'])?$post['warranty_type']:'',
@@ -848,24 +825,46 @@ public function update()
 						/*----*/
 						
 						/* pecification purpose*/
-						$productspcification=$this->products_model->get_product_spc($post['product_id']);
-						foreach ($productspcification as $spc){
-						$this->products_model->delete_product_spc($spc['specification_id']);
+						
+						
+						if($_FILES['descimg']['name']!='')
+		{
+			$i=0;
+				foreach($_FILES['descimg']['name'] as $file){
+					if(!empty($file))
+						{     
+						move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "assets/descriptionimages/" . $_FILES['descimg']['name'][$i]);
 						}
-						$productspecificationlist= array_combine($post['specificationvalue'],$post['specificationname']);
-						foreach ($productspecificationlist as $key=>$list){
+			$i++;
+				}
+		}
+	$getdescriptionimgs=$this->products_model->get_product_desc($post['product_id']);
+	if(count($getdescriptionimgs)>0){
+	foreach ($getdescriptionimgs as $list){
+		$this->products_model->delete_oldproducts_desc($list['desc_id']);
+	}
+	}
 
-							if($list!=''){
-								$addspc=array(
+	if(isset($post['description']) && count($post['description'])>0){
+				$productspecificationlist= array_combine($post['description'],$post['olddescimg']);
+				
+				
+							foreach ($productspecificationlist as $key=>$list){
+							if($key!=''){
+								$adddesc=array(
 								'item_id' =>$post['product_id'],
-								'spc_name' => $list,
-								'spc_value' => $key,
+								'description' => $key,
+								'image' => $list,
 								'create_at' => date('Y-m-d H:i:s'),
+								'status' =>1,
 								);
-								//echo '<pre>';print_r($addspc);
-								$this->products_model->insert_product_spcifications($addspc);
+								
+								$this->products_model->insert_product_descriptions($adddesc);
+								//echo '<pre>';print_r($adddesc);exit;
+								
 								
 							}
+						}
 						}
 						/* -----*/
 					

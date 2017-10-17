@@ -28,19 +28,36 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	<div class="row">
 		<div class="col-md-12 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Highlights</label>
+			
 				<textarea  placeholder="Highlights" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="highlights" name="highlights"><?php echo isset($item_details['highlights'])?$item_details['highlights']:''; ?></textarea>
 			</div>
 		</div>
 	</div>
 	<hr>
 	<div class="row">
-		<div class="col-md-12 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Description</label>
-				<textarea  placeholder="Description" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="description" name="description"><?php echo isset($item_details['description'])?$item_details['description']:''; ?></textarea>
-			</div>
-		</div>
+		<label for="exampleInputEmail1">Description</label>
+		<div id="education_fields"></div>
+				  <div class="row">
+					  <div class="col-sm-6 nopadding">
+						<div class="form-group">
+							<textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="Description"><?php echo isset($item_details['description'])?$item_details['description']:''; ?></textarea>
+						</div>
+					  </div>
+
+
+						<div class="col-sm-6 nopadding">
+						  <div class="form-group">
+							<div class="input-group">
+										<input type="file" class="form-control" id="descimg" name="descimg[]">
+
+							  <div class="input-group-btn">
+								<button style="" class="btn  pad_btn btn-success 
+									" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+							  </div>
+							</div>
+						  </div>
+						</div>
+				</div>
 	</div>
 	<hr>
 	<label for="exampleInputEmail1">Warranty Details</label>
@@ -81,28 +98,7 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	
  
   
-  <div id="education_fields"></div>
-  <div class="row">
-      <div class="col-sm-6 nopadding">
-		<div class="form-group">
-			<textarea type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name"></textarea>
-		</div>
-	  </div>
-
-
-<div class="col-sm-6 nopadding">
-  <div class="form-group">
-    <div class="input-group">
-     			<input type="file" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name">
-
-      <div class="input-group-btn">
-        <button style="" class="btn  pad_btn btn-success 
-" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+  
 <div class="clear"></div>
 	<div class="row">
 		<div class="col-md-6 form-group">
@@ -543,7 +539,7 @@ function education_fields() {
     var divtest = document.createElement("div");
 	divtest.setAttribute("class", "form-group removeclass"+room);
 	var rdiv = 'removeclass'+room;
-    divtest.innerHTML = '<div class="row"><div class="col-sm-6 nopadding"><div class="form-group"> <textarea type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name"></textarea></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div class="input-group">  <input type="file" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="School name"><div class="input-group-btn"> <button class="btn btn-danger pad_btn" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div></div><div class="clear"></div>';
+    divtest.innerHTML = '<div class="row"><div class="col-sm-6 nopadding"><div class="form-group"> <textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="description"></textarea></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div class="input-group">  <input type="file" class="form-control" id="descimg" name="descimg[]"><div class="input-group-btn"> <button class="btn btn-danger pad_btn" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div></div><div class="clear"></div>';
     
     objTo.appendChild(divtest)
 }

@@ -542,12 +542,12 @@ class Customerapi_model extends MY_Model
 		foreach ($querys as $listing){
 			//echo $listing->cusine;
 			//echo '<pre>';print_r($listing);
-			if($listing['cusine']!=''){
+			/*if($listing['cusine']!=''){
 			$dat['cusine'][]=$this->get_cusinelist($listing['cusine'],$listing['category_id']);
 			}
 			if($listing['restraent']!=''){
 			$dat['res'][]=$this->get_restraentlist($listing['restraent'],$listing['category_id']);
-			}
+			}*/
 			if($listing['offers']!=''){
 			$dat['offers'][]= $this->get_offersapi($listing['offers'],$listing['category_id'],$listing['status']);
 			}

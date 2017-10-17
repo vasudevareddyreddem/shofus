@@ -126,10 +126,10 @@ class Products_model extends MY_Model
 		$this->db->insert('product_color_list', $data);
 		return $insert_id = $this->db->insert_id();
 	}
-	public function insert_product_spcifications($data)
+	public function insert_product_descriptions($data)
 	{
 		
-		$this->db->insert('product_spcifications', $data);
+		$this->db->insert('descrotion_list', $data);
 		return $insert_id = $this->db->insert_id();
 	} 
 	public function get_producr_details($id)
@@ -280,11 +280,16 @@ public function get_product_colors($pid){
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->result_array();
 	}
-	public function get_product_spc($pid){
-		$this->db->select('*')->from('product_spcifications');
+	public function get_product_desc($pid){
+		$this->db->select('*')->from('descrotion_list');
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->result_array();
 	}
+	public function delete_oldproducts_desc($id){
+		$sql1="DELETE FROM descrotion_list WHERE desc_id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	
 
 public function getcatname($cat_id)
 {
