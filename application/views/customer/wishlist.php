@@ -102,6 +102,17 @@
 					<div class="img-responsive" class='item'>
 						<img src='http://images.asos-media.com/inv/media/1/3/0/8/5268031/image2xxl.jpgg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/1/3/0/8/5268031/image2xxl.jpg" id="zoom_05"/>
 					</div>
+					 <?php $c=0;foreach($whistlist_banners as $images){  ?>
+				  
+				  <?php if($c==0){  ?>
+					<div class='item active'>
+						<img class="img-responsive" src='<?php echo base_url('assets/wishlistpagebanners/'.$images['image']);?>' alt=''id="zoom_05"  data-zoom-image="<?php echo base_url('assets/wishlistpagebanners/'.$images['image']);?>"/>
+					</div>
+					  <?php }else{ ?>
+						<div class='item'  id="zoom_05">
+							<img class="img-responsive" src='<?php echo base_url('assets/wishlistpagebanners/'.$images['image']);?>' alt='' data-zoom-image="<?php echo base_url('assets/wishlistpagebanners/'.$images['image']);?>" />
+						</div>
+					  <?php  }$c++;} ?>
 					
 				</div>
 					

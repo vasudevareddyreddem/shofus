@@ -522,6 +522,11 @@ class Customer_model extends MY_Model
 		$this->db->insert('customercontactus', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	public function get_whishlist_banners_list(){
+		$this->db->select('*')->from('wishlistbanners_list');
+		$this->db->order_by('id','desc');
+		return $this->db->get()->result_array();
+	}
 	
 }
 ?>

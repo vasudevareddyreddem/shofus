@@ -577,6 +577,7 @@ class Customer extends Front_Controller
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
 		$data['whistlist_items']= $this->customer_model->get_whishlist_products($customerdetails['customer_id']);
+		$data['whistlist_banners']= $this->customer_model->get_whishlist_banners_list();
 		//echo count($data['whistlist_items']);
 		if(count($data['whistlist_items'])>0){
 		$this->template->write_view('content', 'customer/wishlist', $data);
