@@ -160,12 +160,12 @@
 						<div class="col-sm-6 nopadding">
 						  <div class="form-group">
 							<div class="input-group">
-										<input type="file" class="form-control" id="descimg<?php echo $list['desc_id']; ?>" name="descimg[]" onchange="uploadimage('<?php echo $list['desc_id']; ?>');" >
+										<input type="file" class="form-control" id="descimg<?php echo $list['desc_id']; ?>" name="descimg[]" onchange="uploadimage('<?php echo $list['desc_id']; ?>');" value=""> 
 										<input type="hidden" class="form-control" id="olddescimg<?php echo $list['desc_id']; ?>" name="olddescimg[]" value="<?php echo isset($list['image'])?$list['image']:''; ?>">
 										
 										<div class="input-group-btn">
 								<button style="" class="btn  pad_btn btn-success 
-									" type="button"  onclick="education_fields('<?php echo $list['desc_id']; ?>');"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+									" type="button"  onclick="education_fields('<?php echo $cnt; ?>');"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
 							  </div>
 							</div>
 						  </div>
@@ -706,13 +706,13 @@
   
   var room = 1;
 function education_fields(id) {
- 
+	alert(id);
     room++;
     var objTo = document.getElementById('education_fields')
     var divtest = document.createElement("div");
 	divtest.setAttribute("class", "form-group removeclass"+room);
 	var rdiv = 'removeclass'+room;
-    divtest.innerHTML = '<div class="row"><div class="col-sm-6 nopadding"><div class="form-group"> <textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="description"></textarea></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div class="input-group">  <input type="file" class="form-control" id="descimg" name="descimg[]"><input type="hidden" class="form-control" id="olddescimg" name="olddescimg[]" value=""><div class="input-group-btn"> <button class="btn btn-danger pad_btn" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div></div><div class="clear"></div>';
+    divtest.innerHTML = '<div class="row"><div class="col-sm-6 nopadding"><div class="form-group"> <textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="description"></textarea></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div class="input-group">  <input type="file" class="form-control" id="descimg" name="descimg[]"><input type="hidden" class="form-control" id="olddescimg'+id+'" name="olddescimg[]" value=""><div class="input-group-btn"> <button class="btn btn-danger pad_btn" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div></div><div class="clear"></div>';
     objTo.appendChild(divtest)
 }
    function remove_education_fields(rid) {
