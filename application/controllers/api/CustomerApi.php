@@ -2594,8 +2594,9 @@ class CustomerApi extends REST_Controller {
 			public function mobilehomebanners_get(){
 				
 				$bannerslist= $this->Customerapi_model->get_home_banners_list();
+				$homepagemiddlebannerslist= $this->Customerapi_model->get_homepagemiddle_banners_list();
 				if(count($bannerslist)>0){
-					$message = array('status'=>1,'path'=>'https://cartinhours.com/assets/appbanners/','list'=>$bannerslist,'message'=>'banners list are available');
+					$message = array('status'=>1,'path'=>'https://cartinhours.com/assets/appbanners/','list'=>$bannerslist,'middlelist'=>$homepagemiddlebannerslist,'path1'=>'https://cartinhours.com/assets/middlehomepagebanners/','message'=>'banners list are available');
 				$this->response($message, REST_Controller::HTTP_OK);
 					
 				}else{

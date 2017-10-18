@@ -2252,6 +2252,13 @@ class Customerapi_model extends MY_Model
 		$this->db->where('status', 1);
         return $this->db->get()->result_array();
 	}
+	public function get_homepagemiddle_banners_list(){
+		$this->db->select('*')->from('homesubbanners_list');
+		$this->db->where('type', 2);
+		$this->db->where('status', 1);
+		$this->db->order_by('id','desc');
+        return $this->db->get()->result_array();
+	}
 	
 		
 	

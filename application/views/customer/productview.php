@@ -379,58 +379,41 @@
 
               <!-- Description Tab Content -->
               <div role="tabpanel" class="tab-pane active" id="desc">
+			  
+			 <?php $c=0;foreach($products_desc_list as $list){ ?>
                  <div class="well">
+				 <?php if (($c % 2) == 0) { ?>
 					<div class="row">
 					<div class="col-md-9">
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-							<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop </p>
+							<p><?php echo $list['description']; ?></p>
 						</div>
 						<div class="col-md-3">
-							<img class="img-responsive" src="https://rukminim1.flixcart.com/image/200/200/j7rxpjk0/mobile/g/t/d/mi-redmi-note-4-mzb5254in-mzb5545in-280x210-imaexxuxgz9dhhbz.jpeg?q=90">
+						<?php if(isset($list['image']) && $list['image']!=''){ ?>
+							<img class="img-responsive" src="<?php echo base_url('assets/descriptionimages/'.$list['image']);?>">
+						<?php } ?>
 						</div>
 						
 					</div>
-					<hr style="border-top:1px solid #ddd;">
-					<div class="row">
+					
+				 <?php }else{ ?>
+				 <div class="row">
 					
 						<div class="col-md-3">
-							<img class="img-responsive" src="https://rukminim1.flixcart.com/image/200/200/j7rxpjk0/mobile/g/t/d/mi-redmi-note-4-mzb5254in-mzb5545in-280x210-imaexxuxgz9dhhbz.jpeg?q=90">
+							<?php if(isset($list['image']) && $list['image']!=''){ ?>
+								<img class="img-responsive" src="<?php echo base_url('assets/descriptionimages/'.$list['image']);?>">
+							<?php } ?>
 						</div>
 						<div class="col-md-9">
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-							<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop </p>
-						</div>
+							<p><?php echo $list['description']; ?></p>	</div>
 						
 					</div>
-					<hr style="border-top:1px solid #ddd;">
-					<div class="row">
-					<div class="col-md-9">
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-							<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop </p>
-						</div>
-						<div class="col-md-3">
-							<img class="img-responsive" src="https://rukminim1.flixcart.com/image/200/200/j7rxpjk0/mobile/g/t/d/mi-redmi-note-4-mzb5254in-mzb5545in-280x210-imaexxuxgz9dhhbz.jpeg?q=90">
-						</div>
-						
-					</div>
-					<hr style="border-top:1px solid #ddd;">
-					<div class="row">
+				 <?php } ?>
 					
-						<div class="col-md-3">
-							<img class="img-responsive" src="https://rukminim1.flixcart.com/image/200/200/j7rxpjk0/mobile/g/t/d/mi-redmi-note-4-mzb5254in-mzb5545in-280x210-imaexxuxgz9dhhbz.jpeg?q=90">
-						</div>
-						<div class="col-md-9">
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-							<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop </p>
-						</div>
-						<div class="clearfix"> &nbsp;</div>
-						<div style="" >
-							<a class="pull-right text-primary" style="margin-right:50px;border:1px solid #45b1b9;padding:6px 10px;" href="">Read more</a>
-						</div>
-					</div>
                   <!--<p>
-                  <?php echo $products_list['description']; ?> </p>-->
+                  <?php //echo $products_list['description']; ?> </p>-->
                 </div>
+				
+			 <?php $c++;} ?>
               </div> 
 			  <div role="tabpanel" class="tab-pane" id="specification">
                  <div class="well">
