@@ -1,4 +1,4 @@
- <?php if($this->session->userdata('location_area')=='')  {?>
+<?php if($this->session->userdata('location_area')=='')  {?>
 	
 	<script>
 $('#removepopuplocation').show();
@@ -220,24 +220,52 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
     </section>
 	
 	<section>
-      <div class="best-pro slider-items-products container_main" style="padding:10px;">
-        <div id="best-seller" >
-          <div class="row">
-			<div class="col-md-4">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" />
-			</div>
-			<div class="col-md-4">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/96c8f2.jpg?q=50" />
-			</div>
-			<div class="col-md-4">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/6a3cce.jpg?q=50" />
-			</div>
-			<div class="clearfix"></div>
-			
-		  </div>
-        </div>
-      </div>
-</section>
+		<div class="container_main">
+			<div class="row">
+		<div class="col-md-12">
+                <div id="Carousel" class="carousel slide">
+                 
+               
+                 
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    
+                <div class="item active">
+                	<div class="row">
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/96c8f2.jpg?q=50" alt="Image" style="max-width:100%;"></a></div>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/6a3cce.jpg?q=50" alt="Image" style="max-width:100%;"></a></div>
+                	</div><!--.row-->
+                </div><!--.item-->
+                 
+                <div class="item">
+                	<div class="row">
+                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
+                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
+                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
+                		
+                	</div><!--.row-->
+                </div><!--.item-->
+                 
+                <div class="item">
+                	<div class="row">
+                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
+                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
+                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
+                		
+                	</div><!--.row-->
+                </div><!--.item-->
+                 
+                </div><!--.carousel-inner-->
+                  <a data-slide="prev" href="#Carousel" class="left carousel-control sty_con">‹</a>
+                  <a data-slide="next" href="#Carousel" class="right carousel-control sty_con">›</a>
+                </div><!--.Carousel-->
+                 
+		</div>
+	</div>
+		</div>
+		
+	</section>
 	
     <section>
       <div class="best-pro slider-items-products container_main">
