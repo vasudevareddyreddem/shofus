@@ -22,7 +22,14 @@
 					</button><?php echo $this->session->flashdata('error');?></div>	
 					<?php endif; ?>
 				<div class=""  style="font-size:20px;font-weight:1200;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Add wishlist page Banner Images</div>
-				
+				<div class="form-group">
+				<label for="category">Type</label>
+				<select class="form-control" name="type" id="type">
+				<option value="">Select</option>
+				<option value="1">Web Site</option>
+				<option value="2">APP</option>
+				</select>
+				</div>
 				
 				<div class="form-group">
 				<label for="category">Banner Image1</label>
@@ -60,7 +67,14 @@ $(document).ready(function() {
     $('#addbanners').bootstrapValidator({
        
         fields: {
-          img1: {
+          type: {
+					validators: {
+						 notEmpty: {
+						message: 'Type is required'
+					}
+				}
+			}, 
+			img1: {
 					validators: {
 						 notEmpty: {
 						message: 'Image is required'

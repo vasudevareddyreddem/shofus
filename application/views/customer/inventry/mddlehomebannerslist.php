@@ -23,6 +23,7 @@
                 <tr>
 					<th>Banner Name</th>
 					<th>Image</th>
+					<th>Type</th>
 					<th>Status</th>
 					<th>Action</th>
 				 </tr>
@@ -33,6 +34,7 @@
                   <td><?php echo $catlist['image']; ?></td>
 		          <td><img src="<?php echo base_url();?>assets/middlehomepagebanners/<?php  echo $catlist['image']; ?>" width="80" height="50" /></td>
 
+                  <td><?php if($catlist['type']==1){ echo "Web site";}else{ echo "APP";} ?></td>                  
                   <td><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
 				   <td><a href="<?php echo base_url('inventory/homepagemiddlebannerstatus/'.base64_encode($catlist['id']).'/'.base64_encode($catlist['status'])); ?>"><?php if($catlist['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a></td>
 

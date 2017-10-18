@@ -2144,15 +2144,15 @@ public function addhomepagemiddlebannerspost()
 			}
 		
 			if(isset($img1) && $img1!=''){
-				$detais=array('image'=>isset($img1)?$img1:'','create_at'=>date('Y-m-d H:i:s'));
+				$detais=array('image'=>isset($img1)?$img1:'','type'=>$post['type'],'create_at'=>date('Y-m-d H:i:s'));
 				$savedata=$this->inventory_model->save_homepagemiddle_banners_list($detais);
 			}
 			if(isset($img2) && $img2!=''){
-				$detais=array('image'=>isset($img2)?$img2:'','create_at'=>date('Y-m-d H:i:s'));
+				$detais=array('image'=>isset($img2)?$img2:'','type'=>$post['type'],'create_at'=>date('Y-m-d H:i:s'));
 				$savedata=$this->inventory_model->save_homepagemiddle_banners_list($detais);
 			}
 			if(isset($img3) && $img3!=''){
-				$detais=array('image'=>isset($img3)?$img3:'','create_at'=>date('Y-m-d H:i:s'));
+				$detais=array('image'=>isset($img3)?$img3:'','type'=>$post['type'],'create_at'=>date('Y-m-d H:i:s'));
 				$savedata=$this->inventory_model->save_homepagemiddle_banners_list($detais);
 			}
 			
@@ -2243,6 +2243,7 @@ public function addhomepagemiddlebannerspost()
 	{	
 		
 		$post=$this->input->post();
+		//echo '<pre>';print_r($post);exit;
 		
 		if($_FILES['img1']['name']!=''){
 				$img1=$_FILES['img1']['name'];
@@ -2264,15 +2265,16 @@ public function addhomepagemiddlebannerspost()
 			}
 		
 			if(isset($img1) && $img1!=''){
-				$detais=array('image'=>isset($img1)?$img1:'','create_at'=>date('Y-m-d H:i:s'));
+				$detais=array('image'=>isset($img1)?$img1:'','type'=>$post['type'],'create_at'=>date('Y-m-d H:i:s'));
 				$savedata=$this->inventory_model->save_wishlist_banners_list($detais);
+				//echo $this->db->last_query();exit;
 			}
 			if(isset($img2) && $img2!=''){
-				$detais=array('image'=>isset($img2)?$img2:'','create_at'=>date('Y-m-d H:i:s'));
+				$detais=array('image'=>isset($img2)?$img2:'','type'=>$post['type'],'create_at'=>date('Y-m-d H:i:s'));
 				$savedata=$this->inventory_model->save_wishlist_banners_list($detais);
 			}
 			if(isset($img3) && $img3!=''){
-				$detais=array('image'=>isset($img3)?$img3:'','create_at'=>date('Y-m-d H:i:s'));
+				$detais=array('image'=>isset($img3)?$img3:'','type'=>$post['type'],'create_at'=>date('Y-m-d H:i:s'));
 				$savedata=$this->inventory_model->save_wishlist_banners_list($detais);
 			}
 			
