@@ -681,9 +681,37 @@ public function delete_banner($id,$sid)
 		//$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
+	function get_save_subhomepage_banners_list(){
+		$this->db->select('*')->from('homesubbanners_list');
+		//$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
 	function update_bannerimg_status($item_id,$data)
 	{
 		$sql1="UPDATE appbanners_list SET status ='".$data."'WHERE id = '".$item_id."'";
+		return $this->db->query($sql1);
+	}
+	function save_homepagemiddle_banners_list($data){
+		$this->db->insert('homesubbanners_list', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	function update_homepagemiddlebannerimg_status($item_id,$data)
+	{
+		$sql1="UPDATE homesubbanners_list SET status ='".$data."'WHERE id = '".$item_id."'";
+		return $this->db->query($sql1);
+	}
+	function get_save_wishlistpage_banners_list(){
+		$this->db->select('*')->from('wishlistbanners_list');
+		//$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
+	function save_wishlist_banners_list($data){
+		$this->db->insert('wishlistbanners_list', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	function update_wishlistimg_status($item_id,$data)
+	{
+		$sql1="UPDATE wishlistbanners_list SET status ='".$data."'WHERE id = '".$item_id."'";
 		return $this->db->query($sql1);
 	}
 }

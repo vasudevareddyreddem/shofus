@@ -2088,5 +2088,246 @@ if((!empty($_FILES["importcategoryfile"])) && ($_FILES['importcategoryfile']['er
 		 	redirect('admin/login	');
 		} 	
 	}
+	 public function homepagebanerrslist()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		$data['bannerslist']=$this->inventory_model->get_save_subhomepage_banners_list();
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/mddlehomebannerslist',$data);
+		$this->load->view('customer/inventry/footer');
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
+   public function addmiddlehomebanners()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		
+		$data['bannerslist']=$this->inventory_model->get_save_mobileapp_banners_list();
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/addmobilemiddlebanners');
+		$this->load->view('customer/inventry/footer');
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
+public function addhomepagemiddlebannerspost()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		
+		$post=$this->input->post();
+		
+		if($_FILES['img1']['name']!=''){
+				$img1=$_FILES['img1']['name'];
+				move_uploaded_file($_FILES['img1']['tmp_name'],"assets/middlehomepagebanners/" .$_FILES['img1']['name']);
+			}else{
+				$img1='';
+			}
+		if($_FILES['img2']['name']!=''){
+				$img2=$_FILES['img2']['name'];
+				move_uploaded_file($_FILES['img2']['tmp_name'],"assets/middlehomepagebanners/" .$_FILES['img2']['name']);
+			}else{
+				$img2='';
+			}
+		if($_FILES['img3']['name']!=''){
+				$img3=$_FILES['img3']['name'];
+				move_uploaded_file($_FILES['img3']['tmp_name'],"assets/middlehomepagebanners/" .$_FILES['img3']['name']);
+			}else{
+				$img3='';
+			}
+		
+			if(isset($img1) && $img1!=''){
+				$detais=array('image'=>isset($img1)?$img1:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_homepagemiddle_banners_list($detais);
+			}
+			if(isset($img2) && $img2!=''){
+				$detais=array('image'=>isset($img2)?$img2:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_homepagemiddle_banners_list($detais);
+			}
+			if(isset($img3) && $img3!=''){
+				$detais=array('image'=>isset($img3)?$img3:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_homepagemiddle_banners_list($detais);
+			}
+			
+			
+				
+				if(count($savedata)>0){
+					$this->session->set_flashdata('success','banners Successfully Added');
+					redirect('inventory/homepagebanerrslist');
+				}else{
+					$this->session->set_flashdata('error',' some technical problem will occured. Please try again');
+					redirect('inventory/addmiddlehomebanners');
+				}
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
+  public function homepagemiddlebannerstatus()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$imageid = base64_decode($this->uri->segment(3));
+				$status = base64_decode($this->uri->segment(4));
+				//echo "<pre>";print_r($offerid);exit;
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				$updatestatus=$this->inventory_model->update_homepagemiddlebannerimg_status($imageid,$status);
+				//echo $this->db->last_query();exit;
+				if(count($updatestatus)>0)
+				{
+					if($status==0)
+					{
+						$this->session->set_flashdata('success'," Image successfully deactivated");
+					}else{
+						$this->session->set_flashdata('success',"image successfully activated");
+					}
+					redirect('inventory/homepagebanerrslist');
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
+	}
+   public function wishlistbanerslist()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		$data['bannerslist']=$this->inventory_model->get_save_wishlistpage_banners_list();
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/wishlistbannerslist',$data);
+		$this->load->view('customer/inventry/footer');
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
+  public function addwishlistbanners()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/wishlistbanners');
+		$this->load->view('customer/inventry/footer');
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
+  public function addwishlistbannerspost()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		
+		$post=$this->input->post();
+		
+		if($_FILES['img1']['name']!=''){
+				$img1=$_FILES['img1']['name'];
+				move_uploaded_file($_FILES['img1']['tmp_name'],"assets/middlehomepagebanners/" .$_FILES['img1']['name']);
+			}else{
+				$img1='';
+			}
+		if($_FILES['img2']['name']!=''){
+				$img2=$_FILES['img2']['name'];
+				move_uploaded_file($_FILES['img2']['tmp_name'],"assets/middlehomepagebanners/" .$_FILES['img2']['name']);
+			}else{
+				$img2='';
+			}
+		if($_FILES['img3']['name']!=''){
+				$img3=$_FILES['img3']['name'];
+				move_uploaded_file($_FILES['img3']['tmp_name'],"assets/middlehomepagebanners/" .$_FILES['img3']['name']);
+			}else{
+				$img3='';
+			}
+		
+			if(isset($img1) && $img1!=''){
+				$detais=array('image'=>isset($img1)?$img1:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_wishlist_banners_list($detais);
+			}
+			if(isset($img2) && $img2!=''){
+				$detais=array('image'=>isset($img2)?$img2:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_wishlist_banners_list($detais);
+			}
+			if(isset($img3) && $img3!=''){
+				$detais=array('image'=>isset($img3)?$img3:'','create_at'=>date('Y-m-d H:i:s'));
+				$savedata=$this->inventory_model->save_wishlist_banners_list($detais);
+			}
+			
+			
+				
+				if(count($savedata)>0){
+					$this->session->set_flashdata('success','banners Successfully Added');
+					redirect('inventory/wishlistbanerslist');
+				}else{
+					$this->session->set_flashdata('error',' some technical problem will occured. Please try again');
+					redirect('inventory/addwishlistbanners');
+				}
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
+  public function wishlistbannerstatus()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$imageid = base64_decode($this->uri->segment(3));
+				$status = base64_decode($this->uri->segment(4));
+				//echo "<pre>";print_r($offerid);exit;
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				$updatestatus=$this->inventory_model->update_wishlistimg_status($imageid,$status);
+				//echo $this->db->last_query();exit;
+				if(count($updatestatus)>0)
+				{
+					if($status==0)
+					{
+						$this->session->set_flashdata('success'," Image successfully deactivated");
+					}else{
+						$this->session->set_flashdata('success',"image successfully activated");
+					}
+					redirect('inventory/wishlistbanerslist');
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
+	}
 }		
 ?>
