@@ -229,32 +229,51 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
                  
                 <!-- Carousel items -->
                 <div class="carousel-inner">
+				<?php $c=0;foreach ($banners_list as $list){ 
+				
+				//echo '<pre>';print_r($list);exit;?>
                     
-                <div class="item active">
+                <?php if($c==0){ ?>
+				<div class="item active">
                 	<div class="row">
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/96c8f2.jpg?q=50" alt="Image" style="max-width:100%;"></a></div>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/6a3cce.jpg?q=50" alt="Image" style="max-width:100%;"></a></div>
-                	</div><!--.row-->
+					
+					<?php if(isset($list[0]['image']) && $list[0]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
+                	  
+					<?php } ?>
+					<?php if(isset($list[1]['image']) && $list[1]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
+                	  
+					<?php } ?>
+					<?php if(isset($list[2]['image']) && $list[2]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
+                	  
+					<?php } ?>
+					</div><!--.row-->
                 </div><!--.item-->
-                 
+				<?php } else { ?>
                 <div class="item">
                 	<div class="row">
-                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
-                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
-                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
-                		
+					<?php if(isset($list[0]['image']) && $list[0]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
+                	  
+					<?php } ?>
+					<?php if(isset($list[1]['image']) && $list[1]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
+                	  
+					<?php } ?>
+					<?php if(isset($list[2]['image']) && $list[2]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
+                	  
+					<?php } ?>
                 	</div><!--.row-->
                 </div><!--.item-->
+				
+				<?php } ?>
                  
-                <div class="item">
-                	<div class="row">
-                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
-                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
-                		<div class="col-md-4"><a href="#" class="thumbnail"><img src="https://rukminim1.flixcart.com/flap/960/960/image/af1e39.jpg?" alt="Image" style="max-width:100%;"></a></div>
-                		
-                	</div><!--.row-->
-                </div><!--.item-->
+                
+				
+				<?php $c++;} ?>
                  
                 </div><!--.carousel-inner-->
                   <a data-slide="prev" href="#Carousel" class="left carousel-control sty_con">‹</a>

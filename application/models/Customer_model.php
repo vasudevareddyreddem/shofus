@@ -525,6 +525,7 @@ class Customer_model extends MY_Model
 	public function get_whishlist_banners_list(){
 		$this->db->select('*')->from('wishlistbanners_list');
 		$this->db->where('type',1);
+		$this->db->where('status',1);
 		$this->db->order_by('id','desc');
 		return $this->db->get()->result_array();
 	}

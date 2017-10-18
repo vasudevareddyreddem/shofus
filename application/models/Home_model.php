@@ -662,6 +662,14 @@ public function get_quickjump_details($subcatid){
         return $this->db->query($sql)->result_array();*/
 	
 }
+public function get_home_pag_middle_banner(){
+	$this->db->select('*')->from('homesubbanners_list');
+	$this->db->where('type',1);
+	$this->db->where('status',1);
+	return $this->db->get()->result_array();
+		
+	
+}
 
 
 

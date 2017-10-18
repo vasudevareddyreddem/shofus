@@ -114,6 +114,8 @@ public function index()
 	$data['whishlist_ids_list']=$whishlist_ids_list;
 	
 	}
+	$banners_list= $this->home_model->get_home_pag_middle_banner();
+	$data['banners_list']=array_chunk($banners_list, 3);
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'home/index',$data);
 	$this->template->render();
