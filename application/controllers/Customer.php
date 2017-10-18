@@ -2444,7 +2444,10 @@ class Customer extends Front_Controller
 
   }
 
-
+public function aboutus(){
+	  $this->template->write_view('content', 'customer/aboutus');
+	  $this->template->render(); 
+  }
 
 
 }		
