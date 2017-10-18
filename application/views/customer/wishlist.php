@@ -80,28 +80,7 @@
 			<div class='carousel-outer'>
 				<!-- me art lab slider -->
 				<div class='carousel-inner '>
-					<div class='item active'>
-						<img class="img-responsive" src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg' alt=''id="zoom_05"  data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/print/image1xxl.jpg"/>
-					</div>
-					<div class='item'  id="zoom_05">
-						<img class="img-responsive" src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image2xxl.jpg" />
-					</div>
-					<div class='item'>
-						<img class="img-responsive" src='http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/8/2/3/3/5313328/image3xxl.jpg" />
-					</div>
-						
-					<div class='item'>
-						<img class="img-responsive" src='http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/3/6/7/0/4850763/multi/image1xxl.jpg" id="zoom_05"/>
-					</div>
-					<div class='item'>
-						<img class="img-responsive" src='http://images.asos-media.com/inv/media/5/2/1/3/4603125/gold/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/5/2/1/3/4603125/gold/image1xxl.jpg" id="zoom_05"/>
-					</div>
-					<div class='item'>
-						<img class="img-responsive" src='http://images.asos-media.com/inv/media/5/3/6/8/4948635/mink/image1xxl.jpg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/5/3/6/8/4948635/mink/image1xxl.jpg" id="zoom_05"/>
-					</div>
-					<div class="img-responsive" class='item'>
-						<img src='http://images.asos-media.com/inv/media/1/3/0/8/5268031/image2xxl.jpgg' alt='' data-zoom-image="http://images.asos-media.com/inv/media/1/3/0/8/5268031/image2xxl.jpg" id="zoom_05"/>
-					</div>
+					
 					 <?php $c=0;foreach($whistlist_banners as $images){  ?>
 				  
 				  <?php if($c==0){  ?>

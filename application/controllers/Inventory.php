@@ -2247,19 +2247,19 @@ public function addhomepagemiddlebannerspost()
 		
 		if($_FILES['img1']['name']!=''){
 				$img1=$_FILES['img1']['name'];
-				move_uploaded_file($_FILES['img1']['tmp_name'],"assets/middlehomepagebanners/" .$_FILES['img1']['name']);
+				move_uploaded_file($_FILES['img1']['tmp_name'],"assets/wishlistpagebanners/" .$_FILES['img1']['name']);
 			}else{
 				$img1='';
 			}
 		if($_FILES['img2']['name']!=''){
 				$img2=$_FILES['img2']['name'];
-				move_uploaded_file($_FILES['img2']['tmp_name'],"assets/middlehomepagebanners/" .$_FILES['img2']['name']);
+				move_uploaded_file($_FILES['img2']['tmp_name'],"assets/wishlistpagebanners/" .$_FILES['img2']['name']);
 			}else{
 				$img2='';
 			}
 		if($_FILES['img3']['name']!=''){
 				$img3=$_FILES['img3']['name'];
-				move_uploaded_file($_FILES['img3']['tmp_name'],"assets/middlehomepagebanners/" .$_FILES['img3']['name']);
+				move_uploaded_file($_FILES['img3']['tmp_name'],"assets/wishlistpagebanners/" .$_FILES['img3']['name']);
 			}else{
 				$img3='';
 			}
