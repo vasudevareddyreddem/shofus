@@ -147,30 +147,51 @@
 	
 	<div class="row">
 		<label for="exampleInputEmail1">Description</label>
-		<div id="education_fields"></div>
-		<?php $cnt=0;foreach ($productdescriptions as $list){ ?>
-				  <div class="row">
-					  <div class="col-sm-6 nopadding">
-						<div class="form-group">
-							<textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="Description"><?php echo isset($list['description'])?$list['description']:''; ?></textarea>
-						</div>
-					  </div>
-
-
-						<div class="col-sm-6 nopadding">
-						  <div class="form-group">
-							<div class="input-group">
-										<input type="file" class="form-control" id="descimg<?php echo $list['desc_id']; ?>" name="descimg[]" onchange="uploadimage('<?php echo $list['desc_id']; ?>');" value=""> 
+		<div id="dynamic_field"></div>
+		<?php $cnt=1;
+		$numItems = count($productdescriptions);
+		foreach ($productdescriptions as $list){ ?>
+		
+		<?php if($cnt==$numItems) { ?>
+			 <div class="row">  <div style="position:relative;">
+									<div class="col-sm-6 nopadding">
+										<div class="form-group">
+											<textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="Description"><?php echo isset($list['description'])?$list['description']:''; ?></textarea>
+										</div>
+									</div>
+									<div class="col-sm-6 nopadding">
+									<div class="">
+										<input type="file" class="form-control" id="descimg<?php echo $list['desc_id']; ?>" name="descimg[]" onchange="uploadimage(0);" value=""> 
 										<input type="hidden" class="form-control" id="olddescimg<?php echo $list['desc_id']; ?>" name="olddescimg[]" value="<?php echo isset($list['image'])?$list['image']:''; ?>">
-										
-										<div class="input-group-btn">
-								<button style="" class="btn  pad_btn btn-success 
-									" type="button"  onclick="education_fields('<?php echo $cnt; ?>');"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-							  </div>
-							</div>
-						  </div>
-						</div>
-				</div>
+									</div>
+									</div>
+									<div style="position:absolute;top:1px;right:0px;">
+									<button type="button" name="add" id="add" onclick="addmore();" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+                                    </div> 
+									
+                                   </div> 
+                                   </div> 
+		  <?php }else{ ?>
+		   <div class="row" id="deletedecs<?php echo $list['desc_id'];?>">  <div style="position:relative;">
+									<div class="col-sm-6 nopadding">
+										<div class="form-group">
+											<textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="Description"><?php echo isset($list['description'])?$list['description']:''; ?></textarea>
+										</div>
+									</div>
+									<div class="col-sm-6 nopadding">
+									<div class="">
+										<input type="file" class="form-control" id="descimg<?php echo $list['desc_id']; ?>" name="descimg[]" onchange="uploadimage(0);" value=""> 
+										<input type="hidden" class="form-control" id="olddescimg<?php echo $list['desc_id']; ?>" name="olddescimg[]" value="<?php echo isset($list['image'])?$list['image']:''; ?>">
+									</div>
+									</div>
+									<div style="position:absolute;top:1px;right:0px;">
+									<button type="button" name="removing" id="removing" onclick="removemore(<?php echo $list['desc_id']; ?>);" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span></button>
+                                    </div> 
+									
+                                   </div> 
+                                   </div> 
+		  <?php } ?>
+				
 				<?php $cnt++;} ?>
 	</div>
 	
@@ -704,20 +725,24 @@
 
   <script>
   
-  var room = 1;
-function education_fields(id) {
-	alert(id);
-    room++;
-    var objTo = document.getElementById('education_fields')
-    var divtest = document.createElement("div");
-	divtest.setAttribute("class", "form-group removeclass"+room);
-	var rdiv = 'removeclass'+room;
-    divtest.innerHTML = '<div class="row"><div class="col-sm-6 nopadding"><div class="form-group"> <textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="description"></textarea></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div class="input-group">  <input type="file" class="form-control" id="descimg" name="descimg[]"><input type="hidden" class="form-control" id="olddescimg'+id+'" name="olddescimg[]" value=""><div class="input-group-btn"> <button class="btn btn-danger pad_btn" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div></div><div class="clear"></div>';
-    objTo.appendChild(divtest)
-}
-   function remove_education_fields(rid) {
-	   $('.removeclass'+rid).remove();
-   }
+  var i=1;  
+      function addmore(){
+	 i++;
+	 var cnt=i-1;
+           $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-sm-6 nopadding"><div class="form-group"> <textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="description"></textarea></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div>  <input type="file" class="form-control" id="descimg'+i+'" onchange="uploadimage('+i+');" name="descimg[]"><input type="hidden" class="form-control" id="olddescimg'+cnt+'" name="olddescimg[]" value=""><div class="input-group-btn"> <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove"><span class="glyphicon glyphicon-minus"></span> </button></div></div></div></div></div><div class="clear"></div>');  
+           //$('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+      }  
+      $(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#row'+button_id+'').remove();  
+      }); 
+	  
+	  function uploadimage(id){
+		  var cnt=id-1;
+			var test=document.getElementById('descimg'+id).value;
+			var name=test.replace(/C:\\fakepath\\/i, '');
+			$('#olddescimg'+cnt).val(name);
+	  }
   function validateForm(){
 		   var price=document.getElementById('product_price').value;
 		   var specialprice=document.getElementById('special_price').value;
@@ -729,6 +754,25 @@ function education_fields(id) {
 		   }
 		   
 	   }
+	  
+	   function removemore(id){
+	if(id!=''){
+		 jQuery.ajax({
+					url: "<?php echo site_url('seller/products/removedescription');?>",
+					data: {
+						descid: id,
+					},
+					dataType: 'json',
+					type: 'POST',
+					success: function (data) {
+					if(data.msg==1){
+						jQuery('#deletedecs'+id).hide();
+					}
+				 }
+				});
+			}
+			
+		}
   function removeextrafields(){
 	  
 	   $('#productname').val('');

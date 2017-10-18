@@ -173,7 +173,54 @@ public function item_status(){
 
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
-	
+	/*------*/
+			if($_FILES['descimg']['name']!='')
+		{
+			$i=0;
+				foreach($_FILES['descimg']['name'] as $file){
+					if(!empty($file))
+						{     
+						move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "assets/descriptionimages/" . $_FILES['descimg']['name'][$i]);
+						}
+			$i++;
+				}
+		}
+	$getdescriptionimgs=$this->products_model->get_product_desc($post['product_id']);
+	if(count($getdescriptionimgs)>0){
+	foreach ($getdescriptionimgs as $list){
+		$this->products_model->delete_oldproducts_desc($list['desc_id']);
+	}
+	}
+
+	if(isset($post['description']) && count($post['description'])>0){
+				$productspecificationlist= array_combine($post['description'],$post['olddescimg']);
+				
+				
+							foreach ($productspecificationlist as $key=>$list){
+							if($key!=''){
+								$adddesc=array(
+								'item_id' =>$post['product_id'],
+								'description' => $key,
+								'image' => $list,
+								'create_at' => date('Y-m-d H:i:s'),
+								'status' =>1,
+								);
+								
+								$this->products_model->insert_product_descriptions($adddesc);
+								//echo '<pre>';print_r($adddesc);exit;
+								
+								
+							}
+						}
+						}
+	/*------*/
+		
+		
+		
+		
+		
+		
+		
 		//echo '<pre>';print_r($_FILES);
 		//echo '<pre>';print_r($productspecificationlist);
 		//exit;
@@ -448,13 +495,13 @@ public function edit()
 	$this->template->render();
 	
 }
-public function removespciciations(){
+public function removedescription(){
 		
 	$post = $this->input->post();
 	//echo '<pre>';print_r($post);exit; 
 			
-				$removedattch=$this->products_model->remove_spcification($post['specification']);
-				if(count($removedattch) > 0)
+				$removedesc=$this->products_model->remove_desc($post['descid']);
+				if(count($removedesc) > 0)
 				{
 				$data['msg']=1;
 				echo json_encode($data);	

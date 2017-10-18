@@ -245,8 +245,8 @@ public function getproductdata($id)
 	return $query->row_array();
 	
 }
-function remove_spcification($id){
-		$sql1="DELETE FROM product_spcifications WHERE specification_id = '".$id."'";
+function remove_desc($id){
+		$sql1="DELETE FROM descrotion_list WHERE desc_id = '".$id."'";
 		return $this->db->query($sql1);
 	}
 	function delete_product_colors($id){

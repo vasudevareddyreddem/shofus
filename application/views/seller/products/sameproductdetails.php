@@ -575,6 +575,13 @@ $(document).ready(function() {
                   
 				}
 			},
+			'description[]': {
+					validators: {
+					notEmpty: {
+						message: 'Description is required'
+					}
+				}
+			},
 			product_price: {
 					validators: {
 					notEmpty: {
