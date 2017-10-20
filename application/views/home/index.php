@@ -234,36 +234,36 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				//echo '<pre>';print_r($list);exit;?>
                     
                 <?php if($c==0){ ?>
-				<div class="item active">
+				<div  style="height: 260px;" class="item active">
                 	<div class="row">
 					
 					<?php if(isset($list[0]['image']) && $list[0]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
 					<?php } ?>
 					<?php if(isset($list[1]['image']) && $list[1]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
 					<?php } ?>
 					<?php if(isset($list[2]['image']) && $list[2]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
 					<?php } ?>
 					</div><!--.row-->
                 </div><!--.item-->
 				<?php } else { ?>
-                <div class="item">
+                <div style="height: 260px;" class="item">
                 	<div class="row">
 					<?php if(isset($list[0]['image']) && $list[0]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img  class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
 					<?php } ?>
 					<?php if(isset($list[1]['image']) && $list[1]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
 					<?php } ?>
 					<?php if(isset($list[2]['image']) && $list[2]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img src="<?php echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
 					<?php } ?>
                 	</div><!--.row-->
