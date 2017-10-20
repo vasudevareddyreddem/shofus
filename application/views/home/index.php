@@ -218,7 +218,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <a href="<?php echo base_url('customer/seemore/'.base64_encode('tren').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
-	
+	<?php if(isset($banners_list) && count($banners_list)>0){ ?>
 	<section>
 		<div class="container_main">
 			<div class="row">
@@ -285,6 +285,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 		</div>
 		
 	</section>
+	
+	<?php } ?>
 	
     <section>
       <div class="best-pro slider-items-products container_main">

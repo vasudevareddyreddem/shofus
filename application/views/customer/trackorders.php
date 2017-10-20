@@ -153,7 +153,7 @@ tr th:last-child {
 					<tbody>
 					<tr>
 					<th>Order ID</th>
-					<td><?php echo isset($item_details['order_item_id'])?'ORDER2017'.$item_details['order_item_id']:'';  ?></td>
+					<td><?php echo isset($item_details['order_item_id'])?$item_details['order_item_id']:'';  ?></td>
 
 					</tr>
 					<tr>

@@ -265,7 +265,8 @@ class Customer extends Front_Controller
 				}else{
 					
 				$this->session->set_flashdata('error','Product already Exits');
-				redirect('category/productview/'.base64_encode($post['producr_id']));	
+				redirect('customer/cart');
+				//redirect('category/productview/'.base64_encode($post['producr_id']));	
 				}
 				
 			}else{
@@ -1112,6 +1113,7 @@ class Customer extends Front_Controller
 					);
 					$saveorderbillingaddress= $this->customer_model->save_order_billing_address($orderbilling);
 					
+					
 				/*for billing address*/
 				$this->session->set_flashdata('paymentsucess','Payment successfully completed!');
 				redirect('customer/ordersuccess/'.base64_encode($saveorder));
@@ -1212,7 +1214,16 @@ class Customer extends Front_Controller
 						'create_time'=>date('Y-m-d h:i:s A'),
 						'update_time'=>date('Y-m-d h:i:s A'),
 					);
-					$save= $this->customer_model->save_order_item_status_list($statu);
+					$save1= $this->customer_model->save_order_item_status_list($statu);
+					$invoicedetails=array(
+						'order_item_id'=>$save,
+						'cust_id'=>$items['cust_id'],
+						'order_id'=>$saveorder,
+						'item_id'=>$items['item_id'],
+						'create_at'=>date('Y-m-d h:i:s A'),
+					);
+					$invoice= $this->customer_model->save_invoices_list($invoicedetails);
+					
 					
 					
 				}
@@ -1265,7 +1276,7 @@ class Customer extends Front_Controller
 	//echo '<pre>';print_r($billinginnfo);exit;
 	  $customerdetails=$this->session->userdata('userdetails');
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
-		if(count($cart_items)<=0){
+		/*if(count($cart_items)<=0){
 			$this->session->set_flashdata('success','No Item In the cart.');
 			redirect('');
 			
@@ -1273,9 +1284,56 @@ class Customer extends Front_Controller
 		//echo '<pre>';print_r($cart_items);exit;
 		foreach($cart_items as $items){
 		$delete= $this->customer_model->after_payment_cart_item($customerdetails['customer_id'],$items['item_id'],$items['id']);
-		}
+		}*/
 		$data['order_items']= $this->customer_model->get_order_items($order_id);
 		$data['carttotal_amount']= $this->customer_model->get_successorder_total_amount($order_id);
+		foreach ($data['order_items'] as $list){
+			//echo '<pre>';print_r($list);exit;
+			
+		$path = rtrim(FCPATH,"/");
+		$data['details'] = $this->customer_model->getinvoiceinfo($list['order_item_id']);
+		
+		//echo '<pre>';print_r($data['details']);exit;
+		$file_name = $data['details']['order_item_id'].'_'.$data['details']['invoice_id'].'.pdf';                
+		$data['page_title'] = $data['details']['item_name'].'invoice'; // pass data to the view
+		$pdfFilePath = $path."/assets/downloads/".$file_name;
+		///$pdfFilePath = str_replace("/","\"," $pdfFilePath");
+		//echo $pdfFilePath;exit;            
+
+		ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+		$html = $this->load->view('customer/invoice', $data, true); // render the view into HTML
+		exit;	
+		}
+		/* create invioce*/
+					
+				
+				
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/response',$data);

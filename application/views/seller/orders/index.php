@@ -48,7 +48,7 @@
 						<th>Qty</th>
 						<th>Item Price</th>
 						<th>Total Price</th>
-						<th>Customer Details</th>
+						<th>Customer Billing Details</th>
 						<th>Order Status</th>
                     </tr>
                   </thead>
@@ -61,7 +61,7 @@
      ?>
 
                 <tr>
-                  <td><?php  echo $orders_data->order_id; ?></td>
+                  <td><?php  echo $orders_data->order_item_id; ?></td>
                   <td><?php  echo $orders_data->item_name; ?></td>
                   <td><?php  echo $orders_data->qty; ?></td>
                   <td><?php  echo $orders_data->item_price; ?></td>
@@ -70,19 +70,19 @@
                     <tbody>
                       <tr>
                         <th>Name</th>
-                        <td><?php  echo $orders_data->cust_firstname.' '.$orders_data->cust_lastname; ?></td>
+                        <td><?php  echo $orders_data->name; ?></td>
                       </tr>
                       <tr>
                         <th>Mobile</th>
-                        <td><?php  echo $orders_data->cust_mobile; ?></td>
+                        <td><?php  echo $orders_data->customer_phone; ?></td>
                       </tr>
                       <tr>
                         <th>Email</th>
-                        <td><?php  echo $orders_data->cust_email; ?></td>
+                        <td><?php  echo $orders_data->customer_email; ?></td>
                       </tr>
                       <tr>
                         <th>Address</th>
-                        <td><?php  echo $orders_data->address1; ?></td>
+                        <td><?php  echo $orders_data->customer_address; ?></td>
                       </tr>
                     </tbody>
                   </table></td>
