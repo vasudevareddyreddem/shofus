@@ -64,7 +64,7 @@ public function index()
 				$data['trending_products'] = $this->home_model->get_trending_products($post['locationid']);
 				$data['offer_for_you'] = $this->home_model->get_offer_for_you($post['locationid']);
 				$data['deals_of_the_day'] = $this->home_model->get_deals_of_the_day($post['locationid']);
-				$data['season_sales'] = $this->home_model->get_season_offers	($post['locationid']);
+				$data['season_sales'] = $this->home_model->get_season_offers($post['locationid']);
 				$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 				
 		 
@@ -74,7 +74,7 @@ public function index()
 			$data['trending_products'] = $this->home_model->get_trending_products($id);
 			$data['offer_for_you'] = $this->home_model->get_offer_for_you($id);
 			$data['deals_of_the_day'] = $this->home_model->get_deals_of_the_day($id);
-			$data['season_sales'] = $this->home_model->get_season_offers	($id);
+			$data['season_sales'] = $this->home_model->get_season_offers($id);
 			$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 			$data['seemore']=$id;
 	 }

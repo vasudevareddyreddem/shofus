@@ -1287,54 +1287,55 @@ class Customer extends Front_Controller
 		}*/
 		$data['order_items']= $this->customer_model->get_order_items($order_id);
 		$data['carttotal_amount']= $this->customer_model->get_successorder_total_amount($order_id);
-		foreach ($data['order_items'] as $list){
+		/*foreach ($data['order_items'] as $list){
 			//echo '<pre>';print_r($list);exit;
 			
 		$path = rtrim(FCPATH,"/");
-		$data['details'] = $this->customer_model->getinvoiceinfo($list['order_item_id']);
+		$datas['details'] = $this->customer_model->getinvoiceinfo($list['order_item_id']);
 		
 		//echo '<pre>';print_r($data['details']);exit;
-		$file_name = $data['details']['order_item_id'].'_'.$data['details']['invoice_id'].'.pdf';                
-		$data['page_title'] = $data['details']['item_name'].'invoice'; // pass data to the view
+		$file_name = $datas['details']['order_item_id'].'_'.$datas['details']['invoice_id'].'.pdf';                
+		$datas['page_title'] = $datas['details']['item_name'].'invoice'; // pass data to the view
 		$pdfFilePath = $path."/assets/downloads/".$file_name;
 		///$pdfFilePath = str_replace("/","\"," $pdfFilePath");
 		//echo $pdfFilePath;exit;            
 
 		ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-		$html = $this->load->view('customer/invoice', $data, true); // render the view into HTML
-		exit;	
-		}
+		$html = $this->load->view('customer/invoice', $datas, true); // render the view into HTML
+			$stylesheet1 = file_get_contents(base_url('assets/css/bootstrap.min.css')); // external css
+		//$stylesheet6 = file_get_contents('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
+		//echo $stylesheet;exit;
+		//$pdf = new Table('P', 'mm', 'Letter');
+		
+		$this->load->library('pdf');
+		$pdf = $this->pdf->load();
+		$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+		//$pdf->WriteHTML($stylesheet1,1);
+		//$pdf->WriteHTML($stylesheet6,6);
+		$pdf->SetMargins(0);
+		//$pdf->WriteHTML('<tocentry content="Letter portrait" /><p>This should print on an Letter sheet</p>');
+		$pdf->SetDisplayMode('fullpage');
+		$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+		$pdf->WriteHTML($html); // write the HTML into the PDF
+		$pdf->Output($pdfFilePath, 'F'); // save to file because we can
+		/*$htmlmessage = "Invoice has beed generated for the https:carinhouors.coms";
+		$this->load->library('email');
+		$this->email->set_newline("\r\n");
+		$this->email->set_mailtype("html");
+		$this->email->from('cartinhours.com');
+		$this->email->to($datas['details']['customer_email']);
+		///$this->email->bcc('tavvaforu@gmail.com');
+		$this->email->attach($pdfFilePath);
+		$this->email->subject('Cartinhours - Invoice '.$file_name);
+		
+		//echo $html;exit;
+		$this->email->message($htmlmessage);
+		$this->email->send();
+		
+			
+		}*/
+		
 		/* create invioce*/
-					
-				
-				
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
 		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/response',$data);
 		$this->template->render();
