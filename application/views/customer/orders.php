@@ -104,7 +104,7 @@
 				<hr style="margin:0px 10px 10px 0px;border-top:1px solid #ddd;">
 				<div class="pull-left tras_col">Ordered On <?php echo isset($orders['create_at'])?Date('d-M-Y h:i:s A',strtotime(htmlentities($orders['create_at']))):'';  ?>
 				</div>
-				<div class="pull-right"><span style="font-size:17px;font-weight:500;color:#bbb">Order Total :  </span> &nbsp;<span style="font-size:16px;font-weight:400" class="site_col">₹<?php echo $orders['total_price'] ?></span>
+				<div class="pull-right"><span style="font-size:17px;font-weight:500;color:#bbb">Order Total :  </span> &nbsp;<span style="font-size:16px;font-weight:400" class="site_col">₹<?php echo number_format($orders['total_price'], 2); ?></span>
 				</div>
 				<div class="clearfix"></div>
             </div>
