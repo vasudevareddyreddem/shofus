@@ -2890,7 +2890,7 @@ function checkOffset() {
   var a=$(document).scrollTop()+window.innerHeight;
   var b=$('#footer-start').offset().top;
   if (a<b) {
-    $('#social-float').css('bottom', '15%');
+    $('#social-float').css('bottom', '14%');
   } else {
     $('#social-float').css('bottom', (10+(a-b))+'px');
   }
