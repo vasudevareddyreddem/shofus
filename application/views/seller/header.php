@@ -449,7 +449,7 @@ function emailchecking(reasontype) {
 		  var passwords = document.getElementById('forgot_password').value;
 		  var confirmpasswords = document.getElementById('confirm_password').value;
 		 if(otpval==''){
-             $("#forgoterror").html("Please OTP value").css("color", "red");
+             $("#forgoterror").html("Please Enter OTP").css("color", "red");
               return false;
           }
 		  if(passwords==''){

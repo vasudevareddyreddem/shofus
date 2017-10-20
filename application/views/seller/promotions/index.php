@@ -351,7 +351,7 @@ if(count>0){
 	}else{
 		 var offerAmt=document.getElementById('offeramount<?php echo $subcategory->subcategory_id;?>').value;
 			 if(offerAmt==''){
-				jQuery('#offeramounterror<?php echo $subcategory->subcategory_id;?>').html('Please eneter offer Percentages');
+				jQuery('#offeramounterror<?php echo $subcategory->subcategory_id;?>').html('Please Enter offer Percentages');
 				return false; 
 			 }else{
 					if (!IsMobile<?php echo $subcategory->subcategory_id;?>(offerAmt)) {
