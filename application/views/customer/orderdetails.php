@@ -262,7 +262,7 @@ tr th:last-child {
 				</div>
 				<div class="col-md-3">
 					<div class="col-md-3">
-							<span class="font_span">₹<?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?></span>
+							<span class="font_span">₹<?php echo number_format(isset($item_details['total_price'])?$item_details['total_price']:'', 2);  ?></span>
 					</div>
 					<div class="col-md-9">
 							<span class="site_co"><?php if($item_details['order_status']==5){ echo "Item returned"; } ?></span>
@@ -279,9 +279,11 @@ tr th:last-child {
 					<hr	>
 				<div class="col-md-3 col-md-offset-9">
 						<span class="font_span"><b>Total</b></span>&nbsp;&nbsp;
-						<span class="font_span">₹<?php echo $item_details['total_price']+$item_details['delivery_amount']; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span class="font_span">₹<?php echo number_format($item_details['total_price']+$item_details['delivery_amount'], 2); ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<?php if(isset($item_details['discount']) && $item_details['discount']!=''){ ?>
 						<span class="font_span site_col">Savings</span>&nbsp;&nbsp;
 						<span class="font_span">₹<?php echo isset($item_details['discount'])?$item_details['discount']:'';  ?></span>
+						<?php } ?>
 				</div>
 
 			</div>

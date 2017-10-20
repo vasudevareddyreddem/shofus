@@ -15,19 +15,19 @@
            <form id="contactus" name="contactus" method="post" action="<?php echo base_url('customer/contactuspost'); ?>" class="form-horizontal" enctype="multipart/form-data" role="form">
 
             <div class="form-group">
-              <label for="nameInput">Name (*)</label>
+              <label for="nameInput">Name *</label>
               <input type="text" class="form-control" id="name" name="name" placeholder="Name">
             </div>
             <div class="form-group">
-              <label for="emailInput">Email Address (*)</label>
+              <label for="emailInput">Email Address*</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
             </div>
             <div class="form-group">
-              <label for="subjectInput">Subject</label>
+              <label for="subjectInput">Subject*</label>
               <input type="text" class="form-control" id="Subject" name="Subject" placeholder="Subject">
             </div>
             <div class="form-group">
-              <label for="notesInput">Message (*)</label>
+              <label for="notesInput">Message*</label>
               <textarea class="form-control" rows="3" id="message" name="message"></textarea>
             </div>
             <button type="submit" class="btn btn-theme pull-right">Send <i class="fa fa-arrow-circle-right"></i></button>
