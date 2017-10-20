@@ -2,7 +2,7 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>::Cart in Hours::</title>
+<title>::Cart In Hours::</title>
 <link rel="icon" href="<?php echo base_url(); ?>assets/seller/images/fav_icon.png" type="image/x-icon" />
 
 
