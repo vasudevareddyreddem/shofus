@@ -294,12 +294,36 @@ $(document).ready(function(){
 	    function validateForm(){
 		   var price=document.getElementById('product_price').value;
 		   var specialprice=document.getElementById('special_price').value;
+		   var desc=document.getElementById('description').value;
+		   	var img = document.getElementById('picture1').value;
+
+		   
 		   if(specialprice==''){
 			   $('#errormsgvalidation').html('Please enter special price');
 			  return false;
+		   }else if(desc==''){
+			    $('#descerrormsg').html('Description is required').css("color", "red");
+			  return false;
+			   
+		   }else if(img==''){
+			    $('#uploadimgerror').html('Image1 is required').css("color", "red");
+			  return false;  
+			}else if(img!=''){
+					  var fup = document.getElementById('picture1');
+				var fileName = fup.value;
+				var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+				if(ext !=''){
+					if(ext == "png" || ext == "jpg" || ext == "gif")
+					{
+					jQuery('#uploadimgerror').html('');
+					} else{
+					jQuery('#uploadimgerror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
+					return false;
+					}
+				}
+			   
 		   }else{
-			   
-			   
+			   $('#descerrormsg').html('');
 			   if (!IsMobile(specialprice)) {
             $("#errormsgvalidation").html("Please Enter Correct special price").css("color", "red");
             jQuery('#seller_mobile').focus();
@@ -319,9 +343,9 @@ $(document).ready(function(){
 	   function enablesubbmit(){
 		   document.getElementById('keysubtton').disabled = false;
 		  $('#errormsgvalidation').html('');
-		  
-		   
-	   }
+		  $('#descerrormsg').html('');
+		  $('#uploadimgerror').html('');
+		}
    function addrequestsubcategory(){
 	   var catid=document.getElementById('category_id').value;
 	   if(catid==''){

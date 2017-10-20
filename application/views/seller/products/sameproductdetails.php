@@ -26,10 +26,11 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	</div>
 	
 	<div class="row">
+	<label for="exampleInputEmail1">Highlights</label>
 		<div class="col-md-12 form-group">
 			<div class="form-group nopaddingRight san-lg">
 			
-				<textarea  placeholder="Highlights" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="highlights" name="highlights"><?php echo isset($item_details['highlights'])?$item_details['highlights']:''; ?></textarea>
+				<textarea  placeholder="Highlights" style="height: 59px;" class="form-control" rows="3" id="highlights" name="highlights"><?php echo isset($item_details['highlights'])?$item_details['highlights']:''; ?></textarea>
 			</div>
 		</div>
 	</div>
@@ -40,7 +41,7 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 				  <div class="row">
 					  <div class="col-sm-6 nopadding">
 						<div class="form-group">
-							<textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="Description"><?php echo isset($item_details['description'])?$item_details['description']:''; ?></textarea>
+							<textarea type="text" class="form-control" id="description" onkeyup="enablesubbmit();" name="description[]" value="" placeholder="Description"><?php echo isset($item_details['description'])?$item_details['description']:''; ?></textarea>
 						</div>
 					  </div>
 
@@ -58,6 +59,7 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 						  </div>
 						</div>
 				</div>
+				<span id="descerrormsg"></span>
 	</div>
 	<hr>
 	<label for="exampleInputEmail1">Warranty Details</label>
@@ -476,9 +478,11 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				 <label for="exampleInputEmail1">Images1</label>
-				<input type="file" name='picture1' id="picture1"  class="form-control" >
+				<input type="file" onchange="enablesubbmit();" name='picture1' id="picture1"  class="form-control" >
 			</div>
+			<span id="uploadimgerror"></span>
 		</div>
+		
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				 <label for="exampleInputEmail1">Images2</label>
@@ -579,6 +583,17 @@ $(document).ready(function() {
 					validators: {
 					notEmpty: {
 						message: 'Description is required'
+					}
+				}
+			},
+			picture1: {
+					validators: {
+					notEmpty: {
+						message: 'Images1 is required'
+					},
+                   regexp: {
+					regexp: /\.(jpe?g|png|gif)$/i,
+					message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
 					}
 				}
 			},
