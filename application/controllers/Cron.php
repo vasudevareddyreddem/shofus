@@ -146,5 +146,64 @@ class Cron extends Front_Controller
 					//echo '<pre>';print_r($ch);exit;
 					$server_output = curl_exec ($ch);
 	}*/
+	
+	
+	public function pdf()
+    {
+            
+            // As PDF creation takes a bit of memory, we're saving the created file in /downloads/reports/
+		$path = rtrim(FCPATH,"/");
+
+		///echo $pdfFilePath;exit;            
+		$this->load->model('Cron_model');
+		if($this->session->userdata('userinfo'))
+		{
+		$this->load->model('Cron_model');
+		$segs = $this->uri->segment_array();
+		$user_id = $this->uri->segment(3);
+		$refill_id= base64_decode($this->uri->segment(4));
+		if($user_id!='')
+		{
+		$user_id = base64_decode($user_id);
+		}
+		//echo '<pre>';print_r($user_id);exit;
+		$userdata = $this->session->userdata('userinfo');
+		$data['doctornotes']=$this->Cron_model->getrefill_view($refill_id);
+		$data['userdetails'] = $this->Cron_model->getuserinfo($user_id,$refill_id);
+
+		//$data['refilldatails']= $this->Cron_model->getrefill_details($user_id,$refill_id);
+
+		$userdata = $this->session->userdata('userinfo');
+		$file_name = $data['userdetails']['firstname'].'_'.$data['userdetails']['lastname'].'.pdf';                
+		//$data['userdetails'] = $this->Cron_model->getuserinfo($user_id);
+		//echo '<pre>';print_r($data);exit;
+		} else {
+		$data['userdetails'] = array();
+		}
+		$file_name='test1'.'.pdf';
+		$data['page_title'] = 'Hello world'; // pass data to the view
+		$pdfFilePath = $path."/assets/downloads/".$file_name;
+		///$pdfFilePath = str_replace("/","\"," $pdfFilePath");
+		//echo $pdfFilePath;exit;            
+
+		ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+		$html = $this->load->view('customer/inovice', $data, true); // render the view into HTML
+		$stylesheet1 = file_get_contents(base_url('assets/css/bootstrap.min.css')); // external css
+		//$stylesheet6 = file_get_contents('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
+		//echo $stylesheet;exit;
+		$this->load->library('pdf');
+		$pdf = $this->pdf->load();
+		$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+		//$pdf->WriteHTML($stylesheet1,1);
+		//$pdf->WriteHTML($stylesheet6,6);
+		$pdf->SetMargins(0);
+		//$pdf->WriteHTML('<tocentry content="Letter portrait" /><p>This should print on an Letter sheet</p>');
+		$pdf->SetDisplayMode('fullpage');
+		$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+		$pdf->WriteHTML($html); // write the HTML into the PDF
+		$pdf->Output($pdfFilePath, 'F'); // save to file because we can
+		redirect("assets/downloads/".$file_name);
+    }
+	
 }		
 ?>
