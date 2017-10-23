@@ -428,6 +428,16 @@ class Customerapi_model extends MY_Model
 		$this->db->where('item_id', $itemid);
         return $this->db->get()->row_array();
 	}
+	public function all_product_details($itemid){
+		$this->db->select('products.*')->from('products');
+		$this->db->where('item_id', $itemid);
+        return $this->db->get()->row_array();
+	}
+	public function all_product_description($itemid){
+		$this->db->select('descrotion_list.description,descrotion_list.image')->from('descrotion_list');
+		$this->db->where('item_id', $itemid);
+        return $this->db->get()->result_array();
+	}
 	public function get_order_items_lists($custid){
 			$this->db->select('order_items.*')->from('order_items');
 			$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
@@ -2223,6 +2233,34 @@ class Customerapi_model extends MY_Model
 		$this->db->where('item_name', $name);
 		$this->db->where('item_id !=', $item_id);
 		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_same_products_size($subcat,$name,$item_id)
+	{
+		$this->db->select('products.item_id,products.internal_memeory,products.colour,products.subcategory_id,products.item_image')->from('products');
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_name', $name);
+		$this->db->group_by('internal_memeory');
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_same_products_color($subcat,$name,$item_id)
+	{
+		$this->db->select('products.item_id,products.internal_memeory,products.colour,products.subcategory_id,products.item_image')->from('products');
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_name', $name);
+		$this->db->group_by('colour');
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_same_products_ram($subcat,$name,$item_id)
+	{
+		$this->db->select('products.item_id,products.ram,products.subcategory_id,products.item_image')->from('products');
+		$this->db->where('subcategory_id',$subcat);
+		$this->db->where('item_name', $name);
+		$this->db->group_by('ram');
+		$this->db->where('item_status',1);
+		$this->db->where('ram !=','');
 		return $this->db->get()->result_array();
 	}
 	public function get_pincode_details($pincode)

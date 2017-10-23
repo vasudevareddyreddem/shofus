@@ -684,18 +684,26 @@ class CustomerApi extends REST_Controller {
 			$message = array('status'=>0,'message'=>'Item id is required!');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
-		$product_details=$this->Customerapi_model->product_details($item_id);
+		$product_details=$this->Customerapi_model->all_product_details($item_id);
+		$des=$this->Customerapi_model->all_product_description($item_id);
+		$product_details['descriptions']=$des;
+		$product_details['imagepath']='https://cartinhours.com/uploads/products/';
+		//echo '<pre>';print_r($product_details);exit;
+		//echo $this->db->last_query();exit;
 		$sameproducts_list= $this->Customerapi_model->get_same_products($product_details['subcategory_id'],$product_details['item_name'],$product_details['item_id']);
+		$sameproducts_size= $this->Customerapi_model->get_same_products_size($product_details['subcategory_id'],$product_details['item_name'],$product_details['item_id']);
+		$sameproducts_colour= $this->Customerapi_model->get_same_products_color($product_details['subcategory_id'],$product_details['item_name'],$product_details['item_id']);
+		$sameproducts_ram= $this->Customerapi_model->get_same_products_ram($product_details['subcategory_id'],$product_details['item_name'],$product_details['item_id']);
 
 		//echo '<pre>';print_r($sameproducts_list);exit;
 		$color_list=$this->Customerapi_model->get_product_color_details($item_id);
 		$size_list=$this->Customerapi_model->get_product_size_details($item_id);
 		$specification_list=$this->Customerapi_model->get_product_specification_details($item_id);
 		$uk_size_list=$this->Customerapi_model->get_product_uksize_details($item_id);
-		//echo '<pre>';print_r($wishlist);exit;
+		//echo '<pre>';print_r($product_details);exit;
 		if(count($product_details)>0){
 		
-			$message = array('status'=>1,'path'=>'https://cartinhours.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list,'sameproducts_list'=>$sameproducts_list);
+			$message = array('status'=>1,'path'=>'https://cartinhours.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list,'sameproducts_list'=>$sameproducts_list,'gbsizelist'=>$sameproducts_size,'colourlist'=>$sameproducts_colour,'ramlist'=>$sameproducts_ram);
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'product Id is not valid one');

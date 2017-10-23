@@ -124,8 +124,13 @@
 </td> 
     <td style="padding:0;margin:0;font-size:13px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left"><?php echo isset($details['qty'])?$details['qty']:'';  ?></td>
     <td style="padding:0;margin:0;font-size:13px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left"><?php echo number_format(isset($details['item_price'])?$details['item_price']:'', 2);  ?></td>
-    <td style="padding:0;margin:0;font-size:13px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left"><?php echo number_format(isset($details['delivery_amount'])?$details['delivery_amount']:'', 2);  ?></td>
-    <td style="padding:0;margin:0;font-size:13px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left"><?php echo number_format($details['total_price']+$details['delivery_amount'], 2);  ?></td>
+    <?php if(isset($details['delivery_amount']) && $details['delivery_amount']!=''){ ?> 
+	<td style="padding:0;margin:0;font-size:13px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left"><?php echo isset($details['delivery_amount'])?$details['delivery_amount']:'';  ?></td>
+    <?php }else{ ?>
+		<td style="padding:0;margin:0;font-size:13px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left">&nbsp;</td>
+
+	<?php } ?>
+	<td style="padding:0;margin:0;font-size:13px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left"><?php echo number_format($details['total_price']+$details['delivery_amount'], 2);  ?></td>
   </tr>
   
   <tr >

@@ -1276,7 +1276,7 @@ class Customer extends Front_Controller
 	//echo '<pre>';print_r($billinginnfo);exit;
 	  $customerdetails=$this->session->userdata('userdetails');
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
-		/*if(count($cart_items)<=0){
+		if(count($cart_items)<=0){
 			$this->session->set_flashdata('success','No Item In the cart.');
 			redirect('');
 			
@@ -1284,10 +1284,10 @@ class Customer extends Front_Controller
 		//echo '<pre>';print_r($cart_items);exit;
 		foreach($cart_items as $items){
 		$delete= $this->customer_model->after_payment_cart_item($customerdetails['customer_id'],$items['item_id'],$items['id']);
-		}*/
+		}
 		$data['order_items']= $this->customer_model->get_order_items($order_id);
 		$data['carttotal_amount']= $this->customer_model->get_successorder_total_amount($order_id);
-		/*foreach ($data['order_items'] as $list){
+		foreach ($data['order_items'] as $list){
 			//echo '<pre>';print_r($list);exit;
 			
 		$path = rtrim(FCPATH,"/");
@@ -1302,8 +1302,9 @@ class Customer extends Front_Controller
 
 		ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 		$html = $this->load->view('customer/invoice', $datas, true); // render the view into HTML
-			$stylesheet1 = file_get_contents(base_url('assets/css/bootstrap.min.css')); // external css
-		//$stylesheet6 = file_get_contents('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
+		//echo '<pre>';print_r($html);exit;
+		$stylesheet1 = file_get_contents(base_url('assets/css/bootstrap.min.css')); // external css
+		$stylesheet6 = file_get_contents('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
 		//echo $stylesheet;exit;
 		//$pdf = new Table('P', 'mm', 'Letter');
 		
@@ -1312,13 +1313,12 @@ class Customer extends Front_Controller
 		$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 		//$pdf->WriteHTML($stylesheet1,1);
 		//$pdf->WriteHTML($stylesheet6,6);
-		$pdf->SetMargins(0);
 		//$pdf->WriteHTML('<tocentry content="Letter portrait" /><p>This should print on an Letter sheet</p>');
 		$pdf->SetDisplayMode('fullpage');
 		$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
 		$pdf->WriteHTML($html); // write the HTML into the PDF
 		$pdf->Output($pdfFilePath, 'F'); // save to file because we can
-		/*$htmlmessage = "Invoice has beed generated for the https:carinhouors.coms";
+		$htmlmessage = "Invoice has beed generated for the https:carinhouors.coms";
 		$this->load->library('email');
 		$this->email->set_newline("\r\n");
 		$this->email->set_mailtype("html");
@@ -1333,7 +1333,7 @@ class Customer extends Front_Controller
 		$this->email->send();
 		
 			
-		}*/
+		}
 		
 		/* create invioce*/
 		//echo '<pre>';print_r($data);exit;
