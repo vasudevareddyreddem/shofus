@@ -1,186 +1,233 @@
+<!DOCTYPE html>
+<style>
+	.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
-<?php //echo '<pre>';print_r($details);exit; ?>
-<table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:10px;background-color:#f1f2f3"> 
-
-   <tbody> 
-    <tr> 
-     <td> 
-      <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:800px;background:#ffffff"> 
-       <tbody>
-	   
-        <tr> 
-         <td align="left"  style="display:block;margin:0 auto;clear:both;padding:0px 40px"> 
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:700px;background:#ffffff"> 
-           <tbody>
-            <tr> 
-             <td align="left"   style="color:#212121;display:block;margin:0 auto;clear:both;padding:3px 0 0 0"> 
-              <table width="100%" cellspacing="0" cellpadding="0"> 
-               <tbody>
-				<tr  ><h3 style="text-align:center;font-family:'Roboto-Medium',sans-serif;font-size:20px;font-weight:normal;font-style:normal;">Tax Invoice</h3></tr>			   
-                <tr> 
-                 <td  align="left" style="float:right;padding:0;text-align:center;vertical-align:middle">
-				<p style="color:#444;font-size:16px;border-style: dotted;padding:5px;"><b>Invoice Number </b># <?php echo isset($details['order_item_id'])?$details['order_item_id']:'';  ?><?php echo isset($details['invoice_id'])?$details['invoice_id']:'';  ?></p>
-				 </td> 
-                 <td  align="left" style="float:left;vertical-align:middle"> <p style="font-family:'Roboto-Medium',sans-serif;font-size:16px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:16px 0px"><b>Sold By: <?php echo isset($details['store_name'])?$details['store_name']:'';  ?>,</b>
-</p> 
-				 </td> 
-                </tr> 
-                <tr> 
-				<td>
-				<p style="padding:0;margin:0;font-size:16px;line-height:20px;font-family:'Roboto',sans-serif"><i><b>Ship-from Address:</b> <?php echo isset($details['sadd1'])?$details['sadd1']:'';  ?>,
-				<?php echo isset($details['sadd2'])?$details['sadd2']:'';  ?>, <?php echo isset($details['Spin'])?$details['Spin']:'';  ?></p>
-				</td>
-                </tr>
-				<tr> 
-				<?php if(isset($details['gstin']) && $details['gstin']!=''){ ?>
-				<td>
-				<p style="padding:0;margin-top:8px;font-size:16px;line-height:20px;font-family:'Roboto',sans-serif"><b>GSTIN</b> - <?php echo isset($details['gstin'])?$details['gstin']:'';  ?>
-				</p>
-				</td>
-				<?php } ?>
-                </tr> 
-               </tbody> 
-              </table> </td> 
-            </tr> 
-           </tbody>
-          </table> 
-		  <hr>
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:40px 0 0 0;max-width:700px;background:#ffffff;" border="0"> 
-           <tbody>
-            <tr> 
-             <td> 
-              <table width="100%" cellpadding="0" cellspacing="0"  style="table-layout:fixed;border-spacing:0;border-collapse:collapse;width:100%;border:none;margin-bottom:24px;"> 
-               <tbody>
-                <tr style="margin:0"> 
-				<td   style="padding-right:10px;"> 
-				
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;"><b>Order ID: </b><?php echo isset($details['order_item_id'])?$details['order_item_id']:'';  ?></p>
-				 <p style="padding:0;margin-top:8px;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;"><b>Order Date:</b> <?php echo isset($details['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($details['create_at']))):'';  ?></p>
-				 <p style="padding:0;margin-top:8px;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;"><b>Invoice Date:</b> <?php echo isset($details['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($details['create_at']))):'';  ?></p> 
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:10px"> &nbsp;</p> <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:10px"> &nbsp;</p> <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:10px"> &nbsp;</p><p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:10px"> &nbsp;</p><p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:10px"> &nbsp;</p>
-				 
-				 
-				   </td>
-				
-                 <td   style="padding-right:10px"> 
-					<p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:16px">Billing Address</p>
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto',sans-serif;line-height:20px;padding-right:35px;color:#212121"> </p>
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto',sans-serif;line-height:20px"><?php echo isset($details['cust_firstname'])?$details['cust_firstname']:'';  ?>&nbsp;<?php echo isset($details['cust_lastname'])?$details['cust_lastname']:'';  ?></p> 
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto',sans-serif;line-height:20px"><?php echo isset($details['cust_email'])?$details['cust_email']:'';  ?>&nbsp;</p> 
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto',sans-serif;line-height:20px"><?php echo isset($details['address1'])?$details['address1']:'';  ?>, <?php echo isset($details['address2'])?$details['address2']:'';  ?> , <?php echo isset($details['cpin'])?$details['cpin']:'';  ?>  .</p> 
-				 <p>
-				 </p>
-				 </td>
-				  <td   style="padding-right:10px"> 
-					<p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:16px">Shipping Address</p>
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto',sans-serif;line-height:20px;padding-right:35px;color:#212121"> </p>
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto',sans-serif;line-height:20px"><?php echo isset($details['name'])?$details['name']:'';  ?></p> 
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto',sans-serif;line-height:20px"><?php echo isset($details['customer_address'])?$details['customer_address']:'';  ?>, <?php echo isset($details['city'])?$details['city']:'';  ?> , <?php echo isset($details['state'])?$details['state']:'';  ?> , <?php echo isset($details['pincode'])?$details['pincode']:'';  ?> .</p> 
-				 <p>
-				 </p>
-				 </td>
-				   
-				   <td   style="padding-right:10px;width:80px"> 
-				
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:16px"> </p>
-				 <p style="padding:0;margin:0;font-size:16px;line-height:20px;font-family:'Roboto',sans-serif"><i>*Keep this invoice and
-					manufacturer box for warranty purposes.</i>
- </p> 
-				  </td> 
-                </tr> 
-               </tbody>
-              </table> 
-               </td> 
-            </tr> 
-           </tbody>
-		   
-          </table> 
-		 <p style="border-top:1px solid #ddd"></p>
-		  
-		  
-		  
-          <table width="100%"  style="max-width:700px;background:#ffffff " >
-			<tr >
-    <th style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;min-width:180px;text-align:left">Product </th>
-    <th style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;min-width:220px;text-align:left">Title</th> 
-    <th style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left">Qty</th>
-    <th style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left">Gross Amount ₹</th>
-    <th style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left">Delivery Amount ₹</th>
-	<th style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left">Total ₹</th>
-
-  </tr>
-  
- <tr style="border:">
-	 <td colspan="9"style="padding:10px 0px;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;text-algin:right;border-top:1px solid #ddd"></td>
-	 
-  </tr>
-  
-  <tr>
-  <td style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left">
-  <?php echo isset($details['subcategory_name'])?$details['subcategory_name']:'';  ?>
-	</td>
-    <td style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left">
-	<?php echo isset($details['item_name'])?$details['item_name']:'';  ?>&nbsp;<?php echo isset($details['product_code'])?$details['product_code']:'';  ?>
-</td> 
-    <td style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left"><?php echo isset($details['qty'])?$details['qty']:'';  ?></td>
-    <td style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left"><?php echo number_format(isset($details['item_price'])?$details['item_price']:'', 2);  ?></td>
-    <?php if(isset($details['delivery_amount']) && $details['delivery_amount']!=''){ ?> 
-	<td style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left"><?php echo isset($details['delivery_amount'])?$details['delivery_amount']:'';  ?></td>
-    <?php }else{ ?>
-		<td style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left">&nbsp;</td>
-
-	<?php } ?>
-	<td style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;padding-left:10px;text-align:left"><?php echo number_format($details['total_price']+$details['delivery_amount'], 2);  ?></td>
-  </tr>
-  
-  <tr >
-	 <td style="padding:10px;margin-top:10px;">
-		
-	 </td>
-	 
-  </tr>
+a {
+  color: #5D6975;
+  text-decoration: underline;
+}
+.water_mark{
+background:url(<?php echo base_url('assets/home/images/opa.png');?>);
+  background-repeat:no-repeat;
+  background-position:center;
  
-  
-  <tr>
-   <th colspan="9" style="padding:0px;margin-top:10px;border-top:1px solid #ddd">
-  </th>
-  </tr> 
-  <tr>
-   <th colspan="5"  style="padding:0px;margin-top:10px;text-algin:right;width:100%">
-  </th> 
-  <th  colspan="4"  style="padding-top:10px;margin-top:10px;font-size:16px;font-family:'Roboto-Medium',sans-serif;font-weight:600">Grand Total:<span style="padding-left:40px;">₹<?php echo number_format($details['total_price']+$details['delivery_amount'], 2);  ?></span>
-  <p style="font-size:16px;font-weight:200;color:#555;padding:0;margin:4px"><i>Consulting Rooms Private Limited</i></p>
-  </th>
- 
-  </tr>
-  <tr>
-   <th colspan="5"  style="padding:0px;margin-top:10px;text-algin:right;width:100%">
-  </th> 
-  <th  colspan="4"  style="padding-top:80px;margin-top:10px;font-size:16px;font-family:'Roboto-Medium',sans-serif;font-weight:600">Authorized Signatory
-
-  </th>
- 
-  </tr>
-  <tr>
+  }
+body {
+  position: relative;
+  height: 29.7cm; 
+  margin: 0 auto; 
+  color: #001028;
    
-  <th    style="padding-top:50px;margin-top:10px;font-size:16px;font-family:'Roboto-Medium',sans-serif;font-weight:600">
+  font-family: Arial, sans-serif; 
+  font-size: 12px; 
+  font-family: Arial;
+}
 
-  </th>
+header {
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+#logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#logo img {
+  width: 90px;
+}
+
+h1 {
+  
+  color: #5D6975;
+  font-size: 20px;
+ // line-height: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 0 20px 0;
+  background: #45b1b9;
+  color:#fff;
+  padding:5px;
+}
+
+#project {
+  float: left;
  
-  </tr>
- 
-  
-  
-		  </table>
-          
-          </td> 
-        </tr> 
-       </tbody> 
-      </table> 
-     
-    </tr> 
-   </tbody>
-  </table> 
-    
-    
-  
+}
+
+#project span {
+  color: #5D6975;
+  text-align: left;
+  width: 60px;
+  margin-right: 10px;
+  display: inline-block;
+  font-size: 12px;
+}
+
+#company {
+  float: right;
+  text-align: right;
+}
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+}
+
+table tr:nth-child(2n-1) td {
+  background: #F5F5F5;
+}
+
+table th,
+table td {
+  text-align: center;
+}
+
+table th {
+  padding: 5px 20px;
+  color: #5D6975;
+  border-bottom: 1px solid #C1CED9;
+  white-space: nowrap;        
+  font-weight: normal;
+}
+
+table .service,
+table .desc {
+  text-align: left;
+  width:200px
+}
+
+table td {
+  padding: 20px;
+  text-align: right;
+}
+
+table td.service,
+table td.desc {
+  vertical-align: top;
+}
+
+table td.unit,
+table td.qty,
+table td.total {
+  font-size: 1.2em;
+}
+
+table td.grand {
+  border-top: 1px solid #5D6975;;
+}
+
+#notices .notice {
+  color: #5D6975;
+  font-size: 1.2em;
+}
+
+
+</style>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>cartinhours</title>
+    <link rel="stylesheet" href="style.css" media="all" />
+  </head>
+  <body>
+
+    <header class="clearfix ">
+      
+      <h1>INVOICE </h1>
+	   <div class="clearfix">
+		<div style="float: left;" > <b>Sold By:</b> <span>Consulting Rooms Private Limited ,</span></div>
+		<div style="float: right;"> <b>Invoice Number </b># FABBMR1800050481 </div>
+	  </div> 
+	  <div class="">
+		<p > <i><b>Ship-from Address:</b> </span>Survey No. 518, 527, 528, 529, & 530, Door No 14-7/5, Archana colony, Kistapur Village, Opp.RDC Concretes,
+				Medchal, R.R. District, Hyderabad, Telangana, India - 501401, IN-TS</span></i></p>
+	  </div>
+	  <div class="">
+		<p > <b>GSTIN</b> </span> - 36AAGCC4236P1ZA</span></p>
+	  </div>
+	  <hr>
+      
+      <div id="project" style=" width:250px;">
+        <div><span>Order ID:</span> OD110472952447668000</div>
+        <div><span>Order Date:</span> 13-10-2017</div>
+        <div><span>Invoice Date:</span> 13-10-2017</div>
+        <div><span>PAN:</span> aagcc4236p</div>
+        <div><span>CIN:</span>U74900DL2016PTC291626</div>
+        
+      </div>
+	  <div id="project" style=" width:200px;" >
+        <div><h3>Delivery Address</h3></div>
+        <div><p  style="word-wrap: break-word;">MIG-103 , 3 RD FLOOR , DHARMAREDDY colony , phase 2 , near pooja hospital , opp to rajashekar enclave , opp to RAJASHEKAR ENCLAVE , near pooja hospital,Hyderabad - 500072 ,Andhra Pradesh,Mob. 9494422779</p>
+		</div>
+      </div> 
+	 
+	  <div id="project" style=" width:200px;">
+        <div><h3>Ship To</h3></div>
+        <div><p  style="word-wrap: ">MIG-103 , 3 RD FLOOR , DHARMAREDDY colony , phase 2 , near pooja hospital , opp to rajashekar enclave , opp to RAJASHEKAR ENCLAVE , near pooja hospital,Hyderabad - 500072 ,Andhra Pradesh,Mob. 9494422779</p>
+		</div>
+      </div>
+
+      
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th class="service">Product</th>
+            <th class="desc">Title</th>
+            <th>Qty</th>
+            <th>Gross Amount ?</th>
+            <th>Discount </th>
+            <th>TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="service">Multi Function Printers FSN: PRNEBNZCUXP6FPZC HSN/SAC: 84433100</td>
+            <td class="desc">Canon Pixma MG3670 Multi-function Wireless Printer Warranty: 1 Year Canon Carry In Warranty 1. [IMEI/Serial No: 4549292036428 ] CGST: 14.000 % SGST/UTGST: 14.000 %</td>
+            <td class="unit">50</td>
+            <td class="qty">1100.00</td>
+            <td class="total">1,040.00</td>
+            <td class="total">1,040.00</td>
+          </tr>
+		 
+		  <tr style="font-weight:600">
+         
+            <td class="desc " colspan="2" style="text-align:right">Total</td>
+            <td class="unit">50</td>
+            <td class="qty">1100.00</td>
+            <td class="total">1,040.00</td>
+            <td class="total">1,040.00</td>
+          </tr> 
+		  <tr >
+         
+            <td class="desc " colspan="3" style="text-align:left;"><b>Notice
+:</b> <span class="notice">*Keep this invoice and
+					manufacturer box for warranty purposes.</span></td> 
+			<td class="desc " style="text-align:right;font-size:17px">Total</td>
+            
+            <td  style="font-size:17px" colspan="2" ><b>1,040.00</b></td>
+            
+          </tr>
+		  <tr>
+            <td class="desc " colspan="6" style="text-align:right;font-size:17px;background:none;">&nbsp;</td>
+          </tr>
+		  <tr>
+            <td class="desc " colspan="6" style="text-align:right;font-size:17px;background:none;">Authorized Signatory</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </main>
+   
+  </body>
+</html>
