@@ -56,6 +56,16 @@
     </tr> 
    </tbody>
   </table> 
+    <table width="100%"  style="max-width:650px;margin:0 auto" cellspacing="0" cellpadding="0" height="5"> 
+   <tbody style="margin-top:10px">
+    <tr style="background:#45b1b9">
+		
+     <td> 
+      
+	 </td> 
+    </tr> 
+   </tbody>
+  </table>
     
     
   
