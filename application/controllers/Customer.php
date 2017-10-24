@@ -1966,31 +1966,16 @@ class Customer extends Front_Controller
 				redirect( 'customer/resetpassword/'.base64_encode($mobile).'/'.base64_encode($forgotpass['customer_id'])); 
 					
 				}else if(isset($email) && $email!=''){
-						$msg='Greetings! You are just a step away from accessing your Cartinhours account We are sharing a verification code to access your account. Once you have verified the code, you will be prompted to set a new password immediately. This is to ensure that only you have access to your account. '.$six_digit_random_number;
-						$this->load->library('email');
-						$this->email->from('admin@cartinhours.com', 'CartInHours');
-						$this->email->to($email);
-						$this->email->subject('CartInHours - Forgot Password');
-						$html =$msg;
-						//echo $html;exit;
-						$this->email->message($html);
-						
-						
-						
+						$data['msg']=$six_digit_random_number;
 						$this->load->library('email');
 						$this->email->set_newline("\r\n");
 						$this->email->set_mailtype("html");
 						$this->email->from('cartinhours.com');
-						$this->email->to($post['email']);
-						$this->email->subject('Cartinhours - Welcome to cartinhours');
-						$html = $this->load->view('email/forgetpassword', $getdetails, true); 
+						$this->email->to($email);
+						$this->email->subject('Cartinhours - Forgot Password');
+						$html = $this->load->view('email/forgetpassword', $data, true); 
 						$this->email->message($html);
 						$this->email->send();
-
-						
-						
-						
-						
 						if($this->email->send()){
 							$this->customer_model->login_verficationcode_save($email,$forgotpass['customer_id'],$six_digit_random_number);
 						}else{
