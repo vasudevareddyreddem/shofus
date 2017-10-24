@@ -1554,7 +1554,7 @@ class Customer extends Front_Controller
 			$this->email->to($post['email']);
 			$this->email->subject('Cartinhours - Welcome to cartinhours');
 			$html = $this->load->view('email/welcome', $getdetails, true); 
-			echo $html;exit;
+			//echo $html;exit;
 			$this->email->message($html);
 			$this->email->send();
 					 
