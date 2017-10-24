@@ -151,7 +151,9 @@ tr th:last-child {
 		 ?>
 		 
 		<div class="col-md-4" >
+		<?php if(isset($item_details['amount_status_paid']) && $item_details['amount_status_paid']==1){ ?>
 		<a href="<?php echo base_url('assets/downloads/'.$item_details['invoicename']); ?>" class="site_col" href="" target="_blank">View Invoice</a></p>
+		<?php } ?>
 		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']=='' && $currentdate<= $tomorrow){ ?>
 		<div><a class="site_col" href="<?php echo base_url('customer/orderrefund/'.base64_encode($item_details['order_item_id'])); ?>"><h5>Return</h5></a></div>
 		<?php } ?>
