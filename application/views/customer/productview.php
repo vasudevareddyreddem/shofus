@@ -60,6 +60,10 @@
 	border: 1px solid #45b1b9;
 	padding:2px;
 }
+.active_color{
+	border:1px solid #45b1b9;
+	
+}
 
 </style>
 
@@ -179,9 +183,16 @@
 								<div class="row">
 								<?php //echo '<pre>';print_r($sameproducts_color_list);exit;
 								foreach ($sameproducts_color_list as $lists){ ?>
+								<?php if($lists['item_id']==$products_list['item_id']){ ?>
+								<a class="col-md-2 active_color" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
+									<img style="height:auto;width:32px;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
+								</a>
+								<?php }else{ ?>
 								<a class="col-md-2 img_col" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:auto;width:32px;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
+								<?php } ?>
+								
 								<?php   } ?>
 								</div>
 							</td>
@@ -197,11 +208,23 @@
 							<td>
 								<div class="row">
 								<?php foreach ($sameproducts_size_list as $lists){ ?>
+								
+								
+								<?php if($lists['item_id']==$products_list['item_id']){ ?>
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>">
+									<div style="font-size:16px"  class="col-md-2 img_col text-center active_color" >
+									<span  ><?php echo $lists['internal_memeory'];?></span>
+									</div>
+								</a>
+								<?php }else{ ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>">
 									<div style="font-size:16px"  class="col-md-2 img_col text-center" >
 									<span  ><?php echo $lists['internal_memeory'];?></span>
 									</div>
 								</a>
+								<?php } ?>
+								
+								
 								<?php   } ?>
 								
 								</div>
@@ -218,9 +241,19 @@
 							<td>
 								<div class="row">
 								<?php foreach ($sameproducts_ram_list as $lists){ ?>
+								
+								
+								<?php if($lists['item_id']==$products_list['item_id']){ ?>
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px"  class="col-md-2 img_col text-center active_color" >
+								<span ><?php echo $lists['ram'];?></span>
+								</div></a>
+								<?php }else{ ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px"  class="col-md-2 img_col text-center" >
 								<span ><?php echo $lists['ram'];?></span>
 								</div></a>
+								<?php } ?>
+								
+								
 								<?php   } ?>
 								
 								</div>
