@@ -53,9 +53,14 @@ class Cron extends Front_Controller
 			
 			 if($dlist['delivery_boy_assign']==0){
 				$delivery_boy_list= $this->Cron_model->getall_deliveries_list();
+				//echo '<pre>';print_r($delivery_boy_list);exit;
 				foreach ($delivery_boy_list as $dylist ){
 						//echo '<pre>';print_r($dylist);exit;
-					$deliveryadd=$dylist['deliveryboy_current_location'];
+					if($dylist['address2']!=''){
+						$deliveryadd=$dylist['address2'];
+					}else{
+						$deliveryadd=$dylist['address1'];
+					}
 					$cutomertimevalue=$dlist['customer_seller_timevalue'];
 					$cutomertime=$dlist['customer_seller_time'];
 					$selleraddress=$dlist['selleradd2'];
