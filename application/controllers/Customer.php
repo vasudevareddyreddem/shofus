@@ -1545,7 +1545,18 @@ class Customer extends Front_Controller
 			$customerdetails = $this->customer_model->save_customer($details);
 			
 			if(count($customerdetails)>0){
-			$getdetails = $this->customer_model->get_customer_details($customerdetails);	
+			$getdetails = $this->customer_model->get_customer_details($customerdetails);
+			$this->load->library('email');
+			$this->email->set_newline("\r\n");
+			$this->email->set_mailtype("html");
+			$this->email->from('cartinhours.com');
+			$this->email->to($post['email']);
+			$this->email->subject('Cartinhours - Welcome to cartinhours');
+			$html = $this->load->view('email/welcome', $getdetails, true); 
+			$this->email->message($html);
+			$this->email->send();
+					 
+			
 			$this->session->set_userdata('userdetails',$getdetails);
 			$this->session->set_flashdata('sucesss',"Successfully registered");
 			/*addtocartfunctionality*/
@@ -1963,6 +1974,23 @@ class Customer extends Front_Controller
 						$html =$msg;
 						//echo $html;exit;
 						$this->email->message($html);
+						
+						
+						
+						$this->load->library('email');
+						$this->email->set_newline("\r\n");
+						$this->email->set_mailtype("html");
+						$this->email->from('cartinhours.com');
+						$this->email->to($post['email']);
+						$this->email->subject('Cartinhours - Welcome to cartinhours');
+						$html = $this->load->view('email/forgetpassword', $getdetails, true); 
+						$this->email->message($html);
+						$this->email->send();
+
+						
+						
+						
+						
 						if($this->email->send()){
 							$this->customer_model->login_verficationcode_save($email,$forgotpass['customer_id'],$six_digit_random_number);
 						}else{
