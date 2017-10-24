@@ -387,11 +387,12 @@ class Customer_model extends MY_Model
 			return $this->db->get()->result_array();
 	}
 	public function get_order_items_list($custid,$order_id){
-			$this->db->select('order_items.*,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,orders.payment_type,orders.amount_status,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name')->from('order_items');
+			$this->db->select('order_items.*,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,orders.payment_type,orders.amount_status,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name,invoice_list.invoice_id,invoice_list.invoicename')->from('order_items');
 			$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 			$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
 			$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 			$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
+			$this->db->join('invoice_list', 'invoice_list.order_item_id = order_items.order_item_id', 'left');
 			$this->db->join('locations', 'locations.location_id = billing_address.area', 'left');
 			$this->db->where('order_items.customer_id', $custid);
 			$this->db->where('order_items.order_item_id', $order_id);
@@ -545,6 +546,18 @@ class Customer_model extends MY_Model
 
 		$this->db->where('order_items.order_item_id',$id);
 		return $this->db->get()->row_array();
+	}
+	public function update_invocie_name($order_item_id,$invoicename){
+		
+		//print_r($areaid);exit;
+		$sql1="UPDATE invoice_list SET invoicename ='".$invoicename."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
+	}
+	public function update_invocie_mail_send($order_item_id,$val){
+		
+		//print_r($areaid);exit;
+		$sql1="UPDATE invoice_list SET mail_send ='".$val."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
 	}
 	
 }

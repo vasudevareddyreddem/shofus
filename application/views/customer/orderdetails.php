@@ -149,7 +149,9 @@ tr th:last-child {
 		$currentdate=date('Y-m-d h:i:s A');
 		$tomorrow = date('Y-m-d h:i:s A',strtotime($item_details['create_at'] . "+1 days"));
 		 ?>
+		 
 		<div class="col-md-4" >
+		<a href="<?php echo base_url('assets/downloads/'.$item_details['invoicename']); ?>" class="site_col" href="" target="_blank">View Invoice</a></p>
 		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']=='' && $currentdate<= $tomorrow){ ?>
 		<div><a class="site_col" href="<?php echo base_url('customer/orderrefund/'.base64_encode($item_details['order_item_id'])); ?>"><h5>Return</h5></a></div>
 		<?php } ?>

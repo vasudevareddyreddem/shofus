@@ -506,9 +506,10 @@ class Customer extends Front_Controller
 				
 				}
 			}else{
-				$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+				
 				$save= $this->customer_model->cart_products_save($adddata);
 			if(count($save)>0){
+				$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 				$data['msg']=1;
 				$data['count']=count($countlist);					
 				echo json_encode($data);
@@ -1283,11 +1284,13 @@ class Customer extends Front_Controller
 			
 		}
 		//echo '<pre>';print_r($cart_items);exit;
+		
 		foreach($cart_items as $items){
 		$delete= $this->customer_model->after_payment_cart_item($customerdetails['customer_id'],$items['item_id'],$items['id']);
 		}
 		$data['order_items']= $this->customer_model->get_order_items($order_id);
 		$data['carttotal_amount']= $this->customer_model->get_successorder_total_amount($order_id);
+		$pdfFilePath='';
 		foreach ($data['order_items'] as $list){
 			//echo '<pre>';print_r($list);exit;
 			
@@ -1331,8 +1334,10 @@ class Customer extends Front_Controller
 		
 		//echo $html;exit;
 		$this->email->message($htmlmessage);
-		$this->email->send();
-		
+		if($this->email->send()){
+			$this->customer_model->update_invocie_mail_send($list['order_item_id'],1);
+		}
+		$this->customer_model->update_invocie_name($list['order_item_id'],$file_name);
 			
 		}
 		

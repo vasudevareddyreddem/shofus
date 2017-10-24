@@ -118,11 +118,16 @@
 		 <table class="table table-detail">
 		 
 		 <?php 
-		 //echo '<pre>';print_r($colors_list);exit ;
+		 //echo '<pre>';print_r($products_list);exit ;
 		 $currentdate=date('Y-m-d h:i:s A');
 				if($products_list['offer_expairdate']>=$currentdate){
 				$item_price= ($products_list['item_cost']-$products_list['offer_amount']);
-				$percentage= $products_list['offer_percentage'];
+				if($products_list['offer_percentage']==''){
+					$percentage= 0;
+				}else{
+					$percentage= $products_list['offer_percentage'];
+				}
+				
 				$orginal_price=$products_list['item_cost'];
 				}else{
 					//echo "expired";
@@ -130,12 +135,15 @@
 					$prices= ($products_list['item_cost']-$products_list['special_price']);
 					$percentage= (($prices) /$products_list['item_cost'])*100;
 					$orginal_price=$products_list['item_cost'];
-				} ?>
+				}
+				?>
             <tbody>
               <tr>
                 <td>Price</td>
                 <td><div class="price">
-                    <div class="site_col"><span style="font-weight:400;font-size:23px;"> ₹<?php echo number_format($item_price, 2 ); ?></span> &nbsp;<span class="price-old"><?php echo number_format($orginal_price, 2); ?></span> <span class="text-success"><?php echo number_format($percentage, 2, '.', ''); ?>% Off</span></div>
+                    <div class="site_col"><span style="font-weight:400;font-size:23px;"> ₹<?php echo number_format($item_price, 2 ); ?></span> &nbsp;
+					<span class="price-old"><?php echo number_format($orginal_price, 2); ?></span>
+					<span class="text-success"><?php echo number_format((int)$percentage, 2,'.',''); ?>% Off</span></div>
                   </div>
 				</td>
               </tr>
@@ -1194,9 +1202,11 @@ jQuery.ajax({
            if(data.msg==0){
 					window.location='<?php echo base_url("customer/"); ?>'; 
 				}else{
+						jQuery('#supcounts').show();
 						jQuery('#sucessmsg').show();
 						$("#supcount").empty();
 						$("#supcount").append(data.count);
+						$("#supcounts").append(data.count);
 						if(data.msg==2){
 						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> Product already exits <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}

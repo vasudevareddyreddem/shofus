@@ -208,10 +208,9 @@
 				<?php if(count($cartitemcount)>0){ ?>
 						<span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #45b1b9;padding:0px 4px;border-radius:25%;color:#45b1b9">
 					<?php echo count($cartitemcount); ?>
-						<?php
-						}else{ 
-						echo "";
-						}?>
+						<?php }else{  ?>
+						<span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #45b1b9;padding:0px 4px;border-radius:25%;color:#45b1b9;">
+						<?php }?>
 				
 				</span>
 			</span>
@@ -316,6 +315,7 @@
 <script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script> 
 <script type="text/javascript">
 
+$("#supcounts").hide();
 $("#fademaskpurpose").addClass("mask_hide");
 function locationopenpopup (){
 $('#removepopuplocation').show();
