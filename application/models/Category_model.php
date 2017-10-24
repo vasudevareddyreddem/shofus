@@ -20,6 +20,7 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('item_name', $name);
 		$this->db->group_by('colour');
+		$this->db->where('colour!=','');
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
 	}
@@ -29,6 +30,7 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('item_name', $name);
 		$this->db->group_by('internal_memeory');
+		$this->db->where('internal_memeory!=','');
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
 	}
@@ -38,6 +40,7 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('item_name', $name);
 		$this->db->group_by('ram');
+		$this->db->where('ram!=','');
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
 	}
