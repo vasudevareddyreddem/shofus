@@ -173,7 +173,7 @@ tfoot input {
      </form>
 	<script type="text/javascript">
 	function IsMobile<?php echo $subcategory->subcategory_id;?>(reasontype) {
-        var regex = /^[0-9]+$/;
+        var regex = /^[0-9.]+$/;
         return regex.test(reasontype);
 	}
 	$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $kk; ?>').hide();

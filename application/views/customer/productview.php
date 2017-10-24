@@ -106,7 +106,7 @@
               
 			<?php endif; ?>
 			<input type="hidden" name="orginalproductqty" id="orginalproductqty" value="<?php echo $products_list['item_quantity']; ?>" >
-          <div class="title-detail"><?php echo $products_list['item_name']; ?>&nbsp; <?php echo isset($products_list['colour'])?$products_list['colour']:''; ?>&nbsp; <?php echo isset($products_list['internal_memeory'])?$products_list['internal_memeory']:''; ?>&nbsp; <?php echo isset($products_list['ram'])?'('.$products_list['ram'].'Ram'.')':''; ?></div>
+          <div class="title-detail"><?php echo $products_list['item_name']; ?>&nbsp;<?php echo isset($products_list['colour'])?$products_list['colour']:''; ?>&nbsp;<?php echo isset($products_list['internal_memeory'])?$products_list['internal_memeory']:''; ?>&nbsp;<?php echo isset($products_list['ram'])?'('.$products_list['ram'].' Ram'.')':''; ?></div>
 		  <?php if(count($colors_list)>0){ ?>
 		  <form action="<?php echo base_url('customer/addcart'); ?>" onsubmit="return validation();" method="Post" name="addtocart" id="addtocart" >
 		  <?php }else{ ?>
@@ -169,8 +169,9 @@
 							
 							<td>
 								<div class="row">
-								<?php foreach ($sameproducts_color_list as $lists){ ?>
-								<a class="col-md-2 img_col" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="Black">
+								<?php //echo '<pre>';print_r($sameproducts_color_list);exit;
+								foreach ($sameproducts_color_list as $lists){ ?>
+								<a class="col-md-2 img_col" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:auto;width:32px;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
 								<?php   } ?>

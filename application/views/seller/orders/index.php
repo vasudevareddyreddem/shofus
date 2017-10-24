@@ -147,7 +147,7 @@ return confirm('Are you sure want to delete "'+id +'" Order?');
 }
 $(document).ready(function() {
     $('#example1').DataTable( {
-        "order": [[ 1, "desc" ]]
+        "order": [[ 0, "desc" ]]
     } );
 } );
 

@@ -51,7 +51,11 @@ class DeliveryboyApi extends REST_Controller {
 	{
 		$customer_id=$this->input->get('customer_id');
 		$role_id=$this->input->get('role_id');	
-		$address=$this->input->get('address');	
+		$address1=$this->input->get('address1');	
+		$address2=$this->input->get('address2');	
+		$city=$this->input->get('city');	
+		$state=$this->input->get('state');	
+		$pincode=$this->input->get('pincode');	
 		if($customer_id==''){
 		$message = array('status'=>1,'message'=>'customer id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -59,15 +63,34 @@ class DeliveryboyApi extends REST_Controller {
 		}elseif($role_id==''){
 		$message = array('status'=>1,'message'=>'Role is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-		}elseif($address==''){
-		$message = array('status'=>1,'message'=>'Address required!');
+		}elseif($address1==''){
+		$message = array('status'=>1,'message'=>'Address1 is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}elseif($address2==''){
+		$message = array('status'=>1,'message'=>'Address2 is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}elseif($city==''){
+		$message = array('status'=>1,'message'=>'City is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}elseif($state==''){
+		$message = array('status'=>1,'message'=>'State is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}elseif($pincode==''){
+		$message = array('status'=>1,'message'=>'Pincode is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 		if($role_id==6){
 					$getdeliverbiy_details=$this->Deliveryboyapi_model->get_deliveryboy_details($customer_id,$role_id);
 					if(count($getdeliverbiy_details)>0){
 						
-						$update=$this->Deliveryboyapi_model->update_deliveryboy_address($customer_id,$address);
+						$adress=array(
+						'address1'=>$address1,
+						'address2'=>$address2,
+						'city'=>$city,
+						'state'=>$state,
+						'pincode'=>$pincode,
+						);
+						$update=$this->Deliveryboyapi_model->update_deliveryboy_address($customer_id,$adress);
 						if(count($update)>0){
 							$message = array('status'=>1,'message'=>'AddressSuccessfully updated');
 							$this->response($message, REST_Controller::HTTP_OK);

@@ -41,7 +41,7 @@
 				<th>Item Price</th>
 				<th>Qty</th>
 				<th>Total price</th>
-				<th> Customer Billing Details</th>
+				<th>Customer Billing Details</th>
 				<th>Status</th>
               
                     </tr>
@@ -125,7 +125,7 @@ return confirm('Are you sure want to delete "'+id +'" Order?');
 
     $(document).ready(function() {
     $('#example1').DataTable( {
-        "order": [[ 2, "desc" ]]
+        "order": [[ 0, "desc" ]]
     } );
 } );
   </script> 
