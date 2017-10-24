@@ -2,6 +2,7 @@
 .top-navbar1{
 	display:none;
 }
+
 .panel-title > a:before {
     float: right !important;
     font-family: FontAwesome;
@@ -38,7 +39,7 @@
 #input-number {
 	padding: 7px;
 	margin: 15px 5px 5px;
-	width: 70px;
+	width: 110px;
 }
 </style>
 <!--<div class="" style="margin-top:50px;">
