@@ -144,35 +144,35 @@ table td.grand {
       
       <h1>INVOICE </h1>
 	   <div class="clearfix">
-		<div style="float: left;" > <b>Sold By:</b> <span>Consulting Rooms Private Limited ,</span></div>
-		<div style="float: right;"> <b>Invoice Number </b># FABBMR1800050481 </div>
+		<div style="float: left;" > <b>Sold By:</b> <span><?php echo isset($details['store_name'])?$details['store_name']:'';  ?> ,</span></div>
+		<div style="float: right;"> <b>Invoice Number </b># <?php echo isset($details['order_item_id'])?$details['order_item_id']:'';  ?><?php echo isset($details['invoice_id'])?$details['invoice_id']:'';  ?> </div>
 	  </div> 
 	  <div class="">
-		<p > <i><b>Ship-from Address:</b> </span>Survey No. 518, 527, 528, 529, & 530, Door No 14-7/5, Archana colony, Kistapur Village, Opp.RDC Concretes,
-				Medchal, R.R. District, Hyderabad, Telangana, India - 501401, IN-TS</span></i></p>
+		<p > <i><b>Ship-from Address:</b> </span><?php echo isset($details['sadd1'])?$details['sadd1']:'';  ?>, <?php echo isset($details['sadd2'])?$details['sadd2']:'';  ?>,
+		<?php echo isset($details['Spin'])?$details['Spin']:'';  ?></span></i></p>
 	  </div>
+	  <?php if(isset($details['gstin']) && $details['gstin']!=''){ ?>
 	  <div class="">
-		<p > <b>GSTIN</b> </span> - 36AAGCC4236P1ZA</span></p>
+		<p > <b>GSTIN</b> </span> - <?php echo isset($details['gstin'])?$details['gstin']:'';  ?></span></p>
 	  </div>
+	  <?php } ?>
 	  <hr>
       
       <div id="project" style=" width:250px;">
-        <div><span>Order ID:</span> OD110472952447668000</div>
-        <div><span>Order Date:</span> 13-10-2017</div>
-        <div><span>Invoice Date:</span> 13-10-2017</div>
-        <div><span>PAN:</span> aagcc4236p</div>
-        <div><span>CIN:</span>U74900DL2016PTC291626</div>
+        <div><span>Order ID:</span> <?php echo isset($details['order_item_id'])?$details['order_item_id']:'';  ?></div>
+        <div><span>Order Date:</span> <?php echo isset($details['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($details['create_at']))):'';  ?></div>
+        <div><span>Invoice Date:</span> <?php echo isset($details['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($details['create_at']))):'';  ?></div>
         
       </div>
 	  <div id="project" style=" width:200px;" >
-        <div><h3>Delivery Address</h3></div>
-        <div><p  style="word-wrap: break-word;">MIG-103 , 3 RD FLOOR , DHARMAREDDY colony , phase 2 , near pooja hospital , opp to rajashekar enclave , opp to RAJASHEKAR ENCLAVE , near pooja hospital,Hyderabad - 500072 ,Andhra Pradesh,Mob. 9494422779</p>
+        <div><h3>Billing Address</h3></div>
+        <div><p  style="word-wrap: break-word;"><?php echo isset($details['cust_firstname'])?$details['cust_firstname']:'';  ?>&nbsp;<?php echo isset($details['cust_lastname'])?$details['cust_lastname']:'';  ?>, <?php echo isset($details['cust_email'])?$details['cust_email']:'';  ?> ,<?php echo isset($details['address1'])?$details['address1']:'';  ?>,<?php echo isset($details['address2'])?$details['address2']:'';  ?> , <?php echo isset($details['cpin'])?$details['cpin']:'';  ?>.</p>
 		</div>
       </div> 
 	 
 	  <div id="project" style=" width:200px;">
-        <div><h3>Ship To</h3></div>
-        <div><p  style="word-wrap: ">MIG-103 , 3 RD FLOOR , DHARMAREDDY colony , phase 2 , near pooja hospital , opp to rajashekar enclave , opp to RAJASHEKAR ENCLAVE , near pooja hospital,Hyderabad - 500072 ,Andhra Pradesh,Mob. 9494422779</p>
+        <div><h3>Shipping Address</h3></div>
+        <div><p  style="word-wrap: "><?php echo isset($details['name'])?$details['name']:'';  ?>, <?php echo isset($details['customer_address'])?$details['customer_address']:'';  ?>, <?php echo isset($details['city'])?$details['city']:'';  ?> , <?php echo isset($details['state'])?$details['state']:'';  ?> , <?php echo isset($details['pincode'])?$details['pincode']:'';  ?> .</p>
 		</div>
       </div>
 
@@ -186,28 +186,22 @@ table td.grand {
             <th class="desc">Title</th>
             <th>Qty</th>
             <th>Gross Amount ?</th>
+            <th>Delivery Amount</th>
             <th>Discount </th>
             <th>TOTAL</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="service">Multi Function Printers FSN: PRNEBNZCUXP6FPZC HSN/SAC: 84433100</td>
-            <td class="desc">Canon Pixma MG3670 Multi-function Wireless Printer Warranty: 1 Year Canon Carry In Warranty 1. [IMEI/Serial No: 4549292036428 ] CGST: 14.000 % SGST/UTGST: 14.000 %</td>
-            <td class="unit">50</td>
-            <td class="qty">1100.00</td>
-            <td class="total">1,040.00</td>
-            <td class="total">1,040.00</td>
+            <td class="service"><?php echo isset($details['subcategory_name'])?$details['subcategory_name']:'';  ?></td>
+            <td class="desc"><?php echo isset($details['item_name'])?$details['item_name']:'';  ?>&nbsp;<?php echo isset($details['product_code'])?$details['product_code']:'';  ?></td>
+            <td class="unit"><?php echo isset($details['qty'])?$details['qty']:'';  ?></td>
+            <td class="qty"><?php echo number_format(isset($details['item_price'])?$details['item_price']:'', 2);  ?></td>
+            <td class="qty"><?php echo isset($details['delivery_amount'])?$details['delivery_amount']:'';  ?></td>
+            <td class="total"><?php echo number_format($details['total_price'], 2);  ?></td>
+            <td class="total"><?php echo number_format($details['total_price']+$details['delivery_amount'], 2);  ?></td>
           </tr>
 		 
-		  <tr style="font-weight:600">
-         
-            <td class="desc " colspan="2" style="text-align:right">Total</td>
-            <td class="unit">50</td>
-            <td class="qty">1100.00</td>
-            <td class="total">1,040.00</td>
-            <td class="total">1,040.00</td>
-          </tr> 
 		  <tr >
          
             <td class="desc " colspan="3" style="text-align:left;"><b>Notice
@@ -215,7 +209,7 @@ table td.grand {
 					manufacturer box for warranty purposes.</span></td> 
 			<td class="desc " style="text-align:right;font-size:17px">Total</td>
             
-            <td  style="font-size:17px" colspan="2" ><b>1,040.00</b></td>
+            <td  style="font-size:17px" colspan="2" ><b><?php echo number_format($details['total_price']+$details['delivery_amount'], 2);  ?></b></td>
             
           </tr>
 		  <tr>
