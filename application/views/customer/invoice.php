@@ -114,18 +114,12 @@ table td.service,
 table td.desc {
   vertical-align: top;
 }
-
-table td
-{
-  font-size: 22px;
-  color:444;
-}
-
 table th,
+table td,
 table td.desc
 {
   font-size: 22px;
-  color:222;
+
 }
 
 table td.grand {
