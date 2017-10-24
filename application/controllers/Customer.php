@@ -483,9 +483,10 @@ class Customer extends Front_Controller
 									$rid[]=$pids['item_id'];
 					}
 				if(in_array($post['producr_id'],$rid)){
-					
+						$countlist= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 						$this->session->set_flashdata('productsuccess','Product already exits');
 						$data['msg']=2;
+						$data['count']=count($countlist);	
 						echo json_encode($data);
 					
 				
