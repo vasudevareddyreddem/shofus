@@ -303,14 +303,14 @@ function getareapincode(val){
 				$('#deliverymsg').html('Delivery within ' +data.time).css("color", "black");
 				
 			}else{
-				$('#deliverymsg').html('DDelivery within 4 hours').css("color", "black");
+				$('#deliverymsg').html('Delivery within 4 hours').css("color", "black");
 			}
          
 
         }
       });
 	}else{
-		$('#deliverymsg').html('Pincode lenth must be 6 digits only.').css("color", "red");
+		$('#deliverymsg').html('Pincode length must be 6 digits only.').css("color", "red");
 		
 	}
 }

@@ -24,8 +24,10 @@ class Deliveryboyapi_model extends MY_Model
 	}
 	public function update_deliveryboy_address($cust_id,$add){
 
-		$sql1="UPDATE customers SET deliveryboy_current_location ='".$add."' WHERE customer_id = '".$cust_id."'";
-       	return $this->db->query($sql1);
+		//$sql1="UPDATE customers SET deliveryboy_current_location ='".$add."' WHERE customer_id = '".$cust_id."'";
+       	//return $this->db->query($sql1);
+		$this->db->where('customer_id', $cust_id);
+		return $this->db->update('customers', $add);
 	}
 	public function order_status_updated($cust_id,$order_item_id,$status,$status1){
 

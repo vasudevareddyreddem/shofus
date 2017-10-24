@@ -312,7 +312,7 @@ function couponcodeapply(){
 	}else if(coupon.length ==6){
 		$('#couponerrormsg').html('Promo Code is invalid. Please use another one').css("color", "red");
 	}else{
-		$('#couponerrormsg').html('Promo Code lenth must be 6 characters.').css("color", "red");
+		$('#couponerrormsg').html('Promo code length must be 6 characters.').css("color", "red");
 		return false;
 	}
 	
@@ -358,7 +358,7 @@ function getareapincode(val){
         }
       });
 	}else{
-		$('#deliverymsg').html('Pincode lenth must be 6 digits only.').css("color", "red");
+		$('#deliverymsg').html('Pincode length must be 6 digits only.').css("color", "red");
 		
 	}
 }

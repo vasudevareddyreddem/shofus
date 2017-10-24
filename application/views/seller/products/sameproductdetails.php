@@ -477,7 +477,7 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Images1</label>
+				 <label for="exampleInputEmail1">Image1</label>
 				<input type="file" onchange="enablesubbmit();" name='picture1' id="picture1"  class="form-control" >
 			</div>
 			<span id="uploadimgerror"></span>
@@ -485,7 +485,7 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 		
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Images2</label>
+				 <label for="exampleInputEmail1">Image2</label>
 				<input type="file" name='picture2' id="picture2"  class="form-control" >
 			</div>
 		</div>
@@ -493,13 +493,13 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Images3</label>
+				 <label for="exampleInputEmail1">Image3</label>
 				<input type="file" name='picture3' id="picture3"  class="form-control" >
 			</div>
 		</div>
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Images4</label>
+				 <label for="exampleInputEmail1">Image4</label>
 				<input type="file" name='picture4' id="picture4"  class="form-control" >
 			</div>
 		</div>
@@ -507,13 +507,13 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Images5</label>
+				 <label for="exampleInputEmail1">Image5</label>
 				<input type="file" name='picture5' id="picture5"  class="form-control" >
 			</div>
 		</div>
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Images6</label>
+				 <label for="exampleInputEmail1">Image6</label>
 				<input type="file" name='picture6' id="picture6"  class="form-control" >
 			</div>
 		</div>
@@ -521,13 +521,13 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Images7</label>
+				 <label for="exampleInputEmail1">Image7</label>
 				<input type="file" name='picture7' id="picture7"  class="form-control" >
 			</div>
 		</div>
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Images7</label>
+				 <label for="exampleInputEmail1">Image8</label>
 				<input type="file" name='picture8' id="picture8"  class="form-control" >
 			</div>
 		</div>

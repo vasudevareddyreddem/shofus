@@ -301,7 +301,19 @@ $(document).ready(function(){
 		   if(specialprice==''){
 			   $('#errormsgvalidation').html('Please enter special price');
 			  return false;
-		   }else if(desc==''){
+		   }
+		  
+			   if (!IsMobile(specialprice)) {
+            $("#errormsgvalidation").html("Please Enter Correct special price").css("color", "red");
+            jQuery('#seller_mobile').focus();
+            return false;
+            } 
+			if(Number(specialprice) > Number(price)){
+				  $('#errormsgvalidation').html('special price must be less than price');
+				  return false;
+			   }
+			   $('#errormsgvalidation').html('');
+		   if(desc==''){
 			    $('#descerrormsg').html('Description is required').css("color", "red");
 			  return false;
 			   
@@ -313,7 +325,7 @@ $(document).ready(function(){
 				var fileName = fup.value;
 				var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
 				if(ext !=''){
-					if(ext == "png" || ext == "jpg" || ext == "gif")
+					if(ext == "png" || ext == "jpg" || ext == "gif" || ext == "jpeg")
 					{
 					jQuery('#uploadimgerror').html('');
 					} else{
@@ -322,21 +334,11 @@ $(document).ready(function(){
 					}
 				}
 			   
-		   }else{
-			   $('#descerrormsg').html('');
-			   if (!IsMobile(specialprice)) {
-            $("#errormsgvalidation").html("Please Enter Correct special price").css("color", "red");
-            jQuery('#seller_mobile').focus();
-            return false;
-            } 
-			   if(Number(specialprice) > Number(price)){
-				  $('#errormsgvalidation').html('special price must be less than price');
-				  return false;
-			   }else{
-				  return true;
-			   }
-		   
 		   }
+			  $('#descerrormsg').html('');
+			   
+		   
+		  
 		  // return false;
 	   }
 	   
