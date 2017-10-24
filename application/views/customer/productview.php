@@ -176,6 +176,7 @@
 				  if(isset($sameproducts_color_list) && count($sameproducts_color_list)>0){
 				  if($products_list['category_id']==20){ ?>
 						
+						
 						<tr>
 							<td>Color </td>
 							
