@@ -361,7 +361,7 @@ function getareapincode(val){
         }
       });
 	}else{
-		$('#deliverymsg').html('Pincode lenth must be 6 digits only.').css("color", "red");
+		$('#deliverymsg').html('Pincode length must be 6 digits only.').css("color", "red");
 		
 	}
 }
