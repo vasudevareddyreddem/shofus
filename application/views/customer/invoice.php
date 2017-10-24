@@ -114,11 +114,12 @@ table td.service,
 table td.desc {
   vertical-align: top;
 }
+table th,
+table td,
+table td.desc
+{
+  font-size: 22px;
 
-table td.unit,
-table td.qty,
-table td.total {
-  font-size: 1.2em;
 }
 
 table td.grand {
@@ -141,11 +142,12 @@ table td.grand {
   <body>
 
     <header class="clearfix ">
-      
+     
       <h1>INVOICE </h1>
 	   <div class="clearfix">
-		<div style="float: left;" > <b>Sold By:</b> <span><?php echo isset($details['store_name'])?$details['store_name']:'';  ?> ,</span></div>
-		<div style="float: right;"> <b>Invoice Number </b># <?php echo isset($details['order_item_id'])?$details['order_item_id']:'';  ?><?php echo isset($details['invoice_id'])?$details['invoice_id']:'';  ?> </div>
+		<div ><span style="float:left"> <b>Sold By:</b> <span><?php echo isset($details['store_name'])?$details['store_name']:'';  ?> ,</span></span>
+		<span  style="float:right;"> <b>Invoice Number </b># <?php echo isset($details['order_item_id'])?$details['order_item_id']:'';  ?><?php echo isset($details['invoice_id'])?$details['invoice_id']:'';  ?> </span>
+		</div>
 	  </div> 
 	  <div class="">
 		<p > <i><b>Ship-from Address:</b> </span><?php echo isset($details['sadd1'])?$details['sadd1']:'';  ?>, <?php echo isset($details['sadd2'])?$details['sadd2']:'';  ?>,
@@ -158,7 +160,7 @@ table td.grand {
 	  <?php } ?>
 	  <hr>
       
-      <div id="project" style=" width:250px;">
+      <div id="project" style="width:250px;">
         <div><span>Order ID:</span> <?php echo isset($details['order_item_id'])?$details['order_item_id']:'';  ?></div>
         <div><span>Order Date:</span> <?php echo isset($details['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($details['create_at']))):'';  ?></div>
         <div><span>Invoice Date:</span> <?php echo isset($details['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($details['create_at']))):'';  ?></div>
@@ -204,7 +206,7 @@ table td.grand {
 		 
 		  <tr >
          
-            <td class="desc " colspan="3" style="text-align:left;"><b>Notice
+            <td class="desc " colspan="4" style="text-align:left;"><b>Notice
 :</b> <span class="notice">*Keep this invoice and
 					manufacturer box for warranty purposes.</span></td> 
 			<td class="desc " style="text-align:right;font-size:17px">Total</td>
@@ -216,7 +218,7 @@ table td.grand {
             <td class="desc " colspan="6" style="text-align:right;font-size:17px;background:none;">&nbsp;</td>
           </tr>
 		  <tr>
-            <td class="desc " colspan="6" style="text-align:right;font-size:17px;background:none;">Authorized Signatory</td>
+            <td class="desc " colspan="7" style="text-align:right;font-size:17px;background:none;">Authorized Signatory</td>
           </tr>
         </tbody>
       </table>
