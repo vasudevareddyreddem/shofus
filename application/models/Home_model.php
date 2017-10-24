@@ -129,7 +129,9 @@ class Home_model extends CI_Model
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('season_sales.*,products.*')->from('season_sales');
 		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
-		$this->db->where('seller_location_area',$id);
+		if(isset($id) && $id!=''){
+		$this->db->where('products.seller_location_area',$id);	
+		}
 		$this->db->order_by('season_sales.offer_percentage ASC');
 		$this->db->where('season_sales.preview_ok',1);
 		$this->db->where('products.item_status',1);

@@ -1546,6 +1546,7 @@ class Customer extends Front_Controller
 			
 			if(count($customerdetails)>0){
 			$getdetails = $this->customer_model->get_customer_details($customerdetails);
+			//print_r($getdetails);
 			$this->load->library('email');
 			$this->email->set_newline("\r\n");
 			$this->email->set_mailtype("html");
@@ -1553,6 +1554,7 @@ class Customer extends Front_Controller
 			$this->email->to($post['email']);
 			$this->email->subject('Cartinhours - Welcome to cartinhours');
 			$html = $this->load->view('email/welcome', $getdetails, true); 
+			echo $html;exit;
 			$this->email->message($html);
 			$this->email->send();
 					 

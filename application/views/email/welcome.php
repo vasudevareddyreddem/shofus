@@ -1,4 +1,4 @@
-
+<?php //echo '<pre>';print_r();exit; ?>
   <table width="100%"  style="max-width:650px;margin:0 auto" cellspacing="0" cellpadding="0" height="60"> 
    <tbody>
     <tr style="background:#45b1b9">
@@ -15,7 +15,7 @@
 			 </span>
 			 
 		 </td> 
-         <td style="width:50%;text-align:right;color:rgba(255,255,255,0.8);font-family:'Roboto-Medium',sans-serif;font-size:14px;font-style:normal;font-stretch:normal;padding-right:16px"> <b>WELCOME</b> </td> 
+         <td style="width:50%;text-align:right;color:rgba(255,255,255,0.8);font-family:'Roboto-Medium',sans-serif;font-size:14px;font-style:normal;font-stretch:normal;padding-right:16px"> <b>WELCOME: <?php echo isset($cust_firstname)?$cust_firstname:''; ?>&nbsp;<?php echo isset($cust_lastname)?$cust_lastname:''; ?></b> </td> 
         </tr> 
        </tbody>
       </table> 

@@ -94,7 +94,7 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Serial No</th>
+                                            <th>Order id</th>
                                             <th>Customer Name</th>
                                             <th>Product Name</th>
                                             <th>Product Price</th>
@@ -103,10 +103,10 @@
                                     </thead>
                                     <tbody>
                                     <?php $SNO=1;
-                                    foreach($ordersdata as $order_data){ ?>
+									foreach($ordersdata as $order_data){ ?>
                                         <tr >
                                             
-                                            <td><?= $SNO; ?></td>
+                                            <td><?php  echo $order_data->order_item_id; ?></td>
                                             <td><?php  echo $order_data->cust_firstname .' '. $order_data->cust_lastname; ?></td>
                                             <td><?php  echo $order_data->item_name; ?></td>
                                             <td><?php  echo $order_data->total_price; ?></td>
