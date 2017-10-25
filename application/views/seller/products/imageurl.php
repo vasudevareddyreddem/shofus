@@ -36,7 +36,7 @@
 				 <label for="exampleInputEmail1">Image</label>
 				<input type="file" onchange="enablesubbmit();"  name='picture1' id="picture1"  class="form-control" >
 			</div>
-			<span id="uploadimgerror"></span>
+			<span  style="color:red" id="othererrors"></span>
 		</div>
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -61,6 +61,20 @@
 
 <script>
 function enablesubbmit(id){
+	
+	var fup = document.getElementById('picture1');
+		var fileName = fup.value;
+		var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+		if(ext !=''){
+			if(ext == "png" || ext == "jpg" || ext == "jpeg" )
+			{
+			jQuery('#othererrors').html('');
+			} else{
+			jQuery('#othererrors').html('Uploaded file is not a valid. Only png,jpg,jpeg files are allowed');
+			fup.focus();
+			return false;
+			}
+		}
 	var file_data    = $('#picture1').prop('files')[0];
 		var form_data    = new FormData();
         form_data.append('sellerid', jQuery("#picture1").val());
