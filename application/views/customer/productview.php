@@ -2242,7 +2242,7 @@ $(document).ready(function() {
                 gcBase.addLoader(gcBase.gcThumbsLi[i]);
             }
             if (gcBase.config.isThumbsOneRow == true) {
-                gcBase.gcThumbsLi.last().css('margin-right', 0);
+                gcBase.gcThumbsLi.last().css('display:none');
             }
             else {
                 gcBase.gcThumbsUl.find(':nth-child(' + gcBase.config.nrThumbsPerRow + 'n)').css('margin-right', 0);
