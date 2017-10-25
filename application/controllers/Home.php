@@ -42,6 +42,7 @@ public function index()
 	 
 	 if(isset($post['locationid']) && $post['locationid']!=''){
 		 
+			//echo '<pre>';print_r($post);exit;
 			$locationdata= $this->home_model->getlocations();
 			$loacationname=array();
 				foreach ($locationdata as $list){

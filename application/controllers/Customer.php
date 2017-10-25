@@ -2255,27 +2255,24 @@ class Customer extends Front_Controller
 		$ids=$this->session->userdata('location_ids');
 		if($type=='top' && $location!='location'){
 		$data['products'] = $this->home_model->get_top_offers($location);
-		}else{
+		//echo $this->db->last_query();exit;
+		}else if($type=='top'){
 			$data['products'] = $this->home_model->get_search_top_offers($ids);
-		}
-		if($type=='tren' && $location!='location'){
+		}else if($type=='tren' && $location!='location'){
 			$data['products'] = $this->home_model->get_trending_products($location);
-		}else{
+		}else if($type=='tren'){
 			$data['products'] = $this->home_model->get_search_trending_products($ids);
-		}
-		if($type=='offer' && $location!='location'){
+		}else if($type=='offer' && $location!='location'){
 			$data['products'] = $this->home_model->get_offer_for_you($location);
-		}else{
+		}else if($type=='offer'){
 			$data['products'] = $this->home_model->get_search_offer_for_you($ids);
-		}
-		if($type=='deal' && $location!='location'){
+		}else if($type=='deal' && $location!='location'){
 			$data['products'] = $this->home_model->get_deals_of_the_day($location);
-		}else{
+		}else if($type=='deal'){
 			$data['products'] = $this->home_model->get_search_deals_of_the_day($ids);
-		}
-		if($type=='season' && $location!='location'){
+		}else if($type=='season' && $location!='location'){
 			$data['products'] = $this->home_model->get_season_offers($location);
-		}else{
+		}else if($type=='season'){
 			$data['products'] = $this->home_model->get_search_season_sales($ids);
 		}
 		$data['type'] = $type;
