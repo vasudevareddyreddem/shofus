@@ -181,6 +181,7 @@
 							<td>Color </td>
 							
 							<td>
+							<?php if(count($sameproducts_color_list)>1){ ?>
 								<div class="row">
 								<?php //echo '<pre>';print_r($sameproducts_color_list);exit;
 								foreach ($sameproducts_color_list as $lists){ ?>
@@ -196,6 +197,17 @@
 								
 								<?php   } ?>
 								</div>
+							<?php }else{ ?>
+							<div class="row">
+								<?php //echo '<pre>';print_r($sameproducts_color_list);exit;
+								foreach ($sameproducts_color_list as $lists){ ?>
+								<a class="col-md-2 img_col" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
+									<img style="height:auto;width:32px;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
+								</a>
+								<?php   } ?>
+								</div>
+							
+							<?php } ?>
 							</td>
 						</tr>
 						
@@ -207,6 +219,7 @@
 						<tr>
 							<td>Size </td>
 							<td>
+							<?php if(count($sameproducts_size_list)>1){ ?>
 								<div class="row">
 								<?php foreach ($sameproducts_size_list as $lists){ ?>
 								
@@ -229,6 +242,19 @@
 								<?php   } ?>
 								
 								</div>
+								
+							<?php }else{ ?>
+							<div class="row">
+								<?php foreach ($sameproducts_size_list as $lists){ ?>
+										<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>">
+											<div style="font-size:16px"  class="col-md-2 img_col text-center" >
+											<span  ><?php echo $lists['internal_memeory'];?></span>
+											</div>
+										</a>
+									<?php   } ?>
+								
+								</div>
+							<?php } ?>
 							</td>
 						</tr>
 						
@@ -240,6 +266,8 @@
 						<tr>
 							<td>RAM </td>
 							<td>
+							
+							<?php if(count($sameproducts_ram_list)>1){ ?>
 								<div class="row">
 								<?php foreach ($sameproducts_ram_list as $lists){ ?>
 								
@@ -256,8 +284,20 @@
 								
 								
 								<?php   } ?>
-								
 								</div>
+							<?php }else{ ?>
+							<div class="row">
+								<?php foreach ($sameproducts_ram_list as $lists){ ?>
+								
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px"  class="col-md-2 img_col text-center" >
+								<span ><?php echo $lists['ram'];?></span>
+								</div></a>
+								
+								
+								
+								<?php   } ?>
+								</div>
+							<?php } ?>
 							</td>
 						</tr>
 						

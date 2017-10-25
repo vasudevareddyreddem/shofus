@@ -1595,6 +1595,33 @@ public function returns()
 		}
 
 	}
+	public function imageslist(){
+		$data['imglist']=$this->products_model->get_images_list($this->session->userdata('seller_id'));
+		$this->template->write_view('content', 'seller/products/imageslist',$data);
+		$this->template->render();
+	}
+	public function imageurllist(){
+		$this->template->write_view('content', 'seller/products/imageurl');
+		$this->template->render();
+	}
+	public function getimageurl(){
+		$post=$this->input->post();
+		move_uploaded_file($_FILES["picture1"]["tmp_name"], "assets/imageurl/" .$_FILES["picture1"]["name"]);	
+		$imgdata = array(
+		'img_name' => $_FILES["picture1"]["name"],
+		'created_at' => date('Y-m-d H:i:s'),    
+		'seller_id' =>$this->session->userdata('seller_id'), 
+		);
+		$saveimage=$this->products_model->save_imageurl_data($imgdata);
+		if(count($saveimage)>0){
+			$data['msg']=1;
+			$data['url']=base_url('assets/imageurl/'.$_FILES["picture1"]["name"]);
+			echo json_encode($data);
+		}else{
+			$data['msg']=2;
+			echo json_encode($data);
+		}
+	}
 		
 
 }

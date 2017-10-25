@@ -552,5 +552,14 @@ public function getproductapproval()
 		return $query->result();
 	
 }
+ function save_imageurl_data($data){
+		$this->db->insert('image_urls', $data);
+		return $insert_id = $this->db->insert_id();
+	} 
+	function get_images_list($id){
+		$this->db->select('*')->from('image_urls');
+		$this->db->where('seller_id',$id);
+		return $this->db->get()->result_array();
+	}
 	
 }

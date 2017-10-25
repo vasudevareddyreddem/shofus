@@ -96,6 +96,11 @@
                             <i class="fa fa-envelope-open-o"></i><span>Seller Support</span>
                         </a>                        
                     </li>
+					<li class="treeview">
+                        <a href="<?php echo base_url('seller/products/imageurllist');?>">
+                            <i class="fa fa-envelope-open-o"></i><span>Imageurl</span>
+                        </a>                        
+                    </li>
                     <!-- <?php if($bank_link['0']['bank_complete']==1) {?> -->
                     <!-- <li class="treeview">
                         <a href="<?php echo base_url('seller/dashboard/linkaccout');?>">
