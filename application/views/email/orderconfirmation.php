@@ -54,7 +54,6 @@
 				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:12px"> </p>
 				 <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif"> Your order <span style="font-size:12px;font-family:'Roboto',sans-serif">will be delivered by <?php echo isset($order_items[0]['create_at'])?Date('M-d-Y',strtotime(htmlentities($order_items[0]['create_at']))):'';  ?>.</span> </p> 
 				 <br> <p></p> <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif;font-weight:400;padding-bottom:12px"> We are pleased to confirm your order no <?php echo isset($order_items[0]['order_id'])?$order_items[0]['order_id']:''; ?>. <br> Thank you for shopping with <span >cartinhours.com</span>! </p> 
-                   <a href="<?php echo base_url('customer/orders');?>" style="font-family:'Roboto-Medium',sans-serif;box-sizing:border-box;text-decoration:none;background-color:#45b1b9;color:#fff;min-width:160px;padding:7px 16px;border-radius:2px;text-align:center;display:inline-block;font-size:14px" target="_blank" >Manage your order</a> </td> 
                 </tr> 
                </tbody>
               </table> 
@@ -110,12 +109,17 @@
 						 <span style="padding-right:10px">Amount : ₹<?php echo isset($list['total_price'])?$list['total_price']:''; ?></span>
 						 <span style="font-family:'Roboto-Medium',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#878787;margin:0px 0px;border:1px solid #dfdfdf;display:inline;border-radius:3px;padding:3px 10px">Qty: <?php echo isset($list['qty'])?$list['qty']:''; ?></span> 
 					 </p> 
+					 <br>
+					  <a href="<?php echo base_url('customer/orederdetails/'.base64_encode($list['order_item_id']));?>" style="font-family:'Roboto-Medium',sans-serif;box-sizing:border-box;text-decoration:none;background-color:#45b1b9;color:#fff;min-width:160px;padding:7px 16px;border-radius:2px;text-align:center;display:inline-block;font-size:14px" target="_blank" >Track your order</a> </td> 
+
 				 </td> 
                 </tr> 
                </tbody>
 
 					   
-              </table> </td> 
+              </table>		  
+			  
+			  </td> 
             </tr> 
            </tbody>
           </table> 

@@ -1293,14 +1293,15 @@ class Customer extends Front_Controller
 		//echo '<pre>';print_r($list);exit;
 		/* message purpose*/
 		foreach ($data['order_items'] as $orderlist){
-			$msg='Name:'.$orderlist['name'].' Mobile number : '.$orderlist['customer_phone'].'  Product details: product name: '.$orderlist['item_name'].' product code: '.$orderlist['product_code'].' color: '.$orderlist['colour'].' Internal Storage: '.$orderlist['internal_memeory'].' Ram : '.$orderlist['ram'];
+			//$msg='oder Item id: '.$orderlist['order_item_id'].' Name:'.$orderlist['name'].' Mobile number : '.$orderlist['customer_phone'].'  Product details: product name: '.$orderlist['item_name'].' product code: '.$orderlist['product_code'].' color: '.$orderlist['colour'].' Internal Storage: '.$orderlist['internal_memeory'].' Ram : '.$orderlist['ram'];
+			$msg=' Oder-Item-Id: '.$orderlist['order_item_id'].' product name: '.$orderlist['item_name'].' product code: '.$orderlist['product_code'].' color: '.$orderlist['colour'];
 			$username=$this->config->item('smsusername');
 			$pass=$this->config->item('smspassword');
 			$mobilesno=$orderlist['seller_mobile'];
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno.'&text=cusromer oreder details'.$msg.'&priority=ndnd&stype=normal');
+			curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno.'&text=Customer orederdetails'.$msg.'&priority=ndnd&stype=normal');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			//echo '<pre>';print_r($ch);exit;
 			$server_output = curl_exec ($ch);
