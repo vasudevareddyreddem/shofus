@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>::CART IN HOUR::</title>
+    <title>Cart In Hours::</title>
     <link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/font-awesome.min.css">
@@ -35,10 +35,10 @@
 <body style="background-color:#45b1b5;">
     <div class="container mar_t10per" style="position:relative" >
         <div class="row ">
-		<div class="col-md-6 col-md-offset-3" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
+		<div class="col-md-6 col-md-offset-3" style="background-color:#fff; border-radius:10px;padding:10px 0px;border-bottom:2px solid #116669 ">
            
 
-            <div class="col-md-10 col-md-offset-1 ">
+            <div class="col-md-10 col-md-offset-1 " style="padding-bottom:20px;">
 			<h3 class="">Forgot Password</h3>
 			<hr>
 				<?php if($this->session->flashdata('error')): ?>	
@@ -56,13 +56,14 @@
                         
 							
                     </div>
-				<div class="col-md-6">
-                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+					<br>
+				<div class="col-md-6 ">
+                    <button class="btn btn-block btn-primary signup-btn" type="submit" style="border-radius:5px">
                         Submit</button>
 						</div>
                 </form>
-				<div class="col-md-6">
-				<a href="<?php echo base_url('customer'); ?>" class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+				<div class="col-md-6  ">
+				<a href="<?php echo base_url('customer'); ?>" class="btn  btn-primary  signup-btn btn-block" type="submit" style="border-radius:5px" >
                         Cancel</a>
 						</div>
 
