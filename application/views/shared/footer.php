@@ -31,7 +31,7 @@
 						<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('errormsg');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 					<?php endif; ?>						
-                <h4>Sign up for emails</h4>
+				<h4>Email Subscriptions</h4>
                 <form name="subscribe" id="subscribe" action="<?php echo base_url('customer/subscribe'); ?>" method="post" id="newsletter-validate-detail1">
                   <div id="container_form_news form-group">
                     <div id="container_form_news2">
