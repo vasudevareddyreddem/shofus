@@ -93,6 +93,11 @@ tr th:last-child {
         <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td>
         
       </tr>
+	  <tr>
+					<th>Qty</th>
+					<td><?php echo isset($item_details['qty'])?$item_details['qty']:'';  ?></td>
+
+					</tr>
       <tr>
       <th>Order Date</th>
         <td><?php echo isset($item_details['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($item_details['create_at']))):'';  ?></td>

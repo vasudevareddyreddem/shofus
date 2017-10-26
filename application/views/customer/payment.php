@@ -53,9 +53,9 @@
 										<label class="col-md-4">
 											<input type="radio" id="radio2" name="payment"  value="3"><span>Swipe on Delivery</span>
 										</label>
-										<label class="col-md-4">
+										<!--<label class="col-md-4">
 											<input type="radio" id="radio3" name="payment"  value="4"><span>Paytm</span>
-										</label>
+										</label>-->
 									 </div>
 									 
 										

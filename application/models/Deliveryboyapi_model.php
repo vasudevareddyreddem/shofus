@@ -57,6 +57,9 @@ class Deliveryboyapi_model extends MY_Model
 		$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
 		$this->db->where('order_items.delivery_boy_id',$cust_id);
 		$this->db->where('order_status.status_deliverd !=',1);
+		$this->db->where('order_status.status_deliverd !=',4);
+		 $this->db->order_by('order_status.order_item_id', 'desc'); 
+
 		return $this->db->get()->result_array();
 	}
 	
@@ -92,6 +95,15 @@ class Deliveryboyapi_model extends MY_Model
 	public function get_order_details_status($order_item_id,$amount,$status,$payment){
 		$sql1="UPDATE order_items SET amount_status_paid ='".$status."', payment_type ='".$payment."' WHERE order_item_id = '".$order_item_id."'";
        	return $this->db->query($sql1);
+	}
+	
+	public function get_delivered_orders_list(){
+		$this->db->select('order_items.*,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile')->from('order_items');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
+		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+		$this->db->where('order_status.status_deliverd',4);
+		return $this->db->get()->result_array();
 	}
 	
 		

@@ -372,6 +372,22 @@ class DeliveryboyApi extends REST_Controller {
 
 		
 	}
+	public function completed_orders_list_get(){
+		$customer_id=$this->input->get('customer_id');
+		if($customer_id==''){
+		$message = array('status'=>1,'message'=>'customer id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$rejectoreders_list=$this->Deliveryboyapi_model->get_delivered_orders_list($customer_id);
+		
+		if(count($rejectoreders_list)>0){
+				$message = array('status'=>1,'list'=>$rejectoreders_list, 'message'=>'delivered orders list are found');
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+		$message = array('status'=>1,'message'=>'You have no delivered orders list');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
 
 	
 

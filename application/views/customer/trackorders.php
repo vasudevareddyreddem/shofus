@@ -162,6 +162,11 @@ tr th:last-child {
 
 					</tr>
 					<tr>
+					<th>Qty</th>
+					<td><?php echo isset($item_details['qty'])?$item_details['qty']:'';  ?></td>
+
+					</tr>
+					<tr>
 					<th>Order Date</th>
 					<td><?php echo isset($item_details['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($item_details['create_at']))):'';  ?></td>
 
@@ -235,8 +240,10 @@ tr th:last-child {
 				<div class="col-md-3 col-md-offset-3">
 						<span class="font_span"><b>Total</b></span>&nbsp;&nbsp;
 						<span class="font_span">₹<?php echo $item_details['total_price']+$item_details['delivery_amount']; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<?php if(isset($item_details['discount']) && $item_details['discount']!=''){ ?>
 						<span class="font_span site_col">Savings</span>&nbsp;&nbsp;
 						<span class="font_span">₹<?php echo isset($item_details['discount'])?$item_details['discount']:'';  ?></span>
+						<?php } ?>
 				</div>
 	<div class="clearfix"></div><br>
 			</div>
