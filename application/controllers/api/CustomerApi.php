@@ -2533,7 +2533,7 @@ class CustomerApi extends REST_Controller {
 				$saveorder=$this->Customerapi_model->save_order_success($ordersucess);
 				$cart_items= $this->Customerapi_model->get_cart_products($customer_id);
 				$customerdetails= $this->Customerapi_model->get_customer_details($customer_id);
-				//echo '<pre>';print_r($cart_items);exit;
+				//echo '<pre>';print_r($customerdetails);exit;
 				foreach($cart_items as $items){
 					$orderitems=array(
 						'order_id'=>$saveorder,
@@ -2556,7 +2556,7 @@ class CustomerApi extends REST_Controller {
 						'size'=>$items['size'],
 						'create_at'=>date('Y-m-d H:i:s'),
 					);
-					//echo '<pre>';print_r($orderitems);exit;
+					//echo '<pre>';print_r($items);exit;
 					$item_qty=$this->Customerapi_model->get_item_details($items['item_id']);
 					$less_qty=$item_qty['item_quantity']-$items['qty'];
 					//echo '<pre>';print_r($item_qty);
@@ -2564,6 +2564,21 @@ class CustomerApi extends REST_Controller {
 					//exit;
 					$this->Customerapi_model->update_tem_qty_after_purchasingorder($items['item_id'],$less_qty,$items['seller_id']);
 					$save= $this->Customerapi_model->save_order_items_list($orderitems);
+					$msg=' Oder-Item-Id: '.$save.' product name: '.$items['item_name'].' product code: '.$items['product_code'].' color: '.$items['colour'];
+					$username=$this->config->item('smsusername');
+					$pass=$this->config->item('smspassword');
+					$mobilesno=$items['seller_mobile'];
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch, CURLOPT_POST, 1);
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno.'&text=Customer orederdetails'.$msg.'&priority=ndnd&stype=normal');
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					//echo '<pre>';print_r($ch);exit;
+					$server_output = curl_exec ($ch);
+					curl_close ($ch);
+					
+			
+					//echo '<pre>';print_r($save);exit;
 					$statu=array(
 						'order_item_id'=>$save,
 						'order_id'=>$saveorder,
@@ -2576,7 +2591,6 @@ class CustomerApi extends REST_Controller {
 					
 					
 				}
-				
 				/*for billing address*/
 				$orderbilling=array(
 						'cust_id'=>$customer_id,
@@ -2592,11 +2606,95 @@ class CustomerApi extends REST_Controller {
 						'state'=>$state,
 						'create-at'=>date('Y-m-d H:i:s'),
 					);
-				$saveorderbillingaddress= $this->Customerapi_model->save_order_billing_address($orderbilling);
+			$saveorderbillingaddress= $this->Customerapi_model->save_order_billing_address($orderbilling);
+			
+				$data['order_items']=$this->Customerapi_model->get_order_item_details($saveorder);
+				//echo '<pre>';print_r($data);exit;
+				
+				//echo '<pre>';print_r($data);exit;
+				/*semd  email purpose*/
+						$this->load->library('email');
+						$this->email->set_newline("\r\n");
+						$this->email->set_mailtype("html");
+						$this->email->from('cartinhours.com');
+						$this->email->to($customerdetails['cust_email']);
+						$this->email->subject('Cartinhours - Order Confirmation');
+						$html = $this->load->view('email/orderconfirmation.php', $data, true); 
+						//echo $html;exit;
+						$this->email->message($html);
+						$this->email->send();
+					
+					/*semd  email purpose*/
+					
+		
+		/*pdf*/
+		$pdfFilePath='';
+		foreach ($data['order_items'] as $list){
+			//echo '<pre>';print_r($list);exit;
+			
+		$path = rtrim(FCPATH,"/");
+		$datas['details'] = $this->Customerapi_model->getinvoiceinfo($list['order_item_id']);
+		
+		//echo '<pre>';print_r($data['details']);exit;
+		$file_name = $datas['details']['order_item_id'].'_'.$datas['details']['invoice_id'].'.pdf';                
+		$datas['page_title'] = $datas['details']['item_name'].'invoice'; // pass data to the view
+		$pdfFilePath = $path."/assets/downloads/".$file_name;
+		///$pdfFilePath = str_replace("/","\"," $pdfFilePath");
+		//echo $pdfFilePath;exit;            
+
+		ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+		$html = $this->load->view('customer/invoice', $datas, true); // render the view into HTML
+		//echo '<pre>';print_r($html);exit;
+		$stylesheet1 = file_get_contents(base_url('assets/css/bootstrap.min.css')); // external css
+		$stylesheet6 = file_get_contents('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
+		//echo $stylesheet;exit;
+		//$pdf = new Table('P', 'mm', 'Letter');
+		
+		$this->load->library('pdf');
+		$pdf = $this->pdf->load();
+		$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+		//$pdf->WriteHTML($stylesheet1,1);
+		//$pdf->WriteHTML($stylesheet6,6);
+		//$pdf->WriteHTML('<tocentry content="Letter portrait" /><p>This should print on an Letter sheet</p>');
+		$pdf->SetDisplayMode('fullpage');
+		$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+		$pdf->WriteHTML($html); // write the HTML into the PDF
+		$pdf->Output($pdfFilePath, 'F'); // save to file because we can
+		if($list['amount_status_paid']!=0){
+		$htmlmessage = "Invoice has beed generated for the https:carinhouors.coms";
+		$this->load->library('email');
+		$this->email->set_newline("\r\n");
+		$this->email->set_mailtype("html");
+		$this->email->from('cartinhours.com');
+		$this->email->to($customerdetails['cust_email']);
+		///$this->email->bcc('tavvaforu@gmail.com');
+		$this->email->attach($pdfFilePath);
+		$this->email->subject('Cartinhours - Invoice '.$file_name);
+		
+		//echo $html;exit;
+		$this->email->message($htmlmessage);
+		if($this->email->send()){
+			$this->Customerapi_model->update_invocie_mail_send($list['order_item_id'],1);
+		}
+		$this->Customerapi_model->update_invocie_name($list['order_item_id'],$file_name);
+		
+		}
+			
+		}
+		
+		/*pdf*/
+				
+				$cart_items= $this->Customerapi_model->get_cart_products($customer_id);
+			
+		//echo '<pre>';print_r($cart_items);exit;
+		
+			foreach($cart_items as $items){
+			$delete= $this->Customerapi_model->after_payment_cart_item($customerdetails['customer_id'],$items['item_id'],$items['id']);
+			}
 			$message = array('status'=>1,'orderid'=>$saveorder,'message'=>'Payment successfully completed!');
 			$this->response($message, REST_Controller::HTTP_OK);
 				
-			}
+			}	
 			
 			
 			public function mobilehomebanners_get(){
