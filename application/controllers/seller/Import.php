@@ -744,8 +744,10 @@ class Import extends Admin_Controller {
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
 																//$path='/home/cartinhours/public_html/uploads/products/';
-																//$path='/home/cartinhours//public_html/staging/uploads/products/';
+																//$path='/home/cartinhours/public_html/staging/uploads/products/';
+																//$path1='/home/cartinhours/public_html/staging/assets/descriptionimages/';
 																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
+																$path1='F:/xampp/htdocs/cartinhour/assets/descriptionimages/';
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[69];
 																	$split_image = pathinfo($image_link);
@@ -803,28 +805,28 @@ class Import extends Admin_Controller {
 																		$image_linkD7 = $data[7];
 																		$split_imageD7 = pathinfo($image_linkD7);
 																		$imagenameD7=round(microtime(true)).$split_imageD7['filename'].".".$split_imageD7['extension'];
-																		copy($data[7], $path.$imagenameD7);
+																		copy($data[7], $path1.$imagenameD7);
 																	
 																	}
 																	if(isset($data[9])&& $data[9]!=''){
 																		$image_linkD9 = $data[9];
 																		$split_imageD9 = pathinfo($image_linkD9);
 																		$imagenameD9=round(microtime(true)).$split_imageD9['filename'].".".$split_imageD9['extension'];
-																		copy($data[9], $path.$imagenameD9);
+																		copy($data[9], $path1.$imagenameD9);
 																	
 																	}
 																	if(isset($data[11])&& $data[11]!=''){
 																		$image_linkD11 = $data[11];
 																		$split_imageD11 = pathinfo($image_linkD11);
 																		$imagenameD11=round(microtime(true)).$split_imageD11['filename'].".".$split_imageD11['extension'];
-																		copy($data[11], $path.$imagenameD11);
+																		copy($data[11], $path1.$imagenameD11);
 																	
 																	}
 																	if(isset($data[13])&& $data[13]!=''){
 																		$image_linkD13 = $data[13];
 																		$split_imageD13 = pathinfo($image_linkD13);
 																		$imagenameD13=round(microtime(true)).$split_imageD13['filename'].".".$split_imageD13['extension'];
-																		copy($data[13], $path.$imagenameD13);
+																		copy($data[13], $path1.$imagenameD13);
 																	
 																	}
 																	
