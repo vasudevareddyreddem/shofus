@@ -398,10 +398,10 @@
 			<span style="font-weight:500;font-size:18px" id="deliverymsg"></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
-			<div class="pull-left">
+			<div class="pull-left ">
 				<b>Pincode:</b> &nbsp; &nbsp;<input class="pin_in" style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd" maxlength="6" onkeyup="removecouponmsg();" id="checkpincode" name="checkpincode" type="text" value="">
 				</div>
-				<div class="pull-right"><a class="site_col" style="cursor:pointer" onclick="getareapincode();">check</a></div>
+				<div class="pull-right pin_code_text"><a class="site_col" style="cursor:pointer" onclick="getareapincode();">check</a></div>
 				<div class="clearfix">&nbsp;</div>
 			</div>
 			<div class="clearfix">&nbsp;</div>
@@ -413,8 +413,8 @@
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
-				<a class="btn btn-warning col-md-6" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
-				<button class="btn  btn-primary col-md-6 pull-right" style="width: 48%;" type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
+				<a class="btn btn-warning col-md-6 font_10_1024" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
+				<button class="btn  btn-primary col-md-6 pull-right font_10_1024" style="width: 48%;" type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
 			</div>
 			
 			
