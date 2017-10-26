@@ -1149,6 +1149,21 @@ class Customer extends Front_Controller
  public function orderpaymenttype(){
 	 if($this->session->userdata('userdetails'))
 	 {
+		/*$customerdetails=$this->session->userdata('userdetails');
+		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
+		foreach ($cart_items as $list){
+			
+			$productsdetails= $this->customer_model->get_product_details($list['item_id']);
+			$this->customer_model->cart_item_qty_update($list['item_id'],$productsdetails['item_quantity']);
+			if($list['qty']<=0){
+				$this->session->set_flashdata('qtyerror','Please remove Out of stock product in cart then move to next step!');
+				redirect('customer/cart');	
+			}else if($list['qty']>$productsdetails['item_quantity']){
+				$this->session->set_flashdata('qtyerror','Please decrease this '.$productsdetails['item_name'].' product qty lessthan or equal to '.$productsdetails['item_quantity']);
+				redirect('customer/cart');	
+			}
+		}*/
+		
 		$billingaddress=$this->session->userdata('billingaddress');	
 		$customerdetails=$this->session->userdata('userdetails');
 		$post=$this->input->post();
