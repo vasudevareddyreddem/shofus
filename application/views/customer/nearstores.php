@@ -25,7 +25,7 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 						  <h4 class="media-heading"><?php echo $lists['store_name']; ?>&nbsp; (Location :<?php echo $lists['location_name']; ?>)</h4>
 							<p> <?php foreach ($lists['categories'] as $list){ 
 							//echo '<pre>';print_r($list );
-							echo $list['category_name'].',';
+							echo $list['category_name'].' ';
 
 							}?> </p>
 							<div style="border-top:1px solid #ddd;padding:4px">&nbsp;</div>

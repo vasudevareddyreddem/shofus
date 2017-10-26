@@ -1290,6 +1290,34 @@ class Customer extends Front_Controller
 		}
 		$data['order_items']= $this->customer_model->get_order_items($order_id);
 		$data['carttotal_amount']= $this->customer_model->get_successorder_total_amount($order_id);
+		//echo '<pre>';print_r($list);exit;
+		/* message purpose*/
+		foreach ($data['order_items'] as $orderlist){
+			$msg='Name:'.$orderlist['name'].' Mobile number : '.$orderlist['customer_phone'].'  Product details: product name: '.$orderlist['item_name'].' product code: '.$orderlist['product_code'].' color: '.$orderlist['colour'].' Internal Storage: '.$orderlist['internal_memeory'].' Ram : '.$orderlist['ram'];
+			$username=$this->config->item('smsusername');
+			$pass=$this->config->item('smspassword');
+			$mobilesno=$orderlist['seller_mobile'];
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno.'&text=cusromer oreder details'.$msg.'&priority=ndnd&stype=normal');
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			//echo '<pre>';print_r($ch);exit;
+			$server_output = curl_exec ($ch);
+			curl_close ($ch);
+			}
+		/* message purpose*/
+			
+			$this->load->library('email');
+			$this->email->set_newline("\r\n");
+			$this->email->set_mailtype("html");
+			$this->email->from('cartinhours.com');
+			$this->email->to($data['order_items'][0]['customer_email']);
+			$this->email->subject('Cartinhours - Order Confirmation');
+			$html = $this->load->view('email/orderconfirmation.php', $data, true); 
+			//echo $html;exit;
+			$this->email->message($html);
+			$this->email->send();
 		$pdfFilePath='';
 		foreach ($data['order_items'] as $list){
 			//echo '<pre>';print_r($list);exit;
@@ -1322,6 +1350,7 @@ class Customer extends Front_Controller
 		$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
 		$pdf->WriteHTML($html); // write the HTML into the PDF
 		$pdf->Output($pdfFilePath, 'F'); // save to file because we can
+		if($list['amount_status_paid']!=0){
 		$htmlmessage = "Invoice has beed generated for the https:carinhouors.coms";
 		$this->load->library('email');
 		$this->email->set_newline("\r\n");
@@ -1338,6 +1367,8 @@ class Customer extends Front_Controller
 			$this->customer_model->update_invocie_mail_send($list['order_item_id'],1);
 		}
 		$this->customer_model->update_invocie_name($list['order_item_id'],$file_name);
+		
+		}
 			
 		}
 		
@@ -1954,14 +1985,14 @@ class Customer extends Front_Controller
 					
 					
 					$msg=$six_digit_random_number;
-					/*$ch = curl_init();
+					$ch = curl_init();
 					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 					curl_setopt($ch, CURLOPT_POST, 1);
 					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobile.'&text=Your cartinhour verification code is '.$msg.'&priority=ndnd&stype=normal');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					//echo '<pre>';print_r($ch);exit;
 					$server_output = curl_exec ($ch);
-					curl_close ($ch);*/
+					curl_close ($ch);
 					
 					
 				$this->customer_model->login_verficationcode_mobile_save($mobile,$forgotpass['customer_id'],$six_digit_random_number);
@@ -1989,7 +2020,16 @@ class Customer extends Front_Controller
 			
 			
 		}else{
-			$this->session->set_flashdata('error',"Invalid Email Id / Mobile number!. Please enter registered email id / Mobile number");
+			
+			$email =filter_var($post['emailaddress'], FILTER_VALIDATE_EMAIL);
+				if($email==''){
+					$this->session->set_flashdata('error',"Invalid  Mobile number!. Please enter registered  Mobile number");
+
+					$email='';
+				}else{
+					$this->session->set_flashdata('error',"Invalid Email Id. Please enter registered email id");
+
+				}
 			redirect('customer/forgotpassword');
 		}
 	}
@@ -2441,11 +2481,9 @@ class Customer extends Front_Controller
 	$this->template->render(); 
  }
  public function subscribe(){
-	 if($this->session->userdata('userdetails'))
-	{
+	 
 			 $post=$this->input->post();
 			 $emailcheck=$this->customer_model->add_subscribe_customer($post['newsletter1']);
-			 if(count($emailcheck)>0){
 				 $addsubscribe=$this->customer_model->update_subscribe_customer($emailcheck['customer_id'],1);
 				 if(count($addsubscribe)>0){
 					 $this->session->set_flashdata('successmsg','Your query submitted successfully');
@@ -2455,18 +2493,6 @@ class Customer extends Front_Controller
 					  $this->session->set_flashdata('errormsg','Technical problem will occurred. please try again');
 					  redirect('');
 				 }
-				 
-			 }else{
-				$this->session->set_flashdata('errormsg','Your enter Wrong email id . Please enter valid email id');
-				redirect('');
-			 }
-		 
-	 }else{
-		 $this->session->set_flashdata('loginerror','Please login to continue');
-		 redirect('customer');
-	 }
-
-	 
  }
  public function getbillingaddress(){
 	 
