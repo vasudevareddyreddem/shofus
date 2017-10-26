@@ -1984,7 +1984,7 @@ class CustomerApi extends REST_Controller {
 				}
 						
 					$previousdata= $this->Customerapi_model->get_all_previous_search_fields($Ip_address);
-					$message = array('status'=>1,'filtersresult'=>$categorywiseproducrlist,'message'=>'filter search result and previous search data','previoussearchdata'=>$previousdata);
+					$message = array('status'=>1,'filtersresult'=>$categorywiseproducrlist,'message'=>'filter search result and previous search data','previoussearchdata'=>$previousdata,'path'=>' http://test.cartinhours.com/uploads/products/');
 					$this->response($message, REST_Controller::HTTP_OK);
 	}
 	public function category_wise_leftside_filters_get(){

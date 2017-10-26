@@ -6,7 +6,7 @@
       <table width="100%" style="max-width:600px;margin:0 auto"> 
        <tbody>
         <tr> 
-         <td style="width:50%;text-align:left;padding-left:16px"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="<?php echo base_url(); ?>"> <img border="0" height="30" src="<?php echo base_url('assets/home/images/logo.png');?>" alt="Flipkart.com" style="border:none" class="CToWUd"> </a> </td> 
+         <td style="width:50%;text-align:left;padding-left:16px"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="<?php echo base_url(); ?>"> <img border="0" height="30" src="<?php echo base_url('assets/home/images/logo.png');?>" alt="cartinhours.com" style="border:none" class="CToWUd"> </a> </td> 
          <td style="width:50%;text-align:right;color:rgba(255,255,255,0.8);font-family:'Roboto-Medium',sans-serif;font-size:14px;font-style:normal;font-stretch:normal;padding-right:16px"> <b>Order confirmed</b> </td> 
         </tr> 
        </tbody>
