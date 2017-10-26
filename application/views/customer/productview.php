@@ -1278,6 +1278,7 @@ jQuery.ajax({
 				}else{
 						jQuery('#supcounts').show();
 						jQuery('#sucessmsg').show();
+						$("#supcounts").empty();
 						$("#supcount").empty();
 						$("#supcount").append(data.count);
 						$("#supcounts").append(data.count);
