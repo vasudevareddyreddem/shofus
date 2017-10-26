@@ -31,10 +31,11 @@
 						<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('errormsg');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 					<?php endif; ?>						
-				<h4>EMAIL SUBSCRIPTIONS</h4>
+			
                 <form name="subscribe" id="subscribe" action="<?php echo base_url('customer/subscribe'); ?>" method="post" id="newsletter-validate-detail1">
                   <div id="container_form_news form-group">
                     <div id="container_form_news2">
+					<span style="font-size:18px;color:#45b1b9">EMAIL SUBSCRIPTION</span> &nbsp;&nbsp;&nbsp;
                       <input name="newsletter1" id="newsletter1" class="input-text required-entry validate-email" placeholder="Enter your email address" type="text">
                       <button type="submit" title="Subscribe" class="button subscribe"><span>Subscribe</span></button>
                     </div>
@@ -92,10 +93,10 @@
             <div class="footer-column">
               <h4>Information</h4>
               <ul class="links">
-                <li class="first"><a title="Site Map" href="<?php echo base_url(); ?>">Careers</a></li>
+                <li class="first"><a  href="<?php echo base_url(); ?>">Careers</a></li>
 				<li><a href="<?php echo base_url(); ?>">About Us</a></li>
 				<!--<li><a href="<?php echo base_url('customer/aboutus'); ?>">About Us</a></li>-->
-                <li><a href="http://seller.cartinhours.com/seller/login" target="_blank">Sale with us </a></li>
+                <li><a href="http://seller.cartinhours.com/seller/login" target="_blank">Sell on cartinhours </a></li>
                 <li><a href="<?php echo base_url('customer/contactus'); ?>">Contact Us</a></li>
               </ul>
             </div>

@@ -5298,9 +5298,9 @@ input[type=radio]:checked + span::before {
   float: right;
   content: ':';
 }
-.table-detail tr:last-child td:first-child::after {
-  content: '';
-}
+/* .table-detail tr:last-child td:first-child::after { */
+  /* content: ''; */
+/* } */
 
 .nav-tabs > li > a {
   border-radius: 0 0 0 0;
@@ -6318,10 +6318,13 @@ and (max-device-width : 1024px)
 
     .gc-zoom-container img {
         position: absolute;
-        max-width: none !important;
+       
 		    cursor: crosshair;
-			left:12% !important;
-		max-width: 416px;
+			left:2% !important;
+		max-width: 500px;
+		margin-top:10%;
+	
+		
     
    
     }
