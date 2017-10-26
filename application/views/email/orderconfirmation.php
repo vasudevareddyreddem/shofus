@@ -1,12 +1,19 @@
 <?php //echo '<pre>';print_r($order_items);exit; ?>
-  <table width="100%" cellspacing="0" cellpadding="0" height="60"> 
+   <table width="100%"  style="max-width:650px;margin:0 auto" cellspacing="0" cellpadding="0" height="60"> 
    <tbody>
     <tr style="background:#45b1b9"> 
      <td> 
-      <table width="100%" style="max-width:600px;margin:0 auto"> 
+      <table width="100%" style="max-width:650px;margin:0 auto"> 
        <tbody>
         <tr> 
-         <td style="width:50%;text-align:left;padding-left:16px"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="<?php echo base_url(); ?>"> <img border="0" height="30" src="<?php echo base_url('assets/home/images/logo.png');?>" alt="cartinhours.com" style="border:none" class="CToWUd"> </a> </td> 
+			<td style="width:50%;text-align:left;padding-left:16px;position:relative"> 
+			 <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href=""> 
+				<span >
+				<img style="position:absolute;top:-19px;left:0;width:72%;" border="0"  src="http://test.cartinhours.com/assets/home/images/logo_arr.png" alt="cartinhours.com"  class="CToWUd"> 
+			 </a> 
+			 </span>
+			 
+		 </td>
          <td style="width:50%;text-align:right;color:rgba(255,255,255,0.8);font-family:'Roboto-Medium',sans-serif;font-size:14px;font-style:normal;font-stretch:normal;padding-right:16px"> <b>Order confirmed</b> </td> 
         </tr> 
        </tbody>
@@ -16,15 +23,15 @@
   </table> 
    
    
-  <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:10px;background-color:#f1f2f3"> 
+  <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:10px;background-color:#f1f2f3;max-width:650px;"> 
    <tbody> 
     <tr> 
      <td> 
-      <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:600px;background:#ffffff"> 
+      <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:650px;background:#ffffff"> 
        <tbody>
         <tr> 
          <td align="left"  style="display:block;margin:0 auto;clear:both;padding:0px 40px"> 
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:600px;background:#ffffff"> 
+          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:650px;background:#ffffff"> 
            <tbody>
             <tr> 
              <td align="left"   style="color:#212121;display:block;margin:0 auto;clear:both;padding:3px 0 0 0"> 
@@ -42,7 +49,7 @@
             </tr> 
            </tbody>
           </table> 
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:40px 0 0 0;max-width:600px;background:#ffffff;" border="0"> 
+          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:20px 0 0 0;max-width:650px;background:#ffffff;" border="0"> 
            <tbody>
             <tr> 
              <td> 
@@ -81,7 +88,7 @@
 		  
 		  <?php foreach ($order_items as $list){  ?>	
 		  
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:600px;background:#ffffff"> 
+          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:650px;background:#ffffff"> 
            <tbody>
             <tr> 
              <td align="left" > 
@@ -125,7 +132,7 @@
           </table> 
          <p style="border-top:1px solid #ddd"></p>
          <?php if(isset($list['amount_status_paid']) && $list['amount_status_paid']==0){ ?>
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:30px 0 0 0;max-width:600px;background:#ffffff" border="0"> 
+          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:30px 0 0 0;max-width:650px;background:#ffffff" border="0"> 
            <tbody>
             <tr> 
              <td> 
