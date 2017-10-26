@@ -49,7 +49,7 @@ h1 {
   font-weight: normal;
   text-align: center;
   margin: 0 0 20px 0;
-  background: #45b1b9;
+  background: #009688;
   color:#fff;
   padding:5px;
 }

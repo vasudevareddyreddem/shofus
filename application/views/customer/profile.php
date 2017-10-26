@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-3" >
 		<div>	
-			<li class="list-group-item " style="border-top:2px solid #45b1b9;">
+			<li class="list-group-item " style="border-top:2px solid #009688;">
         		<div class=" col-md-4">
         		
 			  	<?php  if($profile_details['cust_propic']!=''){ ?>

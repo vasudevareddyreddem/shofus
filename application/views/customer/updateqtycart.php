@@ -10,7 +10,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
     border-left: 0;
     border-bottom: 13px solid transparent;
     border-top: 13px solid transparent;
-    border-left: 10px solid #45b1b9;
+    border-left: 10px solid #009688;
 }
 </style>
     <div class="row">

@@ -18,7 +18,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
 }
 .bord_ri{
-	border-left:5px solid #45b1b9;
+	border-left:5px solid #009688;
 	
 	}
 </style>

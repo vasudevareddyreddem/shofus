@@ -19,7 +19,7 @@
             <div class="well well-sm ord_del" style="background:#fff;">
                 <div style="padding:20px;">
 					<div class="pull-left">
-						<span style="background-color:#45b1b9;color:#fff;padding:10px;border-radius:5px;"><b>ORDER ID:&nbsp; </b><?php echo $orders['order_item_id']; ?></span>
+						<span style="background-color:#009688;color:#fff;padding:10px;border-radius:5px;"><b>ORDER ID:&nbsp; </b><?php echo $orders['order_item_id']; ?></span>
 					</div>
 					<div class="pull-right"> 
 					<span style="font-size:17px;">status :</span>
@@ -37,7 +37,7 @@
 					  }
 					  ?>
 					  </span>&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="<?php echo base_url('customer/orederdetails/'.base64_encode($orders['order_item_id'])); ?>"> <span style="background-color:#45b1b9;color:#fff;padding:4px 8px;border-radius:5px;">View</span></a>
+						<a href="<?php echo base_url('customer/orederdetails/'.base64_encode($orders['order_item_id'])); ?>"> <span style="background-color:#009688;color:#fff;padding:4px 8px;border-radius:5px;">View</span></a>
 				
 					</div>
 					<div class="clearfix"></div>

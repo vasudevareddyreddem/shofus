@@ -106,7 +106,7 @@
         </div>
 		<div class="col-md-4">
 			<div >	
-				<li class="list-group-item"style="border-top:2px solid #45b1b9">
+				<li class="list-group-item"style="border-top:2px solid #009688">
 					<div class="text-center" style="margin:0 auto;">
 						<img style="margin:0 auto;" class="img-responsive"src="<?php echo base_url(); ?>assets/home/images/thanks_sho.png" />
 						<p class="del_und">
