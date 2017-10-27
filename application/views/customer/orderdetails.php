@@ -157,7 +157,7 @@ tr th:last-child {
 		 ?>
 		 
 		<div class="col-md-4" >
-		<button class="btn btn-danger btn-sm" style="position:absolute;right:0;top:10px;border-radius:5px;">Cancel</button>
+		<button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" style="position:absolute;right:0;top:10px;border-radius:5px;">Cancel</button>
 		<?php if(isset($item_details['amount_status_paid']) && $item_details['amount_status_paid']==1){ ?>
 		<a href="<?php echo base_url('assets/downloads/'.$item_details['invoicename']); ?>" class="site_col" href="" target="_blank">View Invoice</a></p>
 		<?php } ?>
@@ -306,6 +306,82 @@ tr th:last-child {
 	   
 	   </div>
 	</div>
+
+
+  <!-- Modal -->
+  <div class="modal   fade" id="myModal" role="dialog" ">
+    <div class="modal-dialog">
+				<div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="panel-title">Request Cancellation </h4>
+                    </div>
+                    <form action="#" method="post" accept-charset="utf-8">
+                    <div class="modal-body" style="padding: 20px;">
+						
+					<div class="row">
+						<div class="col-md-8">
+							<label>Iteam Details</label>
+						</div>
+						<div class="col-md-2">
+							<label>Qty</label>
+						</div>
+						<div class="col-md-2">
+							<label>Subtotal</label>
+						</div>
+					</div>
+					<hr style="border-top:1px solid #f5f5f5;">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="col-md-3">
+								<img class="thumbnail"style="height:100px;width:auto;" src="http://test.cartinhours.com/uploads/products/31hzQD64nPL.jpg">
+							</div>
+							<div class="col-md-9">
+								<div>LENOVO Grey 32 GB (3 GB Ram)</div>
+								<p>Color:<span>Black</span></p>
+							</div>
+						</div>
+						<div class="col-md-2">
+							10
+						</div>
+						<div class="col-md-2">
+							25000
+						</div>
+					</div>
+					<hr style="border-top:1px solid #f5f5f5;">
+					<div class="row" style="padding:5px 30px">
+					<form>
+						<div class="form-group">
+						  <label for="sel1">Reason for Cancellation</label>
+						  <select class="form-control" id="sel1">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+						  </select>
+						</div>
+						<div class="form-group">
+						  <label for="comment">Comment:</label>
+						  <textarea class="form-control" rows="2" id="comment"></textarea>
+						</div>
+						<p><strong>Note:</strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+						</form>
+						<hr style="border-top:1px solid #f5f5f5;">
+						<button class="btn btn-danger  btn-sm pull-right" style="border-radius:5px;"> Confirm Cancellation</button>
+					</div>
+						
+                          
+                    </div>  
+                       
+                  
+                </div>
+      
+    </div>
+	<div class="clearfix"></div>
+  </div>
+ 
+  
+
 	
 <script>
 var __slice = [].slice;
