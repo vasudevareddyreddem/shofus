@@ -1036,20 +1036,6 @@ class Customer extends Front_Controller
 				$saveorder= $this->customer_model->save_order_success($ordersucess);
 				$getsaveorderstatus= $this->customer_model->get_status_save_order_success($saveorder);
 				
-				//echo '<pre>';print_r($saveorder);exit;
-				/* order sms*/
-				/*$username=$this->config->item('smsusername');
-				$pass=$this->config->item('smspassword');
-				$msg='Order received:we have received your order for '.$_POST['productinfo'].' with order id '.$saveorder.' Amounting to '.$_POST['net_amount_debit'].' You can manage your order at http://cartinhours.com';
-				$ch = curl_init();
-					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
-					curl_setopt($ch, CURLOPT_POST, 1);
-					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$_POST['phone'].'&text='.$msg.'&priority=ndnd&stype=normal');
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					//echo '<pre>';print_r($ch);exit;
-					$server_output = curl_exec ($ch);
-					curl_close ($ch);
-				/* order sms*/
 				$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 				//echo '<pre>';print_r($cart_items);exit;
 				foreach($cart_items as $items){
@@ -1302,81 +1288,83 @@ class Customer extends Front_Controller
 		
 		foreach($cart_items as $items){
 		$delete= $this->customer_model->after_payment_cart_item($customerdetails['customer_id'],$items['item_id'],$items['id']);
-		}
+		}*/
 		$data['order_items']= $this->customer_model->get_order_items($order_id);
 		$data['carttotal_amount']= $this->customer_model->get_successorder_total_amount($order_id);
-		//echo '<pre>';print_r($list);exit;
+		
 		/* message purpose*/
 		foreach ($data['order_items'] as $orderlist){
-			//$msg='oder Item id: '.$orderlist['order_item_id'].' Name:'.$orderlist['name'].' Mobile number : '.$orderlist['customer_phone'].'  Product details: product name: '.$orderlist['item_name'].' product code: '.$orderlist['product_code'].' color: '.$orderlist['colour'].' Internal Storage: '.$orderlist['internal_memeory'].' Ram : '.$orderlist['ram'];
-			$msg=' Oder-Item-Id: '.$orderlist['order_item_id'].' product name: '.$orderlist['item_name'].' product code: '.$orderlist['product_code'].' color: '.$orderlist['colour'];
+			
+			$messagelis['msg']='Oder_Item_id: '.$orderlist['order_item_id'].'. Customer Details are  Name:'.$orderlist['name'].', Mobile number : '.$orderlist['customer_phone'].'.  Product details: product name: '.$orderlist['item_name'].', product code: '.$orderlist['product_code'].', color: '.$orderlist['colour'].', Internal Storage: '.$orderlist['internal_memeory'].', Ram : '.$orderlist['ram'];
+			$msg2='Customer orederdetails: Oder-Item-Id: '.$orderlist['order_item_id'].' product name: '.$orderlist['item_name'].' product code: '.$orderlist['product_code'].' color: '.$orderlist['colour'];
 			$username=$this->config->item('smsusername');
 			$pass=$this->config->item('smspassword');
-			$mobilesno=$orderlist['seller_mobile'];
-			/*$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno.'&text=Customer orederdetails'.$msg.'&priority=ndnd&stype=normal');
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			//echo '<pre>';print_r($ch);exit;
-			$server_output = curl_exec ($ch);
-			curl_close ($ch);*/
-			}
-		/* message purpose*/
 			
+			/* seller purpose*/
+			$mobilesno2=$orderlist['seller_mobile'];
+			$ch2 = curl_init();
+			curl_setopt($ch2, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+			curl_setopt($ch2, CURLOPT_POST, 1);
+			curl_setopt($ch2, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno2.'&text='.$msg2.'&priority=ndnd&stype=normal');
+			curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+			//echo '<pre>';print_r($ch);exit;
+			$server_output = curl_exec ($ch2);
+			curl_close ($ch2);
+			//echo '<pre>';print_r($orderlist);exit;
+			/* seller purpose*/
+			}
+			/*semd  email purpose*/
+						$this->load->library('email');
+						$this->email->set_newline("\r\n");
+						$this->email->set_mailtype("html");
+						$this->email->from('cartinhours.com');
+						$this->email->to($data['order_items'][0]['customer_email']);
+						$this->email->subject('Cartinhours - Order Confirmation');
+						$html = $this->load->view('email/orderconfirmation.php', $data, true); 
+						echo $html;exit;
+						$this->email->message($html);
+						$this->email->send();
+					
+					/*semd  email purpose*/
+		/* message purpose*/
 			$this->load->library('email');
 			$this->email->set_newline("\r\n");
 			$this->email->set_mailtype("html");
 			$this->email->from('cartinhours.com');
-			$this->email->to($data['order_items'][0]['customer_email']);
+			$this->email->to($orderlist['seller_email']);
 			$this->email->subject('Cartinhours - Order Confirmation');
-			$html = $this->load->view('email/orderconfirmation.php', $data, true); 
+			$html = $this->load->view('email/sellerorederconfirmation.php', $messagelis, true); 
 			//echo $html;exit;
 			$this->email->message($html);
 			$this->email->send();
 		$pdfFilePath='';
 		foreach ($data['order_items'] as $list){
 			//echo '<pre>';print_r($list);exit;
-			
 		$path = rtrim(FCPATH,"/");
 		$datas['details'] = $this->customer_model->getinvoiceinfo($list['order_item_id']);
-		
 		//echo '<pre>';print_r($data['details']);exit;
 		$file_name = $datas['details']['order_item_id'].'_'.$datas['details']['invoice_id'].'.pdf';                
 		$datas['page_title'] = $datas['details']['item_name'].'invoice'; // pass data to the view
 		$pdfFilePath = $path."/assets/downloads/".$file_name;
-		///$pdfFilePath = str_replace("/","\"," $pdfFilePath");
-		//echo $pdfFilePath;exit;            
-
 		ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 		$html = $this->load->view('customer/invoice', $datas, true); // render the view into HTML
-		//echo '<pre>';print_r($html);exit;
 		$stylesheet1 = file_get_contents(base_url('assets/css/bootstrap.min.css')); // external css
 		$stylesheet6 = file_get_contents('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
-		//echo $stylesheet;exit;
-		//$pdf = new Table('P', 'mm', 'Letter');
-		
 		$this->load->library('pdf');
 		$pdf = $this->pdf->load();
 		$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-		//$pdf->WriteHTML($stylesheet1,1);
-		//$pdf->WriteHTML($stylesheet6,6);
-		//$pdf->WriteHTML('<tocentry content="Letter portrait" /><p>This should print on an Letter sheet</p>');
 		$pdf->SetDisplayMode('fullpage');
 		$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
 		$pdf->WriteHTML($html); // write the HTML into the PDF
 		$pdf->Output($pdfFilePath, 'F'); // save to file because we can
-		if($list['amount_status_paid']!=0){
-		$htmlmessage = "Invoice has beed generated for the https:carinhouors.coms";
+		$htmlmessage = "Invoice has been generated for the https:carinhours.coms";
 		$this->load->library('email');
 		$this->email->set_newline("\r\n");
 		$this->email->set_mailtype("html");
 		$this->email->from('cartinhours.com');
 		$this->email->to($datas['details']['customer_email']);
-		///$this->email->bcc('tavvaforu@gmail.com');
 		$this->email->attach($pdfFilePath);
 		$this->email->subject('Cartinhours - Invoice '.$file_name);
-		
 		//echo $html;exit;
 		$this->email->message($htmlmessage);
 		if($this->email->send()){
@@ -1384,7 +1372,7 @@ class Customer extends Front_Controller
 		}
 		$this->customer_model->update_invocie_name($list['order_item_id'],$file_name);
 		
-		}
+		
 			
 		}
 		

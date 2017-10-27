@@ -34,6 +34,20 @@ class Cron_model extends MY_Model
        	return $this->db->query($sql1);
 		
 	}
+	public function get_order_item_details($id){
+		$this->db->select('order_items.*,(locations.pincode) as customerpincode,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile,products.item_name,products.colour')->from('order_items');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
+		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
+		$this->db->join('locations', 'locations.location_id = order_items.area', 'left');
+		$this->db->where('order_items.order_item_id',$id);
+		return $this->db->get()->row_array();
+	}
+	public function get_delivery_details($id){
+		$this->db->select('*')->from('customers');
+		$this->db->where('customer_id',$id);
+		return $this->db->get()->row_array();
+	}
 	
 
 

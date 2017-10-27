@@ -2565,6 +2565,7 @@ class CustomerApi extends REST_Controller {
 					$this->Customerapi_model->update_tem_qty_after_purchasingorder($items['item_id'],$less_qty,$items['seller_id']);
 					$save= $this->Customerapi_model->save_order_items_list($orderitems);
 					$msg=' Oder-Item-Id: '.$save.' product name: '.$items['item_name'].' product code: '.$items['product_code'].' color: '.$items['colour'];
+					$messagelis['msg']=$msg;
 					$username=$this->config->item('smsusername');
 					$pass=$this->config->item('smspassword');
 					$mobilesno=$items['seller_mobile'];
@@ -2576,6 +2577,17 @@ class CustomerApi extends REST_Controller {
 					//echo '<pre>';print_r($ch);exit;
 					$server_output = curl_exec ($ch);
 					curl_close ($ch);
+					
+					$this->load->library('email');
+					$this->email->set_newline("\r\n");
+					$this->email->set_mailtype("html");
+					$this->email->from('cartinhours.com');
+					$this->email->to($items['seller_email']);
+					$this->email->subject('Cartinhours - Order Confirmation');
+					$html = $this->load->view('email/sellerorederconfirmation.php', $messagelis, true); 
+					//echo $html;exit;
+					$this->email->message($html);
+					$this->email->send();
 					
 			
 					//echo '<pre>';print_r($save);exit;
@@ -2660,8 +2672,7 @@ class CustomerApi extends REST_Controller {
 		$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
 		$pdf->WriteHTML($html); // write the HTML into the PDF
 		$pdf->Output($pdfFilePath, 'F'); // save to file because we can
-		if($list['amount_status_paid']!=0){
-		$htmlmessage = "Invoice has beed generated for the https:carinhouors.coms";
+		$htmlmessage = "Invoice has been generated for the https:carinhours.coms";
 		$this->load->library('email');
 		$this->email->set_newline("\r\n");
 		$this->email->set_mailtype("html");
@@ -2678,7 +2689,7 @@ class CustomerApi extends REST_Controller {
 		}
 		$this->Customerapi_model->update_invocie_name($list['order_item_id'],$file_name);
 		
-		}
+		
 			
 		}
 		
@@ -2709,6 +2720,37 @@ class CustomerApi extends REST_Controller {
 					$message = array('status'=>1,'message'=>'No banners are available');
 				$this->response($message, REST_Controller::HTTP_OK);
 				}
+					
+			}
+			public function cancel_order_post(){
+				$order_items_id=$this->input->get('order_items_id');
+					$status=$this->input->get('status');
+					$comments=$this->input->get('comments');
+					if($order_items_id==''){
+					$message = array('status'=>1,'message'=>'Order Item id is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					if($status==''){
+					$message = array('status'=>1,'message'=>'status is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
+					$canceldata=array(
+					'status_refund'=>'cancel',
+					'status_confirmation'=>5,
+					'reason'=>isset($status)?$status:'',
+					'comments'=>isset($comments)?$comments:'',
+					);
+					$canclesaveorder=$this->Customerapi_model->save_cancel_order($order_items_id,$canceldata);
+				//echo $this->db->last_query();exit;
+					if(count($canclesaveorder)>0){
+						$message = array('status'=>1,'message'=>'Your Query successfully submitted');
+						$this->response($message, REST_Controller::HTTP_OK);
+						
+					}else{
+						$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
+						$this->response($message, REST_Controller::HTTP_OK);
+					}
+
 					
 			}
 

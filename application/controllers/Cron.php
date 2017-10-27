@@ -56,10 +56,10 @@ class Cron extends Front_Controller
 				//echo '<pre>';print_r($delivery_boy_list);exit;
 				foreach ($delivery_boy_list as $dylist ){
 						//echo '<pre>';print_r($dylist);exit;
-					if($dylist['address2']!=''){
-						$deliveryadd=$dylist['address2'];
-					}else{
+					if($dylist['address1']!=''){
 						$deliveryadd=$dylist['address1'];
+					}else{
+						$deliveryadd=$dylist['address2'];
 					}
 					$cutomertimevalue=$dlist['customer_seller_timevalue'];
 					$cutomertime=$dlist['customer_seller_time'];
@@ -93,23 +93,60 @@ class Cron extends Front_Controller
 					
 					
 				}
+				if(isset($priceprod) && $priceprod!=''){
+					
+				
 				$mindistancedboyid = min($priceprod);
 				if($mindistancedboyid['dboyid']!=0){
 				$success=$this->Cron_model->assign_orderto_deliveryboy($mindistancedboyid['dboyid'],$dlist['order_item_id'],1);
-					
+						$details=$this->Cron_model->get_order_item_details($dlist['order_item_id']);
+						$customerdetails=$this->Cron_model->get_delivery_details($mindistancedboyid['dboyid']);
+						
+						//echo '<pre>';print_r($details);
+						//echo '--';
+						//echo '<pre>';print_r($customerdetails);
+						//exit;
 					if(count($success)>0){
-					$this->load->library('email');
-						$this->email->from('cartinhours.com');
-						$this->email->to('pushkar.avi@gmail.com');
-						$this->email->subject("Assign order");
-						$body = 'Cartinhours added another order to you.please check once';
-						$this->email->message($body);
-						if ($this->email->send())
-						{
-						echo 'email send';
-						}
+					
+					
+					if($details['time']!=''){
+						$time=$details['time'];
+					}else{
+						$time='4 hours';
+					}
+					
+					$msg=' order Product Name: '.$details['item_name'].' Delivery Boy Phone number'.$customerdetails['cust_mobile'].' Expected time '.$time;
+					$username=$this->config->item('smsusername');
+					$pass=$this->config->item('smspassword');
+					$mobilesno=$details['customer_phone'];
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch, CURLOPT_POST, 1);
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno.'&text='.$msg.'&priority=ndnd&stype=normal');
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					//echo '<pre>';print_r($ch);exit;
+					$server_output = curl_exec ($ch);
+					
+					
+					/*delivery boy*/
+					$msg1='Order-item-id: '.$details['order_item_id'].'Customer address: '.$details['customer_address'].','.$details['city'].','.$details['state'].' Mobile number'.$details['customer_phone'].'. Seller Details: '.$details['selleradd1'].','.$details['selleradd2'].'. Mobile number'.$details['seller_mobile'];
+
+					//$mobilesno1='8500050944';
+					$mobilesno1=$customerdetails['cust_mobile'];
+					$ch1 = curl_init();
+					curl_setopt($ch1, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch1, CURLOPT_POST, 1);
+					curl_setopt($ch1, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno1.'&text='.$msg1.'&priority=ndnd&stype=normal');
+					curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+					//echo '<pre>';print_r($ch);exit;
+					$server_output2 = curl_exec ($ch1);
+					/*delivery boy*/
+					curl_close ($ch1);
+					
 						
 					}
+				}
+				
 				}
 				
 

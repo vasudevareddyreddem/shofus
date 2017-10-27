@@ -105,6 +105,12 @@ class Deliveryboyapi_model extends MY_Model
 		$this->db->where('order_status.status_deliverd',4);
 		return $this->db->get()->result_array();
 	}
+	public function get_order_item_details($ordeitemid){
+		$this->db->select('order_items.*,products.item_name,products.colour,products.ram,products.internal_memeory')->from('order_items');
+		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+		$this->db->where('order_items.order_item_id',$ordeitemid);
+		return $this->db->get()->row_array();
+	}
 	
 		
 	

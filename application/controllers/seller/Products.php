@@ -173,54 +173,6 @@ public function item_status(){
 
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
-	/*------*/
-			if($_FILES['descimg']['name']!='')
-		{
-			$i=0;
-				foreach($_FILES['descimg']['name'] as $file){
-					if(!empty($file))
-						{     
-						move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "assets/descriptionimages/" . $_FILES['descimg']['name'][$i]);
-						}
-			$i++;
-				}
-		}
-	$getdescriptionimgs=$this->products_model->get_product_desc($post['product_id']);
-	if(count($getdescriptionimgs)>0){
-	foreach ($getdescriptionimgs as $list){
-		$this->products_model->delete_oldproducts_desc($list['desc_id']);
-	}
-	}
-
-	if(isset($post['description']) && count($post['description'])>0){
-				$productspecificationlist= array_combine($post['description'],$post['olddescimg']);
-				
-				
-							foreach ($productspecificationlist as $key=>$list){
-							if($key!=''){
-								$adddesc=array(
-								'item_id' =>$post['product_id'],
-								'description' => $key,
-								'image' => $list,
-								'create_at' => date('Y-m-d H:i:s'),
-								'status' =>1,
-								);
-								
-								$this->products_model->insert_product_descriptions($adddesc);
-								//echo '<pre>';print_r($adddesc);exit;
-								
-								
-							}
-						}
-						}
-	/*------*/
-		
-		
-		
-		
-		
-		
-		
 		//echo '<pre>';print_r($_FILES);
 		//echo '<pre>';print_r($productspecificationlist);
 		//exit;
@@ -228,50 +180,50 @@ public function item_status(){
 		$discount= ($post['product_price']-$post['special_price']);
 		$offers= (($discount) /$post['product_price'])*100;
 			if($_FILES['picture1']['name']!=''){
-				$profilepic1=$_FILES['picture1']['name'];
-				move_uploaded_file($_FILES['picture1']['tmp_name'], "uploads/products/" . $_FILES['picture1']['name']);
+				$profilepic1=microtime().basename($_FILES["picture1"]["name"]);
+				move_uploaded_file($_FILES['picture1']['tmp_name'], "uploads/products/" . $profilepic1);
 			}else{
 				$profilepic1='';
 			}
 			if($_FILES['picture2']['name']!=''){
-				$profilepic2=$_FILES['picture2']['name'];
-				move_uploaded_file($_FILES['picture2']['tmp_name'], "uploads/products/" . $_FILES['picture2']['name']);
+				$profilepic2=microtime().basename($_FILES["picture2"]["name"]);
+				move_uploaded_file($_FILES['picture2']['tmp_name'], "uploads/products/" . $profilepic2);
 			}else{
 				$profilepic2='';
 			}
 			if($_FILES['picture3']['name']!=''){
-				$profilepic3=$_FILES['picture3']['name'];
-				move_uploaded_file($_FILES['picture3']['tmp_name'], "uploads/products/" . $_FILES['picture3']['name']);
+				$profilepic3=microtime().basename($_FILES["picture3"]["name"]);
+				move_uploaded_file($_FILES['picture3']['tmp_name'], "uploads/products/" . $profilepic3);
 			}else{
 				$profilepic3='';
 			}
 			if($_FILES['picture4']['name']!=''){
-				$profilepic4=$_FILES['picture4']['name'];
-				move_uploaded_file($_FILES['picture4']['tmp_name'], "uploads/products/" . $_FILES['picture4']['name']);
+				$profilepic4=microtime().basename($_FILES["picture4"]["name"]);
+				move_uploaded_file($_FILES['picture4']['tmp_name'], "uploads/products/" . $profilepic4);
 			}else{
 				$profilepic4='';
 			}
 			if($_FILES['picture5']['name']!=''){
-				$profilepic5=$_FILES['picture5']['name'];
-				move_uploaded_file($_FILES['picture5']['tmp_name'], "uploads/products/" . $_FILES['picture5']['name']);
+				$profilepic5=microtime().basename($_FILES["picture5"]["name"]);
+				move_uploaded_file($_FILES['picture5']['tmp_name'], "uploads/products/" . $profilepic5);
 			}else{
 				$profilepic5='';
 			}
 			if($_FILES['picture6']['name']!=''){
-				$profilepic6=$_FILES['picture6']['name'];
-				move_uploaded_file($_FILES['picture6']['tmp_name'], "uploads/products/" . $_FILES['picture6']['name']);
+				$profilepic6=microtime().basename($_FILES["picture6"]["name"]);
+				move_uploaded_file($_FILES['picture6']['tmp_name'], "uploads/products/" . $profilepic6);
 			}else{
 				$profilepic6='';
 			}
 			if($_FILES['picture7']['name']!=''){
-				$profilepic7=$_FILES['picture7']['name'];
-				move_uploaded_file($_FILES['picture7']['tmp_name'], "uploads/products/" . $_FILES['picture7']['name']);
+				$profilepic7=microtime().basename($_FILES["picture7"]["name"]);
+				move_uploaded_file($_FILES['picture7']['tmp_name'], "uploads/products/" . $profilepic7);
 			}else{
 				$profilepic7='';
 			}
 			if($_FILES['picture8']['name']!=''){
-				$profilepic8=$_FILES['picture8']['name'];
-				move_uploaded_file($_FILES['picture8']['tmp_name'], "uploads/products/" . $_FILES['picture8']['name']);
+				$profilepic8=microtime().basename($_FILES["picture8"]["name"]);
+				move_uploaded_file($_FILES['picture8']['tmp_name'], "uploads/products/" . $profilepic8);
 			}else{
 				$profilepic8='';
 			}
@@ -365,7 +317,7 @@ public function item_status(){
 			$results=$this->products_model->insert($data);
 			if(count($results)>0)
 			{	
-					if($_FILES['descimg']['name']!='')
+					/*if($_FILES['descimg']['name']!='')
 					{
 						$i=0;
 						foreach($_FILES['descimg']['name'] as $file){
@@ -375,7 +327,7 @@ public function item_status(){
 							}
 							$i++;
 						}
-					}
+					}*/
 						if($post['addcategoryname']!=''){
 						$data = array(
 						'category_name' => $post['addcategoryname'], 
@@ -419,10 +371,19 @@ public function item_status(){
 						
 						
 						if(isset($post['description']) && count($post['description'])>0){
-								$productspecificationlist= array_combine($post['description'],$_FILES['descimg']['name']);
-
+						
+							$i=0;
+						foreach($_FILES['descimg']['name'] as $file){
+						if(!empty($file))
+						   { 
+							$pics[]=microtime().basename($file);					   
+							 move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "assets/descriptionimages/" . $pics[$i]);
+							}
+							$i++;
+							
+						}	$productspecificationlist= array_combine($post['description'],$pics);
 							foreach ($productspecificationlist as $key=>$list){
-
+								
 							if($key!=''){
 								$adddesc=array(
 								'item_id' =>$results,
@@ -435,6 +396,7 @@ public function item_status(){
 								$this->products_model->insert_product_descriptions($adddesc);
 								
 							}
+							$i++;
 						}
 						}
 				
@@ -572,53 +534,53 @@ public function update()
 	
 	$productdetails=$this->products_model->getproductdata($post['product_id']);
 		if($_FILES['picture1']['name']!=''){
-		$image1=$_FILES['picture1']['name'];
+		$image1=microtime().basename($_FILES["picture1"]["name"]);
 		move_uploaded_file($_FILES['picture1']['tmp_name'], "uploads/products/" . $_FILES['picture1']['name']);
 
 		}else{
 		$image1=$productdetails['item_image'];
 		}
 		if($_FILES['picture2']['name']!=''){
-		$image2=$_FILES['picture2']['name'];
+		$image2=microtime().basename($_FILES["picture2"]["name"]);
 		move_uploaded_file($_FILES['picture2']['tmp_name'], "uploads/products/" . $image1);
 
 		}else{
 		$image2=$productdetails['item_image1'];
 		}
 		if($_FILES['picture3']['name']!=''){
-		$image3=$_FILES['picture3']['name'];
+		$image3=microtime().basename($_FILES["picture3"]["name"]);
 		move_uploaded_file($_FILES['picture3']['tmp_name'], "uploads/products/" . $image3);
 
 		}else{
 		$image3=$productdetails['item_image2'];
 		}
 		if($_FILES['picture4']['name']!=''){
-		$image4=$_FILES['picture4']['name'];
+		$image4=microtime().basename($_FILES["picture4"]["name"]);
 		move_uploaded_file($_FILES['picture4']['tmp_name'], "uploads/products/" . $image4);
 
 		}else{
 		$image4=$productdetails['item_image3'];
 		}
 		if($_FILES['picture5']['name']!=''){
-		$image5=$_FILES['picture5']['name'];
+		$image5=microtime().basename($_FILES["picture5"]["name"]);
 		move_uploaded_file($_FILES['picture5']['tmp_name'], "uploads/products/" . $image5);
 		}else{
 		$image5=$productdetails['item_image4'];
 		}
 		if($_FILES['picture6']['name']!=''){
-		$image6=$_FILES['picture6']['name'];
+		$image6=microtime().basename($_FILES["picture6"]["name"]);
 		move_uploaded_file($_FILES['picture6']['tmp_name'], "uploads/products/" . $image6);
 		}else{
 		$image6=$productdetails['item_image5'];
 		}
 		if($_FILES['picture7']['name']!=''){
-		$image7=$_FILES['picture7']['name'];
+		$image7=microtime().basename($_FILES["picture7"]["name"]);
 		move_uploaded_file($_FILES['picture7']['tmp_name'], "uploads/products/" . $image7);
 		}else{
 		$image7=$productdetails['item_image6'];
 		}
 		if($_FILES['picture8']['name']!=''){
-		$image8=$_FILES['picture8']['name'];
+		$image8=microtime().basename($_FILES["picture8"]["name"]);
 		move_uploaded_file($_FILES['picture8']['tmp_name'], "uploads/products/" . $image8);
 		}else{
 		$image8=$productdetails['item_image7'];
@@ -874,45 +836,43 @@ public function update()
 						/* pecification purpose*/
 						
 						
-						if($_FILES['descimg']['name']!='')
-		{
-			$i=0;
-				foreach($_FILES['descimg']['name'] as $file){
-					if(!empty($file))
-						{     
-						move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "assets/descriptionimages/" . $_FILES['descimg']['name'][$i]);
+					
+	
+echo '<pre>';print_r($post['olddescimg']);
+if(isset($post['description']) && count($post['description'])>0){
+						
+							$i=0;
+						foreach($_FILES['descimg']['name'] as $file){
+							echo '<pre>';print_r($file);
+						if($file!='')
+						   { 
+							$pics[]=microtime().basename($file);					   
+							 //move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "assets/descriptionimages/" . $pics[$i]);
+							}
+							$i++;
+							
 						}
-			$i++;
-				}
-		}
-	$getdescriptionimgs=$this->products_model->get_product_desc($post['product_id']);
-	if(count($getdescriptionimgs)>0){
-	foreach ($getdescriptionimgs as $list){
-		$this->products_model->delete_oldproducts_desc($list['desc_id']);
-	}
-	}
-
-	if(isset($post['description']) && count($post['description'])>0){
-				$productspecificationlist= array_combine($post['description'],$post['olddescimg']);
-				
-				
+						$oldimgesnewimage=array_merge($pics,$post['olddescimg']);
+						echo '<pre>';print_r($pics);exit;
+						$productspecificationlist= array_combine($post['description'],$oldimgesnewimage);
 							foreach ($productspecificationlist as $key=>$list){
+								
 							if($key!=''){
 								$adddesc=array(
-								'item_id' =>$post['product_id'],
+								'item_id' =>$results,
 								'description' => $key,
 								'image' => $list,
 								'create_at' => date('Y-m-d H:i:s'),
 								'status' =>1,
 								);
-								
-								$this->products_model->insert_product_descriptions($adddesc);
 								//echo '<pre>';print_r($adddesc);exit;
-								
+								$this->products_model->insert_product_descriptions($adddesc);
 								
 							}
+							$i++;
 						}
 						}
+	
 						/* -----*/
 					
 				

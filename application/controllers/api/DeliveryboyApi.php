@@ -317,6 +317,31 @@ class DeliveryboyApi extends REST_Controller {
 		if($status==4){
 				$statusupdate=$this->Deliveryboyapi_model->order_delivered_status_updated($order_item_id,$status);
 				if(count($statusupdate)>0){
+					$details=$this->Deliveryboyapi_model->get_order_item_details($order_item_id);
+					//echo '<pre>';print_r($details);exit;
+					$msg=' order Product Name: '.$details['item_name'].'Item successfully delivered';
+					$messagelis['msg']=$msg;
+					$username=$this->config->item('smsusername');
+					$pass=$this->config->item('smspassword');
+					$mobilesno=$details['customer_phone'];
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch, CURLOPT_POST, 1);
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno.'&text='.$msg.'&priority=ndnd&stype=normal');
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					//echo '<pre>';print_r($ch);exit;
+					$server_output = curl_exec ($ch);
+					curl_close ($ch);
+					$this->load->library('email');
+					$this->email->set_newline("\r\n");
+					$this->email->set_mailtype("html");
+					$this->email->from('cartinhours.com');
+					$this->email->to($details['customer_email']);
+					$this->email->subject('Cartinhours - Order Delivered');
+					$html = $this->load->view('email/sellerorederconfirmation.php', $messagelis, true); 
+					//echo $html;exit;
+					$this->email->message($html);
+					$this->email->send();
 					$message = array('status'=>1, 'message'=>'Order delivered status Succssfully updated');
 					$this->response($message, REST_Controller::HTTP_OK);
 			}else{

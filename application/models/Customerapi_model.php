@@ -489,7 +489,7 @@ class Customerapi_model extends MY_Model
 		return $insert_id = $this->db->insert_id();
 	}
 	public function get_cart_products($cust_id){
-		$this->db->select('cart.*,products.item_name,products.item_image,products.product_code,products.colour,products.ram,products.internal_memeory,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,products.offer_expairdate,products.offer_time,products.item_quantity,sellers.seller_mobile')->from('cart');
+		$this->db->select('cart.*,products.item_name,products.item_image,products.product_code,products.colour,products.ram,products.internal_memeory,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,products.offer_expairdate,products.offer_time,products.item_quantity,sellers.seller_mobile,sellers.seller_email')->from('cart');
 		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
 		$this->db->where('cart.cust_id', $cust_id);
@@ -2331,6 +2331,10 @@ class Customerapi_model extends MY_Model
 		//print_r($areaid);exit;
 		$sql1="UPDATE invoice_list SET invoicename ='".$invoicename."' WHERE order_item_id = '".$order_item_id."'";
        	return $this->db->query($sql1);
+	}
+	public function save_cancel_order($order_tem_id,$data){
+		$this->db->where('order_item_id', $order_tem_id);
+		return $this->db->update('order_status', $data);
 	}
 	
 	
