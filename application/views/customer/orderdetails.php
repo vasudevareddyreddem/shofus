@@ -354,18 +354,18 @@ tr th:last-child {
 						<div class="form-group">
 						  <label for="sel1">Reason for Cancellation</label>
 						  <select class="form-control" id="sel1">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
+							<option>order placed by mistake</option>
+							<option>Bought it from somewhere else</option>
+							<option>item price/shipping cost is too high</option>
+							<option>My reason is not listed</option>
 						  </select>
 						</div>
 						<div class="form-group">
 						  <label for="comment">Comment:</label>
 						  <textarea class="form-control" rows="2" id="comment"></textarea>
 						</div>
-						<p><strong>Note:</strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-						</form>
+						<!--<p><strong>Note:</strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+						--></form>
 						<hr style="border-top:1px solid #f5f5f5;">
 						<button class="btn btn-danger  btn-sm pull-right" style="border-radius:5px;"> Confirm Cancellation</button>
 					</div>

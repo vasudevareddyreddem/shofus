@@ -32,17 +32,17 @@
 }
 
 .site_active{
-	background:#45b1b5;
+	background:#009688;
 	color:#fff;
 	padding:4px;
 	border-radius:5px;
 }
 .pr-V_siz:hover{
-	background:#45b1b5;
+	background:#009688;
 	color:#fff;
 }
 .col_active{
-	border:2px solid #45b1b5;
+	border:2px solid #009688;
 	
 	
 }
@@ -57,11 +57,11 @@
 	
 }
 .img_col:hover{
-	border: 1px solid #45b1b9;
+	border: 1px solid #009688;
 	padding:2px;
 }
 .active_color{
-	border:1px solid #45b1b9;
+	border:1px solid #009688;
 	
 }
 
