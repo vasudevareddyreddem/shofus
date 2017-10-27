@@ -72,13 +72,13 @@
 
 								<input type="hidden" name="product_id" id="product_id<?php echo $cnt; ?>"  value="<?php echo $productslist['item_id']; ?>">
 
-								<div class="loop" style="border-top: 1px solid #ddd;">
-                                <div class="panel-body">
+								<div class="loop" style="border-top: 1px solid #ddd;box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);margin:10px;position:relative">
+                                <div class="panel-body" style="padding:15px 0px">
                                     <table class="table borderless">
 
                                         <tbody>
                                             <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                                            <tr>
+                                            <tr >
                                                 <td class="col-md-2">
                                                     <div class="media">
                                                         <a class="thumbnail " href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"> <img style="height:80px;width:auto;" class="media-object img-responsive" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" style="width: 72px; height: 72px;"> </a>
@@ -122,11 +122,13 @@
                                         <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span><?php echo isset($productslist['store_name'])?$productslist['store_name']:''; ?></span>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="<?php echo base_url('customer/deletecart/'.base64_encode($productslist['item_id']).'/'.base64_encode($productslist['id'])); ?>" type="button" class="btn btn-danger btn-small">Remove</a>
+                                        
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-								
+								<div style="position:absolute;top:15px;right:15px">
+									<a href="<?php echo base_url('customer/deletecart/'.base64_encode($productslist['item_id']).'/'.base64_encode($productslist['id'])); ?>" type="button" class=""><span style="background:#ddd;border-radius:50px;padding:5px;" class="glyphicon glyphicon-remove can_ord"></span></a>
+								</div>
                                 </div>
 								
 								<?php 
