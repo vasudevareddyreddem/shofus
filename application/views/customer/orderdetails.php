@@ -161,7 +161,7 @@ tr th:last-child {
 		<?php if(isset($item_details['amount_status_paid']) && $item_details['amount_status_paid']==1){ ?>
 		<a href="<?php echo base_url('assets/downloads/'.$item_details['invoicename']); ?>" class="site_col" href="" target="_blank">View Invoice</a></p>
 		<?php } ?>
-		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']=='' && $currentdate<= $tomorrow){ ?>
+		<?php if($item_details['status_deliverd']==4){ ?>
 		<div><a class="site_col" href="<?php echo base_url('customer/orderrefund/'.base64_encode($item_details['order_item_id'])); ?>"><h5>Return</h5></a></div>
 		<?php } ?>
 		<p ><a class="site_col" id="review">Review this product</a></p>
@@ -219,7 +219,7 @@ tr th:last-child {
 			<div class="panel-body"  style="padding:20px 0px;">
 				<div class="col-md-4">
 					<div class="col-md-4">
-						<img style="height:70px;width:auto;" src="<?php echo base_url(); ?>assets/home/images/user.png" />
+						<a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>"><img style="height:70px;width:auto;" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>" /></a>
 					</div>
 					<div class="col-md-8">
 						<p><a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
