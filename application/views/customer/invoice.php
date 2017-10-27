@@ -218,9 +218,9 @@ table td.grand {
             <td class="desc " colspan="6" style="text-align:right;font-size:17px;background:none;">&nbsp;</td>
           </tr>
 		  <tr>
-            <td class="desc " colspan="7" style="text-align:right;font-size:17px;background:none;">
-			<div > <img style="width:80px;height:auto;padding-right:15px" src="https://allaboutcloud.info/wp-content/uploads/2017/08/signature.png"></div>
-			
+            <td class="desc " colspan="7" style="text-align:right;font-size:17px;background:none;"><?php if($details['gstinimage']!=''){?>
+			<div > <img style="width:150px;height:auto;padding-right:15px" src="<?php echo base_url('assets/sellerfile/'.$details['gstinimage']); ?>"></div>
+			<?php } ?>
 			<span>Authorized Signatory<span></td>
           </tr>
         </tbody>

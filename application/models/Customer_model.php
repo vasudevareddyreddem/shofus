@@ -537,7 +537,7 @@ class Customer_model extends MY_Model
 	}
 	
 	public function getinvoiceinfo($id){
-		$this->db->select('order_items.*,billing_address.name,invoice_list.invoice_id,products.item_name,products.product_code,products.warranty_summary,products.warranty_type,products.service_type,seller_store_details.store_name,(seller_store_details.addrees1) AS sadd1,(seller_store_details.addrees2) AS sadd2,(seller_store_details.pin_code) AS Spin,seller_store_details.gstin,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1,customers.address2,(customers.pincode) AS cpin,subcategories.subcategory_name')->from('order_items');
+		$this->db->select('order_items.*,billing_address.name,invoice_list.invoice_id,products.item_name,products.product_code,products.warranty_summary,products.warranty_type,products.service_type,seller_store_details.store_name,(seller_store_details.addrees1) AS sadd1,(seller_store_details.addrees2) AS sadd2,(seller_store_details.pin_code) AS Spin,seller_store_details.gstin,seller_store_details.gstinimage,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1,customers.address2,(customers.pincode) AS cpin,subcategories.subcategory_name')->from('order_items');
 		$this->db->join('customers', 'customers.customer_id = order_items.customer_id', 'left');
 		$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
 		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
