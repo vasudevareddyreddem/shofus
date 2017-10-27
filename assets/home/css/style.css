@@ -1,3 +1,6 @@
+.box-product h6 a{
+	text-transform: uppercase !important;
+}
 .can_ord:hover{
 	-webkit-box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.75);
@@ -1262,6 +1265,7 @@ a.offers_link {
 }
 .pro-info{
 	margin-top:10px;
+	 text-transform: uppercase;
 }
 .featured-pro .pro-img .pro-info {
 	color: #333;

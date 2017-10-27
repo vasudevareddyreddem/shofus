@@ -188,7 +188,6 @@
 							<td>Color </td>
 							
 							<td>
-							<?php if(count($sameproducts_color_list)>1){ ?>
 								<div class="row">
 								<?php //echo '<pre>';print_r($sameproducts_color_list);exit;
 								foreach ($sameproducts_color_list as $lists){ ?>
@@ -204,17 +203,7 @@
 								
 								<?php   } ?>
 								</div>
-							<?php }else{ ?>
-							<div class="row">
-								<?php //echo '<pre>';print_r($sameproducts_color_list);exit;
-								foreach ($sameproducts_color_list as $lists){ ?>
-								<a class="col-md-2 img_col" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
-									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
-								</a>
-								<?php   } ?>
-								</div>
-							
-							<?php } ?>
+						
 							</td>
 						</tr>
 						
@@ -226,7 +215,6 @@
 						<tr>
 							<td>Size </td>
 							<td>
-							<?php if(count($sameproducts_size_list)>1){ ?>
 								<div class="row">
 								<?php foreach ($sameproducts_size_list as $lists){ ?>
 								
@@ -250,18 +238,7 @@
 								
 								</div>
 								
-							<?php }else{ ?>
-							<div class="row">
-								<?php foreach ($sameproducts_size_list as $lists){ ?>
-										<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>">
-											<div style="font-size:16px"  class="col-md-2 img_col text-center" >
-											<span  ><?php echo $lists['internal_memeory'];?></span>
-											</div>
-										</a>
-									<?php   } ?>
-								
-								</div>
-							<?php } ?>
+						
 							</td>
 						</tr>
 						
@@ -272,9 +249,8 @@
 						
 						<tr>
 							<td>RAM </td>
-							<td >
+							<td>
 							
-							<?php if(count($sameproducts_ram_list)>1){ ?>
 								<div class="row">
 								<?php foreach ($sameproducts_ram_list as $lists){ ?>
 								
@@ -292,19 +268,7 @@
 								
 								<?php   } ?>
 								</div>
-							<?php }else{ ?>
-							<div class="row">
-								<?php foreach ($sameproducts_ram_list as $lists){ ?>
-								
-								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center" >
-								<span ><?php echo $lists['ram'];?></span>
-								</div></a>
-								
-								
-								
-								<?php   } ?>
-								</div>
-							<?php } ?>
+							
 							</td>
 						</tr>
 						
@@ -1179,15 +1143,15 @@
 				<div class="option ">
 				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
 				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
 				<?php }else{ ?>	
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart"></i></a>                  
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $cnt; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-shopping-cart"></i></a>                  
 				<?php } ?>
 				<?php } ?>
 				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-				<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart text-primary"></i></a> 
+				<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart text-primary"></i></a> 
 				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart "></i></a> 
+				<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart "></i></a> 
 				<?php } ?>	
 				</div>
               </div>
@@ -1321,11 +1285,12 @@ jQuery.ajax({
 						$("#supcount").append(data.count);
 						if(data.msg==2){
 						$("#addticartitem"+itemid+val).removeClass("text-primary");
+						$('#cartitemtitle'+itemid+val).prop('title', 'Add to cart');
 						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 						if(data.msg==1){
 						 $("#addticartitem"+itemid+val).addClass("text-primary");
-						//$('#addwhish').css("color", "yellow");
+						$('#cartitemtitle'+itemid+val).prop('title', 'Added to cart');
 						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 				}
@@ -1352,6 +1317,7 @@ jQuery.ajax({
 				if(data.msg==2){
 				$('#sucessmsg').show('');
 				$("#addwishlistids"+id+val).removeClass("text-primary");
+				$('#addwhish'+id+val).prop('title', 'Add to Wishlist');
 						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 				document.getElementById("sucessmsg").focus();
 				
@@ -1359,6 +1325,7 @@ jQuery.ajax({
 				if(data.msg==1){
 				$('#sucessmsg').show('');
 				 $("#addwishlistids"+id+val).addClass("text-primary");
+				 $('#addwhish'+id+val).prop('title', 'Added to Wishlist');
 						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 				document.getElementById("sucessmsg").focus();				
 				}

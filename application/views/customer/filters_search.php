@@ -41,6 +41,7 @@
 	margin: 15px 5px 5px;
 	width: 110px;
 }
+
 </style>
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
