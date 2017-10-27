@@ -132,7 +132,7 @@
           </table> 
          <p style="border-top:1px solid #ddd"></p>
          <?php if(isset($list['amount_status_paid']) && $list['amount_status_paid']==0){ ?>
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:30px 0 0 0;max-width:650px;background:#ffffff" border="0"> 
+          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:30px 0 0 40px;max-width:650px;background:#ffffff" border="0"> 
            <tbody>
             <tr> 
              <td> 
