@@ -2568,6 +2568,34 @@ public function aboutus(){
 	  $this->template->write_view('content', 'customer/aboutus');
 	  $this->template->render(); 
   }
+  
+  public function cancelorder(){
+	  if($this->session->userdata('userdetails'))
+		 {
+			 $post=$this->input->post();
+			 $canceldata=array(
+			 'status_refund'=>'cancel',
+			 'status_confirmation'=>5,
+			 'reason'=>isset($post['reasons'])?$post['reasons']:'',
+			 'comments'=>isset($post['comments'])?$post['comments']:'',
+			 );
+			 $canclesaveorder=$this->customer_model->save_cancel_order($post['order_items_id'],$post['pid'],$canceldata);
+			
+			 if(count($canclesaveorder)>0){
+				$data['msg']=1;
+				echo json_encode($data);
+			 }else{
+				 $data['msg']=0;
+				echo json_encode($data);
+			 }
+			 $this->session->set_flashdata('success','Your Query successfully submitted');
+			//redirect('customer/orederdetails/'.base64_encode($post['order_items_id'])); 
+			
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('customer');
+		}
+  }
 
 
 }		

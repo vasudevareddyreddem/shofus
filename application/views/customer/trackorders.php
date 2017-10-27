@@ -200,6 +200,15 @@ tr th:last-child {
 					<td>₹<?php echo isset($item_details['delivery_amount'])?$item_details['delivery_amount']:'';  ?></td>
 
 					</tr>
+					<?php if($item_details['status_confirmation']==5){ ?>
+					<tr>
+					<th>Status</th>
+					<td>
+					canceled
+					</td>
+
+					</tr>
+					<?php } ?>
 				</tbody>
 				</table>
 				</div>

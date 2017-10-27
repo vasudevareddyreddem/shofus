@@ -24,17 +24,25 @@
 					<div class="pull-right"> 
 					<span style="font-size:17px;">Status :</span>
 					<span class="site_col">
-					<?php if($orders['status_confirmation']==1 && $orders['status_packing']==''){
-						echo "Order Confirmed ";  
-					  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==''){
-						  echo "Packing Order";
-					  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']=='' || $orders['status_deliverd']==0){
-						  echo "Order on Road";
-					  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']==4){
-						  echo "Delivered";
-					  }else{
-						 echo "cancel"; 
-					  }
+					
+					<?php if($orders['status_confirmation']==5){ 
+					
+					echo "canceled"; 
+					}else{
+					
+							if($orders['status_confirmation']==1 && $orders['status_packing']==''){
+								echo "Order Confirmed ";  
+							  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==''){
+								  echo "Packing Order";
+							  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']=='' || $orders['status_deliverd']==0){
+								  echo "Order on Road";
+							  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']==4){
+								  echo "Delivered";
+							  }else{
+								 echo "cancel"; 
+							  }
+					  
+					}
 					  ?>
 					  </span>&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="<?php echo base_url('customer/orederdetails/'.base64_encode($orders['order_item_id'])); ?>"> <span style="background-color:#009688;color:#fff;padding:4px 8px;border-radius:5px;">View</span></a>
