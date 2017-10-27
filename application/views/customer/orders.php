@@ -33,7 +33,7 @@
 					  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']==4){
 						  echo "Delivered";
 					  }else{
-						 echo "Returned"; 
+						 echo "cancel"; 
 					  }
 					  ?>
 					  </span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -45,8 +45,8 @@
 				<hr style="margin:0px 10px 10px 0px;border-top:1px solid #ddd;">
 			
                     <div class="col-xs-2 col-md-2 text-center" style="width:80px;height:auto;padding-bottom:10px;">
-                        <img  src="<?php echo base_url('uploads/products/'.$orders['item_image']); ?>" alt="<?php echo $orders['item_image']; ?>"
-                            class="img-rounded img-responsive thumbnail" />
+                       <a href="<?php echo base_url('category/productview/'.base64_encode($orders['item_id'])); ?>"> <img  src="<?php echo base_url('uploads/products/'.$orders['item_image']); ?>" alt="<?php echo $orders['item_image']; ?>"
+                            class="img-rounded img-responsive thumbnail" /></a>
                     </div>
                     <div class="col-xs-5 col-md-5 section-box">
                         <div  class=" whish_head">
