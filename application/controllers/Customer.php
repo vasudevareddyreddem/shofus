@@ -1149,7 +1149,7 @@ class Customer extends Front_Controller
  public function orderpaymenttype(){
 	 if($this->session->userdata('userdetails'))
 	 {
-		/*$customerdetails=$this->session->userdata('userdetails');
+		$customerdetails=$this->session->userdata('userdetails');
 		$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 		foreach ($cart_items as $list){
 			
@@ -1162,10 +1162,9 @@ class Customer extends Front_Controller
 				$this->session->set_flashdata('qtyerror','Please decrease this '.$productsdetails['item_name'].' product qty lessthan or equal to '.$productsdetails['item_quantity']);
 				redirect('customer/cart');	
 			}
-		}*/
+		}
 		
 		$billingaddress=$this->session->userdata('billingaddress');	
-		$customerdetails=$this->session->userdata('userdetails');
 		$post=$this->input->post();
 		//echo '<pre>';print_r($post);exit;
 				$ordersucess=array(
@@ -1187,7 +1186,6 @@ class Customer extends Front_Controller
 				);
 				$saveorder= $this->customer_model->save_order_success($ordersucess);
 				$getsaveorderstatus= $this->customer_model->get_status_save_order_success($saveorder);
-				$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 				
 				foreach($cart_items as $items){
 					$orderitems=array(
@@ -1206,6 +1204,8 @@ class Customer extends Front_Controller
 						'customer_phone'=>$billingaddress['mobile'],
 						'customer_address'=>$billingaddress['address1'].' '.$billingaddress['address2'],
 						'area'=>$billingaddress['area'],
+						'time'=>$this->session->userdata('time'),
+						
 						'city'=>$billingaddress['city'],
 						'pincode'=>$billingaddress['pincode'],
 						'state'=>$billingaddress['state'],
@@ -1313,14 +1313,14 @@ class Customer extends Front_Controller
 			$username=$this->config->item('smsusername');
 			$pass=$this->config->item('smspassword');
 			$mobilesno=$orderlist['seller_mobile'];
-			$ch = curl_init();
+			/*$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno.'&text=Customer orederdetails'.$msg.'&priority=ndnd&stype=normal');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			//echo '<pre>';print_r($ch);exit;
 			$server_output = curl_exec ($ch);
-			curl_close ($ch);
+			curl_close ($ch);*/
 			}
 		/* message purpose*/
 			

@@ -489,8 +489,9 @@ class Customerapi_model extends MY_Model
 		return $insert_id = $this->db->insert_id();
 	}
 	public function get_cart_products($cust_id){
-		$this->db->select('cart.*,products.item_name,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,products.offer_expairdate,products.offer_time,products.item_quantity')->from('cart');
+		$this->db->select('cart.*,products.item_name,products.item_image,products.product_code,products.colour,products.ram,products.internal_memeory,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,products.offer_expairdate,products.offer_time,products.item_quantity,sellers.seller_mobile')->from('cart');
 		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
 		$this->db->where('cart.cust_id', $cust_id);
         return $this->db->get()->result_array();
 	}
@@ -2297,6 +2298,41 @@ class Customerapi_model extends MY_Model
 		$this->db->order_by('id','desc');
         return $this->db->get()->result_array();
 	}
+		
+	public function get_order_item_details($order_id){
+		$this->db->select('order_items.*,products.item_name,products.description,products.item_image,products.product_code,products.brand,products.colour,products.ram,products.internal_memeory,sellers.seller_name,sellers.seller_mobile,seller_store_details.store_name,billing_address.name')->from('order_items');
+		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
+		$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');
+		$this->db->where('order_items.order_id', $order_id);
+		return $this->db->get()->result_array();
+	}
+	public function getinvoiceinfo($id){
+		$this->db->select('order_items.*,billing_address.name,invoice_list.invoice_id,products.item_name,products.product_code,products.warranty_summary,products.warranty_type,products.service_type,seller_store_details.store_name,(seller_store_details.addrees1) AS sadd1,(seller_store_details.addrees2) AS sadd2,(seller_store_details.pin_code) AS Spin,seller_store_details.gstin,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1,customers.address2,(customers.pincode) AS cpin,subcategories.subcategory_name')->from('order_items');
+		$this->db->join('customers', 'customers.customer_id = order_items.customer_id', 'left');
+		$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
+		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');
+		$this->db->join('invoice_list', 'invoice_list.order_item_id = order_items.order_item_id', 'left');
+		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
+
+		$this->db->where('order_items.order_item_id',$id);
+		return $this->db->get()->row_array();
+	}
+	public function update_invocie_mail_send($order_item_id,$val){
+		
+		//print_r($areaid);exit;
+		$sql1="UPDATE invoice_list SET mail_send ='".$val."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
+	}
+	public function update_invocie_name($order_item_id,$invoicename){
+		
+		//print_r($areaid);exit;
+		$sql1="UPDATE invoice_list SET invoicename ='".$invoicename."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
+	}
+	
 	
 		
 	

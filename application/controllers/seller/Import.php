@@ -58,19 +58,19 @@ class Import extends Admin_Controller {
 																//echo "<pre>";print_r($arry);exit;
 																foreach($arry as $key=>$fields)
 																{
-																		
+																		if($fields[1]!='' && $fields[2]!='' && $fields[3]!=''){
 																		$totalfields[] = $fields;
 																		if(empty($fields[1])) {
 																			$data['errors'][]="Product name is required. Row Id is :  ".$key.'<br>';
 																			$error=1;
-																		}else if($fields[1]!=''){
+																		}/*else if($fields[1]!=''){
 																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
 																			if(!preg_match( $regex, $fields[1]))	  	
 																			{
 																			$data['errors'][]='Product name wont allow "  <> []. Row Id is :  '.$key.'<br>';
 																			$error=1;
 																			}
-																		}
+																		}*/
 																		if(empty($fields[2])) {
 																			$data['errors'][]="Price is required. Row Id is :  ".$key.'<br>';
 																			$error=1;
@@ -110,7 +110,7 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																		}
-																		if(empty($fields[5])) {
+																		/*if(empty($fields[5])) {
 																			$data['errors'][]="Highlights is required. Row Id is :  ".$key.'<br>';
 																			$error=1;
 																		}else if($fields[5]!=''){
@@ -732,7 +732,9 @@ class Import extends Admin_Controller {
 																			$error=1;
 																			}
 																	
-																		}
+																		}*/
+																		
+																 }
 																}
 																//echo '<pre>';print_r($data);exit;
 														if(count($data['errors'])>0){

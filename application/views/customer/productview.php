@@ -155,12 +155,19 @@
 			 <td>Sold By:</td>
 			 <td><span ><?php echo $products_list['store_name'];?></span></td>
 			
+			 </tr> 
+			 <?php if($products_list['item_quantity']<=10 && $products_list['item_quantity']>0){ ?>
+			 <tr>
+			 <td>Available quantity:</td>
+			 <td><span ><?php echo $products_list['item_quantity'];?></span></td>
+			
 			 </tr>
+			 <?php } ?>
 			 <tr>
 			  <td>Status</td>
                 <td>
 				<span class="label label-success arrowed">
-				 <?php if($products_list['item_status']==1 && $products_list['item_quantity']!=0){ 
+				 <?php if($products_list['item_status']==1 && $products_list['item_quantity']>0){ 
 					echo "Ready Stock";
 					}
 					else{
@@ -388,10 +395,9 @@
 				 
                 </td>
               </tr>
-			 
-			 
+			 		  
         </div>
-				<?php if($products_list['item_quantity']!=0 && $products_list['item_status']!=0 ){ ?>
+				<?php if($products_list['item_quantity']>0 && $products_list['item_status']!=0 ){ ?>
 
         <div class="col-md-3" style="border:1px solid #ddd;padding:20px;">
 			<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;

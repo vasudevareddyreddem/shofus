@@ -1151,8 +1151,8 @@ function filtersearch(){
 				$data['time']=$pinode_list['hours'];
 				echo json_encode($data);
 			}else{
-				$this->session->set_userdata('pincode','');
-				$this->session->set_userdata('time','');
+				$this->session->set_userdata('pincode',$pinid);
+				$this->session->set_userdata('time','4 hours');
 				$data['msg']=0;
 				$data['time']='';
 				echo json_encode($data);
