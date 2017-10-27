@@ -57,6 +57,7 @@ tr th:last-child {
 	font-weight:400;
 	color:#aaa;
 }
+
 </style>
 
 <body >
@@ -67,12 +68,12 @@ tr th:last-child {
 	 <!-- track start-->
 <div class="row" >
   <?php if($this->session->flashdata('success')): ?>
-		<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
+		<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 
 
 			<?php endif; ?>
 			<?php if($this->session->flashdata('error')): ?>	
-	<div class="alt_cus"><div class="alert_msg animated slideInUp btn_war"> <?php echo $this->session->flashdata('error');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
+	<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> <?php echo $this->session->flashdata('error');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 			<?php endif; ?>
 	
@@ -133,6 +134,15 @@ tr th:last-child {
         <td>₹ <?php echo isset($item_details['delivery_amount'])?$item_details['delivery_amount']:'';  ?></td>
         
       </tr>
+	  <?php if($item_details['status_confirmation']==5){ ?>
+	   <tr>
+       <th>Status</th>
+        <td>
+			canceled
+		</td>
+        
+      </tr>
+	  <?php } ?>
     </tbody>
   </table>
 </div>
@@ -157,7 +167,9 @@ tr th:last-child {
 		 ?>
 		 
 		<div class="col-md-4" >
+		<?php if($item_details['status_deliverd']!=4 && $item_details['status_confirmation']!=5){ ?>
 		<button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" style="position:absolute;right:0;top:10px;border-radius:5px;">Cancel</button>
+		<?php } ?>
 		<?php if(isset($item_details['amount_status_paid']) && $item_details['amount_status_paid']==1){ ?>
 		<a href="<?php echo base_url('assets/downloads/'.$item_details['invoicename']); ?>" class="site_col" href="" target="_blank">View Invoice</a></p>
 		<?php } ?>
@@ -334,40 +346,44 @@ tr th:last-child {
 					<div class="row">
 						<div class="col-md-8">
 							<div class="col-md-3">
-								<img class="thumbnail"style="height:100px;width:auto;" src="http://test.cartinhours.com/uploads/products/31hzQD64nPL.jpg">
+								<img class="thumbnail"style="height:100px;width:auto;" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>">
 							</div>
 							<div class="col-md-9">
-								<div>LENOVO Grey 32 GB (3 GB Ram)</div>
-								<p>Color:<span>Black</span></p>
+								<div><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?>&nbsp;<?php echo isset($item_details['internal_memeory'])?$item_details['internal_memeory']:'';  ?>&nbsp;<?php echo isset($item_details['ram'])?$item_details['ram'].' RAM':'';  ?></div>
+								<p>Color:<span><?php echo isset($item_details['colour'])?$item_details['colour']:'';  ?></span></p>
 							</div>
 						</div>
 						<div class="col-md-2">
-							10
+							<?php echo isset($item_details['qty'])?$item_details['qty']:'';  ?>
 						</div>
 						<div class="col-md-2">
-							25000
+							<?php echo number_format(isset($item_details['total_price'])?$item_details['total_price']:'', 2);  ?>
 						</div>
 					</div>
 					<hr style="border-top:1px solid #f5f5f5;">
 					<div class="row" style="padding:5px 30px">
-					<form>
+					
 						<div class="form-group">
-						  <label for="sel1">Reason for Cancellation</label>
-						  <select class="form-control" id="sel1">
-							<option>order placed by mistake</option>
-							<option>Bought it from somewhere else</option>
-							<option>item price/shipping cost is too high</option>
-							<option>My reason is not listed</option>
+						<label for="sel1">Reason for Cancellation</label>
+						  <select class="form-control" id="reason" name="reason">
+							<option value="">Select</option>
+							<option value="order placed by mistake">order placed by mistake</option>
+							<option value="Bought it from somewhere else">Bought it from somewhere else</option>
+							<option value="item price/shipping cost is too high">item price/shipping cost is too high</option>
+							<option value="My reason is not listed">My reason is not listed</option>
+							<option value="Expected delivery time is too long">Expected delivery time is too long</option>
+							<option value="Need to change shipping address">Need to change shipping address</option>
 						  </select>
+						  <span id="errormeg" style="color:red"></span>
 						</div>
 						<div class="form-group">
 						  <label for="comment">Comment:</label>
-						  <textarea class="form-control" rows="2" id="comment"></textarea>
+						  <textarea class="form-control" rows="2" id="comment" name="comment"></textarea>
 						</div>
 						<!--<p><strong>Note:</strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-						--></form>
+						-->
 						<hr style="border-top:1px solid #f5f5f5;">
-						<button class="btn btn-danger  btn-sm pull-right" style="border-radius:5px;"> Confirm Cancellation</button>
+						<button type="button" onclick="submmtingcancle();" class="btn btn-danger  btn-sm pull-right" style="border-radius:5px;"> Confirm Cancellation</button>
 					</div>
 						
                           
@@ -384,6 +400,39 @@ tr th:last-child {
 
 	
 <script>
+function submmtingcancle(){
+	var reason=$('#reason').val();
+	var comment=$('#comment').val();
+	var pids=$('#product_id').val();
+	var oid=$('#order_item_id').val();
+	var cid=$('#customer_id').val();
+	if(reason==''){
+		$('#errormeg').html('Please select a reason');
+		return false;
+	}
+	$('#errormeg').html('');
+	jQuery.ajax({
+        url: "<?php echo site_url('customer/cancelorder');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+			reasons: reason,
+			comments: comment,
+			pid: pids,
+			order_items_id:oid,
+			cust_id:cid,
+		  qty: '1',
+          },
+        dataType: 'json',
+        success: function (data) {
+		  if(data.msg==1){
+			 location.reload();   
+		  }
+
+        }
+      });
+
+}
 var __slice = [].slice;
 
 (function($, window) {
