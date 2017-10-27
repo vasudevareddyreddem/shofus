@@ -2,29 +2,29 @@ a:hover{
 	text-decoration:none;
 }
 .box-product h6 a{
-	text-transform: uppercase !important;
-	font-weight:600;
-	color:#666 !important;
+	text-transform: capitalize !important;
+	font-weight:500 !important;
+	color:#333 !important;
 	text-decoration:none;
 }
 .box-product h6 a:hover{
-	text-transform: uppercase !important;
-	font-weight:600;
+	text-transform: capitalize !important;
+	font-weight:500 !important;
 	color:#009688 !important;
 	text-decoration:none;
 }
 .pro-info:hover{
 	margin-top:10px;
-	 text-transform: uppercase;
-	 font-weight:600;
+	 text-transform: capitalize;
+	 font-weight:500 !important;
 	color:#009688 !important;
 	text-decoration:none;
 }
 .pro-info{
 	margin-top:10px;
-	 text-transform: uppercase;
-	 font-weight:600;
-	color:#666 !important;
+	 text-transform: capitalize;
+	 font-weight:500 !important;
+	color:#333 !important;
 	text-decoration:none;
 }
 .can_ord:hover{
