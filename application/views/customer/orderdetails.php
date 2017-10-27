@@ -177,7 +177,7 @@ tr th:last-child {
 		<p ><a class="site_col" id="review">Review this product</a></p>
 		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']!=''){ ?>
 		<p >Your order status is <?php echo $item_details['status_refund']; ?>  Requested</p>
-		<p >We will contact you within 72 hrs to clarify your request. Please note your request will be accepted only if it falls within the cartinhour return policy. </p>
+		<p >We will contact you within 12 hrs to clarify your request. Please note your request will be accepted only if it falls within the cartinhours return policy. </p>
 		<?php } ?>
 		</div>
 		</div>
@@ -286,7 +286,7 @@ tr th:last-child {
 							<span class="font_span">₹<?php echo number_format(isset($item_details['total_price'])?$item_details['total_price']:'', 2);  ?></span>
 					</div>
 					<div class="col-md-9">
-							<span class="site_co"><?php if($item_details['order_status']==5){ echo "Item returned"; } ?></span>
+							<span class="btn btn-sm btn-danger pull-right "><?php if($item_details['order_status']==5){ echo "Item returned"; } ?></span>
 					</div>
 				</div>
 					<div class="clearfix">&nbsp;</div>
