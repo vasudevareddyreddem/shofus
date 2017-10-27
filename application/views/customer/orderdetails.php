@@ -219,7 +219,7 @@ tr th:last-child {
 			<div class="panel-body"  style="padding:20px 0px;">
 				<div class="col-md-4">
 					<div class="col-md-4">
-						<img style="height:70px;width:auto;" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>" />
+						<a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>"><img style="height:70px;width:auto;" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>" /></a>
 					</div>
 					<div class="col-md-8">
 						<p><a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
