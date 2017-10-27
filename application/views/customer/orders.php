@@ -22,10 +22,10 @@
 						<span style="background-color:#009688;color:#fff;padding:10px;border-radius:5px;"><b>ORDER ID:&nbsp; </b><?php echo $orders['order_item_id']; ?></span>
 					</div>
 					<div class="pull-right"> 
-					<span style="font-size:17px;">status :</span>
+					<span style="font-size:17px;">Status :</span>
 					<span class="site_col">
 					<?php if($orders['status_confirmation']==1 && $orders['status_packing']==''){
-						echo "Order confirmed ";  
+						echo "Order Confirmed ";  
 					  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==''){
 						  echo "Packing Order";
 					  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']=='' || $orders['status_deliverd']==0){

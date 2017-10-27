@@ -65,7 +65,7 @@ tr th:last-child {
 		
 		
 	 <!-- track start-->
-<div class="row">
+<div class="row" >
   <?php if($this->session->flashdata('success')): ?>
 		<div class="alt_cus"><div class="alert_msg animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 
@@ -77,7 +77,8 @@ tr th:last-child {
 			<?php endif; ?>
 	
 			<div class="panel panel-primary">
-			<div class="panel-body">
+			<div class="panel-body" style="padding-top:10px">
+			
 <div class="col-md-4" style="border-right:1px solid #45b1b5">
 <table class="table " >
 	<div><h5>ORDER DETAILS</h5></div>
@@ -156,6 +157,7 @@ tr th:last-child {
 		 ?>
 		 
 		<div class="col-md-4" >
+		<button class="btn btn-danger btn-sm" style="position:absolute;right:0;top:10px;border-radius:5px;">Cancel</button>
 		<?php if(isset($item_details['amount_status_paid']) && $item_details['amount_status_paid']==1){ ?>
 		<a href="<?php echo base_url('assets/downloads/'.$item_details['invoicename']); ?>" class="site_col" href="" target="_blank">View Invoice</a></p>
 		<?php } ?>
@@ -175,7 +177,7 @@ tr th:last-child {
 	
 			<div class="panel panel-primary">
 			<div class="panel-body">
-				<form id="addreview" name="addreview" action="<?php echo base_url('category/productreview'); ?>" method="POST">
+				<form  id="addreview" name="addreview" action="<?php echo base_url('category/productreview'); ?>" method="POST">
 					<input type="hidden" name="product_id" id="product_id" value="<?php echo $item_details['item_id']; ?>">
 					<input type="hidden" name="order_item_id" id="order_item_id" value="<?php echo $item_details['order_item_id']; ?>">
 					<input type="hidden" name="customer_id" id="customer_id" value="<?php echo $customerdetail['customer_id']; ?>">
@@ -214,10 +216,10 @@ tr th:last-child {
 		<div class="row">
 	
 			<div class="panel panel-primary">
-			<div class="panel-body">
+			<div class="panel-body"  style="padding:20px 0px;">
 				<div class="col-md-4">
 					<div class="col-md-4">
-						<img style="width:60px" src="<?php echo base_url(); ?>assets/home/images/user.png" />
+						<img style="height:70px;width:auto;" src="<?php echo base_url(); ?>assets/home/images/user.png" />
 					</div>
 					<div class="col-md-8">
 						<p><a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
