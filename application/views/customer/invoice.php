@@ -218,7 +218,10 @@ table td.grand {
             <td class="desc " colspan="6" style="text-align:right;font-size:17px;background:none;">&nbsp;</td>
           </tr>
 		  <tr>
-            <td class="desc " colspan="7" style="text-align:right;font-size:17px;background:none;">Authorized Signatory</td>
+            <td class="desc " colspan="7" style="text-align:right;font-size:17px;background:none;">
+			<div > <img style="width:80px;height:auto;padding-right:15px" src="https://allaboutcloud.info/wp-content/uploads/2017/08/signature.png"></div>
+			
+			<span>Authorized Signatory<span></td>
           </tr>
         </tbody>
       </table>
