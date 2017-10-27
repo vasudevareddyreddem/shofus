@@ -94,7 +94,7 @@
                             </div>
                         </div>
 										  
-				<div class="or-text">
+				<!--<div class="or-text">
 					<div class="or-text-row">
 						<div class="or-text-line">
 							<button type="button" class="btn btn-default btn-circle" disabled="disabled">or</button>
@@ -115,7 +115,7 @@
 					</div>
 					
 					
-				</div>
+				</div>_-->
 				</form>
   
 
