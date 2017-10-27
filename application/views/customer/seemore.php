@@ -4,10 +4,7 @@
     <div class="top-cate">
       <div class="featured-pro container_main">
         <div class="row">
-		  <div  style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-            </button>
-		</div>
+		  <div id="sucessmsg" style="display:none;"></div>
 		<?php //echo '<pre>';print_r($topoffers);exit;  ?>
 		
 		 <?php if(isset($type) && $type=='top'){?>
@@ -68,7 +65,7 @@
                
 				</div>
                
-				<?php if($productslist['item_quantity']<=0){ ?>
+				<?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
 				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
@@ -77,15 +74,15 @@
 				<div class="option">
 				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
 				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
-				<a style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $s; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+				<a style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $s; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $s; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
 				<?php }else{ ?>	
-				<a style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $s; ?>');" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-shopping-cart"></i></a>                  
+				<a style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $s; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $s; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-shopping-cart"></i></a>                  
 				<?php } ?>
 				<?php } ?>
 				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $s; ?>');" id="addwhish<?php echo $productslist['item_id']; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-heart text-primary"></i></a> 
+				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $s; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $s; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-heart text-primary"></i></a> 
 				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $s; ?>');" id="addwhish" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-heart "></i></a> 
+				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $s; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $s; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-heart "></i></a> 
 				<?php } ?>	
 				</div>
               </div>
@@ -152,12 +149,14 @@ jQuery.ajax({
 						//alert(data.msg);
 						if(data.msg==2){
 							$("#addwishlistids"+id+val).removeClass("text-primary");
-						$('#sucessmsg').html('Product Successfully removed to wishlist');  
+							$('#addwhish'+id+val).prop('title', 'Add to Wishlist');
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_suc"> Product Successfully Removed to Wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 						if(data.msg==1){
 						 $("#addwishlistids"+id+val).addClass("text-primary");
+						 $('#addwhish'+id+val).prop('title', 'Added to Wishlist');
 						//$('#addwhish').css("color", "yellow");
-						$('#sucessmsg').html('Product Successfully added to wishlist');  
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_suc"> Product Successfully added to Wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 						}
 				}
 
@@ -166,6 +165,42 @@ jQuery.ajax({
   
   
 }
+
+function itemaddtocart(itemid,catid,val){
+
+jQuery.ajax({
+        url: "<?php echo site_url('customer/onclickaddcart');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+          producr_id: itemid,
+		  category_id: catid,
+		  qty: '1',
+          },
+        dataType: 'json',
+        success: function (data) {
+           if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+						jQuery('#sucessmsg').show();
+						$("#supcount").empty();
+						$("#supcount").append(data.count);
+						if(data.msg==2){
+						$("#addticartitem"+itemid+val).removeClass("text-primary");
+						$('#cartitemtitle'+itemid+val).prop('title', 'Add to cart');
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_suc"> Product Successfully Removed to Cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						}
+						if(data.msg==1){
+						 $("#addticartitem"+itemid+val).addClass("text-primary");
+						$('#cartitemtitle'+itemid+val).prop('title', 'Added to cart');
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_suc"> Product Successfully added to Cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						}
+				}
+
+        }
+      });
+
+ }
 </script>
 
 

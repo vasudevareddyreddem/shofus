@@ -162,7 +162,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
                
 				</div>
               
-				<?php if($productslist['item_quantity']<=0){ ?>
+				<?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
 				
 				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
@@ -327,7 +327,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
                 
 				</div>
             
-              <?php if($productslist['item_quantity']<=0){ ?>
+              <?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
 				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
@@ -422,7 +422,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
               
 				</div>
                
-               <?php if($productslist['item_quantity']<=0){ ?>
+               <?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
 				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
@@ -510,7 +510,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
                
 				</div>
              
-                <?php if($productslist['item_quantity']<=0){ ?>
+               <?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
 				<div  class="text-center out_of_stoc">
 					<div style="z-index:1026"><h4>out of stock</h4></div>
 				</div>
