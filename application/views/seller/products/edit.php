@@ -165,8 +165,8 @@
 										<input type="hidden" class="form-control" id="olddescimg<?php echo $list['desc_id']; ?>" name="olddescimg[]" value="<?php echo isset($list['image'])?$list['image']:''; ?>">
 									</div>
 									</div>
-									<div style="position:absolute;top:1px;right:0px;">
-									<button type="button" name="add" id="add" onclick="addmore();" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+									<div style="position:absolute;top:1px;right:14px;">
+									<button style="border-radius:0px;" type="button" name="add" id="add" onclick="addmore();" class="btn btn-success"><span style="padding:3px;border-radius:0px;"class="glyphicon glyphicon-plus"></span></button>
                                     </div> 
 									
                                    </div> 
@@ -196,8 +196,14 @@
 	</div>
 	
 	
-	<hr>
-	<label for="exampleInputEmail1">Warranty Details</label>
+
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Warranty Details</label>
+	
+	</div><br>
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -230,8 +236,14 @@
 			</div>
 		</div>
 	</div>
-	<hr>
-	<label for="exampleInputEmail1">Specifications :</label><br>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Specifications</label>
+	
+	</div><br>
+	
 		
 	<div class="row">
 		<div class="col-md-6 form-group">
@@ -317,7 +329,14 @@
 			</div>
 		</div>
 	</div>
-	<label for="exampleInputEmail1">Memory :</label>
+	
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Specifications</label>
+	
+	</div><br>
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -332,7 +351,14 @@
 			</div>
 		</div>
 	</div>
-	<label for="exampleInputEmail1">Camera & Video Features :</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Camera & Video Features</label>
+	
+	</div><br>
+
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -389,7 +415,13 @@
 			</div>
 		</div>
 	</div>
-	<label for="exampleInputEmail1">Battery & Power Features</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Battery & Power Features</label>
+	
+	</div><br>
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -412,7 +444,14 @@
 			</div>
 		</div>
 	</div>
-	<label for="exampleInputEmail1">Internet & Connectivity</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Internet & Connectivity</label>
+	
+	</div><br>
+
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -497,7 +536,14 @@
 			</div>
 		</div>
 	</div>
-	<label for="exampleInputEmail1">Multimedia Features</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Multimedia Features</label>
+	
+	</div><br>
+
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -520,7 +566,14 @@
 			</div>
 		</div>
 	</div>
-	<label for="exampleInputEmail1">Additional Features</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Additional Features</label>
+	
+	</div><br>
+
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -577,7 +630,14 @@
 			</div>
 		</div>
 	</div>
-	 <label for="exampleInputEmail1">In the Box</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >In the Box</label>
+	
+	</div><br>
+	
 	 <div class="row">
 		<div class="col-md-12 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -587,7 +647,14 @@
 		</div>
 		
 	</div>
-	<label for="exampleInputEmail1">Display & Resolution</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Display & Resolution</label>
+	
+	</div><br>
+	
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -603,13 +670,20 @@
 		</div>
 	</div>
 
-
-	<label for="exampleInputEmail1">Images</label>
+<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Images</label>
+	
+	</div><br>
+	
+	
 	<div class="row">
 		<?php  if($productdetails['item_image'] !=''){ ?>
 		<div class="form-group nopaddingRight col-md-6 san-lg">
 		<label class="form-control-label" for="image">Product Image1</label>
-		<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image'];?>" <?php echo $productdetails['item_image'];?>>
+		<img  style="height:60px;width:auto;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image'];?>" <?php echo $productdetails['item_image'];?>>
 		</div>
 		<?php }  ?>
 		<div class="col-md-6 form-group">
@@ -621,7 +695,7 @@
 		<?php  if($productdetails['item_image1'] !=''){ ?>
 			<div class="form-group nopaddingRight col-md-6 san-lg">
 			<label class="form-control-label" for="image">Product Image2</label>
-			<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image1'];?>" <?php echo $productdetails['item_image1'];?>>
+			<img  style="height:60px;width:auto;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image1'];?>" <?php echo $productdetails['item_image1'];?>>
 			</div>
 		<?php }  ?>
 		<div class="col-md-6 form-group">
@@ -635,7 +709,7 @@
 	<?php  if($productdetails['item_image2'] !=''){ ?>
 			<div class="form-group nopaddingRight col-md-6 san-lg">
 			<label class="form-control-label" for="image">Product Image3</label>
-			<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image2'];?>" <?php echo $productdetails['item_image2'];?>>
+			<img  style="height:60px;width:auto;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image2'];?>" <?php echo $productdetails['item_image2'];?>>
 			</div>
 		<?php }  ?>
 		<div class="col-md-6 form-group">
@@ -647,7 +721,7 @@
 		<?php  if($productdetails['item_image3'] !=''){ ?>
 			<div class="form-group nopaddingRight col-md-6 san-lg">
 			<label class="form-control-label" for="image">Product Image4</label>
-			<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image3'];?>" <?php echo $productdetails['item_image3'];?>>
+			<img  style="height:60px;width:auto;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image3'];?>" <?php echo $productdetails['item_image3'];?>>
 			</div>
 		<?php }  ?>
 		<div class="col-md-6 form-group">
@@ -661,7 +735,7 @@
 	<?php  if($productdetails['item_image4'] !=''){ ?>
 		<div class="form-group nopaddingRight col-md-6 san-lg">
 		<label class="form-control-label" for="image">Product Image5</label>
-		<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image4'];?>" <?php echo $productdetails['item_image4'];?>>
+		<img  style="height:60px;width:auto;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image4'];?>" <?php echo $productdetails['item_image4'];?>>
 		</div>
 	<?php }  ?>
 		<div class="col-md-6 form-group">
@@ -673,7 +747,7 @@
 		<?php  if($productdetails['item_image5'] !=''){ ?>
 			<div class="form-group nopaddingRight col-md-6 san-lg">
 			<label class="form-control-label" for="image">Product Image6</label>
-			<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image5'];?>" <?php echo $productdetails['item_image5'];?>>
+			<img  style="height:60px;width:auto;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image5'];?>" <?php echo $productdetails['item_image5'];?>>
 			</div>
 		<?php }  ?>
 		<div class="col-md-6 form-group">
@@ -687,7 +761,7 @@
 	<?php  if($productdetails['item_image6'] !=''){ ?>
 			<div class="form-group nopaddingRight col-md-6 san-lg">
 			<label class="form-control-label" for="image">Product Image7</label>
-			<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image6'];?>" <?php echo $productdetails['item_image6'];?>>
+			<img  style="height:60px;width:auto;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image6'];?>" <?php echo $productdetails['item_image6'];?>>
 			</div>
 		<?php }  ?>
 		<div class="col-md-6 form-group">
@@ -699,7 +773,7 @@
 		<?php  if($productdetails['item_image7'] !=''){ ?>
 			<div class="form-group nopaddingRight col-md-6 san-lg">
 			<label class="form-control-label" for="image">Product Image8</label>
-			<img  style="width:50px;height:50px;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image7'];?>" <?php echo $productdetails['item_image7'];?>>
+			<img  style="height:60px;width:auto;padding:10px;" src="<?php echo site_url('uploads/products/'); ?><?php echo $productdetails['item_image7'];?>" <?php echo $productdetails['item_image7'];?>>
 			</div>
 		<?php }  ?>
 		<div class="col-md-6 form-group">
@@ -729,7 +803,7 @@
       function addmore(){
 	 i++;
 	 var cnt=i-1;
-           $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-sm-6 nopadding"><div class="form-group"> <textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="description"></textarea></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div>  <input type="file" class="form-control" id="descimg'+i+'" onchange="uploadimage('+i+');" name="descimg[]"><input type="hidden" class="form-control" id="olddescimg'+cnt+'" name="olddescimg[]" value=""><div class="input-group-btn"> <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove"><span class="glyphicon glyphicon-minus"></span> </button></div></div></div></div></div><div class="clear"></div>');  
+           $('#dynamic_field').append('<div class="row" id="row'+i+'"><div class="col-sm-6 nopadding"><div class="form-group"> <textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="description"></textarea></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div>  <input type="file" class="form-control" id="descimg'+i+'" onchange="uploadimage('+i+');" name="descimg[]"><input type="hidden" class="form-control" id="olddescimg'+cnt+'" name="olddescimg[]" value=""><div class="" style="position:absolute;top:1px;right:14px;"> <button style="border-radius:0px;" type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove"><span style="padding:3px;border-radius:0px;"class="glyphicon glyphicon-minus" class="glyphicon glyphicon-minus"></span> </button></div></div></div></div></div><div class="clear"></div>');  
            //$('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       }  
       $(document).on('click', '.btn_remove', function(){  

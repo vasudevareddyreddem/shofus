@@ -62,8 +62,14 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 				<div id="education_fields"></div>
 				<span id="descerrormsg"></span>
 	</div>
-	<hr>
-	<label for="exampleInputEmail1">Warranty Details</label>
+	
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Warranty Details</label>
+	
+	</div><br>
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -96,8 +102,13 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 			</div>
 		</div>
 	</div>
-	<hr>
-	<label for="exampleInputEmail1">Specifications :</label><br>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Specifications</label>
+	
+	</div><br>
 	
  
   
@@ -202,7 +213,13 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 			</div>
 		</div>
 	</div>
-	<label for="exampleInputEmail1">Camera & Video Features :</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Camera & Video Features</label>
+	
+	</div><br>
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -259,7 +276,13 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 			</div>
 		</div>
 	</div>
-	<label for="exampleInputEmail1">Battery & Power Features</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Battery & Power Features</label>
+	
+	</div><br>
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -282,7 +305,13 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 			</div>
 		</div>
 	</div>
-	<label for="exampleInputEmail1">Internet & Connectivity</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Internet & Connectivity</label>
+	
+	</div><br>
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -367,7 +396,13 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 			</div>
 		</div>
 	</div>
-	<label for="exampleInputEmail1">Multimedia Features</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Multimedia Features</label>
+	
+	</div><br>
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -447,7 +482,13 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 			</div>
 		</div>
 	</div>
-	 <label for="exampleInputEmail1">In the Box</label>
+	 <div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >In the Box</label>
+	
+	</div><br>
 	 <div class="row">
 		<div class="col-md-12 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -457,7 +498,14 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 		</div>
 		
 	</div>
-	<label for="exampleInputEmail1">Display & Resolution</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Display & Resolution</label>
+	
+	</div><br>
+	
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -474,7 +522,13 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	</div>
 
 
-	<label for="exampleInputEmail1">Images</label>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Images</label>
+	
+	</div><br>
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
