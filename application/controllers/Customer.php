@@ -2388,7 +2388,7 @@ class Customer extends Front_Controller
 							$data=array('order_status'=>5);
 							$this->customer_model->update_refund_details_inorders($post['order_item_id'],$data);
 							//echo $this->db->last_query();exit;
-							$this->session->set_flashdata('successmsg','Your query submitted successfully');
+							$this->session->set_flashdata('successmsg','Your request submitted successfully');
 							redirect('customer/orders');
 						}
 			}
@@ -2415,7 +2415,7 @@ class Customer extends Front_Controller
 							$data=array('order_status'=>5);
 							$this->customer_model->update_refund_details_inorders($post['order_item_id'],$data);
 							//echo $this->db->last_query();exit;
-							$this->session->set_flashdata('successmsg','Your query submitted successfully');
+							$this->session->set_flashdata('successmsg','Your request submitted successfully');
 							redirect('customer/orders');
 						}
 				
@@ -2490,7 +2490,7 @@ class Customer extends Front_Controller
 			 $emailcheck=$this->customer_model->add_subscribe_customer($post['newsletter1']);
 				 $addsubscribe=$this->customer_model->update_subscribe_customer($emailcheck['customer_id'],1);
 				 if(count($addsubscribe)>0){
-					 $this->session->set_flashdata('successmsg','Your query submitted successfully');
+					 $this->session->set_flashdata('successmsg','Your request submitted successfully');
 					 redirect('');
 					 
 				 }else{
@@ -2543,7 +2543,7 @@ class Customer extends Front_Controller
 	  );
 	   $savecontactus=$this->customer_model->save_customer_contactus($details);
 	   if(count($savecontactus)>0){
-		   $this->session->set_flashdata('success','Your query submitted successfully');
+		   $this->session->set_flashdata('success','Your request submitted successfully');
 			redirect('customer/contactus'); 
 	   }else{
 			$this->session->set_flashdata('qtyerror','Technical problem will occurred. please try again');
@@ -2608,7 +2608,7 @@ public function aboutus(){
 				 $data['msg']=0;
 				echo json_encode($data);
 			 }
-			 $this->session->set_flashdata('success','Your Query successfully submitted');
+			 $this->session->set_flashdata('success','Your request successfully submitted');
 			//redirect('customer/orederdetails/'.base64_encode($post['order_items_id'])); 
 			
 		}else{

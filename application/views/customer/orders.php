@@ -30,7 +30,7 @@
 					
 					<?php if($orders['status_confirmation']==5){ 
 					
-					echo "canceled"; 
+					echo "cancelled"; 
 					}else{
 					
 							if($orders['status_confirmation']==1 && $orders['status_packing']==''){
@@ -92,10 +92,10 @@
                      
 							
 							<div>
-								<span style="font-size:16px;">
+								<span style="font-size:14px;">
 					
 								<?php  $timestamp = strtotime($orders['create_at']) + 2*60*60;
-									$time = date('g:i a', $timestamp);?>
+									$time = date('g:i A', $timestamp);?>
 								Delivered on <?php echo isset($orders['create_at'])?Date('M-d-Y',strtotime(htmlentities($orders['create_at']))):'';  ?> <?php echo $time; ?>
 								
 								

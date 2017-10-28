@@ -203,12 +203,12 @@ tr th:last-child {
 					<td>
 					<?php if($item_details['status_confirmation']==5){ 
 					
-					echo "canceled";
+					echo "cancelled";
 					
 					 }else { ?>
 					 <?php if($item_details['status_confirmation']==5){ 
 					
-					echo "canceled"; 
+					echo "cancelled"; 
 					}else{ 
 					
 							if($item_details['status_confirmation']==1 && $item_details['status_packing']==''){
@@ -238,7 +238,7 @@ tr th:last-child {
 					<tr>
 					<th>Status</th>
 					<td>
-					canceled
+					cancelled
 					</td>
 
 					</tr>
