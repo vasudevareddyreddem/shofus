@@ -86,12 +86,12 @@ tr th:last-child {
 			
 			<div class="col-md-4">
 					<div class="col-md-4">
-						<img style="width:60px" src="<?php echo base_url(); ?>assets/home/images/user.png" />
+						<img style="width:60px" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>" />
 					</div>
 					<div class="col-md-8">
 						<p><a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
 						<div>Color: <?php echo isset($item_details['color'])?$item_details['color']:'';  ?></div>
-						<div>7 Days Exchange</div>
+						<div><p ><?php echo $item_details['return_policy']; ?>  </p></div>
 					
 					</div>
 				</div>
@@ -140,9 +140,7 @@ tr th:last-child {
 					<div class="col-md-3">
 							<span class="font_span">₹<?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?></span>
 					</div>
-					<div class="col-md-9">
-							<span class="site_co"><?php if($item_details['order_status']==5){ echo "Item returned"; } ?></span>
-					</div>
+					
 				</div>
 			<div class="clearfix"></div>
 			</div>
@@ -164,6 +162,11 @@ tr th:last-child {
 					<tr>
 					<th>Qty</th>
 					<td><?php echo isset($item_details['qty'])?$item_details['qty']:'';  ?></td>
+
+					</tr>
+					<tr>
+					<th>Sold By</th>
+					<td><?php echo isset($item_details['store_name'])?$item_details['store_name']:'';  ?></td>
 
 					</tr>
 					<tr>
@@ -196,6 +199,37 @@ tr th:last-child {
 
 					</tr>
 					<tr>
+					<th>Status</th>
+					<td>
+					<?php if($item_details['status_confirmation']==5){ 
+					
+					echo "canceled";
+					
+					 }else { ?>
+					 <?php if($item_details['status_confirmation']==5){ 
+					
+					echo "canceled"; 
+					}else{ 
+					
+							if($item_details['status_confirmation']==1 && $item_details['status_packing']==''){
+								echo "Order Confirmed ";  
+							  }else if($item_details['status_confirmation']==1 && $item_details['status_packing']==2 && $item_details['status_road']==''){
+								  echo "Packing Order";
+							  }else if($item_details['status_confirmation']==1 && $item_details['status_packing']==2 && $item_details['status_road']==3 && $item_details['status_deliverd']=='' || $item_details['status_deliverd']==0){
+								  echo "Order on Road";
+							  }else if($item_details['status_confirmation']==1 && $item_details['status_packing']==2 && $item_details['status_road']==3 && $item_details['status_deliverd']==4 && $item_details['status_refund']==''){
+								  echo "Delivered";
+							  }else if($item_details['status_refund']!=''){
+								 echo $item_details['status_refund']; 
+							  }
+					  
+					}
+					  ?>
+					<?php } ?>
+					</td>
+
+					</tr>
+					<tr>
 					<th>Delivery Amount</th>
 					<td>₹<?php echo isset($item_details['delivery_amount'])?$item_details['delivery_amount']:'';  ?></td>
 
@@ -218,9 +252,10 @@ tr th:last-child {
 					<p><strong>Name :<?php echo isset($item_details['name'])?$item_details['name']:'';  ?></strong></p>
 					<p><strong>Email Address :<?php echo isset($item_details['emal_id'])?$item_details['emal_id']:'';  ?></strong></p>
 					<p><strong>Address :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
-					<?php if(isset($item_details['address2']) && $item_details['address2']!=''){?>
-					<p><strong>Address2 :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
-					<?php } ?>
+					<p><strong>City :<?php echo isset($item_details['city'])?$item_details['city']:'';  ?></strong></p>
+					<p><strong>State :<?php echo isset($item_details['state'])?$item_details['state']:'';  ?></strong></p>
+					<p><strong>Pincode :<?php echo isset($item_details['pincode'])?$item_details['pincode']:'';  ?></strong></p>
+					
 					<p><strong>Phone :<?php echo isset($item_details['mobile'])?$item_details['mobile']:'';  ?></strong></p>
 					<!--<p><strong>Delivery location area :<?php echo isset($item_details['location_name'])?$item_details['location_name']:'';  ?></strong></p>
 					--></div>

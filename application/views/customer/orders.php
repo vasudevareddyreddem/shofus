@@ -13,7 +13,10 @@
 							<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> <?php echo $this->session->flashdata('permissionerror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 			<?php endif; ?>
-			<?php foreach ($orders_lists as $orders){ ?>
+			<?php foreach ($orders_lists as $orders){ 
+			
+			
+			//echo '<pre>';print_r($orders);?>
 			<div class="row">
 			<div class="col-md-12 ">
             <div class="well well-sm ord_del" style="background:#fff;">
@@ -36,10 +39,10 @@
 								  echo "Packing Order";
 							  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']=='' || $orders['status_deliverd']==0){
 								  echo "Order on Road";
-							  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']==4){
+							  }else if($orders['status_confirmation']==1 && $orders['status_packing']==2 && $orders['status_road']==3 && $orders['status_deliverd']==4 && $orders['status_refund']==''){
 								  echo "Delivered";
-							  }else{
-								 echo "cancel"; 
+							  }else if($orders['status_refund']!=''){
+								 echo $orders['status_refund']; 
 							  }
 					  
 					}
