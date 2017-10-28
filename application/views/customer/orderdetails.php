@@ -101,6 +101,11 @@ tr th:last-child {
 
 					</tr>
       <tr>
+	  <tr>
+       <th>Sold By</th>
+        <td><?php echo isset($item_details['store_name'])?$item_details['store_name']:'';  ?></td>
+        
+      </tr>
       <th>Order Date</th>
         <td><?php echo isset($item_details['create_at'])?Date('M-d-Y h:i:s A',strtotime(htmlentities($item_details['create_at']))):'';  ?></td>
         
@@ -152,6 +157,9 @@ tr th:last-child {
 			<p><strong>Name :<?php echo isset($item_details['name'])?$item_details['name']:'';  ?></strong></p>
 			<p><strong>Email Address :<?php echo isset($item_details['emal_id'])?$item_details['emal_id']:'';  ?></strong></p>
 			<p><strong>Address :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
+			<p><strong>City :<?php echo isset($item_details['city'])?$item_details['city']:'';  ?></strong></p>
+			<p><strong>State :<?php echo isset($item_details['state'])?$item_details['state']:'';  ?></strong></p>
+			<p><strong>Pincode :<?php echo isset($item_details['pincode'])?$item_details['pincode']:'';  ?></strong></p>
 			
 			<p><strong>Phone :<?php echo isset($item_details['mobile'])?$item_details['mobile']:'';  ?></strong></p>
 			<!--<p><strong>Delivery location area :<?php echo isset($item_details['location_name'])?$item_details['location_name']:'';  ?></strong></p>
@@ -171,13 +179,14 @@ tr th:last-child {
 		<?php if(isset($item_details['amount_status_paid']) && $item_details['amount_status_paid']==1){ ?>
 		<a href="<?php echo base_url('assets/downloads/'.$item_details['invoicename']); ?>" class="site_col" href="" target="_blank">View Invoice</a></p>
 		<?php } ?>
-		<?php if($item_details['status_deliverd']==4){ ?>
+		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']=='' ){ ?>
 		<div><a class="site_col" href="<?php echo base_url('customer/orderrefund/'.base64_encode($item_details['order_item_id'])); ?>"><h5>Return</h5></a></div>
 		<?php } ?>
 		<p ><a class="site_col" id="review">Review this product</a></p>
 		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']!=''){ ?>
-		<p >Your order status is <?php echo $item_details['status_refund']; ?>  Requested</p>
-		<p >We will contact you within 12 hrs to clarify your request. Please note your request will be accepted only if it falls within the cartinhours return policy. </p>
+		<p >Your order is Requested for <?php echo $item_details['status_refund']; ?>  </p>
+		<p >Return policy : <?php echo $item_details['return_policy']; ?>  </p>
+		<p >We will contact you within 12 hrs to clarify your request. Please note that your request will be accepted only if it falls within the sellers return policy of cartinhours.com. </p>
 		<?php } ?>
 		</div>
 		</div>
@@ -236,7 +245,7 @@ tr th:last-child {
 						<?php if(isset($item_details['color']) && $item_details['color']!=''){ ?>
 						<div>Color: <?php echo isset($item_details['color'])?$item_details['color']:'';  ?></div>
 						<?php } ?>
-						<div>7 Days Exchange</div>
+						<div><?php echo $item_details['return_policy']; ?></div>
 					
 					</div>
 				</div>
@@ -286,7 +295,32 @@ tr th:last-child {
 							<span class="font_span">₹<?php echo number_format(isset($item_details['total_price'])?$item_details['total_price']:'', 2);  ?></span>
 					</div>
 					<div class="col-md-9">
-							<span class="btn btn-sm btn-danger pull-right "><?php if($item_details['order_status']==5){ echo "Item returned"; } ?></span>
+							<span class="btn btn-sm btn-danger pull-right ">
+							<?php if($item_details['status_confirmation']==5){ 
+								echo "canceled";
+									
+									 }else { ?>
+									 <?php if($item_details['status_confirmation']==5){ 
+									
+									echo "canceled"; 
+									}else{ 
+									
+											if($item_details['status_confirmation']==1 && $item_details['status_packing']==''){
+												echo "Order Confirmed ";  
+											  }else if($item_details['status_confirmation']==1 && $item_details['status_packing']==2 && $item_details['status_road']==''){
+												  echo "Packing Order";
+											  }else if($item_details['status_confirmation']==1 && $item_details['status_packing']==2 && $item_details['status_road']==3 && $item_details['status_deliverd']=='' || $item_details['status_deliverd']==0){
+												  echo "Order on Road";
+											  }else if($item_details['status_confirmation']==1 && $item_details['status_packing']==2 && $item_details['status_road']==3 && $item_details['status_deliverd']==4 && $item_details['status_refund']==''){
+												  echo "Delivered";
+											  }else if($item_details['status_refund']!=''){
+												 echo $item_details['status_refund']; 
+											  }
+									  
+									}
+									  ?>
+									<?php } ?>
+							</span>
 					</div>
 				</div>
 					<div class="clearfix">&nbsp;</div>

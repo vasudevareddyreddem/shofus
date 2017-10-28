@@ -354,6 +354,7 @@ function changebillingaddress(aid,cnt){
 			if(data.msg=1){
 				$('#addressid').val(data.address_id);
 				$('#title').val(data.title);
+				$('#title').focus();
 				$('#name').val(data.name);
 				$('#mobile').val(data.mobile);
 				$('#address1').val(data.address1);
