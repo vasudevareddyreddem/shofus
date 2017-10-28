@@ -57,7 +57,7 @@
 			  <?php foreach($subcategory_list as $list){ ?>
 				  <div class="col-md-2" style="cursor:pointer"   onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
 					<div class="text-center sub_ac_tag"> <!--catg_sty-->
-					  <div style="padding-bottom:10px;">
+					  <div style="padding-bottom:5px;">
 							<img style="height:60px;width:auto;" src="<?php echo base_url('assets/subcategoryimages/'.$list['subcategory_image']); ?>" />
 					  </div>
 					

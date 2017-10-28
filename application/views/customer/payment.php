@@ -1,8 +1,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container bhoechie-tab-container">
+            <div style="min-height:500px" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
                     <div href="<?php echo base_url('customer/cart'); ?>" class="list-group-item text-center step_com">
 

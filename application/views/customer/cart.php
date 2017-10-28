@@ -12,7 +12,7 @@
 <div class="container" >
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container widt_cus_998">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+            <div style="min-height:500px" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
                     <div href="#" class="list-group-item active text-center">
 

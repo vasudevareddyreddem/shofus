@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container widt_cus_998">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+            <div style="min-height:500px"class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
                     <div href="#" class="list-group-item text-center step_com " >
 
@@ -41,7 +41,7 @@
 		 <?php $cnt=1;foreach($billingaddresslis as $addlist) { ?>
 		 
 		 <?php if($cnt<=4){ ?>
-			<div class="col-md-6" id="hide_add<?php echo $cnt; ?>">
+			<div class="col-md-6"  id="hide_add<?php echo $cnt; ?>">
 				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
 				<div style="padding-bottom:10px;">
 					<div class="checkbox pull-left">
@@ -70,7 +70,7 @@
 			
 		 <?php } ?>
 		
-			<div class="col-md-6 moreadd" id="hide_add<?php echo $cnt; ?>" style="display:none;">
+			<div class="col-md-6 moreadd"  id="hide_add<?php echo $cnt; ?>" style="display:none;">
 				<div style="background:#fff;border:1px solid #ddd;border-radius:4px;padding:5px 20px;">
 				<div style="padding-bottom:10px;">
 					<div class="checkbox pull-left">
