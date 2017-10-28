@@ -1321,7 +1321,7 @@ class Customer extends Front_Controller
 						$this->email->to($data['order_items'][0]['customer_email']);
 						$this->email->subject('Cartinhours - Order Confirmation');
 						$html = $this->load->view('email/orderconfirmation.php', $data, true); 
-						echo $html;exit;
+						//echo $html;exit;
 						$this->email->message($html);
 						$this->email->send();
 					
