@@ -47,11 +47,12 @@
 									<div class="row" style="margin-top:50px;">
 									<span id="paymenterrormsg" style="color:red"></span>
 									 <div class="radio">
-										<label class="col-md-4">
-											<input type="radio" id="radio1"  name="payment"  value="2"><span>Cash On Delivery</span>
+										<label class="col-md-6" style="font-size:18px">
+											<input type="radio" id="radio1"  name="payment"  value="2"><span >Cash On Delivery</span>
 										</label>
-										<label class="col-md-4">
-											<input type="radio" id="radio2" name="payment"  value="3"><span>Swipe on Delivery</span>
+								
+										<label class="col-md-6" style="font-size:18px">
+											<input type="radio" id="radio2" name="payment"  value="3"><span >Swipe on Delivery</span>
 										</label>
 										<!--<label class="col-md-4">
 											<input type="radio" id="radio3" name="payment"  value="4"><span>Paytm</span>
