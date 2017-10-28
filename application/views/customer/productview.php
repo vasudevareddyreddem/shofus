@@ -64,6 +64,12 @@
 	border:1px solid #009688;
 	
 }
+.gc-display-container {
+	width:500px !important;
+}
+.cust_plug {
+	text-algin:center !important;
+}
 
 </style>
 
@@ -1630,9 +1636,10 @@ $(document).ready(function() {
                                         "<div class='gc-icon next_icon'></div>" +
                                         "<div class='gc-icon pre_icon'></div>" +
                                         "<div class='gc-display-container'>" +
+										"<div class='cust_plug text-center'>" +
                                             "<div class='gc-lens'></div>" +
                                             "<img class='gc-display-display' alt=' ' />" +
-                                        "</div>" +
+                                        "</div>" + "</div>" +
                                      "</div>";
             var ctntZoomArea = "<div class='gc-zoom'>" +
                                         "<div class='gc-zoom-container'><img alt=' ' /></div>" +
