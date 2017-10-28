@@ -70,7 +70,8 @@ class CustomerApi extends REST_Controller {
 				);
 				$customerdetails = $this->Customerapi_model->save_customer($details);
 				if(count($customerdetails)>0){
-						$message = array('status'=>1,'cust_id'=>$customerdetails, 'message'=>'Registration successfully completed!');
+					$custdetails=$this->Customerapi_model->get_details_customer($customerdetails);
+						$message = array('status'=>1,'cust_id'=>$customerdetails,'details'=>$custdetails, 'message'=>'Registration successfully completed!');
 						$this->response($message, REST_Controller::HTTP_OK);
 					}else{
 						$message = array('status'=>0,'message'=>'Invalid login details.Please try again');
@@ -703,7 +704,7 @@ class CustomerApi extends REST_Controller {
 		//echo '<pre>';print_r($product_details);exit;
 		if(count($product_details)>0){
 		
-			$message = array('status'=>1,'path'=>'http://test.cartinhours.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list,'sameproducts_list'=>$sameproducts_list,'gbsizelist'=>$sameproducts_size,'colourlist'=>$sameproducts_colour,'ramlist'=>$sameproducts_ram,'descriptions'=>$des,'imagepath'=>'http://test.cartinhours.com/uploads/products/');
+			$message = array('status'=>1,'path'=>'http://test.cartinhours.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list,'sameproducts_list'=>$sameproducts_list,'gbsizelist'=>$sameproducts_size,'colourlist'=>$sameproducts_colour,'ramlist'=>$sameproducts_ram,'descriptions'=>$des,'imagepath'=>'http://test.cartinhours.com/assets/descriptionimages/');
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'product Id is not valid one');
@@ -2741,8 +2742,39 @@ class CustomerApi extends REST_Controller {
 					'comments'=>isset($comments)?$comments:'',
 					);
 					$canclesaveorder=$this->Customerapi_model->save_cancel_order($order_items_id,$canceldata);
+					$custdetails=$this->Customerapi_model->get_customerBilling_details($order_items_id);
 				//echo $this->db->last_query();exit;
 					if(count($canclesaveorder)>0){
+					$msg='Cancellation: We have received your cancellation request for the Order-item-id: '.$order_items_id.'. Please do not accept the product if delivery is attempted. Check your email for more details.@';
+					$messagelis['msg']=$msg;
+					$username=$this->config->item('smsusername');
+					$pass=$this->config->item('smspassword');
+					$cancelmobilesno=$custdetails['customer_phone'];
+					$ch4 = curl_init();
+					curl_setopt($ch4, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch4, CURLOPT_POST, 1);
+					curl_setopt($ch4, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$cancelmobilesno.'&text='.$msg.'&priority=ndnd&stype=normal');
+					curl_setopt($ch4, CURLOPT_RETURNTRANSFER, true);
+					//echo '<pre>';print_r($ch);exit;
+					$server_output = curl_exec ($ch4);
+					curl_close ($ch4);
+					/*cancel sms */
+					
+					
+					/*email*/
+					$this->load->library('email');
+					$this->email->set_newline("\r\n");
+					$this->email->set_mailtype("html");
+					$this->email->from('cartinhours.com');
+					$this->email->to($custdetails['customer_email']);
+					$this->email->subject('Cartinhours - Order Cancellation');
+					$html = $this->load->view('email/customerordercancel.php', $messagelis, true); 
+					//echo $html;exit;
+					$this->email->message($html);
+					$this->email->send();
+					
+					/*email*/
+						
 						$message = array('status'=>1,'message'=>'Your Query successfully submitted');
 						$this->response($message, REST_Controller::HTTP_OK);
 						

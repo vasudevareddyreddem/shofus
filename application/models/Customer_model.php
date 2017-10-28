@@ -567,6 +567,11 @@ class Customer_model extends MY_Model
 		$this->db->where('item_id', $pid);
 		return $this->db->update('order_status', $data);
 	}
+	public function get_customerBilling_details($order_tem_id){
+		$this->db->select('*')->from('order_items');
+		$this->db->where('order_item_id',$order_tem_id);
+		return $this->db->get()->row_array();
+	}
 	
 }
 ?>

@@ -163,7 +163,7 @@ class DeliveryboyApi extends REST_Controller {
 		}
 		
 		if(count($finalorderlists)>0){
-				$message = array('status'=>1,'list'=>$finalorderlists,'count'=>count($finalorderlists), 'message'=>'orders list are found');
+				$message = array('status'=>1,'count'=>count($finalorderlists),'list'=>$finalorderlists,'count'=>count($finalorderlists), 'message'=>'orders list are found');
 				$this->response($message, REST_Controller::HTTP_OK);
 		}else{
 		$message = array('status'=>1,'message'=>'You have no delivery orders list');
@@ -181,7 +181,7 @@ class DeliveryboyApi extends REST_Controller {
 		$rejectoreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_reject_orderlist($customer_id);
 		
 		if(count($rejectoreders_list)>0){
-				$message = array('status'=>1,'list'=>$rejectoreders_list, 'message'=>'reject orders list are found');
+				$message = array('status'=>1,'count'=>count($rejectoreders_list),'list'=>$rejectoreders_list, 'message'=>'reject orders list are found');
 				$this->response($message, REST_Controller::HTTP_OK);
 		}else{
 		$message = array('status'=>1,'message'=>'You have no delivery orders list');
@@ -319,7 +319,7 @@ class DeliveryboyApi extends REST_Controller {
 				if(count($statusupdate)>0){
 					$details=$this->Deliveryboyapi_model->get_order_item_details($order_item_id);
 					//echo '<pre>';print_r($details);exit;
-					$msg=' order Product Name: '.$details['item_name'].'Item successfully delivered';
+					$msg=' Order Product Name: '.$details['item_name'].'Item successfully delivered';
 					$messagelis['msg']=$msg;
 					$username=$this->config->item('smsusername');
 					$pass=$this->config->item('smspassword');
@@ -403,10 +403,10 @@ class DeliveryboyApi extends REST_Controller {
 		$message = array('status'=>1,'message'=>'customer id is required!');
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
-		$rejectoreders_list=$this->Deliveryboyapi_model->get_delivered_orders_list($customer_id);
+		$completeoreders_list=$this->Deliveryboyapi_model->get_delivered_orders_list($customer_id);
 		
-		if(count($rejectoreders_list)>0){
-				$message = array('status'=>1,'list'=>$rejectoreders_list, 'message'=>'delivered orders list are found');
+		if(count($completeoreders_list)>0){
+				$message = array('status'=>1,'count'=>count($completeoreders_list),'list'=>$completeoreders_list, 'message'=>'delivered orders list are found');
 				$this->response($message, REST_Controller::HTTP_OK);
 		}else{
 		$message = array('status'=>1,'message'=>'You have no delivered orders list');
@@ -435,6 +435,25 @@ class DeliveryboyApi extends REST_Controller {
 		}
 		
 	}
+	
+	public function return_orders_list_get(){
+		
+		$customer_id=$this->input->get('customer_id');
+		if($customer_id==''){
+		$message = array('status'=>1,'message'=>'customer id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$returnoreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_return_orderlist($customer_id);
+		
+		if(count($returnoreders_list)>0){
+				$message = array('status'=>1,'count'=>count($returnoreders_list),'list'=>$returnoreders_list, 'message'=>'return orders list are found');
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+		$message = array('status'=>1,'message'=>'You have no return orders list');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		
+	} 
 
 	
 

@@ -2336,6 +2336,16 @@ class Customerapi_model extends MY_Model
 		$this->db->where('order_item_id', $order_tem_id);
 		return $this->db->update('order_status', $data);
 	}
+	public function get_customerBilling_details($order_tem_id){
+		$this->db->select('*')->from('order_items');
+		$this->db->where('order_item_id',$order_tem_id);
+		return $this->db->get()->row_array();
+	}
+	public function get_details_customer($cid){
+		$this->db->select('*')->from('customers');
+		$this->db->where('customer_id',$cid);
+		return $this->db->get()->row_array();
+	}
 	
 	
 		

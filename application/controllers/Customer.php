@@ -2568,8 +2568,40 @@ public function aboutus(){
 			 'comments'=>isset($post['comments'])?$post['comments']:'',
 			 );
 			 $canclesaveorder=$this->customer_model->save_cancel_order($post['order_items_id'],$post['pid'],$canceldata);
+			 $custdetails=$this->customer_model->get_customerBilling_details($post['order_items_id']);
 			
 			 if(count($canclesaveorder)>0){
+				 
+					/*cancel sms */
+					$msg='Cancellation: We have received your cancellation request for the Order-item-id : '.$post['order_items_id'].'. Please do not accept the product if delivery is attempted. Check your email for more details.@';
+					$messagelis['msg']=$msg;
+					$username=$this->config->item('smsusername');
+					$pass=$this->config->item('smspassword');
+					$cancelmobilesno=$custdetails['customer_phone'];
+					$ch4 = curl_init();
+					curl_setopt($ch4, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+					curl_setopt($ch4, CURLOPT_POST, 1);
+					curl_setopt($ch4, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$cancelmobilesno.'&text='.$msg.'&priority=ndnd&stype=normal');
+					curl_setopt($ch4, CURLOPT_RETURNTRANSFER, true);
+					//echo '<pre>';print_r($ch);exit;
+					$server_output = curl_exec ($ch4);
+					curl_close ($ch4);
+					/*cancel sms */
+					
+					
+					/*email*/
+					$this->load->library('email');
+					$this->email->set_newline("\r\n");
+					$this->email->set_mailtype("html");
+					$this->email->from('cartinhours.com');
+					$this->email->to($custdetails['customer_email']);
+					$this->email->subject('Cartinhours - Order Cancellation');
+					$html = $this->load->view('email/customerordercancel.php', $messagelis, true); 
+					//echo $html;exit;
+					$this->email->message($html);
+					$this->email->send();
+					
+					/*email*/
 				$data['msg']=1;
 				echo json_encode($data);
 			 }else{

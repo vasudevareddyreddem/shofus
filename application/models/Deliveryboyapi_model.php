@@ -103,6 +103,7 @@ class Deliveryboyapi_model extends MY_Model
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 		$this->db->where('order_status.status_deliverd',4);
+		$this->db->where('order_items.delivery_boy_id',$cust_id);
 		return $this->db->get()->result_array();
 	}
 	public function get_order_item_details($ordeitemid){
@@ -115,6 +116,15 @@ class Deliveryboyapi_model extends MY_Model
 
 		$sql1="UPDATE customers SET active_status ='".$status."' WHERE customer_id = '".$cid."'";
        	return $this->db->query($sql1);
+	}
+	
+	public function get_deliver_boy_orders_return_orderlist($cust_id){
+		$this->db->select('order_items.*,order_status.*,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile')->from('order_items');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
+		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+		$this->db->where('order_items.return_deliveryboy_id',$cust_id);
+		return $this->db->get()->result_array();
 	}
 		
 	

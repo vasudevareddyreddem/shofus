@@ -49,6 +49,22 @@ class Cron_model extends MY_Model
 		$this->db->where('customer_id',$id);
 		return $this->db->get()->row_array();
 	}
+	public function getall_return_order_list(){
+		$this->db->select('order_items.*,(locations.pincode) as customerpincode,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile,order_status.status_refund')->from('order_items');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
+		$this->db->join('locations', 'locations.location_id = order_items.area', 'left');
+		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+		$this->db->where('order_status.status_refund !=', '');
+		$this->db->where('order_status.status_refund !=', 'cancel');
+		//$this->db->where_in('order_status.status_refund', array('Refund','Exchange','Replacement'));
+		return $this->db->get()->result_array();
+	}
+	public function assign_returnorderto_deliveryboy($dboy_id,$orderitem_id){
+		$sql1="UPDATE order_items SET return_deliveryboy_id='".$dboy_id."' WHERE order_item_id = '".$orderitem_id."'";
+       	return $this->db->query($sql1);
+		
+	}
 	
 
 
