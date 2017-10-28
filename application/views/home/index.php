@@ -101,7 +101,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 					?>
 					<a href="<?php echo base_url('category/productview/'.base64_encode($tops['item_id'])); ?>">
 					<div class="item" >
-					<div style="position:absolute;top:0;left:25px;z-index: 1024;">
+					<div style="position:absolute;top:100px;left:25px;z-index: 1024;">
 							<div style="background:#ddd;border-radius:50%;height:20px;height:20px;color:#fff;"> <div class="tags tags-left">
                   <span class="label-tags"><span class="label label-primary arrowed-right"><?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
                 </div></div>
