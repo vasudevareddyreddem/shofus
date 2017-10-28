@@ -201,11 +201,15 @@
 								<a class="col-md-2 active_color" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
-								<?php }else{ ?>
+								<?php }else if($lists['colour']==$products_list['colour']) { ?>
+								<a class="col-md-2 active_color" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
+									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
+								</a>
+								<?php }else{  ?>
 								<a class="col-md-2 img_col" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
-								<?php } ?>
+								<?php   } ?>
 								
 								<?php   } ?>
 								</div>
@@ -232,11 +236,19 @@
 									</div>
 								</a>
 								<?php }else{ ?>
+								 <?php if($lists['internal_memeory']==$products_list['internal_memeory']) { ?>
+										 <a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>">
+											<div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center active_color" >
+											<span  ><?php echo $lists['internal_memeory'];?></span>
+											</div>
+										</a>
+								 <?php }else{  ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>">
 									<div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center" >
 									<span  ><?php echo $lists['internal_memeory'];?></span>
 									</div>
 								</a>
+								<?php } ?>
 								<?php } ?>
 								
 								
@@ -266,9 +278,16 @@
 								<span ><?php echo $lists['ram'];?></span>
 								</div></a>
 								<?php }else{ ?>
+								<?php if($lists['ram']==$products_list['ram']) { ?>
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center active_color" >
+								<span ><?php echo $lists['ram'];?></span>
+								</div></a>
+								
+								<?php } else{ ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center" >
 								<span ><?php echo $lists['ram'];?></span>
 								</div></a>
+								<?php } ?>
 								<?php } ?>
 								
 								
