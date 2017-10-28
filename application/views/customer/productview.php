@@ -442,7 +442,7 @@
 						</div>
 						<div class="col-md-3">
 						<?php if(isset($list['image']) && $list['image']!=''){ ?>
-							<img class="img-responsive" src="<?php echo base_url('assets/descriptionimages/'.$list['image']);?>">
+							<img  style="height:120px; width:auto;" class="img-responsive pull-right" src="<?php echo base_url('assets/descriptionimages/'.$list['image']);?>">
 						<?php } ?>
 						</div>
 						
@@ -453,7 +453,7 @@
 					
 						<div class="col-md-3">
 							<?php if(isset($list['image']) && $list['image']!=''){ ?>
-								<img class="img-responsive" src="<?php echo base_url('assets/descriptionimages/'.$list['image']);?>">
+								<img style="height:120px; width:auto;" class="img-responsive pull-left" src="<?php echo base_url('assets/descriptionimages/'.$list['image']);?>">
 							<?php } ?>
 						</div>
 						<div class="col-md-9">
