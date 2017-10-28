@@ -147,7 +147,7 @@
                 <td><div class="price">
                     <div class="site_col"><span style="font-weight:400;font-size:23px;"> ₹<?php echo number_format($item_price, 2 ); ?></span> &nbsp;
 					<span class="price-old"><?php echo number_format($orginal_price, 2); ?></span>
-					<span class="text-success"><?php echo number_format((int)$percentage, 2,'.',''); ?>% Off</span></div>
+					<span class="text-success"><?php echo number_format($percentage, 2,'.',''); ?>% Off</span></div>
                   </div>
 				</td>
               </tr>
