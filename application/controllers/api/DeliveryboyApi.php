@@ -413,6 +413,28 @@ class DeliveryboyApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
+	public function activestatus_post(){
+		
+		$customer_id=$this->input->get('customer_id');
+		$status=$this->input->get('status');
+		if($customer_id==''){
+		$message = array('status'=>1,'message'=>'Customer id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}else if($status==''){
+		$message = array('status'=>1,'message'=>'status is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		
+		$statusupdate=$this->Deliveryboyapi_model->customer_active_status($customer_id,$status);
+		if(count($statusupdate)>0){
+			$message = array('status'=>1, 'message'=>'status Succssfully updated');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+		$message = array('status'=>1,'message'=>'technical problem will occured .try again after some time');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		
+	}
 
 	
 

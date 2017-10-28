@@ -371,8 +371,8 @@ public function item_status(){
 						
 						
 						if(isset($post['description']) && count($post['description'])>0){
-						
-							$i=0;
+						if($_FILES['descimg']['name'][0]!=''){
+						$i=0;
 						foreach($_FILES['descimg']['name'] as $file){
 						if(!empty($file))
 						   { 
@@ -381,8 +381,9 @@ public function item_status(){
 							}
 							$i++;
 							
-						}	$productspecificationlist= array_combine($post['description'],$pics);
-							foreach ($productspecificationlist as $key=>$list){
+						}
+						$productspecificationlist= array_combine($post['description'],$pics);
+						foreach ($productspecificationlist as $key=>$list){
 								
 							if($key!=''){
 								$adddesc=array(
@@ -398,6 +399,27 @@ public function item_status(){
 							}
 							$i++;
 						}
+						}else{
+							$productspecificationlist= $post['description'];
+							foreach ($productspecificationlist as $key=>$list){
+								
+							if($list!=''){
+								$adddesc=array(
+								'item_id' =>$results,
+								'description' => $list,
+								'image' => '',
+								'create_at' => date('Y-m-d H:i:s'),
+								'status' =>1,
+								);
+								//echo '<pre>';print_r($adddesc);exit;
+								$this->products_model->insert_product_descriptions($adddesc);
+								
+							}
+							$i++;
+							}
+							
+						}
+							
 						}
 				
 				
@@ -686,180 +708,62 @@ public function update()
 			$result=$this->products_model->update_deails($post['product_id'],$updatedata);
 			if(count($result)>0)
 			{
-					
-					/* colors purpose*/
-					if(isset($post['colors']) && $post['colors']!=''){
-						$colordata = str_replace(array('[', ']','"'), array(''), $post['colors']);
-					//echo '<pre>';print_r($post['colors']);exit;
-						$productcolors=$this->products_model->get_product_colors($post['product_id']);
-						foreach ($productcolors as $colorsslist){
-						$listcolors[]=$colorsslist['color_name'];
-						}
-						foreach ($productcolors as $colorss){
-						$this->products_model->delete_product_colors($colorss['p_color_id']);
-						}
-						if(isset($listcolors) && count($listcolors)>0){
-							foreach (array_unique(array_merge($listcolors,explode(",",$colordata))) as $colorslist){
-								if($colorslist!=''){
-									$addcolorsdata=array(
-									'item_id' =>$post['product_id'],
-									'color_name' => $colorslist,
-									'create_at' => date('Y-m-d H:i:s'),
-									);
-									
-									//echo '<pre>';print_r($addcolorsdata);
-									$this->products_model->insert_product_colors($addcolorsdata);
-								}
-
-
-							}
-						}else{
-								foreach (array_unique(array_merge(explode(",",$colordata))) as $colorslist){
-					
-									if($colorslist!=''){
-										$addcolorsdata=array(
-										'item_id' =>$post['product_id'],
-										'color_name' => $colorslist,
-										'create_at' => date('Y-m-d H:i:s'),
-										);
+				/* pecification purpose*/
+				if(isset($post['description']) && count($post['description'])>0){						
+											
+							if($_FILES['descimg']['name'][0]!=''){
+									foreach ($_FILES['descimg']['name'] as $key=>$files){
+										if($files!=''){
+										$ids[]=$key;
+										}
+									}
+									//echo '<pre>';print_r($post['olddescimg']);
+									//echo '<pre>';print_r($ids);exit;
+									foreach ($post['olddescimg'] as $key=>$files){
+										if (in_array($key, $ids))  
+										{
+											unset($key);
+										}else{
 										
-										//echo '<pre>';print_r($addcolorsdata);
-										$this->products_model->insert_product_colors($addcolorsdata);
+										$imslist[]=$files;
+										}
+											
+										
 									}
+
+									$i=0;
+									foreach($_FILES['descimg']['name'] as $file){
+										//echo '<pre>';print_r($file);
+										if($file!='')
+											{ 
+											$pics[]=microtime().basename($file);					   
+											move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "assets/descriptionimages/" . $pics[$i]);
+											}
+											$i++;
+
+										}
+										//echo count($imslist);exit;
+										if(isset($imslist) && count($imslist)>0){
+										$oldimgesnewimage=array_merge($pics,$imslist);	
+										}else{
+											$oldimgesnewimage=$pics;
+										}
+										
+										
+										$getdescriptionimgs=$this->products_model->get_product_desc($post['product_id']);
+							if(count($getdescriptionimgs)>0){
+								foreach ($getdescriptionimgs as $list){
+									$this->products_model->delete_oldproducts_desc($list['desc_id']);
 								}
 							}
-						
-						
-					}
-					
-						
-						/*-----*/
-						
-						/* sizes puepos*/
-						if(isset($post['sizes']) && $post['sizes']!=''){
-							$sizesdata = str_replace(array('[', ']','"'), array(''), $post['sizes']);
-							$productsizes=$this->products_model->get_product_sizes($post['product_id']);
-							foreach ($productsizes as $sizeslist){
-							$listsizes[]=$sizeslist['p_size_name'];
-							}
-							foreach ($productsizes as $sizes){
-							$this->products_model->delete_product_sizes($sizes['p_size_id']);
-							}
-							
-							if(isset($listsizes) && count($listsizes)>0){
-									foreach (array_unique(array_merge($listsizes,explode(",",$sizesdata))) as $sizeslist){
-										if($sizeslist !=''){
-											$addsizesdata=array(
-											'item_id' =>$post['product_id'],
-											'p_size_name' => $sizeslist,
-											'create_at' => date('Y-m-d H:i:s'),
-											);
-											//echo '<pre>';print_r($addsizesdata);
-											$this->products_model->insert_product_sizes($addsizesdata);
-										}
-							
-									}
-							}else{
-								
-								foreach (array_unique(array_merge(explode(",",$sizesdata))) as $sizeslist){
-										if($sizeslist !=''){
-											$addsizesdata=array(
-											'item_id' =>$post['product_id'],
-											'p_size_name' => $sizeslist,
-											'create_at' => date('Y-m-d H:i:s'),
-											);
-											//echo '<pre>';print_r($addsizesdata);
-											$this->products_model->insert_product_sizes($addsizesdata);
-										}
-							
-									}
-							}
-							
-							
-						}
-						
-						/*----*/
-					
-						
-						/* uksizes puepos*/
-							if(isset($post['ussizes']) && $post['ussizes']!=''){
-							
-							$uksizesdata = str_replace(array('[', ']','"'), array(''), $post['ussizes']);
-							$ukproductsizes=$this->products_model->get_product_uksizes($post['product_id']);
-							foreach ($ukproductsizes as $sizeslist){
-							$ullistsizes[]=$sizeslist['p_size_name'];
-							}
-							foreach ($ukproductsizes as $sizes){
-							$this->products_model->product_uksize_list($sizes['p_size_id']);
-							}
-							
-							if(isset($ullistsizes) && count($ullistsizes)>0){
-								
-											foreach (array_unique(array_merge($ullistsizes,explode(",",$uksizesdata))) as $sizeslist){
-
-												if($sizeslist !=''){
-													$ukaddsizesdata=array(
-													'item_id' =>$post['product_id'],
-													'p_size_name' => $sizeslist,
-													'create_at' => date('Y-m-d H:i:s'),
-													);
-														//echo '<pre>';print_r($ukaddsizesdata);
-														$this->products_model->insert_product_uksizes($ukaddsizesdata);
-												}
-						
-											}
-								
-							}else{
-								
-								foreach (array_unique(array_merge(explode(",",$uksizesdata))) as $sizeslist){
-
-												if($sizeslist !=''){
-													$ukaddsizesdata=array(
-													'item_id' =>$post['product_id'],
-													'p_size_name' => $sizeslist,
-													'create_at' => date('Y-m-d H:i:s'),
-													);
-														//echo '<pre>';print_r($ukaddsizesdata);
-														$this->products_model->insert_product_uksizes($ukaddsizesdata);
-												}
-						
-											}
-								
-							}
-
-							
-							
-						}
-						
-						/*----*/
-						
-						/* pecification purpose*/
-						
-						
-					
-	
-echo '<pre>';print_r($post['olddescimg']);
-if(isset($post['description']) && count($post['description'])>0){
-						
-							$i=0;
-						foreach($_FILES['descimg']['name'] as $file){
-							echo '<pre>';print_r($file);
-						if($file!='')
-						   { 
-							$pics[]=microtime().basename($file);					   
-							 //move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "assets/descriptionimages/" . $pics[$i]);
-							}
-							$i++;
-							
-						}
-						$oldimgesnewimage=array_merge($pics,$post['olddescimg']);
-						echo '<pre>';print_r($pics);exit;
 						$productspecificationlist= array_combine($post['description'],$oldimgesnewimage);
+						//echo '<pre>';print_r($productspecificationlist);exit;
+						
 							foreach ($productspecificationlist as $key=>$list){
 								
 							if($key!=''){
 								$adddesc=array(
-								'item_id' =>$results,
+								'item_id' =>$post['product_id'],
 								'description' => $key,
 								'image' => $list,
 								'create_at' => date('Y-m-d H:i:s'),
@@ -871,6 +775,36 @@ if(isset($post['description']) && count($post['description'])>0){
 							}
 							$i++;
 						}
+										
+										
+							}else{
+								$productspecificationlist= array_combine($post['description'],$post['olddescimg']);
+									$getdescriptionimgs=$this->products_model->get_product_desc($post['product_id']);
+							if(count($getdescriptionimgs)>0){
+								foreach ($getdescriptionimgs as $list){
+									$this->products_model->delete_oldproducts_desc($list['desc_id']);
+								}
+							}
+									foreach ($productspecificationlist as $key=>$list){
+												
+											if($key!=''){
+												$adddesc=array(
+												'item_id' =>$post['product_id'],
+												'description' => $key,
+												'image' => $list,
+												'create_at' => date('Y-m-d H:i:s'),
+												'status' =>1,
+												);
+												//echo '<pre>';print_r($adddesc);exit;
+												$this->products_model->insert_product_descriptions($adddesc);
+												
+											}
+											$i++;
+										}
+							}
+
+								
+							
 						}
 	
 						/* -----*/

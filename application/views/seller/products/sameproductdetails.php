@@ -37,7 +37,7 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 	<hr>
 	<div class="row">
 		<label for="exampleInputEmail1">Description</label>
-		<div id="education_fields"></div>
+		
 				  <div class="row">
 					  <div class="col-sm-6 nopadding">
 						<div class="form-group">
@@ -59,6 +59,7 @@ $('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_detai
 						  </div>
 						</div>
 				</div>
+				<div id="education_fields"></div>
 				<span id="descerrormsg"></span>
 	</div>
 	<hr>

@@ -111,7 +111,11 @@ class Deliveryboyapi_model extends MY_Model
 		$this->db->where('order_items.order_item_id',$ordeitemid);
 		return $this->db->get()->row_array();
 	}
-	
+	public function customer_active_status($cid,$status){
+
+		$sql1="UPDATE customers SET active_status ='".$status."' WHERE customer_id = '".$cid."'";
+       	return $this->db->query($sql1);
+	}
 		
 	
 

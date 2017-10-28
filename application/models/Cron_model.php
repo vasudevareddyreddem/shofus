@@ -26,6 +26,7 @@ class Cron_model extends MY_Model
 		$this->db->select('customers.customer_id,customers.address1,customers.address2,customers.city,customers.state,customers.pincode')->from('customers');
 		$this->db->where('role_id', 6);
 		$this->db->where('status', 1);
+		$this->db->where('active_status', 1);
 		return $this->db->get()->result_array();
 		
 	}
