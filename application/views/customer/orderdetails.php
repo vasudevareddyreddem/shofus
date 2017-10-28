@@ -92,7 +92,7 @@ tr th:last-child {
       </tr>
 	  <tr>
        <th>Item Name</th>
-        <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td>
+        <td style="text-transform: uppercase;"><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td>
         
       </tr>
 	  <tr>
@@ -241,7 +241,7 @@ tr th:last-child {
 						<a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>"><img style="height:70px;width:auto;" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>" /></a>
 					</div>
 					<div class="col-md-8">
-						<p><a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
+						<p><a style="text-transform: uppercase;" href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
 						<?php if(isset($item_details['color']) && $item_details['color']!=''){ ?>
 						<div>Color: <?php echo isset($item_details['color'])?$item_details['color']:'';  ?></div>
 						<?php } ?>
@@ -365,7 +365,7 @@ tr th:last-child {
 						
 					<div class="row">
 						<div class="col-md-8">
-							<label>Iteam Details</label>
+							<label>Item Details</label>
 						</div>
 						<div class="col-md-2">
 							<label>Qty</label>

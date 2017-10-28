@@ -218,7 +218,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <a href="<?php echo base_url('customer/seemore/'.base64_encode('tren').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
-	<?php if(isset($banners_list) && count($banners_list)>0){ ?>
+	
+<!--<?php //if(isset($banners_list) && count($banners_list)>0){ ?>
 	<section>
 		<div class="container_main">
 			<div class="row">
@@ -228,65 +229,68 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
                
                  
                 <!-- Carousel items -->
-                <div class="carousel-inner">
-				<?php $c=0;foreach ($banners_list as $list){ 
+                <!--<div class="carousel-inner">
+				<?php //$c=0;foreach ($banners_list as $list){ 
 				
 				//echo '<pre>';print_r($list);exit;?>
                     
-                <?php if($c==0){ ?>
+                <?php //if($c==0){ ?>
 				<div  style="height: 260px;" class="item active">
                 	<div class="row">
 					
-					<?php if(isset($list[0]['image']) && $list[0]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
+					<?php //if(isset($list[0]['image']) && $list[0]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php //echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
-					<?php } ?>
-					<?php if(isset($list[1]['image']) && $list[1]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
+					<?php //} ?>
+					<?php //if(isset($list[1]['image']) && $list[1]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php //echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
-					<?php } ?>
-					<?php if(isset($list[2]['image']) && $list[2]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
+					<?php //} ?>
+					<?php //if(isset($list[2]['image']) && $list[2]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php //echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
-					<?php } ?>
+					<?php //} ?>
 					</div><!--.row-->
-                </div><!--.item-->
-				<?php } else { ?>
+               <!-- </div><!--.item-->
+				<!--<?php //} else { ?>
                 <div style="height: 260px;" class="item">
                 	<div class="row">
-					<?php if(isset($list[0]['image']) && $list[0]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img  class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
+					<?php //if(isset($list[0]['image']) && $list[0]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img  class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php //echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
-					<?php } ?>
-					<?php if(isset($list[1]['image']) && $list[1]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
+					<?php //} ?>
+					<?php //if(isset($list[1]['image']) && $list[1]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php //echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
-					<?php } ?>
-					<?php if(isset($list[2]['image']) && $list[2]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
+					<?php //} ?>
+					<?php //if(isset($list[2]['image']) && $list[2]['image']!=''){ ?>
+                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php //echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
                 	  
-					<?php } ?>
+					<?php //} ?>
                 	</div><!--.row-->
-                </div><!--.item-->
+                <!--</div><!--.item-->
 				
-				<?php } ?>
+				<?php// } ?>
                  
                 
 				
-				<?php $c++;} ?>
+				<?php //$c++;} ?>
                  
-                </div><!--.carousel-inner-->
-                  <a data-slide="prev" href="#Carousel" class="left carousel-control sty_con">‹</a>
+               <!-- </div><!--.carousel-inner-->
+               <!--   <a data-slide="prev" href="#Carousel" class="left carousel-control sty_con">‹</a>
                   <a data-slide="next" href="#Carousel" class="right carousel-control sty_con">›</a>
                 </div><!--.Carousel-->
                  
-		</div>
+		<!--</div>
 	</div>
 		</div>
 		
 	</section>
 	
-	<?php } ?>
+	<?php //} ?>
+	-->
+	
+	
 	
     <section>
       <div class="best-pro slider-items-products container_main">

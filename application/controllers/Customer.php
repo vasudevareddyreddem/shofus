@@ -1357,7 +1357,7 @@ class Customer extends Front_Controller
 		$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
 		$pdf->WriteHTML($html); // write the HTML into the PDF
 		$pdf->Output($pdfFilePath, 'F'); // save to file because we can
-		$htmlmessage = "Invoice has been generated for the https:cartinhours.com";
+		$htmlmessage = "Invoice has been generated from the https:cartinhours.com";
 		$this->load->library('email');
 		$this->email->set_newline("\r\n");
 		$this->email->set_mailtype("html");
@@ -2382,9 +2382,29 @@ class Customer extends Front_Controller
 						'status_refund'=>$refundtype,
 						'update_time'=>date('Y-m-d H:i:s A'),
 						);
-						//echo '<pre>';print_r($details);exit;
+						//echo '<pre>';print_r($post);exit;
 						$savereview= $this->customer_model->update_refund_details($post['status_id'],$details);
+						$details= $this->customer_model->get_customerBilling_details($post['order_item_id']);
 						if(count($savereview)>0){
+							
+							
+							if(isset($refundtype) && $refundtype=='Refund'){
+							$msg='Refund for Order-item-id : '.$post['order_item_id'].'. is processed successfully. For delays over 4 days, contact your bank.';
+							$username=$this->config->item('smsusername');
+							$pass=$this->config->item('smspassword');
+							$cancelmobilesno=$details['customer_phone'];
+							$ch4 = curl_init();
+							curl_setopt($ch4, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+							curl_setopt($ch4, CURLOPT_POST, 1);
+							curl_setopt($ch4, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$cancelmobilesno.'&text='.$msg.'&priority=ndnd&stype=normal');
+							curl_setopt($ch4, CURLOPT_RETURNTRANSFER, true);
+							//echo '<pre>';print_r($ch);exit;
+							$server_output = curl_exec ($ch4);
+							curl_close ($ch4);
+							
+							}
+							
+							
 							$data=array('order_status'=>5);
 							$this->customer_model->update_refund_details_inorders($post['order_item_id'],$data);
 							//echo $this->db->last_query();exit;
@@ -2411,7 +2431,26 @@ class Customer extends Front_Controller
 						);
 						//echo '<pre>';print_r($exchangedetails);exit;
 						$exchangesave= $this->customer_model->update_refund_details($post['status_id'],$exchangedetails);
+						$details= $this->customer_model->get_customerBilling_details($post['order_item_id']);
 						if(count($exchangesave)>0){
+							
+							
+							if(isset($refundtype1) && $refundtype1=='Refund'){
+							$msg='Refund for Order-item-id : '.$post['order_item_id'].'. is processed successfully. For delays over 4 days, contact your bank.';
+							$username=$this->config->item('smsusername');
+							$pass=$this->config->item('smspassword');
+							$cancelmobilesno=$details['customer_phone'];
+							$ch4 = curl_init();
+							curl_setopt($ch4, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+							curl_setopt($ch4, CURLOPT_POST, 1);
+							curl_setopt($ch4, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$cancelmobilesno.'&text='.$msg.'&priority=ndnd&stype=normal');
+							curl_setopt($ch4, CURLOPT_RETURNTRANSFER, true);
+							//echo '<pre>';print_r($ch);exit;
+							$server_output = curl_exec ($ch4);
+							curl_close ($ch4);
+							
+							}
+							
 							$data=array('order_status'=>5);
 							$this->customer_model->update_refund_details_inorders($post['order_item_id'],$data);
 							//echo $this->db->last_query();exit;

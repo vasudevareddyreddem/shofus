@@ -60,7 +60,7 @@
                             class="img-rounded img-responsive thumbnail" /></a>
                     </div>
                     <div class="col-xs-5 col-md-5 section-box">
-                        <div  class=" whish_head">
+                        <div  style="text-transform: uppercase;" class=" whish_head">
                             <?php echo $orders['item_name']; ?>
 							</div>
 							
