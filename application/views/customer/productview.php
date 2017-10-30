@@ -389,10 +389,12 @@
 				<?php if($products_list['item_quantity']>0 && $products_list['item_status']!=0 ){ ?>
 
         <div class="col-md-3" style="border:1px solid #ddd;padding:20px;">
-			<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
-			<span style="font-weight:500;font-size:18px" id="deliverymsg"></span>
+			<span><img id="" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
+			<span style="font-weight:500;font-size:18px" id="">Check your delivery Status</span>
 			<div class="clearfix">&nbsp;</div>
+			<span id="deliverymsg" style="hight:50px;">&nbsp;</span>
 			<div style="border:1px solid #ddd;padding:10px">
+		
 			<div class="pull-left ">
 				<b>Pincode:</b> &nbsp; &nbsp;<input class="pin_in" style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd" maxlength="6" onkeyup="removecouponmsg();" id="checkpincode" name="checkpincode" type="text" value="">
 				</div>
@@ -469,7 +471,7 @@
 						</div>
 						<div class="col-md-3">
 						<?php if(isset($list['image']) && $list['image']!=''){ ?>
-							<img  style="height:120px; width:auto;" class="img-responsive pull-right" src="<?php echo base_url('assets/descriptionimages/'.$list['image']);?>">
+							<img  style="height:120px; width:auto;" class="img-responsive pull-right" src="<?php echo base_url('uploads/products/'.$list['image']);?>">
 						<?php } ?>
 						</div>
 						
@@ -480,7 +482,7 @@
 					
 						<div class="col-md-3">
 							<?php if(isset($list['image']) && $list['image']!=''){ ?>
-								<img style="height:120px; width:auto;" class="img-responsive pull-left" src="<?php echo base_url('assets/descriptionimages/'.$list['image']);?>">
+								<img style="height:120px; width:auto;" class="img-responsive pull-left" src="<?php echo base_url('uploads/products/'.$list['image']);?>">
 							<?php } ?>
 						</div>
 						<div class="col-md-9">
@@ -1211,10 +1213,8 @@
 
 <script type="text/javascript">
 var pincodeformat =/^[0-9]+$/;
-$('#deliverymsg').html('Check your delivery Status').css("color", "black");
 function removecouponmsg(){
 	$('#imgdisplaying').show();
-	$('#deliverymsg').html('Check your delivery Status').css("color", "black");
 }
 function getareapincode(val){
 	var pin=$('#checkpincode').val();
@@ -1243,10 +1243,10 @@ function getareapincode(val){
 			$('#imgdisplaying').show();
 			if(data.msg==1){
 				
-				$('#deliverymsg').html('Delivery within ' +data.time).css("color", "black");
+				$('#deliverymsg').html('Delivery within ' +data.time).css("color", "green");
 				
 			}else{
-				$('#deliverymsg').html('Delivery within 4 hours').css("color", "black");
+				$('#deliverymsg').html("We don't have service in your pincode").css("color", "red");
 			}
          
 

@@ -1286,9 +1286,9 @@ class Customer extends Front_Controller
 		}
 		//echo '<pre>';print_r($cart_items);exit;
 		
-		/*foreach($cart_items as $items){
+		foreach($cart_items as $items){
 		$delete= $this->customer_model->after_payment_cart_item($customerdetails['customer_id'],$items['item_id'],$items['id']);
-		}*/
+		}
 		$data['order_items']= $this->customer_model->get_order_items($order_id);
 		$data['carttotal_amount']= $this->customer_model->get_successorder_total_amount($order_id);
 		
@@ -1302,32 +1302,30 @@ class Customer extends Front_Controller
 			
 			/* seller purpose*/
 			$mobilesno2=$orderlist['seller_mobile'];
-			/*$ch2 = curl_init();
+			$ch2 = curl_init();
 			curl_setopt($ch2, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 			curl_setopt($ch2, CURLOPT_POST, 1);
 			curl_setopt($ch2, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno2.'&text='.$msg2.'&priority=ndnd&stype=normal');
 			curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
 			//echo '<pre>';print_r($ch);exit;
 			$server_output = curl_exec ($ch2);
-			curl_close ($ch2);*/
+			curl_close ($ch2);
 			//echo '<pre>';print_r($orderlist);exit;
 			/* seller purpose*/
 			}
 			/*semd  email purpose*/
 						$this->load->library('email');
-						$this->email->set_newline("\r\n");
 						$this->email->set_mailtype("html");
 						$this->email->from('cartinhours.com');
 						$this->email->to($data['order_items'][0]['customer_email']);
 						$this->email->subject('Cartinhours - Order Confirmation');
 						$html = $this->load->view('email/orderconfirmation.php', $data, true); 
-						echo $html;exit;
+						//echo $html;exit;
 						$this->email->message($html);
 						$this->email->send();
 					
 					/*semd  email purpose*/
 		/* message purpose*/
-		
 			$this->load->library('email');
 			$this->email->set_newline("\r\n");
 			$this->email->set_mailtype("html");
@@ -1338,44 +1336,7 @@ class Customer extends Front_Controller
 			//echo $html;exit;
 			$this->email->message($html);
 			$this->email->send();
-		$pdfFilePath='';
-		foreach ($data['order_items'] as $list){
-			//echo '<pre>';print_r($list);exit;
-		$path = rtrim(FCPATH,"/");
-		$datas['details'] = $this->customer_model->getinvoiceinfo($list['order_item_id']);
-		//echo '<pre>';print_r($data['details']);exit;
-		$file_name = $datas['details']['order_item_id'].'_'.$datas['details']['invoice_id'].'.pdf';                
-		$datas['page_title'] = $datas['details']['item_name'].'invoice'; // pass data to the view
-		$pdfFilePath = $path."/assets/downloads/".$file_name;
-		ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-		$html = $this->load->view('customer/invoice', $datas, true); // render the view into HTML
-		$stylesheet1 = file_get_contents(base_url('assets/css/bootstrap.min.css')); // external css
-		$stylesheet6 = file_get_contents('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
-		$this->load->library('pdf');
-		$pdf = $this->pdf->load();
-		$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-		$pdf->SetDisplayMode('fullpage');
-		$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
-		$pdf->WriteHTML($html); // write the HTML into the PDF
-		$pdf->Output($pdfFilePath, 'F'); // save to file because we can
-		$htmlmessage = "Invoice has been generated from the https:cartinhours.com";
-		$this->load->library('email');
-		$this->email->set_newline("\r\n");
-		$this->email->set_mailtype("html");
-		$this->email->from('cartinhours.com');
-		$this->email->to($datas['details']['customer_email']);
-		$this->email->attach($pdfFilePath);
-		$this->email->subject('Cartinhours - Invoice '.$file_name);
-		//echo $html;exit;
-		$this->email->message($htmlmessage);
-		if($this->email->send()){
-			$this->customer_model->update_invocie_mail_send($list['order_item_id'],1);
-		}
-		$this->customer_model->update_invocie_name($list['order_item_id'],$file_name);
 		
-		
-			
-		}
 		
 		/* create invioce*/
 		//echo '<pre>';print_r($data);exit;
@@ -2385,7 +2346,7 @@ class Customer extends Front_Controller
 						);
 						//echo '<pre>';print_r($post);exit;
 						$savereview= $this->customer_model->update_refund_details($post['status_id'],$details);
-						$details= $this->customer_model->get_customerBilling_details($post['order_item_id']);
+						$cutdetails= $this->customer_model->get_customerBilling_details($post['order_item_id']);
 						if(count($savereview)>0){
 							
 							
@@ -2393,7 +2354,7 @@ class Customer extends Front_Controller
 							$msg='Refund for Order-item-id : '.$post['order_item_id'].'. is processed successfully. For delays over 4 days, contact your bank.';
 							$username=$this->config->item('smsusername');
 							$pass=$this->config->item('smspassword');
-							$cancelmobilesno=$details['customer_phone'];
+							$cancelmobilesno=$cutdetails['customer_phone'];
 							$ch4 = curl_init();
 							curl_setopt($ch4, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 							curl_setopt($ch4, CURLOPT_POST, 1);
@@ -2404,6 +2365,30 @@ class Customer extends Front_Controller
 							curl_close ($ch4);
 							
 							}
+							$sellermsg='Return Order-item-id : '.$post['order_item_id'].'. is processed successfully. For the customer region is .'.$post['region'];
+							$messagelis['msg']=$sellermsg;
+							$username=$this->config->item('smsusername');
+							$pass=$this->config->item('smspassword');
+							$sellermobilesno=$cutdetails['seller_mobile'];
+							$ch5 = curl_init();
+							curl_setopt($ch5, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+							curl_setopt($ch5, CURLOPT_POST, 1);
+							curl_setopt($ch5, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$sellermobilesno.'&text='.$sellermsg.'&priority=ndnd&stype=normal');
+							curl_setopt($ch5, CURLOPT_RETURNTRANSFER, true);
+							//echo '<pre>';print_r($ch);exit;
+							$server_output = curl_exec ($ch5);
+							curl_close ($ch5);
+							$this->load->library('email');
+							$this->email->set_newline("\r\n");
+							$this->email->set_mailtype("html");
+							$this->email->from('cartinhours.com');
+							$this->email->to($cutdetails['seller_email']);
+							$this->email->subject('Cartinhours - Order Return');
+							$html = $this->load->view('email/orderreturn.php', $messagelis, true); 
+							//echo $html;exit;
+							$this->email->message($html);
+							$this->email->send();
+							
 							
 							
 							$data=array('order_status'=>5);
@@ -2451,6 +2436,29 @@ class Customer extends Front_Controller
 							curl_close ($ch4);
 							
 							}
+							$sellermsg='Return Order-item-id : '.$post['order_item_id'].'. is processed successfully. For the customer region is .'.$post['region'];
+							$messagelis['msg']=$sellermsg;
+							$username=$this->config->item('smsusername');
+							$pass=$this->config->item('smspassword');
+							$sellermobilesno=$details['seller_mobile'];
+							$ch5 = curl_init();
+							curl_setopt($ch5, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+							curl_setopt($ch5, CURLOPT_POST, 1);
+							curl_setopt($ch5, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$sellermobilesno.'&text='.$sellermsg.'&priority=ndnd&stype=normal');
+							curl_setopt($ch5, CURLOPT_RETURNTRANSFER, true);
+							//echo '<pre>';print_r($ch);exit;
+							$server_output = curl_exec ($ch5);
+							curl_close ($ch5);
+							$this->load->library('email');
+							$this->email->set_newline("\r\n");
+							$this->email->set_mailtype("html");
+							$this->email->from('cartinhours.com');
+							$this->email->to($details['seller_email']);
+							$this->email->subject('Cartinhours - Order Return');
+							$html = $this->load->view('email/orderreturn.php', $messagelis, true); 
+							//echo $html;exit;
+							$this->email->message($html);
+							$this->email->send();
 							
 							$data=array('order_status'=>5);
 							$this->customer_model->update_refund_details_inorders($post['order_item_id'],$data);
