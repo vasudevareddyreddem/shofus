@@ -410,8 +410,8 @@
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
-				<a class="btn btn-warning col-md-6 font_10_1024" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" style="width:48%;" type="submit"><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
-				<button class="btn  btn-primary col-md-6 pull-right font_10_1024" style="width: 48%;" type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
+				<a class="btn btn-warning col-md-6 btn-sm" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" type="submit" ><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
+				<button class="btn btn-sm  btn-primary col-md-6 pull-right "  type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
 			</div>
 			
 			
