@@ -661,14 +661,7 @@ class Import extends Admin_Controller {
 																	
 																	$discount= ($data[2]-$data[3]);
 																	$offers= (($discount) /$data[3])*100;
-																	$imagename=trim($data[69]);
-																	$imagename1=trim($data[70]);
-																	$imagename2=trim($data[71]);
-																	$imagename3=trim($data[72]);
-																	$imagename4=trim($data[73]);
-																	$imagename5=trim($data[74]);
-																	$imagename6=trim($data[75]);
-																	$imagename7=trim($data[76]);
+																	
 																	$imagenameD7=trim($data[7]);
 																	$imagenameD9=trim($data[9]);
 																	$imagenameD11=trim($data[11]);
@@ -741,14 +734,14 @@ class Import extends Admin_Controller {
 																			'insales_package' => isset($data[66])?$data[66]:'',
 																			'dislay_resolution' => isset($data[67])?$data[67]:'',
 																			'display_type' => isset($data[68])?$data[68]:'',
-																			'item_image'=>isset($imagename)?$imagename:'',
-																			'item_image1'=>isset($imagename1)?$imagename1:'',
-																			'item_image2'=>isset($imagename2)?$imagename2:'',
-																			'item_image3'=>isset($imagename3)?$imagename3:'',
-																			'item_image4'=>isset($imagename4)?$imagename4:'',
-																			'item_image5'=>isset($imagename5)?$imagename5:'',
-																			'item_image6'=>isset($imagename6)?$imagename6:'',
-																			'item_image7'=>isset($imagename7)?$imagename7:'',
+																			'item_image'=>isset($data[69])?trim($data[69]):'',
+																			'item_image1'=>isset($data[70])?trim($data[70]):'',
+																			'item_image2'=>isset($data[71])?trim($data[71]):'',
+																			'item_image3'=>isset($data[72])?trim($data[72]):'',
+																			'item_image4'=>isset($data[73])?trim($data[73]):'',
+																			'item_image5'=>isset($data[74])?trim($data[74]):'',
+																			'item_image6'=>isset($data[75])?trim($data[75]):'',
+																			'item_image7'=>isset($data[76])?trim($data[76]):'',
 																			'seller_location_area'=>$seller_location['area'],
 																			'created_at'=>date('Y-m-d H:i:s'),
 																			'seller_id' => $this->session->userdata('seller_id'),  
@@ -758,7 +751,7 @@ class Import extends Admin_Controller {
 																				if(count($results)>0){
 																					
 																					$des=array(isset($data[6])?$data[6]:'',isset($data[8])?$data[8]:'',isset($data[10])?$data[10]:'',isset($data[12])?$data[12]:'');
-																					$img=array(isset($imagenameD7)?$imagenameD7:'',isset($imagenameD9)?$imagenameD9:'',isset($imagenameD11)?$imagenameD11:'',isset($imagenameD13)?$imagenameD13:'');
+																					$img=array(isset($data[7])?$data[7]:'',isset($data[9])?$data[9]:'',isset($data[11])?$data[11]:'',isset($data[13])?$data[13]:'');
 																					$conbimearray=array_combine($des,$img);
 																						/* for spcification purpose*/
 																						foreach ($conbimearray as $key=>$list){

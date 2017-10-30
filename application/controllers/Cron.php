@@ -231,6 +231,77 @@ class Cron extends Front_Controller
 		
 	}
 	
+	public function createinvoice(){
+		$invoiceorders=$this->Cron_model->get_complted_orders();
+		foreach ($invoiceorders as $list){
+			
+			if($list['invoicename']=='' && $list['mail_send']==0){
+				
+					$path = rtrim(FCPATH,"/");
+					$datas['details'] = $list;
+					//echo '<pre>';print_r($list);exit;
+					//echo '<pre>';print_r($data['details']);exit;
+					$file_name = $datas['details']['order_item_id'].'_'.$datas['details']['invoice_id'].'.pdf';                
+					$datas['page_title'] = $datas['details']['item_name'].'invoice'; // pass data to the view
+					$pdfFilePath = $path."/assets/downloads/".$file_name;
+					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$html = $this->load->view('customer/invoice', $datas, true); // render the view into HTML
+					//echo '<pre>';print_r($html);
+					$stylesheet1 = file_get_contents(base_url('assets/css/bootstrap.min.css')); // external css
+					$stylesheet6 = file_get_contents('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
+					$this->load->library('pdf');
+					$pdf = $this->pdf->load();
+					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$pdf->SetDisplayMode('fullpage');
+					$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+					$pdf->WriteHTML($html); // write the HTML into the PDF
+					$pdf->Output($pdfFilePath, 'F'); // save to file because we can
+					$this->Cron_model->update_invocie_name_save($list['invoice_id'],$list['order_item_id'],$file_name);
+					$htmlmessage = "Invoice has been generated from the https:cartinhours.com";
+					$this->load->library('email');
+					$this->email->set_newline("\r\n");
+					$this->email->set_mailtype("html");
+					$this->email->from('cartinhours.com');
+					$this->email->to($list['seller_email']);
+					$this->email->attach($pdfFilePath);
+					$this->email->subject('Cartinhours - Invoice '.$file_name);
+					//echo $html;exit;
+					$this->email->message($htmlmessage);
+						if($this->email->send()){
+							$this->Cron_model->update_invocie_mail_send($list['order_item_id'],1);
+						}
+					
+				
+				}
+		
+		}
+		
+	}
+	
+	public function sendinvoice(){
+		
+		$invoicependingcustomers=$this->Cron_model->get_pending_inovices_list();
+		foreach ($invoicependingcustomers as $list){
+			if($list['customer_email_send']==0){
+					$htmlmessage = "Invoice has been generated from the https:cartinhours.com";
+					$this->load->library('email');
+					$this->email->set_newline("\r\n");
+					$this->email->set_mailtype("html");
+					$this->email->from('cartinhours.com');
+					$this->email->to($list['cust_email']);
+					$pdfFilePath = base_url('/assets/downloads/'.$list['invoicename']);
+					$this->email->attach($pdfFilePath);
+					$this->email->subject('Cartinhours - Invoice '.$list['invoicename']);
+					//echo $html;exit;
+					$this->email->message($htmlmessage);
+						if($this->email->send()){
+							$this->Cron_model->update_invocie_mail_send_customer($list['invoice_id'],1);
+						}
+			}
+		}
+		
+	}
+	
 		
 	
 	

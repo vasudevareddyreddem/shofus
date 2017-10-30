@@ -377,7 +377,7 @@ public function item_status(){
 						if(!empty($file))
 						   { 
 							$pics[]=microtime().basename($file);					   
-							 move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "assets/descriptionimages/" . $pics[$i]);
+							 move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "uploads/products/" . $pics[$i]);
 							}
 							$i++;
 							
@@ -737,7 +737,7 @@ public function update()
 										if($file!='')
 											{ 
 											$pics[]=microtime().basename($file);					   
-											move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "assets/descriptionimages/" . $pics[$i]);
+											move_uploaded_file($_FILES["descimg"]["tmp_name"][$i], "uploads/products/" . $pics[$i]);
 											}
 											$i++;
 
@@ -1509,7 +1509,7 @@ public function returns()
 		);
 		$saveimage=$this->products_model->save_imageurl_data($imgdata);
 		if(count($saveimage)>0){
-			$url=base_url('assets/imageurl/'.$name);
+			$url=base_url('uploads/products/'.$name);
 			//$sendurl = str_replace(" ", "%20", $url);
 			$sendurl = $url;
 			$data['msg']=1;

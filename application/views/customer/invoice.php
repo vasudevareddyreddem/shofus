@@ -168,13 +168,13 @@ table td.grand {
       </div>
 	  <div id="project" style=" width:200px;" >
         <div><h3>Billing Address</h3></div>
-        <div><p  style="word-wrap: break-word;"><?php echo isset($details['cust_firstname'])?$details['cust_firstname']:'';  ?>&nbsp;<?php echo isset($details['cust_lastname'])?$details['cust_lastname']:'';  ?>, <?php echo isset($details['cust_email'])?$details['cust_email']:'';  ?> ,<?php echo isset($details['address1'])?$details['address1']:'';  ?>,<?php echo isset($details['address2'])?$details['address2']:'';  ?> , <?php echo isset($details['cpin'])?$details['cpin']:'';  ?>.</p>
+        <div><p  style="word-wrap: break-word;"><?php echo isset($details['cust_firstname'])?$details['cust_firstname']:'';  ?>&nbsp;<?php echo isset($details['cust_lastname'])?$details['cust_lastname']:'';  ?> <?php echo isset($details['cust_email'])?$details['cust_email']:'';  ?> <?php echo isset($details['address1'])?$details['address1']:'';  ?> <?php echo isset($details['address2'])?$details['address2']:'';  ?>  <?php echo isset($details['cpin'])?$details['cpin']:'';  ?>.</p>
 		</div>
       </div> 
 	 
 	  <div id="project" style=" width:200px;">
         <div><h3>Shipping Address</h3></div>
-        <div><p  style="word-wrap: "><?php echo isset($details['name'])?$details['name']:'';  ?>, <?php echo isset($details['customer_address'])?$details['customer_address']:'';  ?>, <?php echo isset($details['city'])?$details['city']:'';  ?> , <?php echo isset($details['state'])?$details['state']:'';  ?> , <?php echo isset($details['pincode'])?$details['pincode']:'';  ?> .</p>
+        <div><p  style="word-wrap: "><?php echo isset($details['name'])?$details['name']:'';  ?>  <?php echo isset($details['customer_address'])?$details['customer_address']:'';  ?>  <?php echo isset($details['city'])?$details['city']:'';  ?>  <?php echo isset($details['state'])?$details['state']:'';  ?>  <?php echo isset($details['pincode'])?$details['pincode']:'';  ?> .</p>
 		</div>
       </div>
 
@@ -220,7 +220,10 @@ table td.grand {
 		  <tr>
             <td class="desc " colspan="7" style="text-align:right;font-size:17px;background:none;">
 			<?php if(isset($details['gstinimage']) && $details['gstinimage']!=''){?>
-			<div > <img style="width:150px;height:auto;padding-right:15px" src="<?php echo base_url('assets/sellerfile/'.$details['gstinimage']); ?>"></div>
+			<?php 
+				 $url=base_url('assets/sellerfile/'.$details['gstinimage']);
+				 $new = str_replace(' ', '%20', $url); ?>
+			<div > <img style="width:150px;height:auto;padding-right:15px" src="<?php echo $new; ?>"></div>
 			<?php } ?>
 			<span>Authorized Signatory<span></td>
           </tr>
