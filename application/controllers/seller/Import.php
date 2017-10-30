@@ -58,7 +58,7 @@ class Import extends Admin_Controller {
 																//echo "<pre>";print_r($arry);exit;
 																foreach($arry as $key=>$fields)
 																{
-																		if($fields[1]!='' && $fields[2]!='' && $fields[3]!=''){
+																		if(isset($fields[1]) && $fields[1]!='' && $fields[2]!='' && $fields[3]!=''){
 																		$totalfields[] = $fields;
 																		if(empty($fields[1])) {
 																			$data['errors'][]="Product name is required. Row Id is :  ".$key.'<br>';
@@ -641,97 +641,6 @@ class Import extends Admin_Controller {
 																			$data['errors'][]="Display Type wont allow   <> []. Row Id is :  ".$key.'<br>';
 																			$error=1;
 																			}
-																		}
-																		if(empty($fields[69])) {
-																			$data['errors'][]="Image is required. Row Id is :  ".$key;
-																			$error=1;
-																		}else if($fields[69]!=''){
-																				$image_link = $fields[69];
-																				$split_image1 = pathinfo($image_link);
-																				$imagename=$split_image1['filename'].".".$split_image1['extension'];
-																				$split_image = pathinfo($imagename,PATHINFO_EXTENSION);;
-																				if($split_image != "jpg" && $split_image !="png" && $split_image != "jpeg" ) {
-																				$data['errors'][]='Uploaded file is not a valid image. Only JPG PNG  files are allowed. Row Id is :  '.$key.'<br>';
-																				$error=1;
-																				}
-																	
-																		}
-																		if(isset($fields[70])&& $fields[70]!=''){
-																			$img21 = $fields[70];
-																			$img312 = pathinfo($img21);
-																			$imagename222=$img312['filename'].".".$img312['extension'];
-																			$split_image3212 = pathinfo($imagename222,PATHINFO_EXTENSION);;
-																			if($split_image3212 != "jpg" && $split_image3212 !="png" && $split_image3212 != "jpeg" ) {
-																			$data['errors'][]='Uploaded file is not a valid image. Only JPG PNG  files are allowed. Row Id is :  '.$key.'<br>';
-																			$error=1;
-																			}
-																	
-																		}
-																		if(isset($fields[71])&& $fields[71]!=''){
-																			$img211 = $fields[71];
-																			$img3121 = pathinfo($img211);
-																			$imagename2221=$img3121['filename'].".".$img3121['extension'];
-																			$split_image32121 = pathinfo($imagename2221,PATHINFO_EXTENSION);;
-																			if($split_image32121 != "jpg" && $split_image32121 !="png" && $split_image32121 != "jpeg" ) {
-																			$data['errors'][]='Uploaded file is not a valid image. Only JPG PNG  files are allowed. Row Id is :  '.$key.'<br>';
-																			$error=1;
-																			}
-																	
-																		}
-																		if(isset($fields[72])&& $fields[72]!=''){
-																			$img212 = $fields[72];
-																			$img3122 = pathinfo($img212);
-																			$imagename2222=$img3122['filename'].".".$img3122['extension'];
-																			$split_image32122 = pathinfo($imagename2222,PATHINFO_EXTENSION);;
-																			if($split_image32122 != "jpg" && $split_image32122 !="png" && $split_image32122 != "jpeg" ) {
-																			$data['errors'][]='Uploaded file is not a valid image. Only JPG PNG  files are allowed. Row Id is :  '.$key.'<br>';
-																			$error=1;
-																			}
-																	
-																		}
-																		if(isset($fields[73])&& $fields[73]!=''){
-																			$img213 = $fields[73];
-																			$img3123 = pathinfo($img213);
-																			$imagename2223=$img3123['filename'].".".$img3123['extension'];
-																			$split_image32123 = pathinfo($imagename2223,PATHINFO_EXTENSION);;
-																			if($split_image32123 != "jpg" && $split_image32123 !="png" && $split_image32123 != "jpeg" ) {
-																			$data['errors'][]='Uploaded file is not a valid image. Only JPG PNG  files are allowed. Row Id is :  '.$key.'<br>';
-																			$error=1;
-																			}
-																	
-																		}
-																		if(isset($fields[74])&& $fields[74]!=''){
-																			$img214 = $fields[74];
-																			$img3124 = pathinfo($img214);
-																			$imagename2224=$img3124['filename'].".".$img3124['extension'];
-																			$split_image32124 = pathinfo($imagename2224,PATHINFO_EXTENSION);;
-																			if($split_image32124 != "jpg" && $split_image32124 !="png" && $split_image32124 != "jpeg" ) {
-																			$data['errors'][]='Uploaded file is not a valid image. Only JPG PNG  files are allowed. Row Id is :  '.$key.'<br>';
-																			$error=1;
-																			}
-																	
-																		}
-																		if(isset($fields[75])&& $fields[75]!=''){
-																			$img215 = $fields[75];
-																			$img3125 = pathinfo($img215);
-																			$imagename2225=$img3125['filename'].".".$img3125['extension'];
-																			$split_image32125 = pathinfo($imagename2225,PATHINFO_EXTENSION);;
-																			if($split_image32125 != "jpg" && $split_image32125 !="png" && $split_image32125 != "jpeg" ) {
-																			$data['errors'][]='Uploaded file is not a valid image. Only JPG PNG  files are allowed. Row Id is :  '.$key.'<br>';
-																			$error=1;
-																			}
-																	
-																		}
-																		if(isset($fields[76])&& $fields[76]!=''){
-																			$img216 = $fields[76];
-																			$img3126 = pathinfo($img216);
-																			$imagename2226=$img3126['filename'].".".$img3126['extension'];
-																			$split_image32126 = pathinfo($imagename2226,PATHINFO_EXTENSION);;
-																			if($split_image32126 != "jpg" && $split_image32126 !="png" && $split_image32126 != "jpeg" ) {
-																			$data['errors'][]='Uploaded file is not a valid image. Only JPG PNG  files are allowed. Row Id is :  '.$key.'<br>';
-																			$error=1;
-																			}
-																	
 																		}*/
 																		
 																 }
@@ -745,98 +654,25 @@ class Import extends Admin_Controller {
 													}
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
-																//$path='/home/cartinhours/public_html/uploads/products/';
-																//$path='/home/cartinhours/public_html/staging/uploads/products/';
-																//$path1='/home/cartinhours/public_html/staging/assets/descriptionimages/';
-																$path='F:/xampp/htdocs/cartinhour/uploads/products/';
-																$path1='F:/xampp/htdocs/cartinhour/assets/descriptionimages/';
-																//echo '<pre>';print_r($data);exit;
-																	$image_link = $data[69];
-																	$split_image = pathinfo($image_link);
-																	$imagename=microtime().basename($split_image['filename'].".".$split_image['extension']);
-																	copy($data[69], $path.$imagename);
-																	if(isset($data[70])&& $data[70]!=''){
-																		$image_link1 = $data[70];
-																		$split_image1 = pathinfo($image_link1);
-																		$imagename1=microtime().basename($split_image1['filename'].".".$split_image1['extension']);
-																		copy($data[70], $path.$imagename1);
-																	}
-																	if(isset($data[71])&& $data[71]!=''){
-																			$image_link2 = $data[71];
-																			$split_image2 = pathinfo($image_link2);
-																			$imagename2=microtime().basename($split_image2['filename'].".".$split_image2['extension']);
-																			copy($data[71], $path.$imagename2);
-																	}
-																	if(isset($data[72])&& $data[72]!=''){
-																			$image_link3 = $data[72];
-																			$split_image3 = pathinfo($image_link3);
-																			$imagename3=microtime().basename($split_image3['filename'].".".$split_image3['extension']);
-																			copy($data[72], $path.$imagename3);
-																			
-																	}
-																	if(isset($data[73])&& $data[73]!=''){
-																			$image_link4 = $data[73];
-																			$split_image4 = pathinfo($image_link4);
-																			$imagename4=microtime().basename($split_image4['filename'].".".$split_image4['extension']);
-																			copy($data[73], $path.$imagename4);
-																			
-																	}
-																	if(isset($data[74])&& $data[74]!=''){
-																			$image_link5 = $data[74];
-																			$split_image5 = pathinfo($image_link5);
-																			$imagename5=microtime().basename($split_image5['filename'].".".$split_image5['extension']);
-																			copy($data[74], $path.$imagename5);
-																			
-																	}
-																	if(isset($data[75])&& $data[75]!=''){
-																		$image_link6 = $data[75];
-																		$split_image6 = pathinfo($image_link6);
-																		$imagename6=microtime().basename($split_image6['filename'].".".$split_image6['extension']);
-																		copy($data[75], $path.$imagename6);
-																	
-																	}
-																	if(isset($data[76])&& $data[76]!=''){
-																		$image_link7 = $data[76];
-																		$split_image7 = pathinfo($image_link7);
-																		$imagename7=microtime().basename($split_image7['filename'].".".$split_image7['extension']);
-																		copy($data[76], $path.$imagename7);
-																	
-																	}
-																	
-																	if(isset($data[7])&& $data[7]!=''){
-																		$image_linkD7 = $data[7];
-																		$split_imageD7 = pathinfo($image_linkD7);
-																		$imagenameD7=microtime().basename($split_imageD7['filename'].".".$split_imageD7['extension']);
-																		copy($data[7], $path1.$imagenameD7);
-																	
-																	}
-																	if(isset($data[9])&& $data[9]!=''){
-																		$image_linkD9 = $data[9];
-																		$split_imageD9 = pathinfo($image_linkD9);
-																		$imagenameD9=microtime().basename($split_imageD9['filename'].".".$split_imageD9['extension']);
-																		copy($data[9], $path1.$imagenameD9);
-																	
-																	}
-																	if(isset($data[11])&& $data[11]!=''){
-																		$image_linkD11 = $data[11];
-																		$split_imageD11 = pathinfo($image_linkD11);
-																		$imagenameD11=microtime().basename($split_imageD11['filename'].".".$split_imageD11['extension']);
-																		copy($data[11], $path1.$imagenameD11);
-																	
-																	}
-																	if(isset($data[13])&& $data[13]!=''){
-																		$image_linkD13 = $data[13];
-																		$split_imageD13 = pathinfo($image_linkD13);
-																		$imagenameD13=microtime().basename($split_imageD13['filename'].".".$split_imageD13['extension']);
-																		copy($data[13], $path1.$imagenameD13);
-																	
-																	}
-																	
+																
+																	//echo '<pre>';print_r($data);exit;
 																	
 
 																	
 																	$discount= ($data[2]-$data[3]);
 																	$offers= (($discount) /$data[3])*100;
+																	$imagename=trim($data[69]);
+																	$imagename1=trim($data[70]);
+																	$imagename2=trim($data[71]);
+																	$imagename3=trim($data[72]);
+																	$imagename4=trim($data[73]);
+																	$imagename5=trim($data[74]);
+																	$imagename6=trim($data[75]);
+																	$imagename7=trim($data[76]);
+																	$imagenameD7=trim($data[7]);
+																	$imagenameD9=trim($data[9]);
+																	$imagenameD11=trim($data[11]);
+																	$imagenameD13=trim($data[13]);
 																	$adddetails=array(
 																			'category_id' => $post['category_ids'],			
 																			'subcategory_id' =>$post['subcategory_ids'],

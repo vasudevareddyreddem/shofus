@@ -47,7 +47,7 @@
                     <tr>
                 <th>Image Id</th>
                 <th>Name</th>                
-                <th>Url</th>                
+                <th>url</th>                
                 <th>Image</th>                
                  </tr>
                   </thead>
@@ -58,8 +58,9 @@
                  <tr>
                   <td><?php  echo $list['img_id']; ?></td>
                   <td><?php  echo $list['img_name']; ?></td>
-                  <td><?php  echo base_url('assets/imageurl/'.$list['img_name']); ?></td>
-                  <td><img src="<?php echo base_url('assets/imageurl/'.$list['img_name']);?>" width="80" height="50" ></td>
+                  <td><?php  echo base_url('uploads/products/'.$list['img_name']); ?></td>
+                  <td>
+				  <img src="<?php echo base_url('uploads/products/'.$list['img_name']);?>" width="80" height="50" ></td>
 				</tr>
 				  
 			  <?php } ?>
