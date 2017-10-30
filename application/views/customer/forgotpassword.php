@@ -34,7 +34,7 @@
 
 <body style="background-color:#009688;">
     <div class="container mar_t10per" style="position:relative" >
-        <div class="row ">
+        <div class="row res_log">
 		<div class="col-md-6 col-md-offset-3" style="background-color:#fff; border-radius:10px;padding:10px 0px;border-bottom:2px solid #116669 ">
            
 
@@ -70,7 +70,7 @@
             </div>
             </div>
         </div>
-		<a  href="<?php echo base_url(); ?>" class="" style="position: absolute;top:-100px;right:43%">
+		<a class="log_res_logo_for" href="<?php echo base_url(); ?>" >
 			<img src="<?php echo base_url(); ?>assets/home/images/logo_login.png" />
 		</a>
     </div>

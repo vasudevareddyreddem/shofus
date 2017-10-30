@@ -34,7 +34,7 @@
 
 <body style="background-color:#009688;">
     <div class="container mar_t10per" style="position:relative" >
-        <div class="row ">
+        <div class="row res_log" >
 		<div class="col-md-10 col-md-offset-1" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
             <div class="col-md-6 " style="border-right:1px solid #ddd">
 			<div class="" style="padding:0px 15px;">
@@ -87,11 +87,11 @@
                         <div style="margin-top:10px" class="form-group">
                             <!-- Button -->
 
-                            <div class="col-sm-12 controls">
-                                <button class="btn  btn-primary btn-block signup-btn" type="submit">
+                            <div class="col-sm-12  "> &nbsp; </div>
+                                <button class="btn  btn-primary btn-block signup-btn btn-sm" type="submit">
                                     login</button>
 
-                            </div>
+                          
                         </div>
 										  
 				<!--<div class="or-text">
@@ -181,7 +181,7 @@
             </div>
             </div>
         </div>
-		<a  href="<?php echo base_url(); ?>" class="" style="position: absolute;top:-100px;right:43%">
+		<a class="log_res_logo"  href="<?php echo base_url(); ?>" >
 			<img src="<?php echo base_url(); ?>assets/home/images/logo_login.png" />
 		</a>
     </div>
