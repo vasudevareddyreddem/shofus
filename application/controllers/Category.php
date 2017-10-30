@@ -1152,7 +1152,7 @@ function filtersearch(){
 				echo json_encode($data);
 			}else{
 				$this->session->set_userdata('pincode',$pinid);
-				$this->session->set_userdata('time','4 hours');
+				$this->session->set_userdata('time',"We don't have service in your pincode");
 				$data['msg']=0;
 				$data['time']='';
 				echo json_encode($data);
