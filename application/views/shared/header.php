@@ -142,7 +142,7 @@
       </div>
     </div>
   </div>
-      <div class="container1 container-fluid hm_nav">
+      <div class="container1 container-fluid hm_nav affix_sm " >
         <div class="navbar-header pull-left" style="padding-right:50px;">
 			  <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>-->
 			  <a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a>
@@ -150,7 +150,7 @@
         <div class="pull-left searc_width" >
           <div class=" navbar-collapse" >
           <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-            <div class="row">
+            <div class="row" >
             <div  >
 			<div class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
@@ -168,7 +168,8 @@
           </div>
         </div>
 		
-		  <div class="clearfix hide_clear" style="padding-bottom:10px;"></div>
+		  <div class="hide_clear pos_ab_head" style="position:fixed;top:0;height:53px;background:#009688;left:0;right:0;z-index:-1"> &nbsp;</div>
+		  <div class="clearfix hide_clear"></div>
 		  <div class="medias list_ad ">
 		  
 		  <?php if($this->session->userdata('userdetails')){ ?>
