@@ -170,7 +170,7 @@
 			
         </div>
 		
-		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; ;background-color:#fff;padding:5px; width:32%" >
+		<div class="col-md-4 sm_hide pull-right" style=" border:1px solid #ddd; ;background-color:#fff;padding:5px; width:32%" >
 				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery within <?php echo $this->session->userdata('time');?></span>
 			<span style="font-weight:500;font-size:17px" id="deliverymsg" style="display:none;"></span>

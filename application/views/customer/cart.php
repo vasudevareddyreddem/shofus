@@ -11,7 +11,9 @@
 <span id="oldcartqty">
 <div class="container" >
     <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container widt_cus_998">
+        <!--<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container widt_cus_998">-->
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container ">
+		
             <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
                     <div href="#" class="list-group-item active text-center">
@@ -151,7 +153,7 @@
 			
         </div>
 		
-		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; ;background-color:#fff;padding:5px;float:right; width:32%" >
+		<div class="col-md-4 sm_hide pull-right" style=" border:1px solid #ddd; ;background-color:#fff;padding:5px;float:right; width:32%" >
 				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="deliverymsg"></span>
 			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery within <?php echo $this->session->userdata('time');?></span>
