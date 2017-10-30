@@ -145,10 +145,10 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
         </div>
 		
 	<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
-				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
-			<span style="font-weight:500;font-size:17px" id="deliverymsg"></span>
-			<span style="font-weight:500;font-size:17px" id="oldmsg">	delivery within <?php echo $this->session->userdata('time');?></span>
-
+				<span><img id="" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
+			
+			<span style="font-weight:500;font-size:17px" id="">	Check your delivery Status</span><br>
+				<span style="font-weight:500;font-size:17px" id="deliverymsg"></span>
 			<span style="font-weight:500;font-size:17px" id="olddeliverymsg"><?php ?></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
@@ -299,7 +299,6 @@ var pincodeformat =/^[0-9]+$/;
 function delveryerrormsg(){
 $('#imgdisplaying').show();
 $('#oldmsg').hide();
-$('#deliverymsg').html('Check your delivery Status').css("color", "black");
 }
 function removecouponmsg(){
 	$('#couponerrormsg').html('');
@@ -348,10 +347,10 @@ function getareapincode(val){
 			$('#imgdisplaying').show();
 			if(data.msg==1){
 				
-				$('#deliverymsg').html('delivery within ' +data.time).css("color", "black");
+				$('#deliverymsg').html('delivery within ' +data.time).css("color", "green");
 				
 			}else{
-				$('#deliverymsg').html("We don't have service in your pincode").css("color", "black");
+				$('#deliverymsg').html("We don't have service in your pincode").css("color", "red");
 			}
          
 
