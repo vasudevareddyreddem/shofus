@@ -351,7 +351,7 @@ function getareapincode(val){
 				$('#deliverymsg').html('delivery within ' +data.time).css("color", "black");
 				
 			}else{
-				$('#deliverymsg').html('delivery within 4 hours').css("color", "black");
+				$('#deliverymsg').html("We don't have service in your pincode").css("color", "black");
 			}
          
 

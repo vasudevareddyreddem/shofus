@@ -303,7 +303,7 @@ function getareapincode(val){
 				$('#deliverymsg').html('Delivery within ' +data.time).css("color", "black");
 				
 			}else{
-				$('#deliverymsg').html('Delivery within 4 hours').css("color", "black");
+				$('#deliverymsg').html("We don't have service in your pincode").css("color", "black");
 			}
          
 
