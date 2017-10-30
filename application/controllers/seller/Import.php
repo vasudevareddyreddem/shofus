@@ -753,52 +753,52 @@ class Import extends Admin_Controller {
 																//echo '<pre>';print_r($data);exit;
 																	$image_link = $data[69];
 																	$split_image = pathinfo($image_link);
-																	$imagename=round(microtime(true)).$split_image['filename'].".".$split_image['extension'];
+																	$imagename=microtime().basename($split_image['filename'].".".$split_image['extension']);
 																	copy($data[69], $path.$imagename);
 																	if(isset($data[70])&& $data[70]!=''){
 																		$image_link1 = $data[70];
 																		$split_image1 = pathinfo($image_link1);
-																		$imagename1=round(microtime(true)).$split_image1['filename'].".".$split_image1['extension'];
+																		$imagename1=microtime().basename($split_image1['filename'].".".$split_image1['extension']);
 																		copy($data[70], $path.$imagename1);
 																	}
 																	if(isset($data[71])&& $data[71]!=''){
 																			$image_link2 = $data[71];
 																			$split_image2 = pathinfo($image_link2);
-																			$imagename2=round(microtime(true)).$split_image2['filename'].".".$split_image2['extension'];
+																			$imagename2=microtime().basename($split_image2['filename'].".".$split_image2['extension']);
 																			copy($data[71], $path.$imagename2);
 																	}
 																	if(isset($data[72])&& $data[72]!=''){
 																			$image_link3 = $data[72];
 																			$split_image3 = pathinfo($image_link3);
-																			$imagename3=round(microtime(true)).$split_image3['filename'].".".$split_image3['extension'];
+																			$imagename3=microtime().basename($split_image3['filename'].".".$split_image3['extension']);
 																			copy($data[72], $path.$imagename3);
 																			
 																	}
 																	if(isset($data[73])&& $data[73]!=''){
 																			$image_link4 = $data[73];
 																			$split_image4 = pathinfo($image_link4);
-																			$imagename4=round(microtime(true)).$split_image4['filename'].".".$split_image4['extension'];
+																			$imagename4=microtime().basename($split_image4['filename'].".".$split_image4['extension']);
 																			copy($data[73], $path.$imagename4);
 																			
 																	}
 																	if(isset($data[74])&& $data[74]!=''){
 																			$image_link5 = $data[74];
 																			$split_image5 = pathinfo($image_link5);
-																			$imagename5=round(microtime(true)).$split_image5['filename'].".".$split_image5['extension'];
+																			$imagename5=microtime().basename($split_image5['filename'].".".$split_image5['extension']);
 																			copy($data[74], $path.$imagename5);
 																			
 																	}
 																	if(isset($data[75])&& $data[75]!=''){
 																		$image_link6 = $data[75];
 																		$split_image6 = pathinfo($image_link6);
-																		$imagename6=round(microtime(true)).$split_image6['filename'].".".$split_image6['extension'];
+																		$imagename6=microtime().basename($split_image6['filename'].".".$split_image6['extension']);
 																		copy($data[75], $path.$imagename6);
 																	
 																	}
 																	if(isset($data[76])&& $data[76]!=''){
 																		$image_link7 = $data[76];
 																		$split_image7 = pathinfo($image_link7);
-																		$imagename7=round(microtime(true)).$split_image7['filename'].".".$split_image7['extension'];
+																		$imagename7=microtime().basename($split_image7['filename'].".".$split_image7['extension']);
 																		copy($data[76], $path.$imagename7);
 																	
 																	}
@@ -806,28 +806,28 @@ class Import extends Admin_Controller {
 																	if(isset($data[7])&& $data[7]!=''){
 																		$image_linkD7 = $data[7];
 																		$split_imageD7 = pathinfo($image_linkD7);
-																		$imagenameD7=round(microtime(true)).$split_imageD7['filename'].".".$split_imageD7['extension'];
+																		$imagenameD7=microtime().basename($split_imageD7['filename'].".".$split_imageD7['extension']);
 																		copy($data[7], $path1.$imagenameD7);
 																	
 																	}
 																	if(isset($data[9])&& $data[9]!=''){
 																		$image_linkD9 = $data[9];
 																		$split_imageD9 = pathinfo($image_linkD9);
-																		$imagenameD9=round(microtime(true)).$split_imageD9['filename'].".".$split_imageD9['extension'];
+																		$imagenameD9=microtime().basename($split_imageD9['filename'].".".$split_imageD9['extension']);
 																		copy($data[9], $path1.$imagenameD9);
 																	
 																	}
 																	if(isset($data[11])&& $data[11]!=''){
 																		$image_linkD11 = $data[11];
 																		$split_imageD11 = pathinfo($image_linkD11);
-																		$imagenameD11=round(microtime(true)).$split_imageD11['filename'].".".$split_imageD11['extension'];
+																		$imagenameD11=microtime().basename($split_imageD11['filename'].".".$split_imageD11['extension']);
 																		copy($data[11], $path1.$imagenameD11);
 																	
 																	}
 																	if(isset($data[13])&& $data[13]!=''){
 																		$image_linkD13 = $data[13];
 																		$split_imageD13 = pathinfo($image_linkD13);
-																		$imagenameD13=round(microtime(true)).$split_imageD13['filename'].".".$split_imageD13['extension'];
+																		$imagenameD13=microtime().basename($split_imageD13['filename'].".".$split_imageD13['extension']);
 																		copy($data[13], $path1.$imagenameD13);
 																	
 																	}

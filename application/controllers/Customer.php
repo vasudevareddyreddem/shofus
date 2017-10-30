@@ -1286,9 +1286,9 @@ class Customer extends Front_Controller
 		}
 		//echo '<pre>';print_r($cart_items);exit;
 		
-		foreach($cart_items as $items){
+		/*foreach($cart_items as $items){
 		$delete= $this->customer_model->after_payment_cart_item($customerdetails['customer_id'],$items['item_id'],$items['id']);
-		}
+		}*/
 		$data['order_items']= $this->customer_model->get_order_items($order_id);
 		$data['carttotal_amount']= $this->customer_model->get_successorder_total_amount($order_id);
 		
@@ -1302,14 +1302,14 @@ class Customer extends Front_Controller
 			
 			/* seller purpose*/
 			$mobilesno2=$orderlist['seller_mobile'];
-			$ch2 = curl_init();
+			/*$ch2 = curl_init();
 			curl_setopt($ch2, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 			curl_setopt($ch2, CURLOPT_POST, 1);
 			curl_setopt($ch2, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno2.'&text='.$msg2.'&priority=ndnd&stype=normal');
 			curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
 			//echo '<pre>';print_r($ch);exit;
 			$server_output = curl_exec ($ch2);
-			curl_close ($ch2);
+			curl_close ($ch2);*/
 			//echo '<pre>';print_r($orderlist);exit;
 			/* seller purpose*/
 			}
@@ -1321,12 +1321,13 @@ class Customer extends Front_Controller
 						$this->email->to($data['order_items'][0]['customer_email']);
 						$this->email->subject('Cartinhours - Order Confirmation');
 						$html = $this->load->view('email/orderconfirmation.php', $data, true); 
-						//echo $html;exit;
+						echo $html;exit;
 						$this->email->message($html);
 						$this->email->send();
 					
 					/*semd  email purpose*/
 		/* message purpose*/
+		
 			$this->load->library('email');
 			$this->email->set_newline("\r\n");
 			$this->email->set_mailtype("html");

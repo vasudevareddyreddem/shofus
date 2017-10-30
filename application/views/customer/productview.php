@@ -402,8 +402,10 @@
 			<div class="clearfix">&nbsp;</div>
 			<div>
 				<ul>
-					<li>Shipping Fee ₹ 50</li>
-					<li>COD is available for this merchant</li>
+					<li>Usually delivered in hours*</li>
+					<li>Cash on delivery(cod) and swipe on delivery(sod) available</li>
+					<li>Return and replacement policies are as per seller*</li>
+					<li>Online cancellations</li>
 				</ul>
 			</div>
 			<div class="clearfix">&nbsp;</div>

@@ -97,7 +97,7 @@ class Deliveryboyapi_model extends MY_Model
        	return $this->db->query($sql1);
 	}
 	
-	public function get_delivered_orders_list(){
+	public function get_delivered_orders_list($cust_id){
 		$this->db->select('order_items.*,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile')->from('order_items');
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');

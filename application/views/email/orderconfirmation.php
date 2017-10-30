@@ -1,12 +1,19 @@
 <?php //echo '<pre>';print_r($order_items);exit; ?>
-  <table width="100%" cellspacing="0" cellpadding="0" height="60"> 
+   <table width="100%"  style="max-width:650px;margin:0 auto" cellspacing="0" cellpadding="0" height="60"> 
    <tbody>
-    <tr style="background:#45b1b9"> 
+    <tr style="background:#009688"> 
      <td> 
-      <table width="100%" style="max-width:600px;margin:0 auto"> 
+      <table width="100%" style="max-width:650px;margin:0 auto"> 
        <tbody>
         <tr> 
-         <td style="width:50%;text-align:left;padding-left:16px"> <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href="<?php echo base_url(); ?>"> <img border="0" height="30" src="<?php echo base_url('assets/home/images/logo.png');?>" alt="cartinhours.com" style="border:none" class="CToWUd"> </a> </td> 
+			<td style="width:50%;text-align:left;padding-left:16px;position:relative"> 
+			 <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href=""> 
+				<span >
+				<img style="position:absolute;top:-19px;left:0;width:72%;" border="0"  src="http://test.cartinhours.com/assets/home/images/logo_arr.png" alt="cartinhours.com"  class="CToWUd"> 
+			 </a> 
+			 </span>
+			 
+		 </td>
          <td style="width:50%;text-align:right;color:rgba(255,255,255,0.8);font-family:'Roboto-Medium',sans-serif;font-size:14px;font-style:normal;font-stretch:normal;padding-right:16px"> <b>Order confirmed</b> </td> 
         </tr> 
        </tbody>
@@ -16,15 +23,15 @@
   </table> 
    
    
-  <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:10px;background-color:#f1f2f3"> 
+  <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:10px;background-color:#f1f2f3;max-width:650px;"> 
    <tbody> 
     <tr> 
      <td> 
-      <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:600px;background:#ffffff"> 
+      <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:650px;background:#ffffff"> 
        <tbody>
         <tr> 
          <td align="left"  style="display:block;margin:0 auto;clear:both;padding:0px 40px"> 
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:600px;background:#ffffff"> 
+          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:650px;background:#ffffff"> 
            <tbody>
             <tr> 
              <td align="left"   style="color:#212121;display:block;margin:0 auto;clear:both;padding:3px 0 0 0"> 
@@ -32,7 +39,7 @@
                <tbody> 
                 <tr> 
                  <td  align="left" style="float:right;padding:0;text-align:center;vertical-align:middle">
-					<h4><b style="color:#45b1b9">Order :</b><span >&nbsp; Placed</span></h4>
+					<h4><b style="color:#009688">Order :</b><span >&nbsp; Placed</span></h4>
 				 </td> 
                  <td  align="left" style="float:left;vertical-align:middle"> <p style="font-family:'Roboto-Medium',sans-serif;font-size:16px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:16px 0px">Hi <?php echo isset($order_items[0]['name'])?$order_items[0]['name']:''; ?>,</p> 
 				 </td> 
@@ -42,7 +49,7 @@
             </tr> 
            </tbody>
           </table> 
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:40px 0 0 0;max-width:600px;background:#ffffff;" border="0"> 
+          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:20px 0 0 0;max-width:650px;background:#ffffff;" border="0"> 
            <tbody>
             <tr> 
              <td> 
@@ -81,7 +88,7 @@
 		  
 		  <?php foreach ($order_items as $list){  ?>	
 		  
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:600px;background:#ffffff"> 
+          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:650px;background:#ffffff"> 
            <tbody>
             <tr> 
              <td align="left" > 
@@ -91,9 +98,14 @@
                <tbody> 
                 <tr> 
                  <td width="120" valign="top" align="left">
-					 <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px;display:block;width:100px" href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>" > <img border="0" src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>" alt="<?php echo isset($list['item_name'])?$list['item_name']:''; ?>" style="border:none;width:100%"> 
+				 <?php 
+				 $url=base_url('uploads/products/'.$list['item_image']);
+				 $new = str_replace(' ', '%20', $url); ?>
+					 <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px;display:block;width:100px"
+					 href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>" >
+					 <img border="0" src="<?php echo $new; ?>" alt="<?php echo isset($list['item_name'])?$list['item_name']:''; ?>" style="border:none;width:100%"> 
 					 </a> 
-				 </td> 
+				 </td>  
                  <td width="8"></td> 
                  <td  align="left"> 
 					 <p style="margin-bottom:13px"> 
@@ -110,7 +122,7 @@
 						 <span style="font-family:'Roboto-Medium',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#878787;margin:0px 0px;border:1px solid #dfdfdf;display:inline;border-radius:3px;padding:3px 10px">Qty: <?php echo isset($list['qty'])?$list['qty']:''; ?></span> 
 					 </p> 
 					 <br>
-					  <a href="<?php echo base_url('customer/orederdetails/'.base64_encode($list['order_item_id']));?>" style="font-family:'Roboto-Medium',sans-serif;box-sizing:border-box;text-decoration:none;background-color:#45b1b9;color:#fff;min-width:160px;padding:7px 16px;border-radius:2px;text-align:center;display:inline-block;font-size:14px" target="_blank" >Track your order</a> </td> 
+					  <a href="<?php echo base_url('customer/orederdetails/'.base64_encode($list['order_item_id']));?>" style="font-family:'Roboto-Medium',sans-serif;box-sizing:border-box;text-decoration:none;background-color:#009688;color:#fff;min-width:160px;padding:7px 16px;border-radius:2px;text-align:center;display:inline-block;font-size:14px" target="_blank" >Track your order</a> </td> 
 
 				 </td> 
                 </tr> 
@@ -125,7 +137,7 @@
           </table> 
          <p style="border-top:1px solid #ddd"></p>
          <?php if(isset($list['amount_status_paid']) && $list['amount_status_paid']==0){ ?>
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:30px 0 0 0;max-width:600px;background:#ffffff" border="0"> 
+          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:30px 0 0 40px;max-width:650px;background:#ffffff" border="0"> 
            <tbody>
             <tr> 
              <td> 
