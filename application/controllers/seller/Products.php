@@ -557,14 +557,14 @@ public function update()
 	$productdetails=$this->products_model->getproductdata($post['product_id']);
 		if($_FILES['picture1']['name']!=''){
 		$image1=microtime().basename($_FILES["picture1"]["name"]);
-		move_uploaded_file($_FILES['picture1']['tmp_name'], "uploads/products/" . $_FILES['picture1']['name']);
+		move_uploaded_file($_FILES['picture1']['tmp_name'], "uploads/products/" . $image1);
 
 		}else{
 		$image1=$productdetails['item_image'];
 		}
 		if($_FILES['picture2']['name']!=''){
 		$image2=microtime().basename($_FILES["picture2"]["name"]);
-		move_uploaded_file($_FILES['picture2']['tmp_name'], "uploads/products/" . $image1);
+		move_uploaded_file($_FILES['picture2']['tmp_name'], "uploads/products/" . $image2);
 
 		}else{
 		$image2=$productdetails['item_image1'];
@@ -1500,16 +1500,20 @@ public function returns()
 	}
 	public function getimageurl(){
 		$post=$this->input->post();
-		move_uploaded_file($_FILES["picture1"]["tmp_name"], "assets/imageurl/" .$_FILES["picture1"]["name"]);	
+		$name=microtime().basename($_FILES["picture1"]["name"]);
+		move_uploaded_file($_FILES["picture1"]["tmp_name"], "uploads/products/" .$name);	
 		$imgdata = array(
-		'img_name' => $_FILES["picture1"]["name"],
+		'img_name' => $name,
 		'created_at' => date('Y-m-d H:i:s'),    
 		'seller_id' =>$this->session->userdata('seller_id'), 
 		);
 		$saveimage=$this->products_model->save_imageurl_data($imgdata);
 		if(count($saveimage)>0){
+			$url=base_url('assets/imageurl/'.$name);
+			//$sendurl = str_replace(" ", "%20", $url);
+			$sendurl = $url;
 			$data['msg']=1;
-			$data['url']=base_url('assets/imageurl/'.$_FILES["picture1"]["name"]);
+			$data['url']=$name;
 			echo json_encode($data);
 		}else{
 			$data['msg']=2;
