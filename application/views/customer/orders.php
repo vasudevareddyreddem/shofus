@@ -67,13 +67,13 @@
 							<?php if($orders['color']!=''){  ?>
 							<div>
 							<span class="tras_col">
-								color : <?php echo $orders['color']; ?>
+								color &nbsp; &nbsp;: &nbsp;<?php echo $orders['color']; ?>
 							</span>
 							</div>
 							<?php } ?>
 							<div>
 							<span class="tras_col">
-								Seller : <?php echo $orders['store_name']; ?>
+								Seller &nbsp; :&nbsp;<?php echo $orders['store_name']; ?>
 							</span>
 							</div>
 						

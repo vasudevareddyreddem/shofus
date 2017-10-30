@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container bhoechie-tab-container">
-            <div style="min-height:500px" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+            <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
                     <div href="<?php echo base_url('customer/cart'); ?>" class="list-group-item text-center step_com">
 
@@ -67,8 +67,8 @@
 									
 									
 							<div  style="padding:50px 15px;margin-top:25px;border-top:1px solid #ddd;">
-							  <a  href="<?php echo base_url('customer/billing'); ?>" class="btn btn-primary pull-left"> Back</a>
-							<button class="pull-right btn btn-primary btn-small" name="submit_form" type="submit">Proceed to Payment</span><span aria-hidden="true">&rarr;</span></button>
+							  <a  href="<?php echo base_url('customer/billing'); ?>" class="btn btn-primary pull-left btn-sm"> Back</a>
+							<button class="pull-right btn btn-primary  btn-sm" name="submit_form" type="submit">Proceed to Payment</span><span aria-hidden="true">&rarr;</span></button>
          
 							</form>
                                 
@@ -116,14 +116,15 @@
             </div>
 			
         </div>
+        </div>
 		
-		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
+		<div class="col-md-4 sm_hide pull-right" style=" border:1px solid #ddd; ;background-color:#fff; width:32%">
 			<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery within <?php echo $this->session->userdata('time');?></span>
 			<span style="font-weight:500;font-size:17px" id="deliverymsg" style="display:none;"></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px " >
-				Pincode: &nbsp;&nbsp;<input readonly style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=" <?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col"  style="text-decoration:none;">check</a></span>
+				Pincode: &nbsp;&nbsp;<input readonly style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;width:65px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=" <?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col"  style="text-decoration:none;">check</a></span>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>

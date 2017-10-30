@@ -2010,6 +2010,7 @@ footer .newsletter-row {
 	background: #1b1e24;
 	position:absolute;
 	z-index:1024;
+	height:110px;
 }
 .footer-inner .container {
 	padding: 0px;
@@ -6169,6 +6170,9 @@ and (max-device-width : 1024px)
 @media (max-width: 768px) {
 	.sm_hide{
 		display:none;
+	}
+	.hm_nav{
+		background:#fff;
 	}
 	.hide_clear{
 		display:block;

@@ -202,7 +202,7 @@ tr th:last-child {
 					<input type="hidden" name="customer_id" id="customer_id" value="<?php echo $customerdetail['customer_id']; ?>">
 					<input type="hidden" name="seller_id" id="seller_id" value="<?php echo $item_details['seller_id']; ?>">
 					<div class="row">
-							<div class=" col-md-6 col-md-offset-3">		
+							<div class=" col-md-6 col-md-offset-3" style="padding:20px">		
 							
 
 								<div class="form-group">

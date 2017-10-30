@@ -11,8 +11,10 @@
 <span id="oldcartqty">
 <div class="container" >
     <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container widt_cus_998">
-            <div style="min-height:500px" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+        <!--<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container widt_cus_998">-->
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container ">
+		
+            <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                 <div class="list-group">
                     <div href="#" class="list-group-item active text-center">
 
@@ -34,7 +36,7 @@
 
                 </div>
             </div>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab" style="min-height:500px">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab" >
                 <!-- flight section -->
                 <div class="bhoechie-tab-content active">
                     <center>
@@ -151,7 +153,7 @@
 			
         </div>
 		
-		<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
+		<div class="col-md-4 sm_hide pull-right" style=" border:1px solid #ddd; ;background-color:#fff;padding:5px;float:right; width:32%" >
 				<span><img id="imgdisplaying" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="deliverymsg"></span>
 			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery within <?php echo $this->session->userdata('time');?></span>
@@ -159,7 +161,7 @@
 			<span style="font-weight:500;font-size:17px" id="olddeliverymsg"><?php ?></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
-				Pincode: &nbsp;&nbsp;<input style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value="<?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
+				Pincode: &nbsp;&nbsp;<input style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;width:65px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value="<?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
@@ -217,8 +219,8 @@
 			<div class="clearfix">&nbsp;</div>
 	
 			<div>
-				<a href="<?php echo base_url(''); ?>" class="btn btn-warning col-md-6" style="width:48%;" ><i class="fa fa-shopping-cart"></i> Continue Shopping</a> 
-				<a href="<?php echo base_url('customer/billing'); ?>" class="btn  btn-primary col-md-6 pull-right"  style="width: 48%;" ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</a>
+				<a href="<?php echo base_url(''); ?>" class="btn btn-warning col-md-6 btn-sm"  ><i class="fa fa-shopping-cart"></i> Continue Shopping</a>  
+				<a href="<?php echo base_url('customer/billing'); ?>" class="btn  btn-primary btn-sm col-md-6 pull-right"   ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</a>
 			</div>
 			</div>
 		
