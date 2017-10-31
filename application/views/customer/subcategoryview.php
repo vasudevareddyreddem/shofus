@@ -220,7 +220,14 @@ $(document).ready(function() {
     left: 0;
   }
 }
-
+@media (max-width: 1024px) {
+#input-select,
+#input-number {
+	padding: 7px;
+	margin: 15px 5px 5px;
+	width: 77px;
+}
+}
 </style>
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">

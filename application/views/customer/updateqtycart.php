@@ -144,10 +144,10 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 			
         </div>
 		
-	<div class="col-md-4 sm_hide" style=" border:1px solid #ddd; position:fixed;right:5% ;background-color:#fff;padding:10px;width:30%" id="social-float">
+	<div class="col-md-4 sm_hide pull-right" style=" border:1px solid #ddd ;background-color:#fff;padding:10px;width:30%" >
 				<span><img id="" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			
-			<span style="font-weight:500;font-size:17px" id="">	Check your delivery Status</span><br>
+			<span style="font-weight:500;font-size:16px;" id="">	Check your delivery Status</span><br>
 			<div class="text-center">
 			<span style="font-weight:500;font-size:17px" id="deliverymsg"></span>
 			<span id="sessionmsgs">
@@ -162,7 +162,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
-				Pincode:&nbsp;&nbsp;<input style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=""><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
+				Pincode:&nbsp;&nbsp;<input style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;width:65px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=""><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
@@ -220,8 +220,8 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 			<div class="clearfix">&nbsp;</div>
 	
 			<div>
-				<a href="<?php echo base_url(''); ?>" class="btn btn-warning col-md-6" style="width:48%;" ><i class="fa fa-shopping-cart"></i> Continue Shopping</a> 
-				<a href="<?php echo base_url('customer/billing'); ?>" class="btn  btn-primary col-md-6 pull-right"  style="width: 48%;" ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</a>
+				<a href="<?php echo base_url(''); ?>" class="btn btn-warning col-md-6 btn-sm pro_ad_btn"  ><i class="fa fa-shopping-cart "></i> Continue Shopping</a> 
+				<a href="<?php echo base_url('customer/billing'); ?>" class="btn  btn-primary col-md-6 pull-right btn-sm pro_ad_btn"   ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</a>
 			</div>
 			</div>
 		

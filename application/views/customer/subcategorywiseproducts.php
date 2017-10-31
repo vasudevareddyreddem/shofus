@@ -34,7 +34,14 @@
 	margin:0px 60px;
 	background:#fff;
 }
-
+@media (max-width: 1024px) {
+#input-select,
+#input-number {
+	padding: 7px;
+	margin: 15px 5px 5px;
+	width: 77px;
+}
+}
 </style>
 	
 	 <div class=" clearfix"></div>

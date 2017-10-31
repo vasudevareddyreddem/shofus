@@ -52,7 +52,7 @@
       </div>
       <div class="container_main" style="margin-top:50px;" >
         <div class="row">
-          <div class="col-sm-8 col-xs-12 col-lg-12" >
+          <div class="col-sm-12 col-xs-12 col-lg-12" >
             <div class="footer-column" >
               <h4>reach us</h4>
               <p style="font-size:15px;font-weight:300">Plot No. 177, Sri Vani Nilayam,
