@@ -206,7 +206,7 @@
 									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
 								<?php }else{  ?>
-								<a class="col-md-2 img_col" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
+								<a class="col-md-2 img_col " style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
 								<?php   } ?>
@@ -231,20 +231,20 @@
 								
 								<?php if($lists['item_id']==$products_list['item_id']){ ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>">
-									<div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center active_color" >
+									<div style="font-size:16px;margin:0px 5px"  class=" col-md-2_1024 col-md-2 img_col text-center active_color" >
 									<span  ><?php echo $lists['internal_memeory'];?></span>
 									</div>
 								</a>
 								<?php }else{ ?>
 								 <?php if($lists['internal_memeory']==$products_list['internal_memeory']) { ?>
 										 <a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>">
-											<div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center active_color" >
+											<div style="font-size:16px;margin:0px 5px"  class="col-md-2 col-md-2_1024 img_col text-center active_color" >
 											<span  ><?php echo $lists['internal_memeory'];?></span>
 											</div>
 										</a>
 								 <?php }else{  ?>
 								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>">
-									<div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center" >
+									<div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col  col-md-2_1024 text-center" >
 									<span  ><?php echo $lists['internal_memeory'];?></span>
 									</div>
 								</a>
@@ -274,17 +274,17 @@
 								
 								
 								<?php if($lists['item_id']==$products_list['item_id']){ ?>
-								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center active_color" >
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center col-md-2_1024  active_color" >
 								<span ><?php echo $lists['ram'];?></span>
 								</div></a>
 								<?php }else{ ?>
 								<?php if($lists['ram']==$products_list['ram']) { ?>
-								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center active_color" >
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px;margin:0px 5px"  class="col-md-2 col-md-2_1024 img_col text-center active_color" >
 								<span ><?php echo $lists['ram'];?></span>
 								</div></a>
 								
 								<?php } else{ ?>
-								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px;margin:0px 5px"  class="col-md-2 img_col text-center" >
+								<a href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>"><div style="font-size:16px;margin:0px 5px"  class="col-md-2 col-md-2_1024 img_col text-center" >
 								<span ><?php echo $lists['ram'];?></span>
 								</div></a>
 								<?php } ?>
@@ -393,12 +393,12 @@
 			<span style="font-weight:500;font-size:18px" id="">Check your delivery Status</span>
 			<div class="clearfix">&nbsp;</div>
 			<span id="deliverymsg" style="hight:50px;">&nbsp;</span>
-			<div style="border:1px solid #ddd;padding:10px">
+			<div style="border:1px solid #ddd;padding:10px;position:relative">
 		
 			<div class="pull-left ">
 				<b>Pincode:</b> &nbsp; &nbsp;<input class="pin_in" style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd" maxlength="6" onkeyup="removecouponmsg();" id="checkpincode" name="checkpincode" type="text" value="">
 				</div>
-				<div class="pull-right pin_code_text"><a class="site_col" style="cursor:pointer" onclick="getareapincode();">check</a></div>
+				<div class="pull-right " style="position:relative"><a class="site_col pin_code_text" style="cursor:pointer" onclick="getareapincode();">check</a></div>
 				<div class="clearfix">&nbsp;</div>
 			</div>
 			<div class="clearfix">&nbsp;</div>
@@ -412,8 +412,8 @@
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
-				<a class="btn btn-warning col-md-6 btn-sm" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" type="submit" ><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
-				<button class="btn btn-sm  btn-primary col-md-6 pull-right "  type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
+				<a class="btn btn-warning col-md-6 btn-sm pro_ad_btn" "onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" type="submit" ><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
+				<button class="btn btn-sm  btn-primary col-md-6 pull-right pro_ad_btn"  type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
 			</div>
 			
 			
