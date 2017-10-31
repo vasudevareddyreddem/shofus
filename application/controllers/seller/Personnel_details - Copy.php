@@ -258,15 +258,33 @@ public function seller_storedetails()
 			$location_name = $post['other_shops_location'];
 			//echo '<pre>';print_r($location_name);exit;
 			$lock_string = implode(",", $location_name);
-			//echo '<pre>';print_r($lock_string);exit;
-			$locations_list = explode(";",$lock_string);
+			//echo '<pre>';print_r($lock_string);
+			$locations_list = explode(",",$lock_string);
 			$location_array = array();
+			//echo '<pre>';print_r($locations_list);exit;
 			foreach($locations_list as $store_locations)
-			{
-			    $location_array[] = array('other_shops_location' =>$store_locations);
+			{	
+					
+					//$areas=$this->adddetails_model->get_seletedareas();
+					if($store_locations!=''){
+						$areas=$this->adddetails_model->get_seletedareas();
+						
+						foreach($areas as $li){
+							if($store_locations==$li->location_name){
+									$results[]=$li->location_id;
+							}
+						}
+						
+						
+					}
+						
+			    
+				$location_array[] = array('other_shops_location' =>$store_locations);
 			}
-
-		//echo '<pre>';print_r($location_array);exit;
+			echo '<pre>';print_r($results);exit;
+			exit;
+			$areas=$this->adddetails_model->get_seletedareas();
+		echo '<pre>';print_r($areas);exit;
 			$data = array(
 			'store_name' => $post['storename'], 
 			'addrees1' => $post['address1'],    

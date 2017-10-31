@@ -99,7 +99,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 													  <span style="color:red;" id="qtymesage<?php echo $cnt; ?>"></span>
                                                 </td>
                                                 <td class="text-left" style="width:250px;">
-                                                    <p class="" style="font-size:17px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&nbsp;<?php echo isset($productslist['product_code'])?$productslist['product_code']:''; ?></p>
+                                                    <p class="" style="font-size:16px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&nbsp;<?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp;<?php echo isset($productslist['internal_memory'])?$productslist['internal_memory']:''; ?>&nbsp;<?php echo isset($productslist['ram'])?$productslist['ram'].' RAM':''; ?></p>
                                                     <p><?php echo isset($productslist['brand'])?$productslist['brand']:''; ?></p>
                                                     <p><span style="font-size:20px;font-weight:500">₹<?php echo number_format($item_price,2 ); ?></span> &nbsp;&nbsp;
                                                         <span class="price-old" style="font-size:16px;color:#bbb">₹ <?php echo number_format($orginal_price, 2); ?></span>&nbsp;&nbsp;
