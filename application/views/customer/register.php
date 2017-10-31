@@ -55,14 +55,14 @@
 
 			<?php endif; ?>
                     <form id="loginform" name="loginform" method="post" action="<?php echo base_url('customer/loginpost');?>" class="form-horizontal" role="form">
-                        <div class=" form-group">
-                            <label class="control-label">Email id / Mobile Number</label>
-                            <input type="text" class="form-control" id="email" name="email"  placeholder="Email id / Mobile Number" value="<?php echo isset($username)?$username:''; ?>">
+                        <div class=" mat-div form-group">
+                            <label class="mat-label">Email id / Mobile Number</label>
+                            <input type="text" class="mat-input" id="email" name="email"  placeholder="Email id / Mobile Number" value="<?php echo isset($username)?$username:''; ?>">
                         </div>
 
-                        <div  class=" form-group">
-                           <label class="control-label">Password</label>
-                            <input id="password" type="password" class="form-control" name="password" placeholder="password" value="<?php echo isset($password)?$password:''; ?>">
+                        <div  class="mat-div form-group">
+                           <label class="mat-label">Password</label>
+                            <input id="password" type="password" class=" mat-input " name="password" placeholder="Password" value="<?php echo isset($password)?$password:''; ?>">
                         </div>
 
                         <div class="">
@@ -142,34 +142,34 @@
 
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
-						<div class="form-group">
-							<label class="control-label">First Name</label>
-                            <input type="text" id="firstname" name="firstname" value="" class="form-control" placeholder="First Name" />
+						<div class="mat-div form-group">
+							<label class="mat-label">First Name</label>
+                            <input type="text" id="firstname" name="firstname" value="" class="mat-input" placeholder="First Name" />
 							</div>
 							</div>
                         <div class="col-xs-6 col-md-6">
-							<div class="form-group">
-							<label class="control-label">Last Name</label>
-							<input type="text" id="lastname" name="lastname" value="" class="form-control" placeholder="Last Name" />
+							<div class="mat-div form-group">
+							<label class="mat-label">Last Name</label>
+							<input type="text" id="lastname" name="lastname" value="" class="mat-input" placeholder="Last Name" />
 							</div> 
 							</div>
 							
                     </div>
-					<div class="form-group">
-					<label class="control-label">Email Address</label>
-					<input type="text" id="email" name="email" value="" class="form-control " placeholder="Your Email" />
+					<div class=" mat-div form-group">
+					<label class="mat-label">Email Address</label>
+					<input type="text" id="email" name="email" value="" class="mat-input" placeholder="Your Email" />
 					</div>
-					<div class="form-group">
-					<label class="control-label">Mobile Number</label>
-					<input type="text" id="mobile" name="mobile" value="" class="form-control " placeholder="Your Mobile Number" />
+					<div class=" mat-div form-group">
+					<label class="mat-label">Mobile Number</label>
+					<input type="text" id="mobile" name="mobile" value="" class="mat-input" placeholder="Your Mobile Number" />
 					</div>         
-					<div class="form-group">
-					<label class="control-label">Password</label>
-                    <input type="password" id="password" name="password" value="" class="form-control" placeholder="Password" />
+					<div class="mat-div form-group">
+					<label class="mat-label">Password</label>
+                    <input type="password" id="password" name="password" value="" class="mat-input" placeholder="Password" />
 					</div>
-					<div class="form-group">
-					<label class="control-label">Confirm Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password" value="" class="form-control" placeholder="Confirm Password" />
+					<div class="mat-div form-group">
+					<label class="mat-label">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" value="" class="mat-input" placeholder="Confirm Password" />
 					</div>
 					<div class="row">
 					<div>
@@ -301,4 +301,15 @@ $(document).ready(function() {
         }
     });
 });
+</script>
+<script>
+$(".mat-input").focus(function(){
+  $(this).parent().addClass("is-active is-completed");
+});
+
+$(".mat-input").focusout(function(){
+  if($(this).val() === "")
+    $(this).parent().removeClass("is-completed");
+  $(this).parent().removeClass("is-active");
+})
 </script>

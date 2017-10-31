@@ -48,9 +48,9 @@
 			<form action="<?php echo base_url('customer/forgotpasswordpost'); ?>" method="post" name="forgotpass" id="forgotpass">
 			<div class="row">
                         <div class=" col-md-12">
-							<div class="form-group">
-								<label class="control-label">Email ID / Mobile number</label>
-								<input type="text" id="emailaddress" name="emailaddress" value="" class="form-control" placeholder="Email Id / Mobile number" />
+							<div class="mat-div form-group">
+								<label class="mat-label">Email ID / Mobile number</label>
+								<input type="text" id="emailaddress" name="emailaddress" value="" class="mat-input" placeholder="Email Id / Mobile number" />
 							</div>
 						</div>
                         
@@ -94,4 +94,15 @@ $(document).ready(function() {
         }
     });
 });
+</script>
+<script>
+$(".mat-input").focus(function(){
+  $(this).parent().addClass("is-active is-completed");
+});
+
+$(".mat-input").focusout(function(){
+  if($(this).val() === "")
+    $(this).parent().removeClass("is-completed");
+  $(this).parent().removeClass("is-active");
+})
 </script>

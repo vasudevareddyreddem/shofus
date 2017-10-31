@@ -49,15 +49,15 @@
 			<input type="hidden" id="cust_id" name="cust_id" value="<?php echo $cust_id; ?>">
 			<input type="hidden" id="email" name="email" value="<?php echo $email; ?>">
                         <div class=" col-md-12">
-							<div class="form-group">
-								<label class="control-label">OTP Verification Code</label>
-								<input type="text" id="otp" name="otpcode" value="" class="form-control" placeholder="" />
+							<div class="mat-div form-group">
+								<label class="mat-label">OTP Verification Code</label>
+								<input type="text" id="otp" name="otpcode" value="" class="mat-input" placeholder="Enter OTP Here" />
 							</div>
 						</div>
-						<div class=" col-md-12">
-							<div class="form-group">
-								<label class="control-label">Set Password</label>
-								<input type="password" id="setpassword" name="setpassword" value="" class="form-control" placeholder="" />
+						<div class="  col-md-12">
+							<div class=" mat-div form-group">
+								<label class="mat-label">Set Password</label>
+								<input type="password" id="setpassword" name="setpassword" value="" class="mat-input" placeholder="Set New Password" />
 							</div>
 						</div>
                         
@@ -117,4 +117,15 @@ $(document).ready(function() {
         }
     });
 });
+</script>
+<script>
+$(".mat-input").focus(function(){
+  $(this).parent().addClass("is-active is-completed");
+});
+
+$(".mat-input").focusout(function(){
+  if($(this).val() === "")
+    $(this).parent().removeClass("is-completed");
+  $(this).parent().removeClass("is-active");
+})
 </script>
