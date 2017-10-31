@@ -98,7 +98,7 @@ label {
 
                             <div class="col-sm-12  "> &nbsp; </div>
                                 <button class="btn  btn-primary btn-block signup-btn " type="submit">
-                                    login</button>
+                                    Login</button>
 
                           
                         </div>
