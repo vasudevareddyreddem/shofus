@@ -139,13 +139,13 @@ tr th:last-child {
 								if($product_details['subcategory_id']==7 || $product_details['subcategory_id']==9 || $product_details['subcategory_id']==21 ||  $product_details['subcategory_id']==24){ ?>
 								
 								<div class="form-group">
-									<label for="pwd">Region:</label>
+									<label for="pwd">Reason:</label>
 									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Region">
 								</div>
 								
 								<?php }else{ ?>
 								<div class="form-group">
-									<label for="pwd">Region:</label>
+									<label for="pwd">Reason:</label>
 									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Region">
 								</div>
 								<div class="form-group">

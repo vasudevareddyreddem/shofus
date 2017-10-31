@@ -156,9 +156,21 @@
 		<div class="col-md-4 sm_hide pull-right" style=" border:1px solid #ddd; ;background-color:#fff;padding:5px;float:right; width:32%" >
 				<span><img id="" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="">Check your delivery Status</span><br>
-			<span style="font-weight:500;font-size:17px" id="oldmsg">	Delivery within <?php echo $this->session->userdata('time');?></span>
+			<div class="text-center">
+			<span style="font-weight:500;font-size:17px" id="oldmsg">
+			<?php if($this->session->userdata('time')=='2 hours'){ ?>
+			Delivery within <?php echo $this->session->userdata('time');?>
+			
+			<?php }else{
+				echo "We don't have service in your pincode";
+			}
+			?>
+			</span>
 			<span id="deliverymsg" style="hight:50px;">&nbsp;</span>
 			<span style="font-weight:500;font-size:17px" id="olddeliverymsg"><?php ?></span>
+
+			</div>
+			
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
 				Pincode: &nbsp;&nbsp;<input style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;width:65px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value="<?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>

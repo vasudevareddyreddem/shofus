@@ -25,7 +25,7 @@
             </div>
 			
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
-			
+			<div id="sucessmsg" style="display:none;"></div>
 			
 			
 			
@@ -111,7 +111,7 @@
 		<div class="clearfix"> &nbsp;</div>
 		<div id="newbillingaddress" >
          <div class="title"><span>Add New Address</span></div>
-		<form action="<?php echo base_url('customer/billingaddresspost'); ?>" method="post" name="billingaddress" id="billingaddress">
+		<form  onsubmit="return Formvalidations()"  action="<?php echo base_url('customer/billingaddresspost'); ?>" method="post" name="billingaddress" id="billingaddress">
 			<input type="hidden" id="addressid" name="addressid" value="0">
 			<div class="mat-div form-group">
 				 <label for="first-name" class="mat-label">Address Title</label>
@@ -135,7 +135,8 @@
 		    </div>
 			<div class="mat-div form-group ">
 				 <label for="first-name" class="mat-label">Pincode</label>
-				<input type="text" class="mat-input" id="pincode" name="pincode" value="<?php echo isset($customerdetail['pincode'])?$customerdetail['pincode']:'';?>" >
+				<input type="text" class="mat-input" onkeyup="getpinvalidation(this.value)" id="pincode" name="pincode" value="" >
+				<input type="hidden" class="mat-input" id="pinvalu" name="pinvalu" value="" >
 		    </div>
 			<div class="mat-div form-group ">
 				 <label for="first-name" class="mat-label">City</label>
@@ -155,7 +156,7 @@
 			
 			
              <a href="<?php echo base_url('customer/cart'); ?>" class="btn btn-primary btn-sm "> Back</a>
-          <button class="pull-right btn btn-primary btn-sm" type="submit">Proceed to Checkout</span><span aria-hidden="true">&rarr;</span></button>
+          <button  class="pull-right btn btn-primary btn-sm"  id="addbillingadd" type="submit">Proceed to Checkout</span><span aria-hidden="true">&rarr;</span></button>
          
           </form>
         </div>
@@ -173,11 +174,18 @@
 		<div class="col-md-4 sm_hide pull-right" style=" border:1px solid #ddd; ;background-color:#fff;padding:5px; width:32%" >
 				<span><img id="" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
 			<span style="font-weight:500;font-size:17px" id="">	Check your delivery Status</span><br>
+			<div class="text-center">
 			<span style="font-weight:500;font-size:17px" id="deliverymsg" style="display:none;"></span>
 			<span id="deliverymsg" style="hight:50px;">&nbsp;</span>
+			<span id="sesssionmsg"><?php if($this->session->userdata('time')!==''){ ?>
+			<?php echo $this->session->userdata('time');?>
+			
+			<?php } ?>
+			</span>
+			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
-				Pincode: &nbsp;&nbsp;<input style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;width:65px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=" <?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
+				Pincode: &nbsp;&nbsp;<input style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;width:65px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value="<?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
@@ -239,7 +247,44 @@
 <div class="clearfix">&nbsp;</div>
 
 <script>
+function Formvalidations(){
+	var pincode=$('#pinvalu').val();
+	if(pincode==0){
+		$('#sucessmsg').show();
+		$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_war"> We donnot have service in your pincode <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+		return false;
+		 document.getElementById('addbillingadd').disabled = false;
+	}else{
+		return true;
+	}
+	
+	  
+	 
+	
+}
 
+function getpinvalidation(id){
+	if(id.length>5){
+	jQuery.ajax({
+        url: "<?php echo site_url('category/checkpincodes');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+          pincode: id,
+          },
+        dataType: 'json',
+        success: function (data) {
+			if(data.msg==0){
+				$('#pinvalu').val(0);
+			}else{
+				$('#pinvalu').val(1);
+			}
+			 
+		}
+      });
+	}
+	
+}
 function showmoreaddress(){
 	$('.moreadd').toggle();
 	$('#changeslableless').show();
@@ -271,6 +316,7 @@ $('#imgdisplaying').show();
 $('#oldmsg').hide();
 }
 function getareapincode(val){
+	$('#sesssionmsg').hide();
 	$('#oldmsg').hide();
 	var pin=$('#checkpincode').val();
 	$('#imgdisplaying').hide();
@@ -464,12 +510,12 @@ function changebillingaddress(aid,cnt){
 			state: {
 				validators: {
 					notEmpty: {
-						message: 'city is required'
+						message: 'State is required'
 					},
 					
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message: 'city wont allow <> [] = % '
+					message: 'State wont allow <> [] = % '
 					}
 				
 				}

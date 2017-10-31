@@ -112,7 +112,7 @@ class Cron extends Front_Controller
 					if($details['time']!=''){
 						$time=$details['time'];
 					}else{
-						$time='4 hours';
+						$time='2 hours';
 					}
 					
 					$msg=' Order Product Name: '.$details['item_name'].' Delivery Boy Phone number '.$customerdetails['cust_mobile'].' Expected time '.$time;
@@ -246,12 +246,12 @@ class Cron extends Front_Controller
 					$pdfFilePath = $path."/assets/downloads/".$file_name;
 					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 					$html = $this->load->view('customer/invoice', $datas, true); // render the view into HTML
-					//echo '<pre>';print_r($html);
+					//echo '<pre>';print_r($html);exit;
 					$stylesheet1 = file_get_contents(base_url('assets/css/bootstrap.min.css')); // external css
 					$stylesheet6 = file_get_contents('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
 					$this->load->library('pdf');
 					$pdf = $this->pdf->load();
-					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 					$pdf->SetDisplayMode('fullpage');
 					$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
 					$pdf->WriteHTML($html); // write the HTML into the PDF
@@ -281,9 +281,13 @@ class Cron extends Front_Controller
 	public function sendinvoice(){
 		
 		$invoicependingcustomers=$this->Cron_model->get_pending_inovices_list();
+		//echo '<pre>';print_r($invoicependingcustomers);exit;
 		foreach ($invoicependingcustomers as $list){
+			//echo '<pre>';print_r($list);exit;
 			if($list['customer_email_send']==0){
-					$htmlmessage = "Invoice has been generated from the https:cartinhours.com";
+				
+				//echo $list['customer_email_send'];exit;
+				$htmlmessage = "Invoice has been generated from the https:cartinhours.com";
 					$this->load->library('email');
 					$this->email->set_newline("\r\n");
 					$this->email->set_mailtype("html");
@@ -297,6 +301,7 @@ class Cron extends Front_Controller
 						if($this->email->send()){
 							$this->Cron_model->update_invocie_mail_send_customer($list['invoice_id'],1);
 						}
+						//echo $list['cust_email'];
 			}
 		}
 		

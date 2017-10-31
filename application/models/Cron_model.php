@@ -96,13 +96,16 @@ class Cron_model extends MY_Model
        	return $this->db->query($sql1);
 	}
 	public function get_pending_inovices_list(){
-		$this->db->select('invoice_list.invoice_id,invoice_list.mail_send,invoice_list.invoicename,invoice_list.customer_email_send,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1,customers.address2,(customers.pincode) AS cpin,sellers.seller_email,sellers.seller_mobile')->from('order_items');
+		$this->db->select('order_items.order_item_id,invoice_list.invoice_id,invoice_list.mail_send,invoice_list.invoicename,invoice_list.customer_email_send,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1,customers.address2,(customers.pincode) AS cpin,sellers.seller_email,sellers.seller_mobile')->from('order_items');
 		$this->db->join('customers', 'customers.customer_id = order_items.customer_id', 'left');
 		$this->db->join('invoice_list', 'invoice_list.order_item_id = order_items.order_item_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
-		$this->db->where('order_status.status_refund =', 4);
-		$this->db->where('invoice_list.customer_email_send =', 0);
+		$this->db->where('order_status.status_deliverd', 4);
+		$this->db->where('invoice_list.customer_email_send', 0);
+		$this->db->order_by('order_items.order_item_id desc');
+
+		//$this->db->where('invoice_list.customer_email_send =', 0);
 		return $this->db->get()->result_array();
 		
 	}

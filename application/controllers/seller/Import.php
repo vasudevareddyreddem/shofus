@@ -662,10 +662,6 @@ class Import extends Admin_Controller {
 																	$discount= ($data[2]-$data[3]);
 																	$offers= (($discount) /$data[3])*100;
 																	
-																	$imagenameD7=trim($data[7]);
-																	$imagenameD9=trim($data[9]);
-																	$imagenameD11=trim($data[11]);
-																	$imagenameD13=trim($data[13]);
 																	$adddetails=array(
 																			'category_id' => $post['category_ids'],			
 																			'subcategory_id' =>$post['subcategory_ids'],
