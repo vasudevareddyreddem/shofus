@@ -30,6 +30,15 @@
     .form .form-control {
         margin-bottom: 10px;
     }
+	.mat-input {
+    margin-top: 8px;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
 </style>
 
 <body style="background-color:#009688;">
@@ -57,12 +66,12 @@
                     <form id="loginform" name="loginform" method="post" action="<?php echo base_url('customer/loginpost');?>" class="form-horizontal" role="form">
                         <div class=" mat-div form-group">
                             <label class="mat-label">Email id / Mobile Number</label>
-                            <input type="text" class="mat-input" id="email" name="email"  placeholder="Email id / Mobile Number" value="<?php echo isset($username)?$username:''; ?>">
+                            <input type="text" class="mat-input" id="email" name="email"   value="<?php echo isset($username)?$username:''; ?>">
                         </div>
 
                         <div  class="mat-div form-group">
                            <label class="mat-label">Password</label>
-                            <input id="password" type="password" class=" mat-input " name="password" placeholder="Password" value="<?php echo isset($password)?$password:''; ?>">
+                            <input id="password" type="password" class=" mat-input " name="password" value="<?php echo isset($password)?$password:''; ?>">
                         </div>
 
                         <div class="">
@@ -88,7 +97,7 @@
                             <!-- Button -->
 
                             <div class="col-sm-12  "> &nbsp; </div>
-                                <button class="btn  btn-primary btn-block signup-btn btn-sm" type="submit">
+                                <button class="btn  btn-primary btn-block signup-btn " type="submit">
                                     login</button>
 
                           
@@ -144,32 +153,32 @@
                         <div class="col-xs-6 col-md-6">
 						<div class="mat-div form-group">
 							<label class="mat-label">First Name</label>
-                            <input type="text" id="firstname" name="firstname" value="" class="mat-input" placeholder="First Name" />
+                            <input type="text" id="firstname" name="firstname" value="" class="mat-input" />
 							</div>
 							</div>
                         <div class="col-xs-6 col-md-6">
 							<div class="mat-div form-group">
 							<label class="mat-label">Last Name</label>
-							<input type="text" id="lastname" name="lastname" value="" class="mat-input" placeholder="Last Name" />
+							<input type="text" id="lastname" name="lastname" value="" class="mat-input"  />
 							</div> 
 							</div>
 							
                     </div>
 					<div class=" mat-div form-group">
 					<label class="mat-label">Email Address</label>
-					<input type="text" id="email" name="email" value="" class="mat-input" placeholder="Your Email" />
+					<input type="text" id="email" name="email" value="" class="mat-input"  />
 					</div>
 					<div class=" mat-div form-group">
 					<label class="mat-label">Mobile Number</label>
-					<input type="text" id="mobile" name="mobile" value="" class="mat-input" placeholder="Your Mobile Number" />
+					<input type="text" id="mobile" name="mobile" value="" class="mat-input" />
 					</div>         
 					<div class="mat-div form-group">
 					<label class="mat-label">Password</label>
-                    <input type="password" id="password" name="password" value="" class="mat-input" placeholder="Password" />
+                    <input type="password" id="password" name="password" value="" class="mat-input"  />
 					</div>
 					<div class="mat-div form-group">
 					<label class="mat-label">Confirm Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password" value="" class="mat-input" placeholder="Confirm Password" />
+                    <input type="password" id="confirm_password" name="confirm_password" value="" class="mat-input"  />
 					</div>
 					<div class="row">
 					<div>

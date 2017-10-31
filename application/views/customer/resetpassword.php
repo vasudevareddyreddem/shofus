@@ -30,6 +30,15 @@
     .form .form-control {
         margin-bottom: 10px;
     }
+	.mat-input {
+    margin-top: 8px;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
 </style>
 
 <body style="background-color:#45b1b5;">
@@ -51,13 +60,13 @@
                         <div class=" col-md-12">
 							<div class="mat-div form-group">
 								<label class="mat-label">OTP Verification Code</label>
-								<input type="text" id="otp" name="otpcode" value="" class="mat-input" placeholder="Enter OTP Here" />
+								<input type="text" id="otp" name="otpcode" value="" class="mat-input"  />
 							</div>
 						</div>
 						<div class="  col-md-12">
 							<div class=" mat-div form-group">
 								<label class="mat-label">Set Password</label>
-								<input type="password" id="setpassword" name="setpassword" value="" class="mat-input" placeholder="Set New Password" />
+								<input type="password" id="setpassword" name="setpassword" value="" class="mat-input"  />
 							</div>
 						</div>
                         

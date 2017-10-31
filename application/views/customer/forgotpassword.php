@@ -30,6 +30,15 @@
     .form .form-control {
         margin-bottom: 10px;
     }
+	.mat-input {
+    margin-top: 8px;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
 </style>
 
 <body style="background-color:#009688;">
@@ -50,7 +59,7 @@
                         <div class=" col-md-12">
 							<div class="mat-div form-group">
 								<label class="mat-label">Email ID / Mobile number</label>
-								<input type="text" id="emailaddress" name="emailaddress" value="" class="mat-input" placeholder="Email Id / Mobile number" />
+								<input type="text" id="emailaddress" name="emailaddress" value="" class="mat-input"  />
 							</div>
 						</div>
                         
