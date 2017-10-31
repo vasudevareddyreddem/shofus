@@ -108,8 +108,8 @@ tr th:last-child {
 							
 								
 								<div class="form-group">
-									<label for="pwd">Region:</label>
-									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Region">
+									<label for="pwd">Reason:</label>
+									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Reason">
 								</div>
 							  
 								<button type="submit" class="btn btn-primary pull-right">Submit</button>
@@ -140,13 +140,13 @@ tr th:last-child {
 								
 								<div class="form-group">
 									<label for="pwd">Reason:</label>
-									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Region">
+									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Reason">
 								</div>
 								
 								<?php }else{ ?>
 								<div class="form-group">
 									<label for="pwd">Reason:</label>
-									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Region">
+									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Reason">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail1">Color</label>
@@ -183,8 +183,8 @@ tr th:last-child {
 
 								<?php }	}else{ ?>
 								<div class="form-group">
-									<label for="pwd">Region:</label>
-									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Region">
+									<label for="pwd">Reason:</label>
+									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Reason">
 								</div>
 								
 								<?php } ?>
@@ -252,7 +252,7 @@ $(document).ready(function() {
 			region: {
              validators: {
 					notEmpty: {
-						message: 'region is required'
+						message: 'Reason is required'
 					}
 				}
             }
@@ -269,7 +269,7 @@ $(document).ready(function() {
 			region: {
              validators: {
 					notEmpty: {
-						message: 'region is required'
+						message: 'Reason is required'
 					}
 				}
             }

@@ -448,7 +448,9 @@
 <?php //echo '<pre>';print_r($products_list);exit;?>
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
+		  <?php if(isset($products_desc_list) && count($products_desc_list)>0){ ?>
             <li role="presentation" class="active"><a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">Description</a></li>
+		  <?php } ?>
 			<li role="presentation" class=""><a href="#specification" aria-controls="desc" role="tab" data-toggle="tab">Specifications</a></li>
             <li role="presentation"><a href="#warnty" aria-controls="detail" role="tab" data-toggle="tab">Warranty Details</a></li>
             <li role="presentation"><a href="#returnpolices" aria-controls="detail" role="tab" data-toggle="tab">Return Policy</a></li>
