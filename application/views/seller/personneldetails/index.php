@@ -485,20 +485,34 @@ $(function(){
            <label class="control-label">Other Locations </label>
             <select id="other_shops_location"  name="other_shops_location[]"   multiple class="chosen-select" tabindex="8">
               <!-- <option value=""></option> -->
-              <?php $iputfield = $seller_storedetails['other_shops_location'];
-              $arr=explode(",",$iputfield); ?>
-                  
-              <?php foreach($arr as $orders){ ?>
-              <option value="<?php echo $orders; ?>" selected="selected"><?php echo $orders; ?></option>
-              <?php } ?>
-                   
-              <?php foreach($select_areas as $area){ ?>
-                <option value="<?php echo $area->location_name; ?>"><?php echo $area->location_name; ?></option>                  
-              <?php }?>            
+                 <?php foreach($locations_list as $areas){ ?>
+                    <option value="<?php echo $areas; ?>" selected="selected"><?php echo $areas ?></option>
+                    <?php } ?>
+                     
+                     <?php foreach($select_areas as $areas){ ?>
+                        <option value="<?php echo $areas->location_name; ?>"><?php echo $areas->location_name; ?></option>  
+                      <?php } ?>           
             </select>
+			
+			 
       </div>
       </div>
       <?php } ?>
+	<div class="form-group nopaddingRight col-md-6 san-lg">
+		<label class="control-label">Area </label>
+		
+		<select class="form-control" required="required" name ="areacode" id ="areacode" onchange="orthershops(this.value);">
+			<option value="">Select</option>
+			<?php foreach($select_areas as $list){ ?>
+			<?php if($list->location_id==$seller_storedetails['area']){ ?>
+			      <option value="<?php echo $list->location_id; ?>" selected="selected"><?php echo $list->location_name; ?></option>
+
+			<?php }else{ ?>
+              <option value="<?php echo $list->location_id; ?>"><?php echo $list->location_name; ?></option>
+			<?php } ?>
+			  <?php } ?>
+		</select>
+	</div>
 	  <div class="row">
       <div class="form-group nopaddingRight col-md-6 san-lg" id="addlocation" style="display: none;">
            <label class="control-label">Other Locations </label>
@@ -904,9 +918,7 @@ $(document).ready(function() {
             },
       weblink: {
                validators: {
-        notEmpty: {
-          message: 'Weblink is required'
-        },
+       
         regexp: {
           regexp: /^(www\.)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/,
           message: ' Invalid Weblink Formate..   Eg:www.sample.com'
@@ -916,21 +928,17 @@ $(document).ready(function() {
             },
       tin: {
                validators: {
-        notEmpty: {
-          message: 'Tin is required'
-        },
+        
         regexp: {
           regexp: /^[a-zA-Z0-9. ]+$/,
           message: ' Tin can only consist of alphanumaric, space and dot'
         }
             
       }
-            },
+        },
       tan: {
                validators: {
-        notEmpty: {
-          message: 'Tin is required'
-        },
+        
         regexp: {
           regexp: /^[a-zA-Z0-9. ]+$/,
           message: ' Tin can only consist of alphanumaric, space and dot'
@@ -940,9 +948,7 @@ $(document).ready(function() {
             },
       cst: {
                validators: {
-        notEmpty: {
-          message: 'Cst is required'
-        },
+       
         regexp: {
           regexp: /^[a-zA-Z0-9. ]+$/,
           message: ' Cst can only consist of alphanumaric, space and dot'
