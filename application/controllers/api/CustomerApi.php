@@ -2108,11 +2108,12 @@ class CustomerApi extends REST_Controller {
 				$exchangesave= $this->Customerapi_model->update_refund_details($status_id,$exchangedetails);
 				if(count($exchangesave)>0){
 					$custdetails=$this->Customerapi_model->get_customerBilling_details($order_item_id);
+					//echo '<pre>';print_r($custdetails);exit;
 					if(isset($returntype) && $returntype==1){
 							$msg='Refund for Order-item-id : '.$order_item_id.'. is processed successfully. For delays over 4 days, contact your bank.';
 							$username=$this->config->item('smsusername');
 							$pass=$this->config->item('smspassword');
-							$cancelmobilesno=$details['customer_phone'];
+							$cancelmobilesno=$custdetails['customer_phone'];
 							$ch4 = curl_init();
 							curl_setopt($ch4, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 							curl_setopt($ch4, CURLOPT_POST, 1);
@@ -2123,6 +2124,29 @@ class CustomerApi extends REST_Controller {
 							curl_close ($ch4);
 							
 					}
+					$sellermsg='Return Order-item-id : '.$order_item_id.'. is processed successfully. For the customer reason is .'.$region;
+							$messagelis['msg']=$sellermsg;
+							$username=$this->config->item('smsusername');
+							$pass=$this->config->item('smspassword');
+							$sellermobilesno=$custdetails['seller_mobile'];
+							$ch5 = curl_init();
+							curl_setopt($ch5, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+							curl_setopt($ch5, CURLOPT_POST, 1);
+							curl_setopt($ch5, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$sellermobilesno.'&text='.$sellermsg.'&priority=ndnd&stype=normal');
+							curl_setopt($ch5, CURLOPT_RETURNTRANSFER, true);
+							//echo '<pre>';print_r($ch);exit;
+							$server_output = curl_exec ($ch5);
+							curl_close ($ch5);
+							$this->load->library('email');
+							$this->email->set_newline("\r\n");
+							$this->email->set_mailtype("html");
+							$this->email->from('cartinhours.com');
+							$this->email->to($custdetails['seller_email']);
+							$this->email->subject('Cartinhours - Order Return');
+							$html = $this->load->view('email/orderreturn.php', $messagelis, true); 
+							//echo $html;exit;
+							$this->email->message($html);
+							$this->email->send();
 							
 							$data=array('order_status'=>5);
 							$this->Customerapi_model->update_refund_details_inorders($order_item_id,$data);
@@ -2657,61 +2681,7 @@ class CustomerApi extends REST_Controller {
 					/*semd  email purpose*/
 					
 		
-		/*pdf*/
-		$pdfFilePath='';
-		foreach ($data['order_items'] as $list){
-			//echo '<pre>';print_r($list);exit;
-			
-		$path = rtrim(FCPATH,"/");
-		$datas['details'] = $this->Customerapi_model->getinvoiceinfo($list['order_item_id']);
 		
-		//echo '<pre>';print_r($data['details']);exit;
-		$file_name = $datas['details']['order_item_id'].'_'.$datas['details']['invoice_id'].'.pdf';                
-		$datas['page_title'] = $datas['details']['item_name'].'invoice'; // pass data to the view
-		$pdfFilePath = $path."/assets/downloads/".$file_name;
-		///$pdfFilePath = str_replace("/","\"," $pdfFilePath");
-		//echo $pdfFilePath;exit;            
-
-		ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-		$html = $this->load->view('customer/invoice', $datas, true); // render the view into HTML
-		//echo '<pre>';print_r($html);exit;
-		$stylesheet1 = file_get_contents(base_url('assets/css/bootstrap.min.css')); // external css
-		$stylesheet6 = file_get_contents('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
-		//echo $stylesheet;exit;
-		//$pdf = new Table('P', 'mm', 'Letter');
-		
-		$this->load->library('pdf');
-		$pdf = $this->pdf->load();
-		$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-		//$pdf->WriteHTML($stylesheet1,1);
-		//$pdf->WriteHTML($stylesheet6,6);
-		//$pdf->WriteHTML('<tocentry content="Letter portrait" /><p>This should print on an Letter sheet</p>');
-		$pdf->SetDisplayMode('fullpage');
-		$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
-		$pdf->WriteHTML($html); // write the HTML into the PDF
-		$pdf->Output($pdfFilePath, 'F'); // save to file because we can
-		$htmlmessage = "Invoice has been generated from the https:cartinhours.com";
-		$this->load->library('email');
-		$this->email->set_newline("\r\n");
-		$this->email->set_mailtype("html");
-		$this->email->from('cartinhours.com');
-		$this->email->to($customerdetails['cust_email']);
-		///$this->email->bcc('tavvaforu@gmail.com');
-		$this->email->attach($pdfFilePath);
-		$this->email->subject('Cartinhours - Invoice '.$file_name);
-		
-		//echo $html;exit;
-		$this->email->message($htmlmessage);
-		if($this->email->send()){
-			$this->Customerapi_model->update_invocie_mail_send($list['order_item_id'],1);
-		}
-		$this->Customerapi_model->update_invocie_name($list['order_item_id'],$file_name);
-		
-		
-			
-		}
-		
-		/*pdf*/
 				
 				$cart_items= $this->Customerapi_model->get_cart_products($customer_id);
 			
@@ -2760,7 +2730,7 @@ class CustomerApi extends REST_Controller {
 					);
 					$canclesaveorder=$this->Customerapi_model->save_cancel_order($order_items_id,$canceldata);
 					$custdetails=$this->Customerapi_model->get_customerBilling_details($order_items_id);
-				//echo $this->db->last_query();exit;
+				//echo '<pre>';print_r($custdetails);exit;
 					if(count($canclesaveorder)>0){
 					$msg='Cancellation: We have received your cancellation request for the Order-item-id: '.$order_items_id.'. Please do not accept the product if delivery is attempted. Check your email for more details.@';
 					$messagelis['msg']=$msg;
@@ -2783,7 +2753,7 @@ class CustomerApi extends REST_Controller {
 					$this->email->set_newline("\r\n");
 					$this->email->set_mailtype("html");
 					$this->email->from('cartinhours.com');
-					$this->email->to($custdetails['customer_email']);
+					$this->email->to($custdetails['cust_email']);
 					$this->email->subject('Cartinhours - Order Cancellation');
 					$html = $this->load->view('email/customerordercancel.php', $messagelis, true); 
 					//echo $html;exit;

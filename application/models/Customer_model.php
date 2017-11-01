@@ -302,7 +302,7 @@ class Customer_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_cart_products($cust_id){
-		$this->db->select('cart.*,products.item_name,products.product_code,products.special_price,products.brand,products.item_image,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,products.offer_expairdate,products.offer_time,products.item_quantity,seller_store_details.store_name')->from('cart');
+		$this->db->select('cart.*,products.item_name,products.product_code,products.special_price,products.brand,products.item_image,products.ram,products.colour,products.internal_memory,products.item_cost,products.offer_amount,products.offer_percentage,offer_amount,products.offer_combo_item_id,products.offer_type,products.offer_expairdate,products.offer_time,products.item_quantity,seller_store_details.store_name')->from('cart');
 		$this->db->join('products', 'products.item_id = cart.item_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');

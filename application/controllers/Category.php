@@ -362,12 +362,20 @@ class Category extends Front_Controller
 		$data['price_list']= $this->category_model->get_all_price_list_sub($caterory_id,$subcaterory_id);
 		$data['discount_list']= $this->category_model->get_all_discount_list_sub($caterory_id,$subcaterory_id);
 		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-		$data['offer_list']= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
+		$offer_list= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
 		$data['color_list']= $this->category_model->get_all_color_list_sub($caterory_id,$subcaterory_id);
 		$minamt = min( array_map("max", $data['price_list']) );
 		$maxamt= max( array_map("max", $data['price_list']) );
 		$data['minimum_price'] = array('item_cost'=>$minamt);
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
+		$out = array();
+		foreach ($offer_list as $key=>$row) {
+			//echo '<pre>';print_r( $row);
+			if($row['offers']!=''){
+				$out[$row['offers']] = $row;
+			}
+		}
+		$data['offer_list']= array_values($out);
 		
 		if($subcaterory_id==40){
 				$data['ram_list']= $this->category_model->get_ram_type_list($caterory_id,$subcaterory_id);
@@ -653,12 +661,20 @@ function filtersearch(){
 		$data['price_list']= $this->category_model->get_all_price_list($caterory_id);
 		$data['discount_list']= $this->category_model->get_all_discount_list($caterory_id);
 		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-		$data['offer_list']= $this->category_model->get_all_offer_list($caterory_id);
+		$offer_list= $this->category_model->get_all_offer_list($caterory_id);
 		$data['color_list']= $this->category_model->get_all_color_list($caterory_id);
 		$minamt = min( array_map("max", $data['price_list']) );
 		$maxamt= max( array_map("max", $data['price_list']) );
 		$data['minimum_price'] = array('item_cost'=>$minamt);
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
+		$out = array();
+		foreach ($offer_list as $key=>$row) {
+			//echo '<pre>';print_r( $row);
+			if($row['offers']!=''){
+				$out[$row['offers']] = $row;
+			}
+		}
+		$data['offer_list']= array_values($out);
 	}else if($caterory_id==19){
 		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);
 		$data['price_list']= $this->category_model->get_all_price_list($caterory_id);
@@ -766,12 +782,20 @@ function filtersearch(){
 		$data['price_list']= $this->category_model->get_all_price_list_sub($caterory_id,$subcaterory_id);
 		$data['discount_list']= $this->category_model->get_all_discount_list_sub($caterory_id,$subcaterory_id);
 		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-		$data['offer_list']= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
+		$offer_list= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
 		$data['color_list']= $this->category_model->get_all_color_list_sub($caterory_id,$subcaterory_id);
 		$minamt = min( array_map("max", $data['price_list']) );
 		$maxamt= max( array_map("max", $data['price_list']) );
 		$data['minimum_price'] = array('item_cost'=>$minamt);
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
+		$out = array();
+		foreach ($offer_list as $key=>$row) {
+			//echo '<pre>';print_r( $row);
+			if($row['offers']!=''){
+				$out[$row['offers']] = $row;
+			}
+		}
+		$data['offer_list']= array_values($out);
 		if($subcaterory_id==40){
 				$data['ram_list']= $this->category_model->get_ram_type_list($caterory_id,$subcaterory_id);
 				$data['colors_list']= $this->category_model->get_color_type_list($caterory_id,$subcaterory_id);
@@ -914,14 +938,22 @@ function filtersearch(){
 		$data['price_list']= $this->category_model->get_all_price_list($caterory_id);
 		$data['discount_list']= $this->category_model->get_all_discount_list($caterory_id);
 		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-		$data['offer_list']= $this->category_model->get_all_offer_list($caterory_id);
+		$offer_list= $this->category_model->get_all_offer_list($caterory_id);
 		$data['color_list']= $this->category_model->get_all_color_list($caterory_id);
 		$minamt = min( array_map("max", $data['price_list']) );
 		$maxamt= max( array_map("max", $data['price_list']) );
 		$data['minimum_price'] = array('item_cost'=>$minamt);
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
 		//echo max($data['price_list']);
-		//echo '<pre>';print_r($data);exit;
+		$out = array();
+		foreach ($offer_list as $key=>$row) {
+			//echo '<pre>';print_r( $row);
+			if($row['offers']!=''){
+				$out[$row['offers']] = $row;
+			}
+		}
+		$data['offer_list']= array_values($out);
+		//echo '<pre>';print_r( $out);exit;
 		
 	}else if($caterory_id==19){
 		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);
