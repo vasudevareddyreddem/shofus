@@ -704,7 +704,7 @@ class CustomerApi extends REST_Controller {
 		//echo '<pre>';print_r($product_details);exit;
 		if(count($product_details)>0){
 		
-			$message = array('status'=>1,'path'=>'https://cartinhours.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list,'sameproducts_list'=>$sameproducts_list,'gbsizelist'=>$sameproducts_size,'colourlist'=>$sameproducts_colour,'ramlist'=>$sameproducts_ram,'descriptions'=>$des,'imagepath'=>'https://cartinhours.com/assets/descriptionimages/');
+			$message = array('status'=>1,'path'=>'https://cartinhours.com/uploads/products/','message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list,'sameproducts_list'=>$sameproducts_list,'gbsizelist'=>$sameproducts_size,'colourlist'=>$sameproducts_colour,'ramlist'=>$sameproducts_ram,'descriptions'=>$des,'imagepath'=>'https://cartinhours.com/uploads/products/');
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'product Id is not valid one');
@@ -2681,61 +2681,7 @@ class CustomerApi extends REST_Controller {
 					/*semd  email purpose*/
 					
 		
-		/*pdf*/
-		$pdfFilePath='';
-		foreach ($data['order_items'] as $list){
-			//echo '<pre>';print_r($list);exit;
-			
-		$path = rtrim(FCPATH,"/");
-		$datas['details'] = $this->Customerapi_model->getinvoiceinfo($list['order_item_id']);
 		
-		//echo '<pre>';print_r($data['details']);exit;
-		$file_name = $datas['details']['order_item_id'].'_'.$datas['details']['invoice_id'].'.pdf';                
-		$datas['page_title'] = $datas['details']['item_name'].'invoice'; // pass data to the view
-		$pdfFilePath = $path."/assets/downloads/".$file_name;
-		///$pdfFilePath = str_replace("/","\"," $pdfFilePath");
-		//echo $pdfFilePath;exit;            
-
-		ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-		$html = $this->load->view('customer/invoice', $datas, true); // render the view into HTML
-		//echo '<pre>';print_r($html);exit;
-		$stylesheet1 = file_get_contents(base_url('assets/css/bootstrap.min.css')); // external css
-		$stylesheet6 = file_get_contents('http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic');
-		//echo $stylesheet;exit;
-		//$pdf = new Table('P', 'mm', 'Letter');
-		
-		$this->load->library('pdf');
-		$pdf = $this->pdf->load();
-		$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date(DATE_RFC822)); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-		//$pdf->WriteHTML($stylesheet1,1);
-		//$pdf->WriteHTML($stylesheet6,6);
-		//$pdf->WriteHTML('<tocentry content="Letter portrait" /><p>This should print on an Letter sheet</p>');
-		$pdf->SetDisplayMode('fullpage');
-		$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
-		$pdf->WriteHTML($html); // write the HTML into the PDF
-		$pdf->Output($pdfFilePath, 'F'); // save to file because we can
-		$htmlmessage = "Invoice has been generated from the https:cartinhours.com";
-		$this->load->library('email');
-		$this->email->set_newline("\r\n");
-		$this->email->set_mailtype("html");
-		$this->email->from('cartinhours.com');
-		$this->email->to($customerdetails['cust_email']);
-		///$this->email->bcc('tavvaforu@gmail.com');
-		$this->email->attach($pdfFilePath);
-		$this->email->subject('Cartinhours - Invoice '.$file_name);
-		
-		//echo $html;exit;
-		$this->email->message($htmlmessage);
-		if($this->email->send()){
-			$this->Customerapi_model->update_invocie_mail_send($list['order_item_id'],1);
-		}
-		$this->Customerapi_model->update_invocie_name($list['order_item_id'],$file_name);
-		
-		
-			
-		}
-		
-		/*pdf*/
 				
 				$cart_items= $this->Customerapi_model->get_cart_products($customer_id);
 			

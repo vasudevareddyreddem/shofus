@@ -742,7 +742,7 @@ class Import extends Admin_Controller {
 																			'created_at'=>date('Y-m-d H:i:s'),
 																			'seller_id' => $this->session->userdata('seller_id'),  
 																			);
-																		//echo '<pre>';print_r($adddetails);exit;
+																			//echo '<pre>';print_r($adddetails);exit;
 																			$results=$this->products_model->save_prodcts($adddetails);
 																				if(count($results)>0){
 																					

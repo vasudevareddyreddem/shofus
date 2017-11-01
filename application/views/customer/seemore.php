@@ -51,7 +51,7 @@
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
 			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
 			<input type="hidden" name="qty" id="qty" value="1" >
-                <div class="col-md-2 " style="width:20%">
+                <div class="col-md-2 " style="width:20%;height:280px;min-height:350px;overflow:hidden;">
 				 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
 				<div class="item">
           <div class=" box-product-outer" >

@@ -1043,26 +1043,30 @@ class Category_model extends MY_Model
 	public function get_all_offer_list_sub($catid,$subcat)
 	{
 	
-		$this->db->select('products.offers')->from('products');
+		/*$this->db->select('products.offers')->from('products');
 		$this->db->where('category_id',$catid);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('item_status',1);
 		$this->db->where('offers!=','');
 		$this->db->group_by('offers');
-		return $this->db->get()->result_array();
+		return $this->db->get()->result_array();*/
+		$sql = "SELECT IF(products.offer_expairdate<= DATE('Y-m-d h:i:s A'), offers, offer_percentage) AS offers FROM `products` WHERE `category_id` = '".$catid."' AND `subcategory_id` = '".$subcat."' AND `item_status` = 1 AND `offers` != ''";
+		return $this->db->query($sql)->result_array();
 		
 	}
 	
 	public function get_all_discount_list_sub($catid,$subcat)
 	{
 	
-		$this->db->select('products.discount')->from('products');
+		/*$this->db->select('products.discount')->from('products');
 		$this->db->where('category_id',$catid);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('item_status',1);
 		$this->db->where('discount!=','');
 		$this->db->group_by('discount');
-		return $this->db->get()->result_array();
+		return $this->db->get()->result_array();*/
+		$sql = "SELECT IF(products.offer_expairdate>= DATE('Y-m-d h:i:s A'), offer_amount, discount) AS discount FROM `products` WHERE `category_id` = '".$catid."'  AND `subcategory_id` = '".$subcat."' AND `item_status` = 1 AND `discount` != '' GROUP BY `discount`";
+		return $this->db->query($sql)->result_array();
 		
 	}
 	public function get_all_brand_list_sib($catid,$subcat)
@@ -1178,12 +1182,17 @@ class Category_model extends MY_Model
 	}
 	public function get_all_discount_list($catid)
 	{
-		$this->db->select('products.discount')->from('products');
+		//$date = new DateTime("now");
+ 		//$curr_date = $date->format('Y-m-d h:i:s A');
+		/*$this->db->select('IF(products.offer_expairdate>= date(Y-m-d h:i:s A),offer_amount,discount')->from('products');
 		$this->db->where('category_id',$catid);
 		$this->db->where('item_status',1);
 		$this->db->where('discount!=','');
 		$this->db->group_by('discount');
-		return $this->db->get()->result_array();
+		return $this->db->get()->result_array();*/
+		$sql = "SELECT IF(products.offer_expairdate>= DATE('Y-m-d h:i:s A'), offer_amount, discount) AS discount FROM `products` WHERE `category_id` = '".$catid."' AND `item_status` = 1 AND `discount` != '' GROUP BY `discount`";
+		return $this->db->query($sql)->result_array();
+		
 	}
 	public function get_all_avalibility_list($catid)
 	{
@@ -1195,12 +1204,14 @@ class Category_model extends MY_Model
 	}
 	public function get_all_offer_list($catid)
 	{
-		$this->db->select('products.offers')->from('products');
+		/*$this->db->select('products.offer_expairdate>= DATE('Y-m-d h:i:s A'), offer_percentage, offers) AS offers')->from('products');
 		$this->db->where('products.category_id',$catid);
 		$this->db->where('products.item_status',1);
 		$this->db->where('products.offers!=','');
 		$this->db->group_by('products.offers');
-		return $this->db->get()->result_array();
+		return $this->db->get()->result_array();*/
+		$sql = "SELECT IF(products.offer_expairdate<= DATE('Y-m-d h:i:s A'), offers, offer_percentage) AS offers FROM `products` WHERE `category_id` = '".$catid."' AND `item_status` = 1 AND `offers` != ''";
+		return $this->db->query($sql)->result_array();
 	}
 	
 	/* GROCERY categorywise*/
