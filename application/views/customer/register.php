@@ -36,7 +36,7 @@
 label {
     display: inline-block;
     max-width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     font-weight: 400;
 }
 </style>
