@@ -34,7 +34,7 @@ class Home_model extends CI_Model
 	
 	public function get_search_functionality_products($areaid)
 	{
-	$this->db->select('products.item_id,products.item_name,products.yes,subcategories.subcategory_id,subcategories.subcategory_name')->from('products');
+	$this->db->select('products.item_id,products.item_name,products.ram,products.colour,products.internal_memeory,products.yes,subcategories.subcategory_id,subcategories.subcategory_name')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
 	//$this->db->where('item_name',$areaid);
 	$this->db->like('item_name', $areaid);

@@ -404,7 +404,7 @@ tr th:last-child {
 							<option value="item price/shipping cost is too high">item price/shipping cost is too high</option>
 							<option value="My reason is not listed">My reason is not listed</option>
 							<option value="Expected delivery time is too long">Expected delivery time is too long</option>
-							<option value="Need to change shipping address">Need to change shipping address</option>
+							<!--<option value="Need to change shipping address">Need to change shipping address</option>-->
 						  </select>
 						  <span id="errormeg" style="color:red"></span>
 						</div>

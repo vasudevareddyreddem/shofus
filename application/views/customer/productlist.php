@@ -24,7 +24,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 </style>
 <div class="" style="padding-bottom:20px;margin-top:-20px">
 	<!--<img class="img-responsive" src="<?php echo base_url(); ?>assets/home/images/ban_list.png" />-->
-	<img class="img-responsive" src="http://www.eautoappraise.com/wp-content/uploads/eAutoAppraise-2000x400.jpg" />
+	<img class="img-responsive" src="<?php echo base_url(); ?>assets/home/images/nearbystores.png" />
 </div>
 <div class="container">
 	<div class="row">
