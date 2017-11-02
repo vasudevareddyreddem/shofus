@@ -182,7 +182,7 @@ tr th:last-child {
 		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']=='' ){ ?>
 		<div><a class="site_col" href="<?php echo base_url('customer/orderrefund/'.base64_encode($item_details['order_item_id'])); ?>"><h5>Return</h5></a></div>
 		<?php } ?>
-		<p ><a class="site_col" id="review">Review this product</a></p>
+		<p ><a class="site_col" style="cursor: pointer;" id="review">Review this product</a></p>
 		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']!=''){ ?>
 		<p >Your order is Requested for <?php echo $item_details['status_refund']; ?>  </p>
 		<p >Return policy : <?php echo $item_details['return_policy']; ?>  </p>
