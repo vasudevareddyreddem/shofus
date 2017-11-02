@@ -1954,7 +1954,7 @@ class Customer extends Front_Controller
 					$ch = curl_init();
 					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 					curl_setopt($ch, CURLOPT_POST, 1);
-					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobile.'&text=Your cartinhour verification code is '.$msg.'&priority=ndnd&stype=normal');
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobile.'&text='.$msg.' is your Cartinhours verification code one-time use. Please DO NOT share this OTP with anyone to ensure account security.&priority=ndnd&stype=normal');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					//echo '<pre>';print_r($ch);exit;
 					$server_output = curl_exec ($ch);
