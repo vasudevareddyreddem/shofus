@@ -2612,6 +2612,7 @@ public function aboutus(){
 			 $canceldata=array(
 			 'status_refund'=>'cancel',
 			 'status_confirmation'=>5,
+			 'cancel_date'=>date('Y-m-d h:i:s'),
 			 'reason'=>isset($post['reasons'])?$post['reasons']:'',
 			 'comments'=>isset($post['comments'])?$post['comments']:'',
 			 );
@@ -2621,8 +2622,8 @@ public function aboutus(){
 			 if(count($canclesaveorder)>0){
 				 
 					/*cancel sms */
-					$msg='Cancellation: We have received your cancellation request for the Order-item-id : '.$post['order_items_id'].'. Please do not accept the product if delivery is attempted. Check your email for more details.@';
-					$messagelis['msg']=$msg;
+					$msg='Cancelled:'.$custdetails['item_name'].' in your order with order ID  : '.$post['order_items_id'].'. has been cancelled.  Please check your email for more details';
+					$messagelis['list']=$custdetails;
 					$username=$this->config->item('smsusername');
 					$pass=$this->config->item('smspassword');
 					$cancelmobilesno=$custdetails['customer_phone'];

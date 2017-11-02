@@ -378,10 +378,13 @@ class DeliveryboyApi extends REST_Controller {
 		}
 		$getdetails=$this->Deliveryboyapi_model->get_order_details($order_item_id);
 		
+		//echo '<pre>';print_r($getdetails);exit;
+		
 		$totalamt=$getdetails['total_price']+$getdetails['delivery_amount'];
 		if($totalamt==$amount){
-			$getdetails=$this->Deliveryboyapi_model->get_order_details_status($order_item_id,$amount,$amountstatus,$payment_type);
-			if(count($getdetails)>0){
+			$getdetailss=$this->Deliveryboyapi_model->get_order_details_status($order_item_id,$amount,$amountstatus,$payment_type);
+			$this->Deliveryboyapi_model->order_payment_status($getdetails['order_id'],$payment_type);
+			if(count($getdetailss)>0){
 					$message = array('status'=>1, 'message'=>'Order Amount status Succssfully updated');
 					$this->response($message, REST_Controller::HTTP_OK);
 			}else{

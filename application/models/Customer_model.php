@@ -568,10 +568,13 @@ class Customer_model extends MY_Model
 		return $this->db->update('order_status', $data);
 	}
 	public function get_customerBilling_details($order_tem_id){
-		$this->db->select('order_items.customer_phone,sellers.seller_email,sellers.seller_mobile,customers.cust_email')->from('order_items');
+		$this->db->select('products.item_name,products.ram,products.internal_memeory,products.colour,products.item_image,order_items.customer_phone,sellers.seller_email,sellers.seller_mobile,customers.cust_email,billing_address.name,order_items.*,order_status.cancel_date')->from('order_items');
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
+		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 		$this->db->join('customers', 'customers.customer_id = order_items.customer_id', 'left');
-		$this->db->where('order_item_id',$order_tem_id);
+		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
+		$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
+		$this->db->where('order_items.order_item_id',$order_tem_id);
 		return $this->db->get()->row_array();
 	}
 	

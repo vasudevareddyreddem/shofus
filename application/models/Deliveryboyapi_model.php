@@ -126,6 +126,11 @@ class Deliveryboyapi_model extends MY_Model
 		$this->db->where('order_items.return_deliveryboy_id',$cust_id);
 		return $this->db->get()->result_array();
 	}
+	
+	public function order_payment_status($orderid,$status){
+		$sql1="UPDATE orders SET payment_type ='".$status."' WHERE order_id = '".$orderid."'";
+       	return $this->db->query($sql1);
+	}
 		
 	
 

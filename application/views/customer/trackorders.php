@@ -278,6 +278,8 @@ tr th:last-child {
 					<hr	>
 					<div class="col-md-6"><span><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
 					<i class="font_span">
+					<?php if(isset($item_details['status_deliverd']) && $item_details['status_deliverd']!=4){ ?>
+
 					<?php $time = date("H:i:s a",strtotime($item_details['create_at']));
 					$begin1 = new DateTime('12:00 am');
 					$end1 = new DateTime('7:00 pm');
@@ -294,6 +296,8 @@ tr th:last-child {
 					
 					?>
 					Delivery expected by <?php echo isset($times)?$times:'';  ?>
+					
+					<?php } ?>
 					</i>
 					</div>
 				<div class="col-md-3 col-md-offset-3">

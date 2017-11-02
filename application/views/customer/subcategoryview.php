@@ -6,6 +6,17 @@ $(document).ready(function() {
 });
  </script>
 <?php } ?>
+<?php
+if(base64_decode($this->uri->segment(4))=='search'){
+$catids=base64_decode($this->uri->segment(5));
+	?>
+
+<script>
+$(document).ready(function() {
+   $('#onclicksubcat<?php echo $catids; ?>').click();
+});
+ </script>
+<?php } ?>
 <style>
 
 

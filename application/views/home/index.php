@@ -130,9 +130,11 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         </div>
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-       <?php $t=5;foreach ($trending_products as $productslist){
+      
+	   <?php //echo '<pre>';print_r($trending_products);exit; 
+	   $t=5;foreach ($trending_products as $productslist){
 				$currentdate=date('Y-m-d h:i:s A');
-				if($productslist['offer_expairdate']>=$currentdate){
+				if($productslist['offer_expairdate']=!''  && $productslist['offer_expairdate']>=$currentdate){
 				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
 				$percentage= $productslist['offer_percentage'];
 				$orginal_price=$productslist['item_cost'];
@@ -143,6 +145,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 					$percentage= (($prices) /$productslist['item_cost'])*100;
 					$orginal_price=$productslist['item_cost'];
 				}
+				
 				?>
              <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
@@ -394,9 +397,10 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
       
-      <?php $d=0;foreach($deals_of_the_day as $productslist)  { 
+	    <?php //echo '<pre>';print_r($trending_products);exit; 
+	  $d=0;foreach($deals_of_the_day as $productslist)  { 
 			$currentdate=date('Y-m-d h:i:s A');
-				if($productslist['offer_expairdate']>=$currentdate){
+				if($productslist['expairdate']>=$currentdate){
 				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
 				$percentage= $productslist['offer_percentage'];
 				$orginal_price=$productslist['item_cost'];
@@ -483,7 +487,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
 		  <?php //echo '<pre>';print_r($season_sales);exit; ?>
-      <?php $s=1;foreach($season_sales as $productslist){ 
+      <?php $productslist=array();
+	  $s=1;foreach($season_sales as $productslist){ 
 			$currentdate=date('Y-m-d h:i:s A');
 			if($productslist['offer_expairdate']>=$currentdate){
 				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);

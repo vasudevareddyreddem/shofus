@@ -59,9 +59,8 @@
                  <td  align="left" style="border-right:1px solid #f4f4f4;padding-right:10px"> 
 				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121">Your order has been successfully placed.</p> 
 				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:12px"> </p>
-				 <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif"> Delivery by  <span style="font-size:12px;font-family:'Roboto',sans-serif"> <?php echo isset($order_items[0]['create_at'])?Date('M-d-Y H:i:s A',strtotime(htmlentities($order_items[0]['create_at']))):'';  ?>.</span> </p> 
 				 <br> <p></p> <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif;font-weight:400;padding-bottom:12px"> We are pleased to inform you that <?php echo isset($order_items[0]['qty'])?$order_items[0]['qty']:''; ?> 
-				 item from your order<?php echo isset($order_items[0]['order_id'])?$order_items[0]['order_id']:''; ?> has been shipped! </p> 
+				 item from your order <b><?php echo isset($order_items[0]['order_id'])?$order_items[0]['order_id']:''; ?></b> has been shipped! </p> 
                 </tr> 
                </tbody>
               </table> 
@@ -115,9 +114,23 @@
 					 <sup></sup> <br>
 					 </p>
 					 <p style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#878787;margin:0px 0px">Seller: <?php echo isset($list['store_name'])?$list['store_name']:''; ?></p>
-						<?php  $timestamp = strtotime($list['create_at']) + 2*60*60;
-						$time = date('g:i a', $timestamp);?>					 
-					 <p style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:0px 0px">Item will be delivered by <?php echo isset($list['create_at'])?Date('M-d-Y',strtotime(htmlentities($list['create_at']))):'';  ?>  <?php echo $time; ?></p> 
+					
+					<?php $time = date("H:i:s a",strtotime($list['create_at']));
+					$begin1 = new DateTime('12:00 am');
+					$end1 = new DateTime('7:00 pm');
+					$begin2 = new DateTime('7:01 pm');
+					$end2 = new DateTime('11:59 pm');
+					$convertdate=date("g:i a", strtotime($time));
+					$now = new DateTime($convertdate);
+
+					if ($now >= $begin1 && $now <= $end1){
+						$times=' today 10 pm';
+					}else{
+						$times=' tomorrow 2pm';
+					}
+					
+					?>						
+					 <p style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:0px 0px">Item will be delivery expected by <?php echo isset($times)?$times:'';  ?></p> 
 					 <p style="font-family:'Roboto-Medium',sans-serif;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:5px 0px"> 
 						 <span style="padding-right:10px">Amount : ₹<?php echo isset($list['total_price'])?$list['total_price']:''; ?></span>
 						 <span style="font-family:'Roboto-Medium',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#878787;margin:0px 0px;border:1px solid #dfdfdf;display:inline;border-radius:3px;padding:3px 10px">Qty: <?php echo isset($list['qty'])?$list['qty']:''; ?></span> 

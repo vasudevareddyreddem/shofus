@@ -92,7 +92,7 @@ tr th:last-child {
       </tr>
 	  <tr>
        <th>Item Name</th>
-        <td style="text-transform: uppercase;"><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td>
+        <td style="text-transform: uppercase;"><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?>&nbsp;<?php echo isset($item_details['colour'])?$item_details['colour']:'';  ?>&nbsp;<?php echo isset($item_details['internal_memeory'])?$item_details['internal_memeory']:'';  ?>&nbsp;<?php echo isset($item_details['ram'])?$item_details['ram'].' Ram':'';  ?></td>
         
       </tr>
 	  <tr>
@@ -241,7 +241,7 @@ tr th:last-child {
 						<a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>"><img style="height:70px;width:auto;" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>" /></a>
 					</div>
 					<div class="col-md-8">
-						<p><a style="text-transform: uppercase;" href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
+						<p><a style="text-transform: uppercase;" href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?>&nbsp;<?php echo isset($item_details['colour'])?$item_details['colour']:'';  ?>&nbsp;<?php echo isset($item_details['internal_memeory'])?$item_details['internal_memeory']:'';  ?>&nbsp;<?php echo isset($item_details['ram'])?$item_details['ram'].' Ram':'';  ?></td></a></p>
 						<?php if(isset($item_details['color']) && $item_details['color']!=''){ ?>
 						<div>Color: <?php echo isset($item_details['color'])?$item_details['color']:'';  ?></div>
 						<?php } ?>
@@ -327,6 +327,8 @@ tr th:last-child {
 						<br>
 					<div class=""><span>
 					<img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
+					
+					<?php if(isset($item_details['status_deliverd']) && $item_details['status_deliverd']!=4){ ?>
 					<i class="font_span">
 					<?php $time = date("H:i:s a",strtotime($item_details['create_at']));
 					$begin1 = new DateTime('12:00 am');
@@ -344,7 +346,11 @@ tr th:last-child {
 					
 					?>
 					Delivery expected by <?php echo isset($times)?$times:'';  ?>
-					</i></div>
+					<?php } ?>
+					</i>
+					
+					
+					</div>
 					<hr	>
 				<div class="col-md-3 col-md-offset-9">
 						<span class="font_span"><b>Total</b></span>&nbsp;&nbsp;

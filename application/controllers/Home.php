@@ -78,7 +78,7 @@ public function index()
 			$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 			$data['seemore']=$id;
 	 }
-	 //echo '<pre>';print_r($post);exit;
+	 //echo '<pre>';print_r($data);exit;
 		
 	
 		

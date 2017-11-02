@@ -41,7 +41,7 @@
                  <td  align="left" style="float:right;padding:0;text-align:center;vertical-align:middle">
 					<h4><b style="color:#009688">Order :</b><span >&nbsp; Cancelled</span></h4>
 				 </td> 
-                 <td  align="left" style="float:left;vertical-align:middle"> <p style="font-family:'Roboto-Medium',sans-serif;font-size:16px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:16px 0px">Hi <?php echo isset($order_items[0]['name'])?$order_items[0]['name']:''; ?>,</p> 
+                 <td  align="left" style="float:left;vertical-align:middle"> <p style="font-family:'Roboto-Medium',sans-serif;font-size:16px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:16px 0px">Hi <?php echo isset($list['name'])?$list['name']:''; ?>,</p> 
 				 </td> 
                 </tr> 
                </tbody> 
@@ -59,7 +59,7 @@
                  <td  align="left" style="padding-right:10px"> 
 				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121">Greetings from Cartinhours.com!</p> 
 				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:12px"> </p>
-				 <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif"> We would like to inform you that we are processing your cancellation request for the following items in the Order <span><b>OD110593680764404000.</b></span></p> 
+				 <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif"> We would like to inform you that we are processing your cancellation request for the following items in the Order <span><b><?php echo isset($list['order_item_id'])?$list['order_item_id']:''; ?>.</b></span></p> 
 				 <br> <p></p> <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif;font-weight:400;padding-bottom:12px">Any amount already paid by you for the below product(s) will be refunded by the seller as soon as the courier partner confirms the cancellation. We will notify you via E-mail and SMS when the refund is processed. </p> 
                 </tr> 
                </tbody>
@@ -71,7 +71,6 @@
           </table> 
 		 <p style="border-top:1px solid #ddd"></p>
 		  
-		  <?php foreach ($order_items as $list){  ?>	
 		  
           <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:650px;background:#ffffff"> 
            <tbody>
@@ -99,9 +98,8 @@
 					 <sup></sup> <br>
 					 </p>
 					 <p style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#878787;margin:0px 0px">Seller: <?php echo isset($list['store_name'])?$list['store_name']:''; ?></p>
-						<?php  $timestamp = strtotime($list['create_at']) + 2*60*60;
-						$time = date('g:i a', $timestamp);?>					 
-					 <p style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:0px 0px">Item  Cancelled On <?php echo isset($list['create_at'])?Date('M-d-Y',strtotime(htmlentities($list['create_at']))):'';  ?>  <?php echo $time; ?></p> 
+											 
+					 <p style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:0px 0px">Item  Cancelled On <?php echo isset($list['cancel_date'])?Date('M-d-Y H:i:s A',strtotime(htmlentities($list['cancel_date']))):'';  ?> </p> 
 					 <p style="font-family:'Roboto-Medium',sans-serif;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:5px 0px"> 
 						 <span style="padding-right:10px">Amount : ₹<?php echo isset($list['total_price'])?$list['total_price']:''; ?></span>
 						 <span style="font-family:'Roboto-Medium',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#878787;margin:0px 0px;border:1px solid #dfdfdf;display:inline;border-radius:3px;padding:3px 10px">Qty: <?php echo isset($list['qty'])?$list['qty']:''; ?></span> 
@@ -121,7 +119,6 @@
            </tbody>
           </table> 
          <p style="border-top:1px solid #ddd"></p>
-         <?php if(isset($list['amount_status_paid']) && $list['amount_status_paid']==0){ ?>
           <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:30px 0 0 40px;max-width:650px;background:#ffffff" border="0"> 
            <tbody>
             <tr> 
@@ -146,8 +143,8 @@
             </tr> 
            </tbody>
           </table>
-		 <?php } ?> <p style="border-top:1px solid #ddd"></p>
-		<?php } ?> 
+		 <p style="border-top:1px solid #ddd"></p>
+		
 	
 		<br> </td> 
         </tr> 
