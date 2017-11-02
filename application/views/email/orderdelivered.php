@@ -14,7 +14,7 @@
 			 </span>
 			 
 		 </td>
-         <td style="width:50%;text-align:right;color:rgba(255,255,255,0.8);font-family:'Roboto-Medium',sans-serif;font-size:14px;font-style:normal;font-stretch:normal;padding-right:16px"> <b>Order Cancelled</b> </td> 
+         <td style="width:50%;text-align:right;color:rgba(255,255,255,0.8);font-family:'Roboto-Medium',sans-serif;font-size:14px;font-style:normal;font-stretch:normal;padding-right:16px"> <b>Order Delivered</b> </td> 
         </tr> 
        </tbody>
       </table> </td> 
@@ -23,7 +23,7 @@
   </table> 
    
    
-  <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:10px;background-color:#f1f2f3;max-width:650px;"> 
+  <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:10px;background-color:#f1f2f3;max-width:650px; border-bottom:4px solid #056b61 "> 
    <tbody> 
     <tr> 
      <td> 
@@ -39,7 +39,7 @@
                <tbody> 
                 <tr> 
                  <td  align="left" style="float:right;padding:0;text-align:center;vertical-align:middle">
-					<h4><b style="color:#009688">Order :</b><span >&nbsp; Cancelled</span></h4>
+					<h4><b style="color:#009688">Order :</b><span >&nbsp; Delivered</span></h4>
 				 </td> 
                  <td  align="left" style="float:left;vertical-align:middle"> <p style="font-family:'Roboto-Medium',sans-serif;font-size:16px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:16px 0px">Hi <?php echo isset($order_items[0]['name'])?$order_items[0]['name']:''; ?>,</p> 
 				 </td> 
@@ -57,10 +57,11 @@
                <tbody>
                 <tr> 
                  <td  align="left" style="padding-right:10px"> 
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121">Greetings from Cartinhours.com!</p> 
+				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121">Item in your order has been delivered!</p> 
 				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:12px"> </p>
-				 <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif"> We would like to inform you that we are processing your cancellation request for the following items in the Order <span><b>OD110593680764404000.</b></span></p> 
-				 <br> <p></p> <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif;font-weight:400;padding-bottom:12px">Any amount already paid by you for the below product(s) will be refunded by the seller as soon as the courier partner confirms the cancellation. We will notify you via E-mail and SMS when the refund is processed. </p> 
+				 <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif"> Item in order with order id <span><b>OD110472952447668000</b> </span>has been delivered! We have attached a copy of the invoice along with this email. Hope you liked our service. We would love to get your feedback.</p> 
+				 <br> <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif;font-weight:400;padding-bottom:12px; float:right"><a href="">Manage order</a></p>
+				 <!--<br> <p></p> <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif;font-weight:400;padding-bottom:12px">How likely are you to recommend Cartinhours to your friends and colleagues?</p> -->
                 </tr> 
                </tbody>
               </table> 
@@ -120,34 +121,8 @@
             </tr> 
            </tbody>
           </table> 
-         <p style="border-top:1px solid #ddd"></p>
-         <?php if(isset($list['amount_status_paid']) && $list['amount_status_paid']==0){ ?>
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:30px 0 0 40px;max-width:650px;background:#ffffff" border="0"> 
-           <tbody>
-            <tr> 
-             <td> 
-              <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="border-spacing:0;border-collapse:collapse;width:100%;border:none;margin-bottom:24px"> 
-               <tbody>
-                <tr> 
-                 <td align="left"> 
-                  <table width="100%" border="0" cellpadding="0" cellspacing="0"> 
-                   <tbody>
-                    <tr> 
-                     <td style="padding:0px"> 
-						 <p style="padding:0;margin:0;font-size:12px;font-family:'Roboto',sans-serif;font-weight:400;color:#212121"><b>Note: &nbsp;</b>Please note that items were already dispatched by the Seller and we have initiated cancel request with the courier partner. In case delivery is attempted, feel free to reject the shipment with the reason as already cancelled.
-						</p>
-					 </td> 
-                    </tr> 
-                   </tbody>
-                  </table> </td> 
-                </tr> 
-               </tbody>
-              </table> </td> 
-            </tr> 
-           </tbody>
-          </table>
-		 <?php } ?> <p style="border-top:1px solid #ddd"></p>
-		<?php } ?> 
+         
+	 
 	
 		<br> </td> 
         </tr> 
