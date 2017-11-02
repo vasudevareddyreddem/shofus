@@ -270,7 +270,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
                 	</div><!--.row-->
                 <!--</div><!--.item-->
 				
-				<?php// } ?>
+				<?php //} ?>
                  
                 
 				

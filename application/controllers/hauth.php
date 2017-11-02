@@ -58,7 +58,6 @@ class Hauth extends Front_Controller {
 					log_message('debug', 'controller.HAuth.login: user authenticated.');
 
 					$users = $service->getUserProfile();
-						echo '<pre>';print_r($users);	exit;
 						 if(isset($users->email) && $users->email!=''){
 							$emailcheck = $this->customer_model->email_check($users->email);
 							if(count($emailcheck)==0){

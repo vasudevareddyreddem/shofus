@@ -615,10 +615,10 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 		$order_list=$this->Customerapi_model->order_list($customer_id);
-		//echo '<pre>';print_r($wishlist);exit;
+		//echo '<pre>';print_r($order_list);exit;
 		if(count($order_list)>0){
 		
-			$message = array('status'=>1,'message'=>'order list','list'=>$order_list);
+			$message = array('status'=>1,'message'=>'order list','list'=>$order_list,'path'=>'https://cartinhours.com/uploads/products/');
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>0,'message'=>'Customer having  no orders');
@@ -788,6 +788,8 @@ class CustomerApi extends REST_Controller {
 			$data1 = $this->Customerapi_model->get_search_functionality_products($searchvalue);
 			$data2 = $this->Customerapi_model->get_search_functionality_sub_category($searchvalue);
 			$search=array_merge($data1,$data2);
+			
+			//echo '<pre>';print_r($data1);exit;
 		if(count($search)>0){
 		
 			$message = array('status'=>1,'message'=>'result list are found.','list'=>$search);
@@ -2408,7 +2410,7 @@ class CustomerApi extends REST_Controller {
 					$this->response($message, REST_Controller::HTTP_OK);
 
 					}else{
-					$message = array('status'=>1,'time'=>'4 hours');
+					$message = array('status'=>1,'time'=>"We don't have service in your pincode");
 					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 					}
 			}

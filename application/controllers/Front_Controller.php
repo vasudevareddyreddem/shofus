@@ -36,7 +36,7 @@ class Front_Controller extends MY_Controller {
 					$data['cartitemcount'] =0;
 					$data['details'] = '';					
 					}
-					//echo '<pre>';print_r($data['locationdata']);exit;
+					//echo '<pre>';print_r($data);exit;
 					$this->template->set_template('website'); 
 					$this->template->write_view('header', 'shared/header',$data);
 					$this->template->write_view('footer', 'shared/footer',$data['sidecaregory_list']);

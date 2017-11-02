@@ -325,11 +325,25 @@ tr th:last-child {
 				</div>
 					<div class="clearfix">&nbsp;</div>
 						<br>
-					<div class=""><span><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
+					<div class=""><span>
+					<img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
 					<i class="font_span">
-					<?php  $timestamp = strtotime($item_details['create_at']) + 2*60*60;
-						$time = date('g:i a', $timestamp);?>
-					Delivery expected by <?php echo isset($item_details['create_at'])?Date('M-d-Y',strtotime(htmlentities($item_details['create_at']))):'';  ?>  <?php echo $time; ?>
+					<?php $time = date("H:i:s a",strtotime($item_details['create_at']));
+					$begin1 = new DateTime('12:00 am');
+					$end1 = new DateTime('7:00 pm');
+					$begin2 = new DateTime('7:01 pm');
+					$end2 = new DateTime('11:59 pm');
+					$convertdate=date("g:i a", strtotime($time));
+					$now = new DateTime($convertdate);
+
+					if ($now >= $begin1 && $now <= $end1){
+						$times=' today 10 pm';
+					}else{
+						$times=' tomorrow 2pm';
+					}
+					
+					?>
+					Delivery expected by <?php echo isset($times)?$times:'';  ?>
 					</i></div>
 					<hr	>
 				<div class="col-md-3 col-md-offset-9">

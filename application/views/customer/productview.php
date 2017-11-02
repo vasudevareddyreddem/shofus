@@ -404,8 +404,8 @@
 			<div class="clearfix">&nbsp;</div>
 			<div>
 				<ul>
-					<li>Usually delivered in hours*</li>
-					<li>Cash on delivery(cod) and swipe on delivery(sod) available</li>
+					<li>Usually delivered in Minimum 2 hours*- Maximum 24 hours*</li>
+					<li>Cash on delivery(COD) and swipe on delivery(SOD) available</li>
 					<li>Return and replacement policies are as per seller*</li>
 					<li>Online cancellations</li>
 				</ul>

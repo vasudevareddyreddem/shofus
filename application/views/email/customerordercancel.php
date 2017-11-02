@@ -1,162 +1,85 @@
-<?php //echo '<pre>';print_r($order_items);exit; ?>
-   <table width="100%"  style="max-width:650px;margin:0 auto" cellspacing="0" cellpadding="0" height="60"> 
-   <tbody>
-    <tr style="background:#009688"> 
-     <td> 
-      <table width="100%" style="max-width:650px;margin:0 auto"> 
-       <tbody>
-        <tr> 
-			<td style="width:50%;text-align:left;padding-left:16px;position:relative"> 
-			 <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href=""> 
-				<span >
-				<img style="position:absolute;top:-19px;left:0;width:72%;" border="0"  src="http://test.cartinhours.com/assets/home/images/logo_arr.png" alt="cartinhours.com"  class="CToWUd"> 
-			 </a> 
-			 </span>
-			 
-		 </td>
-         <td style="width:50%;text-align:right;color:rgba(255,255,255,0.8);font-family:'Roboto-Medium',sans-serif;font-size:14px;font-style:normal;font-stretch:normal;padding-right:16px"> <b>Order Cancelled</b> </td> 
-        </tr> 
-       </tbody>
-      </table> </td> 
-    </tr> 
-   </tbody>
-  </table> 
-   
-   
-  <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:10px;background-color:#f1f2f3;max-width:650px;"> 
-   <tbody> 
-    <tr> 
-     <td> 
-      <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:650px;background:#ffffff"> 
-       <tbody>
-        <tr> 
-         <td align="left"  style="display:block;margin:0 auto;clear:both;padding:0px 40px"> 
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:650px;background:#ffffff"> 
-           <tbody>
-            <tr> 
-             <td align="left"   style="color:#212121;display:block;margin:0 auto;clear:both;padding:3px 0 0 0"> 
-              <table width="100%" cellspacing="0" cellpadding="0"> 
-               <tbody> 
-                <tr> 
-                 <td  align="left" style="float:right;padding:0;text-align:center;vertical-align:middle">
-					<h4><b style="color:#009688">Order :</b><span >&nbsp; Cancelled</span></h4>
-				 </td> 
-                 <td  align="left" style="float:left;vertical-align:middle"> <p style="font-family:'Roboto-Medium',sans-serif;font-size:16px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:16px 0px">Hi <?php echo isset($order_items[0]['name'])?$order_items[0]['name']:''; ?>,</p> 
-				 </td> 
-                </tr> 
-               </tbody> 
-              </table> </td> 
-            </tr> 
-           </tbody>
-          </table> 
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:20px 0 0 0;max-width:650px;background:#ffffff;" border="0"> 
-           <tbody>
-            <tr> 
-             <td> 
-              <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="table-layout:fixed;border-spacing:0;border-collapse:collapse;width:100%;border:none;margin-bottom:24px;margin-right:30px"> 
-               <tbody>
-                <tr> 
-                 <td  align="left" style="padding-right:10px"> 
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121">Greetings from Cartinhours.com!</p> 
-				 <p style="padding:0;margin:0;font-size:16px;font-family:'Roboto-Medium',sans-serif;color:#212121;margin-bottom:12px"> </p>
-				 <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif"> We would like to inform you that we are processing your cancellation request for the following items in the Order <span><b>OD110593680764404000.</b></span></p> 
-				 <br> <p></p> <p style="padding:0;margin:0;font-size:12px;line-height:20px;font-family:'Roboto',sans-serif;font-weight:400;padding-bottom:12px">Any amount already paid by you for the below product(s) will be refunded by the seller as soon as the courier partner confirms the cancellation. We will notify you via E-mail and SMS when the refund is processed. </p> 
-                </tr> 
-               </tbody>
-              </table> 
-             </td> 
-            </tr> 
-           </tbody>
-		   
-          </table> 
-		 <p style="border-top:1px solid #ddd"></p>
-		  
-		  <?php foreach ($order_items as $list){  ?>	
-		  
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;max-width:650px;background:#ffffff"> 
-           <tbody>
-            <tr> 
-             <td align="left" > 
-              <table width="100%" cellspacing="0" cellpadding="0">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+<head>
+<meta name="viewport" content="width=device-width" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Alerts e.g. approaching your limit</title>
 
-					  
-               <tbody> 
-                <tr> 
-                 <td width="120" valign="top" align="left">
-				 <?php 
-				 $url=base_url('uploads/products/'.$list['item_image']);
-				 $new = str_replace(' ', '%20', $url); ?>
-					 <a style="color:#027cd8;text-decoration:none;outline:none;color:#ffffff;font-size:13px;display:block;width:100px"
-					 href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>" >
-					 <img border="0" src="<?php echo $new; ?>" alt="<?php echo isset($list['item_name'])?$list['item_name']:''; ?>" style="border:none;width:100%"> 
-					 </a> 
-				 </td>  
-                 <td width="8"></td> 
-                 <td  align="left"> 
-					 <p style="margin-bottom:13px"> 
-					 <a href="" style="font-family:'Roboto',sans-serif;font-size:14px;font-weight:normal;font-style:normal;font-stretch:normal;line-height:1.25;color:#2175ff;text-decoration:none" target="_blank"><?php echo isset($list['item_name'])?$list['item_name']:''; ?>&nbsp;<?php echo isset($list['product_code'])?$list['product_code']:''; ?> (<?php echo isset($list['colour'])?$list['colour']:''; ?>, <?php echo isset($list['internal_memeory'])?$list['internal_memeory'].' GB':''; ?>)
-					 </a>
-					 <sup></sup> <br>
-					 </p>
-					 <p style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#878787;margin:0px 0px">Seller: <?php echo isset($list['store_name'])?$list['store_name']:''; ?></p>
-						<?php  $timestamp = strtotime($list['create_at']) + 2*60*60;
-						$time = date('g:i a', $timestamp);?>					 
-					 <p style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:0px 0px">Item will be delivered by <?php echo isset($list['create_at'])?Date('M-d-Y',strtotime(htmlentities($list['create_at']))):'';  ?>  <?php echo $time; ?></p> 
-					 <p style="font-family:'Roboto-Medium',sans-serif;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:5px 0px"> 
-						 <span style="padding-right:10px">Amount : ₹<?php echo isset($list['total_price'])?$list['total_price']:''; ?></span>
-						 <span style="font-family:'Roboto-Medium',sans-serif;font-size:12px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#878787;margin:0px 0px;border:1px solid #dfdfdf;display:inline;border-radius:3px;padding:3px 10px">Qty: <?php echo isset($list['qty'])?$list['qty']:''; ?></span> 
-					 </p> 
-					 <br>
-					  <a href="<?php echo base_url('customer/orederdetails/'.base64_encode($list['order_item_id']));?>" style="font-family:'Roboto-Medium',sans-serif;box-sizing:border-box;text-decoration:none;background-color:#009688;color:#fff;min-width:160px;padding:7px 16px;border-radius:2px;text-align:center;display:inline-block;font-size:14px" target="_blank" >Track your Shipment</a> </td> 
 
-				 </td> 
-                </tr> 
-               </tbody>
+<style type="text/css">
+img {
+max-width: 100%;
+}
+body {
+-webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6em;
+}
+body {
+background-color: #f6f6f6;
+}
+@media only screen and (max-width: 640px) {
+  body {
+    padding: 0 !important;
+  }
+  h1 {
+    font-weight: 800 !important; margin: 20px 0 5px !important;
+  }
+  h2 {
+    font-weight: 800 !important; margin: 20px 0 5px !important;
+  }
+  h3 {
+    font-weight: 800 !important; margin: 20px 0 5px !important;
+  }
+  h4 {
+    font-weight: 800 !important; margin: 20px 0 5px !important;
+  }
+  h1 {
+    font-size: 22px !important;
+  }
+  h2 {
+    font-size: 18px !important;
+  }
+  h3 {
+    font-size: 16px !important;
+  }
+  .container {
+    padding: 0 !important; width: 100% !important;
+  }
+  .content {
+    padding: 0 !important;
+  }
+  .content-wrap {
+    padding: 10px !important;
+  }
+  .invoice {
+    width: 100% !important;
+  }
+  .anc_em 	:hover{
+	color:#009688;
+	text-decoration:none;
+  }
+}
+</style>
+</head>
 
-					   
-              </table>		  
-			  
-			  </td> 
-            </tr> 
-           </tbody>
-          </table> 
-         <p style="border-top:1px solid #ddd"></p>
-         <?php if(isset($list['amount_status_paid']) && $list['amount_status_paid']==0){ ?>
-          <table width="100%" cellspacing="0" cellpadding="0" style="margin:0 auto;padding:30px 0 0 40px;max-width:650px;background:#ffffff" border="0"> 
-           <tbody>
-            <tr> 
-             <td> 
-              <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" style="border-spacing:0;border-collapse:collapse;width:100%;border:none;margin-bottom:24px"> 
-               <tbody>
-                <tr> 
-                 <td align="left"> 
-                  <table width="100%" border="0" cellpadding="0" cellspacing="0"> 
-                   <tbody>
-                    <tr> 
-                     <td style="padding:0px"> 
-						 <p style="padding:0;margin:0;font-size:12px;font-family:'Roboto',sans-serif;font-weight:400;color:#212121"><b>Note: &nbsp;</b>Please note that items were already dispatched by the Seller and we have initiated cancel request with the courier partner. In case delivery is attempted, feel free to reject the shipment with the reason as already cancelled.
-						</p>
-					 </td> 
-                    </tr> 
-                   </tbody>
-                  </table> </td> 
-                </tr> 
-               </tbody>
-              </table> </td> 
-            </tr> 
-           </tbody>
-          </table>
-		 <?php } ?> <p style="border-top:1px solid #ddd"></p>
-		<?php } ?> 
-	
-		<br> </td> 
-        </tr> 
-       </tbody> 
-      </table> 
-     
-    </tr> 
-   </tbody>
-  </table> 
-   
-    
-  
+<body itemscope itemtype="http://schema.org/EmailMessage" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6em; background-color: #f6f6f6; margin: 0;" bgcolor="#f6f6f6">
+
+<table class="body-wrap" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; background-color: #f6f6f6; margin: 0;" bgcolor="#f6f6f6"><tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;" valign="top"></td>
+		<td class="container" width="600" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; display: block !important; max-width: 600px !important; clear: both !important; margin: 0 auto;" valign="top">
+			<div class="content" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; max-width: 600px; display: block; margin: 0 auto; padding: 20px;">
+				<table class="main" width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; border-radius: 3px; background-color: #fff; margin: 0; border: 1px solid #e9e9e9;" bgcolor="#fff"><tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="alert alert-warning" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 16px; vertical-align: top; color: #fff; font-weight: 500; text-align: center; border-radius: 3px 3px 0 0; background-color: #009688; margin: 0; padding: 20px;" align="center" bgcolor="#009688" valign="top">
+							Order Cancellation 
+						</td>
+					</tr><tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-wrap" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 20px;" valign="top">
+							<table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+							<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+										Order Cancellation details <strong style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><?php echo $msg; ?>
+									</td>
+								</tr>
+								</table></td>
+					</tr></table><div class="footer" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
+					<table width="100%" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+						</tr></table></div></div>
+		</td>
+		
+	</tr></table></body>
+</html>

@@ -278,9 +278,24 @@ tr th:last-child {
 					<hr	>
 					<div class="col-md-6"><span><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
 					<i class="font_span">
-					<?php $expire = date($item_details['create_at'], strtotime('+1 hour')); ?>
-					Delivery expected by <?php echo isset($expire)?Date('M-d-Y h:i:s A',strtotime(htmlentities($expire))):'';  ?>
-					</i></div>
+					<?php $time = date("H:i:s a",strtotime($item_details['create_at']));
+					$begin1 = new DateTime('12:00 am');
+					$end1 = new DateTime('7:00 pm');
+					$begin2 = new DateTime('7:01 pm');
+					$end2 = new DateTime('11:59 pm');
+					$convertdate=date("g:i a", strtotime($time));
+					 $now = new DateTime($convertdate);
+
+					if ($now >= $begin1 && $now <= $end1){
+						$times=' today 10 pm';
+					}else{
+						$times=' tomorrow 2pm';
+					}
+					
+					?>
+					Delivery expected by <?php echo isset($times)?$times:'';  ?>
+					</i>
+					</div>
 				<div class="col-md-3 col-md-offset-3">
 						<span class="font_span"><b>Total</b></span>&nbsp;&nbsp;
 						<span class="font_span">₹<?php echo $item_details['total_price']+$item_details['delivery_amount']; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;

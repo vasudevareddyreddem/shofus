@@ -2642,7 +2642,7 @@ public function aboutus(){
 					$this->email->set_newline("\r\n");
 					$this->email->set_mailtype("html");
 					$this->email->from('cartinhours.com');
-					$this->email->to($custdetails['customer_email']);
+					$this->email->to($custdetails['cust_email']);
 					$this->email->subject('Cartinhours - Order Cancellation');
 					$html = $this->load->view('email/customerordercancel.php', $messagelis, true); 
 					//echo $html;exit;
