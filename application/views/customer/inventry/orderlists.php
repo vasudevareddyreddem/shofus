@@ -4,7 +4,7 @@
          <!-- Main content -->
       <div class="row">
 	  <?php //echo '<pre>';print_r($category_list);exit; ?>
-      <div class="box data_box_wid">
+      <div class="box ">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
               <h3 class="box-title">Total orders List (<?php if(isset($orderslists) && count($orderslists)>0){echo count($orderslists); } ?>)</h3>
               <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/categoryadd'); ?>" class="box-title">Add</a>
@@ -14,7 +14,7 @@
 			<?php //echo '<pre>';print_r($category_list);exit;
 
 			?>
-            <div class="box-body">
+            <div class="box-body table-responsive">
 			<?php if($this->session->flashdata('success')): ?>
 					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
