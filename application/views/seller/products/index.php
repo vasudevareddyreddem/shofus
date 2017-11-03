@@ -64,11 +64,11 @@
 			//$replay = base64_decode($nospace);
 			
 			?>
-              <div style="padding:10px;" class="panel panel-default mar_t10">
+              <div style="padding:10px;" class="panel panel-default mar_t10 ">
                 <div class="panel-heading" role="tab" id="headingOne<?php echo $nospace;  ?>">
                   <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion"  href="#collapOne<?php echo $nospace;  ?>" aria-expanded="true" aria-controls="collapOne<?php echo $nospace;  ?>"> <i class="more-less glyphicon glyphicon-plus"></i> <?php echo $subcategory->subcategory_name; ?> </a> </h4>
                 </div>
-                <div id="collapOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
+                <div id="collapOne<?php echo $nospace;  ?>" class="panel-collapse collapse table-responsive" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
 		
 	<form  id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
 		<table id="example<?php echo $subcategory->subcategory_id;?>" class="display" width="100%" cellspacing="0">
@@ -94,10 +94,10 @@
 						
 						?>
 					<tr>
-						<td><?php echo $item_data->item_name;?></td>
-						<td><?php echo $item_data->product_code;?></td>
-						<td><?php echo $item_data->item_cost;?></td>
-						<td><?php echo $item_data->offer_amount;?></td>
+						<td><input type="text" name="item_name" onkeyup="updateproductname(this.value);"; id="item_name" value="<?php echo $item_data->item_name;?>"></td>
+						<td><input type="text" name="item_name" id="item_name" value="<?php echo $item_data->product_code;?>"></td>
+						<td><input type="text" name="item_name" id="item_name" value="<?php echo $item_data->item_cost;?>"></td>
+						<td><input type="text" name="item_name" id="item_name" value="<?php echo $item_data->offer_amount;?>"></td>
 						<td><?php if($item_data->offer_combo_item_id !=4 && $item_data->offer_combo_item_id !='' && $item_data->offer_combo_item_id!=0){ echo $item_data->offer_combo_item_name; }else{ echo ""; }?></td>
 						<td><?php echo $item_data->offer_expairdate;?></td>
 						<td><?php if($item_data->item_status == 1) { 
@@ -181,6 +181,11 @@
    </div>
      </form>
 	<script type="text/javascript">
+	
+	function updateproductname(id){
+		alert(id);
+		
+	}
 	function checkall(id){
 		
 		var check=document.getElementById("example-select-all"+id).checked;

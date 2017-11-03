@@ -16,6 +16,19 @@ class Login extends CI_Controller {
 	$this->load->model('seller/login_model');
 	$this->load->model('seller/subcategory_model');
 	
+	//echo $this->input->ip_address();exit;
+	$incompleteregisters=$this->login_model->get_all_seller_registers($this->input->ip_address());
+	
+	foreach($incompleteregisters as $all_lists){
+		$sellerdetails=$this->login_model->delete_pending_seller_details($all_lists['seller_id'],$this->input->ip_address());
+		$storedetails=$this->login_model->delete_pending_seller_store_details($all_lists['seller_id'],$this->input->ip_address());
+		$incompletecat=$this->login_model->get_pending_seller_cat_details($all_lists['seller_id'],$this->input->ip_address());
+		foreach($incompletecat as $all_subcategory){
+			$deletependingcats=$this->login_model->delete_pending_seller_cat_details($all_subcategory['seller_cat_id'],$this->input->ip_address());
+		}
+        $this->session->unset_userdata('seller_id');
+	}
+	
 	
 	//echo '<pre>';print_r($incompleteregisters); exit;     
 }
@@ -96,6 +109,7 @@ public function insert() {
   		'seller_rand_id' => $seller.''.$seller_rand_id,
   		'password_status' => $password_status,
   	  	'seller_password' => md5($six_digit_random_number),
+  	  	'ip_address' => $this->input->ip_address(),
   	  	'seller_mobile' => $post['seller_mobile'],
   	  	'any_refer'=>$post['any_ref'],
    	    'created_at'  => date('Y-m-d H:i:s'),
@@ -112,7 +126,7 @@ public function insert() {
 			{
 			$this->session->set_userdata('seller_id',$res);
 			//echo '<pre>';print_r($res);exit;
-			$data=array('seller_id'=>$res);
+			$data=array('seller_id'=>$res,'ip_address' => $this->input->ip_address(),);
 			$addstoredetails=$this->login_model->addind_seller_id($data);
 			
 		//  $from_email = 'mails@dev2.kateit.in';

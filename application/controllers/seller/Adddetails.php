@@ -125,6 +125,7 @@ class Adddetails extends Seller_adddetails{
 						'category_name'=>$decatid,
 						'status'=>0,
 						'first_time'=>1,
+						'ip_address'=>$this->input->ip_address(),
 						'created_at'=>date('Y-m-d H:i:s'),
 						'updated_at'=>date('Y-m-d H:i:s'),
 						);
@@ -154,6 +155,7 @@ class Adddetails extends Seller_adddetails{
 			'seller_id' => $this->session->userdata('seller_id'),
 			'seller_category_id'=> $subcats,
 			'category_name'=> $carname['category_name'],
+			'ip_address'=>$this->input->ip_address(),
 			'created_at'=> date('Y-m-d h:i:s'),
 			'updated_at'=>  date('Y-m-d h:i:s'),
 			);
