@@ -97,6 +97,24 @@
           </a>
           
         </li>
+		<li class="treeview">
+          <a href="<?php echo base_url('inventory/totalorders');?>">
+            <i class="fa fa-table"></i> <span>Total Orders</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          
+        </li>
+		<li class="treeview">
+          <a href="<?php echo base_url('inventory/delivery_locations');?>">
+            <i class="fa fa-table"></i> <span>Delivery boy Locations</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

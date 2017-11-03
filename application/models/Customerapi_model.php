@@ -161,6 +161,7 @@ class Customerapi_model extends MY_Model
         $this->db->where('admin_status','0');
 		$this->db->order_by('products.offer_percentage desc');
 		return $this->db->get()->result_array();
+		
 	}
 	
 	public function offers_for_you_list()
@@ -267,8 +268,9 @@ class Customerapi_model extends MY_Model
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
 		$this->db->where('top_offers.preview_ok',1);
+		$this->db->where('products.item_status',1);
 		$this->db->where('top_offers.expairdate >=', $curr_date);
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('top_offers.offer_percentage desc');
 		return $this->db->get()->result_array();
 	}
 	
@@ -281,8 +283,9 @@ class Customerapi_model extends MY_Model
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
 		$this->db->where('deals_ofthe_day.preview_ok',1);
+		$this->db->where('products.item_status',1);
 		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
 		return $this->db->get()->result_array();
 	}
 	
@@ -295,8 +298,9 @@ class Customerapi_model extends MY_Model
 		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
 		$this->db->where('season_sales.preview_ok',1);
+		$this->db->where('products.item_status',1);
 		$this->db->where('season_sales.expairdate >=', $curr_date);
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('season_sales.offer_percentage desc');
 		return $this->db->get()->result_array();
 	}
 	
@@ -305,6 +309,7 @@ class Customerapi_model extends MY_Model
 		$this->db->select('products.*')->from('products');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->order_by('products.offer_percentage desc');
+		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 		
 		
@@ -315,6 +320,7 @@ class Customerapi_model extends MY_Model
 	$this->db->select('products.*')->from('products');
 		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->order_by('products.offer_percentage desc');
+		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 		
 	}
@@ -323,6 +329,7 @@ class Customerapi_model extends MY_Model
 		 $this->db->select('products.*')->from('products');
 		$this->db->where_in('item_id',$id);
 		$this->db->order_by('products.offer_percentage desc');
+		$this->db->where('products.item_status',1);
 		return $this->db->get()->row_array();
 	}
 
@@ -434,7 +441,8 @@ class Customerapi_model extends MY_Model
         return $this->db->get()->row_array();
 	}
 	public function all_product_details($itemid){
-		$this->db->select('products.*')->from('products');
+		$this->db->select('products.*,seller_store_details.store_name')->from('products');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');
 		$this->db->where('item_id', $itemid);
         return $this->db->get()->row_array();
 	}
@@ -457,7 +465,7 @@ class Customerapi_model extends MY_Model
 		return $this->db->get()->row_array();
 	}
 	public function get_order_items_list($custid,$order_id){
-			$this->db->select('order_items.*,products.category_id,products.subcategory_id,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,order_status.status_id,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name,seller_store_details.store_name')->from('order_items');
+			$this->db->select('order_items.*,products.category_id,products.subcategory_id,products.item_name,orders.card_number,orders.discount,orders.payment_type,orders.card_number,orders.payment_mode,order_status.status_id,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name,seller_store_details.store_name,products.item_image')->from('order_items');
 			$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 			$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
 			$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
@@ -479,7 +487,7 @@ class Customerapi_model extends MY_Model
 		return $insert_id = $this->db->insert_id();
 	}
 	public function get_order_items_track_list($custid){
-			$this->db->select('order_items.*,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name,seller_store_details.store_name')->from('order_items');
+			$this->db->select('order_items.*,products.item_name,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,orders.payment_type,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name,seller_store_details.store_name')->from('order_items');
 			$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 			$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
 			$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');

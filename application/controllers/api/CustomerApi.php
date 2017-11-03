@@ -489,7 +489,7 @@ class CustomerApi extends REST_Controller {
 				'message'=>'cart items list',
 				'list'=>$item_lists,
 				'count'=>$item_lists_count['count'],
-				'path'=>'https://cartinhours.com/uploads/products/'
+				 'path'=>'https://cartinhours.com/uploads/products/',
 				);
 				$this->response($message,REST_Controller::HTTP_OK);
 			}
@@ -937,7 +937,7 @@ class CustomerApi extends REST_Controller {
 					$username=$this->config->item('smsusername');
 					$pass=$this->config->item('smspassword');
 					if($mobile!=''){		
-						$msg=' Your cartinhour verification code is '.$six_digit_random_number;
+						$msg=$six_digit_random_number.' is your Cartinhours verification code one-time use. Please DO NOT share this OTP with anyone to ensure account security';
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 						curl_setopt($ch, CURLOPT_POST, 1);
@@ -952,7 +952,7 @@ class CustomerApi extends REST_Controller {
 
 					}else if(isset($email) && $email!=''){
 						
-							$msg='Greetings! You are just a step away from accessing your Cartinhours account We are sharing a verification code to access your account. Once you have verified the code, you will be prompted to set a new password immediately. This is to ensure that only you have access to your account. Verification code is: '.$six_digit_random_number;
+							$msg=$six_digit_random_number.'is your Cartinhours verification code one-time use. Please DO NOT share this OTP with anyone to ensure account security ';
 							$this->load->library('email');
 							$this->email->from('admin@cartinhours.com', 'CartInHours');
 							$this->email->to($email);
@@ -2153,7 +2153,7 @@ class CustomerApi extends REST_Controller {
 							
 							$data=array('order_status'=>5);
 							$this->Customerapi_model->update_refund_details_inorders($order_item_id,$data);
-					$message = array('status'=>1,'message'=>'Your query submitted successfully');
+					$message = array('status'=>1,'message'=>'Your request submitted successfully');
 					$this->response($message, REST_Controller::HTTP_OK);
 				}else{
 					$message = array('status'=>1,'message'=>'Technical problem occured try again later!');
@@ -2438,6 +2438,7 @@ class CustomerApi extends REST_Controller {
 					$mobile=$this->input->get('mobile');
 					$address1=$this->input->get('address1');
 					$address2=$this->input->get('address2');
+					$landmark=$this->input->get('landmark');
 					$pincode=$this->input->get('pincode');
 					$city=$this->input->get('city');
 					$state=$this->input->get('state');
@@ -2465,6 +2466,10 @@ class CustomerApi extends REST_Controller {
 					$message = array('status'=>1,'message'=>'Address2 is required!');
 					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 					}
+					if($landmark==''){
+					$message = array('status'=>1,'message'=>'landmark is required!');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
 					if($pincode==''){
 					$message = array('status'=>1,'message'=>'pincode is required!');
 					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
@@ -2488,6 +2493,7 @@ class CustomerApi extends REST_Controller {
 							'mobile'=>$mobile,
 							'address1'=>$address1,
 							'address2'=>$address2,
+							'landmark'=>$landmark,
 							'pincode'=>$pincode,
 							'city'=>$city,
 							'state'=>$state,
@@ -2765,7 +2771,7 @@ class CustomerApi extends REST_Controller {
 					
 					/*email*/
 						
-						$message = array('status'=>1,'message'=>'Your Query successfully submitted');
+						$message = array('status'=>1,'message'=>'Your request successfully submitted');
 						$this->response($message, REST_Controller::HTTP_OK);
 						
 					}else{

@@ -53,7 +53,7 @@ class Cron extends Front_Controller
 			
 			 if($dlist['delivery_boy_assign']==0){
 				$delivery_boy_list= $this->Cron_model->getall_deliveries_list();
-				echo '<pre>';print_r($delivery_boy_list);exit;
+				//echo '<pre>';print_r($delivery_boy_list);exit;
 				foreach ($delivery_boy_list as $dylist ){
 						//echo '<pre>';print_r($dylist);exit;
 					if($dylist['address1']!=''){
@@ -105,7 +105,7 @@ class Cron extends Front_Controller
 						//echo '<pre>';print_r($details);
 						//echo '--';
 						//echo '<pre>';print_r($customerdetails);
-						exit;
+						//exit;
 					if(count($success)>0){
 					
 					

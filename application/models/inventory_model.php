@@ -714,5 +714,23 @@ public function delete_banner($id,$sid)
 		$sql1="UPDATE wishlistbanners_list SET status ='".$data."'WHERE id = '".$item_id."'";
 		return $this->db->query($sql1);
 	}
+	function get_total_orders()
+	{
+		$this->db->select('order_items.*,seller_store_details.store_name,(billing_address.name) as billingname,(billing_address.mobile) as billingmobile,customers.cust_firstname,customers.cust_lastname,customers.cust_mobile,orders.payment_type')->from('order_items');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
+		$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
+		$this->db->join('customers', 'customers.customer_id = order_items.customer_id', 'left');
+		$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
+		$this->db->order_by('order_items.order_item_id','desc');
+
+		//$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
+	function delivery_boy_current_locations()
+	{
+		$this->db->select('customers.*')->from('customers');
+		$this->db->where('role_id',6);
+		return $this->db->get()->result_array();
+	}
 }
 ?>	

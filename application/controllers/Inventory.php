@@ -2331,5 +2331,36 @@ public function addhomepagemiddlebannerspost()
 		 	redirect('admin/login	');
 		} 	
 	}
+	public function totalorders(){
+		if($this->session->userdata('userdetails'))
+	 	{
+			$data['orderslists']=$this->inventory_model->get_total_orders();
+			//echo '<pre>';print_r($data['orderslists']);exit;
+			$this->load->view('customer/inventry/sidebar');
+			$this->load->view('customer/inventry/orderlists',$data);
+			$this->load->view('customer/inventry/footer');
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		}
+		
+	}
+	public function delivery_locations(){
+		if($this->session->userdata('userdetails'))
+	 	{
+			$data['deliveryboy_list']=$this->inventory_model->delivery_boy_current_locations();
+			//echo '<pre>';print_r($data['deliveryboy_list']);exit;
+			$this->load->view('customer/inventry/sidebar');
+			$this->load->view('customer/inventry/deliverboy_locations',$data);
+			$this->load->view('customer/inventry/footer');
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		}
+		
+	}
+	
 }		
 ?>
