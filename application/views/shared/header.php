@@ -1,4 +1,64 @@
 <!--wrapper start here -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-ui.css">
+<script src="<?php echo base_url(); ?>assets/home/js/jquery-auto.js"></script>
+  
+  <script>
+  $( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+     var availableTags1 = [
+"ActionScript",
+"AppleScript",
+"Asp"
+];
+
+var availableTags2 = [
+"Python",
+"Ruby",
+"Scala",
+"Scheme"
+];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+
+
+    $("#prod_selector").on('change',function(){
+       if($(this).val()!="ALL"){
+        if($(this).val() == "1"){
+            $( "#tags" ).autocomplete('option', 'source', availableTags1)
+        } 
+        
+        if($(this).val() == "2"){
+            $( "#tags" ).autocomplete('option', 'source', availableTags2)
+        }
+    }
+    });
+  } );
+  </script>
+</head>
 <style>
  .hi {
   color: green;
@@ -155,10 +215,10 @@
 			<div class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-                      <input id="" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                      <input id="tags" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                       <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </div>
-					<div style="display:none;" class="search_fun" id="addingdropdown"></div>
+					<!--<div style="display:none;" class="search_fun" id="addingdropdown"></div>-->
 					
                   </div>
                 </div>
