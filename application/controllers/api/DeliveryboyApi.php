@@ -356,7 +356,7 @@ class DeliveryboyApi extends REST_Controller {
 		
 		
 	}
-	public function deliverycashpayment_post(){
+	public function deliverycashpayment_get(){
 		
 		$order_item_id=$this->input->get('order_item_id');
 		$amount=$this->input->get('amount');

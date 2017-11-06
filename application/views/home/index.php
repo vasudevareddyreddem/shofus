@@ -68,8 +68,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 
 	
   <?php $customerdetails=$this->session->userdata('userdetails'); ?>
-  <div class="
-  _bdy" style="" id="location_seacrh_result"></div>
+  <div class="_bdy" style="" id="location_seacrh_result"></div>
   <div class="" id="location_seacrhs">
     <!--Top Category slider Start-->
     <div class="top-cate" style="margin-top:30px;">

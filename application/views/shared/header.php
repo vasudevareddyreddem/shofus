@@ -199,9 +199,9 @@
 			</span>
 		  <?php } ?>
 			
-			<span class="medias text-center"><a href="javascript:void(0);" onclick="locationopenpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Change Your Location Here" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
+			<!--<span class="medias text-center"><a href="javascript:void(0);" onclick="locationopenpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Change Your Location Here" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
 				<p>Location</p></a>
-			</span></a></span>
+			</span></a></span>-->
 			
 			<?php if($this->session->userdata('userdetails')){ ?>
 			<span class="medias text-center shopping_cart" style="position:relative;"><a href="<?php echo base_url('customer/cart'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
@@ -249,7 +249,7 @@
 
 	
 	<!-- end popup start here -->   
-
+<!--
 <div id="fademaskpurpose"  class="mask_hide"></div>
 <div class="loc_pop_cus" id="removepopuplocation" style="display:none;">
 	<div style="position:absolute;top:-16px;left:58%" > <i class="fa fa-sort-asc " style="font-size:40px;color:#fff;" aria-hidden="true"></i></div>
@@ -298,7 +298,7 @@
         </div>
       </form>
     </div>
-	</div>
+	</div>-->
 
  
 
