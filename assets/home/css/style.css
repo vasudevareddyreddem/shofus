@@ -2023,7 +2023,7 @@ footer .newsletter-row {
 	padding: 35px 0px;
 	background: #1b1e24;
 	position:absolute;
-	z-index:1024;
+	z-index:1;
 	height:110px;
 }
 .footer-inner .container {
