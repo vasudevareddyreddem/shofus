@@ -259,13 +259,11 @@ class Customerapi_model extends MY_Model
 	}
 
 	/* location querys*/
-	public function top_offers_product_search($location_id){
+	public function top_offers_product_search(){
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('products.*,top_offers.*')->from('products');
 		$this->db->join('top_offers', 'top_offers.item_id = products.item_id', 'left');
-		$this->db->where_in('seller_location_area',$location_id);
-		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
 		$this->db->where('top_offers.preview_ok',1);
 		$this->db->where('products.item_status',1);
@@ -274,13 +272,11 @@ class Customerapi_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	
-	public function deals_of_the_day_product_search($location_id){
+	public function deals_of_the_day_product_search(){
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('products.*,deals_ofthe_day.*')->from('products');
 		$this->db->join('deals_ofthe_day', 'deals_ofthe_day.item_id = products.item_id', 'left');
-		$this->db->where_in('seller_location_area',$location_id);
-		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
 		$this->db->where('deals_ofthe_day.preview_ok',1);
 		$this->db->where('products.item_status',1);
@@ -289,13 +285,11 @@ class Customerapi_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	
-	public function season_sales_product_search($location_id){
+	public function season_sales_product_search(){
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('products.*,season_sales.*')->from('products');
 		$this->db->join('season_sales', 'season_sales.item_id = products.item_id', 'left');
-		$this->db->where_in('seller_location_area',$location_id);
-		$this->db->where_in('area',$location_id);
 		$this->db->where('admin_status','0');
 		$this->db->where('season_sales.preview_ok',1);
 		$this->db->where('products.item_status',1);
@@ -304,10 +298,9 @@ class Customerapi_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	
-	public function treanding_product_search($location_id){
+	public function treanding_product_search(){
 	
 		$this->db->select('products.*')->from('products');
-		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->order_by('products.offer_percentage desc');
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
@@ -316,9 +309,8 @@ class Customerapi_model extends MY_Model
 	}
 	
 	
-	public function offers_for_you_product_search($location_id){
+	public function offers_for_you_product_search(){
 	$this->db->select('products.*')->from('products');
-		$this->db->where_in('seller_location_area',$location_id);
 		$this->db->order_by('products.offer_percentage desc');
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
@@ -2140,15 +2132,40 @@ class Customerapi_model extends MY_Model
       return $this->db->query($sql)->result_array(); 
 	}
 	
+	public function all_stores_list()
+	{
+		$this->db->select('seller_store_details.store_name,sellers.seller_id')->from('sellers');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left'); 
+		$this->db->where('sellers.status',1);
+		$storeslist=$this->db->get()->result_array();
+		//echo '<pre>';print_r($query);exit;
+		foreach($storeslist AS $lists){
+		$avg=$this->product_reviews_avg($lists['seller_id']);
+		$return[$lists['seller_id']]=$lists;
+		$return[$lists['seller_id']]['rating']=isset($avg['avg'])?$avg['avg']:'';
+		$return[$lists['seller_id']]['categorylist']=$this->product_categories_list($lists['seller_id']);
+		}
+		if(!empty($return))
+			{
+			return $return;
+
+		}
+		
+	}
 	public function location_stores_list($locationids)
 	{
 		$this->db->select('seller_store_details.store_name,sellers.seller_id')->from('sellers');
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = sellers.seller_id', 'left'); 
 		$this->db->where_in('seller_store_details.area',$locationids);
 		$this->db->where('sellers.status',1);
-		$query=$this->db->get()->row_array();
-		$return['storelist']=$query;
-		$return['storelist']['categorylist']=$this->product_categories_list($query['seller_id']);
+		$storeslist=$this->db->get()->result_array();
+		//echo '<pre>';print_r($query);exit;
+		foreach($storeslist AS $lists){
+		$avg=$this->product_reviews_avg($lists['seller_id']);
+		$return[$lists['seller_id']]=$lists;
+		$return[$lists['seller_id']]['rating']=isset($avg['avg'])?$avg['avg']:'';
+		$return[$lists['seller_id']]['categorylist']=$this->product_categories_list($lists['seller_id']);
+		}
 		if(!empty($return))
 			{
 			return $return;

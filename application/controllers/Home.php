@@ -128,11 +128,45 @@ public function search_functionality(){
 	$post=$this->input->post();
 	$data1 = $this->home_model->get_search_functionality_products($post['searchvalue']);
 	$data2 = $this->home_model->get_search_functionality_sub_category($post['searchvalue']);
-	$data['detail']=array_merge($data1,$data2);
-	//echo "<pre>";print_r($data);exit;
-	$this->load->view('customer/search',$data);
+	$searchdata=array_merge($data1,$data2);
+	//echo "<pre>";print_r($searchdata);exit;
+	$i=1;foreach($searchdata as $searhitems){
+		if($searhitems['yes']==0){
+			$result[]=$searhitems['subcategory_name']. ' category';
+		}else {
+		$result[]=$searhitems['item_name']. ' Mobiles';
+
+		}
+	$i++;} 
+//$text = "'".implode("',' ", $result)."'";
+if(isset($result) && count($result)>0){
+$datails=$result;
+}else{
+$datails=array('0'=>'No data Found');
+}
+echo json_encode($datails);	
+	
+	
 }
 
+ public function seraching()
+	{
+		$post=$this->input->post();
+		if($post['serachvalues']==''){
+			redirect('');
+		}
+		$str= preg_replace('/\W\w+\s*(\W*)$/', '$1', $post['serachvalues']);
+		if(isset($str) && $str=='Mobiles'){
+			$catid=$this->home_model->get_prodcut_id1($str);
+			redirect('category/subcategoryview/'.base64_encode($catid['category_id']));
+			//print_r($catid);exit;
+		}else{
+			$item_id=$this->home_model->get_prodcut_id($str);
+			//print_r($item_id);exit;
+			redirect('category/productview/'.base64_encode($item_id['item_id']));
+		}
+}
+ 
  public function addtocart()
 
  {

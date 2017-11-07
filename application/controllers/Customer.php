@@ -2558,19 +2558,11 @@ class Customer extends Front_Controller
 
 		
 	}
-	if(isset($data) && $data!=''){
+	if(isset($data) && count($data)>0){
 		$this->template->write_view('content', 'customer/nearstores',$data);
 	}else{
 		$data['seller_list']=array();
-		$details=$this->customer_model->get_all_seller_details();
-			if(count($details)>0){
-				foreach ($details as $lis){
-				//echo '<pre>';print_r($lis);exit;
-				$data['seller_list'][$lis['seller_id']]=$lis;
-				$data['seller_list'][$lis['seller_id']]['avg']=$this->customer_model->product_reviews_avg($lis['seller_id']);
-				$data['seller_list'][$lis['seller_id']]['categories']=$this->customer_model->product_categories_list($lis['seller_id']);
-				}
-			}
+		
 		$this->template->write_view('content', 'customer/nearstores',$data);
 	}
 	

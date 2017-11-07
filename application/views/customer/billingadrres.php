@@ -139,6 +139,10 @@
 				<input type="hidden" class="mat-input" id="pinvalu" name="pinvalu" value="" >
 		    </div>
 			<div class="mat-div form-group ">
+				 <label for="first-name" class="mat-label">Land mark</label>
+				<input type="text" class="mat-input" id="landmark" name="landmark" value="" >
+		    </div>
+			<div class="mat-div form-group ">
 				 <label for="first-name" class="mat-label">City</label>
 				<input type="text" class="mat-input" id="city" name="city" value="" >
 		    </div>
@@ -408,6 +412,7 @@ function changebillingaddress(aid,cnt){
 				$('#pincode').val(data.pincode);
 				$('#city').val(data.city);
 				$('#state').val(data.state);
+				$('#landmark').val(data.landmark);
 				
 			}else{
 				
@@ -477,6 +482,19 @@ function changebillingaddress(aid,cnt){
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
 					message: 'Address2 wont allow <> [] = % '
+					}
+				
+				}
+			},
+			landmark: {
+				validators: {
+					notEmpty: {
+						message: 'Land Mark is required'
+					},
+					
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message: 'Land Mark wont allow <> [] = % '
 					}
 				
 				}

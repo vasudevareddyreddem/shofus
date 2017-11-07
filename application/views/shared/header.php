@@ -1,64 +1,8 @@
 <!--wrapper start here -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-ui.css">
 <script src="<?php echo base_url(); ?>assets/home/js/jquery-auto.js"></script>
-  
-  <script>
-  $( function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-     var availableTags1 = [
-"ActionScript",
-"AppleScript",
-"Asp"
-];
-
-var availableTags2 = [
-"Python",
-"Ruby",
-"Scala",
-"Scheme"
-];
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
 
 
-    $("#prod_selector").on('change',function(){
-       if($(this).val()!="ALL"){
-        if($(this).val() == "1"){
-            $( "#tags" ).autocomplete('option', 'source', availableTags1)
-        } 
-        
-        if($(this).val() == "2"){
-            $( "#tags" ).autocomplete('option', 'source', availableTags2)
-        }
-    }
-    });
-  } );
-  </script>
-</head>
 <style>
  .hi {
   color: green;
@@ -215,9 +159,13 @@ var availableTags2 = [
 			<div class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-                      <input id="tags" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
-                      <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
-                    </div>
+					<form id="searchform" action="<?php echo base_url('home/seraching'); ?>" method="post">
+                    
+					  <input type="text" name="serachvalues" id="tags"  onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                    
+					  <button type="submit" class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
+                    </form>
+					</div>
 					<!--<div style="display:none;" class="search_fun" id="addingdropdown"></div>-->
 					
                   </div>
@@ -304,64 +252,6 @@ var availableTags2 = [
 	<?php } ?>
 	 
     </nav>
-	
-	 
-
-	
-	<!-- end popup start here -->   
-<!--
-<div id="fademaskpurpose"  class="mask_hide"></div>
-<div class="loc_pop_cus" id="removepopuplocation" style="display:none;">
-	<div style="position:absolute;top:-16px;left:58%" > <i class="fa fa-sort-asc " style="font-size:40px;color:#fff;" aria-hidden="true"></i></div>
-	<div class="main" style="width:400px;">
-      <div class="row">
-        <div class="">
-			<div class="form-group">
-				<form id="form1" action="<?php echo base_url(''); ?>" method="post">
-
-			  <label for="sel1">Select Your Delivery Location:</label>
-			  <input type="hidden" type="">
-				<select onchange="document.getElementById('form1').submit()" name="locationid" id="locationid" class="validate-select sel_are">
-				<option value="">Select Area </option>
-				<?php foreach($locationdata as $location_data) {?>
-				<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
-
-				<?php } ?>
-				</select>
-				
-				</form>
-			</div> 
-        </div>
-       
-      </div>
-      <div class="login-or">
-        <hr class="hr-or">
-        <span class="span-or">or</span>
-      </div>
-
-		 <form  onSubmit="return validations();" action="<?php echo base_url('customer/locationsearch'); ?>" method="post">
-        <div class="form-group">
-          <label for="inputUsernameEmail">Select Your  Shop location</label></br>
-		  <span id="locationmsg"></span>
-		
-			<div id="selectedlocation"><?php echo $this->session->userdata('location_area'); ?> </div>
-
-	
-          <select data-placeholder="select your nearest area"  name="locationarea[]" id="locationarea" multiple  class="chosen-select" tabindex="1">
-              <option value=""></option>
-              <?php foreach($locationdata as $location_data) {?>
-			  <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
-          	<?php }  ?>
-            </select>
-			<div class="clearfix">&nbsp;</div>
-			<button type="submit" id="formsubmmition" class="btn btn-primary btn-block">Submit</button>
-        </div>
-      </form>
-    </div>
-	</div>-->
-
- 
-
 
 <!-- the overlay element --> 
 <script src="<?php echo base_url(); ?>assets/customer/js/select.js"></script>
@@ -370,7 +260,8 @@ var availableTags2 = [
         $('.chosen-select').chosen();
         $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
       });
-    </script>
+
+</script>
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script> 
@@ -415,12 +306,18 @@ function searchfunction(val){
 				form_key : window.FORM_KEY,
 				searchvalue: val,
 				},
-			dataType: 'html',
+			dataType: 'json',
 			success: function (data) {
-			$('#addingdropdown').show();
-			$("#addingdropdown").append(data);	
-
-
+					 var availableTags = data;
+					 $( "#tags" ).autocomplete({
+						 
+					   source: availableTags,
+						select: function(event, ui) { 
+						$("input#tags").val(ui.item.value);
+						$("#searchform").submit();
+						}
+					});
+					
 			}
 		});
 		
