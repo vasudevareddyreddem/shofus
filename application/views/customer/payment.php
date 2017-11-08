@@ -124,7 +124,7 @@
 			<span style="font-weight:500;font-size:17px" id="deliverymsg" style="display:none;"></span>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px " >
-				Pincode: &nbsp;&nbsp;<input readonly style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;width:65px;"  type="text" value="<?php echo $this->session->userdata('deliverypincode');?>"><span class="pull-right"><a class="site_col"  style="text-decoration:none;">check</a></span>
+				Pincode: &nbsp;&nbsp;<input readonly style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;width:65px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=" <?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col"  style="text-decoration:none;">check</a></span>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
@@ -213,7 +213,8 @@ if ($("#radio1").prop("checked")) {
     });
 </script>
 <script>
-  
+    //plugin bootstrap minus and plus
+    //http://jsfiddle.net/laelitenetwork/puJ6G/
     $('.btn-number').click(function(e) {
         e.preventDefault();
 
