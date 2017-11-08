@@ -93,12 +93,12 @@
 							
 							<div>
 								<span style="font-size:14px;">
-					
-								<?php  $timestamp = strtotime($orders['create_at']) + 2*60*60;
-									$time = date('g:i A', $timestamp);?>
-								Delivered on <?php echo isset($orders['create_at'])?Date('M-d-Y',strtotime(htmlentities($orders['create_at']))):'';  ?> <?php echo $time; ?>
-								
-								
+									<?php if(isset($orders['status_deliverd']) && $orders['status_deliverd']!=4){ ?>
+
+									Delivered on <?php echo isset($orders['expected_delivery_time'])?$orders['expected_delivery_time']:'';  ?>
+									<?php }else{ ?>
+											Delivered
+									<?php } ?>
 								</span> 
 								
 							</div>

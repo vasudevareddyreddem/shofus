@@ -156,7 +156,8 @@ tr th:last-child {
 		<div>
 			<p><strong>Name :<?php echo isset($item_details['name'])?$item_details['name']:'';  ?></strong></p>
 			<p><strong>Email Address :<?php echo isset($item_details['emal_id'])?$item_details['emal_id']:'';  ?></strong></p>
-			<p><strong>Address :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
+			<p><strong>Address :<?php echo isset($item_details['customer_address'])?$item_details['customer_address']:'';  ?></strong></p>
+			<p><strong>Land Mark :<?php echo isset($item_details['landmark'])?$item_details['landmark']:'';  ?></strong></p>
 			<p><strong>City :<?php echo isset($item_details['city'])?$item_details['city']:'';  ?></strong></p>
 			<p><strong>State :<?php echo isset($item_details['state'])?$item_details['state']:'';  ?></strong></p>
 			<p><strong>Pincode :<?php echo isset($item_details['pincode'])?$item_details['pincode']:'';  ?></strong></p>
@@ -330,22 +331,8 @@ tr th:last-child {
 					
 					<?php if(isset($item_details['status_deliverd']) && $item_details['status_deliverd']!=4){ ?>
 					<i class="font_span">
-					<?php $time = date("H:i:s a",strtotime($item_details['create_at']));
-					$begin1 = new DateTime('12:00 am');
-					$end1 = new DateTime('7:00 pm');
-					$begin2 = new DateTime('7:01 pm');
-					$end2 = new DateTime('11:59 pm');
-					$convertdate=date("g:i a", strtotime($time));
-					$now = new DateTime($convertdate);
-
-					if ($now >= $begin1 && $now <= $end1){
-						$times=' today 10 pm';
-					}else{
-						$times=' tomorrow 2pm';
-					}
 					
-					?>
-					Delivery expected by <?php echo isset($times)?$times:'';  ?>
+					Delivery expected by <?php echo isset($item_details['expected_delivery_time'])?$item_details['expected_delivery_time']:'';  ?>
 					<?php } ?>
 					</i>
 					
