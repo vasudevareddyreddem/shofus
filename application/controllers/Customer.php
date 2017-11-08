@@ -1558,6 +1558,7 @@ class Customer extends Front_Controller
 	$mobilecheck = $this->customer_model->mobile_check($post['mobile']);
 	//echo '<pre>';print_r($mobilecheck);
 	if(count($emailcheck)==0 && count($mobilecheck)==0){
+		$this->session->set_userdata('registervalues','');
 		$password=md5($post['password']);
 		$newpassword=md5($post['confirm_password']);
 		if($password == $newpassword ){
@@ -1734,8 +1735,8 @@ class Customer extends Front_Controller
 				$this->session->set_flashdata('error',"Mobile Number already exists.Please use another Mobile Number");
 			}			
 		
-	
-		redirect('customer');	
+		$this->session->set_userdata('registervalues',$post);
+		redirect('customer/index',$data);	
 		
 	}
 
