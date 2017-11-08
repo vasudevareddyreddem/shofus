@@ -134,11 +134,13 @@ tr th:last-child {
 		</td>
 		
       </tr>
+	  <?php if(isset($item_details['delivery_amount']) && $item_details['delivery_amount']!='' && $item_details['delivery_amount']!=0){ ?>
 	  <tr>
         <th>Delivery Amount</th>
         <td>₹ <?php echo isset($item_details['delivery_amount'])?$item_details['delivery_amount']:'';  ?></td>
         
       </tr>
+	  <?php } ?>
 	  <?php if($item_details['status_confirmation']==5){ ?>
 	   <tr>
        <th>Status</th>

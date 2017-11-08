@@ -93,7 +93,7 @@
                  <td width="8"></td> 
                  <td  align="left"> 
 					 <p style="margin-bottom:13px"> 
-					 <a href="" style="font-family:'Roboto',sans-serif;font-size:14px;font-weight:normal;font-style:normal;font-stretch:normal;line-height:1.25;color:#2175ff;text-decoration:none" target="_blank"><?php echo isset($list['item_name'])?$list['item_name']:''; ?>&nbsp;<?php echo isset($list['product_code'])?$list['product_code']:''; ?> (<?php echo isset($list['colour'])?$list['colour']:''; ?>, <?php echo isset($list['internal_memeory'])?$list['internal_memeory'].' GB':''; ?>)
+					 <a href="" style="font-family:'Roboto',sans-serif;font-size:14px;font-weight:normal;font-style:normal;font-stretch:normal;line-height:1.25;color:#2175ff;text-decoration:none" target="_blank"><?php echo isset($list['item_name'])?$list['item_name']:''; ?>
 					 </a>
 					 <sup></sup> <br>
 					 </p>

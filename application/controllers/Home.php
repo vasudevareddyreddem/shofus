@@ -132,7 +132,7 @@ public function search_functionality(){
 	//echo "<pre>";print_r($searchdata);exit;
 	$i=1;foreach($searchdata as $searhitems){
 		if($searhitems['yes']==0){
-			$result[]=$searhitems['subcategory_name']. ' category';
+			$result[]=$searhitems['subcategory_name']. ' subcategory';
 		}else {
 		$result[]=$searhitems['item_name']. ' Mobiles';
 
@@ -155,15 +155,31 @@ echo json_encode($datails);
 		if($post['serachvalues']==''){
 			redirect('');
 		}
-		$str= preg_replace('/\W\w+\s*(\W*)$/', '$1', $post['serachvalues']);
+		print_r($post);
+		$haystack = $post['serachvalues'];
+		$remove   = "Mobi";
+		$remve1   = "sub";
+		if( strpos( $haystack, $remove ) !== false ) {
+		$str= preg_replace('/\W\w+\s*(\W*)$/', '$1', $haystack);
+		}else if( strpos( $haystack, $remve1 ) !== false ) {
+			$str= preg_replace('/\W\w+\s*(\W*)$/', '$1', $haystack);
+		}else{
+			$str= $haystack;
+		}
 		if(isset($str) && $str=='Mobiles'){
 			$catid=$this->home_model->get_prodcut_id1($str);
+			if($item_id['item_id']!=''){
 			redirect('category/subcategoryview/'.base64_encode($catid['category_id']));
-			//print_r($catid);exit;
+			}else{
+				redirect();
+			}
 		}else{
 			$item_id=$this->home_model->get_prodcut_id($str);
-			//print_r($item_id);exit;
+			if($item_id['item_id']!=''){
 			redirect('category/productview/'.base64_encode($item_id['item_id']));
+			}else{
+				redirect();
+			}
 		}
 }
  

@@ -61,6 +61,7 @@
 					<div><b><?php echo $addlist['name']; ?></b></div>	
 					<div><?php echo $addlist['address1']; ?></div>	
 					<div><?php echo $addlist['address2']; ?>,</div>	
+					<div><?php echo $addlist['landmark']; ?>,</div>	
 					<div><?php echo $addlist['city']; ?>-<?php echo $addlist['pincode']; ?></div>	
 					<div><?php echo $addlist['state']; ?></div>
 					<br>					
@@ -134,13 +135,13 @@
 				<input type="text" class="mat-input" id="address2" name="address2" value="<?php echo isset($customerdetail['address2'])?$customerdetail['address2']:'';?>" >
 		    </div>
 			<div class="mat-div form-group ">
-				 <label for="first-name" class="mat-label">Pincode</label>
-				<input type="text" class="mat-input" onkeyup="getpinvalidation(this.value)" id="pincode" name="pincode" value="" >
-				<input type="hidden" class="mat-input" id="pinvalu" name="pinvalu" value="" >
+				 <label for="first-name" class="mat-label">Land Mark</label>
+				<input type="text" class="mat-input" id="landmark" name="landmark" value="<?php echo isset($customerdetail['landmark'])?$customerdetail['landmark']:'';?>" >
 		    </div>
 			<div class="mat-div form-group ">
-				 <label for="first-name" class="mat-label">Land mark</label>
-				<input type="text" class="mat-input" id="landmark" name="landmark" value="" >
+				 <label for="first-name" class="mat-label">Pincode</label>
+				<input type="text" class="mat-input" onkeyup="getpinvalidation(this.value)" id="pincode" name="pincode" value="" autocomplete="off" >
+				<input type="hidden" class="mat-input" id="pinvalu" name="pinvalu" value="" >
 		    </div>
 			<div class="mat-div form-group ">
 				 <label for="first-name" class="mat-label">City</label>
@@ -413,6 +414,7 @@ function changebillingaddress(aid,cnt){
 				$('#city').val(data.city);
 				$('#state').val(data.state);
 				$('#landmark').val(data.landmark);
+				$('#pinvalu').val(1);
 				
 			}else{
 				

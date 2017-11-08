@@ -578,7 +578,7 @@ public function updateforgotstatus($email)
 public function get_prodcut_id($name)
 {
 	$this->db->select('products.item_id')->from('products');
-	$this->db->where('item_name', $name);
+	$this->db->like('item_name', $name);
 	return $this->db->get()->row_array();
 }
 public function get_prodcut_id1($name)

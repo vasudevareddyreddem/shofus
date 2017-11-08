@@ -1,6 +1,7 @@
 <!--wrapper start here -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-ui.css">
 <script src="<?php echo base_url(); ?>assets/home/js/jquery-auto.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/home/js/owl.carousel.min.js"></script> 
 
 
 <style>
@@ -123,7 +124,7 @@
       <div class=" row">
         <div class="social-media pull-left" > Stay connected:
           <ul>
-            <li><a href="https://www.facebook.com/cartinhourscom/" target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/fb.png" /></i></span></a></li>&nbsp;
+            <li><a href="https://www.facebook.com/cartinhoursdotcom" target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/fb.png" /></i></span></a></li>&nbsp;
             <li><a href="https://twitter.com/cartinhours" target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/tiw.png" /></i></span></a></li>&nbsp;
             <li><a href="https://plus.google.com/u/0/106334687276812209130"  target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/gmai.png" /></i></span></a></li>
            
@@ -218,7 +219,7 @@
 						<span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688">
 					<?php echo count($cartitemcount); ?>
 						<?php }else{  ?>
-						<span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688;">
+						<span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688;"><?php echo isset($count)?$count:''; ?>
 						<?php }?>
 				
 				</span>
