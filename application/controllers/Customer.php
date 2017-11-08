@@ -928,7 +928,8 @@ class Customer extends Front_Controller
 		//echo '<pre>';print_r($details);exit;
 		$this->session->set_userdata('billingaddress',$details);
 
-		}		
+		}
+		echo $this->session->userdata('deliverypincode');exit;		
 		$this->session->set_flashdata('success','Billing address successfully saved!');
 		redirect('customer/orderpayment');
 			

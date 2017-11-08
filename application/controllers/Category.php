@@ -1177,13 +1177,13 @@ function filtersearch(){
 		
 		//echo '<pre>';print_r($pinid);exit;
 		if (count($pinode_list)>0) {
-				$this->session->set_userdata('pincode',trim($pinid));	
+				$this->session->set_userdata('deliverypincode',trim($pinid));	
 				$this->session->set_userdata('time',$pinode_list['hours']);	
 				$data['msg']=1;
 				$data['time']=$pinode_list['hours'];
 				echo json_encode($data);
 			}else{
-				$this->session->set_userdata('pincode',trim($pinid));
+				$this->session->set_userdata('deliverypincode',trim($pinid));
 				$this->session->set_userdata('time',"We don't have service in your pincode");
 				$data['msg']=0;
 				$data['time']='';
