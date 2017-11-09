@@ -395,45 +395,22 @@
 					</div>
 					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body">
-						<?php foreach ($discount_list as $list){ 
-							if (in_array($list['discount'], $discount)) { ?>
+						<?php $cnt=1;foreach ($discount_list as $list){ ?>
+							<?php if($cnt<=5){?>							
+							<?php if (in_array($list['discount'], $discount)) { ?>
 							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
 							<?php } else{ ?>
 								<div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
 
-							<?php } } ?>
+							<?php } ?> 
+							
+							<?php } ?>
+							<?php $cnt++;} ?>
 						</div>
 					</div>
 				</div>
 				<?php } ?>
-				<?php if(count($avalibility_list)>0){ ?>
-				<div class="panel panel-primary">
-					<div class="panel-heading" role="tab" id="headingOne">
-				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					    Availability
-					  </a>
-				  </h4>
-
-					</div>
-					<?php //echo '<pre>';print_r($status[0]);exit; ?>
-					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-						<div class="panel-body">
-							<select onchange="mobileaccessories(this.value, '<?php echo 'status'; ?>','<?php echo ''; ?>');" name="products[availability]" class="form-control" id="sel1">
-								<option value="">Select</option>
-								
-								<?php foreach ($avalibility_list as $list){ 
-									if (isset($status) && $status[0]== $list) {?>
-									<option value="<?php echo $list; ?>" selected><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
-									<?php } else{  ?>
-										<option value="<?php echo $list; ?>"><?php if($list==1){ echo "Instock";}else{ echo "Out of stock";}; ?></option>
-
-									<?php } } ?>
-							</select>
-						</div>
-					</div>
-				</div>
-				<?php } ?>
+				
 				
 				
 				

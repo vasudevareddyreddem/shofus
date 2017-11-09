@@ -599,7 +599,6 @@ function filtersearch(){
 		foreach ($catid as $lists){
 		$categoryids=$lists['category_id'];
 		}
-		
 		foreach ($subcategory_porduct_list as $lists){
 				foreach ($lists as $li){
 						$idslist[]=$li['item_id'];

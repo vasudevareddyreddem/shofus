@@ -131,11 +131,13 @@ public function search_functionality(){
 	$searchdata=array_merge($data1,$data2);
 	//echo "<pre>";print_r($searchdata);exit;
 	$i=1;foreach($searchdata as $searhitems){
-		if($searhitems['yes']==0){
-			$result[]=$searhitems['subcategory_name']. ' subcategory';
-		}else {
-		$result[]=$searhitems['item_name']. ' Mobiles';
+		if($i<=10){
+			if($searhitems['yes']==0){
+				$result[]=$searhitems['subcategory_name']. ' subcategory';
+			}else {
+			$result[]=$searhitems['item_name']. ' Mobiles';
 
+			}
 		}
 	$i++;} 
 //$text = "'".implode("',' ", $result)."'";
