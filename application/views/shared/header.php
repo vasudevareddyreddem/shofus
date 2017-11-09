@@ -1,4 +1,5 @@
 <!--wrapper start here -->
+<!--wrapper start here -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-ui.css">
 <script src="<?php echo base_url(); ?>assets/home/js/jquery-auto.js"></script>
   
@@ -58,13 +59,104 @@ var availableTags2 = [
     });
   } );
   </script>
-</head>
+
 <style>
  .hi {
   color: green;
 }
 #locationarea_chosen{
 	width:350px !important;
+}
+#flipkart-navbar {
+    background-color: #2874f0;
+    color: #FFFFFF;
+}
+
+.row1{
+    padding-top: 10px;
+}
+
+
+
+.profile-li{
+    padding-top: 2px;
+}
+
+.largenav {
+    display: none;
+}
+
+.smallnav{
+    display: block;
+}
+
+.smallsearch{
+    margin-left: 15px;
+    margin-top: -5px;
+}
+
+.menu{
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .largenav {
+        display: block;
+    }
+    .smallnav{
+        display: none;
+    }
+    .smallsearch{
+        margin: 0px;
+    }
+}
+
+/*Sidenav*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1050;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    box-shadow: 0 4px 8px -3px #555454;
+    padding-top: 0px;
+}
+
+.sidenav a {
+    padding: 20px 8px 8px 10px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+.sidenav a> span {
+    padding-right:20px;
+   
+   
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top:-14px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #fff;        
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav a {font-size: 18px;}
+}
+
+.sidenav-heading{
+    font-size: 16px;
+	padding:10px 5px;
+    color: #fff;
 }
  .chosen-container-multi .chosen-choices .search-choice .search-choice-close {
      background: url("<?php echo base_url();?>assets/home/images/close.png") right top no-repeat;
@@ -173,6 +265,8 @@ var availableTags2 = [
 <div class="wrapper"> 
   <!--header part start here -->
   <div class="jain_container">
+  
+  
     <nav class="navbar navbar-default nav_cus" role="navigation">
 	<div class="top-navbar sm_hide" style="color:#fff;">
     <div class="container-fluid" style="padding:0 40px">
@@ -202,35 +296,37 @@ var availableTags2 = [
       </div>
     </div>
   </div>
-      <div class="container1 container-fluid hm_nav affix_sm " >
-        <div class="navbar-header pull-left" style="padding-right:50px;">
-			  <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <i class="icon-menu"></i> Menu </button>-->
-			  <a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a>
-		  </div>
-        <div class="pull-left searc_width" >
-          <div class=" navbar-collapse" >
-          <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-            <div class="row" >
-            <div  >
-			<div class="form-horizontal form-horizontal_x">
+
+      <div class="container1 container-fluid hm_nav affix_sm  sm_hide" >
+       <div class="row  ">
+            <div style="background:#009688;">
+            <div class="col-sm-2">
+                <h2 style="margin:0px;color:#fff"><span class="smallnav menu" onclick="openNav()">☰</span></h2>
+                <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a></span></h1>
+            </div>
+            <div class="flipkart-navbar-search smallsearch col-sm-6 col-xs-11">
+                <div class="row">
+                   <div class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-                      <input id="tags" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
-                      <button class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
+					
+                      <input id="tags" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false"/>
+                      <button class="flipkart-navbar-button col-xs-1 pull-right sm_hide"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
+					  <!--<div style="display:none;" class="search_fun" id="addingdropdown"></div>	-->
                     </div>
-					<!--<div style="display:none;" class="search_fun" id="addingdropdown"></div>-->
+					
 					
                   </div>
                 </div>
-              </div>
-			
+                </div>
             </div>
-          </div>
-        </div>
+            </div>
+           
+     
+	
 		
-		  <div class="hide_clear pos_ab_head" style="position:fixed;top:0;height:53px;background:#009688;left:0;right:0;z-index:-1"> &nbsp;</div>
-		  <div class="clearfix hide_clear"></div>
-		  <div class="medias list_ad ">
+		 
+		  <div class="medias list_ad sm_hide ">
 		  
 		  <?php if($this->session->userdata('userdetails')){ ?>
 		  <span class="medias user_log">
@@ -259,9 +355,7 @@ var availableTags2 = [
 			</span>
 		  <?php } ?>
 			
-			<!--<span class="medias text-center"><a href="javascript:void(0);" onclick="locationopenpopup();" ><i class="" aria-hidden="true" data-toggle="tooltip" title="Change Your Location Here" ><img  src="<?php echo base_url(); ?>assets/home/images/location.png" /></i>
-				<p>Location</p></a>
-			</span></a></span>-->
+			
 			
 			<?php if($this->session->userdata('userdetails')){ ?>
 			<span class="medias text-center shopping_cart" style="position:relative;"><a href="<?php echo base_url('customer/cart'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
@@ -286,11 +380,118 @@ var availableTags2 = [
 				<p>Near by stores</p></a>
 			</span>
 		 </div>
+		 <!--responsive -->
+		 <div class="md_hide" style="position:absolute;top:10px;right:10px;font-size:22px;color:#fff">
+		 <span class="pad_le">
+		<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+		</span>
+		<span class="pad_le">
+		<i class="fa fa-heart" aria-hidden="true"></i>
+		</span>
+		 </div>
 	</div>
+	</div>
+	<!--mobile responsive start-->
+	 <div class=" container-fluid hm_nav1  md_hide" style="background:#009688;padding-bottom:20px;">
+       <div class="row  ">
+            <div >
+            <div class="col-sm-2">
+                <h2 style="color:#fff"><span class="smallnav menu" onclick="openNav()">☰</span></h2>
+                <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a></span></h1>
+            </div>
+            <div class="flipkart-navbar-search smallsearch col-sm-6 col-xs-11">
+                <div class="row">
+                   <div class="form-horizontal form-horizontal_x">
+                  <div class=" smallsearch">
+                    <div class="cart_search">
+					<span class="md_hide pos_sea_btn"><i class="fa fa-search font_si" aria-hidden="true"></i></span>
+                      <input id="tags" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands " autocomplete="off" spellcheck="false"/>
+                      <!--<button class="flipkart-navbar-button col-xs-1 pull-right sm_hide"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>-->
+					  <!--<div style="display:none;" class="search_fun" id="addingdropdown"></div>	-->
+                    </div>
+					
+					
+                  </div>
+                </div>
+                </div>
+            </div>
+            </div>
+           
+     
+	
+		
+		 
+		  <div class="medias list_ad sm_hide ">
+		  
+		  <?php if($this->session->userdata('userdetails')){ ?>
+		  <span class="medias user_log">
+				<a ><i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" /></i>
+				<p><?php echo $details['cust_firstname'].' '.$details['cust_lastname']; ?></p>
+				</a>
+						
+			</span>
+			<div id="user_sow" style="display:none;">
+							<ul class="log_list" >
+								<span class="top_fix_niv glyphicon glyphicon-triangle-top"></span>
+								<li class="font_list"><a href="<?php echo base_url('customer/account');?>">  <span >My Account</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/cart');?>">  <span >My Cart</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/orders');?>">  <span >My Orders</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/trackorders');?>">  <span >Track</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/wishlist'); ?>">  <span >My Wishlist</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/changepassword');?>">  <span >Change Password</span> </a></li>
+								<li class="font_list"><a href="<?php echo base_url('customer/logout');?>">  <span >Logout</span> </a></li>
+							</ul>
+			</div>
+		  <?php }else{ ?>
+			<span class="medias user_log text-center">
+			<a href="<?php echo base_url('customer'); ?>" ><i class="" aria-hidden="true">
+			</i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" />
+			<p>Sign Up/Sign In</p></a>
+			</span>
+		  <?php } ?>
+			
+			
+			
+			<?php if($this->session->userdata('userdetails')){ ?>
+			<span class="medias text-center shopping_cart" style="position:relative;"><a href="<?php echo base_url('customer/cart'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+				<p>Cart</p></a>
+				<?php if(count($cartitemcount)>0){ ?>
+						<span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688">
+					<?php echo count($cartitemcount); ?>
+						<?php }else{  ?>
+						<span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688;">
+						<?php }?>
+				
+				</span>
+			</span>
+
+			<?php }else{ ?>
+			<span class="medias text-center shopping_cart" style="position:relative;"><a href=" <?php echo base_url('customer'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+				<p>Cart</p></a>
+				<span style="position:absolute;top:-5px;right:-5px;font-size:12px"></span>
+			</span>
+			<?php } ?>	
+			<span class="medias text-center"><a href="<?php echo base_url('customer/nearstores'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
+				<p>Near by stores</p></a>
+			</span>
+		 </div>
+		 <!--responsive -->
+		 <div class="md_hide" style="position:absolute;top:20px;right:10px;font-size:22px;color:#fff">
+		 <span class="pad_le">
+		<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+		</span>
+		<span class="pad_le">
+		<i class="fa fa-heart" aria-hidden="true"></i>
+		</span>
+		 </div>
+	</div>
+	</div>
+	<!--mobile responsive end-->
+	
 	  <div class="top-navbar1">
     <div class="container">
       <?php if(count($qucikjump)>0){ ?>
-      <div class=" row qucik_jmp">
+      <div class=" row qucik_jmp sm_hide">
 	  
 		  <ul class="navbar_1"><li><span style="color:#555">Quick Jump to </span></li>
 		  <?php foreach($qucikjump as $list){ ?>
@@ -305,64 +506,23 @@ var availableTags2 = [
 	 
     </nav>
 	
-	 
-
-	
-	<!-- end popup start here -->   
-<!--
-<div id="fademaskpurpose"  class="mask_hide"></div>
-<div class="loc_pop_cus" id="removepopuplocation" style="display:none;">
-	<div style="position:absolute;top:-16px;left:58%" > <i class="fa fa-sort-asc " style="font-size:40px;color:#fff;" aria-hidden="true"></i></div>
-	<div class="main" style="width:400px;">
-      <div class="row">
-        <div class="">
-			<div class="form-group">
-				<form id="form1" action="<?php echo base_url(''); ?>" method="post">
-
-			  <label for="sel1">Select Your Delivery Location:</label>
-			  <input type="hidden" type="">
-				<select onchange="document.getElementById('form1').submit()" name="locationid" id="locationid" class="validate-select sel_are">
-				<option value="">Select Area </option>
-				<?php foreach($locationdata as $location_data) {?>
-				<option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
-
-				<?php } ?>
-				</select>
-				
-				</form>
-			</div> 
-        </div>
-       
-      </div>
-      <div class="login-or">
-        <hr class="hr-or">
-        <span class="span-or">or</span>
-      </div>
-
-		 <form  onSubmit="return validations();" action="<?php echo base_url('customer/locationsearch'); ?>" method="post">
-        <div class="form-group">
-          <label for="inputUsernameEmail">Select Your  Shop location</label></br>
-		  <span id="locationmsg"></span>
-		
-			<div id="selectedlocation"><?php echo $this->session->userdata('location_area'); ?> </div>
-
-	
-          <select data-placeholder="select your nearest area"  name="locationarea[]" id="locationarea" multiple  class="chosen-select" tabindex="1">
-              <option value=""></option>
-              <?php foreach($locationdata as $location_data) {?>
-			  <option value="<?php echo $location_data['location_id']; ?>"><?php echo $location_data['location_name']; ?></option>
-          	<?php }  ?>
-            </select>
-			<div class="clearfix">&nbsp;</div>
-			<button type="submit" id="formsubmmition" class="btn btn-primary btn-block">Submit</button>
-        </div>
-      </form>
-    </div>
-	</div>-->
-
  
 
-
+<div id="mySidenav" class="sidenav closebtn" href="javascript:void(0)"  onclick="closeNav()" >
+    <div class="container" style="background-color: #009688;padding:20px 5px; ">
+        <span class="sidenav-heading">welcome</span>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    </div>
+    <a href="#"><span class="glyphicon  glyphicon-home"></span> Home</a>
+    <a href="#"><span class=" glyphicon glyphicon-erase
+"></span> Electronics</a>
+    <a href="#"><span class="glyphicon glyphicon-list-alt
+"></span> My Orders</a>
+    <a href="#"><span class="glyphicon glyphicon-heart"></span> My Wishlist</a>
+    <a href="#"><span class="glyphicon glyphicon-road"></span> My Track List</a>
+    <a href="#"><span class="glyphicon glyphicon-user
+"></span> Account</a>
+</div>
 <!-- the overlay element --> 
 <script src="<?php echo base_url(); ?>assets/customer/js/select.js"></script>
     <script>
@@ -499,4 +659,16 @@ $('.hm_nav').removeClass('fadeInDown');
 $('.hm_nav').removeClass('animated affix	');
 }
  });
+</script>
+<script>
+	function openNav() {
+    document.getElementById("mySidenav").style.width = "70%";
+    // document.getElementById("flipkart-navbar").style.width = "50%";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.body.style.backgroundColor = "rgba(0,0,0,0)";
+}
 </script>

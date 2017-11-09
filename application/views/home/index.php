@@ -20,7 +20,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 			<?php endif; ?>
 
 	<body class="bac_img">
-<div class="banner_home con_start" style="margin-top:-20px;">
+<div class="banner_home con_st_bo" >
      
       <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
         <!-- Indicators -->
@@ -70,8 +70,34 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
   <?php $customerdetails=$this->session->userdata('userdetails'); ?>
   <div class="_bdy" style="" id="location_seacrh_result"></div>
   <div class="" id="location_seacrhs">
+	
+	
+	<section class="md_hide">
+      <div class=" slider-items-products container_main">
+       
+		   <div id="best-seller" class="product-flexslider hidden-buttons">
+				  <div class="slider-items slider-width-col4 products-grid" >
+				  
+				<div class="item" >
+				  <div class=" box-product-outer" >
+					<div class="box-product">
+					   <img  class="img-responsive" src="https://cartinhours.com/assets/subcategoryimages/mobiles_Cat.png"> 
+					</div>
+				  </div>
+				</div>
+				
+			
+				  </div>
+		   </div>
+	
+      
+      </div>
+    </section>
+	
+	
+  
     <!--Top Category slider Start-->
-    <div class="top-cate" style="margin-top:30px;">
+    <div class="top-cate mob_res_top " >
       <div class="featured-pro container_main">
         <div class="row">
           <div class="slider-items-products">
