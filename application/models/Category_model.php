@@ -915,58 +915,52 @@ class Category_model extends MY_Model
 	$this->db->order_by('fliter_search.id desc');
 	$query=$this->db->get()->result_array();
 	//echo '<pre>';print_r($query);exit;
-	foreach ($query as $list){
-		if(isset($list['brand']) && $list['brand']!=''){
-			$brand=$list['brand'];
-		}if(isset($list['offers']) && $list['offers']!=''){
-			$offers=$list['offers'];
-		}if(isset($list['discount']) && $list['discount']!=''){
-			$discount=$list['discount'];
-		}
-	}
+	
 		foreach ($query as $listing){
-			
-			//echo $listing['mini_amount'];
 			if($listing['brand']!=''){
-				$listsorting[$listing['id']]['brand']=$listing['brand'];
-				$listsorting[$listing['id']]['mini_amount']=$listing['mini_amount'];
-				$listsorting[$listing['id']]['max_amount']=$listing['max_amount'];
-				$listsorting[$listing['id']]['category_id']=$listing['category_id'];
-				$listsorting[$listing['id']]['offers']=isset($offers)?$offers:'null';
-				$listsorting[$listing['id']]['discount']=isset($discount)?$discount:'null';
+			$brand[] = $listing['brand'];	
 			}
 			if($listing['offers']!=''){
-				$listsorting[$listing['id']]['offers']=$listing['offers'];
-				$listsorting[$listing['id']]['mini_amount']=$listing['mini_amount'];
-				$listsorting[$listing['id']]['max_amount']=$listing['max_amount'];
-				$listsorting[$listing['id']]['category_id']=$listing['category_id'];
-				$listsorting[$listing['id']]['brand']=isset($brand)?$brand:'null';
-				$listsorting[$listing['id']]['discount']=isset($discount)?$discount:'null';
+			$offers[] =$listing['offers'];
+			
+			}if($listing['discount']!=''){
+			$discount[] =$listing['discount'];
 			
 			}
-			if($listing['discount']!=''){
-				$listsorting[$listing['id']]['discount']=$listing['discount'];
-				$listsorting[$listing['id']]['mini_amount']=$listing['mini_amount'];
-				$listsorting[$listing['id']]['max_amount']=$listing['max_amount'];
-				$listsorting[$listing['id']]['category_id']=$listing['category_id'];
-				$listsorting[$listing['id']]['brand']=isset($brand)?$brand:'null';
-				$listsorting[$listing['id']]['offers']=isset($offers)?$offers:'null';
-			}else {
-				$listsorting[$listing['id']]['discount']=isset($discount)?:'null';
-				$listsorting[$listing['id']]['mini_amount']=$listing['mini_amount'];
-				$listsorting[$listing['id']]['max_amount']=$listing['max_amount'];
-				$listsorting[$listing['id']]['category_id']=$listing['category_id'];
-				$listsorting[$listing['id']]['brand']=isset($brand)?$brand:'null';
-				$listsorting[$listing['id']]['offers']=isset($offers)?$offers:'null';
-			}
+			$minamount = $listing['mini_amount'];
+			$maxamount = $listing['max_amount'];
+			$catid = $listing['category_id'];
+			
 			
 			
 		}
-		echo '<pre>';print_r($listsorting);
-		foreach ($listsorting as $sorting){
-		$return['filterslist'][] = $this->get_filers_products_list_alllist($sorting['brand'],$sorting['discount'],$sorting['offers'],$sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
+		if(isset($brand) && count($brand)>0 ){
+			//$brands=implode(",",$brand);
+			$brands=implode ( "', '", $brand );
+		}else{
+		$brands='NULL';
+
 		}
-	 echo '<pre>';print_r($return['filterslist']);exit;
+		if(isset($offers) && count($offers)>0){
+			$offerss=implode(",",$offers);
+		}else{
+		$offerss='NULL';
+		}
+		if(isset($discount) && count($discount)>0 ){
+			$discount=implode(",",$discount);
+		}else{
+		$discount='NULL';
+		}		
+		echo '<pre>';print_r($brands);
+		echo '<pre>';print_r($offerss);
+		//echo '<pre>';print_r($discount);
+		
+		//exit;
+		//echo '<pre>';print_r($listsorting);exit;
+		
+		$return['filterslist'][] = $this->get_filers_products_list_alllist($brands,$discount,$offerss,$minamount,$maxamount,$catid);
+		echo $this->db->last_query();exit;
+	 //echo '<pre>';print_r($return['filterslist']);exit;
 		if(!empty($return['filterslist']))
 		{
 		return $return['filterslist'];
@@ -978,17 +972,19 @@ class Category_model extends MY_Model
 		
 	}
 	public function get_filers_products_list_alllist($b,$d,$f,$min,$max,$cid){
+		
 		$min_amt=(($min)-1);
 		$this->db->select('*')->from('products');
 		$this->db->where('item_cost <=', $max);
 		$this->db->where('item_cost >=', $min_amt);
-		if($b!='null'){
-			$this->db->where('brand',$b);
+		if($b!='NULL'){
+			//$this->db->where_in('brand',$b);
+			$this->db->where_in('brand',array('stripslashes',$b));
 			
-		}else if($f!='null'){
-				$this->db->where('offer_percentage',$f);
-		}else if($d!='null'){
-			$this->db->where('discount',$d);
+		}if($f!='NULL'){
+				$this->db->where_in('offer_percentage',$f);
+		}if($d!='NULL'){
+			$this->db->where_in('discount',$d);
 		}
 		$this->db->where('item_status',1);
 		$this->db->where('category_id',$cid);
