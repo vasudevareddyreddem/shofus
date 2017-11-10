@@ -384,7 +384,7 @@
 				</div>
 				<?php } ?>
 				<?php if(count($discount_list)>0){ ?>
-				<div class="panel panel-primary">
+				<!--<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
 					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -408,7 +408,7 @@
 							<?php $cnt++;} ?>
 						</div>
 					</div>
-				</div>
+				</div>-->
 				<?php } ?>
 				
 				

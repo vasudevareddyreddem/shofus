@@ -429,6 +429,8 @@ class Category_model extends MY_Model
 			$return['status'][] = $this->get_subcategorystatus($sorting['status'],$sorting['category_id'],$sorting['subcategory_id']);
 			//echo $this->db->last_query();exit;
 		}
+		
+		echo '<pre>';print_r($return);exit;
 		if(!empty($return))
 		{
 		return $return;
@@ -900,7 +902,6 @@ class Category_model extends MY_Model
 	
 	public function get_search_all_subcategory_products()
 	{
-	//$query=array();
 	$this->db->select('fliter_search.*')->from('fliter_search');
 	//$this->db->group_by('fliter_search.cusine');
 	$this->db->group_by('fliter_search.restraent');
@@ -915,83 +916,45 @@ class Category_model extends MY_Model
 	$this->db->order_by('fliter_search.id desc');
 	$query=$this->db->get()->result_array();
 	//echo '<pre>';print_r($query);exit;
+	
 		foreach ($query as $listing){
-			//echo $listing['mini_amount'];
 			if($listing['brand']!=''){
-				$listsorting[$listing['id']]['brand']=$listing['brand'];
+			$brand[] = $listing['brand'];	
 			}
 			if($listing['offers']!=''){
-				$listsorting[$listing['id']]['offers']=$listing['offers'];
-			}
-			if($listing['discount']!=''){
-				$listsorting[$listing['id']]['discount']=$listing['discount'];
-			}
-			if($listing['mini_amount']!=''){
-				$listsorting[$listing['id']]['mini_amount']=$listing['mini_amount'];
-			}
-			if($listing['max_amount']!=''){
-				$listsorting[$listing['id']]['max_amount']=$listing['max_amount'];
-			}
-			if($listing['max_amount']!=''){
-				$listsorting[$listing['id']]['category_id']=$listing['category_id'];
-			}
+			$offers[] =$listing['offers'];
 			
+			}if($listing['discount']!=''){
+			$discount[] =$listing['discount'];
+			
+			}
+			$minamount = $listing['mini_amount'];
+			$maxamount = $listing['max_amount'];
+			$catid = $listing['category_id'];
 		}
-			 echo '<pre>';print_r($listsorting);
-		foreach ($listsorting as $sorting){
-			
-			if ( ( !empty(isset($sorting['brand'])) )  || (!empty(isset( $sorting['offers'])) ) || (!empty(isset( $sorting['discount'])) ) && (!empty(isset( $sorting['mini_amount'])) ) && (!empty(isset( $sorting['max_amount'])) )) {
-				$count='';
-				$listsorting_adding[]=$sorting;
-			}
-		
+		if(isset($brand) && count($brand)>0 ){
+			$brands=implode ("','", $brand );
+		}else{
+		$brands='NULL';
+
 		}
-		 //echo '<pre>';print_r($listsorting_adding);exit;
+		if(isset($offers) && count($offers)>0){
+			$offerss=implode("','",$offers);
+		}else{
+		$offerss='NULL';
+		}
+		if(isset($discount) && count($discount)>0 ){
+			$discount=implode("','",$discount);
+		}else{
+		$discount='NULL';
+		}		
 		
-		 foreach ($listsorting_adding as $sorting){
-			
-		if ( ( !empty(isset($sorting['brand'])) )  || (!empty(isset( $sorting['offers'])) ) || (!empty(isset( $sorting['discount'])) ) && (!empty(isset( $sorting['mini_amount'])) ) && (!empty(isset( $sorting['max_amount'])) )) {
+		//exit;
+		//echo '<pre>';print_r($listsorting);exit;
 		
-		
-			if ( ( empty(isset($sorting['brand'])) )  && (empty(isset( $sorting['offers'])) ) && (empty(isset( $sorting['discount'])) )) {
-				//echo '1';
-				$return['filterslist'][] = $this->get_filers_products_list_amount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
-			}else if ( ( !empty(isset($sorting['brand'])) )  && (empty(isset( $sorting['offers'])) )) {
-				echo '2';
-				//$return['filterslist'][] = $this->get_filers_products_list_brand($sorting['brand'],$sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
-			//Echo $this->db->last_query();
-			}else if ( ( !empty(isset($sorting['offers'])) )  && (empty(isset( $sorting['brand'])) )) {
-			echo '3';exit;
-			$return['filterslist'][] = $this->get_filers_products_list_offer($sorting['offers'],$sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
-
-			}else if ( ( !empty(isset($sorting['offers'])) )  && (!empty(isset( $sorting['brand'])) ) && (empty(isset( $sorting['discount'])) )) {
-				echo '4';exit;
-				$return['filterslist'][] = $this->get_filers_products_list_two($sorting['offers'],$sorting['brand'],$sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
-
-			}else if ( ( !empty(isset($sorting['offers'])) )  && (!empty(isset( $sorting['brand'])) ) && (!empty(isset( $sorting['discount'])) )) {
-				echo '5';exit;
-				$return['filterslist'][] = $this->get_filers_products_list_three($sorting['offers'],$sorting['brand'],$sorting['discount'],$sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
-
-			}else if ( ( empty(isset($sorting['brand'])) )  && (empty(isset( $sorting['offers'])) ) && (!empty(isset( $sorting['discount'])) )) {
-			echo '6';exit;
-				$return['filterslist'][] = $this->get_filers_products_list_discount($sorting['discount'],$sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
-
-			}
-			
-			
-			
-		}else if($count=='some'){
-				echo $count;
-				echo '7';exit;
-			$return['filterslist'][] = $this->get_filers_products_list_amount($sorting['mini_amount'],$sorting['max_amount'],$sorting['category_id']);
-
-			
-			}
-
-			
-			 
-		 }
-		 echo '<pre>';print_r($return['filterslist']);exit;
+		$return['filterslist'][] = $this->get_filers_products_list_alllist($brands,$discount,$offerss,$minamount,$maxamount,$catid);
+		//echo $this->db->last_query();exit;
+		//echo '<pre>';print_r($return['filterslist']);exit;
 		if(!empty($return['filterslist']))
 		{
 		return $return['filterslist'];
@@ -1000,6 +963,45 @@ class Category_model extends MY_Model
 		
 		
 		
+		
+	}
+	public function get_filers_products_list_alllist($b,$d,$f,$min,$max,$cid){
+		//echo $b;exit;
+		$min_amt=(($min)-1);
+		if($b!='NULL' && $d!='NULL' && $f!='NULL'){
+			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f') AND offer_amount IN ('$d')";
+		
+		}else if($b!='NULL' && $d!='NULL' && $f=='NULL'){
+			$sql = "SELECT * FROM products WHERE item_status='1' AND  item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d')";
+			
+		}else if($b!='NULL' && $d=='NULL' && $f=='NULL'){
+			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b')";
+			
+		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'){
+			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f')";
+			
+		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'){
+			$sql = "SELECT * FROM products WHERE item_status='1' AND  item_cost BETWEEN $min_amt AND $max";
+		}
+		
+		return $this->db->query($sql)->result_array();	
+		/*$this->db->select('*')->from('products');
+		$this->db->where('item_cost <=', $max);
+		$this->db->where('item_cost >=', $min_amt);
+		
+		if($b!='NULL'){
+			$this->db->where_in('brand',$b);
+		
+		}if($f!='NULL'){
+				$this->db->where_in('offer_percentage',$f);
+		}if($d!='NULL'){
+			$this->db->where_in('discount',$d);
+			//$this->db->where_in('discount',str_replace( "\", "", $b));
+		}
+		$this->db->where('item_status',1);
+		$this->db->where('category_id',$cid);
+		
+		return $this->db->get()->result_array();*/
 		
 	}
 	public function get_filers_products_list_amount($min,$max,$cid){
@@ -1059,8 +1061,8 @@ class Category_model extends MY_Model
 		
 	}
 	public function get_filers_products_list_three($offers,$brand,$discount,$min,$max,$cid){
-		$min_amt=(($min)-1);
-		$this->db->select('*')->from('products');
+		$min_amt=(($min)+1);
+		$this->db->select('products.*',false)->from('products');
 		$this->db->where('offer_percentage',$offers);
 		$this->db->where('brand',$brand);
 		$this->db->where('discount',$discount);
