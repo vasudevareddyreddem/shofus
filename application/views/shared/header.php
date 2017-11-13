@@ -349,13 +349,13 @@
             </div>
             <div class="flipkart-navbar-search smallsearch col-sm-6 col-xs-11">
                 <div class="row" >
-            <div  >
+            <div>
 			<div class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
 					<form id="searchform1" action="<?php echo base_url('home/seraching'); ?>" method="post">
                     
-					  <input type="text" name="serachvaluesss" id="tags1"  onkeyup="searchfunctionss(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+					  <input type="text" name="serachvalues" id="tags1"  onkeyup="searchfunctionss(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                     
 					  <button type="submit" class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </form>
@@ -577,6 +577,7 @@ function searchfunction(val){
 	
 }
 function searchfunctionss(val){
+	
 	$('#addingdropdown').hide();
 	$('#addingdropdown').empty();
 	var length=val.length;
@@ -591,8 +592,9 @@ function searchfunctionss(val){
 				},
 			dataType: 'json',
 			success: function (data) {
+				
 					 var availableTags = data;
-					 $( "#tags" ).autocomplete({
+					 $( "#tags1" ).autocomplete({
 						 
 					   source: availableTags,
 						select: function(event, ui) { 
