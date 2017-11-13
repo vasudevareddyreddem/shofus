@@ -148,7 +148,7 @@
   
 </style>
 
-<div class="sidebar_right" >
+<!--<div class="sidebar_right" >
 			<ul style="padding:0 ">
 				
 				<div class="clearfix"></div>
@@ -172,7 +172,7 @@
 				<?php } ?>
 				<?php } ?>
 				
-				<!--<li id="hover_li" class=" spin ">-->
+			
 				<li id="" class=" spin ">
 					<a  class="menu_ti2  ">
 						<span   ><img class=" circ_icon"src="<?php echo base_url(); ?>assets/home/images/more_cat.png" />
@@ -204,7 +204,7 @@
 				
 				
 			</ul>
-</div>
+</div>-->
 <div class="wrapper"> 
   <!--header part start here -->
   <div class="jain_container">

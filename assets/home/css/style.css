@@ -4,8 +4,18 @@ a:hover{
 input{
 	outline: 0 !important;
 }
+ .cat_ma {
+		    background: transparent !important;
+	}
+	.cat_ma img{
+		    width:50px;
+			height:auto;
+	}
 .md_hide{
 	display:none;
+}
+.help_cls .owl-item{
+	width:18% !important;
 }
 .sing_pro{
 	position:fixed;top:40; 

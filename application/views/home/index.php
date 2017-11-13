@@ -76,19 +76,31 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
       <div class=" slider-items-products container_main">
        
 		   <div id="best-seller" class="product-flexslider hidden-buttons">
-				  <div class="slider-items slider-width-col4 products-grid" >
+				  <div class="slider-items slider-width-col4 products-grid help_cls" >
 				  <?php foreach ($sidecaregory_list as $categories){
 					  ?>
 				<a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>">
-				<div class="item" >
+				<div class="item cat_ma" >
 				  <div class=" box-product-outer" >
 					<div class="box-product">
-					   <img  class="" src="<?php echo base_url('assets/categoryimages/'.$categories['category_image']); ?>"> 
-					<p class="text-center"><?php echo $categories['category_name'] ; ?></p>
+					   <img src="<?php echo base_url('assets/categoryimages/'.$categories['category_image']); ?>"> 
+					<h5 class="text-center"><?php echo $categories['category_name'] ; ?></h5>
 					</div>
 					
 				  </div>
 				</div>
+				
+				</a>	<a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>">
+				<div class="item cat_ma" >
+				  <div class=" box-product-outer" >
+					<div class="box-product">
+					   <img src="<?php echo base_url('assets/categoryimages/'.$categories['category_image']); ?>"> 
+					<h5 class="text-center"><?php echo $categories['category_name'] ; ?></h5>
+					</div>
+					
+				  </div>
+				</div>
+				
 				</a>
 				
 				  <?php } ?>
