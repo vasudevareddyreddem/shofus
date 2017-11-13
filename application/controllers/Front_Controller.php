@@ -32,10 +32,13 @@ class Front_Controller extends MY_Controller {
 					$customerdetails=$this->session->userdata('userdetails');
 						$data['cartitemcount'] = $this->home_model->cart_item_count($customerdetails['customer_id']);
 						$data['details'] = $this->home_model->customer_details($customerdetails['customer_id']);
+						$data['count']=count($data['cartitemcount']);
 					}else{
 					$data['cartitemcount'] =0;
 					$data['details'] = '';					
 					}
+					
+					
 					//echo '<pre>';print_r($data);exit;
 					$this->template->set_template('website'); 
 					$this->template->write_view('header', 'shared/header',$data);

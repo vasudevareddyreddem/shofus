@@ -41,7 +41,7 @@ label {
 }
 </style>
 
-<body style="background-color:#009688;">
+<body class="sm_hide" style="background-color:#009688;">
     <div class="container mar_t10per" style="position:relative" >
         <div class="row res_log" >
 		<div class="col-md-10 col-md-offset-1" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
@@ -147,30 +147,34 @@ label {
 							<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> <?php echo $this->session->flashdata('error');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
 			<?php endif; ?>
+			
+			<?php 
+			$registervalues=$this->session->userdata('registervalues');
+			//echo '<pre>';print_r($registervalues);exit; ?>
 				<form id="customerregister" name="customerregister" action="<?php echo base_url('customer/registerpost');?>" method="post" accept-charset="utf-8" class="form" role="form" style="padding:0px 15px;">
 
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
 						<div class="mat-div form-group">
 							<label class="mat-label">First Name</label>
-                            <input type="text" id="firstname" name="firstname" value="" class="mat-input" />
+                            <input type="text" id="firstname" name="firstname" value="<?php echo isset($registervalues['firstname'])?$registervalues['firstname']:'' ; ?>" class="mat-input" />
 							</div>
 							</div>
                         <div class="col-xs-6 col-md-6">
 							<div class="mat-div form-group">
 							<label class="mat-label">Last Name</label>
-							<input type="text" id="lastname" name="lastname" value="" class="mat-input"  />
+							<input type="text" id="lastname" name="lastname" value="<?php echo isset($registervalues['lastname'])?$registervalues['lastname']:'' ; ?>" class="mat-input"  />
 							</div> 
 							</div>
 							
                     </div>
 					<div class=" mat-div form-group">
 					<label class="mat-label">Email Address</label>
-					<input type="text" id="email" name="email" value="" class="mat-input"  />
+					<input type="text" id="email" name="email" value="<?php echo isset($registervalues['email'])?$registervalues['email']:'' ; ?>" class="mat-input"  />
 					</div>
 					<div class=" mat-div form-group">
 					<label class="mat-label">Mobile Number</label>
-					<input type="text" id="mobile" name="mobile" value="" class="mat-input" />
+					<input type="text" id="mobile" name="mobile" value="<?php echo isset($registervalues['mobile'])?$registervalues['mobile']:'' ; ?>" class="mat-input" />
 					</div>         
 					<div class="mat-div form-group">
 					<label class="mat-label">Password</label>

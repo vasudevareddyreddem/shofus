@@ -138,7 +138,7 @@ tr th:last-child {
 				</div>
 				<div class="col-md-3">
 					<div class="col-md-3">
-							<span class="font_span">₹<?php echo isset($item_details['total_price'])?$item_details['total_price']:'';  ?></span>
+							<span class="font_span">₹<?php echo number_format((isset($item_details['total_price'])?$item_details['total_price']:''), 2);  ?></span>
 					</div>
 					
 				</div>
@@ -229,20 +229,15 @@ tr th:last-child {
 					</td>
 
 					</tr>
+					 <?php if(isset($item_details['delivery_amount']) && $item_details['delivery_amount']!='' && $item_details['delivery_amount']!=0){ ?>
+
 					<tr>
 					<th>Delivery Amount</th>
 					<td>₹<?php echo isset($item_details['delivery_amount'])?$item_details['delivery_amount']:'';  ?></td>
 
 					</tr>
-					<?php if($item_details['status_confirmation']==5){ ?>
-					<tr>
-					<th>Status</th>
-					<td>
-					cancelled
-					</td>
-
-					</tr>
-					<?php } ?>
+					 <?php } ?>
+					
 				</tbody>
 				</table>
 				</div>
@@ -251,7 +246,8 @@ tr th:last-child {
 					<div>
 					<p><strong>Name :<?php echo isset($item_details['name'])?$item_details['name']:'';  ?></strong></p>
 					<p><strong>Email Address :<?php echo isset($item_details['emal_id'])?$item_details['emal_id']:'';  ?></strong></p>
-					<p><strong>Address :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
+					<p><strong>Address :<?php echo isset($item_details['customer_address'])?$item_details['customer_address']:'';  ?></strong></p>
+					<p><strong>Land Mark :<?php echo isset($item_details['landmark'])?$item_details['landmark']:'';  ?></strong></p>
 					<p><strong>City :<?php echo isset($item_details['city'])?$item_details['city']:'';  ?></strong></p>
 					<p><strong>State :<?php echo isset($item_details['state'])?$item_details['state']:'';  ?></strong></p>
 					<p><strong>Pincode :<?php echo isset($item_details['pincode'])?$item_details['pincode']:'';  ?></strong></p>
@@ -279,30 +275,14 @@ tr th:last-child {
 					<div class="col-md-6"><span><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
 					<i class="font_span">
 					<?php if(isset($item_details['status_deliverd']) && $item_details['status_deliverd']!=4){ ?>
-
-					<?php $time = date("H:i:s a",strtotime($item_details['create_at']));
-					$begin1 = new DateTime('12:00 am');
-					$end1 = new DateTime('7:00 pm');
-					$begin2 = new DateTime('7:01 pm');
-					$end2 = new DateTime('11:59 pm');
-					$convertdate=date("g:i a", strtotime($time));
-					 $now = new DateTime($convertdate);
-
-					if ($now >= $begin1 && $now <= $end1){
-						$times=' today 10 pm';
-					}else{
-						$times=' tomorrow 2pm';
-					}
-					
-					?>
-					Delivery expected by <?php echo isset($times)?$times:'';  ?>
+					Delivery expected by <?php echo isset($item_details['expected_delivery_time'])?$item_details['expected_delivery_time']:'';  ?>
 					
 					<?php } ?>
 					</i>
 					</div>
 				<div class="col-md-3 col-md-offset-3">
 						<span class="font_span"><b>Total</b></span>&nbsp;&nbsp;
-						<span class="font_span">₹<?php echo $item_details['total_price']+$item_details['delivery_amount']; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span class="font_span">₹<?php echo number_format(($item_details['total_price']+$item_details['delivery_amount']), 2); ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
 						<?php if(isset($item_details['discount']) && $item_details['discount']!=''){ ?>
 						<span class="font_span site_col">Savings</span>&nbsp;&nbsp;
 						<span class="font_span">₹<?php echo isset($item_details['discount'])?$item_details['discount']:'';  ?></span>

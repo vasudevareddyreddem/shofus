@@ -13,7 +13,7 @@ class Deliveryboyapi_model extends MY_Model
 	public function login_customer($username,$password){
 
 	$sql = "SELECT * FROM customers WHERE (cust_email ='".$username."' AND cust_password ='".md5($password)."') OR (cust_mobile ='".$username."' AND cust_password ='".md5($password)."')";
-	return $this->db->query($sql)->row_array();
+	return $this->db->query($sql)->row();
 	}
 	public function get_deliveryboy_details($cust_id,$role){
 
@@ -58,7 +58,7 @@ class Deliveryboyapi_model extends MY_Model
 		$this->db->where('order_items.delivery_boy_id',$cust_id);
 		$this->db->where('order_status.status_deliverd !=',1);
 		$this->db->where('order_status.status_deliverd !=',4);
-		 $this->db->order_by('order_status.order_item_id', 'desc'); 
+		$this->db->order_by('order_status.order_item_id', 'desc'); 
 
 		return $this->db->get()->result_array();
 	}
@@ -70,7 +70,7 @@ class Deliveryboyapi_model extends MY_Model
 		$this->db->join('rejected_orders_list', 'rejected_orders_list.order_item_id = order_items.order_item_id', 'left');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 		$this->db->where('rejected_orders_list.delivery_boy_id',$cust_id);
-		return $this->db->get()->result_array();
+		return $this->db->get()->result();
 	}
 	public function get_deliver_boy_orders_reject_list($cust_id){
 		$this->db->select('rejected_orders_list.order_item_id,rejected_orders_list.delivery_boy_id')->from('rejected_orders_list');
@@ -124,7 +124,7 @@ class Deliveryboyapi_model extends MY_Model
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 		$this->db->where('order_items.return_deliveryboy_id',$cust_id);
-		return $this->db->get()->result_array();
+		return $this->db->get()->result();
 	}
 	
 	public function order_payment_status($orderid,$status){

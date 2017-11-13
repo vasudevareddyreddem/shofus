@@ -14,8 +14,8 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 }
 </style>
     <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container widt_cus_998">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 bhoechie-tab-container mar_res_t150">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu sm_hide">
                 <div class="list-group">
                     <a href="#" class="list-group-item active text-center">
 
@@ -37,14 +37,14 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 
                 </div>
             </div>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab" style="min-height:500px">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 bhoechie-tab min_he_500_web" >
                 <!-- flight section -->
                 <div class="bhoechie-tab-content active">
                     <center>
-                        <div class="">
+                        <div class="res_car_pan">
                             <!--SHIPPING METHOD-->
                             <div class="panel panel-default">
-                                <div class="panel-heading " style="background-color:#fff;">
+                                <div class="panel-heading sm_hide" style="background-color:#fff;">
 
                                     <div class="pull-left">
                                         <h4>My Cart</h4>
@@ -70,8 +70,8 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 
 								<input type="hidden" name="product_id" id="product_id<?php echo $cnt; ?>"  value="<?php echo $productslist['item_id']; ?>">
 
-								<div class="loop" style="border-top: 1px solid #ddd;">
-                                <div class="panel-body">
+								<div class="loop crt_item" style="">
+                                <div class="panel-body pad_car_bo">
                                     <table class="table borderless">
 
                                         <tbody>
@@ -83,7 +83,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 
                                                     </div>
                                                     <br>
-                                                   <div style="width:90px" class="input-group">
+                                                <div  class="input-group incr_btn">
                                                         <span class="input-group-btn">
 														<button style="width:20px;padding:6px;"type="button" onclick="productqty('<?php echo $cnt; ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
 												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
@@ -99,7 +99,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 													  <span style="color:red;" id="qtymesage<?php echo $cnt; ?>"></span>
                                                 </td>
                                                 <td class="text-left" style="width:250px;">
-                                                    <p class="" style="font-size:16px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&nbsp;<?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp;<?php echo isset($productslist['internal_memory'])?$productslist['internal_memory']:''; ?>&nbsp;<?php echo isset($productslist['ram'])?$productslist['ram'].' RAM':''; ?></p>
+                                                    <p class="" style="font-size:16px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></p>
                                                     <p><?php echo isset($productslist['brand'])?$productslist['brand']:''; ?></p>
                                                     <p><span style="font-size:20px;font-weight:500">₹<?php echo number_format($item_price,2 ); ?></span> &nbsp;&nbsp;
                                                         <span class="price-old" style="font-size:16px;color:#bbb">₹ <?php echo number_format($orginal_price, 2); ?></span>&nbsp;&nbsp;
@@ -119,11 +119,13 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
                                         <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span><?php echo isset($productslist['store_name'])?$productslist['store_name']:''; ?></span>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="<?php echo base_url('customer/deletecart/'.base64_encode($productslist['item_id']).'/'.base64_encode($productslist['id'])); ?>" type="button" class="btn btn-danger btn-small">Remove</a>
+                                        
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-								
+								<div style="position:absolute;top:15px;right:15px">
+									<a href="<?php echo base_url('customer/deletecart/'.base64_encode($productslist['item_id']).'/'.base64_encode($productslist['id'])); ?>" type="button" class=""><span style="background:#ddd;border-radius:50px;padding:5px;" class="glyphicon glyphicon-remove can_ord"></span></a>
+								</div>
                                 </div>
 								
 								<?php $total +=$productslist['total_price']; ?>
@@ -137,6 +139,15 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
                             </div>
                             <!--SHIPPING METHOD END-->
                         </div>
+						<div class="panel panel-default md_hide" style="padding:20px 30px;margin-top:40px;">
+							<div class="pull-left">
+								<h4>Grand Total</h4>
+							</div>
+							<div class="pull-right">
+								<h4>Rs 20052.00</h4>
+							</div>
+							<div class="clearfix"> &nbsp;</div>
+						</div>
                     </center>
                 </div>
                
@@ -162,7 +173,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div style="border:1px solid #ddd;padding:10px">
-				Pincode:&nbsp;&nbsp;<input style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;width:65px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value=""><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
+				Pincode:&nbsp;&nbsp;<input style="border-top:none;border-right:none;border-left:none;border-bottom:1px solid #ddd;font-size:17px;width:65px;" maxlength="6" onkeyup="delveryerrormsg();" id="checkpincode" name="checkpincode" type="text" value="<?php echo $this->session->userdata('pincode');?>"><span class="pull-right"><a class="site_col" onclick="getareapincode();" style="cursor:pointer">check</a></span>
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div>
@@ -224,6 +235,13 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
 				<a href="<?php echo base_url('customer/billing'); ?>" class="btn  btn-primary col-md-6 pull-right btn-sm pro_ad_btn"   ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</a>
 			</div>
 			</div>
+				<!--mobile responsive-->
+		
+			<div  class="md_hide proeed_chec_btn" style="">
+				 
+				<a href="<?php echo base_url('customer/billing'); ?>" class="btn btn-lg btn-primary btn-block col-xs-12  " ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</a>
+			</div>
+		<!--mobile responsive-->
 		
 		
 		<?php if($this->session->flashdata('productsuccess')): ?>

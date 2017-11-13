@@ -1,8 +1,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container bhoechie-tab-container">
-            <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 bhoechie-tab-container bhoechie-tab-container mar_res_t150">
+            <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu sm_hide">
                 <div class="list-group">
                     <div href="<?php echo base_url('customer/cart'); ?>" class="list-group-item text-center step_com">
 
@@ -24,7 +24,7 @@
 
                 </div>
             </div>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 bhoechie-tab">
 			
 			
 			

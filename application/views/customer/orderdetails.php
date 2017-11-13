@@ -92,7 +92,7 @@ tr th:last-child {
       </tr>
 	  <tr>
        <th>Item Name</th>
-        <td style="text-transform: uppercase;"><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?>&nbsp;<?php echo isset($item_details['colour'])?$item_details['colour']:'';  ?>&nbsp;<?php echo isset($item_details['internal_memeory'])?$item_details['internal_memeory']:'';  ?>&nbsp;<?php echo isset($item_details['ram'])?$item_details['ram'].' Ram':'';  ?></td>
+        <td style="text-transform: uppercase;"><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td>
         
       </tr>
 	  <tr>
@@ -134,11 +134,13 @@ tr th:last-child {
 		</td>
 		
       </tr>
+	  <?php if(isset($item_details['delivery_amount']) && $item_details['delivery_amount']!='' && $item_details['delivery_amount']!=0){ ?>
 	  <tr>
         <th>Delivery Amount</th>
         <td>₹ <?php echo isset($item_details['delivery_amount'])?$item_details['delivery_amount']:'';  ?></td>
         
       </tr>
+	  <?php } ?>
 	  <?php if($item_details['status_confirmation']==5){ ?>
 	   <tr>
        <th>Status</th>
@@ -156,7 +158,8 @@ tr th:last-child {
 		<div>
 			<p><strong>Name :<?php echo isset($item_details['name'])?$item_details['name']:'';  ?></strong></p>
 			<p><strong>Email Address :<?php echo isset($item_details['emal_id'])?$item_details['emal_id']:'';  ?></strong></p>
-			<p><strong>Address :<?php echo isset($item_details['address1'])?$item_details['address1']:'';  ?></strong></p>
+			<p><strong>Address :<?php echo isset($item_details['customer_address'])?$item_details['customer_address']:'';  ?></strong></p>
+			<p><strong>Land Mark :<?php echo isset($item_details['landmark'])?$item_details['landmark']:'';  ?></strong></p>
 			<p><strong>City :<?php echo isset($item_details['city'])?$item_details['city']:'';  ?></strong></p>
 			<p><strong>State :<?php echo isset($item_details['state'])?$item_details['state']:'';  ?></strong></p>
 			<p><strong>Pincode :<?php echo isset($item_details['pincode'])?$item_details['pincode']:'';  ?></strong></p>
@@ -241,7 +244,7 @@ tr th:last-child {
 						<a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>"><img style="height:70px;width:auto;" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>" /></a>
 					</div>
 					<div class="col-md-8">
-						<p><a style="text-transform: uppercase;" href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?>&nbsp;<?php echo isset($item_details['colour'])?$item_details['colour']:'';  ?>&nbsp;<?php echo isset($item_details['internal_memeory'])?$item_details['internal_memeory']:'';  ?>&nbsp;<?php echo isset($item_details['ram'])?$item_details['ram'].' Ram':'';  ?></td></a></p>
+						<p><a style="text-transform: uppercase;" href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
 						<?php if(isset($item_details['color']) && $item_details['color']!=''){ ?>
 						<div>Color: <?php echo isset($item_details['color'])?$item_details['color']:'';  ?></div>
 						<?php } ?>
@@ -330,22 +333,8 @@ tr th:last-child {
 					
 					<?php if(isset($item_details['status_deliverd']) && $item_details['status_deliverd']!=4){ ?>
 					<i class="font_span">
-					<?php $time = date("H:i:s a",strtotime($item_details['create_at']));
-					$begin1 = new DateTime('12:00 am');
-					$end1 = new DateTime('7:00 pm');
-					$begin2 = new DateTime('7:01 pm');
-					$end2 = new DateTime('11:59 pm');
-					$convertdate=date("g:i a", strtotime($time));
-					$now = new DateTime($convertdate);
-
-					if ($now >= $begin1 && $now <= $end1){
-						$times=' today 10 pm';
-					}else{
-						$times=' tomorrow 2pm';
-					}
 					
-					?>
-					Delivery expected by <?php echo isset($times)?$times:'';  ?>
+					Delivery expected by <?php echo isset($item_details['expected_delivery_time'])?$item_details['expected_delivery_time']:'';  ?>
 					<?php } ?>
 					</i>
 					

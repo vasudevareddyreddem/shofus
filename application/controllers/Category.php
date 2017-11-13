@@ -1191,6 +1191,24 @@ function filtersearch(){
 			}
   		
 
+	}
+	public function billingcheckpincodes()
+	{
+		$pinid=$this->input->post('pincode');
+		$pinode_list= $this->category_model->get_area_pincodes($pinid);
+		
+		//echo '<pre>';print_r($pinid);exit;
+		if (count($pinode_list)>0) {
+				$data['msg']=1;
+				$data['time']=$pinode_list['hours'];
+				echo json_encode($data);
+			}else{
+				$data['msg']=0;
+				$data['time']='';
+				echo json_encode($data);
+			}
+  		
+
 	}	
 }
 ?>

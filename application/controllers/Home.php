@@ -128,11 +128,61 @@ public function search_functionality(){
 	$post=$this->input->post();
 	$data1 = $this->home_model->get_search_functionality_products($post['searchvalue']);
 	$data2 = $this->home_model->get_search_functionality_sub_category($post['searchvalue']);
-	$data['detail']=array_merge($data1,$data2);
-	//echo "<pre>";print_r($data);exit;
-	$this->load->view('customer/search',$data);
+	$searchdata=array_merge($data1,$data2);
+	//echo "<pre>";print_r($searchdata);exit;
+	$i=1;foreach($searchdata as $searhitems){
+		if($searhitems['yes']==0){
+			$result[]=$searhitems['subcategory_name']. ' subcategory';
+		}else {
+		$result[]=$searhitems['item_name']. ' Mobiles';
+
+		}
+	$i++;} 
+//$text = "'".implode("',' ", $result)."'";
+if(isset($result) && count($result)>0){
+$datails=$result;
+}else{
+$datails=array('0'=>'No data Found');
+}
+echo json_encode($datails);	
+	
+	
 }
 
+ public function seraching()
+	{
+		$post=$this->input->post();
+		if($post['serachvalues']==''){
+			redirect('');
+		}
+		print_r($post);
+		$haystack = $post['serachvalues'];
+		$remove   = "Mobi";
+		$remve1   = "sub";
+		if( strpos( $haystack, $remove ) !== false ) {
+		$str= preg_replace('/\W\w+\s*(\W*)$/', '$1', $haystack);
+		}else if( strpos( $haystack, $remve1 ) !== false ) {
+			$str= preg_replace('/\W\w+\s*(\W*)$/', '$1', $haystack);
+		}else{
+			$str= $haystack;
+		}
+		if(isset($str) && $str=='Mobiles'){
+			$catid=$this->home_model->get_prodcut_id1($str);
+			if($item_id['item_id']!=''){
+			redirect('category/subcategoryview/'.base64_encode($catid['category_id']));
+			}else{
+				redirect();
+			}
+		}else{
+			$item_id=$this->home_model->get_prodcut_id($str);
+			if($item_id['item_id']!=''){
+			redirect('category/productview/'.base64_encode($item_id['item_id']));
+			}else{
+				redirect();
+			}
+		}
+}
+ 
  public function addtocart()
 
  {

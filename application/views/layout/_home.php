@@ -5,7 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="expires" content="timestamp">
-<?php header('Cache-Control: no cache'); ?>
+<meta name="description" content="Hyper-local eCommerce shopping site- buy mobiles, best android phones, computer accessories, oppo, vivo, samsung, MI. free delivery. Order now and get delivery within hours">
+<meta name="keywords" content="online Shopping,Electronics,Best Android Mobiles, Free Deliver within Hours, Mobiles,Online shopping stores in Hyderabad">
+
+<?php header('Cache-Control: no cache');
+header("Cache-Control: no-store, no-cache, must-revalidate");
+header("Pragma: no-cache");
+ ?>
 <title>Cart In Hours::</title>
 <meta name="google-site-verification" content="2w3VPtkCsjKGCanUFQJQa8jA3RFc70vxEjKmHulkQlg" />
 <link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico" >

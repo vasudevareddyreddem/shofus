@@ -62,7 +62,7 @@
                                                     
                                                 </td>
                                                 <td class="text-left" style="width:250px;">
-                                                    <p class="" style="font-size:17px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&nbsp;<?php echo isset($productslist['product_code'])?$productslist['product_code']:''; ?></p>
+                                                    <p class="" style="font-size:17px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></p>
                                                     <p><?php echo isset($productslist['brand'])?$productslist['brand']:''; ?></p>
                                                     <p>
 													<span style="font-size:20px;font-weight:500">₹<?php echo number_format($productslist['total_price'], 2); ?></span> &nbsp;&nbsp;

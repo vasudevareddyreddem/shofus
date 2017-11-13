@@ -32,12 +32,27 @@ class Home_model extends CI_Model
 	return $this->db->get()->row_array();
 	}
 	
+	/*public function renamepurpose_items_ids()
+	{
+	$this->db->select('products.item_id,products.item_name,products.ram,products.colour,products.internal_memeory')->from('products');
+
+	return $this->db->get()->result_array();
+	//echo $this->db->last_query();exit; 
+
+	}
+	public function update_names($id,$name)
+	{
+	$sql1="UPDATE products SET item_name ='".$name."' WHERE item_id = '".$id."'";
+       	return $this->db->query($sql1);
+
+	}*/
 	public function get_search_functionality_products($areaid)
 	{
 	$this->db->select('products.item_id,products.item_name,products.ram,products.colour,products.internal_memeory,products.yes,subcategories.subcategory_id,subcategories.subcategory_name,subcategories.category_id')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
 	//$this->db->where('item_name',$areaid);
-	$this->db->like('item_name', $areaid);
+	$this->db->or_like('item_name', $areaid);
+	$this->db->or_like('ram', $areaid);
 	$this->db->where('products.item_status',1);
 	return $this->db->get()->result_array();
 	//echo $this->db->last_query();exit; 
@@ -560,6 +575,26 @@ public function updateforgotstatus($email)
 	
 }	
 
+public function get_prodcut_id($name)
+{
+	$this->db->select('products.item_id')->from('products');
+	$this->db->like('item_name', $name);
+	return $this->db->get()->row_array();
+}
+public function get_prodcut_id1($name)
+{
+	$this->db->select('subcategories.subcategory_id,subcategories.subcategory_name,subcategories.category_id')->from('subcategories');
+	$this->db->where('subcategory_name', $name);
+	$this->db->where('status',1);
+	return $this->db->get()->row_array();
+}
+public function get_prodcut_id2($name,$colour)
+{
+	$this->db->select('products.item_id')->from('products');
+	$this->db->where('item_name', $name);
+	$this->db->where('colour', $colour);
+	return $this->db->get()->row_array();
+}
 public function updateforgotstatus1($email)
 {
 	$data = array('forgot_status' => 0);

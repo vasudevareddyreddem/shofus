@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 bhoechie-tab-container ">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 bhoechie-tab-container mar_res_t150 ">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu sm_hide">
                 <div class="list-group">
                     <div href="#" class="list-group-item text-center step_com " >
 
@@ -24,7 +24,7 @@
                 </div>
             </div>
 			
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 bhoechie-tab">
 			<div id="sucessmsg" style="display:none;"></div>
 			
 			
@@ -61,6 +61,7 @@
 					<div><b><?php echo $addlist['name']; ?></b></div>	
 					<div><?php echo $addlist['address1']; ?></div>	
 					<div><?php echo $addlist['address2']; ?>,</div>	
+					<div><?php echo $addlist['landmark']; ?>,</div>	
 					<div><?php echo $addlist['city']; ?>-<?php echo $addlist['pincode']; ?></div>	
 					<div><?php echo $addlist['state']; ?></div>
 					<br>					
@@ -134,8 +135,12 @@
 				<input type="text" class="mat-input" id="address2" name="address2" value="<?php echo isset($customerdetail['address2'])?$customerdetail['address2']:'';?>" >
 		    </div>
 			<div class="mat-div form-group ">
+				 <label for="first-name" class="mat-label">Land Mark</label>
+				<input type="text" class="mat-input" id="landmark" name="landmark" value="<?php echo isset($customerdetail['landmark'])?$customerdetail['landmark']:'';?>" >
+		    </div>
+			<div class="mat-div form-group ">
 				 <label for="first-name" class="mat-label">Pincode</label>
-				<input type="text" class="mat-input" onkeyup="getpinvalidation(this.value)" id="pincode" name="pincode" value="" >
+				<input type="text" class="mat-input" onkeyup="getpinvalidation(this.value)" id="pincode" name="pincode" value="" autocomplete="off" >
 				<input type="hidden" class="mat-input" id="pinvalu" name="pinvalu" value="" >
 		    </div>
 			<div class="mat-div form-group ">
@@ -155,21 +160,29 @@
 			</div>
 			
 			
-             <a href="<?php echo base_url('customer/cart'); ?>" class="btn btn-primary btn-sm "> Back</a>
-          <button  class="pull-right btn btn-primary btn-sm"  id="addbillingadd" type="submit">Proceed to Checkout</span><span aria-hidden="true">&rarr;</span></button>
+             <a href="<?php echo base_url('customer/cart'); ?>" class="btn btn-primary btn-sm sm_hide"> Back</a>
+          <button  class="pull-right btn btn-primary btn-sm sm_hide"  id="addbillingadd" type="submit">Proceed to Checkout</span><span aria-hidden="true">&rarr;</span></button>
          
           </form>
         </div>
       
            </center>
+		   
       </div>
-
+	  
                
 
                
             </div>
 			
         </div>
+
+			<!--mobile responsive-->
+			<div  class="md_hide proeed_chec_btn" style="">
+				 
+				<a href="<?php echo base_url('customer/billing'); ?>" class="btn btn-lg btn-primary btn-block col-xs-12  " ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</a>
+			</div>
+		<!--mobile responsive-->
 		
 		<div class="col-md-4 sm_hide pull-right" style=" border:1px solid #ddd; ;background-color:#fff;padding:5px; width:32%" >
 				<span><img id="" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
@@ -236,6 +249,8 @@
 			
 			
 			<div class="clearfix">&nbsp;</div>
+			
+			<div class="clearfix">&nbsp;</div>
 	
 			
 			</div>
@@ -249,9 +264,10 @@
 <script>
 function Formvalidations(){
 	var pincode=$('#pinvalu').val();
-	if(pincode==0){
+	var pin=$('#pincode').val();
+	if(pincode==0 && pin!=''){
 		$('#sucessmsg').show();
-		$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_war"> We donnot have service in your pincode <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+		$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_war"> We donot have service in your pincode <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 		return false;
 		 document.getElementById('addbillingadd').disabled = false;
 	}else{
@@ -266,7 +282,7 @@ function Formvalidations(){
 function getpinvalidation(id){
 	if(id.length>5){
 	jQuery.ajax({
-        url: "<?php echo site_url('category/checkpincodes');?>",
+        url: "<?php echo site_url('category/billingcheckpincodes');?>",
         type: 'post',
           data: {
           form_key : window.FORM_KEY,
@@ -408,6 +424,8 @@ function changebillingaddress(aid,cnt){
 				$('#pincode').val(data.pincode);
 				$('#city').val(data.city);
 				$('#state').val(data.state);
+				$('#landmark').val(data.landmark);
+				$('#pinvalu').val(1);
 				
 			}else{
 				
@@ -477,6 +495,19 @@ function changebillingaddress(aid,cnt){
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
 					message: 'Address2 wont allow <> [] = % '
+					}
+				
+				}
+			},
+			landmark: {
+				validators: {
+					notEmpty: {
+						message: 'Land Mark is required'
+					},
+					
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message: 'Land Mark wont allow <> [] = % '
 					}
 				
 				}

@@ -849,6 +849,7 @@ class Customer extends Front_Controller
 				'address1'=>$getaddress['address1'],
 				'pincode'=>$getaddress['pincode'],
 				'address2'=>$getaddress['address2'],
+				'landmark'=>$getaddress['landmark'],
 				'city'=>$getaddress['city'],
 				'state'=>$getaddress['state'],
 				'area'=>isset($getaddress['area'])?$getaddress['area']:'',
@@ -867,6 +868,7 @@ class Customer extends Front_Controller
 			'mobile'=>$post['mobile'],
 			'address1'=>$post['address1'],
 			'address2'=>$post['address2'],
+			'landmark'=>$post['landmark'],
 			'pincode'=>$post['pincode'],
 			'city'=>$post['city'],
 			'state'=>$post['state'],
@@ -882,6 +884,7 @@ class Customer extends Front_Controller
 			'mobile'=>$post['mobile'],
 			'address1'=>$post['address1'],
 			'address2'=>$post['address2'],
+			'landmark'=>$post['landmark'],
 			'pincode'=>$post['pincode'],
 			'city'=>$post['city'],
 			'state'=>$post['state'],
@@ -897,6 +900,7 @@ class Customer extends Front_Controller
 			'address1'=>$post['address1'],
 			'address2'=>$post['address2'],
 			'pincode'=>$post['pincode'],
+			'landmark'=>$post['landmark'],
 			'city'=>$post['city'],
 			'state'=>$post['state'],
 			'area'=>isset($post['area'])?$post['area']:'',
@@ -912,6 +916,7 @@ class Customer extends Front_Controller
 		'address1'=>$post['address1'],
 		'pincode'=>$post['pincode'],
 		'address2'=>$post['address2'],
+		'landmark'=>$post['landmark'],
 		'city'=>$post['city'],
 		'state'=>$post['state'],
 		'area'=>isset($post['area'])?$post['area']:'',
@@ -939,7 +944,7 @@ class Customer extends Front_Controller
   
 
  public function orderpayment(){
-	 if($this->session->userdata('userdetails'))
+	if($this->session->userdata('userdetails'))
 	 {
 		$customerdetails=$this->session->userdata('userdetails');
 		
@@ -1039,6 +1044,18 @@ class Customer extends Front_Controller
 				$cart_items= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 				//echo '<pre>';print_r($cart_items);exit;
 				foreach($cart_items as $items){
+						$time = date("H:i:s a",strtotime('Y-m-d H:i:s'));
+						$begin1 = new DateTime('12:00 am');
+						$end1 = new DateTime('7:00 pm');
+						$begin2 = new DateTime('7:01 pm');
+						$end2 = new DateTime('11:59 pm');
+						$convertdate=date("g:i a", strtotime($time));
+						 $now = new DateTime($convertdate);
+						if ($now >= $begin1 && $now <= $end1){
+							$times=' today 10 pm';
+						}else{
+							$times=' tomorrow 2pm';
+						}
 					$orderitems=array(
 						'order_id'=>$saveorder,
 						'item_id'=>$items['item_id'],
@@ -1051,10 +1068,12 @@ class Customer extends Front_Controller
 						'payment_type'=>$getsaveorderstatus['payment_type'],
 						'amount_status_paid'=>$getsaveorderstatus['amount_status'],
 						'commission_price'=>$items['commission_price'],
+						'expected_delivery_time'=>$times,
 						'customer_email'=>$customerdetails['cust_email'],
 						'customer_phone'=>$billingaddress['mobile'],
 						'customer_address'=>$billingaddress['address1'].' '.$billingaddress['address2'],
 						'pincode'=>$billingaddress['pincode'],
+						'landmark'=>$billingaddress['landmark'],
 						'city'=>$billingaddress['city'],
 						'state'=>$billingaddress['state'],
 						'order_status'=>1,
@@ -1093,6 +1112,7 @@ class Customer extends Front_Controller
 						'mobile'=>$billingaddress['mobile'],
 						'address1'=>$billingaddress['address1'],
 						'address2'=>$billingaddress['address2'],
+						'landmark'=>$billingaddress['landmark'],
 						'city'=>$billingaddress['city'],
 						'pincode'=>$billingaddress['pincode'],
 						'state'=>$billingaddress['state'],
@@ -1152,7 +1172,6 @@ class Customer extends Front_Controller
 		
 		$billingaddress=$this->session->userdata('billingaddress');	
 		$post=$this->input->post();
-		//echo '<pre>';print_r($post);exit;
 				$ordersucess=array(
 					'customer_id'=>$customerdetails['customer_id'],
 					'transaction_id'=>'',
@@ -1174,6 +1193,19 @@ class Customer extends Front_Controller
 				$getsaveorderstatus= $this->customer_model->get_status_save_order_success($saveorder);
 				
 				foreach($cart_items as $items){
+					$time = date("H:i:s a",strtotime('Y-m-d H:i:s'));
+					$begin1 = new DateTime('12:00 am');
+					$end1 = new DateTime('7:00 pm');
+					$begin2 = new DateTime('7:01 pm');
+					$end2 = new DateTime('11:59 pm');
+					$convertdate=date("g:i a", strtotime($time));
+					 $now = new DateTime($convertdate);
+					if ($now >= $begin1 && $now <= $end1){
+						$times=' today 10 pm';
+					}else{
+						$times=' tomorrow 2pm';
+					}
+					
 					$orderitems=array(
 						'order_id'=>$saveorder,
 						'item_id'=>$items['item_id'],
@@ -1189,9 +1221,10 @@ class Customer extends Front_Controller
 						'customer_email'=>$customerdetails['cust_email'],
 						'customer_phone'=>$billingaddress['mobile'],
 						'customer_address'=>$billingaddress['address1'].' '.$billingaddress['address2'],
+						'landmark'=>$billingaddress['landmark'],
+						'expected_delivery_time'=>$times,
 						'area'=>$billingaddress['area'],
 						'time'=>$this->session->userdata('time'),
-						
 						'city'=>$billingaddress['city'],
 						'pincode'=>$billingaddress['pincode'],
 						'state'=>$billingaddress['state'],
@@ -1239,6 +1272,7 @@ class Customer extends Front_Controller
 						'mobile'=>$billingaddress['mobile'],
 						'address1'=>$billingaddress['address1'],
 						'address2'=>$billingaddress['address2'],
+						'landmark'=>$billingaddress['landmark'],
 						'city'=>$billingaddress['city'],
 						'pincode'=>$billingaddress['pincode'],
 						'state'=>$billingaddress['state'],
@@ -1524,6 +1558,7 @@ class Customer extends Front_Controller
 	$mobilecheck = $this->customer_model->mobile_check($post['mobile']);
 	//echo '<pre>';print_r($mobilecheck);
 	if(count($emailcheck)==0 && count($mobilecheck)==0){
+		$this->session->set_userdata('registervalues','');
 		$password=md5($post['password']);
 		$newpassword=md5($post['confirm_password']);
 		if($password == $newpassword ){
@@ -1700,8 +1735,8 @@ class Customer extends Front_Controller
 				$this->session->set_flashdata('error',"Mobile Number already exists.Please use another Mobile Number");
 			}			
 		
-	
-		redirect('customer');	
+		$this->session->set_userdata('registervalues',$post);
+		redirect('customer/index',$data);	
 		
 	}
 
@@ -2558,19 +2593,11 @@ class Customer extends Front_Controller
 
 		
 	}
-	if(isset($data) && $data!=''){
+	if(isset($data) && count($data)>0){
 		$this->template->write_view('content', 'customer/nearstores',$data);
 	}else{
 		$data['seller_list']=array();
-		$details=$this->customer_model->get_all_seller_details();
-			if(count($details)>0){
-				foreach ($details as $lis){
-				//echo '<pre>';print_r($lis);exit;
-				$data['seller_list'][$lis['seller_id']]=$lis;
-				$data['seller_list'][$lis['seller_id']]['avg']=$this->customer_model->product_reviews_avg($lis['seller_id']);
-				$data['seller_list'][$lis['seller_id']]['categories']=$this->customer_model->product_categories_list($lis['seller_id']);
-				}
-			}
+		
 		$this->template->write_view('content', 'customer/nearstores',$data);
 	}
 	
