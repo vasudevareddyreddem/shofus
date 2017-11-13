@@ -894,7 +894,7 @@
 					</div>
 				</div>
 				<?php } if(count($discount_list)>0){ ?>
-				<div class="panel panel-primary">
+				<!--<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
 					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -911,7 +911,7 @@
 						<?php } ?>
 						</div>
 					</div>
-				</div>
+				</div>-->
 				<?php } ?>
 				<?php if(count($ram_list)>0){ ?>
 				<div class="panel panel-primary">
@@ -1331,7 +1331,7 @@
 					
 					
 					<?php } ?>
-				<div class="panel panel-primary">
+				<!--<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingOne">
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -1352,7 +1352,7 @@
 							</select>
 						</div>
 					</div>
-				</div>
+				</div>-->
 				
 				
 				

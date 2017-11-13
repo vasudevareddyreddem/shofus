@@ -73,11 +73,11 @@
 
 </style>
 
-<div class="pad_bod"  >
+<div class="pad_bod" style="margin:0;padding:0; " >
 <div id="sucessmsg" style="display:none;"></div>
 		<div class="" >
 		
-		<div class="col-md-3 z_ind sing_pro" id="social-float">
+		<div class="col-md-3 z_ind " style="position:fixed;top:40; " id="social-float">
 			<ul id="glasscase" class="gc-start">
                     <li>
 						<img class="img-responsive" src="<?php echo base_url('uploads/products/'.$products_list['item_image']); ?>"/>
@@ -107,7 +107,7 @@
 		</div>
         <!-- End Image List -->
 
-        <div class="col-md-5 col-md-offset-3 sm_mar_t20" id="con_scrol">
+        <div class="col-md-5 col-md-offset-3 " id="con_scrol">
           <?php if($this->session->flashdata('success')): ?>
 			<div class="alt_cus"> <div class="alert_msg1 animated slideInUp btn_suc "> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 			<?php endif; ?>
@@ -198,15 +198,15 @@
 								<?php //echo '<pre>';print_r($sameproducts_color_list);exit;
 								foreach ($sameproducts_color_list as $lists){ ?>
 								<?php if($lists['item_id']==$products_list['item_id']){ ?>
-								<a class="col-md-2 col-xs-3 col-sm-2  active_color" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
+								<a class="col-md-2 active_color" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
 								<?php }else if($lists['colour']==$products_list['colour']) { ?>
-								<a class="col-md-2  active_color" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
+								<a class="col-md-2 active_color" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
 								<?php }else{  ?>
-								<a class="col-md-2 col-xs-3 col-sm-2 img_col " style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
+								<a class="col-md-2 img_col " style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
 								<?php   } ?>
@@ -411,15 +411,9 @@
 				</ul>
 			</div>
 			<div class="clearfix">&nbsp;</div>
-			<div class="sm_hide" >
+			<div>
 				<a class="btn btn-warning col-md-6 btn-sm pro_ad_btn" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" type="submit" ><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
 				<button class="btn btn-sm  btn-primary col-md-6 pull-right pro_ad_btn"  type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
-			</div>
-			<div class=" ">
-			<div class="md_hide " >
-				<a style="position:fixed;bottom:0;left:0;z-index:1024"class="btn  btn-warning col-sm-6 col-xs-6 col-md-6 " onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" type="submit" ><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
-				<button style="position:fixed;bottom:0;right:0;z-index:1024" class="btn   btn-danger col-sm-6 col-xs-6 col-md-6 "  type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
-			</div>
 			</div>
 			
 			
