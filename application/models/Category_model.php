@@ -476,6 +476,7 @@ class Category_model extends MY_Model
 		}
 		$return['filterslist'][] = $this->get_subcategory_filers_products_list_alllist($brands,$discount,$offerss,$ram,$colour,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$minamount,$maxamount,$catid,$subcatid);
 		//echo $this->db->last_query();exit;
+		
 		//echo '<pre>';print_r($return);exit;
 		if(!empty($return))
 		{
@@ -487,9 +488,10 @@ class Category_model extends MY_Model
 	public function get_subcategory_filers_products_list_alllist($b,$d,$f,$ram,$colour,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$min,$max,$cid,$subcatid){
 		
 	$min_amt=(($min)-1);
+	$max_amt=(($max)+1);
 		//$aray=array($b);
 		$this->db->select('*')->from('products');
-		$this->db->where('item_cost <=', $max);
+		$this->db->where('item_cost <=', $max_amt);
 		$this->db->where('item_cost >=', $min_amt);
 		
 		if($b!='NULL'){
@@ -1647,6 +1649,17 @@ class Category_model extends MY_Model
   	$this->db->select('*')->from('products');
 	$this->db->where('products.item_id',$itemid);
 	return $this->db->get()->row_array();
+ } 
+ public function get_all_previous_data_categor_filter($ip)
+ {
+  	$this->db->select('*')->from('fliter_search');
+	$this->db->where('Ip_address',$ip);
+	return $this->db->get()->result_array();
+ } 
+ public function delete_all_previous_data_categor_filter($id,$ip)
+ {
+  	$sql1="DELETE FROM fliter_search WHERE Ip_address = '".$ip."' AND  id = '".$id."'";
+	return $this->db->query($sql1);
  }
 	
 }

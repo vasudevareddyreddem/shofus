@@ -558,40 +558,64 @@ class Customerapi_model extends MY_Model
 	$this->db->group_by('fliter_search.color');
 	$querys=$this->db->get()->result_array();
 		foreach ($querys as $listing){
-			//echo $listing->cusine;
-			//echo '<pre>';print_r($listing);
-			/*if($listing['cusine']!=''){
-			$dat['cusine'][]=$this->get_cusinelist($listing['cusine'],$listing['category_id']);
-			}
-			if($listing['restraent']!=''){
-			$dat['res'][]=$this->get_restraentlist($listing['restraent'],$listing['category_id']);
-			}*/
-			if($listing['offers']!=''){
-			$dat['offers'][]= $this->get_offersapi($listing['offers'],$listing['category_id'],$listing['status']);
-			}
 			if($listing['brand']!=''){
-			$dat['brand'][] = $this->get_brandsapi($listing['brand'],$listing['category_id'],$listing['status']);
+			$brand[] = $listing['brand'];	
 			}
-			if($listing['discount']!=''){
-			$dat['discount'][] = $this->get_discountsapi($listing['discount'],$listing['category_id'],$listing['status']);
+			if($listing['offers']!=''){
+			$offers[] =$listing['offers'];
+			
+			}if($listing['discount']!=''){
+			$discount[] =$listing['discount'];
+			
 			}
-			if($listing['color']!=''){
-			$dat['color'][] = $this->get_colorsapi($listing['color'],$listing['category_id'],$listing['status']);
-			}
-			if($listing['size']!=''){
-			$dat['size'][] = $this->get_sizesapi($listing['size'],$listing['category_id']);
-			}
-			$dat['mini_amount'][] = $this->get_amountapi($listing['mini_amount'],$listing['max_amount'],$listing['category_id'],$listing['status']);
-			//echo $this->db->last_query();exit;
-			if($listing['status']!=''){
-			$dat['status'][] = $this->get_statusapi($listing['status'],$listing['category_id']);
-			}
-		}
-		if(!empty($dat))
-		{
-		return $dat; 
+			$minamount = $listing['mini_amount'];
+			$maxamount = $listing['max_amount'];
+			$catid = $listing['category_id'];
+			
 		}
 		
+		if(isset($brand) && count($brand)>0 ){
+			$brands=implode ('","', $brand );
+		}else{
+		$brands='NULL';
+
+		}
+		if(isset($offers) && count($offers)>0){
+			$offerss=implode('","', $offers);
+		}else{
+		$offerss='NULL';
+		}
+		if(isset($discount) && count($discount)>0 ){
+			$discount=implode('","', $discount);
+		}else{
+		$discount='NULL';
+		}
+		$data['list'][] = $this->category_wise_filters_search($brands,$discount,$offerss,$minamount,$maxamount,$catid);
+		//echo $this->db->last_query();exit;
+		if(!empty($data))
+		{
+		return $data; 
+		}
+		
+	}
+	public function category_wise_filters_search($b,$d,$f,$min,$max,$cid){
+		$min_amt=(($min)-1);
+		$this->db->select('*')->from('products');
+		$this->db->where('item_cost <=', $max);
+		$this->db->where('item_cost >=', $min_amt);
+		if($b!='NULL'){
+			$this->db->where_in('brand','"'.$b.'"',false);
+		
+		}if($f!='NULL'){
+				$this->db->where_in('offer_percentage','"'.$f.'"',false);
+		}if($d!='NULL'){
+			$this->db->where_in('discount','"'.$d.'"',false);
+		}
+		
+		$this->db->where('item_status',1);
+		$this->db->where('category_id',$cid);
+		
+		return $this->db->get()->result_array();
 	}
 	public function get_cusinelist($cus,$cid){
 		
