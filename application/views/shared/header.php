@@ -327,7 +327,7 @@
 			<span class="medias text-center"><a href="<?php echo base_url('customer/nearstores'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
 				<p>Near by stores</p></a>
 			</span>
-			<span class="medias dropdown mega-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
+			<span class="medias dropdown mega-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/catag.png" /></i>
 				<p>categories</p></a>
 				 <ul class="dropdown-menu">
                   <li>
