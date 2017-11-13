@@ -327,7 +327,56 @@
 			<span class="medias text-center"><a href="<?php echo base_url('customer/nearstores'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
 				<p>Near by stores</p></a>
 			</span>
+			<span class="medias dropdown mega-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
+				<p>categories</p></a>
+				 <ul class="dropdown-menu">
+                  <li>
+                    <div class="mega-menu-content">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+			</span>
+			
 		 </div>
+		 
 		 <!--responsive -->
 		 <div class="md_hide" style="position:absolute;top:10px;right:10px;font-size:22px;color:#fff">
 		 <span class="pad_le">
@@ -354,8 +403,8 @@
                   <div class=" smallsearch">
                     <div class="cart_search">
 					<form id="searchform1" action="<?php echo base_url('home/seraching'); ?>" method="post">
-                    
-					  <input type="text" name="serachvalues" id="tags1"  onkeyup="searchfunctionss(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                    <span class="md_hide pos_sea_btn"><i class="fa fa-search font_si" aria-hidden="true"></i></span>
+					  <input type="text" name="serachvalues" id="tags1"  onkeyup="searchfunctionss(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands" autocomplete="off" spellcheck="false">
                     
 					  <!--<button type="submit" class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>-->
                     </form>
@@ -432,13 +481,13 @@
 		 <div class="md_hide" style="position:absolute;top:20px;right:10px;font-size:22px;color:#fff">
 		 
 		 <?php if($this->session->userdata('userdetails')){ ?>
-			<span class="medias text-center shopping_cart" style="position:relative;"><a href="<?php echo base_url('customer/cart'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
-				<p>Cart</p></a>
+		
 				<?php if(count($cartitemcount)>0){ ?>
 						<a href="<?php echo base_url('customer/cart');?>" ><span class="pad_le">
-						<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-						</span></a>
-						<?php echo count($cartitemcount); ?>
+						<i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php echo count($cartitemcount); ?></sup>
+						</span>
+						
+						</a>
 						<?php }else{  ?>
 							<a href="<?php echo base_url('customer/cart');?>" ><span id="supcounts" class="pad_le">
 							<i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -505,6 +554,12 @@
     <a href="<?php echo base_url('customer/trackorders');?>"><span class="glyphicon glyphicon-road"></span> My Track List</a>
     <a href="<?php echo base_url('customer/account');?>"><span class="glyphicon glyphicon-user
 "></span> Account</a>
+<a href="<?php echo base_url('customer/account');?>"><span class="glyphicon glyphicon-off
+
+"></span> Logout</a>
+<a href="<?php echo base_url('customer/account');?>"><span class="glyphicon glyphicon-off
+
+"></span> Login</a>
 </div>
 <!-- the overlay element --> 
 <script src="<?php echo base_url(); ?>assets/customer/js/select.js"></script>

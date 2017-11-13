@@ -1024,7 +1024,7 @@ a.offers_link {
 }
 .dropdown .dropdown-menu {
 	position: absolute;
-	top: 100%;
+	top: 77%;
 	display: none;
 	background-color: #fff;
 	color: #333;
@@ -6224,6 +6224,7 @@ position: relative;}
 .proeed_chec_btn{
 	position:fixed;
 	bottom:0;
+	left:0;
 	width:100%;
 	/* padding:0px 10px; */
 	z-index:1024;
@@ -6313,8 +6314,9 @@ position: relative;}
 	.md_hide{
 	display:block;
 }
-.pad_le{
+.pad_le {
 	padding:5px 20px;
+	color:#fff;
 }
 	.res_log{
 		padding:60px 30px;

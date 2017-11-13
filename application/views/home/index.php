@@ -72,22 +72,24 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
   <div class="" id="location_seacrhs">
 	
 	
-	<section class="md_hide">
+	<section class="">
       <div class=" slider-items-products container_main">
        
 		   <div id="best-seller" class="product-flexslider hidden-buttons">
 				  <div class="slider-items slider-width-col4 products-grid" >
 				  <?php foreach ($subcaregory_list as $list){
 					  ?>
-				<a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id'])); ?>"><div class="item" >
+				<a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id'])); ?>">
+				<div class="item" >
 				  <div class=" box-product-outer" >
 					<div class="box-product">
-					   <img  class="img-responsive" src="<?php echo base_url('assets/subcategoryimages/'.$list['subcategory_image']); ?>"> 
+					   <img  class="" src="<?php echo base_url('assets/subcategoryimages/'.$list['subcategory_image']); ?>"> 
 					<p class="text-center"><?php echo isset($list['subcategory_name'])?$list['subcategory_name']:''; ?></p>
 					</div>
 					
 				  </div>
-				</div></a>
+				</div>
+				</a>
 				
 				  <?php } ?>
 				
