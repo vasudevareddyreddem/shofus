@@ -422,55 +422,55 @@ class Category_model extends MY_Model
 		
 		}
 		if(isset($brand) && count($brand)>0 ){
-			$brands=implode ("','", $brand );
+			$brands=implode ('","', $brand );
 		}else{
 		$brands='NULL';
 
 		}
 		if(isset($offers) && count($offers)>0){
-			$offerss=implode("','",$offers);
+			$offerss=implode('","',$offers);
 		}else{
 		$offerss='NULL';
 		}
 		if(isset($discount) && count($discount)>0 ){
-			$discount=implode("','",$discount);
+			$discount=implode('","',$discount);
 		}else{
 		$discount='NULL';
 		}
 		if(isset($ram) && count($ram)>0 ){
-			$ram=implode("','",$ram);
+			$ram=implode('","',$ram);
 		}else{
 		$ram='NULL';
 		}
 		if(isset($colour) && count($colour)>0 ){
-			$colour=implode("','",$colour);
+			$colour=implode('","',$colour);
 		}else{
 		$colour='NULL';
 		}
 		if(isset($os) && count($os)>0 ){
-			$os=implode("','",$os);
+			$os=implode('","',$os);
 		}else{
 		$os='NULL';
 		}
 		if(isset($sim_type) && count($sim_type)>0 ){
-			$sim_type=implode("','",$sim_type);
+			$sim_type=implode('","',$sim_type);
 		}else{
 		$sim_type='NULL';
 		}
 		if(isset($camera) && count($camera)>0 ){
-			$camera=implode("','",$camera);
+			$camera=implode('","',$camera);
 		}else{
 		$camera='NULL';
 		}if(isset($internal_memeory) && count($internal_memeory)>0 ){
-			$internal_memeory=implode("','",$internal_memeory);
+			$internal_memeory=implode('","',$internal_memeory);
 		}else{
 		$internal_memeory='NULL';
 		}if(isset($screen_size) && count($screen_size)>0 ){
-			$screen_size=implode("','",$screen_size);
+			$screen_size=implode('","',$screen_size);
 		}else{
 		$screen_size='NULL';
 		}if(isset($Processor) && count($Processor)>0 ){
-			$Processor=implode("','",$Processor);
+			$Processor=implode('","',$Processor);
 		}else{
 		$Processor='NULL';
 		}
@@ -485,203 +485,41 @@ class Category_model extends MY_Model
 	}
 	
 	public function get_subcategory_filers_products_list_alllist($b,$d,$f,$ram,$colour,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$min,$max,$cid,$subcatid){
-		//echo $b;exit;
-		$min_amt=(($min)-1);
-		if($b!='NULL' && $d!='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f') AND offer_amount IN ('$d' ) AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os') AND sim_type IN ('$sim_type') AND camera IN ('$camera') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
 		
-		}else if($b!='NULL' && $d!='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f') AND offer_amount IN ('$d' ) AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os') AND sim_type IN ('$sim_type') AND camera IN ('$camera') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size')";
-		}else if($b!='NULL' && $d!='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f') AND offer_amount IN ('$d' ) AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os') AND sim_type IN ('$sim_type') AND camera IN ('$camera') AND internal_memeory IN ('$internal_memeory')";
-		}else if($b!='NULL' && $d!='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f') AND offer_amount IN ('$d' ) AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os') AND sim_type IN ('$sim_type') AND camera IN ('$camera')";
-		}else if($b!='NULL' && $d!='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f') AND offer_amount IN ('$d' ) AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os') AND sim_type IN ('$sim_type')";
-		}else if($b!='NULL' && $d!='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f') AND offer_amount IN ('$d' ) AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os')";
-		}else if($b!='NULL' && $d!='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f') AND offer_amount IN ('$d' ) AND ram IN ('$ram') AND colour IN ('$colour')";
-		}else if($b!='NULL' && $d!='NULL' && $f!='NULL'&& $ram!='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f') AND offer_amount IN ('$d' ) AND ram IN ('$ram')";
-		}else if($b!='NULL' && $d!='NULL' && $f!='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f') AND offer_amount IN ('$d' )";
-		}else if($b!='NULL' && $d!='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d' )";
-		}else if($b!='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max ";
-		}else if($b!='NULL' && $d!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d' )";
-		}else if($b!='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour')";
-		}else if($b!='NULL' && $d!='NULL' && $f=='NULL'&& $ram=='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d') AND colour IN ('$colour')";
-		}else if($b!='NULL' && $d!='NULL' && $f=='NULL'&& $ram=='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d') AND colour IN ('$colour') AND Processor IN ('$Processor')";
-		}else if($b!='NULL' && $d!='NULL' && $f=='NULL'&& $ram=='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d') AND colour IN ('$colour') AND screen_size IN ('$screen_size')";
-		}else if($b!='NULL' && $d!='NULL' && $f=='NULL'&& $ram=='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d') AND colour IN ('$colour') AND screen_size IN ('$screen_size') AND internal_memeory IN ('$internal_memeory') ";
-		}else if($b!='NULL' && $d!='NULL' && $f=='NULL'&& $ram=='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d') AND colour IN ('$colour') AND screen_size IN ('$screen_size') AND internal_memeory IN ('$internal_memeory') AND camera IN ('$camera') ";
-		}else if($b!='NULL' && $d!='NULL' && $f=='NULL'&& $ram=='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d') AND colour IN ('$colour') AND screen_size IN ('$screen_size') AND internal_memeory IN ('$internal_memeory') AND camera IN ('$camera') AND sim_type IN ('$sim_type') ";
-		}else if($b!='NULL' && $d!='NULL' && $f=='NULL'&& $ram=='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d') AND colour IN ('$colour') AND screen_size IN ('$screen_size') AND internal_memeory IN ('$internal_memeory') AND camera IN ('$camera')";
-		}else if($b!='NULL' && $d!='NULL' && $f=='NULL'&& $ram=='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d') AND colour IN ('$colour') AND screen_size IN ('$screen_size') AND internal_memeory IN ('$internal_memeory')";
-		}else if($b!='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND colour IN ('$colour') AND ram IN ('$ram') AND camera IN ('$camera')";
-		}else if($b!='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND colour IN ('$colour') AND ram IN ('$ram') AND camera IN ('$camera') AND os IN ('$os')";
-		}else if($b!='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND colour IN ('$colour') AND ram IN ('$ram') AND camera IN ('$camera') AND os IN ('$os') AND sim_type IN ('$sim_type')";
-		}else if($b!='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND colour IN ('$colour') AND ram IN ('$ram') AND camera IN ('$camera') AND os IN ('$os') AND sim_type IN ('$sim_type') AND internal_memeory IN ('$internal_memeory')";
-		}else if($b!='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND colour IN ('$colour') AND ram IN ('$ram') AND camera IN ('$camera') AND os IN ('$os') AND sim_type IN ('$sim_type') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size')";
-		}else if($b!='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND colour IN ('$colour') AND ram IN ('$ram') AND camera IN ('$camera') AND os IN ('$os') AND sim_type IN ('$sim_type') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
-		}else if($b!='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND colour IN ('$colour') AND ram IN ('$ram') AND camera IN ('$camera') AND os IN ('$os') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND colour IN ('$colour') AND ram IN ('$ram') AND camera IN ('$camera') AND os IN ('$os') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND colour IN ('$colour') AND camera IN ('$camera') AND os IN ('$os') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND camera IN ('$camera') AND os IN ('$os') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND os IN ('$os') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND screen_size IN ('$screen_size') AND Processor IN ('$Processor') AND os IN ('$os')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND Processor IN ('$Processor') AND os IN ('$os')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND os IN ('$os')";
-		}else if($b=='NULL' && $d=='NULL' && $f!='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os') AND sim_type IN ('$sim_type')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os') AND sim_type IN ('$sim_type') AND camera IN ('$camera')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os') AND sim_type IN ('$sim_type') AND camera IN ('$camera') AND internal_memeory IN ('$internal_memeory')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os') AND sim_type IN ('$sim_type') AND camera IN ('$camera') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os') AND sim_type IN ('$sim_type') AND camera IN ('$camera') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour') AND os IN ('$os') AND camera IN ('$camera') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour') AND camera IN ('$camera') AND internal_memeory IN ('$internal_memeory') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour') AND camera IN ('$camera') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour') AND screen_size IN ('$screen_size') AND Processor IN ('$Processor')";
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND offer_percentage IN ('$f') AND brand IN ('$b') AND ram IN ('$ram') AND colour IN ('$colour') AND Processor IN ('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram')  AND colour IN ('$colour') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram') AND colour IN ('$colour') AND os IN('$os')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram') AND colour IN ('$colour') AND os IN('$os') AND sim_type IN('$sim_type')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram') AND colour IN ('$colour') AND os IN('$os') AND sim_type IN('$sim_type') AND camera IN('$camera')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram') AND colour IN ('$colour') AND os IN('$os') AND sim_type IN('$sim_type') AND camera IN('$camera') AND internal_memeory IN('$internal_memeory')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram') AND colour IN ('$colour') AND os IN('$os') AND sim_type IN('$sim_type') AND camera IN('$camera') AND internal_memeory IN('$internal_memeory') AND screen_size IN('$screen_size')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram') AND colour IN ('$colour') AND os IN('$os') AND sim_type IN('$sim_type') AND camera IN('$camera') AND internal_memeory IN('$internal_memeory') AND screen_size IN('$screen_size') AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram') AND colour IN ('$colour') AND os IN('$os') AND sim_type IN('$sim_type') AND camera IN('$camera') AND screen_size IN('$screen_size') AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram') AND colour IN ('$colour') AND os IN('$os') AND camera IN('$camera') AND screen_size IN('$screen_size') AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram') AND colour IN ('$colour') AND os IN('$os') AND screen_size IN('$screen_size') AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os!='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND ram IN ('$ram') AND colour IN ('$colour') AND os IN('$os') AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND os IN('$os') AND sim_type IN('$sim_type')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND os IN('$os') AND camera IN('$camera') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND os IN('$os') AND camera IN('$camera') AND internal_memeory IN('$internal_memeory') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND os IN('$os') AND camera IN('$camera') AND internal_memeory IN('$internal_memeory')AND screen_size IN('$screen_size') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND os IN('$os') AND camera IN('$camera') AND internal_memeory IN('$internal_memeory') AND screen_size IN('$screen_size') AND Processor IN('$Processor') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND os IN('$os') AND camera IN('$camera') AND screen_size IN('$screen_size') AND Processor IN('$Processor') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os!='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND os IN('$os') AND camera IN('$camera')  AND Processor IN('$Processor') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND sim_type IN('$sim_type') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND sim_type IN('$sim_type') AND camera IN('$camera') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND sim_type IN('$sim_type') AND camera IN('$camera') AND internal_memeory IN('$internal_memeory') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND sim_type IN('$sim_type') AND camera IN('$camera') AND internal_memeory IN('$internal_memeory')AND screen_size IN('$screen_size') AND Processor IN('$Processor') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND sim_type IN('$sim_type') AND camera IN('$camera') AND internal_memeory IN('$internal_memeory')AND screen_size IN('$screen_size') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera=='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND sim_type IN('$sim_type') AND internal_memeory IN('$internal_memeory')AND screen_size IN('$screen_size') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND sim_type IN('$sim_type') AND screen_size IN('$screen_size') ";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND camera IN('$camera')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND camera IN('$camera') AND internal_memeory IN('$internal_memeory')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND camera IN('$camera') AND internal_memeory IN('$internal_memeory')AND screen_size IN('$screen_size')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND camera IN('$camera') AND internal_memeory IN('$internal_memeory')AND screen_size IN('$screen_size') AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND camera IN('$camera') AND screen_size IN('$screen_size') AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera!='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND camera IN('$camera') AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory!='NULL' && $screen_size=='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND internal_memeory IN('$internal_memeory')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND internal_memeory IN('$internal_memeory') AND screen_size IN('$screen_size')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory!='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND internal_memeory IN('$internal_memeory') AND screen_size IN('$screen_size') AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory!='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND internal_memeory IN('$internal_memeory') AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND screen_size IN('$screen_size')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size!='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND screen_size IN('$screen_size')AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type=='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND Processor IN('$Processor')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour=='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND Processor IN('$Processor')AND sim_type IN('$sim_type')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram=='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND Processor IN('$Processor') AND sim_type IN('$sim_type') AND colour IN('$colour')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera=='NULL' && $internal_memeory=='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND Processor IN('$Processor') AND sim_type IN('$sim_type') AND colour IN('$colour') AND ram IN('$ram')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera=='NULL' && $internal_memeory!='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND Processor IN('$Processor') AND sim_type IN('$sim_type') AND colour IN('$colour') AND ram IN('$ram') AND internal_memeory IN('$internal_memeory')";
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'&& $ram!='NULL' && $colour!='NULL' && $os=='NULL' && $sim_type!='NULL' && $camera!='NULL' && $internal_memeory!='NULL' && $screen_size=='NULL' && $Processor!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND Processor IN('$Processor') AND sim_type IN('$sim_type') AND colour IN('$colour') AND ram IN('$ram') AND internal_memeory IN('$internal_memeory') AND camera IN('$camera')";
-		}else{
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max";
+	$min_amt=(($min)-1);
+		//$aray=array($b);
+		$this->db->select('*')->from('products');
+		$this->db->where('item_cost <=', $max);
+		$this->db->where('item_cost >=', $min_amt);
+		
+		if($b!='NULL'){
+			$this->db->where_in('brand','"'.$b.'"',false);
+		
+		}if($f!='NULL'){
+				$this->db->where_in('offer_percentage','"'.$f.'"',false);
+		}if($d!='NULL'){
+			$this->db->where_in('discount','"'.$d.'"',false);
+		}if($ram!='NULL'){
+			$this->db->where_in('ram','"'.$ram.'"',false);
+		}if($colour!='NULL'){
+			$this->db->where_in('colour','"'.$colour.'"',false);
+		}if($os!='NULL'){
+			$this->db->where_in('os','"'.$os.'"',false);
+		}if($sim_type!='NULL'){
+			$this->db->where_in('sim_type','"'.$sim_type.'"',false);
+		}if($camera!='NULL'){
+			$this->db->where_in('camera','"'.$camera.'"',false);
+		}if($internal_memeory!='NULL'){
+			$this->db->where_in('internal_memeory','"'.$internal_memeory.'"',false);
+		}if($screen_size!='NULL'){
+			$this->db->where_in('screen_size','"'.$screen_size.'"',false);
+		}if($Processor!='NULL'){
+			$this->db->where_in('Processor','"'.$Processor.'"',false);
 		}
-	return $this->db->query($sql)->result_array();	
+		$this->db->where('item_status',1);
+		$this->db->where('category_id',$cid);
+		$this->db->where('subcategory_id',$subcatid);
+		return $this->db->get()->result_array();	
 		
 	}
 	public function get_subcategoryinternal_memeory($internal_memeory,$cid,$subcat,$staus){
@@ -1183,18 +1021,18 @@ class Category_model extends MY_Model
 			
 		}
 		if(isset($brand) && count($brand)>0 ){
-			$brands=implode ("','", $brand );
+			$brands=implode ('","', $brand );
 		}else{
 		$brands='NULL';
 
 		}
 		if(isset($offers) && count($offers)>0){
-			$offerss=implode("','",$offers);
+			$offerss=implode('","', $offers);
 		}else{
 		$offerss='NULL';
 		}
 		if(isset($discount) && count($discount)>0 ){
-			$discount=implode("','",$discount);
+			$discount=implode('","', $discount);
 		}else{
 		$discount='NULL';
 		}		
@@ -1218,40 +1056,24 @@ class Category_model extends MY_Model
 	public function get_filers_products_list_alllist($b,$d,$f,$min,$max,$cid){
 		//echo $b;exit;
 		$min_amt=(($min)-1);
-		if($b!='NULL' && $d!='NULL' && $f!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f') AND offer_amount IN ('$d')";
 		
-		}else if($b!='NULL' && $d!='NULL' && $f=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND  item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_amount IN ('$d')";
-			
-		}else if($b!='NULL' && $d=='NULL' && $f=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b')";
-			
-		}else if($b!='NULL' && $d=='NULL' && $f!='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND item_cost BETWEEN $min_amt AND $max AND brand IN ('$b') AND offer_percentage IN ('$f')";
-			
-		}else if($b=='NULL' && $d=='NULL' && $f=='NULL'){
-			$sql = "SELECT * FROM products WHERE item_status='1' AND  item_cost BETWEEN $min_amt AND $max";
-		}
 		
-		return $this->db->query($sql)->result_array();	
-		/*$this->db->select('*')->from('products');
+		$this->db->select('*')->from('products');
 		$this->db->where('item_cost <=', $max);
 		$this->db->where('item_cost >=', $min_amt);
-		
 		if($b!='NULL'){
-			$this->db->where_in('brand',$b);
+			$this->db->where_in('brand','"'.$b.'"',false);
 		
 		}if($f!='NULL'){
-				$this->db->where_in('offer_percentage',$f);
+				$this->db->where_in('offer_percentage','"'.$f.'"',false);
 		}if($d!='NULL'){
-			$this->db->where_in('discount',$d);
-			//$this->db->where_in('discount',str_replace( "\", "", $b));
+			$this->db->where_in('discount','"'.$d.'"',false);
 		}
+		
 		$this->db->where('item_status',1);
 		$this->db->where('category_id',$cid);
 		
-		return $this->db->get()->result_array();*/
+		return $this->db->get()->result_array();
 		
 	}
 	public function get_filers_products_list_amount($min,$max,$cid){
