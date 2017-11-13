@@ -357,7 +357,7 @@
                     
 					  <input type="text" name="serachvalues" id="tags1"  onkeyup="searchfunctionss(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                     
-					  <button type="submit" class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
+					  <!--<button type="submit" class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>-->
                     </form>
 					</div>
 					<!--<div style="display:none;" class="search_fun" id="addingdropdown"></div>-->
