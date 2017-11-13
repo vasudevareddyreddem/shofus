@@ -15,6 +15,14 @@ class Customer extends Front_Controller
 		$this->load->model('category_model');
 		$this->load->library('HybridAuthLib');	
 		$this->load->library('user_agent');
+		$proviousdelete=$this->category_model->get_all_previous_data_categor_filter($this->input->ip_address());
+		if(count($proviousdelete)>0){
+			foreach($proviousdelete as $list){
+			$this->category_model->delete_all_previous_data_categor_filter($list['id'],$this->input->ip_address());
+
+			}
+			
+		}
  
  }
  

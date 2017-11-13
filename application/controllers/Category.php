@@ -719,6 +719,7 @@ function filtersearch(){
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;
 	}
+	
 	//echo '<pre>';print_r($data);exit;
 	$this->load->view('customer/filters_search',$data);
 	

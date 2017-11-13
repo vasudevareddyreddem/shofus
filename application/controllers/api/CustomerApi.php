@@ -1829,17 +1829,18 @@ class CustomerApi extends REST_Controller {
 			}else{
 				$status=$statuss;
 			}
+			$previousdata= $this->Customerapi_model->get_all_previous_search_fields($Ip_address);
+
 			/*once change category id delete old data*/
 			$getcategory_id= $this->Customerapi_model->get_subcategory_id_filterssearh($Ip_address);
 			if(count($getcategory_id)>0){
 			//echo '<pre>';print_r($getcategory_id);exit;
-			if($getcategory_id[0]['category_id']!=$category_id){
 				$previous= $this->Customerapi_model->get_all_previous_search_fields_withip($getcategory_id[0]['Ip_address'],$getcategory_id[0]['category_id']);
 				foreach($previous as $list){
 					$this->Customerapi_model->delete_privous_searchdata($list['id'],$getcategory_id[0]['Ip_address']);
 				}
 				
-			}
+			
 			}
 			if($category_id==18){
 			if(isset($cusine) && $cusine!=''){
@@ -1982,7 +1983,6 @@ class CustomerApi extends REST_Controller {
 					
 				}
 						
-					$previousdata= $this->Customerapi_model->get_all_previous_search_fields($Ip_address);
 					$message = array('status'=>1,'filtersresult'=>$categorywiseproducrlist,'message'=>'filter search result and previous search data','previoussearchdata'=>$previousdata,'path'=>'https://cartinhours.com/uploads/products/');
 					$this->response($message, REST_Controller::HTTP_OK);
 	}
