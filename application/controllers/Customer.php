@@ -721,11 +721,12 @@ class Customer extends Front_Controller
 		
 		$update= $this->customer_model->update_cart_qty($customerdetails['customer_id'],$post['product_id'],$updatedata);
 		
-		//echo '<pre>';print_r($update);exit;
+		
 		if(count($update)>0){
 			$this->session->set_flashdata('productsuccess','Product Quantity Successfully Updated!');
 			$data['cart_items']= $this->customer_model->get_cart_products($customerdetails['customer_id']);
 			$data['carttotal_amount']= $this->customer_model->get_cart_total_amount($customerdetails['customer_id']);
+			//echo '<pre>';print_r($data);exit;
 			$this->load->view('customer/updateqtycart',$data);			
 			
 		}

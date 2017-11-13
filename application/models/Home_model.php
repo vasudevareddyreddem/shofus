@@ -707,6 +707,13 @@ public function get_home_pag_middle_banner(){
 		
 	
 }
+public function get_subcategory_list(){
+	$this->db->select('*')->from('subcategories');
+	$this->db->where('status',1);
+	return $this->db->get()->result_array();
+		
+	
+}
 
 
 

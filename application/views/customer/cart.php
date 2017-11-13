@@ -109,8 +109,10 @@
                                                         <span class="price-old" style="font-size:16px;color:#bbb">₹ <?php echo number_format($orginal_price, 2 ); ?></span>&nbsp;&nbsp;
                                                         <span class="site_col" style="font-size:18px;"><?php echo number_format($percentage, 2, '.', ''); ?>% off</span>&nbsp;&nbsp;</p>
 
-
+													<p><?php echo isset($productslist['total_price'])?$productslist['total_price']:''; ?>
+													<p><?php echo isset($productslist['qty'])?$productslist['qty']:''; ?>
                                                 </td>
+											
 
 
                                             </tr>
@@ -150,7 +152,10 @@
 								<h4>Grand Total</h4>
 							</div>
 							<div class="pull-right">
-								<h4>Rs 20052.00</h4>
+								<h4><span><b>
+							<?php $amt=$carttotal_amount['pricetotalvalue'] + $carttotal_amount['delivertamount'];
+							echo number_format($amt, 2);
+							?></h4>
 							</div>
 							<div class="clearfix"> &nbsp;</div>
 						</div>

@@ -77,14 +77,19 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
        
 		   <div id="best-seller" class="product-flexslider hidden-buttons">
 				  <div class="slider-items slider-width-col4 products-grid" >
-				  
-				<div class="item" >
+				  <?php foreach ($subcaregory_list as $list){
+					  ?>
+				<a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id'])); ?>"><div class="item" >
 				  <div class=" box-product-outer" >
 					<div class="box-product">
-					   <img  class="img-responsive" src="https://cartinhours.com/assets/subcategoryimages/mobiles_Cat.png"> 
+					   <img  class="img-responsive" src="<?php echo base_url('assets/subcategoryimages/'.$list['subcategory_image']); ?>"> 
+					<p class="text-center"><?php echo isset($list['subcategory_name'])?$list['subcategory_name']:''; ?></p>
 					</div>
+					
 				  </div>
-				</div>
+				</div></a>
+				
+				  <?php } ?>
 				
 			
 				  </div>
@@ -97,54 +102,104 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 	
   
     <!--Top Category slider Start-->
-    <div class="top-cate mob_res_top " >
-      <div class="featured-pro container_main">
-        <div class="row">
-          <div class="slider-items-products">
-            <div class="new_title">
-			<?php //echo date('Y-m-d H:i:s A'); ?>
-              <h2>Top Offers </h2>
-            </div>
-            <div id="top-categories" class="product-flexslider hidden-buttons">
-				<div class="slider-items slider-width-col4 products-grid">
-					<?php foreach ($topoffers as $tops){  
-					
-					
-					$currentdate=date('Y-m-d h:i:s A');
-					if($tops['offer_expairdate']>=$currentdate){
-					$item_price= ($tops['item_cost']-$tops['offer_amount']);
-					$percentage= $tops['offer_percentage'];
-					$orginal_price=$tops['item_cost'];
+    <section>
+      <div class="best-pro slider-items-products container_main">
+        <div class="new_title">
+          <h2>Top Offers</h2>
+        </div>
+        <div id="best-seller" class="product-flexslider hidden-buttons">
+          <div class="slider-items slider-width-col4 products-grid">
+      
+	   <?php //echo '<pre>';print_r($trending_products);exit; 
+	   $t=5;foreach ($topoffers as $productslist){  
+				$currentdate=date('Y-m-d h:i:s A');
+					if($productslist['offer_expairdate']>=$currentdate){
+					$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+					$percentage= $productslist['offer_percentage'];
+					$orginal_price=$productslist['item_cost'];
 					}else{
 					//echo "expired";
-					$item_price= $tops['special_price'];
-					$prices= ($tops['item_cost']-$tops['special_price']);
-					$percentage= (($prices) /$tops['item_cost'])*100;
-					$orginal_price=$tops['item_cost'];
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
 					}
-					
-					?>
-					<a href="<?php echo base_url('category/productview/'.base64_encode($tops['item_id'])); ?>">
-					<div class="item" >
-					<div style="position:absolute;top:100px;left:25px;z-index: 1024;">
-							<div style="background:#ddd;border-radius:50%;height:20px;height:20px;color:#fff;"> <div class="tags tags-left">
-                  <span class="label-tags"><span class="label label-primary arrowed-right"><?php echo number_format($percentage, 2, '.', ''); ?>%</span></span>
-                </div></div>
-						</div>
-					<div class="pro-img img-wrapper  img_hover"><img class="img-responsive" src="<?php echo base_url('uploads/products/'.$tops['item_image']); ?>" alt="<?php echo $tops['item_name']; ?>">
-					</div>
-					<div class="pro-info" ><?php echo $tops['item_name']; ?>&nbsp;<?php echo isset($tops['colour'])?$tops['colour']:''; ?>&nbsp; <?php echo isset($tops['internal_memeory'])?$tops['internal_memeory']:''; ?>&nbsp; <?php echo isset($tops['ram'])?'('.$tops['ram'].'Ram'.')':''; ?></div>
-					</div>
-					</a>
-					<?php } ?>
+				
+				?>
+             <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
+			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
+			<input type="hidden" name="qty" id="qty" value="1" >
+			<a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+		<div class="item">
+		       
+          <div class=" box-product-outer" >
+            <div class="box-product">
+              <div class="img-wrapper  img_hover item" style="position:relative">
+			  <div class="img_size">
+         
+               <img class="" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
+				 
+           
+               
 				</div>
+              
+				<?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
+				
+				<div  class="text-center out_of_stoc">
+					<div style="z-index:1026"><h4>out of stock</h4></div>
+				</div>
+				
+				<?php } ?>
+				
+				<div class="option">
+				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
+				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $t; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+				<?php }else{ ?>	
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $t; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-shopping-cart"></i></a>                  
+				<?php } ?>	
+				<?php } ?>
+				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+				<a href="javascript:void(0);"  onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $t; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-heart text-primary"></i></a> 
+				<?php }else{ ?>	
+				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $t; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-heart"></i></a> 
+				<?php } ?>	
+				</div>
+              </div>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
+				<div class="price">
+               
+				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
+			<?php if($percentage!=''){ ?> &nbsp;
+			<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
+			<?Php }else{ ?>
+			<?php } ?>
+				</div>
+				<div class="clearfix"></div>
+            
+              </div>
+            
             </div>
-      <div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore/'.base64_encode('top').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
+          </div>
+		  
+            </div>
+			 </a>
+			
+			
+			</form>
+      
+       <?php $t++;} ?>
+            
+           
+            <!-- End Item --> 
           </div>
         </div>
+		<div class="clearfix"></div>
+        <a href="<?php echo base_url('customer/seemore/'.base64_encode('top').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
-    </div>
+    </section>
     <!--Top Category silder End--> 
     <!-- best Pro Slider -->
     
@@ -213,7 +268,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?>&nbsp;<?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
 				<div class="price">
                
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
@@ -380,7 +435,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?> <?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
             <div class="price">
                
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
@@ -476,7 +531,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?><?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
               <div class="price">
                
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
@@ -565,7 +620,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				<?php } ?>	
 				</div>
               </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?><?php echo isset($productslist['colour'])?$productslist['colour']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?$productslist['internal_memeory']:''; ?>&nbsp; <?php echo isset($productslist['internal_memeory'])?'('.$productslist['ram'].'Ram'.')':''; ?></a></h6>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
              <div class="price">
                
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 

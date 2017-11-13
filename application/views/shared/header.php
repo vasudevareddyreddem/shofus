@@ -2,63 +2,6 @@
 <!--wrapper start here -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-ui.css">
 <script src="<?php echo base_url(); ?>assets/home/js/jquery-auto.js"></script>
-  
-  <script>
-  $( function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-     var availableTags1 = [
-"ActionScript",
-"AppleScript",
-"Asp"
-];
-
-var availableTags2 = [
-"Python",
-"Ruby",
-"Scala",
-"Scheme"
-];
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
-
-
-    $("#prod_selector").on('change',function(){
-       if($(this).val()!="ALL"){
-        if($(this).val() == "1"){
-            $( "#tags" ).autocomplete('option', 'source', availableTags1)
-        } 
-        
-        if($(this).val() == "2"){
-            $( "#tags" ).autocomplete('option', 'source', availableTags2)
-        }
-    }
-    });
-  } );
-  </script>
 
 <style>
  .hi {
@@ -305,20 +248,25 @@ var availableTags2 = [
                 <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a></span></h1>
             </div>
             <div class="flipkart-navbar-search smallsearch col-sm-6 col-xs-11">
-                <div class="row">
-                   <div class="form-horizontal form-horizontal_x">
+          <div class="row">
+            <div  >
+			<div class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-					
-                      <input id="tags" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false"/>
-                      <button class="flipkart-navbar-button col-xs-1 pull-right sm_hide"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
-					  <!--<div style="display:none;" class="search_fun" id="addingdropdown"></div>	-->
-                    </div>
-					
+					<form id="searchform" action="<?php echo base_url('home/seraching'); ?>" method="post">
+                    
+					  <input type="text" name="serachvalues" id="tags"  onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                    
+					  <button type="submit" class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
+                    </form>
+					</div>
+					<!--<div style="display:none;" class="search_fun" id="addingdropdown"></div>-->
 					
                   </div>
                 </div>
-                </div>
+              </div>
+			
+            </div>
             </div>
             </div>
            
@@ -400,20 +348,25 @@ var availableTags2 = [
                 <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a></span></h1>
             </div>
             <div class="flipkart-navbar-search smallsearch col-sm-6 col-xs-11">
-                <div class="row">
-                   <div class="form-horizontal form-horizontal_x">
+                <div class="row" >
+            <div  >
+			<div class="form-horizontal form-horizontal_x">
                   <div class=" smallsearch">
                     <div class="cart_search">
-					<span class="md_hide pos_sea_btn"><i class="fa fa-search font_si" aria-hidden="true"></i></span>
-                      <input id="tags" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands " autocomplete="off" spellcheck="false"/>
-                      <!--<button class="flipkart-navbar-button col-xs-1 pull-right sm_hide"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>-->
-					  <!--<div style="display:none;" class="search_fun" id="addingdropdown"></div>	-->
-                    </div>
-					
+					<form id="searchform1" action="<?php echo base_url('home/seraching'); ?>" method="post">
+                    
+					  <input type="text" name="serachvaluesss" id="tags1"  onkeyup="searchfunctionss(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                    
+					  <button type="submit" class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
+                    </form>
+					</div>
+					<!--<div style="display:none;" class="search_fun" id="addingdropdown"></div>-->
 					
                   </div>
                 </div>
-                </div>
+              </div>
+			
+            </div>
             </div>
             </div>
            
@@ -477,12 +430,30 @@ var availableTags2 = [
 		 </div>
 		 <!--responsive -->
 		 <div class="md_hide" style="position:absolute;top:20px;right:10px;font-size:22px;color:#fff">
-		 <span class="pad_le">
-		<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-		</span>
-		<span class="pad_le">
-		<i class="fa fa-heart" aria-hidden="true"></i>
-		</span>
+		 
+		 <?php if($this->session->userdata('userdetails')){ ?>
+			<span class="medias text-center shopping_cart" style="position:relative;"><a href="<?php echo base_url('customer/cart'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+				<p>Cart</p></a>
+				<?php if(count($cartitemcount)>0){ ?>
+						<a href="<?php echo base_url('customer/cart');?>" ><span class="pad_le">
+						<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+						</span></a>
+						<?php echo count($cartitemcount); ?>
+						<?php }else{  ?>
+							<a href="<?php echo base_url('customer/cart');?>" ><span id="supcounts" class="pad_le">
+							<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+							</span></a>
+						<?php }?>
+				
+
+			<?php }else{ ?>
+			<a href="<?php echo base_url('customer/cart');?>" ><span class="pad_le">
+			<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+			</span></a>
+			<?php } ?>	
+				<a href="<?php echo base_url('customer/wishlist');?>"><span class="pad_le">
+				<i class="fa fa-heart" aria-hidden="true"></i>
+				</span></a>
 		 </div>
 	</div>
 	</div>
@@ -510,17 +481,29 @@ var availableTags2 = [
 
 <div id="mySidenav" class="sidenav closebtn" href="javascript:void(0)"  onclick="closeNav()" >
     <div class="container" style="background-color: #009688;padding:20px 5px; ">
-        <span class="sidenav-heading">welcome</span>
+        <span class="sidenav-heading">welcome
+		  <?php if($this->session->userdata('userdetails')){ ?>
+		<?php echo $details['cust_firstname'].' '.$details['cust_lastname']; ?>
+		
+		  <?php } ?></span>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     </div>
-    <a href="#"><span class="glyphicon  glyphicon-home"></span> Home</a>
-    <a href="#"><span class=" glyphicon glyphicon-erase
-"></span> Electronics</a>
-    <a href="#"><span class="glyphicon glyphicon-list-alt
+    <a href="<?php echo base_url(); ?>"><span class="glyphicon  glyphicon-home"></span> Home</a>
+				<?php //echo '<pre>';print_r($sidecaregory_list);exit; ?>
+				<?php foreach ($sidecaregory_list as $categories){ ?>
+
+				<a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>"><span class=" glyphicon glyphicon-erase
+				"></span> <?php echo $categories['category_name'] ; ?></a>
+				<?php } ?>
+
+
+
+
+    <a href="<?php echo base_url('customer/orders');?>"><span class="glyphicon glyphicon-list-alt
 "></span> My Orders</a>
-    <a href="#"><span class="glyphicon glyphicon-heart"></span> My Wishlist</a>
-    <a href="#"><span class="glyphicon glyphicon-road"></span> My Track List</a>
-    <a href="#"><span class="glyphicon glyphicon-user
+    <a href="<?php echo base_url('customer/wishlist'); ?>"><span class="glyphicon glyphicon-heart"></span> My Wishlist</a>
+    <a href="<?php echo base_url('customer/trackorders');?>"><span class="glyphicon glyphicon-road"></span> My Track List</a>
+    <a href="<?php echo base_url('customer/account');?>"><span class="glyphicon glyphicon-user
 "></span> Account</a>
 </div>
 <!-- the overlay element --> 
@@ -575,23 +558,56 @@ function searchfunction(val){
 				form_key : window.FORM_KEY,
 				searchvalue: val,
 				},
-			dataType: 'html',
+			dataType: 'json',
 			success: function (data) {
-			$('#addingdropdown').show();
-			$("#addingdropdown").append(data);	
-
-
+					 var availableTags = data;
+					 $( "#tags" ).autocomplete({
+						 
+					   source: availableTags,
+						select: function(event, ui) { 
+						$("input#tags").val(ui.item.value);
+						$("#searchform").submit();
+						}
+					});
+					
 			}
 		});
 		
 	}
 	
 }
-
-
-
- 
-    $(document).ready(function(){
+function searchfunctionss(val){
+	$('#addingdropdown').hide();
+	$('#addingdropdown').empty();
+	var length=val.length;
+	if(length >=1){
+	
+		jQuery.ajax({
+			url: "<?php echo site_url('home/search_functionality');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				searchvalue: val,
+				},
+			dataType: 'json',
+			success: function (data) {
+					 var availableTags = data;
+					 $( "#tags" ).autocomplete({
+						 
+					   source: availableTags,
+						select: function(event, ui) { 
+						$("input#tags1").val(ui.item.value);
+						$("#searchform1").submit();
+						}
+					});
+					
+			}
+		});
+		
+	}
+	
+}
+ $(document).ready(function(){
       $('#frgt_pass').click(function(){
           $('#log_sign').hide();
           $('#show_pass').show();

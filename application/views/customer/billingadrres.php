@@ -163,7 +163,15 @@
              <a href="<?php echo base_url('customer/cart'); ?>" class="btn btn-primary btn-sm sm_hide"> Back</a>
           <button  class="pull-right btn btn-primary btn-sm sm_hide"  id="addbillingadd" type="submit">Proceed to Checkout</span><span aria-hidden="true">&rarr;</span></button>
          
-          </form>
+          
+
+			<!--mobile responsive-->
+			<div  class="md_hide proeed_chec_btn" style="">
+				 
+				<button type="submit" class="btn btn-lg btn-primary btn-block col-xs-12  " ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</button>
+			</div>
+		<!--mobile responsive-->
+		</form>
         </div>
       
            </center>
@@ -176,13 +184,6 @@
             </div>
 			
         </div>
-
-			<!--mobile responsive-->
-			<div  class="md_hide proeed_chec_btn" style="">
-				 
-				<a href="<?php echo base_url('customer/billing'); ?>" class="btn btn-lg btn-primary btn-block col-xs-12  " ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Checkout</a>
-			</div>
-		<!--mobile responsive-->
 		
 		<div class="col-md-4 sm_hide pull-right" style=" border:1px solid #ddd; ;background-color:#fff;padding:5px; width:32%" >
 				<span><img id="" src="<?php echo base_url(); ?>assets/home/images/track_lig.png" /></span> &nbsp;
