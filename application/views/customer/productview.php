@@ -223,7 +223,7 @@
 				  if($products_list['category_id']==20){ ?>
 						
 						<tr>
-							<td>Size </td>
+							<td>Internal Memory </td>
 							<td>
 								<div class="row">
 								<?php foreach ($sameproducts_size_list as $lists){ ?>
