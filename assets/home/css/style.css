@@ -5502,7 +5502,9 @@ input[type=radio]:checked + span::before {
   position: static !important;
 }
 .mega-menu .dropdown-menu {
-  width: 100%;
+  width: 90%;
+  margin:0px 70px !important;
+ 
 }
 .mega-menu .mega-menu-content {
   padding: 20px 30px 5px;
