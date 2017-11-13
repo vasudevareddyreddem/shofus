@@ -77,14 +77,14 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
        
 		   <div id="best-seller" class="product-flexslider hidden-buttons">
 				  <div class="slider-items slider-width-col4 products-grid" >
-				  <?php foreach ($subcaregory_list as $list){
+				  <?php foreach ($sidecaregory_list as $categories){
 					  ?>
-				<a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id'])); ?>">
+				<a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>">
 				<div class="item" >
 				  <div class=" box-product-outer" >
 					<div class="box-product">
-					   <img  class="" src="<?php echo base_url('assets/subcategoryimages/'.$list['subcategory_image']); ?>"> 
-					<p class="text-center"><?php echo isset($list['subcategory_name'])?$list['subcategory_name']:''; ?></p>
+					   <img  class="" src="<?php echo base_url('assets/categoryimages/'.$categories['category_image']); ?>"> 
+					<p class="text-center"><?php echo $categories['category_name'] ; ?></p>
 					</div>
 					
 				  </div>
