@@ -49,8 +49,16 @@
 	width: 77px;
 }
 }
-
+.ui-widget.ui-widget-content {
+	border: 1px solid #c5c5c5;
+	position:relative !important;
+	top:0;
+	box-shadow:none;
+}
 </style>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-price.css">
+<script src="<?php echo base_url(); ?>assets/home/js/jquery-price.js"></script>
+
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
 </div>-->
@@ -111,20 +119,12 @@
 		 ?>
 		   <?php //echo '<pre>';print_r($restraent);exit; ?>
 		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
-			
-			<div class="example">
-			<h3 class="text-left pad_0" >Price</h3>
-			<div id="html5"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
-
-			</div>
-			<select id="input-select" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
-			<?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
-				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-			<?php } ?>
-			
-			</select>
-			<input type="text" name="max_amount"   step="1" id="input-number">
-			</div>
+			 <label for="amount">Price range:</label>
+		<div id="slider" style="display:none"></div>
+		<div id="html5"></div>
+			<select id="input-select"></select>
+			<input type="text"  id="input-number"></input>
+			<br>
 			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo base64_encode($category_id);?>">
 			
 			<?php if($category_id=='18'){ ?>
@@ -843,10 +843,20 @@ function getproduct(id){
     });
 })(jQuery);
 
-		var select = document.getElementById('input-select');
+		var slider = document.getElementById('slider');
+
+noUiSlider.create(slider, {
+	start: [20, 80],
+	connect: true,
+	range: {
+		'min': 0,
+		'max': 100
+	}
+});
+ var select = document.getElementById('input-select');
 
 // Append the option elements
-for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php echo floor($maximum_price['item_cost']); ?>'; i++ ){
+for ( var i = -20; i <= 40; i++ ){
 
 	var option = document.createElement("option");
 		option.text = i;
@@ -855,18 +865,17 @@ for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php e
 	select.appendChild(option);
 }
 
-		var html5Slider = document.getElementById('html5');
+var html5Slider = document.getElementById('html5');
 
 noUiSlider.create(html5Slider, {
-	start: [ '<?php echo floor(reset($min_am)); ?>', '<?php echo floor(end($max_amt)); ?>' ],
+	start: [ 10, 30 ],
 	connect: true,
 	range: {
-		'min': <?php echo floor($minimum_price['item_cost']); ?>,
-		'max': <?php echo floor($maximum_price['item_cost']); ?>
+		'min': -20,
+		'max': 40
 	}
 });
-
-		var inputNumber = document.getElementById('input-number');
+var inputNumber = document.getElementById('input-number');
 
 html5Slider.noUiSlider.on('update', function( values, handle ) {
 
@@ -877,13 +886,5 @@ html5Slider.noUiSlider.on('update', function( values, handle ) {
 	} else {
 		select.value = Math.round(value);
 	}
-});
-
-select.addEventListener('change', function(){
-	html5Slider.noUiSlider.set([this.value, null]);
-});
-
-inputNumber.addEventListener('change', function(){
-	html5Slider.noUiSlider.set([null, this.value]);
 });
 </script>
