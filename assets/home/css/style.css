@@ -17,6 +17,12 @@ input{
 .help_cls .owl-item{
 	width:18% !important;
 }
+.bac_n_l {
+	/* background:#294e5c; */
+	background-image: url("http://corrupteddevelopment.com/wp-content/uploads/2012/04/vector-world-map-background.jpg");
+	color:#fff;
+	padding:6px 20px;
+}
 .sing_pro{
 	position:fixed;top:40; 
 }
@@ -5502,7 +5508,9 @@ input[type=radio]:checked + span::before {
   position: static !important;
 }
 .mega-menu .dropdown-menu {
-  width: 100%;
+  width: 90%;
+  margin:0px 70px !important;
+ 
 }
 .mega-menu .mega-menu-content {
   padding: 20px 30px 5px;

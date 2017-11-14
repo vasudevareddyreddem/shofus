@@ -7,16 +7,19 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 
 </style>
 <div class=" container">
-<div class="well">
+<div class="bac_n_l">
 	 <form  onSubmit="return validations();" action="<?php echo base_url('customer/nearstores'); ?>" method="post">
         <div class="form-group">
 		<?php if($this->session->userdata('location_area')!=''){ ?>
 			<div class="row">
-			<div class="col-md-12">
-				<label>Selected locations :</label> &nbsp;<span id="selectedlocation"> : &nbsp;<b class="site_col"><?php echo $this->session->userdata('location_area'); ?></b> </span>
+			<div class="col-md-12" style="border:2px solid 
+			#fff;
+			background:#fff;padding:4px ">
+				<label style="color:#222;">Selected locations :</label> &nbsp;<span id="selectedlocation"> : &nbsp;<b class="site_col"><?php echo $this->session->userdata('location_area'); ?></b> </span>
 			</div>
 			</div>
-			<hr>
+			<!--<hr>-->
+			<div class="clearfix"> &nbsp;</div>
 		<?php } ?>
 			<div class="row">
 			<div class="col-md-4 col-md-offset-3">
