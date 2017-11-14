@@ -282,13 +282,13 @@ $(document).ready(function() {
 			<div id="html5"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
 
 			</div>
-			<select id="input-select" onchange="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
+			<select id="input-select" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
 			<?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 			<?php } ?>
 			
 			</select>
-			<input type="text" name="max_amount"   step="1" id="input-number">
+			<input type="text" name="max_amount" step="1" id="input-number">
 			</div>
 			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
 			
@@ -841,6 +841,11 @@ $(document).ready(function() {
 	 <br>
 </body>
 <script>
+
+function getvaluess(id){
+	alert(id);
+	
+}
 $(document).ready(function(){
     $("#discountmore").click(function(){
         $(".discountseemore").toggle();
@@ -878,6 +883,7 @@ jQuery.ajax({
 						}
 				}
 
+
         }
       });
 
@@ -904,7 +910,7 @@ function mobileaccessories(val,status,check){
 					$("#containerhighold").hide();
 					$("#containerhigh").show();
 					$("#containerhigh").append(data);
-	}
+				}
 });
 }
 function discount(id){
