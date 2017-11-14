@@ -100,7 +100,7 @@
 			<?php } ?>
 			
 			</select>
-			<input type="text" name="max_amount"   step="1" id="input-number">
+			<input type="text" readonly="true" name="max_amount"   step="1" id="input-number">
 			</div>
 			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo $cat_subcat_ids[0]['category_id']; ?>">
 			<input type="hidden" name="subcategoryid" id="subcategoryid" value="<?php echo $cat_subcat_ids[0]['subcategory_id']; ?>">
@@ -1071,6 +1071,9 @@ html5Slider.noUiSlider.on('update', function( values, handle ) {
 
 select.addEventListener('change', function(){
 	html5Slider.noUiSlider.set([this.value, null]);
+});
+html5Slider.noUiSlider.on('change', function(){
+	submobileaccessories('','','');
 });
 
 inputNumber.addEventListener('change', function(){

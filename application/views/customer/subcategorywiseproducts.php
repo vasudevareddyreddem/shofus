@@ -65,7 +65,7 @@
 			<?php } ?>
 			
 			</select>
-			<input type="text" name="max_amount"   step="1" id="input-number">
+			<input type="text" readonly="true" name="max_amount"   step="1" id="input-number">
 			</div>
 			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo $cat_subcat_ids['category_id'];?>">
 			<input type="hidden" name="subcategoryid" id="subcategoryid" value="<?php echo $cat_subcat_ids['subcategory_id'];?>">
@@ -1655,6 +1655,9 @@ html5Slider.noUiSlider.on('update', function( values, handle ) {
 	} else {
 		select.value = Math.round(value);
 	}
+});
+html5Slider.noUiSlider.on('change', function(){
+	submobileaccessories('','','');
 });
 
 select.addEventListener('change', function(){

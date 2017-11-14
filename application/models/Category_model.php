@@ -487,12 +487,13 @@ class Category_model extends MY_Model
 	
 	public function get_subcategory_filers_products_list_alllist($b,$d,$f,$ram,$colour,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$min,$max,$cid,$subcatid){
 		
-	$min_amt=(($min)-1);
-	$max_amt=(($max)+1);
+		$min_amt=(($min)-1);
+		$maxmum=(int)$max;
+		
 		//$aray=array($b);
 		$this->db->select('*')->from('products');
-		$this->db->where('item_cost <=', $max_amt);
-		$this->db->where('item_cost >=', $min_amt);
+		$this->db->where('item_cost <=', $maxmum);
+		$this->db->where('item_cost >=', '"'.(int)$min_amt.'"',false);
 		
 		if($b!='NULL'){
 			$this->db->where_in('brand','"'.$b.'"',false);
