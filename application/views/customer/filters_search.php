@@ -75,7 +75,7 @@ $(document).ready(function() {
 			<?php } ?>
 			
 			</select>
-			<input type="text" name="max_amount"   step="1" id="input-number">
+			<input type="text" name="max_amount" readonly="true"   step="1" id="input-number">
 			</div>
 			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo base64_encode($category_id);?>">
 			

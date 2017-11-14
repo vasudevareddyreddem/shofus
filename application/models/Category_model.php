@@ -1058,11 +1058,11 @@ class Category_model extends MY_Model
 	public function get_filers_products_list_alllist($b,$d,$f,$min,$max,$cid){
 		//echo $b;exit;
 		$min_amt=(($min)-1);
-		
+		$maxmum=(int)$max;
 		
 		$this->db->select('*')->from('products');
-		$this->db->where('item_cost <=', $max);
-		$this->db->where('item_cost >=', $min_amt);
+		$this->db->where('item_cost <=', $maxmum);
+		$this->db->where('item_cost >=', '"'.(int)$min_amt.'"',false);
 		if($b!='NULL'){
 			$this->db->where_in('brand','"'.$b.'"',false);
 		

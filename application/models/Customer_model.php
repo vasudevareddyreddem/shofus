@@ -461,7 +461,7 @@ class Customer_model extends MY_Model
 		$this->db->select('sellers.seller_name,sellers.seller_id,seller_store_details.store_name,seller_store_details.image,locations.location_name')->from('seller_store_details');
 		$this->db->join('sellers', 'sellers.seller_id = seller_store_details.seller_id', 'left');
 		$this->db->join('locations', 'locations.location_id = seller_store_details.area', 'left');
-		//$this->db->where_in('seller_store_details.area',array($ids));
+		$this->db->where_in('seller_store_details.area',array($ids));
 		return $this->db->get()->result_array();
 					
 	}
