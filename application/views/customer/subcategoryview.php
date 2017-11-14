@@ -246,25 +246,7 @@ $(document).ready(function() {
 	box-shadow:none;
 }
 </style>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-price.css">
-<script src="<?php echo base_url(); ?>assets/home/js/jquery-price.js"></script>
-<script>
-    $(function() {
-     $( "#slider-range" ).slider({
-		
-      range: true,
-      min: 0,
-      max: 500,
-      values: [ 0, 500 ],
-      slide: function( event, ui ) {
-       $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-      }
-    });
 
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-     " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-  });
-  </script>
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
 </div>-->
@@ -305,7 +287,9 @@ $(document).ready(function() {
 			<div class="example">
 			<p>
    <label for="amount">Price range:</label>
-   <input type="text" onchange="getvalues();" id="amount" style="border:0; color:#009688; font-weight:bold;">
+   <input type="text"  id="amount" style="border:0; color:#009688; font-weight:bold;">
+   <input type="hidden"  id="minamount" value="" >
+   <input type="hidden"  id="maxamount" value="" >
   </p>
   <div id="slider-range"></div>
 			</div><br>
@@ -860,11 +844,24 @@ $(document).ready(function() {
 	 <br>
 </body>
 <script>
+ $(function() {
+     $( "#slider-range" ).slider({
+		
+      range: true,
+      min: <?php echo floor($minimum_price['item_cost']); ?>,
+      max: <?php echo floor($maximum_price['item_cost']); ?>,
+      values: [ <?php echo floor($minimum_price['item_cost']); ?>, <?php echo floor($maximum_price['item_cost']); ?> ],
+      slide: function( event, ui ) {
+       $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+       $( "#minamount" ).val(ui.values[ 0 ]);
+       $( "#maxamount" ).val(ui.values[ 1 ]);
+	   mobileaccessories('','','');
+      }
+    });
 
-function getvaluess(id){
-	alert(id);
-	
-}
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+     " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+  });
 $(document).ready(function(){
     $("#discountmore").click(function(){
         $(".discountseemore").toggle();
@@ -919,8 +916,8 @@ function mobileaccessories(val,status,check){
 					productsvalues: val,
 					searchvalue: status,
 					unchecked: check,
-					mini_mum: $('#input-select').val(),
-					maxi_mum: $('#input-number').val(),
+					mini_mum: $('#minamount').val(),
+					maxi_mum: $('#maxamount').val(),
 
 					},
 				dataType: 'html',
@@ -1006,51 +1003,7 @@ function getproduct(id){
     });
 })(jQuery);
 </script>
-<script>
-		var select = document.getElementById('input-select');
 
-// Append the option elements
-for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php echo floor($maximum_price['item_cost']); ?>'; i++ ){
-
-	var option = document.createElement("option");
-		option.text = i;
-		option.value = i;
-
-	select.appendChild(option);
-}
-
-		var html5Slider = document.getElementById('html5');
-
-noUiSlider.create(html5Slider, {
-	start: [ '<?php echo floor($minimum_price['item_cost']); ?>', '<?php echo floor($maximum_price['item_cost']); ?>' ],
-	connect: true,
-	range: {
-		'min': <?php echo floor($minimum_price['item_cost']); ?>,
-		'max': <?php echo floor($maximum_price['item_cost']); ?>
-	}
-});
-
-		var inputNumber = document.getElementById('input-number');
-
-html5Slider.noUiSlider.on('update', function( values, handle ) {
-
-	var value = values[handle];
-
-	if ( handle ) {
-		inputNumber.value = value;
-	} else {
-		select.value = Math.round(value);
-	}
-});
-
-select.addEventListener('change', function(){
-	html5Slider.noUiSlider.set([this.value, null]);
-});
-
-inputNumber.addEventListener('change', function(){
-	html5Slider.noUiSlider.set([null, this.value]);
-});
-	</script>
 	<script>
 
 $('.add-to-cart').on('click', function () {
