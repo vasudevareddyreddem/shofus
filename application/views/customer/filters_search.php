@@ -781,7 +781,6 @@ function getproduct(id){
 				},
 				dataType: 'html',
 				success: function (data) {
-					
 					$("#aftercategorysearch").empty();
 					$("#subcategorywise_products1").empty();
 					$("#subcategorywise_products1").append(data);
@@ -832,6 +831,9 @@ html5Slider.noUiSlider.on('update', function( values, handle ) {
 	} else {
 		select.value = Math.round(value);
 	}
+});
+html5Slider.noUiSlider.on('change', function(){
+	mobileaccessories('','','');
 });
 
 select.addEventListener('change', function(){
