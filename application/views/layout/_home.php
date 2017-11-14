@@ -38,6 +38,8 @@ header("Pragma: no-cache");
 <!-- pop up plugins -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/default.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/component.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-price.css">
+
 <script src="<?php echo base_url(); ?>assets/home/js/jquery_range.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/jquery.js"></script>
 
@@ -49,6 +51,7 @@ header("Pragma: no-cache");
 <script src="<?php echo base_url(); ?>assets/home/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/fSelect.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/range.js"></script>
+<script src="<?php echo base_url(); ?>assets/home/js/jquery-price.js"></script>
 
 </head>
 

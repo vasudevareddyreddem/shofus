@@ -246,6 +246,7 @@ $(document).ready(function() {
 	box-shadow:none;
 }
 </style>
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-price.css">
 <script src="<?php echo base_url(); ?>assets/home/js/jquery-price.js"></script>
  <script>
@@ -254,6 +255,9 @@ $(document).ready(function() {
 
 
  </script>
+=======
+
+>>>>>>> d2e5c72c6d6911374a2b8272709d29983da17bb9
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
 </div>-->
@@ -291,12 +295,24 @@ $(document).ready(function() {
 		 
 			
 		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
+<<<<<<< HEAD
 		    <label for="amount">Price range:</label>
 		<div id="slider" style="display:none"></div>
 		<div id="html5"></div>
 			<select id="input-select"></select>
 			<input type="text"  id="input-number"></input>
 			<br>
+=======
+			<div class="example">
+			<p>
+   <label for="amount">Price range:</label>
+   <input type="text"  id="amount" style="border:0; color:#009688; font-weight:bold;">
+   <input type="hidden"  id="minamount" value="" >
+   <input type="hidden"  id="maxamount" value="" >
+  </p>
+  <div id="slider-range"></div>
+			</div><br>
+>>>>>>> d2e5c72c6d6911374a2b8272709d29983da17bb9
 			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
 			
 			<?php if(base64_decode($this->uri->segment(3))=='18'){ ?>
@@ -848,11 +864,24 @@ $(document).ready(function() {
 	 <br>
 </body>
 <script>
+ $(function() {
+     $( "#slider-range" ).slider({
+		
+      range: true,
+      min: <?php echo floor($minimum_price['item_cost']); ?>,
+      max: <?php echo floor($maximum_price['item_cost']); ?>,
+      values: [ <?php echo floor($minimum_price['item_cost']); ?>, <?php echo floor($maximum_price['item_cost']); ?> ],
+      slide: function( event, ui ) {
+       $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+       $( "#minamount" ).val(ui.values[ 0 ]);
+       $( "#maxamount" ).val(ui.values[ 1 ]);
+	   mobileaccessories('','','');
+      }
+    });
 
-function getvaluess(id){
-	alert(id);
-	
-}
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+     " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+  });
 $(document).ready(function(){
     $("#discountmore").click(function(){
         $(".discountseemore").toggle();
@@ -907,8 +936,8 @@ function mobileaccessories(val,status,check){
 					productsvalues: val,
 					searchvalue: status,
 					unchecked: check,
-					mini_mum: $('#input-select').val(),
-					maxi_mum: $('#input-number').val(),
+					mini_mum: $('#minamount').val(),
+					maxi_mum: $('#maxamount').val(),
 
 					},
 				dataType: 'html',
