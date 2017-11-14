@@ -280,8 +280,7 @@ $(document).ready(function() {
 			
 		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
 			<div class="example">
-			<h3 class="text-left pad_0"style="padding:0;margin:0">Price</h3>
-			
+			<h3 class="text-left pad_0"style="padding:0;margin:0z">Price</h3>
 			<div id="html5"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
 
 			</div>
@@ -845,7 +844,7 @@ $(document).ready(function() {
 </body>
 <script>
 
-function testingpurpose(){
+function getvaluess(id){
 	alert(id);
 	
 }
@@ -989,6 +988,8 @@ function getproduct(id){
         $('.test').fSelect();
     });
 })(jQuery);
+</script>
+<script>
 		var select = document.getElementById('input-select');
 
 // Append the option elements
@@ -1000,7 +1001,8 @@ for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php e
 
 	select.appendChild(option);
 }
-var html5Slider = document.getElementById('html5');
+
+		var html5Slider = document.getElementById('html5');
 
 noUiSlider.create(html5Slider, {
 	start: [ '<?php echo floor($minimum_price['item_cost']); ?>', '<?php echo floor($maximum_price['item_cost']); ?>' ],
@@ -1010,11 +1012,10 @@ noUiSlider.create(html5Slider, {
 		'max': <?php echo floor($maximum_price['item_cost']); ?>
 	}
 });
-var inputNumber = document.getElementById('input-number');
 
+		var inputNumber = document.getElementById('input-number');
 
 html5Slider.noUiSlider.on('update', function( values, handle ) {
-	
 
 	var value = values[handle];
 
@@ -1023,7 +1024,6 @@ html5Slider.noUiSlider.on('update', function( values, handle ) {
 	} else {
 		select.value = Math.round(value);
 	}
-	
 });
 
 select.addEventListener('change', function(){
@@ -1033,8 +1033,7 @@ select.addEventListener('change', function(){
 inputNumber.addEventListener('change', function(){
 	html5Slider.noUiSlider.set([null, this.value]);
 });
-</script>
-
+	</script>
 	<script>
 
 $('.add-to-cart').on('click', function () {
