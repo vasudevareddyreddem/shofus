@@ -239,7 +239,32 @@ $(document).ready(function() {
 	width: 77px;
 }
 }
+.ui-widget.ui-widget-content {
+	border: 1px solid #c5c5c5;
+	position:relative !important;
+	top:0;
+	box-shadow: 3px 5px 6px grey;
+}
 </style>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-price.css">
+<script src="<?php echo base_url(); ?>assets/home/js/jquery-price.js"></script>
+<script>
+    $(function() {
+     $( "#slider-range" ).slider({
+		
+      range: true,
+      min: 0,
+      max: 500,
+      values: [ 0, 500 ],
+      slide: function( event, ui ) {
+       $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      }
+    });
+
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+     " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+  });
+  </script>
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
 </div>-->
@@ -278,17 +303,11 @@ $(document).ready(function() {
 			
 		 <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
 			<div class="example">
-			<h3 class="text-left pad_0"style="padding:0;margin:0z">Price</h3>
-			<div id="html5"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
-
-			</div>
-			<select id="input-select" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
-			<?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
-				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-			<?php } ?>
-			
-			</select>
-			<input type="text" name="max_amount" step="1" id="input-number">
+			<p>
+   <label for="amount">Price range:</label>
+   <input type="text" onchange="getvalues();" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
+  </p>
+  <div id="slider-range"></div>
 			</div>
 			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
 			
