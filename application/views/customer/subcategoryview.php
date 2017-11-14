@@ -243,7 +243,7 @@ $(document).ready(function() {
 	border: 1px solid #c5c5c5;
 	position:relative !important;
 	top:0;
-	box-shadow: 3px 5px 6px grey;
+	box-shadow:none;
 }
 </style>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-price.css">
@@ -305,10 +305,10 @@ $(document).ready(function() {
 			<div class="example">
 			<p>
    <label for="amount">Price range:</label>
-   <input type="text" onchange="getvalues();" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
+   <input type="text" onchange="getvalues();" id="amount" style="border:0; color:#009688; font-weight:bold;">
   </p>
   <div id="slider-range"></div>
-			</div>
+			</div><br>
 			<input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
 			
 			<?php if(base64_decode($this->uri->segment(3))=='18'){ ?>
