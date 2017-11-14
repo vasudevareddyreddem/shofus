@@ -1,3 +1,6 @@
+.see_min_hig  {
+	min-height:384px;
+}
 a:hover{
 	text-decoration:none;
 }
@@ -14,13 +17,16 @@ input{
 .md_hide{
 	display:none;
 }
+
 .help_cls .owl-item{
 	width:18% !important;
 }
 .bac_n_l {
 	/* background:#294e5c; */
-	background-image: url("http://corrupteddevelopment.com/wp-content/uploads/2012/04/vector-world-map-background.jpg");
+	background-image: url("../images/near_loc.png");
+
 	color:#fff;
+	
 	padding:6px 20px;
 }
 .sing_pro{
