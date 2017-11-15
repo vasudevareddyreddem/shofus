@@ -478,6 +478,19 @@ $(document).ready(function() {
 					<span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
 					<span class="btn_cus"> 6 units</span>
 				</p>
+				<div class="input-group incr_btn">
+                                                        <span class="input-group-btn">
+														<button style="width:20px;padding:6px;" type="button" onclick="productqty('0');" class="btn btn-primary btn-number btn-small" data-type="minus" data-field="quant[2]">
+												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
+                                                        </button>
+                                                        </span>
+                                                        <input type="text" name="qty" id="qty0" readonly="" class="form-control input-number" value="4" min="1" max="100">
+                                                        <span class="input-group-btn">
+											  <button style="width:20px;padding:6px" onclick="productqtyincreae('0');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
+												  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
+                                                        </button>
+                                                        </span>
+                                                    </div>
 			</div>
 			<div class="col-md-3">
 				<p class="">MRP:₹85</p>
