@@ -69,7 +69,7 @@ $(document).ready(function() {
 
 			</div>
 			</div>
-			<select id="input-select" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
+			<select readonly="true" id="input-select" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
 			<?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 			<?php } ?>
