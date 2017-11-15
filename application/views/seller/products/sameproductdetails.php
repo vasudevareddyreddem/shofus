@@ -11,7 +11,32 @@ $('#warranty_summary').val("<?php echo isset($item_details['warranty_summary'])?
 $('#warranty_type').val("<?php echo isset($item_details['warranty_type'])?$item_details['warranty_type']:''; ?>");
 $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_details['service_type']:''; ?>");
 </script><?php //echo '<pre>';print_r($item_details);exit; ?>
-
+<div class="row">
+		<div class="col-md-12 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Return Policy</label>
+				<textarea  placeholder="Return Policy" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="return_policy" name="return_policy"><?php echo isset($item_details['return_policy'])?$item_details['return_policy']:''; ?></textarea>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-12 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Highlights</label>
+				<textarea  placeholder="Highlights" style="height: 59px;" class="form-control" rows="3" id="highlights" name="highlights"><?php echo isset($item_details['highlights'])?$item_details['highlights']:''; ?></textarea>
+			</div>
+		</div>
+	</div>
+	
+	<hr>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Specifications</label>
+	
+	</div><br>
   
   
 <div class="clear"></div>
@@ -423,72 +448,6 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 	</div>
 
 
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Images</label>
-	
-	</div><br>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Image1</label>
-				<input type="file" onchange="enablesubbmit();" name='picture1' id="picture1"  class="form-control" >
-			</div>
-			<span id="uploadimgerror"></span>
-		</div>
-		
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Image2</label>
-				<input type="file" name='picture2' id="picture2"  class="form-control" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Image3</label>
-				<input type="file" name='picture3' id="picture3"  class="form-control" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Image4</label>
-				<input type="file" name='picture4' id="picture4"  class="form-control" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Image5</label>
-				<input type="file" name='picture5' id="picture5"  class="form-control" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Image6</label>
-				<input type="file" name='picture6' id="picture6"  class="form-control" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Image7</label>
-				<input type="file" name='picture7' id="picture7"  class="form-control" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Image8</label>
-				<input type="file" name='picture8' id="picture8"  class="form-control" >
-			</div>
-		</div>
-	</div>
-	
 
 <script>
 var room = 1;

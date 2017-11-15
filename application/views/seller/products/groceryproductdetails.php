@@ -15,7 +15,32 @@ $('#service_type').val(<?php echo isset($item_details['service_type'])?$item_det
 $('#return_policy').val(<?php echo isset($item_details['return_policy'])?$item_details['return_policy']:''; ?>);
 </script><?php //echo '<pre>';print_r($item_details);exit; ?>
 
+	<div class="row">
+		<div class="col-md-12 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Return Policy</label>
+				<textarea  placeholder="Return Policy" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="return_policy" name="return_policy"><?php echo isset($item_details['return_policy'])?$item_details['return_policy']:''; ?></textarea>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-12 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Highlights</label>
+				<textarea  placeholder="Highlights" style="height: 59px;" class="form-control" rows="3" id="highlights" name="highlights"><?php echo isset($item_details['highlights'])?$item_details['highlights']:''; ?></textarea>
+			</div>
+		</div>
+	</div>
 	
+	<hr>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Specifications</label>
+	
+	</div><br>
 	
  
   

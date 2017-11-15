@@ -214,15 +214,7 @@
 			</div>
 		
 	</div>
-	<div class="row">
-	<label for="exampleInputEmail1">Highlights</label>
-		<div class="col-md-12 form-group">
-			<div class="form-group nopaddingRight san-lg">
-			
-				<textarea  placeholder="Highlights" style="height: 59px;" class="form-control" rows="3" id="highlights" name="highlights"><?php echo isset($item_details['highlights'])?$item_details['highlights']:''; ?></textarea>
-			</div>
-		</div>
-	</div>
+	
 	<hr>
 	<div class="row">
 		<label for="exampleInputEmail1">Description</label>
@@ -283,21 +275,7 @@
 	</div>
 	<div class="clearfix"></div>
 	<hr>
-	<div class="row">
-		<div class="col-md-12 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Return Policy</label>
-				<textarea  placeholder="Return Policy" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="return_policy" name="return_policy"><?php echo isset($item_details['return_policy'])?$item_details['return_policy']:''; ?></textarea>
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Specifications</label>
 	
-	</div><br>
 	
 	<div id="mobile_products"></div>
 	<span id="newmobile_products">
@@ -656,99 +634,70 @@ function removeextrafields(){
 	   $('#skuid').val('');
 	   $('#otherunique').val('');
 	   $('#product_price').val('');
-	   $('#specialprice').val('');
-	   $('#offers').val('');
-	   $('#discount').val('');
-	   $('#qty').val('');
-	   $('#keywords').val('');
-	   $('#title').val('');
-	   $('#status').val('');
-	   $('#product_description').val('');
-	   $('#product_sub_tem').val('');
-	   $('#ideal_for').val('');
-	   $('#brand').val('');
-	   $('#product_scusine').val('');
-	   $('#product_sufficient').val('');
-	   $('#product_type8').val('');
-	   $('#product_type7').val('');
-	   $('#product_type71').val('');
-	   $('#product_theme12').val('');
-	   $('#product_theme1').val('');
-	   $('#product_theme').val('');
-	   $('#dial_shape2').val('');
-	   $('#compatible_os').val('');
-	   $('#prouduct_usage').val('');
-	   $('#prouduct_display_type').val('');
-	   $('#product_theme5').val('');
-	   $('#product_occasion2').val('');
-	   $('#product_theme4').val('');
-	   $('#material1').val('');
-	   $('#product_gemstones').val('');
-	   $('#Material2').val('');
-	   $('#product_type6').val('');
-	   $('#dial_shape1').val('');
-	   $('#prouduct_strap_color').val('');
-	   $('#prouduct_dial_color').val('');
-	   $('#product_type5').val('');
-	   $('#product_theme3').val('');
-	   $('#product_packof2').val('');
-	   $('#product_theme2').val('');
-	   $('#product_occasion1').val('');
-	   $('#product_type4').val('');
-	   $('#product_packof1').val('');
-	   $('#product_compatible_mobiles').val('');
-	   $('#product_type3').val('');
-	   $('#product_mega_pixel').val('');
-	   $('#product_sensor_type').val('');
-	   $('#product_battery_type').val('');
-	   $('#product_type2').val('');
-	   $('#wireless_speed').val('');
-	   $('#frequency_band').val('');
-	   $('#broadband_compatibility').val('');
-	   $('#usb_ports').val('');
-	   $('#product_frequency').val('');
-	   $('#product_antennae').val('');
-	   $('#product_display_size3').val('');
-	   $('#product_connectivity').val('');
-	   $('#product_ram3').val('');
-	   $('#voice_calling_facility').val('');
-	   $('#operating_system3').val('');
-	   $('#internal_storage3').val('');
-	   $('#battery_capacity2').val('');
-	   $('#primary_camera2').val('');
-	   $('#processor_clock_speed').val('');
-	   $('#product_display_size2').val('');
-	   $('#product_processor').val('');
-	   $('#product_processor_brand1').val('');
-	   $('#operating_system2').val('');
-	   $('#product_ram2').val('');
-	   $('#life_style').val('');
-	   $('#storage_type').val('');
-	   $('#dedicated_graphics_memory').val('');
-	   $('#touch_screentouch_screen').val('');
-	   $('#weight').val('');
-	   $('#internal_storage2').val('');
-	   $('#graphics_memory_type').val('');
-	   $('#ram_type').val('');
-	   $('#product_ram1').val('');
-	   $('#operating_system1').val('');
-	   $('#internal_storage4').val('');
-	   $('#product_display_size1').val('');
-	   $('#network_type').val('');
-	   $('#battery_capacity1').val('');
-	   $('#product_speciality').val('');
-	   $('#product_type1').val('');
-	   $('#operating_system_version_name').val('');
-	   $('#product_processor_brand2').val('');
-	   $('#resolution_type').val('');
-	   $('#primary_camera1').val('');
-	   $('#secondary_camera').val('');
+	   $('#special_price').val('');
+	   $('#pqty').val('');
+	   $('#warranty_summary').val('');
+	   $('#warranty_type').val('');
+	   $('#service_type').val('');
+	   $('#return_policy').val('');
+	   $('#highlights').val('');
+	   $('#pbrand').val('');
+	   $('#product_code').val('');
+	   $('#ingredients').val('');
+	   $('#key_feature').val('');
+	   $('#unit').val('');
+	   $('#packingtype').val('');
+	   $('#disclaimer').val('');
+	   $('#Processor').val('');
+	   $('#screen_size').val('');
+	   $('#internal_memeory').val('');
+	   $('#camera').val('');
 	   $('#sim_type').val('');
-	   $('#clock_speed').val('');
-	   $('#number_of_cores').val('');
-	   $('#internal_storage1').val('');
-	   $('#specificationnameid').val('');
-	   $('#specificationvalueid').val('');
+	   $('#os').val('');
+	   $('#colour').val('');
+	   $('#ram').val('');
+	   $('#model_name').val('');
+	   $('#model_id').val('');
+	   $('#internal_memory').val('');
+	   $('#expand_memory').val('');
+	   $('#primary_camera').val('');
+	   $('#primary_camera_feature').val('');
+	   $('#secondary_camera').val('');
+	   $('#secondary_camera_feature').val('');
+	   $('#video_recording').val('');
+	   $('#hd_recording').val('');
+	   $('#flash').val('');
+	   $('#other_camera_features').val('');
+	   $('#battery_capacity').val('');
+	   $('#talk_time').val('');
+	   $('#standby_time').val('');
+	   $('#operating_frequency').val('');
+	   $('#preinstalled_browser').val('');
+	   $('#2g').val('');
+	   $('#3g').val('');
+	   $('#4g').val('');
+	   $('#wifi').val('');
+	   $('#gps').val('');
+	   $('#usb_connectivity').val('');
+	   $('#bluetooth').val('');
+	   $('#nfc').val('');
+	   $('#edge').val('');
+	   $('#edge_features').val('');
+	   $('#music_player').val('');
+	   $('#video_player').val('');
+	   $('#audio_jack').val('');
+	   $('#gpu').val('');
+	   $('#sim_size').val('');
+	   $('#sim_supported').val('');
+	   $('#call_memory').val('');
+	   $('#sms_memory').val('');
+	   $('#phone_book_memory').val('');
+	   $('#sensors').val('');
+	   $('#java').val('');
+	   $('#insales_package').val('');
+	   $('#dislay_resolution').val('');
+	   $('#display_type').val('');
+	   
 	  
   }
   $(document).ready(function() {

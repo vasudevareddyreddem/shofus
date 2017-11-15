@@ -1248,7 +1248,80 @@ $(document).ready(function(){
 		
 	 });
 
-});		
+});
+
+function removeextrafields(){
+	  
+	   $('#productname').val('');
+	   $('#skuid').val('');
+	   $('#otherunique').val('');
+	   $('#product_price').val('');
+	   $('#special_price').val('');
+	   $('#pqty').val('');
+	   $('#warranty_summary').val('');
+	   $('#warranty_type').val('');
+	   $('#service_type').val('');
+	   $('#return_policy').val('');
+	   $('#highlights').val('');
+	   $('#pbrand').val('');
+	   $('#product_code').val('');
+	   $('#ingredients').val('');
+	   $('#key_feature').val('');
+	   $('#unit').val('');
+	   $('#packingtype').val('');
+	   $('#disclaimer').val('');
+	   $('#Processor').val('');
+	   $('#screen_size').val('');
+	   $('#internal_memeory').val('');
+	   $('#camera').val('');
+	   $('#sim_type').val('');
+	   $('#os').val('');
+	   $('#colour').val('');
+	   $('#ram').val('');
+	   $('#model_name').val('');
+	   $('#model_id').val('');
+	   $('#internal_memory').val('');
+	   $('#expand_memory').val('');
+	   $('#primary_camera').val('');
+	   $('#primary_camera_feature').val('');
+	   $('#secondary_camera').val('');
+	   $('#secondary_camera_feature').val('');
+	   $('#video_recording').val('');
+	   $('#hd_recording').val('');
+	   $('#flash').val('');
+	   $('#other_camera_features').val('');
+	   $('#battery_capacity').val('');
+	   $('#talk_time').val('');
+	   $('#standby_time').val('');
+	   $('#operating_frequency').val('');
+	   $('#preinstalled_browser').val('');
+	   $('#2g').val('');
+	   $('#3g').val('');
+	   $('#4g').val('');
+	   $('#wifi').val('');
+	   $('#gps').val('');
+	   $('#usb_connectivity').val('');
+	   $('#bluetooth').val('');
+	   $('#nfc').val('');
+	   $('#edge').val('');
+	   $('#edge_features').val('');
+	   $('#music_player').val('');
+	   $('#video_player').val('');
+	   $('#audio_jack').val('');
+	   $('#gpu').val('');
+	   $('#sim_size').val('');
+	   $('#sim_supported').val('');
+	   $('#call_memory').val('');
+	   $('#sms_memory').val('');
+	   $('#phone_book_memory').val('');
+	   $('#sensors').val('');
+	   $('#java').val('');
+	   $('#insales_package').val('');
+	   $('#dislay_resolution').val('');
+	   $('#display_type').val('');
+	   
+	  
+  }		
 </script>
   
 
