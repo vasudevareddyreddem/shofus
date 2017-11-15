@@ -239,17 +239,419 @@ $(document).ready(function() {
 	width: 77px;
 }
 }
+
+/* grossery sidebar	 */
+.sidebar{ 
+	margin-top:0;
+	
+	 background-color:#000;
+	 transition: all 0.5s  ease-in-out;
+ }
+.bg-defoult{
+	background-color:#fff;
+	color:#222;
+	}
+.sidebar ul{ list-style:none; margin:0px; padding:0px; }
+.sidebar li a,.sidebar li a.collapsed.active{
+	display:block; 
+	padding:8px 12px;
+
+	border-left:0px solid #dedede;
+	text-decoration:none
+	}
+.sidebar li a.active{
+	background-color:#335866;
+	color:#fff;
+	border-left:5px solid #009688;
+	transition: all 0.5s  ease-in-out;
+	margin:4px 0px
+	}
+	
+.sidebar li a:hover{
+	background-color:#009688  !important;
+	color:#fff;
+	}
+.sidebar li a i{ padding-right:5px;}
+.sidebar ul li .sub-menu li a{ position:relative}
+.sidebar ul li .sub-menu li a:before{
+    font-family: FontAwesome;
+    content: "\f105";
+    display: inline-block;
+    padding-left: 0px;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+.sidebar ul li .sub-menu li a:hover:after {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 0;
+    width: 5px;
+    background-color: #111;
+    height: 100%;
+}
+.sidebar ul li .sub-menu li a:hover{ background-color:#222; padding-left:20px; transition: all 0.5s  ease-in-out}
+.sub-menu{ border-left:5px solid #009688;}
+	.sidebar li a .nav-label,.sidebar li a .nav-label+span{ transition: all 0.5s  ease-in-out}
+	
+
+	.sidebar.fliph li a .nav-label,.sidebar.fliph li a .nav-label+span{ display:none;transition: all 0.5s  ease-in-out}
+
+	.bg_defa{
+		background:#fff !important;
+		border-bottom:1px solid #ddd;
+	}
+
+/* grossery sidebar	end */
 </style>
 <!--<div class="" style="margin-top:50px;">
 	<img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
 </div>-->
 <body >
+		
+		 
 	  <div class="container-fluid fluid_mod " id="containerhigh"></div>
 	 <div class="container-fluid fluid_mod " id="containerhighold">
 	 
 
 	 <div class="row ">
 			<div class="col-md-12  ">
+			<div class="title text-left mar_t10"><span> Grocery list</span></div>
+			<!--groffers start-->
+	<div class="mar_t20">
+	<div class='col-md-12'>
+      <div class="carousel slide media-carousel" id="media">
+        <div class="carousel-inner">
+          <div class="item  active slid_hig">
+            <div class="row">
+              <div class="col-md-2">
+		
+                <a class="" href="#"><img  alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
+				<p class="name_gr">Fruits & Vegetables</p>
+				</a>
+              </div>          
+              <div class="col-md-2">
+                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-16.jpg">
+				<p class="name_gr">Grocery & Staples</p>
+				</a>
+              </div>
+              <div class="col-md-2">
+                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-12.jpg">
+				<p class="name_gr">Beverages</p>
+				</a>
+              </div> 
+				<div class="col-md-2">
+                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-1047.jpg">
+				<p class="name_gr">Home & Kitchen</p>
+				</a>
+              </div>          
+              <div class="col-md-2">
+                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-18.jpg">
+				<p class="name_gr">Household Needs</p>
+				</a>
+              </div>
+              <div class="col-md-2">
+                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-163.jpg">
+				<p class="name_gr">Personal Care</p>
+				</a>
+              </div>			  
+            </div>
+          </div>
+          <div class="item slid_hig">
+            <div class="row">
+              <div class="col-md-2">
+                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
+				<p class="name_gr">Fruits & Vegetables</p>
+				</a>
+              </div>          
+              <div class="col-md-2">
+                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
+				<p class="name_gr">Fruits & Vegetables</p>
+				</a>
+              </div>
+              <div class="col-md-2">
+                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg"></a>
+              </div> 
+				<div class="col-md-2">
+                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
+				<p class="name_gr">Fruits & Vegetables</p>
+				</a>
+              </div>          
+              <div class="col-md-2">
+                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
+				<p class="name_gr">Fruits & Vegetables</p>
+				</a>
+              </div>
+              <div class="col-md-2">
+                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
+				</a>
+				<p class="name_gr">Fruits & Vegetables</p>
+              </div> 			  
+            </div>
+          </div>
+          
+        </div>
+        <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
+        <a data-slide="next" href="#media" class="right carousel-control">›</a>
+      </div>                          
+    </div>
+	<div class="clearfix">&nbsp;</div>
+	<p style="border-top:1px solid #ddd;">&nbsp;</p>
+	<br>
+    <div class='col-md-3'>
+		
+          <div class="sidebar left ">
+           
+            <ul class="list-sidebar bg-defoult">
+              <li> <a href="#" data-toggle="collapse" data-target="#dashboard" class="collapsed active" > </i> <span class="nav-label"> Dashboards </span> <span class="fa fa-chevron-left pull-right"></span> </a>
+              <ul class="sub-menu collapse" id="dashboard">
+                <li class="active"><a href="#">CSS3 Animation</a></li>
+                <li><a href="#">General</a></li>
+                <li><a href="#">Buttons</a></li>
+                <li><a href="#">Tabs & Accordions</a></li>
+                <li><a href="#">Typography</a></li>
+                <li><a href="#">FontAwesome</a></li>
+                <li><a href="#">Slider</a></li>
+                <li><a href="#">Panels</a></li>
+                <li><a href="#">Widgets</a></li>
+                <li><a href="#">Bootstrap Model</a></li>
+              </ul>
+            </li>
+           
+            <li> <a href="#" data-toggle="collapse" data-target="#products" class="collapsed active" >  <span class="nav-label">Graphs</span> <span class="fa fa-chevron-left pull-right"></span> </a>
+            <ul class="sub-menu collapse" id="products">
+              <li class="active"><a href="#">CSS3 Animation</a></li>
+              <li><a href="#">General</a></li>
+              <li><a href="#">Buttons</a></li>
+              <li><a href="#">Tabs & Accordions</a></li>
+              <li><a href="#">Typography</a></li>
+              <li><a href="#">FontAwesome</a></li>
+              <li><a href="#">Slider</a></li>
+              <li><a href="#">Panels</a></li>
+              <li><a href="#">Widgets</a></li>
+              <li><a href="#">Bootstrap Model</a></li>
+            </ul>
+          </li>
+          
+          <li> <a href="#" data-toggle="collapse" data-target="#tables" class="collapsed active" ><span class="nav-label">Tables</span><span class="fa fa-chevron-left pull-right"></span></a>
+          <ul  class="sub-menu collapse" id="tables" >
+            <li><a href=""> Static Tables</a></li>
+            <li><a href=""> Data Tables</a></li>
+            <li><a href=""> Foo Tables</a></li>
+            <li><a href=""> jqGrid</a></li>
+          </ul>
+        </li>
+        <li> <a href="#" data-toggle="collapse" data-target="#e-commerce" class="collapsed active" > <span class="nav-label">E-commerce</span><span class="fa fa-chevron-left pull-right"></span></a>
+        <ul  class="sub-menu collapse" id="e-commerce" >
+          <li><a href=""> Products grid</a></li>
+          <li><a href=""> Products list</a></li>
+          <li><a href="">Product edit</a></li>
+          <li><a href=""> Product detail</a></li>
+          <li><a href="">Cart</a></li>
+          <li><a href=""> Orders</a></li>
+          <li><a href=""> Credit Card form</a> </li>
+        </ul>
+      </li>
+     
+    </ul>
+    </div>
+   
+	</div>
+    <div class='col-md-9'>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default ">
+    <div class="panel-heading bg_defa ">
+		<div class="row">
+		<a data-toggle="collapse" data-parent="#accordion" href="#znajomi">
+			<div class="col-md-3">
+				<div>
+					<img class="groc_min_h" src="//cdn.grofers.com/app/images/products/normal/pro_336298.jpg?1477488636">
+				</div>
+			</div>
+			</a>
+			<div class="col-md-6">
+				<div class="gro_tit">Pomegranate(Anaar)</div>
+				<p class="">3 units (500-600 gm)</p>
+				
+				<p class="">Available in: &nbsp;&nbsp;
+				
+					<span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
+					<span class="btn_cus"> 6 units</span>
+				</p>
+				<div class="input-group incr_btn">
+                                                        <span class="input-group-btn">
+														<button style="width:20px;padding:6px;" type="button" onclick="productqty('0');" class="btn btn-primary btn-number btn-small" data-type="minus" data-field="quant[2]">
+												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
+                                                        </button>
+                                                        </span>
+                                                        <input type="text" name="qty" id="qty0" readonly="" class="form-control input-number" value="4" min="1" max="100">
+                                                        <span class="input-group-btn">
+											  <button style="width:20px;padding:6px" onclick="productqtyincreae('0');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
+												  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
+                                                        </button>
+                                                        </span>
+                                                    </div>
+			</div>
+			<div class="col-md-3">
+				<p class="">MRP:₹85</p>
+				<button class="btn btn-primary btn-sm">Add To Cart</button>
+			</div>
+		</div>
+		
+    </div>
+	
+    <div id="znajomi" class="panel-collapse collapse ">
+      <div class="panel-body">
+			<div class="row">
+				<div class="col-md-12">
+					<h4>About The Product</h4>
+	<div class="descr">
+		<p class="sub_tit">Description</p>
+		<p class="font_si14">Fresh in appearance, unblemished and intact, Pomegranate has a juicy cluster of sparkling, opaque, red coloured seeds which look like gems. Juicy with a tangy punch, this fruit is delicious and improves blood circulation.</p>
+	</div>
+	<div class="descr">
+		<p class="sub_tit">Nutrient Value & Benefits</p>
+		<p class="font_si14">
+Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.</p>
+	</div>
+	<div class="descr">
+		<p class="sub_tit">Nutrient Value & Benefits</p>
+		<p class="font_si14">
+Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.</p>
+	</div>
+	
+
+				</div>
+				
+			</div>
+			
+      </div>
+    </div>
+  </div>
+ <div class="panel panel-default ">
+    <div class="panel-heading bg_defa ">
+		<div class="row">
+		<a data-toggle="collapse" data-parent="#accordion" href="#second_acc">
+			<div class="col-md-3">
+				<div>
+					<img class="groc_min_h" src="//cdn.grofers.com/app/images/products/normal/pro_336298.jpg?1477488636">
+				</div>
+			</div>
+			</a>
+			<div class="col-md-6">
+				<div class="gro_tit">Pomegranate(Anaar)</div>
+				<p class="">3 units (500-600 gm)</p>
+				<p class="">Available in: &nbsp;&nbsp;
+				
+					<span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
+					<span class="btn_cus"> 6 units</span>
+				</p>
+			</div>
+			<div class="col-md-3">
+				<p class="">MRP:₹85</p>
+				<button class="btn btn-primary btn-sm">Add To Cart</button>
+			</div>
+		</div>
+		
+    </div>
+	
+    <div id="second_acc" class="panel-collapse collapse ">
+      <div class="panel-body">
+			<div class="row">
+				<div class="col-md-12">
+					<h4>About The Product</h4>
+	<div class="descr">
+		<p class="sub_tit">Description</p>
+		<p class="font_si14">Fresh in appearance, unblemished and intact, Pomegranate has a juicy cluster of sparkling, opaque, red coloured seeds which look like gems. Juicy with a tangy punch, this fruit is delicious and improves blood circulation.</p>
+	</div>
+	<div class="descr">
+		<p class="sub_tit">Nutrient Value & Benefits</p>
+		<p class="font_si14">
+Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.</p>
+	</div>
+	<div class="descr">
+		<p class="sub_tit">Nutrient Value & Benefits</p>
+		<p class="font_si14">
+Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.</p>
+	</div>
+	
+
+				</div>
+				
+			</div>
+			
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default ">
+    <div class="panel-heading bg_defa ">
+		<div class="row">
+		<a data-toggle="collapse" data-parent="#accordion" href="#third_acc">
+			<div class="col-md-3">
+				<div>
+					<img class="groc_min_h" src="//cdn.grofers.com/app/images/products/normal/pro_336298.jpg?1477488636">
+				</div>
+			</div>
+			</a>
+			<div class="col-md-6">
+				<div class="gro_tit">Pomegranate(Anaar)</div>
+				<p class="">3 units (500-600 gm)</p>
+				
+				<p class="">Available in: &nbsp;&nbsp;
+				
+					<span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
+					<span class="btn_cus"> 6 units</span>
+				</p>
+			</div>
+			<div class="col-md-3">
+				<p class="">MRP:₹85</p>
+				<button class="btn btn-primary btn-sm">Add To Cart</button>
+			</div>
+		</div>
+		
+    </div>
+	
+    <div id="third_acc" class="panel-collapse collapse ">
+      <div class="panel-body">
+			<div class="row">
+				<div class="col-md-12">
+					<h4>About The Product</h4>
+	<div class="descr">
+		<p class="sub_tit">Description</p>
+		<p class="font_si14">Fresh in appearance, unblemished and intact, Pomegranate has a juicy cluster of sparkling, opaque, red coloured seeds which look like gems. Juicy with a tangy punch, this fruit is delicious and improves blood circulation.</p>
+	</div>
+	<div class="descr">
+		<p class="sub_tit">Nutrient Value & Benefits</p>
+		<p class="font_si14">
+Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.</p>
+	</div>
+	<div class="descr">
+		<p class="sub_tit">Nutrient Value & Benefits</p>
+		<p class="font_si14">
+Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.</p>
+	</div>
+	
+
+				</div>
+				
+			</div>
+			
+      </div>
+    </div>
+  </div>
+  
+</div>
+</div>
+    
+	</div>
+	
+
+			<!--groffers end-->
+			<div class="clearfix">&nbsp;</div>
+			
+			
+			
+			
 			  <?php //echo '<pre>';print_r($minimum_price['item_cost']);exit; ?>
 			  <div class="col-md-12 gir_alg" >
 			  <div class="title text-left mar_t10"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
@@ -1070,3 +1472,11 @@ $('.add-to-cart').on('click', function () {
         }
     });
 </script>
+<!--<script>
+$(document).ready(function() {
+  $('#media').carousel({
+    pause: true,
+    interval: false,
+  });
+});
+</script>-->
