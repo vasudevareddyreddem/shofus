@@ -2361,6 +2361,275 @@ public function addhomepagemiddlebannerspost()
 		}
 		
 	}
+	public function subitemslists(){
+		if($this->session->userdata('userdetails'))
+	 	{
+			$data['sublitem_list']=$this->inventory_model->get_all_subitem_list();
+			//echo '<pre>';print_r($data['deliveryboy_list']);exit;
+			$this->load->view('customer/inventry/sidebar');
+			$this->load->view('customer/inventry/subitemlist',$data);
+			$this->load->view('customer/inventry/footer');
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		}
+		
+	}
+	public function subitemadd(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$data['category_list'] = $this->inventory_model->get_all_categort();
+					//echo '<pre>';print_r($data);exit;
+					$this->load->view('customer/inventry/sidebar');
+					$this->load->view('customer/inventry/addsubitem',$data);
+					$this->load->view('customer/inventry/footer');
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  public function getsubcategories(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		
+		$post=$this->input->post();
+		$subcategory_list = $this->inventory_model->get_all_subcategoires($post['categoryid']);
+		if(count($subcategory_list)>0){
+		$data['msg']=1;
+		$data['detail']=$subcategory_list;
+		echo json_encode($subcategory_list);exit;
+		}else{
+			$data['msg']=0;
+			echo json_encode($data);exit;
+		}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  public function addsubitempost(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$post=$this->input->post();
+					$alreadyexits = $this->inventory_model->get_subitem_name_existss($post['subitemname']);
+						if(count($alreadyexits)>0){
+							$this->session->set_flashdata('error',"SubItem Name already exits.please use another subitem Name.");
+							redirect('inventory/subitemadd');
+						}
+					
+					$addsubitem = array(
+					'category_id' => $post['category_list'], 
+					'subcategory_id' => $post['subcategory_list'],
+					'subitem_name' => $post['subitemname'],
+					'status' => 1,    
+					'updated_at' => date('Y-m-d H:i:s'),    
+					'created_at' => date('Y-m-d H:i:s'),
+					'created_by' =>$logindetail['customer_id'], 
+					);
+					$results=$this->inventory_model->save_subitems($addsubitem);
+					if(count($results)>0){
+					$this->session->set_flashdata('success',"SubCategory Successfully Added");
+					redirect('inventory/subitemslists');
+					}
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  public function subitemstatus(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$id = base64_decode($this->uri->segment(3)); 
+					$status = base64_decode($this->uri->segment(4));
+					if($status==1){
+					$status=0;
+					}else{
+					$status=1;
+					}
+					$data=array('status'=>$status);
+					$updatestatus=$this->inventory_model->update_subitem_status($id,$data);
+					//echo $this->db->last_query();exit;
+					
+					if(count($updatestatus)>0){
+						if($status==1){
+							$this->session->set_flashdata('success'," SubItem activation successful");
+						}else{
+							$this->session->set_flashdata('success',"SubItem deactivation successful");
+						}
+						redirect('inventory/subitemslists');
+					}
+		}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  public function addsubitemedit(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$subitem_id=base64_decode($this->uri->segment(3));
+				$data['subitem_list'] = $this->inventory_model->get_subitem_details($subitem_id);
+				$data['subcategory_list'] = $this->inventory_model->get_subcategore_details_category_wise($data['subitem_list']['category_id']);
+				$data['category_list'] = $this->inventory_model->get_all_categort();
+					//echo '<pre>';print_r($data);exit;
+					$this->load->view('customer/inventry/sidebar');
+					$this->load->view('customer/inventry/editsubitem',$data);
+					$this->load->view('customer/inventry/footer');
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  public function editsubitempost(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$post=$this->input->post();
+				//echo '<pre>';print_r($post);exit;
+					if(isset($post['changesubcategory_list']) && $post['changesubcategory_list']!=''){
+						$subcatid=$post['changesubcategory_list'];
+					}else{
+					$subcatid=$post['subcategory_list'];
+					}
+					$updatesubitem = array(
+					'category_id' => $post['category_list'], 
+					'subcategory_id' => $subcatid,
+					'subitem_name' => $post['subitemname'],
+					'status' => 1,    
+					'updated_at' => date('Y-m-d H:i:s'),    
+					'created_at' => date('Y-m-d H:i:s'),
+					'created_by' =>$logindetail['customer_id'], 
+					);
+					//echo '<pre>';print_r($updatesubitem);exit;
+					$details=$this->inventory_model->update_subitem_status($post['subitemid'],$updatesubitem);
+					
+					//echo $this->db->last_query();exit;
+					if(count($details)>0){
+
+					$this->session->set_flashdata('success',"SubItem Successfully Updated!");
+					redirect('inventory/subitemslists');
+					}	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  public function subimportsubitem(){
+	$post=$this->input->post();
+		$logindetail=$this->session->userdata('userdetails');
+if((!empty($_FILES["importsubitemfile"])) && ($_FILES['importsubitemfile']['error'] == 0)) {
+				$limitSize	= 1000000000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
+				$fileName	= basename($_FILES['importsubitemfile']['name']);
+				$fileSize	= $_FILES["importsubitemfile"]["size"];
+				$fileExt	= substr($fileName, strrpos($fileName, '.') + 1);
+				if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
+					include( 'simplexlsx.class.php');
+					$getWorksheetName = array();
+					$xlsx = new SimpleXLSX( $_FILES['importsubitemfile']['tmp_name'] );
+					$getWorksheetName = $xlsx->getWorksheetName();
+					//echo $xlsx->sheetsCount();exit;
+					for($j=1;$j <= $xlsx->sheetsCount();$j++){
+						$cnt=$xlsx->sheetsCount()-1;
+						$arry=$xlsx->rows($j);
+						unset($arry[0]);
+						//echo "<pre>";print_r($arry);exit;
+						foreach($arry as $key=>$fields)
+							{
+								if(isset($fields[0]) && $fields[0]!=''){
+								$totalfields[] = $fields;	
+									if(empty($fields[0])) {
+										$data['errors'][]="Subitem Name is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[0]!=''){
+										$regex ="/^[ A-Za-z0-9_@.,}{@#&*)(_+-]*$/"; 
+										if(!preg_match( $regex, $fields[0]))	  	
+										{
+										$data['errors'][]='Subitem Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
+										$error=1;
+										}else{
+											$result = $this->inventory_model->get_subitemname_existss($fields[0]);
+											if(count($result)>0){
+											$data['errors'][]="Subitem Name already exits .please use another Subitem Name. Row Id is :  ".$key.'<br>';
+											$error=1;	
+											}
+
+										}
+									}
+									
+								}else{
+									$data['errors'][]='Please Fillout all Fields';
+									$this->session->set_flashdata('addsuccess',$data['errors']);
+									redirect('inventory/subitemadd');	
+								}
+							}
+								if(count($data['errors'])>0){
+								$this->session->set_flashdata('addsuccess',$data['errors']);
+								redirect('inventory/subitemadd');	
+								}
+						}
+						
+						
+					}
+	}
+					if(count($data['errors'])<=0){
+						foreach($totalfields as $data){
+								//echo "<pre>";print_r($data);exit;
+							$addsubcat = array(
+							'category_id' => $post['category_list'], 
+							'subcategory_id' => $post['subcategory_lists'],
+							'subitem_name' => $data[0],
+							'status' => 1,    
+							'updated_at' => date('Y-m-d H:i:s'),    
+							'created_at' => date('Y-m-d H:i:s'),
+							'created_by' =>$logindetail['customer_id']							
+							);
+							//echo "<pre>";print_r($addsubcat);exit;
+							$results=$this->inventory_model->save_subitems($addsubcat);
+							//echo $this->db->last_query();exit;
+						}
+						if(count($results)>0){
+							$this->session->set_flashdata('success','Successfully Added');
+							redirect('inventory/subitemslists');	
+						}
+					
+					
+				}
+				
+	       }
 	
 }		
 ?>

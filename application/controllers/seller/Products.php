@@ -119,6 +119,29 @@ class Products extends Admin_Controller {
 	exit;	
 		
 	}
+	public function getsubitemsname()
+	{
+		
+	$post=$this->input->post();
+	//print_r($subcat);exit;
+	$result=$this->products_model->get_subitem_list_subcategorywise($post['subcatid']);
+	//echo $this->db->last_query();exit;
+	if(count($result)>0){
+		echo '<option value="">Select SubItem</option>';
+		foreach($result as $alldata)
+	{
+
+	echo '<option value="'.$alldata['subitem_id'].'">'.$alldata['subitem_name'].'</option>';
+	}
+		
+	}else{
+		echo '<option value="">Select Subitem</option>';	
+			
+	}
+	
+	exit;	
+		
+	}
 
 	public function getajaxsubitem()
 	{
@@ -164,7 +187,11 @@ public function item_status(){
  public function getolditemdata(){
 	 $post = $this->input->post();
 	 $data['item_details']=$this->products_model->get_sae_product_details($post['productname'],$post['categoryid'],$post['subcategoryid']);
-	 $this->load->view('seller/products/sameproductdetails',$data);
+	 if(isset($post['categoryid']) && $post['categoryid']==21){
+	 $this->load->view('seller/products/groceryproductdetails',$data);
+	 }else{
+		 $this->load->view('seller/products/sameproductdetails',$data);
+	 }
 	 
  }
 		
@@ -174,7 +201,7 @@ public function item_status(){
 		$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));	
 		$post=$this->input->post();
 		//echo '<pre>';print_r($_FILES);
-		//echo '<pre>';print_r($productspecificationlist);
+		//echo '<pre>';print_r($post);
 		//exit;
 		
 		$discount= ($post['product_price']-$post['special_price']);
@@ -234,6 +261,7 @@ public function item_status(){
 		$data=array(
 			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
 			'subcategory_id' => isset($post['subcategorylist'])?$post['subcategorylist']:'',
+			'subitemid' => isset($post['subitemid'])?$post['subitemid']:'',
 			'item_name' => isset($post['product_name'])?$post['product_name']:'',
 			'item_cost' => isset($post['product_price'])?$post['product_price']:'',
 			'special_price' => isset($post['special_price'])?$post['special_price']:'',
@@ -298,6 +326,11 @@ public function item_status(){
 			'insales_package' => isset($post['insales_package'])?$post['insales_package']:'',
 			'dislay_resolution' => isset($post['dislay_resolution'])?$post['dislay_resolution']:'',
 			'display_type' => isset($post['display_type'])?$post['display_type']:'',
+			'ingredients' => isset($post['ingredients'])?$post['ingredients']:'',
+			'key_feature' => isset($post['key_feature'])?$post['key_feature']:'',
+			'unit' => isset($post['unit'])?$post['unit']:'',
+			'packingtype' => isset($post['packingtype'])?$post['packingtype']:'',
+			'disclaimer' => isset($post['disclaimer'])?$post['disclaimer']:'',
 			'item_image'=>isset($profilepic1)?$profilepic1:'',
 			'item_image1'=>isset($profilepic2)?$profilepic2:'',
 			'item_image2'=>isset($profilepic3)?$profilepic3:'',
@@ -448,6 +481,7 @@ public function edit()
 	$data['productsizes']=$this->products_model->get_product_sizes($productid);
 	$data['productuksizes']=$this->products_model->get_product_uksizes($productid);
 	$data['productdescriptions']=$this->products_model->get_product_desc($productid);
+	$data['subitems'] = $this->products_model->get_subitem_list_subcategorywise($data['productdetails']['subcategory_id']);
 	//echo '<pre>';print_r($data['productdescriptions']);exit;
 	
 		//echo '<pre>';print_r($data);exit;
@@ -551,7 +585,7 @@ public function update()
 	//$id = $this->uri->segment(4);
 	$post=$this->input->post();
 	
-	//echo '<pre>';print_r($post['description']);
+	//echo '<pre>';print_r($post);exit;
 	//echo '<pre>';print_r($_FILES);
 	
 	$productdetails=$this->products_model->getproductdata($post['product_id']);
@@ -624,8 +658,15 @@ public function update()
 		}else{
 			$subcatid=$post['subcategorylist'];
 		}
+		if($post['editsubitemid']==''){
+			$subitem=$post['subitemid'];
+		}else{
+			$subitem=$post['editsubitemid'];
+		}
 		$updatedata=array(
 			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
+			'subcategory_id' => isset($subcatid)?$subcatid:'',		
+			'subitemid' => isset($subitem)?$subitem:'',		
 			'item_name' => isset($post['product_name'])?$post['product_name']:'',
 			'item_cost' => isset($post['product_price'])?$post['product_price']:'',
 			'special_price' => isset($post['special_price'])?$post['special_price']:'',
@@ -690,6 +731,11 @@ public function update()
 			'insales_package' => isset($post['insales_package'])?$post['insales_package']:'',
 			'dislay_resolution' => isset($post['dislay_resolution'])?$post['dislay_resolution']:'',
 			'display_type' => isset($post['display_type'])?$post['display_type']:'',
+			'ingredients' => isset($post['ingredients'])?$post['ingredients']:'',
+			'key_feature' => isset($post['key_feature'])?$post['key_feature']:'',
+			'unit' => isset($post['unit'])?$post['unit']:'',
+			'packingtype' => isset($post['packingtype'])?$post['packingtype']:'',
+			'disclaimer' => isset($post['disclaimer'])?$post['disclaimer']:'',
 			'item_image'=>$image1,
 			'item_image1'=>$image2,
 			'item_image2'=>$image3,

@@ -96,6 +96,27 @@
 
 				</select>
 			</div>
+			<?php if(isset($productdetails['subitemid']) && $productdetails['subitemid']!=''){ ?>
+			<div class="form-group col-md-12 nopaddingRight san-lg" id="oldsubitems">
+				<label for="exampleInputEmail1">Sub Item </label>
+				<select class="form-control" id="subitemid" name="subitemid" >
+				<option value="">Select Subitems </option>
+				<?php foreach($subitems as $list){ ?>
+				<?php if($productdetails['subitemid']==$list['subitem_id']){ ?>
+				<option selected="selected" value="<?php echo $list['subitem_id']; ?>"><?php echo $list['subitem_name']; ?></option>
+				<?php } else{ ?>
+				<option value="<?php echo $list['subitem_id']; ?>"><?php echo $list['subitem_name']; ?></option>
+				<?php } } ?>
+			</select>
+			</div>
+			<div class="form-group col-md-12 nopaddingRight san-lg" id="subitems" style="display:none;">
+				<label for="exampleInputEmail1">Sub Item </label>
+				<select class="form-control" id="editsubitemid" name="editsubitemid" >
+				<option value="">Select Subitems </option>
+			</select>
+			</div>
+			
+			<?php } ?>
 		
 			
 	</div>
@@ -259,6 +280,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<?php if(isset($productdetails['category_id']) && $productdetails['category_id']!=21){  ?>
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -669,7 +692,50 @@
 			</div>
 		</div>
 	</div>
-
+	<?php }else if(isset($productdetails['category_id']) && $productdetails['category_id']==21){ ?>
+	
+				
+				<div class="row">
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Ingredients</label>
+								<input type="text" class="form-control" id="ingredients" name="ingredients" value="<?php echo isset($productdetails['ingredients'])?$productdetails['ingredients']:''; ?>" >
+							</div>
+						</div>
+						
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Key Features</label>
+								<input type="text" class="form-control" id="key_feature" name="key_feature" value="<?php echo isset($productdetails['key_feature'])?$productdetails['key_feature']:''; ?>" >
+							</div>
+						</div>
+					
+				</div>
+				<div class="row">
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Unit</label>
+								<input type="text" class="form-control" id="unit" name="unit" value="<?php echo isset($productdetails['unit'])?$productdetails['unit']:''; ?>" >
+							</div>
+						</div>
+						
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Packaging Type</label>
+								<input type="text" class="form-control" id="packingtype" name="packingtype" value="<?php echo isset($productdetails['packingtype'])?$productdetails['packingtype']:''; ?>" >
+							</div>
+						</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-md-12 form-group">
+						<div class="form-group nopaddingRight san-lg">
+							<label for="exampleInputEmail1">Disclaimer</label>
+							<textarea  placeholder="Disclaimer" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="disclaimer" name="disclaimer"><?php echo isset($productdetails['disclaimer'])?$productdetails['disclaimer']:''; ?></textarea>
+						</div>
+					</div>
+				</div>
+	<?php } ?>
 <div class="clearfix"></div>
 	<br>
 	<div class="" style="position:relative;">
@@ -798,7 +864,31 @@
 	
 
   <script>
-  
+  function getspecialinputs(ids){
+	
+	var cat_id=$('#category_id').val();
+	if(cat_id==21){
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url();?>seller/products/getsubitemsname",
+				data: {
+				form_key : window.FORM_KEY,
+				subcatid: ids,
+				},
+				cache: false,
+				success: function(data)
+				{
+					
+					$('#subitems').show();
+					$('#oldsubitems').hide();
+					$("#editsubitemid").empty();
+					$("#editsubitemid").html(data);
+				} 
+			});
+	}
+		
+	
+}
   var i=1;  
       function addmore(){
 	 i++;
@@ -847,105 +937,7 @@
 			}
 			
 		}
-  function removeextrafields(){
-	  
-	   $('#productname').val('');
-	   $('#skuid').val('');
-	   $('#otherunique').val('');
-	   $('#product_price').val('');
-	   $('#specialprice').val('');
-	   $('#offers').val('');
-	   $('#discount').val('');
-	   $('#qty').val('');
-	   $('#keywords').val('');
-	   $('#title').val('');
-	   $('#status').val('');
-	   $('#product_description').val('');
-	   $('#product_sub_tem').val('');
-	   $('#ideal_for').val('');
-	   $('#brand').val('');
-	   $('#product_scusine').val('');
-	   $('#product_sufficient').val('');
-	   $('#product_type8').val('');
-	   $('#product_type7').val('');
-	   $('#product_theme1').val('');
-	   $('#product_theme').val('');
-	   $('#dial_shape2').val('');
-	   $('#compatible_os').val('');
-	   $('#prouduct_usage').val('');
-	   $('#prouduct_display_type').val('');
-	   $('#product_theme5').val('');
-	   $('#product_occasion2').val('');
-	   $('#product_theme4').val('');
-	   $('#material1').val('');
-	   $('#product_gemstones').val('');
-	   $('#Material2').val('');
-	   $('#product_type6').val('');
-	   $('#dial_shape1').val('');
-	   $('#prouduct_strap_color').val('');
-	   $('#prouduct_dial_color').val('');
-	   $('#product_type5').val('');
-	   $('#product_theme3').val('');
-	   $('#product_packof2').val('');
-	   $('#product_theme2').val('');
-	   $('#product_occasion1').val('');
-	   $('#product_type4').val('');
-	   $('#product_packof1').val('');
-	   $('#product_compatible_mobiles').val('');
-	   $('#product_type3').val('');
-	   $('#product_mega_pixel').val('');
-	   $('#product_sensor_type').val('');
-	   $('#product_battery_type').val('');
-	   $('#product_type2').val('');
-	   $('#wireless_speed').val('');
-	   $('#frequency_band').val('');
-	   $('#broadband_compatibility').val('');
-	   $('#usb_ports').val('');
-	   $('#product_frequency').val('');
-	   $('#product_antennae').val('');
-	   $('#product_display_size3').val('');
-	   $('#product_connectivity').val('');
-	   $('#product_ram3').val('');
-	   $('#voice_calling_facility').val('');
-	   $('#operating_system3').val('');
-	   $('#internal_storage3').val('');
-	   $('#battery_capacity2').val('');
-	   $('#primary_camera2').val('');
-	   $('#processor_clock_speed').val('');
-	   $('#product_display_size2').val('');
-	   $('#product_processor').val('');
-	   $('#product_processor_brand1').val('');
-	   $('#operating_system2').val('');
-	   $('#product_ram2').val('');
-	   $('#life_style').val('');
-	   $('#storage_type').val('');
-	   $('#dedicated_graphics_memory').val('');
-	   $('#touch_screentouch_screen').val('');
-	   $('#weight').val('');
-	   $('#internal_storage2').val('');
-	   $('#graphics_memory_type').val('');
-	   $('#ram_type').val('');
-	   $('#product_ram1').val('');
-	   $('#operating_system1').val('');
-	   $('#internal_storage4').val('');
-	   $('#product_display_size1').val('');
-	   $('#network_type').val('');
-	   $('#battery_capacity1').val('');
-	   $('#product_speciality').val('');
-	   $('#product_type1').val('');
-	   $('#operating_system_version_name').val('');
-	   $('#product_processor_brand2').val('');
-	   $('#resolution_type').val('');
-	   $('#primary_camera1').val('');
-	   $('#secondary_camera').val('');
-	   $('#sim_type').val('');
-	   $('#clock_speed').val('');
-	   $('#number_of_cores').val('');
-	   $('#internal_storage1').val('');
-	   $('#specificationnameid').val('');
-	   $('#specificationvalueid').val('');
-	  
-  }
+  
   function removesizes(id){
 
 	if(id!=''){
@@ -1024,7 +1016,6 @@
    $('#oldsubcat').show();
    $('#oldsubcat').show();
  	  
-  getspecialinputs('<?php echo htmlentities($productdetails['category_id']);?>');
   function getproductinputs(id){
 	 if(id==18){
 		  $('#foodcategoryinputs').show();
@@ -1045,230 +1036,7 @@
 	 
 	  
 }
-  $('#personalcareappliancesinputs').show();
- getspecialinputs('<?php echo htmlentities($productdetails['subcategory_id']);?>');
-	function getspecialinputs(ids){
-	
-	if(ids=1){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}else{
-		$('#sizeid').show();
-		$('#colorid').show();
-	}
-	if(ids==7 || ids==24){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#womensaccessoriesinputs').hide();
-	}
-	
-	if(ids==9){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}
-	if(ids==10){
-		$('#smartwatchesinputs').show();
-	}else{
-		$('#smartwatchesinputs').hide();
-
-	}
-	if(ids==53){
-		$('#footwareinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#footwareinputs').hide();
-
-	}
-	if(ids==11 || ids==21){
-		$('#womensaccessoriesinputs').show();
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}else{
-		$('#womensaccessoriesinputs').hide();
-
-	}
-	if(ids==13 || ids==16 || ids==17){
-		$('#mensfabricsinputs1').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs1').hide();
-
-	}
-	if(ids==14 || ids==19 || ids==20 || ids==22 || ids==8){
-		$('#winterwaerinputs1').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs1').hide();
-
-	}
-	if(ids==15){
-		$('#jwelleryinputs').show();
-		$('#colorid').show();
-	}else{
-		$('#jwelleryinputs').hide();
-
-	}
-	if(ids==16){
-		$('#mensfabricsinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-
-	}
-	if(ids==17){
-		$('#mensfabricsinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-
-	}
-	if(ids==18){
-		$('#sizeid').show();
-		$('#colorid').show();
-	}
-	if(ids==50){
-		$('#womenswatchesinputs').show();
-	}else{
-		$('#womenswatchesinputs').hide();
-	}
-	if(ids==19){
-		$('#winterwaerinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs').hide();
-	}
-	if(ids==20){
-		$('#winterwaerinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs').hide();
-	}
-	if(ids==21){
-		$('#product_theme').show();
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}else{
-		$('#product_theme').hide();
-	}
-	if(ids==22){
-		$('#winterwaerinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs').hide();
-	}
-	if(ids==51){
-		$('#mensehinicwearinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensehinicwearinputs').hide();
-	}
-	if(ids==23){
-		$('#mensfabricsinputs').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-	}
-	if(ids==24){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}
-	if(ids==25){
-		$('#sizeid').show();
-		$('#colorid').show();
-		$('#product_theme').show();
-	}else{
-		$('#product_theme').hide();	
-	}
-	if(ids==26){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#idealfor').hide();
-	}
-	if(ids==52){
-		$('#sizeid').show();
-		$('#colorid').show();
-		$('#winterwaerinputs').show();
-	}else{
-		$('#winterwaerinputs').hide();	
-	}
-	if(ids==28){
-		$('#sizeid').show();
-		$('#colorid').show();
-		$('#winterwaerinputs').show();
-	}else{
-		$('#winterwaerinputs').hide();	
-	}
-	if(ids==29){
-		$('#sizeid').show();
-		$('#colorid').show();
-		$('#winterwaerinputs').show();
-	}else{
-		$('#winterwaerinputs').hide();	
-	}
-	if(ids==30){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#mobileaccessoriesinputs').show();
-	}else{
-		$('#mobileaccessoriesinputs').hide();	
-	}
-	if(ids==31 || ids==32  || ids==33){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-	}
-	if(ids==34){
-		$('#sizeid').hide();
-		$('#colorid').show();
-		$('#camerainputs').show();
-	}else{
-		$('#camerainputs').hide();	
-	}
-	if(ids==35){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#tabletsinputs').show();
-	}else{
-		$('#tabletsinputs').hide();	
-	}
-	if(ids==36){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#routersinputs').show();
-	}else{
-		$('#routersinputs').hide();	
-	}
-	if(ids==39){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#laptopsinputs').show();
-	}else{
-		$('#laptopsinputs').hide();	
-	}
-	if(ids==40){
-		$('#sizeid').hide();
-		$('#colorid').hide();
-		$('#mobilesinputs').show();
-	}else{
-		$('#mobilesinputs').hide();
-		//$('#sizeid').show();
-	}
-	
-	 
-	
-	   
-		  
-  }
-	  
-
+ 
 	$(document).ready(function() {
 
     $('#addproduct').bootstrapValidator({
@@ -1278,6 +1046,13 @@
 					validators: {
 					notEmpty: {
 					message: 'Please select a category'
+					}
+				}
+			},
+			editsubitemid: {
+					validators: {
+					notEmpty: {
+					message: 'Please select a subitem name'
 					}
 				}
 			},

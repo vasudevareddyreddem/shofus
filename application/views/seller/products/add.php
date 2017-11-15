@@ -127,7 +127,7 @@
 			<span id="errormsg"></span>
 			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Category </label>
-				<select class="form-control " onchange="getsubcategory(this.value);getproductinputs(this.value);" id="category_id" name="category_id">
+				<select class="form-control " onchange="getsubcategory(this.value);getproductinputs(this.value);groceryproducts(this.value);" id="category_id" name="category_id">
 				<option value="">Select Category</option>
 				<?php foreach($category_details as $list){ ?>
 				<option value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
@@ -169,6 +169,13 @@
 				</div>
 				</div>
 			</div>
+			<div class="clearfix"></div>
+			<div class="form-group col-md-6 nopaddingRight san-lg" id="subitems" style="display:none;">
+				<label for="exampleInputEmail1">Sub Item </label>
+				<select class="form-control" id="subitemid" name="subitemid" >
+				<option value="">Select Subitems </option>
+			</select>
+			</div>
 			
 			
 	</div>
@@ -190,11 +197,178 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+			<div class=" col-md-6 ">
+				<div class="form-group nopaddingRight san-lg">
+					<label for="exampleInputEmail1">Special price</label>
+					<input onkeyup="enablesubbmit();" autocomplete="off" type="text" class="form-control" id="special_price" name="special_price" value="<?php echo isset($item_details['special_price'])?$item_details['special_price']:''; ?>" >
+				</div>
+				<span style="color:red;" id="errormsgvalidation"></span>
+			</div>
+			
+			<div class=" col-md-6 ">
+				<div class="form-group nopaddingRight san-lg">
+					<label for="exampleInputEmail1">Qty</label>
+					<input type="text" class="form-control" id="pqty" name="pqty" value="<?php echo isset($item_details['item_quantity'])?$item_details['item_quantity']:''; ?>" >
+				</div>
+			</div>
+		
+	</div>
+	<div class="row">
+	<label for="exampleInputEmail1">Highlights</label>
+		<div class="col-md-12 form-group">
+			<div class="form-group nopaddingRight san-lg">
+			
+				<textarea  placeholder="Highlights" style="height: 59px;" class="form-control" rows="3" id="highlights" name="highlights"><?php echo isset($item_details['highlights'])?$item_details['highlights']:''; ?></textarea>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<label for="exampleInputEmail1">Description</label>
+		
+				  <div class="row">
+					  <div class="col-sm-6 nopadding">
+						<div class="form-group">
+							<textarea type="text" class="form-control" id="description" onkeyup="enablesubbmit();" name="description[]" value="" placeholder="Description"><?php echo isset($item_details['description'])?$item_details['description']:''; ?></textarea>
+						</div>
+					  </div>
+
+
+						<div class="col-sm-6 nopadding">
+						  <div class="form-group">
+							<div class="input-group">
+										<input type="file" class="form-control" id="descimg" name="descimg[]">
+
+							  <div class="input-group-btn">
+								<button style="" class="btn  pad_btn btn-success 
+									" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+							  </div>
+							</div>
+						  </div>
+						</div>
+				</div>
+				<div id="education_fields"></div>
+				<span id="descerrormsg"></span>
+	</div>
+	
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Warranty Details</label>
+	
+	</div><br>
+	<div class="row">
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Warranty Summary</label>
+				<input type="text" class="form-control" id="warranty_summary" name="warranty_summary" value="<?php echo isset($item_details['warranty_summary'])?$item_details['warranty_summary']:''; ?>" >
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Warranty Type</label>
+				<input type="text" class="form-control" id="warranty_type" name="warranty_type" value="<?php echo isset($item_details['warranty_type'])?$item_details['warranty_type']:''; ?>" >
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Service Type</label>
+				<input type="text" class="form-control" id="service_type" name="service_type" value="<?php echo isset($item_details['service_type'])?$item_details['service_type']:''; ?>" >
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<hr>
+	<div class="row">
+		<div class="col-md-12 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Return Policy</label>
+				<textarea  placeholder="Return Policy" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="return_policy" name="return_policy"><?php echo isset($item_details['return_policy'])?$item_details['return_policy']:''; ?></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Specifications</label>
+	
+	</div><br>
+	
 	<div id="mobile_products"></div>
 	<span id="newmobile_products">
 	
 	</span>
+	<div id="grocery_products"></div>
+	<div class="clearfix"></div>
+	<br>
+	<div class="" style="position:relative;">
+	<hr style="border-bottom:2px solid #006a99">
+	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Images</label>
 	
+	</div><br>
+	<div class="row">
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Image1</label>
+				<input type="file" onchange="enablesubbmit();" name='picture1' id="picture1"  class="form-control" >
+			</div>
+			<span id="uploadimgerror"></span>
+		</div>
+		
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Image2</label>
+				<input type="file" name='picture2' id="picture2"  class="form-control" >
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Image3</label>
+				<input type="file" name='picture3' id="picture3"  class="form-control" >
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Image4</label>
+				<input type="file" name='picture4' id="picture4"  class="form-control" >
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Image5</label>
+				<input type="file" name='picture5' id="picture5"  class="form-control" >
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Image6</label>
+				<input type="file" name='picture6' id="picture6"  class="form-control" >
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Image7</label>
+				<input type="file" name='picture7' id="picture7"  class="form-control" >
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Image8</label>
+				<input type="file" name='picture8' id="picture8"  class="form-control" >
+			</div>
+		</div>
+	</div>
 </div>
 	<div>
 		<button type="submit" id="keysubtton" name="buttonSubmit" class="btn btn-primary" >Submit</button>
@@ -209,6 +383,29 @@
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
  <script type="text/javascript">
+ function getspecialinputs(ids){
+	
+	var cat_id=$('#category_id').val();
+	if(cat_id==21){
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url();?>seller/products/getsubitemsname",
+				data: {
+				form_key : window.FORM_KEY,
+				subcatid: ids,
+				},
+				cache: false,
+				success: function(data)
+				{
+					$('#subitems').show();
+					$("#subitemid").empty();
+					$("#subitemid").html(data);
+				} 
+			});
+	}
+		
+	
+}
 function changememory(id){
 	$('#internal_memory').val(id);
 }
@@ -257,6 +454,30 @@ $(document).ready(function(){
 					
 				}
 			});
+	function groceryproducts(id){
+		if(id==21){
+			jQuery.ajax({
+				url: "<?php echo site_url('seller/products/getolditemdata');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					productname: 0,
+					categoryid: id,
+					subcategoryid: 0,
+					},
+				dataType: 'html',
+				success: function (data) {
+					$("#newmobile_products").hide();
+					$("#mobile_products").hide();
+					$("#grocery_products").append(data);
+				}
+			});
+		}else{
+			$("#newmobile_products").show();
+			$("#mobile_products").show();
+		}
+		
+	}
    function getoldproduct_details(val){
 	   var subcategory=document.getElementById('subcategorylist').value;
 	   var categoryids=document.getElementById('category_id').value;
@@ -297,22 +518,25 @@ $(document).ready(function(){
 		   var desc=document.getElementById('description').value;
 		   	var img = document.getElementById('picture1').value;
 
-		   
 		   if(specialprice==''){
 			   $('#errormsgvalidation').html('Please enter special price');
+			   $('#errormsgvalidation1').html('Please enter special price');
 			  return false;
 		   }
 		  
 			   if (!IsMobile(specialprice)) {
             $("#errormsgvalidation").html("Please Enter Correct special price").css("color", "red");
+            $("#errormsgvalidation1").html("Please Enter Correct special price").css("color", "red");
             jQuery('#seller_mobile').focus();
             return false;
             } 
 			if(Number(specialprice) > Number(price)){
 				  $('#errormsgvalidation').html('special price must be less than price');
+				  $('#errormsgvalidation1').html('special price must be less than price');
 				  return false;
 			   }
 			   $('#errormsgvalidation').html('');
+			   $('#errormsgvalidation1').html('');
 		   if(desc==''){
 			    $('#descerrormsg').html('Description is required').css("color", "red");
 			  return false;
@@ -638,202 +862,7 @@ function getinputfiledshideshow(ids){
 	}
 	
 }
-function getspecialinputs(ids){
-	$('#nametypeahead').val(ids);
-	if(ids==7 || ids==24){
-		$('#sizesid').hide();
-		$('#colorid').hide();
-	}
-	if(ids==40){
-		$('#sizesid').hide();
-		$('#colorid').hide();
-		$('#mobilesinputs').show();
-	}else{
-		$('#mobilesinputs').hide();
-		$('#sizeid').show();		
-	}
-	
-	if(ids==9){
-		$('#sizesid').hide();
-		$('#colorid').hide();
-	}
-	if(ids==10){
-		$('#smartwatchesinputs').show();
-	}else{
-		$('#smartwatchesinputs').hide();
 
-	}
-	if(ids==53){
-		$('#footwareinputs').show();
-		$('#sizeid').show();
-		$('#colorid').show();
-	}else{
-		$('#footwareinputs').hide();
-
-	}
-	if(ids==11 || ids==21){
-		$('#product_themeetc').show();
-		$('#sizesid').hide();
-		$('#colorid').hide();
-		//$('#ideal_for').hide();
-	}else{
-		$('#product_themeetc').hide();
-
-	}
-	if(ids==13 || ids==16 || ids==17){
-		
-		$('#sizesid').show();
-		$('#colorid').show();
-		$('#mensfabricsinputs1').show();
-	}else{
-		$('#mensfabricsinputs1').hide();
-
-	}
-	if(ids==14 || ids==19 || ids==20 || ids==8){
-		$('#winterwaerinputs1').show();
-		$('#sizesid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs1').hide();
-
-	}
-	if(ids==15){
-		$('#jwelleryinputs').show();
-		$('#colorid').show();
-	}else{
-		$('#jwelleryinputs').hide();
-
-	}
-	
-	if(ids==18){
-		$('#sizesid').show();
-		$('#colorid').show();
-	}
-	if(ids==50){
-		$('#womenswatchesinputs').show();
-	}else{
-		$('#womenswatchesinputs').hide();
-	}
-	if(ids==19){
-		$('#winterwaerinputs').show();
-		$('#sizesid').show();
-		$('#colorid').show();
-	}else{
-		$('#winterwaerinputs').hide();
-	}
-	
-	
-	if(ids==22){
-		$('#mensaccessoriesinputs').show();
-		$('#sizesid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensaccessoriesinputs').hide();
-	}
-	if(ids==51){
-		$('#mensehinicwearinputs').show();
-		$('#sizesid').show();
-		$('#colorid').show();
-	}else{
-		$('#mensehinicwearinputs').hide();
-	}
-	if(ids==23){
-		$('#mensfabricsinputs').show();
-		$('#colorid').show();
-	}else{
-		$('#mensfabricsinputs').hide();
-	}
-	if(ids==24){
-		$('#sizesid').hide();
-		$('#colorid').hide();
-	}
-	if(ids==26){
-		$('#sizesid').hide();
-		$('#colorid').hide();
-		$('#idealfor').hide();
-	}
-	if(ids==27){
-		$('#watchesinputs').show();
-	}else{
-		$('#watchesinputs').hide();	
-	}
-	if(ids==25){
-		$('#sizesid').show();
-		$('#colorid').show();
-		$('#womensaccessoriesinputs').show();
-	}else{
-		$('#womensaccessoriesinputs').hide();	
-	}
-	if(ids==52){
-		$('#sizesid').show();
-		$('#colorid').show();
-		$('#winterwaerinputs').show();
-	}else{
-		$('#winterwaerinputs').hide();	
-	}
-	if(ids==28){
-		$('#sizesid').show();
-		$('#colorid').show();
-		$('#winterwaerinputs').show();
-	}else{
-		$('#winterwaerinputs').hide();	
-	}
-	if(ids==29){
-		$('#sizesid').show();
-		$('#colorid').show();
-		$('#winterwaerinputs').show();
-	}else{
-		$('#winterwaerinputs').hide();	
-	}
-	if(ids==30){
-		$('#sizesid').hide();
-		$('#colorid').hide();
-		$('#mobileaccessoriesinputs').show();
-	}else{
-		$('#mobileaccessoriesinputs').hide();	
-	}
-	if(ids==31 || ids==32  || ids==33){
-		$('#sizesid').hide();
-		$('#colorid').hide();
-	}
-	if(ids==34){
-		$('#sizesid').hide();
-		$('#colorid').show();
-		$('#camerainputs').show();
-	}else{
-		$('#camerainputs').hide();	
-	}
-	if(ids==35){
-		$('#sizesid').hide();
-		$('#colorid').hide();
-		$('#tabletsinputs').show();
-	}else{
-		$('#tabletsinputs').hide();	
-	}
-	if(ids==36){
-		$('#sizesid').hide();
-		$('#colorid').hide();
-		$('#routersinputs').show();
-	}else{
-		$('#routersinputs').hide();	
-	}
-	if(ids==39){
-		$('#sizesid').hide();
-		$('#colorid').hide();
-		$('#laptopsinputs').show();
-	}else{
-		$('#laptopsinputs').hide();	
-	}
-	
-	
-	
-	
-	   
-		  
-  }
-	  
-
-  
 
   function getsubcat(ids){
 	  var cat=ids;
@@ -992,6 +1021,24 @@ $(document).ready(function(){
 
 
 
+
+</script>
+<script>
+var room = 1;
+function education_fields() {
+ 
+    room++;
+    var objTo = document.getElementById('education_fields')
+    var divtest = document.createElement("div");
+	divtest.setAttribute("class", "form-group removeclass"+room);
+	var rdiv = 'removeclass'+room;
+    divtest.innerHTML = '<div class="row"><div class="col-sm-6 nopadding"><div class="form-group"> <textarea type="text" class="form-control" id="description" name="description[]" value="" placeholder="description"></textarea></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div class="input-group">  <input type="file" class="form-control" id="descimg" name="descimg[]"><div class="input-group-btn"> <button class="btn btn-danger pad_btn" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div></div><div class="clear"></div>';
+    
+    objTo.appendChild(divtest)
+}
+   function remove_education_fields(rid) {
+	   $('.removeclass'+rid).remove();
+   }
 
 </script>
 <script src="<?php echo base_url(); ?>assets/seller/dist/js/typeahead.bundle.js" type="text/javascript"></script>

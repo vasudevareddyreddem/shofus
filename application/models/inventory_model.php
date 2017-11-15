@@ -55,6 +55,20 @@ function __construct()
 		$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
+	public function get_subcategore_details_category_wise($id)
+	{
+		$this->db->select('*')->from('subcategories');
+		$this->db->where('category_id',$id);
+		$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_subitem_details($ids)
+	{
+		$this->db->select('*')->from('sub_items');
+		$this->db->where('status',$ids);
+		$this->db->where('status',1);
+		return $this->db->get()->row_array();
+	}
 	 function get_name_existss($name)
     {
 	   $sql = "SELECT * FROM category WHERE category_name ='".$name."' AND status='1'";
@@ -726,11 +740,45 @@ public function delete_banner($id,$sid)
 		//$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
+	function get_all_subcategoires($id)
+	{
+		$this->db->select('subcategories.subcategory_id,subcategories.subcategory_name,')->from('subcategories');
+		$this->db->where('category_id',$id);
+		$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
+	 function get_subitem_name_existss($name)
+    {
+	   $sql = "SELECT * FROM sub_items WHERE subitem_name ='".$name."'";
+        return $this->db->query($sql)->row_array();
+     }
+	 function save_subitems($data){
+		$this->db->insert('sub_items', $data);
+		return $insert_id = $this->db->insert_id();
+	}
 	function delivery_boy_current_locations()
 	{
 		$this->db->select('customers.*')->from('customers');
 		$this->db->where('role_id',6);
 		return $this->db->get()->result_array();
 	}
+	function get_all_subitem_list()
+	{
+		$this->db->select('sub_items.*,category.category_name,subcategories.subcategory_name')->from('sub_items');
+		$this->db->join('category', 'category.category_id = sub_items.category_id', 'left');
+		$this->db->join('subcategories', 'subcategories.subcategory_id = sub_items.subcategory_id', 'left');
+
+		return $this->db->get()->result_array();
+	}
+	public function update_subitem_status($subitemid,$data){
+		$this->db->where('subitem_id', $subitemid);
+		return $this->db->update('sub_items', $data);
+	}
+	function get_subitemname_existss($name)
+    {
+	   $sql = "SELECT * FROM sub_items WHERE subitem_name ='".$name."' AND status='1'";
+        return $this->db->query($sql)->row_array();
+     }
+	
 }
 ?>	

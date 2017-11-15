@@ -215,7 +215,8 @@ public function getsubcatdata($cat_id)
 		$query=$this->db->get();
 		return $query->result();
 		
-	}	
+	}
+		
 	
 	
 	// item data
@@ -560,6 +561,14 @@ public function getproductapproval()
 		$this->db->select('*')->from('image_urls');
 		$this->db->where('seller_id',$id);
 		return $this->db->get()->result_array();
+	}
+	public function get_subitem_list_subcategorywise($subcat_id)
+	{
+		$this->db->select('*')->from('sub_items');
+		$this->db->where('status',1);
+		$this->db->where('subcategory_id',$subcat_id);
+		return $this->db->get()->result_array();
+		
 	}
 	
 }

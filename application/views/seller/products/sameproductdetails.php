@@ -4,113 +4,14 @@
 	}
 </style>
 <script>
-
-$('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_details['item_cost']:''; ?>);
+$('#product_price').val("<?php echo isset($item_details['item_cost'])?$item_details['item_cost']:''; ?>");
+$('#special_price').val("<?php echo isset($item_details['special_price'])?$item_details['special_price']:''; ?>");
+$('#pqty').val("<?php echo isset($item_details['item_quantity'])?$item_details['item_quantity']:''; ?>");
+$('#warranty_summary').val("<?php echo isset($item_details['warranty_summary'])?$item_details['warranty_summary']:''; ?>");
+$('#warranty_type').val("<?php echo isset($item_details['warranty_type'])?$item_details['warranty_type']:''; ?>");
+$('#service_type').val("<?php echo isset($item_details['service_type'])?$item_details['service_type']:''; ?>");
 </script><?php //echo '<pre>';print_r($item_details);exit; ?>
-	<div class="row">
-			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Special price</label>
-					<input onkeyup="enablesubbmit();" autocomplete="off" type="text" class="form-control" id="special_price" name="special_price" value="<?php echo isset($item_details['special_price'])?$item_details['special_price']:''; ?>" >
-				</div>
-				<span style="color:red;" id="errormsgvalidation"></span>
-			</div>
-			
-			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Qty</label>
-					<input type="text" class="form-control" id="pqty" name="pqty" value="<?php echo isset($item_details['item_quantity'])?$item_details['item_quantity']:''; ?>" >
-				</div>
-			</div>
-		
-	</div>
-	
-	<div class="row">
-	<label for="exampleInputEmail1">Highlights</label>
-		<div class="col-md-12 form-group">
-			<div class="form-group nopaddingRight san-lg">
-			
-				<textarea  placeholder="Highlights" style="height: 59px;" class="form-control" rows="3" id="highlights" name="highlights"><?php echo isset($item_details['highlights'])?$item_details['highlights']:''; ?></textarea>
-			</div>
-		</div>
-	</div>
-	<hr>
-	<div class="row">
-		<label for="exampleInputEmail1">Description</label>
-		
-				  <div class="row">
-					  <div class="col-sm-6 nopadding">
-						<div class="form-group">
-							<textarea type="text" class="form-control" id="description" onkeyup="enablesubbmit();" name="description[]" value="" placeholder="Description"><?php echo isset($item_details['description'])?$item_details['description']:''; ?></textarea>
-						</div>
-					  </div>
 
-
-						<div class="col-sm-6 nopadding">
-						  <div class="form-group">
-							<div class="input-group">
-										<input type="file" class="form-control" id="descimg" name="descimg[]">
-
-							  <div class="input-group-btn">
-								<button style="" class="btn  pad_btn btn-success 
-									" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-							  </div>
-							</div>
-						  </div>
-						</div>
-				</div>
-				<div id="education_fields"></div>
-				<span id="descerrormsg"></span>
-	</div>
-	
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Warranty Details</label>
-	
-	</div><br>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Warranty Summary</label>
-				<input type="text" class="form-control" id="warranty_summary" name="warranty_summary" value="<?php echo isset($item_details['warranty_summary'])?$item_details['warranty_summary']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Warranty Type</label>
-				<input type="text" class="form-control" id="warranty_type" name="warranty_type" value="<?php echo isset($item_details['warranty_type'])?$item_details['warranty_type']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Service Type</label>
-				<input type="text" class="form-control" id="service_type" name="service_type" value="<?php echo isset($item_details['service_type'])?$item_details['service_type']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<hr>
-	<div class="row">
-		<div class="col-md-12 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Return Policy</label>
-				<textarea  placeholder="Return Policy" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="return_policy" name="return_policy"><?php echo isset($item_details['return_policy'])?$item_details['return_policy']:''; ?></textarea>
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Specifications</label>
-	
-	</div><br>
-	
- 
   
   
 <div class="clear"></div>
