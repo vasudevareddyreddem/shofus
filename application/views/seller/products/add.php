@@ -107,6 +107,7 @@
 				<form id="importproducts" name="importproducts" onsubmit="return validations();" action ="<?php echo base_url('seller/import/uploadproducts/');?>" method="post" enctype="multipart/form-data">
 				<input type="hidden" id="category_ids" name="category_ids">
 				<input type="hidden" id="subcategory_ids" name="subcategory_ids">
+				<input type="hidden" id="subitemids" name="subitemids">
 				<p class="text-center" id="labelids" style="display:none;">
 				<a id="documentfilelink" type="button" class="btn btn-primary btn-xs">Download</a>
 				<a type="button" class="btn btn-warning btn-xs" data-toggle="collapse" data-target="#fileups">Upload</a>
@@ -722,8 +723,10 @@ function validations(){
 	
 	var catid= document.getElementById('category_id').value;
 	var subcatid= document.getElementById('subcategorylist').value;
+	var subitemid= document.getElementById('subitemid').value;
 	document.getElementById('category_ids').value = catid;
 	document.getElementById('subcategory_ids').value = subcatid;
+	document.getElementById('subitemids').value = subitemid;
 
 	if(catid=='' && subcatid=='' ){
 		 $("#errormsg").html("Please select Ctaegory  and Subcategory").css("color", "red");
