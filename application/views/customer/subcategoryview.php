@@ -311,10 +311,7 @@ $(document).ready(function() {
 		
 		 
 	  <div class="container-fluid fluid_mod " id="containerhigh"></div>
-	 <div class="container-fluid fluid_mod " id="containerhighold">
-	 
-
-	 <div class="row ">
+	 <div class="container-fluid fluid_mod " id="containerhighold"><div class="row ">
 	 	<div class="mar_t20">
 			<div class="col-md-12  ">
 			<div class="title text-left mar_t10"><span> Grocery list</span></div>
@@ -487,25 +484,25 @@ $(document).ready(function() {
 					<span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
 					<span class="btn_cus"> 6 units</span>
 				</p>
-					
+				
 			</div>
 			<div class="col-md-3">
 				<p class="">MRP:₹85</p>
 				<div class="input-group incr_btn">
-							<span class="input-group-btn">
-							<button style="width:20px;padding:6px;" type="button" onclick="productqty('0');" class="btn btn-primary btn-number btn-small" data-type="minus" data-field="quant[2]">
-					<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
-							</button>
-							</span>
-							<input type="text" name="qty" id="qty0" readonly="" class="form-control input-number" value="4" min="1" max="100">
-							<span class="input-group-btn">
-					<button style="width:20px;padding:6px" onclick="productqtyincreae('0');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
-					  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
-							</button>
-							</span>
-					</div>
-					<div class="clearfix">&nbsp;</div>
-				<button class="btn btn-primary btn-sm">Add To Cart</button>
+                                                        <span class="input-group-btn">
+														<button style="width:20px;padding:6px;" type="button" onclick="productqty('0');" class="btn btn-primary btn-number btn-small" data-type="minus" data-field="quant[2]">
+												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
+                                                        </button>
+                                                        </span>
+                                                        <input type="text" name="qty" id="qty0" readonly="" class="form-control input-number" value="4" min="1" max="100">
+                                                        <span class="input-group-btn">
+											  <button style="width:20px;padding:6px" onclick="productqtyincreae('0');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
+												  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
+                                                        </button>
+                                                        </span>
+                                                    </div>
+										<div class="clearfix">&nbsp;</div>
+				<a href="" class="btn btn-primary btn-sm">Add To Cart</a>
 				<button class="btn btn-warning btn-sm">Buy Now</button>
 			</div>
 		</div>
@@ -656,19 +653,19 @@ Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and 
 </div>
     
 	</div>
-	</div>
-	</div>
 	
 
-			
+			<!--groffers end-->
+			<div class="clearfix">&nbsp;</div>
+			</div>
+	 </div>
+	<br>
+
+	
+	
 	 <div class=" clearfix"></div>
 	 
-	 
-	 
-	 
 	 <!-- Filter Sidebar -->
-	 <div class="row ">
-	 <div class="mar_t20">
 	 <div id="subcategorywise_products" style="">
 		<div class="col-sm-3">
 		 <div class="title"><span>Filters</span></div>
