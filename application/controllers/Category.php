@@ -873,7 +873,8 @@ function filtersearch(){
 		$this->category_model->delete_privous_searchdata($list['id']);
 	}
 	$caterory_id=base64_decode($this->uri->segment(3));
-	$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
+	$subcategory_list= $this->category_model->get_all_subcategory($caterory_id);
+	$data['subcategory_list']=array_chunk($subcategory_list, 6);
 	$data['category_name']= $this->category_model->get_category_name($caterory_id);
 	$sid=$this->uri->segment(4);
 	if($sid!='' && is_int($sid)){
