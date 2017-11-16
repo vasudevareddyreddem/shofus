@@ -318,77 +318,150 @@ $(document).ready(function() {
 			<div class="col-md-12  ">
 			<div class="title text-left mar_t10"><span> Grocery list</span></div>
 			<!--groffers start-->
+	<?php $urlcatid=$this->uri->segment(3); ?>
+	<?php if(isset($urlcatid) && base64_decode($urlcatid)==21){  ?>		
+			
+		
 	<div class="mar_t20">
 	<div class='col-md-12'>
       <div class="carousel slide media-carousel" id="media">
         <div class="carousel-inner">
+		<!--item 1 -->
+		 <?php $c=0;foreach($subcategory_list as $list){ ?>
+		 <?php if($c==0){ ?>
           <div class="item  active slid_hig">
             <div class="row">
-              <div class="col-md-2">
-		
-                <a class="" href="#"><img  alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
-				<p class="name_gr">Fruits & Vegetables</p>
-				</a>
-              </div>          
-              <div class="col-md-2">
-                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-16.jpg">
-				<p class="name_gr">Grocery & Staples</p>
-				</a>
-              </div>
-              <div class="col-md-2">
-                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-12.jpg">
-				<p class="name_gr">Beverages</p>
-				</a>
-              </div> 
-				<div class="col-md-2">
-                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-1047.jpg">
-				<p class="name_gr">Home & Kitchen</p>
-				</a>
-              </div>          
-              <div class="col-md-2">
-                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-18.jpg">
-				<p class="name_gr">Household Needs</p>
-				</a>
-              </div>
-              <div class="col-md-2">
-                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-163.jpg">
-				<p class="name_gr">Personal Care</p>
-				</a>
-              </div>			  
+				<?php if(isset($list[0]['subcategory_name']) && $list[0]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[0]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[0]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+					<?php if(isset($list[1]['subcategory_name']) && $list[1]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[1]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[1]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+					<?php if(isset($list[2]['subcategory_name']) && $list[2]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[2]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[2]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+					<?php if(isset($list[3]['subcategory_name']) && $list[3]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[3]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[3]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+					<?php if(isset($list[4]['subcategory_name']) && $list[4]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[4]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[4]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+					<?php if(isset($list[5]['subcategory_name']) && $list[5]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[5]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[5]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+                      
+              			  
             </div>
           </div>
-          <div class="item slid_hig">
+		  
+		 <?php }else{ ?>
+		  <!--item 1 -->
+		  
+		  <!--item 2 -->
+           <div class="item slid_hig">
             <div class="row">
-              <div class="col-md-2">
-                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
-				<p class="name_gr">Fruits & Vegetables</p>
-				</a>
-              </div>          
-              <div class="col-md-2">
-                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
-				<p class="name_gr">Fruits & Vegetables</p>
-				</a>
-              </div>
-              <div class="col-md-2">
-                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg"></a>
-              </div> 
-				<div class="col-md-2">
-                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
-				<p class="name_gr">Fruits & Vegetables</p>
-				</a>
-              </div>          
-              <div class="col-md-2">
-                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
-				<p class="name_gr">Fruits & Vegetables</p>
-				</a>
-              </div>
-              <div class="col-md-2">
-                <a class="" href="#"><img alt="" src="//webcdn.grofers.com/cdn/pdp/category-l0-9.jpg">
-				</a>
-				<p class="name_gr">Fruits & Vegetables</p>
-              </div> 			  
+				<?php if(isset($list[0]['subcategory_name']) && $list[0]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[0]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[0]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+					<?php if(isset($list[1]['subcategory_name']) && $list[1]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[1]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[1]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+					<?php if(isset($list[2]['subcategory_name']) && $list[2]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[2]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[2]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+					<?php if(isset($list[3]['subcategory_name']) && $list[3]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[3]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[3]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+					<?php if(isset($list[4]['subcategory_name']) && $list[4]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[4]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[4]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+					<?php if(isset($list[5]['subcategory_name']) && $list[5]['subcategory_name']!=''){ ?>
+                	   
+						<div class="col-md-2">
+				
+						<a class="" href="#"><img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[5]['subcategory_image']);?>">
+						<p class="name_gr"><?php echo $list[5]['subcategory_name']; ?></p>
+						</a>
+					  </div> 
+					<?php } ?>
+                      
+              			  
             </div>
           </div>
+		  
+		 <?php } ?>
+		 <?php $c++;} ?>
+		  <!--item 2 -->
+		  
+		  
+		  
+		  
           
         </div>
         <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
@@ -404,54 +477,15 @@ $(document).ready(function() {
            
             <ul class="list-sidebar bg-defoult">
               <li> <a href="#" data-toggle="collapse" data-target="#dashboard" class="collapsed active" > </i> <span class="nav-label"> Dashboards </span> <span class="fa fa-chevron-left pull-right"></span> </a>
-              <ul class="sub-menu collapse" id="dashboard">
-                <li class="active"><a href="#">CSS3 Animation</a></li>
-                <li><a href="#">General</a></li>
-                <li><a href="#">Buttons</a></li>
-                <li><a href="#">Tabs & Accordions</a></li>
-                <li><a href="#">Typography</a></li>
-                <li><a href="#">FontAwesome</a></li>
-                <li><a href="#">Slider</a></li>
-                <li><a href="#">Panels</a></li>
-                <li><a href="#">Widgets</a></li>
-                <li><a href="#">Bootstrap Model</a></li>
-              </ul>
-            </li>
+			</li>
            
             <li> <a href="#" data-toggle="collapse" data-target="#products" class="collapsed active" >  <span class="nav-label">Graphs</span> <span class="fa fa-chevron-left pull-right"></span> </a>
-            <ul class="sub-menu collapse" id="products">
-              <li class="active"><a href="#">CSS3 Animation</a></li>
-              <li><a href="#">General</a></li>
-              <li><a href="#">Buttons</a></li>
-              <li><a href="#">Tabs & Accordions</a></li>
-              <li><a href="#">Typography</a></li>
-              <li><a href="#">FontAwesome</a></li>
-              <li><a href="#">Slider</a></li>
-              <li><a href="#">Panels</a></li>
-              <li><a href="#">Widgets</a></li>
-              <li><a href="#">Bootstrap Model</a></li>
-            </ul>
-          </li>
+			</li>
           
           <li> <a href="#" data-toggle="collapse" data-target="#tables" class="collapsed active" ><span class="nav-label">Tables</span><span class="fa fa-chevron-left pull-right"></span></a>
-          <ul  class="sub-menu collapse" id="tables" >
-            <li><a href=""> Static Tables</a></li>
-            <li><a href=""> Data Tables</a></li>
-            <li><a href=""> Foo Tables</a></li>
-            <li><a href=""> jqGrid</a></li>
-          </ul>
-        </li>
+          </li>
         <li> <a href="#" data-toggle="collapse" data-target="#e-commerce" class="collapsed active" > <span class="nav-label">E-commerce</span><span class="fa fa-chevron-left pull-right"></span></a>
-        <ul  class="sub-menu collapse" id="e-commerce" >
-          <li><a href=""> Products grid</a></li>
-          <li><a href=""> Products list</a></li>
-          <li><a href="">Product edit</a></li>
-          <li><a href=""> Product detail</a></li>
-          <li><a href="">Cart</a></li>
-          <li><a href=""> Orders</a></li>
-          <li><a href=""> Credit Card form</a> </li>
-        </ul>
-      </li>
+		</li>
      
     </ul>
     </div>
@@ -642,14 +676,17 @@ Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and 
   
 </div>
 </div>
-    
-	</div>
+</div>
+
+
+<?php } ?>
+
 	
 
 			<!--groffers end-->
 			<div class="clearfix">&nbsp;</div>
-			
-			
+			<?php $urlcatid=$this->uri->segment(3); ?>
+	<?php if(isset($urlcatid) && base64_decode($urlcatid)!=21){  ?>		
 			
 			
 			  <?php //echo '<pre>';print_r($minimum_price['item_cost']);exit; ?>
@@ -1232,7 +1269,9 @@ Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and 
 
 	 <div class="clearfix"></div>
 	  
+		 
 	 
+	<?php } ?> 
           
 </div>
       
@@ -1241,6 +1280,7 @@ Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and 
 	 <div class="clearfix"></div>
 	
 	 <br>
+
 </body>
 <script>
 $(document).ready(function(){

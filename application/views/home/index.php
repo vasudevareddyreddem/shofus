@@ -90,20 +90,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				  </div>
 				</div>
 				
-				</a>	<a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>">
-				<div class="item cat_ma" >
-				  <div class=" box-product-outer" >
-					<div class="box-product">
-					   <img src="<?php echo base_url('assets/categoryimages/'.$categories['category_image']); ?>"> 
-					<h5 class="text-center"><?php echo $categories['category_name'] ; ?></h5>
-					</div>
-					
-				  </div>
-				</div>
-				
 				</a>
-				
-				  <?php } ?>
+				<?php } ?>
 				
 			
 				  </div>
