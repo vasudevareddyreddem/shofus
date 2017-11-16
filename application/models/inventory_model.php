@@ -65,7 +65,7 @@ function __construct()
 	public function get_subitem_details($ids)
 	{
 		$this->db->select('*')->from('sub_items');
-		$this->db->where('status',$ids);
+		$this->db->where('subitem_id',$ids);
 		$this->db->where('status',1);
 		return $this->db->get()->row_array();
 	}
