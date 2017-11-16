@@ -1609,6 +1609,22 @@ class Category_model extends MY_Model
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->result_array();
 	}
+	public function get_sameunit_products_list($pname){
+		
+		$this->db->select('products.item_id,products.unit,products.subcategory_id')->from('products');
+		$this->db->where('item_name',$pname);
+		$this->db->where('item_status',1);
+		$this->db->group_by('unit');
+		return $this->db->get()->result_array();
+	}
+	public function get_untiwise_product_details($pid){
+		
+		$this->db->select('*')->from('products');
+		$this->db->where('item_id',$pid);
+		$this->db->where('item_status',1);
+		$this->db->group_by('unit');
+		return $this->db->get()->result_array();
+	}
 	public function get_products($pid){
 		
 		$this->db->select('products.*,item_wishlist.yes,seller_store_details.store_name')->from('products');

@@ -749,8 +749,10 @@ function filtersearch(){
 	foreach($data['subcategory_porduct_list'] as $list){
 	//echo '<pre>';print_r($list);
 	$desc=$this->category_model->get_products_desc_list($list['item_id']);
+	$sameunitproduct=$this->category_model->get_sameunit_products_list($list['item_name']);
 	$plist[$list['item_id']]['list']=$list;
 	$plist[$list['item_id']]['list']['descriptions_list']=$desc;
+	$plist[$list['item_id']]['list']['unitproducts_list']=$sameunitproduct;
 	}
 	foreach($plist as $list){
 	foreach($list as $li){
@@ -1229,9 +1231,12 @@ public function suitemwiseproductslist(){
 		if(count($subitem_list)>0){
 		foreach($subitem_list as $list){
 		//echo '<pre>';print_r($list);
+		$sameunitproduct=$this->category_model->get_sameunit_products_list($list['item_name']);
+
 		$desc=$this->category_model->get_products_desc_list($list['item_id']);
 		$plist[$list['item_id']]['list']=$list;
 		$plist[$list['item_id']]['list']['descriptions_list']=$desc;
+		$plist[$list['item_id']]['list']['unitproducts_list']=$sameunitproduct;
 		}
 		foreach($plist as $list){
 		foreach($list as $li){
@@ -1245,6 +1250,33 @@ public function suitemwiseproductslist(){
 		$data['subcategory_porduct_list']=array();
 		}
 	$this->load->view('customer/grocerysubitemwisefiltersproduct',$data);
+	}
+	public function unitwiseproduct_details(){
+		$post=$this->input->post();
+		//secho '<pre>';print_r($post);exit;
+		$products_list= $this->category_model->get_untiwise_product_details($post['item_id']);
+		//echo '<pre>';print_r($products_list);exit;
+		if(count($products_list)>0){
+		foreach($products_list as $list){
+		//echo '<pre>';print_r($list);
+		$desc=$this->category_model->get_products_desc_list($list['item_id']);
+		$sameunitproduct=$this->category_model->get_sameunit_products_list($list['item_name']);
+		$plist[$list['item_id']]['list']=$list;
+		$plist[$list['item_id']]['list']['descriptions_list']=$desc;
+		$plist[$list['item_id']]['list']['unitproducts_list']=$sameunitproduct;
+		}
+		foreach($plist as $list){
+		foreach($list as $li){
+		$plist_list[]=$li;
+		
+		}
+		}
+		$data['subcategory_porduct_list']=$plist_list;
+
+		}else{
+		$data['subcategory_porduct_list']=array();
+		}
+	$this->load->view('customer/unitwiseproductdetails',$data);
 	}	
 }
 ?>
