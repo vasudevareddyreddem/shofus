@@ -1664,6 +1664,30 @@ class Category_model extends MY_Model
   	$sql1="DELETE FROM fliter_search WHERE Ip_address = '".$ip."' AND  id = '".$id."'";
 	return $this->db->query($sql1);
  }
+ public function get_all_subitem_list($catid,$subcatid)
+ {
+  	$this->db->select('*')->from('sub_items');
+	$this->db->where('category_id',$catid);
+	$this->db->where('subcategory_id',$subcatid);
+	return $this->db->get()->result_array();
+ }
+ public function get_category_ids($subcatid)
+ {
+  	$this->db->select('*')->from('subcategories');
+	$this->db->where('subcategory_id',$subcatid);
+	return $this->db->get()->row_array();
+ } 
+ public function get_subitem_list($subitemid)
+	{
+	
+	$this->db->select('products.*,category.category_id')->from('products');
+	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
+	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
+    $this->db->where('products.subitemid', $subitemid);
+    $this->db->where('products.item_status', 1);
+	return $this->db->get()->result_array();
+		
+	}
 	
 }
 ?>

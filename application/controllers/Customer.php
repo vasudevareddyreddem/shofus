@@ -183,7 +183,7 @@ class Customer extends Front_Controller
  public function addcart(){
 	 
 	$post=$this->input->post();
-	//echo '<pre>';print_r($post);exit;
+	///echo '<pre>';print_r($post);exit;
 	if($this->session->userdata('userdetails')=='')
 	 {
 		$this->session->set_userdata('beforecart',$post);

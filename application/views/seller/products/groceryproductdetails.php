@@ -3,17 +3,17 @@
 		padding:9px 12px;
 	}
 </style>
+<?php //echo '<pre>';print_r($item_details);exit; ?>
 <script>
-
-$('#product_price').val(<?php echo isset($item_details['item_cost'])?$item_details['item_cost']:''; ?>);
-$('#special_price').val(<?php echo isset($item_details['special_price'])?$item_details['special_price']:''; ?>);
-$('#pqty').val(<?php echo isset($item_details['item_quantity'])?$item_details['item_quantity']:''; ?>);
-$('#highlights').val(<?php echo isset($item_details['highlights'])?$item_details['highlights']:''; ?>);
-$('#warranty_summary').val(<?php echo isset($item_details['warranty_summary'])?$item_details['warranty_summary']:''; ?>);
-$('#warranty_type').val(<?php echo isset($item_details['warranty_type'])?$item_details['warranty_type']:''; ?>);
-$('#service_type').val(<?php echo isset($item_details['service_type'])?$item_details['service_type']:''; ?>);
-$('#return_policy').val(<?php echo isset($item_details['return_policy'])?$item_details['return_policy']:''; ?>);
-</script><?php //echo '<pre>';print_r($item_details);exit; ?>
+$('#product_price').val("<?php echo isset($item_details['item_cost'])?$item_details['item_cost']:''; ?>");
+$('#special_price').val("<?php echo isset($item_details['special_price'])?$item_details['special_price']:''; ?>");
+$('#pqty').val("<?php echo isset($item_details['item_quantity'])?$item_details['item_quantity']:''; ?>");
+$('#warranty_summary').val("<?php echo isset($item_details['warranty_summary'])?$item_details['warranty_summary']:''; ?>");
+$('#warranty_type').val("<?php echo isset($item_details['warranty_type'])?$item_details['warranty_type']:''; ?>");
+$('#service_type').val("<?php echo isset($item_details['service_type'])?$item_details['service_type']:''; ?>");
+$('#pbrand').val("<?php echo isset($item_details['pbrand'])?$item_details['service_type']:''; ?>");
+</script>
+<?php //echo '<pre>';print_r($item_details); ?>
 
 	<div class="row">
 		<div class="col-md-12 form-group">
@@ -71,7 +71,7 @@ $('#return_policy').val(<?php echo isset($item_details['return_policy'])?$item_d
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Key Features</label>
-					<input type="text" class="form-control" id="key_feature" name="key_feature" value="<?php echo isset($item_details['key_feature'])?$item_details['key_feature']:''; ?>" >
+					<input type="text" class="form-control" id="key_feature" name="key_feature" value="<?php echo isset($item_details['service_type'])?$item_details['service_type']:''; ?>" >
 				</div>
 			</div>
 		
