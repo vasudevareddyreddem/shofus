@@ -1,3 +1,21 @@
+.log_bac{
+	background-color:#009688;
+	}
+.log_bac_col{
+	background-color:#fff;
+	border-radius:10px;
+	padding:10px 0px; 
+}
+.near_loc{
+	background:#fff;
+	border-radius:5px;
+}
+.log_mar_t10{
+	margin-top:10px;
+}	
+.bor_ri1 {
+	border-right:1px solid #ddd;	
+	}
 .see_min_hig  {
 	min-height:384px;
 }
@@ -24,10 +42,12 @@ input{
 .bac_n_l {
 	/* background:#294e5c; */
 	background-image: url("../images/near_loc.png");
+	 background-size: 1150px ;
+    background-repeat: no-repeat;
 
-	color:#fff;
+	color:#009688;
 	
-	padding:6px 20px;
+	padding:0px 15px;
 }
 .sing_pro{
 	position:fixed;top:40; 
@@ -6178,7 +6198,7 @@ box-shadow: 0px 0px 11px 2px rgba(214,211,214,1);
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
  {
-	 
+	
   .hide_clear{
 		display:inline-block !important;
 	}
@@ -6190,8 +6210,40 @@ and (max-device-width : 1024px)
 	}
 }
 @media (max-width: 768px) {
+	.log_bac{
+	background-color:#fff;
+	}
+	 .bor_ri1{
+	border-right:0px;	
+	}
 	.sm_hide{
 		display:none;
+	}
+	.is-active .mat-label {
+  color: #fff;
+}
+.signup-btn{
+	    color: #009688;
+    background-color: #fff;
+    border-color: #fff;
+}
+.log_mar_t10{
+	margin-top:50px;
+}
+.forg_pas{
+	color:#000;
+}
+	.log_bac_col{
+		background-color:#009688;
+		color:#fff;
+	border-radius:10px;
+	padding:10px 0px; 
+	}
+	.mat-label{
+		display: block;
+    font-size: 16px;
+    transform: translateY(25px);
+    color: #fff;
 	}
 	.mob_res_top {
 	margin-top:0px !important;

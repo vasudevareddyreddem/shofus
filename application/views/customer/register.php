@@ -41,11 +41,11 @@ label {
 }
 </style>
 
-<body class="sm_hide" style="background-color:#009688;">
+<body class="log_bac" >
     <div class="container mar_t10per" style="position:relative" >
         <div class="row res_log" >
-		<div class="col-md-10 col-md-offset-1" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">
-            <div class="col-md-6 " style="border-right:1px solid #ddd">
+		<div class="col-md-10 col-md-offset-1 log_bac_col">
+            <div class="col-md-6 bor_ri1" >
 			<div class="" style="padding:0px 15px;">
 			<h3 class="text-center">Sign in</h3>
 			<hr>
@@ -87,13 +87,13 @@ label {
                             </div>
 							<div class="pull-right">
                                 <label>
-                                    <a href="<?php echo base_url('customer/forgotpassword');?>" >Forgot Password?</a>
+                                    <a class="forg_pas" href="<?php echo base_url('customer/forgotpassword');?>" >Forgot Password?</a>
                                 </label>
                             </div>
                         </div>
 
 
-                        <div style="margin-top:10px" class="form-group">
+                        <div class="log_mar_t10"  class="form-group">
                             <!-- Button -->
 
                             <div class="col-sm-12  "> &nbsp; </div>

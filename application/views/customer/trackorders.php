@@ -72,7 +72,7 @@ tr th:last-child {
 			<?php endif; ?>
 			
 			<?php foreach ($customer_all_order_details as $item_details){ ?>
-<div class="container">
+<div class="container mar_res_t150">
 		<div class="row">
 		<?php //echo base64_decode($this->uri->segment('3'));
 		//echo '<pre>';print_r($item_details);exit; ?>
