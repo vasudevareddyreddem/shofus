@@ -41,10 +41,10 @@ label {
 }
 </style>
 
-<body style="background-color:#009688;">
+<body class="log_bac">
     <div class="container mar_t10per" style="position:relative" >
         <div class="row res_log">
-		<div class="col-md-6 col-md-offset-3" style="background-color:#fff; border-radius:10px;padding:10px 0px;border-bottom:2px solid #116669 ">
+		<div class="col-md-6 col-md-offset-3 log_bac_col" >
            
 
             <div class="col-md-10 col-md-offset-1 " style="padding-bottom:20px;">
@@ -66,16 +66,16 @@ label {
 							
                     </div>
 					<br>
-				<div class="col-md-6 ">
+				<div class="col-md-6 col-xs-6 ">
                     <button class="btn btn-block btn-primary signup-btn" type="submit" style="border-radius:5px">
                         Submit</button>
 						</div>
                 </form>
-				<div class="col-md-6  ">
+				<div class="col-md-6 col-xs-6  ">
 				<a href="<?php echo base_url('customer'); ?>" class="btn  btn-primary  signup-btn btn-block" type="submit" style="border-radius:5px" >
                         Cancel</a>
 						</div>
-
+				<div class="clearfix">&nbsp;</div>
             </div>
             </div>
         </div>

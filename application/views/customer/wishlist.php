@@ -4,7 +4,7 @@
 	height:450px;
 	
 }</style>
-<div class="container">
+<div class="container mar_res_t150">
 <?php if($this->session->flashdata('adderror')): ?>
 		<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> <?php echo $this->session->flashdata('adderror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 

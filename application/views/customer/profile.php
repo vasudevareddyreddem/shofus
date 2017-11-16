@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container mar_res_t150">
 <?php if($this->session->flashdata('success')): ?>
 					<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 
