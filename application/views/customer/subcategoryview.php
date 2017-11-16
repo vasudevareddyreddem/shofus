@@ -308,6 +308,17 @@
                      <div class="carousel-inner">
 					 
                         <?php $c=0;foreach($subcategory_list as $list){ ?>
+							
+							<?php if($list[0]['category_id']==21){ ?>
+							<script>
+							$(document).ready(function() {
+							getproduct(<?php echo $list[0]['subcategory_id']; ?>);
+							});
+							</script>
+							<?php } ?>
+							
+						
+						
 		 <?php if($c==0){ ?>
           <div class="item  active slid_hig">
             <div class="row">
@@ -420,231 +431,143 @@
          <div class="mar_t20">
             <div class="col-md-12  ">
                <br>
+			
                <div class='col-md-3'>
                   <div class="sidebar left ">
                      <ul class="list-sidebar bg-defoult">
+					 <?php $s=1;foreach ($subitem_list as $list){ ?>
                         <li>
-                           <a href="#" data-toggle="collapse" data-target="#dashboard" class="collapsed active" > </i> <span class="nav-label"> Dashboards </span> <span class="fa fa-chevron-left pull-right"></span> </a>
-                           <ul class="sub-menu collapse" id="dashboard">
-                              <li class="active"><a href="#">CSS3 Animation</a></li>
-                              <li><a href="#">General</a></li>
-                              <li><a href="#">Buttons</a></li>
-                              <li><a href="#">Tabs & Accordions</a></li>
-                              <li><a href="#">Typography</a></li>
-                              <li><a href="#">FontAwesome</a></li>
-                              <li><a href="#">Slider</a></li>
-                              <li><a href="#">Panels</a></li>
-                              <li><a href="#">Widgets</a></li>
-                              <li><a href="#">Bootstrap Model</a></li>
-                           </ul>
+                           <a style="cursor:pointer" onclick="subitemswiseproducts('<?php echo $list['subitem_id']; ?>', '<?php echo $s; ?>')" class="collapsed active" > </i> <span class="nav-label"> <?php echo isset($list['subitem_name'])?$list['subitem_name']:''; ?> </span> <span class="fa fa-chevron-right pull-right"></span> </a>
+                           
                         </li>
-                        <li>
-                           <a href="#" data-toggle="collapse" data-target="#products" class="collapsed active" >  <span class="nav-label">Graphs</span> <span class="fa fa-chevron-left pull-right"></span> </a>
-                           <ul class="sub-menu collapse" id="products">
-                              <li class="active"><a href="#">CSS3 Animation</a></li>
-                              <li><a href="#">General</a></li>
-                              <li><a href="#">Buttons</a></li>
-                              <li><a href="#">Tabs & Accordions</a></li>
-                              <li><a href="#">Typography</a></li>
-                              <li><a href="#">FontAwesome</a></li>
-                              <li><a href="#">Slider</a></li>
-                              <li><a href="#">Panels</a></li>
-                              <li><a href="#">Widgets</a></li>
-                              <li><a href="#">Bootstrap Model</a></li>
-                           </ul>
-                        </li>
-                        <li>
-                           <a href="#" data-toggle="collapse" data-target="#tables" class="collapsed active" ><span class="nav-label">Tables</span><span class="fa fa-chevron-left pull-right"></span></a>
-                           <ul  class="sub-menu collapse" id="tables" >
-                              <li><a href=""> Static Tables</a></li>
-                              <li><a href=""> Data Tables</a></li>
-                              <li><a href=""> Foo Tables</a></li>
-                              <li><a href=""> jqGrid</a></li>
-                           </ul>
-                        </li>
-                        <li>
-                           <a href="#" data-toggle="collapse" data-target="#e-commerce" class="collapsed active" > <span class="nav-label">E-commerce</span><span class="fa fa-chevron-left pull-right"></span></a>
-                           <ul  class="sub-menu collapse" id="e-commerce" >
-                              <li><a href=""> Products grid</a></li>
-                              <li><a href=""> Products list</a></li>
-                              <li><a href="">Product edit</a></li>
-                              <li><a href=""> Product detail</a></li>
-                              <li><a href="">Cart</a></li>
-                              <li><a href=""> Orders</a></li>
-                              <li><a href=""> Credit Card form</a> </li>
-                           </ul>
-                        </li>
+						
+					 <?php $s++;} ?>
+                       
                      </ul>
                   </div>
                </div>
+			   <span id="subitemwisefiltersdata">
                <div class='col-md-9'>
                   <div class="panel-group" id="accordion">
-                     <div class="panel panel-default ">
+				  
+				  <?php if(count($subcategory_porduct_list)>0) { ?>
+				  
+				  <?php $cnt=0;foreach ($subcategory_porduct_list as $productslist){ 
+                     
+						$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+				
+				?>
+					 <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+
+					 <input type="hidden" name="orginalqty" id="orginalqty<?php echo $cnt; ?>" value="<?php echo $productslist['item_quantity']; ?>" >
+					<input type="hidden" name="product_id" id="product_id<?php echo $cnt; ?>"  value="<?php echo $productslist['item_id']; ?>">
+					<input type="hidden" name="amount" id="amount<?php echo $cnt; ?>"  value="<?php echo $item_price; ?>">
+						<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
+					 <div class="panel panel-default ">
                         <div class="panel-heading bg_defa ">
                            <div class="row">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#znajomi">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#znajomi<?php echo $cnt; ?>">
                                  <div class="col-md-3">
                                     <div>
-                                       <img class="groc_min_h" src="//cdn.grofers.com/app/images/products/normal/pro_336298.jpg?1477488636">
+                                       <img class="groc_min_h" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                                     </div>
                                  </div>
                               </a>
                               <div class="col-md-6">
-                                 <div class="gro_tit">Pomegranate(Anaar)</div>
-                                 <p class="">3 units (500-600 gm)</p>
+                                 <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></div>
+                                 <p class=""> <p class=""><?php echo isset($productslist['unit'])?$productslist['unit']:''; ?></p></p>
                                  <p class="">Available in: &nbsp;&nbsp;
                                     <span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
                                     <span class="btn_cus"> 6 units</span>
                                  </p>
                               </div>
                               <div class="col-md-3">
-                                 <p class="">MRP:₹85</p>
-                                 <div class="input-group incr_btn">
-                                    <span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
-                                    </button>
-                                    </span>
-                                    <input type="text" name="qty" id="qty0" readonly="" class="form-control input-number" value="4" min="1" max="100">
-                                    <span class="input-group-btn">
-                                    <button style="width:20px;padding:6px" onclick="productqtyincreae('0');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
-                                    <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
-                                    </button>
-                                    </span>
-                                 </div>
+                                 <p class="">MRP:₹ <?php echo number_format($item_price, 2); ?></p>
+                                 <p class=""> Total Amount:₹ <span id="totalamount<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
+                                 <div  class="input-group incr_btn">
+                                                        <span class="input-group-btn">
+														<button style="width:20px;padding:6px;"type="button" onclick="productqty('<?php echo $cnt; ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
+												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
+                                                        </button>
+                                                        </span>
+                                                        <input type="text" name="qty" id="qty<?php echo $cnt; ?>" readonly  class="form-control input-number" value="1" min="1" max="<?php echo $productslist['item_quantity']; ?>">
+                                                        <span class="input-group-btn">
+											  <button style="width:20px;padding:6px" onclick="productqtyincreae('<?php echo $cnt; ?>');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
+												  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
+                                                        </button>
+                                                        </span>
+														
+														
+                                  </div>
+								  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
                                  <div class="clearfix">&nbsp;</div>
-                                 <a href="" class="btn btn-primary btn-sm">Add To Cart</a>
-                                 <button class="btn btn-warning btn-sm">Buy Now</button>
+                                 <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
+                                 <button type="submit" class="btn btn-warning btn-sm">Buy Now</button>
                               </div>
                            </div>
                         </div>
-                        <div id="znajomi" class="panel-collapse collapse ">
+						</form>
+                        <div id="znajomi<?php echo $cnt; ?>" class="panel-collapse collapse ">
                            <div class="panel-body">
                               <div class="row">
                                  <div class="col-md-12">
                                     <h4>About The Product</h4>
+									<?php if(isset($productslist['descriptions_list']) && count($productslist['descriptions_list'])>0){ ?>
+
                                     <div class="descr">
                                        <p class="sub_tit">Description</p>
-                                       <p class="font_si14">Fresh in appearance, unblemished and intact, Pomegranate has a juicy cluster of sparkling, opaque, red coloured seeds which look like gems. Juicy with a tangy punch, this fruit is delicious and improves blood circulation.</p>
-                                    </div>
+									   <?php foreach ($productslist['descriptions_list'] as $list) { ?>
+                                       <p class="font_si14"><?php echo isset($list['description'])?$list['description']:''; ?>.</p>
+									   <?php } ?>
+									</div>
+									<?php } ?>
+									<?php if(isset($productslist['ingredients']) && $productslist['ingredients']!=''){ ?>
                                     <div class="descr">
-                                       <p class="sub_tit">Nutrient Value & Benefits</p>
+                                       <p class="sub_tit">Ingredients</p>
                                        <p class="font_si14">
-                                          Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.
+                                          <?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?>.
                                        </p>
                                     </div>
+									<?php } ?>
+									<?php if(isset($productslist['disclaimer']) && $productslist['disclaimer']!=''){ ?>
                                     <div class="descr">
-                                       <p class="sub_tit">Nutrient Value & Benefits</p>
+                                       <p class="sub_tit">Disclaimer</p>
                                        <p class="font_si14">
-                                          Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.
+                                          <?php echo isset($productslist['disclaimer'])?$productslist['disclaimer']:''; ?>.
                                        </p>
                                     </div>
+									<?php } ?>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="panel panel-default ">
-                        <div class="panel-heading bg_defa ">
-                           <div class="row">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#second_acc">
-                                 <div class="col-md-3">
-                                    <div>
-                                       <img class="groc_min_h" src="//cdn.grofers.com/app/images/products/normal/pro_336298.jpg?1477488636">
-                                    </div>
-                                 </div>
-                              </a>
-                              <div class="col-md-6">
-                                 <div class="gro_tit">Pomegranate(Anaar)</div>
-                                 <p class="">3 units (500-600 gm)</p>
-                                 <p class="">Available in: &nbsp;&nbsp;
-                                    <span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
-                                    <span class="btn_cus"> 6 units</span>
-                                 </p>
-                              </div>
-                              <div class="col-md-3">
-                                 <p class="">MRP:₹85</p>
-                                 <button class="btn btn-primary btn-sm">Add To Cart</button>
-                              </div>
-                           </div>
-                        </div>
-                        <div id="second_acc" class="panel-collapse collapse ">
-                           <div class="panel-body">
-                              <div class="row">
-                                 <div class="col-md-12">
-                                    <h4>About The Product</h4>
-                                    <div class="descr">
-                                       <p class="sub_tit">Description</p>
-                                       <p class="font_si14">Fresh in appearance, unblemished and intact, Pomegranate has a juicy cluster of sparkling, opaque, red coloured seeds which look like gems. Juicy with a tangy punch, this fruit is delicious and improves blood circulation.</p>
-                                    </div>
-                                    <div class="descr">
-                                       <p class="sub_tit">Nutrient Value & Benefits</p>
-                                       <p class="font_si14">
-                                          Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.
-                                       </p>
-                                    </div>
-                                    <div class="descr">
-                                       <p class="sub_tit">Nutrient Value & Benefits</p>
-                                       <p class="font_si14">
-                                          Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.
-                                       </p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="panel panel-default ">
-                        <div class="panel-heading bg_defa ">
-                           <div class="row">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#third_acc">
-                                 <div class="col-md-3">
-                                    <div>
-                                       <img class="groc_min_h" src="//cdn.grofers.com/app/images/products/normal/pro_336298.jpg?1477488636">
-                                    </div>
-                                 </div>
-                              </a>
-                              <div class="col-md-6">
-                                 <div class="gro_tit">Pomegranate(Anaar)</div>
-                                 <p class="">3 units (500-600 gm)</p>
-                                 <p class="">Available in: &nbsp;&nbsp;
-                                    <span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
-                                    <span class="btn_cus"> 6 units</span>
-                                 </p>
-                              </div>
-                              <div class="col-md-3">
-                                 <p class="">MRP:₹85</p>
-                                 <button class="btn btn-primary btn-sm">Add To Cart</button>
-                              </div>
-                           </div>
-                        </div>
-                        <div id="third_acc" class="panel-collapse collapse ">
-                           <div class="panel-body">
-                              <div class="row">
-                                 <div class="col-md-12">
-                                    <h4>About The Product</h4>
-                                    <div class="descr">
-                                       <p class="sub_tit">Description</p>
-                                       <p class="font_si14">Fresh in appearance, unblemished and intact, Pomegranate has a juicy cluster of sparkling, opaque, red coloured seeds which look like gems. Juicy with a tangy punch, this fruit is delicious and improves blood circulation.</p>
-                                    </div>
-                                    <div class="descr">
-                                       <p class="sub_tit">Nutrient Value & Benefits</p>
-                                       <p class="font_si14">
-                                          Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.
-                                       </p>
-                                    </div>
-                                    <div class="descr">
-                                       <p class="sub_tit">Nutrient Value & Benefits</p>
-                                       <p class="font_si14">
-                                          Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and is claimed to be effective against heart disease, high blood pressure and inflammation.
-                                       </p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+					 
+				  <?php $cnt++;} ?>
+					 
+					 
+				  <?php }else{ ?>
+				  <div>NO products are available<div>
+				  <?php } ?>
+                     
                   </div>
                </div>
             </div>
+            <div class="clearfix">&nbsp;</div>
+         </div>
+		 </span>
+      </div>
             <div class="clearfix">&nbsp;</div>
          </div>
 		 </span>
@@ -1389,12 +1312,136 @@
            }
        });
 </script>
-<!--<script>
-   $(document).ready(function() {
-     $('#media').carousel({
-       pause: true,
-       interval: false,
-     });
-   });
-   </script>-->
+<!--grocery-->
+	  <script>
+	  
+  function subitemswiseproducts(sid){
+	  if(sid!=''){
+			  jQuery.ajax({
+					url: "<?php echo site_url('category/suitemwiseproductslist');?>",
+					type: 'post',
+					data: {
+							form_key : window.FORM_KEY,
+							subitem_id: sid,
+						},
+					dataType: 'html',
+					success: function (data) {
+							$("#subitemwisefiltersdata").empty();
+							$("#subitemwisefiltersdata").append(data);
+					}
+				});
+
+		}
+ }
+function productqty(id){
+	
+
+	var pid=document.getElementById("product_id"+id).value;
+	var qtycnt=document.getElementById("qty"+id).value;
+	var amount=document.getElementById("amount"+id).value;
+	var qty=parseInt(qtycnt);
+	var totalamount=(qty - 1)*amount;
+	if(qty==1){
+		
+		$('#qty'+id).val(qty);
+	}else{
+		$('#qty'+id).val(qty - 1);
+		$("#qtymesage"+id).html('');
+			jQuery.ajax({
+				url: "<?php echo site_url('customer/qtyupdatecart');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					product_id: pid,
+					qty: qty - 1,
+					ajax: 1,
+					},
+				dataType: 'html',
+				success: function (data) {
+					//$("#oldcartqty").hide();
+					$("#totalamount"+id).empty();
+					$("#totalamount"+id).append(totalamount.toFixed(2));
+					$("#oldcartqty").empty();
+					$("#oldcartqty").empty();
+					$("#oldcartqty").append(data);
+				
+				}
+			});
+	}
+	
+	
+}
+function productqtyincreae(id){
+	var pid=document.getElementById("product_id"+id).value;
+	var qtycnt1=document.getElementById("qty"+id).value;
+	var orginalqtycnt=document.getElementById("orginalqty"+id).value;
+	var amount=document.getElementById("amount"+id).value;
+	var qty1=parseInt(qtycnt1);
+	var totalamount=(qty1 + 1)*amount;
+	if(qty1==orginalqtycnt){
+		$("#qtymesage"+id).html("Available Quantity is " +orginalqtycnt);
+	}else if(qty1==10){
+	$("#qtymesage"+id).html("Maximum allowed Quantity is 10 ");
+	}else{
+		$("#qtymesage"+id).html("");
+		$('#qty'+id).val(qty1 + 1);
+			jQuery.ajax({
+				url: "<?php echo site_url('customer/qtyupdatecart');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					product_id: pid,
+					qty: qty1 + 1,
+					ajax: 1,
+					},
+				dataType: 'html',
+				success: function (data) {
+					//$("#oldcartqty").hide();
+					$("#totalamount"+id).empty();
+					$("#totalamount"+id).append(totalamount.toFixed(2));
+					$("#oldcartqty").empty();
+					$("#oldcartqty").empty();
+					$("#oldcartqty").append(data);
+				
+				}
+			});
+	}
+	
+}
+function singleitemaddtocart(itemid,catid,val){
+
+jQuery.ajax({
+        url: "<?php echo site_url('customer/productviewonclickaddcart');?>",
+        type: 'post',
+          data: {
+          form_key : window.FORM_KEY,
+          producr_id: itemid,
+		  category_id: catid,
+		  qty: '1',
+          },
+        dataType: 'json',
+        success: function (data) {
+           if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+						jQuery('#supcounts').show();
+						jQuery('#sucessmsg').show();
+						$("#supcounts").empty();
+						$("#supcount").empty();
+						$("#supcount").append(data.count);
+						$("#supcounts").append(data.count);
+						if(data.msg==2){
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> Product already exits <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						}
+						if(data.msg==1){
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product added successfully <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+						}
+				}
+
+        }
+      });
+
+ }
+</script>
+  
 

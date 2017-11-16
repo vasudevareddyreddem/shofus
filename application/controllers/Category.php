@@ -940,15 +940,8 @@ function filtersearch(){
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
 		
 	}else if($caterory_id==21){
-		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);
-		$data['price_list']= $this->category_model->get_all_price_list($caterory_id);
-		$data['discount_list']= $this->category_model->get_all_discount_list($caterory_id);
-		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-		$data['offer_list']= $this->category_model->get_all_offer_list($caterory_id);
-		$minamt = min( array_map("max", $data['price_list']) );
-		$maxamt= max( array_map("max", $data['price_list']) );
-		$data['minimum_price'] = array('item_cost'=>$minamt);
-		$data['maximum_price'] = array('item_cost'=>$maxamt);
+		$data['subitem_list']= $this->category_model->get_all_subitem_lists($caterory_id);
+
 		
 	}else if($caterory_id==20){
 		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);
@@ -1230,6 +1223,7 @@ function filtersearch(){
 
 public function suitemwiseproductslist(){
 		$post=$this->input->post();
+		//secho '<pre>';print_r($post);exit;
 		$subitem_list= $this->category_model->get_subitem_list($post['subitem_id']);
 		//echo '<pre>';print_r($data['subcategory_porduct_list']);exit;
 		if(count($subitem_list)>0){
@@ -1246,6 +1240,7 @@ public function suitemwiseproductslist(){
 		}
 		}
 		$data['subcategory_porduct_list']=$plist_list;
+
 		}else{
 		$data['subcategory_porduct_list']=array();
 		}

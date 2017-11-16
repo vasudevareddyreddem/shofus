@@ -1671,6 +1671,13 @@ class Category_model extends MY_Model
 	$this->db->where('subcategory_id',$subcatid);
 	return $this->db->get()->result_array();
  }
+ public function get_all_subitem_lists($catid)
+ {
+  	$this->db->select('*')->from('sub_items');
+	$this->db->where('category_id',$catid);
+	return $this->db->get()->result_array();
+ }
+
  public function get_category_ids($subcatid)
  {
   	$this->db->select('*')->from('subcategories');

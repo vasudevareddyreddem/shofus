@@ -58,6 +58,7 @@
    </style>
 	
 	 <!-- Filter Sidebar -->
+	
 	<div class='col-md-9'>
           <div class="panel-group" id="accordion">
 				  
@@ -188,12 +189,12 @@
 					type: 'post',
 					data: {
 							form_key : window.FORM_KEY,
-							subitem: sid,
+							subitem_id: sid,
 						},
 					dataType: 'html',
 					success: function (data) {
-							$("#withoursearchsubcategory").empty();
-							$("#withoursearchsubcategory").append(data);
+							$("#subitemwisefiltersdata").empty();
+							$("#subitemwisefiltersdata").append(data);
 					}
 				});
 

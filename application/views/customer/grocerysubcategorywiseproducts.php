@@ -65,16 +65,17 @@
          <div class="mar_t20">
             <div class="col-md-12  ">
                <br>
+			
                <div class='col-md-3'>
                   <div class="sidebar left ">
                      <ul class="list-sidebar bg-defoult">
-					 <?php foreach ($subitem_list as $list){ ?>
+					 <?php $s=1;foreach ($subitem_list as $list){ ?>
                         <li>
-                           <a onclick="subitemswiseproducts('<?php echo isset($list['subitem_id'])?$list['subitem_id']:''; ?>')" data-toggle="collapse" data-target="#dashboard" class="collapsed active" > </i> <span class="nav-label"> <?php echo isset($list['subitem_name'])?$list['subitem_name']:''; ?> </span> <span class="fa fa-chevron-right pull-right"></span> </a>
+                           <a style="cursor:pointer" onclick="subitemswiseproducts('<?php echo $list['subitem_id']; ?>', '<?php echo $s; ?>')" class="collapsed active" > </i> <span class="nav-label"> <?php echo isset($list['subitem_name'])?$list['subitem_name']:''; ?> </span> <span class="fa fa-chevron-right pull-right"></span> </a>
                            
                         </li>
 						
-					 <?php } ?>
+					 <?php $s++;} ?>
                        
                      </ul>
                   </div>
@@ -119,7 +120,7 @@
                               </a>
                               <div class="col-md-6">
                                  <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></div>
-                                 <p class="">3 units (500-600 gm)</p>
+                                 <p class=""><?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?></p>
                                  <p class="">Available in: &nbsp;&nbsp;
                                     <span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
                                     <span class="btn_cus"> 6 units</span>
@@ -205,7 +206,6 @@
 	  <script>
 	  
   function subitemswiseproducts(sid){
-	  alert(sid);
 	  if(sid!=''){
 			  jQuery.ajax({
 					url: "<?php echo site_url('category/suitemwiseproductslist');?>",
