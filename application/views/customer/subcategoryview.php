@@ -315,10 +315,11 @@ $(document).ready(function() {
 	 
 
 	 <div class="row ">
+	 	<div class="mar_t20">
 			<div class="col-md-12  ">
 			<div class="title text-left mar_t10"><span> Grocery list</span></div>
 			<!--groffers start-->
-	<div class="mar_t20">
+
 	<div class='col-md-12'>
       <div class="carousel slide media-carousel" id="media">
         <div class="carousel-inner">
@@ -395,8 +396,16 @@ $(document).ready(function() {
         <a data-slide="next" href="#media" class="right carousel-control">›</a>
       </div>                          
     </div>
+    </div>
+    </div>
+    </div>
 	<div class="clearfix">&nbsp;</div>
+	
+	
 	<p style="border-top:1px solid #ddd;">&nbsp;</p>
+	 <div class="row ">
+	 <div class="mar_t20">
+			<div class="col-md-12  ">
 	<br>
     <div class='col-md-3'>
 		
@@ -478,23 +487,26 @@ $(document).ready(function() {
 					<span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
 					<span class="btn_cus"> 6 units</span>
 				</p>
-				<div class="input-group incr_btn">
-                                                        <span class="input-group-btn">
-														<button style="width:20px;padding:6px;" type="button" onclick="productqty('0');" class="btn btn-primary btn-number btn-small" data-type="minus" data-field="quant[2]">
-												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
-                                                        </button>
-                                                        </span>
-                                                        <input type="text" name="qty" id="qty0" readonly="" class="form-control input-number" value="4" min="1" max="100">
-                                                        <span class="input-group-btn">
-											  <button style="width:20px;padding:6px" onclick="productqtyincreae('0');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
-												  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
-                                                        </button>
-                                                        </span>
-                                                    </div>
+					
 			</div>
 			<div class="col-md-3">
 				<p class="">MRP:₹85</p>
+				<div class="input-group incr_btn">
+							<span class="input-group-btn">
+							<button style="width:20px;padding:6px;" type="button" onclick="productqty('0');" class="btn btn-primary btn-number btn-small" data-type="minus" data-field="quant[2]">
+					<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
+							</button>
+							</span>
+							<input type="text" name="qty" id="qty0" readonly="" class="form-control input-number" value="4" min="1" max="100">
+							<span class="input-group-btn">
+					<button style="width:20px;padding:6px" onclick="productqtyincreae('0');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
+					  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
+							</button>
+							</span>
+					</div>
+					<div class="clearfix">&nbsp;</div>
 				<button class="btn btn-primary btn-sm">Add To Cart</button>
+				<button class="btn btn-warning btn-sm">Buy Now</button>
 			</div>
 		</div>
 		
@@ -644,35 +656,19 @@ Rich in vitamin A, C, E and antioxidants. It is also a good source of fibre and 
 </div>
     
 	</div>
+	</div>
+	</div>
 	
 
-			<!--groffers end-->
-			<div class="clearfix">&nbsp;</div>
 			
-			
-			
-			
-			  <?php //echo '<pre>';print_r($minimum_price['item_cost']);exit; ?>
-			  <div class="col-md-12 gir_alg" >
-			  <div class="title text-left mar_t10"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
-			  <?php foreach($subcategory_list as $list){ ?>
-				  <div class="col-md-2" style="cursor:pointer" id="onclicksubcat<?php echo $list['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list['subcategory_id']; ?>);">
-				   <div class="text-center sub_ac_tag"> <!--catg_sty-->
-					  <div style="padding-bottom:5px;">
-							<img style="height:60px;width:auto;" src="<?php echo base_url('assets/subcategoryimages/'.$list['subcategory_image']); ?>" />
-					  </div>
-					
-						<a><?php echo $list['subcategory_name']; ?></a>
-					  </div>
-				  </div> 
-			  <?php } ?>
-			</div>
-			</div>
-	 </div>
-	<br>
-	<hr>
 	 <div class=" clearfix"></div>
+	 
+	 
+	 
+	 
 	 <!-- Filter Sidebar -->
+	 <div class="row ">
+	 <div class="mar_t20">
 	 <div id="subcategorywise_products" style="">
 		<div class="col-sm-3">
 		 <div class="title"><span>Filters</span></div>
