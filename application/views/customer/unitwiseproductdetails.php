@@ -144,6 +144,8 @@
                                  <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
                                  <button type="submit" class="btn btn-warning btn-sm">Buy Now</button>
                               </div>
+							  <div class="clearfix">&nbsp;</div>
+												  <a data-toggle="collapse" data-parent="#accordion" href="#znajomi<?php echo $cnt; ?>"> <div class="text-center "><span class="glyphicon glyphicon-chevron-down down_btn_mod"></span></div></a>
                            </div>
                         </div>
 						</form>
