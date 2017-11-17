@@ -104,6 +104,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 	
   
     <!--Top Category slider Start-->
+	<?php if(isset($topoffers) && count($topoffers)>0){ ?>
     <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
@@ -202,6 +203,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <a href="<?php echo base_url('customer/seemore/'.base64_encode('top').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
+	
+	<?php } ?>
     <!--Top Category silder End--> 
     <!-- best Pro Slider -->
     
@@ -469,7 +472,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <a href="<?php echo base_url('customer/seemore/'.base64_encode('offer').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
-
+<?php if(isset($deals_of_the_day) && count($deals_of_the_day)>0){ ?>
      <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
@@ -560,6 +563,9 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <a href="<?php echo base_url('customer/seemore/'.base64_encode('deal').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
+	
+<?php } ?>
+<?php if(isset($season_sales) && count($season_sales)>0){ ?>
    <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
@@ -649,6 +655,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <a href="<?php echo base_url('customer/seemore/'.base64_encode('season').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
+<?php } ?>
   </div>
 </body>
 
