@@ -452,107 +452,115 @@
 				  
 				  <?php if(count($subcategory_porduct_list)>0) { ?>
 				  
-				  <?php $cnt=0;foreach ($subcategory_porduct_list as $productslist){ 
-                     
-						$currentdate=date('Y-m-d h:i:s A');
-						if($productslist['offer_expairdate']>=$currentdate){
-						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
-						$percentage= $productslist['offer_percentage'];
-						$orginal_price=$productslist['item_cost'];
-						}else{
-							//echo "expired";
-							$item_price= $productslist['special_price'];
-							$prices= ($productslist['item_cost']-$productslist['special_price']);
-							$percentage= (($prices) /$productslist['item_cost'])*100;
-							$orginal_price=$productslist['item_cost'];
-						}
-				
-				?>
-					 <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+				  <?php 
+				  $customerdetails=$this->session->userdata('userdetails');
+				  $cnt=0;foreach ($subcategory_porduct_list as $productslist){ ?>
+				  <div id="unitwusechanges<?php echo $cnt; ?>">
+											<?php $currentdate=date('Y-m-d h:i:s A');
+											if($productslist['offer_expairdate']>=$currentdate){
+											$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+											$percentage= $productslist['offer_percentage'];
+											$orginal_price=$productslist['item_cost'];
+											}else{
+												//echo "expired";
+												$item_price= $productslist['special_price'];
+												$prices= ($productslist['item_cost']-$productslist['special_price']);
+												$percentage= (($prices) /$productslist['item_cost'])*100;
+												$orginal_price=$productslist['item_cost'];
+											}
+									
+									?>
+										 <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 
-					 <input type="hidden" name="orginalqty" id="orginalqty<?php echo $cnt; ?>" value="<?php echo $productslist['item_quantity']; ?>" >
-					<input type="hidden" name="product_id" id="product_id<?php echo $cnt; ?>"  value="<?php echo $productslist['item_id']; ?>">
-					<input type="hidden" name="amount" id="amount<?php echo $cnt; ?>"  value="<?php echo $item_price; ?>">
-						<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
-					 <div class="panel panel-default ">
-                        <div class="panel-heading bg_defa ">
-                           <div class="row">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#znajomi<?php echo $cnt; ?>">
-                                 <div class="col-md-3">
-                                    <div>
-                                       <img class="groc_min_h" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
-                                    </div>
-                                 </div>
-                              </a>
-                              <div class="col-md-6">
-                                 <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></div>
-                                 <p class=""> <p class=""><?php echo isset($productslist['unit'])?$productslist['unit']:''; ?></p></p>
-                                 <p class="">Available in: &nbsp;&nbsp;
-                                    <span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
-                                    <span class="btn_cus"> 6 units</span>
-                                 </p>
-                              </div>
-                              <div class="col-md-3">
-                                 <p class="">MRP:₹ <?php echo number_format($item_price, 2); ?></p>
-                                 <p class=""> Total Amount:₹ <span id="totalamount<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
-                                 <div  class="input-group incr_btn">
-                                                        <span class="input-group-btn">
-														<button style="width:20px;padding:6px;"type="button" onclick="productqty('<?php echo $cnt; ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
-												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
-                                                        </button>
-                                                        </span>
-                                                        <input type="text" name="qty" id="qty<?php echo $cnt; ?>" readonly  class="form-control input-number" value="1" min="1" max="<?php echo $productslist['item_quantity']; ?>">
-                                                        <span class="input-group-btn">
-											  <button style="width:20px;padding:6px" onclick="productqtyincreae('<?php echo $cnt; ?>');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
-												  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
-                                                        </button>
-                                                        </span>
-														
-														
-                                  </div>
-								  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
-                                 <div class="clearfix">&nbsp;</div>
-                                 <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
-                                 <button type="submit" class="btn btn-warning btn-sm">Buy Now</button>
-                              </div>
-                           </div>
-                        </div>
-						</form>
-                        <div id="znajomi<?php echo $cnt; ?>" class="panel-collapse collapse ">
-                           <div class="panel-body">
-                              <div class="row">
-                                 <div class="col-md-12">
-                                    <h4>About The Product</h4>
-									<?php if(isset($productslist['descriptions_list']) && count($productslist['descriptions_list'])>0){ ?>
+										 <input type="hidden" name="orginalqty" id="orginalqty<?php echo $cnt; ?>" value="<?php echo $productslist['item_quantity']; ?>" >
+										<input type="hidden" name="product_id" id="product_id<?php echo $cnt; ?>"  value="<?php echo $productslist['item_id']; ?>">
+										<input type="hidden" name="amount" id="amount<?php echo $cnt; ?>"  value="<?php echo $item_price; ?>">
+											<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
+										 <div class="panel panel-default ">
+											<div class="panel-heading bg_defa ">
+											   <div class="row">
+												  <a data-toggle="collapse" data-parent="#accordion" href="#znajomi<?php echo $cnt; ?>">
+													 <div class="col-md-3">
+														<div>
+														   <img class="groc_min_h" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
+														</div>
+													 </div>
+												  </a>
+												  <div class="col-md-6">
+													 <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&&nbsp;<?php echo isset($productslist['product_code'])?$productslist['product_code']:''; ?></div>
+													 <p class=""><?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?></p>
+													 <p class="">Available in: &nbsp;&nbsp;
+														<span   class="btn_cus btn_cus_acti"><?php echo $productslist['unit'].' Unit'; ?></span>&nbsp;&nbsp;
+														</p>
+												  </div>
+												  <div class="col-md-3">
+													 <p class="">MRP:₹ <?php echo number_format($item_price, 2); ?></p>
+													 <p class=""> Total Amount:₹ <span id="totalamount<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
+													 <div  class="input-group incr_btn">
+																			<span class="input-group-btn">
+																			<button style="width:20px;padding:6px;"type="button" onclick="productqty('<?php echo $cnt; ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
+																	<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
+																			</button>
+																			</span>
+																			<input type="text" name="qty" id="qty<?php echo $cnt; ?>" readonly  class="form-control input-number" value="1" min="1" max="<?php echo $productslist['item_quantity']; ?>">
+																			<span class="input-group-btn">
+																  <button style="width:20px;padding:6px" onclick="productqtyincreae('<?php echo $cnt; ?>');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
+																	  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
+																			</button>
+																			</span>
+																			
+																			
+													  </div>
+													  <?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart text-primary"></i></a> 
+													<?php }else{ ?>	
+													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart "></i></a> 
+													<?php } ?>
+													  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
+													 <div class="clearfix">&nbsp;</div>
+													 <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
+													
+													<button type="submit" class="btn btn-warning btn-sm">Buy Now</button>
+												  </div>
+											   </div>
+											</div>
+											</form>
+											<div id="znajomi<?php echo $cnt; ?>" class="panel-collapse collapse ">
+											   <div class="panel-body">
+												  <div class="row">
+													 <div class="col-md-12">
+														<h4>About The Product</h4>
+														<?php if(isset($productslist['descriptions_list']) && count($productslist['descriptions_list'])>0){ ?>
 
-                                    <div class="descr">
-                                       <p class="sub_tit">Description</p>
-									   <?php foreach ($productslist['descriptions_list'] as $list) { ?>
-                                       <p class="font_si14"><?php echo isset($list['description'])?$list['description']:''; ?>.</p>
-									   <?php } ?>
-									</div>
-									<?php } ?>
-									<?php if(isset($productslist['ingredients']) && $productslist['ingredients']!=''){ ?>
-                                    <div class="descr">
-                                       <p class="sub_tit">Ingredients</p>
-                                       <p class="font_si14">
-                                          <?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?>.
-                                       </p>
-                                    </div>
-									<?php } ?>
-									<?php if(isset($productslist['disclaimer']) && $productslist['disclaimer']!=''){ ?>
-                                    <div class="descr">
-                                       <p class="sub_tit">Disclaimer</p>
-                                       <p class="font_si14">
-                                          <?php echo isset($productslist['disclaimer'])?$productslist['disclaimer']:''; ?>.
-                                       </p>
-                                    </div>
-									<?php } ?>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+														<div class="descr">
+														   <p class="sub_tit">Description</p>
+														   <?php foreach ($productslist['descriptions_list'] as $list) { ?>
+														   <p class="font_si14"><?php echo isset($list['description'])?$list['description']:''; ?>.</p>
+														   <?php } ?>
+														</div>
+														<?php } ?>
+														<?php if(isset($productslist['ingredients']) && $productslist['ingredients']!=''){ ?>
+														<div class="descr">
+														   <p class="sub_tit">Ingredients</p>
+														   <p class="font_si14">
+															  <?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?>.
+														   </p>
+														</div>
+														<?php } ?>
+														<?php if(isset($productslist['disclaimer']) && $productslist['disclaimer']!=''){ ?>
+														<div class="descr">
+														   <p class="sub_tit">Disclaimer</p>
+														   <p class="font_si14">
+															  <?php echo isset($productslist['disclaimer'])?$productslist['disclaimer']:''; ?>.
+														   </p>
+														</div>
+														<?php } ?>
+													 </div>
+												  </div>
+											   </div>
+											</div>
+										 </div>
+					 </div>
 					 
 				  <?php $cnt++;} ?>
 					 
@@ -563,6 +571,7 @@
                      
                   </div>
                </div>
+			    </span>
             </div>
             <div class="clearfix">&nbsp;</div>
          </div>
