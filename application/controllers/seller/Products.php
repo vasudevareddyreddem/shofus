@@ -187,6 +187,8 @@ public function item_status(){
  public function getolditemdata(){
 	 $post = $this->input->post();
 	 $data['item_details']=$this->products_model->get_sae_product_details($post['productname'],$post['categoryid'],$post['subcategoryid']);
+	 //echo $this->db->last_query();exit;
+	 //print_r( $data);
 	 if(isset($post['categoryid']) && $post['categoryid']==21){
 	 $this->load->view('seller/products/groceryproductdetails',$data);
 	 }else{

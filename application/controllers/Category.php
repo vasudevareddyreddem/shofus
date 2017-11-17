@@ -736,15 +736,38 @@ function filtersearch(){
 		$this->category_model->delete_privous_subcategort_searchdata($list['id']);
 	}
 	$post=$this->input->post();
-	$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products_list($post['subcategoryid']);
+	$catidss_id= $this->category_model->get_category_ids($post['subcategoryid']);
+	
+	if(isset($catidss_id['category_id']) && $catidss_id['category_id']==21){
+		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products_list($post['subcategoryid']);
 	//echo '<pre>';print_r($data['subcategory_porduct_list']);exit;
 	foreach($data['subcategory_porduct_list'] as $list){
 			//echo '<pre>';print_r($list);
 			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
 			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
-			
 		}
+	foreach($data['subcategory_porduct_list'] as $list){
+	//echo '<pre>';print_r($list);
+	$desc=$this->category_model->get_products_desc_list($list['item_id']);
+	$sameunitproduct=$this->category_model->get_sameunit_products_list($list['item_name']);
+	$plist[$list['item_id']]['list']=$list;
+	$plist[$list['item_id']]['list']['descriptions_list']=$desc;
+	$plist[$list['item_id']]['list']['unitproducts_list']=$sameunitproduct;
+	}
+	foreach($plist as $list){
+	foreach($list as $li){
+	$plist_list[]=$li;
 	
+	}
+	}
+	$data['subcategory_porduct_list']=$plist_list;
+	}else{
+		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products_list($post['subcategoryid']);
+		foreach($data['subcategory_porduct_list'] as $list){
+			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+		}
+	}
 	$data['avg_count']=$reviewrating;
 	$data['rating_count']=$reviewcount;
 	$data['cat_subcat_ids']= $this->category_model->get_category_id($post['subcategoryid']);
@@ -767,16 +790,7 @@ function filtersearch(){
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
 		
 	}else if($caterory_id==21){
-		$data['brand_list']= $this->category_model->get_all_brand_list_sib($caterory_id,$subcaterory_id);
-		$data['price_list']= $this->category_model->get_all_price_list_sub($caterory_id,$subcaterory_id);
-		$data['discount_list']= $this->category_model->get_all_discount_list_sub($caterory_id,$subcaterory_id);
-		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-		$data['offer_list']= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
-		$minamt = min( array_map("max", $data['price_list']) );
-		$maxamt= max( array_map("max", $data['price_list']) );
-		$data['minimum_price'] = array('item_cost'=>$minamt);
-		$data['maximum_price'] = array('item_cost'=>$maxamt);
-		
+		$data['subitem_list']= $this->category_model->get_all_subitem_list($caterory_id,$subcaterory_id);
 	}else if($caterory_id==20){
 		$data['brand_list']= $this->category_model->get_all_brand_list_sib($caterory_id,$subcaterory_id);
 		$data['price_list']= $this->category_model->get_all_price_list_sub($caterory_id,$subcaterory_id);
@@ -859,7 +873,11 @@ function filtersearch(){
 	}
 	//echo '<pre>';print_r($data);exit;
 	//echo '<pre>';print_r($data);exit;
-	$this->load->view('customer/subcategorywiseproducts',$data);
+	if($data['cat_subcat_ids']['category_id']==21){
+	$this->load->view('customer/grocerysubcategorywiseproducts',$data);
+	}else{
+		$this->load->view('customer/subcategorywiseproducts',$data);
+	}
 	//echo '<pre>';print_r($data);exit;
 } 
  public function subcategoryview(){
@@ -873,7 +891,8 @@ function filtersearch(){
 		$this->category_model->delete_privous_searchdata($list['id']);
 	}
 	$caterory_id=base64_decode($this->uri->segment(3));
-	$data['subcategory_list']= $this->category_model->get_all_subcategory($caterory_id);
+	$subcategory_list= $this->category_model->get_all_subcategory($caterory_id);
+	$data['subcategory_list']=array_chunk($subcategory_list, 6);
 	$data['category_name']= $this->category_model->get_category_name($caterory_id);
 	$sid=$this->uri->segment(4);
 	if($sid!='' && is_int($sid)){
@@ -923,15 +942,8 @@ function filtersearch(){
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
 		
 	}else if($caterory_id==21){
-		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);
-		$data['price_list']= $this->category_model->get_all_price_list($caterory_id);
-		$data['discount_list']= $this->category_model->get_all_discount_list($caterory_id);
-		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-		$data['offer_list']= $this->category_model->get_all_offer_list($caterory_id);
-		$minamt = min( array_map("max", $data['price_list']) );
-		$maxamt= max( array_map("max", $data['price_list']) );
-		$data['minimum_price'] = array('item_cost'=>$minamt);
-		$data['maximum_price'] = array('item_cost'=>$maxamt);
+		$data['subitem_list']= $this->category_model->get_all_subitem_lists($caterory_id);
+
 		
 	}else if($caterory_id==20){
 		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);
@@ -1209,6 +1221,123 @@ function filtersearch(){
 			}
   		
 
+	}
+
+public function suitemwiseproductslist(){
+		$post=$this->input->post();
+		//echo '<pre>';print_r($post);
+		$subitem_list= $this->category_model->get_subitem_list($post['subitem_id']);
+		//echo $this->db->last_query();
+		//echo '<pre>';print_r($subitem_list);exit;
+		if(count($subitem_list)>0){
+		foreach($subitem_list as $list){
+		//echo '<pre>';print_r($list);
+		$sameunitproduct=$this->category_model->get_sameunit_products_list($list['item_name']);
+
+		$desc=$this->category_model->get_products_desc_list($list['item_id']);
+		$plist[$list['item_id']]['list']=$list;
+		$plist[$list['item_id']]['list']['descriptions_list']=$desc;
+		$plist[$list['item_id']]['list']['unitproducts_list']=$sameunitproduct;
+		}
+		foreach($plist as $list){
+		foreach($list as $li){
+		$plist_list[]=$li;
+		
+		}
+		}
+		$data['subcategory_porduct_list']=$plist_list;
+
+		}else{
+		$data['subcategory_porduct_list']=array();
+		}
+		$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
+	}
+	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	if(count($wishlist_ids)>0){
+		foreach ($wishlist_ids as  $list){
+		$customer_ids_list[]=$list['cust_id'];
+		$whishlist_item_ids_list[]=$list['item_id'];
+		$whishlist_ids_list[]=$list['id'];
+	}
+		
+	//echo '<pre>';print_r($data);exit;
+	$data['customer_ids_list']=$customer_ids_list;
+	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+	$data['whishlist_ids_list']=$whishlist_ids_list;
+	}
+	$this->load->view('customer/grocerysubitemwisefiltersproduct',$data);
+	}
+	public function unitwiseproduct_details(){
+		$post=$this->input->post();
+		//secho '<pre>';print_r($post);exit;
+		$products_list= $this->category_model->get_untiwise_product_details($post['item_id']);
+		//echo '<pre>';print_r($products_list);exit;
+		if(count($products_list)>0){
+		foreach($products_list as $list){
+		//echo '<pre>';print_r($list);
+		$desc=$this->category_model->get_products_desc_list($list['item_id']);
+		$sameunitproduct=$this->category_model->get_sameunit_products_list($list['item_name']);
+		$plist[$list['item_id']]['list']=$list;
+		$plist[$list['item_id']]['list']['descriptions_list']=$desc;
+		$plist[$list['item_id']]['list']['unitproducts_list']=$sameunitproduct;
+		}
+		foreach($plist as $list){
+		foreach($list as $li){
+		$plist_list[]=$li;
+		
+		}
+		}
+		$data['subcategory_porduct_list']=$plist_list;
+
+		}else{
+		$data['subcategory_porduct_list']=array();
+		}
+		$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
+	}
+	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	if(count($wishlist_ids)>0){
+		foreach ($wishlist_ids as  $list){
+		$customer_ids_list[]=$list['cust_id'];
+		$whishlist_item_ids_list[]=$list['item_id'];
+		$whishlist_ids_list[]=$list['id'];
+	}
+		
+	//echo '<pre>';print_r($data);exit;
+	$data['customer_ids_list']=$customer_ids_list;
+	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+	$data['whishlist_ids_list']=$whishlist_ids_list;
+	}
+	$this->load->view('customer/unitwiseproductdetails',$data);
 	}	
 }
 ?>

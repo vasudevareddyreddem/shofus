@@ -2516,6 +2516,17 @@ public function addhomepagemiddlebannerspost()
 			{
 				$post=$this->input->post();
 				//echo '<pre>';print_r($post);exit;
+				$ubitem_list = $this->inventory_model->get_subitem_details($post['subitemid']);
+
+				if($post['subitemname']!=$ubitem_list['subitem_name']){
+				$result = $this->inventory_model->get_subitemname_existss($post['subitemname']);
+				if(count($result)>0){
+					$this->session->set_flashdata('error',"Subitem Name already exits .please use another Subitem Name!");
+					redirect('inventory/addsubitemedit/'.base64_encode($post['subitemid']));
+					
+				}
+				}
+				
 					if(isset($post['changesubcategory_list']) && $post['changesubcategory_list']!=''){
 						$subcatid=$post['changesubcategory_list'];
 					}else{

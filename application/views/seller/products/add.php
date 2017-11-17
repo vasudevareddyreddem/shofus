@@ -381,6 +381,9 @@
 					$("#subitemid").html(data);
 				} 
 			});
+	}else{
+		$('#subitems').hide();
+		  $('subitemid').val();
 	}
 		
 	
@@ -452,6 +455,7 @@ $(document).ready(function(){
 				}
 			});
 		}else{
+			$("#grocery_products").empty();
 			$("#newmobile_products").show();
 			$("#mobile_products").show();
 		}
@@ -477,9 +481,19 @@ $(document).ready(function(){
 					},
 				dataType: 'html',
 				success: function (data) {
+					if(categoryids==21){
+					$("#grocery_products").show();
+					$("#mobile_products").hide();
+					$("#grocery_products").empty();
+					$("#grocery_products").append(data);
+
+					}else{
+					$("#grocery_products").hide();
 					$("#newmobile_products").hide();
 					$("#mobile_products").empty();
 					$("#mobile_products").append(data);
+					}
+					
 					
 				}
 			});
@@ -839,6 +853,7 @@ function getinputfiledshideshow(ids){
 
   
   function getsubcategory(id){
+	 
 	  if(id==2){
 		  $('#materialpurose').show();
 		  $('#seasonpurpose').show();
