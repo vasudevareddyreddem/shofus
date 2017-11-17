@@ -108,10 +108,10 @@
 													 <?php foreach ($productslist['unitproducts_list'] as $list){ ?>
 													 
 													 <?php if($list['item_id']==$productslist['item_id']){ ?>
-															<span onclick="getunitwiseproductsinunit('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus btn_cus_acti"><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
+															<span onclick="getunitwiseproductsinunit('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus btn_cus_acti pad_rig"><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
 
 													 <?php }else{ ?>
-															<span onclick="getunitwiseproductsinunit('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus "><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
+															<span onclick="getunitwiseproductsinunit('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus pad_rig"><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
 
 													 <?php  } ?>
 													<?php } ?>
@@ -147,7 +147,7 @@
                                  
 								 <div class="clearfix">&nbsp;</div>
                                  <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
-                                 <button type="submit" class="btn btn-warning btn-sm">Buy Now</button>
+                                 <button type="submit" class="btn btn-warning btn-sm mar_1024_t10">Buy Now</button>
                               </div>
 							  <div class="clearfix">&nbsp;</div>
 												  <a data-toggle="collapse" data-parent="#accordion" href="#znajomiqas<?php echo $cnt; ?><?php echo time(); ?>"> <div class="text-center "><span class="glyphicon glyphicon-chevron-down down_btn_mod"></span></div></a>
