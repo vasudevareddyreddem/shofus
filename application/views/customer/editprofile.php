@@ -24,7 +24,7 @@
 </header>
 
 <body >
-<div class="pad_bod">
+<div class="pad_bod mar_res_t150">
 		<div class="row">
 		
 		<?php //echo '<pre>';print_r($cart_items);exit; ?>

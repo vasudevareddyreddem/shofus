@@ -1,3 +1,11 @@
+<style>
+.mat-label{
+		display: block;
+    font-size: 16px;
+    transform: translateY(25px);
+    color: #009688;
+	}
+</style>
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 bhoechie-tab-container mar_res_t150 ">
