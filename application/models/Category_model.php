@@ -1690,7 +1690,7 @@ class Category_model extends MY_Model
  public function get_all_subitem_lists($catid)
  {
   	$this->db->select('*')->from('products');
-	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left'); //
+	$this->db->join('sub_items', 'sub_items.subitemid = products.item_id', 'left'); //
 	$this->db->where('sub_items.category_id',$catid);
 	return $this->db->get()->result_array();
  }
