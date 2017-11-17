@@ -333,42 +333,13 @@
                   <li>
                     <div class="mega-menu-content">
                       <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-md-2">
                           <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
+                           <a href=""> <li><h4>ELECTRONICS</h4></li></a>
+                          
                           </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
+                        </div> 
+						
                       </div>
                     </div>
                   </li>

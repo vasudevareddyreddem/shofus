@@ -5535,7 +5535,9 @@ input[type=radio]:checked + span::before {
 }
 .mega-menu .dropdown-menu {
   width: 90%;
+  height:100%;
   margin:0px 70px !important;
+  border-bottom:4px solid #009688;
  
 }
 .mega-menu .mega-menu-content {
@@ -5547,16 +5549,19 @@ input[type=radio]:checked + span::before {
 .mega-menu .list-unstyled a {
   display: block;
   padding: 3px 20px 3px 10px;
+   color:#222 ;
 }
 .mega-menu .list-unstyled a:hover {
   text-decoration: none;
-  color: #262626;
-  background-color: #eee;
+  color: #fff;
+  background-color: #009688;
 }
 .mega-menu .list-unstyled a::before {
   font-family: 'fontAwesome';
   margin-right: 5px;
-  content: '\f105';
+ 
+ 
+  /* content: '\f105'; */
 }
 
 .breadcrumb-container {
