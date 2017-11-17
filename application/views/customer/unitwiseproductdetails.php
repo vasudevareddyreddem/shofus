@@ -59,10 +59,12 @@
 	
 	 <!-- Filter Sidebar -->
 	
-				  
+				  <span id="unitwisechangeitemids">
 				  <?php if(count($subcategory_porduct_list)>0) { ?>
 				  
-				  <?php $cnt=0;foreach ($subcategory_porduct_list as $productslist){ 
+				  <?php
+						$customerdetails=$this->session->userdata('userdetails');
+						$cnt=0;foreach ($subcategory_porduct_list as $productslist){ 
                      
 						$currentdate=date('Y-m-d h:i:s A');
 						if($productslist['offer_expairdate']>=$currentdate){
@@ -80,9 +82,9 @@
 				?>
 					 <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
 
-					 <input type="hidden" name="orginalqty" id="orginalqty<?php echo $cnt; ?>" value="<?php echo $productslist['item_quantity']; ?>" >
-					<input type="hidden" name="product_id" id="product_id<?php echo $cnt; ?>"  value="<?php echo $productslist['item_id']; ?>">
-					<input type="hidden" name="amount" id="amount<?php echo $cnt; ?>"  value="<?php echo $item_price; ?>">
+					 <input type="hidden" name="orginalqty" id="orginalqty1<?php echo $cnt; ?>" value="<?php echo $productslist['item_quantity']; ?>" >
+					<input type="hidden" name="product_id" id="product_id1<?php echo $cnt; ?>"  value="<?php echo $productslist['item_id']; ?>">
+					<input type="hidden" name="amount1" id="amount1<?php echo $cnt; ?>"  value="<?php echo $item_price; ?>">
 						<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
 					 <div class="panel panel-default ">
                         <div class="panel-heading bg_defa ">
@@ -94,26 +96,34 @@
                                     </div>
                                  </div>
                               </a>
-                              <div class="col-md-6">
-                                 <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></div>
-                                 <p class="">3 units (500-600 gm)</p>
-                                 <p class="">Available in: &nbsp;&nbsp;
-                                    <span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
-                                    <span class="btn_cus"> 6 units</span>
-                                 </p>
-                              </div>
+                             <div class="col-md-6">
+													 <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&&nbsp;<?php echo isset($productslist['product_code'])?$productslist['product_code']:''; ?></div>
+													 <p class=""><?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?></p>
+													 <p class="">Available in: &nbsp;&nbsp;
+													 <?php foreach ($productslist['unitproducts_list'] as $list){ ?>
+													 
+													 <?php if($list['item_id']==$productslist['item_id']){ ?>
+															<span onclick="getunitwiseproductsinunit('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus btn_cus_acti"><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
+
+													 <?php }else{ ?>
+															<span onclick="getunitwiseproductsinunit('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus "><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
+
+													 <?php  } ?>
+													<?php } ?>
+													 </p>
+												  </div>
                               <div class="col-md-3">
                                  <p class="">MRP:₹ <?php echo number_format($item_price, 2); ?></p>
-                                 <p class=""> Total Amount:₹ <span id="totalamount<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
+                                 <p class=""> Total Amount:₹ <span id="totalamount1<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
                                  <div  class="input-group incr_btn">
                                                         <span class="input-group-btn">
-														<button style="width:20px;padding:6px;"type="button" onclick="productqty('<?php echo $cnt; ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
+														<button style="width:20px;padding:6px;"type="button" onclick="productqty1('<?php echo $cnt; ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
 												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
                                                         </button>
                                                         </span>
-                                                        <input type="text" name="qty" id="qty<?php echo $cnt; ?>" readonly  class="form-control input-number" value="1" min="1" max="<?php echo $productslist['item_quantity']; ?>">
+                                                        <input type="text" name="qty" id="qty1<?php echo $cnt; ?>" readonly  class="form-control input-number" value="1" min="1" max="<?php echo $productslist['item_quantity']; ?>">
                                                         <span class="input-group-btn">
-											  <button style="width:20px;padding:6px" onclick="productqtyincreae('<?php echo $cnt; ?>');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
+											  <button style="width:20px;padding:6px" onclick="productqtyincreae1('<?php echo $cnt; ?>');" type="button" class="btn btn-primary btn-number btn-small" data-type="plus" data-field="quant[2]">
 												  <span style="margin:-4px" class="glyphicon glyphicon-plus"></span>
                                                         </button>
                                                         </span>
@@ -121,7 +131,12 @@
 														
                                   </div>
 								  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
-                                 <div class="clearfix">&nbsp;</div>
+									<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+									<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart text-primary"></i></a> 
+									<?php }else{ ?>	
+									<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart "></i></a> 
+									<?php } ?>
+								 <div class="clearfix">&nbsp;</div>
                                  <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
                                  <button type="submit" class="btn btn-warning btn-sm">Buy Now</button>
                               </div>
@@ -173,41 +188,41 @@
                      
                   </div>
                </div>
-            
+            </span>
             
 	  <script>
 	  
-  function subitemswiseproducts(sid){
-	  if(sid!=''){
+  function getunitwiseproductsinunit(itemid){
+	  if(itemid!=''){
 			  jQuery.ajax({
-					url: "<?php echo site_url('category/suitemwiseproductslist');?>",
+					url: "<?php echo site_url('category/unitwiseproduct_details');?>",
 					type: 'post',
 					data: {
 							form_key : window.FORM_KEY,
-							subitem_id: sid,
+							item_id: itemid,
 						},
 					dataType: 'html',
 					success: function (data) {
-							$("#subitemwisefiltersdata").empty();
-							$("#subitemwisefiltersdata").append(data);
+							$("#unitwisechangeitemids").empty();
+							$("#unitwisechangeitemids").append(data);
 					}
 				});
 
 		}
  }
-function productqty(id){
+function productqty1(id){
 	
 
-	var pid=document.getElementById("product_id"+id).value;
-	var qtycnt=document.getElementById("qty"+id).value;
-	var amount=document.getElementById("amount"+id).value;
+	var pid=document.getElementById("product_id1"+id).value;
+	var qtycnt=document.getElementById("qty1"+id).value;
+	var amount=document.getElementById("amount1"+id).value;
 	var qty=parseInt(qtycnt);
-	var totalamount=(qty - 1)*amount;
+	var totalamount1=(qty - 1)*amount;
 	if(qty==1){
 		
-		$('#qty'+id).val(qty);
+		$('#qty1'+id).val(qty);
 	}else{
-		$('#qty'+id).val(qty - 1);
+		$('#qty1'+id).val(qty - 1);
 		$("#qtymesage"+id).html('');
 			jQuery.ajax({
 				url: "<?php echo site_url('customer/qtyupdatecart');?>",
@@ -221,8 +236,8 @@ function productqty(id){
 				dataType: 'html',
 				success: function (data) {
 					//$("#oldcartqty").hide();
-					$("#totalamount"+id).empty();
-					$("#totalamount"+id).append(totalamount.toFixed(2));
+					$("#totalamount1"+id).empty();
+					$("#totalamount1"+id).append(totalamount.toFixed(2));
 					$("#oldcartqty").empty();
 					$("#oldcartqty").empty();
 					$("#oldcartqty").append(data);
@@ -233,11 +248,12 @@ function productqty(id){
 	
 	
 }
-function productqtyincreae(id){
-	var pid=document.getElementById("product_id"+id).value;
-	var qtycnt1=document.getElementById("qty"+id).value;
-	var orginalqtycnt=document.getElementById("orginalqty"+id).value;
-	var amount=document.getElementById("amount"+id).value;
+function productqtyincreae1(id){
+	alert('hello');
+	var pid=document.getElementById("product_id1"+id).value;
+	var qtycnt1=document.getElementById("qty1"+id).value;
+	var orginalqtycnt=document.getElementById("orginalqty1"+id).value;
+	var amount=document.getElementById("amount1"+id).value;
 	var qty1=parseInt(qtycnt1);
 	var totalamount=(qty1 + 1)*amount;
 	if(qty1==orginalqtycnt){
@@ -246,7 +262,7 @@ function productqtyincreae(id){
 	$("#qtymesage"+id).html("Maximum allowed Quantity is 10 ");
 	}else{
 		$("#qtymesage"+id).html("");
-		$('#qty'+id).val(qty1 + 1);
+		$('#qty1'+id).val(qty1 + 1);
 			jQuery.ajax({
 				url: "<?php echo site_url('customer/qtyupdatecart');?>",
 				type: 'post',
@@ -259,8 +275,8 @@ function productqtyincreae(id){
 				dataType: 'html',
 				success: function (data) {
 					//$("#oldcartqty").hide();
-					$("#totalamount"+id).empty();
-					$("#totalamount"+id).append(totalamount.toFixed(2));
+					$("#totalamount1"+id).empty();
+					$("#totalamount1"+id).append(totalamount.toFixed(2));
 					$("#oldcartqty").empty();
 					$("#oldcartqty").empty();
 					$("#oldcartqty").append(data);

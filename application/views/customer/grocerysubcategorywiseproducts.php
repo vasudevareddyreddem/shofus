@@ -80,13 +80,17 @@
                      </ul>
                   </div>
                </div>
+			   	<div id="sucessmsg" style="display:none;"></div>
+
 			   <span id="subitemwisefiltersdata">
                <div class='col-md-9'>
                   <div class="panel-group" id="accordion">
 				  
 				  <?php if(count($subcategory_porduct_list)>0) { ?>
 				  
-				  <?php $cnt=0;foreach ($subcategory_porduct_list as $productslist){ ?>
+				  <?php 
+				  $customerdetails=$this->session->userdata('userdetails');
+				  $cnt=0;foreach ($subcategory_porduct_list as $productslist){ ?>
 				  <div id="unitwusechanges<?php echo $cnt; ?>">
 											<?php $currentdate=date('Y-m-d h:i:s A');
 											if($productslist['offer_expairdate']>=$currentdate){
@@ -125,10 +129,10 @@
 													 <?php foreach ($productslist['unitproducts_list'] as $list){ ?>
 													 
 													 <?php if($list['item_id']==$productslist['item_id']){ ?>
-															<span onclick="getunitwiseproducts('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus btn_cus_acti"><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
+															<span  onclick="getunitwiseproducts('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus btn_cus_acti"><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
 
 													 <?php }else{ ?>
-															<span onclick="getunitwiseproducts('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus btn_cus_acti"><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
+															<span onclick="getunitwiseproducts('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus"><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
 
 													 <?php  } ?>
 													<?php } ?>
@@ -152,10 +156,16 @@
 																			
 																			
 													  </div>
+													  <?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart text-primary"></i></a> 
+													<?php }else{ ?>	
+													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart "></i></a> 
+													<?php } ?>
 													  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
 													 <div class="clearfix">&nbsp;</div>
 													 <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
-													 <button type="submit" class="btn btn-warning btn-sm">Buy Now</button>
+													
+													<button type="submit" class="btn btn-warning btn-sm">Buy Now</button>
 												  </div>
 											   </div>
 											</div>
@@ -225,7 +235,7 @@
 							item_id: itemid,
 						},
 					dataType: 'html',
-					success: function (data) {alert(data);
+					success: function (data) {
 							$("#unitwusechanges"+cnt).empty();
 							$("#unitwusechanges"+cnt).append(data);
 					}

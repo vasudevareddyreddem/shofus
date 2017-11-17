@@ -1225,9 +1225,10 @@ function filtersearch(){
 
 public function suitemwiseproductslist(){
 		$post=$this->input->post();
-		//secho '<pre>';print_r($post);exit;
+		//echo '<pre>';print_r($post);
 		$subitem_list= $this->category_model->get_subitem_list($post['subitem_id']);
-		//echo '<pre>';print_r($data['subcategory_porduct_list']);exit;
+		//echo $this->db->last_query();
+		//echo '<pre>';print_r($subitem_list);exit;
 		if(count($subitem_list)>0){
 		foreach($subitem_list as $list){
 		//echo '<pre>';print_r($list);
@@ -1249,6 +1250,36 @@ public function suitemwiseproductslist(){
 		}else{
 		$data['subcategory_porduct_list']=array();
 		}
+		$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
+	}
+	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	if(count($wishlist_ids)>0){
+		foreach ($wishlist_ids as  $list){
+		$customer_ids_list[]=$list['cust_id'];
+		$whishlist_item_ids_list[]=$list['item_id'];
+		$whishlist_ids_list[]=$list['id'];
+	}
+		
+	//echo '<pre>';print_r($data);exit;
+	$data['customer_ids_list']=$customer_ids_list;
+	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+	$data['whishlist_ids_list']=$whishlist_ids_list;
+	}
 	$this->load->view('customer/grocerysubitemwisefiltersproduct',$data);
 	}
 	public function unitwiseproduct_details(){
@@ -1276,6 +1307,36 @@ public function suitemwiseproductslist(){
 		}else{
 		$data['subcategory_porduct_list']=array();
 		}
+		$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
+	}
+	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	if(count($wishlist_ids)>0){
+		foreach ($wishlist_ids as  $list){
+		$customer_ids_list[]=$list['cust_id'];
+		$whishlist_item_ids_list[]=$list['item_id'];
+		$whishlist_ids_list[]=$list['id'];
+	}
+		
+	//echo '<pre>';print_r($data);exit;
+	$data['customer_ids_list']=$customer_ids_list;
+	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+	$data['whishlist_ids_list']=$whishlist_ids_list;
+	}
 	$this->load->view('customer/unitwiseproductdetails',$data);
 	}	
 }
