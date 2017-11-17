@@ -247,7 +247,11 @@ jQuery.ajax({
 				},
 			dataType: 'JSON',
 			success: function (data) {
-				jQuery('#sucessmsg').show();
+				
+				 if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+					jQuery('#sucessmsg').show();
 				//alert(data.msg);
 				if(data.msg==2){
 				$('#sucessmsg').show('');
@@ -263,6 +267,7 @@ jQuery.ajax({
 				 $('#addwhish'+id+val).prop('title', 'Added to Wishlist');
 						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 				document.getElementById("sucessmsg").focus();				
+				}
 				}
 			
 
