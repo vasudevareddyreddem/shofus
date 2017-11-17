@@ -64,8 +64,12 @@
 				  
 				  <?php if(count($subcategory_porduct_list)>0) { ?>
 				  
-				  <?php $cnt=0;foreach ($subcategory_porduct_list as $productslist){ 
-                     
+				  <?php 
+				   $customerdetails=$this->session->userdata('userdetails');
+				  $cnt=0;foreach ($subcategory_porduct_list as $productslist){ 
+                      ?>
+					  <div id="unitwusechanges<?php echo $cnt; ?>">
+					  <?php 
 						$currentdate=date('Y-m-d h:i:s A');
 						if($productslist['offer_expairdate']>=$currentdate){
 						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
@@ -98,18 +102,6 @@
                               </a>
                               <div class="col-md-6">
                                  <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></div>
-<<<<<<< HEAD
-                                 <p class=""> <p class=""><?php echo isset($productslist['unit'])?$productslist['unit']:''; ?></p></p>
-                                 <p class="">Available in: &nbsp;&nbsp;
-                                    <span class="btn_cus btn_cus_acti"> 3 units</span>&nbsp;&nbsp;
-                                    <span class="btn_cus"> 6 units</span>
-                                 </p>
-                              </div>
-                              <div class="col-md-3">
-                                 <p class="">MRP:₹ <?php echo number_format($item_price, 2); ?></p>
-                                 <p class=""> Total Amount:₹ <span id="totalamount<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
-                                 <div  class="input-group incr_btn">
-=======
                                  <p class=""><?php echo isset($productslist['unit'])?$productslist['unit']:''; ?></p>
 							  <p class="">Available in: &nbsp;&nbsp;
 									 <?php foreach ($productslist['unitproducts_list'] as $list){ ?>
@@ -124,7 +116,6 @@
 									<?php } ?>
 								</p>
 								<div  class="input-group incr_btn pull-left">
->>>>>>> 748480b0938647c8a9fa10a3c73b95b567efb6db
                                                         <span class="input-group-btn">
 														<button style="width:20px;padding:6px;"type="button" onclick="productqty('<?php echo $cnt; ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
 												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
@@ -140,9 +131,6 @@
 														
                                   </div>
 								  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
-<<<<<<< HEAD
-                                 <div class="clearfix">&nbsp;</div>
-=======
                                   <div class="pull-right">
 													  <?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
 													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-primary btn-sm ">Add to Whishlist</span></a> 
@@ -158,7 +146,6 @@
                                  <p class=""> Total Amount:₹ <span id="totalamount<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
                                  
 								 <div class="clearfix">&nbsp;</div>
->>>>>>> 748480b0938647c8a9fa10a3c73b95b567efb6db
                                  <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
                                  <button type="submit" class="btn btn-warning btn-sm">Buy Now</button>
                               </div>
@@ -202,23 +189,42 @@
                            </div>
                         </div>
                      </div>
-					 
+					    
+                  </div>
 				  <?php $cnt++;} ?>
 					 
 					 
 				  <?php }else{ ?>
-				  <div>NO products are available<div>
+				  <div>NO products are available</div>
 				  <?php } ?>
-                     
+                  
                   </div>
                </div>
-            </div>
+            
             <div class="clearfix">&nbsp;</div>
          </div>
       
 	  
 	  <script>
+	 function getunitwiseproducts(itemid,cnt){
+	  if(itemid!=''){
+			  jQuery.ajax({
+					url: "<?php echo site_url('category/unitwiseproduct_details');?>",
+					type: 'post',
+					data: {
+							form_key : window.FORM_KEY,
+							item_id: itemid,
+						},
+					dataType: 'html',
+					success: function (data) {
+							$("#unitwusechanges"+cnt).empty();
+							$("#unitwusechanges"+cnt).append(data);
+					}
+				});
+
+		}
 	  
+  } 
   function subitemswiseproducts(sid){
 	  if(sid!=''){
 			  jQuery.ajax({
