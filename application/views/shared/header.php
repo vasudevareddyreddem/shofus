@@ -327,22 +327,12 @@
 			<span class="medias text-center"><a href="<?php echo base_url('customer/nearstores'); ?>"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
 				<p>Near by stores</p></a>
 			</span>
-			<span class="medias dropdown mega-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/catag.png" /></i>
+			<span class="medias dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/catag.png" /></i>
 				<p>categories</p></a>
-				 <ul class="dropdown-menu">
-                  <li>
-                    <div class="mega-menu-content">
-                      <div class="row">
-                        <div class="col-md-2">
-                          <ul class="list-unstyled">
-                           <a href=""> <li><h4>ELECTRONICS</h4></li></a>
-                          
-                          </ul>
-                        </div> 
-						
-                      </div>
-                    </div>
-                  </li>
+				  <ul class="dropdown-menu">
+                  <li><a href="about.html">ELECTRONICS</a></li>
+                  <li><a href="blog.html">GROCERY</a></li>  
+                  
                 </ul>
 			</span>
 			
