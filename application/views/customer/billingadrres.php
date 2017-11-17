@@ -1,3 +1,9 @@
+<style>
+ .billing_active {
+       pointer-events: none;
+       cursor: default;
+    } 
+</style>
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 bhoechie-tab-container mar_res_t150 ">
@@ -50,11 +56,13 @@
 							<span style="font-weight:500"> &nbsp; <?php if(isset($addlist['title']) && $addlist['title']!=''){ echo $addlist['title']; }else{ echo $addlist['name'];}; ?></span>
 					  </label>
 					</div>
-								
+					<span id="billingadress<?php echo $addlist['address_id']; ?>" class="">			
+			
 					<div class="pull-right" >
 						<a onclick="changebillingaddress('<?php echo $addlist['address_id']; ?>','<?php echo $cnt;?>')" style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
 					</div>
 					<i id="hide_add_btn<?php echo $cnt; ?>" onclick="removebillingaddress('<?php echo $addlist['address_id']; ?>','<?php echo $cnt;?>');" style="position:absolute;top:5px; right:20px;background:#f5f5f5;border-radius:25px; padding:5px;opacity:0.5;cursor:pointer" class="fa fa-times" aria-hidden="true"></i>
+				</span>
 				</div>
 				<div class="clearfix"> &nbsp;	</div>
 				<div class="" style="border-top:1px solid #ddd;"> &nbsp;</div>
@@ -80,7 +88,6 @@
 							<span style="font-weight:500"> &nbsp; <?php if(isset($addlist['title']) && $addlist['title']!=''){ echo $addlist['title']; }else{ echo $addlist['name'];}; ?></span>
 					  </label>
 					</div>
-								
 					<div class="pull-right" >
 						<a onclick="changebillingaddress('<?php echo $addlist['address_id']; ?>','<?php echo $cnt;?>')" style="cursor:pointer;line-height:35px;font-size:13px;padding-right:15px;"><span class=" site_col"> Change</span></a>
 					</div>
@@ -313,14 +320,15 @@ function showmoreaddress1(){
 	$('#changeslable').show();
 }
 $("input:checkbox").on('click', function() {
+	
   var $box = $(this);
   if ($box.is(":checked")) {
     var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    var group1 = $box.attr("id");
     $(group).prop("checked", false);
     $box.prop("checked", true);
 	$('#newbillingaddress').hide();
 	$('#skipdeliveraddress').show();
-	
   } else {
 	 $('#newbillingaddress').show();
 	 $('#skipdeliveraddress').hide();
@@ -383,6 +391,8 @@ function getbillingaddress_id(id){
 	
 }
 function removebillingaddress(aid,cnt){
+	 $('#newbillingaddress').show();
+	 $('#skipdeliveraddress').hide();
 	jQuery.ajax({
         url: "<?php echo site_url('customer/removebillingaddress');?>",
         type: 'post',

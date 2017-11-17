@@ -479,7 +479,7 @@ $result = $you_make - $actual_price;
 					$ch = curl_init();
 					curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
 					curl_setopt($ch, CURLOPT_POST, 1);
-					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$post['mobile_number'].'&text=Your cartinhours Temporary Password is '.$msg.'&priority=ndnd&stype=normal');
+					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$post['mobile_number'].'&text=Your cartinhours OTP Code is '.$msg.'&priority=ndnd&stype=normal');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					//echo '<pre>';print_r($ch);exit;
 					$server_output = curl_exec ($ch);
