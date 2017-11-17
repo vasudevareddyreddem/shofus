@@ -111,11 +111,7 @@
 													 <?php  } ?>
 													<?php } ?>
 													 </p>
-												  </div>
-                              <div class="col-md-3">
-                                 <p class="">MRP:₹ <?php echo number_format($item_price, 2); ?></p>
-                                 <p class=""> Total Amount:₹ <span id="totalamount1<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
-                                 <div  class="input-group incr_btn">
+													 <div  class="input-group incr_btn pull-left">
                                                         <span class="input-group-btn">
 														<button style="width:20px;padding:6px;"type="button" onclick="productqty1('<?php echo $cnt; ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
 												<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
@@ -130,12 +126,20 @@
 														
 														
                                   </div>
-								  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
-									<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-									<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart text-primary"></i></a> 
-									<?php }else{ ?>	
-									<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart "></i></a> 
-									<?php } ?>
+								  <div class="pull-right">
+													  <?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-primary btn-sm ">Add to Whishlist</span></a> 
+													<?php }else{ ?>	
+													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-warning btn-sm" style="background:#aaa;border:#aaa;">Add to Whishlist</span></a> 
+													<?php } ?>
+													  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
+													 
+													</div>
+												  </div>
+                              <div class="col-md-3">
+                                 <p class="">MRP:₹ <?php echo number_format($item_price, 2); ?></p>
+                                 <p class=""> Total Amount:₹ <span id="totalamount1<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
+                                 
 								 <div class="clearfix">&nbsp;</div>
                                  <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
                                  <button type="submit" class="btn btn-warning btn-sm">Buy Now</button>
