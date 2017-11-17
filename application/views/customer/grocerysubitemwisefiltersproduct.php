@@ -95,9 +95,11 @@
                            <div class="row">
                               <a data-toggle="collapse" data-parent="#accordion" href="#znajomi<?php echo $cnt; ?>">
                                  <div class="col-md-3">
-                                    <div>
+                                    <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+									<div>
                                        <img class="groc_min_h" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                                     </div>
+									</a>
                                  </div>
                               </a>
                               <div class="col-md-6">
@@ -133,9 +135,9 @@
 								  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
                                   <div class="pull-right">
 													  <?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-primary btn-sm ">Add to Whishlist</span></a> 
+													<a href="javascript:void(0);" onclick="unitaddwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-primary btn-sm ">Add to Whishlist</span></a> 
 													<?php }else{ ?>	
-													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-warning btn-sm" style="background:#aaa;border:#aaa;">Add to Whishlist</span></a> 
+													<a href="javascript:void(0);" onclick="unitaddwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-warning btn-sm wishadd" >Add to Whishlist</span></a> 
 													<?php } ?>
 													  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
 													 
@@ -206,6 +208,7 @@
       
 	  
 	  <script>
+
 	 function getunitwiseproducts(itemid,cnt){
 	  if(itemid!=''){
 			  jQuery.ajax({
