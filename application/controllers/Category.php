@@ -741,26 +741,30 @@ function filtersearch(){
 	if(isset($catidss_id['category_id']) && $catidss_id['category_id']==21){
 		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products_list($post['subcategoryid']);
 	//echo '<pre>';print_r($data['subcategory_porduct_list']);exit;
-	foreach($data['subcategory_porduct_list'] as $list){
+	if(count($data['subcategory_porduct_list'])>0){
+			foreach($data['subcategory_porduct_list'] as $list){
+					//echo '<pre>';print_r($list);
+					$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+					$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+				}
+			foreach($data['subcategory_porduct_list'] as $list){
 			//echo '<pre>';print_r($list);
-			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
-			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
-		}
-	foreach($data['subcategory_porduct_list'] as $list){
-	//echo '<pre>';print_r($list);
-	$desc=$this->category_model->get_products_desc_list($list['item_id']);
-	$sameunitproduct=$this->category_model->get_sameunit_products_list($list['item_name']);
-	$plist[$list['item_id']]['list']=$list;
-	$plist[$list['item_id']]['list']['descriptions_list']=$desc;
-	$plist[$list['item_id']]['list']['unitproducts_list']=$sameunitproduct;
-	}
-	foreach($plist as $list){
-	foreach($list as $li){
-	$plist_list[]=$li;
-	
-	}
-	}
-	$data['subcategory_porduct_list']=$plist_list;
+			$desc=$this->category_model->get_products_desc_list($list['item_id']);
+			$sameunitproduct=$this->category_model->get_sameunit_products_list($list['item_name']);
+			$plist[$list['item_id']]['list']=$list;
+			$plist[$list['item_id']]['list']['descriptions_list']=$desc;
+			$plist[$list['item_id']]['list']['unitproducts_list']=$sameunitproduct;
+			}
+			foreach($plist as $list){
+			foreach($list as $li){
+			$plist_list[]=$li;
+			
+			}
+			}
+			$data['subcategory_porduct_list']=$plist_list;
+			}else{
+				$data['subcategory_porduct_list']=array();
+			}
 	}else{
 		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products_list($post['subcategoryid']);
 		foreach($data['subcategory_porduct_list'] as $list){
@@ -768,8 +772,16 @@ function filtersearch(){
 			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
 		}
 	}
-	$data['avg_count']=$reviewrating;
-	$data['rating_count']=$reviewcount;
+	if(isset($reviewrating) && count($reviewrating)>0){
+		$data['avg_count']=$reviewrating;
+	}else{
+		$data['avg_count']=array();
+	}
+	if(isset($reviewcount) && count($reviewcount)>0){
+		$data['rating_count']=$reviewcount;
+	}else{
+		$data['rating_count']=array();
+	}
 	$data['cat_subcat_ids']= $this->category_model->get_category_id($post['subcategoryid']);
 	$caterory_id=$data['cat_subcat_ids']['category_id'];
 	$subcaterory_id=$data['cat_subcat_ids']['subcategory_id'];
