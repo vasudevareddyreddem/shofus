@@ -85,10 +85,10 @@ tr th:last-child {
 			<div class="panel-heading">
 			
 			<div class="col-md-4">
-					<div class="col-md-4">
+					<div class="col-md-4 col-xs-3">
 						<img style="width:60px" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>" />
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-8 col-xs-9">
 						<p><a  style="text-transform: uppercase;" href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
 						<div>Color: <?php echo isset($item_details['color'])?$item_details['color']:'';  ?></div>
 						<div><p ><?php echo $item_details['return_policy']; ?>  </p></div>

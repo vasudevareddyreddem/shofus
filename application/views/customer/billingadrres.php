@@ -3,6 +3,12 @@
        pointer-events: none;
        cursor: default;
     } 
+.mat-label{
+		display: block;
+    font-size: 16px;
+    transform: translateY(25px);
+    color: #009688;
+	}
 </style>
 <div class="container">
     <div class="row">

@@ -31,20 +31,22 @@
             <div class="well well-sm" style="background:#fff;">
                 <div class="row" style="position:relative">
 				
-				<div style="position:absolute;top:20px;right:50px">
+				<div style="position:absolute;top:10px;right:50px">
 					<?php if($items['item_status']==1 && $items['item_quantity']!=0 ){ ?>
                    <button style="background:none;position:relative;z-index:1024;border:none;" type="submit" ><span class="glyphicon glyphicon-shopping-cart tras_col" aria-hidden="true"></span></button>&nbsp;
                     <?php } ?> &nbsp;&nbsp;
 					<a href="<?php echo base_url('customer/deletewishlist/'.base64_encode($items['id'])); ?>"><span class="glyphicon glyphicon-trash tras_col" ></span></a>
 				</div>
+				<div class="sm_mart_25">
                     <div class="col-xs-2 col-md-2 text-center">
-                        <img style="height:100px;width:auto; margin:0 auto;" class="thumbnail" src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>" alt="<?php echo $items['item_name']; ?>"
+                        <img class="	 whis_img" src="<?php echo base_url('uploads/products/'.$items['item_image']); ?>" alt="<?php echo $items['item_name']; ?>"
                             class="img-rounded img-responsive" />
                     </div>
                     <div class="col-xs-9 col-md-9 section-box">
                         <div  class="pull-left whish_head">
+
                             <?php echo $items['item_name']; ?></div>
-							<div class="clearfix">&nbsp;</div><brs>
+							<div class="clearfix">&nbsp;</div>
 							<div>
 							
 						<?php 
@@ -65,6 +67,7 @@
 								<span class="site_col" style="font-size:18px;"><?php echo number_format($percentage, 2, '.', ''); ?>% off</span>&nbsp;&nbsp;
 							</div>
                         
+                    </div>
                     </div>
 				</div>
 			</div>
