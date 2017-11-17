@@ -1085,6 +1085,23 @@ function filtersearch(){
 	$data['bothsizecnt']= count($data['sizes_list'])+ count($data['uksizes_list']);
 
 	//echo '<pre>';print_r($data);exit;
+	$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
+	}
 	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
 	if(count($wishlist_ids)>0){
 		foreach ($wishlist_ids as  $list){
