@@ -29,7 +29,7 @@
 		<div class="row">
 		
 		<?php //echo '<pre>';print_r($cart_items);exit; ?>
-		<div class="container">
+		<div class="container mar_res_t150">
 		<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-primary">
 			<div class="panel-heading ">Change Password</div>
