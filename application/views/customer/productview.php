@@ -431,37 +431,47 @@
 	
 
         <div class="col-md-8 col-md-offset-3" style="margin-top:10px;padding:0">
-	<div class="">		 
-<table class="table table-bordered">
-  
-    <tbody>
-      <tr style="border-bottom:1px solid #ddd">
-        <th>Summary</th>
-      </tr>
-      <tr>
-        <td>
-			<div class="row">
-				<h5 style="padding:0px 15px"><?php echo isset($products_list['highlights'])?$products_list['highlights']:''; ?></h5>
-			</div>
-		</td>
-        
-      </tr>
-	
-    
-    </tbody>
-  </table>
+	<?php if(isset($products_list['highlights']) && $products_list['highlights']!=''){ ?> 
+		<div class="">		 
+			<table class="table table-bordered">
+			  
+				<tbody>
+				  <tr style="border-bottom:1px solid #ddd">
+					<th>Summary</th>
+				  </tr>
+				  <tr>
+					<td>
+						<div class="row">
+							<h5 style="padding:0px 15px"><?php echo isset($products_list['highlights'])?$products_list['highlights']:''; ?></h5>
+						</div>
+					</td>
+					
+				  </tr>
+				
+				
+				</tbody>
+			  </table>
 		</div>	
+	<?php } ?>
 <?php //echo '<pre>';print_r($products_list);exit;?>
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
 		  <?php if(isset($products_desc_list) && count($products_desc_list)>0){ ?>
             <li role="presentation" class="active"><a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">Description</a></li>
 		  <?php } ?>
+		  
 			<li role="presentation" class=""><a href="#specification" aria-controls="desc" role="tab" data-toggle="tab">Specifications</a></li>
-            <li role="presentation"><a href="#warnty" aria-controls="detail" role="tab" data-toggle="tab">Warranty Details</a></li>
-            <li role="presentation"><a href="#returnpolices" aria-controls="detail" role="tab" data-toggle="tab">Return Policy</a></li>
-            <li role="presentation"><a href="#review" aria-controls="review" role="tab" data-toggle="tab">Reviews (<?php echo count($products_reviews); ?>)</a></li>
-          </ul>
+			
+			<?php if(isset($products_list['warranty_summary']) && $products_list['warranty_summary']!=''){ ?>
+			<li role="presentation"><a href="#warnty" aria-controls="detail" role="tab" data-toggle="tab">Warranty Details</a></li>
+			<?php } ?>
+			<?php if(isset($products_list['return_policy']) && $products_list['return_policy']!=''){ ?>
+			<li role="presentation"><a href="#returnpolices" aria-controls="detail" role="tab" data-toggle="tab">Return Policy</a></li>
+			<?php } ?>
+			<?php if(isset($products_reviews) && count($products_reviews)>0){ ?>
+				<li role="presentation"><a href="#review" aria-controls="review" role="tab" data-toggle="tab">Reviews (<?php echo count($products_reviews); ?>)</a></li>
+			<?php } ?>
+		  </ul>
           <!-- End Nav tabs -->
 
           <!-- Tab panes -->
@@ -597,12 +607,43 @@
                         <td><?php echo $products_list['model_id']; ?></td>
                       </tr>
 					  <?php } ?>
-							</tbody>
+					  <?php if(isset($products_list['ingredients']) && $products_list['ingredients']!=''){ ?>
+					  <tr>
+                        <td>Ingredients</td>
+                        <td><?php echo $products_list['ingredients']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['key_feature']) && $products_list['key_feature']!=''){ ?>
+					  <tr>
+                        <td>Key Feature</td>
+                        <td><?php echo $products_list['key_feature']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['unit']) && $products_list['unit']!=''){ ?>
+					  <tr>
+                        <td>Unit</td>
+                        <td><?php echo $products_list['unit']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['packingtype']) && $products_list['packingtype']!=''){ ?>
+					  <tr>
+                        <td>Packing Type</td>
+                        <td><?php echo $products_list['packingtype']; ?></td>
+                      </tr>
+					  <?php } ?>
+					  <?php if(isset($products_list['disclaimer']) && $products_list['disclaimer']!=''){ ?>
+					  <tr>
+                        <td>Disclaimer</td>
+                        <td><?php echo $products_list['disclaimer']; ?></td>
+                      </tr>
+					  <?php } ?>
+						</tbody>
                   </table>
 							
 							</div>
 						</div>
 					</div>
+					<?php if($products_list['internal_memory']!='' || $products_list['expand_memory']!=''){ ?>
 					<div class="panel panel-default">
 						<div  data-toggle="collapse" data-parent="" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="panel-heading" role="tab" id="headingTwo" style="cursor:pointer;">
 							 <h4 class="panel-title">
@@ -634,6 +675,10 @@
 							</div>
 						</div>
 					</div>
+					
+					<?php } ?>
+					<?php if($products_list['primary_camera']!='' || $products_list['primary_camera_feature']!='' || $products_list['secondary_camera']!='' || $products_list['secondary_camera_feature']!='' || $products_list['video_recording']!='' || $products_list['hd_recording']!='' || $products_list['flash']!='' || $products_list['other_camera_features']!=''){ ?>
+
 					<div class="panel panel-default">
 						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="tab" id="headingThree" style="cursor:pointer;">
 							 <h4 class="panel-title">
@@ -702,6 +747,8 @@
 							</div>
 						</div>
 					</div>
+					<?php } ?>
+					<?php if($products_list['battery_capacity']!='' || $products_list['talk_time']!='' || $products_list['standby_time']!=''){ ?>
 					<div class="panel panel-default">
 						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour" role="tab" id="headingFour" style="cursor:pointer;">
 							 <h4 class="panel-title">
@@ -739,6 +786,9 @@
 							</div>
 						</div>
 					</div>
+					<?php } ?>
+					<?php if($products_list['operating_frequency']!='' || $products_list['preinstalled_browser']!='' || $products_list['2g']!='' || $products_list['3g']!='' || $products_list['4g']!='' || $products_list['wifi']!='' ||$products_list['gps']!='' || $products_list['edge']!='' || $products_list['edge_features']!='' || $products_list['bluetooth']!='' || $products_list['nfc']!='' || $products_list['usb_connectivity']!=''){ ?>
+
 					<div class="panel panel-default">
 						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive" role="tab" id="headingFive" style="cursor:pointer;">
 							 <h4 class="panel-title">
@@ -830,6 +880,9 @@
 							</div>
 						</div>
 					</div>
+					
+					<?php } ?>
+					<?php if($products_list['music_player']!='' || $products_list['video_player']!='' || $products_list['audio_jack']!=''){ ?>
 					<div class="panel panel-default">
 						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix" role="tab" id="headingSix" style="cursor:pointer;">
 							 <h4 class="panel-title">
@@ -867,6 +920,8 @@
 							</div>
 						</div>
 					</div>
+					<?php } ?>
+					<?php if($products_list['gpu']!='' || $products_list['sim_size']!='' || $products_list['sim_supported']!='' || $products_list['call_memory']!='' || $products_list['sms_memory']!='' || $products_list['phone_book_memory']!='' || $products_list['sensors']!='' || $products_list['java']!=''){ ?>
 					<div class="panel panel-default">
 						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven" role="tab" id="headingSeven" style="cursor:pointer;">
 							 <h4 class="panel-title">
@@ -935,6 +990,8 @@
 							</div>
 						</div>
 					</div>
+					<?php } ?>
+					<?php if($products_list['insales_package']!=''){  ?>
 					<div class="panel panel-default">
 						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight" role="tab" id="headingEight" style="cursor:pointer;">
 							 <h4 class="panel-title">
@@ -960,6 +1017,8 @@
 							</div>
 						</div>
 					</div>
+					<?php } ?>
+					<?php if($products_list['dislay_resolution']!='' || $products_list['display_type']!='' || $products_list['colour']!=''){  ?>
 					<div class="panel panel-default">
 						<div class="panel-heading" data-toggle="collapse" data-parent="" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine" role="tab" id="headingNine" style="cursor:pointer;">
 							 <h4 class="panel-title">
@@ -998,6 +1057,7 @@
 							</div>
 						</div>
 					</div>
+					<?php } ?>
 					
 					
 				</div>
@@ -1138,6 +1198,7 @@
 	  </div>
 	  
     <div class="container-fluid" style="margin-top:10px;" id="footer-start"> 
+	 <?php if(isset($similarproducts_list) && count($similarproducts_list)>0){ ?>
 	 <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
@@ -1216,6 +1277,7 @@
             </div>
     </div>	
 	</section>
+	 <?php } ?>
 
 <div class="clearfix">&nbsp;</div>
 
