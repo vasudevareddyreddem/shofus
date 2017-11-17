@@ -54,6 +54,9 @@
    background:#fff !important;
    border-bottom:1px solid #ddd;
    }
+   .wishadd{
+	 background:#aaa;border:#aaa;  
+   }
    /* grossery sidebar	end *
    </style>
 	
@@ -89,15 +92,17 @@
 					 <div class="panel panel-default ">
                         <div class="panel-heading bg_defa ">
                            <div class="row">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#znajomiq<?php echo $cnt; ?>">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#znajomiqas<?php echo $cnt; ?><?php echo time(); ?>">
                                  <div class="col-md-3">
-                                    <div>
+                                    <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+									<div>
                                        <img class="groc_min_h" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
                                     </div>
+									</a>
                                  </div>
                               </a>
                              <div class="col-md-6">
-													 <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&&nbsp;<?php echo isset($productslist['product_code'])?$productslist['product_code']:''; ?></div>
+													 <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></div>
 													 <p class=""><?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?></p>
 													 <p class="">Available in: &nbsp;&nbsp;
 													 <?php foreach ($productslist['unitproducts_list'] as $list){ ?>
@@ -128,9 +133,9 @@
                                   </div>
 								  <div class="pull-right">
 													  <?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-primary btn-sm ">Add to Whishlist</span></a> 
+													<a href="javascript:void(0);" onclick="unitaddwhishlidtss('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-primary btn-sm ">Add to Whishlist</span></a> 
 													<?php }else{ ?>	
-													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-warning btn-sm" style="background:#aaa;border:#aaa;">Add to Whishlist</span></a> 
+													<a href="javascript:void(0);" onclick="unitaddwhishlidtss('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-warning btn-sm wishadd">Add to Whishlist</span></a> 
 													<?php } ?>
 													  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
 													 
@@ -145,11 +150,11 @@
                                  <button type="submit" class="btn btn-warning btn-sm">Buy Now</button>
                               </div>
 							  <div class="clearfix">&nbsp;</div>
-												  <a data-toggle="collapse" data-parent="#accordion" href="#znajomi<?php echo $cnt; ?>"> <div class="text-center "><span class="glyphicon glyphicon-chevron-down down_btn_mod"></span></div></a>
+												  <a data-toggle="collapse" data-parent="#accordion" href="#znajomiqas<?php echo $cnt; ?><?php echo time(); ?>"> <div class="text-center "><span class="glyphicon glyphicon-chevron-down down_btn_mod"></span></div></a>
                            </div>
                         </div>
 						</form>
-                        <div id="znajomiq<?php echo $cnt; ?>" class="panel-collapse collapse ">
+                        <div id="znajomiqas<?php echo $cnt; ?><?php echo time(); ?>" class="panel-collapse collapse ">
                            <div class="panel-body">
                               <div class="row">
                                  <div class="col-md-12">
@@ -197,7 +202,45 @@
             </span>
             
 	  <script>
-	  
+	   function unitaddwhishlidtss(id,val){
+jQuery.ajax({
+			url: "<?php echo site_url('customer/addwhishlist');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				item_id: id,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+				
+				 if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+				jQuery('#sucessmsg').show();
+				//alert(data.msg);
+				if(data.msg==2){
+				$('#sucessmsg').show('');
+				$("#addwishlistids"+id+val).addClass("wishadd");
+				$('#addwhish'+id+val).prop('title', 'Add to Wishlist');
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+				document.getElementById("sucessmsg").focus();
+				
+				}
+				if(data.msg==1){
+				$('#sucessmsg').show('');
+				 $("#addwishlistids"+id+val).removeClass("wishadd");
+				 $('#addwhish'+id+val).prop('title', 'Added to Wishlist');
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+				document.getElementById("sucessmsg").focus();				
+				}
+				}
+			
+
+			}
+		});
+	
+	
+}
   function getunitwiseproductsinunit(itemid){
 	  if(itemid!=''){
 			  jQuery.ajax({
@@ -255,7 +298,6 @@ function productqty1(id){
 	
 }
 function productqtyincreae1(id){
-	alert('hello');
 	var pid=document.getElementById("product_id1"+id).value;
 	var qtycnt1=document.getElementById("qty1"+id).value;
 	var orginalqtycnt=document.getElementById("orginalqty1"+id).value;
