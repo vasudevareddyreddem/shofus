@@ -50,15 +50,12 @@
    .panel-title > a:focus  {
    text-decoration:none;
    }
-   
+   .fluid_mod{
+   margin:0px 60px;
+   background:#fff;
+   }
    #input-select,
    #input-number {
-   padding: 7px;
-   margin: 15px 5px 5px;
-   width: 110px;
-   } 
-   #input-select1,
-   #input-number1 {
    padding: 7px;
    margin: 15px 5px 5px;
    width: 110px;
@@ -302,8 +299,8 @@
    <div class="container-fluid fluid_mod " id="containerhigh"></div>
    <div class="container-fluid fluid_mod " id="containerhighold">
       <div class="row ">
-         <div class="mar_res_t150">
-            <div class="col-md-12 sm_hide ">
+         <div class="mar_t20">
+            <div class="col-md-12  ">
                <div class="title text-left mar_t10"><span> Grocery list</span></div>
                <!--groffers start-->
                <div class='col-md-12'>
@@ -599,161 +596,8 @@
       <div class=" clearfix"></div>
 	  <?php if(isset($urlcatid) && base64_decode($urlcatid)==20){  ?>	
       <!-- Filter Sidebar -->
-	  
-      <div id="subcategorywise_products " style="">
-	  
-			<div class="container md_hide">
-			<div class="row">
-			<div class="filter_bac_strip">
-			<div class="col-xs-6 text-center">
-			<a  data-toggle="modal" data-target="#list_sub">
-				<span  style="padding:10px;border-radius:50%;" class="	glyphicon glyphicon-list
-				bg-primary"></span><span> List</span>
-			</a>
-			</div>
-			<div class="col-xs-6 text-center">
-			<a  data-toggle="modal" data-target="#myModal">
-				<span  style="padding:10px;border-radius:50%;" class="glyphicon glyphicon-filter  bg-primary"></span><span> Filters</span>
-			</a>
-			</div>
-			
-			<div class="clearfix">&nbsp;</div>
-			</div>
-			<div class="clearfix">&nbsp;</div>
-			</div>
-			 <div class="modal animated slideInLeft"  style="" id="myModal" role="dialog">
-				<div class="modal-dialog">
-				
-				
-				  <div class="modal-content">
-					<div class="modal-header bg-primary">
-					  <button type="button" class="close" data-dismiss="modal">&times;</button>
-					  <h4 class="modal-title">Filters</h4>
-					</div>
-					<div class="modal-body">
-				   <div class="example">
-					  <h3 class="text-left pad_0"style="padding:0;margin:0z">Price</h3>
-					  <div id="html6"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
-					  </div>
-					  <select id="input-select1" onchange="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
-						 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
-						 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-						 <?php } ?>
-					  </select>
-					  <input type="text" readonly="true" name="max_amount"   step="1" id="input-number1">
-				   </div>
-				   <input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
-	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                  
-  <div class="panel panel-primary">
-	 <div class="panel-heading" role="tab" id="headingThreesm">
-		<h4 class="panel-title">
-		   <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThreesm" aria-expanded="false" aria-controls="collapseThreesm">
-		   BRAND	
-		   </a>
-		</h4>
-	 </div>
-	 <div id="collapseThreesm" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreesm">
-		<div class="panel-body">
-		   <div class="checkbox">
-		   <label>
-			<input type="checkbox"  id="checkbox1" name="" value="">
-				<span>&nbsp; OPPO</span>
-		   </label>
-		   </div>
-		   <div class="checkbox">
-		   <label>
-			<input type="checkbox"  id="checkbox1" name="" value="">
-				<span>&nbsp; OPPO</span>
-		   </label>
-		   </div>
-		   <div class="checkbox">
-		   <label>
-			<input type="checkbox"  id="checkbox1" name="" value="">
-				<span>&nbsp; OPPO</span>
-		   </label>
-		   </div>
-		   <div class="checkbox">
-		   <label>
-			<input type="checkbox"  id="checkbox1" name="" value="">
-				<span>&nbsp; OPPO</span>
-		   </label>
-		   </div>
-		  
-		</div>
-	 
-	 
-  </div>
-  <div class="panel panel-primary">
-	 <div class="panel-heading" role="tab" id="headingThreesm">
-		<h4 class="panel-title">
-		   <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThreesm" aria-expanded="false" aria-controls="collapseThreesm">
-		   Offer	
-		   </a>
-		</h4>
-	 </div>
-	 <div id="collapseThreesm" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreesm">
-		<div class="panel-body">
-		    <div class="radio"><label><input type="radio" name="options2" checked="checked"><span>All Options 2</span></label></div>
-            <div class="radio"><label><input type="radio" name="options2"><span>Options 2.1</span></label></div>
-            <div class="radio"><label><input type="radio" name="options2"><span>Options 2.2</span></label></div>
-            <div class="radio"><label><input type="radio" name="options2"><span>Options 2.3</span></label></div>
-		  
-		</div>
-	 </div>
-	 
-	 </div>
-	 
-  </div>
-</div>
-
-					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-default" >Submit</button>
-					</div>
-				  </div>
-				  
-				</div>
-			  </div>
-				
-<div class="modal animated zoomIn"  style="top:30%;" id="list_sub" role="dialog">
-<div class="modal-dialog">
-  <div class="modal-content">
-  <div class="modal-header bg-primary">
-					  <button type="button" class="close" data-dismiss="modal">&times;</button>
-					  <h4 class="modal-title">Sub Category	</h4>
-					</div>
-	<div class="modal-body">
-		  <div class="panel ">
-			 <div id="collapseThreesm" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreesm">
-				<div class="panel-body">
-					<div class="radio"><label><input type="radio" name="options2" checked="checked"><span>Mobiles</span></label></div>
-					<div class="radio"><label><input type="radio" name="options2"><span>Options 2.1</span></label></div>
-					<div class="radio"><label><input type="radio" name="options2"><span>Options 2.2</span></label></div>
-					<div class="radio"><label><input type="radio" name="options2"><span>Options 2.3</span></label></div>
-				  
-				</div>
-			 </div>
-			 
-			 </div>
-
-		</div>
-		</div>
-
-	</div>
-
-</div>
-				  
-				</div>
-			  
-			  
-			  
-			</div>
-			
-			
-			
-		
-         <div class="col-sm-3 sm_hide">
+      <div id="subcategorywise_products" style="">
+         <div class="col-sm-3">
             <div class="title"><span>Filters</span></div>
             <form action="<?php echo base_url('category/categorywiseearch'); ?>" method="POST" >
                <div class="example">
@@ -1112,14 +956,9 @@
             </form>
          </div>
          <!-- End Filter Sidebar -->
-		 
-		 
-		 
-		 
-		 
          <!-- Product List -->
          <div id="sucessmsg" style="display:none;"></div>
-         <div class="col-md-9" >
+         <div class="col-md-9">
             <div class="title"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?>&nbsp; Category Products lists</span></div>
             <?php //echo '<pre>';print_r($subcategory_porduct_list);exit; ?>
             <div  style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -1149,7 +988,7 @@
                <input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
                <input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
                <input type="hidden" name="qty" id="qty" value="1" >
-               <div class=" col-md-3 col-xs-6 col-sm-6 box-product-outer sub_ct_width">
+               <div class=" col-md-3 box-product-outer" style="width:23%">
                   <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
                      <div class="box-product">
                         <div class="img-wrapper item" style="position:relative" >
@@ -1401,53 +1240,6 @@
    })(jQuery);
 </script>
 <script>
-   var select = document.getElementById('input-select1');
-   
-   // Append the option elements
-   for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php echo floor($maximum_price['item_cost']); ?>'; i++ ){
-   
-   var option = document.createElement("option");
-   option.text = i;
-   option.value = i;
-   
-   select.appendChild(option);
-   }
-   
-   var html5Slider = document.getElementById('html5');
-   
-   noUiSlider.create(html5Slider, {
-   start: [ '<?php echo floor($minimum_price['item_cost']); ?>', '<?php echo floor($maximum_price['item_cost']); ?>' ],
-   connect: true,
-   range: {
-   'min': <?php echo floor($minimum_price['item_cost']); ?>,
-   'max': <?php echo floor($maximum_price['item_cost']); ?>
-   }
-   });
-   
-   var inputNumber = document.getElementById('input-number1');
-   
-   html5Slider.noUiSlider.on('update', function( values, handle ) {
-   
-   var value = values[handle];
-   
-   if ( handle ) {
-   inputNumber.value = value;
-   } else {
-   select.value = Math.round(value);
-   }
-   });
-   html5Slider.noUiSlider.on('change', function(){
-   mobileaccessories('','','');
-   });
-   select.addEventListener('change', function(){
-   html5Slider.noUiSlider.set([this.value, null]);
-   });
-   
-   inputNumber.addEventListener('change', function(){
-   html5Slider.noUiSlider.set([null, this.value]);
-   });
-</script>
-<script>
    var select = document.getElementById('input-select');
    
    // Append the option elements
@@ -1460,7 +1252,7 @@
    select.appendChild(option);
    }
    
-   var html5Slider = document.getElementById('html6');
+   var html5Slider = document.getElementById('html5');
    
    noUiSlider.create(html5Slider, {
    start: [ '<?php echo floor($minimum_price['item_cost']); ?>', '<?php echo floor($maximum_price['item_cost']); ?>' ],
