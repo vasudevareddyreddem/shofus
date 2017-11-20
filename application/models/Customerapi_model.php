@@ -568,6 +568,10 @@ class Customerapi_model extends MY_Model
 			$discount[] =$listing['discount'];
 			
 			}
+			if($listing['color']!=''){
+			$color[] =$listing['color'];
+			
+			}
 			$minamount = $listing['mini_amount'];
 			$maxamount = $listing['max_amount'];
 			$catid = $listing['category_id'];
@@ -590,7 +594,12 @@ class Customerapi_model extends MY_Model
 		}else{
 		$discount='NULL';
 		}
-		$data['list'][] = $this->category_wise_filters_search($brands,$discount,$offerss,$minamount,$maxamount,$catid);
+		if(isset($color) && count($color)>0 ){
+			$color=implode('","', $color);
+		}else{
+		$color='NULL';
+		}
+		$data['list'][] = $this->category_wise_filters_search($brands,$discount,$offerss,$color,$minamount,$maxamount,$catid);
 		//echo $this->db->last_query();exit;
 		if(!empty($data))
 		{
@@ -598,7 +607,7 @@ class Customerapi_model extends MY_Model
 		}
 		
 	}
-	public function category_wise_filters_search($b,$d,$f,$min,$max,$cid){
+	public function category_wise_filters_search($b,$d,$f,$c,$min,$max,$cid){
 		$min_amt=(($min)-1);
 		$this->db->select('*')->from('products');
 		$this->db->where('item_cost <=', $max);
@@ -610,6 +619,9 @@ class Customerapi_model extends MY_Model
 				$this->db->where_in('offer_percentage','"'.$f.'"',false);
 		}if($d!='NULL'){
 			$this->db->where_in('discount','"'.$d.'"',false);
+		}
+		if($c!='NULL'){
+			$this->db->where_in('colour','"'.$c.'"',false);
 		}
 		
 		$this->db->where('item_status',1);

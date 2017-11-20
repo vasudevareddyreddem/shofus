@@ -662,37 +662,18 @@ function filtersearch(){
 		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
 		$offer_list= $this->category_model->get_all_offer_list($caterory_id);
 		$data['color_list']= $this->category_model->get_all_color_list($caterory_id);
-		foreach ($data['price_list'] as $list) {
-			$date = new DateTime("now");
-			$curr_date = $date->format('Y-m-d h:i:s A');
-			if($list['offer_expairdate']>=$curr_date){
-				$amounts[]=$list['item_cost'];
-			}else{
-				$amounts[]=$list['special_price'];
-			}
-			
-		}
-		$minamt = min($amounts);
-		$maxamt= max($amounts);
-		//echo '<pre>';print_r( $amounts);exit;
+		$minamt = min( array_map("max", $data['price_list']) );
+		$maxamt= max( array_map("max", $data['price_list']) );
 		$data['minimum_price'] = array('item_cost'=>$minamt);
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
-		//echo max($data['price_list']);
-		foreach ($offer_list as $list) {
-			$date = new DateTime("now");
-			$curr_date = $date->format('Y-m-d h:i:s A');
-			if($list['offer_expairdate']>=$curr_date){
-				$ids[]=$list['offer_percentage'];
-			}else{
-				$ids[]=$list['offers'];
+		$out = array();
+		foreach ($offer_list as $key=>$row) {
+			//echo '<pre>';print_r( $row);
+			if($row['offers']!=''){
+				$out[$row['offers']] = $row;
 			}
-			
 		}
-		foreach (array_unique($ids) as $Li){
-			$uniids[]=array('offers'=>$Li);
-			
-		}
-		$data['offer_list']=$uniids;
+		$data['offer_list']= array_values($out);
 	}else if($caterory_id==19){
 		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);
 		$data['price_list']= $this->category_model->get_all_price_list($caterory_id);
@@ -1406,20 +1387,6 @@ public function suitemwiseproductslist(){
 	$data['whishlist_ids_list']=$whishlist_ids_list;
 	}
 	$this->load->view('customer/unitwiseproductdetails',$data);
-	}
-
-	public function offers(){
-		$ids= $this->category_model->get_ll_products();
-		foreach ($ids as $productslist){
-			$item_price= $productslist['special_price'];
-			echo $prices= ($productslist['item_cost']-$productslist['special_price']);
-			echo '--';
-			echo $percentage= (($prices) /$productslist['item_cost'])*100;
-			echo '<br>';
-			$orginal_price=$productslist['item_cost'];
-			$this->category_model->get_ll_products_update($productslist['item_id'],$prices,number_format($percentage, 2));
-		}
-		//echo '<pre>';print_r($ids);exit;
 	}	
 }
 ?>

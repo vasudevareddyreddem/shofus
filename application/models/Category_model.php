@@ -337,13 +337,12 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_all_color_list_sub($catid,$subcatid){
-		$this->db->select('product_color_list.color_name')->from('products');
-		$this->db->join('product_color_list', 'product_color_list.item_id = products.item_id', 'left');	
+		$this->db->select('products.colour')->from('products');
 		$this->db->where('products.category_id',$catid);
 		$this->db->where('products.category_id',$subcatid);
 		$this->db->where('products.item_status',1);
-		$this->db->where('product_color_list.color_name!=','');
-		$this->db->group_by('product_color_list.color_name');
+		$this->db->where('products.colour!=','');
+		$this->db->group_by('products.colour');
 		return $this->db->get()->result_array();
 	}
 	public function get_all_size_list_sub($catid,$subcatid){
@@ -738,7 +737,7 @@ class Category_model extends MY_Model
 
 	$query=$this->db->get()->result_array();
 		foreach ($query as $list){
-			echo '<pre>';print_r($list);
+			///echo '<pre>';print_r($list);
 			
 		}
 	}
@@ -1015,6 +1014,9 @@ class Category_model extends MY_Model
 			}if($listing['discount']!=''){
 			$discount[] =$listing['discount'];
 			
+			}if($listing['color']!=''){
+			$color[] =$listing['color'];
+			
 			}
 			$minamount = $listing['mini_amount'];
 			$maxamount = $listing['max_amount'];
@@ -1038,12 +1040,17 @@ class Category_model extends MY_Model
 			$discount=implode('","', $discount);
 		}else{
 		$discount='NULL';
+		}
+		if(isset($color) && count($color)>0 ){
+			$color=implode('","', $color);
+		}else{
+		$color='NULL';
 		}		
 		
 		//exit;
 		//echo '<pre>';print_r($listsorting);exit;
 		
-		$return['filterslist'][] = $this->get_filers_products_list_alllist($brands,$discount,$offerss,$minamount,$maxamount,$catid);
+		$return['filterslist'][] = $this->get_filers_products_list_alllist($brands,$discount,$offerss,$color,$minamount,$maxamount,$catid);
 		//echo $this->db->last_query();exit;
 		//echo '<pre>';print_r($return['filterslist']);exit;
 		if(!empty($return['filterslist']))
@@ -1056,23 +1063,33 @@ class Category_model extends MY_Model
 		
 		
 	}
-	public function get_filers_products_list_alllist($b,$d,$f,$min,$max,$cid){
+	public function get_filers_products_list_alllist($b,$d,$f,$c,$min,$max,$cid){
 		//echo $b;exit;
 		$min_amt=(($min)-1);
 		$maxmum=(int)$max;
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('*')->from('products');
+		if($maxmum-$min_amt<=1000){
 		$this->db->where('item_cost <=', $maxmum);
+		}else{
+			$this->db->where('item_cost <=', '"'.$maxmum.'"',false);
+		}
+		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )<=', '"'.$maxmum.'"', false);
 		$this->db->where('item_cost >=', '"'.(int)$min_amt.'"',false);
+		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )>=', '"'.(int)$min_amt.'"', false);
 		if($b!='NULL'){
 			$this->db->where_in('brand','"'.$b.'"',false);
 		
 		}if($f!='NULL'){
-			//$this->db->where_in(if('offer_expairdate' >= '$curr_date', 'offer_percentage', 'offers'),'"'.$f.'"',false);
-				$this->db->where_in('offer_percentage','"'.$f.'"',false);
+			$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_percentage`,`offers` )', '"'.$f.'"', false);
+			//$this->db->where_in('offer_percentage','"'.$f.'"',false);
 		}if($d!='NULL'){
-			$this->db->where_in('discount','"'.$d.'"',false);
+			//$this->db->where_in('discount','"'.$d.'"',false);
+			$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_amount`,`discount` )', '"'.$d.'"', false);
+
+		}if($c!='NULL'){
+			$this->db->where_in('colour','"'.$c.'"',false);
 		}
 		
 		$this->db->where('item_status',1);
@@ -1342,12 +1359,11 @@ class Category_model extends MY_Model
 	/* food categorywise*/
 	/*electronic category*/
 	public function get_all_color_list($catid){
-		$this->db->select('product_color_list.color_name')->from('products');
-		$this->db->join('product_color_list', 'product_color_list.item_id = products.item_id', 'left');	
+		$this->db->select('products.colour as color_name')->from('products');
 		$this->db->where('products.category_id',$catid);
 		$this->db->where('products.item_status',1);
-		$this->db->where('product_color_list.color_name!=','');
-		$this->db->group_by('product_color_list.color_name');
+		$this->db->where('products.colour!=','');
+		$this->db->group_by('products.colour');
 		return $this->db->get()->result_array();
 	}
 	public function get_all_size_list($catid){
@@ -1374,10 +1390,11 @@ class Category_model extends MY_Model
 
 	public function get_all_price_list($catid)
 	{
-		$this->db->select('products.item_cost')->from('products');
+		$this->db->select('products.item_cost,products.special_price,products.offer_expairdate')->from('products');
 		$this->db->where('category_id',$catid);
 		$this->db->where('item_status',1);
 		$this->db->where('item_cost!=','');
+		$this->db->where('special_price!=','');
 		$this->db->group_by('item_cost');
 		return $this->db->get()->result_array();
 	}
@@ -1405,13 +1422,20 @@ class Category_model extends MY_Model
 	}
 	public function get_all_offer_list($catid)
 	{
-		/*$this->db->select('products.offer_expairdate>= DATE('Y-m-d h:i:s A'), offer_percentage, offers) AS offers')->from('products');
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+
+		/*$this->db->select('products.offer_percentage,products.offers')->from('products');
 		$this->db->where('products.category_id',$catid);
 		$this->db->where('products.item_status',1);
-		$this->db->where('products.offers!=','');
+		$this->db->where('products.offer_percentage!=','');
+		if("products.offer_expairdate >= '".$curr_date."'"){
+			$this->db->group_by('products.offer_percentage');
+		}else{
 		$this->db->group_by('products.offers');
+		}
 		return $this->db->get()->result_array();*/
-		$sql = "SELECT IF(products.offer_expairdate<= DATE('Y-m-d h:i:s A'), offers, offer_percentage) AS offers FROM `products` WHERE `category_id` = '".$catid."' AND `item_status` = 1 AND `offers` != ''";
+		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `item_status` = 1 AND  offers!='' OR offer_percentage!=''";
 		return $this->db->query($sql)->result_array();
 	}
 	
@@ -1711,6 +1735,16 @@ class Category_model extends MY_Model
     $this->db->where('products.item_status', 1);
 	return $this->db->get()->result_array();
 		
+	}
+	public function get_ll_products()
+	{
+		$this->db->select('products.item_id,products.item_cost,products.special_price,products.offer_percentage,products.discount,products.offers,products.offer_expairdate')->from('products');
+		return $this->db->get()->result_array();	
+	}
+	public function get_ll_products_update($id,$price,$per)
+	{
+		$sql1="UPDATE products SET offers ='".$per."', discount ='".$price."' WHERE item_id ='".$id."'";
+		return $this->db->query($sql1);
 	}
 	
 }
