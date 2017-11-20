@@ -16,10 +16,23 @@ class Promotions_model extends MY_Model
 		$this->db->where('item_id', $cat_id);
 		return $this->db->get()->row_array();
 	}
+	function get_product_details($pid){
+		$this->db->select('products.*,category.category_name')->from('products');
+		$this->db->join('category', 'category.category_id = products.category_id', 'left'); //
+		$this->db->where('products.item_id', $pid);
+		return $this->db->get()->row_array();
+	}
 	function get_seller_products_data($sid){
 		$this->db->select('products.*,category.category_name')->from('products');
 		$this->db->join('category', 'category.category_id = products.category_id', 'left'); //
 		$this->db->where('products.seller_id', $sid);
+		return $this->db->get()->result_array();
+	}
+	function get_offer_adding_seller_products_data($sid){
+		$this->db->select('products.item_id')->from('products');
+		$this->db->where('products.seller_id', $sid);
+		$this->db->where('products.item_status',1);
+		$this->db->order_by('products.item_status desc');
 		return $this->db->get()->result_array();
 	}
 	function get_seller_subcat_products_data($subcat_id){
@@ -38,6 +51,12 @@ class Promotions_model extends MY_Model
 	}
 	function item_already_exits($pid){
 		//echo $date;exit;
+		$this->db->select('*')->from('season_sales');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->row_array();
+
+	}
+	function season_sales_item_already_exits($pid){
 		$this->db->select('*')->from('season_sales');
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->row_array();

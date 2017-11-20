@@ -188,10 +188,31 @@ public function topofferactive(){
 
 	public function addtopoffers()
 	{
-		$data['seller_prducts']=$this->Promotions_model->get_seller_products_data($this->session->userdata('seller_id'));
+		$products_ids=$this->Promotions_model->get_offer_adding_seller_products_data($this->session->userdata('seller_id'));
+		if(isset($products_ids) && count($products_ids)>0){
+			foreach ($products_ids as $cat_ida) {
+				$date = new DateTime("now");
+				$curr_date = $date->format('Y-m-d h:i:s A');
+				$itemcheck=$this->Promotions_model->dealsoftheday_item_already_exits($cat_ida['item_id']);
+				//echo $this->db->last_query();
+				$season_itemcheck=$this->Promotions_model->season_sales_item_already_exits($cat_ida['item_id']);
+				//echo $this->db->last_query();
+				if(count($itemcheck)>0 && $itemcheck['expairdate']>=$curr_date || count($season_itemcheck)>0 && $season_itemcheck['expairdate']>=$curr_date ){
+					
+				}else{
+					$deals_ids_lists[]=$cat_ida['item_id'];
+				}
+				
+			}
+			$data['seller_prducts']=$deals_ids_lists; 
+		}else{
+			$data['seller_prducts']=array();
+		}
+		
 		$data['catitemdata'] = $this->products_model->getcatsubcatpro();
 		
 		//echo '<pre>';print_r($data);exit; 
+		//$data['seller_prducts']=array();
 		$data['catitemdata1'] = $this->products_model->getcatsubcatpro();
 		$data['cnt']= count($data['catitemdata1']);
 		$this->template->write_view('content', 'seller/showups/addtopoffers',$data);
@@ -238,7 +259,27 @@ public function topofferactive(){
 
 	public function adddealsofday()
 	{
-		$data['seller_prducts']=$this->Promotions_model->get_seller_products_data($this->session->userdata('seller_id'));
+		$products_ids=$this->Promotions_model->get_offer_adding_seller_products_data($this->session->userdata('seller_id'));
+		if(isset($products_ids) && count($products_ids)>0){
+			foreach ($products_ids as $cat_ida) {
+				$date = new DateTime("now");
+				$curr_date = $date->format('Y-m-d h:i:s A');
+				$itemcheck=$this->Promotions_model->topoffer_item_already_exits($cat_ida['item_id']);
+				//echo $this->db->last_query();
+				$season_itemcheck=$this->Promotions_model->season_sales_item_already_exits($cat_ida['item_id']);
+				//echo $this->db->last_query();
+				if(count($itemcheck)>0 && $itemcheck['expairdate']>=$curr_date  || count($season_itemcheck)>0 && $season_itemcheck['expairdate']>=$curr_date){
+					
+				}else{
+					$deals_ids_lists[]=$cat_ida['item_id'];
+				}
+				
+			}
+			
+			$data['seller_prducts']=$deals_ids_lists; 
+		}else{
+			$data['seller_prducts']=array();
+		}
 		 $data['catitemdata'] = $this->products_model->getcatsubcatpro();
 	   $data['catitemdata1'] = $this->products_model->getcatsubcatpro();
 		$data['cnt']= count($data['catitemdata1']);
@@ -285,7 +326,27 @@ public function seasonsaleactive(){
 
 	public function addseasonsale()
 	{
-		$data['seller_prducts']=$this->Promotions_model->get_seller_products_data($this->session->userdata('seller_id'));
+		$products_ids=$this->Promotions_model->get_offer_adding_seller_products_data($this->session->userdata('seller_id'));
+		if(isset($products_ids) && count($products_ids)>0){
+			foreach ($products_ids as $cat_ida) {
+				$date = new DateTime("now");
+				$curr_date = $date->format('Y-m-d h:i:s A');
+				$itemcheck=$this->Promotions_model->topoffer_item_already_exits($cat_ida['item_id']);
+				//echo $this->db->last_query();
+				$deals_itemcheck=$this->Promotions_model->dealsoftheday_item_already_exits($cat_ida['item_id']);
+				//echo $this->db->last_query();
+				if(count($itemcheck)>0 && $itemcheck['expairdate']>=$curr_date || count($deals_itemcheck)>0 && $deals_itemcheck['expairdate']>=$curr_date  ){
+					
+				}else{
+					$deals_ids_lists[]=$cat_ida['item_id'];
+				}
+				
+			}
+			
+			$data['seller_prducts']=$deals_ids_lists; 
+		}else{
+			$data['seller_prducts']=array();
+		}
 		$data['catitemdata'] = $this->products_model->getcatsubcatpro();
 	    $data['catitemdata1'] = $this->products_model->getcatsubcatpro();
 		$data['cnt']= count($data['catitemdata1']);
