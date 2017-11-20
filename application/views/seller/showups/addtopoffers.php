@@ -95,27 +95,30 @@
              <tbody>
 					<?php $k=1; 
 					foreach($subcategory->docs12 as $item_data){
-					//echo '<pre>';print_r($item_data);exit;	
 						
+						//echo '<pre>';print_r($seller_prducts);exit;
 						?>
-					<tr>
-						<td><input value="<?php echo $item_data->item_id; ?>" class="chkdata<?php echo $subcategory->subcategory_id;?><?php echo $j; ?>" type="checkbox" id="cat_id[]" name="cat_id[]" ></td>
-						<td><?php echo $item_data->item_name;?></td>
-						<td><?php echo $item_data->product_code;?></td>
-						<td><?php echo $item_data->item_cost;?></td>
-						<td><?php echo $item_data->offer_amount;?></td>
-						<td>
-					<?php if($item_data->offer_type=='1' ){echo "Listing Discount";}
-        elseif($item_data->offer_type=='2'){ ?><?php echo "Cart Discount"; ?> <?php } 
-        elseif($item_data->offer_type=='3'){ ?><?php echo "Flat Price Offer";  ?> <?php }
-        elseif($item_data->offer_type=='4'){ ?><?php echo "Combo Discount";  ?> <?php }
-        else{
-          echo "";
-        } ?>
-						</td>
-						<td><?php echo $item_data->offer_expairdate;?></td>
 
-					</tr>
+					<?php if (in_array($item_data->item_id, $seller_prducts)) { ?>
+							<tr>
+								<td><input value="<?php echo $item_data->item_id; ?>" class="chkdata<?php echo $subcategory->subcategory_id;?><?php echo $j; ?>" type="checkbox" id="cat_id[]" name="cat_id[]" ></td>
+								<td><?php echo $item_data->item_name;?></td>
+								<td><?php echo $item_data->product_code;?></td>
+								<td><?php echo $item_data->item_cost;?></td>
+								<td><?php echo $item_data->offer_amount;?></td>
+								<td>
+								<?php if($item_data->offer_type=='1' ){echo "Listing Discount";}
+								elseif($item_data->offer_type=='2'){ ?><?php echo "Cart Discount"; ?> <?php } 
+								elseif($item_data->offer_type=='3'){ ?><?php echo "Flat Price Offer";  ?> <?php }
+								elseif($item_data->offer_type=='4'){ ?><?php echo "Combo Discount";  ?> <?php }
+								else{
+								echo "";
+								} ?>
+								</td>
+								<td><?php echo $item_data->offer_expairdate;?></td>
+
+							</tr>
+					<?php } ?>
 				  <?php $k++; } ?>
 				  </tbody>
     </table>
@@ -156,7 +159,7 @@
      </form>
 	<script type="text/javascript">
 	function IsMobile<?php echo $subcategory->subcategory_id;?>(reasontype) {
-        var regex = /^[0-9]+$/;
+        var regex = /^[0-9.]+$/;
         return regex.test(reasontype);
 	}
 	$('#submit_prog<?php echo $subcategory->subcategory_id;?><?php echo $j; ?>').hide();
