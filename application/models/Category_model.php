@@ -1067,13 +1067,14 @@ class Category_model extends MY_Model
 		//echo $b;exit;
 		$min_amt=(($min)-1);
 		$maxmum=(int)$max;
+		$lessamount=($maxmum)-($min_amt);
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('*')->from('products');
-		if($maxmum-$min_amt<=1000){
-		$this->db->where('item_cost <=', $maxmum);
+		if($lessamount<='500' || $lessamount<='100'){
+		$this->db->where('item_cost <=', '"'.$maxmum.'"',false);
 		}else{
-			$this->db->where('item_cost <=', '"'.$maxmum.'"',false);
+			$this->db->where('item_cost <=',$maxmum);
 		}
 		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )<=', '"'.$maxmum.'"', false);
 		$this->db->where('item_cost >=', '"'.(int)$min_amt.'"',false);
