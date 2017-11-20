@@ -6,6 +6,13 @@
 	border-radius:10px;
 	padding:10px 0px; 
 }
+.sub_ct_width{
+	width:23%;
+}
+.fluid_mod{
+   margin:0px 60px;
+   background:#fff;
+   }
 .whis_img{
 	
 	max-height:100%;
@@ -6251,6 +6258,17 @@ and (max-device-width : 1024px)
 	}
 	.sm_hide{
 		display:none;
+	}
+	.filter_bac_strip{
+		background:#eee;
+		padding:15px 4px 4px 4px;
+		line-height:8px;
+	}
+	.fluid_mod{
+		margin:0;
+	}
+	.sub_ct_width{
+		width:45%;
 	}
 	.is-active .mat-label {
   color: #fff;
