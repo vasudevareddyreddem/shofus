@@ -364,18 +364,36 @@ class Category extends Front_Controller
 		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
 		$offer_list= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
 		$data['color_list']= $this->category_model->get_all_color_list_sub($caterory_id,$subcaterory_id);
-		$minamt = min( array_map("max", $data['price_list']) );
-		$maxamt= max( array_map("max", $data['price_list']) );
+		foreach ($data['price_list'] as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				$amounts[]=$list['item_cost'];
+			}else{
+				$amounts[]=$list['special_price'];
+			}
+			
+		}
+		$minamt = min($amounts);
+		$maxamt= max($amounts);
+		//echo '<pre>';print_r( $amounts);exit;
 		$data['minimum_price'] = array('item_cost'=>$minamt);
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
-		$out = array();
-		foreach ($offer_list as $key=>$row) {
-			//echo '<pre>';print_r( $row);
-			if($row['offers']!=''){
-				$out[$row['offers']] = $row;
+		foreach ($offer_list as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				$ids[]=$list['offer_percentage'];
+			}else{
+				$ids[]=$list['offers'];
 			}
+			
 		}
-		$data['offer_list']= array_values($out);
+		foreach (array_unique($ids) as $Li){
+			$uniids[]=array('offers'=>$Li);
+			
+		}
+		$data['offer_list']=$uniids;
 		
 		if($subcaterory_id==40){
 				$data['ram_list']= $this->category_model->get_ram_type_list($caterory_id,$subcaterory_id);
@@ -829,18 +847,36 @@ function filtersearch(){
 		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
 		$offer_list= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
 		$data['color_list']= $this->category_model->get_all_color_list_sub($caterory_id,$subcaterory_id);
-		$minamt = min( array_map("max", $data['price_list']) );
-		$maxamt= max( array_map("max", $data['price_list']) );
+		foreach ($data['price_list'] as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				$amounts[]=$list['item_cost'];
+			}else{
+				$amounts[]=$list['special_price'];
+			}
+			
+		}
+		$minamt = min($amounts);
+		$maxamt= max($amounts);
+		//echo '<pre>';print_r( $amounts);exit;
 		$data['minimum_price'] = array('item_cost'=>$minamt);
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
-		$out = array();
-		foreach ($offer_list as $key=>$row) {
-			//echo '<pre>';print_r( $row);
-			if($row['offers']!=''){
-				$out[$row['offers']] = $row;
+		foreach ($offer_list as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				$ids[]=$list['offer_percentage'];
+			}else{
+				$ids[]=$list['offers'];
 			}
+			
 		}
-		$data['offer_list']= array_values($out);
+		foreach (array_unique($ids) as $Li){
+			$uniids[]=array('offers'=>$Li);
+			
+		}
+		$data['offer_list']=$uniids;
 		if($subcaterory_id==40){
 				$data['ram_list']= $this->category_model->get_ram_type_list($caterory_id,$subcaterory_id);
 				$data['colors_list']= $this->category_model->get_color_type_list($caterory_id,$subcaterory_id);

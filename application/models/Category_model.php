@@ -1269,9 +1269,8 @@ class Category_model extends MY_Model
 		$this->db->where('offers!=','');
 		$this->db->group_by('offers');
 		return $this->db->get()->result_array();*/
-		$sql = "SELECT IF(products.offer_expairdate<= DATE('Y-m-d h:i:s A'), offers, offer_percentage) AS offers FROM `products` WHERE `category_id` = '".$catid."' AND `subcategory_id` = '".$subcat."' AND `item_status` = 1 AND `offers` != ''";
+		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `subcategory_id` = '".$subcat."' `item_status` = 1 AND  offers!='' OR offer_percentage!=''";
 		return $this->db->query($sql)->result_array();
-		
 	}
 	
 	public function get_all_discount_list_sub($catid,$subcat)
@@ -1325,7 +1324,7 @@ class Category_model extends MY_Model
 	}
 	public function get_all_price_list_sub($catid,$subcat)
 	{
-		$this->db->select('products.item_cost')->from('products');
+		$this->db->select('products.item_cost,products.special_price,products.offer_expairdate')->from('products');
 		$this->db->where('category_id',$catid);
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('item_status',1);
@@ -1715,7 +1714,7 @@ class Category_model extends MY_Model
  public function get_all_subitem_lists($catid)
  {
   	$this->db->select('*')->from('products');
-	$this->db->join('sub_items', 'sub_items.subitemid = products.item_id', 'left'); //
+	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left'); //
 	$this->db->where('sub_items.category_id',$catid);
 	return $this->db->get()->result_array();
  }
