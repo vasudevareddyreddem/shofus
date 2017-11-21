@@ -138,7 +138,7 @@ public function search_functionality(){
 			if($searhitems['yes']==0){
 				$result[]=$searhitems['subcategory_name']. ' subcategory';
 			}else {
-			$result[]=$searhitems['item_name']. ' Mobiles';
+			$result[]=$searhitems['item_name'];
 
 			}
 		}
@@ -677,7 +677,7 @@ public function addtocompare()
 		$test_id =$test['item_id'];
 	}
 
-	print_r($test_id);exit;	
+	//print_r($test_id);exit;	
 
 
 

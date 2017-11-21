@@ -379,6 +379,7 @@ class Category extends Front_Controller
 		//echo '<pre>';print_r( $amounts);exit;
 		$data['minimum_price'] = array('item_cost'=>$minamt);
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
+		//echo max($data['price_list']);
 		foreach ($offer_list as $list) {
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
@@ -394,7 +395,6 @@ class Category extends Front_Controller
 			
 		}
 		$data['offer_list']=$uniids;
-		
 		if($subcaterory_id==40){
 				$data['ram_list']= $this->category_model->get_ram_type_list($caterory_id,$subcaterory_id);
 				$data['colors_list']= $this->category_model->get_color_type_list($caterory_id,$subcaterory_id);
@@ -862,6 +862,7 @@ function filtersearch(){
 		//echo '<pre>';print_r( $amounts);exit;
 		$data['minimum_price'] = array('item_cost'=>$minamt);
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
+		//echo max($data['price_list']);
 		foreach ($offer_list as $list) {
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
@@ -877,6 +878,7 @@ function filtersearch(){
 			
 		}
 		$data['offer_list']=$uniids;
+		//echo '<pre>';print_r($data);exit;
 		if($subcaterory_id==40){
 				$data['ram_list']= $this->category_model->get_ram_type_list($caterory_id,$subcaterory_id);
 				$data['colors_list']= $this->category_model->get_color_type_list($caterory_id,$subcaterory_id);

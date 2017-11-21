@@ -488,20 +488,28 @@ class Category_model extends MY_Model
 		
 		$min_amt=(($min)-1);
 		$maxmum=(int)$max;
-		
-		//$aray=array($b);
+		$lessamount=($maxmum)-($min_amt);
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('*')->from('products');
-		$this->db->where('item_cost <=', $maxmum);
+		if($lessamount<='500' || $lessamount<='100'){
+		$this->db->where('item_cost <=', '"'.$maxmum.'"',false);
+		}else{
+			$this->db->where('item_cost <=',$maxmum);
+		}
 		$this->db->where('item_cost >=', '"'.(int)$min_amt.'"',false);
-		
 		if($b!='NULL'){
 			$this->db->where_in('brand','"'.$b.'"',false);
 		
 		}if($f!='NULL'){
-				$this->db->where_in('offer_percentage','"'.$f.'"',false);
+			$this->db->where_in('offer_percentage','"'.$f.'"',false);
+			//$this->db->where_in('if(`offer_expairdate`>=NOW(),`offer_percentage`,`offers` )', '"'.$f.'"', false);
 		}if($d!='NULL'){
 			$this->db->where_in('discount','"'.$d.'"',false);
-		}if($ram!='NULL'){
+			//$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_amount`,`discount` )', '"'.$d.'"', false);
+
+		}
+		if($ram!='NULL'){
 			$this->db->where_in('ram','"'.$ram.'"',false);
 		}if($colour!='NULL'){
 			$this->db->where_in('colour','"'.$colour.'"',false);
@@ -518,10 +526,11 @@ class Category_model extends MY_Model
 		}if($Processor!='NULL'){
 			$this->db->where_in('Processor','"'.$Processor.'"',false);
 		}
+		
 		$this->db->where('item_status',1);
 		$this->db->where('category_id',$cid);
-		$this->db->where('subcategory_id',$subcatid);
-		return $this->db->get()->result_array();	
+		
+		return $this->db->get()->result_array();
 		
 	}
 	public function get_subcategoryinternal_memeory($internal_memeory,$cid,$subcat,$staus){
@@ -1269,8 +1278,9 @@ class Category_model extends MY_Model
 		$this->db->where('offers!=','');
 		$this->db->group_by('offers');
 		return $this->db->get()->result_array();*/
-		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `subcategory_id` = '".$subcat."' `item_status` = 1 AND  offers!='' OR offer_percentage!=''";
+		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `subcategory_id` = '".$subcat."' AND `item_status` = 1 AND `offers` != '' OR offer_percentage!=''";
 		return $this->db->query($sql)->result_array();
+		
 	}
 	
 	public function get_all_discount_list_sub($catid,$subcat)
