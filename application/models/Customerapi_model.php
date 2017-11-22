@@ -238,15 +238,19 @@ class Customerapi_model extends MY_Model
 
 	public function get_categories()
 	{
-		$this->db->select('category.category_id,category.category_name,category.category_image,category.status')->from('category');
+		$this->db->select('category.category_id,category.category_name,category.category_image,category.status')->from('products');
+		$this->db->join('category', 'category.category_id = products.category_id', 'left');
 		$this->db->where('category.status',1);
+		$this->db->group_by('products.category_id');
 		return $this->db->get()->result_array();
 	}
 	public function get_subcategories($sub_id)
 	{
-		$this->db->select('*')->from('subcategories');
-		$this->db->where('category_id',$sub_id);
+		$this->db->select('subcategories.*')->from('products');
+		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
+		$this->db->where('products.category_id',$sub_id);
 		$this->db->where('subcategories.status',1);
+		$this->db->group_by('products.subcategory_id');
 		return $this->db->get()->result_array();
 	}
 	public function get_withoutsubcategories($cat_id,$sub_id)
@@ -2415,6 +2419,21 @@ class Customerapi_model extends MY_Model
 		$this->db->select('*')->from('customers');
 		$this->db->where('customer_id',$cid);
 		return $this->db->get()->row_array();
+	}
+	public function get_sub_items_list($subcategory_id){
+	$this->db->select('sub_items.*')->from('products');
+	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
+    $this->db->where('products.subcategory_id', $subcategory_id);
+    $this->db->where('products.item_status', 1);
+    $this->db->group_by('products.subitemid');
+	return $this->db->get()->result_array();
+	}
+	public function get_sub_itemswise_productlist($sub_item_id){
+	$this->db->select('products.*')->from('products');
+	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
+    $this->db->where('products.subitemid', $sub_item_id);
+    $this->db->where('products.item_status', 1);
+	return $this->db->get()->result_array();
 	}
 	
 	

@@ -66,7 +66,7 @@ function __construct()
 	{
 		$this->db->select('*')->from('sub_items');
 		$this->db->where('subitem_id',$ids);
-		$this->db->where('status',1);
+		//$this->db->where('status',1);
 		return $this->db->get()->row_array();
 	}
 	 function get_name_existss($name)

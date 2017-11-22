@@ -91,11 +91,10 @@ function getsubcategorynames(id){
 				$('#oldcatewise').hide();
 				$('#changecatwise').show();
 				$('#changesubcategory_list').empty();
-				for (var i = 0; i < data.length; i++) {
-				var checkBox = "<option value='" + data[i].subcategory_id + "'>"+ data[i].subcategory_name +"<option>";
-				$(checkBox).appendTo('#changesubcategory_list');
-				}
-					
+				for(i=0; i<data.length; i++) {
+						$('#changesubcategory_list').append("<option value="+data[i].subcategory_id+">"+data[i].subcategory_name+"</option>");                      
+					}
+			
 			
 				}
 			});

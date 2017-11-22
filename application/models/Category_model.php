@@ -1527,6 +1527,18 @@ class Category_model extends MY_Model
 	return $this->db->get()->result_array();
 		
 	}
+	public function get_all_subcategory_products_list_grocery($subcatid)
+	{
+	
+	$this->db->select('products.*,category.category_id')->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
+	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
+    $this->db->where('subcategories.subcategory_id', $subcatid);
+    $this->db->where('products.item_status', 1);
+    $this->db->group_by('products.item_name');
+	return $this->db->get()->result_array();
+		
+	}
 	public function get_all_subcategorys($category_ids)
 	{
 	
@@ -1747,6 +1759,7 @@ class Category_model extends MY_Model
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
     $this->db->where('products.subitemid', $subitemid);
     $this->db->where('products.item_status', 1);
+    $this->db->group_by('products.item_name');
 	return $this->db->get()->result_array();
 		
 	}

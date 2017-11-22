@@ -112,15 +112,11 @@ function getsubcategorynames(id){
 				success: function (data) {
 				$('#subcategory_list').empty();
 				$('#subcategory_lists').empty();
-				for (var i = 0; i < data.length; i++) {
-					
-				var checkBox = "<option value='" + data[i].subcategory_id + "'>"+ data[i].subcategory_name +"<option>";
-				$(checkBox).appendTo('#subcategory_list');
-				$(checkBox).appendTo('#subcategory_lists');
-				}
-					
-			
-				}
+						for(i=0; i<data.length; i++) {
+						$('#subcategory_list').append("<option value="+data[i].subcategory_id+">"+data[i].subcategory_name+"</option>");                      
+						$('#subcategory_lists').append("<option value="+data[i].subcategory_id+">"+data[i].subcategory_name+"</option>");                      
+					}
+					}
 			});
 }
 

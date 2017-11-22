@@ -384,9 +384,13 @@ class Category extends Front_Controller
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
 			if($list['offer_expairdate']>=$curr_date){
-				$ids[]=$list['offer_percentage'];
+				if($list['offer_percentage']!=''){
+					$ids[]=$list['offer_percentage'];
+				}
 			}else{
-				$ids[]=$list['offers'];
+				if($list['offers']!=''){
+					$ids[]=$list['offers'];
+				}
 			}
 			
 		}
@@ -700,9 +704,13 @@ function filtersearch(){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
 			if($list['offer_expairdate']>=$curr_date){
+				if($list['offer_percentage']!=''){
 				$ids[]=$list['offer_percentage'];
+				}
 			}else{
+				if($list['offers']!=''){
 				$ids[]=$list['offers'];
+				}
 			}
 			
 		}
@@ -776,7 +784,7 @@ function filtersearch(){
 	$catidss_id= $this->category_model->get_category_ids($post['subcategoryid']);
 	
 	if(isset($catidss_id['category_id']) && $catidss_id['category_id']==21){
-		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products_list($post['subcategoryid']);
+		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_products_list_grocery($post['subcategoryid']);
 	//echo '<pre>';print_r($data['subcategory_porduct_list']);exit;
 	if(count($data['subcategory_porduct_list'])>0){
 			foreach($data['subcategory_porduct_list'] as $list){
@@ -867,9 +875,13 @@ function filtersearch(){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
 			if($list['offer_expairdate']>=$curr_date){
+				if($list['offer_percentage']!=''){
 				$ids[]=$list['offer_percentage'];
+				}
 			}else{
+				if($list['offers']!=''){
 				$ids[]=$list['offers'];
+				}
 			}
 			
 		}
@@ -1023,6 +1035,7 @@ function filtersearch(){
 		//echo $this->db->last_query();exit;
 		$data['color_list']= $this->category_model->get_all_color_list($caterory_id);
 		foreach ($data['price_list'] as $list) {
+			
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
 			if($list['offer_expairdate']>=$curr_date){
@@ -1039,22 +1052,31 @@ function filtersearch(){
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
 		//echo max($data['price_list']);
 		foreach ($offer_list as $list) {
+			
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
 			if($list['offer_expairdate']>=$curr_date){
+				if($list['offer_percentage']!=''){
 				$ids[]=$list['offer_percentage'];
+				}
 			}else{
+				if($list['offers']!=''){
 				$ids[]=$list['offers'];
+				}
 			}
+			
 			
 		}
 		foreach (array_unique($ids) as $Li){
+			
 			$uniids[]=array('offers'=>$Li);
 			
+			
 		}
+		//echo '<pre>';print_r($uniids);exit;
 		$data['offer_list']=$uniids;
 		
-		//echo '<pre>';print_r( $$offer_list);exit;
+		//echo '<pre>';print_r($offer_list);exit;
 		
 	}else if($caterory_id==19){
 		$data['brand_list']= $this->category_model->get_all_brand_list($caterory_id);

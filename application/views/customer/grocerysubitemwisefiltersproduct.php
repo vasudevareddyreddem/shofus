@@ -104,7 +104,7 @@
                               </a>
                               <div class="col-md-6">
                                  <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></div>
-                                 <p class=""><?php echo isset($productslist['unit'])?$productslist['unit']:''; ?></p>
+                                 <p class=""><?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?></p>
 							  <p class="">Available in: &nbsp;&nbsp;
 									 <?php foreach ($productslist['unitproducts_list'] as $list){ ?>
 									 
