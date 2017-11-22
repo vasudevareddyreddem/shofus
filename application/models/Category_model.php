@@ -1716,16 +1716,20 @@ class Category_model extends MY_Model
  }
  public function get_all_subitem_list($catid,$subcatid)
  {
-  	$this->db->select('*')->from('sub_items');
-	$this->db->where('category_id',$catid);
-	$this->db->where('subcategory_id',$subcatid);
+  	//$this->db->select('*')->from('sub_items');
+  	$this->db->select('sub_items.*')->from('products');
+	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left'); //
+	$this->db->where('products.category_id',$catid);
+	$this->db->where('products.subcategory_id',$subcatid);
+	$this->db->group_by('products.subitemid');
 	return $this->db->get()->result_array();
  }
  public function get_all_subitem_lists($catid)
  {
-  	$this->db->select('*')->from('products');
+  	$this->db->select('sub_items.*')->from('products');
 	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left'); //
 	$this->db->where('sub_items.category_id',$catid);
+	$this->db->group_by('products.subitemid');
 	return $this->db->get()->result_array();
  }
 

@@ -160,9 +160,9 @@ echo json_encode($datails);
 		if($post['serachvalues']==''){
 			redirect('');
 		}
-		print_r($post);
+		//print_r($post);
 		$haystack = $post['serachvalues'];
-		$remove   = "Mobi";
+		$remove   = " ";
 		$remve1   = "sub";
 		if( strpos( $haystack, $remove ) !== false ) {
 		$str= preg_replace('/\W\w+\s*(\W*)$/', '$1', $haystack);
@@ -171,14 +171,16 @@ echo json_encode($datails);
 		}else{
 			$str= $haystack;
 		}
-		if(isset($str) && $str=='Mobiles'){
+if(isset($str) && $str=='Mobiles' || $str=='Grocery & Staples' || $str=='Meat' || $str=='Imported & Gourmet' || $str=='Household' || $str=='Personal Care' || $str=='Branded Foods' || $str=='Beverages' || $str=='Bread Dairy & Eggs' || $str=='Fruits & Vegetables'){
 			$catid=$this->home_model->get_prodcut_id1($str);
-			if($item_id['item_id']!=''){
+			//print_r($catid);exit;
+			if($catid['category_id']!=''){
 			redirect('category/subcategoryview/'.base64_encode($catid['category_id']));
 			}else{
 				redirect();
 			}
 		}else{
+			
 			$item_id=$this->home_model->get_prodcut_id($str);
 			if($item_id['item_id']!=''){
 			redirect('category/productview/'.base64_encode($item_id['item_id']));

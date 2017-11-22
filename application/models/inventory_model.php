@@ -779,6 +779,11 @@ public function delete_banner($id,$sid)
 	   $sql = "SELECT * FROM sub_items WHERE subitem_name ='".$name."' AND status='1'";
         return $this->db->query($sql)->row_array();
      }
+	 function get_status_changed_data($id)
+	{
+	$sql = "SELECT * FROM sub_items WHERE subitem_id ='".$id."'";
+	return $this->db->query($sql)->row_array();
+	}
 	
 }
 ?>	

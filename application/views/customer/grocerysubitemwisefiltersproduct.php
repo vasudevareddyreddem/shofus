@@ -109,10 +109,10 @@
 									 <?php foreach ($productslist['unitproducts_list'] as $list){ ?>
 									 
 									 <?php if($list['item_id']==$productslist['item_id']){ ?>
-											<span onclick="getunitwiseproducts('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus btn_cus_acti pad_rig"><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
+											<span onclick="getunitwiseproducts('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus btn_cus_acti pad_rig"><?php echo $list['unit']; ?></span>&nbsp;&nbsp;
 
 									 <?php }else{ ?>
-											<span onclick="getunitwiseproducts('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus pad_rig"><?php echo $list['unit'].' Unit'; ?></span>&nbsp;&nbsp;
+											<span onclick="getunitwiseproducts('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>')" class="btn_cus pad_rig"><?php echo $list['unit']; ?></span>&nbsp;&nbsp;
 
 									 <?php  } ?>
 									<?php } ?>
@@ -137,7 +137,7 @@
 													  <?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
 													<a href="javascript:void(0);" onclick="unitaddwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-primary btn-sm ">Add to Whishlist</span></a> 
 													<?php }else{ ?>	
-													<a href="javascript:void(0);" onclick="unitaddwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-warning btn-sm wishadd" >Add to Whishlist</span></a> 
+													<a href="javascript:void(0);" onclick="unitaddwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-primary btn-sm wishadd" >Add to Whishlist</span></a> 
 													<?php } ?>
 													  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
 													 
