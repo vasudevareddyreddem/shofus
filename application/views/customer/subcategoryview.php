@@ -50,12 +50,15 @@
    .panel-title > a:focus  {
    text-decoration:none;
    }
-   .fluid_mod{
-   margin:0px 60px;
-   background:#fff;
-   }
+   
    #input-select,
    #input-number {
+   padding: 7px;
+   margin: 15px 5px 5px;
+   width: 110px;
+   } 
+   #input-select1,
+   #input-number1 {
    padding: 7px;
    margin: 15px 5px 5px;
    width: 110px;
@@ -1610,7 +1613,7 @@
    })(jQuery);
 </script>
 <script>
-   var select = document.getElementById('input-select');
+   var select = document.getElementById('input-select1');
    
    // Append the option elements
    for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php echo floor($maximum_price['item_cost']); ?>'; i++ ){
@@ -1623,6 +1626,53 @@
    }
    
    var html5Slider = document.getElementById('html5');
+   
+   noUiSlider.create(html5Slider, {
+   start: [ '<?php echo floor($minimum_price['item_cost']); ?>', '<?php echo floor($maximum_price['item_cost']); ?>' ],
+   connect: true,
+   range: {
+   'min': <?php echo floor($minimum_price['item_cost']); ?>,
+   'max': <?php echo floor($maximum_price['item_cost']); ?>
+   }
+   });
+   
+   var inputNumber = document.getElementById('input-number1');
+   
+   html5Slider.noUiSlider.on('update', function( values, handle ) {
+   
+   var value = values[handle];
+   
+   if ( handle ) {
+   inputNumber.value = value;
+   } else {
+   select.value = Math.round(value);
+   }
+   });
+   html5Slider.noUiSlider.on('change', function(){
+   mobileaccessories('','','');
+   });
+   select.addEventListener('change', function(){
+   html5Slider.noUiSlider.set([this.value, null]);
+   });
+   
+   inputNumber.addEventListener('change', function(){
+   html5Slider.noUiSlider.set([null, this.value]);
+   });
+</script>
+<script>
+   var select = document.getElementById('input-select');
+   
+   // Append the option elements
+   for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php echo floor($maximum_price['item_cost']); ?>'; i++ ){
+   
+   var option = document.createElement("option");
+   option.text = i;
+   option.value = i;
+   
+   select.appendChild(option);
+   }
+   
+   var html5Slider = document.getElementById('html6');
    
    noUiSlider.create(html5Slider, {
    start: [ '<?php echo floor($minimum_price['item_cost']); ?>', '<?php echo floor($maximum_price['item_cost']); ?>' ],
