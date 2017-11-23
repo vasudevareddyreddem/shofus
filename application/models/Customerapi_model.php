@@ -613,6 +613,8 @@ class Customerapi_model extends MY_Model
 	}
 	public function category_wise_filters_search($b,$d,$f,$c,$min,$max,$cid){
 		$min_amt=(($min)-1);
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('*')->from('products');
 		$this->db->where('item_cost <=', $max);
 		$this->db->where('item_cost >=', $min_amt);
@@ -620,9 +622,13 @@ class Customerapi_model extends MY_Model
 			$this->db->where_in('brand','"'.$b.'"',false);
 		
 		}if($f!='NULL'){
-				$this->db->where_in('offer_percentage','"'.$f.'"',false);
+				//$this->db->where_in('offer_percentage','"'.$f.'"',false);
+				$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_percentage`,`offers` )', '"'.$f.'"', false);
+
 		}if($d!='NULL'){
-			$this->db->where_in('discount','"'.$d.'"',false);
+			//$this->db->where_in('discount','"'.$d.'"',false);
+				$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_amount`,`discount` )', '"'.$d.'"', false);
+
 		}
 		if($c!='NULL'){
 			$this->db->where_in('colour','"'.$c.'"',false);
@@ -840,12 +846,10 @@ class Customerapi_model extends MY_Model
 	}
 	public function get_all_offer_list($catid)
 	{
-		$this->db->select('products.offers')->from('products');
-		$this->db->where('products.category_id',$catid);
-		$this->db->where('products.item_status',1);
-		$this->db->where('products.offers!=','');
-		$this->db->group_by('products.offers');
-		return $this->db->get()->result_array();
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `item_status` = 1 AND  offers!='' OR offer_percentage!=''";
+		return $this->db->query($sql)->result_array();
 	}
 	public function get_subcategory_id_filterssearh($ip)
 	{
@@ -2254,35 +2258,47 @@ class Customerapi_model extends MY_Model
 		$this->db->select('products.cusine')->from('products');
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left'); 
 		$this->db->group_by('products.cusine');
+		$this->db->where('category_id', $catid);
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
 	}else if($val=='restrant'){
 		$this->db->select('sellers.seller_name')->from('products');
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = products.seller_id', 'left');
 		$this->db->group_by('products.seller_id');
+		$this->db->where('category_id', $catid);
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
 	}else if($val=='offers'){
-		$this->db->select('products.offers')->from('products');
-		$this->db->group_by('products.offers');
+		$sql = "SELECT IF(products.offer_expairdate<= DATE('Y-m-d h:i:s A'), offers, offer_percentage) AS offers FROM `products` WHERE `category_id` = '".$catid."' AND `item_status` = 1 AND `offers` != '' OR offer_percentage!=''";
+		return $this->db->query($sql)->result_array();
 	}else if($val=='brand'){
 		$this->db->select('products.brand')->from('products');
 		$this->db->group_by('products.brand');
+		$this->db->where('category_id', $catid);
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
 	}else if($val=='discount'){
 		$this->db->select('products.discount')->from('products');
 		$this->db->group_by('products.discount');
+		$this->db->where('category_id', $catid);
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
 	}else if($val=='item_cost'){
+		//echo 'trt';exit;
 		$this->db->select('products.item_cost')->from('products');
-		$this->db->group_by('products.item_cost');
+		$this->db->where('category_id', $catid);
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
 	}
-	$this->db->where('category_id', $catid);
-	$this->db->where('item_status',1);
-	return $this->db->get()->result_array();
+	
 	
 		
 	}
 	 public function get_all_filters_product_list_color($catid,$fliter,$val){
 		 
-			$this->db->select('product_color_list.color_name')->from('products');
-			$this->db->join('product_color_list', 'product_color_list.item_id = products.item_id', 'left');
-			$this->db->group_by('product_color_list.color_name');
+			$this->db->select('products.colour as color_name')->from('products');
+			$this->db->group_by('products.colour');
 			$this->db->where('products.category_id', $catid);
 			$this->db->where('products.item_status',1);
 			return $this->db->get()->result_array(); 
