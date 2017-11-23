@@ -281,7 +281,7 @@ function Formvalidations(){
 	var pin=$('#pincode').val();
 	if(pincode==0 && pin!=''){
 		$('#sucessmsg').show();
-		$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_war"> We donot have service in your pincode <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+		$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1  btn_war"> We do not have service in your pincode <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 		return false;
 		 document.getElementById('addbillingadd').disabled = false;
 	}else{

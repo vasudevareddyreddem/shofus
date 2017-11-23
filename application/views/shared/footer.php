@@ -114,13 +114,6 @@
 </div>
 
 
-
-<!-- Login popup start here -->
-
-<div class="md-overlay"></div>
-
-<!-- the overlay element --> 
-
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">

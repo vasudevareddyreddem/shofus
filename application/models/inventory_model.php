@@ -66,7 +66,7 @@ function __construct()
 	{
 		$this->db->select('*')->from('sub_items');
 		$this->db->where('subitem_id',$ids);
-		$this->db->where('status',1);
+		//$this->db->where('status',1);
 		return $this->db->get()->row_array();
 	}
 	 function get_name_existss($name)
@@ -779,6 +779,11 @@ public function delete_banner($id,$sid)
 	   $sql = "SELECT * FROM sub_items WHERE subitem_name ='".$name."' AND status='1'";
         return $this->db->query($sql)->row_array();
      }
+	 function get_status_changed_data($id)
+	{
+	$sql = "SELECT * FROM sub_items WHERE subitem_id ='".$id."'";
+	return $this->db->query($sql)->row_array();
+	}
 	
 }
 ?>	

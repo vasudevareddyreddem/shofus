@@ -2457,8 +2457,19 @@ public function addhomepagemiddlebannerspost()
 		$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
+					
 					$id = base64_decode($this->uri->segment(3)); 
+					$changeddata=$this->inventory_model->get_status_changed_data($id);
+					$namecheck=$this->inventory_model->get_subitemname_existss($changeddata['subitem_name']);
+					
 					$status = base64_decode($this->uri->segment(4));
+					if($status==0){
+						if(count($namecheck)>0){
+						$this->session->set_flashdata('error',"Sub Item already in Active. Please check it once");
+						redirect('inventory/subitemslists');
+					
+						}
+					}
 					if($status==1){
 					$status=0;
 					}else{

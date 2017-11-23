@@ -216,7 +216,7 @@
       <div class=" row">
         <div class="social-media pull-left" > Stay connected:
           <ul>
-            <li><a href="https://www.facebook.com/cartinhourscom/" target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/fb.png" /></i></span></a></li>&nbsp;
+            <li><a href="https://www.facebook.com/cartinhoursdotcom/" target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/fb.png" /></i></span></a></li>&nbsp;
             <li><a href="https://twitter.com/cartinhours" target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/tiw.png" /></i></span></a></li>&nbsp;
             <li><a href="https://plus.google.com/u/0/106334687276812209130"  target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/gmai.png" /></i></span></a></li>
            
@@ -255,7 +255,7 @@
                     <div class="cart_search">
 					<form id="searchform" action="<?php echo base_url('home/seraching'); ?>" method="post">
                     
-					  <input type="text" name="serachvalues" id="tags"  onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+					  <input type="text" name="serachvalues" id="tags"  onfocus="searchfunction(this.value);" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                     
 					  <button type="submit" class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                     </form>
@@ -560,15 +560,12 @@ function validations(){
 
 }
 
-
-
+//searchfunction('v');
+ var clicks = 0; 
 function searchfunction(val){
-	$('#addingdropdown').hide();
-	$('#addingdropdown').empty();
-	var length=val.length;
-	if(length >=1){
+	 clicks += 1;
 	
-		jQuery.ajax({
+	jQuery.ajax({
 			url: "<?php echo site_url('home/search_functionality');?>",
 			type: 'post',
 			data: {
@@ -589,10 +586,7 @@ function searchfunction(val){
 					
 			}
 		});
-		
 	}
-	
-}
 function searchfunctionss(val){
 	
 	$('#addingdropdown').hide();

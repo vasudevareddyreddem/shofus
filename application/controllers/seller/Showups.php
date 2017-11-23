@@ -198,12 +198,13 @@ public function topofferactive(){
 				$season_itemcheck=$this->Promotions_model->season_sales_item_already_exits($cat_ida['item_id']);
 				//echo $this->db->last_query();
 				if(count($itemcheck)>0 && $itemcheck['expairdate']>=$curr_date || count($season_itemcheck)>0 && $season_itemcheck['expairdate']>=$curr_date ){
-					
+					$deals_ids_lists[]=array();
 				}else{
 					$deals_ids_lists[]=$cat_ida['item_id'];
 				}
 				
 			}
+			//echo '<pre>';print_r($deals_ids_lists);exit;
 			$data['seller_prducts']=$deals_ids_lists; 
 		}else{
 			$data['seller_prducts']=array();
@@ -269,7 +270,7 @@ public function topofferactive(){
 				$season_itemcheck=$this->Promotions_model->season_sales_item_already_exits($cat_ida['item_id']);
 				//echo $this->db->last_query();
 				if(count($itemcheck)>0 && $itemcheck['expairdate']>=$curr_date  || count($season_itemcheck)>0 && $season_itemcheck['expairdate']>=$curr_date){
-					
+					$deals_ids_lists[]=array();
 				}else{
 					$deals_ids_lists[]=$cat_ida['item_id'];
 				}
@@ -336,7 +337,7 @@ public function seasonsaleactive(){
 				$deals_itemcheck=$this->Promotions_model->dealsoftheday_item_already_exits($cat_ida['item_id']);
 				//echo $this->db->last_query();
 				if(count($itemcheck)>0 && $itemcheck['expairdate']>=$curr_date || count($deals_itemcheck)>0 && $deals_itemcheck['expairdate']>=$curr_date  ){
-					
+					$deals_ids_lists[]=array();
 				}else{
 					$deals_ids_lists[]=$cat_ida['item_id'];
 				}
