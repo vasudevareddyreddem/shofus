@@ -1424,34 +1424,12 @@ class CustomerApi extends REST_Controller {
 		
 		$top_offer_location = $this->Customerapi_model->top_offers_product_search();
 		//echo $this->db->last_query();exit;
-		
-		foreach($top_offer_location as $productslist){
-			$currentdate=date('Y-m-d h:i:s A');
-			if($productslist['offer_expairdate']>=$currentdate){
-               		$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
-               		$percentage= $productslist['offer_percentage'];
-               		$orginal_price=$productslist['item_cost'];
-               		}else{
-               			//echo "expired";
-               			$item_price= $productslist['special_price'];
-               			$prices= ($productslist['item_cost']-$productslist['special_price']);
-               			$percentage= (($prices) /$productslist['item_cost'])*100;
-               			$orginal_price=$productslist['item_cost'];
-               		}
-			$plist[$productslist['item_id']]=$productslist;
-			$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
-			$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-			$plist[$productslist['item_id']]['percentage']=$percentage;
-			
-			
-		}
-		
-		if(isset($plist) && count($plist)>0){
+		if(count($top_offer_location)>0){
 				$message = array
 				(
 					'status'=>1,
 					'path' =>base_url('uploads/products/'),
-					'location_top_offers'=>$plist,
+					'location_top_offers'=>$top_offer_location,
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -1984,6 +1962,7 @@ class CustomerApi extends REST_Controller {
 
 					}
 					$categorywise= $this->Customerapi_model->get_search_all_subcategory_products();
+					//echo $this->db->last_query();exit;
 					if(count($categorywise)>0){
 					foreach($categorywise as $list){
 						
@@ -1993,7 +1972,7 @@ class CustomerApi extends REST_Controller {
 							}
 						}
 					}
-				//echo '<pre>';print_r($idslist);
+				//echo '<pre>';prhttp://localhost/cartinhour/api/customerApi/category_wise_leftside_filters?category_id=20int_r($idslist);
 					$result = array_unique($idslist);
 						foreach ($result as $pids){
 								$products_list[]=$this->Customerapi_model->product_details($pids);
@@ -2035,20 +2014,41 @@ class CustomerApi extends REST_Controller {
 					$maxamt= max( array_map("max", $data['price_list']) );
 					$data['minimum_price'] = array('item_cost'=>$minamt);
 					$data['maximum_price'] = array('item_cost'=>$maxamt);
+						
 					$iospurpose=array_merge($data['brand_list'][0],$data['price_list'][0],$data['discount_list'][0],array('Instock'=>1,'Out of stock'=>0),$data['offer_list'][0],array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));
-
+					 //echo '<pre>';print_r($data);exit;
 				}else if($category_id==20){
 					$data['brand_list']= $this->Customerapi_model->get_all_brand_list($category_id);
 					$data['price_list']= $this->Customerapi_model->get_all_price_list($category_id);
 					$data['discount_list']= $this->Customerapi_model->get_all_discount_list($category_id);
 					$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-					$data['offer_list']= $this->Customerapi_model->get_all_offer_list($category_id);
+					$offer_list= $this->Customerapi_model->get_all_offer_list($category_id);
 					//$data['color_list']= $this->Customerapi_model->get_all_color_list($category_id);
 					$data['color_list']= $this->Customerapi_model->get_all_colours_list($category_id);
 					$minamt = min( array_map("max", $data['price_list']) );
 					$maxamt= max( array_map("max", $data['price_list']) );
 					$data['minimum_price'] = array('item_cost'=>$minamt);
 					$data['maximum_price'] = array('item_cost'=>$maxamt);
+					foreach ($offer_list as $list) {
+						$date = new DateTime("now");
+						$curr_date = $date->format('Y-m-d h:i:s A');
+						if($list['offer_expairdate']>=$curr_date){
+						if($list['offer_percentage']!=''){
+						$ids[]=$list['offer_percentage'];
+						}
+						}else{
+						if($list['offers']!=''){
+						$ids[]=$list['offers'];
+						}
+						}
+
+						}
+						foreach (array_unique($ids) as $Li){
+						$uniids[]=array('offers'=>number_format($Li, 2));
+
+						}
+						//echo '<pre>';print_r($uniids);exit;
+					$data['offer_list']=$uniids;
 					$iospurpose=array_merge($data['brand_list'][0],$data['price_list'][0],$data['discount_list'][0],array('Instock'=>1,'Out of stock'=>0),$data['offer_list'][0],$data['color_list'][0],array('Minimum amount'=>$data['minimum_price']['item_cost']),array('Maximum amount'=>$data['maximum_price']['item_cost']));
 
 				}else if($category_id==19){
@@ -2321,15 +2321,23 @@ class CustomerApi extends REST_Controller {
 				$fliter=$option;
 				$val='offers';
 					$filtersoption_list= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
+					//echo $this->db->last_query();
 					if(count($filtersoption_list)>0){
 						foreach ($filtersoption_list as $key=>$list){
 							$ls[]=$list['offers'];
 					
 						}
-						$data=$ls;
+						$offers=$ls;
 						}else{
-							$data='';
+							$offers='';
 							}
+							
+						$cc=array_unique($offers);
+						foreach($cc as $cc){
+							$lists_ids[]= $cc;
+							}
+					$data=($lists_ids);						
+				//echo '<pre>';print_r($cc);exit;
 			}else if(isset($option) && $option=='brand_list'){
 				$fliter=$option;
 				$val='brand';
@@ -2360,8 +2368,13 @@ class CustomerApi extends REST_Controller {
 				$fliter=$option;
 				$val='item_cost';
 				$datails['filtersoption_list']= $this->Customerapi_model->get_all_filters_product_list($category_id,$fliter,$val);
-				$data['minimum'] = reset($datails['filtersoption_list']);
-				$data['maximum'] = end($datails['filtersoption_list']);
+				//echo $this->db->last_query();
+				//$data['minimum'] = reset($datails['filtersoption_list']);
+				//$data['maximum'] = end($datails['filtersoption_list']);
+					$minamt = min( array_map("max", $datails['filtersoption_list']) );
+					$maxamt= max( array_map("max", $datails['filtersoption_list']) );
+					$data['minimum'] = array('item_cost'=>$minamt);
+					$data['maximum'] = array('item_cost'=>$maxamt);
 			}else if(isset($option) && $option=='color_list'){
 				$fliter=$option;
 				$val='color';
