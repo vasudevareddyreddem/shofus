@@ -1424,12 +1424,34 @@ class CustomerApi extends REST_Controller {
 		
 		$top_offer_location = $this->Customerapi_model->top_offers_product_search();
 		//echo $this->db->last_query();exit;
-		if(count($top_offer_location)>0){
+		
+		foreach($top_offer_location as $productslist){
+			$currentdate=date('Y-m-d h:i:s A');
+			if($productslist['offer_expairdate']>=$currentdate){
+               		$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+               		$percentage= $productslist['offer_percentage'];
+               		$orginal_price=$productslist['item_cost'];
+               		}else{
+               			//echo "expired";
+               			$item_price= $productslist['special_price'];
+               			$prices= ($productslist['item_cost']-$productslist['special_price']);
+               			$percentage= (($prices) /$productslist['item_cost'])*100;
+               			$orginal_price=$productslist['item_cost'];
+               		}
+			$plist[$productslist['item_id']]=$productslist;
+			$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+			$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+			$plist[$productslist['item_id']]['percentage']=$percentage;
+			
+			
+		}
+		
+		if(isset($plist) && count($plist)>0){
 				$message = array
 				(
 					'status'=>1,
 					'path' =>base_url('uploads/products/'),
-					'location_top_offers'=>$top_offer_location,
+					'location_top_offers'=>$plist,
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
