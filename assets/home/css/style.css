@@ -6,6 +6,9 @@
 	border-radius:10px;
 	padding:10px 0px; 
 }
+.mar_t_m_12{
+	margin-top:12px
+}
 .sub_ct_width{
 	width:23%;
 }
@@ -6310,6 +6313,9 @@ and (max-device-width : 1024px)
 	.sm_hide{
 		display:none;
 	}
+	.mar_t_m_12{
+	margin-top:2px
+}
 	.incr_btn {
     width: 90px;
     position: absolute;
@@ -6321,7 +6327,7 @@ and (max-device-width : 1024px)
 }
 	.sidebar {
     margin-top: 0;
-    background-color: #009688 !important;
+    background-color: transparent !important;
     transition: all 0.5s ease-in-out;
 }
 	.mar_t20{

@@ -121,7 +121,7 @@
                            <div class="col-md-6">
                               <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></div>
                               <p class=""><?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?></p>
-                              <p class="">Available in: &nbsp;&nbsp;
+                              <p class="">Available in:</p> <p class="">
                                  <?php foreach ($productslist['unitproducts_list'] as $list){ ?>
                                  <?php if($list['item_id']==$productslist['item_id']){ ?>
                                  <span   onclick="getunitwiseproducts('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>','<?php echo time(); ?>')" class="btn_cus btn_cus_acti pad_rig"><?php echo $list['unit']; ?></span>&nbsp;&nbsp;
@@ -152,7 +152,7 @@
                                  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
                               </div>
                            </div>
-                           <div class="col-md-3">
+                           <div class="col-md-3 mar_t_m_12" >
                               <p class="">MRP:₹ <?php echo number_format($item_price, 2); ?></p>
                               <p class=""> Total Amount:₹ <span id="totalamount<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
                               <div class="clearfix">&nbsp;</div>
