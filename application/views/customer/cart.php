@@ -35,7 +35,7 @@
 
                 </div>
             </div>
-            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 bhoechie-tab min_he_500_web"  >
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 bhoechie-tab min_he_500_web"  >
                 <!-- flight section -->
                 <div class="bhoechie-tab-content active">
                     <center>

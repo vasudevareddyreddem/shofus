@@ -328,7 +328,7 @@
 				<p>Near by stores</p></a>
 			</span>
 			<span class="medias dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/catag.png" /></i>
-				<p>categories</p></a>
+				<p>Categories</p></a>
 				  <ul class="dropdown-menu">
 				  <?php foreach ($allcategories_list as $list){ ?>
                   <li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id'])); ?>"><?php echo $list['category_name']; ?></a></li>

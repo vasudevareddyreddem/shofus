@@ -80,7 +80,7 @@ label {
             </div>
         </div>
 		<a class="log_res_logo_for" href="<?php echo base_url(); ?>" >
-			<img src="<?php echo base_url(); ?>assets/home/images/logo_login.png" />
+			<img style="width:130px;" src="<?php echo base_url(); ?>assets/home/images/logo_login.png" />
 		</a>
     </div>
 

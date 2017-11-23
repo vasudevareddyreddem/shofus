@@ -412,8 +412,9 @@
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div class="sm_hide" >
-				<a class="btn btn-warning col-md-6 btn-sm pro_ad_btn" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" type="submit" ><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
+				<a class="btn btn-warning col-md-6 btn-sm pro_ad_btn cus_pull-ri_800" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" type="submit" ><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
 				<button class="btn btn-sm  btn-primary col-md-6 pull-right pro_ad_btn"  type="submit"><i class="fa fa-bolt" aria-hidden="true"></i>  BUY NOW</button>
+				<div class="clearfix">&nbsp;</div>
 			</div>
 			<div class=" ">
 			<div class="md_hide " >
@@ -3047,7 +3048,7 @@ function checkOffset() {
   var a=$(document).scrollTop()+window.innerHeight;
   var b=$('#footer-start').offset().top;
   if (a<b) {
-    $('#social-float').css('bottom', '14%');
+    $('#social-float').css('border', '0px');
   } else {
     $('#social-float').css('bottom', (10+(a-b))+'px');
   }

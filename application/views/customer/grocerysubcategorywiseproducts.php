@@ -1,10 +1,6 @@
 <style>
    /* grossery sidebar	 */
-   .sidebar{ 
-   margin-top:0;
-   background-color:#000;
-   transition: all 0.5s  ease-in-out;
-   }
+   
    .bg-defoult{
    background-color:#fff;
    color:#222;
@@ -69,7 +65,7 @@
             <div class="col-md-12  ">
                <br>
 			
-               <div class='col-md-3'>
+               <div class='col-md-3	'>
                   <div class="sidebar left ">
                      <ul class="list-sidebar bg-defoult">
 					 <?php $s=1;foreach ($subitem_list as $list){ ?>
@@ -119,18 +115,18 @@
 											<div class="panel-heading bg_defa ">
 											   <div class="row">
 												 
-													 <div class="col-md-3">
+													 <div class="col-md-3 col-sm-3 col-xs-3">
 														<a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
 														<div>
-														   <img class="groc_min_h" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
+														   <img class="img-responsive thumbnail" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
 														</div>
 														</a>
 													 </div>
 												
-												  <div class="col-md-6">
+												  <div class="col-md-6 col-sm-6 col-xs-9">
 													 <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></div>
 													 <p class=""><?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?></p>
-													 <p class="">Available in: &nbsp;&nbsp;
+													 <p class="">Available in:</p>  <p class="">
 													 <?php foreach ($productslist['unitproducts_list'] as $list){ ?>
 													 
 													 <?php if($list['item_id']==$productslist['item_id']){ ?>
@@ -144,7 +140,7 @@
 													
 													 </p>
 													
-													 <div  class="input-group incr_btn pull-left">
+													 <div  class="input-group incr_btn1 pull-left">
 																			<span class="input-group-btn">
 																			<button style="width:20px;padding:6px;"type="button" onclick="productqty('<?php echo $cnt; ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">
 																	<span style="margin:-4px" class="glyphicon glyphicon-minus"></span>
@@ -169,7 +165,7 @@
 													 
 													</div>
 												  </div>
-												  <div class="col-md-3">
+												  <div class="col-md-3 col-sm-3 col-xs-12	">
 													 <p class="">MRP:₹ <?php echo number_format($item_price, 2); ?></p>
 													 <p class=""> Total Amount:₹ <span id="totalamount<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
 													
