@@ -636,6 +636,8 @@ class Customerapi_model extends MY_Model
 		
 		$this->db->where('item_status',1);
 		$this->db->where('category_id',$cid);
+		$this->db->order_by('products.item_cost','DESC');
+
 		
 		return $this->db->get()->result_array();
 	}

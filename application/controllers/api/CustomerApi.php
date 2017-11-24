@@ -44,10 +44,10 @@ class CustomerApi extends REST_Controller {
 			
 			$checkemail =filter_var($username, FILTER_VALIDATE_EMAIL);
 				if($checkemail==''){
-					$message = array('status'=>0,'message'=>'Mobile number already exits!');
+					$message = array('status'=>0,'message'=>'Mobile number already exist!');
 					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 				}else{
-					$message = array('status'=>0,'message'=>'Email id already exits!');
+					$message = array('status'=>0,'message'=>'Email id already exist!');
 					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 				}
 				
@@ -643,7 +643,7 @@ class CustomerApi extends REST_Controller {
 				foreach ($customer_items as $order_ids){
 					$ids[]=$order_ids['order_item_id'];
 				}
-				
+				if(isset($ids) && count($ids)>0){
 				if(in_array($order_item_id, $ids)){
 					
 					$item_details= $this->Customerapi_model->get_order_items_list($customer_id,$order_item_id);
@@ -672,6 +672,10 @@ class CustomerApi extends REST_Controller {
 					
 					);
 					$this->response($message,REST_Controller::HTTP_OK);
+					}else{
+						$message = array('status'=>0,'message'=>'You have no permissions');
+						$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					}
 				}else{
 					$message = array('status'=>0,'message'=>'You have no permissions');
 					$this->response($message, REST_Controller::HTTP_NOT_FOUND);
