@@ -1562,6 +1562,10 @@ jQuery.ajax({
 				},
 			dataType: 'JSON',
 			success: function (data) {
+			 if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+				
 				jQuery('#sucessmsg').show();
 				//alert(data.msg);
 				if(data.msg==2){
@@ -1579,6 +1583,7 @@ jQuery.ajax({
 						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 				document.getElementById("sucessmsg").focus();				
 				}
+			}
 			
 
 			}

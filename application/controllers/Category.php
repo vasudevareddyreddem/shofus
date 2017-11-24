@@ -1480,6 +1480,252 @@ public function suitemwiseproductslist(){
 			$this->category_model->get_ll_products_update($productslist['item_id'],$prices,number_format($percentage, 2));
 		}
 		//echo '<pre>';print_r($ids);exit;
+	}
+	public function mobileviewsubcategorywiseproducts(){
+		$post=$this->input->post();
+		$plist=$this->category_model->mobileviewsubcategorywiseproducts_list($post['subcatid']);
+		$getcatidlis=$this->category_model->get_category_details($post['subcatid']);
+		$subcaterory_id=$post['subcatid'];
+		$caterory_id=$getcatidlis['category_id'];
+		$data['subcategory_id']=$subcaterory_id;
+		$data['categoryid']=$caterory_id;
+		$data['brand_list']= $this->category_model->get_all_brand_list_sib($caterory_id,$subcaterory_id);
+		$price_list= $this->category_model->get_all_price_list_sub($caterory_id,$subcaterory_id);
+		
+		//echo $this->db->last_query();exit;
+		$data['discount_list']= $this->category_model->get_all_discount_list_sub($caterory_id,$subcaterory_id);
+		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
+		$offer_list= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
+		$data['color_list']= $this->category_model->get_all_color_list_sub($caterory_id,$subcaterory_id);
+		//echo $this->db->last_query();exit;
+		//echo '<pre>';print_r($data['color_list']);exit;
+		foreach ($price_list as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				$amounts[]=$list['item_cost'];
+			}else{
+				$amounts[]=$list['special_price'];
+			}
+			
+		}
+		$minamt = min($amounts);
+		$maxamt= max($amounts);
+		$data['minimum_price'] = array('item_cost'=>$minamt);
+		$data['maximum_price'] = array('item_cost'=>$maxamt);
+		//echo max($data['price_list']);
+		foreach ($offer_list as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				if($list['offer_percentage']!=''){
+				$ids[]=$list['offer_percentage'];
+				}
+			}else{
+				if($list['offers']!=''){
+				$ids[]=$list['offers'];
+				}
+			}
+			
+		}
+		foreach (array_unique($ids) as $Li){
+			$uniids[]=array('offers'=>$Li);
+			
+		}
+		$data['offer_list']=$uniids;
+		if(count($plist)>0){
+			foreach($plist as $list){
+			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+			}
+	
+				if(isset($reviewrating) && count($reviewrating)>0){
+					$data['avg_count']=$reviewrating;
+				}else{
+					$data['avg_count']=array();
+				}
+				if(isset($reviewcount) && count($reviewcount)>0){
+					$data['rating_count']=$reviewcount;
+				}else{
+					$data['rating_count']=array();
+				}
+				$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+				if(count($wishlist_ids)>0){
+				foreach ($wishlist_ids as  $list){
+					$customer_ids_list[]=$list['cust_id'];
+					$whishlist_item_ids_list[]=$list['item_id'];
+					$whishlist_ids_list[]=$list['id'];
+				}
+				$data['customer_ids_list']=$customer_ids_list;
+				$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+				$data['whishlist_ids_list']=$whishlist_ids_list;
+				}else{
+				$data['customer_ids_list']=array();
+				$data['whishlist_item_ids_list']=array();
+				$data['whishlist_ids_list']=array();
+				}
+			$data['product_list']=$plist;
+		}else{
+			$data['product_list']=array();
+		}
+		$this->load->view('customer/mobileviewproducts',$data);
+	
+	}
+	public function mobileviewfilers(){
+		$post=$this->input->post();
+		$ip=$this->input->ip_address();
+		$removesearch= $this->category_model->get_all_previous_search_fields();
+		foreach ($removesearch as $list){
+		$this->category_model->delete_privous_searchdata($list['id']);
+		}
+		if(isset($post['brand'])&& $post['brand']!=''){
+			foreach ($post['brand'] as $li){
+				$lists[]=$li;
+			}
+			foreach($lists as $list){
+				$data1=array(
+						'Ip_address'=>$ip,
+						'category_id'=>$post['categoryid'],
+						'subcategory_id'=>$post['subcategory_id'],
+						'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+						'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+						'brand'=>isset($list) ? $list:'',
+						'create'=>date('Y-m-d H:i:s'),
+						);
+						$this->category_model->save_mobileviewfilter_data($data1);
+					} 
+			}
+			if(isset($post['offers'])&& $post['offers']!=''){
+			foreach ($post['offers'] as $li){
+				$offerlists[]=$li;
+			}
+			foreach($offerlists as $list){
+				$data1=array(
+						'Ip_address'=>$ip,
+						'category_id'=>$post['categoryid'],
+						'subcategory_id'=>$post['subcategory_id'],
+						'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+						'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+						'offers'=>isset($list) ? $list:'',
+						'create'=>date('Y-m-d H:i:s'),
+						);
+						$this->category_model->save_mobileviewfilter_data($data1);
+					} 
+			}
+			if(isset($post['colors'])&& $post['colors']!=''){
+			foreach ($post['colors'] as $li){
+				$colorslists[]=$li;
+			}
+			foreach($colorslists as $list){
+				$data1=array(
+						'Ip_address'=>$ip,
+						'category_id'=>$post['categoryid'],
+						'subcategory_id'=>$post['subcategory_id'],
+						'mini_amount'=>isset($post['min_amount']) ? $post['min_amount']:'',
+						'max_amount'=>isset($post['max_amount']) ? $post['max_amount']:'',
+						'color'=>isset($list) ? $list:'',
+						'create'=>date('Y-m-d H:i:s'),
+						);
+						$this->category_model->save_mobileviewfilter_data($data1);
+					} 
+			}
+		redirect('category/mobileviewfilers_result');
+	}
+	public function mobileviewfilers_result(){
+		$post=$this->input->post();
+		$product_detals=$this->category_model->get_Mobile_search_all_subcategory_products();
+		$data['previousdata']= $this->category_model->get_all_previous_search_fields();
+		if(count($data['previousdata'])==0){
+			redirect();
+		}
+		//echo '<pre>';print_r($product_detals);exit;
+		$subcaterory_id=$data['previousdata'][0]['subcategory_id'];
+		$caterory_id=$data['previousdata'][0]['category_id'];
+		$data['subcategory_id']=$subcaterory_id;
+		$data['categoryid']=$caterory_id;
+		$data['brand_list']= $this->category_model->get_all_brand_list_sib($caterory_id,$subcaterory_id);
+		$price_list= $this->category_model->get_all_price_list_sub($caterory_id,$subcaterory_id);
+		
+		//echo $this->db->last_query();exit;
+		$data['discount_list']= $this->category_model->get_all_discount_list_sub($caterory_id,$subcaterory_id);
+		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
+		$offer_list= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
+		$data['color_list']= $this->category_model->get_all_color_list_sub($caterory_id,$subcaterory_id);
+		//echo $this->db->last_query();exit;
+		//echo '<pre>';print_r($data['color_list']);exit;
+		foreach ($price_list as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				$amounts[]=$list['item_cost'];
+			}else{
+				$amounts[]=$list['special_price'];
+			}
+			
+		}
+		$minamt = min($amounts);
+		$maxamt= max($amounts);
+		$data['minimum_price'] = array('item_cost'=>$minamt);
+		$data['maximum_price'] = array('item_cost'=>$maxamt);
+		//echo max($data['price_list']);
+		foreach ($offer_list as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				if($list['offer_percentage']!=''){
+				$ids[]=$list['offer_percentage'];
+				}
+			}else{
+				if($list['offers']!=''){
+				$ids[]=$list['offers'];
+				}
+			}
+			
+		}
+		foreach (array_unique($ids) as $Li){
+			$uniids[]=array('offers'=>$Li);
+			
+		}
+		$data['offer_list']=$uniids;
+		if(count($product_detals[0])>0){
+			foreach($product_detals[0] as $list){
+			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+			}
+	
+				if(isset($reviewrating) && count($reviewrating)>0){
+					$data['avg_count']=$reviewrating;
+				}else{
+					$data['avg_count']=array();
+				}
+				if(isset($reviewcount) && count($reviewcount)>0){
+					$data['rating_count']=$reviewcount;
+				}else{
+					$data['rating_count']=array();
+				}
+				$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+				if(count($wishlist_ids)>0){
+				foreach ($wishlist_ids as  $list){
+					$customer_ids_list[]=$list['cust_id'];
+					$whishlist_item_ids_list[]=$list['item_id'];
+					$whishlist_ids_list[]=$list['id'];
+				}
+				$data['customer_ids_list']=$customer_ids_list;
+				$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+				$data['whishlist_ids_list']=$whishlist_ids_list;
+				}else{
+				$data['customer_ids_list']=array();
+				$data['whishlist_item_ids_list']=array();
+				$data['whishlist_ids_list']=array();
+				}
+			$data['product_list']=$product_detals[0];
+		}else{
+			$data['product_list']=array();
+		}
+		//echo '<pre>';print_r($data['previousdata']);exit;
+		//$this->load->view('customer/mobileviewproductsresult',$data);
+		$this->template->write_view('content', 'customer/mobileviewproductsresult',$data);
+		$this->template->render();
 	}	
 }
 ?>

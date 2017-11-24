@@ -1102,6 +1102,7 @@
    <div class="md_hide">
 			<br>
          <div class="mar_res_t150">
+		 <span id="mobileviewelectoriccategory" >
             <div class="col-md-12  ">
                <div class="title text-left mar_t10"><span> sub Category</span></div>
                <!--groffers start-->
@@ -1110,53 +1111,42 @@
                      <div class="carousel-inner">
 					 
                         <?php $c=0;foreach($subcategory_list as $list){ ?>
-							
-							<?php if($list[0]['category_id']==21){ ?>
-							<script>
-							$(document).ready(function() {
-							getproduct(<?php echo $list[0]['subcategory_id']; ?>);
-							});
-							</script>
-							<?php } ?>
-							
-						
-						
 		 <?php if($c==0){ ?>
           <div class="item  active slid_hig">
             <div class="row">
 				<?php if(isset($list[0]['subcategory_name']) && $list[0]['subcategory_name']!=''){ ?>
-                	   <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="onclicksubcat<?php echo $list[0]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[0]['subcategory_id']; ?>)">
+                	   <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="mobileonclicksubcat<?php echo $list[0]['subcategory_id']; ?>"  onclick="mobileviewsubcatoptions(<?php echo $list[0]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[0]['subcategory_image']);?>">
 						<p class="name_gr_mob"><?php echo $list[0]['subcategory_name']; ?></p>
 					 </div> 
 					 
 					<?php } ?>
 					<?php if(isset($list[1]['subcategory_name']) && $list[1]['subcategory_name']!=''){ ?>
-                	   <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="onclicksubcat<?php echo $list[1]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[1]['subcategory_id']; ?>)">
+                	   <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="mobileonclicksubcat<?php echo $list[1]['subcategory_id']; ?>"  onclick="mobileviewsubcatoptions(<?php echo $list[1]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[1]['subcategory_image']);?>">
 						<p class="name_gr_mob"><?php echo $list[1]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[2]['subcategory_name']) && $list[2]['subcategory_name']!=''){ ?>
-                	    <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="onclicksubcat<?php echo $list[2]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[2]['subcategory_id']; ?>)">
+                	    <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="mobileonclicksubcat<?php echo $list[2]['subcategory_id']; ?>"  onclick="mobileviewsubcatoptions(<?php echo $list[2]['subcategory_id']; ?>)">
 							<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[2]['subcategory_image']);?>">
 						<p class="name_gr_mob"><?php echo $list[2]['subcategory_name']; ?></p>
 					</div> 
 					<?php } ?>
 					<?php if(isset($list[3]['subcategory_name']) && $list[3]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="onclicksubcat<?php echo $list[3]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[3]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="mobileonclicksubcat<?php echo $list[3]['subcategory_id']; ?>"  onclick="mobileviewsubcatoptions(<?php echo $list[3]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[3]['subcategory_image']);?>">
 						<p class="name_gr_mob"><?php echo $list[3]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[4]['subcategory_name']) && $list[4]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="onclicksubcat<?php echo $list[4]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[4]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="mobileonclicksubcat<?php echo $list[4]['subcategory_id']; ?>"  onclick="mobileviewsubcatoptions(<?php echo $list[4]['subcategory_id']; ?>)">
 						  <img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[4]['subcategory_image']);?>">
 							<p class="name_gr_mob"><?php echo $list[4]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[5]['subcategory_name']) && $list[5]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="onclicksubcat<?php echo $list[5]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[5]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2 col-sm-2 col-xs-3 img_mobil" id="mobileonclicksubcat<?php echo $list[5]['subcategory_id']; ?>"  onclick="mobileviewsubcatoptions(<?php echo $list[5]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[5]['subcategory_image']);?>">
 						<p class="name_gr_mob"><?php echo $list[5]['subcategory_name']; ?></p>
 					 </div> 
@@ -1173,37 +1163,37 @@
            <div class="item slid_hig">
             <div class="row">
 				<?php if(isset($list[0]['subcategory_name']) && $list[0]['subcategory_name']!=''){ ?>
-                	   <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[0]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[0]['subcategory_id']; ?>)">
+                	   <div style="cursor:pointer" class="col-md-2" id="mobileonclicksubcat<?php echo $list[0]['subcategory_id']; ?>"  onclick="mobileviewsubcatoptions(<?php echo $list[0]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[0]['subcategory_image']);?>">
 						<p class="name_gr_mob"><?php echo $list[0]['subcategory_name']; ?></p>
 					 </div> 
 					<?php } ?>
 					<?php if(isset($list[1]['subcategory_name']) && $list[1]['subcategory_name']!=''){ ?>
-                	   <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[1]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[1]['subcategory_id']; ?>)">
+                	   <div style="cursor:pointer" class="col-md-2" id="mobileonclicksubcat<?php echo $list[1]['subcategory_id']; ?>"  onclick="mobileviewsubcatoptions(<?php echo $list[1]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[1]['subcategory_image']);?>">
 						<p class="name_gr_mob"><?php echo $list[1]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[2]['subcategory_name']) && $list[2]['subcategory_name']!=''){ ?>
-                	    <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[2]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[2]['subcategory_id']; ?>)">
+                	    <div style="cursor:pointer" class="col-md-2" id="mobileonclicksubcat<?php echo $list[2]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[2]['subcategory_id']; ?>)">
 							<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[2]['subcategory_image']);?>">
 						<p class="name_gr_mob"><?php echo $list[2]['subcategory_name']; ?></p>
 					</div> 
 					<?php } ?>
 					<?php if(isset($list[3]['subcategory_name']) && $list[3]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[3]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[3]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2" id="mobileonclicksubcat<?php echo $list[3]['subcategory_id']; ?>"  onclick="mobileviewsubcatoptions(<?php echo $list[3]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[3]['subcategory_image']);?>">
 						<p class="name_gr_mob"><?php echo $list[3]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[4]['subcategory_name']) && $list[4]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[4]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[4]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2" id="mobileonclicksubcat<?php echo $list[4]['subcategory_id']; ?>"  onclick="mobileviewsubcatoptions(<?php echo $list[4]['subcategory_id']; ?>)">
 						  <img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[4]['subcategory_image']);?>">
 							<p class="name_gr_mob"><?php echo $list[4]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[5]['subcategory_name']) && $list[5]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[5]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[5]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2" id="mobileonclicksubcat<?php echo $list[5]['subcategory_id']; ?>"  onclick="mobileviewsubcatoptions(<?php echo $list[5]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[5]['subcategory_image']);?>">
 						<p class="name_gr_mob"><?php echo $list[5]['subcategory_name']; ?></p>
 					 </div> 
@@ -1222,252 +1212,41 @@
                   </div>
                </div>
             </div>
-			<!--filters-->
-			<div class="container pos_re">
-		
-			<div class="filter_btn">
-			<a  data-toggle="modal" data-target="#myModal">
-				<span  style="padding:10px;border-radius:50%;" class="glyphicon glyphicon-filter  bg-primary"></span><span style="color:#fff;"> Filters</span>
-			</a>
-			</div>
-		
 			
+			</span>
 			
-			 <div class="modal animated slideInLeft"  style="" id="myModal" role="dialog">
-				<div class="modal-dialog">
-				
-				
-				  <div class="modal-content">
-					<div class="modal-header bg-primary">
-					  <button type="button" class="close" data-dismiss="modal">&times;</button>
-					  <h4 class="modal-title">Filters</h4>
-					</div>
-					<div class="modal-body">
-				   <div class="example">
-					  <h3 class="text-left pad_0"style="padding:0;margin:0z">Price</h3>
-					  <div id="html6"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
-					  </div>
-					  <select id="input-select1" onchange="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
-						 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
-						 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-						 <?php } ?>
-					  </select>
-					  <input type="text" readonly="true" name="max_amount"   step="1" id="input-number1">
-				   </div>
-				   <input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
-	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                  
-  <div class="panel panel-primary">
-	 <div class="panel-heading" role="tab" id="headingThreesm">
-		<h4 class="panel-title">
-		   <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThreesm" aria-expanded="false" aria-controls="collapseThreesm">
-		   BRAND	
-		   </a>
-		</h4>
-	 </div>
-	 <div id="collapseThreesm" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreesm">
-		<div class="panel-body">
-		   <div class="checkbox">
-		   <label>
-			<input type="checkbox"  id="checkbox1" name="" value="">
-				<span>&nbsp; OPPO</span>
-		   </label>
-		   </div>
-		   <div class="checkbox">
-		   <label>
-			<input type="checkbox"  id="checkbox1" name="" value="">
-				<span>&nbsp; OPPO</span>
-		   </label>
-		   </div>
-		   <div class="checkbox">
-		   <label>
-			<input type="checkbox"  id="checkbox1" name="" value="">
-				<span>&nbsp; OPPO</span>
-		   </label>
-		   </div>
-		   <div class="checkbox">
-		   <label>
-			<input type="checkbox"  id="checkbox1" name="" value="">
-				<span>&nbsp; OPPO</span>
-		   </label>
-		   </div>
-		  
-		</div>
-	 
-	 
-  </div>
-  <div class="panel panel-primary">
-	 <div class="panel-heading" role="tab" id="headingThreesm">
-		<h4 class="panel-title">
-		   <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThreesm" aria-expanded="false" aria-controls="collapseThreesm">
-		   Offer	
-		   </a>
-		</h4>
-	 </div>
-	 <div id="collapseThreesm" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreesm">
-		<div class="panel-body">
-		    <div class="radio"><label><input type="radio" name="options2" checked="checked"><span>All Options 2</span></label></div>
-            <div class="radio"><label><input type="radio" name="options2"><span>Options 2.1</span></label></div>
-            <div class="radio"><label><input type="radio" name="options2"><span>Options 2.2</span></label></div>
-            <div class="radio"><label><input type="radio" name="options2"><span>Options 2.3</span></label></div>
-		  
-		</div>
-	 </div>
-	 
-	 </div>
-	 
-  </div>
-</div>
-
-					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-default" >Submit</button>
-					</div>
-				  </div>
-				  
-				</div>
-			  </div>
-				
-		  
-				</div>
 			 
-			  <div class="container bg-primary pad_t15">
-			  <div class=" card_mob">
-					<div class="col-xs-3" style="border-right:1px solid #f1f1f1">
-						<img class="img-responsive img_res_mob_sub" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-					</div>
-					<div class="col-xs-9">
-						<h6><a href="">OPPO A37 gold 16GB 2GB Ram</a></h6>
-						<div class="" style="color:#187a7d;">₹ 9,990.00 
-							&nbsp;
-							<span class="price-old">₹ 11,488.50</span>
-							<span class="label-tags"><p class=" text-success"> 13.04% off</p></span>
-                       </div>
-					   <div class="rating ">
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-						</div>
-					</div>
-					<div class="clearfix" style="margin:0">&nbsp;</div>
-					<span  class="glyphicon glyphicon-heart whis_cus_m"></span>
-			  </div>
-			  <div class=" card_mob">
-					<div class="col-xs-3" style="border-right:1px solid #f1f1f1">
-						<img class="img-responsive img_res_mob_sub" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-					</div>
-					<div class="col-xs-9">
-						<h6><a href="">OPPO A37 gold 16GB 2GB Ram</a></h6>
-						<div class="" style="color:#187a7d;">₹ 9,990.00 
-							&nbsp;
-							<span class="price-old">₹ 11,488.50</span>
-							<span class="label-tags"><p class=" text-success"> 13.04% off</p></span>
-                       </div>
-					   <div class="rating ">
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-						</div>
-					</div>
-					<div class="clearfix" style="margin:0">&nbsp;</div>
-					<span  class="glyphicon glyphicon-heart whis_cus_m"></span>
-			  </div>
-			  <div class=" card_mob">
-					<div class="col-xs-3" style="border-right:1px solid #f1f1f1">
-						<img class="img-responsive img_res_mob_sub" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-					</div>
-					<div class="col-xs-9">
-						<h6><a href="">OPPO A37 gold 16GB 2GB Ram</a></h6>
-						<div class="" style="color:#187a7d;">₹ 9,990.00 
-							&nbsp;
-							<span class="price-old">₹ 11,488.50</span>
-							<span class="label-tags"><p class=" text-success"> 13.04% off</p></span>
-                       </div>
-					   <div class="rating ">
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-						</div>
-					</div>
-					<div class="clearfix" style="margin:0">&nbsp;</div>
-					<span  class="glyphicon glyphicon-heart whis_cus_m"></span>
-			  </div>
-			  <div class=" card_mob">
-					<div class="col-xs-3" style="border-right:1px solid #f1f1f1">
-						<img class="img-responsive img_res_mob_sub" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-					</div>
-					<div class="col-xs-9">
-						<h6><a href="">OPPO A37 gold 16GB 2GB Ram</a></h6>
-						<div class="" style="color:#187a7d;">₹ 9,990.00 
-							&nbsp;
-							<span class="price-old">₹ 11,488.50</span>
-							<span class="label-tags"><p class=" text-success"> 13.04% off</p></span>
-                       </div>
-					   <div class="rating ">
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-						</div>
-					</div>
-					<div class="clearfix" style="margin:0">&nbsp;</div>
-					<span  class="glyphicon glyphicon-heart whis_cus_m"></span>
-			  </div>
-			  <div class=" card_mob">
-					<div class="col-xs-3" style="border-right:1px solid #f1f1f1">
-						<img class="img-responsive img_res_mob_sub" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-					</div>
-					<div class="col-xs-9">
-						<h6><a href="">OPPO A37 gold 16GB 2GB Ram</a></h6>
-						<div class="" style="color:#187a7d;">₹ 9,990.00 
-							&nbsp;
-							<span class="price-old">₹ 11,488.50</span>
-							<span class="label-tags"><p class=" text-success"> 13.04% off</p></span>
-                       </div>
-					   <div class="rating ">
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-						</div>
-					</div>
-					<div class="clearfix" style="margin:0">&nbsp;</div>
-					<span  class="glyphicon glyphicon-heart whis_cus_m"></span>
-			  </div>
-			  <div class=" card_mob">
-					<div class="col-xs-3" style="border-right:1px solid #f1f1f1">
-						<img class="img-responsive img_res_mob_sub" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-					</div>
-					<div class="col-xs-9">
-						<h6><a href="">OPPO A37 gold 16GB 2GB Ram</a></h6>
-						<div class="" style="color:#187a7d;">₹ 9,990.00 
-							&nbsp;
-							<span class="price-old">₹ 11,488.50</span>
-							<span class="label-tags"><p class=" text-success"> 13.04% off</p></span>
-                       </div>
-					   <div class="rating ">
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-							<i class="fa fa-star product-ratings"></i>
-						</div>
-					</div>
-					<div class="clearfix" style="margin:0">&nbsp;</div>
-					<span  class="glyphicon glyphicon-heart whis_cus_m"></span>
-			  </div>
-			  </div>
          </div>
       </div>
 </body>
+
+
+
+<!--mobile view-->
+<script>
+function mobileviewsubcatoptions(id){
+	if(id!=''){
+		jQuery.ajax({
+			
+					url: "<?php echo site_url('category/mobileviewsubcategorywiseproducts');?>",
+					type: 'post',
+					data: {
+						form_key : window.FORM_KEY,
+						subcatid: id,
+						},
+					dataType: 'html',
+					success: function (data) {
+						$("#mobileviewelectoriccategory").empty();
+						$("#mobileviewelectoriccategory").append(data);
+					}
+	   });
+	}
+	
+}
+</script>
+
+
+<!--mobile view end-->
 <script>
    $(document).ready(function(){
        $("#discountmore").click(function(){
@@ -1612,53 +1391,7 @@
        });
    })(jQuery);
 </script>
-<script>
-   var select = document.getElementById('input-select1');
-   
-   // Append the option elements
-   for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php echo floor($maximum_price['item_cost']); ?>'; i++ ){
-   
-   var option = document.createElement("option");
-   option.text = i;
-   option.value = i;
-   
-   select.appendChild(option);
-   }
-   
-   var html5Slider = document.getElementById('html5');
-   
-   noUiSlider.create(html5Slider, {
-   start: [ '<?php echo floor($minimum_price['item_cost']); ?>', '<?php echo floor($maximum_price['item_cost']); ?>' ],
-   connect: true,
-   range: {
-   'min': <?php echo floor($minimum_price['item_cost']); ?>,
-   'max': <?php echo floor($maximum_price['item_cost']); ?>
-   }
-   });
-   
-   var inputNumber = document.getElementById('input-number1');
-   
-   html5Slider.noUiSlider.on('update', function( values, handle ) {
-   
-   var value = values[handle];
-   
-   if ( handle ) {
-   inputNumber.value = value;
-   } else {
-   select.value = Math.round(value);
-   }
-   });
-   html5Slider.noUiSlider.on('change', function(){
-   mobileaccessories('','','');
-   });
-   select.addEventListener('change', function(){
-   html5Slider.noUiSlider.set([this.value, null]);
-   });
-   
-   inputNumber.addEventListener('change', function(){
-   html5Slider.noUiSlider.set([null, this.value]);
-   });
-</script>
+
 <script>
    var select = document.getElementById('input-select');
    

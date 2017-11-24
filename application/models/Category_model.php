@@ -337,9 +337,9 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_all_color_list_sub($catid,$subcatid){
-		$this->db->select('products.colour')->from('products');
+		$this->db->select('products.colour as color_name')->from('products');
 		$this->db->where('products.category_id',$catid);
-		$this->db->where('products.category_id',$subcatid);
+		$this->db->where('products.subcategory_id',$subcatid);
 		$this->db->where('products.item_status',1);
 		$this->db->where('products.colour!=','');
 		$this->db->group_by('products.colour');
@@ -1772,6 +1772,169 @@ class Category_model extends MY_Model
 	{
 		$sql1="UPDATE products SET offers ='".$per."', discount ='".$price."' WHERE item_id ='".$id."'";
 		return $this->db->query($sql1);
+	}
+	public function mobileviewsubcategorywiseproducts_list($subcat_id){
+		$this->db->select('products.*,category.category_id')->from('products');
+		$this->db->join('category', 'category.category_id =products.category_id', 'left');	
+		$this->db->where('products.subcategory_id', $subcat_id);
+		$this->db->where('products.item_status', 1);
+		return $this->db->get()->result_array();
+	}
+	public function get_category_details($subcat_id){
+		$this->db->select('*')->from('subcategories');
+		$this->db->where('subcategories.subcategory_id', $subcat_id);
+		return $this->db->get()->row_array();
+	}
+	public function get_mobileview_filers_products_list_alllist($b,$f,$c,$min,$max,$cid,$subcat){
+		//echo $b;exit;
+		$min_amt=(($min)-1);
+		$maxmum=(int)$max;
+		$lessamount=($maxmum)-($min_amt);
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('*')->from('products');
+		if($lessamount<='500' || $lessamount<='100'){
+		$this->db->where('item_cost <=', '"'.$maxmum.'"',false);
+		}else{
+			$this->db->where('item_cost <=',$maxmum);
+		}
+		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )<=', '"'.$maxmum.'"', false);
+		$this->db->where('item_cost >=', '"'.(int)$min_amt.'"',false);
+		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )>=', '"'.(int)$min_amt.'"', false);
+		if($b!='NULL'){
+			$this->db->where_in('brand','"'.$b.'"',false);
+		
+		}if($f!='NULL'){
+			$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_percentage`,`offers` )', '"'.$f.'"', false);
+			//$this->db->where_in('offer_percentage','"'.$f.'"',false);
+		}if($c!='NULL'){
+			$this->db->where_in('colour','"'.$c.'"',false);
+		}
+		
+		$this->db->where('item_status',1);
+		$this->db->where('category_id',$cid);
+		$this->db->where('subcategory_id',$subcat);
+		
+		return $this->db->get()->result_array();
+		
+	}
+	public function save_mobileviewfilter_data($data){
+		$this->db->insert('fliter_search', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function get_Mobile_search_all_subcategory_products()
+	{
+	$this->db->select('fliter_search.*')->from('fliter_search');
+	//$this->db->group_by('fliter_search.cusine');
+	$this->db->group_by('fliter_search.restraent');
+	$this->db->group_by('fliter_search.mini_amount');
+	$this->db->group_by('fliter_search.max_amount');
+	$this->db->group_by('fliter_search.offers');
+	$this->db->group_by('fliter_search.brand');
+	$this->db->group_by('fliter_search.discount');
+	$this->db->group_by('fliter_search.status');
+	$this->db->group_by('fliter_search.size');
+	$this->db->group_by('fliter_search.color');
+	$this->db->order_by('fliter_search.id desc');
+	$query=$this->db->get()->result_array();
+	//echo '<pre>';print_r($query);exit;
+	
+		foreach ($query as $listing){
+			if($listing['brand']!=''){
+			$brand[] = $listing['brand'];	
+			}
+			if($listing['offers']!=''){
+			$offers[] =$listing['offers'];
+			
+			}if($listing['discount']!=''){
+			$discount[] =$listing['discount'];
+			
+			}if($listing['color']!=''){
+			$color[] =$listing['color'];
+			
+			}
+			$minamount = $listing['mini_amount'];
+			$maxamount = $listing['max_amount'];
+			$catid = $listing['category_id'];
+			$subcatid = $listing['subcategory_id'];
+			
+			
+			
+		}
+		if(isset($brand) && count($brand)>0 ){
+			$brands=implode ('","', $brand );
+		}else{
+		$brands='NULL';
+
+		}
+		if(isset($offers) && count($offers)>0){
+			$offerss=implode('","', $offers);
+		}else{
+		$offerss='NULL';
+		}
+		if(isset($discount) && count($discount)>0 ){
+			$discount=implode('","', $discount);
+		}else{
+		$discount='NULL';
+		}
+		if(isset($color) && count($color)>0 ){
+			$color=implode('","', $color);
+		}else{
+		$color='NULL';
+		}		
+		
+		//exit;
+		//echo '<pre>';print_r($listsorting);exit;
+		
+		$return['filterslist'][] = $this->get_mobile_filers_products_list_alllist($brands,$discount,$offerss,$color,$minamount,$maxamount,$catid,$subcatid);
+		//echo $this->db->last_query();exit;
+		//echo '<pre>';print_r($return['filterslist']);exit;
+		if(!empty($return['filterslist']))
+		{
+		return $return['filterslist'];
+		}
+		
+		
+		
+		
+		
+	}
+	public function get_mobile_filers_products_list_alllist($b,$d,$f,$c,$min,$max,$cid,$subcatid){
+		//echo $b;exit;
+		$min_amt=(($min)-1);
+		$maxmum=(int)$max;
+		$lessamount=($maxmum)-($min_amt);
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('*')->from('products');
+		if($lessamount<='500' || $lessamount<='100'){
+		$this->db->where('item_cost <=', '"'.$maxmum.'"',false);
+		}else{
+			$this->db->where('item_cost <=',$maxmum);
+		}
+		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )<=', '"'.$maxmum.'"', false);
+		$this->db->where('item_cost >=', '"'.(int)$min_amt.'"',false);
+		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )>=', '"'.(int)$min_amt.'"', false);
+		if($b!='NULL'){
+			$this->db->where_in('brand','"'.$b.'"',false);
+		
+		}if($f!='NULL'){
+			$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_percentage`,`offers` )', '"'.$f.'"', false);
+			//$this->db->where_in('offer_percentage','"'.$f.'"',false);
+		}if($d!='NULL'){
+			//$this->db->where_in('discount','"'.$d.'"',false);
+			$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_amount`,`discount` )', '"'.$d.'"', false);
+
+		}if($c!='NULL'){
+			$this->db->where_in('colour','"'.$c.'"',false);
+		}
+		
+		$this->db->where('item_status',1);
+		$this->db->where('category_id',$cid);
+		$this->db->where('subcategory_id',$subcatid);
+		
+		return $this->db->get()->result_array();
+		
 	}
 	
 }

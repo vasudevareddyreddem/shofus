@@ -4620,11 +4620,7 @@ body {
   font-family: "RobotoDraft", "Roboto", sans-serif;
 }
 
-body,
-a,
-.btn-default {
-  color: #555;
-}
+
 
 .btn {
   border-radius: 0;

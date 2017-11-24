@@ -1973,12 +1973,18 @@ class CustomerApi extends REST_Controller {
 						}
 					}
 				//echo '<pre>';prhttp://localhost/cartinhour/api/customerApi/category_wise_leftside_filters?category_id=20int_r($idslist);
-					$result = array_unique($idslist);
-						foreach ($result as $pids){
-								$products_list[]=$this->Customerapi_model->product_details($pids);
+					
+					if(isset($idslist) && count($idslist)>0){
+							$result = array_unique($idslist);
+								foreach ($result as $pids){
+										$products_list[]=$this->Customerapi_model->product_details($pids);
 
-							}
+									}
 							$categorywiseproducrlist=$products_list;
+					}else{
+					$categorywiseproducrlist=array();;
+
+					}
 				}else{
 					$categorywiseproducrlist=array();;
 					
