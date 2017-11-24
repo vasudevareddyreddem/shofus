@@ -229,6 +229,7 @@ color:#eee !important;
 				<?php }else{ ?>	
 					<span onclick="mobileaddwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" class="glyphicon glyphicon-heart mobile_wish_remove"></span>
 				<?php } ?>	
+				<input type="button" name="Ignore Select" value="Ignore Select" id="select" class="select" />
 					
 					</span>
 			  </div>
@@ -254,6 +255,11 @@ color:#eee !important;
 				},
 			dataType: 'JSON',
 			success: function (data) {
+				jQuery(function ($) {
+    $('.select').click(function () {
+        $(this).toggleClass('highlight')
+    })
+})
 			 if(data.msg==0){
 					window.location='<?php echo base_url("customer/"); ?>'; 
 				}else{
