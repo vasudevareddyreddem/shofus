@@ -118,7 +118,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
                                 </div>
                                 <div class="panel-footer text-center" style="background:#fff;">
                                     <div class="pull-left">
-                                        <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span><?php echo isset($productslist['store_name'])?$productslist['store_name']:''; ?></span>
+                                        <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<br class="md_hide"><span><?php echo isset($productslist['store_name'])?$productslist['store_name']:''; ?></span>
                                     </div>
                                     <div class="pull-right">
                                         
