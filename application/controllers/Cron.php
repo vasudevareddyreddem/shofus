@@ -310,9 +310,14 @@ class Cron extends Front_Controller
 		
 	public function remove_unwanteddatedate(){
 		$details=$this->Cron_model->get_all_filters_data();
+		if(count($details)>0){
+			
+			
 		foreach ($details as $lis){
 			$this->Cron_model->delete_privous_searchdata($lis['id']);
 			
+		}
+		
 		}
 
 		
