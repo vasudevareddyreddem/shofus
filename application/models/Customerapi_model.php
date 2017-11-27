@@ -532,7 +532,7 @@ class Customerapi_model extends MY_Model
 		return $this->db->query($sql1);
 	}
 	public function get_order_items($order_id){
-		$this->db->select('order_items.*,products.item_name,products.item_description,products.item_image')->from('order_items');
+		$this->db->select('order_items.*,products.item_name,products.item_image')->from('order_items');
 		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 		$this->db->where('order_items.order_id', $order_id);
 		return $this->db->get()->result_array();

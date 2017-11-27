@@ -249,6 +249,7 @@ class CustomerApi extends REST_Controller {
 								'item_id'=>$item_id,
 								'qty'=>$qty,
 								'item_price'=>$item_price,
+								'item_qty'=>$products['item_quantity'],
 								'total_price'=>$price,
 								'commission_price'=>$commission_price,
 								'delivery_amount'=>$delivery_charges,
@@ -259,6 +260,8 @@ class CustomerApi extends REST_Controller {
 								'size'=>isset($size)?$size:'',
 								'uksize'=>isset($uksize)?$uksize:'',
 							);
+							
+							//echo '<pre>';print_r($adddata);exit;
 							$cart_save= $this->Customerapi_model->cart_products_save($adddata);
 							if(count($cart_save)>0){
 								
@@ -303,6 +306,7 @@ class CustomerApi extends REST_Controller {
 							'cust_id'=>$customer_id,
 							'item_id'=>$item_id,
 							'qty'=>$qty,
+							'item_qty'=>$products['item_quantity'],
 							'item_price'=>$item_price,
 							'total_price'=>$price,
 							'commission_price'=>$commission_price,
@@ -1314,27 +1318,6 @@ class CustomerApi extends REST_Controller {
 
 
 	
-
-	
-
-	/* customersorders api*/
-	public function customersorders_get()
-	{
-		$get = $this->input->get();
-		$cust_orders= $this->Customerapi_model->customer_oreders_list($get['customer_id']);
-		//echo '<pre>';print_r($cust_orders);exit;
-		if(count($cust_orders)>0){
-				$message = array
-				(
-					'status'=>1,
-					'Orders'=>$cust_orders,
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
-		}else{
-			$message = array('status'=>0,'message'=>'Your Orders List Is Empty');
-			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
-		}
-	}
 	/* category api*/
 	public function categories_get()
 	{
@@ -1652,7 +1635,7 @@ class CustomerApi extends REST_Controller {
 		$billing_address=$this->input->get('billing_address1');	
 		$billing_address2=$this->input->get('billing_address2');	
 		$billing_name=$this->input->get('billing_name');	
-		$area=$this->input->get('area');	
+		$pincode=$this->input->get('pincode');	
 			
 		if($customer_id==''){
 			$message = array('status'=>1,'message'=>'customer id is required!');
@@ -1696,8 +1679,8 @@ class CustomerApi extends REST_Controller {
 			}elseif($billing_name==''){
 			$message = array('status'=>1,'message'=>'billing name is required!');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-			}elseif($area==''){
-			$message = array('status'=>1,'message'=>'area is required!');
+			}elseif($pincode==''){
+			$message = array('status'=>1,'message'=>'pincode is required!');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 			$ordersucess=array(
@@ -1737,6 +1720,7 @@ class CustomerApi extends REST_Controller {
 						'customer_email'=>$billing_email,
 						'customer_phone'=>$billing_mobile,
 						'customer_address'=>$billing_address,
+						'pincode'=>$pincode,
 						'order_status'=>1,
 						'color'=>$items['color'],
 						'size'=>$items['size'],
@@ -1771,7 +1755,7 @@ class CustomerApi extends REST_Controller {
 						'mobile'=>$billing_mobile,
 						'address1'=>$billing_address,
 						'address2'=>$billing_address2,
-						'area'=>$area,
+						'pincode'=>$pincode,
 						'create-at'=>date('Y-m-d H:i:s'),
 					);
 				$saveorderbillingaddress= $this->Customerapi_model->save_order_billing_address($orderbilling);
@@ -1966,7 +1950,7 @@ class CustomerApi extends REST_Controller {
 
 					}
 					$categorywise= $this->Customerapi_model->get_search_all_subcategory_products();
-					//echo $this->db->last_query();exit;
+					//echo $this->db->last_query();
 					if(count($categorywise)>0){
 					foreach($categorywise as $list){
 						
