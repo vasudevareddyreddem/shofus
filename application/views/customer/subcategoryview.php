@@ -299,6 +299,7 @@
    <img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
    </div>-->
 <body >
+<div class="">
 <div class="sm_hide">
    <div class="container-fluid fluid_mod " id="containerhigh"></div>
    <div class="container-fluid fluid_mod " id="containerhighold">
@@ -327,37 +328,37 @@
           <div class="item  active slid_hig">
             <div class="row">
 				<?php if(isset($list[0]['subcategory_name']) && $list[0]['subcategory_name']!=''){ ?>
-                	   <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[0]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[0]['subcategory_id']; ?>)">
+                	   <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[0]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[0]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[0]['subcategory_image']);?>">
 						<p class="name_gr"><?php echo $list[0]['subcategory_name']; ?></p>
 					 </div> 
 					<?php } ?>
 					<?php if(isset($list[1]['subcategory_name']) && $list[1]['subcategory_name']!=''){ ?>
-                	   <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[1]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[1]['subcategory_id']; ?>)">
+                	   <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[1]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[1]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[1]['subcategory_image']);?>">
 						<p class="name_gr"><?php echo $list[1]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[2]['subcategory_name']) && $list[2]['subcategory_name']!=''){ ?>
-                	    <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[2]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[2]['subcategory_id']; ?>)">
+                	    <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[2]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[2]['subcategory_id']; ?>)">
 							<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[2]['subcategory_image']);?>">
 						<p class="name_gr"><?php echo $list[2]['subcategory_name']; ?></p>
 					</div> 
 					<?php } ?>
 					<?php if(isset($list[3]['subcategory_name']) && $list[3]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[3]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[3]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[3]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[3]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[3]['subcategory_image']);?>">
 						<p class="name_gr"><?php echo $list[3]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[4]['subcategory_name']) && $list[4]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[4]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[4]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[4]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[4]['subcategory_id']; ?>)">
 						  <img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[4]['subcategory_image']);?>">
 							<p class="name_gr"><?php echo $list[4]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[5]['subcategory_name']) && $list[5]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[5]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[5]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[5]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[5]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[5]['subcategory_image']);?>">
 						<p class="name_gr"><?php echo $list[5]['subcategory_name']; ?></p>
 					 </div> 
@@ -374,37 +375,37 @@
            <div class="item slid_hig">
             <div class="row">
 				<?php if(isset($list[0]['subcategory_name']) && $list[0]['subcategory_name']!=''){ ?>
-                	   <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[0]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[0]['subcategory_id']; ?>)">
+                	   <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[0]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[0]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[0]['subcategory_image']);?>">
 						<p class="name_gr"><?php echo $list[0]['subcategory_name']; ?></p>
 					 </div> 
 					<?php } ?>
 					<?php if(isset($list[1]['subcategory_name']) && $list[1]['subcategory_name']!=''){ ?>
-                	   <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[1]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[1]['subcategory_id']; ?>)">
+                	   <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[1]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[1]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[1]['subcategory_image']);?>">
 						<p class="name_gr"><?php echo $list[1]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[2]['subcategory_name']) && $list[2]['subcategory_name']!=''){ ?>
-                	    <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[2]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[2]['subcategory_id']; ?>)">
+                	    <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[2]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[2]['subcategory_id']; ?>)">
 							<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[2]['subcategory_image']);?>">
 						<p class="name_gr"><?php echo $list[2]['subcategory_name']; ?></p>
 					</div> 
 					<?php } ?>
 					<?php if(isset($list[3]['subcategory_name']) && $list[3]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[3]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[3]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[3]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[3]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[3]['subcategory_image']);?>">
 						<p class="name_gr"><?php echo $list[3]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[4]['subcategory_name']) && $list[4]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[4]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[4]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[4]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[4]['subcategory_id']; ?>)">
 						  <img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[4]['subcategory_image']);?>">
 							<p class="name_gr"><?php echo $list[4]['subcategory_name']; ?></p>
 						 </div> 
 					<?php } ?>
 					<?php if(isset($list[5]['subcategory_name']) && $list[5]['subcategory_name']!=''){ ?>
-                	     <div style="cursor:pointer" class="col-md-2" id="onclicksubcat<?php echo $list[5]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[5]['subcategory_id']; ?>)">
+                	     <div style="cursor:pointer" class="col-md-2 col-sm-2" id="onclicksubcat<?php echo $list[5]['subcategory_id']; ?>"  onclick="getproduct(<?php echo $list[5]['subcategory_id']; ?>)">
 						<img  alt="" src="<?php echo base_url('assets/subcategoryimages/'.$list[5]['subcategory_image']);?>">
 						<p class="name_gr"><?php echo $list[5]['subcategory_name']; ?></p>
 					 </div> 
@@ -516,7 +517,9 @@
 													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-primary btn-sm ">Add to Whishlist</span></a> 
 													<?php }else{ ?>	
 													<a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>"  ><span id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="btn btn-warning btn-sm" style="background:#aaa;border:#aaa;">Add to Whishlist</span></a> 
+													
 													<?php } ?>
+													
 													  <span id="qtymesage<?php echo $cnt; ?>" style="color:red"></span>
 													 
 													</div>
@@ -597,7 +600,7 @@
       <br>
 	  
 	  <?php } ?>
-      <div class=" clearfix"></div>
+     
 	  <?php if(isset($urlcatid) && base64_decode($urlcatid)==20){  ?>	
       <!-- Filter Sidebar -->
       <div id="subcategorywise_products" style="">

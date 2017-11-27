@@ -32,7 +32,7 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
           	<?php }  ?>
             </select>
 			<span id="locationmsg"></span>
-			<button style="top: 25px;position: absolute;right:-53px" type="submit" id="formsubmmition" class="btn btn-primary ">Submit</button>
+			<button  type="submit" id="formsubmmition" class="btn btn-primary btn_near_s">Submit</button>
 	
 			</div>
 			</div>
