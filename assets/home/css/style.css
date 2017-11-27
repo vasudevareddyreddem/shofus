@@ -6,6 +6,11 @@
 	border-radius:10px;
 	padding:10px 0px; 
 }
+.btn_near_s {
+	top: 25px;
+	position: absolute;
+	right:-53px;
+}
 .mar_t_m_12{
 	margin-top:12px
 }
@@ -5819,6 +5824,36 @@ box-shadow: 0px 0px 11px 2px rgba(214,211,214,1);
     font-size: 9px;
     padding-top: 4px;
 }
+
+.btn-group-sm>.btn, .btn-sm {
+    padding: 5px 5px;
+    font-size: 9px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.img_mobil img{
+		border-radius:50%;
+		border:1px solid #ddd;
+		
+	}
+	.media-carousel img
+{
+  min-height:60px !important;
+  height:50px !important;
+  width:auto !important;
+  left:25% !important;
+ 
+}
+.name_gr{
+	margin-top:70px !important;
+	text-align:center;
+	color:#4a5c63;
+	font-size:10px;
+	
+}
+.slid_hig{
+	height:0px !important;
+	}
 .social-media{
 	display:none;
 }
@@ -5861,6 +5896,11 @@ box-shadow: 0px 0px 11px 2px rgba(214,211,214,1);
 	.searc_width {
 			width:35% !important;
 		}
+		.btn_near_s {
+	top: 25px;
+	position: absolute;
+	right:-120px;
+}
 		.medias span {
     color: #009688;
     padding: 0px 7px;
