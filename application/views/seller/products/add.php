@@ -51,6 +51,18 @@
 .tt-suggestion p {
 	margin: 0;
 }
+.down_fil {
+	position:absolute;
+	right:24px;
+	width:39%;
+}
+@media (max-width: 1024px) {
+.down_fil {
+	position:absolute;
+	right:24px;
+	width:32%;
+}	
+}
 
 </style>
 
@@ -100,7 +112,7 @@
 					
 					<?php } ?></div><?php } ?>
 	
-	<div class="col-md-6 " style="position:absolute;right:24px; width:39%;">
+	<div class="col-md-6 down_fil" >
 	<label >&nbsp; </label>
 		<div  class=" shad_down " >
 			<h4 class="text-center" style="color:#006a99 ">Download this File to add Multiple Products</h4>
