@@ -1408,7 +1408,7 @@ function mobileviewsubcatoptions(id){
    select.appendChild(option);
    }
    
-   var html5Slider = document.getElementById('html6');
+		var html5Slider = document.getElementById('html5');
    
    noUiSlider.create(html5Slider, {
    start: [ '<?php echo floor($minimum_price['item_cost']); ?>', '<?php echo floor($maximum_price['item_cost']); ?>' ],
