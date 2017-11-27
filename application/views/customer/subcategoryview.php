@@ -299,6 +299,7 @@
    <img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
    </div>-->
 <body >
+<div class="">
 <div class="sm_hide">
    <div class="container-fluid fluid_mod " id="containerhigh"></div>
    <div class="container-fluid fluid_mod " id="containerhighold">
@@ -599,7 +600,7 @@
       <br>
 	  
 	  <?php } ?>
-      <div class=" clearfix"></div>
+     
 	  <?php if(isset($urlcatid) && base64_decode($urlcatid)==20){  ?>	
       <!-- Filter Sidebar -->
       <div id="subcategorywise_products" style="">
