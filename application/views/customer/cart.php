@@ -82,7 +82,7 @@
                                             <tr >
                                                 <td class="col-md-2">
                                                     <div class="media">
-                                                        <a class="thumbnail bor_non_res " href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"> <img style="height:80px;width:auto;" class="media-object img-responsive" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" style="width: 72px; height: 72px;"> </a>
+                                                        <a class=" bor_non_res " href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"> <img  class="media-object img-responsive img_cart_res" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" > </a>
 
 
                                                     </div>
@@ -102,7 +102,7 @@
                                                     </div>
 													  <span style="color:red;" id="qtymesage<?php echo $cnt; ?>"></span>
                                                 </td>
-                                                <td class="text-left" style="width:250px;">
+                                                <td class="text-left con_tex_250" >
                                                     <p class="" style="font-size:16px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></p>
                                                     <p><?php echo isset($productslist['brand'])?$productslist['brand']:''; ?></p>
                                                     <p><span style="font-size:20px;font-weight:500">₹<?php echo number_format($item_price, 2 ); ?></span> &nbsp;&nbsp;
@@ -122,11 +122,9 @@
                                 </div>
                                 <div class="panel-footer text-center" style="background:#fff;">
                                     <div class="pull-left">
-                                        <span style="color:#888;font-size:17px">Seller:</span>&nbsp;&nbsp;<span><?php echo isset($productslist['store_name'])?$productslist['store_name']:''; ?></span>
+                                        <span style="color:#888;font-size:17px;">Seller:</span>&nbsp;&nbsp;<br class="md_hide"><span><?php echo isset($productslist['store_name'])?$productslist['store_name']:''; ?></span>
                                     </div>
-                                    <div class="pull-right">
-                                        
-                                    </div>
+                                    
                                     <div class="clearfix"></div>
                                 </div>
 								<div style="position:absolute;top:15px;right:15px">
