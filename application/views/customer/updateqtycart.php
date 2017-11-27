@@ -79,7 +79,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
                                             <tr>
                                                 <td class="col-md-2">
                                                     <div class="media">
-                                                        <a class=" thumbnail" href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"> <img  style="height:80px;width:auto;" class="media-object" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>" style="width: 72px; height: 72px;"> </a>
+                                                        <a class=" " href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"> <img   class="media-object img-responsive img_cart_res" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> </a>
 
                                                     </div>
                                                     <br>
@@ -98,7 +98,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
                                                     </div>
 													  <span style="color:red;" id="qtymesage<?php echo $cnt; ?>"></span>
                                                 </td>
-                                                <td class="text-left" style="width:250px;">
+                                                <td class="text-left con_tex_250" >
                                                     <p class="" style="font-size:16px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></p>
                                                     <p><?php echo isset($productslist['brand'])?$productslist['brand']:''; ?></p>
                                                     <p><span style="font-size:20px;font-weight:500">₹<?php echo number_format($item_price,2 ); ?></span> &nbsp;&nbsp;
