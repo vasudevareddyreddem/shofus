@@ -272,6 +272,13 @@
 		
 		
     </div>
+	<div  class="md_hide proeed_chec_btn" id="skipdeliveraddress1" style="display:none">
+		<form action="<?php echo base_url('customer/billingaddresspost/'); ?>" method="post">
+		<input type="hidden" name="billingaddressid" id="billingaddressid" value="">
+			 
+			<button  type="submit"  class="btn btn-lg btn-primary btn-block col-xs-12 "   ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Payment</button>
+		</form>
+	</div>
 </div>
 <div class="clearfix">&nbsp;</div>
 
@@ -335,9 +342,11 @@ $("input:checkbox").on('click', function() {
     $box.prop("checked", true);
 	$('#newbillingaddress').hide();
 	$('#skipdeliveraddress').show();
+	$('#skipdeliveraddress1').show();
   } else {
 	 $('#newbillingaddress').show();
 	 $('#skipdeliveraddress').hide();
+	 $('#skipdeliveraddress1').hide();
     $box.prop("checked", false);
   }
 });
@@ -399,6 +408,7 @@ function getbillingaddress_id(id){
 function removebillingaddress(aid,cnt){
 	 $('#newbillingaddress').show();
 	 $('#skipdeliveraddress').hide();
+	 $('#skipdeliveraddress1').hide();
 	jQuery.ajax({
         url: "<?php echo site_url('customer/removebillingaddress');?>",
         type: 'post',
