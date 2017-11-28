@@ -85,7 +85,7 @@
    <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
       <input type="hidden" name="orginalqty" id="orginalqty1<?php echo $cnt; ?>" value="<?php echo $productslist['item_quantity']; ?>" >
       <input type="hidden" name="product_id" id="product_id1<?php echo $cnt; ?>"  value="<?php echo $productslist['item_id']; ?>">
-      <input type="hidden" name="amount1" id="amount1<?php echo $cnt; ?>"  value="<?php echo $item_price; ?>">
+      <input type="hidden" name="amount1" id="amount1<?php echo $cnt; ?><?php echo time(); ?>"  value="<?php echo $item_price; ?>">
       <input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
       <div class="panel panel-default ">
          <div class="panel-heading bg_defa ">
@@ -135,7 +135,7 @@
                </div>
                <div class="col-md-3">
                   <p class="">MRP:₹ <?php echo number_format($item_price, 2); ?></p>
-                  <p class=""> Total Amount:₹ <span id="totalamount1<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
+                  <p class=""> Total Amount:₹ <span id="totalamount1<?php echo $cnt; ?><?php echo time(); ?>"><?php echo number_format($item_price, 2); ?></span></p>
                   <div class="clearfix">&nbsp;</div>
                   <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
                   <button type="submit" class="btn btn-warning btn-sm mar_1024_t10">Buy Now</button>
@@ -253,7 +253,7 @@
    
    var pid=document.getElementById("product_id1"+id).value;
    var qtycnt=document.getElementById("qty1"+id+anid).value;
-   var amount=document.getElementById("amount1"+id).value;
+   var amount=document.getElementById("amount1"+id+anid).value;
    var qty=parseInt(qtycnt);
    var totalamount1=(qty - 1)*amount;
    if(qty==1){
@@ -274,8 +274,8 @@
    dataType: 'html',
    success: function (data) {
    	//$("#oldcartqty").hide();
-   	$("#totalamount1"+id).empty();
-   	$("#totalamount1"+id).append(totalamount.toFixed(2));
+   	$("#totalamount1"+id+anid).empty();
+   	$("#totalamount1"+id+anid).append(totalamount.toFixed(2));
    	$("#oldcartqty").empty();
    	$("#oldcartqty").empty();
    	$("#oldcartqty").append(data);
@@ -290,7 +290,8 @@
    var pid=document.getElementById("product_id1"+id).value;
    var qtycnt1=document.getElementById("qty1"+id+anid).value;
    var orginalqtycnt=document.getElementById("orginalqty1"+id).value;
-   var amount=document.getElementById("amount1"+id).value;
+   var amount=document.getElementById("amount1"+id+anid).value;
+   alert(amount);
    var qty1=parseInt(qtycnt1);
    var totalamount=(qty1 + 1)*amount;
    if(qty1==orginalqtycnt){
@@ -312,8 +313,8 @@
    dataType: 'html',
    success: function (data) {
    	//$("#oldcartqty").hide();
-   	$("#totalamount1"+id).empty();
-   	$("#totalamount1"+id).append(totalamount.toFixed(2));
+   	$("#totalamount1"+id+anid).empty();
+   	$("#totalamount1"+id+anid).append(totalamount.toFixed(2));
    	$("#oldcartqty").empty();
    	$("#oldcartqty").empty();
    	$("#oldcartqty").append(data);

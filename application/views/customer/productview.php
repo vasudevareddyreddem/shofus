@@ -169,6 +169,13 @@
 			
 			 </tr>
 			 <?php } ?>
+			 <?php if($products_list['unit']!='' && $products_list['unit']!='NULL'){ ?>
+			 <tr>
+			 <td>Unit:</td>
+			 <td><span ><?php echo $products_list['unit'];?></span></td>
+			
+			 </tr>
+			 <?php } ?>
 			 <tr>
 			  <td>Status</td>
                 <td>
