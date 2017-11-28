@@ -890,9 +890,11 @@ class Import extends Admin_Controller {
 																	//echo '<pre>';print_r($data);exit;
 																	
 
-																	
-																	$discount= ($data[2]-$data[3]);
-																	$offers= (($discount) /$data[3])*100;
+															
+																	$discount1= ($data[2]-$data[3]);
+																	$discount= number_format($discount1, 2);
+																	$offers1= (($discount) /$data[3])*100;
+																	$offers= number_format($offers1, 2);
 																	
 																	$adddetails=array(
 																			'category_id' => $post['category_ids'],			
@@ -930,6 +932,7 @@ class Import extends Admin_Controller {
 																			'item_image7'=>isset($data[32])?trim($data[31]):'',
 																			'seller_location_area'=>$seller_location['area'],
 																			'created_at'=>date('Y-m-d H:i:s'),
+																			'name' => isset($data[1])?$data[1]:'',
 																			'seller_id' => $this->session->userdata('seller_id'),  
 																			);
 																		//echo '<pre>';print_r($adddetails);exit;
