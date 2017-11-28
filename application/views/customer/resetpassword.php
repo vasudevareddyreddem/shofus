@@ -41,10 +41,10 @@ label {
 }
 </style>
 
-<body style="background-color:#45b1b5;">
+<body class="log_bac">
     <div class="container mar_t10per" style="position:relative" >
-        <div class="row ">
-		<div class="col-md-6 col-md-offset-3" style="background-color:#fff; border-radius:10px;padding:10px 0px;border-bottom:2px solid #116669  ">
+        <div class="row res_log">
+		<div class="col-md-6 col-md-offset-3 log_bac_col_res "  >
            
 
             <div class="col-md-10 col-md-offset-1 ">
@@ -74,11 +74,11 @@ label {
                     </div>
 					<br>
 					<div class="row">
-					<div class="col-md-6">
-					<a class="btn  btn-primary  btn-block" style="border-radius:5px"   href="<?php echo base_url('customer');?>">Cancel</a>
+					<div class="col-md-6 col-sm-6 col-xs-6">
+					<a class="btn  btn-primary  btn-block signup-btn" style="border-radius:5px"   href="<?php echo base_url('customer');?>">Cancel</a>
 					</div>
-					<div class="col-md-6">
-                    <button class="btn  btn-primary col-md-6 btn-block" type="submit" style="border-radius:5px">
+					<div class="col-md-6 col-sm-6 col-xs-6">
+                    <button class="btn  btn-primary  btn-block signup-btn" type="submit" style="border-radius:5px">
                         Submit</button>
 						</div>
                 </form>
@@ -86,8 +86,8 @@ label {
             </div>
             </div>
         </div>
-		<a  href="<?php echo base_url(); ?>" class="" style="position: absolute;top:-100px;right:43%">
-			<img src="<?php echo base_url(); ?>assets/home/images/logo_login.png" />
+		<a class="log_res_logo_for" href="<?php echo base_url(); ?>" >
+			<img style="width:130px;" src="<?php echo base_url(); ?>assets/home/images/logo_login.png" />
 		</a>
     </div>
 
