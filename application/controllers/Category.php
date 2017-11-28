@@ -1179,11 +1179,12 @@ function filtersearch(){
 
 	//
 	$data['products_list']= $this->category_model->get_products($pid);
-	$data['similarproducts_list']= $this->category_model->get_simular_products($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
-	$data['sameproducts_color_list']= $this->category_model->get_same_products_color($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
-	$data['sameproducts_size_list']= $this->category_model->get_same_products_size($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
-	$data['sameproducts_ram_list']= $this->category_model->get_same_products_ram($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
-	$data['sameproducts_unit_list']= $this->category_model->get_same_products_unit($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
+	$data['similarproducts_list']= $this->category_model->get_simular_products($data['products_list']['subcategory_id'],$data['products_list']['name'],$data['products_list']['item_id']);
+	$data['sameproducts_color_list']= $this->category_model->get_same_products_color($data['products_list']['subcategory_id'],$data['products_list']['name'],$data['products_list']['item_id']);
+	//echo $this->db->last_query();exit;
+	$data['sameproducts_size_list']= $this->category_model->get_same_products_size($data['products_list']['subcategory_id'],$data['products_list']['name'],$data['products_list']['item_id']);
+	$data['sameproducts_ram_list']= $this->category_model->get_same_products_ram($data['products_list']['subcategory_id'],$data['products_list']['name'],$data['products_list']['item_id']);
+	$data['sameproducts_unit_list']= $this->category_model->get_same_products_unit($data['products_list']['subcategory_id'],$data['products_list']['name'],$data['products_list']['item_id']);
 	
 	//echo $this->db->last_query();exit;
 	//echo '<pre>';print_r($data);exit;

@@ -18,8 +18,8 @@ class Category_model extends MY_Model
 	{
 		$this->db->select('products.item_id,products.internal_memeory,products.colour,products.subcategory_id,products.item_image')->from('products');
 		$this->db->where('subcategory_id',$subcat);
-		$this->db->like('item_name', substr($name, 0, 4));
-		$this->db->group_by(trim('colour'));
+		$this->db->where('name',$name);
+		$this->db->group_by('colour');
 		$this->db->where('colour!=','');
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
@@ -28,7 +28,7 @@ class Category_model extends MY_Model
 	{
 		$this->db->select('products.item_id,products.internal_memeory,products.colour,products.subcategory_id,products.item_image')->from('products');
 		$this->db->where('subcategory_id',$subcat);
-		$this->db->like('item_name', substr($name, 0, 4));
+		$this->db->where('name', $name);
 		$this->db->group_by(trim('internal_memeory'));
 		$this->db->where('internal_memeory!=','');
 		$this->db->where('item_status',1);
@@ -38,7 +38,7 @@ class Category_model extends MY_Model
 	{
 		$this->db->select('products.item_id,products.ram,products.subcategory_id,products.item_image')->from('products');
 		$this->db->where('subcategory_id',$subcat);
-		$this->db->like('item_name', substr($name, 0, 4));
+		$this->db->like('name', $name);
 		$this->db->group_by(trim('ram'));
 		$this->db->where('ram!=','');
 		$this->db->where('item_status',1);
@@ -48,7 +48,7 @@ class Category_model extends MY_Model
 	{
 		$this->db->select('products.item_id,products.unit,products.subcategory_id,products.item_image')->from('products');
 		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('item_name',$name);
+		$this->db->where('name',$name);
 		$this->db->where('item_status',1);
 		$this->db->group_by('unit');
 		$this->db->where('item_status',1);
@@ -56,10 +56,9 @@ class Category_model extends MY_Model
 	}
 	public function get_simular_products($subcat,$name,$item_id)
 	{
-	$pname=substr($name, 0, 4);
 		$this->db->select('*')->from('products');
 		$this->db->where('subcategory_id',$subcat);
-		$this->db->like('item_name', $pname);
+		$this->db->where('name', $name);
 		$this->db->where('item_id !=', $item_id);
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
