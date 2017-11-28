@@ -306,7 +306,7 @@
       <div class="row ">
          <div class="mar_t20">
             <div class="col-md-12  ">
-               <div class="title text-left mar_t10"><span> Grocery list</span></div>
+               <div class="title text-left mar_t10"><span> <?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
                <!--groffers start-->
                <div class='col-md-12'>
                   <div class="carousel slide media-carousel" id="media">
