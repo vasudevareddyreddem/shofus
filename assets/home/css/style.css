@@ -3873,7 +3873,7 @@ margin: 0 0;
 }
 /*checkout page start here*/
 .table>tbody>tr>td, .table>tfoot>tr>td {
-	vertical-align: middle;
+	/* vertical-align: middle; */
 }
 .check_ig {
 	padding: 20px;
