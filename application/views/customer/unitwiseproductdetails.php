@@ -291,7 +291,6 @@
    var qtycnt1=document.getElementById("qty1"+id+anid).value;
    var orginalqtycnt=document.getElementById("orginalqty1"+id).value;
    var amount=document.getElementById("amount1"+id+anid).value;
-   alert(amount);
    var qty1=parseInt(qtycnt1);
    var totalamount=(qty1 + 1)*amount;
    if(qty1==orginalqtycnt){
