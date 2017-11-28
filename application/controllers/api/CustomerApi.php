@@ -476,9 +476,13 @@ class CustomerApi extends REST_Controller {
 		}
 		$cart_item_ids= $this->Customerapi_model->get_cart_products($customer_id);
 		$item_lists_count= $this->Customerapi_model->get_cart_products_list_count($customer_id);
-		foreach($cart_item_ids as $cartids) 
-		{ 		
-			$cart_ids[]=$cartids['cust_id'];
+		if(isset($cart_item_ids) && count($cart_item_ids)>0){
+				foreach($cart_item_ids as $cartids) 
+			{ 		
+				$cart_ids[]=$cartids['cust_id'];
+			}
+		}else{
+			$cart_ids[]=array();
 		}
 		$item_lists= $this->Customerapi_model->get_cart_products_list($customer_id);
 			if(isset($item_lists) && count($item_lists)>0){
