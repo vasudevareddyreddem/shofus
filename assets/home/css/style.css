@@ -1,6 +1,10 @@
 .log_bac{
 	background-color:#009688;
 	}
+	.cat_sl_s {
+		background:#fff !important;
+		margin:10px 0px !important;
+		}
 .log_bac_col{
 	background-color:#fff;
 	border-radius:10px;
@@ -6353,6 +6357,10 @@ and (max-device-width : 1024px)
 	.sm_hide{
 		display:none;
 	}
+	.cat_sl_s {
+		background:#fff !important;
+		margin:0px 0px !important;
+		}
 	.con_tex_250{
 	width:250px;
 }
