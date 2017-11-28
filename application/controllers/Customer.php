@@ -1983,9 +1983,6 @@ class Customer extends Front_Controller
 	//echo '<pre>';print_r($forgotpass);exit;
 		if(count($forgotpass)>0)
 		{			
-			
-			
-			
 			$email =filter_var($post['emailaddress'], FILTER_VALIDATE_EMAIL);
 				if($email==''){
 					$mobile=$post['emailaddress'];
@@ -2001,18 +1998,24 @@ class Customer extends Front_Controller
 				if($mobile!=''){
 					
 					
-					$msg=$six_digit_random_number;
-					$ch = curl_init();
-					 curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
-					curl_setopt($ch, CURLOPT_POST, 1);
-					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobile.'&text='.$msg.' is your Cartinhours verification code one-time use. Please DO NOT share this OTP with anyone to ensure account security.&priority=ndnd&stype=normal');
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					//echo '<pre>';print_r($ch);exit;
-					$server_output = curl_exec ($ch);
-					curl_close ($ch);
+				
 					
 					
-				$this->customer_model->login_verficationcode_mobile_save($mobile,$forgotpass['customer_id'],$six_digit_random_number);
+					
+			$username=$this->config->item('smsusername');
+			$pass=$this->config->item('smspassword');
+			
+			/* seller purpose*/
+			$msg2=$six_digit_random_number.' is your Cartinhours verification code one-time use. Please DO NOT share this OTP with anyone to ensure account security.';
+			$ch2 = curl_init();
+			curl_setopt($ch2, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+			curl_setopt($ch2, CURLOPT_POST, 1);
+			curl_setopt($ch2, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobile.'&text='.$msg2.'&priority=ndnd&stype=normal');
+			curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+			//echo '<pre>';print_r($ch);exit;
+			$server_output = curl_exec ($ch2);
+			curl_close ($ch2);
+			$this->customer_model->login_verficationcode_mobile_save($mobile,$forgotpass['customer_id'],$six_digit_random_number);
 				redirect( 'customer/resetpassword/'.base64_encode($mobile).'/'.base64_encode($forgotpass['customer_id'])); 
 					
 				}else if(isset($email) && $email!=''){
