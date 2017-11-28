@@ -495,7 +495,7 @@
 													 <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?>&&nbsp;<?php echo isset($productslist['product_code'])?$productslist['product_code']:''; ?></div>
 													 <p class=""><?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?></p>
 													 <p class="">Available in: &nbsp;&nbsp;
-														<span   class="btn_cus btn_cus_acti"><?php echo $productslist['unit'].' Unit'; ?></span>&nbsp;&nbsp;
+														<span   class="btn_cus btn_cus_acti"><?php echo $productslist['unit']; ?></span>&nbsp;&nbsp;
 														</p>
 														<div  class="input-group incr_btn pull-left">
 																			<span class="input-group-btn">

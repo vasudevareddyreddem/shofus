@@ -250,6 +250,7 @@ class CustomerApi extends REST_Controller {
 								'qty'=>$qty,
 								'item_price'=>$item_price,
 								'item_qty'=>$products['item_quantity'],
+								'unit'=>$products['unit'],
 								'total_price'=>$price,
 								'commission_price'=>$commission_price,
 								'delivery_amount'=>$delivery_charges,

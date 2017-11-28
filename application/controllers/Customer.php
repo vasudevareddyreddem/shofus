@@ -183,7 +183,7 @@ class Customer extends Front_Controller
  public function addcart(){
 	 
 	$post=$this->input->post();
-	///echo '<pre>';print_r($post);exit;
+//echo '<pre>';print_r($post);exit;
 	if($this->session->userdata('userdetails')=='')
 	 {
 		$this->session->set_userdata('beforecart',$post);
@@ -246,6 +246,7 @@ class Customer extends Front_Controller
 		'item_id'=>$post['producr_id'],
 		'qty'=>$post['qty'],
 		'item_qty'=>$products['item_quantity'],
+		'unit'=>$products['unit'],
 		'item_price'=>$item_price,
 		'total_price'=>$price,
 		'commission_price'=>$commission_price,
@@ -356,6 +357,7 @@ class Customer extends Front_Controller
 		'item_id'=>$post['producr_id'],
 		'qty'=>$post['qty'],
 		'item_qty'=>$products['item_quantity'],
+		'unit'=>$products['unit'],
 		'item_price'=>$item_price,
 		'total_price'=>$price,
 		'commission_price'=>$commission_price,
@@ -472,6 +474,7 @@ class Customer extends Front_Controller
 		'item_id'=>$post['producr_id'],
 		'qty'=>$post['qty'],
 		'item_qty'=>$products['item_quantity'],
+		'unit'=>$products['unit'],
 		'item_price'=>$item_price,
 		'total_price'=>$price,
 		'commission_price'=>$commission_price,

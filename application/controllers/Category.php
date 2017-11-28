@@ -1183,9 +1183,10 @@ function filtersearch(){
 	$data['sameproducts_color_list']= $this->category_model->get_same_products_color($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
 	$data['sameproducts_size_list']= $this->category_model->get_same_products_size($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
 	$data['sameproducts_ram_list']= $this->category_model->get_same_products_ram($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
+	$data['sameproducts_unit_list']= $this->category_model->get_same_products_unit($data['products_list']['subcategory_id'],$data['products_list']['item_name'],$data['products_list']['item_id']);
 	
 	//echo $this->db->last_query();exit;
-	//echo '<pre>';print_r($data['sameproducts_size_list']);exit;
+	//echo '<pre>';print_r($data);exit;
 	$data['products_reviews']= $this->category_model->get_products_reviews($pid);
 	$data['products_specufucation']= $this->category_model->get_products_specifications_list($pid);
 	$data['products_desc_list']= $this->category_model->get_products_desc_list($pid);
