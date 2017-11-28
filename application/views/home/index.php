@@ -75,7 +75,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 	<section class="">
       <div class=" slider-items-products container_main">
        
-		   <div id="best-seller" class="product-flexslider hidden-buttons" style="background:#fff;margin:10px 0px">
+		   <div id="best-seller" class="product-flexslider hidden-buttons cat_sl_s" >
 				  <div class="slider-items slider-width-col4 products-grid help_cls text-center" >
 				  <?php foreach ($sidecaregory_list as $categories){
 					  ?>

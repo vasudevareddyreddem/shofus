@@ -1,7 +1,7 @@
 <?php //echo '<pre>';print_r($orders_lists);exit; ?>
 <div class="wrapper"> 
   <!--header part start here -->
-  <div class="jain_container">
+  <div class="jain_container mar_res_t150">
 			
 		<body >
 		<div class="container">
@@ -24,8 +24,11 @@
 					<div class="pull-left">
 						<span style="background-color:#009688;color:#fff;padding:10px;border-radius:5px;"><b>ORDER ID:&nbsp; </b><?php echo $orders['order_item_id']; ?></span>
 					</div>
+					
 					<div class="pull-right"> 
+					<p class="md_hide"></p>
 					<span style="font-size:17px;">Status :</span>
+				
 					<span class="site_col">
 					
 					<?php if($orders['status_confirmation']==5){ 
