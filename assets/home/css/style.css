@@ -1,6 +1,11 @@
 .show_1024{
 	display:none;
 }
+.out_off_ca{
+	background:#f2dede;
+	padding:5px 10px;
+	border-radius:5px;
+}
 .cus_anch a{
 	color:#555 !important;
 }
