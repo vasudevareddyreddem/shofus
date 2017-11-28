@@ -902,6 +902,7 @@ body .ui-tooltip {
 	border: 1px solid #dddddd;
 	background: #ffffff;
 	color: #333333;
+	z-index:1500;
 }
 .ui-widget-content a {
 	color: #333333;

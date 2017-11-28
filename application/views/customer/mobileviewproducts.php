@@ -137,7 +137,7 @@ color:#eee !important;
 			 
 			 
 			 
-			  <div class="container bg-primary pad_t15">
+			  <div class="container bg-primary pad_t15 mar_t_m_30">
 			  <?php if($product_list){ ?>
 			  <?php 
 			   $customerdetails=$this->session->userdata('userdetails');
