@@ -121,7 +121,8 @@
 			
 	</div>
 	
-	
+							<input type="hidden" class="form-control" id="name" name="name" value="<?php echo isset($productdetails['name'])?$productdetails['name']:''; ?>" >
+
 	<div class="row">
 			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">

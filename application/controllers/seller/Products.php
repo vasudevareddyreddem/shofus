@@ -207,7 +207,7 @@ public function item_status(){
 		//exit;
 		
 		$discount1= ($post['product_price']-$post['special_price']);
-		$discount= number_format($discount,2 );
+		$discount= number_format($discount1,2 );
 		$offers1= (($discount1) /$post['product_price'])*100;
 		$offers= number_format($offers1,2 );
 			if($_FILES['picture1']['name']!=''){
@@ -260,12 +260,18 @@ public function item_status(){
 			}
 		//echo '<pre>';print_r($_FILES);
 		//echo '<pre>';print_r($post);exit;
-		
+		if($post['colour']!='' && $post['internal_memeory']!='' && $post['ram']!=''){
+			$name=$post['product_name'].' '.$post['colour'].' '.$post['internal_memeory'].' '.$post['ram'].' Ram';
+		}else if($post['colour']!='' && $post['internal_memeory']!=''){
+			$name=$post['product_name'].' '.$post['colour'].' '.$post['internal_memeory'];
+		}else if($post['colour']!=''){
+			$name=$post['product_name'].' '.$post['colour'];
+		}
 		$data=array(
 			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
 			'subcategory_id' => isset($post['subcategorylist'])?$post['subcategorylist']:'',
 			'subitemid' => isset($post['subitemid'])?$post['subitemid']:'',
-			'item_name' => isset($post['product_name'])?$post['product_name']:'',
+			'item_name' => isset($name)?$name:'',
 			'item_cost' => isset($post['product_price'])?$post['product_price']:'',
 			'special_price' => isset($post['special_price'])?$post['special_price']:'',
 			'offers' =>  isset($offers)?$offers:'',
@@ -344,6 +350,7 @@ public function item_status(){
 			'item_image7'=>isset($profilepic8)?$profilepic8:'',
 			'seller_location_area'=>$seller_location['area'],
 			'created_at'=>date('Y-m-d H:i:s'),
+			'name' => isset($post['product_name'])?$post['product_name']:'',
 			'seller_id' => $this->session->userdata('seller_id'),             
 
 
@@ -591,7 +598,7 @@ public function update()
 	//echo '<pre>';print_r($post);exit;
 	//echo '<pre>';print_r($_FILES);
 	$discount1= ($post['product_price']-$post['special_price']);
-		$discount= number_format($discount,2 );
+		$discount= number_format($discount1,2 );
 		$offers1= (($discount1) /$post['product_price'])*100;
 		$offers= number_format($offers1,2 );
 	$productdetails=$this->products_model->getproductdata($post['product_id']);
@@ -648,7 +655,13 @@ public function update()
 		$image8=$productdetails['item_image7'];
 		}
 		
-	
+	if($post['colour']!='' && $post['internal_memeory']!='' && $post['ram']!=''){
+			$name=$post['name'].' '.$post['colour'].' '.$post['internal_memeory'].' '.$post['ram'].' Ram';
+		}else if($post['colour']!='' && $post['internal_memeory']!=''){
+			$name=$post['name'].' '.$post['colour'].' '.$post['internal_memeory'];
+		}else if($post['colour']!=''){
+			$name=$post['name'].' '.$post['colour'];
+		}
 	
 	$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));
 	$product_details=$this->products_model->get_producr_details($this->uri->segment(4));
@@ -673,7 +686,7 @@ public function update()
 			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
 			'subcategory_id' => isset($subcatid)?$subcatid:'',		
 			'subitemid' => isset($subitem)?$subitem:'',		
-			'item_name' => isset($post['product_name'])?$post['product_name']:'',
+			'item_name' => isset($name)?$name:'',
 			'item_cost' => isset($post['product_price'])?$post['product_price']:'',
 			'special_price' => isset($post['special_price'])?$post['special_price']:'',
 			'offers' =>  isset($offers)?$offers:'',
@@ -751,6 +764,7 @@ public function update()
 			'item_image6'=>$image7,
 			'item_image7'=>$image8,
 			'seller_location_area'=>$seller_location['area'],
+			'name' => isset($post['name'])?$post['name']:'',
 			'created_at'=>date('Y-m-d H:i:s'),
 
 			);

@@ -55,7 +55,7 @@ class Import extends Admin_Controller {
 														$arry=$xlsx->rows($j);
 														unset($arry[0]);
 
-																//echo "<pre>";print_r($arry);exit;
+																//echo "<pre>";print_r($arry);
 																foreach($arry as $key=>$fields)
 																{
 																		if(isset($fields[1]) && $fields[1]!='' && $fields[2]!='' && $fields[3]!=''){
@@ -655,18 +655,27 @@ class Import extends Admin_Controller {
 													if(count($data['errors'])<=0){
 															foreach($totalfields as $data){
 																
-																	//echo '<pre>';print_r($data);exit;
+																	//echo '<pre>';print_r($data);
 																	
 
 																	
-																	$discount= ($data[2]-$data[3]);
-																	$offers= (($discount) /$data[3])*100;
+																	$discount1= ($data[2]-$data[3]);
+																	$discount= number_format($discount1, 2);
+																	$offers1= (($discount) /$data[3])*100;
+																	$offers= number_format($offers1, 2);
+																	if($data[26]!='' && $data[22]!='' && $data[27]!=''){
+																	$name=$data[1].' '.$data[26].' '.$data[22].' '.$data[27].' Ram';
+																	}else if($data[26]!='' && $data[22]!=''){
+																	$name=$data[1].' '.$data[26].' '.$data[22];
+																	}else if($data[26]!=''){
+																	$name=$data[1].' '.$data[26];
+																	}
 																	
 																	$adddetails=array(
 																			'category_id' => $post['category_ids'],			
 																			'subcategory_id' =>$post['subcategory_ids'],
 																			'seller_id' =>$this->session->userdata('seller_id'), 
-																			'item_name' => isset($data[1])?$data[1]:'',
+																			'item_name' => isset($name)?$name:'',
 																			'item_cost' => isset($data[2])?$data[2]:'',
 																			'special_price' => isset($data[3])?$data[3]:'',
 																			'offers' =>  isset($offers)?$offers:'',
@@ -740,6 +749,7 @@ class Import extends Admin_Controller {
 																			'item_image7'=>isset($data[76])?trim($data[76]):'',
 																			'seller_location_area'=>$seller_location['area'],
 																			'created_at'=>date('Y-m-d H:i:s'),
+																			'name'=>isset($data[1])?$data[1]:'',
 																			'seller_id' => $this->session->userdata('seller_id'),  
 																			);
 																		//echo '<pre>';print_r($adddetails);exit;
@@ -880,9 +890,11 @@ class Import extends Admin_Controller {
 																	//echo '<pre>';print_r($data);exit;
 																	
 
-																	
-																	$discount= ($data[2]-$data[3]);
-																	$offers= (($discount) /$data[3])*100;
+															
+																	$discount1= ($data[2]-$data[3]);
+																	$discount= number_format($discount1, 2);
+																	$offers1= (($discount) /$data[3])*100;
+																	$offers= number_format($offers1, 2);
 																	
 																	$adddetails=array(
 																			'category_id' => $post['category_ids'],			
@@ -920,6 +932,7 @@ class Import extends Admin_Controller {
 																			'item_image7'=>isset($data[32])?trim($data[31]):'',
 																			'seller_location_area'=>$seller_location['area'],
 																			'created_at'=>date('Y-m-d H:i:s'),
+																			'name' => isset($data[1])?$data[1]:'',
 																			'seller_id' => $this->session->userdata('seller_id'),  
 																			);
 																		//echo '<pre>';print_r($adddetails);exit;
