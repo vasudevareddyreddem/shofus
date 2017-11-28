@@ -4,7 +4,7 @@
 	height:450px;
 	
 }</style>
-<div class="container mar_res_t150">
+<div class="container mar_res_t150w" >
 <?php if($this->session->flashdata('adderror')): ?>
 		<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_war"> <?php echo $this->session->flashdata('adderror');?>&nbsp; <i class="fa fa-check  text-warning ico_bac" aria-hidden="true"></i></div></div>
 
@@ -47,7 +47,7 @@
 
                             <?php echo $items['item_name']; ?></div>
 							<div class="clearfix">&nbsp;</div>
-							<div>
+							<div class="pad_m_320">
 							
 						<?php 
 								$currentdate=date('Y-m-d h:i:s A');
@@ -64,7 +64,7 @@
 									?>
 								<span style="font-size:20px;font-weight:500">₹<?php echo number_format($item_price, 2) ; ?></span> &nbsp;&nbsp;
 								<span class="price-old"style="font-size:16px;color:#bbb">₹ <?php echo number_format($orginal_price, 2); ?></span>&nbsp;&nbsp;
-								<span class="site_col" style="font-size:18px;"><?php echo number_format($percentage, 2, '.', ''); ?>% off</span>&nbsp;&nbsp;
+								<span class="site_col" style="font-size:16px;"><?php echo number_format($percentage, 2, '.', ''); ?>% off</span>&nbsp;&nbsp;
 							</div>
                         
                     </div>
