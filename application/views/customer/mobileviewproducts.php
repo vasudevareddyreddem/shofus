@@ -222,13 +222,13 @@ color:#eee !important;
 						</div>
 					</div>
 					<div class="clearfix" style="margin:0">&nbsp;</div>
-					<span  class="whis_cus_m">
+					<span  class="whis_cus_m mobile_wish_remove">
 					
 				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-					<span id="addwishlistmobileview<?php echo $cnt; ?>" onclick="mobileaddwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" class="glyphicon glyphicon-heart mobile_wish"></span>
-				<?php }else{ ?>	
-					<span onclick="mobileaddwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" class="glyphicon glyphicon-heart mobile_wish_remove"></span>
-				<?php } ?>	
+                  <a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart"></i></a> 
+                  <?php }else{ ?>	
+                  <a href="javascript:void(0);" onclick="addwhishlidts('<?php echo $productslist['item_id']; ?>','<?php echo $cnt; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $cnt; ?>" class="fa fa-heart "></i></a> 
+                  <?php } ?>
 				</span>
 			  </div>
 			  <?php $cnt++;} ?>
@@ -261,15 +261,16 @@ color:#eee !important;
 				//alert(data.msg);
 				if(data.msg==2){
 				$('#sucessmsg').show('');
-				$("#addwishlistids"+id+val).style.color = "#ff0000";
+				$("#addwishlistids"+id+val).removeClass("mobile_wish");
+				$("#addwishlistids"+id+val).addClass("mobile_wish_remove");
 				$('#addwhish'+id+val).prop('title', 'Add to Wishlist');
 				('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 				
 				}
 				if(data.msg==1){
 				$('#sucessmsg').show('');
-				$("#addwishlistids"+id+val).style.color = "blue";
-
+				$("#addwishlistids"+id+val).addClass("mobile_wish_remove");
+				$("#addwishlistids"+id+val).removeClass("mobile_wish");
 				 $('#addwhish'+id+val).prop('title', 'Added to Wishlist');
 				$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
 				document.getElementById("sucessmsg").focus();				
