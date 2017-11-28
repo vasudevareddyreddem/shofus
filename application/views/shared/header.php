@@ -224,7 +224,12 @@
    <div class="container1 container-fluid hm_nav affix_sm  sm_hide" >
       <div class="row  ">
          <div style="background:#009688;">
-            <div class="col-sm-2">
+
+			<div class="col-sm-2 show_1024">
+               <h2 style="margin:0px;color:#fff"><span class="smallnav menu" onclick="openNav()">☰</span></h2>
+               <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo_1024.png" /></a></span></h1>
+            </div>
+			<div class="col-sm-2 hide_1024">
                <h2 style="margin:0px;color:#fff"><span class="smallnav menu" onclick="openNav()">☰</span></h2>
                <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a></span></h1>
             </div>

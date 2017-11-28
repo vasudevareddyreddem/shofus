@@ -229,15 +229,15 @@
 							<td>Color </td>
 							
 							<td>
-								<div class="row">
+								<div class="row ">
 								<?php //echo '<pre>';print_r($sameproducts_color_list);exit;
 								foreach ($sameproducts_color_list as $lists){ ?>
 								<?php if($lists['item_id']==$products_list['item_id']){ ?>
-								<a class="col-md-2 col-xs-3 col-sm-2  active_color" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
+								<a class="col-md-2 col-xs-3 col-sm-2  active_color" style="margin: 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
 								<?php }else{  ?>
-								<a class="col-md-2 col-xs-3 col-sm-2 img_col" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
+								<a class="col-md-2 col-xs-3 col-sm-2 img_col" style="margin:5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
 								<?php   } ?>
@@ -256,7 +256,7 @@
 						<tr>
 							<td>Internal Memory </td>
 							<td>
-								<div class="row">
+								<div class="row cus_anch">
 								<?php foreach ($sameproducts_size_list as $lists){ ?>
 								
 								
