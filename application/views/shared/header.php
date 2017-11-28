@@ -65,7 +65,8 @@
    font-size: 16px;
    color: #818181;
    display: block;
-   transition: 0.3s
+   transition: 0.3s;
+   text-transform: uppercase;
    }
    .sidenav a> span {
    padding-right:20px;
