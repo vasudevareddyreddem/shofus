@@ -110,6 +110,16 @@ class Cron_model extends MY_Model
 		
 	}
 	
+	public function get_all_filters_data(){
+		$this->db->select('*')->from('fliter_search');
+		return $this->db->get()->result_array();
+	}
+	public function delete_privous_searchdata($id)
+	{
+		$sql1="DELETE FROM fliter_search WHERE id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	
 
 
 }

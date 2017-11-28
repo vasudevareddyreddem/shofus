@@ -206,8 +206,10 @@ public function item_status(){
 		//echo '<pre>';print_r($post);
 		//exit;
 		
-		$discount= ($post['product_price']-$post['special_price']);
-		$offers= (($discount) /$post['product_price'])*100;
+		$discount1= ($post['product_price']-$post['special_price']);
+		$discount= number_format($discount,2 );
+		$offers1= (($discount1) /$post['product_price'])*100;
+		$offers= number_format($offers1,2 );
 			if($_FILES['picture1']['name']!=''){
 				$profilepic1=microtime().basename($_FILES["picture1"]["name"]);
 				move_uploaded_file($_FILES['picture1']['tmp_name'], "uploads/products/" . $profilepic1);
@@ -258,7 +260,6 @@ public function item_status(){
 			}
 		//echo '<pre>';print_r($_FILES);
 		//echo '<pre>';print_r($post);exit;
-		
 		
 		$data=array(
 			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
@@ -589,7 +590,10 @@ public function update()
 	
 	//echo '<pre>';print_r($post);exit;
 	//echo '<pre>';print_r($_FILES);
-	
+	$discount1= ($post['product_price']-$post['special_price']);
+		$discount= number_format($discount,2 );
+		$offers1= (($discount1) /$post['product_price'])*100;
+		$offers= number_format($offers1,2 );
 	$productdetails=$this->products_model->getproductdata($post['product_id']);
 		if($_FILES['picture1']['name']!=''){
 		$image1=microtime().basename($_FILES["picture1"]["name"]);

@@ -109,21 +109,13 @@ class Cron extends Front_Controller
 					if(count($success)>0){
 					
 					
-					
-					$time = date("H:i:s a",strtotime($details['create_at']));
-					$begin1 = new DateTime('12:00 am');
-					$end1 = new DateTime('7:00 pm');
-					$begin2 = new DateTime('7:01 pm');
-					$end2 = new DateTime('11:59 pm');
-					$convertdate=date("g:i a", strtotime($time));
-					$now = new DateTime($convertdate);
-
-					if ($now >= $begin1 && $now <= $end1){
-						$times=' today 10 pm';
+					if($details['time']!=''){
+						$time=$details['time'];
 					}else{
-						$times=' tomorrow 2pm';
+						$time='2 hours';
 					}
-					$msg=' Order Product Name: '.$details['item_name'].' with tracking ID '.$details['order_item_id'].' from cartinhours.com, will be Delivery expected in '.$times.' Cartinhours rider (call '.$customerdetails['cust_mobile'].')';
+					
+					$msg=' Order Product Name: '.$details['item_name'].' Delivery Boy Phone number '.$customerdetails['cust_mobile'].' Expected time '.$time;
 					$username=$this->config->item('smsusername');
 					$pass=$this->config->item('smspassword');
 					$mobilesno=$details['customer_phone'];
@@ -316,7 +308,22 @@ class Cron extends Front_Controller
 	}
 	
 		
-	
+	public function remove_unwanteddatedate(){
+		$details=$this->Cron_model->get_all_filters_data();
+		if(count($details)>0){
+			
+			
+		foreach ($details as $lis){
+			$this->Cron_model->delete_privous_searchdata($lis['id']);
+			
+		}
+		
+		}
+
+		
+		
+		
+	}
 	
 	
 	

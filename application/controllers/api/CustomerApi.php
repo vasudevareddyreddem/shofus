@@ -476,13 +476,45 @@ class CustomerApi extends REST_Controller {
 		}
 		$cart_item_ids= $this->Customerapi_model->get_cart_products($customer_id);
 		$item_lists_count= $this->Customerapi_model->get_cart_products_list_count($customer_id);
-		foreach($cart_item_ids as $cartids) 
-		{ 		
-			$cart_ids[]=$cartids['cust_id'];
+		if(isset($cart_item_ids) && count($cart_item_ids)>0){
+				foreach($cart_item_ids as $cartids) 
+			{ 		
+				$cart_ids[]=$cartids['cust_id'];
+			}
+		}else{
+			$cart_ids[]=array();
 		}
 		$item_lists= $this->Customerapi_model->get_cart_products_list($customer_id);
+			if(isset($item_lists) && count($item_lists)>0){
+					foreach ($item_lists as $productslist){
+					
+					$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=$percentage;
+					
+				}
+				foreach ($plist as $list){
+					$pitemlist[]=$list;
+				}
+		}else{
+			$pitemlist[]=array();
+		}
+		
 		//echo '<pre>';print_r($item_lists);exit;
-		if(count($item_lists)>0){
+		if(count($pitemlist)>0){
 			if(!in_array($customer_id,$cart_ids))
 			{
 				$message = array('status'=>1,'message'=>'Customer having  no products in the cart');
@@ -491,7 +523,7 @@ class CustomerApi extends REST_Controller {
 				$message = array(
 				'status'=>1,
 				'message'=>'cart items list',
-				'list'=>$item_lists,
+				'list'=>$pitemlist,
 				'count'=>$item_lists_count['count'],
 				'path'=>base_url('uploads/products/')
 				);
@@ -593,16 +625,37 @@ class CustomerApi extends REST_Controller {
 		//echo '<pre>';print_r($wishlist);exit;
 		if(count($wishlist)>0){
 			foreach($wishlist as $cartids) 
-		{ 		
-			$cart_ids[]=$cartids['cust_id'];
-		}
-		//echo '<pre>';print_r($cart_ids);exit;
+			{ 		
+				$cart_ids[]=$cartids['cust_id'];
+				
+						$currentdate=date('Y-m-d h:i:s A');
+						if($cartids['offer_expairdate']>=$currentdate){
+						$item_price= ($cartids['item_cost']-$cartids['offer_amount']);
+						$percentage= $cartids['offer_percentage'];
+						$orginal_price=$cartids['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $cartids['special_price'];
+							$prices= ($cartids['item_cost']-$cartids['special_price']);
+							$percentage= (($prices) /$cartids['item_cost'])*100;
+							$orginal_price=$cartids['item_cost'];
+						}
+					$plist[$cartids['item_id']]=$cartids;
+					$plist[$cartids['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$cartids['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$cartids['item_id']]['percentage']=$percentage;
+			}
+			foreach ($plist as $ls){
+				$wishpdetails[]=$ls;
+				
+			}
+		//echo '<pre>';print_r($plist);exit;
 		if(!in_array($customer_id,$cart_ids))
 		{
 			$message = array('status'=>1,'message'=>'Customer having  no products in the wishlist');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}else{
-			$message = array('status'=>1,'message'=>'wishlist items list','list'=>$wishlist,'count'=>$wishlistcount['count'],'path'=>base_url('uploads/products/'));
+			$message = array('status'=>1,'message'=>'wishlist items list','list'=>$wishpdetails,'count'=>$wishlistcount['count'],'path'=>base_url('uploads/products/'));
 			$this->response($message,REST_Controller::HTTP_OK);
 		}
 		}else{
@@ -695,6 +748,23 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 		$product_details=$this->Customerapi_model->all_product_details($item_id);
+		if(count($product_details)>0){
+				$currentdate=date('Y-m-d h:i:s A');
+						if($product_details['offer_expairdate']>=$currentdate){
+						$item_price= ($product_details['item_cost']-$product_details['offer_amount']);
+						$percentage= $product_details['offer_percentage'];
+						$orginal_price=$product_details['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $product_details['special_price'];
+							$prices= ($product_details['item_cost']-$product_details['special_price']);
+							$percentage= (($prices) /$product_details['item_cost'])*100;
+							$orginal_price=$product_details['item_cost'];
+						}
+			
+		$product_details['withcrossmarkprice']=$orginal_price;
+		$product_details['withoutcrossmarkprice']=$item_price;
+		$product_details['percentage']=$percentage;
 		$des=$this->Customerapi_model->all_product_description($item_id);
 		//$product_details['descriptions']=$des;
 		//$product_details['imagepath']='https://cartinhours.com/uploads/products/';
@@ -710,8 +780,7 @@ class CustomerApi extends REST_Controller {
 		$size_list=$this->Customerapi_model->get_product_size_details($item_id);
 		$specification_list=$this->Customerapi_model->get_product_specification_details($item_id);
 		$uk_size_list=$this->Customerapi_model->get_product_uksize_details($item_id);
-		//echo '<pre>';print_r($product_details);exit;
-		if(count($product_details)>0){
+		
 		
 			$message = array('status'=>1,'path'=>base_url('uploads/products/'),'message'=>'product details','details'=>$product_details,'colorlist'=>$color_list,'sizelist'=>$size_list,'uksizelist'=>$uk_size_list,'specifications'=>$specification_list,'sameproducts_list'=>$sameproducts_list,'gbsizelist'=>$sameproducts_size,'colourlist'=>$sameproducts_colour,'ramlist'=>$sameproducts_ram,'descriptions'=>$des,'imagepath'=>base_url('uploads/products/'));
 			$this->response($message,REST_Controller::HTTP_OK);
@@ -776,10 +845,37 @@ class CustomerApi extends REST_Controller {
 			}
 			$searchname=substr($name, 0, 4);
 			$relatedproducts= $this->Customerapi_model->get_related_products_list($category_id,$subcategory_id,$searchname);
-		//echo $this->db->last_query();exit;
-		if(count($relatedproducts)>0){
+			if(count($relatedproducts)>0){
+				foreach ($relatedproducts as $productslist){
+						$currentdate=date('Y-m-d h:i:s A');
+					if($productslist['offer_expairdate']>=$currentdate){
+					$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+					$percentage= $productslist['offer_percentage'];
+					$orginal_price=$productslist['item_cost'];
+					}else{
+						//echo "expired";
+						$item_price= $productslist['special_price'];
+						$prices= ($productslist['item_cost']-$productslist['special_price']);
+						$percentage= (($prices) /$productslist['item_cost'])*100;
+						$orginal_price=$productslist['item_cost'];
+					}
+					
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=$percentage;
+
+				}
+				foreach ($plist as $list){
+				$pitemlist[]=$list;
+				}
+			}else{
+				$pitemlist[]=array();
+			}
+		if(count($pitemlist[0])>0){
+			
 		
-			$message = array('status'=>1,'message'=>'related product list details','list'=>$relatedproducts,'path'=>base_url('uploads/products/'));
+			$message = array('status'=>1,'message'=>'related product list details','list'=>$pitemlist,'path'=>base_url('uploads/products/'));
 			$this->response($message,REST_Controller::HTTP_OK);
 		}else{
 			$message = array('status'=>1,'message'=>'No related product list ');
@@ -1362,13 +1458,39 @@ class CustomerApi extends REST_Controller {
 	{
 		$get = $this->input->get();
 		$subcategorie_items = $this->Customerapi_model->get_subcategorie_items($get['subcategory_id']);
-		//print_r($subcategorie_items['some']);exit;
+		if(isset($subcategorie_items) && count($subcategorie_items)>0){
+						foreach ($subcategorie_items as $productslist){
+						
+						$currentdate=date('Y-m-d h:i:s A');
+							if($productslist['offer_expairdate']>=$currentdate){
+							$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+							$percentage= $productslist['offer_percentage'];
+							$orginal_price=$productslist['item_cost'];
+							}else{
+								//echo "expired";
+								$item_price= $productslist['special_price'];
+								$prices= ($productslist['item_cost']-$productslist['special_price']);
+								$percentage= (($prices) /$productslist['item_cost'])*100;
+								$orginal_price=$productslist['item_cost'];
+							}
+						$plist[$productslist['item_id']]=$productslist;
+						$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+						$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+						$plist[$productslist['item_id']]['percentage']=$percentage;
+						
+					}
+					foreach ($plist as $list){
+						$pitemlist[]=$list;
+					}
+			}else{
+				$pitemlist[]=array();
+			}
 		
-			if(count($subcategorie_items)>0){
+			if(count($pitemlist[0])>0){
 				$message = array
 				(
 					'status'=>1,
-					'Subcategorie Items'=>$subcategorie_items,
+					'Subcategorie Items'=>$pitemlist,
 					'path' =>base_url('uploads/products/')
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -1388,7 +1510,7 @@ class CustomerApi extends REST_Controller {
 	{
 		$get = $this->input->get('category_id');
 		$catwisepro = $this->Customerapi_model->get_category_products($get);
-		if(count($catwisepro)>0){
+		if(count($pitemlist[0])>0){
 				$message = array
 				(
 					'status'=>1,
@@ -1410,13 +1532,42 @@ class CustomerApi extends REST_Controller {
 	{
 		
 		$top_offer_location = $this->Customerapi_model->top_offers_product_search();
+		if(isset($top_offer_location) && count($top_offer_location)>0){
+			foreach ($top_offer_location as $productslist){
+			
+			$currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
+				}
+			$plist[$productslist['item_id']]=$productslist;
+			$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+			$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+			$plist[$productslist['item_id']]['percentage']=$percentage;
+			
+		}
+		foreach ($plist as $list){
+			$pitemlist[]=$list;
+		}
+		}else{
+			$pitemlist[]=array();
+		}
+		
+		//echo '<pre>';print_r($pitemlist);exit;
 		//echo $this->db->last_query();exit;
-		if(count($top_offer_location)>0){
+		if(count($pitemlist[0])>0){
 				$message = array
 				(
 					'status'=>1,
 					'path' =>base_url('uploads/products/'),
-					'location_top_offers'=>$top_offer_location,
+					'location_top_offers'=>$pitemlist,
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
 			
@@ -1430,13 +1581,39 @@ class CustomerApi extends REST_Controller {
 	{
 	
 		$deals_of_the_day_location = $this->Customerapi_model->deals_of_the_day_product_search();
-		//echo $this->db->last_query();exit;
-		if(count($deals_of_the_day_location)>0){
+		if(isset($deals_of_the_day_location) && count($deals_of_the_day_location)>0){
+			foreach ($deals_of_the_day_location as $productslist){
+			
+			$currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
+				}
+			$plist[$productslist['item_id']]=$productslist;
+			$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+			$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+			$plist[$productslist['item_id']]['percentage']=$percentage;
+			
+		}
+		foreach ($plist as $list){
+			$pitemlist[]=$list;
+		}
+		}else{
+			$pitemlist[]=array();
+		}
+		if(count($pitemlist[0])>0){
 				$message = array
 				(
 					'status'=>1,
 					'path' =>base_url('uploads/products/'),
-					'location_deals ofthe day'=>$deals_of_the_day_location,
+					'location_deals ofthe day'=>$pitemlist,
 					
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -1451,13 +1628,39 @@ class CustomerApi extends REST_Controller {
 	{
 		
 		$season_sales_location = $this->Customerapi_model->season_sales_product_search();
-		//echo $this->db->last_query();exit;
-		if(count($season_sales_location)>0){
+		if(isset($season_sales_location) && count($season_sales_location)>0){
+					foreach ($season_sales_location as $productslist){
+					
+					$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=$percentage;
+					
+				}
+				foreach ($plist as $list){
+					$pitemlist[]=$list;
+				}
+		}else{
+			$pitemlist[]=array();
+		}
+		if(count($pitemlist[0])>0){
 				$message = array
 				(
 					'status'=>1,
 					'path' =>base_url('uploads/products/'),
-					'location_season sales'=>$season_sales_location,
+					'location_season sales'=>$pitemlist,
 					
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -1472,13 +1675,39 @@ class CustomerApi extends REST_Controller {
 	{
 	
 		$treanding_location = $this->Customerapi_model->treanding_product_search();
-		//echo $this->db->last_query();exit;
-		if(count($treanding_location)>0){
+		if(isset($treanding_location) && count($treanding_location)>0){
+					foreach ($treanding_location as $productslist){
+					
+					$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=$percentage;
+					
+				}
+				foreach ($plist as $list){
+					$pitemlist[]=$list;
+				}
+		}else{
+			$pitemlist[]=array();
+		}
+		if(count($pitemlist[0])>0){
 				$message = array
 				(
 					'status'=>1,
 					'path' =>base_url('uploads/products/'),
-					'location_treading'=>$treanding_location,
+					'location_treading'=>$pitemlist,
 					
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -1493,12 +1722,38 @@ class CustomerApi extends REST_Controller {
 	public function offersforyoulocationwiseproducts_get()
 	{
 		$offers_for_you_location = $this->Customerapi_model->offers_for_you_product_search();
-		//echo $this->db->last_query();exit;
-		if(count($offers_for_you_location)>0){
+		if(isset($offers_for_you_location) && count($offers_for_you_location)>0){
+					foreach ($offers_for_you_location as $productslist){
+					
+					$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=$percentage;
+					
+				}
+				foreach ($plist as $list){
+					$pitemlist[]=$list;
+				}
+		}else{
+			$pitemlist[]=array();
+		}
+		if(count($pitemlist[0])>0){
 				$message = array
 				(
 					
-					'location_offer for you'=>$offers_for_you_location,
+					'location_offer for you'=>$pitemlist,
 					'status'=>1,
 					'path' =>base_url('uploads/products/')
 					
@@ -1965,10 +2220,30 @@ class CustomerApi extends REST_Controller {
 					if(isset($idslist) && count($idslist)>0){
 							$result = array_unique($idslist);
 								foreach ($result as $pids){
-										$products_list[]=$this->Customerapi_model->product_details($pids);
+										$pdetails=$this->Customerapi_model->product_details($pids);
+										
+											$currentdate=date('Y-m-d h:i:s A');
+											if($pdetails['offer_expairdate']>=$currentdate){
+											$item_price= ($pdetails['item_cost']-$pdetails['offer_amount']);
+											$percentage= $pdetails['offer_percentage'];
+											$orginal_price=$pdetails['item_cost'];
+											}else{
+											//echo "expired";
+											$item_price= $pdetails['special_price'];
+											$prices= ($pdetails['item_cost']-$pdetails['special_price']);
+											$percentage= (($prices) /$pdetails['item_cost'])*100;
+											$orginal_price=$pdetails['item_cost'];
+											}
+										$products_list[$pids]=$pdetails;
+										$products_list[$pids]['withcrossmarkprice']=$orginal_price;
+										$products_list[$pids]['withoutcrossmarkprice']=$item_price;
+										$products_list[$pids]['percentage']=$percentage;
 
 									}
-							$categorywiseproducrlist=$products_list;
+									foreach ($products_list as $lis){
+										$lists[]=$lis;
+									}
+							$categorywiseproducrlist=$lists;
 					}else{
 					$categorywiseproducrlist=array();;
 

@@ -7,7 +7,7 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 
 </style>
 <div class=" container mar_res_t150">
-<div class="bac_n_l " style="border:1px solid #ddd;height:220px;">
+ <div class="bac_n_l " style="border:1px solid #ddd;height:220px;">
 	 <form  onSubmit="return validations();" action="<?php echo base_url('customer/nearstores'); ?>" method="post" >
         <div class="form-group"  >
 		<?php if($this->session->userdata('location_area')!=''){ ?>

@@ -69,7 +69,7 @@ class Promotions extends Admin_Controller {
 			// exit;
 			$details=$this->Promotions_model->get_offer_product_price($post['combo']);
 			$data=array(
-			'offer_percentage'=>$post['offeramount'],
+			'offer_percentage'=>number_format($post['offeramount'], 2),
 			'offer_amount'=>$offer_price_pertange,
 			'offer_combo_item_id'=>$post['combo'],
 			'offer_combo_item_name'=>$details['item_name'],
@@ -128,7 +128,7 @@ class Promotions extends Admin_Controller {
 							'seller_id'=>$this->session->userdata('seller_id'),
 							'category_id'=>$productprice['category_id'],
 							'subcategory_id'=>$productprice['subcategory_id'],
-							'offer_percentage'=>$post['offeramount'],
+							'offer_percentage'=>number_format($post['offeramount'], 2),
 							'item_price'=>$productprice['item_cost'],
 							'offer_amount'=>$offer_amount,
 							'intialdate'=>date("Y-m-d H:i:s"),  
@@ -138,7 +138,7 @@ class Promotions extends Admin_Controller {
 							'create_at'=>date("Y-m-d H:i:s") 
 							);
 							$data1=array(
-								'offer_percentage'=>$post['offeramount'],
+								'offer_percentage'=>number_format($post['offeramount'], 2),
 								'offer_amount'=>$offer_amount,
 								'offer_type'=>5,
 								'offer_expairdate'=>date('Y-m-d h:i:s A', $date2),   
@@ -201,7 +201,7 @@ public function addtopoffers()
 							'seller_id'=>$this->session->userdata('seller_id'),
 							'category_id'=>$productprice['category_id'],
 							'subcategory_id'=>$productprice['subcategory_id'],
-							'offer_percentage'=>$post['offeramount'],
+							'offer_percentage'=>number_format($post['offeramount'], 2),
 							'item_price'=>$productprice['item_cost'],
 							'offer_amount'=>$offer_amount,
 							'intialdate'=>date("Y-m-d H:i:s"),  
@@ -211,7 +211,7 @@ public function addtopoffers()
 							'create_at'=>date("Y-m-d H:i:s") 
 							);
 							$data1=array(
-							'offer_percentage'=>$post['offeramount'],
+							'offer_percentage'=>number_format($post['offeramount'], 2),
 							'offer_amount'=>$offer_amount,
 							'offer_type'=>5,
 							'offer_expairdate'=>date('Y-m-d h:i:s A', $date2),  
@@ -273,7 +273,7 @@ public function dealsoftheday()
 							'seller_id'=>$this->session->userdata('seller_id'),
 							'category_id'=>$productprice['category_id'],
 							'subcategory_id'=>$productprice['subcategory_id'],
-							'offer_percentage'=>$post['offeramount'],
+							'offer_percentage'=>number_format($post['offeramount'], 2),
 							'item_price'=>$productprice['item_cost'],
 							'offer_amount'=>$offer_amount,
 							'intialdate'=>date("Y-m-d H:i:s"),  
@@ -283,7 +283,7 @@ public function dealsoftheday()
 							'create_at'=>date("Y-m-d H:i:s") 
 							);
 							$data1=array(
-							'offer_percentage'=>$post['offeramount'],
+							'offer_percentage'=>number_format($post['offeramount'], 2),
 							'offer_amount'=>$offer_amount,
 							'offer_type'=>5,
 							'offer_expairdate'=>date('Y-m-d h:i:s A', $date2),    
