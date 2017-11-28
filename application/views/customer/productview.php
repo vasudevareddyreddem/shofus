@@ -169,14 +169,42 @@
 			
 			 </tr>
 			 <?php } ?>
-			 <?php if($products_list['unit']!='' && $products_list['unit']!='NULL'){ ?>
-			 <tr>
-			 <td>Unit:</td>
-			 <td><span ><?php echo $products_list['unit'];?></span></td>
+			 
+			<?php 
+				  if(isset($sameproducts_unit_list) && count($sameproducts_unit_list)>0){
+				  if($products_list['category_id']==21){ ?>
+						
+						
+						<tr>
+							<td>unit </td>
+							
+							<td>
+								<div class="row">
+								<?php //echo '<pre>';print_r($sameproducts_color_list);exit;
+								foreach ($sameproducts_unit_list as $lists){ ?>
+								<?php if($lists['item_id']==$products_list['item_id']){ ?>
+								<a class="col-md-2 col-xs-3 col-sm-2  active_color" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['unit'])?$lists['unit']:'';?>">
+									<p><?php echo isset($lists['unit'])?$lists['unit']:'';?></p>
+								</a>
+								<?php }else if($lists['unit']==$products_list['unit']) { ?>
+								<a class="col-md-2  active_color" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['unit'])?$lists['unit']:'';?>">
+									<p><?php echo isset($lists['unit'])?$lists['unit']:'';?></p>
+								</a>
+								<?php }else{  ?>
+								<a class="col-md-2 col-xs-3 col-sm-2 img_col " style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['unit'])?$lists['unit']:'';?>">
+									<p><?php echo isset($lists['unit'])?$lists['unit']:'';?></p>
+								</a>
+								<?php   } ?>
+								
+								<?php   } ?>
+								</div>
+						
+							</td>
+						</tr>
+						
+				  <?php }  }?>
 			
-			 </tr>
-			 <?php } ?>
-			 <tr>
+			
 			  <td>Status</td>
                 <td>
 				<span class="label label-success arrowed">
