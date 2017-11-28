@@ -112,7 +112,9 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
                                                 
 
                                                 </td>
-
+												<?php if($productslist['item_qty']==0){?>
+												<td> product Out of stock</td>
+												<?php } ?>
 
                                             </tr>
 

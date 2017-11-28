@@ -115,6 +115,9 @@
 													<p class="md_hide" ><strong>Total :</strong> &nbsp; ₹ <span class="site_col"><?php echo isset($productslist['total_price'])?$productslist['total_price']:''; ?></span></p>
 													
                                                 </td>
+												<?php if($productslist['item_qty']==0){?>
+												<td> product Out of stock</td>
+												<?php } ?>
 											
 
 
