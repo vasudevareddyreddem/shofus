@@ -70,7 +70,9 @@
 .cust_plug {
 	text-algin:center !important;
 }
-
+.p_cos > p{
+	margin:4px 10px;
+}
 </style>
 
 <div class="pad_bod"  >
@@ -183,15 +185,15 @@
 								<?php //echo '<pre>';print_r($sameproducts_color_list);exit;
 								foreach ($sameproducts_unit_list as $lists){ ?>
 								<?php if($lists['item_id']==$products_list['item_id']){ ?>
-								<a class="col-md-2 col-xs-3 col-sm-2  active_color" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['unit'])?$lists['unit']:'';?>">
+								<a class="col-md-6 col-xs-12 p_cos  active_color"  href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['unit'])?$lists['unit']:'';?>">
 									<p><?php echo isset($lists['unit'])?$lists['unit']:'';?></p>
 								</a>
 								<?php }else if($lists['unit']==$products_list['unit']) { ?>
-								<a class="col-md-2  active_color" style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['unit'])?$lists['unit']:'';?>">
+								<a class="col-md-6 col-xs-12 p_cos  active_color"  href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['unit'])?$lists['unit']:'';?>">
 									<p><?php echo isset($lists['unit'])?$lists['unit']:'';?></p>
 								</a>
 								<?php }else{  ?>
-								<a class="col-md-2 col-xs-3 col-sm-2 img_col " style="margin:0px 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['unit'])?$lists['unit']:'';?>">
+								<a class="col-md-6  col-xs-12 p_cos img_col "  href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['unit'])?$lists['unit']:'';?>">
 									<p><?php echo isset($lists['unit'])?$lists['unit']:'';?></p>
 								</a>
 								<?php   } ?>
@@ -1311,11 +1313,11 @@
             </div>
             </div>
             </div>
-    </div>	
+ 
 	</section>
 	 <?php } ?>
+   	</div>
 
-<div class="clearfix">&nbsp;</div>
 
 <script type="text/javascript">
 var pincodeformat =/^[0-9]+$/;
