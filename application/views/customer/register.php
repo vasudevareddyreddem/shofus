@@ -78,17 +78,17 @@ label {
                             <div class="checkbox pull-left">
                                 <label>
 								<?php if(isset($remember) && $remember!=''){ ?>
-                                    <input id="login-remember" type="checkbox" checked="checked" name="remember" value="1"> Remember me
+                                    <input  id="login-remember" type="checkbox" checked="checked" name="remember" value="1"><span class="fo_forg"> Remember me</span>
 								<?php } else{ ?>
-								          <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+								          <input  id="login-remember" type="checkbox" name="remember" value="1"> <span class="fo_forg">Remember me</span>
 
 								<?php } ?>
                                 </label>
                             </div>
 							<div class="pull-right">
-                                <label>
-                                    <a class="forg_pas" href="<?php echo base_url('customer/forgotpassword');?>" >Forgot Password?</a>
-                                </label>
+                                <p class="mar_t8">
+                                    <a class="forg_pas fo_forg" href="<?php echo base_url('customer/forgotpassword');?>" >Forgot Password?</a>
+                                </p>
                             </div>
                         </div>
 
