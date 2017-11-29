@@ -570,5 +570,10 @@ public function getproductapproval()
 		return $this->db->get()->result_array();
 		
 	}
+	public function get_product_details($pid){
+		$this->db->select('products.item_id,products.item_cost,products.special_price')->from('products');
+		$this->db->where('item_id',$pid);
+		return $this->db->get()->row_array();
+	}
 	
 }

@@ -1586,6 +1586,84 @@ public function returns()
 			echo json_encode($data);
 		}
 	}
+	public function ajaxeditchanges(){
+		$post=$this->input->post();
+		$productdetails=$this->products_model->get_product_details($post['item_id']);
+		//echo '<pre>';print_r($post);
+		if($post['valuename']=='product_name'){
+			$editdata = array(
+			'item_name' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='product_code'){
+			$editdata = array(
+			'product_code' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='product_cost'){
+			
+			$discount1= ($post['value']-$productdetails['special_price']);
+			$discount= number_format($discount1,2 );
+			$offers1= (($discount1) /$post['value'])*100;
+			$offers= number_format($offers1,2 );
+			$editdata = array(
+			'item_cost' => $post['value'],
+			'offers' => $offers,
+			'discount' => $discount,
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='product_special'){
+			$discount1= ($productdetails['item_cost']-$post['value']);
+			$discount= number_format($discount1,2 );
+			$offers1= (($discount1) /$productdetails['item_cost'])*100;
+			$offers= number_format($offers1,2 );
+			$editdata = array(
+			'special_price' => $post['value'],
+			'offers' => $offers,
+			'discount' => $discount,
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='qty'){
+			$editdata = array(
+			'item_quantity' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='status'){
+			$editdata = array(
+			'item_status' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}
+		//echo '<pre>';print_r($editdata);exit;
+		$editsave=$this->products_model->update_deails($post['item_id'],$editdata);
+		if(count($editsave)>0){
+			$data['msg']=1;
+			if($post['valuename']=='product_cost'){
+				$data['cost']=$post['value'];
+			}else{
+				$data['cost']=$productdetails['item_cost'];
+			}
+			if($post['valuename']=='product_special'){
+				$data['special_cost']=$post['value'];
+			}else{
+				$data['special_cost']=$productdetails['special_price'];
+			}
+			echo json_encode($data);
+		}else{
+			$data['msg']=2;
+			if($post['valuename']=='product_cost'){
+				$data['cost']=$post['value'];
+			}else{
+				$data['cost']=$productdetails['item_cost'];
+			}
+			if($post['valuename']=='product_special'){
+				$data['special_cost']=$post['value'];
+			}else{
+				$data['special_cost']=$productdetails['special_price'];
+			}
+			echo json_encode($data);
+		}
+	}
 		
 
 }

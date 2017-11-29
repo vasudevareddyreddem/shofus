@@ -68,7 +68,7 @@
                 <div class="panel-heading" role="tab" id="headingOne<?php echo $nospace;  ?>">
                   <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion"  href="#collapOne<?php echo $nospace;  ?>" aria-expanded="true" aria-controls="collapOne<?php echo $nospace;  ?>"> <i class="more-less glyphicon glyphicon-plus"></i> <?php echo $subcategory->subcategory_name; ?> </a> </h4>
                 </div>
-                <div id="collapOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
+                <div id="collapOne<?php echo $nospace;  ?>" class="panel-collapse collapse  table-responsive" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
 		
 	<form  id="frm-example<?php echo $subcategory->subcategory_id;?>" name="frm-example<?php echo $subcategory->subcategory_id;?>" action="" method="POST">
 		<table id="example<?php echo $subcategory->subcategory_id;?>" class="display" width="100%" cellspacing="0">
@@ -76,7 +76,9 @@
             <tr>
                 <th>Item Name</th>
                 <th>Product Code</th>
-                <th>Item Cost</th>
+                <th>Item price</th>
+                <th>Special price</th>
+                <th>Quantity</th>
                 <th>Offer Amount</th>
                 <th>Combo offer item Name</th>
                 <th>Offer expiry Date and Time</th>
@@ -94,14 +96,26 @@
 						
 						?>
 					<tr>
-						<td><?php echo $item_data->item_name;?></td>
-						<td><?php echo $item_data->product_code;?></td>
-						<td><?php echo $item_data->item_cost;?></td>
+						<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','product_name',this.value)" name="product_name" value="<?php echo $item_data->item_name;?>"/></td>
+						<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','product_code',this.value)" name="product_code" value="<?php echo $item_data->product_code;?>"/></td>
+						<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','product_cost',this.value)" name="product_cost" id="product_cost<?php echo $subcategory->subcategory_id;?>" value="<?php echo $item_data->item_cost;?>"/></td>
+						<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','product_special',this.value)" name="product_special" id="product_special<?php echo $subcategory->subcategory_id;?>" value="<?php echo $item_data->special_price;?>"/></td>
+						<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','qty',this.value)" name="qty" value="<?php echo $item_data->item_quantity;?>"/></td>
 						<td><?php echo $item_data->offer_amount;?></td>
 						<td><?php if($item_data->offer_combo_item_id !=4 && $item_data->offer_combo_item_id !='' && $item_data->offer_combo_item_id!=0){ echo $item_data->offer_combo_item_name; }else{ echo ""; }?></td>
 						<td><?php echo $item_data->offer_expairdate;?></td>
-						<td><?php if($item_data->item_status == 1) { 
-						echo "Available" ;}else { echo "Unavailable"; } ?>
+						<td>
+						
+						<select id="status" onchange="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','status',this.value)" >
+						<?php if($item_data->item_status == 1) {?>
+						<option value="1"selected>Available</option>
+						<option value="0">Unavailable</option>
+						<?php }else if($item_data->item_status == 0){  ?>
+						<option value="1">Available</option>
+						<option value="0" selected>Unavailable</option>
+															
+						<?php } ?>						
+						</select>
 						</td>
 						<?php if($status_details['status']==1){ ?>
 						<td>
@@ -218,10 +232,11 @@
    var rows_selected = [];
    var table = $('#example<?php echo $subcategory->subcategory_id;?>').DataTable({
       'columnDefs': [{
-         'targets': 0,
-         'searchable':false,
-         'orderable':false,
+         'targets': [0, 1, 2, 3, 4, 5],
+         'searchable':true,
+         'orderable':true,
          'className': 'dt-body-center',
+		 'type': 'html-input',
       
       }],
       'order': [1, 'DESC'],
@@ -399,6 +414,24 @@ $(document).ready(function() {
   <!--body end here --> 
   
   <script language="JavaScript" type="text/javascript">
+  function saveeditchanges(subcatid,item_id,name,val){
+	 jQuery.ajax({
+			url: "<?php echo base_url('/seller/products/ajaxeditchanges');?>",
+			data: {
+				form_key : window.FORM_KEY,
+				item_id: item_id,
+				valuename: name,
+				value: val,
+				},
+			type: "POST",
+			format:"json",
+					success:function(data){
+					var parsedData = JSON.parse(data);
+					$('#product_cost'+subcatid).val(parsedData.cost);
+					$('#product_special'+subcatid).val(parsedData.special_cost);
+					}
+        });
+  }
   $('.form_datetime').datetimepicker({
         //language:  'fr',
         weekStart: 1,
