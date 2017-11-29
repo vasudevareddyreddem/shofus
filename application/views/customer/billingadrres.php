@@ -275,7 +275,7 @@
 	<div  class="md_hide ">
 	<div  class=" proeed_chec_btn" id="skipdeliveraddress1" style="display:none">
 		<form action="<?php echo base_url('customer/billingaddresspost/'); ?>" method="post">
-		<input type="hidden" name="billingaddressid" id="billingaddressid" value="">
+		<input type="hidden" name="billingaddressid" id="billingaddressid1" value="">
 			 
 			<button  type="submit"  class="btn btn-lg btn-primary btn-block col-xs-12 "   ><i class="fa fa-bolt" aria-hidden="true"></i>  Proceed to Payment</button>
 		</form>
@@ -405,6 +405,7 @@ function getareapincode(val){
 
 function getbillingaddress_id(id){
 	$('#billingaddressid').val(id);
+	$('#billingaddressid1').val(id);
 	
 }
 function removebillingaddress(aid,cnt){
