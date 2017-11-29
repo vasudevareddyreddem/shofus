@@ -1633,6 +1633,271 @@ public function returns()
 			'item_status' => $post['value'],
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
+		}else if($post['valuename']=='status'){
+			$editdata = array(
+			'item_status' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='brand'){
+			$editdata = array(
+			'brand' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='Processor'){
+			$editdata = array(
+			'Processor' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='screen_size'){
+			$editdata = array(
+			'screen_size' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='internal_memeory'){
+			$editdata = array(
+			'internal_memeory' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='camera'){
+			$editdata = array(
+			'camera' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='sim_type'){
+			$editdata = array(
+			'sim_type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='os'){
+			$editdata = array(
+			'os' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='colour'){
+			$editdata = array(
+			'colour' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='ram'){
+			$editdata = array(
+			'ram' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='model_name'){
+			$editdata = array(
+			'model_name' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='model_id'){
+			$editdata = array(
+			'model_id' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='internal_memory'){
+			$editdata = array(
+			'internal_memory' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='expand_memory'){
+			$editdata = array(
+			'expand_memory' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='primary_camera'){
+			$editdata = array(
+			'primary_camera' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='primary_camera_feature'){
+			$editdata = array(
+			'primary_camera_feature' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='secondary_camera'){
+			$editdata = array(
+			'secondary_camera' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='secondary_camera_feature'){
+			$editdata = array(
+			'secondary_camera_feature' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='video_recording'){
+			$editdata = array(
+			'video_recording' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='hd_recording'){
+			$editdata = array(
+			'hd_recording' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='flash'){
+			$editdata = array(
+			'flash' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='other_camera_features'){
+			$editdata = array(
+			'other_camera_features' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='battery_capacity'){
+			$editdata = array(
+			'battery_capacity' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='talk_time'){
+			$editdata = array(
+			'talk_time' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='standby_time'){
+			$editdata = array(
+			'standby_time' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='operating_frequency'){
+			$editdata = array(
+			'operating_frequency' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='preinstalled_browser'){
+			$editdata = array(
+			'preinstalled_browser' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='wifi'){
+			$editdata = array(
+			'wifi' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='gps'){
+			$editdata = array(
+			'gps' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='usb_connectivity'){
+			$editdata = array(
+			'usb_connectivity' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='bluetooth'){
+			$editdata = array(
+			'bluetooth' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='nfc'){
+			$editdata = array(
+			'nfc' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='edge'){
+			$editdata = array(
+			'edge' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='edge_features'){
+			$editdata = array(
+			'edge_features' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='music_player'){
+			$editdata = array(
+			'music_player' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='video_player'){
+			$editdata = array(
+			'video_player' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='audio_jack'){
+			$editdata = array(
+			'audio_jack' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='gpu'){
+			$editdata = array(
+			'gpu' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='sim_size'){
+			$editdata = array(
+			'sim_size' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='sim_supported'){
+			$editdata = array(
+			'sim_supported' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='call_memory'){
+			$editdata = array(
+			'call_memory' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='sms_memory'){
+			$editdata = array(
+			'sms_memory' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='phone_book_memory'){
+			$editdata = array(
+			'phone_book_memory' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='sensors'){
+			$editdata = array(
+			'sensors' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='java'){
+			$editdata = array(
+			'java' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='insales_package'){
+			$editdata = array(
+			'insales_package' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='dislay_resolution'){
+			$editdata = array(
+			'dislay_resolution' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='display_type'){
+			$editdata = array(
+			'display_type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='ingredients'){
+			$editdata = array(
+			'ingredients' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='service_type'){
+			$editdata = array(
+			'service_type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='unit'){
+			$editdata = array(
+			'unit' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='packingtype'){
+			$editdata = array(
+			'packingtype' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='disclaimer'){
+			$editdata = array(
+			'disclaimer' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
 		}
 		//echo '<pre>';print_r($editdata);exit;
 		$editsave=$this->products_model->update_deails($post['item_id'],$editdata);
