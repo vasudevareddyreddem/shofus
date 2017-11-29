@@ -102,7 +102,7 @@ tr th:last-child {
 					</tr>
       <tr>
 	  <tr>
-       <th>Sold By</th>
+       <th>Seller</th>
         <td><?php echo isset($item_details['store_name'])?$item_details['store_name']:'';  ?></td>
         
       </tr>

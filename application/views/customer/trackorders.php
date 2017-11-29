@@ -90,7 +90,6 @@ tr th:last-child {
 					</div>
 					<div class="col-md-8 col-xs-9">
 						<p><a  style="text-transform: uppercase;" href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
-						<div>Color: <?php echo isset($item_details['color'])?$item_details['color']:'';  ?></div>
 						<div><p ><?php echo $item_details['return_policy']; ?>  </p></div>
 					
 					</div>
@@ -165,7 +164,7 @@ tr th:last-child {
 
 					</tr>
 					<tr>
-					<th>Sold By</th>
+					<th>Seller</th>
 					<td><?php echo isset($item_details['store_name'])?$item_details['store_name']:'';  ?></td>
 
 					</tr>
