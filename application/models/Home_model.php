@@ -27,7 +27,7 @@ class Home_model extends CI_Model
 	}
 	public function customer_details($cust_id)
 	{
-	$this->db->select('customers.cust_firstname,customers.cust_lastname')->from('customers');
+	$this->db->select('customers.cust_firstname,customers.cust_lastname,customers.cust_propic')->from('customers');
 	$this->db->where('customer_id', $cust_id);
 	return $this->db->get()->row_array();
 	}

@@ -255,9 +255,13 @@
          <div class="medias list_ad sm_hide ">
             <?php if($this->session->userdata('userdetails')){ ?>
             <span class="medias user_log">
-               <a >
-                  <i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" /></i>
-                  <p><?php echo $details['cust_firstname'].' '.$details['cust_lastname']; ?></p>
+               <a>
+                  <?php if($details['cust_propic']!=''){ ?>
+				  <i><img src="<?php echo base_url('uploads/profile/'.$details['cust_propic']); ?>"/></i>
+                  <?php } else { ?>
+				  	<i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" /></i>
+				  <?php } ?>
+				  <p><?php echo $details['cust_firstname'].' '.$details['cust_lastname']; ?></p>
                </a>
             </span>
             <div id="user_sow" style="display:none;">
