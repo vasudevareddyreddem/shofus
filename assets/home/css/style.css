@@ -2,15 +2,11 @@
 	display:none;
 }
 .user_icon{
-	max-width:40px;
-	max-height:40px;
-
-	
-
-}
+	max-width:35px;
+	max-height:35px;}
 .user_bac{
-	width:40px;
-	height:40px;
+	width:35px;
+	height:35px;
 	border-radius:50%;
 	border:1px solid #009688;
 	background:#fff;
