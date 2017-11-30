@@ -257,7 +257,7 @@
             <span class="medias user_log">
                <a>
                   <?php if($details['cust_propic']!=''){ ?>
-				  <i><img src="<?php echo base_url('uploads/profile/'.$details['cust_propic']); ?>"/></i>
+				  <i><div class="user_bac"><img class="user_icon" src="<?php echo base_url('uploads/profile/'.$details['cust_propic']); ?>"/></div></i>
                   <?php } else { ?>
 				  	<i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" /></i>
 				  <?php } ?>
