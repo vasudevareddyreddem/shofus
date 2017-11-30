@@ -537,21 +537,11 @@ color:#eee !important;
 				jQuery('#sucessmsg').show();
 				//alert(data.msg);
 				if(data.msg==2){
-				$('#sucessmsg').show('');
-				//$("#addwishlistids"+id+val).removeClass("mobile_wish");
-				$("#addwishlistids"+id+val).addClass("mobile_wish_remove");
-				$('#addwhish'+id+val).prop('title', 'Add to Wishlist');
-						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
-				document.getElementById("sucessmsg").focus();
+				alert('Product Successfully Removed to wishlist');
 				
 				}
 				if(data.msg==1){
-				$('#sucessmsg').show('');
-				// $("#addwishlistids"+id+val).removeClass("mobile_wish_remove");
-				 $("#addwishlistids"+id+val).addClass("mobile_wish");
-				 $('#addwhish'+id+val).prop('title', 'Added to Wishlist');
-				$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
-				document.getElementById("sucessmsg").focus();				
+				alert('Product Successfully added to wishlist');
 				}
 			}
 			
