@@ -101,7 +101,6 @@ div.bhoechie-tab-menu div.list-group>a.active:after {
                                                 <td class="text-left con_tex_250" >
 												<p class="md_hide">&nbsp;</p>
                                                     <p class="" style="font-size:16px;font-weight:500"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></p>
-                                                    <p><?php echo isset($productslist['brand'])?$productslist['brand']:''; ?></p>
                                                     	<?php if(isset($productslist['unit']) && $productslist['unit']!=''){ ?>
                                                     <p><?php echo isset($productslist['unit'])?$productslist['unit']:''; ?></p>
 													<?php } ?>
