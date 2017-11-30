@@ -3142,6 +3142,37 @@ class CustomerApi extends REST_Controller {
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
+	
+	public function homepagefunctionality_hideshow_get(){
+			$topoffer= $this->Customerapi_model->top_offers_product_search();
+			$treanding= $this->Customerapi_model->treanding_product_search();
+			$deals = $this->Customerapi_model->deals_of_the_day_product_search();
+			$season = $this->Customerapi_model->season_sales_product_search();
+			$offers = $this->Customerapi_model->offers_for_you_product_search();
+			if(count($topoffer)>0){
+				$top=1;
+			}else{
+				$top=0;
+			}if(count($treanding)>0){
+				$treand=1;
+			}else{
+				$treand=0;
+			}if(count($deals)>0){
+				$deal=1;
+			}else{
+				$deal=0;
+			}if(count($season)>0){
+				$seasons=1;
+			}else{
+				$seasons=0;
+			}if(count($offers)>0){
+				$offer=1;
+			}else{
+				$offer=0;
+			}
+		$message = array('status'=>1, 'Topoffer'=>$top,'treand'=>$treand,'deals'=>$deal,'season'=>$seasons,'offer'=>$offer,'message'=>'Home view');
+		$this->response($message, REST_Controller::HTTP_OK);
+	}
 
 
 
