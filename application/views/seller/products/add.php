@@ -1,4 +1,7 @@
-<style>
+ <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-ui.css">
+  <script src="<?php echo base_url(); ?>assets/seller/js/jquery-ui.js"></script>
+
+  <style>
 .shad_down{
 	-webkit-box-shadow: -1px 1px 5px -1px rgba(0,0,0,0.75);
 	-moz-box-shadow: -1px 1px 5px -1px rgba(0,0,0,0.75);
@@ -140,7 +143,7 @@
 			<span id="errormsg"></span>
 			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Category </label>
-				<select class="form-control " onchange="getsubcategory(this.value);getproductinputs(this.value);groceryproducts(this.value);" id="category_id" name="category_id">
+				<select class="form-control " onchange="removeextrafields();getsubcategory(this.value);groceryproducts(this.value);" id="category_id" name="category_id">
 				<option value="">Select Category</option>
 				<?php foreach($category_details as $list){ ?>
 				<option value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
@@ -200,7 +203,7 @@
 				<div class="form-group nopaddingRight san-lg">
 					   <label for="exampleInputEmail1">product Name</label>
 					   
-						<input  style="font-size:16px" type="text" class="form-control typeahead tt-query"  autocomplete="off" spellcheck="false" onchange="getoldproduct_details(this.value);" name="product_name" id="product_name" >
+						<input  style="font-size:16px" type="text" class="form-control tt-query tags"  autocomplete="off" spellcheck="false" onkeyup="getoldproducts(this.value);"  onchange="getoldproduct_details(this.value);" name="product_name" id="product_name" >
 				</div>
 			</div>
 			<div class=" col-md-6 ">
@@ -373,7 +376,37 @@
   <!--main content end--> 
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/bootstrapValidator.css"/>
     <script src="<?php echo base_url(); ?>assets/dist/js/bootstrapValidator.js"></script>
+ 
  <script type="text/javascript">
+   $( function() {
+    var availableTags = [];
+    $( "#product_name" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  
+  function getoldproducts(val){
+   	
+   		jQuery.ajax({
+   			url: "<?php echo site_url('seller/products/relatedproduct_details');?>",
+   			type: 'post',
+   			data: {
+   				form_key : window.FORM_KEY,
+   				producname: val,
+   				},
+   			dataType: 'json',
+   			success: function (data) {
+				var availableTags = data;
+   					 $( "#product_name" ).autocomplete({
+   						 
+   					   source: availableTags,
+   						select: function(event, ui) { 
+   						}
+   					});
+   					
+   			}
+   		});
+   }
  function getspecialinputs(ids){
 	
 	var cat_id=$('#category_id').val();
@@ -406,32 +439,7 @@ function changememory(id){
 function changesimtype(id){
 	$('#sim_supported').val(id);
 }
-$(document).ready(function(){
-    // Defining the local dataset
-    var cars = [<?php echo "'".$pdata."'"; ?>];
-    
-    // Constructing the suggestion engine
-    var cars = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: cars
-    });
-    
-    // Initializing the typeahead
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true, /* Enable substring highlighting */
-        minLength: 1 /* Specify minimum characters required for showing result */
-    },
-    {
-        name: 'cars',
-        source: cars
-    });
-});  
-
-
-
-    jQuery.ajax({
+jQuery.ajax({
 				url: "<?php echo site_url('seller/products/getolditemdata');?>",
 				type: 'post',
 				data: {
@@ -467,6 +475,7 @@ $(document).ready(function(){
 				}
 			});
 		}else{
+			$("#grocery_products").hide();
 			$("#grocery_products").empty();
 			$("#newmobile_products").show();
 			$("#mobile_products").show();
@@ -657,7 +666,7 @@ $(document).ready(function(){
    }
 function removeextrafields(){
 	  
-	   $('#productname').val('');
+	   $('#product_name').val('');
 	   $('#skuid').val('');
 	   $('#otherunique').val('');
 	   $('#product_price').val('');
@@ -787,30 +796,7 @@ $(document).ready(function(){
   
 });	
 
- $('#sizeid').hide();
- function getproductinputs(id){
-	
-	 if(id==18){
-		  $('#foodcategoryinputs').show();
-		  $('#brand').hide();
-		  $('#idealfor').hide();
-		  $('#sizesid').hide();
-		  $('#colorid').hide();
-	  }else if(id==21){
-		$('#colorid').hide();  
-		$('#sizesid').hide();  
-		$('#ideal_for').hide();  
-		  
-	  }else{
-		  $('#foodcategoryinputs').hide();
-		
-		  $('#idealfor').show();
-		  $('#sizesid').show();
-		  $('#colorid').show();
-	  }
-	 
-	  
-}
+
 function getinputfiledshideshow(ids){
 	
 	if(ids!=''){
@@ -841,38 +827,8 @@ function getinputfiledshideshow(ids){
 	
 }
 
-
-  function getsubcat(ids){
-	  var cat=ids;
-	 var myarr = cat.split("/");
-	var dataString = 'category_id='+myarr[0];
-	$.ajax
-		({
-		type: "POST",
-		url: "<?php echo base_url();?>seller/products/getajaxsubcat",
-		data: dataString,
-		cache: false,
-		success: function(data)
-		{
-		$("#subcategory_id_import").html(data);
-		} 
-		});
-  }
- 
-
-
-
-
   
   function getsubcategory(id){
-	 
-	  if(id==2){
-		  $('#materialpurose').show();
-		  $('#seasonpurpose').show();
-	  }else{
-		  $('#materialpurose').hide(); 
-		  $('#seasonpurpose').hide(); 
-	  }
 	  if(id!=''){
 		$('#subcategorylist').empty();
 		jQuery.ajax({
@@ -893,58 +849,6 @@ function getinputfiledshideshow(ids){
 	  
   }
 
- function hidemsg(id){
-	  if(id=''){
-		jQuery('#errormsg').html('Please select subcategory');  
-	  }else{
-		jQuery('#errormsg').html('');  
-	  }
-	  
-  } 
-function checkvalidation(){
-		var e = document.getElementById("subcategory_id_import");
-		var strUser = e.options[e.selectedIndex].value;
-		if(strUser==''){
-		jQuery('#errormsg').html('Please select subcategory');
-		return false;
-		}
-		jQuery('#errormsg').html('');
-	  
-  }	
-
- $(document).ready(function() {
-            var jsonData = [];
-            var fruits = '<?php echo $color_lists; ?>'.split(',');
-            for(var i=0;i<fruits.length;i++) jsonData.push({id:fruits[i],name:fruits[i]});
-            var colors = $('#colors').tagSuggest({
-                data: jsonData,
-                sortOrder: 'name',
-                maxDropHeight: 200,
-                name: 'colors'
-            });
-        }); 
-$(document).ready(function() {
-            var jsonData = [];
-            var fruits = '<?php echo $sizes_lists; ?>'.split(',');
-            for(var i=0;i<fruits.length;i++) jsonData.push({id:fruits[i],name:fruits[i]});
-            var sizes = $('#sizes').tagSuggest({
-                data: jsonData,
-                sortOrder: 'name',
-                maxDropHeight: 200,
-                name: 'sizes'
-            });
-        });
-$(document).ready(function() {
-            var jsonData = [];
-            var fruits = '<?php echo $uksizes_lists; ?>'.split(',');
-            for(var i=0;i<fruits.length;i++) jsonData.push({id:fruits[i],name:fruits[i]});
-            var ussizes = $('#ussizes').tagSuggest({
-                data: jsonData,
-                sortOrder: 'name',
-                maxDropHeight: 200,
-                name: 'ussizes'
-            });
-        });
 
 
 $(document).ready(function(){
@@ -1020,8 +924,7 @@ function education_fields() {
    }
 
 </script>
-<script src="<?php echo base_url(); ?>assets/seller/dist/js/typeahead.bundle.js" type="text/javascript"></script>
-  
+ 
 
 
 		

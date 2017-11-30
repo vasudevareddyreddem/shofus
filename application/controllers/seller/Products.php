@@ -188,7 +188,7 @@ public function item_status(){
 	 $post = $this->input->post();
 	 $data['item_details']=$this->products_model->get_sae_product_details($post['productname'],$post['categoryid'],$post['subcategoryid']);
 	 //echo $this->db->last_query();exit;
-	 //print_r( $data);
+	 //echo '<pre>';print_r( $data);
 	 if(isset($post['categoryid']) && $post['categoryid']==21){
 	 $this->load->view('seller/products/groceryproductdetails',$data);
 	 }else{
@@ -1928,6 +1928,30 @@ public function returns()
 			}
 			echo json_encode($data);
 		}
+	}
+	
+	public function relatedproduct_details(){
+		$post=$this->input->post();
+		$serachvalue=$this->products_model->get_related_products_names_list($post['producname']);
+		if(count($serachvalue)>0){
+			foreach ($serachvalue as $lis){
+				$pnames[]=$lis['item_name'];
+			}
+			
+			
+		}else{
+			$pnames[]=array();
+		}
+		//echo '<pre>';print_r($pnames);
+		//$tt=implode(",",$pnames);
+		//echo '<pre>';print_r($tt);
+		if(isset($pnames) && count($pnames)>0){
+		$datails=$pnames;
+		}else{
+		$datails=array('0'=>'No data Found');
+		}
+		echo json_encode($datails);	
+		
 	}
 		
 

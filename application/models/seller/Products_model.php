@@ -575,5 +575,10 @@ public function getproductapproval()
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->row_array();
 	}
+	public function get_related_products_names_list($name){
+		$this->db->select('products.item_name')->from('products');
+		$this->db->like('item_name',$name);
+		return $this->db->get()->result_array();
+	}
 	
 }
