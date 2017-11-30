@@ -1,6 +1,18 @@
 .show_1024{
 	display:none;
 }
+.user_icon{
+	max-width:35px;
+	max-height:35px;}
+.user_bac{
+	width:35px;
+	height:35px;
+	border-radius:50%;
+	border:1px solid #009688;
+	background:#fff;
+	overflow:hidden;
+	margin: 0 auto;
+}
 .out_off_ca{
 	background:#f2dede;
 	padding:5px 10px;
