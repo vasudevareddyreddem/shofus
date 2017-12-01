@@ -32,20 +32,6 @@ class Home_model extends CI_Model
 	return $this->db->get()->row_array();
 	}
 	
-	/*public function renamepurpose_items_ids()
-	{
-	$this->db->select('products.item_id,products.item_name,products.ram,products.colour,products.internal_memeory')->from('products');
-
-	return $this->db->get()->result_array();
-	//echo $this->db->last_query();exit; 
-
-	}
-	public function update_names($id,$name)
-	{
-	$sql1="UPDATE products SET item_name ='".$name."' WHERE item_id = '".$id."'";
-       	return $this->db->query($sql1);
-
-	}*/
 	public function get_search_functionality_products($areaid)
 	{
 	$this->db->select('products.item_id,products.item_name,products.ram,products.colour,products.internal_memeory,products.yes,subcategories.subcategory_id,subcategories.subcategory_name,subcategories.category_id')->from('products');
@@ -728,6 +714,19 @@ public function update_names($id,$name)
        	return $this->db->query($sql1);
 
 	}
+	public function get_all_percentage_list_products(){
+	$this->db->select('products.item_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.discount,products.offers')->from('products');
+	$this->db->where('item_status',1);
+	//$this->db->where('category_id',20);
+	return $this->db->get()->result_array();
+	}
+	public function update_discount($id,$dis,$off)
+	{
+	$sql1="UPDATE products SET offers ='".$off."',discount ='".$dis."' WHERE item_id = '".$id."'";
+       	return $this->db->query($sql1);
+
+	}	
+
 
 
 

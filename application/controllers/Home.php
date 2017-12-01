@@ -729,6 +729,25 @@ public function namechanges (){
 	
 }
 
+public function percentagecal(){
+	
+	$result = $this->home_model->get_all_percentage_list_products();
+	foreach ($result as $products_list){
+	
+					//echo "expired";
+		$item_price= $products_list['special_price'];
+		$prices= ($products_list['item_cost']-$products_list['special_price']);
+		$percentage= (($prices) /$products_list['item_cost'])*100;
+		$orginal_price=$products_list['item_cost'];
+	
+	//echo '<pre>';print_r($products_list);exit;
+	$this->home_model->update_discount($products_list['item_id'],number_format($prices, 2),number_format($percentage, 2));	
+	//echo $this->db->last_query();exit;
+	}
+	//echo '<pre>';print_r($$li);exit;
+	
+}
+
 
 
 

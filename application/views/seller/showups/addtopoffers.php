@@ -86,7 +86,7 @@
 				<th>Item Name</th>
                 <th>Item Code</th>
                 <th>Item Cost</th>
-                <th>After Amount</th>
+                <th>Offer Amount</th>
                 <th>Offer Type</th>
                 <th>Offer expiry Date and Time</th>                
             </tr>
