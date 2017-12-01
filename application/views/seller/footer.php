@@ -14,9 +14,9 @@
             <p>Site Map</p>
             <ul class="">
               <li><a href="<?php echo base_url();?>seller/login">Home</a></li>
-              <li><a href="#">Cart in Hour </a></li>
+              <li><a href="https:cartinhours.com">Cart in Hours </a></li>
              
-              <li><a href="<?php echo base_url();?>seller/faq">FAQs</a></li>
+              <li><a href="<?php echo base_url();?>seller/login#faq_sc">FAQs</a></li>
             </ul>
           </div>
         </div>
@@ -24,11 +24,10 @@
           <div class="siteMap">
             <p>Social</p>
             <ul class="social-network social-circle">
-              <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
-              <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
-              <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+              <li><a target="_blank" href="https://www.facebook.com/cartinhoursdotcom" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+              <li><a target="_blank" href="https://twitter.com/cartinhours" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+              <li><a target="_blank" href="https://plus.google.com/u/0/106334687276812209130" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+              <li><a target="_blank" href="https://www.linkedin.com/company/cartinhours" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
             </ul>
             <!-- <a class="social" href="#" target="_blank"><img src="images/fb.png"></a> <a class="social" href="#" target="_blank"><img src="images/twit.png"></a> <a class="social" href="" target="_blank"><img src="images/lin.png"></a> <a class="social" href="" target="_blank"><img src="images/googlePlus.png"></a> <a class="social" href="" target="_blank"><img src="images/youtube.png"></a> --></div>
         </div>
