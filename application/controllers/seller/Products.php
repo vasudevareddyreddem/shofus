@@ -262,11 +262,11 @@ public function item_status(){
 		//echo '<pre>';print_r($_FILES);
 		//echo '<pre>';print_r($post);exit;
 		if($post['colour']!='' && $post['internal_memeory']!='' && $post['ram']!=''){
-			$name=$post['product_name'].' '.$post['colour'].' '.$post['internal_memeory'].' '.$post['ram'].' Ram';
+			$name=$post['product_name'].' '.ucfirst(strtolower($post['colour'])).' '.str_replace(' ', '', strtoupper($post['internal_memeory'])).' '.$post['ram'].' Ram';
 		}else if($post['colour']!='' && $post['internal_memeory']!=''){
-			$name=$post['product_name'].' '.$post['colour'].' '.$post['internal_memeory'];
+			$name=$post['product_name'].' '.ucfirst(strtolower($post['colour'])).' '.str_replace(' ', '', strtoupper($post['internal_memeory']));
 		}else if($post['colour']!=''){
-			$name=$post['product_name'].' '.$post['colour'];
+			$name=$post['product_name'].' '.ucfirst(strtolower($post['colour']));
 		}else{
 			$name=$post['product_name'];
 		}
@@ -291,15 +291,15 @@ public function item_status(){
 			'product_code' =>isset($post['product_code'])?$post['product_code']:'',
 			'Processor' =>isset($post['Processor'])?$post['Processor']:'',
 			'screen_size' => isset($post['screen_size'])?$post['screen_size']:'',
-			'internal_memeory' =>isset($post['internal_memeory'])?$post['internal_memeory']:'',
+			'internal_memeory' =>isset($post['internal_memeory'])?str_replace(' ', '', strtoupper($post['internal_memeory'])):'',
 			'camera' => isset($post['camera'])?$post['camera']:'',
 			'sim_type' => isset($post['sim_type'])?$post['sim_type']:'',
 			'os' => isset($post['os'])?$post['os']:'',
-			'colour' => isset($post['colour'])?$post['colour']:'',
-			'ram' => isset($post['ram'])?$post['ram']:'',
+			'colour' => isset($post['colour'])?ucfirst(strtolower($post['colour'])):'',
+			'ram' => isset($post['ram'])?str_replace(' ', '', strtoupper($post['ram'])):'',
 			'model_name' => isset($post['model_name'])?$post['model_name']:'',
 			'model_id' => isset($post['model_id'])?$post['model_id']:'',
-			'internal_memory' => isset($post['internal_memory'])?$post['internal_memory']:'',
+			'internal_memory' => isset($post['internal_memory'])?str_replace(' ', '', strtoupper($post['internal_memory'])):'',
 			'expand_memory' => isset($post['expand_memory'])?$post['expand_memory']:'',
 			'primary_camera' => isset($post['primary_camera'])?$post['primary_camera']:'',
 			'primary_camera_feature' => isset($post['primary_camera_feature'])?$post['primary_camera_feature']:'',
@@ -659,11 +659,11 @@ public function update()
 		}
 		
 	if($post['colour']!='' && $post['internal_memeory']!='' && $post['ram']!=''){
-			$name=$post['name'].' '.$post['colour'].' '.$post['internal_memeory'].' '.$post['ram'].' Ram';
+			$name=$post['name'].' '.ucfirst(strtolower($post['colour'])).' '.str_replace(' ', '', strtoupper($post['internal_memeory'])).' '.$post['ram'].' Ram';
 		}else if($post['colour']!='' && $post['internal_memeory']!=''){
-			$name=$post['name'].' '.$post['colour'].' '.$post['internal_memeory'];
+			$name=$post['name'].' '.ucfirst(strtolower($post['colour'])).' '.str_replace(' ', '', strtoupper($post['internal_memeory']));
 		}else if($post['colour']!=''){
-			$name=$post['name'].' '.$post['colour'];
+			$name=$post['name'].' '.ucfirst(strtolower($post['colour']));
 		}
 	
 	$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));
@@ -706,15 +706,15 @@ public function update()
 			'product_code' =>isset($post['product_code'])?$post['product_code']:'',
 			'Processor' =>isset($post['Processor'])?$post['Processor']:'',
 			'screen_size' => isset($post['screen_size'])?$post['screen_size']:'',
-			'internal_memeory' =>isset($post['internal_memeory'])?$post['internal_memeory']:'',
+			'internal_memeory' =>isset($post['internal_memeory'])?str_replace(' ', '', strtoupper($post['internal_memeory'])):'',
 			'camera' => isset($post['camera'])?$post['camera']:'',
 			'sim_type' => isset($post['sim_type'])?$post['sim_type']:'',
 			'os' => isset($post['os'])?$post['os']:'',
-			'colour' => isset($post['colour'])?$post['colour']:'',
-			'ram' => isset($post['ram'])?$post['ram']:'',
+			'colour' => isset($post['colour'])?ucfirst(strtolower($post['colour'])):'',
+			'ram' => isset($post['ram'])?str_replace(' ', '', strtoupper($post['ram'])):'',
 			'model_name' => isset($post['model_name'])?$post['model_name']:'',
 			'model_id' => isset($post['model_id'])?$post['model_id']:'',
-			'internal_memory' => isset($post['internal_memory'])?$post['internal_memory']:'',
+			'internal_memory' => isset($post['internal_memory'])?str_replace(' ', '', strtoupper($post['internal_memory'])):'',
 			'expand_memory' => isset($post['expand_memory'])?$post['expand_memory']:'',
 			'primary_camera' => isset($post['primary_camera'])?$post['primary_camera']:'',
 			'primary_camera_feature' => isset($post['primary_camera_feature'])?$post['primary_camera_feature']:'',
