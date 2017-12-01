@@ -462,7 +462,7 @@
    </div>
    <?php } ?>
 </nav>
-<div id="mySidenav" class="sidenav closebtn" href="javascript:void(0)"  onclick="closeNav()" >
+<div id="mySidenav" class="sidenav closebtn md_hide" href="javascript:void(0)"  onclick="closeNav()" >
    <div class="container" style="background-color: #009688;padding:20px 5px; ">
       <span class="sidenav-heading">
       <?php if($this->session->userdata('userdetails')){ ?>
