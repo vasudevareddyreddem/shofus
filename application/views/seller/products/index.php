@@ -611,6 +611,11 @@ return confirm('Are you sure want to delete "'+id +'" product?');
 	  var specialcost='';
 	  var cost=$('#product_cost'+subcatid).val();
 	  var specialcost=$('#product_special'+subcatid).val();
+	  if(specialcost==''|| specialcost==0){
+		alert('special price is required');return false;  
+	  }if(cost=='' || cost==0){
+		  alert('item price is required');return false;  
+	  }
 	  if(Number(cost) > Number(specialcost)){
 		  jQuery.ajax({
 			url: "<?php echo base_url('/seller/products/ajaxeditchanges');?>",
@@ -624,8 +629,10 @@ return confirm('Are you sure want to delete "'+id +'" product?');
 			format:"json",
 					success:function(data){
 					var parsedData = JSON.parse(data);
+					if(Number(cost) > Number(specialcost)){
 					$('#product_cost'+subcatid).val(parsedData.cost);
 					$('#product_special'+subcatid).val(parsedData.special_cost);
+					}
 					}
         });
 		  

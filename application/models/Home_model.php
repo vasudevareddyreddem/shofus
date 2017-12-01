@@ -162,7 +162,7 @@ class Home_model extends CI_Model
 		if(isset($id) && $id!=''){
 		$this->db->where('products.seller_location_area',$id);	
 		}
-		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('products.offer_percentage ASC');
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 
@@ -174,6 +174,7 @@ class Home_model extends CI_Model
 		$this->db->where('products.seller_location_area',$id);	
 		}
 		$this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('products.item_id desc');
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 

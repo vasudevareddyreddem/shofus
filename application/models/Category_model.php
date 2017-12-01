@@ -511,7 +511,7 @@ class Category_model extends MY_Model
 			$this->db->where_in('brand','"'.$b.'"',false);
 		
 		}if($f!='NULL'){
-			$this->db->where_in('offer_percentage','"'.$f.'"',false);
+			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$f.'"', false);
 			//$this->db->where_in('if(`offer_expairdate`>=NOW(),`offer_percentage`,`offers` )', '"'.$f.'"', false);
 		}if($d!='NULL'){
 			$this->db->where_in('discount','"'.$d.'"',false);
@@ -1099,13 +1099,12 @@ class Category_model extends MY_Model
 		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )>=', '"'.(int)$min_amt.'"', false);
 		if($b!='NULL'){
 			$this->db->where_in('brand','"'.$b.'"',false);
-		
 		}if($f!='NULL'){
-			$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_percentage`,`offers` )', '"'.$f.'"', false);
+			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$f.'"', false);
 			//$this->db->where_in('offer_percentage','"'.$f.'"',false);
 		}if($d!='NULL'){
 			//$this->db->where_in('discount','"'.$d.'"',false);
-			$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_amount`,`discount` )', '"'.$d.'"', false);
+			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_amount`,`discount` )', '"'.$d.'"', false);
 
 		}if($c!='NULL'){
 			$this->db->where_in('colour','"'.$c.'"',false);
