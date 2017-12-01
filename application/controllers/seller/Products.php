@@ -207,9 +207,10 @@ public function item_status(){
 		//exit;
 		
 		$discount1= ($post['product_price']-$post['special_price']);
-		$discount= number_format($discount1,2 );
+		$discount= number_format($discount1,2);
 		$offers1= (($discount1) /$post['product_price'])*100;
-		$offers= number_format($offers1,2 );
+		$offers= number_format($offers1, 2);
+		
 			if($_FILES['picture1']['name']!=''){
 				$profilepic1=microtime().basename($_FILES["picture1"]["name"]);
 				move_uploaded_file($_FILES['picture1']['tmp_name'], "uploads/products/" . $profilepic1);
@@ -266,6 +267,8 @@ public function item_status(){
 			$name=$post['product_name'].' '.$post['colour'].' '.$post['internal_memeory'];
 		}else if($post['colour']!=''){
 			$name=$post['product_name'].' '.$post['colour'];
+		}else{
+			$name=$post['product_name'];
 		}
 		$data=array(
 			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
