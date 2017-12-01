@@ -76,7 +76,8 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
       <div class=" slider-items-products container_main">
        
 		   <div id="best-seller" class="product-flexslider hidden-buttons cat_sl_s" >
-				  <div class="slider-items slider-width-col4 products-grid help_cls text-center" >
+				  <!--<div class="slider-items slider-width-col4 products-grid help_cls text-center" >-->
+				  <div class="slider-items slider-width-col4 products-grid  text-center" >
 				  <?php foreach ($sidecaregory_list as $categories){
 					  ?>
 				<a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>">
