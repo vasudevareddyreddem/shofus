@@ -80,7 +80,7 @@
 								 <i class="fa fa-fax"></i> Website  
 							</div>
 							<div class="col-sm-9">
-								 <a href="http://cartinhour.com/"> www.cartinhour.com</a>
+								 <a href="https://cartinhours.com/"> hhtps://cartinhours.com</a>
 							</div>
 						</div>
 							<div class="row col1">
@@ -108,7 +108,7 @@
 								<i class="fa fa-envelope"></i>   Email
 							</div>
 							<div class="col-sm-9">
-								 <a href="mailto:info@yourdomain.com">imainacartin@gmail.com</a> <br> <a href="mailto:support@yourdomain.com">xxxxxx@cartinhour.com</a>
+								 <a href="mailto:operations@cartinhours.com">operations@cartinhours.com</a> <br> <a href="mailto:support@cartinhours.com">support@cartinhours.com</a>
 							</div>
 						</div>
 					</div>
