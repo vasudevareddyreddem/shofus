@@ -621,9 +621,6 @@
 			</ol>
 		</div>
 	</section>
-  <section class=" ">
-  <section id="main-content">
-    <section class="wrapper">
    
      <div class="row">
 	   <?php if($this->session->flashdata('sucess')): ?>
@@ -631,15 +628,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button><?php echo $this->session->flashdata('sucess');?></div>
 			<?php endif; ?>
-	
-	
-
-		</div>
- 
-    </section>
-  </section>
-  </section>
-
+	</div>
 <!--zmain content end--> 
 
  <div class="row container">
@@ -722,6 +711,11 @@
               </div>
               </div>
               </div>
+			  <br>
+			  <br>
+			  <br>
+			  <br>
+			  <br>
               </div>
               <!--/.direct-chat -->
        
