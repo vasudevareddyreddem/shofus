@@ -420,7 +420,7 @@
                   <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-target="#collapseOne11" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <i class="more-less glyphicon glyphicon-plus"></i> Why should I sell on CARTINHOUR? </a> </h4>
                 </div>
                 <div id="collapseOne11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                  <div class="panel-body">CARTINHOUR is the new revolution in Indian e-commerce with ability to reach maximum online and highest Eligiibility. </div>
+                  <div class="panel-body">CARTINHOURS is the new revolution in Indian e-commerce with ability to reach maximum online and highest Eligiibility. </div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -442,12 +442,12 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse"  data-target="#collapseThree1" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i> How do I sell on CARTINHOUR?</a> </h4>
                 </div>
                 <div id="collapseThree1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                  <div class="panel-body">To sell on CARTINHOUR:
+                  <div class="panel-body">To sell on CARTINHOURS:
                     <ul class="checkmark">
-                      <li>Register yourself at seller.CARTINHOUR.com.</li>
+                      <li>Register yourself at seller.CARTINHOURS.com.</li>
                       <li>List your products under specific product categories.</li>
                       <li>Once an order is received, pack the product and mark it as ‘Ready to go’. Our delivery boy will pick up the product and deliver it to the customer.</li>
-                      <li>Once an order is successfully dispatched, CARTINHOUR will settle your payment within 4-7 business days. </li>
+                      <li>Once an order is successfully dispatched, CARTINHOURS will settle your payment within 4-7 business days. </li>
                     </ul>
                   </div>
                 </div>
@@ -457,7 +457,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapsefpor19"   data-parent="#accordion" href="#collapsefpor" aria-expanded="false" aria-controls="collapsefpor"> <i class="more-less glyphicon glyphicon-plus"></i> Can I offer both products and services on CARTINHOUR?</a> </h4>
                 </div>
                 <div id="collapsefpor19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfour">
-                  <div class="panel-body">Currently, you can sell only products and not services on CARTINHOUR. </div>
+                  <div class="panel-body">Currently, you can sell only products and not services on CARTINHOURS. </div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -465,7 +465,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapsefive15" data-parent="#accordion" href="#collapsefive" aria-expanded="false" aria-controls="collapsefive"> <i class="more-less glyphicon glyphicon-plus"></i> Do I need to courier my products to CARTINHOUR?</a> </h4>
                 </div>
                 <div id="collapsefive15" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfive">
-                  <div class="panel-body">No, CARTINHOUR will handle shipping of your products. All you need to do is pack the product and keep it ready for dispatch. Our delivery boy will pick up the product from you and deliver it to the customer. </div>
+                  <div class="panel-body">No, CARTINHOURS will handle shipping of your products. All you need to do is pack the product and keep it ready for dispatch. Our delivery boy will pick up the product from you and deliver it to the customer. </div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -503,7 +503,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapnine15" data-parent="#accordion" href="#collapnine" aria-expanded="false" aria-controls="collapnine"> <i class="more-less glyphicon glyphicon-plus"></i> Will I get charged for listing products on CARTINHOUR?</a> </h4>
                 </div>
                 <div id="collapnine15" class="panel-collapse collapse" role="tabpanel" aria-labelledby="nine">
-                  <div class="panel-body">No. Listing of products on CARTINHOUR.com is free. CARTINHOUR does not charge anything for listing your catalogue online. You only pay a small commission for what you sell. </div>
+                  <div class="panel-body">No. Listing of products on CARTINHOURS.com is free. CARTINHOURS does not charge anything for listing your catalogue online. You only pay a small commission for what you sell. </div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -622,7 +622,7 @@
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="list2">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collaplist22" data-parent="#accordion" href="#collaplist2" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>How do I list my products on CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collaplist22" data-parent="#accordion" href="#collaplist2" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>How do I list my products on CARTINHOURS?</a> </h4>
                 </div>
                 <div id="collaplist22" class="panel-collapse collapse" role="tabpanel" aria-labelledby="list2">
                   <div class="panel-body">We give you a step-by-step process of how to list your products on our website. It is important to choose the most suitable category to list your product as it will help customers find your products faster. Based on the category you choose, you'll be asked to include product details such as size, model, colour, etc. </div>
@@ -649,7 +649,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collaplist55" data-parent="#accordion" href="#collaplist5" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>How do I price my products?</a> </h4>
                 </div>
                 <div id="collaplist55" class="panel-collapse collapse" role="tabpanel" aria-labelledby="list5">
-                  <div class="panel-body">When pricing products on CARTINHOUR, please account for the applicable Marketplace Fee and include a suitable margin to arrive at the Selling Price. For ease of calculation, you can use our Commission Calculator widget once onboarded. </div>
+                  <div class="panel-body">When pricing products on CARTINHOURS, please account for the applicable Marketplace Fee and include a suitable margin to arrive at the Selling Price. For ease of calculation, you can use our Commission Calculator widget once onboarded. </div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -657,7 +657,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collaplist66" data-parent="#accordion" href="#collaplist6" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>Will I get charged for listing products on CARTINHOUR?</a> </h4>
                 </div>
                 <div id="collaplist66" class="panel-collapse collapse" role="tabpanel" aria-labelledby="list6">
-                  <div class="panel-body">No. Listing of products on CARTINHOUR.com is free. CARTINHOUR does not charge anything to you for listing your catalogue online. You only pay a small commission for what you sell. </div>
+                  <div class="panel-body">No. Listing of products on CARTINHOURS.COM is free. CARTINHOURS does not charge anything to you for listing your catalogue online. You only pay a small commission for what you sell. </div>
                 </div>
               </div>
             </div>
@@ -691,7 +691,7 @@
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="order4">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collaporder44" data-parent="#accordion" href="#collaporder4" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>Does CARTINHOUR provide packaging material?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collaporder44" data-parent="#accordion" href="#collaporder4" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>Does CARTINHOURS provide packaging material?</a> </h4>
                 </div>
                 <div id="collaporder44" class="panel-collapse collapse" role="tabpanel" aria-labelledby="order4">
                   <div class="panel-body">We have a strong network of best packaging material providers in the industry. We can connect you with them to get good quality packaging material which impresses the customers and ensures your products remain undamaged.</div>
@@ -707,7 +707,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapreturn11" data-parent="#accordion" href="#collapreturn1" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>What protection does CARTINHOUR offer in case of lost/damaged goods and fraudulent customer claims?</a> </h4>
                 </div>
                 <div id="collapreturn11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="return1">
-                  <div class="panel-body">CARTINHOUR has set up a Seller safety scheme (SSS) to protect our sellers against fraud. You can request for SSS claim through the seller dashboard. When the buyer or delivery boy is at fault, you will receive due compensation.</div>
+                  <div class="panel-body">CARTINHOURS has set up a Seller safety scheme (SSS) to protect our sellers against fraud. You can request for SSS claim through the seller dashboard. When the buyer or delivery boy is at fault, you will receive due compensation.</div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -826,7 +826,7 @@
 								 <i class="fa fa-fax"></i> Website  
 							</div>
 							<div class="col-sm-10">
-								 <a href="http://cartinhour.com/"> www.cartinhour.com</a>
+								 <a href="https://cartinhours.com/"> hhtps://cartinhours.com</a>
 							</div>
 						</div>
 							<div class="row col1">
@@ -845,7 +845,7 @@
 								<i class="fa fa-phone"></i>   Phone
 							</div>
 							<div class="col-sm-10">
-								 +919494422779
+								 040-48541273
 							</div>
 						</div>
 						
@@ -854,7 +854,7 @@
 								<i class="fa fa-envelope"></i>   Email
 							</div>
 							<div class="col-sm-10">
-								 <a href="mailto:info@yourdomain.com">imainacartin@gmail.com</a> <br> <a href="mailto:support@yourdomain.com">xxxxxx@cartinhour.com</a>
+								 <a href="mailto:operations@cartinhours.com">operations@cartinhours.com</a> <br> <a href="mailto:support@cartinhours.com">support@cartinhours.com</a>
 							</div>
 						</div>
 					</div>
@@ -1132,7 +1132,7 @@ $("#cihfee1").html(data);
                             message: 'Message is required'
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z0-9. ]{6,250}$/,
+                            regexp: /^[a-zA-Z0-9,. ]{6,250}$/,
                             message: 'Message Between 6 to 250 Characters'
                         }
                     }
