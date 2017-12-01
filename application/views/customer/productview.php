@@ -238,7 +238,7 @@
 								<a class="col-md-2 col-xs-3 col-sm-2  active_color" style="margin: 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
-								<?php }else if($lists['colour']==$products_list['colour']) { ?>
+								<?php }else if(strtolower($lists['colour'])==strtolower($products_list['colour'])) { ?>
 								<a class="col-md-2 col-xs-3 col-sm-2  active_color" style="margin: 5px" href="<?php echo base_url('category/productview/'.base64_encode($lists['item_id'])); ?>" data-toggle="myToolTip" data-placement="top" data-html="true"  title="<?php echo isset($lists['colour'])?$lists['colour']:'';?>">
 									<img style="height:40px;width:auto;margin:0 auto;" class="img-responsive" src="<?php echo base_url('uploads/products/'.$lists['item_image']); ?>" />
 								</a>
