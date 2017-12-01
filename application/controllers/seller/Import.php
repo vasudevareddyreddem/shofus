@@ -664,11 +664,11 @@ class Import extends Admin_Controller {
 																	$offers1= (($discount) /$data[3])*100;
 																	$offers= number_format($offers1, 2);
 																	if($data[26]!='' && $data[22]!='' && $data[27]!=''){
-																	$name=$data[1].' '.$data[26].' '.$data[22].' '.$data[27].' Ram';
+																	$name=$data[1].' '.ucfirst(strtolower($data[26])).' '.str_replace(' ', '', strtoupper($data[22])).' '.str_replace(' ', '', strtoupper($data[27])).' Ram';
 																	}else if($data[26]!='' && $data[22]!=''){
-																	$name=$data[1].' '.$data[26].' '.$data[22];
+																	$name=$data[1].' '.ucfirst(strtolower($data[26])).' '.str_replace(' ', '', strtoupper($data[22]));
 																	}else if($data[26]!=''){
-																	$name=$data[1].' '.$data[26];
+																	$name=$data[1].' '.ucfirst(strtolower($data[26]));
 																	}
 																	
 																	$adddetails=array(
@@ -692,15 +692,15 @@ class Import extends Admin_Controller {
 																			'product_code' =>isset($data[19])?$data[19]:'',
 																			'Processor' =>isset($data[20])?$data[20]:'',
 																			'screen_size' => isset($data[21])?$data[21]:'',
-																			'internal_memeory' =>isset($data[22])?$data[22]:'',
+																			'internal_memeory' =>isset($data[22])?str_replace(' ', '', strtoupper($data[22])):'',
 																			'camera' => isset($data[23])?$data[23]:'',
 																			'sim_type' => isset($data[24])?$data[24]:'',
 																			'os' =>isset($data[25])?$data[25]:'',
-																			'colour' =>isset($data[26])?$data[26]:'',
-																			'ram' => isset($data[27])?$data[27]:'',
+																			'colour' =>isset($data[26])?ucfirst(strtolower($data[26])):'',
+																			'ram' => isset($data[27])?str_replace(' ', '', strtoupper($data[27])):'',
 																			'model_name' =>isset($data[28])?$data[28]:'',
 																			'model_id' => isset($data[29])?$data[29]:'',
-																			'internal_memory' => isset($data[30])?$data[30]:'',
+																			'internal_memory' => isset($data[30])?str_replace(' ', '', strtoupper($data[30])):'',
 																			'expand_memory' => isset($data[31])?$data[31]:'',
 																			'primary_camera' =>isset($data[32])?$data[32]:'',
 																			'primary_camera_feature' => isset($data[33])?$data[33]:'',
