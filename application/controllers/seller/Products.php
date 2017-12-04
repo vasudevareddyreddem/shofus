@@ -92,6 +92,7 @@ class Products extends Admin_Controller {
 		$post=$this->input->post();
 		//echo '<pre>';print_r($post);exit;
 		$data['subcategory_details'] = $this->products_model->get_subcategoies($post['catid']);
+		//echo $this->db->last_query();exit;
 		$this->load->view('seller/products/subcategorylist',$data);
 		
 
@@ -191,6 +192,9 @@ public function item_status(){
 	 //echo '<pre>';print_r( $data);
 	 if(isset($post['categoryid']) && $post['categoryid']==21){
 	 $this->load->view('seller/products/groceryproductdetails',$data);
+	 }else if(isset($post['categoryid']) && $post['categoryid']==22){
+		 $data['subcategory_id']=isset($post['subcategoryid'])?$post['subcategoryid']:'';
+		  $this->load->view('seller/products/clothsproductdetails',$data);
 	 }else{
 		 $this->load->view('seller/products/sameproductdetails',$data);
 	 }
@@ -270,6 +274,20 @@ public function item_status(){
 		}else{
 			$name=$post['product_name'];
 		}
+		if(isset($post['pattern']) && $post['pattern'] || isset($post['pattern1']) && $post['pattern1'] ){
+			if($post['pattern']!=''){
+			$pattern=$post['pattern'];
+			}if($post['pattern1']!=''){
+			$pattern=$post['pattern1'];
+			}
+		}
+		if(isset($post['sleeve']) && $post['sleeve'] || isset($post['sleeve1']) && $post['sleeve1'] ){
+			if($post['sleeve']!=''){
+			$sleeve=$post['sleeve'];
+			}if($post['sleeve1']!=''){
+			$sleeve=$post['sleeve1'];
+			}
+		}
 		$data=array(
 			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
 			'subcategory_id' => isset($post['subcategorylist'])?$post['subcategorylist']:'',
@@ -343,6 +361,29 @@ public function item_status(){
 			'unit' => isset($post['unit'])?$post['unit']:'',
 			'packingtype' => isset($post['packingtype'])?$post['packingtype']:'',
 			'disclaimer' => isset($post['disclaimer'])?$post['disclaimer']:'',
+			'wash_care' => isset($post['wash_care'])?$post['wash_care']:'',
+			'style_code' => isset($post['style_code'])?$post['style_code']:'',
+			'look' => isset($post['look'])?$post['look']:'',
+			'size' => isset($post['size'])?$post['size']:'',
+			'material' => isset($post['material'])?$post['material']:'',
+			'occasion' => isset($post['occasion'])?$post['occasion']:'',
+			'pattern' => isset($pattern)?$pattern:'',
+			'sleeve' => isset($sleeve)?$sleeve:'',
+			'fit' => isset($post['fit'])?$post['fit']:'',
+			'gender' => isset($post['gender'])?$post['gender']:'',
+			'collar_type' => isset($post['collar_type'])?$post['collar_type']:'',
+			'set_contents' => isset($post['set_contents'])?$post['set_contents']:'',
+			'age' => isset($post['age'])?$post['age']:'',
+			'ideal_for' => isset($post['ideal_for'])?$post['ideal_for']:'',
+			'style' => isset($post['style'])?$post['style']:'',
+			'package_contents' => isset($post['package_contents'])?$post['package_contents']:'',
+			'style_code' => isset($post['style_code'])?$post['style_code']:'',
+			'type' => isset($post['type'])?$post['type']:'',
+			'neck_type' => isset($post['neck_type'])?$post['neck_type']:'',
+			'pockets' => isset($post['pockets'])?$post['pockets']:'',
+			'blouse_length' => isset($post['blouse_length'])?$post['blouse_length']:'',
+			'saree_length' => isset($post['saree_length'])?$post['saree_length']:'',
+			'length' => isset($post['length'])?$post['length']:'',
 			'item_image'=>isset($profilepic1)?$profilepic1:'',
 			'item_image1'=>isset($profilepic2)?$profilepic2:'',
 			'item_image2'=>isset($profilepic3)?$profilepic3:'',
@@ -429,7 +470,7 @@ public function item_status(){
 							
 						}
 						$productspecificationlist= array_combine($post['description'],$pics);
-						foreach ($productspecificationlist as $key=>$list){
+						$i=1;foreach ($productspecificationlist as $key=>$list){
 								
 							if($key!=''){
 								$adddesc=array(
@@ -664,6 +705,22 @@ public function update()
 			$name=$post['name'].' '.ucfirst(strtolower($post['colour'])).' '.str_replace(' ', '', strtoupper($post['internal_memeory']));
 		}else if($post['colour']!=''){
 			$name=$post['name'].' '.ucfirst(strtolower($post['colour']));
+		}else{
+			$name=$post['name'];
+		}
+		if($post['pattern'] || $post['pattern1'] ){
+			if($post['pattern']!=''){
+			$pattern=$post['pattern'];
+			}if($post['pattern1']!=''){
+			$pattern=$post['pattern1'];
+			}
+		}
+		if($post['sleeve'] || $post['sleeve1'] ){
+			if($post['sleeve']!=''){
+			$sleeve=$post['sleeve'];
+			}if($post['sleeve1']!=''){
+			$sleeve=$post['sleeve1'];
+			}
 		}
 	
 	$seller_location=$this->products_model->get_store_location($this->session->userdata('seller_id'));
@@ -758,6 +815,28 @@ public function update()
 			'unit' => isset($post['unit'])?$post['unit']:'',
 			'packingtype' => isset($post['packingtype'])?$post['packingtype']:'',
 			'disclaimer' => isset($post['disclaimer'])?$post['disclaimer']:'',
+			'wash_care' => isset($post['wash_care'])?$post['wash_care']:'',
+			'style_code' => isset($post['style_code'])?$post['style_code']:'',
+			'look' => isset($post['look'])?$post['look']:'',
+			'size' => isset($post['size'])?$post['size']:'',
+			'material' => isset($post['material'])?$post['material']:'',
+			'occasion' => isset($post['occasion'])?$post['occasion']:'',
+			'pattern' => isset($pattern)?$pattern:'',
+			'sleeve' => isset($sleeve)?$sleeve:'',
+			'fit' => isset($post['fit'])?$post['fit']:'',
+			'gender' => isset($post['gender'])?$post['gender']:'',
+			'collar_type' => isset($post['collar_type'])?$post['collar_type']:'',
+			'set_contents' => isset($post['set_contents'])?$post['set_contents']:'',
+			'age' => isset($post['age'])?$post['age']:'',
+			'ideal_for' => isset($post['ideal_for'])?$post['ideal_for']:'',
+			'style' => isset($post['style'])?$post['style']:'',
+			'package_contents' => isset($post['package_contents'])?$post['package_contents']:'',
+			'style_code' => isset($post['style_code'])?$post['style_code']:'',
+			'type' => isset($post['type'])?$post['type']:'',
+			'neck_type' => isset($post['neck_type'])?$post['neck_type']:'',
+			'pockets' => isset($post['pockets'])?$post['pockets']:'',
+			'blouse_length' => isset($post['blouse_length'])?$post['blouse_length']:'',
+			'saree_length' => isset($post['saree_length'])?$post['saree_length']:'',
 			'item_image'=>$image1,
 			'item_image1'=>$image2,
 			'item_image2'=>$image3,

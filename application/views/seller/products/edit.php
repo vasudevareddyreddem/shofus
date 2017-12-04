@@ -282,7 +282,7 @@
 		</div>
 	</div>
 	
-	<?php if(isset($productdetails['category_id']) && $productdetails['category_id']!=21){  ?>
+	<?php if(isset($productdetails['category_id']) && $productdetails['category_id']==20){  ?>
 	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
@@ -736,7 +736,250 @@
 						</div>
 					</div>
 				</div>
-	<?php } ?>
+		<?php }else if(isset($productdetails['category_id']) && $productdetails['category_id']==22){ ?>
+				<div class="row">
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Size</label>
+								<input type="text" class="form-control" id="size" name="size" value="<?php echo isset($productdetails['size'])?$productdetails['size']:''; ?>" >
+							</div>
+						</div>
+						
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Color</label>
+								<input type="text" class="form-control" id="colour" name="colour" value="<?php echo isset($productdetails['colour'])?$productdetails['colour']:''; ?>" >
+							</div>
+						</div>
+					
+				</div>
+				<div class="row">
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Occasion</label>
+								<input type="text" class="form-control" id="occasion" name="occasion" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>" >
+							</div>
+						</div>
+						
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Material</label>
+								<input type="text" class="form-control" id="material" name="material" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
+							</div>
+						</div>
+					
+				</div>
+				<div class="row">
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Wash Care</label>
+								<input type="text" class="form-control" id="wash_care" name="wash_care" value="<?php echo isset($productdetails['wash_care'])?$productdetails['wash_care']:''; ?>" >
+							</div>
+						</div>
+						
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Style Code</label>
+								<input type="text" class="form-control" id="style_code" name="style_code" value="<?php echo isset($productdetails['style_code'])?$productdetails['style_code']:''; ?>" >
+							</div>
+						</div>
+					
+				</div>
+				<?php if($productdetails['subcategory_id']==55 || $productdetails['subcategory_id']==56 || $productdetails['subcategory_id']==58 || $productdetails['subcategory_id']==59 || $productdetails['subcategory_id']==60 || $productdetails['subcategory_id']==61 || $productdetails['subcategory_id']==63){ ?>
+				
+				<div class="row">
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Look</label>
+								<input type="text" class="form-control" id="look" name="look" value="<?php echo isset($productdetails['look'])?$productdetails['look']:''; ?>" >
+							</div>
+						</div>
+						
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Collar Type</label>
+								<input type="text" class="form-control" id="collar_type" name="collar_type" value="<?php echo isset($productdetails['collar_type'])?$productdetails['collar_type']:''; ?>" >
+							</div>
+						</div>
+					
+				</div>
+				<div class="row">
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Sleeve</label>
+								<input type="text" class="form-control" id="sleeve" name="sleeve" value="<?php echo isset($productdetails['sleeve'])?$productdetails['sleeve']:''; ?>" >
+							</div>
+						</div>
+						
+						<div class=" col-md-6 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Fit</label>
+								<input type="text" class="form-control" id="fit" name="fit" value="<?php echo isset($productdetails['fit'])?$productdetails['fit']:''; ?>" >
+							</div>
+						</div>
+					
+				</div>
+				<?php } ?>
+				<?php if($productdetails['subcategory_id']==55 || $productdetails['subcategory_id']==56 || $productdetails['subcategory_id']==58 || $productdetails['subcategory_id']==59 || $productdetails['subcategory_id']==60 || $productdetails['subcategory_id']==61 || $productdetails['subcategory_id']==63 || $productdetails['subcategory_id']==64){ ?>
+					
+					<?php if($productdetails['subcategory_id']==63 || $productdetails['subcategory_id']==64){ ?>
+					<?php if($productdetails['subcategory_id']==63 || $productdetails['subcategory_id']==64){ ?>
+						<div class="row">
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Type</label>
+										<input type="text" class="form-control" id="type" name="type" value="<?php echo isset($productdetails['type'])?$productdetails['type']:''; ?>" >
+									</div>
+								</div>
+								
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Neck Type</label>
+										<input type="text" class="form-control" id="neck_type" name="neck_type" value="<?php echo isset($productdetails['neck_type'])?$productdetails['neck_type']:''; ?>" >
+									</div>
+								</div>
+							
+						</div>
+						<?php } ?>
+						<?php if($productdetails['subcategory_id']==63){ ?>
+						<div class="row">
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Length</label>
+										<input type="text" class="form-control" id="length" name="length" value="<?php echo isset($productdetails['length'])?$productdetails['length']:''; ?>" >
+									</div>
+								</div>
+								
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Pockets</label>
+										<input type="text" class="form-control" id="pockets" name="pockets" value="<?php echo isset($productdetails['pockets'])?$productdetails['pockets']:''; ?>" >
+									</div>
+								</div>
+							
+						</div>
+						<div class="row">
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Blouse Length</label>
+										<input type="text" class="form-control" id="blouse_length" name="blouse_length" value="<?php echo isset($productdetails['blouse_length'])?$productdetails['blouse_length']:''; ?>" >
+									</div>
+								</div>
+								
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Saree Length</label>
+										<input type="text" class="form-control" id="saree_length" name="saree_length" value="<?php echo isset($productdetails['saree_length'])?$productdetails['saree_length']:''; ?>" >
+									</div>
+								</div>
+							
+						</div>
+						<div class="row">
+							<div class=" col-md-12">
+								<div class="form-group nopaddingRight san-lg">
+									<label for="exampleInputEmail1">Disclaimer</label>
+									<textarea  placeholder="Disclaimer" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="disclaimer" name="disclaimer"><?php echo isset($productdetails['disclaimer'])?$productdetails['disclaimer']:''; ?></textarea>
+								</div>
+							</div>
+						</div>
+							<?php } ?>
+						<?php }else{ ?>
+							<div class="row">
+								
+								<div class=" col-md-12 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Pattern</label>
+										<input type="text" class="form-control" id="pattern" name="pattern" value="<?php echo isset($productdetails['pattern'])?$productdetails['pattern']:''; ?>" >
+									</div>
+								</div>
+							
+							</div>
+						<?php } ?>
+					<?php } ?>
+				<?php if($productdetails['subcategory_id']==62){ ?>
+				<div class="row">
+						
+						<div class=" col-md-12 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Set Contents</label>
+								<input type="text" class="form-control" id="set_contents" name="set_contents" value="<?php echo isset($productdetails['set_contents'])?$productdetails['set_contents']:''; ?>" >
+							</div>
+						</div>
+					
+				</div>
+				<?php }?>
+					<?php if($productdetails['subcategory_id']==55 || $productdetails['subcategory_id']==56 || $productdetails['subcategory_id']==58 || $productdetails['subcategory_id']==59 || $productdetails['subcategory_id']==60 || $productdetails['subcategory_id']==61 || $productdetails['subcategory_id']==62){ ?>
+
+				<div class="row">
+						<div class=" col-md-12 ">
+							<div class="form-group nopaddingRight san-lg">
+								<label for="exampleInputEmail1">Gender</label>
+								<select class="form-control" id="gender" name="gender" >
+								<option value="">Select</option>
+								<?php if($productdetails['gender']=='Male'){?>
+								<option value="Male" selected>Male</option>
+								<option value="Female">Female</option>
+								<?php }else{ ?>
+								<option value="Male">Male</option>
+								<option value="Female" selected>Female</option>
+								<?php } ?>
+								</select>
+							</div>
+						</div>
+				</div>
+				<?php } ?>
+				<?php if($productdetails['subcategory_id']==64){ ?>
+					<div class="row">
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Package Contents</label>
+										<input type="text" class="form-control" id="package_contents" name="package_contents" value="<?php echo isset($productdetails['package_contents'])?$productdetails['package_contents']:''; ?>" >
+									</div>
+								</div>
+								
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Style</label>
+										<input type="text" class="form-control" id="style" name="style" value="<?php echo isset($productdetails['style'])?$productdetails['style']:''; ?>" >
+									</div>
+								</div>
+							
+					</div>
+					<div class="row">
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Age</label>
+										<input type="text" class="form-control" id="age" name="age" value="<?php echo isset($productdetails['age'])?$productdetails['age']:''; ?>" >
+									</div>
+								</div>
+								
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Ideal For</label>
+										<input type="text" class="form-control" id="ideal_for" name="ideal_for" value="<?php echo isset($productdetails['ideal_for'])?$productdetails['ideal_for']:''; ?>" >
+									</div>
+								</div>
+							
+					</div>
+					<div class="row">
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Pattern</label>
+										<input type="text" class="form-control" id="pattern1" name="pattern1" value="<?php echo isset($productdetails['pattern'])?$productdetails['pattern']:''; ?>" >
+									</div>
+								</div>
+								<div class=" col-md-6 ">
+									<div class="form-group nopaddingRight san-lg">
+										<label for="exampleInputEmail1">Sleeve</label>
+										<input type="text" class="form-control" id="sleeve1" name="sleeve1" value="<?php echo isset($productdetails['sleeve'])?$productdetails['sleeve']:''; ?>" >
+									</div>
+								</div>
+							
+							</div>
+					
+				<?php } ?>
+	
+		<?php }	?>
 <div class="clearfix"></div>
 	<br>
 	<div class="" style="position:relative;">

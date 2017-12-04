@@ -1,4 +1,4 @@
- <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-ui.css">
   <script src="<?php echo base_url(); ?>assets/seller/js/jquery-ui.js"></script>
 
   <style>
@@ -143,7 +143,7 @@
 			<span id="errormsg"></span>
 			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Category </label>
-				<select class="form-control " onchange="removeextrafields();getsubcategory(this.value);groceryproducts(this.value);" id="category_id" name="category_id">
+				<select class="form-control " onchange="removeextrafields();getsubcategory(this.value);" id="category_id" name="category_id">
 				<option value="">Select Category</option>
 				<?php foreach($category_details as $list){ ?>
 				<option value="<?php echo $list['seller_category_id']; ?>"><?php echo $list['category_name']; ?></option>
@@ -169,7 +169,7 @@
 			<div class="form-group col-md-6 nopaddingRight san-lg">
 			<input type="hidden" id="nametypeahead" name="nametypeahead" value="">
 				<label for="exampleInputEmail1">Sub Category </label>
-				<select class="form-control" onchange="getspecialinputs(this.value);getinputfiledshideshow(this.value);removeextrafields(this.value);" id="subcategorylist" name="subcategorylist" >
+				<select class="form-control" onchange="subcatwisegroceryproducts(this.value);getspecialinputs(this.value);getinputfiledshideshow(this.value);removeextrafields(this.value);" id="subcategorylist" name="subcategorylist" >
 				<option value="">Select Subcategory </option>
 
 				</select>
@@ -298,6 +298,7 @@
 	
 	</span>
 	<div id="grocery_products"></div>
+	<div id="cloths_category"></div>
 	<div class="clearfix"></div>
 	<br>
 	<div class="" style="position:relative;">
@@ -410,7 +411,6 @@
  function getspecialinputs(ids){
 	
 	var cat_id=$('#category_id').val();
-	if(cat_id==21){
 		$.ajax({
 			type: "POST",
 			url: "<?php echo base_url();?>seller/products/getsubitemsname",
@@ -426,10 +426,7 @@
 					$("#subitemid").html(data);
 				} 
 			});
-	}else{
-		$('#subitems').hide();
-		  $('subitemid').val();
-	}
+	
 		
 	
 }
@@ -456,27 +453,38 @@ jQuery.ajax({
 					
 				}
 			});
-	function groceryproducts(id){
-		if(id==21){
+	function subcatwisegroceryproducts(id){
+		var catid=$('#category_id').val();
+		if(catid==21 || catid==22){
 			jQuery.ajax({
 				url: "<?php echo site_url('seller/products/getolditemdata');?>",
 				type: 'post',
 				data: {
 					form_key : window.FORM_KEY,
 					productname: 0,
-					categoryid: id,
-					subcategoryid: 0,
+					categoryid: catid,
+					subcategoryid: id,
 					},
 				dataType: 'html',
 				success: function (data) {
+					if(catid==21){
 					$("#newmobile_products").hide();
 					$("#mobile_products").hide();
 					$("#grocery_products").append(data);
+					}else if(catid==22){
+						$("#newmobile_products").hide();
+						$("#mobile_products").hide();
+						$("#grocery_products").hide();
+						$("#cloths_category").empty();
+						$("#cloths_category").append(data);
+					}
 				}
 			});
 		}else{
 			$("#grocery_products").hide();
 			$("#grocery_products").empty();
+			$("#cloths_category").empty();
+			$("#cloths_category").hide();
 			$("#newmobile_products").show();
 			$("#mobile_products").show();
 		}

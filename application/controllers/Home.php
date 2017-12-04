@@ -705,25 +705,19 @@ public function addtocompare()
 public function namechanges (){
 	
 	$result = $this->home_model->get_all_namechanges_list_products();
-	$c=1;foreach ($result as $lis){
-			if (strpos($lis['item_name'], 'Ram') !== FALSE || strpos($lis['item_name'], 'GB') !== FALSE || strpos($lis['item_name'], 'Guru ') !== FALSE) {
-		//echo "exits".$c;
-		//echo '<br>';
-		}else{
-			$test[]=$lis;
-		}
-	$c++;}
 	
-	foreach ($test as $li){
+	
+	foreach ($result as $li){
 		if($li['colour']!='' && $li['internal_memeory']!='' && $li['ram']!=''){
-			$name=$li['item_name'].' '.$li['colour'].' '.$li['internal_memeory'].' '.$li['ram'].' Ram';
+			$name=$li['name'].' '.ucfirst(strtolower($li['colour'])).' ('.$li['internal_memeory'].' ROM)'.' ('.$li['ram'].' RAM )';
 		}else if($li['colour']!='' && $li['internal_memeory']!=''){
-			$name=$li['item_name'].' '.$li['colour'].' '.$li['internal_memeory'];
+			$name=$li['name'].' '.ucfirst(strtolower($li['colour'])).' ('.$li['internal_memeory'].' ROM)';
 		}else if($li['colour']!=''){
-			$name=$li['item_name'].' '.$li['colour'];
+			$name=$li['name'].' '.ucfirst(strtolower($li['colour']));
 		}
+		//echo $name;
 	//echo '<pre>';print_r($li);exit;
-	//$this->home_model->update_names($li['item_id'],$name);	
+	$this->home_model->update_names($li['item_id'],$name);	
 	}
 	//echo '<pre>';print_r($$li);exit;
 	

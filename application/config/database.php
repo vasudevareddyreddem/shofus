@@ -313,7 +313,7 @@ $db['default'] = array(
 
 
 
-	'database' => 'cartinhoursstaging_db',
+	'database' => 'cartinho_live',
 
 
 

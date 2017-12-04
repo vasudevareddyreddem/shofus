@@ -441,7 +441,7 @@
 			<div class="clearfix">&nbsp;</div>
 			<div>
 				<ul>
-					<li>Usually delivered in Minimum 2 hours*- Maximum 24 hours*</li>
+					<li>Usually delivered within 1-6 Hours*</li>
 					<li>Cash on delivery(COD) and swipe on delivery(SOD) available</li>
 					<li>Return and replacement policies are as per seller*</li>
 					<li>Online cancellations</li>

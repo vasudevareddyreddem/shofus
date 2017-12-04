@@ -702,7 +702,7 @@ public function get_subcategory_list(){
 	
 }
 public function get_all_namechanges_list_products(){
-	$this->db->select('products.item_id,products.item_name,products.colour,products.internal_memeory,products.ram')->from('products');
+	$this->db->select('products.item_id,products.item_name,products.colour,products.internal_memeory,products.ram,products.name')->from('products');
 	$this->db->where('item_status',1);
 	$this->db->where('category_id',20);
 	return $this->db->get()->result_array();
