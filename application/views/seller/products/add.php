@@ -299,6 +299,7 @@
 	</span>
 	<div id="grocery_products"></div>
 	<div id="cloths_category"></div>
+	<div id="bags_category"></div>
 	<div class="clearfix"></div>
 	<br>
 	<div class="" style="position:relative;">
@@ -455,7 +456,7 @@ jQuery.ajax({
 			});
 	function subcatwisegroceryproducts(id){
 		var catid=$('#category_id').val();
-		if(catid==21 || catid==22){
+			if(catid==20 || catid==21 || catid==22 || catid==23){
 			jQuery.ajax({
 				url: "<?php echo site_url('seller/products/getolditemdata');?>",
 				type: 'post',
@@ -477,16 +478,25 @@ jQuery.ajax({
 						$("#grocery_products").hide();
 						$("#cloths_category").empty();
 						$("#cloths_category").append(data);
+					}else if(catid==23){
+						$("#newmobile_products").hide();
+						$("#mobile_products").hide();
+						$("#grocery_products").hide();
+						$("#cloths_category").hide();
+						$("#bags_category").empty();
+						$("#bags_category").append(data);
+					}else if(catid==20){
+							$("#grocery_products").hide();
+							$("#grocery_products").empty();
+							$("#cloths_category").empty();
+							$("#cloths_category").hide();
+							$("#bags_category").empty();
+							$("#bags_category").hide();
+							$("#mobile_products").empty();
+							$("#mobile_products").append(data);
 					}
 				}
 			});
-		}else{
-			$("#grocery_products").hide();
-			$("#grocery_products").empty();
-			$("#cloths_category").empty();
-			$("#cloths_category").hide();
-			$("#newmobile_products").show();
-			$("#mobile_products").show();
 		}
 		
 	}

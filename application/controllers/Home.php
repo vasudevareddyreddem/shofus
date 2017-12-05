@@ -160,17 +160,17 @@ echo json_encode($datails);
 		if($post['serachvalues']==''){
 			redirect('');
 		}
-		//print_r($post);
+		print_r($post);
 		$haystack = $post['serachvalues'];
 		$remove   = " ";
 		$remve1   = "sub";
-		if( strpos( $haystack, $remove ) !== false ) {
-		$str= preg_replace('/\W\w+\s*(\W*)$/', '$1', $haystack);
-		}else if( strpos( $haystack, $remve1 ) !== false ) {
+		if( strpos( $haystack, $remve1 ) !== false ) {
 			$str= preg_replace('/\W\w+\s*(\W*)$/', '$1', $haystack);
 		}else{
 			$str= $haystack;
 		}
+		
+		//echo $str;exit;
 if(isset($str) && $str=='Mobiles' || $str=='Grocery & Staples' || $str=='Meat' || $str=='Imported & Gourmet' || $str=='Household' || $str=='Personal Care' || $str=='Branded Foods' || $str=='Beverages' || $str=='Bread Dairy & Eggs' || $str=='Fruits & Vegetables'){
 			$catid=$this->home_model->get_prodcut_id1($str);
 			//print_r($catid);exit;

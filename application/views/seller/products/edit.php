@@ -77,7 +77,6 @@
 				<label for="exampleInputEmail1">Sub Category </label>
 				<select class="form-control " onchange="getspecialinputs(this.value);removeextrafields(this.value);" id="subcategorylistes" name="editsubcategorylist"  >
 				<option value="">Select Subcategory </option>
-			
 				<?php foreach($subcatdata as $subcat_data){ ?>
 				<?php if($productdetails['subcategory_id']==$subcat_data->subcategory_id){ ?>
 				<option selected="selected" value="<?php echo $subcat_data->subcategory_id; ?>"><?php echo $subcat_data->subcategory_name; ?></option>
@@ -785,8 +784,12 @@
 						</div>
 					
 				</div>
-				<?php if($productdetails['subcategory_id']==55 || $productdetails['subcategory_id']==56 || $productdetails['subcategory_id']==58 || $productdetails['subcategory_id']==59 || $productdetails['subcategory_id']==60 || $productdetails['subcategory_id']==61 || $productdetails['subcategory_id']==63){ ?>
-				
+				<?php if($productdetails['subcategory_id']==55 || $productdetails['subcategory_id']==56 || $productdetails['subcategory_id']==58 || $productdetails['subcategory_id']==59 || $productdetails['subcategory_id']==60 || $productdetails['subcategory_id']==61 || $productdetails['subcategory_id']==63){ 
+					$Sleeve = '';
+				}else{
+					$Sleeve = 'display:none';
+				} ?>
+				<span id="" style="<?php echo $Sleeve; ?>">
 				<div class="row">
 						<div class=" col-md-6 ">
 							<div class="form-group nopaddingRight san-lg">
@@ -819,12 +822,8 @@
 						</div>
 					
 				</div>
-				<?php } ?>
-				<?php if($productdetails['subcategory_id']==55 || $productdetails['subcategory_id']==56 || $productdetails['subcategory_id']==58 || $productdetails['subcategory_id']==59 || $productdetails['subcategory_id']==60 || $productdetails['subcategory_id']==61 || $productdetails['subcategory_id']==63 || $productdetails['subcategory_id']==64){ ?>
-					
-					<?php if($productdetails['subcategory_id']==63 || $productdetails['subcategory_id']==64){ ?>
-					<?php if($productdetails['subcategory_id']==63 || $productdetails['subcategory_id']==64){ ?>
-						<div class="row">
+				</span>
+				<div class="row">
 								<div class=" col-md-6 ">
 									<div class="form-group nopaddingRight san-lg">
 										<label for="exampleInputEmail1">Type</label>
@@ -840,8 +839,6 @@
 								</div>
 							
 						</div>
-						<?php } ?>
-						<?php if($productdetails['subcategory_id']==63){ ?>
 						<div class="row">
 								<div class=" col-md-6 ">
 									<div class="form-group nopaddingRight san-lg">
@@ -882,8 +879,6 @@
 								</div>
 							</div>
 						</div>
-							<?php } ?>
-						<?php }else{ ?>
 							<div class="row">
 								
 								<div class=" col-md-12 ">
@@ -894,9 +889,6 @@
 								</div>
 							
 							</div>
-						<?php } ?>
-					<?php } ?>
-				<?php if($productdetails['subcategory_id']==62){ ?>
 				<div class="row">
 						
 						<div class=" col-md-12 ">
@@ -907,8 +899,6 @@
 						</div>
 					
 				</div>
-				<?php }?>
-					<?php if($productdetails['subcategory_id']==55 || $productdetails['subcategory_id']==56 || $productdetails['subcategory_id']==58 || $productdetails['subcategory_id']==59 || $productdetails['subcategory_id']==60 || $productdetails['subcategory_id']==61 || $productdetails['subcategory_id']==62){ ?>
 
 				<div class="row">
 						<div class=" col-md-12 ">
@@ -927,8 +917,6 @@
 							</div>
 						</div>
 				</div>
-				<?php } ?>
-				<?php if($productdetails['subcategory_id']==64){ ?>
 					<div class="row">
 								<div class=" col-md-6 ">
 									<div class="form-group nopaddingRight san-lg">
@@ -977,7 +965,6 @@
 							
 							</div>
 					
-				<?php } ?>
 	
 		<?php }	?>
 <div class="clearfix"></div>
@@ -1109,7 +1096,7 @@
 
   <script>
   function getspecialinputs(ids){
-	
+	alert(ids);
 	var cat_id=$('#category_id').val();
 	if(cat_id==21){
 		$.ajax({
@@ -1122,7 +1109,6 @@
 				cache: false,
 				success: function(data)
 				{
-					
 					$('#subitems').show();
 					$('#oldsubitems').hide();
 					$("#editsubitemid").empty();
