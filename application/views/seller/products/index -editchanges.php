@@ -134,18 +134,7 @@
 					   <th>Key Features</th>
 					   <th>Unit</th>
 					   <th>Packaging Type</th>
-					<?php } ?>
-					<?php if($subcategory->subcategory_id==65 || $subcategory->subcategory_id==66 ){ ?>
-						<th>Color</th>
-						<th>Material</th>
-						<th>Type</th>
-						<th>Waterproof</th>
-						<th>Laptop Compartment</th>
-						<th>Closure</th>
-						<th>Wheels</th>
-					   <th>No of Pockets</th>
-					   <th>Inner Material</th>
-					   <th>Product Dimension </th>
+					   <th>Disclaimer</th>
 					<?php } ?>
                 <th>Offer Amount</th>
                 <th>Combo offer item Name</th>
@@ -225,20 +214,8 @@
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','service_type',this.value)" name="service_type" value="<?php echo $item_data->service_type;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','unit',this.value)" name="unit" value="<?php echo $item_data->unit;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','packingtype',this.value)" name="packingtype" value="<?php echo $item_data->packingtype;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','disclaimer',this.value)" name="disclaimer" value="<?php echo $item_data->disclaimer;?>"/></td>
 								
-							<?php } ?>
-							<?php if($item_data->subcategory_id==65 || $item_data->subcategory_id==66 ){ ?>
-								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
-								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','material',this.value)" name="material" value="<?php echo $item_data->material;?>"/></td>
-								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
-								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','waterproof',this.value)" name="waterproof" value="<?php echo $item_data->waterproof;?>"/></td>
-								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','laptop_compartment',this.value)" name="laptop_compartment" value="<?php echo $item_data->laptop_compartment;?>"/></td>
-								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','closure',this.value)" name="closure" value="<?php echo $item_data->closure;?>"/></td>
-								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','wheels',this.value)" name="wheels" value="<?php echo $item_data->wheels;?>"/></td>
-								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','no_of_pockets',this.value)" name="no_of_pockets" value="<?php echo $item_data->no_of_pockets;?>"/></td>
-								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','inner_material',this.value)" name="inner_material" value="<?php echo $item_data->inner_material;?>"/></td>
-								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','product_dimension',this.value)" name="product_dimension" value="<?php echo $item_data->product_dimension;?>"/></td>
-
 							<?php } ?>
 						<td><?php echo $item_data->offer_amount;?></td>
 						<td><?php if($item_data->offer_combo_item_id !=4 && $item_data->offer_combo_item_id !='' && $item_data->offer_combo_item_id!=0){ echo $item_data->offer_combo_item_name; }else{ echo ""; }?></td>
@@ -370,16 +347,14 @@
    // Array holding selected row IDs
    var rows_selected = [];
    var table = $('#example<?php echo $subcategory->subcategory_id;?>').DataTable({
-       "columnDefs": [
-			{ "targets": 0, "orderDataType": "dom-text", "type": "string" },
-			{ "targets": 1, "orderDataType": "dom-text", "type": "string" },
-			{ "targets": 2, "orderDataType": "dom-text", "type": "string" },
-			{ "targets": 3, "orderDataType": "dom-text", "type": "string" },
-			{ "targets": 4, "orderDataType": "dom-text", "type": "string" },
-			{ "targets": 5, "orderDataType": "dom-text", "type": "string" },
-			{ "targets": 6, "orderDataType": "dom-text", "type": "string" }
-          
-        ],
+       'columnDefs': [{
+		 'targets': [0, 1, 2, 3, 4, 5,6 ,7 ,8 ,9, 10, 11, 12, 13, 14, 15],
+         'searchable':true,
+          'orderable':true,
+		 'className': 'dt-body-center',
+		 //'type': 'html-input',
+      
+      }],
       'order': [1, 'DESC'],
       'rowCallback': function(row, data, dataIndex){
          // Get row ID
