@@ -198,6 +198,9 @@ public function item_status(){
 	 }else if(isset($post['categoryid']) && $post['categoryid']==23){
 		 $data['subcategory_id']=isset($post['subcategoryid'])?$post['subcategoryid']:'';
 		  $this->load->view('seller/products/bagsproductdetails',$data);
+	 }else if(isset($post['categoryid']) && $post['categoryid']==24){
+		 $data['subcategory_id']=isset($post['subcategoryid'])?$post['subcategoryid']:'';
+		  $this->load->view('seller/products/footware',$data);
 	 }if(isset($post['categoryid']) && $post['categoryid']==20){
 		 if($post['subcategoryid']==38){
 			$this->load->view('seller/products/cameraaccessories',$data);
@@ -207,6 +210,10 @@ public function item_status(){
 			$this->load->view('seller/products/laptops',$data);	
 			}else if($post['subcategoryid']==32){
 			$this->load->view('seller/products/headphones',$data);	
+			}else if($post['subcategoryid']==35){
+			$this->load->view('seller/products/computerspeakers',$data);	
+			}else if($post['subcategoryid']==31){
+			$this->load->view('seller/products/printers',$data);	
 			}else{
 			  $this->load->view('seller/products/sameproductdetails',$data);
 			}
@@ -505,6 +512,42 @@ public function item_status(){
 			'connectivity' => isset($post['connectivity'])?$post['connectivity']:'',
 			'headphone_jack' => isset($post['headphone_jack'])?$post['headphone_jack']:'',
 			'compatible_for' => isset($post['compatible_for'])?$post['compatible_for']:'',
+			//speakers
+			'total_power_output' => isset($post['total_power_output'])?$post['total_power_output']:'',
+			'sound_system' => isset($post['sound_system'])?$post['sound_system']:'',
+			'speaker_driver' => isset($post['speaker_driver'])?$post['speaker_driver']:'',
+			'power' => isset($post['power'])?$post['power']:'',
+			'wired_wireless' => isset($post['wired_wireless'])?$post['wired_wireless']:'',
+			'bluetooth_range' => isset($post['bluetooth_range'])?$post['bluetooth_range']:'',
+			//printers
+			'model_series' => isset($post['model_series'])?$post['model_series']:'',
+			'installation' => isset($post['installation'])?$post['installation']:'',
+			'warranty_card' => isset($post['warranty_card'])?$post['warranty_card']:'',
+			'functions' => isset($post['functions'])?$post['functions']:'',
+			'printer_type' => isset($post['printer_type'])?$post['printer_type']:'',
+			'interface' => isset($post['interface'])?$post['interface']:'',
+			'printer_output' => isset($post['printer_output'])?$post['printer_output']:'',
+			'max_print_resolution' => isset($post['max_print_resolution'])?$post['max_print_resolution']:'',
+			'print_speed' => isset($post['print_speed'])?$post['print_speed']:'',
+			'scanner_type' => isset($post['scanner_type'])?$post['scanner_type']:'',
+			'document_size' => isset($post['document_size'])?$post['document_size']:'',
+			'scanning_resolution' => isset($post['scanning_resolution'])?$post['scanning_resolution']:'',
+			'copies_from' => isset($post['copies_from'])?$post['copies_from']:'',
+			'copy_size' => isset($post['copy_size'])?$post['copy_size']:'',
+			'iso_29183' => isset($post['iso_29183'])?$post['iso_29183']:'',
+			'noise_level' => isset($post['noise_level'])?$post['noise_level']:'',
+			'paper_hold_input' => isset($post['paper_hold_input'])?$post['paper_hold_input']:'',
+			'paper_hold_output' => isset($post['paper_hold_output'])?$post['paper_hold_output']:'',
+			'paper_size' => isset($post['paper_size'])?$post['paper_size']:'',
+			'print_margin' => isset($post['print_margin'])?$post['print_margin']:'',
+			'standby' => isset($post['standby'])?$post['standby']:'',
+			'operating_temperature_range' => isset($post['operating_temperature_range'])?$post['operating_temperature_range']:'',
+			//footware
+			'sole_material' => isset($post['sole_material'])?$post['sole_material']:'',
+			'fastening' => isset($post['fastening'])?$post['fastening']:'',
+			'toe_shape' => isset($post['toe_shape'])?$post['toe_shape']:'',
+			'ean_upc' => isset($post['ean_upc'])?$post['ean_upc']:'',
+
 			'item_image'=>isset($profilepic1)?$profilepic1:'',
 			'item_image1'=>isset($profilepic2)?$profilepic2:'',
 			'item_image2'=>isset($profilepic3)?$profilepic3:'',
@@ -680,7 +723,6 @@ public function edit()
 			
 			$uksizes_list[]=$uksizes['size_name'];
 		}
-		
 		$data['color_lists']=implode(",",$color_list);
 		$data['sizes_lists']=implode(",",$sizes_list);
 		$data['uksizes_lists']=implode(",",$uksizes_list);
@@ -829,14 +871,14 @@ public function update()
 		}else{
 			$name=$post['name'];
 		}
-		if($post['pattern'] || $post['pattern1'] ){
+		if(isset($post['pattern']) && $post['pattern'] || isset($post['pattern1']) && $post['pattern1'] ){
 			if($post['pattern']!=''){
 			$pattern=$post['pattern'];
 			}if($post['pattern1']!=''){
 			$pattern=$post['pattern1'];
 			}
 		}
-		if($post['sleeve'] || $post['sleeve1'] ){
+		if(isset($post['sleeve']) && $post['sleeve'] || isset($post['sleeve1']) && $post['sleeve1'] ){
 			if($post['sleeve']!=''){
 			$sleeve=$post['sleeve'];
 			}if($post['sleeve1']!=''){
@@ -958,6 +1000,149 @@ public function update()
 			'pockets' => isset($post['pockets'])?$post['pockets']:'',
 			'blouse_length' => isset($post['blouse_length'])?$post['blouse_length']:'',
 			'saree_length' => isset($post['saree_length'])?$post['saree_length']:'',
+			'length' => isset($post['length'])?$post['length']:'',
+			'waterproof' => isset($post['waterproof'])?$post['waterproof']:'',
+			'laptop_compartment' => isset($post['laptop_compartment'])?$post['laptop_compartment']:'',
+			'closure' => isset($post['closure'])?$post['closure']:'',
+			'wheels' => isset($post['wheels'])?$post['wheels']:'',
+			'no_of_pockets' => isset($post['no_of_pockets'])?$post['no_of_pockets']:'',
+			'inner_material' => isset($post['inner_material'])?$post['inner_material']:'',
+			'product_dimension' => isset($post['product_dimension'])?$post['product_dimension']:'',
+			'minimum_focusing_distance' => isset($post['minimum_focusing_distance'])?$post['minimum_focusing_distance']:'',
+			'aperture_withmaxfocal_length' => isset($post['aperture_withmaxfocal_length'])?$post['aperture_withmaxfocal_length']:'',
+			'aperture_with_minfocal_length' => isset($post['aperture_with_minfocal_length'])?$post['aperture_with_minfocal_length']:'',
+			'maximum_focal_length' => isset($post['maximum_focal_length'])?$post['maximum_focal_length']:'',
+			'maximum_reproduction_ratio' => isset($post['maximum_reproduction_ratio'])?$post['maximum_reproduction_ratio']:'',
+			'lens_construction' => isset($post['lens_construction'])?$post['lens_construction']:'',
+			'lens_hood' => isset($post['lens_hood'])?$post['lens_hood']:'',
+			'lens_case' => isset($post['lens_case'])?$post['lens_case']:'',
+			'lens_cap' => isset($post['lens_cap'])?$post['lens_cap']:'',
+			'filter_attachment_size' => isset($post['filter_attachment_size'])?$post['filter_attachment_size']:'',
+			'dimension' => isset($post['dimension'])?$post['dimension']:'',
+			'weight' => isset($post['weight'])?$post['weight']:'',
+			//dslr
+			'resolution' => isset($post['resolution'])?$post['resolution']:'',
+			'sensor_type' => isset($post['sensor_type'])?$post['sensor_type']:'',
+			'lcd_screen_size' => isset($post['lcd_screen_size'])?$post['lcd_screen_size']:'',
+			'battery_type' => isset($post['battery_type'])?$post['battery_type']:'',
+			'lens_mount' => isset($post['lens_mount'])?$post['lens_mount']:'',
+			'exposure_mode' => isset($post['exposure_mode'])?$post['exposure_mode']:'',
+			'meter_coupling' => isset($post['meter_coupling'])?$post['meter_coupling']:'',
+			'lens_auto_focus' => isset($post['lens_auto_focus'])?$post['lens_auto_focus']:'',
+			'focus_length' => isset($post['focus_length'])?$post['focus_length']:'',
+			'focus_point' => isset($post['focus_point'])?$post['focus_point']:'',
+			'focus_lock' => isset($post['focus_lock'])?$post['focus_lock']:'',
+			'manual_focus' => isset($post['manual_focus'])?$post['manual_focus']:'',
+			'af_area_mode' => isset($post['af_area_mode'])?$post['af_area_mode']:'',
+			'detection_range' => isset($post['detection_range'])?$post['detection_range']:'',
+			'number_of_dots_effective_pixels' => isset($post['number_of_dots_effective_pixels'])?$post['number_of_dots_effective_pixels']:'',
+			'brightness_setting' => isset($post['brightness_setting'])?$post['brightness_setting']:'',
+			'viewfinder' => isset($post['viewfinder'])?$post['viewfinder']:'',
+			'viewfindermagnifiaction' => isset($post['viewfindermagnifiaction'])?$post['viewfindermagnifiaction']:'',
+			'aspect_ratio' => isset($post['aspect_ratio'])?$post['aspect_ratio']:'',
+			'image_size' => isset($post['image_size'])?$post['image_size']:'',
+			'image_resolution' => isset($post['image_resolution'])?$post['image_resolution']:'',
+			'video_resolution' => isset($post['video_resolution'])?$post['video_resolution']:'',
+			'flash_mode' => isset($post['flash_mode'])?$post['flash_mode']:'',
+			'flash_range' => isset($post['flash_range'])?$post['flash_range']:'',
+			'built_in_flash' => isset($post['built_in_flash'])?$post['built_in_flash']:'',
+			'external_flash' => isset($post['external_flash'])?$post['external_flash']:'',
+			'audio_recording_device' => isset($post['audio_recording_device'])?$post['audio_recording_device']:'',
+			'audio_recording_format' => isset($post['audio_recording_format'])?$post['audio_recording_format']:'',
+			'video_compression' => isset($post['video_compression'])?$post['video_compression']:'',
+			'face_detection' => isset($post['face_detection'])?$post['face_detection']:'',
+			'video_format' => isset($post['video_format'])?$post['video_format']:'',
+			'image_format' => isset($post['image_format'])?$post['image_format']:'',
+			'microphone' => isset($post['microphone'])?$post['microphone']:'',
+			'pictbridge' => isset($post['pictbridge'])?$post['pictbridge']:'',
+			'card_type' => isset($post['card_type'])?$post['card_type']:'',
+			'supplied_battery' => isset($post['supplied_battery'])?$post['supplied_battery']:'',
+			'ac_adapter' => isset($post['ac_adapter'])?$post['ac_adapter']:'',
+			'iso_rating' => isset($post['iso_rating'])?$post['iso_rating']:'',
+			'iso_sensitivity' => isset($post['iso_sensitivity'])?$post['iso_sensitivity']:'',
+			'dust_reduction' => isset($post['dust_reduction'])?$post['dust_reduction']:'',
+			'metering_method' => isset($post['metering_method'])?$post['metering_method']:'',
+			'metering_system' => isset($post['metering_system'])?$post['metering_system']:'',
+			'supported_languages' => isset($post['supported_languages'])?$post['supported_languages']:'',
+			'sync_terminal' => isset($post['sync_terminal'])?$post['sync_terminal']:'',
+			'view_finder' => isset($post['view_finder'])?$post['view_finder']:'',
+			'white_balancing' => isset($post['white_balancing'])?$post['white_balancing']:'',
+			'hdmi' => isset($post['hdmi'])?$post['hdmi']:'',
+			'self_timer' => isset($post['self_timer'])?$post['self_timer']:'',
+			'scene_modes' => isset($post['scene_modes'])?$post['scene_modes']:'',
+			'environment' => isset($post['environment'])?$post['environment']:'',
+			//laptops
+			'series' => isset($post['series'])?$post['series']:'',
+			'part_number' => isset($post['part_number'])?$post['part_number']:'',
+			'hdd_capacity' => isset($post['hdd_capacity'])?$post['hdd_capacity']:'',
+			'screen_size' => isset($post['screen_size'])?$post['screen_size']:'',
+			'processorbrand' => isset($post['processorbrand'])?$post['processorbrand']:'',
+			'variant' => isset($post['variant'])?$post['variant']:'',
+			'chipset' => isset($post['chipset'])?$post['chipset']:'',
+			'clock_speed' => isset($post['clock_speed'])?$post['clock_speed']:'',
+			'cache' => isset($post['cache'])?$post['cache']:'',
+			'screen_type' => isset($post['screen_type'])?$post['screen_type']:'',
+			'graphic_processor' => isset($post['graphic_processor'])?$post['graphic_processor']:'',
+			'memory_slots' => isset($post['memory_slots'])?$post['memory_slots']:'',
+			'rpm' => isset($post['rpm'])?$post['rpm']:'',
+			'rpm' => isset($post['rpm'])?$post['rpm']:'',
+			'optical_drive' => isset($post['optical_drive'])?$post['optical_drive']:'',
+			'wan' => isset($post['wan'])?$post['wan']:'',
+			'ethernet' => isset($post['ethernet'])?$post['ethernet']:'',
+			'vgaport' => isset($post['vgaport'])?$post['vgaport']:'',
+			'usb_port' => isset($post['usb_port'])?$post['usb_port']:'',
+			'hdmi_port' => isset($post['hdmi_port'])?$post['hdmi_port']:'',
+			'multi_card_slot' => isset($post['multi_card_slot'])?$post['multi_card_slot']:'',
+			'web_camera' => isset($post['web_camera'])?$post['web_camera']:'',
+			'keyboard' => isset($post['keyboard'])?$post['keyboard']:'',
+			'speakers' => isset($post['speakers'])?$post['speakers']:'',
+			'mic_in' => isset($post['mic_in'])?$post['mic_in']:'',
+			'power_supply' => isset($post['power_supply'])?$post['power_supply']:'',
+			'battery_backup' => isset($post['battery_backup'])?$post['battery_backup']:'',
+			'battery_cell' => isset($post['battery_cell'])?$post['battery_cell']:'',
+			'adapter' => isset($post['adapter'])?$post['adapter']:'',
+			'office' => isset($post['office'])?$post['office']:'',
+			'fingerprint_point' => isset($post['fingerprint_point'])?$post['fingerprint_point']:'',
+			//headphone
+			'noise_reduction' => isset($post['noise_reduction'])?$post['noise_reduction']:'',
+			'connectivity' => isset($post['connectivity'])?$post['connectivity']:'',
+			'headphone_jack' => isset($post['headphone_jack'])?$post['headphone_jack']:'',
+			'compatible_for' => isset($post['compatible_for'])?$post['compatible_for']:'',
+			//speakers
+			'total_power_output' => isset($post['total_power_output'])?$post['total_power_output']:'',
+			'sound_system' => isset($post['sound_system'])?$post['sound_system']:'',
+			'speaker_driver' => isset($post['speaker_driver'])?$post['speaker_driver']:'',
+			'power' => isset($post['power'])?$post['power']:'',
+			'wired_wireless' => isset($post['wired_wireless'])?$post['wired_wireless']:'',
+			'bluetooth_range' => isset($post['bluetooth_range'])?$post['bluetooth_range']:'',
+			//printers
+			'model_series' => isset($post['model_series'])?$post['model_series']:'',
+			'installation' => isset($post['installation'])?$post['installation']:'',
+			'warranty_card' => isset($post['warranty_card'])?$post['warranty_card']:'',
+			'functions' => isset($post['functions'])?$post['functions']:'',
+			'printer_type' => isset($post['printer_type'])?$post['printer_type']:'',
+			'interface' => isset($post['interface'])?$post['interface']:'',
+			'printer_output' => isset($post['printer_output'])?$post['printer_output']:'',
+			'max_print_resolution' => isset($post['max_print_resolution'])?$post['max_print_resolution']:'',
+			'print_speed' => isset($post['print_speed'])?$post['print_speed']:'',
+			'scanner_type' => isset($post['scanner_type'])?$post['scanner_type']:'',
+			'document_size' => isset($post['document_size'])?$post['document_size']:'',
+			'scanning_resolution' => isset($post['scanning_resolution'])?$post['scanning_resolution']:'',
+			'copies_from' => isset($post['copies_from'])?$post['copies_from']:'',
+			'copy_size' => isset($post['copy_size'])?$post['copy_size']:'',
+			'iso_29183' => isset($post['iso_29183'])?$post['iso_29183']:'',
+			'noise_level' => isset($post['noise_level'])?$post['noise_level']:'',
+			'paper_hold_input' => isset($post['paper_hold_input'])?$post['paper_hold_input']:'',
+			'paper_hold_output' => isset($post['paper_hold_output'])?$post['paper_hold_output']:'',
+			'paper_size' => isset($post['paper_size'])?$post['paper_size']:'',
+			'print_margin' => isset($post['print_margin'])?$post['print_margin']:'',
+			'standby' => isset($post['standby'])?$post['standby']:'',
+			'operating_temperature_range' => isset($post['operating_temperature_range'])?$post['operating_temperature_range']:'',
+			//footware
+			'sole_material' => isset($post['sole_material'])?$post['sole_material']:'',
+			'fastening' => isset($post['fastening'])?$post['fastening']:'',
+			'toe_shape' => isset($post['toe_shape'])?$post['toe_shape']:'',
+			'ean_upc' => isset($post['ean_upc'])?$post['ean_upc']:'',
 			'item_image'=>$image1,
 			'item_image1'=>$image2,
 			'item_image2'=>$image3,
@@ -1054,7 +1239,7 @@ public function update()
 									$this->products_model->delete_oldproducts_desc($list['desc_id']);
 								}
 							}
-									foreach ($productspecificationlist as $key=>$list){
+									$i=1;foreach ($productspecificationlist as $key=>$list){
 												
 											if($key!=''){
 												$adddesc=array(

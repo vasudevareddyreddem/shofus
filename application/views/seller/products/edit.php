@@ -75,7 +75,7 @@
 			</div>
 			<div id="oldsubcat" class="form-group col-md-6" style="display:none;">
 				<label for="exampleInputEmail1">Sub Category </label>
-				<select class="form-control " onchange="getspecialinputs(this.value);removeextrafields(this.value);" id="subcategorylistes" name="editsubcategorylist"  >
+				<select class="form-control " onchange="subcatwisegroceryproducts(this.value);getspecialinputs(this.value);removeextrafields(this.value);" id="subcategorylistes" name="editsubcategorylist"  >
 				<option value="">Select Subcategory </option>
 				<?php foreach($subcatdata as $subcat_data){ ?>
 				<?php if($productdetails['subcategory_id']==$subcat_data->subcategory_id){ ?>
@@ -90,7 +90,7 @@
 			<div id="editsubcat" class="form-group col-md-6" style="display:none;">
 				<label for="exampleInputEmail1">Sub Category </label>
 				
-				<select class="form-control" onchange="getspecialinputs(this.value);removeextrafields(this.value);" id="subcategorylist" name="subcategorylist" >
+				<select class="form-control" onchange="subcatwisegroceryproducts(this.value);getspecialinputs(this.value);removeextrafields(this.value);" id="subcategorylist" name="subcategorylist" >
 				<option value="">Select Subcategory </option>
 
 				</select>
@@ -247,727 +247,16 @@
 			</div>
 		</div>
 	</div>
-	<div class="clearfix"></div>
-	<hr>
-	<div class="row">
-		<div class="col-md-12 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Return Policy</label>
-				<textarea  placeholder="Return Policy" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="return_policy" name="return_policy"><?php echo isset($productdetails['return_policy'])?$productdetails['return_policy']:''; ?></textarea>
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Specifications</label>
+	<div id="mobile_products"></div>
+	<span id="newmobile_products">
 	
-	</div><br>
-	
-		
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Brand</label>
-				<input type="text" class="form-control" id="pbrand" name="pbrand" value="<?php echo isset($productdetails['brand'])?$productdetails['brand']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Product Code</label>
-				<input type="text" class="form-control" id="product_code" name="product_code" value="<?php echo isset($productdetails['product_code'])?$productdetails['product_code']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	
-	<?php if(isset($productdetails['category_id']) && $productdetails['category_id']==20){  ?>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Processor</label>
-				<input type="text" class="form-control" id="Processor" name="Processor" value="<?php echo isset($productdetails['Processor'])?$productdetails['Processor']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Screen Size</label>
-				<input type="text" class="form-control" id="screen_size" name="screen_size" value="<?php echo isset($productdetails['screen_size'])?$productdetails['screen_size']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Internal Memory</label>
-				<input type="text" class="form-control" id="internal_memeory" name="internal_memeory" value="<?php echo isset($productdetails['internal_memeory'])?$productdetails['internal_memeory']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Camera</label>
-				<input type="text" class="form-control" id="camera" name="camera" value="<?php echo isset($productdetails['camera'])?$productdetails['camera']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Sim Type</label>
-				<input type="text" class="form-control" id="sim_type" name="sim_type" value="<?php echo isset($productdetails['sim_type'])?$productdetails['sim_type']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">OS</label>
-				<input type="text" class="form-control" id="os" name="os" value="<?php echo isset($productdetails['os'])?$productdetails['os']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Colour</label>
-				<input type="text" class="form-control" id="colour" name="colour" value="<?php echo isset($productdetails['colour'])?$productdetails['colour']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">RAM</label>
-				<input type="text" class="form-control" id="ram" name="ram" value="<?php echo isset($productdetails['ram'])?$productdetails['ram']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Model Name</label>
-				<input type="text" class="form-control" id="model_name" name="model_name" value="<?php echo isset($productdetails['model_name'])?$productdetails['model_name']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Model ID</label>
-				<input type="text" class="form-control" id="model_id" name="model_id" value="<?php echo isset($productdetails['model_id'])?$productdetails['model_id']:''; ?>" >
-			</div>
-		</div>
-	</div>
+	</span>
+	<div id="grocery_products"></div>
+	<div id="cloths_category"></div>
+	<div id="bags_category"></div>
+	<div id="footware_category"></div>
 	
 	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Specifications</label>
-	
-	</div><br>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Internal Memory</label>
-				<input type="text" class="form-control" id="internal_memory" name="internal_memory" value="<?php echo isset($productdetails['internal_memory'])?$productdetails['internal_memory']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Expandable Memory</label>
-				<input type="text" class="form-control" id="expand_memory" name="expand_memory" value="<?php echo isset($productdetails['expand_memory'])?$productdetails['expand_memory']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Camera & Video Features</label>
-	
-	</div><br>
-
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Primary Camera</label>
-				<input type="text" class="form-control" id="primary_camera" name="primary_camera" value="<?php echo isset($productdetails['primary_camera'])?$productdetails['primary_camera']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Primary Camera Features</label>
-				<input type="text" class="form-control" id="primary_camera_feature" name="primary_camera_feature" value="<?php echo isset($productdetails['primary_camera_feature'])?$productdetails['primary_camera_feature']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Secondary Camera</label>
-				<input type="text" class="form-control" id="secondary_camera" name="secondary_camera" value="<?php echo isset($productdetails['secondary_camera'])?$productdetails['secondary_camera']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Secondary Camera Features </label>
-				<input type="text" class="form-control" id="secondary_camera_feature" name="secondary_camera_feature" value="<?php echo isset($productdetails['secondary_camera_feature'])?$productdetails['secondary_camera_feature']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Video Recording</label>
-				<input type="text" class="form-control" id="video_recording" name="video_recording" value="<?php echo isset($productdetails['video_recording'])?$productdetails['video_recording']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">HD Recording</label>
-				<input type="text" class="form-control" id="hd_recording" name="hd_recording" value="<?php echo isset($productdetails['hd_recording'])?$productdetails['hd_recording']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Flash</label>
-				<input type="text" class="form-control" id="flash" name="flash" value="<?php echo isset($productdetails['flash'])?$productdetails['flash']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Other Camera Features</label>
-				<input type="text" class="form-control" id="other_camera_features" name="other_camera_features" value="<?php echo isset($productdetails['other_camera_features'])?$productdetails['other_camera_features']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Battery & Power Features</label>
-	
-	</div><br>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Battery Capacity</label>
-				<input type="text" class="form-control" id="battery_capacity" name="battery_capacity" value="<?php echo isset($productdetails['battery_capacity'])?$productdetails['battery_capacity']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Talk Time</label>
-				<input type="text" class="form-control" id="talk_time" name="talk_time" value="<?php echo isset($productdetails['talk_time'])?$productdetails['talk_time']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Standby Time</label>
-				<input type="text" class="form-control" id="standby_time" name="standby_time" value="<?php echo isset($productdetails['standby_time'])?$productdetails['standby_time']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Internet & Connectivity</label>
-	
-	</div><br>
-
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Operating Frequency</label>
-				<input type="text" class="form-control" id="operating_frequency" name="operating_frequency" value="<?php echo isset($productdetails['operating_frequency'])?$productdetails['operating_frequency']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Preinstalled Browser</label>
-				<input type="text" class="form-control" id="preinstalled_browser" name="preinstalled_browser" value="<?php echo isset($productdetails['preinstalled_browser'])?$productdetails['preinstalled_browser']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">2G</label>
-				<input type="text" class="form-control" id="2g" name="2g" value="<?php echo isset($productdetails['2g'])?$productdetails['2g']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">3G</label>
-				<input type="text" class="form-control" id="3g" name="3g" value="<?php echo isset($productdetails['3g'])?$productdetails['3g']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">4G</label>
-				<input type="text" class="form-control" id="4g" name="4g" value="<?php echo isset($productdetails['4g'])?$productdetails['4g']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Wifi</label>
-				<input type="text" class="form-control" id="wifi" name="wifi" value="<?php echo isset($productdetails['wifi'])?$productdetails['wifi']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">GPS</label>
-				<input type="text" class="form-control" id="gps" name="gps" value="<?php echo isset($productdetails['gps'])?$productdetails['gps']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">USB Connectivity</label>
-				<input type="text" class="form-control" id="usb_connectivity" name="usb_connectivity" value="<?php echo isset($productdetails['usb_connectivity'])?$productdetails['usb_connectivity']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Bluetooth</label>
-				<input type="text" class="form-control" id="bluetooth" name="bluetooth" value="<?php echo isset($productdetails['bluetooth'])?$productdetails['bluetooth']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">NFC</label>
-				<input type="text" class="form-control" id="nfc" name="nfc" value="<?php echo isset($productdetails['nfc'])?$productdetails['nfc']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Edge</label>
-				<input type="text" class="form-control" id="edge" name="edge" value="<?php echo isset($productdetails['edge'])?$productdetails['edge']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Edge Features</label>
-				<input type="text" class="form-control" id="edge_features" name="edge_features" value="<?php echo isset($productdetails['edge_features'])?$productdetails['edge_features']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Multimedia Features</label>
-	
-	</div><br>
-
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Music Player</label>
-				<input type="text" class="form-control" id="music_player" name="music_player" value="<?php echo isset($productdetails['music_player'])?$productdetails['music_player']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Video Player</label>
-				<input type="text" class="form-control" id="video_player" name="video_player" value="<?php echo isset($productdetails['video_player'])?$productdetails['video_player']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Audio Jack</label>
-				<input type="text" class="form-control" id="audio_jack" name="audio_jack" value="<?php echo isset($productdetails['audio_jack'])?$productdetails['audio_jack']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Additional Features</label>
-	
-	</div><br>
-
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">GPU</label>
-				<input type="text" class="form-control" id="gpu" name="gpu" value="<?php echo isset($productdetails['gpu'])?$productdetails['gpu']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Sim Size</label>
-				<input type="text" class="form-control" id="sim_size" name="sim_size"  value="<?php echo isset($productdetails['sim_size'])?$productdetails['sim_size']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Sim Supported</label>
-				<input type="text" class="form-control" id="sim_supported" name="sim_supported"  value="<?php echo isset($productdetails['sim_supported'])?$productdetails['sim_supported']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Call Memory</label>
-				<input type="text" class="form-control" id="call_memory" name="call_memory" value="<?php echo isset($productdetails['call_memory'])?$productdetails['call_memory']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">SMS Memory</label>
-				<input type="text" class="form-control" id="sms_memory" name="sms_memory" value="<?php echo isset($productdetails['sms_memory'])?$productdetails['sms_memory']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Phone Book Memory</label>
-				<input type="text" class="form-control" id="phone_book_memory" name="phone_book_memory" value="<?php echo isset($productdetails['phone_book_memory'])?$productdetails['phone_book_memory']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Sensors</label>
-				<input type="text" class="form-control" id="sensors" name="sensors" value="<?php echo isset($productdetails['sensors'])?$productdetails['sensors']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Java</label>
-				<input type="text" class="form-control" id="java" name="java" value="<?php echo isset($productdetails['java'])?$productdetails['java']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >In the Box</label>
-	
-	</div><br>
-	
-	 <div class="row">
-		<div class="col-md-12 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">In Sales Package</label>
-				<input type="text" class="form-control" id="insales_package" name="insales_package" value="<?php echo isset($productdetails['insales_package'])?$productdetails['insales_package']:''; ?>" >
-			</div>
-		</div>
-		
-	</div>
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Display & Resolution</label>
-	
-	</div><br>
-	
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Display & resolution</label>
-				<input type="text" class="form-control" id="dislay_resolution" name="dislay_resolution" value="<?php echo isset($productdetails['dislay_resolution'])?$productdetails['dislay_resolution']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Display Type</label>
-				<input type="text" class="form-control" id="display_type" name="display_type" value="<?php echo isset($productdetails['display_type'])?$productdetails['display_type']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<?php }else if(isset($productdetails['category_id']) && $productdetails['category_id']==21){ ?>
-	
-				
-				<div class="row">
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Ingredients</label>
-								<input type="text" class="form-control" id="ingredients" name="ingredients" value="<?php echo isset($productdetails['ingredients'])?$productdetails['ingredients']:''; ?>" >
-							</div>
-						</div>
-						
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Key Features</label>
-								<input type="text" class="form-control" id="key_feature" name="key_feature" value="<?php echo isset($productdetails['key_feature'])?$productdetails['key_feature']:''; ?>" >
-							</div>
-						</div>
-					
-				</div>
-				<div class="row">
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Unit</label>
-								<input type="text" class="form-control" id="unit" name="unit" value="<?php echo isset($productdetails['unit'])?$productdetails['unit']:''; ?>" >
-							</div>
-						</div>
-						
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Packaging Type</label>
-								<input type="text" class="form-control" id="packingtype" name="packingtype" value="<?php echo isset($productdetails['packingtype'])?$productdetails['packingtype']:''; ?>" >
-							</div>
-						</div>
-					
-				</div>
-				<div class="row">
-					<div class="col-md-12 form-group">
-						<div class="form-group nopaddingRight san-lg">
-							<label for="exampleInputEmail1">Disclaimer</label>
-							<textarea  placeholder="Disclaimer" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="disclaimer" name="disclaimer"><?php echo isset($productdetails['disclaimer'])?$productdetails['disclaimer']:''; ?></textarea>
-						</div>
-					</div>
-				</div>
-		<?php }else if(isset($productdetails['category_id']) && $productdetails['category_id']==22){ ?>
-				<div class="row">
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Size</label>
-								<input type="text" class="form-control" id="size" name="size" value="<?php echo isset($productdetails['size'])?$productdetails['size']:''; ?>" >
-							</div>
-						</div>
-						
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Color</label>
-								<input type="text" class="form-control" id="colour" name="colour" value="<?php echo isset($productdetails['colour'])?$productdetails['colour']:''; ?>" >
-							</div>
-						</div>
-					
-				</div>
-				<div class="row">
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Occasion</label>
-								<input type="text" class="form-control" id="occasion" name="occasion" value="<?php echo isset($productdetails['occasion'])?$productdetails['occasion']:''; ?>" >
-							</div>
-						</div>
-						
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Material</label>
-								<input type="text" class="form-control" id="material" name="material" value="<?php echo isset($productdetails['material'])?$productdetails['material']:''; ?>" >
-							</div>
-						</div>
-					
-				</div>
-				<div class="row">
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Wash Care</label>
-								<input type="text" class="form-control" id="wash_care" name="wash_care" value="<?php echo isset($productdetails['wash_care'])?$productdetails['wash_care']:''; ?>" >
-							</div>
-						</div>
-						
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Style Code</label>
-								<input type="text" class="form-control" id="style_code" name="style_code" value="<?php echo isset($productdetails['style_code'])?$productdetails['style_code']:''; ?>" >
-							</div>
-						</div>
-					
-				</div>
-				<?php if($productdetails['subcategory_id']==55 || $productdetails['subcategory_id']==56 || $productdetails['subcategory_id']==58 || $productdetails['subcategory_id']==59 || $productdetails['subcategory_id']==60 || $productdetails['subcategory_id']==61 || $productdetails['subcategory_id']==63){ 
-					$Sleeve = '';
-				}else{
-					$Sleeve = 'display:none';
-				} ?>
-				<span id="" style="<?php echo $Sleeve; ?>">
-				<div class="row">
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Look</label>
-								<input type="text" class="form-control" id="look" name="look" value="<?php echo isset($productdetails['look'])?$productdetails['look']:''; ?>" >
-							</div>
-						</div>
-						
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Collar Type</label>
-								<input type="text" class="form-control" id="collar_type" name="collar_type" value="<?php echo isset($productdetails['collar_type'])?$productdetails['collar_type']:''; ?>" >
-							</div>
-						</div>
-					
-				</div>
-				<div class="row">
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Sleeve</label>
-								<input type="text" class="form-control" id="sleeve" name="sleeve" value="<?php echo isset($productdetails['sleeve'])?$productdetails['sleeve']:''; ?>" >
-							</div>
-						</div>
-						
-						<div class=" col-md-6 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Fit</label>
-								<input type="text" class="form-control" id="fit" name="fit" value="<?php echo isset($productdetails['fit'])?$productdetails['fit']:''; ?>" >
-							</div>
-						</div>
-					
-				</div>
-				</span>
-				<div class="row">
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Type</label>
-										<input type="text" class="form-control" id="type" name="type" value="<?php echo isset($productdetails['type'])?$productdetails['type']:''; ?>" >
-									</div>
-								</div>
-								
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Neck Type</label>
-										<input type="text" class="form-control" id="neck_type" name="neck_type" value="<?php echo isset($productdetails['neck_type'])?$productdetails['neck_type']:''; ?>" >
-									</div>
-								</div>
-							
-						</div>
-						<div class="row">
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Length</label>
-										<input type="text" class="form-control" id="length" name="length" value="<?php echo isset($productdetails['length'])?$productdetails['length']:''; ?>" >
-									</div>
-								</div>
-								
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Pockets</label>
-										<input type="text" class="form-control" id="pockets" name="pockets" value="<?php echo isset($productdetails['pockets'])?$productdetails['pockets']:''; ?>" >
-									</div>
-								</div>
-							
-						</div>
-						<div class="row">
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Blouse Length</label>
-										<input type="text" class="form-control" id="blouse_length" name="blouse_length" value="<?php echo isset($productdetails['blouse_length'])?$productdetails['blouse_length']:''; ?>" >
-									</div>
-								</div>
-								
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Saree Length</label>
-										<input type="text" class="form-control" id="saree_length" name="saree_length" value="<?php echo isset($productdetails['saree_length'])?$productdetails['saree_length']:''; ?>" >
-									</div>
-								</div>
-							
-						</div>
-						<div class="row">
-							<div class=" col-md-12">
-								<div class="form-group nopaddingRight san-lg">
-									<label for="exampleInputEmail1">Disclaimer</label>
-									<textarea  placeholder="Disclaimer" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="disclaimer" name="disclaimer"><?php echo isset($productdetails['disclaimer'])?$productdetails['disclaimer']:''; ?></textarea>
-								</div>
-							</div>
-						</div>
-							<div class="row">
-								
-								<div class=" col-md-12 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Pattern</label>
-										<input type="text" class="form-control" id="pattern" name="pattern" value="<?php echo isset($productdetails['pattern'])?$productdetails['pattern']:''; ?>" >
-									</div>
-								</div>
-							
-							</div>
-				<div class="row">
-						
-						<div class=" col-md-12 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Set Contents</label>
-								<input type="text" class="form-control" id="set_contents" name="set_contents" value="<?php echo isset($productdetails['set_contents'])?$productdetails['set_contents']:''; ?>" >
-							</div>
-						</div>
-					
-				</div>
-
-				<div class="row">
-						<div class=" col-md-12 ">
-							<div class="form-group nopaddingRight san-lg">
-								<label for="exampleInputEmail1">Gender</label>
-								<select class="form-control" id="gender" name="gender" >
-								<option value="">Select</option>
-								<?php if($productdetails['gender']=='Male'){?>
-								<option value="Male" selected>Male</option>
-								<option value="Female">Female</option>
-								<?php }else{ ?>
-								<option value="Male">Male</option>
-								<option value="Female" selected>Female</option>
-								<?php } ?>
-								</select>
-							</div>
-						</div>
-				</div>
-					<div class="row">
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Package Contents</label>
-										<input type="text" class="form-control" id="package_contents" name="package_contents" value="<?php echo isset($productdetails['package_contents'])?$productdetails['package_contents']:''; ?>" >
-									</div>
-								</div>
-								
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Style</label>
-										<input type="text" class="form-control" id="style" name="style" value="<?php echo isset($productdetails['style'])?$productdetails['style']:''; ?>" >
-									</div>
-								</div>
-							
-					</div>
-					<div class="row">
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Age</label>
-										<input type="text" class="form-control" id="age" name="age" value="<?php echo isset($productdetails['age'])?$productdetails['age']:''; ?>" >
-									</div>
-								</div>
-								
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Ideal For</label>
-										<input type="text" class="form-control" id="ideal_for" name="ideal_for" value="<?php echo isset($productdetails['ideal_for'])?$productdetails['ideal_for']:''; ?>" >
-									</div>
-								</div>
-							
-					</div>
-					<div class="row">
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Pattern</label>
-										<input type="text" class="form-control" id="pattern1" name="pattern1" value="<?php echo isset($productdetails['pattern'])?$productdetails['pattern']:''; ?>" >
-									</div>
-								</div>
-								<div class=" col-md-6 ">
-									<div class="form-group nopaddingRight san-lg">
-										<label for="exampleInputEmail1">Sleeve</label>
-										<input type="text" class="form-control" id="sleeve1" name="sleeve1" value="<?php echo isset($productdetails['sleeve'])?$productdetails['sleeve']:''; ?>" >
-									</div>
-								</div>
-							
-							</div>
-					
-	
-		<?php }	?>
-<div class="clearfix"></div>
 	<br>
 	<div class="" style="position:relative;">
 	<hr style="border-bottom:2px solid #006a99">
@@ -1095,8 +384,94 @@
 	
 
   <script>
+  var catid='<?php echo $productdetails['category_id'];?>';
+  jQuery.ajax({
+				url: "<?php echo site_url('seller/products/getolditemdata');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					productname: '<?php echo $productdetails['item_name'];?>',
+					categoryid: '<?php echo $productdetails['category_id'];?>',
+					subcategoryid: <?php echo $productdetails['subcategory_id'];?>,
+					},
+				dataType: 'html',
+				success: function (data) {
+					$("#footware_category").hide();
+					$("#newmobile_products").hide();
+					$("#mobile_products").hide();
+					$("#cloths_category").hide();
+					$("#bags_category").hide();
+					$("#grocery_products").hide();
+					if(catid==21){
+					$("#grocery_products").show();
+					$("#grocery_products").empty();
+					$("#grocery_products").append(data);
+					}else if(catid==22){
+						$("#cloths_category").show();
+						$("#cloths_category").empty();
+						$("#cloths_category").append(data);
+					}else if(catid==23){
+						$("#bags_category").show();
+						$("#bags_category").empty();
+						$("#bags_category").append(data);
+					}else if(catid==24){
+						$("#footware_category").show();
+						$("#footware_category").empty();
+						$("#footware_category").append(data);
+					}else if(catid==20){
+							$("#mobile_products").show();
+							$("#mobile_products").empty();
+							$("#mobile_products").append(data);
+					}
+				}
+			});
+function subcatwisegroceryproducts(id){
+		var catid=$('#category_id').val();
+			if(catid==20 || catid==21 || catid==22 || catid==23 || catid==24){
+			jQuery.ajax({
+				url: "<?php echo site_url('seller/products/getolditemdata');?>",
+				type: 'post',
+				data: {
+					form_key : window.FORM_KEY,
+					productname: 0,
+					categoryid: catid,
+					subcategoryid: id,
+					},
+				dataType: 'html',
+				success: function (data) {
+					$("#footware_category").hide();
+					$("#newmobile_products").hide();
+					$("#mobile_products").hide();
+					$("#cloths_category").hide();
+					$("#bags_category").hide();
+					$("#grocery_products").hide();
+					if(catid==21){
+					$("#grocery_products").show();
+					$("#grocery_products").empty();
+					$("#grocery_products").append(data);
+					}else if(catid==22){
+						$("#cloths_category").show();
+						$("#cloths_category").empty();
+						$("#cloths_category").append(data);
+					}else if(catid==23){
+						$("#bags_category").show();
+						$("#bags_category").empty();
+						$("#bags_category").append(data);
+					}else if(catid==24){
+						$("#footware_category").show();
+						$("#footware_category").empty();
+						$("#footware_category").append(data);
+					}else if(catid==20){
+							$("#mobile_products").show();
+							$("#mobile_products").empty();
+							$("#mobile_products").append(data);
+					}
+				}
+			});
+		}
+		
+	}
   function getspecialinputs(ids){
-	alert(ids);
 	var cat_id=$('#category_id').val();
 	if(cat_id==21){
 		$.ajax({

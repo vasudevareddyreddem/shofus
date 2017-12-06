@@ -210,10 +210,12 @@ public function getsubcatdata($cat_id)
 	{
 	$sid = $this->session->userdata('seller_id');
 	$this->db->select('*');
-	$this->db->from('subcategories');
-	$this->db->where('subcategories.category_id', $cat_id);
-		$query=$this->db->get();
-		return $query->result();
+	$this->db->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
+	$this->db->where('products.category_id', $cat_id);
+	$this->db->group_by('products.subcategory_id');
+	$query=$this->db->get();
+	return $query->result();
 		
 	}
 		

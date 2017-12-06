@@ -1597,6 +1597,381 @@ class Import extends Admin_Controller {
 										redirect('/seller/products/create');
 									}
 								
+							}else if($post['subcategory_ids']==35){
+											if(substr($_FILES['categoryfile']['name'], 0, 26)=='Electroniccomputerspeakers'){
+											
+										if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
+												include_once('simplexlsx.class.php');
+												$getWorksheetName = array();
+												$xlsx = new SimpleXLSX( $_FILES['categoryfile']['tmp_name'] );
+												$getWorksheetName = $xlsx->getWorksheetName();
+												//echo $xlsx->sheetsCount();exit;
+														for($j=1;$j <= $xlsx->sheetsCount();$j++){
+														$cnt=$xlsx->sheetsCount()-1;
+														$arry=$xlsx->rows($j);
+														unset($arry[0]);
+
+																//echo "<pre>";print_r($post);exit;
+																foreach($arry as $key=>$fields)
+																{
+																		if(isset($fields[1]) && $fields[1]!='' && $fields[2]!='' && $fields[3]!=''){
+																		$totalfields[] = $fields;
+																		if(empty($fields[1])) {
+																			$data['errors'][]="Product name is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}/*else if($fields[1]!=''){
+																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
+																			if(!preg_match( $regex, $fields[1]))	  	
+																			{
+																			$data['errors'][]='Product name wont allow "  <> []. Row Id is :  '.$key.'<br>';
+																			$error=1;
+																			}
+																		}*/
+																		if(empty($fields[2])) {
+																			$data['errors'][]="Price is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[2]!=''){
+																			$regex ="/^[0-9.]+$/"; 
+																			if(!preg_match( $regex, $fields[2]))	  	
+																			{
+																			$data['errors'][]='Price  can only consist of digits. Row Id is :  '.$key.'<br>';
+																			$error=1;
+																			}
+																		}
+																		if(empty($fields[3])) {
+																			$data['errors'][]="Special Price is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[3]!=''){
+																			$regex ="/^[0-9.]+$/"; 
+																			if(!preg_match( $regex, $fields[3]))	  	
+																			{
+																			$data['errors'][]='Special Price  can only consist of digits. Row Id is :  '.$key.'<br>';
+																			$error=1;
+																			}
+																		}
+																		if($fields[3]>=$fields[2]){
+																			$data['errors'][]="special price must be between 1 and".$fields[2].". Row Id is :  ".$key.'<br>';
+																			$error=1;	
+																		}
+																		
+																		
+																		if(empty($fields[4])) {
+																			$data['errors'][]="Qty is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[4]!=''){
+																			$regex ="/^[0-9]+$/"; 
+																			if(!preg_match( $regex, $fields[4]))
+																			{
+																			$data['errors'][]="Qty must be digits. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																			}
+																		}
+																		
+																		
+																 }
+																}
+																//echo '<pre>';print_r($data);exit;
+														if(count($data['errors'])>0){
+														$this->session->set_flashdata('addsuccess',$data['errors']);
+														redirect('/seller/products/create');
+														}
+
+													}
+													if(count($data['errors'])<=0){
+															foreach($totalfields as $data){
+																//echo '<pre>';print_r($data);exit;
+																	$discount1= ($data[2]-$data[3]);
+																	$discount= number_format($discount1, 2);
+																	$offers1= (($discount) /$data[3])*100;
+																	$offers= number_format($offers1, 2);
+																	
+																	$adddetails=array(
+																			'category_id' => $post['category_ids'],			
+																			'subcategory_id' =>$post['subcategory_ids'],
+																			'subitemid' =>isset($post['subitemids'])?$post['subitemids']:'',
+																			'seller_id' =>$this->session->userdata('seller_id'), 
+																			'item_name' => isset($data[1])?$data[1]:'',
+																			'item_cost' => isset($data[2])?$data[2]:'',
+																			'special_price' => isset($data[3])?$data[3]:'',
+																			'offers' =>  isset($offers)?$offers:'',
+																			'discount' => isset($discount)?$discount:'',
+																			'item_quantity' =>isset($data[4])?$data[4]:'',
+																			'highlights' =>isset($data[5])?$data[5]:'',
+																			//'description' =>isset($post['description'])?$post['description']:'',
+																			'item_status' => 1,
+																			'warranty_summary' => isset($data[14])?$data[14]:'',
+																			'warranty_type' =>isset($data[15])?$data[15]:'',
+																			'service_type' =>isset($data[16])?$data[16]:'',
+																			'return_policy' =>isset($data[17])?$data[17]:'',
+																			'brand' =>isset($data[18])?$data[18]:'',
+																			'product_code' =>isset($data[19])?$data[19]:'',
+																			'total_power_output' =>isset($data[20])?$data[20]:'',
+																			'sound_system' =>isset($data[21])?$data[21]:'',
+																			'speaker_driver' =>isset($data[22])?$data[22]:'',
+																			'power' =>isset($data[23])?$data[23]:'',
+																			'battery_type' =>isset($data[24])?$data[24]:'',
+																			'usb_port' =>isset($data[25])?$data[25]:'',
+																			'headphone_jack' =>isset($data[26])?$data[26]:'',
+																			'bluetooth' =>isset($data[27])?$data[27]:'',
+																			'wired_wireless' =>isset($data[28])?$data[28]:'',
+																			'bluetooth_range' =>isset($data[29])?$data[29]:'',
+																			'compatible_for' =>isset($data[30])?$data[30]:'',
+																			'weight' =>isset($data[31])?$data[31]:'',
+																			'insales_package' =>isset($data[32])?$data[32]:'',
+																			'item_image'=>isset($data[33])?trim($data[33]):'',
+																			'item_image1'=>isset($data[34])?trim($data[34]):'',
+																			'item_image2'=>isset($data[35])?trim($data[35]):'',
+																			'item_image3'=>isset($data[36])?trim($data[36]):'',
+																			'item_image4'=>isset($data[37])?trim($data[37]):'',
+																			'item_image5'=>isset($data[38])?trim($data[38]):'',
+																			'item_image6'=>isset($data[39])?trim($data[39]):'',
+																			'item_image7'=>isset($data[40])?trim($data[40]):'',
+																			'seller_location_area'=>$seller_location['area'],																	'seller_location_area'=>$seller_location['area'],
+																			'created_at'=>date('Y-m-d H:i:s'),
+																			'name' => isset($data[1])?$data[1]:'',
+																			'seller_id' => $this->session->userdata('seller_id'),  
+																			);
+																		//echo '<pre>';print_r($adddetails);exit;
+																			$results=$this->products_model->save_prodcts($adddetails);
+																				if(count($results)>0){
+																					
+																					$des=array(isset($data[6])?$data[6]:'',isset($data[8])?$data[8]:'',isset($data[10])?$data[10]:'',isset($data[12])?$data[12]:'');
+																					$img=array(isset($data[7])?$data[7]:'',isset($data[9])?$data[9]:'',isset($data[11])?$data[11]:'',isset($data[13])?$data[13]:'');
+																					$conbimearray=array_combine($des,$img);
+																						/* for spcification purpose*/
+																						foreach ($conbimearray as $key=>$list){
+
+																							if($key!=''){
+																								$adddesc=array(
+																								'item_id' =>$results,
+																								'description' => $key,
+																								'image' => $list,
+																								'create_at' => date('Y-m-d H:i:s'),
+																								'status' =>1,
+																								);
+																								//echo '<pre>';print_r($adddesc);exit;
+																								$this->products_model->insert_product_descriptions($adddesc);
+																								
+																							}
+																						}
+																						/* for spcification purpose*/
+																						
+																						
+																				}
+
+														   }
+															
+													}
+													if(count($results)>0){
+													$this->session->set_flashdata('addcus','Items are successfully added');
+													redirect('/seller/products/create');	
+													}
+													
+												
+										}else{
+											$this->session->set_flashdata('error','Your are uploaded  wrong File');
+											redirect('/seller/products/create');	
+										}
+										
+									}else{
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
+										redirect('/seller/products/create');
+									}
+							}else if($post['subcategory_ids']==31){
+																
+											if(substr($_FILES['categoryfile']['name'], 0, 18)=='Electronicprinters'){
+											
+										if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
+												include_once('simplexlsx.class.php');
+												$getWorksheetName = array();
+												$xlsx = new SimpleXLSX( $_FILES['categoryfile']['tmp_name'] );
+												$getWorksheetName = $xlsx->getWorksheetName();
+												//echo $xlsx->sheetsCount();exit;
+														for($j=1;$j <= $xlsx->sheetsCount();$j++){
+														$cnt=$xlsx->sheetsCount()-1;
+														$arry=$xlsx->rows($j);
+														unset($arry[0]);
+
+																//echo "<pre>";print_r($post);exit;
+																foreach($arry as $key=>$fields)
+																{
+																		if(isset($fields[1]) && $fields[1]!='' && $fields[2]!='' && $fields[3]!=''){
+																		$totalfields[] = $fields;
+																		if(empty($fields[1])) {
+																			$data['errors'][]="Product name is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}/*else if($fields[1]!=''){
+																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
+																			if(!preg_match( $regex, $fields[1]))	  	
+																			{
+																			$data['errors'][]='Product name wont allow "  <> []. Row Id is :  '.$key.'<br>';
+																			$error=1;
+																			}
+																		}*/
+																		if(empty($fields[2])) {
+																			$data['errors'][]="Price is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[2]!=''){
+																			$regex ="/^[0-9.]+$/"; 
+																			if(!preg_match( $regex, $fields[2]))	  	
+																			{
+																			$data['errors'][]='Price  can only consist of digits. Row Id is :  '.$key.'<br>';
+																			$error=1;
+																			}
+																		}
+																		if(empty($fields[3])) {
+																			$data['errors'][]="Special Price is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[3]!=''){
+																			$regex ="/^[0-9.]+$/"; 
+																			if(!preg_match( $regex, $fields[3]))	  	
+																			{
+																			$data['errors'][]='Special Price  can only consist of digits. Row Id is :  '.$key.'<br>';
+																			$error=1;
+																			}
+																		}
+																		if($fields[3]>=$fields[2]){
+																			$data['errors'][]="special price must be between 1 and".$fields[2].". Row Id is :  ".$key.'<br>';
+																			$error=1;	
+																		}
+																		
+																		
+																		if(empty($fields[4])) {
+																			$data['errors'][]="Qty is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[4]!=''){
+																			$regex ="/^[0-9]+$/"; 
+																			if(!preg_match( $regex, $fields[4]))
+																			{
+																			$data['errors'][]="Qty must be digits. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																			}
+																		}
+																		
+																		
+																 }
+																}
+																//echo '<pre>';print_r($data);exit;
+														if(count($data['errors'])>0){
+														$this->session->set_flashdata('addsuccess',$data['errors']);
+														redirect('/seller/products/create');
+														}
+
+													}
+													if(count($data['errors'])<=0){
+															foreach($totalfields as $data){
+																//echo '<pre>';print_r($data);exit;
+																	$discount1= ($data[2]-$data[3]);
+																	$discount= number_format($discount1, 2);
+																	$offers1= (($discount) /$data[3])*100;
+																	$offers= number_format($offers1, 2);
+																	
+																	$adddetails=array(
+																			'category_id' => $post['category_ids'],			
+																			'subcategory_id' =>$post['subcategory_ids'],
+																			'subitemid' =>isset($post['subitemids'])?$post['subitemids']:'',
+																			'seller_id' =>$this->session->userdata('seller_id'), 
+																			'item_name' => isset($data[1])?$data[1]:'',
+																			'item_cost' => isset($data[2])?$data[2]:'',
+																			'special_price' => isset($data[3])?$data[3]:'',
+																			'offers' =>  isset($offers)?$offers:'',
+																			'discount' => isset($discount)?$discount:'',
+																			'item_quantity' =>isset($data[4])?$data[4]:'',
+																			'highlights' =>isset($data[5])?$data[5]:'',
+																			//'description' =>isset($post['description'])?$post['description']:'',
+																			'item_status' => 1,
+																			'warranty_summary' => isset($data[14])?$data[14]:'',
+																			'warranty_type' =>isset($data[15])?$data[15]:'',
+																			'service_type' =>isset($data[16])?$data[16]:'',
+																			'return_policy' =>isset($data[17])?$data[17]:'',
+																			'brand' =>isset($data[18])?$data[18]:'',
+																			'product_code' =>isset($data[19])?$data[19]:'',
+																			'model_series' =>isset($data[20])?$data[20]:'',
+																			'installation' =>isset($data[21])?$data[21]:'',
+																			'warranty_card' =>isset($data[22])?$data[22]:'',
+																			'type' =>isset($data[23])?$data[23]:'',
+																			'functions' =>isset($data[24])?$data[24]:'',
+																			'printer_type' =>isset($data[25])?$data[25]:'',
+																			'interface' =>isset($data[26])?$data[26]:'',
+																			'printer_output' =>isset($data[27])?$data[27]:'',
+																			'model_id' =>isset($data[28])?$data[28]:'',
+																			'max_print_resolution' =>isset($data[29])?$data[29]:'',
+																			'print_speed' =>isset($data[30])?$data[30]:'',
+																			'scanner_type' =>isset($data[31])?$data[31]:'',
+																			'document_size' =>isset($data[32])?$data[32]:'',
+																			'scanning_resolution' =>isset($data[33])?$data[33]:'',
+																			'copies_from' =>isset($data[34])?$data[34]:'',
+																			'copy_size' =>isset($data[35])?$data[35]:'',
+																			'iso_29183' =>isset($data[36])?$data[36]:'',
+																			'noise_level' =>isset($data[37])?$data[37]:'',
+																			'paper_hold_input' =>isset($data[38])?$data[38]:'',
+																			'paper_hold_output' =>isset($data[39])?$data[39]:'',
+																			'paper_size' =>isset($data[40])?$data[40]:'',
+																			'print_margin' =>isset($data[41])?$data[41]:'',
+																			'standby' =>isset($data[42])?$data[42]:'',
+																			'operating_temperature_range' =>isset($data[43])?$data[43]:'',
+																			'power' =>isset($data[44])?$data[44]:'',
+																			'frequency' =>isset($data[45])?$data[45]:'',
+																			'insales_package' =>isset($data[46])?$data[46]:'',
+																			'item_image'=>isset($data[47])?trim($data[47]):'',
+																			'item_image1'=>isset($data[48])?trim($data[48]):'',
+																			'item_image2'=>isset($data[49])?trim($data[49]):'',
+																			'item_image3'=>isset($data[50])?trim($data[50]):'',
+																			'item_image4'=>isset($data[51])?trim($data[51]):'',
+																			'item_image5'=>isset($data[52])?trim($data[52]):'',
+																			'item_image6'=>isset($data[53])?trim($data[53]):'',
+																			'item_image7'=>isset($data[54])?trim($data[54]):'',
+																			'seller_location_area'=>$seller_location['area'],																	'seller_location_area'=>$seller_location['area'],
+																			'created_at'=>date('Y-m-d H:i:s'),
+																			'name' => isset($data[1])?$data[1]:'',
+																			'seller_id' => $this->session->userdata('seller_id'),  
+																			);
+																		//echo '<pre>';print_r($adddetails);exit;
+																			$results=$this->products_model->save_prodcts($adddetails);
+																				if(count($results)>0){
+																					
+																					$des=array(isset($data[6])?$data[6]:'',isset($data[8])?$data[8]:'',isset($data[10])?$data[10]:'',isset($data[12])?$data[12]:'');
+																					$img=array(isset($data[7])?$data[7]:'',isset($data[9])?$data[9]:'',isset($data[11])?$data[11]:'',isset($data[13])?$data[13]:'');
+																					$conbimearray=array_combine($des,$img);
+																						/* for spcification purpose*/
+																						foreach ($conbimearray as $key=>$list){
+
+																							if($key!=''){
+																								$adddesc=array(
+																								'item_id' =>$results,
+																								'description' => $key,
+																								'image' => $list,
+																								'create_at' => date('Y-m-d H:i:s'),
+																								'status' =>1,
+																								);
+																								//echo '<pre>';print_r($adddesc);exit;
+																								$this->products_model->insert_product_descriptions($adddesc);
+																								
+																							}
+																						}
+																						/* for spcification purpose*/
+																						
+																						
+																				}
+
+														   }
+															
+													}
+													if(count($results)>0){
+													$this->session->set_flashdata('addcus','Items are successfully added');
+													redirect('/seller/products/create');	
+													}
+													
+												
+										}else{
+											$this->session->set_flashdata('error','Your are uploaded  wrong File');
+											redirect('/seller/products/create');	
+										}
+										
+									}else{
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
+										redirect('/seller/products/create');
+									}
 							}else{
 								echo "Subcategory ids is wrong";
 							}
@@ -1780,6 +2155,185 @@ class Import extends Admin_Controller {
 										redirect('/seller/products/create');
 									}
 							
+							
+						}else if($post['category_ids']==24){
+									 if(substr($_FILES['categoryfile']['name'], 0, 12)=='footwareshoe'){
+											
+										if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
+												include_once('simplexlsx.class.php');
+												$getWorksheetName = array();
+												$xlsx = new SimpleXLSX( $_FILES['categoryfile']['tmp_name'] );
+												$getWorksheetName = $xlsx->getWorksheetName();
+												//echo $xlsx->sheetsCount();exit;
+														for($j=1;$j <= $xlsx->sheetsCount();$j++){
+														$cnt=$xlsx->sheetsCount()-1;
+														$arry=$xlsx->rows($j);
+														unset($arry[0]);
+
+																//echo "<pre>";print_r($post);exit;
+																foreach($arry as $key=>$fields)
+																{
+																		if(isset($fields[1]) && $fields[1]!='' && $fields[2]!='' && $fields[3]!=''){
+																		$totalfields[] = $fields;
+																		if(empty($fields[1])) {
+																			$data['errors'][]="Product name is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}/*else if($fields[1]!=''){
+																			$regex ="/^[ A-Za-z0-9_@.}{@#&`~\\/,|=^?$%*)(_+-]*$/"; 
+																			if(!preg_match( $regex, $fields[1]))	  	
+																			{
+																			$data['errors'][]='Product name wont allow "  <> []. Row Id is :  '.$key.'<br>';
+																			$error=1;
+																			}
+																		}*/
+																		if(empty($fields[2])) {
+																			$data['errors'][]="Price is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[2]!=''){
+																			$regex ="/^[0-9.]+$/"; 
+																			if(!preg_match( $regex, $fields[2]))	  	
+																			{
+																			$data['errors'][]='Price  can only consist of digits. Row Id is :  '.$key.'<br>';
+																			$error=1;
+																			}
+																		}
+																		if(empty($fields[3])) {
+																			$data['errors'][]="Special Price is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[3]!=''){
+																			$regex ="/^[0-9.]+$/"; 
+																			if(!preg_match( $regex, $fields[3]))	  	
+																			{
+																			$data['errors'][]='Special Price  can only consist of digits. Row Id is :  '.$key.'<br>';
+																			$error=1;
+																			}
+																		}
+																		if($fields[3]>=$fields[2]){
+																			$data['errors'][]="special price must be between 1 and".$fields[2].". Row Id is :  ".$key.'<br>';
+																			$error=1;	
+																		}
+																		
+																		
+																		if(empty($fields[4])) {
+																			$data['errors'][]="Qty is required. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																		}else if($fields[4]!=''){
+																			$regex ="/^[0-9]+$/"; 
+																			if(!preg_match( $regex, $fields[4]))
+																			{
+																			$data['errors'][]="Qty must be digits. Row Id is :  ".$key.'<br>';
+																			$error=1;
+																			}
+																		}
+																		
+																		
+																 }
+																}
+																//echo '<pre>';print_r($data);exit;
+														if(count($data['errors'])>0){
+														$this->session->set_flashdata('addsuccess',$data['errors']);
+														redirect('/seller/products/create');
+														}
+
+													}
+													if(count($data['errors'])<=0){
+															foreach($totalfields as $data){
+																
+																	//echo '<pre>';print_r($data);exit;
+																	$discount1= ($data[2]-$data[3]);
+																	$discount= number_format($discount1, 2);
+																	$offers1= (($discount) /$data[3])*100;
+																	$offers= number_format($offers1, 2);
+																	
+																	$adddetails=array(
+																			'category_id' => $post['category_ids'],			
+																			'subcategory_id' =>$post['subcategory_ids'],
+																			'subitemid' =>isset($post['subitemids'])?$post['subitemids']:'',
+																			'seller_id' =>$this->session->userdata('seller_id'), 
+																			'item_name' => isset($data[1])?$data[1]:'',
+																			'item_cost' => isset($data[2])?$data[2]:'',
+																			'special_price' => isset($data[3])?$data[3]:'',
+																			'offers' =>  isset($offers)?$offers:'',
+																			'discount' => isset($discount)?$discount:'',
+																			'item_quantity' =>isset($data[4])?$data[4]:'',
+																			'highlights' =>isset($data[5])?$data[5]:'',
+																			//'description' =>isset($post['description'])?$post['description']:'',
+																			'item_status' => 1,
+																			'warranty_summary' => isset($data[14])?$data[14]:'',
+																			'warranty_type' =>isset($data[15])?$data[15]:'',
+																			'service_type' =>isset($data[16])?$data[16]:'',
+																			'return_policy' =>isset($data[17])?$data[17]:'',
+																			'brand' =>isset($data[18])?$data[18]:'',
+																			'product_code' =>isset($data[19])?$data[19]:'',
+																			'style_code' =>isset($data[20])?$data[20]:'',
+																			'colour' =>isset($data[21])?$data[21]:'',
+																			'size' =>isset($data[22])?$data[22]:'',
+																			'material' =>isset($data[23])?$data[23]:'',
+																			'type' =>isset($data[24])?$data[24]:'',
+																			'sole_material' =>isset($data[25])?$data[25]:'',
+																			'fastening' =>isset($data[26])?$data[26]:'',
+																			'toe_shape' =>isset($data[27])?$data[27]:'',
+																			'ean_upc' =>isset($data[28])?$data[28]:'',
+																			'item_image'=>isset($data[29])?trim($data[29]):'',
+																			'item_image1'=>isset($data[30])?trim($data[30]):'',
+																			'item_image2'=>isset($data[31])?trim($data[31]):'',
+																			'item_image3'=>isset($data[32])?trim($data[32]):'',
+																			'item_image4'=>isset($data[33])?trim($data[33]):'',
+																			'item_image5'=>isset($data[34])?trim($data[34]):'',
+																			'item_image6'=>isset($data[35])?trim($data[35]):'',
+																			'item_image7'=>isset($data[36])?trim($data[36]):'',
+																			'seller_location_area'=>$seller_location['area'],
+																			'created_at'=>date('Y-m-d H:i:s'),
+																			'name' => isset($data[1])?$data[1]:'',
+																			'seller_id' => $this->session->userdata('seller_id'),  
+																			);
+																		//echo '<pre>';print_r($adddetails);exit;
+																			$results=$this->products_model->save_prodcts($adddetails);
+																				if(count($results)>0){
+																					
+																					$des=array(isset($data[6])?$data[6]:'',isset($data[8])?$data[8]:'',isset($data[10])?$data[10]:'',isset($data[12])?$data[12]:'');
+																					$img=array(isset($data[7])?$data[7]:'',isset($data[9])?$data[9]:'',isset($data[11])?$data[11]:'',isset($data[13])?$data[13]:'');
+																					$conbimearray=array_combine($des,$img);
+																						/* for spcification purpose*/
+																						foreach ($conbimearray as $key=>$list){
+
+																							if($key!=''){
+																								$adddesc=array(
+																								'item_id' =>$results,
+																								'description' => $key,
+																								'image' => $list,
+																								'create_at' => date('Y-m-d H:i:s'),
+																								'status' =>1,
+																								);
+																								//echo '<pre>';print_r($adddesc);exit;
+																								$this->products_model->insert_product_descriptions($adddesc);
+																								
+																							}
+																						}
+																						/* for spcification purpose*/
+																						
+																						
+																				}
+
+														   }
+															
+													}
+													if(count($results)>0){
+													$this->session->set_flashdata('addcus','Items are successfully added');
+													redirect('/seller/products/create');	
+													}
+													
+												
+										}else{
+											$this->session->set_flashdata('error','Your are uploaded  wrong File');
+											redirect('/seller/products/create');	
+										}
+										
+									}else{
+										$this->session->set_flashdata('error','Your are uploaded  wrong File. Please upload correctfile!');
+										redirect('/seller/products/create');
+									}
+									
 							
 						}else if($post['category_ids']==22){
 							if($post['subcategory_ids']==55 || $post['subcategory_ids']==56 || $post['subcategory_ids']==57 || $post['subcategory_ids']==58 || $post['subcategory_ids']==59 || $post['subcategory_ids']==60 || $post['subcategory_ids']==61){

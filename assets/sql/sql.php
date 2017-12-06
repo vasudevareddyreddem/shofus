@@ -153,5 +153,62 @@ ALTER TABLE `cartinho_live`.`products`
   ADD COLUMN `headphone_jack` VARCHAR(250) NULL AFTER `connectivity`,
   ADD COLUMN `compatible_for` VARCHAR(250) NULL AFTER `headphone_jack`;
 
+  
+  6/12/17
+  ALTER TABLE `cartinho_live`.`products`   
+  ADD COLUMN `total_power_output` VARCHAR(250) NULL AFTER `compatible_for`,
+  ADD COLUMN `sound_system` VARCHAR(250) NULL AFTER `total_power_output`,
+  ADD COLUMN `speaker_driver` VARCHAR(250) NULL AFTER `sound_system`,
+  ADD COLUMN `power` VARCHAR(250) NULL AFTER `speaker_driver`,
+  ADD COLUMN `wired_wireless` VARCHAR(250) NULL AFTER `power`,
+  ADD COLUMN `bluetooth_range` VARCHAR(250) NULL AFTER `wired_wireless`;
+  
+  
+  
+  
+  
+  ALTER TABLE `cartinho_live`.`products`   
+  ADD COLUMN `model_series` VARCHAR(250) NULL AFTER `bluetooth_range`,
+  ADD COLUMN `installation` VARCHAR(250) NULL AFTER `model_series`,
+  ADD COLUMN `warranty_card` VARCHAR(250) NULL AFTER `installation`,
+  ADD COLUMN `functions` VARCHAR(250) NULL AFTER `warranty_card`,
+  ADD COLUMN `printer_type` VARCHAR(250) NULL AFTER `functions`,
+  ADD COLUMN `interface` VARCHAR(250) NULL AFTER `printer_type`,
+  ADD COLUMN `printer_output` VARCHAR(250) NULL AFTER `interface`,
+  ADD COLUMN `max_print_resolution` VARCHAR(250) NULL AFTER `printer_output`,
+  ADD COLUMN `print_speed` VARCHAR(250) NULL AFTER `max_print_resolution`,
+  ADD COLUMN `scanner_type` VARCHAR(250) NULL AFTER `print_speed`,
+  ADD COLUMN `document_size` VARCHAR(250) NULL AFTER `scanner_type`,
+  ADD COLUMN `scanning_resolution` VARCHAR(250) NULL AFTER `document_size`,
+  ADD COLUMN `copies_from` VARCHAR(250) NULL AFTER `scanning_resolution`,
+  ADD COLUMN `copy_size` VARCHAR(250) NULL AFTER `copies_from`,
+  ADD COLUMN `iso_29183` VARCHAR(250) NULL AFTER `copy_size`,
+  ADD COLUMN `noise_level` VARCHAR(250) NULL AFTER `iso_29183`,
+  ADD COLUMN `paper_hold_input` VARCHAR(250) NULL AFTER `noise_level`,
+  ADD COLUMN `paper_hold_output` VARCHAR(250) NULL AFTER `paper_hold_input`,
+  ADD COLUMN `paper_size` VARCHAR(250) NULL AFTER `paper_hold_output`,
+  ADD COLUMN `print_margin` VARCHAR(250) NULL AFTER `paper_size`,
+  ADD COLUMN `standby` VARCHAR(250) NULL AFTER `print_margin`,
+  ADD COLUMN `operating_temperature_range` VARCHAR(250) NULL AFTER `standby`,
+  ADD COLUMN `frequency` VARCHAR(250) NULL AFTER `operating_temperature_range`;
+  
+  
+  
+  footware
+  
+  
+  ALTER TABLE `cartinho_live`.`products`   
+  ADD COLUMN `sole_material` VARCHAR(250) NULL AFTER `frequency`,
+  ADD COLUMN `fastening` VARCHAR(250) NULL AFTER `sole_material`,
+  ADD COLUMN `toe_shape` VARCHAR(250) NULL AFTER `fastening`,
+  ADD COLUMN `ean_upc` VARCHAR(250) NULL AFTER `toe_shape`;
+
+  
+  
+  
+  ALTER TABLE `cartinho_live`.`products`   
+  CHANGE `item_image1` `item_image1` VARCHAR(250) NULL;
+
+
 
 
