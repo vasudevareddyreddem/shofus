@@ -403,7 +403,7 @@ public function get_catedata($category_id)
 	 foreach($query as $subcategory)
 	{
 	 $return[$subcategory['subcategory_name']] = $subcategory;
-	 $return[$subcategory['subcategory_name']]['product_list'] = $this->get_subcatedata($subcategory['subcategory_id']);
+	 $return[$subcategory['subcategory_name']]['subitem_list'] = $this->get_subcatedata($subcategory['subcategory_id']);
 
 	}
 	if(!empty($return))
@@ -416,11 +416,11 @@ public function get_subcatedata($subcategory_id)
 {
 	
 	//echo '<pre>';print_r($subcategory_id);exit;
-	$this->db->select('products.*')->from('products');
-	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
-	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
+	$this->db->select('sub_items.*')->from('products');
+	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
     $this->db->where('products.subcategory_id', $subcategory_id);
-    $this->db->where('products.item_status', 1);
+    $this->db->where('products.subitemid !=', 0);
+	$this->db->group_by('products.subitemid');
 	 return $this->db->get()->result_array();
 }
 	
