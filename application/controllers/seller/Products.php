@@ -1977,10 +1977,25 @@ public function returns()
 	public function ajaxeditchanges(){
 		$post=$this->input->post();
 		$productdetails=$this->products_model->get_product_details($post['item_id']);
-		//echo '<pre>';print_r($post);
-		if($post['valuename']=='product_name'){
+		//echo '<pre>';print_r($productdetails);exit;
+		
+		if($post['valuename']=='name'){
+			if($productdetails['subcategory_id']==40){
+				if($productdetails['colour']!='' && $productdetails['internal_memeory']!='' && $productdetails['ram']!=''){
+				$name=$post['value'].' '.ucfirst(strtolower($productdetails['colour'])).' ('.$productdetails['internal_memeory'].' ROM)'.' ('.$productdetails['ram'].' RAM )';
+				}else if($productdetails['colour']!='' && $productdetails['internal_memeory']!=''){
+				$name=$post['value'].' '.ucfirst(strtolower($productdetails['colour'])).' ('.$productdetails['internal_memeory'].' ROM)';
+				}else if($productdetails['colour']!=''){
+				$name=$post['value'].' '.ucfirst(strtolower($productdetails['colour']));
+				}else{
+				$name=$post['value'];
+				}
+			}else{
+			$name=$post['value'];
+			}
 			$editdata = array(
-			'item_name' => $post['value'],
+			'name' => $post['value'],
+			'item_name' => $name,
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
 		}else if($post['valuename']=='product_code'){
@@ -2062,13 +2077,41 @@ public function returns()
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
 		}else if($post['valuename']=='colour'){
+			if($productdetails['subcategory_id']==40){
+				if($post['value']!='' && $productdetails['internal_memeory']!='' && $productdetails['ram']!=''){
+				$name=$productdetails['name'].' '.ucfirst(strtolower($post['value'])).' ('.$productdetails['internal_memeory'].' ROM)'.' ('.$productdetails['ram'].' RAM )';
+				}else if($post['value']!='' && $productdetails['internal_memeory']!=''){
+				$name=$productdetails['name'].' '.ucfirst(strtolower($post['value'])).' ('.$productdetails['internal_memeory'].' ROM)';
+				}else if($post['value']!=''){
+				$name=$productdetails['name'].' '.ucfirst(strtolower($post['value']));
+				}else{
+				$name=$productdetails['name'];
+				}
+			}else{
+			$name=$post['value'];
+			}
 			$editdata = array(
 			'colour' => $post['value'],
+			'item_name' => $name,
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
 		}else if($post['valuename']=='ram'){
+			if($productdetails['subcategory_id']==40){
+				if($productdetails['colour']!='' && $productdetails['internal_memeory']!='' && $post['value']!=''){
+				$name=$productdetails['name'].' '.ucfirst(strtolower($productdetails['colour'])).' ('.$productdetails['internal_memeory'].' ROM)'.' ('.$post['value'].' RAM )';
+				}else if($productdetails['colour']!='' && $productdetails['internal_memeory']!=''){
+				$name=$productdetails['name'].' '.ucfirst(strtolower($productdetails['colour'])).' ('.$productdetails['internal_memeory'].' ROM)';
+				}else if($productdetails['colour']!=''){
+				$name=$productdetails['name'].' '.ucfirst(strtolower($productdetails['colour']));
+				}else{
+				$name=$productdetails['name'];
+				}
+			}else{
+			$name=$post['value'];
+			}
 			$editdata = array(
 			'ram' => $post['value'],
+			'item_name' => $name,
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
 		}else if($post['valuename']=='model_name'){
@@ -2082,8 +2125,22 @@ public function returns()
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
 		}else if($post['valuename']=='internal_memory'){
+			if($productdetails['subcategory_id']==40){
+				if($productdetails['colour']!='' && $post['value']!='' && $post['value']!=''){
+				$name=$productdetails['name'].' '.ucfirst(strtolower($productdetails['colour'])).' ('.$post['value'].' ROM)'.' ('.$productdetails['ram'].' RAM )';
+				}else if($productdetails['colour']!='' && $post['value']!=''){
+				$name=$productdetails['name'].' '.ucfirst(strtolower($productdetails['colour'])).' ('.$post['value'].' ROM)';
+				}else if($productdetails['colour']!=''){
+				$name=$productdetails['name'].' '.ucfirst(strtolower($productdetails['colour']));
+				}else{
+				$name=$productdetails['name'];
+				}
+			}else{
+			$name=$post['value'];
+			}
 			$editdata = array(
 			'internal_memory' => $post['value'],
+			'item_name' => $name,
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
 		}else if($post['valuename']=='expand_memory'){
@@ -2284,6 +2341,806 @@ public function returns()
 		}else if($post['valuename']=='disclaimer'){
 			$editdata = array(
 			'disclaimer' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='material'){
+			$editdata = array(
+			'material' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='waterproof'){
+			$editdata = array(
+			'waterproof' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='laptop_compartment'){
+			$editdata = array(
+			'laptop_compartment' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='closure'){
+			$editdata = array(
+			'closure' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='wheels'){
+			$editdata = array(
+			'wheels' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='no_of_pockets'){
+			$editdata = array(
+			'no_of_pockets' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='inner_material'){
+			$editdata = array(
+			'inner_material' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='product_dimension'){
+			$editdata = array(
+			'product_dimension' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='style_code'){
+			$editdata = array(
+			'style_code' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='size'){
+			$editdata = array(
+			'size' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='type'){
+			$editdata = array(
+			'type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='sole_material'){
+			$editdata = array(
+			'sole_material' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='fastening'){
+			$editdata = array(
+			'fastening' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='toe_shape'){
+			$editdata = array(
+			'toe_shape' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='ean_upc'){
+			$editdata = array(
+			'ean_upc' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='occasion'){
+			$editdata = array(
+			'occasion' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='wash_care'){
+			$editdata = array(
+			'wash_care' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='look'){
+			$editdata = array(
+			'look' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='collar_type'){
+			$editdata = array(
+			'collar_type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='sleeve'){
+			$editdata = array(
+			'sleeve' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='fit'){
+			$editdata = array(
+			'fit' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='pattern'){
+			$editdata = array(
+			'pattern' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='gender'){
+			$editdata = array(
+			'gender' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='set_contents'){
+			$editdata = array(
+			'set_contents' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='neck_type'){
+			$editdata = array(
+			'neck_type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='length'){
+			$editdata = array(
+			'length' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='pockets'){
+			$editdata = array(
+			'pockets' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='blouse_length'){
+			$editdata = array(
+			'blouse_length' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='saree_length'){
+			$editdata = array(
+			'saree_length' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='model_series'){
+			$editdata = array(
+			'model_series' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='installation'){
+			$editdata = array(
+			'installation' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='warranty_card'){
+			$editdata = array(
+			'warranty_card' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='type'){
+			$editdata = array(
+			'type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='functions'){
+			$editdata = array(
+			'functions' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='printer_type'){
+			$editdata = array(
+			'printer_type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='interface'){
+			$editdata = array(
+			'interface' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='printer_output'){
+			$editdata = array(
+			'printer_output' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='model_id'){
+			$editdata = array(
+			'model_id' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='max_print_resolution'){
+			$editdata = array(
+			'max_print_resolution' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='print_speed'){
+			$editdata = array(
+			'print_speed' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='scanner_type'){
+			$editdata = array(
+			'scanner_type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='document_size'){
+			$editdata = array(
+			'document_size' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='scanning_resolution'){
+			$editdata = array(
+			'scanning_resolution' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='copies_from'){
+			$editdata = array(
+			'copies_from' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='copy_size'){
+			$editdata = array(
+			'copy_size' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='iso_29183'){
+			$editdata = array(
+			'iso_29183' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='noise_level'){
+			$editdata = array(
+			'noise_level' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='paper_hold_input'){
+			$editdata = array(
+			'paper_hold_input' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='paper_hold_output'){
+			$editdata = array(
+			'paper_hold_output' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='paper_size'){
+			$editdata = array(
+			'paper_size' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='print_margin'){
+			$editdata = array(
+			'print_margin' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='standby'){
+			$editdata = array(
+			'standby' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='operating_temperature_range'){
+			$editdata = array(
+			'operating_temperature_range' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='power'){
+			$editdata = array(
+			'power' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='frequency'){
+			$editdata = array(
+			'frequency' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='noise_reduction'){
+			$editdata = array(
+			'noise_reduction' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='connectivity'){
+			$editdata = array(
+			'connectivity' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='headphone_jack'){
+			$editdata = array(
+			'headphone_jack' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='weight'){
+			$editdata = array(
+			'weight' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='compatible_for'){
+			$editdata = array(
+			'compatible_for' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='series'){
+			$editdata = array(
+			'series' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='part_number'){
+			$editdata = array(
+			'part_number' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='hdd_capacity'){
+			$editdata = array(
+			'hdd_capacity' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='screen_size'){
+			$editdata = array(
+			'screen_size' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='processorbrand'){
+			$editdata = array(
+			'processorbrand' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='variant'){
+			$editdata = array(
+			'variant' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='chipset'){
+			$editdata = array(
+			'chipset' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='clock_speed'){
+			$editdata = array(
+			'clock_speed' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='cache'){
+			$editdata = array(
+			'cache' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='screen_type'){
+			$editdata = array(
+			'screen_type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='resolution'){
+			$editdata = array(
+			'resolution' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='graphic_processor'){
+			$editdata = array(
+			'graphic_processor' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='memory_slots'){
+			$editdata = array(
+			'memory_slots' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='rpm'){
+			$editdata = array(
+			'rpm' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='optical_drive'){
+			$editdata = array(
+			'optical_drive' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='wan'){
+			$editdata = array(
+			'wan' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='ethernet'){
+			$editdata = array(
+			'ethernet' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='vgaport'){
+			$editdata = array(
+			'vgaport' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='usb_port'){
+			$editdata = array(
+			'usb_port' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='hdmi_port'){
+			$editdata = array(
+			'hdmi_port' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='multi_card_slot'){
+			$editdata = array(
+			'multi_card_slot' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='web_camera'){
+			$editdata = array(
+			'web_camera' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='keyboard'){
+			$editdata = array(
+			'keyboard' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='speakers'){
+			$editdata = array(
+			'speakers' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='mic_in'){
+			$editdata = array(
+			'mic_in' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='power_supply'){
+			$editdata = array(
+			'power_supply' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='battery_backup'){
+			$editdata = array(
+			'battery_backup' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='battery_cell'){
+			$editdata = array(
+			'battery_cell' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='dimension'){
+			$editdata = array(
+			'dimension' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='adapter'){
+			$editdata = array(
+			'adapter' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='office'){
+			$editdata = array(
+			'office' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='fingerprint_point'){
+			$editdata = array(
+			'fingerprint_point' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='total_power_output'){
+			$editdata = array(
+			'total_power_output' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='sound_system'){
+			$editdata = array(
+			'sound_system' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='speaker_driver'){
+			$editdata = array(
+			'speaker_driver' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='battery_type'){
+			$editdata = array(
+			'battery_type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='bluetooth'){
+			$editdata = array(
+			'bluetooth' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='wired_wireless'){
+			$editdata = array(
+			'wired_wireless' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='bluetooth_range'){
+			$editdata = array(
+			'bluetooth_range' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='f_stop'){
+			$editdata = array(
+			'f_stop' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='picture_angle'){
+			$editdata = array(
+			'picture_angle' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='minimum_focusing_distance'){
+			$editdata = array(
+			'minimum_focusing_distance' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='aperture_withmaxfocal_length'){
+			$editdata = array(
+			'aperture_withmaxfocal_length' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='aperture_with_minfocal_length'){
+			$editdata = array(
+			'aperture_with_minfocal_length' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='maximum_focal_length'){
+			$editdata = array(
+			'maximum_focal_length' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='maximum_reproduction_ratio'){
+			$editdata = array(
+			'maximum_reproduction_ratio' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='lens_construction'){
+			$editdata = array(
+			'lens_construction' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='lens_hood'){
+			$editdata = array(
+			'lens_hood' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='lens_case'){
+			$editdata = array(
+			'lens_case' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='lens_cap'){
+			$editdata = array(
+			'lens_cap' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='filter_attachment_size'){
+			$editdata = array(
+			'filter_attachment_size' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='sensor_type'){
+			$editdata = array(
+			'sensor_type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='lcd_screen_size'){
+			$editdata = array(
+			'lcd_screen_size' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='lens_mount'){
+			$editdata = array(
+			'lens_mount' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='exposure_mode'){
+			$editdata = array(
+			'exposure_mode' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='meter_coupling'){
+			$editdata = array(
+			'meter_coupling' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='lens_auto_focus'){
+			$editdata = array(
+			'lens_auto_focus' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='focus_length'){
+			$editdata = array(
+			'focus_length' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='focus_point'){
+			$editdata = array(
+			'focus_point' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='focus_lock'){
+			$editdata = array(
+			'focus_lock' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='manual_focus'){
+			$editdata = array(
+			'manual_focus' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='af_area_mode'){
+			$editdata = array(
+			'af_area_mode' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='detection_range'){
+			$editdata = array(
+			'detection_range' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='number_of_dots_effective_pixels'){
+			$editdata = array(
+			'number_of_dots_effective_pixels' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='brightness_setting'){
+			$editdata = array(
+			'brightness_setting' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='viewfinder'){
+			$editdata = array(
+			'viewfinder' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='viewfindermagnifiaction'){
+			$editdata = array(
+			'viewfindermagnifiaction' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='aspect_ratio'){
+			$editdata = array(
+			'aspect_ratio' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='image_size'){
+			$editdata = array(
+			'image_size' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='image_resolution'){
+			$editdata = array(
+			'image_resolution' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='video_resolution'){
+			$editdata = array(
+			'video_resolution' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='flash_mode'){
+			$editdata = array(
+			'flash_mode' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='flash_range'){
+			$editdata = array(
+			'flash_range' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='built_in_flash'){
+			$editdata = array(
+			'built_in_flash' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='external_flash'){
+			$editdata = array(
+			'external_flash' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='audio_recording_device'){
+			$editdata = array(
+			'audio_recording_device' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='audio_recording_format'){
+			$editdata = array(
+			'audio_recording_format' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='video_compression'){
+			$editdata = array(
+			'video_compression' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='face_detection'){
+			$editdata = array(
+			'face_detection' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='video_format'){
+			$editdata = array(
+			'video_format' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='image_format'){
+			$editdata = array(
+			'image_format' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='microphone'){
+			$editdata = array(
+			'microphone' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='pictbridge'){
+			$editdata = array(
+			'pictbridge' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='card_type'){
+			$editdata = array(
+			'card_type' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='supplied_battery'){
+			$editdata = array(
+			'supplied_battery' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='ac_adapter'){
+			$editdata = array(
+			'ac_adapter' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='iso_rating'){
+			$editdata = array(
+			'iso_rating' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='iso_sensitivity'){
+			$editdata = array(
+			'iso_sensitivity' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='dust_reduction'){
+			$editdata = array(
+			'dust_reduction' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='metering_method'){
+			$editdata = array(
+			'metering_method' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='metering_system'){
+			$editdata = array(
+			'metering_system' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='supported_languages'){
+			$editdata = array(
+			'supported_languages' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='sync_terminal'){
+			$editdata = array(
+			'sync_terminal' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='view_finder'){
+			$editdata = array(
+			'view_finder' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='white_balancing'){
+			$editdata = array(
+			'white_balancing' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='hdmi'){
+			$editdata = array(
+			'hdmi' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='self_timer'){
+			$editdata = array(
+			'self_timer' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='scene_modes'){
+			$editdata = array(
+			'scene_modes' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='environment'){
+			$editdata = array(
+			'environment' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='return_policy'){
+			$editdata = array(
+			'return_policy' => $post['value'],
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
 		}

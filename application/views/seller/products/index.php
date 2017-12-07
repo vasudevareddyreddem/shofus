@@ -147,13 +147,255 @@
 					   <th>Inner Material</th>
 					   <th>Product Dimension </th>
 					<?php } ?>
-                <th>Offer Amount</th>
-                <th>Combo offer item Name</th>
-                <th>Offer expiry Date and Time</th>
-				<th>Status</th>
-				<?php if($status_details['status']==1){ ?>
-                 <th>Action</th>
-				<?php } ?>				 
+					<?php if($subcategory->subcategory_id==67){ ?>
+						<th>Style Code</th>
+						<th>Color</th>
+						<th>Size</th>
+						<th>Material</th>
+						<th>Type</th>
+						<th>Sole Material</th>
+						<th>Fastening</th>
+					   <th>Toe Shape</th>
+					   <th>EAN/UPC</th>
+					<?php } ?>
+					<?php if($subcategory->subcategory_id==55 || $subcategory->subcategory_id==56 || $subcategory->subcategory_id==57 || $subcategory->subcategory_id==58 || $subcategory->subcategory_id==59 || $subcategory->subcategory_id==60 || $subcategory->subcategory_id==61){ ?>
+						<th>Size</th>
+						<th>Color</th>
+						<th>Occasion</th>
+						<th>Material</th>
+						<th>Wash Care</th>
+						<th>Style Code</th>
+						<th>Look</th>
+					    <th>Collar Type</th>
+					    <th>Sleeve</th>
+					    <th>Fit</th>
+					    <th>Pattern</th>
+					    <th>Gender</th>
+					<?php } ?>
+					<?php if($subcategory->subcategory_id==62){ ?>
+						<th>Size</th>
+						<th>Color</th>
+						<th>Occasion</th>
+						<th>Material</th>
+						<th>Wash Care</th>
+						<th>Style Code</th>
+						<th>Set Contents</th>
+					    <th>Gender</th>
+					<?php } ?>
+					<?php if($subcategory->subcategory_id==63){ ?>
+						<th>Size</th>
+						<th>Color</th>
+						<th>Occasion</th>
+						<th>Material</th>
+						<th>Wash Care</th>
+						<th>Style Code</th>
+						<th>Look</th>
+					    <th>Collar Type</th>
+					    <th>Sleeve</th>
+					    <th>Fit</th>
+					    <th>Type</th>
+					    <th>Neck Type</th>
+					    <th>Length</th>
+					    <th>Pockets</th>
+					    <th>Blouse Length</th>
+					    <th>Saree Length</th>
+					<?php } ?>
+					<?php if($subcategory->subcategory_id==64){ ?>
+						<th>Size</th>
+						<th>Color</th>
+						<th>Occasion</th>
+						<th>Material</th>
+						<th>Wash Care</th>
+						<th>Style Code</th>
+						<th>Look</th>
+					    <th>Collar Type</th>
+					    <th>Sleeve</th>
+					    <th>Fit</th>
+					    <th>Type</th>
+					    <th>Neck Type</th>
+					    <th>Package Contents</th>
+					    <th>Style</th>
+					    <th>Age</th>
+					    <th>Ideal For</th>
+					    <th>Pattern</th>
+					<?php } ?>
+					<?php if($subcategory->subcategory_id==31){ ?>
+						<th>Model Series</th>
+						<th>Installation</th>
+						<th>Warranty card</th>
+						<th>Type</th>
+						<th>Functions</th>
+						<th>Printer Type</th>
+						<th>Interface</th>
+					    <th>Printer Output</th>
+					    <th>Model ID</th>
+					    <th>Max Print Resolution</th>
+					    <th>Max Print Speed</th>
+					    <th>Scanner Type</th>
+					    <th>Max Document Size</th>
+					    <th>Optical Scanning Resolution</th>
+					    <th>Maximum Copies From Standalone</th>
+					    <th>Maximum Copy Size</th>
+					    <th>ISO 29183, A4, Simplex</th>
+					    <th>Noise Level</th>
+					    <th>Paper Hold Input Capacity</th>
+					    <th>Paper Hold OutPut Capacity</th>
+					    <th>Paper Size</th>
+					    <th>Print Margin</th>
+					    <th>Standby</th>
+					    <th>Operating Temperature Range</th>
+					    <th>Power Requirement</th>
+					    <th>Frequency</th>
+					<?php } ?>
+					<?php if($subcategory->subcategory_id==32){ ?>
+						<th>Noise Reduction</th>
+						<th>Connectivity</th>
+						<th>Headphone Jack</th>
+						<th>Weight</th>
+						<th>Other Features</th>
+						<th>Compatible For</th>
+					  <?php } ?>
+					  <?php if($subcategory->subcategory_id==39){ ?>
+						<th>Processor</th>
+						<th>Series</th>
+						<th>Part Number</th>
+						<th>Operating System</th>
+						<th>RAM</th>
+						<th>HDD Capacity</th>
+						<th>Screen Size</th>
+						<th>Colour</th>
+						<th>Model Name</th>
+						<th>ProcessorBrand</th>
+						<th>Variant</th>
+						<th>Chipset</th>
+						<th>Clock Speed</th>
+						<th>Cache</th>
+						<th>Screen Type</th>
+						<th>Resolution</th>
+						<th>Graphic Processor</th>
+						<th>Memory Slots</th>
+						<th>RPM</th>
+						<th>Optical Drive</th>
+						<th>Wireless WAN</th>
+						<th>Ethernet</th>
+						<th>VGA Port</th>
+						<th>USB Port</th>
+						<th>HDMI Port</th>
+						<th>Multi Card Slot</th>
+						<th>Web Camera</th>
+						<th>Keyboard</th>
+						<th>Speakers</th>
+						<th>Mic In</th>
+						<th>Power Supply</th>
+						<th>Battery Backup</th>
+						<th>Battery Cell</th>
+						<th>Dimension</th>
+						<th>Weight</th>
+						<th>Adapter</th>
+						<th>Office</th>
+						<th>Fingerprint Point</th>
+					  <?php } ?>
+					  <?php if($subcategory->subcategory_id==35){ ?>
+						<th>Total Power Output RMS (W)</th>
+						<th>Sound System</th>
+						<th>Speaker driver</th>
+						<th>Power</th>
+						<th>Battery type</th>
+						<th>USB Ports</th>
+						<th>Headphone Jack</th>
+						<th>Bluetooth</th>
+						<th>Wired/Wireless</th>
+						<th>Bluetooth range</th>
+						<th>Compatible Devices</th>
+						<th>Product weight</th>
+					  <?php } ?>
+					  <?php if($subcategory->subcategory_id==38){ ?>
+						<th>Colour</th>
+						<th>Minimum f/stop</th>
+						<th>Picture Angle with Nikon DX Format</th>
+						<th>Type</th>
+						<th>Model Name</th>
+						<th>Minimum Focusing Distance</th>
+						<th>Aperture With Max Focal Length</th>
+						<th>Aperture With Min Focal Length</th>
+						<th>Maximum Focal Length</th>
+						<th>Maximum Reproduction Ratio</th>
+						<th>Lens Construction (Elements/Groups)</th>
+						<th>Lens Hood</th>
+						<th>Lens Case</th>
+						<th>Lens Cap</th>
+						<th>Filter Attachment Size</th>
+						<th>Other Features</th>
+						<th>Dimension</th>
+						<th>Weight</th>
+					  <?php } ?>
+					  <?php if($subcategory->subcategory_id==36){ ?>
+						<th>Resolution</th>
+						<th>Sensor Type</th>
+						<th>Color</th>
+						<th>LCD Screen Size</th>
+						<th>Battery Type</th>
+						<th>Type</th>
+						<th>Wi-Fi</th>
+						<th>Model Name</th>
+						<th>Lens Mount</th>
+						<th>Exposure Mode</th>
+						<th>Exposure Meter Coupling</th>
+						<th>Lens Auto Focus</th>
+						<th>Focus Length</th>
+						<th>Focus Point</th>
+						<th>Focus Lock</th>
+						<th>Manual Focus</th>
+						<th>AF Area Mode</th>
+						<th>Detection Range</th>
+						<th>Number Of Dots/Effective Pixels</th>
+						<th>Display Type</th>
+						<th>Brightness Setting</th>
+						<th>ViewFinder</th>
+						<th>ViewFinderMagnifiaction</th>
+						<th>Aspect Ratio</th>
+						<th>Image Size at Megapixels</th>
+						<th>Image Resolution</th>
+						<th>Video Resolution</th>
+						<th>Flash Mode</th>
+						<th>Flash Range</th>
+						<th>Built-in Flash</th>
+						<th>External Flash</th>
+						<th>Audio Recording Device</th>
+						<th>Audio Recording Format</th>
+						<th>Video Compression</th>
+						<th>Face Detection</th>
+						<th>Video Format</th>
+						<th>Image Format</th>
+						<th>Microphone</th>
+						<th>PictBridge</th>
+						<th>Memory Card Type</th>
+						<th>Supplied Battery</th>
+						<th>AC Adapter</th>
+						<th>ISO Rating</th>
+						<th>ISO Sensitivity</th>
+						<th>Dust Reduction</th>
+						<th>Metering Method</th>
+						<th>Metering System</th>
+						<th>Supported Languages</th>
+						<th>Sync Terminal</th>
+						<th>View finder</th>
+						<th>White Balancing</th>
+						<th>HDMI</th>
+						<th>Self Timer</th>
+						<th>Scene Modes</th>
+						<th>Operating Environment</th>
+						<th>Weight</th>
+						<th>Dimension</th>
+					  <?php } ?>
+						<th>Offer Amount</th>
+						<th>Combo offer item Name</th>
+						<th>Offer expiry Date and Time</th>
+						<th>Status</th>
+						<th>Return Policy</th>
+						<?php if($status_details['status']==1){ ?>
+						 <th>Action</th>
+					<?php } ?>				 
             </tr>
         </thead>
       
@@ -164,7 +406,7 @@
 						
 						?>
 					<tr>
-						<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','product_name',this.value)" name="product_name" value="<?php echo $item_data->item_name;?>"/></td>
+						<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','name',this.value)" name="name" value="<?php echo $item_data->name;?>"/></td>
 						<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','product_code',this.value)" name="product_code" value="<?php echo $item_data->product_code;?>"/></td>
 						<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','product_cost',this.value)" name="product_cost" id="product_cost<?php echo $subcategory->subcategory_id;?>" value="<?php echo $item_data->item_cost;?>"/></td>
 						<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','product_special',this.value)" name="product_special" id="product_special<?php echo $subcategory->subcategory_id;?>" value="<?php echo $item_data->special_price;?>"/></td>
@@ -240,6 +482,270 @@
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','product_dimension',this.value)" name="product_dimension" value="<?php echo $item_data->product_dimension;?>"/></td>
 
 							<?php } ?>
+							<?php if($item_data->subcategory_id==67){ ?>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','style_code',this.value)" name="style_code" value="<?php echo $item_data->style_code;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','material',this.value)" name="material" value="<?php echo $item_data->material;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','sole_material',this.value)" name="sole_material" value="<?php echo $item_data->sole_material;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','fastening',this.value)" name="fastening" value="<?php echo $item_data->fastening;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','toe_shape',this.value)" name="toe_shape" value="<?php echo $item_data->toe_shape;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','ean_upc',this.value)" name="ean_upc" value="<?php echo $item_data->ean_upc;?>"/></td>
+							<?php } ?>
+							<?php if($item_data->subcategory_id==55 || $item_data->subcategory_id==56 || $item_data->subcategory_id==57 || $item_data->subcategory_id==58 || $item_data->subcategory_id==59 || $item_data->subcategory_id==60 || $item_data->subcategory_id==61){ ?>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','occasion',this.value)" name="occasion" value="<?php echo $item_data->occasion;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','material',this.value)" name="material" value="<?php echo $item_data->material;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','wash_care',this.value)" name="wash_care" value="<?php echo $item_data->wash_care;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','style_code',this.value)" name="style_code" value="<?php echo $item_data->style_code;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','look',this.value)" name="look" value="<?php echo $item_data->look;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','collar_type',this.value)" name="collar_type" value="<?php echo $item_data->collar_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','sleeve',this.value)" name="sleeve" value="<?php echo $item_data->sleeve;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','fit',this.value)" name="fit" value="<?php echo $item_data->fit;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','pattern',this.value)" name="pattern" value="<?php echo $item_data->pattern;?>"/></td>
+								<td>
+									<select id="status" onchange="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','gender',this.value)" >
+									<?php if($item_data->gender == 'Male') {?>
+									<option value="Male"selected>Male</option>
+									<option value="Female">Female</option>
+									<?php }else if($item_data->gender == 'Female'){  ?>
+									<option value="Male">Male</option>
+									<option value="Female" selected>Female</option>
+									<?php } ?>						
+									</select>
+								</td>
+							<?php } ?>
+							<?php if($item_data->subcategory_id==62){ ?>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','occasion',this.value)" name="occasion" value="<?php echo $item_data->occasion;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','material',this.value)" name="material" value="<?php echo $item_data->material;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','wash_care',this.value)" name="wash_care" value="<?php echo $item_data->wash_care;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','style_code',this.value)" name="style_code" value="<?php echo $item_data->style_code;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','set_contents',this.value)" name="set_contents" value="<?php echo $item_data->set_contents;?>"/></td>
+								<td>
+									<select id="status" onchange="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','gender',this.value)" >
+									<?php if($item_data->gender == 'Male') {?>
+									<option value="Male"selected>Male</option>
+									<option value="Female">Female</option>
+									<?php }else if($item_data->gender == 'Female'){  ?>
+									<option value="Male">Male</option>
+									<option value="Female" selected>Female</option>
+									<?php } ?>						
+									</select>
+								</td>
+							<?php } ?>
+								<?php if($item_data->subcategory_id==63){ ?>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','occasion',this.value)" name="occasion" value="<?php echo $item_data->occasion;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','material',this.value)" name="material" value="<?php echo $item_data->material;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','wash_care',this.value)" name="wash_care" value="<?php echo $item_data->wash_care;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','style_code',this.value)" name="style_code" value="<?php echo $item_data->style_code;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','look',this.value)" name="look" value="<?php echo $item_data->look;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','collar_type',this.value)" name="collar_type" value="<?php echo $item_data->collar_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','sleeve',this.value)" name="sleeve" value="<?php echo $item_data->sleeve;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','fit',this.value)" name="fit" value="<?php echo $item_data->fit;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','neck_type',this.value)" name="neck_type" value="<?php echo $item_data->neck_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','length',this.value)" name="length" value="<?php echo $item_data->length;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','pockets',this.value)" name="pockets" value="<?php echo $item_data->pockets;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','blouse_length',this.value)" name="blouse_length" value="<?php echo $item_data->blouse_length;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','saree_length',this.value)" name="saree_length" value="<?php echo $item_data->saree_length;?>"/></td>
+								
+							<?php } ?>
+							<?php if($item_data->subcategory_id==64){ ?>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','occasion',this.value)" name="occasion" value="<?php echo $item_data->occasion;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','material',this.value)" name="material" value="<?php echo $item_data->material;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','wash_care',this.value)" name="wash_care" value="<?php echo $item_data->wash_care;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','style_code',this.value)" name="style_code" value="<?php echo $item_data->style_code;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','look',this.value)" name="look" value="<?php echo $item_data->look;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','collar_type',this.value)" name="collar_type" value="<?php echo $item_data->collar_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','sleeve',this.value)" name="sleeve" value="<?php echo $item_data->sleeve;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','fit',this.value)" name="fit" value="<?php echo $item_data->fit;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','neck_type',this.value)" name="neck_type" value="<?php echo $item_data->neck_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','package_contents',this.value)" name="package_contents" value="<?php echo $item_data->package_contents;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','style',this.value)" name="style" value="<?php echo $item_data->style;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','age',this.value)" name="age" value="<?php echo $item_data->age;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','ideal_for',this.value)" name="ideal_for" value="<?php echo $item_data->ideal_for;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','pattern',this.value)" name="pattern" value="<?php echo $item_data->pattern;?>"/></td>
+								
+							<?php } ?>
+							<?php if($item_data->subcategory_id==31){ ?>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_series',this.value)" name="model_series" value="<?php echo $item_data->model_series;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','installation',this.value)" name="installation" value="<?php echo $item_data->installation;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','warranty_card',this.value)" name="warranty_card" value="<?php echo $item_data->warranty_card;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','functions',this.value)" name="functions" value="<?php echo $item_data->functions;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','printer_type',this.value)" name="printer_type" value="<?php echo $item_data->printer_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','interface',this.value)" name="interface" value="<?php echo $item_data->interface;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','printer_output',this.value)" name="printer_output" value="<?php echo $item_data->printer_output;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_id',this.value)" name="model_id" value="<?php echo $item_data->model_id;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','max_print_resolution',this.value)" name="max_print_resolution" value="<?php echo $item_data->max_print_resolution;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','print_speed',this.value)" name="print_speed" value="<?php echo $item_data->print_speed;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','scanner_type',this.value)" name="scanner_type" value="<?php echo $item_data->scanner_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','document_size',this.value)" name="document_size" value="<?php echo $item_data->document_size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','scanning_resolution',this.value)" name="scanning_resolution" value="<?php echo $item_data->scanning_resolution;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','copies_from',this.value)" name="copies_from" value="<?php echo $item_data->copies_from;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','copy_size',this.value)" name="copy_size" value="<?php echo $item_data->copy_size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','iso_29183',this.value)" name="iso_29183" value="<?php echo $item_data->iso_29183;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','noise_level',this.value)" name="noise_level" value="<?php echo $item_data->noise_level;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','paper_hold_input',this.value)" name="paper_hold_input" value="<?php echo $item_data->paper_hold_input;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','paper_hold_output',this.value)" name="paper_hold_output" value="<?php echo $item_data->paper_hold_output;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','paper_size',this.value)" name="paper_size" value="<?php echo $item_data->paper_size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','print_margin',this.value)" name="print_margin" value="<?php echo $item_data->print_margin;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','standby',this.value)" name="standby" value="<?php echo $item_data->standby;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','operating_temperature_range',this.value)" name="operating_temperature_range" value="<?php echo $item_data->operating_temperature_range;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','power',this.value)" name="power" value="<?php echo $item_data->power;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','frequency',this.value)" name="frequency" value="<?php echo $item_data->frequency;?>"/></td>
+								
+							<?php } ?>
+							<?php if($item_data->subcategory_id==32){ ?>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','noise_reduction',this.value)" name="noise_reduction" value="<?php echo $item_data->noise_reduction;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','connectivity',this.value)" name="connectivity" value="<?php echo $item_data->connectivity;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','headphone_jack',this.value)" name="headphone_jack" value="<?php echo $item_data->headphone_jack;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','other_camera_features',this.value)" name="other_camera_features" value="<?php echo $item_data->other_camera_features;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','compatible_for',this.value)" name="compatible_for" value="<?php echo $item_data->compatible_for;?>"/></td>
+							<?php } ?>
+							<?php if($item_data->subcategory_id==39){ ?>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','Processor',this.value)" name="Processor" value="<?php echo $item_data->Processor;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','series',this.value)" name="series" value="<?php echo $item_data->series;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','part_number',this.value)" name="part_number" value="<?php echo $item_data->part_number;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','os',this.value)" name="os" value="<?php echo $item_data->os;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','ram',this.value)" name="ram" value="<?php echo $item_data->ram;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','hdd_capacity',this.value)" name="hdd_capacity" value="<?php echo $item_data->compatible_for;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','screen_size',this.value)" name="screen_size" value="<?php echo $item_data->screen_size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','processorbrand',this.value)" name="processorbrand" value="<?php echo $item_data->processorbrand;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','variant',this.value)" name="variant" value="<?php echo $item_data->variant;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','chipset',this.value)" name="chipset" value="<?php echo $item_data->chipset;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','clock_speed',this.value)" name="clock_speed" value="<?php echo $item_data->clock_speed;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','cache',this.value)" name="cache" value="<?php echo $item_data->cache;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','screen_type',this.value)" name="screen_type" value="<?php echo $item_data->screen_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','resolution',this.value)" name="resolution" value="<?php echo $item_data->resolution;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','graphic_processor',this.value)" name="graphic_processor" value="<?php echo $item_data->graphic_processor;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','memory_slots',this.value)" name="memory_slots" value="<?php echo $item_data->memory_slots;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','rpm',this.value)" name="rpm" value="<?php echo $item_data->rpm;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','optical_drive',this.value)" name="optical_drive" value="<?php echo $item_data->optical_drive;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','wan',this.value)" name="wan" value="<?php echo $item_data->wan;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','ethernet',this.value)" name="ethernet" value="<?php echo $item_data->ethernet;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','vgaport',this.value)" name="vgaport" value="<?php echo $item_data->vgaport;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','usb_port',this.value)" name="usb_port" value="<?php echo $item_data->usb_port;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','hdmi_port',this.value)" name="hdmi_port" value="<?php echo $item_data->hdmi_port;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','multi_card_slot',this.value)" name="multi_card_slot" value="<?php echo $item_data->multi_card_slot;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','web_camera',this.value)" name="web_camera" value="<?php echo $item_data->web_camera;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','keyboard',this.value)" name="keyboard" value="<?php echo $item_data->keyboard;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','speakers',this.value)" name="speakers" value="<?php echo $item_data->speakers;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','mic_in',this.value)" name="mic_in" value="<?php echo $item_data->mic_in;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','power_supply',this.value)" name="power_supply" value="<?php echo $item_data->power_supply;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','battery_backup',this.value)" name="battery_backup" value="<?php echo $item_data->battery_backup;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','battery_cell',this.value)" name="battery_cell" value="<?php echo $item_data->battery_cell;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','dimension',this.value)" name="dimension" value="<?php echo $item_data->dimension;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','adapter',this.value)" name="adapter" value="<?php echo $item_data->adapter;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','office',this.value)" name="office" value="<?php echo $item_data->office;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','fingerprint_point',this.value)" name="fingerprint_point" value="<?php echo $item_data->fingerprint_point;?>"/></td>
+							<?php } ?>
+							<?php if($item_data->subcategory_id==35){ ?>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','total_power_output',this.value)" name="total_power_output" value="<?php echo $item_data->total_power_output;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','sound_system',this.value)" name="sound_system" value="<?php echo $item_data->sound_system;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','speaker_driver',this.value)" name="speaker_driver" value="<?php echo $item_data->speaker_driver;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','power',this.value)" name="power" value="<?php echo $item_data->power;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','battery_type',this.value)" name="battery_type" value="<?php echo $item_data->battery_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','usb_port',this.value)" name="usb_port" value="<?php echo $item_data->usb_port;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','headphone_jack',this.value)" name="headphone_jack" value="<?php echo $item_data->headphone_jack;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','bluetooth',this.value)" name="bluetooth" value="<?php echo $item_data->bluetooth;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','wired_wireless',this.value)" name="wired_wireless" value="<?php echo $item_data->wired_wireless;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','bluetooth_range',this.value)" name="bluetooth_range" value="<?php echo $item_data->bluetooth_range;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','compatible_for',this.value)" name="compatible_for" value="<?php echo $item_data->compatible_for;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+							<?php } ?>
+							<?php if($item_data->subcategory_id==38){ ?>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','f_stop',this.value)" name="f_stop" value="<?php echo $item_data->f_stop;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','picture_angle',this.value)" name="picture_angle" value="<?php echo $item_data->picture_angle;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','minimum_focusing_distance',this.value)" name="minimum_focusing_distance" value="<?php echo $item_data->minimum_focusing_distance;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','aperture_withmaxfocal_length',this.value)" name="aperture_withmaxfocal_length" value="<?php echo $item_data->aperture_withmaxfocal_length;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','aperture_with_minfocal_length',this.value)" name="aperture_with_minfocal_length" value="<?php echo $item_data->aperture_with_minfocal_length;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','maximum_focal_length',this.value)" name="maximum_focal_length" value="<?php echo $item_data->maximum_focal_length;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','maximum_reproduction_ratio',this.value)" name="maximum_reproduction_ratio" value="<?php echo $item_data->maximum_reproduction_ratio;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','lens_construction',this.value)" name="lens_construction" value="<?php echo $item_data->lens_construction;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','lens_hood',this.value)" name="lens_hood" value="<?php echo $item_data->lens_hood;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','lens_case',this.value)" name="lens_case" value="<?php echo $item_data->lens_case;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','lens_cap',this.value)" name="lens_cap" value="<?php echo $item_data->lens_cap;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','filter_attachment_size',this.value)" name="filter_attachment_size" value="<?php echo $item_data->filter_attachment_size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','other_camera_features',this.value)" name="other_camera_features" value="<?php echo $item_data->other_camera_features;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','dimension',this.value)" name="dimension" value="<?php echo $item_data->dimension;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+							<?php } ?>
+							<?php if($item_data->subcategory_id==36){ ?>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','resolution',this.value)" name="resolution" value="<?php echo $item_data->resolution;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','sensor_type',this.value)" name="sensor_type" value="<?php echo $item_data->sensor_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','lcd_screen_size',this.value)" name="lcd_screen_size" value="<?php echo $item_data->lcd_screen_size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','battery_type',this.value)" name="battery_type" value="<?php echo $item_data->battery_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','wifi',this.value)" name="wifi" value="<?php echo $item_data->wifi;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','lens_mount',this.value)" name="lens_mount" value="<?php echo $item_data->lens_mount;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','exposure_mode',this.value)" name="exposure_mode" value="<?php echo $item_data->exposure_mode;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','meter_coupling',this.value)" name="meter_coupling" value="<?php echo $item_data->meter_coupling;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','lens_auto_focus',this.value)" name="lens_auto_focus" value="<?php echo $item_data->lens_auto_focus;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','focus_length',this.value)" name="focus_length" value="<?php echo $item_data->focus_length;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','focus_point',this.value)" name="focus_point" value="<?php echo $item_data->focus_point;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','focus_lock',this.value)" name="focus_lock" value="<?php echo $item_data->focus_lock;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','manual_focus',this.value)" name="manual_focus" value="<?php echo $item_data->manual_focus;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','af_area_mode',this.value)" name="af_area_mode" value="<?php echo $item_data->af_area_mode;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','detection_range',this.value)" name="detection_range" value="<?php echo $item_data->detection_range;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','number_of_dots_effective_pixels',this.value)" name="number_of_dots_effective_pixels" value="<?php echo $item_data->number_of_dots_effective_pixels;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','display_type',this.value)" name="display_type" value="<?php echo $item_data->display_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','brightness_setting',this.value)" name="brightness_setting" value="<?php echo $item_data->brightness_setting;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','viewfinder',this.value)" name="viewfinder" value="<?php echo $item_data->viewfinder;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','viewfindermagnifiaction',this.value)" name="viewfindermagnifiaction" value="<?php echo $item_data->viewfindermagnifiaction;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','aspect_ratio',this.value)" name="aspect_ratio" value="<?php echo $item_data->aspect_ratio;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','image_size',this.value)" name="image_size" value="<?php echo $item_data->image_size;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','image_resolution',this.value)" name="image_resolution" value="<?php echo $item_data->image_resolution;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','video_resolution',this.value)" name="video_resolution" value="<?php echo $item_data->video_resolution;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','flash_mode',this.value)" name="flash_mode" value="<?php echo $item_data->flash_mode;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','flash_range',this.value)" name="flash_range" value="<?php echo $item_data->flash_range;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','built_in_flash',this.value)" name="built_in_flash" value="<?php echo $item_data->built_in_flash;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','external_flash',this.value)" name="external_flash" value="<?php echo $item_data->external_flash;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','audio_recording_device',this.value)" name="audio_recording_device" value="<?php echo $item_data->audio_recording_device;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','audio_recording_format',this.value)" name="audio_recording_format" value="<?php echo $item_data->audio_recording_format;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','video_compression',this.value)" name="video_compression" value="<?php echo $item_data->video_compression;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','face_detection',this.value)" name="face_detection" value="<?php echo $item_data->face_detection;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','video_format',this.value)" name="video_format" value="<?php echo $item_data->video_format;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','image_format',this.value)" name="image_format" value="<?php echo $item_data->image_format;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','microphone',this.value)" name="microphone" value="<?php echo $item_data->microphone;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','pictbridge',this.value)" name="pictbridge" value="<?php echo $item_data->pictbridge;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','card_type',this.value)" name="card_type" value="<?php echo $item_data->card_type;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','supplied_battery',this.value)" name="supplied_battery" value="<?php echo $item_data->supplied_battery;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','ac_adapter',this.value)" name="ac_adapter" value="<?php echo $item_data->ac_adapter;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','iso_rating',this.value)" name="iso_rating" value="<?php echo $item_data->iso_rating;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','iso_sensitivity',this.value)" name="iso_sensitivity" value="<?php echo $item_data->iso_sensitivity;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','dust_reduction',this.value)" name="dust_reduction" value="<?php echo $item_data->dust_reduction;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','metering_method',this.value)" name="metering_method" value="<?php echo $item_data->metering_method;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','metering_system',this.value)" name="metering_system" value="<?php echo $item_data->metering_system;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','supported_languages',this.value)" name="supported_languages" value="<?php echo $item_data->supported_languages;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','sync_terminal',this.value)" name="sync_terminal" value="<?php echo $item_data->sync_terminal;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','view_finder',this.value)" name="view_finder" value="<?php echo $item_data->view_finder;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','white_balancing',this.value)" name="white_balancing" value="<?php echo $item_data->white_balancing;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','hdmi',this.value)" name="hdmi" value="<?php echo $item_data->hdmi;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','self_timer',this.value)" name="self_timer" value="<?php echo $item_data->self_timer;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','scene_modes',this.value)" name="scene_modes" value="<?php echo $item_data->scene_modes;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','environment',this.value)" name="environment" value="<?php echo $item_data->environment;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','dimension',this.value)" name="dimension" value="<?php echo $item_data->dimension;?>"/></td>
+							<?php } ?>
 						<td><?php echo $item_data->offer_amount;?></td>
 						<td><?php if($item_data->offer_combo_item_id !=4 && $item_data->offer_combo_item_id !='' && $item_data->offer_combo_item_id!=0){ echo $item_data->offer_combo_item_name; }else{ echo ""; }?></td>
 						<td><?php echo $item_data->offer_expairdate;?></td>
@@ -255,6 +761,8 @@
 						<?php } ?>						
 						</select>
 						</td>
+						<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','return_policy',this.value)" name="return_policy" value="<?php echo $item_data->return_policy;?>"/></td>
+
 						<?php if($status_details['status']==1){ ?>
 						<td>
 						<a href="<?php echo site_url('seller/products/edit/'.base64_encode($item_data->item_id).'/'.base64_encode($item_data->category_id)); ?>">Edit</a> | &nbsp;

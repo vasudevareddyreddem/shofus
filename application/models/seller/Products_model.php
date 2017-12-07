@@ -573,7 +573,7 @@ public function getproductapproval()
 		
 	}
 	public function get_product_details($pid){
-		$this->db->select('products.item_id,products.item_cost,products.special_price')->from('products');
+		$this->db->select('products.item_id,products.item_cost,products.special_price,products.subcategory_id,products.name,products.colour,products.ram,products.internal_memeory')->from('products');
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->row_array();
 	}
