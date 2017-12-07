@@ -210,10 +210,12 @@ public function getsubcatdata($cat_id)
 	{
 	$sid = $this->session->userdata('seller_id');
 	$this->db->select('*');
-	$this->db->from('subcategories');
-	$this->db->where('subcategories.category_id', $cat_id);
-		$query=$this->db->get();
-		return $query->result();
+	$this->db->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
+	$this->db->where('products.category_id', $cat_id);
+	$this->db->group_by('products.subcategory_id');
+	$query=$this->db->get();
+	return $query->result();
 		
 	}
 		
@@ -571,7 +573,7 @@ public function getproductapproval()
 		
 	}
 	public function get_product_details($pid){
-		$this->db->select('products.item_id,products.item_cost,products.special_price')->from('products');
+		$this->db->select('products.item_id,products.item_cost,products.special_price,products.subcategory_id,products.name,products.colour,products.ram,products.internal_memeory')->from('products');
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->row_array();
 	}
