@@ -294,17 +294,167 @@
    border-bottom:1px solid #ddd;
    }
    /* grossery sidebar	end */
+   .card {
+ -webkit-box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
+-moz-box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
+box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
+}
 </style>
 <!--<div class="" style="margin-top:50px;">
    <img  src="<?php echo base_url(); ?>assets/home/images/ban1.png">
    </div>-->
 <body >
 <div class="">
+	
 <div class="sm_hide">
    <div class="container-fluid fluid_mod " id="containerhigh"></div>
    <div class="container-fluid fluid_mod " id="containerhighold">
       <div class="row ">
          <div class="mar_t20">
+			
+			<!--fasion catagories start-->
+				<div class="">
+	
+				<ul>
+					<li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+				 <ul>
+				</div>
+		 
+		 
+		 <div class="clearfix">&nbsp;</div>
+		 <!--fasion catagories end-->
             <div class="col-md-12  ">
                <div class="title text-left mar_t10"><span> <?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?> Sub Categories list</span></div>
                <!--groffers start-->

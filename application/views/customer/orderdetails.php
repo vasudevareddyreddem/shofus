@@ -57,6 +57,9 @@ tr th:last-child {
 	font-weight:400;
 	color:#aaa;
 }
+.mar_l{
+	color:#aaa;
+}
 
 </style>
 
@@ -154,20 +157,22 @@ tr th:last-child {
   </table>
 </div>
 <div class="col-md-4" style="border-right:1px solid #45b1b5">
+<table class="table " >
 	<div><h5>Delivery location Address Details</h5></div>
-		<div>
-			<p><strong>Name :<?php echo isset($item_details['name'])?$item_details['name']:'';  ?></strong></p>
-			<p><strong>Email Address :<?php echo isset($item_details['emal_id'])?$item_details['emal_id']:'';  ?></strong></p>
-			<p><strong>Address :<?php echo isset($item_details['customer_address'])?$item_details['customer_address']:'';  ?></strong></p>
-			<p><strong>Land Mark :<?php echo isset($item_details['landmark'])?$item_details['landmark']:'';  ?></strong></p>
-			<p><strong>City :<?php echo isset($item_details['city'])?$item_details['city']:'';  ?></strong></p>
-			<p><strong>State :<?php echo isset($item_details['state'])?$item_details['state']:'';  ?></strong></p>
-			<p><strong>Pincode :<?php echo isset($item_details['pincode'])?$item_details['pincode']:'';  ?></strong></p>
+		   <tbody>
+			<tr><th>Name </th><td><?php echo isset($item_details['name'])?$item_details['name']:'';  ?></td></tr>
+			<tr><th>Email Address </th><td><?php echo isset($item_details['emal_id'])?$item_details['emal_id']:'';  ?></td></tr>
+			<tr><th>Address </th><td><?php echo isset($item_details['customer_address'])?$item_details['customer_address']:'';  ?></td></tr>
+			<tr><th>Land Mark </th><td><?php echo isset($item_details['landmark'])?$item_details['landmark']:'';  ?></td></tr>
+			<tr><th>City </th><td> <?php echo isset($item_details['city'])?$item_details['city']:'';  ?></td></tr>
+			<tr><th>State </th><td> <?php echo isset($item_details['state'])?$item_details['state']:'';  ?></td></tr>
+			<tr><th>Pincode </th><td> <?php echo isset($item_details['pincode'])?$item_details['pincode']:'';  ?></td></tr>
 			
-			<p><strong>Phone :<?php echo isset($item_details['mobile'])?$item_details['mobile']:'';  ?></strong></p>
+			<tr><th>Phone </th><td> <?php echo isset($item_details['mobile'])?$item_details['mobile']:'';  ?></td></tr>
 			<!--<p><strong>Delivery location area :<?php echo isset($item_details['location_name'])?$item_details['location_name']:'';  ?></strong></p>
-		--></div>
-    
+		-->
+		    </tbody>
+    </table>
 </div>
 <?php //echo base64_decode($this->uri->segment('3'));
 		//echo '<pre>';print_r($item_details);exit;
@@ -387,7 +392,7 @@ tr th:last-child {
 					<div class="row">
 						<div class="col-md-8">
 							<div class="col-md-3">
-								<img class="thumbnail"style="height:100px;width:auto;" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>">
+								<img class="thumbnail"style="width:50px;height:auto;" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>">
 							</div>
 							<div class="col-md-9">
 								<div><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?>&nbsp;<?php echo isset($item_details['internal_memeory'])?$item_details['internal_memeory']:'';  ?>&nbsp;<?php echo isset($item_details['ram'])?$item_details['ram'].' RAM':'';  ?></div>

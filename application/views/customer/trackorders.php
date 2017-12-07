@@ -241,19 +241,22 @@ tr th:last-child {
 				</table>
 				</div>
 				<div class="col-md-4" style="border-right:1px solid #45b1b5">
-					<div><h5>Delivery location Address Details</h5></div>
-					<div>
-					<p><strong>Name :<?php echo isset($item_details['name'])?$item_details['name']:'';  ?></strong></p>
-					<p><strong>Email Address :<?php echo isset($item_details['emal_id'])?$item_details['emal_id']:'';  ?></strong></p>
-					<p><strong>Address :<?php echo isset($item_details['customer_address'])?$item_details['customer_address']:'';  ?></strong></p>
-					<p><strong>Land Mark :<?php echo isset($item_details['landmark'])?$item_details['landmark']:'';  ?></strong></p>
-					<p><strong>City :<?php echo isset($item_details['city'])?$item_details['city']:'';  ?></strong></p>
-					<p><strong>State :<?php echo isset($item_details['state'])?$item_details['state']:'';  ?></strong></p>
-					<p><strong>Pincode :<?php echo isset($item_details['pincode'])?$item_details['pincode']:'';  ?></strong></p>
-					
-					<p><strong>Phone :<?php echo isset($item_details['mobile'])?$item_details['mobile']:'';  ?></strong></p>
-					<!--<p><strong>Delivery location area :<?php echo isset($item_details['location_name'])?$item_details['location_name']:'';  ?></strong></p>
-					--></div>
+				<table class="table " >
+	<div><h5>Delivery location Address Details</h5></div>
+		   <tbody>
+			<tr><th>Name </th><td><?php echo isset($item_details['name'])?$item_details['name']:'';  ?></td></tr>
+			<tr><th>Email Address </th><td><?php echo isset($item_details['emal_id'])?$item_details['emal_id']:'';  ?></td></tr>
+			<tr><th>Address </th><td><?php echo isset($item_details['customer_address'])?$item_details['customer_address']:'';  ?></td></tr>
+			<tr><th>Land Mark </th><td><?php echo isset($item_details['landmark'])?$item_details['landmark']:'';  ?></td></tr>
+			<tr><th>City </th><td> <?php echo isset($item_details['city'])?$item_details['city']:'';  ?></td></tr>
+			<tr><th>State </th><td> <?php echo isset($item_details['state'])?$item_details['state']:'';  ?></td></tr>
+			<tr><th>Pincode </th><td> <?php echo isset($item_details['pincode'])?$item_details['pincode']:'';  ?></td></tr>
+			
+			<tr><th>Phone </th><td> <?php echo isset($item_details['mobile'])?$item_details['mobile']:'';  ?></td></tr>
+			<!--<p><strong>Delivery location area :<?php echo isset($item_details['location_name'])?$item_details['location_name']:'';  ?></strong></p>
+		-->
+		    </tbody>
+    </table>
 
 				</div>
 				<div class="col-md-4" >

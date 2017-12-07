@@ -107,12 +107,14 @@ tr th:last-child {
 							<div class=" col-md-6 col-md-offset-3">		
 							
 								
-								<div class="form-group">
+								<div class="form-group col-md-10">
 									<label for="pwd">Reason:</label>
 									<input type="text" id="region" name="region" value="" class="form-control" placeholder="Reason">
 								</div>
-							  
-								<button type="submit" class="btn btn-primary pull-right">Submit</button>
+								<div class="col-md-2">
+								<label >&nbsp;</label>
+								<button type="submit" class="btn btn-primary ">Submit</button>
+								</div>
 							</div>
 					</div>
 					</form>
