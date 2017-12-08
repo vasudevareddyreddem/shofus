@@ -129,64 +129,14 @@
    text-align: center;
    line-height: 300%;
    }
+   .tab_hide{
+	 display:none;  
+   }
+   .tab_show{
+	 display:block;  
+   }
 </style>
-<!--<div class="sidebar_right" >
-   <ul style="padding:0 ">
-   	
-   	<div class="clearfix"></div>
-   	<?php //echo '<pre>';print_r($sidecaregory_list);exit; ?>
-   	<?php foreach ($sidecaregory_list as $categories){ ?>
-   	<?php if($categories['category_image']==''){ ?>
-   	<li  class=" spin ">
-   		<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
-   		    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
-   		</a>
-   	</li>
-   	<div class="clearfix"></div>
-   	<?php }else{ ?>
-   	<li  class=" spin ">
-   		<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
-   			<span ><img  class=" circ_icon" src="<?php echo base_url('assets/categoryimages/'.$categories['category_image']); ?>" /></span>
-   		    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
-   		</a>
-   	</li>
-   	<div class="clearfix"></div>
-   	<?php } ?>
-   	<?php } ?>
-   	
-   
-   	<li id="" class=" spin ">
-   		<a  class="menu_ti2  ">
-   			<span   ><img class=" circ_icon"src="<?php echo base_url(); ?>assets/home/images/more_cat.png" />
-   			</span>
-   			<span style="position:relative" class="menu_tit">More Categories
-   			<span style="position:absolute;top:0;left:20px;font-size:12px;">Coming Soon</span>
-   			</span>
-   		</a>
-   		<ul id="left_box" class="right_cust" style="display:none">
-   			
-   			
-   				<div class="col-md-3">
-   					<ul style="background-color:#fff;" class="list_cat">
-   					<?php foreach ($allcategories_list as $categories){ ?>
-   					
-   					<li  ><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" style="color:#666; background-color:#fff;"><?php echo $categories['category_name'] ; ?></a></li>
-   						
-   					<?php } ?>
-   						
-   					</ul>
-   				</div>
-   			</div>
-   		</ul>
-   	</li>
-   	<div class="clearfix"></div>
-   
-   	
-   	
-   	
-   	
-   </ul>
-   </div>-->
+
 <div class="wrapper">
 <!--header part start here -->
 <div class="jain_container">
@@ -319,27 +269,49 @@
                   <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/catag.png" /></i>
                   <p>Categories</p>
                </a>
-               <!--<ul class="dropdown-menu">
-                  <?php foreach ($allcategories_list as $list){ ?>
-                  <li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id'])); ?>"><?php echo $list['category_name']; ?></a></li>
-                  <?php } ?>				  
-               </ul>-->
 			    <ul class="dropdown-menu">
-                  <li class="wid_20"><a href="#">About Us</a></li>
-                  <li class="wid_20"><a href="#">About Us</a></li>
-                  <li class="wid_20"><a href="#">About Us</a></li>
-					<ul  style="position:absolute;right:0;top:0;width:80%;">
-						<div class="row" style="margin-right:30px;">
-							<div class="col-md-3">
-								<h5>dfsdaf</h5>
-								<p>test bayapu</p>
-								<p>test bayapu</p>
-								<p>test bayapu</p>
-								<p>test bayapu</p>
-								<p>test bayapu</p>
+			
+				 <?php $c=1;foreach ($catehorywiselist as $list){ ?>
+
+				 <?php if($c==1){ ?>
+                  <li class="wid_20 active"><a onclick="addtabactive(<?php echo $c;?>);" href="#tabs<?php echo $c; ?>" data-toggle="tab"><?php echo $list['category_name']; ?></a></li>
+									
+				<?php }else{ ?>
+				  <li class="wid_20"><a onclick="addtabactive(<?php echo $c; ?>);" href="#tabs<?php echo $c; ?>" data-toggle="tab"><?php echo $list['category_name']; ?></a></li>
+				 <?php } ?>
+				 
+				 
+					 <?php if($c==1){ ?>
+					 
+							<div class="tab-pane active " id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;">
+								<div class="row" style="margin-right:30px;">
+								<?php foreach ($list['subcat'] as $subitemlist){ ?>
+									<div class="col-md-3">
+										<h5><?php echo $subitemlist['subcategory_name']; ?></h5>
+											<?php foreach ($subitemlist['subitem_list'] as $lists){ ?>
+													<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
+											<?php } ?>
+										
+									</div>
+								<?php } ?>
+								</div>
 							</div>
-						</div>
-					</ul>
+						<?php }else{ ?>
+								<div class="tab-pane tab_hide" id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;">
+										<div class="row" style="margin-right:30px;">
+										<?php foreach ($list['subcat'] as $subitemlist){ ?>
+											<div class="col-md-3">
+												<h5><?php echo $subitemlist['subcategory_name']; ?></h5>
+													<?php foreach ($subitemlist['subitem_list'] as $lists){ ?>
+													<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
+													<?php } ?>
+												
+											</div>
+										<?php } ?>
+										</div>
+									</div>
+							<?php } ?>
+				<?php $c++;} ?>
                   
                 </ul>
             </span>
@@ -521,6 +493,26 @@
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script> 
 <script type="text/javascript">
+function addtabactive(id)
+{
+	//$("#tabs"+id).empty();
+	
+	$("#tabs"+id).show();
+	$("#tabs"+id).addClass("active");
+	$("#tabs"+id).removeClass("tab_hide");
+	var cnt;
+    var nt =<?php echo count($catehorywiselist); ?>;
+	//var cnt='';
+	for(cnt = 1; cnt <= nt; cnt++){
+		if(cnt!=id){
+			$("#tabs"+cnt).hide();
+			$("#tabs"+cnt).removeClass("active");
+			$("#tabs"+cnt).addClass("tab_hide");
+		}             
+	}
+			
+
+}
    $("#supcounts").hide();
    $("#fademaskpurpose").addClass("mask_hide");
    function locationopenpopup (){
