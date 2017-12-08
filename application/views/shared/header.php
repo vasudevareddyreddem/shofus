@@ -328,6 +328,7 @@
                   <li class="wid_20"><a href="#">About Us</a></li>
                   <li class="wid_20"><a href="#">About Us</a></li>
                   <li class="wid_20"><a href="#">About Us</a></li>
+				  
 					<ul  style="position:absolute;right:0;top:0;width:80%;">
 						<div class="row" style="margin-right:30px;">
 							<div class="col-md-3">
@@ -335,11 +336,11 @@
 								<p>test bayapu</p>
 								<p>test bayapu</p>
 								<p>test bayapu</p>
-								<p>test bayapu</p>
-								<p>test bayapu</p>
+								
 							</div>
 						</div>
 					</ul>
+					
                   
                 </ul>
             </span>
