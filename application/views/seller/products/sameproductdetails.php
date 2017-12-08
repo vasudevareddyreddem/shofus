@@ -484,6 +484,13 @@ $(document).ready(function() {
 					}
 				}
 			},
+		subitemid: {
+					validators: {
+					notEmpty: {
+					message: 'Please select a Subitem'
+					}
+				}
+			},
 		
 			
 			product_name: {

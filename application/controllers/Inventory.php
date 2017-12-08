@@ -2597,19 +2597,19 @@ if((!empty($_FILES["importsubitemfile"])) && ($_FILES['importsubitemfile']['erro
 										$data['errors'][]="Subitem Name is required. Row Id is :  ".$key.'<br>';
 										$error=1;
 									}else if($fields[0]!=''){
-										$regex ="/^[ A-Za-z0-9_@.,}{@#&*)(_+-]*$/"; 
+										$regex ="/^[ A-Za-z0-9_@.,\/}{@#&*)(_+-]*$/"; 
 										if(!preg_match( $regex, $fields[0]))	  	
 										{
 										$data['errors'][]='Subitem Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
 										$error=1;
-										}else{
+										}/*else{
 											$result = $this->inventory_model->get_subitemname_existss($fields[0]);
 											if(count($result)>0){
 											$data['errors'][]="Subitem Name already exits .please use another Subitem Name. Row Id is :  ".$key.'<br>';
 											$error=1;	
 											}
 
-										}
+										}*/
 									}
 									
 								}else{
