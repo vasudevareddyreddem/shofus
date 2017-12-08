@@ -186,7 +186,7 @@
 				</div>
 			</div>
 			<div class="clearfix"></div>
-			<div class="form-group col-md-6 nopaddingRight san-lg" id="subitems" style="display:none;">
+			<div class="form-group col-md-6 nopaddingRight san-lg" id="subitems" >
 				<label for="exampleInputEmail1">Sub Item </label>
 				<select class="form-control" id="subitemid" name="subitemid" >
 				<option value="">Select Subitems </option>
@@ -942,6 +942,90 @@ function education_fields() {
 	   $('.removeclass'+rid).remove();
    }
 
+   
+   
+   $(document).ready(function() {
+
+    $('#addproduct').bootstrapValidator({
+       
+        fields: {
+            category_id: {
+					validators: {
+					notEmpty: {
+					message: 'Please select a category'
+					}
+				}
+			},
+			subcategorylist: {
+					validators: {
+					notEmpty: {
+					message: 'Please select a subcategory'
+					}
+				}
+			},
+		subitemid: {
+					validators: {
+					notEmpty: {
+					message: 'Please select a Subitem'
+					}
+				}
+			},
+		
+			
+			product_name: {
+					validators: {
+					notEmpty: {
+						message: 'Product name is required'
+					}
+                  
+				}
+			},
+			'description[]': {
+					validators: {
+					notEmpty: {
+						message: 'Description is required'
+					}
+				}
+			},
+			picture1: {
+					validators: {
+					notEmpty: {
+						message: 'Images1 is required'
+					},
+                   regexp: {
+					regexp: /\.(jpe?g|png|gif)$/i,
+					message: 'Uploaded file is not a valid image. Only JPG, PNG and GIF files are allowed'
+					}
+				}
+			},
+			product_price: {
+					validators: {
+					notEmpty: {
+						message: 'Price is required'
+					},
+                   regexp: {
+					regexp: /^[0-9.,]+$/,
+					message: 'Price  can only consist of digits'
+					}
+				}
+			},
+			special_price: {
+					validators: {
+						notEmpty: {
+						message: 'Special Price is required'
+					},
+                    between: {
+                            min: 1,
+                            max: 'product_price',
+                            message: 'Special price must be less than or equal to price'
+                        }
+                }
+			}
+			
+		
+        }
+    });
+});
 </script>
  
 
