@@ -325,183 +325,22 @@
                   <?php } ?>				  
                </ul>-->
 			    <ul class="dropdown-menu">
-                  <li>
-                    <div class="mega-menu-content">
-                      <div class="row">
-                        <!-- TABS PRESENTATION -->
-<section class="blok">
-<div class="blok-body">
-<div class="row">
- 
-  <!-- Tab panes -->
-  <div class="tab-content col-sm-10">
-    <div class="tab-pane  active in active" id="home">
-		<div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-	</div>
-    <div class="tab-pane  fade" id="profile"> 
-		<div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-	</div>
-    <div class="tab-pane  fade" id="messages">
-		<div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-	</div>
-    <div class="tab-pane  fade" id="settings">
-		<div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-	</div>
-  </div>
-   <!-- Nav tabs -->
-  <ul class="nav tab-menu nav-pills col-sm-2 nav-stacked pr15">
-    <li class="active"  data-toggle="tab"><a href="#home">ELECTRONICS</a></li>
-    <li><a href="#profile"  data-toggle="tab">GROCERY</a></li>
-    <li><a href="#messages"  data-toggle="tab">Clothing</a></li>
-    <li><a href="#settings"  data-toggle="tab">Footwear</a></li>
-  </ul>
-</div><!-- //row -->
-</div><!-- blok-body // -->
-</section><!-- // blok -->
-<!-- TABS PRESENTATION // -->
-                      </div>
-                    </div>
-                  </li>
+                  <li class="wid_20"><a href="#">About Us</a></li>
+                  <li class="wid_20"><a href="#">About Us</a></li>
+                  <li class="wid_20"><a href="#">About Us</a></li>
+					<ul  style="position:absolute;right:0;top:0;width:80%;">
+						<div class="row" style="margin-right:30px;">
+							<div class="col-md-3">
+								<h5>dfsdaf</h5>
+								<p>test bayapu</p>
+								<p>test bayapu</p>
+								<p>test bayapu</p>
+								<p>test bayapu</p>
+								<p>test bayapu</p>
+							</div>
+						</div>
+					</ul>
+                  
                 </ul>
             </span>
          </div>

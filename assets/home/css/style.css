@@ -1,6 +1,9 @@
 .pr15 a{
 	color:#555 !important;
 }
+.wid_20{
+	width:20% !important;
+}
 .pr15 {
 	/* border-left:1px solid #ddd; */
 	
@@ -538,7 +541,7 @@ body {
 	margin: 0px;
 }
 .jain_container .medias ul li {
-	display: inline;
+	/* display: inline; */
 	padding: 7px 0px;
 }
 /* .jain_container .medias i {    font-size: 18px;} */

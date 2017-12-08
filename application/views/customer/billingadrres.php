@@ -131,13 +131,19 @@
 				 <label for="first-name" class="mat-label">Address Title</label>
 					 <input type="text" id="title" name="title" class="mat-input" value="">
 		    </div>
-			<div class="mat-div form-group">
-				 <label for="first-name" class="mat-label">Name</label>
-					 <input type="text" id="name" name="name" class="mat-input" value="<?php echo isset($customerdetail['cust_firstname'])?$customerdetail['cust_firstname']:'';?>">
-		    </div>
-			<div class="mat-div form-group">
-				 <label for="first-name" class="mat-label">Mobile</label>
-				 <input type="text" id="mobile" name="mobile" class="mat-input" value="<?php echo isset($customerdetail['cust_mobile'])?$customerdetail['cust_mobile']:'';?>" >
+			<div class="row">
+				<div class="col-md-6 col-xs-12">
+					<div class="mat-div form-group">
+						 <label for="first-name" class="mat-label">Name</label>
+							 <input type="text" id="name" name="name" class="mat-input" value="<?php echo isset($customerdetail['cust_firstname'])?$customerdetail['cust_firstname']:'';?>">
+					</div>
+				</div>
+				<div class="col-md-6 col-xs-12">
+					<div class="mat-div form-group">
+						 <label for="first-name" class="mat-label">Mobile</label>
+						 <input type="text" id="mobile" name="mobile" class="mat-input" value="<?php echo isset($customerdetail['cust_mobile'])?$customerdetail['cust_mobile']:'';?>" >
+					</div>
+				</div>
 		    </div>
 			<div class="mat-div form-group">
 				 <label for="first-name" class="mat-label">Address1</label>
@@ -147,28 +153,40 @@
 				 <label for="first-name" class="mat-label">Address2</label>
 				<input type="text" class="mat-input" id="address2" name="address2" value="<?php echo isset($customerdetail['address2'])?$customerdetail['address2']:'';?>" >
 		    </div>
-			<div class="mat-div form-group ">
-				 <label for="first-name" class="mat-label">Land Mark</label>
-				<input type="text" class="mat-input" id="landmark" name="landmark" value="<?php echo isset($customerdetail['landmark'])?$customerdetail['landmark']:'';?>" >
+			<div class="row">
+				<div class="col-md-6 col-xs-12">
+				<div class="mat-div form-group ">
+					 <label for="first-name" class="mat-label">Land Mark</label>
+					<input type="text" class="mat-input" id="landmark" name="landmark" value="<?php echo isset($customerdetail['landmark'])?$customerdetail['landmark']:'';?>" >
+				</div>
+				</div>
+				<div class="col-md-6 col-xs-12">
+				<div class="mat-div form-group ">
+					 <label for="first-name" class="mat-label">Pincode</label>
+					<input type="text" class="mat-input" onkeyup="getpinvalidation(this.value)" id="pincode" name="pincode" value="" autocomplete="off" >
+					<input type="hidden" class="mat-input" id="pinvalu" name="pinvalu" value="" >
+				</div>
+				</div>
 		    </div>
-			<div class="mat-div form-group ">
-				 <label for="first-name" class="mat-label">Pincode</label>
-				<input type="text" class="mat-input" onkeyup="getpinvalidation(this.value)" id="pincode" name="pincode" value="" autocomplete="off" >
-				<input type="hidden" class="mat-input" id="pinvalu" name="pinvalu" value="" >
-		    </div>
+		<div class="row">
+			<div class="col-md-6 col-xs-12">
 			<div class="mat-div form-group ">
 				 <label for="first-name" class="mat-label">City</label>
 				<input type="text" class="mat-input" id="city" name="city" value="" >
 		    </div>
+		    </div>
+			<div class="col-md-6 col-xs-12">
 			<div class="mat-div form-group ">
 				 <label for="first-name" class="mat-label">State</label>
 				<input type="text" class="mat-input" id="state" name="state" value="" >
+		    </div>
+		    </div>
 		    </div>
 			
 			<div class="">
 			<label>
 				<input type="radio" name="featurepurpose" id="featurepurpose">
-				<span style="font-weight:500"> &nbsp; Feature purpose</span>
+				<span style="font-weight:500"> &nbsp; Save this Address</span>
 			</label>
 			</div>
 			
