@@ -1730,6 +1730,61 @@ public function suitemwiseproductslist(){
 		//$this->load->view('customer/mobileviewproductsresult',$data);
 		$this->template->write_view('content', 'customer/mobileviewproductsresult',$data);
 		$this->template->render();
+	}
+	/* subcategory wise*/
+	public function subitemwise(){
+	  $subitemid=base64_decode($this->uri->segment(3));
+		if($subitemid==''){
+			redirect();
+		}
+		//echo '<pre>';print_r($wishlist_ids);exit;
+		$data['subitemwise']= $this->category_model->get_all_itemproducts_list($subitemid);
+		$data['brand_list']= $this->category_model->get_subitem_all_brand_list($subitemid);
+		$data['price_list']= $this->category_model->get_subitem_all_price_list($subitemid);
+		$data['discount_list']= $this->category_model->get_subitem_all_discount_list($subitemid);
+		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
+		$offer_list= $this->category_model->get_subitem_all_offer_list($subitemid);
+		$data['color_list']= $this->category_model->get_subitem_all_color_list($subitemid);
+		foreach ($data['price_list'] as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				$amounts[]=$list['item_cost'];
+			}else{
+				$amounts[]=$list['special_price'];
+			}
+			
+		}
+		$minamt = min($amounts);
+		$maxamt= max($amounts);
+		//echo '<pre>';print_r( $amounts);exit;
+		$data['minimum_price'] = array('item_cost'=>$minamt);
+		$data['maximum_price'] = array('item_cost'=>$maxamt);
+		//echo max($data['price_list']);
+		foreach ($offer_list as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				if($list['offer_percentage']!=''){
+				$ids[]=$list['offer_percentage'];
+				}
+			}else{
+				if($list['offers']!=''){
+				$ids[]=$list['offers'];
+				}
+			}
+			
+		}
+		foreach (array_unique($ids) as $Li){
+			$uniids[]=array('offers'=>$Li);
+			
+		}
+		$data['offer_list']=$uniids;
+		echo '<pre>';print_r($data);exit;
+		$this->template->write_view('content', 'customer/subitemwise',$data);
+		$this->template->render();
+	  
+	  //echo 'dfd';exit;
 	}	
 }
 ?>

@@ -1944,6 +1944,54 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 		
 	}
+	/* subitemwise*/
+	public function get_all_itemproducts_list($subitem_id){
+		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,')->from('products');
+		$this->db->where('item_status',1);
+		$this->db->where('subitemid',$subitem_id);
+		return $this->db->get()->result_array();
+	}
+	public function get_subitem_all_brand_list($subitem_id){
+		
+		$this->db->select('products.brand')->from('products');
+			$this->db->where('subitemid',$subitem_id);
+		$this->db->where('item_status',1);
+		$this->db->where('brand!=','');
+		$this->db->group_by('brand');
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_subitem_all_price_list($subitem_id)
+	{
+		$this->db->select('products.item_cost,products.special_price,products.offer_expairdate')->from('products');
+		$this->db->where('subitemid',$subitem_id);
+		$this->db->where('item_status',1);
+		$this->db->where('item_cost!=','');
+		$this->db->where('special_price!=','');
+		$this->db->group_by('item_cost');
+		return $this->db->get()->result_array();
+	}
+	public function get_subitem_all_offer_list($subitem_id)
+	{
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+
+		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `subitemid` = '".$subitem_id."' AND `item_status` = 1 AND  offers!='' OR offer_percentage!=''";
+		return $this->db->query($sql)->result_array();
+	}
+	public function get_subitem_all_discount_list($subitem_id)
+	{
+		$sql = "SELECT IF(products.offer_expairdate>= DATE('Y-m-d h:i:s A'), offer_amount, discount) AS discount FROM `products` WHERE `subitemid` = '".$subitem_id."' AND `item_status` = 1 AND `discount` != '' GROUP BY `discount`";
+		return $this->db->query($sql)->result_array();
+	}
+	public function get_subitem_all_color_list($subitem_id){
+		$this->db->select('products.colour as color_name')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('products.item_status',1);
+		$this->db->where('products.colour!=','');
+		$this->db->group_by('products.colour');
+		return $this->db->get()->result_array();
+	}
 	
 }
 ?>

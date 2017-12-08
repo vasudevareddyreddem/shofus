@@ -3173,6 +3173,32 @@ class CustomerApi extends REST_Controller {
 		$message = array('status'=>1, 'Topoffer'=>$top,'treand'=>$treand,'deals'=>$deal,'season'=>$seasons,'offer'=>$offer,'message'=>'Home view');
 		$this->response($message, REST_Controller::HTTP_OK);
 	}
+	
+	public function subcategoriess_get()
+	{
+		$get = $this->input->get('category_id');
+		$subcategories = $this->Customerapi_model->get_subcategories_list($get);
+		foreach ($subcategories as $list){
+			$subcategories_list[]=$subcategories;
+			
+		}
+		
+		//echo '<pre>';print_r($subcategories);exit;
+		if(count($subcategories_list)>0){
+				$message = array
+				(
+					'status'=>1,
+					'Subcategories'=>$subcategories_list,
+					'path' =>base_url('assets/subcategoryimages/')
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+		
+			$message = array('status'=>0,'message'=>'Sub Category List Empty.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
 
 
 
