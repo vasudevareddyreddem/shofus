@@ -361,6 +361,7 @@ class DeliveryboyApi extends REST_Controller {
 		$amount=$this->post('amount');
 		$amountstatus=$this->post('amountstatus');
 		$payment_type=$this->post('payment_type');
+		$signature=$this->post('signature');
 		if($order_item_id==''){
 		$message = array('status'=>0,'message'=>'order item id is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
@@ -373,6 +374,9 @@ class DeliveryboyApi extends REST_Controller {
 		}else if($payment_type==''){
 		$message = array('status'=>0,'message'=>'Payment type is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
+		}else if($signature==''){
+		$message = array('status'=>0,'message'=>'Signature is required!');
+		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		$getdetails=$this->Deliveryboyapi_model->get_order_details($order_item_id);
 		
@@ -380,7 +384,7 @@ class DeliveryboyApi extends REST_Controller {
 		
 		$totalamt=$getdetails['total_price']+$getdetails['delivery_amount'];
 		if($totalamt==$amount){
-			$getdetailss=$this->Deliveryboyapi_model->get_order_details_status($order_item_id,$amount,$amountstatus,$payment_type);
+			$getdetailss=$this->Deliveryboyapi_model->get_order_details_status($order_item_id,$amount,$amountstatus,$payment_type,date('Y-m-d h:i:s'),$signature);
 			$this->Deliveryboyapi_model->order_payment_status($getdetails['order_id'],$payment_type);
 			if(count($getdetailss)>0){
 					$message = array('status'=>1, 'message'=>'Order Amount status Succssfully updated');

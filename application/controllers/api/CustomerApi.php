@@ -110,32 +110,37 @@ class CustomerApi extends REST_Controller {
 	/*  Set Password Apis */
 	public function socialregister_post()
 	{
-		$get = $this->input->get(); 
-		$mobile = preg_match('/^[0-9]{10}+$/',$get['social_login']);
-
-		if($mobile==1){
-			$mobile_store = $get['social_login'];
-		}else{
-			$mobile_store =NULL;
+		$email = $this->input->get('email');
+		if($email==''){
+		$message = array('status'=>0,'message'=>'Email id is required!');
+		$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		
 		}
-		$email =filter_var($get['social_login'], FILTER_VALIDATE_EMAIL);
-		 if($email==$get['social_login']){
-		 	$email_store = $get['social_login'];
-		 }else{
-		 	$email_store = NULL;
-		 }
-		 $social=array(
-				'cust_email'=>$email_store,
-				'cust_mobile'=>$mobile_store,
+		$checkingemail = $this->Customerapi_model->email_checking($email);
+		
+		if(count($checkingemail)>0){
+				$message = array('status'=>1,'customerdetails'=>$checkingemail);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+		
+			$social=array(
+				'cust_email'=>$email,
 				'role_id'=>1,
 				'status'=>1,
 				'create_at'=>date('Y-m-d H:i:s'),
 				);
 				$stroe_social_details = $this->Customerapi_model->save_customer($social);
 				if(count($stroe_social_details)>0){
-					$message = array('status'=>1,'customer_id'=>$stroe_social_details,'message'=>'Register Successfully');
+					$checkingemail = $this->Customerapi_model->customer_details($stroe_social_details);
+
+					$message = array('status'=>1,'customerdetails'=>$checkingemail,'message'=>'Register Successfully');
 					$this->response($message, REST_Controller::HTTP_OK);
-				}
+				}else{
+					$message = array('status'=>0,'message'=>'Technical problem will occured. Please try again.');
+						$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				}	
+		}
 
 	}
 
@@ -3174,30 +3179,252 @@ class CustomerApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);
 	}
 	
-	public function subcategoriess_get()
+	public function subcategories_list_get()
 	{
 		$get = $this->input->get('category_id');
+		if($get==''){
+				$message = array('status'=>0,'message'=>'Category id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
 		$subcategories = $this->Customerapi_model->get_subcategories_list($get);
+		if(count($subcategories)>0){
 		foreach ($subcategories as $list){
-			$subcategories_list[]=$subcategories;
+			$subitems_list= $this->Customerapi_model->get_sub_items_list($list['subcategory_id']);
+			$plist[$list['subcategory_id']]=$list;
+			$plist[$list['subcategory_id']]['subitempath']=base_url('assets/subitems/');
+			$plist[$list['subcategory_id']]['expandablebool']='false';
+			$plist[$list['subcategory_id']]['subitems']=$subitems_list;
 			
 		}
-		
-		//echo '<pre>';print_r($subcategories);exit;
-		if(count($subcategories_list)>0){
-				$message = array
-				(
-					'status'=>1,
-					'Subcategories'=>$subcategories_list,
-					'path' =>base_url('assets/subcategoryimages/')
-				);
-				$this->response($message, REST_Controller::HTTP_OK);
+
+		foreach ($plist as $li){
+			$pitem_list[]=$li;
 			
+		}
+		if(count($pitem_list)>0){
+						$message = array
+						(
+							'status'=>1,
+							'Subcategories'=>$pitem_list,
+							'path' =>base_url('assets/subcategoryimages/')
+						);
+						$this->response($message, REST_Controller::HTTP_OK);
+					
+				}else{
+				
+					$message = array('status'=>0,'message'=>'Sub Category List Empty.');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+				}
+				
 		}else{
-		
 			$message = array('status'=>0,'message'=>'Sub Category List Empty.');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
+	}
+	public function subitem_wiseitem_get()
+	{
+		$sub_item_id = $this->input->get('subitem_id');
+		if($sub_item_id==''){
+				$message = array('status'=>0,'message'=>'Sub item id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				
+		}
+		$tems_list= $this->Customerapi_model->get_itemwise_items_list($sub_item_id);
+		
+		if(count($tems_list)>0){
+						$message = array
+						(
+							'status'=>1,
+							'itemslist'=>$tems_list,
+							'message'=>'Item List are found.'
+						);
+						$this->response($message, REST_Controller::HTTP_OK);
+					
+				}else{
+				
+					$message = array('status'=>0,'message'=>'Item List Empty.');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+				}
+	}
+	public function item_wiseproducts_get()
+	{
+		$item_id = $this->input->get('item_id');
+		if($item_id==''){
+				$message = array('status'=>0,'message'=>'Item id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$tems_list= $this->Customerapi_model->get_wise_items_product_list($item_id);
+		if(count($tems_list)>0){
+						$message = array
+						(
+							'status'=>1,
+							'productlist'=>$tems_list,
+							'message'=>'Product list are found.'
+						);
+						$this->response($message, REST_Controller::HTTP_OK);
+					
+				}else{
+				
+					$message = array('status'=>0,'message'=>'product list Empty.');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+				}
+	}
+public function homeapi_get()
+	{
+		$top_offer_location = $this->Customerapi_model->top_offers_product_search();
+		if(isset($top_offer_location) && count($top_offer_location)>0){
+			foreach ($top_offer_location as $productslist){
+			
+			$currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
+				}
+			$plist[$productslist['item_id']]=$productslist;
+			$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+			$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+			$plist[$productslist['item_id']]['percentage']=$percentage;
+			
+		}
+		foreach ($plist as $list){
+			$toppitemlist[]=$list;
+		}
+		}else{
+			$toppitemlist[]=array();
+		}
+		$treanding_location = $this->Customerapi_model->treanding_product_search();
+		if(isset($treanding_location) && count($treanding_location)>0){
+					foreach ($treanding_location as $productslist){
+					
+					$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=$percentage;
+					
+				}
+				foreach ($plist as $list){
+					$terndingpitemlist[]=$list;
+				}
+		}else{
+			$terndingpitemlist[]=array();
+		}
+		
+		$deals_of_the_day_location = $this->Customerapi_model->deals_of_the_day_product_search();
+		if(isset($deals_of_the_day_location) && count($deals_of_the_day_location)>0){
+			foreach ($deals_of_the_day_location as $productslist){
+			
+			$currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
+				}
+			$plist[$productslist['item_id']]=$productslist;
+			$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+			$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+			$plist[$productslist['item_id']]['percentage']=$percentage;
+			
+		}
+		foreach ($plist as $list){
+			$dealpitemlist[]=$list;
+		}
+		}else{
+			$dealpitemlist[]=array();
+		}
+		$season_sales_location = $this->Customerapi_model->season_sales_product_search();
+		if(isset($season_sales_location) && count($season_sales_location)>0){
+					foreach ($season_sales_location as $productslist){
+					
+					$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=$percentage;
+					
+				}
+				foreach ($plist as $list){
+					$seasonpitemlist[]=$list;
+				}
+		}else{
+			$seasonpitemlist[]=array();
+		}
+		
+		$offers_for_you_location = $this->Customerapi_model->offers_for_you_product_search();
+		if(isset($offers_for_you_location) && count($offers_for_you_location)>0){
+					foreach ($offers_for_you_location as $productslist){
+					
+					$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=$percentage;
+					
+				}
+				foreach ($plist as $list){
+					$offerpitemlist[]=$list;
+				}
+		}else{
+			$offerpitemlist[]=array();
+		}
+		$message = array
+				(
+					'status'=>1,
+					'topffers'=>$toppitemlist,
+					'trending'=>$terndingpitemlist,
+					'deals'=>$dealpitemlist,
+					'season'=>$seasonpitemlist,
+					'offers'=>$offerpitemlist,
+					'path' =>base_url('uploads/products/')
+				);
+				$this->response($message, REST_Controller::HTTP_OK);
+
 	}
 
 

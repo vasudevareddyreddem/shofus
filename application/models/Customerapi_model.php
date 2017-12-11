@@ -88,6 +88,12 @@ class Customerapi_model extends MY_Model
 	}
 	
 
+	public function email_checking($email){
+		
+		$this->db->select('*')->from('customers');
+		$this->db->where('cust_email',$email);
+		return $this->db->get()->row_array();
+	}
 	public function customer_details($cust_id){
 		
 		$this->db->select('*')->from('customers');
@@ -2446,6 +2452,21 @@ class Customerapi_model extends MY_Model
     $this->db->group_by('products.subitemid');
 	return $this->db->get()->result_array();
 	}
+	public function get_itemwise_items_list($item_id){
+	$this->db->select('items_list.*')->from('products');
+	$this->db->join('items_list', 'items_list.id = products.itemwise_id', 'left');	
+    $this->db->where('products.subitemid', $item_id);
+    $this->db->where('products.item_status', 1);
+    $this->db->where('products.itemwise_id !=', '');
+    $this->db->group_by('products.itemwise_id');
+	return $this->db->get()->result_array();
+	}
+	public function get_wise_items_product_list($item_id){
+	$this->db->select('*')->from('products');
+    $this->db->where('products.itemwise_id', $item_id);
+    $this->db->where('products.item_status', 1);
+	return $this->db->get()->result_array();
+	}
 	public function get_sub_itemswise_productlist($sub_item_id){
 	$this->db->select('products.*')->from('products');
 	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
@@ -2461,18 +2482,8 @@ class Customerapi_model extends MY_Model
 		$this->db->where('products.category_id',$sub_id);
 		$this->db->where('subcategories.status',1);
 		$this->db->group_by('products.subcategory_id');
-		$query=$this->db->get()->result_array();
-		foreach ($query as $list){
-			//echo '<pre>';print_r($list);exit;
-			$subitems[$list['subcategory_id']]=$list;
-			$subitems[$list['subcategory_id']]['subitem']=$this->get_subitems_lists($list['subcategory_id']);
-			
-		}
-		if(!empty($subitems))
-			{
-			return $subitems;
-
-			}
+		return $this->db->get()->result_array();
+		
 		
 	}
 	

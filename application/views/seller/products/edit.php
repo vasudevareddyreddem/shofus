@@ -96,9 +96,9 @@
 				</select>
 			</div>
 			<?php if(isset($productdetails['subitemid']) && $productdetails['subitemid']!=''){ ?>
-			<div class="form-group col-md-12 nopaddingRight san-lg" id="oldsubitems">
+			<div class="form-group col-md-6 nopaddingRight san-lg" id="oldsubitems">
 				<label for="exampleInputEmail1">Sub Item </label>
-				<select class="form-control" id="subitemid" name="subitemid" >
+				<select class="form-control"  onchange="get_items_list(this.value);" id="subitemid" name="subitemid" >
 				<option value="">Select Subitems </option>
 				<?php foreach($subitems as $list){ ?>
 				<?php if($productdetails['subitemid']==$list['subitem_id']){ ?>
@@ -108,14 +108,34 @@
 				<?php } } ?>
 			</select>
 			</div>
-			<div class="form-group col-md-12 nopaddingRight san-lg" id="subitems" style="display:none;">
+			<div class="form-group col-md-6 nopaddingRight san-lg" id="subitems" style="display:none;">
 				<label for="exampleInputEmail1">Sub Item </label>
-				<select class="form-control" id="editsubitemid" name="editsubitemid" >
+				<select class="form-control"  onchange="get_items_list(this.value);" id="editsubitemid" name="editsubitemid" >
 				<option value="">Select Subitems </option>
 			</select>
 			</div>
 			
 			<?php } ?>
+			<div class="form-group col-md-6 nopaddingRight san-lg" id="subitemwiseitemidlist">
+				<label for="exampleInputEmail1">Item </label>
+				<select class="form-control" id="subitemwiseitemid" name="subitemwiseitemid" >
+				<option value="">Select items </option>
+				<?php 
+				//echo '<pre>';print_r($itemsLists);exit;
+				foreach($itemsLists as $list){ ?>
+				<?php if($productdetails['itemwise_id']==$list['id']){ ?>
+				<option selected="selected" value="<?php echo $list['id']; ?>"><?php echo $list['item_name']; ?></option>
+				<?php } else{ ?>
+				<option value="<?php echo $list['id']; ?>"><?php echo $list['item_name']; ?></option>
+				<?php } } ?>
+			</select>
+			</div>
+			<div class="form-group col-md-6 nopaddingRight san-lg" id="newsubitemwiseitemidlist" style="display:none;">
+				<label for="exampleInputEmail1">Item </label>
+				<select class="form-control" id="editsubitemwiseitemid" name="editsubitemwiseitemid" >
+				<option value="">Select item</option>
+				</select>
+			</div>
 		
 			
 	</div>
@@ -384,6 +404,27 @@
 	
 
   <script>
+  function get_items_list(id){
+	if(id!=''){
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url();?>seller/products/getsubitem_name_list",
+				data: {
+				form_key : window.FORM_KEY,
+				subitemid: id,
+				},
+				cache: false,
+				success: function(data)
+				{
+					$("#subitemwiseitemidlist").hide();
+					$("#newsubitemwiseitemidlist").show();
+					$("#editsubitemwiseitemid").empty();
+					$("#editsubitemwiseitemid").html(data);
+				} 
+			});
+	}
+	
+}
   var catid='<?php echo $productdetails['category_id'];?>';
   jQuery.ajax({
 				url: "<?php echo site_url('seller/products/getolditemdata');?>",

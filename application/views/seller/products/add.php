@@ -188,8 +188,14 @@
 			<div class="clearfix"></div>
 			<div class="form-group col-md-6 nopaddingRight san-lg" id="subitems" >
 				<label for="exampleInputEmail1">Sub Item </label>
-				<select class="form-control" id="subitemid" name="subitemid" >
+				<select class="form-control" onchange="get_items_list(this.value);" id="subitemid" name="subitemid" >
 				<option value="">Select Subitems </option>
+			</select>
+			</div>
+			<div class="form-group col-md-6 nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Items </label>
+				<select class="form-control" id="subitemwiseitemid" name="subitemwiseitemid" >
+				<option value="">Select item </option>
 			</select>
 			</div>
 			
@@ -430,6 +436,27 @@
 			});
 	
 		
+	
+} 
+function get_items_list(id){
+	
+	var cat_id=$('#category_id').val();
+	if(id!=''){
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url();?>seller/products/getsubitem_name_list",
+				data: {
+				form_key : window.FORM_KEY,
+				subitemid: id,
+				},
+				cache: false,
+				success: function(data)
+				{
+					$("#subitemwiseitemid").empty();
+					$("#subitemwiseitemid").html(data);
+				} 
+			});
+	}
 	
 }
 function changememory(id){

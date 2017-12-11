@@ -143,6 +143,29 @@ class Products extends Admin_Controller {
 	exit;	
 		
 	}
+	public function getsubitem_name_list()
+	{
+		
+	$post=$this->input->post();
+	//print_r($subcat);exit;
+	$result=$this->products_model->get_subitem_wise_item_list($post['subitemid']);
+	//echo $this->db->last_query();exit;
+	if(count($result)>0){
+		echo '<option value="">Select Item</option>';
+		foreach($result as $alldata)
+	{
+
+	echo '<option value="'.$alldata['id'].'">'.$alldata['item_name'].'</option>';
+	}
+		
+	}else{
+		echo '<option value="">Select Item</option>';	
+			
+	}
+	
+	exit;	
+		
+	}
 
 	public function getajaxsubitem()
 	{
@@ -313,6 +336,7 @@ public function item_status(){
 			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
 			'subcategory_id' => isset($post['subcategorylist'])?$post['subcategorylist']:'',
 			'subitemid' => isset($post['subitemid'])?$post['subitemid']:'',
+			'itemwise_id' => isset($post['subitemwiseitemid'])?$post['subitemwiseitemid']:'',
 			'item_name' => isset($name)?$name:'',
 			'item_cost' => isset($post['product_price'])?$post['product_price']:'',
 			'special_price' => isset($post['special_price'])?$post['special_price']:'',
@@ -691,7 +715,7 @@ public function edit()
 {
 	$productid = base64_decode($this->uri->segment(4));
 	$cat_id = base64_decode($this->uri->segment(5));
-	$data['items'] = $this->products_model->auto_items();
+	
 	$data['subcatdata'] = $this->products_model->getsubcatdata($cat_id);
 	$data['getcat'] = $this->products_model->getcateditdata();
 	$data['productdetails']=$this->products_model->getproductdata($productid);
@@ -700,7 +724,8 @@ public function edit()
 	$data['productuksizes']=$this->products_model->get_product_uksizes($productid);
 	$data['productdescriptions']=$this->products_model->get_product_desc($productid);
 	$data['subitems'] = $this->products_model->get_subitem_list_subcategorywise($data['productdetails']['subcategory_id']);
-	//echo '<pre>';print_r($data['productdescriptions']);exit;
+	$data['itemsLists'] = $this->products_model->get_subitem_wise_item_list($data['productdetails']['subitemid']);
+	//echo '<pre>';print_r($data['items']);exit;
 	
 		//echo '<pre>';print_r($data);exit;
 		$sid = $this->session->userdata('seller_id'); 
@@ -905,10 +930,16 @@ public function update()
 		}else{
 			$subitem=$post['editsubitemid'];
 		}
+		if($post['subitemwiseitemid']==''){
+			$itemwise=$post['editsubitemwiseitemid'];
+		}else{
+			$itemwise=$post['subitemwiseitemid'];
+		}
 		$updatedata=array(
 			'category_id' => isset($post['category_id'])?$post['category_id']:'',		
 			'subcategory_id' => isset($subcatid)?$subcatid:'',		
 			'subitemid' => isset($subitem)?$subitem:'',		
+			'itemwise_id' => isset($itemwise)?$itemwise:'',		
 			'item_name' => isset($name)?$name:'',
 			'item_cost' => isset($post['product_price'])?$post['product_price']:'',
 			'special_price' => isset($post['special_price'])?$post['special_price']:'',
@@ -1157,7 +1188,7 @@ public function update()
 
 			);
 			
-			//echo '<pre>';print_r($updatedata);
+			//echo '<pre>';print_r($updatedata);exit;
 			
 			$result=$this->products_model->update_deails($post['product_id'],$updatedata);
 			if(count($result)>0)
