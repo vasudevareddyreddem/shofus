@@ -68,6 +68,7 @@
             <li><a href="<?php echo base_url('inventory/categorieslist'); ?>"><i class="fa fa-circle-o"></i> Add Category </a></li>
             <li><a href="<?php echo base_url('inventory/subcategorieslist'); ?>"><i class="fa fa-circle-o"></i> Add sub category & commission</a></li>
             <li><a href="<?php echo base_url('inventory/subitemslists'); ?>"><i class="fa fa-circle-o"></i> Add sub Items</a></li>
+            <li><a href="<?php echo base_url('inventory/itemlist'); ?>"><i class="fa fa-circle-o"></i> Add Items</a></li>
             <li><a href="<?php echo base_url('inventory/productquantity'); ?>"><i class="fa fa-circle-o"></i>Product Quantity</a></li>
           </ul>
         </li>

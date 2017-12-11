@@ -770,7 +770,17 @@ public function delete_banner($id,$sid)
 
 		return $this->db->get()->result_array();
 	}
-	public function update_subitem_status($subitemid,$data){
+	function get_all_subitemwise_itemlist()
+	{
+		$this->db->select('items_list.*,category.category_name,subcategories.subcategory_name,sub_items.category_id,sub_items.subitem_name')->from('items_list');
+		$this->db->join('sub_items', 'sub_items.subitem_id = items_list.subitemid', 'left');
+		$this->db->join('category', 'category.category_id = sub_items.category_id', 'left');
+		$this->db->join('subcategories', 'subcategories.subcategory_id = sub_items.subcategory_id', 'left');
+
+
+		return $this->db->get()->result_array();
+	}
+	 function update_subitem_status($subitemid,$data){
 		$this->db->where('subitem_id', $subitemid);
 		return $this->db->update('sub_items', $data);
 	}
@@ -784,6 +794,38 @@ public function delete_banner($id,$sid)
 	$sql = "SELECT * FROM sub_items WHERE subitem_id ='".$id."'";
 	return $this->db->query($sql)->row_array();
 	}
+	function get_itemstatus_changed_data($id)
+	{
+	$sql = "SELECT * FROM items_list WHERE id ='".$id."'";
+	return $this->db->query($sql)->row_array();
+	}
+	
+	function get_itemname_existss($name)
+    {
+	   $sql = "SELECT * FROM items_list WHERE item_name ='".$name."' AND status='1'";
+        return $this->db->query($sql)->row_array();
+     }
+	function update_item_status($itemid,$data){
+		$this->db->where('id', $itemid);
+		return $this->db->update('items_list', $data);
+	}
+	public function get_all_subitems()
+	{
+		$this->db->select('*')->from('sub_items');
+		$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
+	 function save_items($data){
+		$this->db->insert('items_list', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	function get_item_details($id)
+	{
+		$this->db->select('*')->from('items_list');
+		$this->db->where('id',$id);
+		return $this->db->get()->row_array();
+	}
+	
 	
 }
 ?>	
