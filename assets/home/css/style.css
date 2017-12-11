@@ -2,7 +2,7 @@
 	color:#555 !important;
 }
 .wid_20{
-	width:20% !important;
+	width:18% !important;
 }
 .pr15 {
 	/* border-left:1px solid #ddd; */
@@ -4002,7 +4002,7 @@ table#cart tfoot td .btn {
 	color:#009688;
 	padding:0px 16px;
 	font-size:24px;
-	float:right;
+	float:left;
 	text-align:center;
 }
 .medias p{
@@ -5607,8 +5607,11 @@ input[type=radio]:checked + span::before {
 .mega-menu .dropdown-menu {
   width:80%;
  
-  margin:-30px 70px !important;
+  margin:-48px 70px !important;
   border-bottom:4px solid #009688;
+  -webkit-box-shadow: 0px 2px 33px -2px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 2px 33px -2px rgba(0,0,0,0.75);
+box-shadow: 0px 2px 33px -2px rgba(0,0,0,0.75);
  
  
 }
@@ -5982,7 +5985,7 @@ box-shadow: 0px 0px 11px 2px rgba(214,211,214,1);
     color: #009688;
     padding: 0px 7px;
     font-size: 24px;
-    float: right;
+    float: left;
     text-align: center;
 }
 .pad_rig{
