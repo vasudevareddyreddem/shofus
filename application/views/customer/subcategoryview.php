@@ -449,7 +449,7 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 						  <li><a href="#">Compare </a></li>
 						</ul>
 					 </li>
-				 <ul>
+				 </ul>
 				</div>
 		 
 		 

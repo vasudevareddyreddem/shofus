@@ -11,7 +11,6 @@ $('#pqty').val("<?php echo isset($item_details['item_quantity'])?$item_details['
 $('#warranty_summary').val("<?php echo isset($item_details['warranty_summary'])?$item_details['warranty_summary']:''; ?>");
 $('#warranty_type').val("<?php echo isset($item_details['warranty_type'])?$item_details['warranty_type']:''; ?>");
 $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_details['service_type']:''; ?>");
-$('#pbrand').val("<?php echo isset($item_details['pbrand'])?$item_details['service_type']:''; ?>");
 </script>
 <?php //echo '<pre>';print_r($item_details); ?>
 

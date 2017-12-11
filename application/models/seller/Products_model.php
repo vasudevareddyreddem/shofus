@@ -572,6 +572,14 @@ public function getproductapproval()
 		return $this->db->get()->result_array();
 		
 	}
+	public function get_subitem_wise_item_list($subitemid)
+	{
+		$this->db->select('*')->from('items_list');
+		$this->db->where('status',1);
+		$this->db->where('subitemid',$subitemid);
+		return $this->db->get()->result_array();
+		
+	}
 	public function get_product_details($pid){
 		$this->db->select('products.item_id,products.item_cost,products.special_price,products.subcategory_id,products.name,products.colour,products.ram,products.internal_memeory')->from('products');
 		$this->db->where('item_id',$pid);

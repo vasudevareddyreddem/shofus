@@ -2372,7 +2372,7 @@ public function addhomepagemiddlebannerspost()
 		}else
 	 	{
 		 	$this->session->set_flashdata('loginerror','Please login to continue');
-		 	redirect('admin/login	');
+		 	redirect('admin/login');
 		}
 		
 	}
@@ -2386,6 +2386,42 @@ public function addhomepagemiddlebannerspost()
 					//echo '<pre>';print_r($data);exit;
 					$this->load->view('customer/inventry/sidebar');
 					$this->load->view('customer/inventry/addsubitem',$data);
+					$this->load->view('customer/inventry/footer');
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  public function itemlist(){
+		if($this->session->userdata('userdetails'))
+	 	{
+			$data['litem_list']=$this->inventory_model->get_all_subitemwise_itemlist();
+			//echo $this->db->last_query();exit;
+			//echo '<pre>';print_r($data['litem_list']);exit;
+			$this->load->view('customer/inventry/sidebar');
+			$this->load->view('customer/inventry/itemlist',$data);
+			$this->load->view('customer/inventry/footer');
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		}
+		
+	}
+	public function itemadd(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$data['item_list'] = $this->inventory_model->get_all_subitems();
+					//echo '<pre>';print_r($data);exit;
+					$this->load->view('customer/inventry/sidebar');
+					$this->load->view('customer/inventry/additem',$data);
 					$this->load->view('customer/inventry/footer');
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -2451,6 +2487,44 @@ public function addhomepagemiddlebannerspost()
 		 redirect('admin/login	');
 		} 
   }
+  public function additempost(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$post=$this->input->post();
+					$alreadyexits = $this->inventory_model->get_itemname_existss($post['itemname']);
+						if(count($alreadyexits)>0){
+							$this->session->set_flashdata('error',"Item Name already exits.please use another item Name.");
+							redirect('inventory/itemadd');
+						}
+					
+					$additem = array(
+					'subitemid' => $post['subitemid'], 
+					'item_name' => $post['itemname'],
+					'status' => 1,    
+					'create_at' => date('Y-m-d H:i:s'),    
+					'update_at' => date('Y-m-d H:i:s'),
+					'created_by' =>$logindetail['customer_id'], 
+					);
+					$results=$this->inventory_model->save_items($additem);
+					if(count($results)>0){
+					$this->session->set_flashdata('success',"Item Successfully Added");
+					redirect('inventory/itemlist');
+					}else{
+						$this->session->set_flashdata('error',"technical problem will occured. Please try again after some time.");
+						redirect('inventory/itemlist');
+					}
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
   public function subitemstatus(){
   	if($this->session->userdata('userdetails'))
 	 {		
@@ -2496,6 +2570,52 @@ public function addhomepagemiddlebannerspost()
 		 redirect('admin/login	');
 		} 
   }
+   public function itemstatus(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					
+					$id = base64_decode($this->uri->segment(3)); 
+					$changeddata=$this->inventory_model->get_itemstatus_changed_data($id);
+					$namecheck=$this->inventory_model->get_itemname_existss($changeddata['item_name']);
+					//echo "<pre>";print_r($namecheck);exit;
+					
+					$status = base64_decode($this->uri->segment(4));
+					if($status==0){
+						if(count($namecheck)>0){
+						$this->session->set_flashdata('error',"Item already in Active. Please check it once");
+						redirect('inventory/itemlist');
+					
+						}
+					}
+					if($status==1){
+					$status=0;
+					}else{
+					$status=1;
+					}
+					$data=array('status'=>$status);
+					$updatestatus=$this->inventory_model->update_item_status($id,$data);
+					//echo $this->db->last_query();exit;
+					
+					if(count($updatestatus)>0){
+						if($status==1){
+							$this->session->set_flashdata('success'," Item activation successful");
+						}else{
+							$this->session->set_flashdata('success',"Item deactivation successful");
+						}
+						redirect('inventory/itemlist');
+					}
+		}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
   public function addsubitemedit(){
   	if($this->session->userdata('userdetails'))
 	 {		
@@ -2509,6 +2629,28 @@ public function addhomepagemiddlebannerspost()
 					//echo '<pre>';print_r($data);exit;
 					$this->load->view('customer/inventry/sidebar');
 					$this->load->view('customer/inventry/editsubitem',$data);
+					$this->load->view('customer/inventry/footer');
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+   public function additemedit(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$item_id=base64_decode($this->uri->segment(3));
+				$data['item_details'] = $this->inventory_model->get_item_details($item_id);
+				$data['item_list'] = $this->inventory_model->get_all_subitems();
+					//echo '<pre>';print_r($data);exit;
+					$this->load->view('customer/inventry/sidebar');
+					$this->load->view('customer/inventry/edititem',$data);
 					$this->load->view('customer/inventry/footer');
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -2560,6 +2702,49 @@ public function addhomepagemiddlebannerspost()
 
 					$this->session->set_flashdata('success',"SubItem Successfully Updated!");
 					redirect('inventory/subitemslists');
+					}	
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  public function edititempost(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$post=$this->input->post();
+				//echo '<pre>';print_r($post);exit;
+				$ubitem_list = $this->inventory_model->get_item_details($post['itemid']);
+
+				if($post['itemname']!=$ubitem_list['item_name']){
+				$result = $this->inventory_model->get_itemname_existss($post['itemname']);
+					if(count($result)>0){
+						$this->session->set_flashdata('error',"item Name already exits .please use another item Name!");
+						redirect('inventory/additemedit/'.base64_encode($post['itemid']));
+						
+					}
+				}
+				$additem = array(
+					'subitemid' => $post['subitemid'], 
+					'item_name' => $post['itemname'],
+					'create_at' => date('Y-m-d H:i:s'),    
+					'update_at' => date('Y-m-d H:i:s'),
+					'created_by' =>$logindetail['customer_id'], 
+					);
+					//echo '<pre>';print_r($updatesubitem);exit;
+					$details=$this->inventory_model->update_item_status($post['itemid'],$additem);
+					
+					//echo $this->db->last_query();exit;
+					if(count($details)>0){
+
+					$this->session->set_flashdata('success',"Item Successfully Updated!");
+					redirect('inventory/itemlist');
 					}	
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');
@@ -2646,6 +2831,87 @@ if((!empty($_FILES["importsubitemfile"])) && ($_FILES['importsubitemfile']['erro
 						if(count($results)>0){
 							$this->session->set_flashdata('success','Successfully Added');
 							redirect('inventory/subitemslists');	
+						}
+					
+					
+				}
+				
+	       }
+		  public function subimportitem(){
+			$post=$this->input->post();
+		$logindetail=$this->session->userdata('userdetails');
+		if((!empty($_FILES["importitemfile"])) && ($_FILES['importitemfile']['error'] == 0)) {
+				$limitSize	= 1000000000; //(15 kb) - Maximum size of uploaded file, change it to any size you want
+				$fileName	= basename($_FILES['importitemfile']['name']);
+				$fileSize	= $_FILES["importitemfile"]["size"];
+				$fileExt	= substr($fileName, strrpos($fileName, '.') + 1);
+				if (($fileExt == "xlsx") && ($fileSize < $limitSize)) {
+					include( 'simplexlsx.class.php');
+					$getWorksheetName = array();
+					$xlsx = new SimpleXLSX( $_FILES['importitemfile']['tmp_name'] );
+					$getWorksheetName = $xlsx->getWorksheetName();
+					//echo $xlsx->sheetsCount();exit;
+					for($j=1;$j <= $xlsx->sheetsCount();$j++){
+						$cnt=$xlsx->sheetsCount()-1;
+						$arry=$xlsx->rows($j);
+						unset($arry[0]);
+						//echo "<pre>";print_r($arry);exit;
+						foreach($arry as $key=>$fields)
+							{
+								if(isset($fields[0]) && $fields[0]!=''){
+								$totalfields[] = $fields;	
+									if(empty($fields[0])) {
+										$data['errors'][]="item Name is required. Row Id is :  ".$key.'<br>';
+										$error=1;
+									}else if($fields[0]!=''){
+										$regex ="/^[ A-Za-z0-9_@.,\/}{@#&*)(_+-]*$/"; 
+										if(!preg_match( $regex, $fields[0]))	  	
+										{
+										$data['errors'][]='item Name wont allow "  <> []. Row Id is :  '.$key.'<br>';
+										$error=1;
+										}/*else{
+											$result = $this->inventory_model->get_subitemname_existss($fields[0]);
+											if(count($result)>0){
+											$data['errors'][]="Subitem Name already exits .please use another Subitem Name. Row Id is :  ".$key.'<br>';
+											$error=1;	
+											}
+
+										}*/
+									}
+									
+								}else{
+									$data['errors'][]='Please Fillout all Fields';
+									$this->session->set_flashdata('addsuccess',$data['errors']);
+									redirect('inventory/itemadd');	
+								}
+							}
+								if(count($data['errors'])>0){
+								$this->session->set_flashdata('addsuccess',$data['errors']);
+								redirect('inventory/itemadd');	
+								}
+						}
+						
+						
+					}
+	}
+					if(count($data['errors'])<=0){
+						foreach($totalfields as $data){
+								//echo "<pre>";print_r($data);exit;
+							$addsubcat = array(
+							'subitemid' => $post['subitemid'], 
+							'item_name' => $data[0],
+							'create_at' => date('Y-m-d H:i:s'), 
+							'status' => 1,    
+							'update_at' => date('Y-m-d H:i:s'),    
+							'created_by' =>$logindetail['customer_id']							
+							);
+							//echo "<pre>";print_r($addsubcat);exit;
+							$results=$this->inventory_model->save_items($addsubcat);
+							//echo $this->db->last_query();exit;
+						}
+						if(count($results)>0){
+							$this->session->set_flashdata('success','Successfully Added');
+							redirect('inventory/itemlist');	
 						}
 					
 					
