@@ -129,14 +129,64 @@
    text-align: center;
    line-height: 300%;
    }
-   .tab_hide{
-	 display:none;  
-   }
-   .tab_show{
-	 display:block;  
-   }
 </style>
-
+<!--<div class="sidebar_right" >
+   <ul style="padding:0 ">
+   	
+   	<div class="clearfix"></div>
+   	<?php //echo '<pre>';print_r($sidecaregory_list);exit; ?>
+   	<?php foreach ($sidecaregory_list as $categories){ ?>
+   	<?php if($categories['category_image']==''){ ?>
+   	<li  class=" spin ">
+   		<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
+   		    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
+   		</a>
+   	</li>
+   	<div class="clearfix"></div>
+   	<?php }else{ ?>
+   	<li  class=" spin ">
+   		<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
+   			<span ><img  class=" circ_icon" src="<?php echo base_url('assets/categoryimages/'.$categories['category_image']); ?>" /></span>
+   		    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
+   		</a>
+   	</li>
+   	<div class="clearfix"></div>
+   	<?php } ?>
+   	<?php } ?>
+   	
+   
+   	<li id="" class=" spin ">
+   		<a  class="menu_ti2  ">
+   			<span   ><img class=" circ_icon"src="<?php echo base_url(); ?>assets/home/images/more_cat.png" />
+   			</span>
+   			<span style="position:relative" class="menu_tit">More Categories
+   			<span style="position:absolute;top:0;left:20px;font-size:12px;">Coming Soon</span>
+   			</span>
+   		</a>
+   		<ul id="left_box" class="right_cust" style="display:none">
+   			
+   			
+   				<div class="col-md-3">
+   					<ul style="background-color:#fff;" class="list_cat">
+   					<?php foreach ($allcategories_list as $categories){ ?>
+   					
+   					<li  ><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" style="color:#666; background-color:#fff;"><?php echo $categories['category_name'] ; ?></a></li>
+   						
+   					<?php } ?>
+   						
+   					</ul>
+   				</div>
+   			</div>
+   		</ul>
+   	</li>
+   	<div class="clearfix"></div>
+   
+   	
+   	
+   	
+   	
+   </ul>
+   </div>-->
 <div class="wrapper">
 <!--header part start here -->
 <div class="jain_container">
@@ -184,61 +234,6 @@
                <h2 style="margin:0px;color:#fff"><span class="smallnav menu" onclick="openNav()">☰</span></h2>
                <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a></span></h1>
             </div>
-			   <div class="medias list_ad sm_hide ">
-				
-			<span class=" dropdown mega-menu">
-               <a  style="background: #fff;position: absolute;z-index:1024;margin-top:19px;margin-right:10px;padding:8px 5px 8px 0px; border-right:1px solid #ddd;"href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <span style="padding: 0px 4px;" class="glyphicon glyphicon-th"></span>
-               </a>
-			    <ul class="dropdown-menu" style="padding:20px;">
-			
-				 <?php $c=1;foreach ($catehorywiselist as $list){ ?>
-
-				 <?php if($c==1){ ?>
-                  <li class="wid_20 "><a onclick="addtabactive(<?php echo $c;?>);" href="#tabs<?php echo $c; ?>" data-toggle="tab"><?php echo $list['category_name']; ?></a></li>
-									
-				<?php }else{ ?>
-				  <li class="wid_20"><a onclick="addtabactive(<?php echo $c; ?>);" href="#tabs<?php echo $c; ?>" data-toggle="tab"><?php echo $list['category_name']; ?></a></li>
-				 <?php } ?>
-				 
-				 
-					 <?php if($c==1){ ?>
-					 
-							<div class="tab-pane active " id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;padding:20px;border-left:1px solid #ddd;min-height:150px">
-								<div class="row" style="margin-right:30px;">
-								<?php foreach ($list['subcat'] as $subitemlist){ ?>
-									<div class="col-md-3">
-										<h5><?php echo $subitemlist['subcategory_name']; ?></h5>
-											<?php foreach ($subitemlist['subitem_list'] as $lists){ ?>
-													<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
-											<?php } ?>
-										
-									</div>
-								<?php } ?>
-								</div>
-							</div>
-						<?php }else{ ?>
-								<div class="tab-pane tab_hide" id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;padding:20px;border-left:1px solid #ddd;min-height:150">
-										<div class="row" style="margin-right:30px;">
-										<?php foreach ($list['subcat'] as $subitemlist){ ?>
-											<div class="col-md-3">
-												<h5><?php echo $subitemlist['subcategory_name']; ?></h5>
-													<?php foreach ($subitemlist['subitem_list'] as $lists){ ?>
-													<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
-													<?php } ?>
-												
-											</div>
-										<?php } ?>
-										</div>
-									</div>
-							<?php } ?>
-				<?php $c++;} ?>
-                  
-                </ul>
-            </span>
-			
-			
-			
             <div class="flipkart-navbar-search smallsearch col-sm-6 col-xs-11">
                <div class="row">
                   <div  >
@@ -246,7 +241,7 @@
                         <div class=" smallsearch">
                            <div class="cart_search">
                               <form id="searchform" action="<?php echo base_url('home/seraching'); ?>" method="post">
-                                 <input style="padding:10px 80px" type="text" name="serachvalues" id="tags"  onfocus="searchfunction(this.value);" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                                 <input type="text" name="serachvalues" id="tags"  onfocus="searchfunction(this.value);" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                                  <button type="submit" class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                               </form>
                            </div>
@@ -256,13 +251,8 @@
                   </div>
                </div>
             </div>
-       
-			 <span class="medias text-center">
-               <a href="<?php echo base_url('customer/nearstores'); ?>">
-                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
-                  <p>Near by stores</p>
-               </a>
-            </span>
+         </div>
+         <div class="medias list_ad sm_hide ">
             <?php if($this->session->userdata('userdetails')){ ?>
             <span class="medias user_log">
                <a>
@@ -318,10 +308,203 @@
                <span style="position:absolute;top:-5px;right:-5px;font-size:12px"></span>
             </span>
             <?php } ?>	
-           
-            
+            <span class="medias text-center">
+               <a href="<?php echo base_url('customer/nearstores'); ?>">
+                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
+                  <p>Near by stores</p>
+               </a>
+            </span>
+            <span class="medias dropdown mega-menu">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/catag.png" /></i>
+                  <p>Categories</p>
+               </a>
+               <!--<ul class="dropdown-menu">
+                  <?php foreach ($allcategories_list as $list){ ?>
+                  <li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id'])); ?>"><?php echo $list['category_name']; ?></a></li>
+                  <?php } ?>				  
+               </ul>-->
+			    <ul class="dropdown-menu">
+                  <li>
+                    <div class="mega-menu-content">
+                      <div class="row">
+                        <!-- TABS PRESENTATION -->
+<section class="blok">
+<div class="blok-body">
+<div class="row">
+ 
+  <!-- Tab panes -->
+  <div class="tab-content col-sm-10">
+    <div class="tab-pane  active in active" id="home">
+		<div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+	</div>
+    <div class="tab-pane  fade" id="profile"> 
+		<div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+	</div>
+    <div class="tab-pane  fade" id="messages">
+		<div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+	</div>
+    <div class="tab-pane  fade" id="settings">
+		<div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-3">
+                          <ul class="list-unstyled">
+                            <li><p><strong>Menu Title</strong></p></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                            <li><a href="#"> Link Item </a></li>
+                          </ul>
+                        </div>
+	</div>
+  </div>
+   <!-- Nav tabs -->
+  <ul class="nav tab-menu nav-pills col-sm-2 nav-stacked pr15">
+    <li class="active"  data-toggle="tab"><a href="#home">ELECTRONICS</a></li>
+    <li><a href="#profile"  data-toggle="tab">GROCERY</a></li>
+    <li><a href="#messages"  data-toggle="tab">Clothing</a></li>
+    <li><a href="#settings"  data-toggle="tab">Footwear</a></li>
+  </ul>
+</div><!-- //row -->
+</div><!-- blok-body // -->
+</section><!-- // blok -->
+<!-- TABS PRESENTATION // -->
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+            </span>
          </div>
-		   </div>
          <!--responsive -->
          <div class="md_hide" style="position:absolute;top:10px;right:10px;font-size:22px;color:#fff">
             <span class="pad_le">
@@ -499,26 +682,6 @@
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script> 
 <script type="text/javascript">
-function addtabactive(id)
-{
-	//$("#tabs"+id).empty();
-	
-	$("#tabs"+id).show();
-	$("#tabs"+id).addClass("active");
-	$("#tabs"+id).removeClass("tab_hide");
-	var cnt;
-    var nt =<?php echo count($catehorywiselist); ?>;
-	//var cnt='';
-	for(cnt = 1; cnt <= nt; cnt++){
-		if(cnt!=id){
-			$("#tabs"+cnt).hide();
-			$("#tabs"+cnt).removeClass("active");
-			$("#tabs"+cnt).addClass("tab_hide");
-		}             
-	}
-			
-
-}
    $("#supcounts").hide();
    $("#fademaskpurpose").addClass("mask_hide");
    function locationopenpopup (){
