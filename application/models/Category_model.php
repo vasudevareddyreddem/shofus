@@ -2301,6 +2301,23 @@ class Category_model extends MY_Model
 		$this->db->group_by('waterproof');
 		return $this->db->get()->result_array();
 	}
+	/* SEARCH PURPOSE*/
+	public function get_subitem_all_previous_search_fields()
+	{
+		$this->db->select('*')->from('subitem_wise_filter_search');
+		$this->db->where('Ip_address',$this->input->ip_address());
+		return $this->db->get()->result_array();
+	}
+	public function update_subitem_wise_offer_privous_searchdata($id,$data)
+	{
+		$sql1="UPDATE subitem_wise_filter_search SET offer ='".$data."' WHERE id ='".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function save_subitemsearchdata($data){
+		
+		$this->db->insert('subitem_wise_filter_search', $data);
+		return $insert_id = $this->db->insert_id();
+	}
 	
 }
 ?>

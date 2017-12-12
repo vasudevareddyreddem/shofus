@@ -1743,6 +1743,8 @@ public function suitemwiseproductslist(){
 		if($subitemid=='' ||  $subcatid ==''){
 			redirect();
 		}
+		$data['subitemid']=$subitemid;
+		$data['subcatid']=$subcatid;
 		$data['subitemwise']= $this->category_model->get_all_itemproducts_list($subcatid,$subitemid);
 		//echo '<pre>';print_r($data['subitemwise']);exit;
 		$data['brand_list']= $this->category_model->get_subitem_all_brand_list($subcatid,$subitemid);
@@ -1869,6 +1871,159 @@ public function suitemwiseproductslist(){
 		$this->template->render();
 	  
 	  //echo 'dfd';exit;
-	}	
+	}
+public function subitemwise_search(){
+	
+	$post=$this->input->post();
+	//echo '<pre>';print_r($cusine);
+	//echo '<pre>';print_r($post);exit;
+	
+				if(isset($post['searchvalue']) && $post['searchvalue']=='offer' && $post['unchecked']!='uncheck'){
+					$offer=$post['productsvalues'];
+				}else if(isset($post['unchecked']) && $post['unchecked']=='uncheck' && $post['searchvalue']=='offer'){
+					$removesearch= $this->category_model->get_subitem_all_previous_search_fields();
+					foreach ($removesearch as $list){
+						if($list['offer']==$post['productsvalues']){
+						$this->category_model->update_subitem_wise_offer_privous_searchdata($list['id'],'');
+						}
+					} 
+				}else{
+					$offer='';
+				}
+				if(isset($post['searchvalue']) && $post['searchvalue']=='res' && $post['unchecked']!='uncheck'){
+					$res=$post['productsvalues'];
+				}else if(isset($post['unchecked']) && $post['unchecked']=='uncheck' && $post['searchvalue']=='res'){
+					$removesearch= $this->category_model->get_all_previous_search_fields();
+					foreach ($removesearch as $list){
+						if($list['restraent']==$post['productsvalues']){
+						$this->category_model->update_res_privous_searchdata($list['id'],'');
+						}
+					} 
+				}else{
+					$res='';
+				}
+				
+				if($post['searchvalue']=='offer' && $post['unchecked']!='uncheck'){
+					$offer=$post['productsvalues'];
+				}else if($post['unchecked']=='uncheck' && $post['searchvalue']=='offer'){
+					$removesearch= $this->category_model->get_all_previous_search_fields();
+					foreach ($removesearch as $list){
+						if($list['offers']==$post['productsvalues']){
+						$this->category_model->update_offer_privous_searchdata($list['id'],'');
+						}
+					} 
+				}else{
+					$offer='';
+				}
+				if($post['searchvalue']=='brand' && $post['unchecked']!='uncheck'){
+					$brand=$post['productsvalues'];
+				}else if($post['unchecked']=='uncheck' && $post['searchvalue']=='brand'){
+					$removesearch= $this->category_model->get_all_previous_search_fields();
+					foreach ($removesearch as $list){
+						if($list['brand']==$post['productsvalues']){
+						$this->category_model->update_brand_privous_searchdata($list['id'],'');
+						}
+					} 
+				}else{
+					$brand='';
+				}
+				if($post['searchvalue']=='discount' && $post['unchecked']!='uncheck'){
+					$discount=$post['productsvalues'];
+				}else if($post['unchecked']=='uncheck' && $post['searchvalue']=='discount'){
+					$removesearch= $this->category_model->get_all_previous_search_fields();
+					foreach ($removesearch as $list){
+						if($list['discount']==$post['productsvalues']){
+						$this->category_model->update_discount_privous_searchdata($list['id'],'');
+						}
+					} 
+				}else{
+					$discount='';
+				}
+				if(isset($post['searchvalue']) && $post['searchvalue']=='color' && $post['unchecked']!='uncheck'){
+					$color=$post['productsvalues'];
+				}else if(isset($post['unchecked']) && $post['unchecked']=='uncheck' && $post['searchvalue']=='color'){
+					$removesearch= $this->category_model->get_all_previous_search_fields();
+					foreach ($removesearch as $list){
+						if($list['color']==$post['productsvalues']){
+						$this->category_model->update_color_privous_searchdata($list['id'],'');
+						}
+					} 
+				}else{
+					$color='';
+				}
+				if(isset($post['searchvalue']) && $post['searchvalue']=='size' && $post['unchecked']!='uncheck'){
+					$size=$post['productsvalues'];
+				}else if(isset($post['unchecked']) && $post['unchecked']=='uncheck' && $post['searchvalue']=='size'){
+					$removesearch= $this->category_model->get_all_previous_search_fields();
+					foreach ($removesearch as $list){
+						if($list['size']==$post['productsvalues']){
+						$this->category_model->update_size_privous_searchdata($list['id'],'');
+						}
+					} 
+				}else{
+					$size='';
+				}
+				
+		
+	
+	$ip=$this->input->ip_address();
+	
+	$data1=array(
+	'ip_address'=>$ip,
+	'subcategory_id'=>$post['subcatid'],
+	'subitemid'=>$post['subitemid'],
+	'minimum_price'=>isset($post['mini_mum']) ? $post['mini_mum']:'',
+	'maximum_price'=>isset($post['maxi_mum']) ? $post['maxi_mum']:'',
+	'offer'=>isset($offer) ? $offer:'',
+	'brand'=>isset($brand) ? $brand:'',
+	'colour'=>isset($colour) ? $colour:'',
+	'size'=>isset($size) ? $size:'',
+	'ram'=>isset($ram) ? $ram:'',
+	'os'=>isset($os) ? $os:'',
+	'sim_type'=>isset($sim_type)?$sim_type:'',
+	'camera'=>isset($camera)?$camera:'',
+	'internal_memeory'=>isset($internal_memeory)?$internal_memeory:'',
+	'screen_size'=>isset($screen_size)?$screen_size:'',
+	'Processor'=>isset($Processor)?$Processor:'',
+	'printer_type'=>isset($printer_type)?$printer_type:'',
+	'type'=>isset($type)?$type:'',
+	'max_copies'=>isset($max_copies)?$max_copies:'',
+	'paper_size'=>isset($paper_size)?$paper_size:'',
+	'headphone_jack'=>isset($headphone_jack)?$headphone_jack:'',
+	'noise_reduction'=>isset($noise_reduction)?$noise_reduction:'',
+	'usb_port'=>isset($usb_port)?$usb_port:'',
+	'compatible_for'=>isset($compatible_for)?$compatible_for:'',
+	'scanner_type'=>isset($scanner_type)?$scanner_type:'',
+	'resolution'=>isset($resolution)?$resolution:'',
+	'f_stop'=>isset($f_stop)?$f_stop:'',
+	'minimum_focusing_distance'=>isset($minimum_focusing_distance)?$minimum_focusing_distance:'',
+	'aperture_withmaxfocal_length'=>isset($aperture_withmaxfocal_length)?$aperture_withmaxfocal_length:'',
+	'picture_angle'=>isset($picture_angle)?$picture_angle:'',
+	'weight'=>isset($weight)?$weight:'',
+	'occasion'=>isset($occasion)?$occasion:'',
+	'material'=>isset($material)?$material:'',
+	'collar_type'=>isset($collar_type)?$collar_type:'',
+	'gender'=>isset($gender)?$gender:'',
+	'sleeve'=>isset($sleeve)?$sleeve:'',
+	'look'=>isset($look)?$look:'',
+	'style_code'=>isset($style_code)?$style_code:'',
+	'inner_material'=>isset($inner_material)?$inner_material:'',
+	'waterproof'=>isset($waterproof)?$waterproof:'',
+	'create_at'=>date('Y-m-d H:i:s'),
+	);
+	//echo '<pre>';print_r($data1);
+	//exit;
+	$s_s_i_data= $this->category_model->save_subitemsearchdata($data1);
+	if(count($s_s_i_data)>0){
+		
+		//redirect('category/filtersearch');
+		
+	}
+		
+	
+	
+
+}
+	
 }
 ?>
