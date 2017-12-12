@@ -1946,7 +1946,8 @@ class Category_model extends MY_Model
 	}
 	/* subitemwise*/
 	public function get_all_itemproducts_list($subitem_id){
-		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,')->from('products');
+		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,sub_items.subitem_name')->from('products');
+		$this->db->join('sub_items', 'sub_items.subitem_id =products.subitemid', 'left');	
 		$this->db->where('item_status',1);
 		$this->db->where('subitemid',$subitem_id);
 		return $this->db->get()->result_array();

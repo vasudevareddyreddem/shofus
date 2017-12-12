@@ -1739,6 +1739,7 @@ public function suitemwiseproductslist(){
 		}
 		//echo '<pre>';print_r($wishlist_ids);exit;
 		$data['subitemwise']= $this->category_model->get_all_itemproducts_list($subitemid);
+		//echo '<pre>';print_r($data['subitemwise']);exit;
 		$data['brand_list']= $this->category_model->get_subitem_all_brand_list($subitemid);
 		$data['price_list']= $this->category_model->get_subitem_all_price_list($subitemid);
 		$data['discount_list']= $this->category_model->get_subitem_all_discount_list($subitemid);
@@ -1779,8 +1780,54 @@ public function suitemwiseproductslist(){
 			$uniids[]=array('offers'=>$Li);
 			
 		}
-		$data['offer_list']=$uniids;
-		echo '<pre>';print_r($data);exit;
+			$data['offer_list']=$uniids;
+		if(isset($data['subitemwise']) && count($data['subitemwise'])>0){
+		foreach($data['subitemwise'] as $list){
+			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+			}
+		}
+	
+				if(isset($reviewrating) && count($reviewrating)>0){
+					$data['avg_count']=$reviewrating;
+				}else{
+					$data['avg_count']=array();
+				}
+				if(isset($reviewcount) && count($reviewcount)>0){
+					$data['rating_count']=$reviewcount;
+				}else{
+					$data['rating_count']=array();
+				}
+				$cartitemids= $this->category_model->get_all_cart_lists_ids();
+		if(count($cartitemids)>0){
+		foreach($cartitemids as $list){
+			$cust_ids[]=$list['cust_id'];
+			$cart_item_ids[]=$list['item_id'];
+			$cart_ids[]=$list['id'];
+			
+		}
+		$data['cust_ids']=$cust_ids;
+		$data['cart_item_ids']=$cart_item_ids;
+		$data['cart_ids']=$cart_ids;
+		
+	}else{
+		$data['cust_ids']=array();
+		$data['cart_item_ids']=array();
+		$data['cart_ids']=array();
+	}
+	$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+	if(count($wishlist_ids)>0){
+	foreach ($wishlist_ids as  $list){
+		$customer_ids_list[]=$list['cust_id'];
+		$whishlist_item_ids_list[]=$list['item_id'];
+		$whishlist_ids_list[]=$list['id'];
+	}
+	$data['customer_ids_list']=$customer_ids_list;
+	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+	$data['whishlist_ids_list']=$whishlist_ids_list;
+	}
+	
+		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/subitemwise',$data);
 		$this->template->render();
 	  

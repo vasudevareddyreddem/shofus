@@ -1,5 +1,301 @@
-
-
+<style>
+   .top-navbar1{
+   display:none;
+   }
+   .product-ratings{
+   color:#ddd !important;
+   }
+   .product-rateing{
+   color:#fc0 !important;
+   }
+   .fa {
+   padding-right: 0px !important;
+   }
+   .panel-title > a:before {
+   float: right !important;
+   font-family: FontAwesome;
+   content:"\f077";
+   padding-right: 5px;
+   }
+   .panel-heading {
+   background:#45b1b5 ;
+   }
+   .panel-title > a.collapsed:before {
+   float: right !important;
+   content:"\f078";
+   }
+   .panel-title > a:hover, 
+   .panel-title > a:active, 
+   .panel-title > a:focus  {
+   text-decoration:none;
+   }
+   
+   #input-select,
+   #input-number {
+   padding: 7px;
+   margin: 15px 5px 5px;
+   width: 110px;
+   } 
+   #input-select1,
+   #input-number1 {
+   padding: 7px;
+   margin: 15px 5px 5px;
+   width: 110px;
+   }
+   .wish{
+   color:#ef5350;
+   }
+   #slider-text{
+   padding-top: 40px;
+   display: block;
+   }
+   #slider-text .col-md-6{
+   overflow: hidden;
+   }
+   #slider-text h2 {
+   font-family: 'Josefin Sans', sans-serif;
+   font-weight: 400;
+   font-size: 30px;
+   letter-spacing: 3px;
+   margin: 30px auto;
+   padding-left: 40px;
+   }
+   #slider-text h2::after{
+   border-top: 2px solid #c7c7c7;
+   content: "";
+   position: absolute;
+   bottom: 35px;
+   width: 100%;
+   }
+   #itemslider h4{
+   font-family: 'Josefin Sans', sans-serif;
+   font-weight: 400;
+   font-size: 12px;
+   margin: 10px auto 3px;
+   }
+   #itemslider h5{
+   font-family: 'Josefin Sans', sans-serif;
+   font-weight: bold;
+   font-size: 12px;
+   margin: 3px auto 2px;
+   }
+   #itemslider h6{
+   font-family: 'Josefin Sans', sans-serif;
+   font-weight: 300;;
+   font-size: 10px;
+   margin: 2px auto 5px;
+   }
+   .badge {
+   background: #b20c0c;
+   position: absolute;
+   height: 40px;
+   width: 40px;
+   border-radius: 50%;
+   line-height: 31px;
+   font-family: 'Josefin Sans', sans-serif;
+   font-weight: 300;
+   font-size: 14px;
+   border: 2px solid #FFF;
+   box-shadow: 0 0 0 1px #b20c0c;
+   top: 5px;
+   right: 25%;
+   }
+   #slider-control img{
+   padding-top: 60%;
+   margin: 0 auto;
+   }
+   @media screen and (max-width: 992px){
+   #slider-control img {
+   padding-top: 70px;
+   margin: 0 auto;
+   }
+   }
+   .carousel-showmanymoveone .carousel-control {
+   width: 4%;
+   background-image: none;
+   }
+   .carousel-showmanymoveone .carousel-control.left {
+   margin-left: 5px;
+   }
+   .carousel-showmanymoveone .carousel-control.right {
+   margin-right: 5px;
+   }
+   .carousel-showmanymoveone .cloneditem-1,
+   .carousel-showmanymoveone .cloneditem-2,
+   .carousel-showmanymoveone .cloneditem-3,
+   .carousel-showmanymoveone .cloneditem-4,
+   .carousel-showmanymoveone .cloneditem-5 {
+   display: none;
+   }
+   @media all and (min-width: 768px) {
+   .carousel-showmanymoveone .carousel-inner > .active.left,
+   .carousel-showmanymoveone .carousel-inner > .prev {
+   left: -50%;
+   }
+   .carousel-showmanymoveone .carousel-inner > .active.right,
+   .carousel-showmanymoveone .carousel-inner > .next {
+   left: 50%;
+   }
+   .carousel-showmanymoveone .carousel-inner > .left,
+   .carousel-showmanymoveone .carousel-inner > .prev.right,
+   .carousel-showmanymoveone .carousel-inner > .active {
+   left: 0;
+   }
+   .carousel-showmanymoveone .carousel-inner .cloneditem-1 {
+   display: block;
+   }
+   }
+   @media all and (min-width: 768px) and (transform-3d), all and (min-width: 768px) and (-webkit-transform-3d) {
+   .carousel-showmanymoveone .carousel-inner > .item.active.right,
+   .carousel-showmanymoveone .carousel-inner > .item.next {
+   -webkit-transform: translate3d(50%, 0, 0);
+   transform: translate3d(50%, 0, 0);
+   left: 0;
+   }
+   .carousel-showmanymoveone .carousel-inner > .item.active.left,
+   .carousel-showmanymoveone .carousel-inner > .item.prev {
+   -webkit-transform: translate3d(-50%, 0, 0);
+   transform: translate3d(-50%, 0, 0);
+   left: 0;
+   }
+   .carousel-showmanymoveone .carousel-inner > .item.left,
+   .carousel-showmanymoveone .carousel-inner > .item.prev.right,
+   .carousel-showmanymoveone .carousel-inner > .item.active {
+   -webkit-transform: translate3d(0, 0, 0);
+   transform: translate3d(0, 0, 0);
+   left: 0;
+   }
+   }
+   @media all and (min-width: 992px) {
+   .carousel-showmanymoveone .carousel-inner > .active.left,
+   .carousel-showmanymoveone .carousel-inner > .prev {
+   left: -16.666%;
+   }
+   .carousel-showmanymoveone .carousel-inner > .active.right,
+   .carousel-showmanymoveone .carousel-inner > .next {
+   left: 16.666%;
+   }
+   .carousel-showmanymoveone .carousel-inner > .left,
+   .carousel-showmanymoveone .carousel-inner > .prev.right,
+   .carousel-showmanymoveone .carousel-inner > .active {
+   left: 0;
+   }
+   .carousel-showmanymoveone .carousel-inner .cloneditem-2,
+   .carousel-showmanymoveone .carousel-inner .cloneditem-3,
+   .carousel-showmanymoveone .carousel-inner .cloneditem-4,
+   .carousel-showmanymoveone .carousel-inner .cloneditem-5,
+   .carousel-showmanymoveone .carousel-inner .cloneditem-6  {
+   display: block;
+   }
+   }
+   @media all and (min-width: 992px) and (transform-3d), all and (min-width: 992px) and (-webkit-transform-3d) {
+   .carousel-showmanymoveone .carousel-inner > .item.active.right,
+   .carousel-showmanymoveone .carousel-inner > .item.next {
+   -webkit-transform: translate3d(16.666%, 0, 0);
+   transform: translate3d(16.666%, 0, 0);
+   left: 0;
+   }
+   .carousel-showmanymoveone .carousel-inner > .item.active.left,
+   .carousel-showmanymoveone .carousel-inner > .item.prev {
+   -webkit-transform: translate3d(-16.666%, 0, 0);
+   transform: translate3d(-16.666%, 0, 0);
+   left: 0;
+   }
+   .carousel-showmanymoveone .carousel-inner > .item.left,
+   .carousel-showmanymoveone .carousel-inner > .item.prev.right,
+   .carousel-showmanymoveone .carousel-inner > .item.active {
+   -webkit-transform: translate3d(0, 0, 0);
+   transform: translate3d(0, 0, 0);
+   left: 0;
+   }
+   }
+   @media (max-width: 1024px) {
+   #input-select,
+   #input-number {
+   padding: 7px;
+   margin: 15px 5px 5px;
+   width: 77px;
+   }
+   }
+   </style>
+ <div class="col-sm-3">
+            <div class="title"><span>Filters</span></div>
+               <div class="example">
+                  <h3 class="text-left pad_0"style="padding:0;margin:0z">Price</h3>
+                  <div id="html5"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
+                  </div>
+                  <select id="input-select" onchange="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
+                     <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
+                     <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                     <?php } ?>
+                  </select>
+                  <input type="text" readonly="true" name="max_amount"   step="1" id="input-number">
+               </div>
+               <input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
+               <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <?php if(count($offer_list)>0){?>
+                  <div class="panel panel-primary">
+                     <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                           <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                           Offer	
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                           <?php foreach ($offer_list as $list){ ?>
+                           <div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo number_format($list['offers'], 2, '.', ''); ?></span></label></div>
+                           <?php } ?>
+                        </div>
+                     </div>
+                  </div>
+                  <?php } ?>
+                  <?php if(count($brand_list)>0){?>
+                  <div class="panel panel-primary">
+                     <div class="panel-heading" role="tab" id="headingThree2">
+                        <h4 class="panel-title">
+                           <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree1" aria-expanded="false" aria-controls="collapseThree1">
+                           BRAND	
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="collapseThree1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree2">
+                        <div class="panel-body">
+                           <?php foreach ($brand_list as $list){ ?>
+                           <div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+                           <?php } ?>
+                        </div>
+                     </div>
+                  </div>
+                  <?php } ?>
+                  <?php if(count($discount_list)>0){ ?>
+                  <div class="panel panel-primary">
+                     <div class="panel-heading" role="tab" id="headingThree0">
+                        <h4 class="panel-title">
+                           <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree0" aria-expanded="false" aria-controls="collapseThree0">
+                           Discount	
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="collapseThree0" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree0">
+                        <div class="panel-body">
+                           <?php foreach ($discount_list as $list){ ?>
+                           <div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+                           <?php } ?>
+                        </div>
+                     </div>
+                  </div>
+                  <?php } ?>
+               
+               </div>
+             
+                
+                 
+                 
+              
+                
+               </div>
 	 
 	 <div class="col-sm-9" id="aftercategorysearch">
 	 <div id="sucessmsg" style="display:none;"></div>
@@ -7,7 +303,7 @@
                       <span aria-hidden="true">&times;</span>
             </button>
 		</div>
-          <div class="title"><span><?php echo ucfirst(strtolower(isset($category_name['category_name'])?$category_name['category_name']:'')); ?>&nbsp; Category Products lists</span></div>
+          <div class="title"><span><?php echo ucfirst(strtolower(isset($subitemwise[0]['subitem_name'])?$subitemwise[0]['subitem_name']:'')); ?>&nbsp; subitem wise Products lists</span></div>
 		<?php //echo '<pre>';print_r($subcategory_porduct_list);exit; ?>
 		<?php 
 		if(count($subitemwise)>0){
@@ -328,51 +624,4 @@ select.addEventListener('change', function(){
 inputNumber.addEventListener('change', function(){
 	html5Slider.noUiSlider.set([null, this.value]);
 });
-</script>
-<script>
-   var select = document.getElementById('input-select');
-   
-   // Append the option elements
-   for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php echo floor($maximum_price['item_cost']); ?>'; i++ ){
-   
-   var option = document.createElement("option");
-   option.text = i;
-   option.value = i;
-   
-   select.appendChild(option);
-   }
-   
-   var html5Slider = document.getElementById('html6');
-   
-   noUiSlider.create(html5Slider, {
-   start: [ '<?php echo floor($minimum_price['item_cost']); ?>', '<?php echo floor($maximum_price['item_cost']); ?>' ],
-   connect: true,
-   range: {
-   'min': <?php echo floor($minimum_price['item_cost']); ?>,
-   'max': <?php echo floor($maximum_price['item_cost']); ?>
-   }
-   });
-   
-   var inputNumber = document.getElementById('input-number');
-   
-   html5Slider.noUiSlider.on('update', function( values, handle ) {
-   
-   var value = values[handle];
-   
-   if ( handle ) {
-   inputNumber.value = value;
-   } else {
-   select.value = Math.round(value);
-   }
-   });
-   html5Slider.noUiSlider.on('change', function(){
-   mobileaccessories('','','');
-   });
-   select.addEventListener('change', function(){
-   html5Slider.noUiSlider.set([this.value, null]);
-   });
-   
-   inputNumber.addEventListener('change', function(){
-   html5Slider.noUiSlider.set([null, this.value]);
-   });
 </script>

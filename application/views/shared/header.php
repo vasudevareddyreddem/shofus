@@ -129,6 +129,12 @@
    text-align: center;
    line-height: 300%;
    }
+   .tab_hide{
+	 display:none;  
+   }
+   .tab_show{
+	 display:block;  
+   }
 </style>
 
 <div class="wrapper">
@@ -178,6 +184,61 @@
                <h2 style="margin:0px;color:#fff"><span class="smallnav menu" onclick="openNav()">☰</span></h2>
                <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a></span></h1>
             </div>
+			   <div class="medias list_ad sm_hide ">
+				
+			<span class=" dropdown mega-menu">
+               <a  style="background: #fff;position: absolute;z-index:1024;margin-top:19px;margin-right:10px;padding:8px 5px 8px 0px; border-right:1px solid #ddd;"href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <span style="padding: 0px 4px;" class="glyphicon glyphicon-th"></span>
+               </a>
+			    <ul class="dropdown-menu" style="padding:20px;">
+			
+				 <?php $c=1;foreach ($catehorywiselist as $list){ ?>
+
+				 <?php if($c==1){ ?>
+                  <li class="wid_20 "><a onclick="addtabactive(<?php echo $c;?>);" href="#tabs<?php echo $c; ?>" data-toggle="tab"><?php echo $list['category_name']; ?></a></li>
+									
+				<?php }else{ ?>
+				  <li class="wid_20"><a onclick="addtabactive(<?php echo $c; ?>);" href="#tabs<?php echo $c; ?>" data-toggle="tab"><?php echo $list['category_name']; ?></a></li>
+				 <?php } ?>
+				 
+				 
+					 <?php if($c==1){ ?>
+					 
+							<div class="tab-pane active " id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;padding:20px;border-left:1px solid #ddd;min-height:150px">
+								<div class="row" style="margin-right:30px;">
+								<?php foreach ($list['subcat'] as $subitemlist){ ?>
+									<div class="col-md-3">
+										<h5><?php echo $subitemlist['subcategory_name']; ?></h5>
+											<?php foreach ($subitemlist['subitem_list'] as $lists){ ?>
+													<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
+											<?php } ?>
+										
+									</div>
+								<?php } ?>
+								</div>
+							</div>
+						<?php }else{ ?>
+								<div class="tab-pane tab_hide" id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;padding:20px;border-left:1px solid #ddd;min-height:150">
+										<div class="row" style="margin-right:30px;">
+										<?php foreach ($list['subcat'] as $subitemlist){ ?>
+											<div class="col-md-3">
+												<h5><?php echo $subitemlist['subcategory_name']; ?></h5>
+													<?php foreach ($subitemlist['subitem_list'] as $lists){ ?>
+													<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
+													<?php } ?>
+												
+											</div>
+										<?php } ?>
+										</div>
+									</div>
+							<?php } ?>
+				<?php $c++;} ?>
+                  
+                </ul>
+            </span>
+			
+			
+			
             <div class="flipkart-navbar-search smallsearch col-sm-6 col-xs-11">
                <div class="row">
                   <div  >
@@ -185,7 +246,7 @@
                         <div class=" smallsearch">
                            <div class="cart_search">
                               <form id="searchform" action="<?php echo base_url('home/seraching'); ?>" method="post">
-                                 <input type="text" name="serachvalues" id="tags"  onfocus="searchfunction(this.value);" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
+                                 <input style="padding:10px 80px" type="text" name="serachvalues" id="tags"  onfocus="searchfunction(this.value);" onkeyup="searchfunction(this.value);" class="flipkart-navbar-input col-xs-11"  placeholder="Search for Products, Brands and more" autocomplete="off" spellcheck="false">
                                  <button type="submit" class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                               </form>
                            </div>
@@ -195,8 +256,13 @@
                   </div>
                </div>
             </div>
-         </div>
-         <div class="medias list_ad sm_hide ">
+       
+			 <span class="medias text-center">
+               <a href="<?php echo base_url('customer/nearstores'); ?>">
+                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
+                  <p>Near by stores</p>
+               </a>
+            </span>
             <?php if($this->session->userdata('userdetails')){ ?>
             <span class="medias user_log">
                <a>
@@ -252,85 +318,10 @@
                <span style="position:absolute;top:-5px;right:-5px;font-size:12px"></span>
             </span>
             <?php } ?>	
-            <span class="medias text-center">
-               <a href="<?php echo base_url('customer/nearstores'); ?>">
-                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
-                  <p>Near by stores</p>
-               </a>
-            </span>
-            <span class="medias dropdown mega-menu">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/catag.png" /></i>
-                  <p>Categories</p>
-               </a>
-               <!--<ul class="dropdown-menu">
-                  <?php foreach ($allcategories_list as $list){ ?>
-                  <li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id'])); ?>"><?php echo $list['category_name']; ?></a></li>
-                  <?php } ?>				  
-               </ul>-->
-			    <ul class="dropdown-menu">
-                  <li>
-                    <div class="mega-menu-content">
-                      <div class="row">
-                        <!-- TABS PRESENTATION -->
-<section class="blok">
-<div class="blok-body">
-<div class="row">
-  <!-- Nav tabs -->
-   <?php $cnt=1;foreach ($catehorywiselist as $list){ ?>
-   <?php if($cnt==1){ ?>
-		<li class="active"  data-toggle="tab"><a onclick="addtabactive(<?php echo $cnt; ?>);" href="#tab<?php echo $cnt; ?>"><?php echo $list['category_name']; ?></a></li>
-   <?php }else{ ?>
-		<li class=""  data-toggle="tab"><a onclick="addtabactive(<?php echo $cnt; ?>);" href="#tab<?php echo $cnt; ?>"><?php echo $list['category_name']; ?></a></li>
-   <?php } ?>
-  <!-- Tab panes -->
-  
-   <?php
-
-//echo '<pre>';print_r($subcates);exit; ?>
-		<div class="tab-content col-sm-10">
-					<?php if($cnt==1){ ?>
-					<div class="tab-pane  active" id="tab<?php echo $cnt; ?>">
-					  <?php foreach ($list['subcat'] as $lists){ ?>
-								<div class="col-sm-3">
-								  <ul class="list-unstyled">
-									<li><p><strong><?php echo $lists['subcategory_name']; ?></strong></p></li>
-									<?php foreach ($lists['subitem_list'] as $lists){ ?>
-									<li><a href="#"> <?php echo $lists['subitem_name']; ?> </a></li>
-									<?php } ?>
-								  </ul>
-								</div>
-								  <?php } ?>
-								
-					</div>
-					<?php }else{?>
-					<div class="tab-pane " id="tab<?php echo $cnt; ?>">
-					  <?php foreach ($list['subcat'] as $lists){ ?>
-								<div class="col-sm-3">
-								  <ul class="list-unstyled">
-									<li><p><strong><?php echo $lists['subcategory_name']; ?></strong></p></li>
-									<?php foreach ($lists['subitem_list'] as $lists){ ?>
-									<li><a href="#"> <?php echo $lists['subitem_name']; ?> </a></li>
-									<?php } ?>
-								  </ul>
-								</div>
-								  <?php } ?>
-								
-					</div>
-					<?php } ?>
-		</div>
-  <?php  $cnt++;} ?>
-  
-</div><!-- //row -->
-</div><!-- blok-body // -->
-</section><!-- // blok -->
-<!-- TABS PRESENTATION // -->
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-            </span>
+           
+            
          </div>
+		   </div>
          <!--responsive -->
          <div class="md_hide" style="position:absolute;top:10px;right:10px;font-size:22px;color:#fff">
             <span class="pad_le">
@@ -512,17 +503,17 @@ function addtabactive(id)
 {
 	//$("#tabs"+id).empty();
 	
-	$("#tab"+id).show();
-	$("#tab"+id).addClass("active");
-	$("#tab"+id).removeClass("tab_hide");
+	$("#tabs"+id).show();
+	$("#tabs"+id).addClass("active");
+	$("#tabs"+id).removeClass("tab_hide");
 	var cnt;
     var nt =<?php echo count($catehorywiselist); ?>;
 	//var cnt='';
 	for(cnt = 1; cnt <= nt; cnt++){
 		if(cnt!=id){
-			$("#tab"+cnt).hide();
-			$("#tab"+cnt).removeClass("active");
-			$("#tab"+cnt).addClass("tab_hide");
+			$("#tabs"+cnt).hide();
+			$("#tabs"+cnt).removeClass("active");
+			$("#tabs"+cnt).addClass("tab_hide");
 		}             
 	}
 			
