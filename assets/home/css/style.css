@@ -1,6 +1,16 @@
 .pr15 a{
 	color:#555 !important;
 }
+.lod_st{
+	border: 1px solid #187a7d;
+    border-radius: 10px;
+    color: #fff;
+    padding: 6px 15px;
+	background:#009688;
+}
+.mar_t15{
+	margin-top:15px;
+}
 .wid_20{
 	width:18% !important;
 }

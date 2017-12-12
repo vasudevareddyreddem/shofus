@@ -210,6 +210,20 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
     <!-- best Pro Slider -->
     
     <section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="row mar_t15" >
+			<div class="col-md-4">
+				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/5bafa3.jpg?q=50">
+			</div><div class="col-md-4">
+				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/de54b5.jpg?q=50">
+			</div><div class="col-md-4">
+				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/5bafa3.jpg?q=50">
+			</div>
+		</div>
+	</div>
+		
+    </section>
+    <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
           <h2>Trending products</h2>
@@ -473,6 +487,25 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <a href="<?php echo base_url('customer/seemore/'.base64_encode('offer').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
+	<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="row mar_t15" >
+			<div class="col-md-3">
+				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/5bafa3.jpg?q=50">
+			</div>
+			<div class="col-md-3">
+				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/de54b5.jpg?q=50">
+			</div>
+			<div class="col-md-3">
+				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/5bafa3.jpg?q=50">
+			</div>
+			<div class="col-md-3">
+				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/de54b5.jpg?q=50">
+			</div>
+		</div>
+	</div>
+		
+    </section>
 <?php if(isset($deals_of_the_day) && count($deals_of_the_day)>0){ ?>
      <section>
       <div class="best-pro slider-items-products container_main">
@@ -657,6 +690,28 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
       </div>
     </section>
 <?php } ?>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="row mar_t15" >
+			<div class="col-md-6">
+				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/5bafa3.jpg?q=50">
+			</div>
+			<div class="col-md-6">
+				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/de54b5.jpg?q=50">
+			</div>
+				
+		</div>
+	</div>
+		
+    </section>
+	<section>
+	<div class="">
+	<div class="clearfix">&nbsp;</div>
+				<div class="text-center"><span class="lod_st">Load more &nbsp; . &nbsp; .</span></div>
+				<div class="clearfix">&nbsp;</div>
+	</div>
+		
+    </section>
   </div>
 </body>
 
