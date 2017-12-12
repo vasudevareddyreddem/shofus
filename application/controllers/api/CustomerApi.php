@@ -3109,7 +3109,6 @@ class CustomerApi extends REST_Controller {
 				
 		}
 		$subitems_list= $this->Customerapi_model->get_sub_items_list($sub_category_id);
-		//echo '<pre>';print_r($item_lists);exit;
 		if(count($subitems_list)>0){
 			$message = array(
 				'status'=>1,
@@ -3259,6 +3258,7 @@ class CustomerApi extends REST_Controller {
 						(
 							'status'=>1,
 							'productlist'=>$tems_list,
+							'path'=>base_url('uploads/products/'),
 							'message'=>'Product list are found.'
 						);
 						$this->response($message, REST_Controller::HTTP_OK);

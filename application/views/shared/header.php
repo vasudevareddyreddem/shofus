@@ -210,7 +210,7 @@
 									<div class="col-md-3">
 										<h5><?php echo $subitemlist['subcategory_name']; ?></h5>
 											<?php foreach ($subitemlist['subitem_list'] as $lists){ ?>
-													<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
+													<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id']).'/'.base64_encode($subitemlist['subcategory_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
 											<?php } ?>
 										
 									</div>
@@ -224,7 +224,7 @@
 											<div class="col-md-3">
 												<h5><?php echo $subitemlist['subcategory_name']; ?></h5>
 													<?php foreach ($subitemlist['subitem_list'] as $lists){ ?>
-													<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
+													<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id']).'/'.base64_encode($subitemlist['subcategory_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
 													<?php } ?>
 												
 											</div>

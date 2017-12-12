@@ -220,20 +220,37 @@
    </style>
  <div class="col-sm-3">
             <div class="title"><span>Filters</span></div>
-               <div class="example">
-                  <h3 class="text-left pad_0"style="padding:0;margin:0z">Price</h3>
-                  <div id="html5"  name="html5" onclick="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" class="noUi-target noUi-ltr noUi-horizontal">
-                  </div>
-                  <select id="input-select" onchange="mobileaccessories(this.value, '<?php echo ''; ?>','<?php echo ''; ?>');" name="min_amount" >
-                     <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=500 ){  ?>
-                     <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                     <?php } ?>
-                  </select>
-                  <input type="text" readonly="true" name="max_amount"   step="1" id="input-number">
-               </div>
+              <div class="row">
+				  <div class="col-md-6">
+				  <h4>Min:<span class="site_col">1200</span></h4>
+				  </div>
+				  <div class="col-md-6">
+				 <h4>Max:<span class="site_col">1400</span></h4>
+				  </div>
+			</div>
+		  <div class="row">
+		  <div class="col-md-6">
+		   <select class="form-control" id="sel1">
+				<option>Min</option>
+				<option>1000</option>
+				<option>2000</option>
+				<option>3000</option>
+				<option>4000</option>
+			  </select>
+		  </div>
+		  <div class="col-md-6">
+		   <select class="form-control" id="sel1">
+				<option>Max</option>
+				<option>1000</option>
+				<option>2000</option>
+				<option>3000</option>
+				<option>4000</option>
+			  </select>
+		  </div>
+		  </div><br>
                <input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                  <?php if(count($offer_list)>0){?>
+                  <?php if(isset($offer_list) && count($offer_list)>0){?>
                   <div class="panel panel-primary">
                      <div class="panel-heading" role="tab" id="headingThree">
                         <h4 class="panel-title">
@@ -251,7 +268,7 @@
                      </div>
                   </div>
                   <?php } ?>
-                  <?php if(count($brand_list)>0){?>
+                  <?php if(isset($brand_list) && count($brand_list)>0){?>
                   <div class="panel panel-primary">
                      <div class="panel-heading" role="tab" id="headingThree2">
                         <h4 class="panel-title">
@@ -269,7 +286,7 @@
                      </div>
                   </div>
                   <?php } ?>
-                  <?php if(count($discount_list)>0){ ?>
+                  <?php if(isset($discount_list) && count($discount_list)>0){ ?>
                   <div class="panel panel-primary">
                      <div class="panel-heading" role="tab" id="headingThree0">
                         <h4 class="panel-title">
@@ -287,7 +304,471 @@
                      </div>
                   </div>
                   <?php } ?>
-               
+               <?php if(isset($color_list) && count($color_list)>0){ ?>
+                  <div class="panel panel-primary">
+                     <div class="panel-heading" role="tab" id="headingThree45">
+                        <h4 class="panel-title">
+                           <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                           Colors	
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree45">
+                        <div class="panel-body">
+                           <?php foreach ($color_list as $list){ ?>
+                           <div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'color'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
+                           <?php } ?>
+                        </div>
+                     </div>
+                  </div>
+                  <?php } ?>
+				  	<?php  if(isset($sizes_list) && count($sizes_list)>0){ ?>
+				<div class="panel panel-primary">
+					<div class="panel-heading" role="tab" id="headingThree">
+						 <h4 class="panel-title">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  SIZE	
+					  </a>
+				  </h4>
+
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+						<?php foreach ($sizes_list as $list){ ?>
+							<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['p_size_name']; ?>"><span>&nbsp;<?php echo $list['p_size_name']; ?></span></label></div>
+						
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<?php  } ?>
+						<?php if(isset($ram_list) && count($ram_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingThreecomram">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							RAM	
+							</a>
+							</h4>
+
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreecomram">
+							<div class="panel-body">
+							<?php foreach ($ram_list as $list){ ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'ram'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[ram][]" value="<?php echo $list['ram']; ?>"><span>&nbsp;<?php echo $list['ram']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($os_list) && count($os_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingos">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseos" aria-expanded="false" aria-controls="collapseos">
+							OS	
+							</a>
+							</h4>
+
+						</div>
+						<div id="collapseos" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingos">
+							<div class="panel-body">
+							<?php foreach ($os_list as $list){ ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'os'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[os][]" value="<?php echo $list['os']; ?>"><span>&nbsp;<?php echo $list['os']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($sim_list) && count($sim_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingsim_list">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsesim_list" aria-expanded="false" aria-controls="collapsesim_list">
+							Sim Type	
+							</a>
+							</h4>
+
+						</div>
+						<div id="collapsesim_list" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingsim_list">
+							<div class="panel-body">
+							<?php foreach ($sim_list as $list){?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'sim_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[sim_type][]" value="<?php echo $list['sim_type']; ?>"><span>&nbsp;<?php echo $list['sim_type']; ?></span></label></div>
+
+							<?php }   ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($camera_list) && count($camera_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingcamera">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsecamera" aria-expanded="false" aria-controls="collapsecamera">
+							Camera	
+							</a>
+							</h4>
+
+						</div>
+						<div id="collapsecamera" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingcamera">
+							<div class="panel-body">
+							<?php foreach ($camera_list as $list){ ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'camera'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[camera][]" value="<?php echo $list['camera']; ?>"><span>&nbsp;<?php echo $list['camera']; ?></span></label></div>
+
+							<?php }  ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($internal_memeory_list) && count($internal_memeory_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headinginternal_memeory">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseinternal_memeory" aria-expanded="false" aria-controls="collapseinternal_memeory">
+							Internal Memory	
+							</a>
+							</h4>
+
+						</div>
+						<div id="collapseinternal_memeory" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headinginternal_memeory">
+							<div class="panel-body">
+							<?php foreach ($internal_memeory_list as $list){ ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'internal_memeory'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[internal_memeory][]" value="<?php echo $list['internal_memeory']; ?>"><span>&nbsp;<?php echo $list['internal_memeory']; ?></span></label></div>
+
+							<?php   } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+						<?php if(isset($screen_size_list) && count($screen_size_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingscreen_size">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsescreen_size" aria-expanded="false" aria-controls="collapsescreen_size">
+							Screen size	
+							</a>
+							</h4>
+
+						</div>
+						<div id="collapsescreen_size" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingscreen_size">
+							<div class="panel-body">
+							<?php foreach ($screen_size_list as $list){ ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'screen_size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[screen_size][]" value="<?php echo $list['screen_size']; ?>"><span>&nbsp;<?php echo $list['screen_size']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($Processor_list) && count($Processor_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor" aria-expanded="false" aria-controls="collapseProcessor">
+							Processor	
+							</a>
+							</h4>
+
+						</div>
+						<div id="collapseProcessor" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor">
+							<div class="panel-body">
+							<?php foreach ($Processor_list as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'Processor'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[Processor][]" value="<?php echo $list['Processor']; ?>"><span>&nbsp;<?php echo $list['Processor']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($printer_type) && count($printer_type)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor2">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor2" aria-expanded="false" aria-controls="collapseProcessor2">
+							Processor	
+							</a>
+							</h4>
+
+						</div>
+						<div id="collapseProcessor2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor2">
+							<div class="panel-body">
+							<?php foreach ($printer_type as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'printer_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[printer_type][]" value="<?php echo $list['printer_type']; ?>"><span>&nbsp;<?php echo $list['printer_type']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($type_list) && count($type_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor3">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor3" aria-expanded="false" aria-controls="collapseProcessor3">
+							Processor	
+							</a>
+							</h4>
+
+						</div>
+						<div id="collapseProcessor3" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor3">
+							<div class="panel-body">
+							<?php foreach ($type_list as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[type][]" value="<?php echo $list['type']; ?>"><span>&nbsp;<?php echo $list['type']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($printer_type) && count($printer_type)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor4">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor4" aria-expanded="false" aria-controls="collapseProcessor4">
+							Printer Type	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor4" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor4">
+							<div class="panel-body">
+							<?php foreach ($printer_type as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'printer_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[printer_type][]" value="<?php echo $list['printer_type']; ?>"><span>&nbsp;<?php echo $list['printer_type']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($type_list) && count($type_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor5">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor5" aria-expanded="false" aria-controls="collapseProcessor5">
+							Type	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor5" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor5">
+							<div class="panel-body">
+							<?php foreach ($type_list as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[type][]" value="<?php echo $list['type']; ?>"><span>&nbsp;<?php echo $list['type']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($max_copies) && count($max_copies)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor6">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor6" aria-expanded="false" aria-controls="collapseProcessor6">
+							Max Copies	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor6" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor6">
+							<div class="panel-body">
+							<?php foreach ($max_copies as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'max_copies'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[max_copies][]" value="<?php echo $list['max_copies']; ?>"><span>&nbsp;<?php echo $list['max_copies']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($paper_size) && count($paper_size)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor7">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor7" aria-expanded="false" aria-controls="collapseProcessor7">
+							Max Copies	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor7" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor7">
+							<div class="panel-body">
+							<?php foreach ($paper_size as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'paper_size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[paper_size][]" value="<?php echo $list['paper_size']; ?>"><span>&nbsp;<?php echo $list['paper_size']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($headphone_jack) && count($headphone_jack)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor8">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor8" aria-expanded="false" aria-controls="collapseProcessor8">
+							Headphone Jack	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor8" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor8">
+							<div class="panel-body">
+							<?php foreach ($headphone_jack as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'headphone_jack'; ?>','<?php echo ''; ?>');" id="headphone_jack" name="products[headphone_jack][]" value="<?php echo $list['headphone_jack']; ?>"><span>&nbsp;<?php echo $list['headphone_jack']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($noise_reduction) && count($noise_reduction)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor9">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor9" aria-expanded="false" aria-controls="collapseProcessor9">
+							Noise Reduction	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor9">
+							<div class="panel-body">
+							<?php foreach ($noise_reduction as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'noise_reduction'; ?>','<?php echo ''; ?>');" id="noise_reduction" name="products[noise_reduction][]" value="<?php echo $list['noise_reduction']; ?>"><span>&nbsp;<?php echo $list['noise_reduction']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($usb_port) && count($usb_port)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor10">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor10" aria-expanded="false" aria-controls="collapseProcessor10">
+							Usb Port	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor10" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor10">
+							<div class="panel-body">
+							<?php foreach ($usb_port as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'usb_port'; ?>','<?php echo ''; ?>');" id="usb_port" name="products[usb_port][]" value="<?php echo $list['usb_port']; ?>"><span>&nbsp;<?php echo $list['usb_port']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($compatible_for) && count($compatible_for)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor11">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor11" aria-expanded="false" aria-controls="collapseProcessor11">
+							Compatible For	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor11" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor11">
+							<div class="panel-body">
+							<?php foreach ($compatible_for as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'compatible_for'; ?>','<?php echo ''; ?>');" id="compatible_for" name="products[compatible_for][]" value="<?php echo $list['compatible_for']; ?>"><span>&nbsp;<?php echo $list['compatible_for']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($scanner_type) && count($scanner_type)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor12">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor12" aria-expanded="false" aria-controls="collapseProcessor12">
+							Scanner Type	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor12" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor12">
+							<div class="panel-body">
+							<?php foreach ($scanner_type as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'scanner_type'; ?>','<?php echo ''; ?>');" id="scanner_type" name="products[scanner_type][]" value="<?php echo $list['scanner_type']; ?>"><span>&nbsp;<?php echo $list['scanner_type']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($resolution) && count($resolution)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor13">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor13" aria-expanded="false" aria-controls="collapseProcessor13">
+							Resolution	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor13" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor13">
+							<div class="panel-body">
+							<?php foreach ($resolution as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'resolution'; ?>','<?php echo ''; ?>');" id="resolution" name="products[resolution][]" value="<?php echo $list['resolution']; ?>"><span>&nbsp;<?php echo $list['resolution']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($f_stop) && count($f_stop)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor14">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor14" aria-expanded="false" aria-controls="collapseProcessor14">
+							F/stop	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor14" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor14">
+							<div class="panel-body">
+							<?php foreach ($f_stop as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'f_stop'; ?>','<?php echo ''; ?>');" id="f_stop" name="products[f_stop][]" value="<?php echo $list['f_stop']; ?>"><span>&nbsp;<?php echo $list['f_stop']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($minimum_focusing_distance) && count($minimum_focusing_distance)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor15">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor15" aria-expanded="false" aria-controls="collapseProcessor15">
+							Focusing Distance	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor15" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor15">
+							<div class="panel-body">
+							<?php foreach ($minimum_focusing_distance as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'minimum_focusing_distance'; ?>','<?php echo ''; ?>');" id="minimum_focusing_distance" name="products[minimum_focusing_distance][]" value="<?php echo $list['minimum_focusing_distance']; ?>"><span>&nbsp;<?php echo $list['minimum_focusing_distance']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($minimum_focusing_distance) && count($minimum_focusing_distance)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor15">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor15" aria-expanded="false" aria-controls="collapseProcessor15">
+							Focusing Distance	
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor15" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor15">
+							<div class="panel-body">
+							<?php foreach ($minimum_focusing_distance as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'minimum_focusing_distance'; ?>','<?php echo ''; ?>');" id="minimum_focusing_distance" name="products[minimum_focusing_distance][]" value="<?php echo $list['minimum_focusing_distance']; ?>"><span>&nbsp;<?php echo $list['minimum_focusing_distance']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
                </div>
              
                 

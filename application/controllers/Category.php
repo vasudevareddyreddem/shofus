@@ -1734,18 +1734,50 @@ public function suitemwiseproductslist(){
 	/* subcategory wise*/
 	public function subitemwise(){
 	  $subitemid=base64_decode($this->uri->segment(3));
-		if($subitemid==''){
+	  $subcatid=base64_decode($this->uri->segment(4));
+		if($subitemid=='' ||  $subcatid ==''){
 			redirect();
 		}
-		//echo '<pre>';print_r($wishlist_ids);exit;
-		$data['subitemwise']= $this->category_model->get_all_itemproducts_list($subitemid);
+		$data['subitemwise']= $this->category_model->get_all_itemproducts_list($subcatid,$subitemid);
 		//echo '<pre>';print_r($data['subitemwise']);exit;
-		$data['brand_list']= $this->category_model->get_subitem_all_brand_list($subitemid);
-		$data['price_list']= $this->category_model->get_subitem_all_price_list($subitemid);
-		$data['discount_list']= $this->category_model->get_subitem_all_discount_list($subitemid);
+		$data['brand_list']= $this->category_model->get_subitem_all_brand_list($subcatid,$subitemid);
+		$data['price_list']= $this->category_model->get_subitem_all_price_list($subcatid,$subitemid);
+		//$data['discount_list']= $this->category_model->get_subitem_all_discount_list($subitemid);
 		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-		$offer_list= $this->category_model->get_subitem_all_offer_list($subitemid);
-		$data['color_list']= $this->category_model->get_subitem_all_color_list($subitemid);
+		$offer_list= $this->category_model->get_subitem_all_offer_list($subcatid,$subitemid);
+		$data['color_list']= $this->category_model->get_subitem_all_color_list($subcatid,$subitemid);
+		$data['ram_list']= $this->category_model->get_ram_type_list_itemwise($subcatid,$subitemid);
+		$data['os_list']= $this->category_model->get_os_type_list_itemwise($subcatid,$subitemid);
+		$data['sim_list']= $this->category_model->get_sim_type_type_list_itemwise($subcatid,$subitemid);
+		$data['camera_list']= $this->category_model->get_camera_type_list_itemwise($subcatid,$subitemid);
+		$data['internal_memeory_list']= $this->category_model->get_internal_memeory_list_itemwise($subcatid,$subitemid);
+		$data['screen_size_list']= $this->category_model->get_screen_size_list_itemwise($subcatid,$subitemid);
+		$data['Processor_list']= $this->category_model->get_Processor_list_itemwise($subcatid,$subitemid);
+		$data['printer_type']= $this->category_model->get_printer_type_list_itemwise($subcatid,$subitemid);
+		$data['type_list']= $this->category_model->get_type_list_itemwise($subcatid,$subitemid);
+		$data['max_copies']= $this->category_model->get_maxcopies_list_itemwise($subcatid,$subitemid);
+		$data['paper_size']= $this->category_model->get_paper_size_list_itemwise($subcatid,$subitemid);
+		$data['headphone_jack']= $this->category_model->get_headphone_jack_list_itemwise($subcatid,$subitemid);
+		$data['noise_reduction']= $this->category_model->get_noise_reduction_list_itemwise($subcatid,$subitemid);
+		$data['user_port']= $this->category_model->get_usbr_port_list_itemwise($subcatid,$subitemid);
+		$data['compatible_for']= $this->category_model->get_compatible_for_list_itemwise($subcatid,$subitemid);
+		$data['scanner_type']= $this->category_model->get_scanner_type_list_itemwise($subcatid,$subitemid);
+		$data['resolution']= $this->category_model->get_resolution_list_itemwise($subcatid,$subitemid);
+		$data['f_stop']= $this->category_model->get_f_stop_list_itemwise($subcatid,$subitemid);
+		$data['minimum_focusing_distance']= $this->category_model->get_minimum_focusing_distance_list_itemwise($subcatid,$subitemid);
+		$data['aperture_withmaxfocal_length']= $this->category_model->get_aperture_withmaxfocal_length_list_itemwise($subcatid,$subitemid);
+		$data['picture_angle']= $this->category_model->get_picture_angle_list_itemwise($subcatid,$subitemid);
+		$data['size_list']= $this->category_model->get_size_list_itemwise($subcatid,$subitemid);
+		$data['weight_list']= $this->category_model->get_weight_list_itemwise($subcatid,$subitemid);
+		$data['occasion_list']= $this->category_model->get_occasion_list_itemwise($subcatid,$subitemid);
+		$data['material_list']= $this->category_model->get_material_list_itemwise($subcatid,$subitemid);
+		$data['collar_type']= $this->category_model->get_collar_type_itemwise($subcatid,$subitemid);
+		$data['gender_list']= $this->category_model->get_gender_list_itemwise($subcatid,$subitemid);
+		$data['sleeve_list']= $this->category_model->get_sleeve_list_itemwise($subcatid,$subitemid);
+		$data['look_list']= $this->category_model->get_look_list_itemwise($subcatid,$subitemid);
+		$data['style_code']= $this->category_model->get_style_code_itemwise($subcatid,$subitemid);
+		$data['inner_material']= $this->category_model->get_inner_material_itemwise($subcatid,$subitemid);
+		$data['waterproof']= $this->category_model->get_waterproof_itemwise($subcatid,$subitemid);
 		foreach ($data['price_list'] as $list) {
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');

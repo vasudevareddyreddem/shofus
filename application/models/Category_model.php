@@ -1945,52 +1945,360 @@ class Category_model extends MY_Model
 		
 	}
 	/* subitemwise*/
-	public function get_all_itemproducts_list($subitem_id){
+	public function get_all_itemproducts_list($subcatid,$subitem_id){
 		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,sub_items.subitem_name')->from('products');
 		$this->db->join('sub_items', 'sub_items.subitem_id =products.subitemid', 'left');	
 		$this->db->where('item_status',1);
 		$this->db->where('subitemid',$subitem_id);
+		$this->db->where('products.subcategory_id',$subcatid);
 		return $this->db->get()->result_array();
 	}
-	public function get_subitem_all_brand_list($subitem_id){
+	public function get_subitem_all_brand_list($subcatid,$subitem_id){
 		
 		$this->db->select('products.brand')->from('products');
-			$this->db->where('subitemid',$subitem_id);
+		$this->db->where('subitemid',$subitem_id);
+		$this->db->where('products.subcategory_id',$subcatid);
 		$this->db->where('item_status',1);
 		$this->db->where('brand!=','');
 		$this->db->group_by('brand');
 		return $this->db->get()->result_array();
 		
 	}
-	public function get_subitem_all_price_list($subitem_id)
-	{
+	public function get_subitem_all_price_list($subcatid,$subitem_id){
 		$this->db->select('products.item_cost,products.special_price,products.offer_expairdate')->from('products');
 		$this->db->where('subitemid',$subitem_id);
+		$this->db->where('products.subcategory_id',$subcatid);
 		$this->db->where('item_status',1);
 		$this->db->where('item_cost!=','');
 		$this->db->where('special_price!=','');
 		$this->db->group_by('item_cost');
 		return $this->db->get()->result_array();
 	}
-	public function get_subitem_all_offer_list($subitem_id)
-	{
+	public function get_subitem_all_offer_list($subcatid,$subitem_id){
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 
-		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `subitemid` = '".$subitem_id."' AND `item_status` = 1 AND  offers!='' OR offer_percentage!=''";
+		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `subitemid` = '".$subitem_id."' AND `subcategory_id` = '".$subcatid."' AND `item_status` = 1  AND  offers!='' OR offer_percentage!=''";
 		return $this->db->query($sql)->result_array();
 	}
-	public function get_subitem_all_discount_list($subitem_id)
+	public function get_subitem_all_discount_list($subcatid,$subitem_id)
 	{
-		$sql = "SELECT IF(products.offer_expairdate>= DATE('Y-m-d h:i:s A'), offer_amount, discount) AS discount FROM `products` WHERE `subitemid` = '".$subitem_id."' AND `item_status` = 1 AND `discount` != '' GROUP BY `discount`";
+		$sql = "SELECT IF(products.offer_expairdate>= DATE('Y-m-d h:i:s A'), offer_amount, discount) AS discount FROM `products` WHERE `subitemid` = '".$subitem_id."' AND  `subcategory_id` = '".$subcatid."' AND `item_status` = 1 AND `discount` != '' GROUP BY `discount`";
 		return $this->db->query($sql)->result_array();
 	}
-	public function get_subitem_all_color_list($subitem_id){
+	public function get_subitem_all_color_list($subcatid,$subitem_id){
 		$this->db->select('products.colour as color_name')->from('products');
 		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('products.subcategory_id',$subcatid);
 		$this->db->where('products.item_status',1);
 		$this->db->where('products.colour!=','');
 		$this->db->group_by('products.colour');
+		return $this->db->get()->result_array();
+	}
+	public function get_Processor_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.Processor')->from('products');
+		$this->db->where('products.subcategory_id',$subcatid);
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('item_status',1);
+		$this->db->where('Processor!=','');
+		$this->db->group_by('Processor');
+		return $this->db->get()->result_array();
+	}
+	public function get_screen_size_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.screen_size')->from('products');
+		$this->db->where('products.subcategory_id',$subcatid);
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('item_status',1);
+		$this->db->where('screen_size!=','');
+		$this->db->group_by('screen_size');
+		return $this->db->get()->result_array();
+	}
+	public function get_ram_type_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.ram')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('ram!=','');
+		$this->db->group_by('ram');
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_os_type_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.os')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('os!=','');
+		$this->db->group_by('os');
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_sim_type_type_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.sim_type')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('sim_type!=','');
+		$this->db->group_by('sim_type');
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_camera_type_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.camera')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('camera!=','');
+		$this->db->group_by('camera');
+		return $this->db->get()->result_array();
+	}
+	public function get_internal_memeory_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.internal_memeory')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('internal_memeory!=','');
+		$this->db->group_by('internal_memeory');
+		return $this->db->get()->result_array();
+	}
+	public function get_printer_type_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.printer_type')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('printer_type!=','');
+		$this->db->group_by('printer_type');
+		return $this->db->get()->result_array();
+	}
+	public function get_type_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.type')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('type!=','');
+		$this->db->group_by('type');
+		return $this->db->get()->result_array();
+	}
+	public function get_maxcopies_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.copies_from')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('copies_from!=','');
+		$this->db->group_by('copies_from');
+		return $this->db->get()->result_array();
+	}
+	public function get_paper_size_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.paper_size')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('paper_size!=','');
+		$this->db->group_by('paper_size');
+		return $this->db->get()->result_array();
+	}
+	public function get_headphone_jack_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.headphone_jack')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('headphone_jack!=','');
+		$this->db->group_by('headphone_jack');
+		return $this->db->get()->result_array();
+	}
+	public function get_noise_reduction_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.noise_reduction')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('noise_reduction!=','');
+		$this->db->group_by('noise_reduction');
+		return $this->db->get()->result_array();
+	}
+	public function get_user_port_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.usb_port')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('usb_port!=','');
+		$this->db->group_by('usb_port');
+		return $this->db->get()->result_array();
+	}
+	public function get_compatible_for_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.compatible_for')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('compatible_for!=','');
+		$this->db->group_by('compatible_for');
+		return $this->db->get()->result_array();
+	}public function get_scanner_type_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.scanner_type')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('scanner_type!=','');
+		$this->db->group_by('scanner_type');
+		return $this->db->get()->result_array();
+	}public function get_resolution_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.resolution')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('resolution!=','');
+		$this->db->group_by('resolution');
+		return $this->db->get()->result_array();
+	}public function get_f_stop_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.f_stop')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('f_stop!=','');
+		$this->db->group_by('f_stop');
+		return $this->db->get()->result_array();
+	}public function get_minimum_focusing_distance_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.minimum_focusing_distance')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('minimum_focusing_distance!=','');
+		$this->db->group_by('minimum_focusing_distance');
+		return $this->db->get()->result_array();
+	}public function get_aperture_withmaxfocal_length_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.aperture_withmaxfocal_length')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('aperture_withmaxfocal_length!=','');
+		$this->db->group_by('aperture_withmaxfocal_length');
+		return $this->db->get()->result_array();
+	}public function get_picture_angle_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.picture_angle')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('picture_angle!=','');
+		$this->db->group_by('picture_angle');
+		return $this->db->get()->result_array();
+	}public function get_size_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.size')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('size!=','');
+		$this->db->group_by('size');
+		return $this->db->get()->result_array();
+	}public function get_weight_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.weight')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('weight!=','');
+		$this->db->group_by('weight');
+		return $this->db->get()->result_array();
+	}public function get_occasion_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.occasion')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('occasion!=','');
+		$this->db->group_by('occasion');
+		return $this->db->get()->result_array();
+	}public function get_material_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.material')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('material!=','');
+		$this->db->group_by('material');
+		return $this->db->get()->result_array();
+	}public function get_collar_type_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.collar_type')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('collar_type!=','');
+		$this->db->group_by('collar_type');
+		return $this->db->get()->result_array();
+	}public function get_gender_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.gender')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('gender!=','');
+		$this->db->group_by('gender');
+		return $this->db->get()->result_array();
+	}public function get_sleeve_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.sleeve')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('sleeve!=','');
+		$this->db->group_by('sleeve');
+		return $this->db->get()->result_array();
+	}public function get_look_list_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.look')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('look!=','');
+		$this->db->group_by('look');
+		return $this->db->get()->result_array();
+	}public function get_style_code_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.style_code')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('style_code!=','');
+		$this->db->group_by('style_code');
+		return $this->db->get()->result_array();
+	}public function get_inner_material_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.inner_material')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('inner_material!=','');
+		$this->db->group_by('inner_material');
+		return $this->db->get()->result_array();
+	}public function get_waterproof_itemwise($subcatid,$subitem_id)
+	{
+		$this->db->select('products.waterproof')->from('products');
+		$this->db->where('products.subitemid',$subitem_id);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('item_status',1);
+		$this->db->where('waterproof!=','');
+		$this->db->group_by('waterproof');
 		return $this->db->get()->result_array();
 	}
 	
