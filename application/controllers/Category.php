@@ -1759,7 +1759,7 @@ public function suitemwiseproductslist(){
 		$data['paper_size']= $this->category_model->get_paper_size_list_itemwise($subcatid,$subitemid);
 		$data['headphone_jack']= $this->category_model->get_headphone_jack_list_itemwise($subcatid,$subitemid);
 		$data['noise_reduction']= $this->category_model->get_noise_reduction_list_itemwise($subcatid,$subitemid);
-		$data['user_port']= $this->category_model->get_usbr_port_list_itemwise($subcatid,$subitemid);
+		$data['usb_port']= $this->category_model->get_usbr_port_list_itemwise($subcatid,$subitemid);
 		$data['compatible_for']= $this->category_model->get_compatible_for_list_itemwise($subcatid,$subitemid);
 		$data['scanner_type']= $this->category_model->get_scanner_type_list_itemwise($subcatid,$subitemid);
 		$data['resolution']= $this->category_model->get_resolution_list_itemwise($subcatid,$subitemid);
@@ -1859,7 +1859,7 @@ public function suitemwiseproductslist(){
 	$data['whishlist_ids_list']=$whishlist_ids_list;
 	}
 	
-		//echo '<pre>';print_r($data);exit;
+		echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/subitemwise',$data);
 		$this->template->render();
 	  
