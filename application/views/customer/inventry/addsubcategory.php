@@ -64,7 +64,7 @@
 				
 				<form enctype="multipart/form-data" method="post" name="importsubcategory" id="importsubcategory"  action="<?php echo base_url('inventory/subimportcategory'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
 				<div class=""  style="font-size:20px;font-weight:600;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Import subcategory</div>
-				<a id="fashionproducts" href="<?php echo base_url('uploads'); ?>/importsubportcategories.xlsx" >Download sample Import File</a>
+				<a id="fashionproducts" href="<?php echo base_url('assets/subcategoryimportfiles'); ?>/importsubportcategories.xlsx" >Download sample Import File</a>
 
 				<div class="form-group">
 				<label for="category">Category Name</label>

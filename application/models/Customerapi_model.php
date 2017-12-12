@@ -2457,7 +2457,7 @@ class Customerapi_model extends MY_Model
 	$this->db->join('items_list', 'items_list.id = products.itemwise_id', 'left');	
     $this->db->where('products.subitemid', $item_id);
     $this->db->where('products.item_status', 1);
-    $this->db->where('products.itemwise_id !=', '');
+    $this->db->where('items_list.id !=','');
     $this->db->group_by('products.itemwise_id');
 	return $this->db->get()->result_array();
 	}

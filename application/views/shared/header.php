@@ -130,63 +130,7 @@
    line-height: 300%;
    }
 </style>
-<!--<div class="sidebar_right" >
-   <ul style="padding:0 ">
-   	
-   	<div class="clearfix"></div>
-   	<?php //echo '<pre>';print_r($sidecaregory_list);exit; ?>
-   	<?php foreach ($sidecaregory_list as $categories){ ?>
-   	<?php if($categories['category_image']==''){ ?>
-   	<li  class=" spin ">
-   		<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
-   		    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
-   		</a>
-   	</li>
-   	<div class="clearfix"></div>
-   	<?php }else{ ?>
-   	<li  class=" spin ">
-   		<a  href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" class="menu_ti2  ">
-   			<span ><img  class=" circ_icon" src="<?php echo base_url('assets/categoryimages/'.$categories['category_image']); ?>" /></span>
-   		    <span class="menu_tit"><?php echo $categories['category_name'] ; ?></span>
-   		</a>
-   	</li>
-   	<div class="clearfix"></div>
-   	<?php } ?>
-   	<?php } ?>
-   	
-   
-   	<li id="" class=" spin ">
-   		<a  class="menu_ti2  ">
-   			<span   ><img class=" circ_icon"src="<?php echo base_url(); ?>assets/home/images/more_cat.png" />
-   			</span>
-   			<span style="position:relative" class="menu_tit">More Categories
-   			<span style="position:absolute;top:0;left:20px;font-size:12px;">Coming Soon</span>
-   			</span>
-   		</a>
-   		<ul id="left_box" class="right_cust" style="display:none">
-   			
-   			
-   				<div class="col-md-3">
-   					<ul style="background-color:#fff;" class="list_cat">
-   					<?php foreach ($allcategories_list as $categories){ ?>
-   					
-   					<li  ><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>" style="color:#666; background-color:#fff;"><?php echo $categories['category_name'] ; ?></a></li>
-   						
-   					<?php } ?>
-   						
-   					</ul>
-   				</div>
-   			</div>
-   		</ul>
-   	</li>
-   	<div class="clearfix"></div>
-   
-   	
-   	
-   	
-   	
-   </ul>
-   </div>-->
+
 <div class="wrapper">
 <!--header part start here -->
 <div class="jain_container">
@@ -332,169 +276,51 @@
 <section class="blok">
 <div class="blok-body">
 <div class="row">
- 
+  <!-- Nav tabs -->
+   <?php $cnt=1;foreach ($catehorywiselist as $list){ ?>
+   <?php if($cnt==1){ ?>
+		<li class="active"  data-toggle="tab"><a onclick="addtabactive(<?php echo $cnt; ?>);" href="#tab<?php echo $cnt; ?>"><?php echo $list['category_name']; ?></a></li>
+   <?php }else{ ?>
+		<li class=""  data-toggle="tab"><a onclick="addtabactive(<?php echo $cnt; ?>);" href="#tab<?php echo $cnt; ?>"><?php echo $list['category_name']; ?></a></li>
+   <?php } ?>
   <!-- Tab panes -->
-  <div class="tab-content col-sm-10">
-    <div class="tab-pane  active in active" id="home">
-		<div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-	</div>
-    <div class="tab-pane  fade" id="profile"> 
-		<div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-	</div>
-    <div class="tab-pane  fade" id="messages">
-		<div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-	</div>
-    <div class="tab-pane  fade" id="settings">
-		<div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-3">
-                          <ul class="list-unstyled">
-                            <li><p><strong>Menu Title</strong></p></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                            <li><a href="#"> Link Item </a></li>
-                          </ul>
-                        </div>
-	</div>
-  </div>
-   <!-- Nav tabs -->
-  <ul class="nav tab-menu nav-pills col-sm-2 nav-stacked pr15">
-    <li class="active"  data-toggle="tab"><a href="#home">ELECTRONICS</a></li>
-    <li><a href="#profile"  data-toggle="tab">GROCERY</a></li>
-    <li><a href="#messages"  data-toggle="tab">Clothing</a></li>
-    <li><a href="#settings"  data-toggle="tab">Footwear</a></li>
-  </ul>
+  
+   <?php
+
+//echo '<pre>';print_r($subcates);exit; ?>
+		<div class="tab-content col-sm-10">
+					<?php if($cnt==1){ ?>
+					<div class="tab-pane  active" id="tab<?php echo $cnt; ?>">
+					  <?php foreach ($list['subcat'] as $lists){ ?>
+								<div class="col-sm-3">
+								  <ul class="list-unstyled">
+									<li><p><strong><?php echo $lists['subcategory_name']; ?></strong></p></li>
+									<?php foreach ($lists['subitem_list'] as $lists){ ?>
+									<li><a href="#"> <?php echo $lists['subitem_name']; ?> </a></li>
+									<?php } ?>
+								  </ul>
+								</div>
+								  <?php } ?>
+								
+					</div>
+					<?php }else{?>
+					<div class="tab-pane " id="tab<?php echo $cnt; ?>">
+					  <?php foreach ($list['subcat'] as $lists){ ?>
+								<div class="col-sm-3">
+								  <ul class="list-unstyled">
+									<li><p><strong><?php echo $lists['subcategory_name']; ?></strong></p></li>
+									<?php foreach ($lists['subitem_list'] as $lists){ ?>
+									<li><a href="#"> <?php echo $lists['subitem_name']; ?> </a></li>
+									<?php } ?>
+								  </ul>
+								</div>
+								  <?php } ?>
+								
+					</div>
+					<?php } ?>
+		</div>
+  <?php  $cnt++;} ?>
+  
 </div><!-- //row -->
 </div><!-- blok-body // -->
 </section><!-- // blok -->
@@ -682,6 +508,26 @@
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script> 
 <script type="text/javascript">
+function addtabactive(id)
+{
+	//$("#tabs"+id).empty();
+	
+	$("#tab"+id).show();
+	$("#tab"+id).addClass("active");
+	$("#tab"+id).removeClass("tab_hide");
+	var cnt;
+    var nt =<?php echo count($catehorywiselist); ?>;
+	//var cnt='';
+	for(cnt = 1; cnt <= nt; cnt++){
+		if(cnt!=id){
+			$("#tab"+cnt).hide();
+			$("#tab"+cnt).removeClass("active");
+			$("#tab"+cnt).addClass("tab_hide");
+		}             
+	}
+			
+
+}
    $("#supcounts").hide();
    $("#fademaskpurpose").addClass("mask_hide");
    function locationopenpopup (){

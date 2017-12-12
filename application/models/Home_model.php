@@ -391,7 +391,7 @@ public function getproducts($subid)
 public function get_catedata($category_id)
 {
   
-	$this->db->select('subcategories.subcategory_name,subcategories.subcategory_id')->from('products');
+	$this->db->select('subcategories.subcategory_name,subcategories.subcategory_id,category.category_name')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');
 	$this->db->group_by('subcategories.subcategory_id');
