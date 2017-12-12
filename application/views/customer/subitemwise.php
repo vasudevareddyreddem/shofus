@@ -230,21 +230,23 @@
 			</div>
 		  <div class="row">
 		  <div class="col-md-6">
-		   <select class="form-control" id="sel1">
-				<option>Min</option>
-				<option>1000</option>
-				<option>2000</option>
-				<option>3000</option>
-				<option>4000</option>
+		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="subitemwisefilters(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
+				<option value="">Min</option>
+				<?php foreach($minimum_price){ ?>
+				<option value="1000">1000</option>
+				<option value="2000">2000</option>
+				<option value="3000">3000</option>
+				<option value="4000">4000</option>
+				<?php } ?>
 			  </select>
 		  </div>
 		  <div class="col-md-6">
-		   <select class="form-control" id="sel1">
-				<option>Max</option>
-				<option>1000</option>
-				<option>2000</option>
-				<option>3000</option>
-				<option>4000</option>
+		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="subitemwisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
+				<option value="">Max</option>
+				<option value="1000">1000</option>
+				<option value="2000">2000</option>
+				<option value="3000">3000</option>
+				<option value="4000">4000</option>
 			  </select>
 		  </div>
 		  </div><br>
@@ -262,7 +264,7 @@
                      <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
                            <?php foreach ($offer_list as $list){ ?>
-                           <div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo number_format($list['offers'], 2, '.', ''); ?></span></label></div>
+                           <div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo number_format($list['offers'], 2, '.', ''); ?></span></label></div>
                            <?php } ?>
                         </div>
                      </div>
@@ -280,7 +282,7 @@
                      <div id="collapseThree1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree2">
                         <div class="panel-body">
                            <?php foreach ($brand_list as $list){ ?>
-                           <div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+                           <div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
                            <?php } ?>
                         </div>
                      </div>
@@ -298,7 +300,7 @@
                      <div id="collapseThree0" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree0">
                         <div class="panel-body">
                            <?php foreach ($discount_list as $list){ ?>
-                           <div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'discount'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
+                           <div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'discount'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[discount][]" value="<?php echo $list['discount']; ?>"><span>&nbsp;<?php echo $list['discount']; ?></span></label></div>
                            <?php } ?>
                         </div>
                      </div>
@@ -316,7 +318,7 @@
                      <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree45">
                         <div class="panel-body">
                            <?php foreach ($color_list as $list){ ?>
-                           <div class="checkbox"><label><input type="checkbox" onclick="mobileaccessories(this.value, '<?php echo 'color'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
+                           <div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'color'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
                            <?php } ?>
                         </div>
                      </div>
@@ -335,7 +337,7 @@
 					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body">
 						<?php foreach ($sizes_list as $list){ ?>
-							<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['p_size_name']; ?>"><span>&nbsp;<?php echo $list['p_size_name']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['p_size_name']; ?>"><span>&nbsp;<?php echo $list['p_size_name']; ?></span></label></div>
 						
 						<?php } ?>
 						</div>
@@ -355,7 +357,7 @@
 						<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreecomram">
 							<div class="panel-body">
 							<?php foreach ($ram_list as $list){ ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'ram'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[ram][]" value="<?php echo $list['ram']; ?>"><span>&nbsp;<?php echo $list['ram']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'ram'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[ram][]" value="<?php echo $list['ram']; ?>"><span>&nbsp;<?php echo $list['ram']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -375,7 +377,7 @@
 						<div id="collapseos" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingos">
 							<div class="panel-body">
 							<?php foreach ($os_list as $list){ ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'os'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[os][]" value="<?php echo $list['os']; ?>"><span>&nbsp;<?php echo $list['os']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'os'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[os][]" value="<?php echo $list['os']; ?>"><span>&nbsp;<?php echo $list['os']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -395,7 +397,7 @@
 						<div id="collapsesim_list" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingsim_list">
 							<div class="panel-body">
 							<?php foreach ($sim_list as $list){?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'sim_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[sim_type][]" value="<?php echo $list['sim_type']; ?>"><span>&nbsp;<?php echo $list['sim_type']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'sim_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[sim_type][]" value="<?php echo $list['sim_type']; ?>"><span>&nbsp;<?php echo $list['sim_type']; ?></span></label></div>
 
 							<?php }   ?>
 							</div>
@@ -415,7 +417,7 @@
 						<div id="collapsecamera" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingcamera">
 							<div class="panel-body">
 							<?php foreach ($camera_list as $list){ ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'camera'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[camera][]" value="<?php echo $list['camera']; ?>"><span>&nbsp;<?php echo $list['camera']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'camera'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[camera][]" value="<?php echo $list['camera']; ?>"><span>&nbsp;<?php echo $list['camera']; ?></span></label></div>
 
 							<?php }  ?>
 							</div>
@@ -435,7 +437,7 @@
 						<div id="collapseinternal_memeory" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headinginternal_memeory">
 							<div class="panel-body">
 							<?php foreach ($internal_memeory_list as $list){ ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'internal_memeory'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[internal_memeory][]" value="<?php echo $list['internal_memeory']; ?>"><span>&nbsp;<?php echo $list['internal_memeory']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'internal_memeory'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[internal_memeory][]" value="<?php echo $list['internal_memeory']; ?>"><span>&nbsp;<?php echo $list['internal_memeory']; ?></span></label></div>
 
 							<?php   } ?>
 							</div>
@@ -455,7 +457,7 @@
 						<div id="collapsescreen_size" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingscreen_size">
 							<div class="panel-body">
 							<?php foreach ($screen_size_list as $list){ ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'screen_size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[screen_size][]" value="<?php echo $list['screen_size']; ?>"><span>&nbsp;<?php echo $list['screen_size']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'screen_size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[screen_size][]" value="<?php echo $list['screen_size']; ?>"><span>&nbsp;<?php echo $list['screen_size']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -475,7 +477,7 @@
 						<div id="collapseProcessor" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor">
 							<div class="panel-body">
 							<?php foreach ($Processor_list as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'Processor'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[Processor][]" value="<?php echo $list['Processor']; ?>"><span>&nbsp;<?php echo $list['Processor']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'Processor'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[Processor][]" value="<?php echo $list['Processor']; ?>"><span>&nbsp;<?php echo $list['Processor']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -495,7 +497,7 @@
 						<div id="collapseProcessor2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor2">
 							<div class="panel-body">
 							<?php foreach ($printer_type as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'printer_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[printer_type][]" value="<?php echo $list['printer_type']; ?>"><span>&nbsp;<?php echo $list['printer_type']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'printer_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[printer_type][]" value="<?php echo $list['printer_type']; ?>"><span>&nbsp;<?php echo $list['printer_type']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -515,7 +517,7 @@
 						<div id="collapseProcessor3" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor3">
 							<div class="panel-body">
 							<?php foreach ($type_list as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[type][]" value="<?php echo $list['type']; ?>"><span>&nbsp;<?php echo $list['type']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[type][]" value="<?php echo $list['type']; ?>"><span>&nbsp;<?php echo $list['type']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -534,7 +536,7 @@
 						<div id="collapseProcessor4" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor4">
 							<div class="panel-body">
 							<?php foreach ($printer_type as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'printer_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[printer_type][]" value="<?php echo $list['printer_type']; ?>"><span>&nbsp;<?php echo $list['printer_type']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'printer_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[printer_type][]" value="<?php echo $list['printer_type']; ?>"><span>&nbsp;<?php echo $list['printer_type']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -553,7 +555,7 @@
 						<div id="collapseProcessor5" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor5">
 							<div class="panel-body">
 							<?php foreach ($type_list as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[type][]" value="<?php echo $list['type']; ?>"><span>&nbsp;<?php echo $list['type']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[type][]" value="<?php echo $list['type']; ?>"><span>&nbsp;<?php echo $list['type']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -572,7 +574,7 @@
 						<div id="collapseProcessor6" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor6">
 							<div class="panel-body">
 							<?php foreach ($max_copies as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'max_copies'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[max_copies][]" value="<?php echo $list['max_copies']; ?>"><span>&nbsp;<?php echo $list['max_copies']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'max_copies'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[max_copies][]" value="<?php echo $list['max_copies']; ?>"><span>&nbsp;<?php echo $list['max_copies']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -591,7 +593,7 @@
 						<div id="collapseProcessor7" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor7">
 							<div class="panel-body">
 							<?php foreach ($paper_size as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'paper_size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[paper_size][]" value="<?php echo $list['paper_size']; ?>"><span>&nbsp;<?php echo $list['paper_size']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'paper_size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[paper_size][]" value="<?php echo $list['paper_size']; ?>"><span>&nbsp;<?php echo $list['paper_size']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -610,7 +612,7 @@
 						<div id="collapseProcessor8" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor8">
 							<div class="panel-body">
 							<?php foreach ($headphone_jack as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'headphone_jack'; ?>','<?php echo ''; ?>');" id="headphone_jack" name="products[headphone_jack][]" value="<?php echo $list['headphone_jack']; ?>"><span>&nbsp;<?php echo $list['headphone_jack']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'headphone_jack'; ?>','<?php echo ''; ?>');" id="headphone_jack" name="products[headphone_jack][]" value="<?php echo $list['headphone_jack']; ?>"><span>&nbsp;<?php echo $list['headphone_jack']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -629,7 +631,7 @@
 						<div id="collapseProcessor9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor9">
 							<div class="panel-body">
 							<?php foreach ($noise_reduction as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'noise_reduction'; ?>','<?php echo ''; ?>');" id="noise_reduction" name="products[noise_reduction][]" value="<?php echo $list['noise_reduction']; ?>"><span>&nbsp;<?php echo $list['noise_reduction']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'noise_reduction'; ?>','<?php echo ''; ?>');" id="noise_reduction" name="products[noise_reduction][]" value="<?php echo $list['noise_reduction']; ?>"><span>&nbsp;<?php echo $list['noise_reduction']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -648,7 +650,7 @@
 						<div id="collapseProcessor10" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor10">
 							<div class="panel-body">
 							<?php foreach ($usb_port as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'usb_port'; ?>','<?php echo ''; ?>');" id="usb_port" name="products[usb_port][]" value="<?php echo $list['usb_port']; ?>"><span>&nbsp;<?php echo $list['usb_port']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'usb_port'; ?>','<?php echo ''; ?>');" id="usb_port" name="products[usb_port][]" value="<?php echo $list['usb_port']; ?>"><span>&nbsp;<?php echo $list['usb_port']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -667,7 +669,7 @@
 						<div id="collapseProcessor11" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor11">
 							<div class="panel-body">
 							<?php foreach ($compatible_for as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'compatible_for'; ?>','<?php echo ''; ?>');" id="compatible_for" name="products[compatible_for][]" value="<?php echo $list['compatible_for']; ?>"><span>&nbsp;<?php echo $list['compatible_for']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'compatible_for'; ?>','<?php echo ''; ?>');" id="compatible_for" name="products[compatible_for][]" value="<?php echo $list['compatible_for']; ?>"><span>&nbsp;<?php echo $list['compatible_for']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -686,7 +688,7 @@
 						<div id="collapseProcessor12" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor12">
 							<div class="panel-body">
 							<?php foreach ($scanner_type as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'scanner_type'; ?>','<?php echo ''; ?>');" id="scanner_type" name="products[scanner_type][]" value="<?php echo $list['scanner_type']; ?>"><span>&nbsp;<?php echo $list['scanner_type']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'scanner_type'; ?>','<?php echo ''; ?>');" id="scanner_type" name="products[scanner_type][]" value="<?php echo $list['scanner_type']; ?>"><span>&nbsp;<?php echo $list['scanner_type']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -705,7 +707,7 @@
 						<div id="collapseProcessor13" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor13">
 							<div class="panel-body">
 							<?php foreach ($resolution as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'resolution'; ?>','<?php echo ''; ?>');" id="resolution" name="products[resolution][]" value="<?php echo $list['resolution']; ?>"><span>&nbsp;<?php echo $list['resolution']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'resolution'; ?>','<?php echo ''; ?>');" id="resolution" name="products[resolution][]" value="<?php echo $list['resolution']; ?>"><span>&nbsp;<?php echo $list['resolution']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -724,7 +726,7 @@
 						<div id="collapseProcessor14" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor14">
 							<div class="panel-body">
 							<?php foreach ($f_stop as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'f_stop'; ?>','<?php echo ''; ?>');" id="f_stop" name="products[f_stop][]" value="<?php echo $list['f_stop']; ?>"><span>&nbsp;<?php echo $list['f_stop']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'f_stop'; ?>','<?php echo ''; ?>');" id="f_stop" name="products[f_stop][]" value="<?php echo $list['f_stop']; ?>"><span>&nbsp;<?php echo $list['f_stop']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
@@ -743,27 +745,248 @@
 						<div id="collapseProcessor15" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor15">
 							<div class="panel-body">
 							<?php foreach ($minimum_focusing_distance as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'minimum_focusing_distance'; ?>','<?php echo ''; ?>');" id="minimum_focusing_distance" name="products[minimum_focusing_distance][]" value="<?php echo $list['minimum_focusing_distance']; ?>"><span>&nbsp;<?php echo $list['minimum_focusing_distance']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'minimum_focusing_distance'; ?>','<?php echo ''; ?>');" id="minimum_focusing_distance" name="products[minimum_focusing_distance][]" value="<?php echo $list['minimum_focusing_distance']; ?>"><span>&nbsp;<?php echo $list['minimum_focusing_distance']; ?></span></label></div>
 
 							<?php } ?>
 							</div>
 						</div>
 					</div>
 					<?php } ?>
-					<?php if(isset($minimum_focusing_distance) && count($minimum_focusing_distance)>0){?>
+					<?php if(isset($aperture_withmaxfocal_length) && count($aperture_withmaxfocal_length)>0){?>
 					<div class="panel panel-primary">
-						<div class="panel-heading" role="tab" id="headingProcessor15">
+						<div class="panel-heading" role="tab" id="headingProcessor16">
 							<h4 class="panel-title">
-							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor15" aria-expanded="false" aria-controls="collapseProcessor15">
-							Focusing Distance	
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor16" aria-expanded="false" aria-controls="collapseProcessor16">
+							Maximum Focuc Length	
 							</a>
 							</h4>
 						</div>
-						<div id="collapseProcessor15" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor15">
+						<div id="collapseProcessor16" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor16">
 							<div class="panel-body">
-							<?php foreach ($minimum_focusing_distance as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="submobileaccessories(this.value, '<?php echo 'minimum_focusing_distance'; ?>','<?php echo ''; ?>');" id="minimum_focusing_distance" name="products[minimum_focusing_distance][]" value="<?php echo $list['minimum_focusing_distance']; ?>"><span>&nbsp;<?php echo $list['minimum_focusing_distance']; ?></span></label></div>
+							<?php foreach ($aperture_withmaxfocal_length as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'aperture_withmaxfocal_length'; ?>','<?php echo ''; ?>');" id="aperture_withmaxfocal_length" name="products[aperture_withmaxfocal_length][]" value="<?php echo $list['aperture_withmaxfocal_length']; ?>"><span>&nbsp;<?php echo $list['aperture_withmaxfocal_length']; ?></span></label></div>
 
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($picture_angle) && count($picture_angle)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor17">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor17" aria-expanded="false" aria-controls="collapseProcessor17">
+							Picture Angle
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor17" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor17">
+							<div class="panel-body">
+							<?php foreach ($picture_angle as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'picture_angle'; ?>','<?php echo ''; ?>');" id="picture_angle" name="products[picture_angle][]" value="<?php echo $list['picture_angle']; ?>"><span>&nbsp;<?php echo $list['picture_angle']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($size_list) && count($size_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor18">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor18" aria-expanded="false" aria-controls="collapseProcessor18">
+							Size
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor18" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor18">
+							<div class="panel-body">
+							<?php foreach ($size_list as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="size" name="products[size][]" value="<?php echo $list['size']; ?>"><span>&nbsp;<?php echo $list['size']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($weight_list) && count($weight_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor19">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor19" aria-expanded="false" aria-controls="collapseProcessor19">
+							Weight
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor19" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor19">
+							<div class="panel-body">
+							<?php foreach ($weight_list as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'weight'; ?>','<?php echo ''; ?>');" id="weight" name="products[weight][]" value="<?php echo $list['weight']; ?>"><span>&nbsp;<?php echo $list['weight']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($occasion_list) && count($occasion_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor20">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor20" aria-expanded="false" aria-controls="collapseProcessor20">
+							Occasion
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor20" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor20">
+							<div class="panel-body">
+							<?php foreach ($occasion_list as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'occasion'; ?>','<?php echo ''; ?>');" id="occasion" name="products[occasion][]" value="<?php echo $list['occasion']; ?>"><span>&nbsp;<?php echo $list['occasion']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($material_list) && count($material_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor21">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor21" aria-expanded="false" aria-controls="collapseProcessor21">
+							Material
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor21" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor21">
+							<div class="panel-body">
+							<?php foreach ($material_list as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'material'; ?>','<?php echo ''; ?>');" id="material" name="products[material][]" value="<?php echo $list['material']; ?>"><span>&nbsp;<?php echo $list['material']; ?></span></label></div>
+
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($collar_type) && count($collar_type)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor22">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor22" aria-expanded="false" aria-controls="collapseProcessor22">
+							Collar Type
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor22" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor22">
+							<div class="panel-body">
+							<?php foreach ($collar_type as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'collar_type'; ?>','<?php echo ''; ?>');" id="collar_type" name="products[collar_type][]" value="<?php echo $list['collar_type']; ?>"><span>&nbsp;<?php echo $list['collar_type']; ?></span></label></div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($gender_list) && count($gender_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor23">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor23" aria-expanded="false" aria-controls="collapseProcessor23">
+							Gender
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor23" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor23">
+							<div class="panel-body">
+							<?php foreach ($gender_list as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'gender'; ?>','<?php echo ''; ?>');" id="gender" name="products[gender][]" value="<?php echo $list['gender']; ?>"><span>&nbsp;<?php echo $list['gender']; ?></span></label></div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($sleeve_list) && count($sleeve_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor24">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor24" aria-expanded="false" aria-controls="collapseProcessor24">
+							Sleeve
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor24" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor24">
+							<div class="panel-body">
+							<?php foreach ($sleeve_list as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'sleeve'; ?>','<?php echo ''; ?>');" id="sleeve" name="products[sleeve][]" value="<?php echo $list['sleeve']; ?>"><span>&nbsp;<?php echo $list['sleeve']; ?></span></label></div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($look_list) && count($look_list)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor25">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor25" aria-expanded="false" aria-controls="collapseProcessor25">
+							Look
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor25" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor25">
+							<div class="panel-body">
+							<?php foreach ($look_list as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'look'; ?>','<?php echo ''; ?>');" id="look" name="products[look][]" value="<?php echo $list['look']; ?>"><span>&nbsp;<?php echo $list['look']; ?></span></label></div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($style_code) && count($style_code)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor26">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor26" aria-expanded="false" aria-controls="collapseProcessor26">
+							Style Code
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor26" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor26">
+							<div class="panel-body">
+							<?php foreach ($style_code as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'style_code'; ?>','<?php echo ''; ?>');" id="style_code" name="products[style_code][]" value="<?php echo $list['style_code']; ?>"><span>&nbsp;<?php echo $list['style_code']; ?></span></label></div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if(isset($inner_material) && count($inner_material)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor27">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor27" aria-expanded="false" aria-controls="collapseProcessor27">
+							Inner Material
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor27" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor27">
+							<div class="panel-body">
+							<?php foreach ($inner_material as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'inner_material'; ?>','<?php echo ''; ?>');" id="inner_material" name="products[inner_material][]" value="<?php echo $list['inner_material']; ?>"><span>&nbsp;<?php echo $list['inner_material']; ?></span></label></div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>	
+					<?php if(isset($waterproof) && count($waterproof)>0){?>
+					<div class="panel panel-primary">
+						<div class="panel-heading" role="tab" id="headingProcessor28">
+							<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor28" aria-expanded="false" aria-controls="collapseProcessor28">
+							Water proof
+							</a>
+							</h4>
+						</div>
+						<div id="collapseProcessor28" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor28">
+							<div class="panel-body">
+							<?php foreach ($waterproof as $list){  ?>
+								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'waterproof'; ?>','<?php echo ''; ?>');" id="waterproof" name="products[waterproof][]" value="<?php echo $list['waterproof']; ?>"><span>&nbsp;<?php echo $list['waterproof']; ?></span></label></div>
 							<?php } ?>
 							</div>
 						</div>
@@ -930,85 +1153,13 @@
 	 <br>
 </body>
 <script>
-function myFunction(){
-	alert('ghfgh');
-}
 
- function itemaddtocart(itemid,catid,val){
-
-jQuery.ajax({
-        url: "<?php echo site_url('customer/onclickaddcart');?>",
-        type: 'post',
-          data: {
-          form_key : window.FORM_KEY,
-          producr_id: itemid,
-		  category_id: catid,
-		  qty: '1',
-          },
-        dataType: 'json',
-        success: function (data) {
-           if(data.msg==0){
-					window.location='<?php echo base_url("customer/"); ?>'; 
-				}else{
-						jQuery('#sucessmsg').show();
-						$("#supcount").empty();
-						$("#supcount").append(data.count);
-						if(data.msg==2){
-						$("#addticartitem"+itemid+val).removeClass("text-primary");
-						$('#cartitemtitle'+itemid+val).prop('title', 'Add to cart');
-						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
-						}
-						if(data.msg==1){
-						 $("#addticartitem"+itemid+val).addClass("text-primary");
-						$('#cartitemtitle'+itemid+val).prop('title', 'Added to cart');
-						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to cart <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
-						}
-				}
-
-        }
-      });
-
- }
-function addwhishlidts(id,val){
-jQuery.ajax({
-			url: "<?php echo site_url('customer/addwhishlist');?>",
-			type: 'post',
-			data: {
-				form_key : window.FORM_KEY,
-				item_id: id,
-				},
-			dataType: 'JSON',
-			success: function (data) {
-				  if(data.msg==0){
-					window.location='<?php echo base_url("customer/"); ?>'; 
-				}else{
-				jQuery('#sucessmsg').show();
-				//alert(data.msg);
-				if(data.msg==2){
-				$('#sucessmsg').show('');
-				$("#addwishlistids"+id+val).removeClass("text-primary");
-				$('#addwhish'+id+val).prop('title', 'Add to Wishlist');
-						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
-				document.getElementById("sucessmsg").focus();
-				
-				}
-				if(data.msg==1){
-				$('#sucessmsg').show('');
-				 $("#addwishlistids"+id+val).addClass("text-primary");
-				 $('#addwhish'+id+val).prop('title', 'Added to Wishlist');
-						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
-				document.getElementById("sucessmsg").focus();				
-				}
-				
-			}
-			
-
-			}
-		});
+function subitemwisefilters(val,status,check){
+	alert(val);
+	alert(status);
+	alert(check);
 	
-	
-}
-function mobileaccessories(val,status,check){
+	return false;
 	
 	jQuery.ajax({
 		
@@ -1032,77 +1183,5 @@ function mobileaccessories(val,status,check){
 	}
 });
 }
-function getproduct(id){
-	if(id!=''){
-	
-	jQuery.ajax({
-				url: "<?php echo site_url('category/categorywiseproductslist');?>",
-				type: 'post',
-				data: {
-				subcategoryid: id,
-				},
-				dataType: 'html',
-				success: function (data) {
-					$("#aftercategorysearch").empty();
-					$("#subcategorywise_products1").empty();
-					$("#subcategorywise_products1").append(data);
-				}
-			});
-			
-	}
-	
-	
-}
-(function($) {
-    $(function() {
-        $('.test').fSelect();
-    });
-})(jQuery);
 
-		var select = document.getElementById('input-select');
-
-// Append the option elements
-for ( var i = '<?php echo floor($minimum_price['item_cost']); ?>'; i <= '<?php echo floor($maximum_price['item_cost']); ?>'; i++ ){
-
-	var option = document.createElement("option");
-		option.text = i;
-		option.value = i;
-
-	select.appendChild(option);
-}
-
-		var html5Slider = document.getElementById('html5');
-
-noUiSlider.create(html5Slider, {
-	start: [ '<?php echo floor(reset($min_am)); ?>', '<?php echo floor(end($max_amt)); ?>' ],
-	connect: true,
-	range: {
-		'min': <?php echo floor($minimum_price['item_cost']); ?>,
-		'max': <?php echo floor($maximum_price['item_cost']); ?>
-	}
-});
-
-		var inputNumber = document.getElementById('input-number');
-
-html5Slider.noUiSlider.on('update', function( values, handle ) {
-
-	var value = values[handle];
-
-	if ( handle ) {
-		inputNumber.value = value;
-	} else {
-		select.value = Math.round(value);
-	}
-});
-html5Slider.noUiSlider.on('change', function(){
-	mobileaccessories('','','');
-});
-
-select.addEventListener('change', function(){
-	html5Slider.noUiSlider.set([this.value, null]);
-});
-
-inputNumber.addEventListener('change', function(){
-	html5Slider.noUiSlider.set([null, this.value]);
-});
 </script>

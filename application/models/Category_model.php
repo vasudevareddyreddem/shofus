@@ -2128,7 +2128,7 @@ class Category_model extends MY_Model
 		$this->db->group_by('noise_reduction');
 		return $this->db->get()->result_array();
 	}
-	public function get_user_port_list_itemwise($subcatid,$subitem_id)
+	public function get_usbr_port_list_itemwise($subcatid,$subitem_id)
 	{
 		$this->db->select('products.usb_port')->from('products');
 		$this->db->where('products.subitemid',$subitem_id);
