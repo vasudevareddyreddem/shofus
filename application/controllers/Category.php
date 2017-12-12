@@ -1859,7 +1859,7 @@ public function suitemwiseproductslist(){
 	$data['whishlist_ids_list']=$whishlist_ids_list;
 	}
 	
-		echo '<pre>';print_r($data);exit;
+		//echo '<pre>';print_r($data);exit;
 		$this->template->write_view('content', 'customer/subitemwise',$data);
 		$this->template->render();
 	  

@@ -232,21 +232,18 @@
 		  <div class="col-md-6">
 		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="subitemwisefilters(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
 				<option value="">Min</option>
-				<?php foreach($minimum_price){ ?>
-				<option value="1000">1000</option>
-				<option value="2000">2000</option>
-				<option value="3000">3000</option>
-				<option value="4000">4000</option>
+				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=2000 ){  ?>
+				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 				<?php } ?>
+				
 			  </select>
 		  </div>
 		  <div class="col-md-6">
 		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="subitemwisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
 				<option value="">Max</option>
-				<option value="1000">1000</option>
-				<option value="2000">2000</option>
-				<option value="3000">3000</option>
-				<option value="4000">4000</option>
+				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=2000 ){  ?>
+				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+				<?php } ?>
 			  </select>
 		  </div>
 		  </div><br>
