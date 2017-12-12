@@ -13,7 +13,12 @@ class Category extends Front_Controller
 			
  }
  
+ public function subview(){
+	 $this->template->write_view('content', 'customer/added_page');
+	$this->template->render();
+ }
  public function subcategorywiseearch(){
+	 
 	
 	$post=$this->input->post();
 	//echo '<pre>';print_r($cusine);
