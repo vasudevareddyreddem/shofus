@@ -2390,17 +2390,22 @@ public function subitemwise_search(){
 	//exit;
 	$s_s_i_data= $this->category_model->save_subitemsearchdata($data1);
 	if(count($s_s_i_data)>0){
+		$removesearch= $this->category_model->get_subitem_all_previous_search_fields();
+		foreach ($removesearch as $list){
+			$data=array('minimum_price'=>$post['mini_mum'],'maximum_price'=>$post['maxi_mum']);
+			$this->category_model->subitem_wise_update_deails($list['id'],$data);	
+		}
 		redirect('category/subitemwise_searchresult');
 		
 	}
  }
  
 	 public function subitemwise_searchresult(){
-		 	$data['subitemwise']= $this->category_model->get_subitemwise_search_result_data($this->input->ip_address());
+				$data['subitemwise']= $this->category_model->get_subitemwise_search_result_data($this->input->ip_address());
 				$data['previousdata']= $this->category_model->get_all_previous_subitemwise_search_fields($this->input->ip_address());
 				$filterscatid= $this->category_model->get_subitemwise_data_category_id($this->input->ip_address());
-				$data['subitemid']=$filterscatid['subcategory_id'];
-				$data['subcatid']=$filterscatid['subitemid'];
+				$data['subitemid']=$filterscatid['subitemid'];
+				$data['subcatid']=$filterscatid['subcategory_id'];
 				$subcatid=$filterscatid['subcategory_id'];
 				$subitemid=$filterscatid['subitemid'];
 				//echo '<pre>';print_r($data['subitemwise']);exit;
@@ -2446,17 +2451,18 @@ public function subitemwise_search(){
 					$date = new DateTime("now");
 					$curr_date = $date->format('Y-m-d h:i:s A');
 					if($list['offer_expairdate']>=$curr_date){
-						$amounts[]=$list['item_cost'];
+					$amounts[]=$list['item_cost'];
 					}else{
-						$amounts[]=$list['special_price'];
+					$amounts[]=$list['special_price'];
 					}
-					
+
 				}
 				$minamt = min($amounts);
 				$maxamt= max($amounts);
 				//echo '<pre>';print_r( $amounts);exit;
 				$data['minimum_price'] = array('item_cost'=>$minamt);
 				$data['maximum_price'] = array('item_cost'=>$maxamt);
+				//echo '<pre>';print_r($data);exit;
 				//echo max($data['price_list']);
 				foreach ($offer_list as $list) {
 					$date = new DateTime("now");
@@ -2477,16 +2483,13 @@ public function subitemwise_search(){
 					
 				}
 					$data['offer_list']=$uniids;
-					echo count($data['subitemwise']);exit;
-				if(isset($data['subitemwise'][0]) && count($data['subitemwise'][0])>0){
-					
-				foreach($data['subitemwise'] as $list){
-					$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
-					$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+				if(isset($data['subitemwise']) && count($data['subitemwise'])>0){
+					foreach($data['subitemwise'] as $lists){
+					$reviewrating[]=$this->category_model->product_reviews_avg($lists['item_id']);
+					$reviewcount[]=$this->category_model->product_reviews_count($lists['item_id']);
 					}
 				}
-			
-						if(isset($reviewrating) && count($reviewrating)>0){
+				if(isset($reviewrating) && count($reviewrating)>0){
 							$data['avg_count']=$reviewrating;
 						}else{
 							$data['avg_count']=array();

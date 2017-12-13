@@ -227,15 +227,17 @@
               <div class="row">
 				  <div class="col-md-6">
 				  <h4>Min:<span class="site_col"><?php echo $minimum_price['item_cost']; ?></span></h4>
+				  <input type="hidden" id="min" name="min" value="<?php echo $minimum_price['item_cost']; ?>">
 				  </div>
 				  <div class="col-md-6">
 				 <h4>Max:<span class="site_col"><?php echo $maximum_price['item_cost']; ?></span></h4>
+				  <input type="hidden" id="max" name="max" value="<?php echo $maximum_price['item_cost']; ?>">
 				  </div>
 			</div>
 		  <div class="row">
 		  <div class="col-md-6">
 		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="subitemwisefilters(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=2000 ){  ?>
+				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 				<?php } ?>
 				
@@ -243,7 +245,7 @@
 		  </div>
 		  <div class="col-md-6">
 		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="subitemwisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=2000 ){  ?>
+				 <?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 				<?php } ?>
 
@@ -1096,6 +1098,16 @@
 <script>
 
 function subitemwisefilters(val,status,check){
+		if(status=='mimimum_price'){
+			var minamt=val;
+		}else{
+			var minamt=$('#min').val();
+		}
+		if(status=='maximum_price'){
+			var maxamt=val;
+		}else{
+			var maxamt=$('#max').val();
+		}
 	jQuery.ajax({
 		
 				url: "<?php echo site_url('category/subitemwise_search');?>",
@@ -1108,8 +1120,8 @@ function subitemwisefilters(val,status,check){
 					productsvalues: val,
 					searchvalue: status,
 					unchecked: check,
-					mini_mum: $('#mimimum_price').val(),
-					maxi_mum: $('#maximum_price').val(),
+					mini_mum: minamt,
+					maxi_mum: maxamt,
 
 					},
 				dataType: 'html',

@@ -38,11 +38,13 @@
 				$style_codes[]=$predata['style_code'];
 				$inner_materials[]=$predata['inner_material'];
 				$waterproofs[]=$predata['waterproof'];
-				$minimum_price=$predata['minimum_price'];
-				$maximum_price=$predata['maximum_price'];
+				$minimum_prices=$predata['minimum_price'];
+				$maximum_prices=$predata['maximum_price'];
 			
 			//echo '<pre>';print_r($offers);
 		  }
+		  //echo '<pre>';print_r($minimum_price);
+		 // echo '<pre>';print_r($maximum_prices);exit;
 
 		  ?>
    <span id="subitemwisefilterdata">
@@ -52,25 +54,34 @@
 			<input type="hidden" id="subcatid" name="subcatid" value="<?php echo $subcatid; ?>">
               <div class="row">
 				  <div class="col-md-6">
-				  <h4>Min:<span class="site_col"><?php echo $minimum_price['item_cost']; ?></span></h4>
+				  <h4>Min:<span class="site_col"><?php echo $minimum_prices; ?></span></h4>
 				  </div>
 				  <div class="col-md-6">
-				 <h4>Max:<span class="site_col"><?php echo $maximum_price['item_cost']; ?></span></h4>
+				 <h4>Max:<span class="site_col"><?php echo $maximum_prices; ?></span></h4>
 				  </div>
 			</div>
 		  <div class="row">
 		  <div class="col-md-6">
 		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="subitemwisefilters(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=2000 ){  ?>
-				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-				<?php } ?>
+				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+					<?Php if($minimum_prices==$i){ ?>
+						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
+					<?php }else{ ?>
+						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+						<?php } ?>
+				<?php $min_amt=$i;
+				} ?>
 				
 			  </select>
 		  </div>
 		  <div class="col-md-6">
 		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="subitemwisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=2000 ){  ?>
-				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+				 <?php for( $i=floor($minimum_prices); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+					<?Php if($maximum_prices==$i){ ?>
+						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
+					<?php }else{ ?>
+						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+						<?php } ?>
 				<?php } ?>
 
 			  </select>

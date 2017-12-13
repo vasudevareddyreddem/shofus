@@ -2514,7 +2514,7 @@ class Category_model extends MY_Model
 		//exit;
 		//echo '<pre>';print_r($listsorting);exit;
 		
-		$return['filterslist'][] = $this->get_subitemwise_filters_search($subcatid,$subitemid,$minamount,$maxamount,$offer,$brand,$discount,$colour,$size,$ram,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$printer_type,$type,$max_copies,$paper_size,$headphone_jack,$noise_reduction,$usb_port,$compatible_for,$scanner_type,$resolution,$f_stop,$minimum_focusing_distance,$aperture_withmaxfocal_length,$picture_angle,$weight,$occasion,$material,$collar_type,$gender,$sleeve,$look,$style_code,$inner_material,$waterproof);
+		$return['filterslist'] = $this->get_subitemwise_filters_search($subcatid,$subitemid,$minamount,$maxamount,$offer,$brand,$discount,$colour,$size,$ram,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$printer_type,$type,$max_copies,$paper_size,$headphone_jack,$noise_reduction,$usb_port,$compatible_for,$scanner_type,$resolution,$f_stop,$minimum_focusing_distance,$aperture_withmaxfocal_length,$picture_angle,$weight,$occasion,$material,$collar_type,$gender,$sleeve,$look,$style_code,$inner_material,$waterproof);
 		//echo $this->db->last_query();exit;
 		//echo '<pre>';print_r($return['filterslist']);exit;
 		if(!empty($return['filterslist']))
