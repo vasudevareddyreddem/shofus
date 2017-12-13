@@ -1659,10 +1659,12 @@ class Category_model extends MY_Model
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->result_array();
 	}
-	public function get_sameunit_products_list($pname){
+	public function get_subitemwise_unit_products_list($subitem_id,$unit){
 		
-		$this->db->select('products.item_id,products.unit,products.subcategory_id')->from('products');
-		$this->db->where('item_name',$pname);
+		$this->db->select('products.item_id,products.unit,products.subcategory_id,products.subitemid,products.itemwise_id')->from('products');
+		$this->db->where('unit',$unit);
+		$this->db->where('subitemid',$subitem_id);
+		$this->db->where('item_status',1);
 		$this->db->where('item_status',1);
 		$this->db->group_by('unit');
 		return $this->db->get()->result_array();
@@ -1755,13 +1757,13 @@ class Category_model extends MY_Model
 	$this->db->where('subcategory_id',$subcatid);
 	return $this->db->get()->row_array();
  } 
- public function get_subitem_list($subitemid)
+ public function get_subitem_list($item_id)
 	{
 	
 	$this->db->select('products.*,category.category_id')->from('products');
 	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
-    $this->db->where('products.subitemid', $subitemid);
+    $this->db->where('products.itemwise_id', $item_id);
     $this->db->where('products.item_status', 1);
     $this->db->group_by('products.item_name');
 	return $this->db->get()->result_array();
@@ -1942,7 +1944,7 @@ class Category_model extends MY_Model
 	}
 	/* subitemwise*/
 	public function get_all_itemproducts_list($subcatid,$subitem_id){
-		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,sub_items.subitem_name')->from('products');
+		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.unit,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,sub_items.subitem_name')->from('products');
 		$this->db->join('sub_items', 'sub_items.subitem_id =products.subitemid', 'left');	
 		$this->db->where('item_status',1);
 		$this->db->where('subitemid',$subitem_id);
@@ -2629,6 +2631,16 @@ class Category_model extends MY_Model
 	{
 		$sql1="DELETE FROM subitem_wise_filter_search WHERE id = '".$id."'";
 		return $this->db->query($sql1);
+	}
+	public function get_all_subwise_item_list($subcatid,$subitemid)
+	{
+	//$this->db->select('*')->from('sub_items');
+	$this->db->select('items_list.*')->from('products');
+	$this->db->join('items_list', 'items_list.id = products.itemwise_id', 'left'); //
+	$this->db->where('products.subcategory_id',$subcatid);
+	$this->db->where('products.subitemid',$subitemid);
+	$this->db->group_by('items_list.id');
+	return $this->db->get()->result_array();
 	}
 }
 ?>

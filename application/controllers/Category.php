@@ -1362,7 +1362,7 @@ function filtersearch(){
 
 public function suitemwiseproductslist(){
 		$post=$this->input->post();
-		//echo '<pre>';print_r($post);
+		echo '<pre>';print_r($post);exit;
 		$subitem_list= $this->category_model->get_subitem_list($post['subitem_id']);
 		//echo $this->db->last_query();
 		//echo '<pre>';print_r($subitem_list);exit;
@@ -1740,6 +1740,7 @@ public function suitemwiseproductslist(){
 	public function subitemwise(){
 	  $subitemid=base64_decode($this->uri->segment(3));
 	  $subcatid=base64_decode($this->uri->segment(4));
+	  $catid=base64_decode($this->uri->segment(5));
 		if($subitemid=='' ||  $subcatid ==''){
 			redirect();
 		}
@@ -1749,8 +1750,41 @@ public function suitemwiseproductslist(){
 		}
 		$data['subitemid']=$subitemid;
 		$data['subcatid']=$subcatid;
-		$data['subitemwise']= $this->category_model->get_all_itemproducts_list($subcatid,$subitemid);
-		//echo '<pre>';print_r($data['subitemwise']);exit;
+		if(isset($catid) && $catid==21){
+			$subitemwise= $this->category_model->get_all_itemproducts_list($subcatid,$subitemid);
+			//echo '<pre>';print_r($data['subcategory_porduct_list']);exit;
+				if(count($subitemwise)>0){
+					foreach($subitemwise as $list){
+					//echo '<pre>';print_r($list);
+					$desc=$this->category_model->get_products_desc_list($list['item_id']);
+					$sameunitproduct=$this->category_model->get_subitemwise_unit_products_list($list['subitemid'],$list['unit']);
+					$plist[$list['item_id']]=$list;
+					$plist[$list['item_id']]['descriptions_list']=$desc;
+					$plist[$list['item_id']]['unitproducts_list']=$sameunitproduct;
+					}
+					
+					//echo '<pre>';print_r($plist);exit;
+					if(isset($subitemwise) && count($subitemwise)>0){
+					foreach($subitemwise as $list){
+					$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+					$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+					}
+					}
+				$data['subitemwise']=$plist;
+				}else{
+					$data['subitemwise']=array();
+				}
+		}else{
+			$data['subitemwise']= $this->category_model->get_all_itemproducts_list($subcatid,$subitemid);
+				if(isset($data['subitemwise']) && count($data['subitemwise'])>0){
+				foreach($data['subitemwise'] as $list){
+					$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
+					$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
+					}
+				}
+
+		}
+		//echo '<pre>';print_r($data);exit;
 		$data['brand_list']= $this->category_model->get_subitem_all_brand_list($subcatid,$subitemid);
 		$data['price_list']= $this->category_model->get_subitem_all_price_list($subcatid,$subitemid);
 		//$data['discount_list']= $this->category_model->get_subitem_all_discount_list($subitemid);
@@ -1824,12 +1858,7 @@ public function suitemwiseproductslist(){
 			
 		}
 			$data['offer_list']=$uniids;
-		if(isset($data['subitemwise']) && count($data['subitemwise'])>0){
-		foreach($data['subitemwise'] as $list){
-			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
-			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
-			}
-		}
+	
 	
 				if(isset($reviewrating) && count($reviewrating)>0){
 					$data['avg_count']=$reviewrating;
@@ -1869,10 +1898,17 @@ public function suitemwiseproductslist(){
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;
 	}
-	
+	//echo '<pre>';print_r($data);exit;
+	if($catid==21){
+		$data['subitemwise_item_list']= $this->category_model->get_all_subwise_item_list($subcatid,$subitemid);
 		//echo '<pre>';print_r($data);exit;
+		$this->template->write_view('content', 'customer/grocerysubcategorywiseproducts',$data);
+		$this->template->render();
+	}else{
 		$this->template->write_view('content', 'customer/subitemwise',$data);
 		$this->template->render();
+	}
+		
 	  
 	  //echo 'dfd';exit;
 	}
