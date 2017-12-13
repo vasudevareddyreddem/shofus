@@ -1094,16 +1094,12 @@ class Category_model extends MY_Model
 		}else{
 			$this->db->where('item_cost <=',$maxmum);
 		}
-		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )<=', '"'.$maxmum.'"', false);
 		$this->db->where('item_cost >=', '"'.(int)$min_amt.'"',false);
-		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )>=', '"'.(int)$min_amt.'"', false);
 		if($b!='NULL'){
 			$this->db->where_in('brand','"'.$b.'"',false);
 		}if($f!='NULL'){
 			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$f.'"', false);
-			//$this->db->where_in('offer_percentage','"'.$f.'"',false);
 		}if($d!='NULL'){
-			//$this->db->where_in('discount','"'.$d.'"',false);
 			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_amount`,`discount` )', '"'.$d.'"', false);
 
 		}if($c!='NULL'){
@@ -1987,7 +1983,7 @@ class Category_model extends MY_Model
 		return $this->db->query($sql)->result_array();
 	}
 	public function get_subitem_all_color_list($subcatid,$subitem_id){
-		$this->db->select('products.colour as color_name')->from('products');
+		$this->db->select('products.colour')->from('products');
 		$this->db->where('products.subitemid',$subitem_id);
 		$this->db->where('products.subcategory_id',$subcatid);
 		$this->db->where('products.item_status',1);
@@ -2308,16 +2304,331 @@ class Category_model extends MY_Model
 		$this->db->where('Ip_address',$this->input->ip_address());
 		return $this->db->get()->result_array();
 	}
-	public function update_subitem_wise_offer_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE subitem_wise_filter_search SET offer ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
+	public function subitem_wise_update_deails($id,$data){
+		$this->db->where('id', $id);
+		return $this->db->update('subitem_wise_filter_search', $data);
 	}
+	
 	public function save_subitemsearchdata($data){
 		
 		$this->db->insert('subitem_wise_filter_search', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	public function get_subitemwise_search_result_data($ip)
+	{
+	$this->db->select('subitem_wise_filter_search.*')->from('subitem_wise_filter_search');
+	//$this->db->group_by('fliter_search.cusine');
+	$this->db->group_by('subitem_wise_filter_search.offer');
+	$this->db->group_by('subitem_wise_filter_search.brand');
+	$this->db->group_by('subitem_wise_filter_search.discount');
+	$this->db->group_by('subitem_wise_filter_search.colour');
+	$this->db->group_by('subitem_wise_filter_search.size');
+	$this->db->group_by('subitem_wise_filter_search.ram');
+	$this->db->group_by('subitem_wise_filter_search.os');
+	$this->db->group_by('subitem_wise_filter_search.sim_type');
+	$this->db->group_by('subitem_wise_filter_search.camera');
+	$this->db->group_by('subitem_wise_filter_search.internal_memeory');
+	$this->db->group_by('subitem_wise_filter_search.screen_size');
+	$this->db->group_by('subitem_wise_filter_search.Processor');
+	$this->db->group_by('subitem_wise_filter_search.printer_type');
+	$this->db->group_by('subitem_wise_filter_search.type');
+	$this->db->group_by('subitem_wise_filter_search.max_copies');
+	$this->db->group_by('subitem_wise_filter_search.paper_size');
+	$this->db->group_by('subitem_wise_filter_search.headphone_jack');
+	$this->db->group_by('subitem_wise_filter_search.noise_reduction');
+	$this->db->group_by('subitem_wise_filter_search.usb_port');
+	$this->db->group_by('subitem_wise_filter_search.compatible_for');
+	$this->db->group_by('subitem_wise_filter_search.scanner_type');
+	$this->db->group_by('subitem_wise_filter_search.resolution');
+	$this->db->group_by('subitem_wise_filter_search.f_stop');
+	$this->db->group_by('subitem_wise_filter_search.minimum_focusing_distance');
+	$this->db->group_by('subitem_wise_filter_search.aperture_withmaxfocal_length');
+	$this->db->group_by('subitem_wise_filter_search.picture_angle');
+	$this->db->group_by('subitem_wise_filter_search.weight');
+	$this->db->group_by('subitem_wise_filter_search.occasion');
+	$this->db->group_by('subitem_wise_filter_search.material');
+	$this->db->group_by('subitem_wise_filter_search.collar_type');
+	$this->db->group_by('subitem_wise_filter_search.gender');
+	$this->db->group_by('subitem_wise_filter_search.sleeve');
+	$this->db->group_by('subitem_wise_filter_search.look');
+	$this->db->group_by('subitem_wise_filter_search.style_code');
+	$this->db->group_by('subitem_wise_filter_search.inner_material');
+	$this->db->group_by('subitem_wise_filter_search.waterproof');
+	//$this->db->order_by('subitem_wise_filter_search.id desc');
+	$this->db->where('ip_address',$ip);
+	$query=$this->db->get()->result_array();
+	//echo '<pre>';print_r($query);exit;
 	
+		foreach ($query as $listing){
+			
+			if($listing['offer']!=''){ $offer[] =$listing['offer']; }
+			if($listing['brand']!=''){ $brand[] = $listing['brand']; }
+			if($listing['discount']!=''){ $discount[] =$listing['discount']; }
+			if($listing['colour']!=''){ $colour[] =$listing['colour']; }
+			if($listing['size']!=''){ $size[] =$listing['size']; }
+			if($listing['ram']!=''){ $ram[] =$listing['ram']; }
+			if($listing['os']!=''){ $os[] =$listing['os']; }
+			if($listing['sim_type']!=''){ $sim_type[] =$listing['sim_type']; }
+			if($listing['camera']!=''){ $camera[] =$listing['camera']; }
+			if($listing['internal_memeory']!=''){ $internal_memeory[] =$listing['internal_memeory']; }
+			if($listing['screen_size']!=''){ $screen_size[] =$listing['screen_size']; }
+			if($listing['Processor']!=''){ $Processor[] =$listing['Processor']; }
+			if($listing['printer_type']!=''){ $printer_type[] =$listing['printer_type']; }
+			if($listing['type']!=''){ $type[] =$listing['type']; }
+			if($listing['max_copies']!=''){ $max_copies[] =$listing['max_copies']; }
+			if($listing['paper_size']!=''){ $paper_size[] =$listing['paper_size']; }
+			if($listing['headphone_jack']!=''){ $headphone_jack[] =$listing['headphone_jack']; }
+			if($listing['noise_reduction']!=''){ $noise_reduction[] =$listing['noise_reduction']; }
+			if($listing['usb_port']!=''){ $usb_port[] =$listing['usb_port']; }
+			if($listing['compatible_for']!=''){ $compatible_for[] =$listing['compatible_for']; }
+			if($listing['scanner_type']!=''){ $scanner_type[] =$listing['scanner_type']; }
+			if($listing['resolution']!=''){ $resolution[] =$listing['resolution']; }
+			if($listing['f_stop']!=''){ $f_stop[] =$listing['f_stop']; }
+			if($listing['minimum_focusing_distance']!=''){ $minimum_focusing_distance[] =$listing['minimum_focusing_distance']; }
+			if($listing['aperture_withmaxfocal_length']!=''){ $aperture_withmaxfocal_length[] =$listing['aperture_withmaxfocal_length']; }
+			if($listing['picture_angle']!=''){ $picture_angle[] =$listing['picture_angle']; }
+			if($listing['weight']!=''){ $weight[] =$listing['weight']; }
+			if($listing['occasion']!=''){ $occasion[] =$listing['occasion']; }
+			if($listing['material']!=''){ $material[] =$listing['material']; }
+			if($listing['collar_type']!=''){ $collar_type[] =$listing['collar_type']; }
+			if($listing['gender']!=''){ $gender[] =$listing['gender']; }
+			if($listing['sleeve']!=''){ $sleeve[] =$listing['sleeve']; }
+			if($listing['look']!=''){ $look[] =$listing['look']; }
+			if($listing['style_code']!=''){ $style_code[] =$listing['style_code']; }
+			if($listing['inner_material']!=''){ $inner_material[] =$listing['inner_material']; }
+			if($listing['waterproof']!=''){ $waterproof[] =$listing['waterproof']; }
+			$minamount = $listing['minimum_price'];
+			$maxamount = $listing['maximum_price'];
+			$subcatid = $listing['subcategory_id'];
+			$subitemid = $listing['subitemid'];
+		}
+		if(isset($brand) && count($brand)>0 ){
+			$brand=implode ('","', $brand );
+			}else{ $brand='NULL'; }
+		if(isset($offer) && count($offer)>0){
+			$offer=implode('","', $offer);
+		}else{ $offer='NULL'; }
+		if(isset($discount) && count($discount)>0 ){
+			$discount=implode('","', $discount);
+		}else{ $discount='NULL'; }
+		if(isset($colour) && count($colour)>0 ){
+			$colour=implode('","', $colour);
+		}else{ $colour='NULL'; }		
+		if(isset($size) && count($size)>0 ){
+			$size=implode('","', $size);
+		}else{ $size='NULL'; }		
+		if(isset($ram) && count($ram)>0 ){
+			$ram=implode('","', $ram);
+		}else{ $ram='NULL'; }		
+		if(isset($os) && count($os)>0 ){
+			$os=implode('","', $os);
+		}else{ $os='NULL'; }		
+		if(isset($sim_type) && count($sim_type)>0 ){
+			$sim_type=implode('","', $sim_type);
+		}else{ $sim_type='NULL'; }		
+		if(isset($camera) && count($camera)>0 ){
+			$camera=implode('","', $camera);
+		}else{ $camera='NULL'; }		
+		if(isset($internal_memeory) && count($internal_memeory)>0 ){
+			$internal_memeory=implode('","', $internal_memeory);
+		}else{ $internal_memeory='NULL'; }		
+		if(isset($screen_size) && count($screen_size)>0 ){
+			$screen_size=implode('","', $screen_size);
+		}else{ $screen_size='NULL'; }		
+		if(isset($Processor) && count($Processor)>0 ){
+			$Processor=implode('","', $Processor);
+		}else{ $Processor='NULL'; }		
+		if(isset($printer_type) && count($printer_type)>0 ){
+			$printer_type=implode('","', $printer_type);
+		}else{ $printer_type='NULL'; }		
+		if(isset($type) && count($type)>0 ){
+			$type=implode('","', $type);
+		}else{ $type='NULL'; }		
+		if(isset($max_copies) && count($max_copies)>0 ){
+			$max_copies=implode('","', $max_copies);
+		}else{ $max_copies='NULL'; }		
+		if(isset($paper_size) && count($paper_size)>0 ){
+			$paper_size=implode('","', $paper_size);
+		}else{ $paper_size='NULL'; }		
+		if(isset($headphone_jack) && count($headphone_jack)>0 ){
+			$headphone_jack=implode('","', $headphone_jack);
+		}else{ $headphone_jack='NULL'; }		
+		if(isset($noise_reduction) && count($noise_reduction)>0 ){
+			$noise_reduction=implode('","', $noise_reduction);
+		}else{ $noise_reduction='NULL'; }		
+		if(isset($usb_port) && count($usb_port)>0 ){
+			$usb_port=implode('","', $usb_port);
+		}else{ $usb_port='NULL'; }		
+		if(isset($compatible_for) && count($compatible_for)>0 ){
+			$compatible_for=implode('","', $compatible_for);
+		}else{ $compatible_for='NULL'; }		
+		if(isset($scanner_type) && count($scanner_type)>0 ){
+			$scanner_type=implode('","', $scanner_type);
+		}else{ $scanner_type='NULL'; }		
+		if(isset($resolution) && count($resolution)>0 ){
+			$resolution=implode('","', $resolution);
+		}else{ $resolution='NULL'; }		
+		if(isset($f_stop) && count($f_stop)>0 ){
+			$f_stop=implode('","', $f_stop);
+		}else{ $f_stop='NULL'; }		
+		if(isset($minimum_focusing_distance) && count($minimum_focusing_distance)>0 ){
+			$minimum_focusing_distance=implode('","', $minimum_focusing_distance);
+		}else{ $minimum_focusing_distance='NULL'; }		
+		if(isset($aperture_withmaxfocal_length) && count($aperture_withmaxfocal_length)>0 ){
+			$aperture_withmaxfocal_length=implode('","', $aperture_withmaxfocal_length);
+		}else{ $aperture_withmaxfocal_length='NULL'; }		
+		if(isset($picture_angle) && count($picture_angle)>0 ){
+			$picture_angle=implode('","', $picture_angle);
+		}else{ $picture_angle='NULL'; }		
+		if(isset($weight) && count($weight)>0 ){
+			$weight=implode('","', $weight);
+		}else{ $weight='NULL'; }		
+		if(isset($occasion) && count($occasion)>0 ){
+			$occasion=implode('","', $occasion);
+		}else{ $occasion='NULL'; }		
+		if(isset($material) && count($material)>0 ){
+			$material=implode('","', $material);
+		}else{ $material='NULL'; }		
+		if(isset($collar_type) && count($collar_type)>0 ){
+			$collar_type=implode('","', $collar_type);
+		}else{ $collar_type='NULL'; }		
+		if(isset($gender) && count($gender)>0 ){
+			$gender=implode('","', $gender);
+		}else{ $gender='NULL'; }		
+		if(isset($sleeve) && count($sleeve)>0 ){
+			$sleeve=implode('","', $sleeve);
+		}else{ $sleeve='NULL'; }		
+		if(isset($look) && count($look)>0 ){
+			$look=implode('","', $look);
+		}else{ $look='NULL'; }		
+		if(isset($style_code) && count($look)>0 ){
+			$style_code=implode('","', $style_code);
+		}else{ $style_code='NULL'; }		
+		if(isset($inner_material) && count($inner_material)>0 ){
+			$inner_material=implode('","', $inner_material);
+		}else{ $inner_material='NULL'; }		
+		if(isset($waterproof) && count($waterproof)>0 ){
+			$waterproof=implode('","', $waterproof);
+		}else{ $waterproof='NULL'; }		
+		
+		//exit;
+		//echo '<pre>';print_r($listsorting);exit;
+		
+		$return['filterslist'][] = $this->get_subitemwise_filters_search($subcatid,$subitemid,$minamount,$maxamount,$offer,$brand,$discount,$colour,$size,$ram,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$printer_type,$type,$max_copies,$paper_size,$headphone_jack,$noise_reduction,$usb_port,$compatible_for,$scanner_type,$resolution,$f_stop,$minimum_focusing_distance,$aperture_withmaxfocal_length,$picture_angle,$weight,$occasion,$material,$collar_type,$gender,$sleeve,$look,$style_code,$inner_material,$waterproof);
+		//echo $this->db->last_query();exit;
+		//echo '<pre>';print_r($return['filterslist']);exit;
+		if(!empty($return['filterslist']))
+		{
+		return $return['filterslist'];
+		}
+	}
+	public function get_subitemwise_filters_search($subcatid,$subitemid,$minamount,$maxamount,$offer,$brand,$discount,$colour,$size,$ram,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$printer_type,$type,$max_copies,$paper_size,$headphone_jack,$noise_reduction,$usb_port,$compatible_for,$scanner_type,$resolution,$f_stop,$minimum_focusing_distance,$aperture_withmaxfocal_length,$picture_angle,$weight,$occasion,$material,$collar_type,$gender,$sleeve,$look,$style_code,$inner_material,$waterproof){
+		
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+		$this->db->where('item_cost <=', $maxamount);
+		$this->db->where('item_cost >=', $minamount);
+		if($offer!='NULL'){
+			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$offer.'"', false);
+		}if($brand!='NULL'){
+			$this->db->where_in('brand','"'.$brand.'"',false);
+		}if($colour!='NULL'){
+			$this->db->where_in('colour','"'.$colour.'"',false);
+		}if($size!='NULL'){
+			$this->db->where_in('size','"'.$size.'"',false);
+		}if($ram!='NULL'){
+			$this->db->where_in('ram','"'.$ram.'"',false);
+		}if($os!='NULL'){
+			$this->db->where_in('os','"'.$os.'"',false);
+		}if($sim_type!='NULL'){
+			$this->db->where_in('sim_type','"'.$sim_type.'"',false);
+		}if($camera!='NULL'){
+			$this->db->where_in('camera','"'.$camera.'"',false);
+		}if($internal_memeory!='NULL'){
+			$this->db->where_in('internal_memeory','"'.$internal_memeory.'"',false);
+		}if($screen_size!='NULL'){
+			$this->db->where_in('screen_size','"'.$screen_size.'"',false);
+		}if($Processor!='NULL'){
+			$this->db->where_in('Processor','"'.$Processor.'"',false);
+		}if($printer_type!='NULL'){
+			$this->db->where_in('printer_type','"'.$printer_type.'"',false);
+		}if($type!='NULL'){
+			$this->db->where_in('type','"'.$type.'"',false);
+		}if($max_copies!='NULL'){
+			$this->db->where_in('max_copies','"'.$max_copies.'"',false);
+		}if($paper_size!='NULL'){
+			$this->db->where_in('paper_size','"'.$paper_size.'"',false);
+		}if($headphone_jack!='NULL'){
+			$this->db->where_in('headphone_jack','"'.$headphone_jack.'"',false);
+		}if($noise_reduction!='NULL'){
+			$this->db->where_in('noise_reduction','"'.$noise_reduction.'"',false);
+		}if($usb_port!='NULL'){
+			$this->db->where_in('usb_port','"'.$usb_port.'"',false);
+		}if($compatible_for!='NULL'){
+			$this->db->where_in('compatible_for','"'.$compatible_for.'"',false);
+		}if($scanner_type!='NULL'){
+			$this->db->where_in('scanner_type','"'.$scanner_type.'"',false);
+		}if($resolution!='NULL'){
+			$this->db->where_in('resolution','"'.$resolution.'"',false);
+		}if($f_stop!='NULL'){
+			$this->db->where_in('f_stop','"'.$f_stop.'"',false);
+		}if($minimum_focusing_distance!='NULL'){
+			$this->db->where_in('minimum_focusing_distance','"'.$minimum_focusing_distance.'"',false);
+		}if($aperture_withmaxfocal_length!='NULL'){
+			$this->db->where_in('aperture_withmaxfocal_length','"'.$aperture_withmaxfocal_length.'"',false);
+		}if($picture_angle!='NULL'){
+			$this->db->where_in('picture_angle','"'.$picture_angle.'"',false);
+		}if($weight!='NULL'){
+			$this->db->where_in('weight','"'.$weight.'"',false);
+		}if($occasion!='NULL'){
+			$this->db->where_in('occasion','"'.$occasion.'"',false);
+		}if($material!='NULL'){
+			$this->db->where_in('material','"'.$material.'"',false);
+		}if($collar_type!='NULL'){
+			$this->db->where_in('collar_type','"'.$collar_type.'"',false);
+		}if($gender!='NULL'){
+			$this->db->where_in('gender','"'.$gender.'"',false);
+		}if($sleeve!='NULL'){
+			$this->db->where_in('sleeve','"'.$sleeve.'"',false);
+		}if($look!='NULL'){
+			$this->db->where_in('look','"'.$look.'"',false);
+		}if($style_code!='NULL'){
+			$this->db->where_in('style_code','"'.$style_code.'"',false);
+		}if($inner_material!='NULL'){
+			$this->db->where_in('inner_material','"'.$inner_material.'"',false);
+		}if($waterproof!='NULL'){
+			$this->db->where_in('waterproof','"'.$waterproof.'"',false);
+		}
+		
+		$this->db->where('item_status',1);
+		$this->db->where('subcategory_id',$subcatid);
+		$this->db->where('subitemid',$subitemid);
+		
+		return $this->db->get()->result_array();
+	}
+	public function get_subitemwise_data_category_id($ip)
+	{
+		$this->db->select('subitem_wise_filter_search.subcategory_id,subitem_wise_filter_search.subitemid')->from('subitem_wise_filter_search');
+		$this->db->where('ip_address',$ip);
+		return $this->db->get()->row_array();
+	}
+	public function get_all_previous_subitemwise_search_fields($ip)
+	{
+		$this->db->select('*')->from('subitem_wise_filter_search');
+		$this->db->where('Ip_address',$ip);
+		return $this->db->get()->result_array();
+	}
+	public function get_all_previous_subitem_search_fields($ip)
+	{
+		$this->db->select('*')->from('subitem_wise_filter_search');
+		$this->db->where('Ip_address',$ip);
+		return $this->db->get()->result_array();
+	}
+	public function delete_privous_subitemwise_searchdata($id)
+	{
+		$sql1="DELETE FROM subitem_wise_filter_search WHERE id = '".$id."'";
+		return $this->db->query($sql1);
+	}
 }
 ?>
