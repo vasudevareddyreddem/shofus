@@ -1717,7 +1717,7 @@ if((!empty($_FILES["importcategoryfile"])) && ($_FILES['importcategoryfile']['er
 										$data['errors'][]="Subcategory Name is required. Row Id is :  ".$key.'<br>';
 										$error=1;
 									}else if($fields[0]!=''){
-										$regex ="/^[ A-Za-z0-9_@.,}{@#&$*)(_+-]*$/"; 
+										$regex ="/^[ A-Za-z0-9_@.,}'{@#&$&*)(_+-]*$/"; 
 										if(!preg_match( $regex, $fields[0]))	  	
 										{
 										$data['errors'][]='Subcategory Name wont allow "  <> []. Row Id is :  '.$key.'<br>';

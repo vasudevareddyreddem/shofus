@@ -218,35 +218,37 @@
    }
    }
    </style>
+   <span id="filtersubitemwisedata"></span>
+   <span id="subitemwisedata">
  <div class="col-sm-3">
             <div class="title"><span>Filters</span></div>
+			<input type="hidden" id="subitemid" name="subitemid" value="<?php echo $subitemid; ?>">
+			<input type="hidden" id="subcatid" name="subcatid" value="<?php echo $subcatid; ?>">
               <div class="row">
 				  <div class="col-md-6">
-				  <h4>Min:<span class="site_col">1200</span></h4>
+				  <h4>Min:<span class="site_col"><?php echo $minimum_price['item_cost']; ?></span></h4>
+				  <input type="hidden" id="min" name="min" value="<?php echo $minimum_price['item_cost']; ?>">
 				  </div>
 				  <div class="col-md-6">
-				 <h4>Max:<span class="site_col">1400</span></h4>
+				 <h4>Max:<span class="site_col"><?php echo $maximum_price['item_cost']; ?></span></h4>
+				  <input type="hidden" id="max" name="max" value="<?php echo $maximum_price['item_cost']; ?>">
 				  </div>
 			</div>
 		  <div class="row">
 		  <div class="col-md-6">
 		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="subitemwisefilters(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
-				<option value="">Min</option>
-				<?php foreach($minimum_price){ ?>
-				<option value="1000">1000</option>
-				<option value="2000">2000</option>
-				<option value="3000">3000</option>
-				<option value="4000">4000</option>
+				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 				<?php } ?>
+				
 			  </select>
 		  </div>
 		  <div class="col-md-6">
 		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="subitemwisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
-				<option value="">Max</option>
-				<option value="1000">1000</option>
-				<option value="2000">2000</option>
-				<option value="3000">3000</option>
-				<option value="4000">4000</option>
+				 <?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+				<?php } ?>
+
 			  </select>
 		  </div>
 		  </div><br>
@@ -318,7 +320,7 @@
                      <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree45">
                         <div class="panel-body">
                            <?php foreach ($color_list as $list){ ?>
-                           <div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'color'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['color_name']; ?>"><span>&nbsp;<?php echo $list['color_name']; ?></span></label></div>
+                           <div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'colour'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['colour']; ?>"><span>&nbsp;<?php echo $list['colour']; ?></span></label></div>
                            <?php } ?>
                         </div>
                      </div>
@@ -337,7 +339,7 @@
 					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body">
 						<?php foreach ($sizes_list as $list){ ?>
-							<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['p_size_name']; ?>"><span>&nbsp;<?php echo $list['p_size_name']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['size']; ?>"><span>&nbsp;<?php echo $list['size']; ?></span></label></div>
 						
 						<?php } ?>
 						</div>
@@ -484,32 +486,13 @@
 						</div>
 					</div>
 					<?php } ?>
-					<?php if(isset($printer_type) && count($printer_type)>0){?>
-					<div class="panel panel-primary">
-						<div class="panel-heading" role="tab" id="headingProcessor2">
-							<h4 class="panel-title">
-							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor2" aria-expanded="false" aria-controls="collapseProcessor2">
-							Processor	
-							</a>
-							</h4>
-
-						</div>
-						<div id="collapseProcessor2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor2">
-							<div class="panel-body">
-							<?php foreach ($printer_type as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'printer_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[printer_type][]" value="<?php echo $list['printer_type']; ?>"><span>&nbsp;<?php echo $list['printer_type']; ?></span></label></div>
-
-							<?php } ?>
-							</div>
-						</div>
-					</div>
-					<?php } ?>
+				
 					<?php if(isset($type_list) && count($type_list)>0){?>
 					<div class="panel panel-primary">
 						<div class="panel-heading" role="tab" id="headingProcessor3">
 							<h4 class="panel-title">
 							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor3" aria-expanded="false" aria-controls="collapseProcessor3">
-							Processor	
+							type	
 							</a>
 							</h4>
 
@@ -543,25 +526,7 @@
 						</div>
 					</div>
 					<?php } ?>
-					<?php if(isset($type_list) && count($type_list)>0){?>
-					<div class="panel panel-primary">
-						<div class="panel-heading" role="tab" id="headingProcessor5">
-							<h4 class="panel-title">
-							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor5" aria-expanded="false" aria-controls="collapseProcessor5">
-							Type	
-							</a>
-							</h4>
-						</div>
-						<div id="collapseProcessor5" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor5">
-							<div class="panel-body">
-							<?php foreach ($type_list as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[type][]" value="<?php echo $list['type']; ?>"><span>&nbsp;<?php echo $list['type']; ?></span></label></div>
-
-							<?php } ?>
-							</div>
-						</div>
-					</div>
-					<?php } ?>
+					
 					<?php if(isset($max_copies) && count($max_copies)>0){?>
 					<div class="panel panel-primary">
 						<div class="panel-heading" role="tab" id="headingProcessor6">
@@ -790,25 +755,7 @@
 						</div>
 					</div>
 					<?php } ?>
-					<?php if(isset($size_list) && count($size_list)>0){?>
-					<div class="panel panel-primary">
-						<div class="panel-heading" role="tab" id="headingProcessor18">
-							<h4 class="panel-title">
-							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProcessor18" aria-expanded="false" aria-controls="collapseProcessor18">
-							Size
-							</a>
-							</h4>
-						</div>
-						<div id="collapseProcessor18" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingProcessor18">
-							<div class="panel-body">
-							<?php foreach ($size_list as $list){  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="size" name="products[size][]" value="<?php echo $list['size']; ?>"><span>&nbsp;<?php echo $list['size']; ?></span></label></div>
-
-							<?php } ?>
-							</div>
-						</div>
-					</div>
-					<?php } ?>
+					
 					<?php if(isset($weight_list) && count($weight_list)>0){?>
 					<div class="panel panel-primary">
 						<div class="panel-heading" role="tab" id="headingProcessor19">
@@ -1142,10 +1089,6 @@
 		<div > No Products are available</div>
 		<?php } ?>
          
-       
-         
-          
-         
         </div>
 		</span>
 	
@@ -1155,33 +1098,40 @@
 <script>
 
 function subitemwisefilters(val,status,check){
-	alert(val);
-	alert(status);
-	alert(check);
-	
-	return false;
-	
+		if(status=='mimimum_price'){
+			var minamt=val;
+		}else{
+			var minamt=$('#min').val();
+		}
+		if(status=='maximum_price'){
+			var maxamt=val;
+		}else{
+			var maxamt=$('#max').val();
+		}
 	jQuery.ajax({
 		
-				url: "<?php echo site_url('category/categorywiseearch');?>",
+				url: "<?php echo site_url('category/subitemwise_search');?>",
 				type: 'post',
 			
 				data: {
 					form_key : window.FORM_KEY,
-					categoryid: $('#categoryid').val(),
+					subcatid: $('#subcatid').val(),
+					subitemid: $('#subitemid').val(),
 					productsvalues: val,
 					searchvalue: status,
 					unchecked: check,
-					mini_mum: $('#input-select').val(),
-					maxi_mum: $('#input-number').val(),
+					mini_mum: minamt,
+					maxi_mum: maxamt,
 
 					},
 				dataType: 'html',
 				success: function (data) {
-					$("#againcategory").empty();
-					$("#againcategory").append(data);
-	}
-});
+					$("#subitemwisedata").empty();
+   					$("#subitemwisedata").hide();
+   					$("#filtersubitemwisedata").show();
+   					$("#filtersubitemwisedata").append(data);
+				}
+		});
 }
 
 </script>

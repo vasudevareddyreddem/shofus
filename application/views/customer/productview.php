@@ -1110,18 +1110,24 @@
                 <div class="well">
                  <table class="table table-bordered">
                 <tbody>
+					 <?php if(isset($products_list['warranty_summary']) && $products_list['warranty_summary']!=''){ ?>
                       <tr>
                         <td>Warranty Summary</td>
                         <td><?php echo isset($products_list['warranty_summary'])?$products_list['warranty_summary']:''; ?></td>
                       </tr>
-					  <tr>
+					 <?php } ?>
+					<?php if(isset($products_list['warranty_type']) && $products_list['warranty_type']!=''){ ?>
+						<tr>
                         <td>Warranty Type</td>
                         <td><?php echo isset($products_list['warranty_type'])?$products_list['warranty_type']:''; ?></td>
                       </tr>
-					  <tr>
+					<?php } ?>
+					<?php if(isset($products_list['service_type']) && $products_list['service_type']!=''){ ?>
+						<tr>
                         <td>Service Type</td>
                         <td><?php echo isset($products_list['service_type'])?$products_list['service_type']:''; ?></td>
                       </tr>
+					<?php } ?>
                      
 					  
                     </tbody>

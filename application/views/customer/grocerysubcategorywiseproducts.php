@@ -69,12 +69,12 @@
 <div class="mar_t20">
 <div class="col-md-12  ">
    <br>
-   <div class='col-md-3'>
+  <div class='col-md-3'>
       <div class="sidebar left ">
          <ul class="list-sidebar bg-defoult">
-            <?php $s=1;foreach ($subitem_list as $list){ ?>
+            <?php $s=1;foreach ($subitemwise_item_list as $list){ ?>
             <li>
-               <a id="subids<?php echo $s; ?>" style="cursor:pointer" onclick="subitemswiseproducts('<?php echo $list['subitem_id']; ?>', '<?php echo $s; ?>');colouractive('<?php echo $s; ?>');" class="collapsed active " > </i> <span class="nav-label"> <?php echo isset($list['subitem_name'])?$list['subitem_name']:''; ?> </span> <span id="arraowids<?php echo $s; ?>" class="fa fa-chevron-left pull-right"></span> </a>
+               <a id="subids<?php echo $s; ?>" style="cursor:pointer" onclick="subitemswiseproducts('<?php echo $list['id']; ?>', '<?php echo $s; ?>');colouractive('<?php echo $s; ?>');" class="collapsed active " > </i> <span class="nav-label"> <?php echo isset($list['item_name'])?$list['item_name']:''; ?> </span> <span id="arraowids<?php echo $s; ?>" class="fa fa-chevron-left pull-right"></span> </a>
             </li>
             <?php $s++;} ?>
          </ul>
@@ -84,10 +84,10 @@
    <span id="subitemwisefiltersdata">
       <div class='col-md-9'>
          <div class="panel-group" id="accordion">
-            <?php if(count($subcategory_porduct_list)>0) { ?>
+            <?php if(count($subitemwise)>0) { ?>
             <?php 
                $customerdetails=$this->session->userdata('userdetails');
-               $cnt=0;$cnt1=1;foreach ($subcategory_porduct_list as $productslist){ ?>
+               $cnt=0;$cnt1=1;foreach ($subitemwise as $productslist){ ?>
             <div id="unitwusechanges<?php echo $cnt; ?><?php echo time(); ?>">
                <?php $currentdate=date('Y-m-d h:i:s A');
                   if($productslist['offer_expairdate']>=$currentdate){
@@ -284,6 +284,7 @@
    			},
    		dataType: 'html',
    		success: function (data) {
+			alert();return false;
    				$("#subitemwisefiltersdata").empty();
    				$("#subitemwisefiltersdata").append(data);
    		}
