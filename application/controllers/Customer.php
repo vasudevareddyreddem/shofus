@@ -133,7 +133,7 @@ class Customer extends Front_Controller
 		if($post['email']!=$customerdetails['cust_email']){
 			$emailcheck= $this->customer_model->email_unique_check($post['email']);
 			if(count($emailcheck)>0){
-				$this->session->set_flashdata('errormsg','Email id already exits.please use another Email id');
+				$this->session->set_flashdata('errormsg','Email id already exists.please use another Email id');
 				redirect('customer/editprofile');
 			}
 			
@@ -141,7 +141,7 @@ class Customer extends Front_Controller
 		if($post['mobile']!=$customerdetails['cust_mobile']){
 			$mobilecheck= $this->customer_model->mobile_unique_check($post['mobile']);
 			if(count($mobilecheck)>0){
-				$this->session->set_flashdata('errormsg','Mobile Number already exits.please use another Mobile number');
+				$this->session->set_flashdata('errormsg','Mobile Number already exists .please use another Mobile number');
 				redirect('customer/editprofile');
 			}
 			

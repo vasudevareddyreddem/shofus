@@ -1362,14 +1362,14 @@ function filtersearch(){
 
 public function suitemwiseproductslist(){
 		$post=$this->input->post();
-		echo '<pre>';print_r($post);exit;
-		$subitem_list= $this->category_model->get_subitem_list($post['subitem_id']);
+		//echo '<pre>';print_r($post);exit;
+		$subitem_list= $this->category_model->get_subitem_list($post['subitem_id'],$post['item_id']);
 		//echo $this->db->last_query();
 		//echo '<pre>';print_r($subitem_list);exit;
 		if(count($subitem_list)>0){
 		foreach($subitem_list as $list){
-		//echo '<pre>';print_r($list);
-		$sameunitproduct=$this->category_model->get_sameunit_products_list($list['item_name']);
+		//echo '<pre>';print_r($list);exit;
+		$sameunitproduct=$this->category_model->get_subitemwise_unit_products_list($list['subitemid'],$list['unit']);
 
 		$desc=$this->category_model->get_products_desc_list($list['item_id']);
 		$plist[$list['item_id']]['list']=$list;
@@ -1901,7 +1901,7 @@ public function suitemwiseproductslist(){
 	//echo '<pre>';print_r($data);exit;
 	if($catid==21){
 		$data['subitemwise_item_list']= $this->category_model->get_all_subwise_item_list($subcatid,$subitemid);
-		//echo '<pre>';print_r($data);exit;
+		//echo '<pre>';print_r($data['subitemwise_item_list']);exit;
 		$this->template->write_view('content', 'customer/grocerysubcategorywiseproducts',$data);
 		$this->template->render();
 	}else{

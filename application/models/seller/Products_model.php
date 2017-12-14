@@ -439,108 +439,18 @@ public function returns()
 
 {
 	$sid = $this->session->userdata('seller_id');
-	$this->db->from('products');
-	//$this->db->join('orders', 'orders.seller_id = products.seller_id');
-	$this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
-   $this->db->join('category', 'category.category_id =products.category_id');
-	$this->db->where('products.seller_id',$sid);
-	//$this->db->where('orders.order_status','4');
-	$this->db->group_by('category.category_name');
-	$query = $this->db->get();
-	
-	
-	
-	
-	
-	 foreach ($query->result() as $category)
-        {
-            $return[$category->category_id] = $category;
+	$this->db->select('order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,order_items.*,products.item_name,customers.cust_firstname,customers.cust_lastname,customers.cust_email,customers.cust_mobile,customers.address1,billing_address.name')->from('order_items');
+	$this->db->join('products', 'products.item_id = order_items.item_id','left');
+	$this->db->join('customers', 'customers.customer_id = order_items.customer_id','left');
+	$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+	$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id','left');
 
-        $return[$category->category_id]->returndocs = $this->get_returncatedata($category->category_id);
-        
-
-        
-    }
-    //print "<pre>";
-//print_r($return); 
-//print "<pre>"; exit;
-     if(!empty($return))
-    {
-    return $return;
+	$this->db->where('order_items.seller_id',$sid);
+	//$this->db->where('order_status.status_deliverd=',4);
+	$this->db->where('order_status.status_refund is NOT NULL', NULL, False);
+	$this->db->order_by('order_items.order_item_id','desc');
+	return $this->db->get()->result();
 }
-
-}
-public function get_returncatedata($category_id)
-{
-  $sid = $this->session->userdata('seller_id');
-    $this->db->select('*');
-    $this->db->from('products');
-	//$this->db->join('orders', 'orders.seller_id = products.seller_id');
-    $this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
-   $this->db->join('category', 'category.category_id =products.category_id');
-   //$this->db->where('orders.order_status','4');
-   $this->db->where('products.category_id', $category_id);
-    $this->db->where('products.seller_id', $sid);
-	$this->db->group_by('subcategories.subcategory_name');
-    $query = $this->db->get();
-    
-    //return $query->result();
-	
-	
-	 foreach ($query->result() as $subcategory)
-        {
-            $return[$subcategory->subcategory_id] = $subcategory;
-
-        $return[$subcategory->subcategory_id]->returndocs12 = $this->get_returnsubcatedata($subcategory->subcategory_id);
-        
-
-        
-    }
-    //print "<pre>";
-//print_r($return); 
-//print "<pre>"; exit;
-     if(!empty($return))
-    {
-    return $return;
-}
-	
-	
-	
-	
-	
-	
-	
-	
-}
-
-
-public function get_returnsubcatedata($subcategory_id)
-{
-	
-	$sid = $this->session->userdata('seller_id');
-    $this->db->select('*');
-    $this->db->from('products');
-	$this->db->join('orders', 'orders.seller_id = products.seller_id');
-    $this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
-   $this->db->join('category', 'category.category_id =products.category_id');
-   $this->db->where('orders.order_status','4');
-   $this->db->where('products.subcategory_id', $subcategory_id);
-    $this->db->where('orders.seller_id', $sid);
-	//$this->db->group_by('subcategories.subcategory_name');
-    $query = $this->db->get();
-    
-    return $query->result();
-	
-	
-	
-	
-	
-	
-	
-	
-}
-
-
 
 public function getproductapproval()
 {

@@ -68,15 +68,13 @@
 <div class="row ">
 <div class="mar_t20">
 <div class="col-md-12  ">
-<?php if(isset($subitemwise_item_list) && count($subitemwise_item_list)>0){
-
-//echo '<pre>';print_r($subitemwise_item_list);exit;	?>
+<?php if(isset($subitemwise_item_list) && count($subitemwise_item_list)>0){ ?>
   <div class='col-md-3'>
       <div class="sidebar left ">
          <ul class="list-sidebar bg-defoult">
             <?php $s=1;foreach ($subitemwise_item_list as $list){ ?>
             <li>
-               <a id="subids<?php echo $s; ?>" style="cursor:pointer" onclick="subitemswiseproducts('<?php echo $list['subitemid']; ?>', '<?php echo $list['id']; ?>', '<?php echo $s; ?>');colouractive('<?php echo $s; ?>');" class="collapsed active " > </i> <span class="nav-label"> <?php echo isset($list['item_name'])?$list['item_name']:''; ?> </span> <span id="arraowids<?php echo $s; ?>" class="fa fa-chevron-left pull-right"></span> </a>
+               <a id="subids<?php echo $s; ?>" style="cursor:pointer" onclick="subitemswiseproducts('<?php echo $list['id']; ?>', '<?php echo $s; ?>');colouractive('<?php echo $s; ?>');" class="collapsed active " > </i> <span class="nav-label"> <?php echo isset($list['item_name'])?$list['item_name']:''; ?> </span> <span id="arraowids<?php echo $s; ?>" class="fa fa-chevron-left pull-right"></span> </a>
             </li>
             <?php $s++;} ?>
          </ul>
@@ -84,7 +82,7 @@
    </div>
 <?php } ?>
    <div id="sucessmsg" style="display:none;"></div>
-   <span id="itemwisefiltersdata">
+   <span id="subitemwisefiltersdata">
       <div class='col-md-9'>
          <div class="panel-group" id="accordion">
             <?php if(count($subitemwise)>0) { ?>
@@ -218,7 +216,7 @@
    </div>
 </div>
 <script>
-    function unitaddwhishlidts(id,val){
+   function unitaddwhishlidts(id,val){
    jQuery.ajax({
    url: "<?php echo site_url('customer/addwhishlist');?>",
    type: 'post',
@@ -257,41 +255,6 @@
    
    
    }
-   function subitemswiseproducts(sid,itemid){
- if(sid!=''){
-     jQuery.ajax({
-   		url: "<?php echo site_url('category/suitemwiseproductslist');?>",
-   		type: 'post',
-   		data: {
-   				form_key : window.FORM_KEY,
-   				subitem_id: sid,
-   				item_id: itemid,
-   			},
-   		dataType: 'html',
-   		success: function (data) {
-   				$("#itemwisefiltersdata").empty();
-   				$("#itemwisefiltersdata").append(data);
-   		}
-   	});
-   
-   }
-   }
- function colouractive(val){
-   $("#subids"+val).addClass("grocery_active");
-   $("#arraowids"+val).removeClass("fa-chevron-left");
-   $("#arraowids"+val).addClass("fa-chevron-right");
-   var cnt;
-    var count =<?php echo count($subitemwise_item_list);?>;
-   //var cnt='';
-   for(cnt = 1; cnt <= count; cnt++){
-   if(cnt!=val){
-   $("#subids"+cnt).removeClass("grocery_active");
-   $("#arraowids"+cnt).addClass("fa-chevron-left");
-   $("#arraowids"+cnt).removeClass("fa-chevron-right");
-   }             
-   }
-   
-   }
    function getunitwiseproducts(itemid,cnt,time){
    if(itemid!=''){
      jQuery.ajax({
@@ -311,7 +274,42 @@
    }
    
    }
-    function productqty(id,anid){
+   function subitemswiseproducts(sid){
+   if(sid!=''){
+     jQuery.ajax({
+   		url: "<?php echo site_url('category/suitemwiseproductslist');?>",
+   		type: 'post',
+   		data: {
+   				form_key : window.FORM_KEY,
+   				subitem_id: sid,
+   			},
+   		dataType: 'html',
+   		success: function (data) {
+			alert();return false;
+   				$("#subitemwisefiltersdata").empty();
+   				$("#subitemwisefiltersdata").append(data);
+   		}
+   	});
+   
+   }
+   }
+   function colouractive(val){
+   $("#subids"+val).addClass("grocery_active");
+   $("#arraowids"+val).removeClass("fa-chevron-left");
+   $("#arraowids"+val).addClass("fa-chevron-right");
+   var cnt;
+    var count =<?php echo count($subitem_list);?>;
+   //var cnt='';
+   for(cnt = 1; cnt <= count; cnt++){
+   if(cnt!=val){
+   $("#subids"+cnt).removeClass("grocery_active");
+   $("#arraowids"+cnt).addClass("fa-chevron-left");
+   $("#arraowids"+cnt).removeClass("fa-chevron-right");
+   }             
+   }
+   
+   }
+   function productqty(id,anid){
 	   
    
    
@@ -421,6 +419,5 @@
       });
    
    }
-   
 </script>
 
