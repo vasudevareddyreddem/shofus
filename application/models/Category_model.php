@@ -2673,5 +2673,43 @@ class Category_model extends MY_Model
 		$this->db->group_by('sub_items.subitem_id');
 		return $this->db->get()->result_array();
 	}
+	
+	/*categorypage data*/
+		public function step_one_data($position){
+		$this->db->select('*')->from('category_banners');
+		$this->db->where('category_banners.position',$position);
+		$this->db->where('category_banners.status',1);
+		$this->db->where('category_banners.admin_status',1);
+		return $this->db->get()->result_array();
+		}
+		public function step_four_data($position){
+		$this->db->select('*')->from('category_banners');
+		$this->db->where('category_banners.position',$position);
+		$this->db->where('category_banners.status',1);
+		$this->db->where('category_banners.admin_status',1);
+		return $this->db->get()->result_array();
+		}
+		public function step_seven_data($position){
+		$this->db->select('*')->from('category_banners');
+		$this->db->where('category_banners.position',$position);
+		$this->db->where('category_banners.status',1);
+		$this->db->where('category_banners.admin_status',1);
+		return $this->db->get()->result_array();
+		}
+		public function step_eleven_data($position){
+		$this->db->select('*')->from('category_banners');
+		$this->db->where('category_banners.position',$position);
+		$this->db->where('category_banners.status',1);
+		$this->db->where('category_banners.admin_status',1);
+		return $this->db->get()->result_array();
+		}
+		public function step_two_data($catid){
+				$this->db->select('subcategories.*')->from('products');
+				$this->db->join('subcategories', 'subcategories.category_id = products.category_id', 'left'); //
+				$this->db->where('products.category_id',$catid);
+				$this->db->where('products.subcategory_id !=','');
+				$this->db->group_by('products.subcategory_id');
+				return $this->db->get()->result_array();
+		}
 }
 ?>
