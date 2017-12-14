@@ -982,34 +982,30 @@ function filtersearch(){
 	$data['category_name']= $this->category_model->get_category_name($caterory_id);
 	$sid=$this->uri->segment(4);
 	if($sid!='' && is_int($sid)){
-		//echo base64_decode($this->uri->segment(4));
 		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,base64_decode($sid));
 		foreach($data['subcategory_porduct_list'] as $list){
 			//echo '<pre>';print_r($list);
-			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
 			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
 			
 		}
 	}else if(isset($data['subcatid']) && $data['subcatid']!=''){
 		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,'');
 		foreach($data['subcategory_porduct_list'] as $list){
-			//echo '<pre>';print_r($list);
 			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
 			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
 			
 		}
 	}else{
-		//echo 'fgfd';exit;
 		$data['subcategory_porduct_list']= $this->category_model->get_all_subcategory_product($caterory_id,base64_decode($sid));
 		foreach($data['subcategory_porduct_list'] as $list){
-			//echo '<pre>';print_r($list);
 			$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
 			$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
 			
 		}
 	}
-	
-	//echo '<pre>';print_r($data);exit;
+	/*subcategory list*/
+	$data['subcategory_wise_subitems']= $this->category_model->get_category_subcategory_list($caterory_id);
+	//echo '<pre>';print_r($data['subcategory_wise_subitems']);exit;
 	if(isset($reviewrating) && count($reviewrating)>0){
 		$data['avg_count']=$reviewrating;
 	}

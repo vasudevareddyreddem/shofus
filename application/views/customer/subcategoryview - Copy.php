@@ -316,27 +316,139 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 				<div class="">
 	
 				<ul>
-				<?php if(isset($subcategory_wise_subitems) && count($subcategory_wise_subitems)>0){ ?>
-					<?php foreach ($subcategory_wise_subitems as $lists){ ?>
-						<li class="dropdown mar_t10 col-md-2 ">
-						<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
-							<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							  <div class=" text-center ">
-							  <?php echo $lists['subcategory_name']; ?>
-							  <span class="caret"></span>
-							  <p style="font-size:10px;padding:0;margin:0">select</p>
-							  </div>
-							</a>
-							</div>
-							<ul class="dropdown-menu">
-								<?php foreach ($lists['subitems'] as $lis){ ?>
-								  <li><a href="#"><?php echo $lis['subitem_name']; ?></a></li>
-								<?php } ?>
-							</ul>
-						 </li>
-					<?php } ?>
-				<?php } ?>
-					
+					<li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
+					 <li class="dropdown mar_t10 col-md-2 ">
+					<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
+						<a href="#" class="dropdown-toggle btn  btn-block "  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  <div class=" text-center ">
+						  Mens
+						  <span class="caret"></span>
+						  <p style="font-size:10px;padding:0;margin:0">select</p>
+						  </div>
+						</a>
+						</div>
+						<ul class="dropdown-menu">
+						
+						  <li><a href="#">Top Wear</a></li>
+						  <li><a href="#">Bottom Wear</a></li>
+						  <li><a href="#">Blog Detail</a></li>
+						  <li><a href="#">Checkout v2</a></li>
+						  <li><a href="#">Compare </a></li>
+						</ul>
+					 </li>
 				 </ul>
 				</div>
 		 

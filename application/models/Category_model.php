@@ -1489,7 +1489,7 @@ class Category_model extends MY_Model
 	public function get_all_subcategory_product($category_ids,$sid)
 	{
 	
-	$this->db->select('products.*')->from('products');
+	$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.unit,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.ingredients,products.key_feature,products.disclaimer,products.unit')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');
 	if($sid!=''){
@@ -2643,6 +2643,35 @@ class Category_model extends MY_Model
 	$this->db->where('products.itemwise_id !=','');
 	$this->db->group_by('items_list.id');
 	return $this->db->get()->result_array();
+	}
+	/*subcategory list*/
+	public function get_category_subcategory_list($catid){
+		$this->db->select('subcategories.*')->from('products');
+		$this->db->join('category', 'category.category_id = products.category_id', 'left'); //
+		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left'); //
+		$this->db->where('products.category_id',$catid);
+		$this->db->where('products.subcategory_id !=','');
+		$this->db->group_by('products.subcategory_id');
+		$query=$this->db->get()->result_array();
+		foreach ($query as $lists){
+			$data=$this->get_subcategory_subitems_list($lists['subcategory_id']);
+			$subcat[$lists['subcategory_id']]=$lists;
+			$subcat[$lists['subcategory_id']]['subitems']=$data;
+			
+		}
+		if(!empty($subcat))
+		{
+		return $subcat;
+		}
+		
+	}
+	public function get_subcategory_subitems_list($subcatid){
+		$this->db->select('sub_items.*')->from('products');
+		$this->db->join('sub_items', 'sub_items.subcategory_id = products.subcategory_id', 'left'); //
+		$this->db->where('products.subcategory_id',$subcatid);
+		$this->db->where('products.subitemid !=','');
+		$this->db->group_by('sub_items.subitem_id');
+		return $this->db->get()->result_array();
 	}
 }
 ?>
