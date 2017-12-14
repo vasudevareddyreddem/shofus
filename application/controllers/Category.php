@@ -1901,7 +1901,7 @@ public function suitemwiseproductslist(){
 	//echo '<pre>';print_r($data);exit;
 	if($catid==21){
 		$data['subitemwise_item_list']= $this->category_model->get_all_subwise_item_list($subcatid,$subitemid);
-		//echo '<pre>';print_r($data);exit;
+		//echo '<pre>';print_r($data['subitemwise_item_list']);exit;
 		$this->template->write_view('content', 'customer/grocerysubcategorywiseproducts',$data);
 		$this->template->render();
 	}else{

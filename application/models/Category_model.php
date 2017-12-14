@@ -2640,6 +2640,7 @@ class Category_model extends MY_Model
 	$this->db->join('items_list', 'items_list.id = products.itemwise_id', 'left'); //
 	$this->db->where('products.subcategory_id',$subcatid);
 	$this->db->where('products.subitemid',$subitemid);
+	$this->db->where('products.itemwise_id !=','');
 	$this->db->group_by('items_list.id');
 	return $this->db->get()->result_array();
 	}
