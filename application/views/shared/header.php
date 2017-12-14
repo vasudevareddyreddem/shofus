@@ -145,7 +145,7 @@
       <div class="container-fluid" style="padding:0 40px">
          <div class=" row">
             <div class="social-media pull-left" >
-               Stay connected:
+              <span class="font_s12"> Stay connected:</span>
                <ul>
                   <li><a href="https://www.facebook.com/cartinhoursdotcom/" target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/fb.png" /></i></span></a></li>
                   &nbsp;
@@ -446,7 +446,7 @@
    <!--mobile responsive end-->
    <div class="top-navbar1">
    <div class="container">
-   <?php if(count($qucikjump)>0){ ?>
+   <!--<?php if(count($qucikjump)>0){ ?>
    <div class=" row qucik_jmp sm_hide">
       <ul class="navbar_1">
          <li><span style="color:#555">Quick Jump to </span></li>
@@ -456,7 +456,7 @@
          <?php } ?>
       </ul>
    </div>
-   <?php } ?>
+   <?php } ?>-->
 </nav>
 <div id="mySidenav" class="sidenav closebtn md_hide" href="javascript:void(0)"  onclick="closeNav()" >
    <div class="container" style="background-color: #009688;padding:20px 5px; ">
@@ -657,13 +657,13 @@ function addtabactive(id)
 </script>
 <script type="text/javascript" language="javascript">
    $(window).scroll(function() {
-   if ($(this).scrollTop() > 50) {
+   if ($(this).scrollTop() > 30) {
    $('.hm_nav').addClass('affix');
-   $('.hm_nav').addClass('animated fadeInDown');
+  
    }
    else{
-   $('.hm_nav').removeClass('fadeInDown');
-   $('.hm_nav').removeClass('animated affix	');
+   $('.hm_nav').removeClass('affix');
+   
    }
    });
 </script>
