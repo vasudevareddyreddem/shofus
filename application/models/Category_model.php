@@ -1757,13 +1757,14 @@ class Category_model extends MY_Model
 	$this->db->where('subcategory_id',$subcatid);
 	return $this->db->get()->row_array();
  } 
- public function get_subitem_list($item_id)
+ public function get_subitem_list($subitem_id,$item_id)
 	{
 	
-	$this->db->select('products.*,category.category_id')->from('products');
+	$this->db->select('products.item_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.ingredients,products.key_feature,products.disclaimer,products.item_cost,products.special_price,products.offer_percentage,products.discount,products.offers,products.offer_expairdate,products.unit,products.item_status,products.item_quantity,products.item_image,category.category_id')->from('products');
 	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
     $this->db->where('products.itemwise_id', $item_id);
+    $this->db->where('products.subitemid', $subitem_id);
     $this->db->where('products.item_status', 1);
     $this->db->group_by('products.item_name');
 	return $this->db->get()->result_array();
@@ -1944,7 +1945,7 @@ class Category_model extends MY_Model
 	}
 	/* subitemwise*/
 	public function get_all_itemproducts_list($subcatid,$subitem_id){
-		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.unit,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,sub_items.subitem_name')->from('products');
+		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.unit,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,sub_items.subitem_name,products.ingredients,products.key_feature,products.disclaimer,products.unit')->from('products');
 		$this->db->join('sub_items', 'sub_items.subitem_id =products.subitemid', 'left');	
 		$this->db->where('item_status',1);
 		$this->db->where('subitemid',$subitem_id);

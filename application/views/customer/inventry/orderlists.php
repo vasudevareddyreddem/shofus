@@ -11,7 +11,7 @@
             </div>
 			
             <!-- /.box-header -->
-			<?php //echo '<pre>';print_r($category_list);exit;
+			<?php //echo '<pre>';print_r($orderslists);exit;
 
 			?>
             <div class="box-body">
@@ -51,7 +51,17 @@
 				<td><?php echo isset($list['billingname'])?$list['billingname']:''; ?></td>
 				<td><?php echo isset($list['billingmobile'])?$list['billingmobile']:''; ?></td>
 				<td>
-				<?php echo if($list['payment_type']){
+				<?php if($list['payment_type']==1){
+					echo "Payment Mode";
+					
+				}else if($list['payment_type']==2){
+					echo "Cash On Delivery";
+					
+				}else if($list['payment_type']==3){
+					echo "Swipe On Delivery";
+					
+				}else if($list['payment_type']==4){
+					echo "Paytm";
 					
 				}
 					?>

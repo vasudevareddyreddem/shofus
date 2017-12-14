@@ -228,24 +228,26 @@
 		}
 	  
   } 
-  function subitemswiseproducts(sid){
-	  if(sid!=''){
-			  jQuery.ajax({
-					url: "<?php echo site_url('category/suitemwiseproductslist');?>",
-					type: 'post',
-					data: {
-							form_key : window.FORM_KEY,
-							subitem_id: sid,
-						},
-					dataType: 'html',
-					success: function (data) {
-							$("#subitemwisefiltersdata").empty();
-							$("#subitemwisefiltersdata").append(data);
-					}
-				});
-
-		}
- }
+   function subitemswiseproducts(sid,itemid){
+ if(sid!=''){
+     jQuery.ajax({
+   		url: "<?php echo site_url('category/suitemwiseproductslist');?>",
+   		type: 'post',
+   		data: {
+   				form_key : window.FORM_KEY,
+   				subitem_id: sid,
+   				item_id: itemid,
+   			},
+   		dataType: 'html',
+   		success: function (data) {
+   				$("#itemwisefiltersdata").empty();
+   				$("#itemwisefiltersdata").append(data);
+   		}
+   	});
+   
+   }
+   }
+ 
 function productqty(id){
 	
 

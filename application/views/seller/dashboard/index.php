@@ -126,86 +126,57 @@
       <!-- <h1 class="head_title">My Returns</h1> -->
      <div><?php echo $this->session->flashdata('message');?></div>
       <div class="faq"> 
-      <?php //echo '<pre>';print_r($returnitemdata);exit; ?>
-	  <?php if(count($returnitemdata)>0){ ?>
-		    <?php  foreach($returnitemdata as $returncatitem_data )  {    ?>
-        <!--<h1 onclick="document.getElementById('gry').style.display='block'">GETTING STARTED</h1>-->
-        <?php $catspace =  $returncatitem_data->category_name; 
-            $catnospace = str_replace(array(' ',';','/','_', '<','@','+','-','$',':','.','^','|','?','!','#','~', ',', '>', '&', '{', '}','(', ')', '*'), array('_'), $catspace);
-            ?>
-        <h1 data-toggle="collapse" data-target="#gry<?php echo $catnospace;  ?>"><?php echo $returncatitem_data->category_name;   ?></h1>
-        <div class="demo"> 
-          <!--<div id="gry" style="display:none">-->
-          <div id="gry<?php echo $catnospace;   ?>" class="collapse">
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <?php 
-            foreach($returncatitem_data->returndocs as $subcategory){?>
-            <?php $space =  $subcategory->subcategory_name; 
-            
-            $nospace = str_replace(array(' ',';','/','_', '<','@','+','-','$',':','.','^','|','?','!','#','~', ',', '>', '&', '{', '}','(', ')', '*'), array('_'), $space);
-            
-            ?>
-              <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne<?php echo $nospace;  ?>">
-                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?php echo $nospace;  ?>" aria-expanded="true" aria-controls="collapseOne<?php echo $nospace;  ?>"> <i class="more-less glyphicon glyphicon-plus"></i> <?php echo $subcategory->subcategory_name; ?> </a> </h4>
-                </div>
-                <div id="collapseOne<?php echo $nospace;  ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $nospace;  ?>">
-                  <div class="panel-body">    
-          <section class="panel">
-                      <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="tables<?php echo $nospace;  ?>">
-                <script type="text/javascript">
-                $(document).ready(function(){
-                  $('#headingOne<?php echo $nospace;  ?>').DataTable();
-                });
-              </script>
+	  	 <div class="table-responsive" id="example2">
+		<table class="table table-bordered table-striped" id="example1">
                   <thead>
                     <tr>
-                      <th>S.No</th>
-                      <th>Order Id</th>
-                      <!-- <th>Seller Name</th> -->
-                      <th>Product Id</th>
-                      <th>Product Name</th>
-                      <!-- <th>Delivery Date</th>
-                      <th>Delivery Time</th> -->
-                      <th>Customer Details</th>
-                      <th>Delete</th>
+                <th>Order Id</th>
+				<th>Product Name</th>
+				<th>Item Price</th>
+				<th>Qty</th>
+				<th>Total price</th>
+				<th>Customer Billing Details</th>
+				<th>Status</th>
+              
                     </tr>
                   </thead>
-                  <?php if(!empty($subcategory->returndocs12)): ?>
+                  <?php if(!empty($returnitemdata)): ?>
+
               <tbody>
                 <?php $count = $this->uri->segment(4, 0);
-						foreach($subcategory->returndocs12 as $orders_data){?>
+
+   foreach($returnitemdata as $orders_data){
+     ?>
+
                 <tr>
-                  <td><?= ++$count ?></td>
-                  <td><?php  echo $orders_data->order_id; ?></td>
-                  <!-- <td><?php  echo $orders_data->seller_name; ?></td> -->
-                  <td><?php  echo $orders_data->item_id; ?></td>
+                  <td><?php  echo $orders_data->order_item_id; ?></td>
                   <td><?php  echo $orders_data->item_name; ?></td>
-                 <!-- <td><?php  echo $orders_data->delivery_date; ?></td>
-                  <td><?php  echo $orders_data->delivery_time; ?></td> -->
+                  <td><?php  echo $orders_data->item_price; ?></td>
+                  <td><?php  echo $orders_data->qty; ?></td>
+                  <td><?php  echo $orders_data->total_price; ?></td>
 
                    <td><table class="table table-bordered qtytable">
-                    <tbody>
+                     <tbody>
                       <tr>
                         <th>Name</th>
-                        <td><?php  echo $orders_data->cust_firstname .' '. $orders_data->cust_lastname; ?></td>
+                        <td><?php  echo $orders_data->name; ?></td>
                       </tr>
                       <tr>
                         <th>Mobile</th>
-                        <td><?php  echo $orders_data->cust_mobile; ?></td>
+                        <td><?php  echo $orders_data->customer_phone; ?></td>
                       </tr>
                       <tr>
                         <th>Email</th>
-                        <td><?php  echo $orders_data->cust_email; ?></td>
+                        <td><?php  echo $orders_data->customer_email; ?></td>
                       </tr>
                       <tr>
                         <th>Address</th>
-                        <td><?php  echo $orders_data->address1; ?></td>
+                        <td><?php  echo $orders_data->customer_address; ?></td>
                       </tr>
                     </tbody>
-                  </table></td>
-          <td>  <a href="<?php echo base_url(); ?>seller/orders/delete/<?php  echo $orders_data->order_id; ?>" onclick="return checkDelete('<?php  echo $orders_data->order_id; ?>')"><i class="fa fa-trash-o" style="font-size:18px"></i></a></td>
+                  </table>
+				  </td>
+				  <td><?php  echo $orders_data->status_refund; ?></td>
 
                 
                 </tr>
@@ -216,38 +187,15 @@
 
               <?php else: ?>
 
-              
+              <center>
+
+                <strong>No Records Found</strong>
+
+              </center>
 
               <?php endif; ?>
                 </table>
-                
-              </div>
-       
-          </section>
-    
-
-
-                  </div>
-                </div>
-              </div>
-            <?php }?>
-            </div>
-          </div>
-          <!-- panel-group -->
-          
-         
-        </div>
-        <!-- container --> 
-       <?php }?>
-		<?php }else{?>
-		<center>
-
-		<strong>No Records Found</strong>
-
-		</center>
-
-		<?php }   ?>
-      
+				</div>
       </div>
     </div>
   
