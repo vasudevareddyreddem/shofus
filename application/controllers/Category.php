@@ -2561,6 +2561,12 @@ public function subitemwise_search(){
 			}
 			$this->load->view('customer/subitemwiseliterresult',$data);
 	 }
+	 
+	 public function subcategorys(){
+		 $this->template->write_view('content', 'customer/subcategorypage',$data);
+		$this->template->render();
+		 
+	 }
 	
 }
 ?>

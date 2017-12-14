@@ -25,7 +25,74 @@ public function homepagebanner()
 		$this->template->write_view('content', 'seller/showups/addhomebanner',$data);
 		$this->template->render();
 	}
-public function save_banner(){
+	public function catehorybanner()
+	{
+		$data['banner_count'] = $this->showups_model->banner_limit();
+		//echo '<pre>';print_r($data['banner_count']);exit;
+		$this->template->write_view('content', 'seller/banners/addbanner',$data);
+		$this->template->render();
+	}
+	public function catehorybannerlist()
+	{
+		$data['banner_list'] = $this->showups_model->banner_list($this->session->userdata('seller_id'));
+		//echo '<pre>';print_r($data['banner_count']);exit;
+		$this->template->write_view('content', 'seller/banners/list',$data);
+		$this->template->render();
+	}
+	public function getrelateddata()
+	{
+		$post=$this->input->post();
+		$sid=$this->session->userdata('seller_id');
+		if($post['option']==1){
+			$details=$this->showups_model->category_data($sid);
+		}if($post['option']==2){
+			$details=$this->showups_model->subcategory_data($sid);
+		}if($post['option']==3){
+			$details=$this->showups_model->subitem_data($sid);
+		}if($post['option']==4){
+			$details=$this->showups_model->item_data($sid);
+		}if($post['option']==5){
+			$details=$this->showups_model->products_data($sid);
+		}
+		if(count($details)>0){
+		$data['msg']=1;
+		$data['detail']=$details;
+		echo json_encode($details);exit;
+		}else{
+			$data['msg']=0;
+			echo json_encode($data);exit;
+		}
+		
+	}
+	public function savebanners(){
+			$post=$this->input->post();
+			move_uploaded_file($_FILES['image']['tmp_name'], "assets/banners/" . $_FILES['image']['name']);
+			$date = date('Y-m-d H:s:i');
+			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));
+			$data=array(         
+				'seller_id' => $this->session->userdata('seller_id'),
+				'position'=>$post['position'],  
+				'name'=>$_FILES['image']['name'],    
+				'link'=>$post['link'],  
+				'selected_id'=>$post['selecteddata'],  
+				'seller_id' => $this->session->userdata('seller_id'),
+				'created_at'=>date('Y-m-d H:i:s'),		
+				'expirydate'=>$date2		
+			);
+			//echo '<pre>';print_r($data);exit;
+			$banners=$this->showups_model->save_banners_list_image($data);
+			if(count($banners)>0){
+				$this->session->set_flashdata('success',"Banner successfully Added!");
+				redirect('seller/showups/catehorybannerlist/');
+			}else{
+				$this->session->set_flashdata('error',"Stechnical error occurred! Please try again later.");
+				redirect('seller/showups/catehorybanner/');
+			}
+					
+	}
+	
+	
+	public function save_banner(){
 		
 		$bannercheck=$this->showups_model->banner_exits($_FILES['home_banner']['name']);
 		if(count($bannercheck)>0){
@@ -135,7 +202,45 @@ public function save_banner(){
 			redirect('seller/showups/homepagebanner');
 		}
 	}
-
+	public function categorybanner_delete()
+	{
+		$id = base64_decode($this->uri->segment(4));
+		$status = base64_decode($this->uri->segment(6));
+		if($status == 1){
+			$this->session->set_flashdata('deactive'," Opps!! Your Banner Is active");
+			redirect('seller/showups/catehorybannerlist');
+		}else{
+			$updatestatus=$this->showups_model->delete_categorybanner($id);
+			$this->session->set_flashdata('active'," Your Banner Delete successful");
+			redirect('seller/showups/catehorybannerlist');
+		}
+	}
+	
+	
+public function categorybanner_status()
+	{
+		$id = base64_decode($this->uri->segment(4));
+		$status = base64_decode($this->uri->segment(5));
+		//echo "<pre>";print_r($activestatus);exit;
+		if($status==1)
+			{
+				$status=0;
+			}else{
+				$status=1;
+			}
+			$data=array('status'=>$status);
+			$updatestatus=$this->showups_model->update_categorybanner_status($id,$data);
+			//echo $this->db->last_query();exit;
+			if(count($updatestatus)>0){
+					if($status==1)
+					{
+					$this->session->set_flashdata('active'," Banner activation successful");
+					}else{
+					$this->session->set_flashdata('deactive',"Banner deactivation successful");
+					}
+					redirect('seller/showups/catehorybannerlist/');
+			 }
+	}
 	public function topoffers()
 	{
 		$data['seller_prducts']=$this->showups_model->get_top_offers_data($this->session->userdata('seller_id'));

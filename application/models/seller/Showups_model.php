@@ -376,7 +376,61 @@ public function update_season_sales_status($id,$data){
 		return $this->db->update('season_sales', $data);
 }
 
+/* banners purpose*/
 
+public function category_data($sid){
+	$this->db->select('products.category_id as linkis,category.category_name as name')->from('products');
+	$this->db->join('category', 'category.category_id =products.category_id');
+	$this->db->where('products.seller_id',$sid);
+	$this->db->group_by('products.category_id');
+	return $this->db->get()->result_array();
+}
+
+public function subcategory_data($sid){
+	$this->db->select('products.subcategory_id as linkis,subcategories.subcategory_name as name')->from('products');
+	$this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
+	$this->db->where('products.seller_id',$sid);
+	$this->db->group_by('products.subcategory_id');
+	return $this->db->get()->result_array();
+}
+public function subitem_data($sid){
+	$this->db->select('sub_items.subitem_id as linkis,sub_items.subitem_name as name')->from('products');
+	$this->db->join('sub_items', 'sub_items.subitem_id =products.subitemid');
+	$this->db->where('products.seller_id',$sid);
+	$this->db->group_by('products.subitemid');
+	return $this->db->get()->result_array();
+}
+public function item_data($sid){
+	$this->db->select('items_list.id as linkis,items_list.item_name as name')->from('products');
+	$this->db->join('items_list', 'items_list.id =products.itemwise_id');
+	$this->db->where('products.seller_id',$sid);
+	$this->db->group_by('products.itemwise_id');
+	return $this->db->get()->result_array();
+}
+public function products_data($sid){
+	$this->db->select('products.item_id as linkis,products.item_name as name')->from('products');
+	$this->db->where('products.seller_id',$sid);
+	$this->db->group_by('products.item_id');
+	return $this->db->get()->result_array();
+}
+public function banner_list($sid){
+	$this->db->select('*')->from('category_banners');
+	$this->db->where('category_banners.seller_id',$sid);
+	return $this->db->get()->result_array();
+}
+public function save_banners_list_image($data){
+	$this->db->insert('category_banners',$data);
+	return $insert_id = $this->db->insert_id();	
+}
+public function update_categorybanner_status($id,$data)
+  {
+    $this->db->where('baneer_id', $id);
+    return $this->db->update('category_banners', $data);
+  }
+   public function delete_categorybanner($id,$sid){
+    $sql1="DELETE FROM category_banners WHERE baneer_id = '".$id."'";
+    return $this->db->query($sql1);
+  }
 
 
 
