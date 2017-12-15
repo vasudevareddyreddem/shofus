@@ -2565,14 +2565,16 @@ public function subitemwise_search(){
 	 public function subcategorys(){
 		$cateid=base64_decode($this->uri->segment(3));
 		$step_one= $this->category_model->step_one_data(1);
+		$data['step_two']= $this->category_model->step_two_data($cateid);
+		$data['step_one']=array_chunk($step_one, 3);
+		$step_three= $this->category_model->step_three_data();
 		$step_four= $this->category_model->step_four_data(2);
 		$data['step_four']=array_chunk($step_four, 2);
 		$step_seven= $this->category_model->step_seven_data(3);
 		$data['step_seven']=array_chunk($step_seven, 3);
 		$step_eleven= $this->category_model->step_eleven_data(4);
 		$data['step_eleven']=array_chunk($step_eleven, 4);
-		$data['step_two']= $this->category_model->step_two_data($cateid);
-		$data['step_one']=array_chunk($step_one, 3);
+	
 		//echo $this->db->last_query();exit;
 		//echo '<pre>';print_r($data);exit;
 		 $this->template->write_view('content', 'customer/subcategorypage',$data);
