@@ -209,28 +209,38 @@
 		<div class="new_title">
 			<h2>Shop by price</h2>
 		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
+		<div id="best-seller" class="product-flexslider hidden-buttons top-brands">
+			<br>
+			<a href="#">
+				<div class="col-md-3 col-xs-12 col-sm-12  pri-bran">
+					<div class="pric_fi">
+						<h3> ₹5,000 </h3>
+					</div>
+				</div>
+			</a>
+			<a href="#">
+				<div class="col-md-3 col-xs-12 col-sm-12 pri-bran">
+					<div class="pric_se">
+						<h3> ₹5,000 - ₹10,000</h3>
+					</div>
+				</div>
+				</a>
+				<a href="#">
+				<div class="col-md-3 col-xs-12 col-sm-12 pri-bran">
+					<div class="pric_th">
+						<h3> ₹5,000 - ₹10,000</h3>
+					</div>
+				</div>
+				</a>
+				<a href="#">
+				<div class="col-md-3 col-xs-12 col-sm-12 pri-bran">
+					<div class="pric_fo">
+						<h3> ₹5,000 - ₹10,000</h3>
+					</div>
+				</div>
+				</a>
+		
 			
-			<a href="#">
-				<div class="col-md-3 pri-bran">
-					<img class="img-responsive" src="https://assetscdn1.paytm.com/images/catalog/view_item/143127/1505468109080.jpg?imwidth=282&impolicy=hq" alt="15000">
-				</div>
-			</a>
-			<a href="#">
-				<div class="col-md-3 pri-bran">
-					<img class="img-responsive" src="https://assetscdn1.paytm.com/images/catalog/view_item/143127/1505468109080.jpg?imwidth=282&impolicy=hq" alt="15000">
-				</div>
-			</a>
-			<a href="#">
-				<div class="col-md-3 pri-bran">
-					<img class="img-responsive" src="https://assetscdn1.paytm.com/images/catalog/view_item/143127/1505468109080.jpg?imwidth=282&impolicy=hq" alt="15000">
-				</div>
-			</a>
-			<a href="#">
-				<div class="col-md-3 pri-bran">
-					<img class="img-responsive" src="https://assetscdn1.paytm.com/images/catalog/view_item/143127/1505468109080.jpg?imwidth=282&impolicy=hq" alt="15000">
-				</div>
-			</a>
 			<div class="clearfix">&nbsp;</div>
 		</div>
 		
