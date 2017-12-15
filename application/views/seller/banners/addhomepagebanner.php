@@ -36,7 +36,7 @@
 					</button><?php echo $this->session->flashdata('error');?></div>	
 					<?php endif; ?>
 					
-      	<a href="<?php echo base_url('seller/showups/catehorybannerlist');?> " class="pull-right btn btn-sm btn-primary">list</a>
+      	<a href="<?php echo base_url('seller/showups/homepagebannerlist');?> " class="pull-right btn btn-sm btn-primary">list</a>
 <form id="addbanners" name="addbanners" method="post" action="<?php echo base_url('seller/showups/savehomepagebanners/'); ?>" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-md-12 form-group">
@@ -51,7 +51,6 @@
 					 <label for="exampleInputEmail1"> Category page Position</label>
 					<select class="form-control" id="position" name="position" >
 					<option value="">Select item </option>
-					<option value="1">First position </option>
 					<option value="2">Second position </option>
 					<option value="3">Third position </option>
 					<option value="4">Fourth position </option>
@@ -101,7 +100,6 @@
 		<div class="col-md-12 form-group">
 		
 		<button type="submit" id="keysubtton" name="buttonSubmit" class="btn btn-primary" >Submit</button>
-		<a type="submit" class="btn btn-danger" href="<?php echo base_url('seller/products'); ?>">Cancel</a>
 		</div>
 		
 		

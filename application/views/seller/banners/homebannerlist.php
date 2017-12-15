@@ -12,17 +12,17 @@
 		<div class="header-title">
 			  
 			<h1>Show Ups</h1>
-			<small>category Page banner</small>
+			<small>Home Page banner</small>
 			<ol class="breadcrumb hidden-xs">
 				<li><a href="<?php echo base_url('seller/dashboard');?>"><i class="pe-7s-home"></i> Home</a></li>
-				<li class="active">category Page banner</li>
+				<li class="active">Home Page banner</li>
 			</ol>
 		</div>
 	</section>
   	<section class="content ">
   		
   				
-				<?php if($this->session->flashdata('active')): ?>
+			<?php if($this->session->flashdata('active')): ?>
 			<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 			</button><?php echo $this->session->flashdata('active');?></div>	
@@ -36,7 +36,7 @@
 				<div class="box">
             <div class="box-header">
               <h3 class="box-title">category page Banners List</h3>
-              <a href="<?php echo base_url('seller/showups/catehorybanner/');?> " class="pull-right btn btn-sm btn-primary">ADD</a>
+              <a href="<?php echo base_url('seller/showups/homepagebanners/');?> " class="pull-right btn btn-sm btn-primary">ADD</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -58,7 +58,7 @@
                 <?php foreach($banner_list as $banner) { ?>
                 <tr>
                   <td><?php echo $banner['name']; ?></td>
-                    <td><img src="<?php echo base_url();?>assets/banners/<?php  echo $banner['name']; ?>" width="80" height="50" /></td>
+                    <td><img src="<?php echo base_url();?>assets/homebanners/<?php  echo $banner['name']; ?>" width="80" height="50" /></td>
 
                   <td><?php if($banner['position']==1){
 					  echo "First position";
@@ -86,14 +86,14 @@
                   if($banner['status']==1){echo "Active";}else{echo "Deactive";} ?>
                   	
                   </td>
-                  <td><a href="<?php echo base_url('seller/showups/categorybanner_status/'
+                  <td><a href="<?php echo base_url('seller/showups/homepagebanner_status/'
 						.base64_encode($banner['baneer_id']).'/'
 						.base64_encode($banner['status'])
 						); ?>">
 						<?php if($banner['status']== 0)
 						{echo 'Deactive';}
 						else{echo "Active";}
-						?></a>| <a href="<?php echo base_url('seller/showups/categorybanner_delete/'
+						?></a>| <a href="<?php echo base_url('seller/showups/homepagebanner_delete/'
 						.base64_encode($banner['baneer_id']).'/'
 						.base64_encode($banner['status'])
 						); ?>"><span class="glyphicon glyphicon-trash"></span></a></td>

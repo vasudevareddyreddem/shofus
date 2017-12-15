@@ -2449,6 +2449,8 @@ class Customerapi_model extends MY_Model
 	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
     $this->db->where('products.subcategory_id', $subcategory_id);
     $this->db->where('products.item_status', 1);
+    //$where = "products.subitemid is  NOT NULL";
+	$this->db->where('products.subitemid !=','');
     $this->db->group_by('products.subitemid');
 	return $this->db->get()->result_array();
 	}

@@ -6,8 +6,8 @@
 	  <?php //echo '<pre>';print_r($category_list);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
-              <h3 class="box-title">Middle home page Banners List</h3>
-              <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/addmiddlehomebanners'); ?>" class="box-title">Add</a>
+              <h3 class="box-title">Category page Banners List</h3>
+              <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/addcategorybanners'); ?>" class="box-title">Add</a>
             </div>
 			
             <div class="box-body">
@@ -35,7 +35,7 @@
                 <?php  foreach($bannerslist as $banner) { ?>
                 <tr>                  
                   <td><?php echo $banner['name']; ?></td>
-		          <td><img src="<?php echo base_url();?>assets/homebanners/<?php  echo $banner['name']; ?>" width="80" height="50" /></td>
+		          <td><img src="<?php echo base_url();?>assets/categoryimages/<?php  echo $banner['name']; ?>" width="80" height="50" /></td>
 
                   <td><?php if($banner['position']==1){
 					  echo "First position";
@@ -59,7 +59,7 @@
 					   <td><?php echo $banner['created_at']; ?></td>
                   <td><?php echo $banner['expirydate']; ?></td>
                   <td><?php if($banner['status']==1){ echo "Active";}else{ echo "Deactive";} ?></td>                  
-				   <td><a href="<?php echo base_url('inventory/homepagemiddlebannerstatus/'.base64_encode($banner['baneer_id']).'/'.base64_encode($banner['admin_status']).'/'.base64_encode($banner['position'])); ?>"><?php if($banner['admin_status']==1){ echo "Active";}else{ echo "Deactive";} ?></a></td>
+				   <td><a href="<?php echo base_url('inventory/categorypagebanners_status/'.base64_encode($banner['baneer_id']).'/'.base64_encode($banner['admin_status']).'/'.base64_encode($banner['position'])); ?>"><?php if($banner['admin_status']==1){ echo "Active";}else{ echo "Deactive";} ?></a></td>
 
                  </tr>
 				<?php } ?>
