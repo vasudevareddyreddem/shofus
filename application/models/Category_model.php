@@ -2710,14 +2710,9 @@ class Category_model extends MY_Model
 				$this->db->where('products.subcategory_id !=','');
 				$this->db->group_by('products.subcategory_id');
 				return $this->db->get()->result_array();
-		}	
-		public function step_three_data($catid){
-			$this->db->select('*')->from('products');
-			$this->db->join('subcategories', 'subcategories.category_id = products.category_id', 'left'); //
-			$this->db->where('products.category_id',$catid);
-			$this->db->where('products.subcategory_id !=','');
-			$this->db->group_by('products.subcategory_id');
-			return $this->db->get()->result_array();
+		}
+		public function step_three_data(){
+				
 		}
 }
 ?>
