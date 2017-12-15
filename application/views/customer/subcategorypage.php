@@ -3,7 +3,12 @@
 	
 	width:170px !important
 }
-
+.owl-theme .owl-controls {
+    position: absolute;
+    top: 1px;
+    right: 0;
+    margin-top: 0;
+}
 
 </style>
 	<?php if(isset($step_one) && count($step_one)>0){ ?>
