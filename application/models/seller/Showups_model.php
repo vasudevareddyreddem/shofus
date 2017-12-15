@@ -381,7 +381,9 @@ public function update_season_sales_status($id,$data){
 public function category_data($sid){
 	$this->db->select('products.category_id as linkis,category.category_name as name')->from('products');
 	$this->db->join('category', 'category.category_id =products.category_id');
+	if($sid!=''){
 	$this->db->where('products.seller_id',$sid);
+	}
 	$this->db->group_by('products.category_id');
 	return $this->db->get()->result_array();
 }
@@ -389,27 +391,35 @@ public function category_data($sid){
 public function subcategory_data($sid){
 	$this->db->select('products.subcategory_id as linkis,subcategories.subcategory_name as name')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id =products.subcategory_id');
+	if($sid!=''){
 	$this->db->where('products.seller_id',$sid);
+	}
 	$this->db->group_by('products.subcategory_id');
 	return $this->db->get()->result_array();
 }
 public function subitem_data($sid){
 	$this->db->select('sub_items.subitem_id as linkis,sub_items.subitem_name as name')->from('products');
 	$this->db->join('sub_items', 'sub_items.subitem_id =products.subitemid');
+	if($sid!=''){
 	$this->db->where('products.seller_id',$sid);
+	}
 	$this->db->group_by('products.subitemid');
 	return $this->db->get()->result_array();
 }
 public function item_data($sid){
 	$this->db->select('items_list.id as linkis,items_list.item_name as name')->from('products');
 	$this->db->join('items_list', 'items_list.id =products.itemwise_id');
+	if($sid!=''){
 	$this->db->where('products.seller_id',$sid);
+	}
 	$this->db->group_by('products.itemwise_id');
 	return $this->db->get()->result_array();
 }
 public function products_data($sid){
 	$this->db->select('products.item_id as linkis,products.item_name as name')->from('products');
+	if($sid!=''){
 	$this->db->where('products.seller_id',$sid);
+	}
 	$this->db->group_by('products.item_id');
 	return $this->db->get()->result_array();
 }
@@ -431,14 +441,105 @@ public function update_categorybanner_status($id,$data)
     $sql1="DELETE FROM category_banners WHERE baneer_id = '".$id."'";
     return $this->db->query($sql1);
   }
-  public function get_homepagebanners_list_position_wise_one($position){
+  /*category page banners*/
+   public function get_categorybanners_list_position_wise_one($position){
+	$date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s A');
+	$this->db->select('count(category_banners.baneer_id) as imagecount')->from('category_banners');
+    $this->db->where('category_banners.position',$position);
+    $this->db->where('category_banners.admin_status',1);
+	$this->db->where('category_banners.expirydate >=', $curr_date);
+    return $this->db->get()->row_array();
+  }
+  public function get_categorybanners_list_position_wise_two($position){
+	$date = new DateTime("now");
+	$curr_date = $date->format('Y-m-d h:i:s A');
+	$this->db->select('count(category_banners.baneer_id) as imagecount')->from('category_banners');
+    $this->db->where('category_banners.position',$position);
+    $this->db->where('category_banners.admin_status',1);
+	$this->db->where('category_banners.expirydate >=', $curr_date);
+    return $this->db->get()->row_array();
+  }
+  public function get_categorybanners_list_position_wise_three($position){
+	$date = new DateTime("now");
+	$curr_date = $date->format('Y-m-d h:i:s A');
+	$this->db->select('count(category_banners.baneer_id) as imagecount')->from('category_banners');
+    $this->db->where('category_banners.position',$position);
+    $this->db->where('category_banners.admin_status',1);
+	$this->db->where('category_banners.expirydate >=', $curr_date);
+    return $this->db->get()->row_array();
+  } 
+  public function get_categorybanners_list_position_wise_four($position){
+	$date = new DateTime("now");
+	$curr_date = $date->format('Y-m-d h:i:s A');
+	$this->db->select('count(category_banners.baneer_id) as imagecount')->from('category_banners');
+    $this->db->where('category_banners.position',$position);
+    $this->db->where('category_banners.admin_status',1);
+	$this->db->where('category_banners.expirydate >=', $curr_date);
+    return $this->db->get()->row_array();
+  }
+  /*category page banners*/
+  /*home page banners*/
+  public function get_homepagebanners_list_position_wise_two($position){
 	$date = new DateTime("now");
  	$curr_date = $date->format('Y-m-d h:i:s A');
 	$this->db->select('count(homepage_banners.baneer_id) as imagecount')->from('homepage_banners');
     $this->db->where('homepage_banners.position',$position);
-    $this->db->where('homepage_banners.status',1);
+    $this->db->where('homepage_banners.admin_status',1);
 	$this->db->where('homepage_banners.expirydate >=', $curr_date);
     return $this->db->get()->row_array();
+  }
+  public function get_homepagebanners_list_position_wise_three($position){
+	$date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s A');
+	$this->db->select('count(homepage_banners.baneer_id) as imagecount')->from('homepage_banners');
+    $this->db->where('homepage_banners.position',$position);
+    $this->db->where('homepage_banners.admin_status',1);
+	$this->db->where('homepage_banners.expirydate >=', $curr_date);
+    return $this->db->get()->row_array();
+  }
+  public function get_homepagebanners_list_position_wise_four($position){
+	$date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s A');
+	$this->db->select('count(homepage_banners.baneer_id) as imagecount')->from('homepage_banners');
+    $this->db->where('homepage_banners.position',$position);
+    $this->db->where('homepage_banners.admin_status',1);
+	$this->db->where('homepage_banners.expirydate >=', $curr_date);
+    return $this->db->get()->row_array();
+  }
+  public function save_homepagebanners_list_image($data){
+	$this->db->insert('homepage_banners',$data);
+	return $insert_id = $this->db->insert_id();	
+ }
+ public function homepagebanner_list($sid){
+	$this->db->select('*')->from('homepage_banners');
+	$this->db->where('homepage_banners.seller_id',$sid);
+	return $this->db->get()->result_array();
+} 
+public function get_category_pagebanner_status($id){
+	$date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s A');
+	$this->db->select('category_banners.baneer_id,category_banners.admin_status')->from('category_banners');
+	$this->db->where('category_banners.baneer_id',$id);
+	$this->db->where('category_banners.expirydate >=', $curr_date);
+	return $this->db->get()->row_array();
+}
+public function get_home_pagebanner_status($id){
+	$date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s A');
+	$this->db->select('homepage_banners.baneer_id,homepage_banners.admin_status')->from('homepage_banners');
+	$this->db->where('homepage_banners.baneer_id',$id);
+	$this->db->where('homepage_banners.expirydate >=', $curr_date);
+	return $this->db->get()->row_array();
+}
+public function update_homepagebanner_status($id,$data)
+  {
+    $this->db->where('baneer_id', $id);
+    return $this->db->update('homepage_banners', $data);
+  }
+   public function delete_homepagebanner($id){
+    $sql1="DELETE FROM homepage_banners WHERE baneer_id = '".$id."'";
+    return $this->db->query($sql1);
   }
 
 

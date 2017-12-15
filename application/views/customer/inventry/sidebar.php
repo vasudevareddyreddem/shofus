@@ -82,14 +82,22 @@
           
         </li>
 		<li class="treeview">
+          <a href="<?php echo base_url('inventory/categorypagebanners');?>">
+            <i class="fa fa-table"></i> <span>Category page banners</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+         </li>
+		 <li class="treeview">
           <a href="<?php echo base_url('inventory/homepagebanerrslist');?>">
             <i class="fa fa-table"></i> <span>Home page middle banners</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          
-        </li>
+         </li>
+		
 		<li class="treeview">
           <a href="<?php echo base_url('inventory/wishlistbanerslist');?>">
             <i class="fa fa-table"></i> <span>Wishlist banners</span>

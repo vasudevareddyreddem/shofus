@@ -15,9 +15,9 @@
 					</button><?php echo $this->session->flashdata('error');?></div>	
 					<?php endif; ?>
 					
-				<form enctype="multipart/form-data" method="post" name="addbanners" id="addbanners"  action="<?php echo base_url('inventory/savehomepagebanners'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
+				<form enctype="multipart/form-data" method="post" name="addbanners" id="addbanners"  action="<?php echo base_url('inventory/savecategorypagebanners'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
 			
-				<div class=""  style="font-size:20px;font-weight:1200;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Add home page middle Banner Images</div>
+				<div class=""  style="font-size:20px;font-weight:1200;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Add category page Banner Images</div>
 				
 				<div class="row">
 						<div class="col-md-6 form-group">
@@ -29,6 +29,7 @@
 								 <label for="exampleInputEmail1"> Category page Position</label>
 								<select class="form-control" id="position" name="position" >
 								<option value="">Select item </option>
+								<option value="1">One position </option>
 								<option value="2">Second position </option>
 								<option value="3">Third position </option>
 								<option value="4">Fourth position </option>

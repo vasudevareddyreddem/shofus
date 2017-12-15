@@ -9,6 +9,7 @@ class inventory extends CI_Controller
 		$this->load->library('email');
 		$this->load->model('inventory_model');
 		$this->load->model('customer_model'); 
+		$this->load->model('seller/showups_model'); 
 		$this->load->model('seller/adddetails_model'); 
 		if($this->session->userdata('userdetails'))
 		{
@@ -2093,6 +2094,7 @@ if((!empty($_FILES["importcategoryfile"])) && ($_FILES['importcategoryfile']['er
   	if($this->session->userdata('userdetails'))
 	{	
 		$data['bannerslist']=$this->inventory_model->get_save_subhomepage_banners_list();
+		//echo '<pre>';print_r($data);exit;
 		$this->load->view('customer/inventry/sidebar');
 		$this->load->view('customer/inventry/mddlehomebannerslist',$data);
 		$this->load->view('customer/inventry/footer');
@@ -2110,6 +2112,36 @@ if((!empty($_FILES["importcategoryfile"])) && ($_FILES['importcategoryfile']['er
 		$data['bannerslist']=$this->inventory_model->get_save_mobileapp_banners_list();
 		$this->load->view('customer/inventry/sidebar');
 		$this->load->view('customer/inventry/addmobilemiddlebanners');
+		$this->load->view('customer/inventry/footer');
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  } 
+  public function addcategorybanners()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		
+		$data['bannerslist']=$this->inventory_model->get_save_mobileapp_banners_list();
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/addcategorypagebanners');
+		$this->load->view('customer/inventry/footer');
+		
+	}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login');
+	}
+  }
+   public function categorypagebanners()
+  {
+  	if($this->session->userdata('userdetails'))
+	{	
+		$data['bannerslist']=$this->inventory_model->get_category_banners_list();
+		//echo '<pre>';print_r($data);exit;
+		$this->load->view('customer/inventry/sidebar');
+		$this->load->view('customer/inventry/categorypagebanners',$data);
 		$this->load->view('customer/inventry/footer');
 		
 	}else{
@@ -2177,9 +2209,33 @@ public function addhomepagemiddlebannerspost()
 			$logindetail=$this->session->userdata('userdetails');
 			if($logindetail['role_id']==5)
 			{
+					
 				$imageid = base64_decode($this->uri->segment(3));
 				$status = base64_decode($this->uri->segment(4));
-				//echo "<pre>";print_r($offerid);exit;
+				$position = base64_decode($this->uri->segment(5));
+				if($status==0){
+					$two=$this->showups_model->get_homepagebanners_list_position_wise_two(2);
+					$three=$this->showups_model->get_homepagebanners_list_position_wise_three(3);
+					$four=$this->showups_model->get_homepagebanners_list_position_wise_four(4);
+					if($position==2){
+						if($two['imagecount']>=3){
+							$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 2 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+							redirect('seller/showups/homepagebanerrslist');
+						}
+						}else if($position==3){
+							if($three['imagecount']>=4){
+								$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 2 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+								redirect('seller/showups/homepagebanerrslist');
+							}
+						}else if($position==3){
+							if($four['imagecount']>=2){
+								$this->session->set_flashdata('error',"while adding it should come like 1 of 2 , 2 of 2...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+								redirect('seller/showups/homepagebanerrslist');
+							}
+						}
+				}
+				
+			
 				if($status==1)
 				{
 					$status=0;
@@ -2197,6 +2253,75 @@ public function addhomepagemiddlebannerspost()
 						$this->session->set_flashdata('success',"image successfully activated");
 					}
 					redirect('inventory/homepagebanerrslist');
+				}
+			}else
+			{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		} 	
+	}
+	 public function categorypagebanners_status()
+	{
+		if($this->session->userdata('userdetails'))
+	 	{		
+			$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					
+				$imageid = base64_decode($this->uri->segment(3));
+				$status = base64_decode($this->uri->segment(4));
+				$position = base64_decode($this->uri->segment(5));
+				if($status==0){
+						$one=$this->showups_model->get_categorybanners_list_position_wise_one(1);
+						$two=$this->showups_model->get_categorybanners_list_position_wise_two(2);
+						$three=$this->showups_model->get_categorybanners_list_position_wise_three(3);
+						$four=$this->showups_model->get_categorybanners_list_position_wise_four(4);
+							if($position==1){
+								if($one['imagecount']>=3){
+									$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 3 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+									redirect('inventory/categorypagebanners');
+								}
+							}else if($position==2){
+								if($two['imagecount']>=2){
+									$this->session->set_flashdata('error',"while adding it should come like 1 of 2 , 2 of2...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+									redirect('inventory/categorypagebanners');
+								}
+							}else if($position==3){
+								if($three['imagecount']>=3){
+									$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 4 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+									redirect('inventory/categorypagebanners');
+								}
+							}else if($position==4){
+								if($four['imagecount']>=4){
+									$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 4 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+									redirect('inventory/categorypagebanners');
+								}
+							}
+				}
+				
+			
+				if($status==1)
+				{
+					$status=0;
+				}else{
+					$status=1;
+				}
+				$updatestatus=$this->inventory_model->update_categorypage_status($imageid,$status);
+				//echo $this->db->last_query();exit;
+				if(count($updatestatus)>0)
+				{
+					if($status==0)
+					{
+						$this->session->set_flashdata('success'," Image successfully deactivated");
+					}else{
+						$this->session->set_flashdata('success',"image successfully activated");
+					}
+					redirect('inventory/categorypagebanners');
 				}
 			}else
 			{
@@ -2432,6 +2557,134 @@ public function addhomepagemiddlebannerspost()
 		 redirect('admin/login	');
 		} 
   }
+  public function getinventoryrelateddata()
+	{
+		$post=$this->input->post();
+		$sid='';
+		if($post['option']==1){
+			$details=$this->showups_model->category_data($sid);
+		}if($post['option']==2){
+			$details=$this->showups_model->subcategory_data($sid);
+		}if($post['option']==3){
+			$details=$this->showups_model->subitem_data($sid);
+		}if($post['option']==4){
+			$details=$this->showups_model->item_data($sid);
+		}if($post['option']==5){
+			$details=$this->showups_model->products_data($sid);
+		}
+		if(count($details)>0){
+		$data['msg']=1;
+		$data['detail']=$details;
+		echo json_encode($details);exit;
+		}else{
+			$data['msg']=0;
+			echo json_encode($data);exit;
+		}
+		
+	}
+	public function savehomepagebanners(){
+			$post=$this->input->post();
+				$two=$this->showups_model->get_homepagebanners_list_position_wise_two(2);
+				$three=$this->showups_model->get_homepagebanners_list_position_wise_three(3);
+				$four=$this->showups_model->get_homepagebanners_list_position_wise_four(4);
+				//echo '<pre>';print_r($two);exit;
+				if($post['position']==2){
+					if($two['imagecount']>=3){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 2 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('inventory/addmiddlehomebanners');
+					}
+				}else if($post['position']==3){
+					if($three['imagecount']>=4){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 2 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('inventory/addmiddlehomebanners');
+					}
+				}else if($post['position']==3){
+					if($four['imagecount']>=2){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 2 , 2 of 2...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('inventory/addmiddlehomebanners');
+					}
+				}
+			//echo '<pre>';print_r($post);exit;
+			$temp = explode(".", $_FILES["image"]["name"]);
+			$newfilename1 = round(microtime(true)) .'.' . end($temp);
+			move_uploaded_file($_FILES['image']['tmp_name'], "assets/homebanners/" .$newfilename1);
+			$date = date('Y-m-d H:s:i');
+			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));
+			$data=array(         
+				'seller_id' => $this->session->userdata('seller_id'),
+				'position'=>$post['position'],  
+				'name'=>$newfilename1,    
+				'link'=>$post['link'],  
+				'selected_id'=>$post['selecteddata'],  
+				'seller_id' => $this->session->userdata('seller_id'),
+				'created_at'=>date('Y-m-d H:i:s'),		
+				'expirydate'=>$date2		
+			);
+			$banners=$this->showups_model->save_homepagebanners_list_image($data);
+			if(count($banners)>0){
+				$this->session->set_flashdata('success',"Banner successfully Added!");
+				redirect('inventory/homepagebanerrslist/');
+			}else{
+				$this->session->set_flashdata('error',"Stechnical error occurred! Please try again later.");
+				redirect('inventory/addmiddlehomebanners/');
+			}
+					
+	}
+	
+	public function savecategorypagebanners(){
+			$post=$this->input->post();
+				$one=$this->showups_model->get_categorybanners_list_position_wise_one(1);
+				$two=$this->showups_model->get_categorybanners_list_position_wise_two(2);
+				$three=$this->showups_model->get_categorybanners_list_position_wise_three(3);
+				$four=$this->showups_model->get_categorybanners_list_position_wise_four(4);
+				//echo '<pre>';print_r($one);exit;
+				if($post['position']==1){
+					if($one['imagecount']>=3){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 3 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('inventory/addcategorybanners');
+					}
+				}else if($post['position']==2){
+					if($two['imagecount']>=2){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 2 , 2 of2...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('inventory/addcategorybanners');
+					}
+				}else if($post['position']==3){
+					if($three['imagecount']>=3){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 4 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('inventory/addcategorybanners');
+					}
+				}else if($post['position']==4){
+					if($four['imagecount']>=4){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 4 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('inventory/addcategorybanners');
+					}
+				}
+			//echo '<pre>';print_r($post);exit;
+			$temp = explode(".", $_FILES["image"]["name"]);
+			$newfilename1 = round(microtime(true)) .'.' . end($temp);
+			move_uploaded_file($_FILES['image']['tmp_name'], "assets/categoryimages/" .$newfilename1);
+			$date = date('Y-m-d H:s:i');
+			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));
+			$data=array(         
+				'seller_id' => $this->session->userdata('seller_id'),
+				'position'=>$post['position'],  
+				'name'=>$newfilename1,    
+				'link'=>$post['link'],  
+				'selected_id'=>$post['selecteddata'],  
+				'seller_id' => $this->session->userdata('seller_id'),
+				'created_at'=>date('Y-m-d H:i:s'),		
+				'expirydate'=>$date2		
+			);
+			$banners=$this->showups_model->save_banners_list_image($data);
+			if(count($banners)>0){
+				$this->session->set_flashdata('success',"Banner successfully Added!");
+				redirect('inventory/categorypagebanners/');
+			}else{
+				$this->session->set_flashdata('error',"Stechnical error occurred! Please try again later.");
+				redirect('inventory/addcategorybanners/');
+			}
+					
+	}
   public function getsubcategories(){
   	if($this->session->userdata('userdetails'))
 	 {		

@@ -46,6 +46,66 @@ public function homepagebanner()
 		$this->template->write_view('content', 'seller/banners/list',$data);
 		$this->template->render();
 	}
+	public function homepagebannerlist()
+	{
+		$data['banner_list'] = $this->showups_model->homepagebanner_list($this->session->userdata('seller_id'));
+		//echo '<pre>';print_r($data['banner_count']);exit;
+		$this->template->write_view('content', 'seller/banners/homebannerlist',$data);
+		$this->template->render();
+	}
+	public function homepagebanner_status()
+	{
+		$id = base64_decode($this->uri->segment(4));
+		$status = base64_decode($this->uri->segment(5));
+		$deactive=$this->showups_model->get_home_pagebanner_status($id);
+		if(isset($deactive) && $deactive['admin_status']==1){
+			$this->session->set_flashdata('deactive',"Banner already active in home page that's way you are unable to deactivate.");
+			redirect('seller/showups/homepagebannerlist/');
+		}
+		if($status==1)
+			{
+				$status=0;
+			}else{
+				$status=1;
+			}
+			$data=array('status'=>$status);
+			$updatestatus=$this->showups_model->update_homepagebanner_status($id,$data);
+			//echo $this->db->last_query();exit;
+			if(count($updatestatus)>0){
+					if($status==1)
+					{
+					$this->session->set_flashdata('active'," Banner activation successful");
+					}else{
+					$this->session->set_flashdata('deactive',"Banner deactivation successful");
+					}
+					redirect('seller/showups/homepagebannerlist/');
+			 }
+	}
+	public function homepagebanner_delete()
+	{
+		$id = base64_decode($this->uri->segment(4));
+		$status = base64_decode($this->uri->segment(5));
+		if($status == 1){
+			$this->session->set_flashdata('deactive'," Opps!! Your Banner Is active");
+			redirect('seller/showups/homepagebannerlist');
+		}else{
+				
+			$deactive=$this->showups_model->get_home_pagebanner_status($id);
+			if(isset($deactive) && $deactive['admin_status']==1){
+				$this->session->set_flashdata('deactive',"Banner already active in home page that's way you are unable to deactivate.");
+				redirect('seller/showups/homepagebannerlist/');
+			}else{
+				$updatestatus=$this->showups_model->delete_homepagebanner($id);
+				if(count($updatestatus)>0){
+				$this->session->set_flashdata('active'," Your Banner Delete successful");
+				redirect('seller/showups/homepagebannerlist');
+				}else{
+					$this->session->set_flashdata('deactive'," technical problem will ocured");
+					redirect('seller/showups/homepagebannerlist');
+				}
+			}
+		}
+	}
 	public function getrelateddata()
 	{
 		$post=$this->input->post();
@@ -71,15 +131,44 @@ public function homepagebanner()
 		}
 		
 	}
+	
 	public function savebanners(){
 			$post=$this->input->post();
-			move_uploaded_file($_FILES['image']['tmp_name'], "assets/banners/" . $_FILES['image']['name']);
+				$one=$this->showups_model->get_categorybanners_list_position_wise_one(1);
+				$two=$this->showups_model->get_categorybanners_list_position_wise_two(2);
+				$three=$this->showups_model->get_categorybanners_list_position_wise_three(3);
+				$four=$this->showups_model->get_categorybanners_list_position_wise_four(4);
+				//echo '<pre>';print_r($one);exit;
+				if($post['position']==1){
+					if($one['imagecount']>=3){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 3 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('seller/showups/catehorybanner');
+					}
+				}else if($post['position']==2){
+					if($two['imagecount']>=2){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 2 , 2 of2...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('seller/showups/catehorybanner');
+					}
+				}else if($post['position']==3){
+					if($three['imagecount']>=3){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 4 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('seller/showups/catehorybanner');
+					}
+				}else if($post['position']==4){
+					if($four['imagecount']>=4){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 4 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('seller/showups/catehorybanner');
+					}
+				}
+			$temp = explode(".", $_FILES["image"]["name"]);
+			$newfilename1 = round(microtime(true)) .'.' . end($temp);
+			move_uploaded_file($_FILES['image']['tmp_name'], "assets/banners/" . $newfilename1);
 			$date = date('Y-m-d H:s:i');
 			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));
 			$data=array(         
 				'seller_id' => $this->session->userdata('seller_id'),
 				'position'=>$post['position'],  
-				'name'=>$_FILES['image']['name'],    
+				'name'=>$newfilename1,    
 				'link'=>$post['link'],  
 				'selected_id'=>$post['selecteddata'],  
 				'seller_id' => $this->session->userdata('seller_id'),
@@ -99,31 +188,49 @@ public function homepagebanner()
 	}
 	public function savehomepagebanners(){
 			$post=$this->input->post();
-				$two=$this->showups_model->get_homepagebanners_list_position_wise_one(1);
-				$three=$this->showups_model->get_homepagebanners_list_position_wise_one(3);
-				$four=$this->showups_model->get_homepagebanners_list_position_wise_one(2);
-			echo '<pre>';print_r($banners);exit;
-			move_uploaded_file($_FILES['image']['tmp_name'], "assets/banners/" . $_FILES['image']['name']);
+				$two=$this->showups_model->get_homepagebanners_list_position_wise_two(2);
+				$three=$this->showups_model->get_homepagebanners_list_position_wise_three(3);
+				$four=$this->showups_model->get_homepagebanners_list_position_wise_four(4);
+				//echo '<pre>';print_r($two);exit;
+				if($post['position']==2){
+					if($two['imagecount']>=3){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 2 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('seller/showups/homepagebanners');
+					}
+				}else if($post['position']==3){
+					if($three['imagecount']>=4){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 2 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('seller/showups/homepagebanners');
+					}
+				}else if($post['position']==3){
+					if($four['imagecount']>=2){
+						$this->session->set_flashdata('error',"while adding it should come like 1 of 2 , 2 of 2...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						redirect('seller/showups/homepagebanners');
+					}
+				}
+			//echo '<pre>';print_r($post);exit;
+			$temp = explode(".", $_FILES["image"]["name"]);
+			$newfilename1 = round(microtime(true)) .'.' . end($temp);
+			move_uploaded_file($_FILES['image']['tmp_name'], "assets/homebanners/" .$newfilename1);
 			$date = date('Y-m-d H:s:i');
 			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));
 			$data=array(         
 				'seller_id' => $this->session->userdata('seller_id'),
 				'position'=>$post['position'],  
-				'name'=>$_FILES['image']['name'],    
+				'name'=>$newfilename1,    
 				'link'=>$post['link'],  
 				'selected_id'=>$post['selecteddata'],  
 				'seller_id' => $this->session->userdata('seller_id'),
 				'created_at'=>date('Y-m-d H:i:s'),		
 				'expirydate'=>$date2		
 			);
-			//echo '<pre>';print_r($data);exit;
-			$banners=$this->showups_model->save_banners_list_image($data);
+			$banners=$this->showups_model->save_homepagebanners_list_image($data);
 			if(count($banners)>0){
 				$this->session->set_flashdata('success',"Banner successfully Added!");
-				redirect('seller/showups/catehorybannerlist/');
+				redirect('seller/showups/homepagebannerlist/');
 			}else{
 				$this->session->set_flashdata('error',"Stechnical error occurred! Please try again later.");
-				redirect('seller/showups/catehorybanner/');
+				redirect('seller/showups/homepagebanners/');
 			}
 					
 	}
@@ -242,7 +349,12 @@ public function homepagebanner()
 	public function categorybanner_delete()
 	{
 		$id = base64_decode($this->uri->segment(4));
-		$status = base64_decode($this->uri->segment(6));
+		$status = base64_decode($this->uri->segment(5));
+		$deactive=$this->showups_model->get_category_pagebanner_status($id);
+		if(isset($deactive) && $deactive['admin_status']==1){
+			$this->session->set_flashdata('deactive',"Banner already active in home page that's way you are unable to deactivate.");
+			redirect('seller/showups/catehorybannerlist/');
+		}
 		if($status == 1){
 			$this->session->set_flashdata('deactive'," Opps!! Your Banner Is active");
 			redirect('seller/showups/catehorybannerlist');
@@ -259,6 +371,11 @@ public function categorybanner_status()
 		$id = base64_decode($this->uri->segment(4));
 		$status = base64_decode($this->uri->segment(5));
 		//echo "<pre>";print_r($activestatus);exit;
+		$deactive=$this->showups_model->get_category_pagebanner_status($id);
+		if(isset($deactive) && $deactive['admin_status']==1){
+			$this->session->set_flashdata('deactive',"Banner already active in home page that's way you are unable to deactivate.");
+			redirect('seller/showups/catehorybannerlist/');
+		}
 		if($status==1)
 			{
 				$status=0;
