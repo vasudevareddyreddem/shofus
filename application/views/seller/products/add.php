@@ -484,7 +484,7 @@ jQuery.ajax({
 			});
 	function subcatwisegroceryproducts(id){
 		var catid=$('#category_id').val();
-			if(catid==20 || catid==21 || catid==22 || catid==23 || catid==24){
+			if(catid==20 || catid==21 || catid==19 || catid==24 || catid==23 || catid==24){
 			jQuery.ajax({
 				url: "<?php echo site_url('seller/products/getolditemdata');?>",
 				type: 'post',
@@ -506,7 +506,7 @@ jQuery.ajax({
 					$("#grocery_products").show();
 					$("#grocery_products").empty();
 					$("#grocery_products").append(data);
-					}else if(catid==22){
+					}else if(catid==19 ||catid==24 || catid==35){
 						$("#cloths_category").show();
 						$("#cloths_category").empty();
 						$("#cloths_category").append(data);

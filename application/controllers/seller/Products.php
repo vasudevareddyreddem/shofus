@@ -215,9 +215,15 @@ public function item_status(){
 	 //echo '<pre>';print_r($post);
 	 if(isset($post['categoryid']) && $post['categoryid']==21){
 	 $this->load->view('seller/products/groceryproductdetails',$data);
-	 }else if(isset($post['categoryid']) && $post['categoryid']==22){
+	 }else if(isset($post['categoryid']) && $post['categoryid']==19 ||$post['categoryid']==24 ||$post['categoryid']==35){
 		 $data['subcategory_id']=isset($post['subcategoryid'])?$post['subcategoryid']:'';
+		  if($post['subcategoryid']==123 || $post['subcategoryid']==125 || $post['subcategoryid']==126 || $post['subcategoryid']==127 || $post['subcategoryid']==136 || $post['subcategoryid']==137 || $post['subcategoryid']==138){
 		  $this->load->view('seller/products/clothsproductdetails',$data);
+		  }else if($post['subcategoryid']==128 || $post['subcategoryid']==129 || $post['subcategoryid']==130|| $post['subcategoryid']==140 || $post['subcategoryid']==232 || $post['subcategoryid']==233 ){
+			  $this->load->view('seller/products/footware',$data);
+		  }else if($post['subcategoryid']==132 ||$post['subcategoryid']==142 || $post['subcategoryid']==144 || $post['subcategoryid']==220 || $post['subcategoryid']==221 || $post['subcategoryid']==222) {
+			   $this->load->view('seller/products/bagsproductdetails',$data);
+		  }
 	 }else if(isset($post['categoryid']) && $post['categoryid']==23){
 		 $data['subcategory_id']=isset($post['subcategoryid'])?$post['subcategoryid']:'';
 		  $this->load->view('seller/products/bagsproductdetails',$data);
