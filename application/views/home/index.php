@@ -704,10 +704,1794 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 	</div>
 		
     </section>
+	
+	
+	
+	
+	<div id="loadcon" style="display:none;">
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-1</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-2</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-3</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-4</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-5</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-6</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-7</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-8</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-9</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-10</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-11</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Category-12</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
+									</div>
+									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
+									</div>
+								</div>
+								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
+										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<a href="customer/seemore/c2Vhc29u/index.html">
+			<button class="btn btn-primary see_more " style="">See More</button>
+		</a>
+	</div>
+</section>
+
+	</div>
 	<section>
 	<div class="">
 	<div class="clearfix">&nbsp;</div>
-				<div class="text-center"><span class="lod_st">Load more &nbsp; . &nbsp; .</span></div>
+				<div class="text-center"><span id="loadmor" class="lod_st">Load more &nbsp; . &nbsp; .</span></div>
 				<div class="clearfix">&nbsp;</div>
 	</div>
 		
@@ -857,6 +2641,12 @@ jQuery.ajax({
 
 	
 </script>
-
+<script>
+$(document).ready(function(){
+    $("#loadmor").click(function(){
+        $("#loadcon").slideToggle("slow", "linear");
+    });
+});
+</script>
 
 
