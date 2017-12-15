@@ -2557,6 +2557,91 @@ public function addhomepagemiddlebannerspost()
 		 redirect('admin/login	');
 		} 
   }
+   public function brandlist(){
+		if($this->session->userdata('userdetails'))
+	 	{
+			$data['brand_list']=$this->inventory_model->get_all_brand_lists();
+			//echo $this->db->last_query();exit;
+			//echo '<pre>';print_r($data['litem_list']);exit;
+			$this->load->view('customer/inventry/sidebar');
+			$this->load->view('customer/inventry/brandlist',$data);
+			$this->load->view('customer/inventry/footer');
+		}else
+	 	{
+		 	$this->session->set_flashdata('loginerror','Please login to continue');
+		 	redirect('admin/login	');
+		}
+		
+	}
+  public function addbrandlogo(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+					$data['brand_list'] = $this->inventory_model->get_all_brnads_list();
+					//echo '<pre>';print_r($data);exit;
+					$this->load->view('customer/inventry/sidebar');
+					$this->load->view('customer/inventry/addbrand',$data);
+					$this->load->view('customer/inventry/footer');
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+  public function postbrandlogo(){
+	  $logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+			  $post=$this->input->post();
+			  if(isset($post['brandid']) && $post['brandid']!=''){
+			  $brand_details= $this->inventory_model->get_brand_details($post['brandid']);
+			  }else{
+				 $brand_details= $this->inventory_model->get_brand_details_withname($post['brandname']);
+					if(count($brand_details)>0){
+						$this->session->set_flashdata('error',"Already this brand logo added. Please edit this brand !");
+						redirect('inventory/addbrandlogo/');
+					}	
+				}
+				  if($_FILES["image"]["name"]==''){
+					  $newfilename1=$brand_details['image'];
+				  }else{
+					$temp = explode(".", $_FILES["image"]["name"]);
+					$newfilename1 = round(microtime(true)) .'.' . end($temp);
+					move_uploaded_file($_FILES['image']['tmp_name'], "assets/brands/" .$newfilename1);
+					
+				  }
+					$details=array(         
+						'added_by' => $logindetail['customer_id'],
+						'brand'=>$post['brandname'],  
+						'image'=>$newfilename1,    
+						'create_at'=>date('Y-m-d H:i:s'),		
+					);
+					if(isset($post['brandid']) && $post['brandid']!=''){
+						$brands=$this->inventory_model->update_brand_status($post['brandid'],$details);
+					}else{
+						$brands=$this->inventory_model->save_brands($details);	
+					}
+				if(count($brands)>0){
+					if(isset($post['brandid']) && $post['brandid']!=''){
+					$this->session->set_flashdata('success',"brand Logo successfully Updated!");
+					}else{
+						$this->session->set_flashdata('success',"brand Logo successfully Added!");
+					}
+					redirect('inventory/brandlist/');
+				}else{
+					$this->session->set_flashdata('error',"Stechnical error occurred! Please try again later.");
+					redirect('inventory/addbrandlogo/');
+				}
+			}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
   public function getinventoryrelateddata()
 	{
 		$post=$this->input->post();
@@ -2869,6 +2954,40 @@ public function addhomepagemiddlebannerspost()
 		 redirect('admin/login	');
 		} 
   }
+  public function brandstatus(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{	
+				$id = base64_decode($this->uri->segment(3)); 
+				$status = base64_decode($this->uri->segment(4));
+					if($status==1){
+					$status=0;
+					}else{
+					$status=1;
+					}
+					$data=array('status'=>$status);
+					$updatestatus=$this->inventory_model->update_brand_status($id,$data);
+					//echo $this->db->last_query();exit;
+					
+					if(count($updatestatus)>0){
+						if($status==1){
+							$this->session->set_flashdata('success'," Brand activation successful");
+						}else{
+							$this->session->set_flashdata('success',"Brand deactivation successful");
+						}
+						redirect('inventory/brandlist');
+					}
+		}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+		}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
   public function addsubitemedit(){
   	if($this->session->userdata('userdetails'))
 	 {		
@@ -2904,6 +3023,26 @@ public function addhomepagemiddlebannerspost()
 					//echo '<pre>';print_r($data);exit;
 					$this->load->view('customer/inventry/sidebar');
 					$this->load->view('customer/inventry/edititem',$data);
+					$this->load->view('customer/inventry/footer');
+			}else{
+				$this->session->set_flashdata('loginerror','you have  no permissions');
+				redirect('admin/login');
+			}
+	 }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('admin/login	');
+		} 
+  }
+   public function brandedit(){
+  	if($this->session->userdata('userdetails'))
+	 {		
+		$logindetail=$this->session->userdata('userdetails');
+			if($logindetail['role_id']==5)
+			{
+				$brandid=base64_decode($this->uri->segment(3));
+				$data['brand_details'] = $this->inventory_model->get_brand_details($brandid);
+					$this->load->view('customer/inventry/sidebar');
+					$this->load->view('customer/inventry/editbrand',$data);
 					$this->load->view('customer/inventry/footer');
 			}else{
 				$this->session->set_flashdata('loginerror','you have  no permissions');

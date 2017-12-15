@@ -835,6 +835,41 @@ public function delete_banner($id,$sid)
 		$sql1="UPDATE category_banners SET admin_status ='".$data."'WHERE baneer_id = '".$item_id."'";
 		return $this->db->query($sql1);
 	}
+	function get_all_brnads_list()
+	{
+		$this->db->select('products.item_id,products.brand,category.category_name,subcategories.subcategory_name')->from('products');
+		$this->db->join('category', 'category.category_id = products.category_id', 'left');
+		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
+		$this->db->where('item_status',1);
+		$this->db->group_by('products.brand');
+		return $this->db->get()->result_array();
+	}
+	/* brands*/
+	function save_brands($data){
+		$this->db->insert('brands', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	function get_all_brand_lists(){
+		$this->db->select('*')->from('brands');
+		return $this->db->get()->result_array();
+	}
+	function update_brand_status($itemid,$data){
+		$this->db->where('bid', $itemid);
+		return $this->db->update('brands', $data);
+	}
+	public function get_brand_details($ids)
+	{
+		$this->db->select('*')->from('brands');
+		$this->db->where('bid',$ids);
+		return $this->db->get()->row_array();
+	}
+	public function get_brand_details_withname($name)
+	{
+		$this->db->select('*')->from('brands');
+		$this->db->where('brand',$name);
+		return $this->db->get()->row_array();
+	}
+	/* brands*/
 	
 }
 ?>	
