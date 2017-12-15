@@ -160,14 +160,15 @@ public function homepagebanner()
 						redirect('seller/showups/catehorybanner');
 					}
 				}
-				//echo '<pre>';print_r($post);exit;
-			move_uploaded_file($_FILES['image']['tmp_name'], "assets/banners/" . $_FILES['image']['name']);
+			$temp = explode(".", $_FILES["image"]["name"]);
+			$newfilename1 = round(microtime(true)) .'.' . end($temp);
+			move_uploaded_file($_FILES['image']['tmp_name'], "assets/banners/" . $newfilename1);
 			$date = date('Y-m-d H:s:i');
 			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));
 			$data=array(         
 				'seller_id' => $this->session->userdata('seller_id'),
 				'position'=>$post['position'],  
-				'name'=>$_FILES['image']['name'],    
+				'name'=>$newfilename1,    
 				'link'=>$post['link'],  
 				'selected_id'=>$post['selecteddata'],  
 				'seller_id' => $this->session->userdata('seller_id'),
