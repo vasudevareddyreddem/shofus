@@ -97,6 +97,11 @@
                         </a>                        
                     </li>
 					<li class="treeview">
+                        <a href="<?php echo base_url('seller/showups/homepagebanners/');?>">
+                            <i class="fa fa-envelope-open-o"></i><span>Home page Banners</span>
+                        </a>                        
+                    </li>
+					<li class="treeview">
                         <a href="<?php echo base_url('seller/services/notications');?>">
                             <i class="fa fa-envelope-open-o"></i><span>Seller Support</span>
                         </a>                        

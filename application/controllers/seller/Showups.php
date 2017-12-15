@@ -32,6 +32,13 @@ public function homepagebanner()
 		$this->template->write_view('content', 'seller/banners/addbanner',$data);
 		$this->template->render();
 	}
+	public function homepagebanners()
+	{
+		$data['banner_count'] = $this->showups_model->banner_limit();
+		//echo '<pre>';print_r($data['banner_count']);exit;
+		$this->template->write_view('content', 'seller/banners/addhomepagebanner',$data);
+		$this->template->render();
+	}
 	public function catehorybannerlist()
 	{
 		$data['banner_list'] = $this->showups_model->banner_list($this->session->userdata('seller_id'));
@@ -66,6 +73,36 @@ public function homepagebanner()
 	}
 	public function savebanners(){
 			$post=$this->input->post();
+			move_uploaded_file($_FILES['image']['tmp_name'], "assets/banners/" . $_FILES['image']['name']);
+			$date = date('Y-m-d H:s:i');
+			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));
+			$data=array(         
+				'seller_id' => $this->session->userdata('seller_id'),
+				'position'=>$post['position'],  
+				'name'=>$_FILES['image']['name'],    
+				'link'=>$post['link'],  
+				'selected_id'=>$post['selecteddata'],  
+				'seller_id' => $this->session->userdata('seller_id'),
+				'created_at'=>date('Y-m-d H:i:s'),		
+				'expirydate'=>$date2		
+			);
+			//echo '<pre>';print_r($data);exit;
+			$banners=$this->showups_model->save_banners_list_image($data);
+			if(count($banners)>0){
+				$this->session->set_flashdata('success',"Banner successfully Added!");
+				redirect('seller/showups/catehorybannerlist/');
+			}else{
+				$this->session->set_flashdata('error',"Stechnical error occurred! Please try again later.");
+				redirect('seller/showups/catehorybanner/');
+			}
+					
+	}
+	public function savehomepagebanners(){
+			$post=$this->input->post();
+				$two=$this->showups_model->get_homepagebanners_list_position_wise_one(1);
+				$three=$this->showups_model->get_homepagebanners_list_position_wise_one(3);
+				$four=$this->showups_model->get_homepagebanners_list_position_wise_one(2);
+			echo '<pre>';print_r($banners);exit;
 			move_uploaded_file($_FILES['image']['tmp_name'], "assets/banners/" . $_FILES['image']['name']);
 			$date = date('Y-m-d H:s:i');
 			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));

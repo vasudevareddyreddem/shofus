@@ -431,6 +431,15 @@ public function update_categorybanner_status($id,$data)
     $sql1="DELETE FROM category_banners WHERE baneer_id = '".$id."'";
     return $this->db->query($sql1);
   }
+  public function get_homepagebanners_list_position_wise_one($position){
+	$date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s A');
+	$this->db->select('count(homepage_banners.baneer_id) as imagecount')->from('homepage_banners');
+    $this->db->where('homepage_banners.position',$position);
+    $this->db->where('homepage_banners.status',1);
+	$this->db->where('homepage_banners.expirydate >=', $curr_date);
+    return $this->db->get()->row_array();
+  }
 
 
 
