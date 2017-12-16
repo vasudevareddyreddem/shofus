@@ -214,3 +214,6 @@ ALTER TABLE `cartinho_live`.`products`
 
 
 
+ALTER TABLE `cartinhoursstaging_db`.`products`   
+  CHANGE `use` `useage` VARCHAR(250) CHARSET latin1 COLLATE latin1_swedish_ci NULL;
+

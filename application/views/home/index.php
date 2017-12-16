@@ -208,21 +208,34 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 	<?php } ?>
     <!--Top Category silder End--> 
     <!-- best Pro Slider -->
-    
+   <?php if(isset($position_two) && count($position_two)>0){ ?>
     <section>
 	<div class="best-pro slider-items-products container_main">
 		<div class="row mar_t15" >
+		<?php foreach($position_two as $list){ ?>
+		<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
 			<div class="col-md-4">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/5bafa3.jpg?q=50">
-			</div><div class="col-md-4">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/de54b5.jpg?q=50">
-			</div><div class="col-md-4">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/5bafa3.jpg?q=50">
+				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
 			</div>
+			<?php } ?>
+			<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
+			<div class="col-md-4">
+				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
+			</div>
+			<?php } ?>
+			<?php if(isset($list[2]['name']) && $list[2]['name']!=''){ ?>
+			<div class="col-md-4">
+				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[2]['name']); ?>" alt="<?php echo $list[2]['name']; ?>">
+			</div>
+			<?php } ?>
+			
+		<?php } ?>
 		</div>
 	</div>
 		
     </section>
+	
+   <?php } ?>
     <section>
       <div class="best-pro slider-items-products container_main">
         <div class="new_title">
@@ -322,78 +335,6 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
       </div>
     </section>
 	
-<!--<?php //if(isset($banners_list) && count($banners_list)>0){ ?>
-	<section>
-		<div class="container_main">
-			<div class="row">
-		<div class="col-md-12">
-                <div id="Carousel" class="carousel slide">
-                 
-               
-                 
-                <!-- Carousel items -->
-                <!--<div class="carousel-inner">
-				<?php //$c=0;foreach ($banners_list as $list){ 
-				
-				//echo '<pre>';print_r($list);exit;?>
-                    
-                <?php //if($c==0){ ?>
-				<div  style="height: 260px;" class="item active">
-                	<div class="row">
-					
-					<?php //if(isset($list[0]['image']) && $list[0]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php //echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
-                	  
-					<?php //} ?>
-					<?php //if(isset($list[1]['image']) && $list[1]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php //echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
-                	  
-					<?php //} ?>
-					<?php //if(isset($list[2]['image']) && $list[2]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php //echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
-                	  
-					<?php //} ?>
-					</div><!--.row-->
-               <!-- </div><!--.item-->
-				<!--<?php //} else { ?>
-                <div style="height: 260px;" class="item">
-                	<div class="row">
-					<?php //if(isset($list[0]['image']) && $list[0]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img  class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[0]['image']);?>" alt="<?php //echo $list[0]['image']; ?>" style="max-width:100%;"></a></div>
-                	  
-					<?php //} ?>
-					<?php //if(isset($list[1]['image']) && $list[1]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[1]['image']);?>" alt="<?php //echo $list[1]['image']; ?>" style="max-width:100%;"></a></div>
-                	  
-					<?php //} ?>
-					<?php //if(isset($list[2]['image']) && $list[2]['image']!=''){ ?>
-                	  <div class="col-md-4"><a href="#" class="thumbnail"><img class="img-responsive" src="<?php //echo base_url('assets/middlehomepagebanners/'.$list[2]['image']);?>" alt="<?php //echo $list[2]['image']; ?>" style="max-width:100%;"></a></div>
-                	  
-					<?php //} ?>
-                	</div><!--.row-->
-                <!--</div><!--.item-->
-				
-				<?php //} ?>
-                 
-                
-				
-				<?php //$c++;} ?>
-                 
-               <!-- </div><!--.carousel-inner-->
-               <!--   <a data-slide="prev" href="#Carousel" class="left carousel-control sty_con">‹</a>
-                  <a data-slide="next" href="#Carousel" class="right carousel-control sty_con">›</a>
-                </div><!--.Carousel-->
-                 
-		<!--</div>
-	</div>
-		</div>
-		
-	</section>
-	
-	<?php //} ?>
-	-->
-	
-	
 	
     <section>
       <div class="best-pro slider-items-products container_main">
@@ -487,25 +428,38 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <a href="<?php echo base_url('customer/seemore/'.base64_encode('offer').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
+	
+	<?php if(isset($position_three) && count($position_three)>0){ ?>
 	<section>
 	<div class="best-pro slider-items-products container_main">
 		<div class="row mar_t15" >
+			<?php foreach($position_three as $list){ ?>
+		<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
 			<div class="col-md-3">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/5bafa3.jpg?q=50">
+				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
 			</div>
+			<?php } ?>
+			<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
 			<div class="col-md-3">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/de54b5.jpg?q=50">
+				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
 			</div>
+			<?php } ?>
+			<?php if(isset($list[2]['name']) && $list[2]['name']!=''){ ?>
 			<div class="col-md-3">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/5bafa3.jpg?q=50">
+				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[2]['name']); ?>" alt="<?php echo $list[2]['name']; ?>">
 			</div>
+			<?php } ?>
+			<?php if(isset($list[3]['name']) && $list[3]['name']!=''){ ?>
 			<div class="col-md-3">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/de54b5.jpg?q=50">
+				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[3]['name']); ?>" alt="<?php echo $list[3]['name']; ?>">
 			</div>
+			<?php } ?>
+			<?php } ?>
 		</div>
 	</div>
 		
     </section>
+	<?php } ?>
 <?php if(isset($deals_of_the_day) && count($deals_of_the_day)>0){ ?>
      <section>
       <div class="best-pro slider-items-products container_main">
@@ -690,20 +644,32 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
       </div>
     </section>
 <?php } ?>
+
+<?php if(isset($position_four) && count($position_four)>0){ ?>
 <section>
 	<div class="best-pro slider-items-products container_main">
 		<div class="row mar_t15" >
+			<div class="row mar_t15" >
+			<?php foreach($position_four as $list){ ?>
+		<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
 			<div class="col-md-6">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/5bafa3.jpg?q=50">
+				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
 			</div>
+			<?php } ?>
+			<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
 			<div class="col-md-6">
-				<img class="img-responsive" src="https://rukminim1.flixcart.com/flap/960/960/image/de54b5.jpg?q=50">
+				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
 			</div>
+			<?php } ?>
+			
+			<?php } ?>
 				
 		</div>
 	</div>
 		
     </section>
+	
+	<?php } ?>
 	
 	
 	

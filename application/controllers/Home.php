@@ -117,8 +117,12 @@ public function index()
 	$data['sidecaregory_list']= $this->home_model->get_sidebar_category_list();
 
 
-	$banners_list= $this->home_model->get_home_pag_middle_banner();
-	$data['banners_list']=array_chunk($banners_list, 3);
+	$position_two= $this->home_model->get_homepage_position_two_banner(2);
+	$data['position_two']=array_chunk($position_two, 3);
+	$position_three= $this->home_model->get_homepage_position_three_banner(3);
+	$data['position_three']=array_chunk($position_three, 4);
+	$position_four= $this->home_model->get_homepage_position_four_banner(4);
+	$data['position_four']=array_chunk($position_four, 2);
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'home/index',$data);
 	$this->template->render();
