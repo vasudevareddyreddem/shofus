@@ -217,36 +217,32 @@ public function item_status(){
 	 $this->load->view('seller/products/groceryproductdetails',$data);
 	 }else if(isset($post['categoryid']) && $post['categoryid']==19 ||$post['categoryid']==24 ||$post['categoryid']==35){
 		 $data['subcategory_id']=isset($post['subcategoryid'])?$post['subcategoryid']:'';
-		  if($post['subcategoryid']==123 || $post['subcategoryid']==125 || $post['subcategoryid']==126 || $post['subcategoryid']==127 || $post['subcategoryid']==136 || $post['subcategoryid']==137 || $post['subcategoryid']==138){
+		  if($post['subcategoryid']==123 || $post['subcategoryid']==125 || $post['subcategoryid']==126 || $post['subcategoryid']==127 || $post['subcategoryid']==135 || $post['subcategoryid']==136 || $post['subcategoryid']==137 || $post['subcategoryid']==138 || $post['subcategoryid']==139){
 		  $this->load->view('seller/products/clothsproductdetails',$data);
 		  }else if($post['subcategoryid']==128 || $post['subcategoryid']==129 || $post['subcategoryid']==130|| $post['subcategoryid']==140 || $post['subcategoryid']==232 || $post['subcategoryid']==233 ){
 			  $this->load->view('seller/products/footware',$data);
 		  }else if($post['subcategoryid']==132 ||$post['subcategoryid']==142 || $post['subcategoryid']==144 || $post['subcategoryid']==220 || $post['subcategoryid']==221 || $post['subcategoryid']==222) {
 			   $this->load->view('seller/products/bagsproductdetails',$data);
+		  }else{
+			    $this->load->view('seller/products/allfields',$data);
 		  }
-	 }else if(isset($post['categoryid']) && $post['categoryid']==23){
-		 $data['subcategory_id']=isset($post['subcategoryid'])?$post['subcategoryid']:'';
-		  $this->load->view('seller/products/bagsproductdetails',$data);
-	 }else if(isset($post['categoryid']) && $post['categoryid']==24){
-		 $data['subcategory_id']=isset($post['subcategoryid'])?$post['subcategoryid']:'';
-		  $this->load->view('seller/products/footware',$data);
-	 }if(isset($post['categoryid']) && $post['categoryid']==20){
-		 if($post['subcategoryid']==38){
-			$this->load->view('seller/products/cameraaccessories',$data);
-			}else if($post['subcategoryid']==36){
-			$this->load->view('seller/products/dslr',$data);	
-			}else if($post['subcategoryid']==39){
-			$this->load->view('seller/products/laptops',$data);	
-			}else if($post['subcategoryid']==32){
-			$this->load->view('seller/products/headphones',$data);	
-			}else if($post['subcategoryid']==35){
-			$this->load->view('seller/products/computerspeakers',$data);	
-			}else if($post['subcategoryid']==31){
-			$this->load->view('seller/products/printers',$data);	
+	 }if(isset($post['categoryid']) && $post['categoryid']==20 || $post['categoryid']==22){
+		 if($post['subcategoryid']==107){
+			  $this->load->view('seller/products/laptops',$data);	
+			}else if($post['subcategoryid']==109){
+			  $this->load->view('seller/products/cameraaccessories',$data);	
+			}else if($post['subcategoryid']==111){
+			  $this->load->view('seller/products/printers',$data);
+			}else if($post['subcategoryid']==219){
+			  $this->load->view('seller/products/computerspeakers',$data);	
+			}else if($post['subcategoryid']==226 || $post['subcategoryid']==227 || $post['subcategoryid']==228 || $post['subcategoryid']==229 || $post['subcategoryid']==230 || $post['subcategoryid']==231){
+			  $this->load->view('seller/products/sameproductdetails',$data);	
 			}else{
-			  $this->load->view('seller/products/sameproductdetails',$data);
+			   $this->load->view('seller/products/allfields',$data);
 			}
 		
+	 }else{
+		 $this->load->view('seller/products/allfields',$data);
 	 }
 	 
  }

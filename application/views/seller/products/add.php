@@ -304,6 +304,7 @@
 	
 	</span>
 	<div id="grocery_products"></div>
+	<div id="computers"></div>
 	<div id="cloths_category"></div>
 	<div id="bags_category"></div>
 	<div id="footware_category"></div>
@@ -484,7 +485,7 @@ jQuery.ajax({
 			});
 	function subcatwisegroceryproducts(id){
 		var catid=$('#category_id').val();
-			if(catid==20 || catid==21 || catid==19 || catid==24 || catid==23 || catid==24){
+			if(catid==20 || catid==21 || catid==19 || catid==24 || catid==35 || catid==23 || catid==24){
 			jQuery.ajax({
 				url: "<?php echo site_url('seller/products/getolditemdata');?>",
 				type: 'post',
@@ -502,6 +503,7 @@ jQuery.ajax({
 					$("#cloths_category").hide();
 					$("#bags_category").hide();
 					$("#grocery_products").hide();
+					$("#computers").hide();
 					if(catid==21){
 					$("#grocery_products").show();
 					$("#grocery_products").empty();
@@ -518,10 +520,14 @@ jQuery.ajax({
 						$("#footware_category").show();
 						$("#footware_category").empty();
 						$("#footware_category").append(data);
-					}else if(catid==20){
+					}else if(catid==20 || catid==22){
 							$("#mobile_products").show();
 							$("#mobile_products").empty();
 							$("#mobile_products").append(data);
+					}else if(catid==22){
+							$("#computers").show();
+							$("#computers").empty();
+							$("#computers").append(data);
 					}
 				}
 			});

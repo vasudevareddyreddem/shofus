@@ -3220,6 +3220,52 @@ class CustomerApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 		}
 	}
+	
+	
+	/*andriod test*/
+	public function android_test_get()
+	{
+		$get = $this->input->get('category_id');
+		if($get==''){
+				$message = array('status'=>0,'message'=>'Category id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$subcategories = $this->Customerapi_model->get_subcategories_list($get);
+		if(count($subcategories)>0){
+		foreach ($subcategories as $list){
+			$subitems_list= $this->Customerapi_model->get_sub_items_list($list['subcategory_id']);
+			$plist[$list['subcategory_id']]=$list;
+			$plist[$list['subcategory_id']]['subitempath']=base_url('assets/subitems/');
+			$plist[$list['subcategory_id']]['expandablebool']='false';
+			$plist[$list['subcategory_id']]['subitems']=$subitems_list;
+			
+		}
+
+		foreach ($plist as $li){
+			$pitem_list[]=$li;
+			
+		}
+		if(count($plist)>0){
+						$message = array
+						(
+							'status'=>1,
+							'Subcategories'=>$plist,
+							'path' =>base_url('assets/subcategoryimages/')
+						);
+						$this->response($message, REST_Controller::HTTP_OK);
+					
+				}else{
+				
+					$message = array('status'=>0,'message'=>'Sub Category List Empty.');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+				}
+				
+		}else{
+			$message = array('status'=>0,'message'=>'Sub Category List Empty.');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+		}
+	}
+	/*andriod test*/
 	public function subitem_wiseitem_get()
 	{
 		$sub_item_id = $this->input->get('subitem_id');

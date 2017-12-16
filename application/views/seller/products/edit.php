@@ -272,6 +272,7 @@
 	
 	</span>
 	<div id="grocery_products"></div>
+	<div id="computers"></div>
 	<div id="cloths_category"></div>
 	<div id="bags_category"></div>
 	<div id="footware_category"></div>
@@ -443,11 +444,12 @@
 					$("#cloths_category").hide();
 					$("#bags_category").hide();
 					$("#grocery_products").hide();
+					$("#computers").hide();
 					if(catid==21){
 					$("#grocery_products").show();
 					$("#grocery_products").empty();
 					$("#grocery_products").append(data);
-					}else if(catid==22){
+					}else if(catid==19 ||catid==24 || catid==35){
 						$("#cloths_category").show();
 						$("#cloths_category").empty();
 						$("#cloths_category").append(data);
@@ -459,10 +461,14 @@
 						$("#footware_category").show();
 						$("#footware_category").empty();
 						$("#footware_category").append(data);
-					}else if(catid==20){
+					}else if(catid==20 || catid==22){
 							$("#mobile_products").show();
 							$("#mobile_products").empty();
 							$("#mobile_products").append(data);
+					}else if(catid==22){
+							$("#computers").show();
+							$("#computers").empty();
+							$("#computers").append(data);
 					}
 				}
 			});
@@ -486,11 +492,12 @@ function subcatwisegroceryproducts(id){
 					$("#cloths_category").hide();
 					$("#bags_category").hide();
 					$("#grocery_products").hide();
+					$("#computers").hide();
 					if(catid==21){
 					$("#grocery_products").show();
 					$("#grocery_products").empty();
 					$("#grocery_products").append(data);
-					}else if(catid==22){
+					}else if(catid==19 ||catid==24 || catid==35){
 						$("#cloths_category").show();
 						$("#cloths_category").empty();
 						$("#cloths_category").append(data);
@@ -502,10 +509,14 @@ function subcatwisegroceryproducts(id){
 						$("#footware_category").show();
 						$("#footware_category").empty();
 						$("#footware_category").append(data);
-					}else if(catid==20){
+					}else if(catid==20 || catid==22){
 							$("#mobile_products").show();
 							$("#mobile_products").empty();
 							$("#mobile_products").append(data);
+					}else if(catid==22){
+							$("#computers").show();
+							$("#computers").empty();
+							$("#computers").append(data);
 					}
 				}
 			});

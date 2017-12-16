@@ -107,7 +107,7 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 			</div>
 		
 	</div>
-	<?php if( $subcategory_id==55 || $subcategory_id==56 || $subcategory_id==57 || $subcategory_id==58 || $subcategory_id==59 || $subcategory_id==60 || $subcategory_id==61 || $subcategory_id==63){ ?>
+	<?php if( $subcategory_id==136 || $subcategory_id==137 || $subcategory_id==138 || $subcategory_id==123 || $subcategory_id==125 || $subcategory_id==126 || $subcategory_id==127){ ?>
 	
 	<div class="row">
 			<div class=" col-md-6 ">
@@ -142,10 +142,10 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		
 	</div>
 	<?php } ?>
-	<?php if($subcategory_id==55 || $subcategory_id==56 || $subcategory_id==57  || $subcategory_id==58 || $subcategory_id==59 || $subcategory_id==60 || $subcategory_id==61 || $subcategory_id==63 || $subcategory_id==64){ ?>
+	<?php if($subcategory_id==135 || $subcategory_id==136 || $subcategory_id==137 || $subcategory_id==138  ||  $subcategory_id==139  || $subcategory_id==123 || $subcategory_id==125 || $subcategory_id==126 || $subcategory_id==127){ ?>
 		
-		<?php if($subcategory_id==63 || $subcategory_id==64){ ?>
-		<?php if($subcategory_id==63 || $subcategory_id==64){ ?>
+		<?php if($subcategory_id==135 || $subcategory_id==139){ ?>
+		<?php if($subcategory_id==135 || $subcategory_id==139){  ?>
 			<div class="row">
 					<div class=" col-md-6 ">
 						<div class="form-group nopaddingRight san-lg">
@@ -163,7 +163,7 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 				
 			</div>
 			<?php } ?>
-			<?php if($subcategory_id==63){ ?>
+			<?php if($subcategory_id==135 || $subcategory_id==139){ ?>
 			<div class="row">
 					<div class=" col-md-6 ">
 						<div class="form-group nopaddingRight san-lg">
@@ -230,7 +230,7 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		
 	</div>
 	<?php }?>
-		<?php if($subcategory_id==55 || $subcategory_id==57  || $subcategory_id==56 || $subcategory_id==58 || $subcategory_id==59 || $subcategory_id==60 || $subcategory_id==61 || $subcategory_id==62){ ?>
+		<?php if($subcategory_id==136 || $subcategory_id==137  || $subcategory_id==138 || $subcategory_id==58 || $subcategory_id==59 || $subcategory_id==60 || $subcategory_id==61 || $subcategory_id==62){ ?>
 
 	<div class="row">
 			<div class=" col-md-12 ">
