@@ -573,7 +573,7 @@ public function item_status(){
 			'fastening' => isset($post['fastening'])?$post['fastening']:'',
 			'toe_shape' => isset($post['toe_shape'])?$post['toe_shape']:'',
 			'ean_upc' => isset($post['ean_upc'])?$post['ean_upc']:'',
-			'use' => isset($post['use'])?$post['use']:'',
+			'useage' => isset($post['useage'])?$post['useage']:'',
 
 			'item_image'=>isset($profilepic1)?$profilepic1:'',
 			'item_image1'=>isset($profilepic2)?$profilepic2:'',
@@ -1177,7 +1177,7 @@ public function update()
 			'fastening' => isset($post['fastening'])?$post['fastening']:'',
 			'toe_shape' => isset($post['toe_shape'])?$post['toe_shape']:'',
 			'ean_upc' => isset($post['ean_upc'])?$post['ean_upc']:'',
-			'use' => isset($post['use'])?$post['use']:'',
+			'useage' => isset($post['useage'])?$post['useage']:'',
 			'item_image'=>$image1,
 			'item_image1'=>$image2,
 			'item_image2'=>$image3,
@@ -3176,6 +3176,11 @@ public function returns()
 		}else if($post['valuename']=='return_policy'){
 			$editdata = array(
 			'return_policy' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='useage'){
+			$editdata = array(
+			'useage' => $post['value'],
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
 		}

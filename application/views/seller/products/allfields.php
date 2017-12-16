@@ -104,7 +104,7 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 	<div class="col-md-12 ">
 			<div class="form-group nopaddingRight san-lg">
 				<label for="exampleInputEmail1">useage</label>
-				<input type="text" class="form-control" id="use" name="use"  value="<?php echo isset($item_details['use'])?$item_details['use']:''; ?>" >
+				<input type="text" class="form-control" id="useage" name="useage"  value="<?php echo isset($item_details['useage'])?$item_details['useage']:''; ?>" >
 			</div>
 		</div>
 	</div>
