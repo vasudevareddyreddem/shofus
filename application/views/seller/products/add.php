@@ -303,6 +303,7 @@
 	<span id="newmobile_products">
 	
 	</span>
+	<div id="allfields"></div>
 	<div id="grocery_products"></div>
 	<div id="computers"></div>
 	<div id="cloths_category"></div>
@@ -466,26 +467,9 @@ function changememory(id){
 function changesimtype(id){
 	$('#sim_supported').val(id);
 }
-jQuery.ajax({
-				url: "<?php echo site_url('seller/products/getolditemdata');?>",
-				type: 'post',
-				data: {
-					form_key : window.FORM_KEY,
-					productname: 0,
-					categoryid: 0,
-					subcategoryid: 0,
-					},
-				dataType: 'html',
-				success: function (data) {
-					$("#newmobile_products").hide();
-					$("#mobile_products").empty();
-					$("#mobile_products").append(data);
-					
-				}
-			});
+
 	function subcatwisegroceryproducts(id){
 		var catid=$('#category_id').val();
-			if(catid==20 || catid==21 || catid==19 || catid==24 || catid==35 || catid==23 || catid==24){
 			jQuery.ajax({
 				url: "<?php echo site_url('seller/products/getolditemdata');?>",
 				type: 'post',
@@ -504,6 +488,7 @@ jQuery.ajax({
 					$("#bags_category").hide();
 					$("#grocery_products").hide();
 					$("#computers").hide();
+					$("#allfields").hide();
 					if(catid==21){
 					$("#grocery_products").show();
 					$("#grocery_products").empty();
@@ -528,13 +513,17 @@ jQuery.ajax({
 							$("#computers").show();
 							$("#computers").empty();
 							$("#computers").append(data);
+					}else{
+						$("#allfields").show();
+						$("#allfields").empty();
+						$("#allfields").append(data);
 					}
 				}
 			});
-		}
+		
 		
 	}
-   function getoldproduct_details(val){
+	 function getoldproduct_details(val){
 	   var subcategory=document.getElementById('subcategorylist').value;
 	   var categoryids=document.getElementById('category_id').value;
 	   var categoryids=document.getElementById('category_id').value;
@@ -554,19 +543,43 @@ jQuery.ajax({
 					},
 				dataType: 'html',
 				success: function (data) {
+					$("#footware_category").hide();
+					$("#newmobile_products").hide();
+					$("#mobile_products").hide();
+					$("#cloths_category").hide();
+					$("#bags_category").hide();
+					$("#grocery_products").hide();
+					$("#computers").hide();
+					$("#allfields").hide();
 					if(categoryids==21){
 					$("#grocery_products").show();
-					$("#mobile_products").hide();
 					$("#grocery_products").empty();
 					$("#grocery_products").append(data);
-
+					}else if(categoryids==19 ||categoryids==24 || categoryids==35){
+						$("#cloths_category").show();
+						$("#cloths_category").empty();
+						$("#cloths_category").append(data);
+					}else if(categoryids==23){
+						$("#bags_category").show();
+						$("#bags_category").empty();
+						$("#bags_category").append(data);
+					}else if(categoryids==24){
+						$("#footware_category").show();
+						$("#footware_category").empty();
+						$("#footware_category").append(data);
+					}else if(categoryids==20 || categoryids==22){
+							$("#mobile_products").show();
+							$("#mobile_products").empty();
+							$("#mobile_products").append(data);
+					}else if(categoryids==22){
+							$("#computers").show();
+							$("#computers").empty();
+							$("#computers").append(data);
 					}else{
-					$("#grocery_products").hide();
-					$("#newmobile_products").hide();
-					$("#mobile_products").empty();
-					$("#mobile_products").append(data);
+						$("#allfields").show();
+						$("#allfields").empty();
+						$("#allfields").append(data);
 					}
-					
 					
 				}
 			});
@@ -574,6 +587,7 @@ jQuery.ajax({
 	   
 	   
    }
+  
    function IsMobile(reasontype) {
         var regex = /^[0-9]+$/;
         return regex.test(reasontype);

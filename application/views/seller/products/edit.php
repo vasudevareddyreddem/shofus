@@ -268,14 +268,15 @@
 		</div>
 	</div>
 	<div id="mobile_products"></div>
-	<span id="newmobile_products">
 	
 	</span>
+	<div id="allfields"></div>
 	<div id="grocery_products"></div>
 	<div id="computers"></div>
 	<div id="cloths_category"></div>
 	<div id="bags_category"></div>
 	<div id="footware_category"></div>
+	<div class="clearfix"></div>
 	
 	<div class="clearfix"></div>
 	<br>
@@ -445,6 +446,7 @@
 					$("#bags_category").hide();
 					$("#grocery_products").hide();
 					$("#computers").hide();
+					$("#allfields").hide();
 					if(catid==21){
 					$("#grocery_products").show();
 					$("#grocery_products").empty();
@@ -469,12 +471,15 @@
 							$("#computers").show();
 							$("#computers").empty();
 							$("#computers").append(data);
+					}else{
+						$("#allfields").show();
+						$("#allfields").empty();
+						$("#allfields").append(data);
 					}
 				}
 			});
 function subcatwisegroceryproducts(id){
 		var catid=$('#category_id').val();
-			if(catid==20 || catid==21 || catid==22 || catid==23 || catid==24){
 			jQuery.ajax({
 				url: "<?php echo site_url('seller/products/getolditemdata');?>",
 				type: 'post',
@@ -493,6 +498,7 @@ function subcatwisegroceryproducts(id){
 					$("#bags_category").hide();
 					$("#grocery_products").hide();
 					$("#computers").hide();
+					$("#allfields").hide();
 					if(catid==21){
 					$("#grocery_products").show();
 					$("#grocery_products").empty();
@@ -517,10 +523,14 @@ function subcatwisegroceryproducts(id){
 							$("#computers").show();
 							$("#computers").empty();
 							$("#computers").append(data);
+					}else{
+						$("#allfields").show();
+						$("#allfields").empty();
+						$("#allfields").append(data);
 					}
 				}
 			});
-		}
+		
 		
 	}
   function getspecialinputs(ids){

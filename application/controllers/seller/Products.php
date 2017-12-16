@@ -226,7 +226,7 @@ public function item_status(){
 		  }else{
 			    $this->load->view('seller/products/allfields',$data);
 		  }
-	 }if(isset($post['categoryid']) && $post['categoryid']==20 || $post['categoryid']==22){
+	 }else if(isset($post['categoryid']) && $post['categoryid']==20 || $post['categoryid']==22){
 		 if($post['subcategoryid']==107){
 			  $this->load->view('seller/products/laptops',$data);	
 			}else if($post['subcategoryid']==109){
@@ -573,6 +573,7 @@ public function item_status(){
 			'fastening' => isset($post['fastening'])?$post['fastening']:'',
 			'toe_shape' => isset($post['toe_shape'])?$post['toe_shape']:'',
 			'ean_upc' => isset($post['ean_upc'])?$post['ean_upc']:'',
+			'use' => isset($post['use'])?$post['use']:'',
 
 			'item_image'=>isset($profilepic1)?$profilepic1:'',
 			'item_image1'=>isset($profilepic2)?$profilepic2:'',
@@ -1176,6 +1177,7 @@ public function update()
 			'fastening' => isset($post['fastening'])?$post['fastening']:'',
 			'toe_shape' => isset($post['toe_shape'])?$post['toe_shape']:'',
 			'ean_upc' => isset($post['ean_upc'])?$post['ean_upc']:'',
+			'use' => isset($post['use'])?$post['use']:'',
 			'item_image'=>$image1,
 			'item_image1'=>$image2,
 			'item_image2'=>$image3,

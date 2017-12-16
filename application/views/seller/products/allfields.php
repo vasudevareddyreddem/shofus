@@ -71,6 +71,22 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		
 	</div>
 	<div class="row">
+			<div class=" col-md-6 ">
+						<div class="form-group nopaddingRight san-lg">
+							<label for="exampleInputEmail1">Type</label>
+							<input type="text" class="form-control" id="type" name="type" value="<?php echo isset($item_details['type'])?$item_details['type']:''; ?>" >
+						</div>
+			</div>
+			
+			<div class="col-md-6 ">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Weight</label>
+				<input type="text" class="form-control" id="weight" name="weight"  value="<?php echo isset($item_details['weight'])?$item_details['weight']:''; ?>" >
+			</div>
+		</div>
+		
+	</div>
+	<div class="row">
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				 <label for="exampleInputEmail1">Model Name</label>
@@ -81,6 +97,23 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 			<div class="form-group nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Model ID</label>
 				<input type="text" class="form-control" id="model_id" name="model_id" value="<?php echo isset($item_details['model_id'])?$item_details['model_id']:''; ?>" >
+			</div>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-md-12 ">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">useage</label>
+				<input type="text" class="form-control" id="use" name="use"  value="<?php echo isset($item_details['use'])?$item_details['use']:''; ?>" >
+			</div>
+		</div>
+	</div>
+	<div class="row">
+
+		<div class=" col-md-12">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Disclaimer</label>
+				<textarea  placeholder="Disclaimer" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="disclaimer" name="disclaimer"><?php echo isset($item_details['disclaimer'])?$item_details['disclaimer']:''; ?></textarea>
 			</div>
 		</div>
 	</div>

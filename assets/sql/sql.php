@@ -209,6 +209,8 @@ ALTER TABLE `cartinho_live`.`products`
   ALTER TABLE `cartinho_live`.`products`   
   CHANGE `item_image1` `item_image1` VARCHAR(250) NULL;
 
+ALTER TABLE `cartinho_live`.`products`   
+  ADD COLUMN `use` VARCHAR(250) NULL AFTER `ean_upc`;
 
 
 
