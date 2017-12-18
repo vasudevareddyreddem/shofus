@@ -267,7 +267,31 @@
                   <p>Near by stores</p>
                </a>
             </span>
+           
             <?php if($this->session->userdata('userdetails')){ ?>
+            <span class="medias text-center shopping_cart" style="position:relative;">
+            <a href="<?php echo base_url('customer/cart'); ?>">
+               <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+               <p>Cart</p>
+            </a>
+            <?php if(count($cartitemcount)>0){ ?>
+            <span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688">
+            <?php echo count($cartitemcount); ?>
+            <?php }else{  ?>
+            <span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688;">
+            <?php }?>
+            </span>
+            </span>
+            <?php }else{ ?>
+            <span class="medias text-center shopping_cart" style="position:relative;">
+               <a href=" <?php echo base_url('customer'); ?>">
+                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+                  <p>Cart</p>
+               </a>
+               <span style="position:absolute;top:-5px;right:-5px;font-size:12px"></span>
+            </span>
+            <?php } ?>
+ <?php if($this->session->userdata('userdetails')){ ?>
             <span class="medias user_log">
                <a>
                   <?php if($details['cust_propic']!=''){ ?>
@@ -298,30 +322,7 @@
                   <p>Sign Up/Sign In</p>
                </a>
             </span>
-            <?php } ?>
-            <?php if($this->session->userdata('userdetails')){ ?>
-            <span class="medias text-center shopping_cart" style="position:relative;">
-            <a href="<?php echo base_url('customer/cart'); ?>">
-               <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
-               <p>Cart</p>
-            </a>
-            <?php if(count($cartitemcount)>0){ ?>
-            <span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688">
-            <?php echo count($cartitemcount); ?>
-            <?php }else{  ?>
-            <span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688;">
-            <?php }?>
-            </span>
-            </span>
-            <?php }else{ ?>
-            <span class="medias text-center shopping_cart" style="position:relative;">
-               <a href=" <?php echo base_url('customer'); ?>">
-                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
-                  <p>Cart</p>
-               </a>
-               <span style="position:absolute;top:-5px;right:-5px;font-size:12px"></span>
-            </span>
-            <?php } ?>	
+            <?php } ?>			
            
             
          </div>
