@@ -124,75 +124,140 @@ class Home_model extends CI_Model
 		return $this->db->get()->result_array();
 	
 	}
-	public function get_season_offers($id)
+	public function get_season_offers()
 	{
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('season_sales.*,products.*')->from('season_sales');
 		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
-		if(isset($id) && $id!=''){
-		$this->db->where('products.seller_location_area',$id);	
-		}
 		$this->db->order_by('season_sales.offer_percentage desc');
+		$this->db->group_by('products.category_id');
 		$this->db->where('season_sales.preview_ok',1);
 		$this->db->where('products.item_status',1);
 		$this->db->where('season_sales.expairdate >=', $curr_date);
-		return $this->db->get()->result_array();
-	
+		$return=$this->db->get()->result_array();
+		foreach ($return as $lis){
+			//echo '<>'
+			$season[]=$this->get_season_product_percentages_list($lis['category_id']);
+			
+		}
+		if(!empty($season))
+		{
+		return $season;
+		}
+
 	}
-	public function get_top_offers($id)
+	public function get_season_product_percentages_list($cid)
+	{
+	
+		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,season_sales.offer_percentage,products.offer_amount,products.item_image FROM season_sales LEFT JOIN products ON products.item_id = season_sales.item_id WHERE season_sales.category_id ='".$cid."' ORDER BY season_sales.offer_percentage DESC LIMIT 0, 1";
+        return $this->db->query($sql)->row_array(); 
+
+	}
+	public function get_top_offers()
 	{
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('top_offers.*,products.*')->from('top_offers');
+		$this->db->select('products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.item_image')->from('top_offers');
 		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
 		$this->db->order_by('top_offers.offer_percentage desc');
-		if(isset($id) && $id!=''){
-		$this->db->where('products.seller_location_area',$id);	
-		}
 		$this->db->where('top_offers.preview_ok',1);
+		$this->db->group_by('products.category_id');
 		$this->db->where('products.item_status',1);
 		$this->db->where('top_offers.expairdate >=', $curr_date);
-		return $this->db->get()->result_array();
+		$return=$this->db->get()->result_array();
+		foreach ($return as $lis){
+			//echo '<>'
+			$top[]=$this->get_topoffer_product_percentages_list($lis['category_id']);
+			
+		}
+		if(!empty($top))
+		{
+		return $top;
+		}
 
 	}
-	public function get_trending_products($id)
+	public function get_topoffer_product_percentages_list($cid)
 	{
-		$this->db->select('*')->from('products');
-		if(isset($id) && $id!=''){
-		$this->db->where('products.seller_location_area',$id);	
-		}
-		$this->db->order_by('products.offer_percentage ASC');
-		$this->db->where('products.item_status',1);
-		return $this->db->get()->result_array();
+	
+		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,top_offers.offer_percentage,products.offer_amount,products.item_image FROM top_offers LEFT JOIN products ON products.item_id = top_offers.item_id WHERE top_offers.category_id ='".$cid."' ORDER BY top_offers.offer_percentage DESC LIMIT 0, 1";
+        return $this->db->query($sql)->row_array(); 
 
 	}
-	public function get_offer_for_you($id)
+	public function get_trending_products()
 	{
 		$this->db->select('*')->from('products');
-        if(isset($id) && $id!=''){
-		$this->db->where('products.seller_location_area',$id);	
-		}
 		$this->db->order_by('products.offer_percentage desc');
+		$this->db->group_by('products.category_id');
+		$this->db->where('products.category_id !=','');
+		$this->db->where('products.item_status',1);
+		$return=$this->db->get()->result_array();
+		foreach ($return as $lis){
+			//echo '<>'
+			$trending[]=$this->get_trending_product_percentages_list($lis['category_id']);
+			
+		}
+		if(!empty($trending))
+		{
+		return $trending;
+		}
+		
+	}
+	public function get_trending_product_percentages_list($cid)
+	{
+	
+		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.item_image FROM products  WHERE products.category_id ='".$cid."' LIMIT 0, 1";
+        return $this->db->query($sql)->row_array(); 
+
+	}
+	public function get_offer_for_you()
+	{
+		$this->db->select('*')->from('products');
+        $this->db->order_by('products.offer_percentage desc');
 		$this->db->order_by('products.item_id desc');
 		$this->db->where('products.item_status',1);
-		return $this->db->get()->result_array();
-
+		$this->db->group_by('products.category_id');
+		$return=$this->db->get()->result_array();
+		foreach ($return as $lis){
+			//echo '<>'
+			$offers[]=$this->get_trending_product_percentages_list($lis['category_id']);
+			
+		}
+		if(!empty($offers))
+		{
+		return $offers;
+		}
+		
 	}
-	public function get_deals_of_the_day($id)
+	
+	public function get_deals_of_the_day()
 	{
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('deals_ofthe_day.*,products.*')->from('deals_ofthe_day');
 		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
 		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
-		if(isset($id) && $id!=''){
-		$this->db->where('products.seller_location_area',$id);	
-		}
+		$this->db->group_by('products.category_id');
 		$this->db->where('deals_ofthe_day.preview_ok',1);
 		$this->db->where('products.item_status',1);
 		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
-		return $this->db->get()->result_array();
+			$return=$this->db->get()->result_array();
+		foreach ($return as $lis){
+			//echo '<>'
+			$deals[]=$this->get_deals_product_percentages_list($lis['category_id']);
+			
+		}
+		if(!empty($deals))
+		{
+		return $deals;
+		}
+
+	}
+	public function get_deals_product_percentages_list($cid)
+	{
+	
+		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,deals_ofthe_day.offer_percentage,products.offer_amount,products.item_image FROM deals_ofthe_day LEFT JOIN products ON products.item_id = deals_ofthe_day.item_id WHERE deals_ofthe_day.category_id ='".$cid."' ORDER BY deals_ofthe_day.offer_percentage DESC LIMIT 0, 1";
+        return $this->db->query($sql)->row_array(); 
 
 	}
 
@@ -396,7 +461,8 @@ public function get_catedata($category_id)
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');
 	$this->db->group_by('subcategories.subcategory_id');
 	$this->db->order_by('subcategories.subcategory_id', 'ASC'); 
-	  $this->db->where('subcategories.category_id', $category_id);	
+	$this->db->where('subcategories.category_id', $category_id);	
+	$this->db->where('subcategories.subcategory_id !=', '');	
 
 	$query=$this->db->get()->result_array();
 	//echo '<pre>';print_r($query);exit;
@@ -419,7 +485,8 @@ public function get_subcatedata($subcategory_id)
 	$this->db->select('sub_items.*')->from('products');
 	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
     $this->db->where('products.subcategory_id', $subcategory_id);
-    $this->db->where('products.subitemid !=', 0);
+    $this->db->where('products.subitemid !=', '');
+    $this->db->where('sub_items.subitem_id !=', '');
 	$this->db->group_by('products.subitemid');
 	 return $this->db->get()->result_array();
 }

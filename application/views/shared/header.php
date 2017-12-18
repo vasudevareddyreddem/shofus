@@ -206,20 +206,23 @@
 					 
 							<div class="tab-pane active " id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;padding:20px;border-left:1px solid #ddd;min-height:150px">
 								<div class="row" style="margin-right:30px;">
-								<?php foreach ($list['subcat'] as $subitemlist){ ?>
-									<div class="col-md-3">
-										<h5><?php echo $subitemlist['subcategory_name']; ?></h5>
-											<?php foreach ($subitemlist['subitem_list'] as $lists){ ?>
-													<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id']).'/'.base64_encode($subitemlist['subcategory_id']).'/'.base64_encode($list['category_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
-											<?php } ?>
-										
-									</div>
+								<?php if(isset($list['subcat']) && count($list['subcat'])>0){?>
+									<?php foreach ($list['subcat'] as $subitemlist){ ?>
+										<div class="col-md-3">
+											<h5><?php echo $subitemlist['subcategory_name']; ?></h5>
+												<?php foreach ($subitemlist['subitem_list'] as $lists){ ?>
+														<a href="<?php echo base_url('category/subitemwise/'.base64_encode($lists['subitem_id']).'/'.base64_encode($subitemlist['subcategory_id']).'/'.base64_encode($list['category_id'])); ?>"> <p><?php echo $lists['subitem_name']; ?><p> </a>
+												<?php } ?>
+											
+										</div>
+									<?php } ?>
 								<?php } ?>
 								</div>
 							</div>
 						<?php }else{ ?>
 								<div class="tab-pane tab_hide" id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;padding:20px;border-left:1px solid #ddd;min-height:150">
 										<div class="row" style="margin-right:30px;">
+										<?php if(isset($list['subcat']) && count($list['subcat'])>0){?>
 										<?php foreach ($list['subcat'] as $subitemlist){ ?>
 											<div class="col-md-3">
 												<h5><?php echo $subitemlist['subcategory_name']; ?></h5>
@@ -228,6 +231,7 @@
 													<?php } ?>
 												
 											</div>
+											<?php } ?>
 										<?php } ?>
 										</div>
 									</div>
