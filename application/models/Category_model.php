@@ -2723,9 +2723,12 @@ class Category_model extends MY_Model
 			return $this->db->get()->row_array();	
 		}
 		public function step_eight_data(){
-			$this->db->select('*')->from('sub_items');
-			$this->db->where('status',1);
-			return $this->db->get()->result_array();	
+			
+		$this->db->select('sub_items.*')->from('products');
+		$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left'); //
+		$this->db->where('products.subitemid !=','');
+		$this->db->group_by('products.subitemid');
+		return $this->db->get()->result_array();			
 		}
 }
 ?>
