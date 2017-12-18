@@ -2689,6 +2689,24 @@ public function addhomepagemiddlebannerspost()
 						redirect('inventory/addmiddlehomebanners');
 					}
 				}
+				if($post['link']==4){
+					$item=$this->showups_model->get_item_detals($post['selecteddata']);
+					$catid=$item['category_id'];
+					$subcatid=$item['subcategory_id'];
+					$subitem=$item['subitem_id'];
+					$itemid=$item['id'];
+					}else if($post['link']==3){
+					$subitem_id=$this->showups_model->get_subitem_detals($post['selecteddata']);
+					$catid=$subitem_id['category_id'];
+					$subcatid=$subitem_id['subcategory_id'];
+					$subitem=$post['subitem_id'];
+					}else if($post['link']==2){
+					$subitem_id=$this->showups_model->get_subcategory_detals($post['selecteddata']);
+					$catid=$subitem_id['category_id'];
+					$subcatid=$subitem_id['subcategory_id'];
+					}else if($post['link']==2){
+						$catid=$post['selecteddata'];	
+					}
 			//echo '<pre>';print_r($post);exit;
 			$temp = explode(".", $_FILES["image"]["name"]);
 			$newfilename1 = round(microtime(true)) .'.' . end($temp);
@@ -2697,6 +2715,10 @@ public function addhomepagemiddlebannerspost()
 			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));
 			$data=array(         
 				'seller_id' => $this->session->userdata('seller_id'),
+				'category_id'=>isset($catid)?$catid:'',   
+				'subcategory_id'=>isset($subcatid)?$subcatid:'',    
+				'subitem_id'=>isset($subitem)?$subitem:'',  
+				'item_id'=>isset($itemid)?$itemid:'',  
 				'position'=>$post['position'],  
 				'name'=>$newfilename1,    
 				'link'=>$post['link'],  
@@ -2744,6 +2766,24 @@ public function addhomepagemiddlebannerspost()
 						redirect('inventory/addcategorybanners');
 					}
 				}
+				if($post['link']==4){
+					$item=$this->showups_model->get_item_detals($post['selecteddata']);
+					$catid=$item['category_id'];
+					$subcatid=$item['subcategory_id'];
+					$subitem=$item['subitem_id'];
+					$itemid=$item['id'];
+					}else if($post['link']==3){
+					$subitem_id=$this->showups_model->get_subitem_detals($post['selecteddata']);
+					$catid=$subitem_id['category_id'];
+					$subcatid=$subitem_id['subcategory_id'];
+					$subitem=$post['subitem_id'];
+					}else if($post['link']==2){
+					$subitem_id=$this->showups_model->get_subcategory_detals($post['selecteddata']);
+					$catid=$subitem_id['category_id'];
+					$subcatid=$subitem_id['subcategory_id'];
+					}else if($post['link']==2){
+						$catid=$post['selecteddata'];	
+					}
 			//echo '<pre>';print_r($post);exit;
 			$temp = explode(".", $_FILES["image"]["name"]);
 			$newfilename1 = round(microtime(true)) .'.' . end($temp);
@@ -2752,6 +2792,10 @@ public function addhomepagemiddlebannerspost()
 			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));
 			$data=array(         
 				'seller_id' => $this->session->userdata('seller_id'),
+				'category_id'=>isset($catid)?$catid:'',   
+				'subcategory_id'=>isset($subcatid)?$subcatid:'',    
+				'subitem_id'=>isset($subitem)?$subitem:'',  
+				'item_id'=>isset($itemid)?$itemid:'',  
 				'position'=>$post['position'],  
 				'name'=>$newfilename1,    
 				'link'=>$post['link'],  

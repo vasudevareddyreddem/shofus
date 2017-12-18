@@ -2310,32 +2310,23 @@ class Customer extends Front_Controller
 		
 		
 		$post=$this->input->post();
-		$type=base64_decode($this->uri->segment(3));
-		$location=base64_decode($this->uri->segment(4));
-		$ids=$this->session->userdata('location_ids');
-		if($type=='top' && $location!='location'){
-		$data['products'] = $this->home_model->get_top_offers($location);
-		//echo $this->db->last_query();exit;
-		}else if($type=='top'){
-			$data['products'] = $this->home_model->get_search_top_offers($ids);
-		}else if($type=='tren' && $location!='location'){
-			$data['products'] = $this->home_model->get_trending_products($location);
+		$catid=base64_decode($this->uri->segment(3));
+		$type=base64_decode($this->uri->segment(4));
+		$data['category_name'] = $this->home_model->get_category_name_details($catid);
+		if($type=='top'){
+			$data['products'] = $this->home_model->get_search_top_offers($catid);
 		}else if($type=='tren'){
-			$data['products'] = $this->home_model->get_search_trending_products($ids);
-		}else if($type=='offer' && $location!='location'){
-			$data['products'] = $this->home_model->get_offer_for_you($location);
+			$data['products'] = $this->home_model->get_search_trending_products($catid);
 		}else if($type=='offer'){
-			$data['products'] = $this->home_model->get_search_offer_for_you($ids);
-		}else if($type=='deal' && $location!='location'){
-			$data['products'] = $this->home_model->get_deals_of_the_day($location);
+			$data['products'] = $this->home_model->get_search_offer_for_you($catid);
 		}else if($type=='deal'){
-			$data['products'] = $this->home_model->get_search_deals_of_the_day($ids);
-		}else if($type=='season' && $location!='location'){
-			$data['products'] = $this->home_model->get_season_offers($location);
+			$data['products'] = $this->home_model->get_search_deals_of_the_day($catid);
 		}else if($type=='season'){
-			$data['products'] = $this->home_model->get_search_season_sales($ids);
+			$data['products'] = $this->home_model->get_search_season_sales($catid);
+		}else if($type=='no'){
+			$data['products'] = $this->home_model->get_all_products_list($catid);
 		}
-		$data['type'] = $type;
+		//echo '<pre>';print_r($data);exit;
 		$cartitemids= $this->category_model->get_all_cart_lists_ids();
 		if(count($cartitemids)>0){
 		foreach($cartitemids as $list){

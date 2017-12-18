@@ -61,13 +61,13 @@ class Home_model extends CI_Model
 	//echo $this->db->last_query();exit; 
 	}
 	
-	public function get_search_top_offers($areaid)
+	public function get_search_top_offers($catid)
 	{
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('top_offers.*,products.*')->from('top_offers');
+		$this->db->select('top_offers.expairdate,top_offers.offer_percentage,products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('top_offers');
 		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
-		$this->db->where_in('seller_location_area',$areaid);
+		$this->db->where('products.category_id',$catid);
         $this->db->where('admin_status','0');
 		$this->db->order_by('top_offers.offer_percentage desc');
 		$this->db->where('top_offers.preview_ok',1);
@@ -76,33 +76,31 @@ class Home_model extends CI_Model
 		return $this->db->get()->result_array();
 
 	}
-	public function get_search_trending_products($areaid)
+	public function get_search_trending_products($catid)
 	{
-		$this->db->select('*')->from('products');
-		$this->db->where_in('seller_location_area',$areaid);
+		$this->db->select('products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
+		$this->db->where('products.category_id',$catid);
         $this->db->where('admin_status','0');
 		$this->db->order_by('products.offer_percentage ASC');
-		$this->db->limit(5);
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 	}
-	public function get_search_offer_for_you($areaid)
+	public function get_search_offer_for_you($catid)
 	{
-		$this->db->select('*')->from('products');
-		$this->db->where_in('seller_location_area',$areaid);
+		$this->db->select('products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
+		$this->db->where('products.category_id',$catid);
         $this->db->where('admin_status','0');
 		$this->db->order_by('products.offer_percentage desc');
-		$this->db->limit(5);
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 	}
-	public function get_search_deals_of_the_day($areaid)
+	public function get_search_deals_of_the_day($catid)
 	{
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('deals_ofthe_day.*,products.*')->from('deals_ofthe_day');
+		$this->db->select('deals_ofthe_day.expairdate,deals_ofthe_day.offer_percentage,products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('deals_ofthe_day');
 		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
-		$this->db->where_in('seller_location_area',$areaid);
+		$this->db->where('products.category_id',$catid);
         $this->db->where('admin_status','0');
 		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
 		$this->db->where('deals_ofthe_day.preview_ok',1);
@@ -110,13 +108,13 @@ class Home_model extends CI_Model
 		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
 		return $this->db->get()->result_array();
 	}
-	public function get_search_season_sales($areaid)
+	public function get_search_season_sales($catid)
 	{
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('season_sales.*,products.*')->from('season_sales');
+		$this->db->select('season_sales.expairdate,season_sales.offer_percentage,products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('season_sales');
 		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
-		$this->db->where_in('seller_location_area',$areaid);
+		$this->db->where('products.category_id',$catid);
 		$this->db->order_by('season_sales.offer_percentage desc');
 		$this->db->where('season_sales.preview_ok',1);
 		$this->db->where('products.item_status',1);
@@ -124,11 +122,26 @@ class Home_model extends CI_Model
 		return $this->db->get()->result_array();
 	
 	}
+	public function get_all_products_list($catid)
+	{
+		$this->db->select('products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
+		$this->db->where('products.category_id',$catid);
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->where('products.item_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_category_name_details($catid)
+	{
+		$this->db->select('*')->from('category');
+		$this->db->where('category_id',$catid);
+		return $this->db->get()->row_array();
+	}
 	public function get_season_offers()
 	{
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('season_sales.*,products.*')->from('season_sales');
+		$this->db->select('season_sales.expairdate,season_sales.offer_percentage,products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.item_image')->from('season_sales');
 		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
 		$this->db->order_by('season_sales.offer_percentage desc');
 		$this->db->group_by('products.category_id');
@@ -150,7 +163,7 @@ class Home_model extends CI_Model
 	public function get_season_product_percentages_list($cid)
 	{
 	
-		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,season_sales.offer_percentage,products.offer_amount,products.item_image FROM season_sales LEFT JOIN products ON products.item_id = season_sales.item_id WHERE season_sales.category_id ='".$cid."' ORDER BY season_sales.offer_percentage DESC LIMIT 0, 1";
+		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,season_sales.offer_percentage,products.offer_amount,products.item_image,category.category_name FROM season_sales LEFT JOIN products ON products.item_id = season_sales.item_id  LEFT JOIN category ON category.category_id = products.category_id WHERE season_sales.category_id ='".$cid."' ORDER BY season_sales.offer_percentage DESC LIMIT 0, 1";
         return $this->db->query($sql)->row_array(); 
 
 	}
@@ -180,7 +193,7 @@ class Home_model extends CI_Model
 	public function get_topoffer_product_percentages_list($cid)
 	{
 	
-		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,top_offers.offer_percentage,products.offer_amount,products.item_image FROM top_offers LEFT JOIN products ON products.item_id = top_offers.item_id WHERE top_offers.category_id ='".$cid."' ORDER BY top_offers.offer_percentage DESC LIMIT 0, 1";
+		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,top_offers.offer_percentage,products.offer_amount,products.item_image,category.category_name FROM top_offers LEFT JOIN products ON products.item_id = top_offers.item_id LEFT JOIN category ON category.category_id = products.category_id WHERE top_offers.category_id ='".$cid."' ORDER BY top_offers.offer_percentage DESC LIMIT 0, 1";
         return $this->db->query($sql)->row_array(); 
 
 	}
@@ -206,7 +219,7 @@ class Home_model extends CI_Model
 	public function get_trending_product_percentages_list($cid)
 	{
 	
-		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.item_image FROM products  WHERE products.category_id ='".$cid."' LIMIT 0, 1";
+		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.item_image,category.category_name FROM products  LEFT JOIN category ON category.category_id = products.category_id  WHERE products.category_id ='".$cid."' LIMIT 0, 1";
         return $this->db->query($sql)->row_array(); 
 
 	}
@@ -256,7 +269,7 @@ class Home_model extends CI_Model
 	public function get_deals_product_percentages_list($cid)
 	{
 	
-		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,deals_ofthe_day.offer_percentage,products.offer_amount,products.item_image FROM deals_ofthe_day LEFT JOIN products ON products.item_id = deals_ofthe_day.item_id WHERE deals_ofthe_day.category_id ='".$cid."' ORDER BY deals_ofthe_day.offer_percentage DESC LIMIT 0, 1";
+		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,deals_ofthe_day.offer_percentage,products.offer_amount,products.item_image,category.category_name FROM deals_ofthe_day LEFT JOIN products ON products.item_id = deals_ofthe_day.item_id  LEFT JOIN category ON category.category_id = products.category_id WHERE deals_ofthe_day.category_id ='".$cid."' ORDER BY deals_ofthe_day.offer_percentage DESC LIMIT 0, 1";
         return $this->db->query($sql)->row_array(); 
 
 	}
@@ -805,7 +818,41 @@ public function update_names($id,$name)
 	$sql1="UPDATE products SET offers ='".$off."',discount ='".$dis."' WHERE item_id = '".$id."'";
        	return $this->db->query($sql1);
 
-	}	
+	}
+	
+	
+	/* category wise products list*/
+	public function get_category_wise_products_list()
+	{
+	
+		$this->db->select('category.category_name,category.category_id,category.category_image')->from('products');
+		$this->db->join('category', 'category.category_id =products.category_id', 'left');
+		$this->db->group_by('category.category_id');
+		$this->db->order_by('category.category_id', 'asc');
+		$this->db->where('category.status', 1);		
+		$return= $this->db->get()->result_array();
+		foreach ($return as $li){
+			//echo '<pre>';print_r($lists);
+		$catdata[$li['category_id']]=$li;
+		$catdata[$li['category_id']]['plist']=$this->get_products_lists($li['category_id']);
+			
+		}
+		
+		//echo '<pre>';print_r($catdata);
+			if(!empty($catdata))
+			{
+			return $catdata;
+			}
+
+	}
+	public function get_products_lists($catid){
+		
+		$this->db->select('products.item_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.discount,products.offers,products.item_quantity,products.item_status,products.offer_amount,products.category_id,products.offer_percentage,products.item_image')->from('products');
+        $this->db->where('products.category_id',$catid);
+		return $this->db->get()->result_array();
+		
+	}
+	
 
 
 

@@ -39,14 +39,22 @@ public function index()
 	 }
 	 
 	 $post=$this->input->post();
+		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
 		$data['topoffers'] = $this->home_model->get_top_offers();
 		$data['trending_products'] = $this->home_model->get_trending_products();
 		$data['offer_for_you'] = $this->home_model->get_offer_for_you();
 		$data['deals_of_the_day'] = $this->home_model->get_deals_of_the_day();
 		$data['season_sales'] = $this->home_model->get_season_offers();
-		$data['homepage_banner'] = $this->home_model->get_home_pag_banner();
+		$data['category_wise_products'] = $this->home_model->get_category_wise_products_list();
 	 
-	 //echo '<pre>';print_r($data);exit;
+
+		$position_two= $this->home_model->get_homepage_position_two_banner(2);
+		$data['position_two']=array_chunk($position_two, 3);
+		$position_three= $this->home_model->get_homepage_position_three_banner(3);
+		$data['position_three']=array_chunk($position_three, 4);
+		$position_four= $this->home_model->get_homepage_position_four_banner(4);
+		$data['position_four']=array_chunk($position_four, 2);
+		//echo '<pre>';print_r($data['category_wise_products']);exit;
 		
 	
 		
@@ -84,13 +92,6 @@ public function index()
 	}
 	$data['sidecaregory_list']= $this->home_model->get_sidebar_category_list();
 
-
-	$position_two= $this->home_model->get_homepage_position_two_banner(2);
-	$data['position_two']=array_chunk($position_two, 3);
-	$position_three= $this->home_model->get_homepage_position_three_banner(3);
-	$data['position_three']=array_chunk($position_three, 4);
-	$position_four= $this->home_model->get_homepage_position_four_banner(4);
-	$data['position_four']=array_chunk($position_four, 2);
 	//echo '<pre>';print_r($data);exit;
 	$this->template->write_view('content', 'home/index',$data);
 	$this->template->render();

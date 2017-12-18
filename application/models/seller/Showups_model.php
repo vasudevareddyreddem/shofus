@@ -541,7 +541,22 @@ public function update_homepagebanner_status($id,$data)
     $sql1="DELETE FROM homepage_banners WHERE baneer_id = '".$id."'";
     return $this->db->query($sql1);
   }
-
+	public function get_subitem_detals($sid){
+		$this->db->select('*')->from('sub_items');
+		$this->db->where('subitem_id',$sid);
+		return $this->db->get()->row_array();
+	}
+	public function get_item_detals($sid){
+		$this->db->select('sub_items.category_id,sub_items.subcategory_id,items_list.*')->from('items_list');
+		$this->db->join('sub_items', 'sub_items.subitem_id =items_list.subitemid', 'left');
+		$this->db->where('id',$sid);
+		return $this->db->get()->row_array();
+	}
+	public function get_subcategory_detals($sid){
+		$this->db->select('*')->from('subcategories');
+		$this->db->where('subcategory_id',$sid);
+		return $this->db->get()->row_array();
+	}
 
 
 }

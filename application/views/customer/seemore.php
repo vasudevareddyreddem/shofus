@@ -5,29 +5,15 @@
       <div class="featured-pro container_main see_cus_col">
         <div class="row">
 		  <div id="sucessmsg" style="display:none;"></div>
-		<?php //echo '<pre>';print_r($topoffers);exit;  ?>
+		<?php //echo '<pre>';print_r($category_name);exit;  ?>
 		
-		 <?php if(isset($type) && $type=='top'){?>
+		 <?php if(isset($category_name['category_name']) && $category_name['category_name']!=''){?>
             <div class="new_title">
-              <h2>Top Offers </h2>
+              <h2><?php echo $category_name['category_name']; ?> </h2>
             </div>
-		 <?php }else if(isset($type) && $type=='tren'){?>
-		 <div class="new_title">
-              <h2>Trending Products </h2>
-            </div>
-		 <?php }else if(isset($type) && $type=='offer'){?>
-		 <div class="new_title">
-              <h2>Offers for You</h2>
-            </div>
-		<?php }else if(isset($type) && $type=='deal'){?>
-		 <div class="new_title">
-              <h2>Deals of the Day </h2>
-            </div>
-		 <?php }else if(isset($type) && $type=='season'){?>
-		 <div class="new_title">
-              <h2>Season Sales </h2>
-            </div>
+			
 		 <?php } ?>
+	
         <?php if(isset($type) && $type=='deal'){?>
               <div class="row">
 			  

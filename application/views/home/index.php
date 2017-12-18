@@ -113,95 +113,32 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         </div>
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-      
-	   <?php //echo '<pre>';print_r($trending_products);exit; 
-	   $t=5;foreach ($topoffers as $productslist){  
-				$currentdate=date('Y-m-d h:i:s A');
-					if($productslist['offer_expairdate']>=$currentdate){
-					$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
-					$percentage= $productslist['offer_percentage'];
-					$orginal_price=$productslist['item_cost'];
-					}else{
-					//echo "expired";
-					$item_price= $productslist['special_price'];
-					$prices= ($productslist['item_cost']-$productslist['special_price']);
-					$percentage= (($prices) /$productslist['item_cost'])*100;
-					$orginal_price=$productslist['item_cost'];
-					}
-				
-				?>
-             <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
-			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
-			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
-			<input type="hidden" name="qty" id="qty" value="1" >
-			<a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
-		<div class="item">
-		       
-          <div class=" box-product-outer" >
-            <div class="box-product">
-              <div class="img-wrapper  img_hover item" style="position:relative">
-			  <div class="img_size">
-         
-               <img class="" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
-				 
-           
-               
+		  <?php foreach($topoffers as $list){ ?>
+		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('top')); ?>">
+			<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+									</div>
+									
+								</div>
+								<h6><?php echo $list['category_name']; ?></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">Up to
+										<span class="label-tags"><p class=" text-success"><?php echo number_format($list['offer_percentage'], 2, '.', ''); ?>% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
 				</div>
-              
-				<?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
-				
-				<div  class="text-center out_of_stoc">
-					<div style="z-index:1026"><h4>out of stock</h4></div>
-				</div>
-				
-				<?php } ?>
-				
-				<div class="option">
-				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
-				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $t; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
-				<?php }else{ ?>	
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $t; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-shopping-cart"></i></a>                  
-				<?php } ?>	
-				<?php } ?>
-				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-				<a href="javascript:void(0);"  onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $t; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-heart text-primary"></i></a> 
-				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $t; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-heart"></i></a> 
-				<?php } ?>	
-				</div>
-              </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
-				<div class="price">
-               
-				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
-			<?php if($percentage!=''){ ?> &nbsp;
-			<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
-				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
-			<?Php }else{ ?>
-			<?php } ?>
-				</div>
-				<div class="clearfix"></div>
-            
-              </div>
-            
-            </div>
-          </div>
-		  
-            </div>
-			 </a>
-			
-			
-			</form>
-      
-       <?php $t++;} ?>
-            
-           
-            <!-- End Item --> 
+			</div>
+			</a>
+		  <?php } ?>
           </div>
         </div>
 		<div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore/'.base64_encode('top').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
 	
@@ -209,14 +146,28 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
     <!--Top Category silder End--> 
     <!-- best Pro Slider -->
    <?php if(isset($position_two) && count($position_two)>0){ ?>
+   <?php //echo '<pre>';print_r($position_two);exit; ?>
     <section>
 	<div class="best-pro slider-items-products container_main">
 		<div class="row mar_t15" >
 		<?php foreach($position_two as $list){ ?>
 		<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
-			<div class="col-md-4">
-				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
-			</div>
+				<?php if($list[0]['link']==1){ ?>
+					<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
+				<?php }else if($list[0]['link']==2){ ?>
+					<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
+				<?php }else if($list[0]['link']==3){ ?>
+						<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
+				<?php }else if($list[0]['link']==4){ ?>
+					<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
+				<?php }else if($list[0]['link']==5){ ?>
+					<a href="<?php echo base_url('category/productview/'.base64_encode($list[0]['selected_id'])); ?>">
+				<?php } ?>
+					<div class="col-md-4">
+						<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
+					</div>
+					</a>
+				
 			<?php } ?>
 			<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
 			<div class="col-md-4">
@@ -243,95 +194,32 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         </div>
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-      
-	   <?php //echo '<pre>';print_r($trending_products);exit; 
-	   $t=5;foreach ($trending_products as $productslist){
-				$currentdate=date('Y-m-d h:i:s A');
-				if($productslist['offer_expairdate']=!''  && $productslist['offer_expairdate']>=$currentdate){
-				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
-				$percentage= $productslist['offer_percentage'];
-				$orginal_price=$productslist['item_cost'];
-				}else{
-					//echo "expired";
-					$item_price= $productslist['special_price'];
-					$prices= ($productslist['item_cost']-$productslist['special_price']);
-					$percentage= (($prices) /$productslist['item_cost'])*100;
-					$orginal_price=$productslist['item_cost'];
-				}
-				
-				?>
-             <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
-			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
-			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
-			<input type="hidden" name="qty" id="qty" value="1" >
-			<a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
-		<div class="item">
-		       
-          <div class=" box-product-outer" >
-            <div class="box-product">
-              <div class="img-wrapper  img_hover item" style="position:relative">
-			  <div class="img_size">
-         
-               <img class="" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
-				 
-           
-               
+        <?php foreach($trending_products as $list){ ?>
+		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('top')); ?>">
+			<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+									</div>
+									
+								</div>
+								<h6><?php echo $list['category_name']; ?></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">Up to
+										<span class="label-tags"><p class=" text-success"><?php echo number_format($list['offer_percentage'], 2, '.', ''); ?>% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
 				</div>
-              
-				<?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
-				
-				<div  class="text-center out_of_stoc">
-					<div style="z-index:1026"><h4>out of stock</h4></div>
-				</div>
-				
-				<?php } ?>
-				
-				<div class="option">
-				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
-				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $t; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
-				<?php }else{ ?>	
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $t; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-shopping-cart"></i></a>                  
-				<?php } ?>	
-				<?php } ?>
-				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-				<a href="javascript:void(0);"  onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $t; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-heart text-primary"></i></a> 
-				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $t; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-heart"></i></a> 
-				<?php } ?>	
-				</div>
-              </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
-				<div class="price">
-               
-				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
-			<?php if($percentage!=''){ ?> &nbsp;
-			<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
-				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
-			<?Php }else{ ?>
-			<?php } ?>
-				</div>
-				<div class="clearfix"></div>
-            
-              </div>
-            
-            </div>
-          </div>
-		  
-            </div>
-			 </a>
-			
-			
-			</form>
-      
-       <?php $t++;} ?>
-            
-           
-            <!-- End Item --> 
+			</div>
+			</a>
+		  <?php } ?>
           </div>
         </div>
 		<div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore/'.base64_encode('tren').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
 	
@@ -343,89 +231,32 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         </div>
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-            <?php $f=2;foreach ($offer_for_you as $productslist){
-				$currentdate=date('Y-m-d h:i:s A');
-				if($productslist['offer_expairdate']>=$currentdate){
-				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
-				$percentage= $productslist['offer_percentage'];
-				$orginal_price=$productslist['item_cost'];
-				}else{
-					//echo "expired";
-					$item_price= $productslist['special_price'];
-					$prices= ($productslist['item_cost']-$productslist['special_price']);
-					$percentage= (($prices) /$productslist['item_cost'])*100;
-					$orginal_price=$productslist['item_cost'];
-				}
-
-			?>
-           
-				<!--<form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >-->
-			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
-			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
-			<input type="hidden" name="qty" id="qty" value="1" >
-			 <a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
-		   <div class="item">
-          <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover item">
-			  <div class="img_size">
-               
-                   <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
-           
-                
+           <?php foreach($offer_for_you as $list){ ?>
+		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('top')); ?>">
+			<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+									</div>
+									
+								</div>
+								<h6><?php echo $list['category_name']; ?></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">Up to
+										<span class="label-tags"><p class=" text-success"><?php echo number_format($list['offer_percentage'], 2, '.', ''); ?>% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
 				</div>
-            
-              <?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
-				<div  class="text-center out_of_stoc">
-					<div style="z-index:1026"><h4>out of stock</h4></div>
-				</div>
-				<?php } ?>
-				
-				<div class="option">
-				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
-				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
-				<?php }else{ ?>	
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart"></i></a>                  
-				<?php } ?>	
-				<?php } ?>
-				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-				<a href="javascript:void(0)"  onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $f; ?>" class="fa fa-heart text-primary"></i></a> 
-				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $f; ?>" class="fa fa-heart"></i></a> 
-				<?php } ?>	
-				</div>
-              </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
-            <div class="price">
-               
-				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
-			<?php if($percentage!=''){ ?> &nbsp;
-			<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
-				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
-			<?Php }else{ ?>
-			<?php } ?>
-				</div>
-				<div class="clearfix"></div>
-            
-              </div>
-         
-            </div>
-          </div>
-		  
-            </div>
+			</div>
 			</a>
-			<!--</form>-->
-			
-      
-       <?php $f++;} ?>
-            
-           
-            
+		  <?php } ?>
           </div>
         </div>
 		<div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore/'.base64_encode('offer').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
 	
@@ -469,86 +300,32 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
     
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-      
-	    <?php //echo '<pre>';print_r($trending_products);exit; 
-	  $d=0;foreach($deals_of_the_day as $productslist)  { 
-			$currentdate=date('Y-m-d h:i:s A');
-				if($productslist['expairdate']>=$currentdate){
-				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
-				$percentage= $productslist['offer_percentage'];
-				$orginal_price=$productslist['item_cost'];
-				}else{
-					//echo "expired";
-					$item_price= $productslist['special_price'];
-					$prices= ($productslist['item_cost']-$productslist['special_price']);
-					$percentage= (($prices) /$productslist['item_cost'])*100;
-					$orginal_price=$productslist['item_cost'];
-				}
-
-
-	  ?>
-	    <!--<form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >-->
-			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
-			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
-			<input type="hidden" name="qty" id="qty" value="1" >
-			<a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
-           <div class="item">
-          <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover item">
-			  <div class="img_size">
-                
-                   <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
-           
-              
+		<?php foreach($deals_of_the_day as $list){ ?>
+		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('top')); ?>">
+			<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+									</div>
+									
+								</div>
+								<h6><?php echo $list['category_name']; ?></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">Up to
+										<span class="label-tags"><p class=" text-success"><?php echo number_format($list['offer_percentage'], 2, '.', ''); ?>% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
 				</div>
-               
-               <?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
-				<div  class="text-center out_of_stoc">
-					<div style="z-index:1026"><h4>out of stock</h4></div>
-				</div>
-				<?php } ?>
-				
-				<div class="option">
-				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
-				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $d; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $d; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $d; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
-				<?php }else{ ?>	
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $d; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $d; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $d; ?>" class="fa fa-shopping-cart"></i></a>                  
-				<?php } ?>
-				<?php } ?>
-				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-				<a href="javascript:void(0);"  onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $d; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $d; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $d; ?>" class="fa fa-heart text-primary"></i></a> 
-				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $d; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $d; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $d; ?>" class="fa fa-heart"></i></a> 
-				<?php } ?>	
-				</div>
-              </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
-              <div class="price">
-               
-				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
-			<?php if($percentage!=''){ ?> &nbsp;
-			<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
-				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
-			<?Php }else{ ?>
-			<?php } ?>
-				</div>
-				<div class="clearfix"></div>
-            
-              </div>
-             
-            </div>
-          </div>
-            </div>
-			  </a>
-			<!--</form>-->
-            
-      <?php  $d++;} ?>
+			</div>
+			</a>
+		  <?php } ?>
           </div>
         </div>
 		<div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore/'.base64_encode('deal').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
 	
@@ -562,85 +339,32 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
     
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
-		  <?php //echo '<pre>';print_r($season_sales);exit; ?>
-      <?php $productslist=array();
-	  $s=1;foreach($season_sales as $productslist){ 
-			$currentdate=date('Y-m-d h:i:s A');
-			if($productslist['offer_expairdate']>=$currentdate){
-				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
-				$percentage= $productslist['offer_percentage'];
-				$orginal_price=$productslist['item_cost'];
-			}else{
-			//echo "expired";
-				$item_price= $productslist['special_price'];
-				$prices= ($productslist['item_cost']-$productslist['special_price']);
-				$percentage= (($prices) /($productslist['item_cost']))*100;
-				$orginal_price=$productslist['item_cost'];
-			}
-
-
-	  ?>
-	    <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
-			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
-			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
-			<input type="hidden" name="qty" id="qty" value="1" >
-			<a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
-               <div class="item">
-          <div class=" box-product-outer">
-            <div class="box-product">
-              <div class="img-wrapper  img_hover">
-			  <div class="img_size">
-                
-                   <img class=""src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>">
-               
+		  	<?php foreach($season_sales as $list){ ?>
+		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('top')); ?>">
+			<div class="item">
+						<div class=" box-product-outer">
+							<div class="box-product">
+								<div class="img-wrapper  img_hover">
+									<div class="img_size">
+										<img class="" src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+									</div>
+									
+								</div>
+								<h6><?php echo $list['category_name']; ?></h6>
+								<div class="price">
+									<div class="text-center" style="color:#187a7d;">Up to
+										<span class="label-tags"><p class=" text-success"><?php echo number_format($list['offer_percentage'], 2, '.', ''); ?>% off</p></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
 				</div>
-             
-               <?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
-				<div  class="text-center out_of_stoc">
-					<div style="z-index:1026"><h4>out of stock</h4></div>
-				</div>
-				<?php } ?>
-				
-				<div class="option">
-				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
-				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $s; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $s; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
-				<?php }else{ ?>	
-				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $s; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $s; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-shopping-cart"></i></a>                  
-				<?php } ?>
-				<?php } ?>
-				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
-				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $s; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $s; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-heart text-primary"></i></a> 
-				<?php }else{ ?>	
-				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $s; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $s; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $s; ?>" class="fa fa-heart "></i></a> 
-				<?php } ?>	
-				</div>
-              </div>
-              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
-             <div class="price">
-               
-				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
-			<?php if($percentage!=''){ ?> &nbsp;
-			<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
-				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
-			<?Php }else{ ?>
-			<?php } ?>
-				</div>
-				<div class="clearfix"></div>
-            
-              </div>
-           
-            </div>
-          </div>
-            </div>
-			 </a>
-			</form>
-            
-      <?php $s++; } ?>
+			</div>
+			</a>
+		  <?php } ?>
           </div>
         </div>
 		<div class="clearfix"></div>
-        <a href="<?php echo base_url('customer/seemore/'.base64_encode('season').'/'.base64_encode($seemore)); ?>"><button class="btn btn-primary see_more " style=""> See More</button></a>
       </div>
     </section>
 <?php } ?>
@@ -671,1787 +395,110 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 	
 	<?php } ?>
 	
-	
-	
-	
 	<div id="loadcon" style="display:none;">
-<section>
+	<?php foreach ($category_wise_products   as $list){ ?>
+	<section>
 	<div class="best-pro slider-items-products container_main">
 		<div class="new_title">
-			<h2>Category-1</h2>
+			<h2><?php echo $list['category_name']; ?></h2>
 		</div>
 		<div id="best-seller" class="product-flexslider hidden-buttons">
 			<div class="slider-items slider-width-col4 products-grid">
 				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
+					<?php //echo '<pre>';print_r($trending_products);exit; 
+				$t=5;foreach ($list['plist'] as $productslist){
+				$currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']=!'' && $productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
+				}
 				
+				?>
+             <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
+			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
+			<input type="hidden" name="qty" id="qty" value="1" >
+			<a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+		<div class="item">
+		       
+          <div class=" box-product-outer" >
+            <div class="box-product">
+              <div class="img-wrapper  img_hover item" style="position:relative">
+			  <div class="img_size">
+         
+               <img class="" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
+				 
+           
+               
+				</div>
+              
+				<?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
+				
+				<div  class="text-center out_of_stoc">
+					<div style="z-index:1026"><h4>out of stock</h4></div>
+				</div>
+				
+				<?php } ?>
+				
+				<div class="option">
+				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
+				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $t; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+				<?php }else{ ?>	
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $t; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-shopping-cart"></i></a>                  
+				<?php } ?>	
+				<?php } ?>
+				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+				<a href="javascript:void(0);"  onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $t; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-heart text-primary"></i></a> 
+				<?php }else{ ?>	
+				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $t; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-heart"></i></a> 
+				<?php } ?>	
+				</div>
+              </div>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
+				<div class="price">
+               
+				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
+			<?php if($percentage!=''){ ?> &nbsp;
+			<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
+			<?Php }else{ ?>
+			<?php } ?>
+				</div>
+				<div class="clearfix"></div>
+            
+              </div>
+            
+            </div>
+          </div>
+		  
+            </div>
+			 </a>
+			
+			
+			</form>
+      
+       <?php $t++;} ?>
+				</a>
+			
 			</div>
 		</div>
 		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
+		<a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('no')); ?>">
 			<button class="btn btn-primary see_more " style="">See More</button>
 		</a>
 	</div>
 </section>
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Category-2</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
-			<button class="btn btn-primary see_more " style="">See More</button>
-		</a>
-	</div>
-</section>
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Category-3</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
-			<button class="btn btn-primary see_more " style="">See More</button>
-		</a>
-	</div>
-</section>
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Category-4</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
-			<button class="btn btn-primary see_more " style="">See More</button>
-		</a>
-	</div>
-</section>
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Category-5</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
-			<button class="btn btn-primary see_more " style="">See More</button>
-		</a>
-	</div>
-</section>
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Category-6</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
-			<button class="btn btn-primary see_more " style="">See More</button>
-		</a>
-	</div>
-</section>
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Category-7</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
-			<button class="btn btn-primary see_more " style="">See More</button>
-		</a>
-	</div>
-</section>
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Category-8</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
-			<button class="btn btn-primary see_more " style="">See More</button>
-		</a>
-	</div>
-</section>
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Category-9</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
-			<button class="btn btn-primary see_more " style="">See More</button>
-		</a>
-	</div>
-</section>
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Category-10</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
-			<button class="btn btn-primary see_more " style="">See More</button>
-		</a>
-	</div>
-</section>
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Category-11</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
-			<button class="btn btn-primary see_more " style="">See More</button>
-		</a>
-	</div>
-</section>
+	<?php } ?>
 
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Category-12</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<a href="customer/seemore/c2Vhc29u/index.html">
-			<button class="btn btn-primary see_more " style="">See More</button>
-		</a>
-	</div>
-</section>
+
 
 	</div>
 	<section>
@@ -2609,8 +656,15 @@ jQuery.ajax({
 </script>
 <script>
 $(document).ready(function(){
+	var cnt=2;
     $("#loadmor").click(function(){
         $("#loadcon").slideToggle("slow", "linear");
+		if((cnt % 2) === 0){
+		$(".lod_st").text("Load Less..");
+		}else{
+			$(".lod_st").text("Load More..");
+		}
+		cnt++;
     });
 });
 </script>

@@ -138,7 +138,6 @@ public function homepagebanner()
 				$two=$this->showups_model->get_categorybanners_list_position_wise_two(2);
 				$three=$this->showups_model->get_categorybanners_list_position_wise_three(3);
 				$four=$this->showups_model->get_categorybanners_list_position_wise_four(4);
-				//echo '<pre>';print_r($one);exit;
 				if($post['position']==1){
 					if($one['imagecount']>=3){
 						$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 3 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
@@ -155,11 +154,31 @@ public function homepagebanner()
 						redirect('seller/showups/catehorybanner');
 					}
 				}else if($post['position']==4){
+					
 					if($four['imagecount']>=4){
 						$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 4 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
 						redirect('seller/showups/catehorybanner');
 					}
 				}
+				
+					if($post['link']==4){
+					$item=$this->showups_model->get_item_detals($post['selecteddata']);
+					$catid=$item['category_id'];
+					$subcatid=$item['subcategory_id'];
+					$subitem=$item['subitem_id'];
+					$itemid=$item['id'];
+					}else if($post['link']==3){
+					$subitem_id=$this->showups_model->get_subitem_detals($post['selecteddata']);
+					$catid=$subitem_id['category_id'];
+					$subcatid=$subitem_id['subcategory_id'];
+					$subitem=$post['subitem_id'];
+					}else if($post['link']==2){
+					$subitem_id=$this->showups_model->get_subcategory_detals($post['selecteddata']);
+					$catid=$subitem_id['category_id'];
+					$subcatid=$subitem_id['subcategory_id'];
+					}else if($post['link']==2){
+						$catid=$post['selecteddata'];	
+					}
 			$temp = explode(".", $_FILES["image"]["name"]);
 			$newfilename1 = round(microtime(true)) .'.' . end($temp);
 			move_uploaded_file($_FILES['image']['tmp_name'], "assets/banners/" . $newfilename1);
@@ -167,6 +186,10 @@ public function homepagebanner()
 			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));
 			$data=array(         
 				'seller_id' => $this->session->userdata('seller_id'),
+				'category_id'=>isset($catid)?$catid:'',   
+				'subcategory_id'=>isset($subcatid)?$subcatid:'',    
+				'subitem_id'=>isset($subitem)?$subitem:'',  
+				'item_id'=>isset($itemid)?$itemid:'',  
 				'position'=>$post['position'],  
 				'name'=>$newfilename1,    
 				'link'=>$post['link'],  
@@ -208,6 +231,24 @@ public function homepagebanner()
 						redirect('seller/showups/homepagebanners');
 					}
 				}
+				if($post['link']==4){
+					$item=$this->showups_model->get_item_detals($post['selecteddata']);
+					$catid=$item['category_id'];
+					$subcatid=$item['subcategory_id'];
+					$subitem=$item['subitem_id'];
+					$itemid=$item['id'];
+					}else if($post['link']==3){
+					$subitem_id=$this->showups_model->get_subitem_detals($post['selecteddata']);
+					$catid=$subitem_id['category_id'];
+					$subcatid=$subitem_id['subcategory_id'];
+					$subitem=$post['subitem_id'];
+					}else if($post['link']==2){
+					$subitem_id=$this->showups_model->get_subcategory_detals($post['selecteddata']);
+					$catid=$subitem_id['category_id'];
+					$subcatid=$subitem_id['subcategory_id'];
+					}else if($post['link']==2){
+						$catid=$post['selecteddata'];	
+					}
 			//echo '<pre>';print_r($post);exit;
 			$temp = explode(".", $_FILES["image"]["name"]);
 			$newfilename1 = round(microtime(true)) .'.' . end($temp);
@@ -216,6 +257,10 @@ public function homepagebanner()
 			$date2= date('Y-m-d H:s:i', strtotime($date. ' + '.$post['expirydate'].' days'));
 			$data=array(         
 				'seller_id' => $this->session->userdata('seller_id'),
+				'category_id'=>isset($catid)?$catid:'',   
+				'subcategory_id'=>isset($subcatid)?$subcatid:'',    
+				'subitem_id'=>isset($subitem)?$subitem:'',  
+				'item_id'=>isset($itemid)?$itemid:'',  
 				'position'=>$post['position'],  
 				'name'=>$newfilename1,    
 				'link'=>$post['link'],  
