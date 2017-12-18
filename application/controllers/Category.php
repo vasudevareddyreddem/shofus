@@ -2565,18 +2565,23 @@ public function subitemwise_search(){
 	 public function subcategorys(){
 		$cateid=base64_decode($this->uri->segment(3));
 		$step_one= $this->category_model->step_one_data(1);
-		$data['step_two']= $this->category_model->step_two_data($cateid);
 		$data['step_one']=array_chunk($step_one, 3);
-		$step_three= $this->category_model->step_three_data();
+		$data['step_two']= $this->category_model->step_two_data($cateid);
+		$data['step_three']= $this->category_model->step_three_data();
 		$step_four= $this->category_model->step_four_data(2);
 		$data['step_four']=array_chunk($step_four, 2);
+		$step_five= $this->category_model->step_five_data();
+		$amt= ($step_five['max']-$step_five['min'])/4;
+		$amount=array(array($step_five['min']),array($amt*2),array($amt*3),array($amt*4));
+		$data['step_five']=array_chunk($amount, 4);
 		$step_seven= $this->category_model->step_seven_data(3);
 		$data['step_seven']=array_chunk($step_seven, 3);
+		$data['step_eight']= $this->category_model->step_eight_data(3);
 		$step_eleven= $this->category_model->step_eleven_data(4);
 		$data['step_eleven']=array_chunk($step_eleven, 4);
 	
 		//echo $this->db->last_query();exit;
-		//echo '<pre>';print_r($data);exit;
+		//echo '<pre>';print_r($data['step_five']);exit;
 		 $this->template->write_view('content', 'customer/subcategorypage',$data);
 		$this->template->render();
 		 

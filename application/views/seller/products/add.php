@@ -1055,18 +1055,6 @@ function education_fields() {
 					message: 'Price  can only consist of digits'
 					}
 				}
-			},
-			special_price: {
-					validators: {
-						notEmpty: {
-						message: 'Special Price is required'
-					},
-                    between: {
-                            min: 1,
-                            max: 'product_price',
-                            message: 'Special price must be less than or equal to price'
-                        }
-                }
 			}
 			
 		

@@ -25,7 +25,7 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo validation_errors(); ?></div>	
 					<?php  endif;?>
-				<form enctype="multipart/form-data" method="post" name="addcategory" id="addcategory"  action="<?php echo base_url('inventory/addsubitempost'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
+				<form enctype="multipart/form-data" method="post" name="addsubitem" id="addsubitem"  action="<?php echo base_url('inventory/addsubitempost'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
 				<?php if($this->session->flashdata('error')): ?>
 					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -155,7 +155,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $('#addcategory').bootstrapValidator({
+    $('#addsubitem').bootstrapValidator({
        
         fields: {
             category_list: {
@@ -174,32 +174,12 @@ $(document).ready(function() {
 			}, 
 			subitemname: {
 					validators: {
-					notEmpty: {
-						message: 'Sub ItemName is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9.,&-_@#$ ]+$/,
-					message: ' Sub ItemName can only consist of alphanumaric, space and dot'
-					}
-				}
-			},
-			 
-		commission: {
-					validators: {
 						notEmpty: {
-						message: 'Commission is required'
-					},
-					between: {
-                    min: 0,
-                    max: 100,
-                    message: 'The Commission percentage must be between 0 and 100'
-					}
-				}
-			},
-			category_list: {
-					validators: {
-					notEmpty: {
-						message: 'Please select Category '
+							message: 'Sub ItemName is required'
+						},
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message: ' Sub ItemName can only consist of alphanumaric, space and dot'
 					}
 				}
 			}

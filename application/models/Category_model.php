@@ -2704,15 +2704,28 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 		}
 		public function step_two_data($catid){
-				$this->db->select('subcategories.*')->from('products');
-				$this->db->join('subcategories', 'subcategories.category_id = products.category_id', 'left'); //
+				$this->db->select('subcategories.subcategory_id,subcategories.subcategory_name,subcategories.category_id,subcategories.subcategory_image')->from('products');
+				$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left'); //
 				$this->db->where('products.category_id',$catid);
 				$this->db->where('products.subcategory_id !=','');
 				$this->db->group_by('products.subcategory_id');
 				return $this->db->get()->result_array();
 		}
 		public function step_three_data(){
-				
+			$this->db->select('*')->from('brands');
+			$this->db->where('status',1);
+			return $this->db->get()->result_array();	
+		}
+		
+		public function step_five_data(){
+			$this->db->select('max(item_cost)as max,min(item_cost)as min,')->from('products');
+			$this->db->where('item_status',1);
+			return $this->db->get()->row_array();	
+		}
+		public function step_eight_data(){
+			$this->db->select('*')->from('sub_items');
+			$this->db->where('status',1);
+			return $this->db->get()->result_array();	
 		}
 }
 ?>
