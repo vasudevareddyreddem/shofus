@@ -157,9 +157,9 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				<?php }else if($list[0]['link']==2){ ?>
 					<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
 				<?php }else if($list[0]['link']==3){ ?>
-						<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
+						<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[0]['subitem_id']).'/'.base64_encode($list[0]['subcategory_id']).'/'.base64_encode($list[0]['category_id'])); ?>">
 				<?php }else if($list[0]['link']==4){ ?>
-					<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
+					<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[0]['subitem_id']).'/'.base64_encode($list[0]['subcategory_id']).'/'.base64_encode($list[0]['category_id'])); ?>">
 				<?php }else if($list[0]['link']==5){ ?>
 					<a href="<?php echo base_url('category/productview/'.base64_encode($list[0]['selected_id'])); ?>">
 				<?php } ?>
@@ -170,14 +170,38 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 				
 			<?php } ?>
 			<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
-			<div class="col-md-4">
-				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
-			</div>
+				<?php if($list[1]['link']==1){ ?>
+					<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[1]['selected_id'])); ?>">
+				<?php }else if($list[1]['link']==2){ ?>
+					<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[1]['selected_id'])); ?>">
+				<?php }else if($list[1]['link']==3){ ?>
+						<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[1]['subitem_id']).'/'.base64_encode($list[1]['subcategory_id']).'/'.base64_encode($list[1]['category_id'])); ?>">
+				<?php }else if($list[1]['link']==4){ ?>
+					<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[1]['subitem_id']).'/'.base64_encode($list[1]['subcategory_id']).'/'.base64_encode($list[1]['category_id'])); ?>">
+				<?php }else if($list[1]['link']==5){ ?>
+					<a href="<?php echo base_url('category/productview/'.base64_encode($list[1]['selected_id'])); ?>">
+				<?php } ?>
+				<div class="col-md-4">
+					<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
+				</div>
+				</a>
 			<?php } ?>
 			<?php if(isset($list[2]['name']) && $list[2]['name']!=''){ ?>
-			<div class="col-md-4">
-				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[2]['name']); ?>" alt="<?php echo $list[2]['name']; ?>">
-			</div>
+			<?php if($list[2]['link']==1){ ?>
+					<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[2]['selected_id'])); ?>">
+				<?php }else if($list[2]['link']==2){ ?>
+					<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[2]['selected_id'])); ?>">
+				<?php }else if($list[2]['link']==3){ ?>
+						<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[2]['subitem_id']).'/'.base64_encode($list[2]['subcategory_id']).'/'.base64_encode($list[2]['category_id'])); ?>">
+				<?php }else if($list[2]['link']==4){ ?>
+					<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[2]['subitem_id']).'/'.base64_encode($list[2]['subcategory_id']).'/'.base64_encode($list[2]['category_id'])); ?>">
+				<?php }else if($list[2]['link']==5){ ?>
+					<a href="<?php echo base_url('category/productview/'.base64_encode($list[2]['selected_id'])); ?>">
+				<?php } ?>
+				<div class="col-md-4">
+					<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[2]['name']); ?>" alt="<?php echo $list[2]['name']; ?>">
+				</div>
+				</a>
 			<?php } ?>
 			
 		<?php } ?>
@@ -265,26 +289,74 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 	<div class="best-pro slider-items-products container_main">
 		<div class="row mar_t15" >
 			<?php foreach($position_three as $list){ ?>
-		<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
-			<div class="col-md-3">
-				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
-			</div>
-			<?php } ?>
-			<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
-			<div class="col-md-3">
-				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
-			</div>
-			<?php } ?>
-			<?php if(isset($list[2]['name']) && $list[2]['name']!=''){ ?>
-			<div class="col-md-3">
-				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[2]['name']); ?>" alt="<?php echo $list[2]['name']; ?>">
-			</div>
-			<?php } ?>
-			<?php if(isset($list[3]['name']) && $list[3]['name']!=''){ ?>
-			<div class="col-md-3">
-				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[3]['name']); ?>" alt="<?php echo $list[3]['name']; ?>">
-			</div>
-			<?php } ?>
+				<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
+						<?php if($list[0]['link']==1){ ?>
+							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
+						<?php }else if($list[0]['link']==2){ ?>
+							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
+						<?php }else if($list[0]['link']==3){ ?>
+								<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[0]['subitem_id']).'/'.base64_encode($list[0]['subcategory_id']).'/'.base64_encode($list[0]['category_id'])); ?>">
+						<?php }else if($list[0]['link']==4){ ?>
+							<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[0]['subitem_id']).'/'.base64_encode($list[0]['subcategory_id']).'/'.base64_encode($list[0]['category_id'])); ?>">
+						<?php }else if($list[0]['link']==5){ ?>
+							<a href="<?php echo base_url('category/productview/'.base64_encode($list[0]['selected_id'])); ?>">
+						<?php } ?>
+							<div class="col-md-3">
+								<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
+							</div>
+							</a>
+					<?php } ?>
+				<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
+					<?php if($list[1]['link']==1){ ?>
+						<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[1]['selected_id'])); ?>">
+					<?php }else if($list[1]['link']==2){ ?>
+						<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[1]['selected_id'])); ?>">
+					<?php }else if($list[1]['link']==3){ ?>
+							<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[1]['subitem_id']).'/'.base64_encode($list[1]['subcategory_id']).'/'.base64_encode($list[1]['category_id'])); ?>">
+					<?php }else if($list[1]['link']==4){ ?>
+						<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[1]['subitem_id']).'/'.base64_encode($list[1]['subcategory_id']).'/'.base64_encode($list[1]['category_id'])); ?>">
+					<?php }else if($list[1]['link']==5){ ?>
+						<a href="<?php echo base_url('category/productview/'.base64_encode($list[1]['selected_id'])); ?>">
+					<?php } ?>
+					<div class="col-md-3">
+						<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
+					</div>
+					</a>
+				<?php } ?>
+				<?php if(isset($list[2]['name']) && $list[2]['name']!=''){ ?>
+					<?php if($list[2]['link']==1){ ?>
+						<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[2]['selected_id'])); ?>">
+					<?php }else if($list[2]['link']==2){ ?>
+						<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[2]['selected_id'])); ?>">
+					<?php }else if($list[2]['link']==3){ ?>
+							<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[2]['subitem_id']).'/'.base64_encode($list[2]['subcategory_id']).'/'.base64_encode($list[2]['category_id'])); ?>">
+					<?php }else if($list[2]['link']==4){ ?>
+						<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[2]['subitem_id']).'/'.base64_encode($list[2]['subcategory_id']).'/'.base64_encode($list[2]['category_id'])); ?>">
+					<?php }else if($list[2]['link']==5){ ?>
+						<a href="<?php echo base_url('category/productview/'.base64_encode($list[2]['selected_id'])); ?>">
+					<?php } ?>
+					<div class="col-md-3">
+						<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[2]['name']); ?>" alt="<?php echo $list[2]['name']; ?>">
+					</div>
+					</a>
+				<?php } ?>
+				<?php if(isset($list[3]['name']) && $list[3]['name']!=''){ ?>
+					<?php if($list[3]['link']==1){ ?>
+						<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[3]['selected_id'])); ?>">
+					<?php }else if($list[3]['link']==2){ ?>
+						<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[3]['selected_id'])); ?>">
+					<?php }else if($list[3]['link']==3){ ?>
+							<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[3]['subitem_id']).'/'.base64_encode($list[3]['subcategory_id']).'/'.base64_encode($list[3]['category_id'])); ?>">
+					<?php }else if($list[3]['link']==4){ ?>
+						<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[3]['subitem_id']).'/'.base64_encode($list[3]['subcategory_id']).'/'.base64_encode($list[3]['category_id'])); ?>">
+					<?php }else if($list[3]['link']==5){ ?>
+						<a href="<?php echo base_url('category/productview/'.base64_encode($list[3]['selected_id'])); ?>">
+					<?php } ?>
+					<div class="col-md-3">
+						<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[3]['name']); ?>" alt="<?php echo $list[3]['name']; ?>">
+					</div>
+					</a>
+				<?php } ?>
 			<?php } ?>
 		</div>
 	</div>
@@ -375,15 +447,39 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 		<div class="row mar_t15" >
 			<div class="row mar_t15" >
 			<?php foreach($position_four as $list){ ?>
-		<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
-			<div class="col-md-6">
-				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
-			</div>
-			<?php } ?>
+				<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
+					<?php if($list[0]['link']==1){ ?>
+							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
+						<?php }else if($list[0]['link']==2){ ?>
+							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
+						<?php }else if($list[0]['link']==3){ ?>
+								<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[0]['subitem_id']).'/'.base64_encode($list[0]['subcategory_id']).'/'.base64_encode($list[0]['category_id'])); ?>">
+						<?php }else if($list[0]['link']==4){ ?>
+							<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[0]['subitem_id']).'/'.base64_encode($list[0]['subcategory_id']).'/'.base64_encode($list[0]['category_id'])); ?>">
+						<?php }else if($list[0]['link']==5){ ?>
+							<a href="<?php echo base_url('category/productview/'.base64_encode($list[0]['selected_id'])); ?>">
+						<?php } ?>
+						<div class="col-md-6">
+							<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
+						</div>
+						</a>
+				<?php } ?>
 			<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
-			<div class="col-md-6">
-				<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
-			</div>
+						<?php if($list[1]['link']==1){ ?>
+						<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[1]['selected_id'])); ?>">
+					<?php }else if($list[1]['link']==2){ ?>
+						<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[1]['selected_id'])); ?>">
+					<?php }else if($list[1]['link']==3){ ?>
+							<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[1]['subitem_id']).'/'.base64_encode($list[1]['subcategory_id']).'/'.base64_encode($list[1]['category_id'])); ?>">
+					<?php }else if($list[1]['link']==4){ ?>
+						<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[1]['subitem_id']).'/'.base64_encode($list[1]['subcategory_id']).'/'.base64_encode($list[1]['category_id'])); ?>">
+					<?php }else if($list[1]['link']==5){ ?>
+						<a href="<?php echo base_url('category/productview/'.base64_encode($list[1]['selected_id'])); ?>">
+					<?php } ?>
+						<div class="col-md-6">
+							<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
+						</div>
+						</a>
 			<?php } ?>
 			
 			<?php } ?>
