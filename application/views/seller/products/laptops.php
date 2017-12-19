@@ -78,7 +78,7 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Operating System</label>
-				<input type="text" class="form-control"  id="os" name="os" value="<?php echo isset($item_details['os'])?$item_details['os']:''; ?>" >
+				<input type="text" class="form-control" onkeyup="operationsystem(this.value);" id="os" name="os" value="<?php echo isset($item_details['os'])?$item_details['os']:''; ?>" >
 			</div>
 		</div>
 	</div>
@@ -92,7 +92,7 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				<label for="exampleInputEmail1">HDD Capacity</label>
-				<input type="text" class="form-control" id="hdd_capacity" name="hdd_capacity" value="<?php echo isset($item_details['hdd_capacity'])?$item_details['hdd_capacity']:''; ?>" >
+				<input type="text" class="form-control" onkeyup="hddCapacity(this.value);" id="hdd_capacity" name="hdd_capacity" value="<?php echo isset($item_details['hdd_capacity'])?$item_details['hdd_capacity']:''; ?>" >
 			</div>
 		</div>
 	</div>
@@ -226,7 +226,7 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		<div class="col-md-12 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				 <label for="exampleInputEmail1">Operating System</label>
-				<input type="text" class="form-control" id="os" name="os" value="<?php echo isset($item_details['os'])?$item_details['os']:''; ?>" >
+				<input type="text" class="form-control" id="opos" name="os" value="<?php echo isset($item_details['os'])?$item_details['os']:''; ?>" >
 			</div>
 		</div>
 	</div>
@@ -241,7 +241,7 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				 <label for="exampleInputEmail1">HDD Capacity</label>
-				<input type="text" class="form-control" id="hdd_capacity" name="hdd_capacity" value="<?php echo isset($item_details['hdd_capacity'])?$item_details['hdd_capacity']:''; ?>" >
+				<input type="text" class="form-control" id="hdd_capacitys" name="hdd_capacity" value="<?php echo isset($item_details['hdd_capacity'])?$item_details['hdd_capacity']:''; ?>" >
 			</div>
 		</div>
 		<div class="col-md-6 form-group">
@@ -460,6 +460,15 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		</div>
 		
 	</div>
+	<script>
+	function operationsystem(id){
+		$('#opos').val(id);
+	}
+	function hddCapacity(id){
+		$('#hdd_capacitys').val(id);
+	}
+	
+	</script>
 	
 
 

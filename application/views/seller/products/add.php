@@ -173,10 +173,12 @@
 				<option value="">Select Subcategory </option>
 
 				</select>
+				<span style="color:red" id="errormg1"></span>
 				<p id="subcategoryhideshow" class="pull-right" style="font-size:12px;cursor: pointer;"><a>Request for new Subcategory</a> </p>
 				<span style="color:red" id="addsubcaterrormsg1"></span>
 				<div style="display:none;margin-top:14px;" id="addsubcat">
 				<span style="color:red" id="addsubcaterrormsg"></span>
+				
 
 				<div class="form-group nopaddingRight san-lg">
 					 <label for="exampleInputEmail1">Request for Add SubCategory </label>
@@ -191,6 +193,7 @@
 				<select class="form-control" onchange="get_items_list(this.value);" id="subitemid" name="subitemid" >
 				<option value="">Select Subitems </option>
 			</select>
+			<span style="color:red" id="errormg2"></span>
 			</div>
 			<div class="form-group col-md-6 nopaddingRight san-lg">
 				<label for="exampleInputEmail1">Items </label>
@@ -396,6 +399,72 @@
     });
   } );
   
+   function IsMobile(reasontype) {
+        var regex = /^[0-9]+$/;
+        return regex.test(reasontype);
+        }
+	    function validateForm(){
+		   var price=document.getElementById('product_price').value;
+		   var specialprice=document.getElementById('special_price').value;
+		   var subcategorylists=document.getElementById('subcategorylist').value;
+		   var subitemids=document.getElementById('subitemid').value;
+		   var desc=document.getElementById('description').value;
+		   	var img = document.getElementById('picture1').value;
+		   if(subcategorylists==''){
+			   $('#errormg1').html('Subcategory Name is required').css("color", "red").fadeIn().fadeOut(10000);
+			  return false;
+		   }
+		  if(specialprice==''){
+			   $('#errormsgvalidation').html('Please enter special price');
+			   $('#errormsgvalidation1').html('Please enter special price');
+			  return false;
+		   }
+		  
+			   if (!IsMobile(specialprice)) {
+            $("#errormsgvalidation").html("Please Enter Correct special price").css("color", "red");
+            $("#errormsgvalidation1").html("Please Enter Correct special price").css("color", "red");
+            jQuery('#seller_mobile').focus();
+            return false;
+            } 
+			if(Number(specialprice) > Number(price)){
+				  $('#errormsgvalidation').html('special price must be less than price');
+				  $('#errormsgvalidation1').html('special price must be less than price');
+				  return false;
+			   }
+			   $('#errormsgvalidation').html('');
+			   $('#errormsgvalidation1').html('');
+		   if(desc==''){
+			    $('#descerrormsg').html('Description is required').css("color", "red");
+			  return false;
+			   
+		   }if(subitemids==''){
+			    $('#errormg2').html('sub Name is required').css("color", "red").fadeIn().fadeOut(10000);
+			  return false;
+			   
+		   }else if(img==''){
+			    $('#uploadimgerror').html('Image1 is required').css("color", "red");
+			  return false;  
+			}else if(img!=''){
+					  var fup = document.getElementById('picture1');
+				var fileName = fup.value;
+				var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+				if(ext !=''){
+					if(ext == "png" || ext == "jpg" || ext == "gif" || ext == "jpeg")
+					{
+					jQuery('#uploadimgerror').html('');
+					} else{
+					jQuery('#uploadimgerror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
+					return false;
+					}
+				}
+			   
+		   }
+			  $('#descerrormsg').html('');
+			   
+		   
+		  
+		  // return false;
+	   }
   function getoldproducts(val){
    	
    		jQuery.ajax({
@@ -588,63 +657,6 @@ function changesimtype(id){
 	   
    }
   
-   function IsMobile(reasontype) {
-        var regex = /^[0-9]+$/;
-        return regex.test(reasontype);
-        }
-	    function validateForm(){
-		   var price=document.getElementById('product_price').value;
-		   var specialprice=document.getElementById('special_price').value;
-		   var desc=document.getElementById('description').value;
-		   	var img = document.getElementById('picture1').value;
-
-		   if(specialprice==''){
-			   $('#errormsgvalidation').html('Please enter special price');
-			   $('#errormsgvalidation1').html('Please enter special price');
-			  return false;
-		   }
-		  
-			   if (!IsMobile(specialprice)) {
-            $("#errormsgvalidation").html("Please Enter Correct special price").css("color", "red");
-            $("#errormsgvalidation1").html("Please Enter Correct special price").css("color", "red");
-            jQuery('#seller_mobile').focus();
-            return false;
-            } 
-			if(Number(specialprice) > Number(price)){
-				  $('#errormsgvalidation').html('special price must be less than price');
-				  $('#errormsgvalidation1').html('special price must be less than price');
-				  return false;
-			   }
-			   $('#errormsgvalidation').html('');
-			   $('#errormsgvalidation1').html('');
-		   if(desc==''){
-			    $('#descerrormsg').html('Description is required').css("color", "red");
-			  return false;
-			   
-		   }else if(img==''){
-			    $('#uploadimgerror').html('Image1 is required').css("color", "red");
-			  return false;  
-			}else if(img!=''){
-					  var fup = document.getElementById('picture1');
-				var fileName = fup.value;
-				var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
-				if(ext !=''){
-					if(ext == "png" || ext == "jpg" || ext == "gif" || ext == "jpeg")
-					{
-					jQuery('#uploadimgerror').html('');
-					} else{
-					jQuery('#uploadimgerror').html('Uploaded file is not a valid. Only docx,doc,pdf,xlsx,pdf files are allowed');
-					return false;
-					}
-				}
-			   
-		   }
-			  $('#descerrormsg').html('');
-			   
-		   
-		  
-		  // return false;
-	   }
 	   
 	   function enablesubbmit(){
 		   document.getElementById('keysubtton').disabled = false;

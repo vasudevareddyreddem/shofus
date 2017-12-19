@@ -2853,12 +2853,13 @@ public function addhomepagemiddlebannerspost()
 			if($logindetail['role_id']==5)
 			{
 					$post=$this->input->post();
-					$alreadyexits = $this->inventory_model->get_subitem_name_existss($post['subitemname']);
-						if(count($alreadyexits)>0){
-							$this->session->set_flashdata('error',"SubItem Name already exits.please use another subitem Name.");
+					$alreadyexits = $this->inventory_model->get_subitem_name_existss($post['subitemname'],$post['subcategory_list']);
+						if(count($alreadyexits)>0 && $post['subcategory_list']==$alreadyexits['subcategory_id']){
+							$this->session->set_flashdata('error',"In this Subcategory SubItem Name already exits.please use another subitem Name.");
 							redirect('inventory/subitemadd');
 						}
 					
+					//echo '<pre>';print_r($alreadyexits);exit;
 					$addsubitem = array(
 					'category_id' => $post['category_list'], 
 					'subcategory_id' => $post['subcategory_list'],

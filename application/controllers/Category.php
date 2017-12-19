@@ -2607,7 +2607,7 @@ public function subitemwise_search(){
 		$data['step_fourteen']=array_chunk($step_fourteen, 4);
 	
 		//echo $this->db->last_query();exit;
-		//echo '<pre>';print_r($data['step_fourteen']);exit;
+		//echo '<pre>';print_r($data['step_eight']);exit;
 		$cartitemids= $this->category_model->get_all_cart_lists_ids();
 				if(count($cartitemids)>0){
 				foreach($cartitemids as $list){

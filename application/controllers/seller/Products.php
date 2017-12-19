@@ -211,6 +211,8 @@ public function item_status(){
  public function getolditemdata(){
 	 $post = $this->input->post();
 	 $data['item_details']=$this->products_model->get_sae_product_details($post['productname'],$post['categoryid'],$post['subcategoryid']);
+	 $data['categoryid']=$post['categoryid']==35;
+	 $data['subcategoryid']=$post['subcategoryid']==35;
 	 //echo $this->db->last_query();exit;
 	 //echo '<pre>';print_r($post);
 	 if(isset($post['categoryid']) && $post['categoryid']==21){

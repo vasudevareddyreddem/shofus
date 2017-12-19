@@ -230,16 +230,28 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		
 	</div>
 	<?php }?>
-		<?php if($subcategory_id==136 || $subcategory_id==137  || $subcategory_id==138 || $subcategory_id==58 || $subcategory_id==59 || $subcategory_id==60 || $subcategory_id==61 || $subcategory_id==62){ ?>
-
-	<div class="row">
+	<?php if($subcategory_id==136 || $subcategory_id==137  || $subcategory_id==138 || $subcategory_id==58 || $subcategory_id==59 || $subcategory_id==60 || $subcategory_id==61 || $subcategory_id==62){ ?>
+	
+		<div class="row">
 			<div class=" col-md-12 ">
 				<div class="form-group nopaddingRight san-lg">
 					<label for="exampleInputEmail1">Gender</label>
 					<select class="form-control" id="gender" name="gender" >
 					<option value="">Select</option>
-					<option value="Male">Male</option>
-					<option value="Female">Female</option>
+						<?php if($categoryid==19){ ?>
+							<?php if($item_details['gender']=='Male'){ ?>
+							<option value="Male" selected>Male</option>
+							<?php }else{ ?>
+								<option value="Male">Male</option>
+							<?php } ?>
+						<?php }else{ ?>
+						
+							<?php if($item_details['gender']=='Female'){ ?>
+								<option value="Female" selected>Female</option>
+							<?php }else{ ?>
+								<option value="Female">Female</option>
+							<?php } ?>
+						<?php } ?>
 
 					</select>
 				</div>

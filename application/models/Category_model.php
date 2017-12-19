@@ -2726,6 +2726,7 @@ class Category_model extends MY_Model
 			
 		$this->db->select('sub_items.*')->from('products');
 		$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left'); //
+		$this->db->where('sub_items.subitem_id !=','');
 		$this->db->where('products.subitemid !=','');
 		$this->db->group_by('products.subitemid');
 		return $this->db->get()->result_array();			

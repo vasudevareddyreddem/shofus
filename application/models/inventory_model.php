@@ -747,9 +747,9 @@ public function delete_banner($id,$sid)
 		$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
-	 function get_subitem_name_existss($name)
+	 function get_subitem_name_existss($name,$subcatid)
     {
-	   $sql = "SELECT * FROM sub_items WHERE subitem_name ='".$name."'";
+	   $sql = "SELECT * FROM sub_items WHERE subitem_name ='".$name."' AND subcategory_id ='".$subcatid."'";
         return $this->db->query($sql)->row_array();
      }
 	 function save_subitems($data){
