@@ -477,6 +477,15 @@ public function update_categorybanner_status($id,$data)
     $this->db->where('category_banners.admin_status',1);
 	$this->db->where('category_banners.expirydate >=', $curr_date);
     return $this->db->get()->row_array();
+  } 
+  public function get_categorybanners_list_position_wise_five($position){
+	$date = new DateTime("now");
+	$curr_date = $date->format('Y-m-d h:i:s A');
+	$this->db->select('count(category_banners.baneer_id) as imagecount')->from('category_banners');
+    $this->db->where('category_banners.position',$position);
+    $this->db->where('category_banners.admin_status',1);
+	$this->db->where('category_banners.expirydate >=', $curr_date);
+    return $this->db->get()->row_array();
   }
   /*category page banners*/
   /*home page banners*/

@@ -51,10 +51,11 @@
 					 <label for="exampleInputEmail1"> Category page Position</label>
 					<select class="form-control" id="position" name="position" >
 					<option value="">Select item </option>
-					<option value="1">First position </option>
-					<option value="2">Second position </option>
-					<option value="3">Third position </option>
-					<option value="4">Fourth position </option>
+					<option value="1">1st position </option>
+					<option value="2">2nd position </option>
+					<option value="3">3rd position </option>
+					<option value="4">4th position </option>
+					<option value="5">5th position </option>
 					</select>
 				</div>
 			</div>

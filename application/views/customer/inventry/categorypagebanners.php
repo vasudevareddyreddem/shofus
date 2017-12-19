@@ -11,7 +11,12 @@
             </div>
 			
             <div class="box-body">
-			<?php if($this->session->flashdata('success')): ?>
+			<?php if($this->session->flashdata('error')): ?>
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('error');?></div>	
+					<?php endif; ?>
+					<?php if($this->session->flashdata('success')): ?>
 					<div class="alert dark alert-success alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('success');?></div>	
@@ -45,6 +50,8 @@
 						  echo "third position"; 
 					  }else if($banner['position']==4){
 						  echo "Fourth position"; 
+					  }else if($banner['position']==5){
+						  echo "Fifth position"; 
 					  } ?></td><td><?php if($banner['link']==1){
 					  echo "Category";
 					  }else if($banner['link']==2){

@@ -1177,18 +1177,25 @@ function filtersearch(){
 
 	 
 	$pid=base64_decode($this->uri->segment(3));
-
-	//
+	if($this->session->userdata('userdetails'))
+	 {
+		$custib=$customerdetails['customer_id'];
+	 }else{
+		 $custib='';
+	 }
+	 $savingdata=array(
+	 'item_id'=>$pid,
+	 'customer_id'=>$custib,
+	 'created_at'=>date('Y-m-d H:i:s'),
+	 );
+	 $this->category_model->save_virew_products($savingdata);
+	//echo '<pre>';print_r($pid);exit;
 	$data['products_list']= $this->category_model->get_products($pid);
 	$data['similarproducts_list']= $this->category_model->get_simular_products($data['products_list']['subcategory_id'],$data['products_list']['name'],$data['products_list']['item_id']);
 	$data['sameproducts_color_list']= $this->category_model->get_same_products_color($data['products_list']['subcategory_id'],$data['products_list']['name'],$data['products_list']['item_id']);
-	//echo $this->db->last_query();exit;
 	$data['sameproducts_size_list']= $this->category_model->get_same_products_size($data['products_list']['subcategory_id'],$data['products_list']['name'],$data['products_list']['item_id']);
 	$data['sameproducts_ram_list']= $this->category_model->get_same_products_ram($data['products_list']['subcategory_id'],$data['products_list']['name'],$data['products_list']['item_id']);
 	$data['sameproducts_unit_list']= $this->category_model->get_same_products_unit($data['products_list']['subcategory_id'],$data['products_list']['name'],$data['products_list']['item_id']);
-	
-	//echo $this->db->last_query();exit;
-	//echo '<pre>';print_r($data);exit;
 	$data['products_reviews']= $this->category_model->get_products_reviews($pid);
 	$data['products_specufucation']= $this->category_model->get_products_specifications_list($pid);
 	$data['products_desc_list']= $this->category_model->get_products_desc_list($pid);
@@ -1199,8 +1206,6 @@ function filtersearch(){
 	$data['sizecnt']= count($data['sizes_list']);
 	$data['uksizecnt']= count($data['uksizes_list']);
 	$data['bothsizecnt']= count($data['sizes_list'])+ count($data['uksizes_list']);
-
-	//echo '<pre>';print_r($data);exit;
 	$cartitemids= $this->category_model->get_all_cart_lists_ids();
 		if(count($cartitemids)>0){
 		foreach($cartitemids as $list){
@@ -1225,8 +1230,6 @@ function filtersearch(){
 		$whishlist_item_ids_list[]=$list['item_id'];
 		$whishlist_ids_list[]=$list['id'];
 	}
-		
-	//echo '<pre>';print_r($customer_ids_list);exit;
 	$data['customer_ids_list']=$customer_ids_list;
 	$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
 	$data['whishlist_ids_list']=$whishlist_ids_list;
@@ -2564,6 +2567,8 @@ public function subitemwise_search(){
 	 
 	 public function subcategorys(){
 		$cateid=base64_decode($this->uri->segment(3));
+		
+		//echo '<pre>';print_r($cateid);exit;
 		$step_one= $this->category_model->step_one_data(1);
 		$data['step_one']=array_chunk($step_one, 3);
 		$data['step_two']= $this->category_model->step_two_data($cateid);
@@ -2574,14 +2579,63 @@ public function subitemwise_search(){
 		$amt= ($step_five['max']-$step_five['min'])/4;
 		$amount=array(array($step_five['min']),array($amt*2),array($amt*3),array($amt*4));
 		$data['step_five']=array_chunk($amount, 4);
+		if($cateid==21 || $cateid==31 || $cateid==19 || $cateid==24 || $cateid==35 ||  $cateid==28 ||  $cateid==20){
+		$data['step_six']= $this->category_model->step_six_data($cateid);
+		}
 		$step_seven= $this->category_model->step_seven_data(3);
 		$data['step_seven']=array_chunk($step_seven, 3);
-		$data['step_eight']= $this->category_model->step_eight_data(3);
+		$data['step_eight']= $this->category_model->step_eight_data();
+		if($cateid==21 || $cateid==31 || $cateid==19 || $cateid==24 || $cateid==35 ||  $cateid==28 ||  $cateid==20){
+			if($cateid==21){
+				$data['step_nine']= $this->category_model->step_dealsnine_data($cateid);
+			}else{
+				$data['step_nine']= $this->category_model->step_nine_data($cateid);
+			}
+		}
+		if($cateid==21 || $cateid==31 || $cateid==19 || $cateid==24 || $cateid==35 ||  $cateid==28 ||  $cateid==20){
+			if($cateid==21){
+				$data['step_ten']= $this->category_model->step_seasonten_data($cateid);
+			}else{
+				$data['step_ten']= $this->category_model->step_ten_data($cateid);
+			}
+		}
 		$step_eleven= $this->category_model->step_eleven_data(4);
 		$data['step_eleven']=array_chunk($step_eleven, 4);
+		$data['step_twelve']= $this->category_model->step_twelve_data($cateid);
+		$data['step_thirteen']= $this->category_model->step_thirteen_data($cateid);
+		$step_fourteen= $this->category_model->step_fourteen_data(5);
+		$data['step_fourteen']=array_chunk($step_fourteen, 4);
 	
 		//echo $this->db->last_query();exit;
-		//echo '<pre>';print_r($data['step_five']);exit;
+		//echo '<pre>';print_r($data['step_fourteen']);exit;
+		$cartitemids= $this->category_model->get_all_cart_lists_ids();
+				if(count($cartitemids)>0){
+				foreach($cartitemids as $list){
+					$cust_ids[]=$list['cust_id'];
+					$cart_item_ids[]=$list['item_id'];
+					$cart_ids[]=$list['id'];
+					
+				}
+				$data['cust_ids']=$cust_ids;
+				$data['cart_item_ids']=$cart_item_ids;
+				$data['cart_ids']=$cart_ids;
+				
+			}else{
+				$data['cust_ids']=array();
+				$data['cart_item_ids']=array();
+				$data['cart_ids']=array();
+			}
+			$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+			if(count($wishlist_ids)>0){
+			foreach ($wishlist_ids as  $list){
+				$customer_ids_list[]=$list['cust_id'];
+				$whishlist_item_ids_list[]=$list['item_id'];
+				$whishlist_ids_list[]=$list['id'];
+			}
+			$data['customer_ids_list']=$customer_ids_list;
+			$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+			$data['whishlist_ids_list']=$whishlist_ids_list;
+			}
 		 $this->template->write_view('content', 'customer/subcategorypage',$data);
 		$this->template->render();
 		 

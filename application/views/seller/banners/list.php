@@ -68,6 +68,8 @@
 						  echo "third position"; 
 					  }else if($banner['position']==4){
 						  echo "Fourth position"; 
+					  }else if($banner['position']==5){
+						  echo "Fifth position"; 
 					  } ?></td>
                   <td><?php if($banner['link']==1){
 					  echo "Category";

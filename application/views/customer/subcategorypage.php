@@ -178,6 +178,7 @@
 
 <?php } ?>
 	<!--shop by x start-->
+	<?php if(isset($step_six) && count($step_six)>0) { ?>
 	<section>
 	<div class="best-pro slider-items-products container_main">
 		<div class="new_title">
@@ -185,38 +186,87 @@
 		</div>
 		<div id="best-seller" class="product-flexslider hidden-buttons">
 			<div class="slider-items slider-width-col4 products-grid ">
+			<?php $f=2;foreach($step_six as $list){ 
+			
+				$currentdate=date('Y-m-d h:i:s A');
+				if($list['offer_expairdate']>=$currentdate){
+				$item_price= ($list['item_cost']-$list['offer_amount']);
+				$percentage= $list['offer_percentage'];
+				$orginal_price=$list['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $list['special_price'];
+					$prices= ($list['item_cost']-$list['special_price']);
+					$percentage= (($prices) /$list['item_cost'])*100;
+					$orginal_price=$list['item_cost'];
+				}
+
+			?>
 				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
+					
+				<!--<form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >-->
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $list['item_id']; ?>" >
+			<input type="hidden" name="category_id" id="category_id" value="<?php echo $list['category_id']; ?>" >
+			<input type="hidden" name="qty" id="qty" value="1" >
+			 <a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>">
+		   <div class="item">
+          <div class=" box-product-outer">
+            <div class="box-product">
+              <div class="img-wrapper  img_hover item">
+			  <div class="img_size">
+               
+                   <img class=""src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+           
+                
+				</div>
+            
+              <?php if($list['item_quantity']<=0 || $list['item_status']==0){ ?>
+				<div  class="text-center out_of_stoc">
+					<div style="z-index:1026"><h4>out of stock</h4></div>
+				</div>
+				<?php } ?>
+				
+				<div class="option">
+				<?php if($list['item_quantity']>0 && $list['category_id']==18 || $list['category_id']==21){ ?>
+				<?php 	if (in_array($list['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $list['item_id']; ?>','<?php echo $list['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+				<?php }else{ ?>	
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $list['item_id']; ?>','<?php echo $list['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart"></i></a>                  
+				<?php } ?>	
+				<?php } ?>
+				<?php 	if (in_array($list['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+				<a href="javascript:void(0)"  onclick="addwhishlidt('<?php echo $list['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-heart text-primary"></i></a> 
+				<?php }else{ ?>	
+				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $list['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-heart"></i></a> 
+				<?php } ?>	
+				</div>
+              </div>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>"><?php echo $list['item_name']; ?></a></h6>
+            <div class="price">
+               
+				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
+			<?php if($percentage!=''){ ?> &nbsp;
+			<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
+			<?Php }?>
+				</div>
+				<div class="clearfix"></div>
+            
+              </div>
+         
+            </div>
+          </div>
+		  
+            </div>
 				</a>
-				
-				
-				
-				
+			<?php $f++;} ?>
 			</div>
 		</div>
 		<div class="clearfix"></div>
 		
 	</div>
 </section>
+<?php } ?>
 	
 	
 	
@@ -253,112 +303,214 @@
 	
 	<!--sub items-->
 	<?php if(isset($step_eight) && count($step_eight)>0){ ?>
-		<section class="">
-		  <div class=" slider-items-products container_main">
-				<div id="best-seller" class="product-flexslider hidden-buttons cat_sl_s" >
-						<div class="slider-items slider-width-col4 products-grid  text-center help-owl" >
-						<?php foreach ($step_eight as $list){ ?>
-							<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list['subitem_id']).'/'.base64_encode($list['subcategory_id']).'/'.base64_encode($list['category_id'])); ?>">
-							<div class="item cat_ma" >
-							  <div class=" box-product-outer" >
-								<div class="box-product">
-								   <img src="<?php echo base_url('assets/subitems/'.$list['image']); ?>" > 
-								<h5 class="text-center"><?php echo $list['subitem_name']; ?></h5>
-								</div>
-								
-							  </div>
-							</div>
-							</a>
-						<?php } ?>
+			<section class="">
+      <div class=" slider-items-products container_main">
+       
+		   <div id="best-seller" class="product-flexslider hidden-buttons cat_sl_s" >
+				  
+			<div class="slider-items slider-width-col4 products-grid  text-center help-owl" >
+				<?php foreach ($step_eight as $list){ ?>
+				<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list['subitem_id']).'/'.base64_encode($list['subcategory_id']).'/'.base64_encode($list['category_id'])); ?>">
+				<div class="item cat_ma" >
+				  <div class=" box-product-outer" >
+					<div class="box-product">
+					   <img src="<?php echo base_url('assets/subitems/'.$list['image']); ?>" > 
+					<h5 class="text-center"><?php echo $list['subitem_name']; ?></h5>
 					</div>
+					
+				  </div>
 				</div>
+				</a>
+			<?php } ?>
 			</div>
-		</section>
+
+		   </div>
+	
+      
+      </div>
+    </section>
 	<?php } ?>
 	
 	<!--shop by Y start-->
-	<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Shop by Y</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid ">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-			
-				
-				
-				
+	
+	<?php if(isset($step_nine) && count($step_nine)>0){ ?>
+		<section>
+		<div class="best-pro slider-items-products container_main">
+			<div class="new_title">
+				<h2>Shop by Y</h2>
 			</div>
+			<div id="best-seller" class="product-flexslider hidden-buttons">
+				<div class="slider-items slider-width-col4 products-grid ">
+					<?php $f=2;foreach($step_nine as $list){ 
+						$currentdate=date('Y-m-d h:i:s A');
+						if($list['offer_expairdate']>=$currentdate){
+						$item_price= ($list['item_cost']-$list['offer_amount']);
+						$percentage= $list['offer_percentage'];
+						$orginal_price=$list['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $list['special_price'];
+							$prices= ($list['item_cost']-$list['special_price']);
+							$percentage= (($prices) /$list['item_cost'])*100;
+							$orginal_price=$list['item_cost'];
+						}
+
+						?>
+							<a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>">
+								<!--<form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >-->
+							<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $list['item_id']; ?>" >
+							<input type="hidden" name="category_id" id="category_id" value="<?php echo $list['category_id']; ?>" >
+							<input type="hidden" name="qty" id="qty" value="1" >
+							
+						   <div class="item">
+						  <div class=" box-product-outer">
+							<div class="box-product">
+							  <div class="img-wrapper  img_hover item">
+							  <div class="img_size">
+							   
+								   <img class=""src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+						   
+								
+								</div>
+							
+							  <?php if($list['item_quantity']<=0 || $list['item_status']==0){ ?>
+								<div  class="text-center out_of_stoc">
+									<div style="z-index:1026"><h4>out of stock</h4></div>
+								</div>
+								<?php } ?>
+								
+								<div class="option">
+								<?php if($list['item_quantity']>0 && $list['category_id']==18 || $list['category_id']==21){ ?>
+								<?php 	if (in_array($list['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
+								<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $list['item_id']; ?>','<?php echo $list['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+								<?php }else{ ?>	
+								<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $list['item_id']; ?>','<?php echo $list['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart"></i></a>                  
+								<?php } ?>	
+								<?php } ?>
+								<?php 	if (in_array($list['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+								<a href="javascript:void(0)"  onclick="addwhishlidt('<?php echo $list['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-heart text-primary"></i></a> 
+								<?php }else{ ?>	
+								<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $list['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-heart"></i></a> 
+								<?php } ?>	
+								</div>
+							  </div>
+							  <h6><a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>"><?php echo $list['item_name']; ?></a></h6>
+							<div class="price">
+							   
+								<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
+							<?php if($percentage!=''){ ?> &nbsp;
+							<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
+								<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
+							<?Php }?>
+								</div>
+								<div class="clearfix"></div>
+							
+							  </div>
+						 
+							</div>
+						  </div>
+						  
+							</div>
+					</a>
+					<?php $f++;} ?>
+					
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			
 		</div>
-		<div class="clearfix"></div>
-		
-	</div>
-</section>
+	</section>
+	<?php } ?>
 
 <!--shop by Z start-->
-	<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Shop by Z</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid ">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
-							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
-								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				
-				
-				
-				
-				
+	<?php if(isset($step_ten) && count($step_ten)>0){ ?>
+		<section>
+		<div class="best-pro slider-items-products container_main">
+			<div class="new_title">
+				<h2>Shop by Z</h2>
 			</div>
+			<div id="best-seller" class="product-flexslider hidden-buttons">
+				<div class="slider-items slider-width-col4 products-grid ">
+					<?php $f=2;foreach($step_ten as $list){ 
+						$currentdate=date('Y-m-d h:i:s A');
+						if($list['offer_expairdate']>=$currentdate){
+						$item_price= ($list['item_cost']-$list['offer_amount']);
+						$percentage= $list['offer_percentage'];
+						$orginal_price=$list['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $list['special_price'];
+							$prices= ($list['item_cost']-$list['special_price']);
+							$percentage= (($prices) /$list['item_cost'])*100;
+							$orginal_price=$list['item_cost'];
+						}
+
+						?>
+							<a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>">
+								<!--<form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >-->
+							<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $list['item_id']; ?>" >
+							<input type="hidden" name="category_id" id="category_id" value="<?php echo $list['category_id']; ?>" >
+							<input type="hidden" name="qty" id="qty" value="1" >
+							
+						   <div class="item">
+						  <div class=" box-product-outer">
+							<div class="box-product">
+							  <div class="img-wrapper  img_hover item">
+							  <div class="img_size">
+							   
+								   <img class=""src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+						   
+								
+								</div>
+							
+							  <?php if($list['item_quantity']<=0 || $list['item_status']==0){ ?>
+								<div  class="text-center out_of_stoc">
+									<div style="z-index:1026"><h4>out of stock</h4></div>
+								</div>
+								<?php } ?>
+								
+								<div class="option">
+								<?php if($list['item_quantity']>0 && $list['category_id']==18 || $list['category_id']==21){ ?>
+								<?php 	if (in_array($list['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
+								<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $list['item_id']; ?>','<?php echo $list['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+								<?php }else{ ?>	
+								<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $list['item_id']; ?>','<?php echo $list['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart"></i></a>                  
+								<?php } ?>	
+								<?php } ?>
+								<?php 	if (in_array($list['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+								<a href="javascript:void(0)"  onclick="addwhishlidt('<?php echo $list['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-heart text-primary"></i></a> 
+								<?php }else{ ?>	
+								<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $list['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-heart"></i></a> 
+								<?php } ?>	
+								</div>
+							  </div>
+							  <h6><a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>"><?php echo $list['item_name']; ?></a></h6>
+							<div class="price">
+							   
+								<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
+							<?php if($percentage!=''){ ?> &nbsp;
+							<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
+								<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
+							<?Php }?>
+								</div>
+								<div class="clearfix"></div>
+							
+							  </div>
+						 
+							</div>
+						  </div>
+						  
+							</div>
+					</a>
+					<?php $f++;} ?>
+					
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			
 		</div>
-		<div class="clearfix"></div>
-		
-	</div>
-</section>
+	</section>
+	<?php } ?>
 
 	
 	<?php if(isset($step_eleven) && count($step_eleven)>0){ ?>
@@ -398,90 +550,219 @@
 		</section>
 	<?php } ?>
 <!-- Most Viewed-->
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Most Viewed</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid ">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
+<?php if(isset($step_twelve) && count($step_twelve)>0){ ?>
+		<section>
+		<div class="best-pro slider-items-products container_main">
+			<div class="new_title">
+				<h2>Most Viewed</h2>
+			</div>
+			<div id="best-seller" class="product-flexslider hidden-buttons">
+				<div class="slider-items slider-width-col4 products-grid ">
+					<?php $f=2;foreach($step_twelve as $list){ 
+						$currentdate=date('Y-m-d h:i:s A');
+						if($list['offer_expairdate']>=$currentdate){
+						$item_price= ($list['item_cost']-$list['offer_amount']);
+						$percentage= $list['offer_percentage'];
+						$orginal_price=$list['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $list['special_price'];
+							$prices= ($list['item_cost']-$list['special_price']);
+							$percentage= (($prices) /$list['item_cost'])*100;
+							$orginal_price=$list['item_cost'];
+						}
+
+						?>
+							<a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>">
+								<!--<form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >-->
+							<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $list['item_id']; ?>" >
+							<input type="hidden" name="category_id" id="category_id" value="<?php echo $list['category_id']; ?>" >
+							<input type="hidden" name="qty" id="qty" value="1" >
+							
+						   <div class="item">
+						  <div class=" box-product-outer">
 							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
+							  <div class="img-wrapper  img_hover item">
+							  <div class="img_size">
+							   
+								   <img class=""src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+						   
+								
 								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
+							
+							  <?php if($list['item_quantity']<=0 || $list['item_status']==0){ ?>
+								<div  class="text-center out_of_stoc">
+									<div style="z-index:1026"><h4>out of stock</h4></div>
 								</div>
+								<?php } ?>
+								
+								<div class="option">
+								<?php if($list['item_quantity']>0 && $list['category_id']==18 || $list['category_id']==21){ ?>
+								<?php 	if (in_array($list['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
+								<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $list['item_id']; ?>','<?php echo $list['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+								<?php }else{ ?>	
+								<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $list['item_id']; ?>','<?php echo $list['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart"></i></a>                  
+								<?php } ?>	
+								<?php } ?>
+								<?php 	if (in_array($list['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+								<a href="javascript:void(0)"  onclick="addwhishlidt('<?php echo $list['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-heart text-primary"></i></a> 
+								<?php }else{ ?>	
+								<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $list['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-heart"></i></a> 
+								<?php } ?>	
+								</div>
+							  </div>
+							  <h6><a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>"><?php echo $list['item_name']; ?></a></h6>
+							<div class="price">
+							   
+								<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
+							<?php if($percentage!=''){ ?> &nbsp;
+							<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
+								<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
+							<?Php }?>
+								</div>
+								<div class="clearfix"></div>
+							
+							  </div>
+						 
 							</div>
-						</div>
-					</div>
-				</a>
-				
-				
-				
+						  </div>
+						  
+							</div>
+					</a>
+					<?php $f++;} ?>
+					
+				</div>
+			</div>
+			<div class="clearfix"></div>
 			
-				
-				
-				
-			</div>
 		</div>
-		<div class="clearfix"></div>
-		
-	</div>
-</section>
+	</section>
+	<?php } ?>
 <!-- Recommended -->
-<section>
-	<div class="best-pro slider-items-products container_main">
-		<div class="new_title">
-			<h2>Recommended</h2>
-		</div>
-		<div id="best-seller" class="product-flexslider hidden-buttons">
-			<div class="slider-items slider-width-col4 products-grid ">
-				<a href="#">
-					<div class="item">
-						<div class=" box-product-outer">
+<?php if(isset($step_thirteen) && count($step_thirteen)>0){ ?>
+		<section>
+		<div class="best-pro slider-items-products container_main">
+			<div class="new_title">
+				<h2>Recommended</h2>
+			</div>
+			<div id="best-seller" class="product-flexslider hidden-buttons">
+				<div class="slider-items slider-width-col4 products-grid ">
+					<?php $f=2;foreach($step_thirteen as $list){ 
+						$currentdate=date('Y-m-d h:i:s A');
+						if($list['offer_expairdate']>=$currentdate){
+						$item_price= ($list['item_cost']-$list['offer_amount']);
+						$percentage= $list['offer_percentage'];
+						$orginal_price=$list['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $list['special_price'];
+							$prices= ($list['item_cost']-$list['special_price']);
+							$percentage= (($prices) /$list['item_cost'])*100;
+							$orginal_price=$list['item_cost'];
+						}
+
+						?>
+							<a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>">
+								<!--<form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >-->
+							<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $list['item_id']; ?>" >
+							<input type="hidden" name="category_id" id="category_id" value="<?php echo $list['category_id']; ?>" >
+							<input type="hidden" name="qty" id="qty" value="1" >
+							
+						   <div class="item">
+						  <div class=" box-product-outer">
 							<div class="box-product">
-								<div class="img-wrapper  img_hover">
-									<div class="img_size">
-										<img class="" src="https://cartinhours.com/uploads/products/0.53575700 15094510621.jpeg">
-									</div>
-									<div class="option">	<a href="javascript:void(0);" onclick="addwhishlidt('901','1');" id="addwhish9011" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids9011" class="fa fa-heart "></i></a> 
-									</div>
+							  <div class="img-wrapper  img_hover item">
+							  <div class="img_size">
+							   
+								   <img class=""src="<?php echo base_url('uploads/products/'.$list['item_image']); ?>">
+						   
+								
 								</div>
-								<h6><a href="category/productview/OTAx.html">REDMI MI 4 Grey (32GB ROM) (3GB RAM )</a></h6>
-								<div class="price">
-									<div class="text-center" style="color:#187a7d;">₹ 10,742.73 &nbsp;	<span class="price-old">₹ 12,638.50</span>
-										<span class="label-tags"><p class=" text-success"> 15.00% off</p></span>
-									</div>
-									<div class="clearfix"></div>
+							
+							  <?php if($list['item_quantity']<=0 || $list['item_status']==0){ ?>
+								<div  class="text-center out_of_stoc">
+									<div style="z-index:1026"><h4>out of stock</h4></div>
 								</div>
+								<?php } ?>
+								
+								<div class="option">
+								<?php if($list['item_quantity']>0 && $list['category_id']==18 || $list['category_id']==21){ ?>
+								<?php 	if (in_array($list['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
+								<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $list['item_id']; ?>','<?php echo $list['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+								<?php }else{ ?>	
+								<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $list['item_id']; ?>','<?php echo $list['category_id']; ?>','<?php echo $f; ?>');" id="cartitemtitle<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-shopping-cart"></i></a>                  
+								<?php } ?>	
+								<?php } ?>
+								<?php 	if (in_array($list['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+								<a href="javascript:void(0)"  onclick="addwhishlidt('<?php echo $list['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-heart text-primary"></i></a> 
+								<?php }else{ ?>	
+								<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $list['item_id']; ?>','<?php echo $f; ?>');" id="addwhish<?php echo $list['item_id']; ?><?php echo $f; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $list['item_id']; ?><?php echo $f; ?>" class="fa fa-heart"></i></a> 
+								<?php } ?>	
+								</div>
+							  </div>
+							  <h6><a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>"><?php echo $list['item_name']; ?></a></h6>
+							<div class="price">
+							   
+								<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
+							<?php if($percentage!=''){ ?> &nbsp;
+							<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
+								<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
+							<?Php }?>
+								</div>
+								<div class="clearfix"></div>
+							
+							  </div>
+						 
 							</div>
+						  </div>
+						  
+							</div>
+					</a>
+					<?php $f++;} ?>
+					
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			
+		</div>
+	</section>
+	<?php } ?>
+	<?php if(isset($step_fourteen) && count($step_fourteen)>0){ ?>
+		<section>
+		<div class="best-pro slider-items-products container_main">
+			<div class="row mar_t15" >
+			<?php foreach ($step_fourteen as $lists){ ?>
+					<?php if(isset($lists[0]['name']) && $lists[0]['name']!=''){ ?>
+					<div class="col-md-3">
+					<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$lists[0]['name']); ?>" alt="<?php echo $lists[0]['name']; ?>">
+					</div>                	  
+					<?php } ?>
+					<?php if(isset($lists[1]['name']) && $lists[1]['name']!=''){ ?>
+						<div class="col-md-3">
+						<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$lists[1]['name']); ?>" alt="<?php echo $lists[1]['name']; ?>">
+						</div>                	  
+					<?php } ?>
+					<?php if(isset($lists[2]['name']) && $lists[2]['name']!=''){ ?>
+						<div class="col-md-3">
+								<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$lists[2]['name']); ?>" alt="<?php echo $lists[2]['name']; ?>">
 						</div>
-					</div>
-				</a>
+                	  
+					<?php } ?>
+					<?php if(isset($lists[3]['name']) && $lists[3]['name']!=''){ ?>
+						<div class="col-md-3">
+								<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$lists[3]['name']); ?>" alt="<?php echo $lists[3]['name']; ?>">
+						</div>
+                	  
+					<?php } ?>
 				
 				
-				
-				
-				
-				
+			<?php } ?>
+					
 			</div>
 		</div>
-		<div class="clearfix"></div>
-		
-	</div>
-</section>	
+			
+		</section>
+	<?php } ?>
 	
 	
 
