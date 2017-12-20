@@ -30,12 +30,14 @@
 				</div>
 				
 			<?php } ?>
+			<div class="clearfix">&nbsp;</div>
 
    <span id="filtersubitemwisedata"></span>
+	<div class="col-md-3">
+	sdjkksdfk
+	</div>
    <span id="subitemwisedata">
-
-	 
-	 <div class="col-sm-9" id="aftercategorysearch">
+   <div class="col-sm-9" id="aftercategorysearch">
 	 <div id="sucessmsg" style="display:none;"></div>
 	 <div  style="display:none;" class="alert dark alert-success alert-dismissible" id="sucessmsg"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
