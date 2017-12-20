@@ -2763,7 +2763,7 @@ class Import extends Admin_Controller {
 																			'weight' =>isset($data[23])?$data[23]:'',
 																			'model_name' =>isset($data[24])?$data[24]:'',
 																			'model_id' =>isset($data[25])?$data[25]:'',
-																			'use' =>isset($data[26])?$data[26]:'',
+																			'useage' =>isset($data[26])?$data[26]:'',
 																			'disclaimer' =>isset($data[27])?$data[27]:'',
 																			'insales_package' =>isset($data[28])?$data[28]:'',
 																			'item_image'=>isset($data[29])?trim($data[29]):'',
