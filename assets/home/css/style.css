@@ -1,12 +1,22 @@
 .pr15 a{
 	color:#555 !important;
 }
+.sec-des li{
+	float:left;
+	border:1px solid #009968;
+	padding:5px 10px;
+	border-radius:10px;
+	list-style-type:none;
+	margin:2px 10px;
+	color:#009688;
+}
 .lod_st{
 	border: 1px solid #187a7d;
     border-radius: 10px;
     color: #fff;
     padding: 6px 15px;
 	background:#009688;
+	
 }
 .mar_t15{
 	margin-top:15px;

@@ -954,6 +954,26 @@
                       <span aria-hidden="true">&times;</span>
             </button>
 		</div>
+		<section>
+			<ul class="sec-des">
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+				<a href="#"><li>jjhjhfsjdaf</li></a>
+			</ul>
+		</section>
+		<div class="clearfix">&nbsp;</div>
+	
           <div class="title"><span><?php echo ucfirst(strtolower(isset($subitemwise[0]['subitem_name'])?$subitemwise[0]['subitem_name']:'')); ?>&nbsp; subitem wise Products lists</span></div>
 		<?php //echo '<pre>';print_r($subcategory_porduct_list);exit; ?>
 		<?php 
