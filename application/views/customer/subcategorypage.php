@@ -11,7 +11,9 @@
 }
 
 </style>
-	<?php if(isset($step_one) && count($step_one)>0){ ?>
+	<?php
+$customerdetails=$this->session->userdata('userdetails');
+	if(isset($step_one) && count($step_one)>0){ ?>
 		<section>
 		<div class="best-pro slider-items-products container_main ">
 			<div class="row mar_t15" >
@@ -49,7 +51,7 @@
 				  
 			<div class="slider-items slider-width-col4 products-grid  text-center help-owl" >
 				<?php foreach ($step_two as $list) { ?>
-				<a href="#">
+				<a href="<?php echo base_url('category/subcategory/'.base64_encode($list['subcategory_id'])); ?>">
 				<div class="item cat_ma" >
 				  <div class=" box-product-outer" >
 					<div class="box-product">

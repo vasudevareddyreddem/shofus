@@ -2832,6 +2832,51 @@ class Category_model extends MY_Model
 			$this->db->where('category_banners.admin_status',1);
 			return $this->db->get()->result_array();
 	  }
+	  /*subcatehorywise*/
+	 public  function subcategorywise_subitems($subcatid){
+		 	$this->db->select('sub_items.subitem_name,sub_items.subcategory_id,sub_items.subitem_id,sub_items.category_id')->from('products');
+			$this->db->join('sub_items', 'sub_items.subcategory_id = products.subcategory_id', 'left'); //
+			$this->db->where('sub_items.subitem_id !=','');
+			$this->db->where('products.subitemid !=','');
+			$this->db->group_by('sub_items.subitem_id');
+			$this->db->where('products.subcategory_id',$subcatid);
+			$return=$this->db->get()->result_array(); 
+			foreach ($return as $list){
+				$items=$this->subitemwise_itemlist($list['subitem_id']);
+				if(count($items)>0){
+				$subitem[$list['subitem_id']]=$list;
+				$subitem[$list['subitem_id']]['item_list']=$items;
+				}
+			}
+			if(isset($subitem) && count($subitem)>0){
+				foreach ($subitem as $lis){
+					$li[]=$lis;
+				}
+			}else{
+				$li=array();
+			}
+			if(!empty($li))
+			{
+			return $li;
+			}
+		
+	}
+	public function subitemwise_itemlist($subitemid){
+		$this->db->select('items_list.*')->from('products');
+		$this->db->join('items_list', 'items_list.id = products.itemwise_id', 'left'); //
+		$this->db->where('items_list.id !=','');
+		$this->db->where('products.itemwise_id !=','');
+		$this->db->group_by('items_list.id');
+		$this->db->where('products.subitemid',$subitemid);
+		return $this->db->get()->result_array(); 
+	}
+	public function subcategorywise_productlist($subcatid){
+		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+		$this->db->where('products.subcategory_id',$subcatid);
+		$this->db->where('products.item_status ',1);
+		return $this->db->get()->result_array(); 
+	}
+	  
 	  
 }
 ?>

@@ -2640,6 +2640,15 @@ public function subitemwise_search(){
 		$this->template->render();
 		 
 	 }
+	 public function subcategory(){
+		 $subcatid=base64_decode($this->uri->segment(3));
+		 $data['itemlist']= $this->category_model->subcategorywise_subitems($subcatid);
+		 //echo $this->db->last_query();exit;
+		 $data['productlist']= $this->category_model->subcategorywise_productlist($subcatid);
+		 //echo '<pre>';print_r($data);exit;
+		 $this->template->write_view('content', 'customer/subcategory');
+			$this->template->render(); 
+	 }
 	
 }
 ?>
