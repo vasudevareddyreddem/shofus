@@ -346,7 +346,7 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_all_color_list_sub($catid,$subcatid){
-		$this->db->select('products.colour as color_name')->from('products');
+		$this->db->select('products.colour')->from('products');
 		$this->db->where('products.category_id',$catid);
 		$this->db->where('products.subcategory_id',$subcatid);
 		$this->db->where('products.item_status',1);
@@ -1947,8 +1947,8 @@ class Category_model extends MY_Model
 	public function get_all_itemproducts_list($subcatid,$subitem_id){
 		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.unit,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,sub_items.subitem_name,products.ingredients,products.key_feature,products.disclaimer,products.unit')->from('products');
 		$this->db->join('sub_items', 'sub_items.subitem_id =products.subitemid', 'left');	
-		$this->db->where('item_status',1);
-		$this->db->where('subitemid',$subitem_id);
+		$this->db->where('products.item_status',1);
+		$this->db->where('products.subitemid',$subitem_id);
 		$this->db->where('products.subcategory_id',$subcatid);
 		return $this->db->get()->result_array();
 	}
@@ -2843,9 +2843,9 @@ class Category_model extends MY_Model
 			$return=$this->db->get()->result_array(); 
 			foreach ($return as $list){
 				$items=$this->subitemwise_itemlist($list['subitem_id']);
-				
-				$subitem[$list['subitem_id']]=$list;
 				if(count($items)>0){
+				$subitem[$list['subitem_id']]=$list;
+				
 				$subitem[$list['subitem_id']]['item_list']=$items;
 				}
 			}

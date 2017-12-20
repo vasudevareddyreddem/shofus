@@ -1735,11 +1735,11 @@ public function suitemwiseproductslist(){
 		$this->template->write_view('content', 'customer/mobileviewproductsresult',$data);
 		$this->template->render();
 	}
-	/* subcategory wise*/
+	/* subcategorys wise*/
 	public function subitemwise(){
-	  $subitemid=base64_decode($this->uri->segment(3));
-	  $subcatid=base64_decode($this->uri->segment(4));
-	  $catid=base64_decode($this->uri->segment(5));
+	    $subitemid=base64_decode($this->uri->segment(3));
+		$subcatid=base64_decode($this->uri->segment(4));
+	    $catid=base64_decode($this->uri->segment(5));
 		if($subitemid=='' ||  $subcatid ==''){
 			redirect();
 		}
@@ -1751,7 +1751,8 @@ public function suitemwiseproductslist(){
 		$data['subcatid']=$subcatid;
 		if(isset($catid) && $catid==21){
 			$subitemwise= $this->category_model->get_all_itemproducts_list($subcatid,$subitemid);
-			//echo '<pre>';print_r($data['subcategory_porduct_list']);exit;
+			//echo $this->db->last_query();
+			//echo '<pre>';print_r($subitemwise);exit;
 				if(count($subitemwise)>0){
 					foreach($subitemwise as $list){
 					//echo '<pre>';print_r($list);
@@ -1775,6 +1776,7 @@ public function suitemwiseproductslist(){
 				}
 		}else{
 			$data['subitemwise']= $this->category_model->get_all_itemproducts_list($subcatid,$subitemid);
+			//echo $this->db->last_query();
 				if(isset($data['subitemwise']) && count($data['subitemwise'])>0){
 				foreach($data['subitemwise'] as $list){
 					$reviewrating[]=$this->category_model->product_reviews_avg($list['item_id']);
@@ -2641,7 +2643,10 @@ public function subitemwise_search(){
 		 
 	 }
 	 public function subcategory(){
-		 $subcatid=base64_decode($this->uri->segment(3));
+		 $catid=base64_decode($this->uri->segment(3));
+		 $subcatid=base64_decode($this->uri->segment(4));
+		 $caterory_id=$catid;
+		 $subcaterory_id=$subcatid;
 		 $data['itemlist']= $this->category_model->subcategorywise_subitems($subcatid);
 		 //echo $this->db->last_query();exit;
 		 $data['productlist']= $this->category_model->subcategorywise_productlist($subcatid);
@@ -2662,7 +2667,47 @@ public function subitemwise_search(){
 							$data['rating_count']=array();
 						}
 		 //echo '<pre>';print_r($data['itemlist']);exit;
-		 
+		$data['brand_list']= $this->category_model->get_all_brand_list_sib($caterory_id,$subcaterory_id);
+		$data['price_list']= $this->category_model->get_all_price_list_sub($caterory_id,$subcaterory_id);
+		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
+		$offer_list= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
+		$data['color_list']= $this->category_model->get_all_color_list_sub($caterory_id,$subcaterory_id);
+		foreach ($data['price_list'] as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				$amounts[]=$list['item_cost'];
+			}else{
+				$amounts[]=$list['special_price'];
+			}
+			
+		}
+		$minamt = min($amounts);
+		$maxamt= max($amounts);
+		//echo '<pre>';print_r( $amounts);exit;
+		$data['minimum_price'] = array('item_cost'=>$minamt);
+		$data['maximum_price'] = array('item_cost'=>$maxamt);
+		//echo max($data['price_list']);
+		foreach ($offer_list as $list) {
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			if($list['offer_expairdate']>=$curr_date){
+				if($list['offer_percentage']!=''){
+					$ids[]=$list['offer_percentage'];
+				}
+			}else{
+				if($list['offers']!=''){
+					$ids[]=$list['offers'];
+				}
+			}
+			
+		}
+		foreach (array_unique($ids) as $Li){
+			$uniids[]=array('offers'=>$Li);
+			
+		}
+		$data['offer_list']=$uniids;
+		//echo '<pre>';print_r($data);exit;
 		 $cartitemids= $this->category_model->get_all_cart_lists_ids();
 				if(count($cartitemids)>0){
 				foreach($cartitemids as $list){

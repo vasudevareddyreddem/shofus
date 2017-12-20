@@ -188,6 +188,7 @@
 				</div>
 			</div>
 			<div class="clearfix"></div>
+			</br></br>
 			<div class="form-group col-md-6 nopaddingRight san-lg" id="subitems" >
 				<label for="exampleInputEmail1">Sub Item </label>
 				<select class="form-control" onchange="get_items_list(this.value);" id="subitemid" name="subitemid" >

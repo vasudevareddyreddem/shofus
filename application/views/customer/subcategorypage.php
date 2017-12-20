@@ -51,7 +51,7 @@ $customerdetails=$this->session->userdata('userdetails');
 				  
 			<div class="slider-items slider-width-col4 products-grid  text-center help-owl" >
 				<?php foreach ($step_two as $list) { ?>
-				<a href="<?php echo base_url('category/subcategory/'.base64_encode($list['subcategory_id'])); ?>">
+				<a href="<?php echo base_url('category/subcategory/'.base64_encode($list['category_id']).'/'.base64_encode($list['subcategory_id'])); ?>">
 				<div class="item cat_ma" >
 				  <div class=" box-product-outer" >
 					<div class="box-product">
