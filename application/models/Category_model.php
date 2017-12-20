@@ -2843,8 +2843,9 @@ class Category_model extends MY_Model
 			$return=$this->db->get()->result_array(); 
 			foreach ($return as $list){
 				$items=$this->subitemwise_itemlist($list['subitem_id']);
-				if(count($items)>0){
+				
 				$subitem[$list['subitem_id']]=$list;
+				if(count($items)>0){
 				$subitem[$list['subitem_id']]['item_list']=$items;
 				}
 			}
