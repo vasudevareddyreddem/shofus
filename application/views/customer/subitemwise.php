@@ -1081,7 +1081,7 @@
 				<?php }?>
 					 <?php } ?>	
 					 	<?php 	if (!in_array($productslist['item_id'], $idslist)){ ?>
-							<i class="fa fa-star product-ratings"></i>
+						<i class="fa fa-star product-ratings"></i>
 						<i class="fa fa-star product-ratings"></i>
 						<i class="fa fa-star product-ratings"></i>
 						<i class="fa fa-star product-ratings"></i>

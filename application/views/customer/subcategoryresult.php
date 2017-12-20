@@ -1,63 +1,54 @@
-
-
-<?php //echo '<pre>';print_r($itemlist);exit; ?>
-<!--fasion catagories start-->
-			<?php if(isset($itemlist) && count($itemlist)>0){?>
-				<div class="">
-						<ul>
-							<?php foreach ($itemlist as $list){ ?>
-										<li class="dropdown mar_t10 col-md-2 ">
-										
-												<div class="wrimagecard_fa wrimagecard-topimage bord_ri">
-													  <div class=" text-center ">
-													 <a href="<?php echo base_url('category/subitemwise/'.base64_encode($list['subitem_id']).'/'.base64_encode($list['subcategory_id']).'/'.base64_encode($list['category_id'])); ?>"> <?php echo $list['subitem_name']; ?></a>
-													  <span class="caret"></span>
-													  <p style="font-size:10px;padding:0;margin:0">select</p>
-													  </div>
-												
-												</div>
-												<?php if(isset($list['item_list']) && count($list['item_list'])>0){ ?>
-													<ul class="dropdown-menu">
-													<?php foreach ($list['item_list'] as $lis){?>
-													  <li><a href="#"><?php echo $lis['item_name']; ?></a></li>
-													<?php }?>
-													</ul>
-												<?php } ?>
-										</li>
-								<?php } ?>
-					
-						</ul>
-				</div>
+<?php 
+foreach($previousdata as $predata){ 
 				
-			<?php } ?>
-			<div class="clearfix">&nbsp;</div>
-<span id="filtersubitemwisedata"></span>
-   <span id="withoursearchsubcategory">
+				
+				$offers[]=$predata['offers'];
+				$brands[]=$predata['brand'];
+				$colours[]=$predata['colour'];
+				$sizes[]=$predata['size'];
+				$rams[]=$predata['ram'];
+				$oss[]=$predata['os'];
+				
+				$minimum_prices=$predata['mini_amount'];
+				$maximum_prices=$predata['max_amount'];
+			
+			//echo '<pre>';print_r($offers);
+		  }
+
+?>
+	<span id="filtersubitemwisedata">
 	<div class="col-md-3">
 			<div class="title"><span>Filters</span></div>
 					  <div class="row">
-						  <div class="col-md-6">
-						  <h4>Min:<span class="site_col"><?php echo $minimum_price['item_cost']; ?></span></h4>
-						  <input type="hidden" id="min" name="min" value="<?php echo $minimum_price['item_cost']; ?>">
-						  </div>
-						  <div class="col-md-6">
-						 <h4>Max:<span class="site_col"><?php echo $maximum_price['item_cost']; ?></span></h4>
-						  <input type="hidden" id="max" name="max" value="<?php echo $maximum_price['item_cost']; ?>">
-						  </div>
+						   <div class="col-md-6">
+				  <h4>Min:<span class="site_col"><?php echo $minimum_prices; ?></span></h4>
+				  </div>
+				  <div class="col-md-6">
+				 <h4>Max:<span class="site_col"><?php echo $maximum_prices; ?></span></h4>
+				  </div>
 					</div>
 				   <div class="row">
 		  <div class="col-md-6">
 		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="subcatehorywise(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
 				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
-				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-				<?php } ?>
+					<?Php if($minimum_prices==$i){ ?>
+						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
+					<?php }else{ ?>
+						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+						<?php } ?>
+				<?php $min_amt=$i;
+				} ?>
 				
 			  </select>
 		  </div>
 		  <div class="col-md-6">
-		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="subcatehorywise(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
-				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+		    <select class="form-control" id="maximum_price" name="maximum_price" onchange="subcatehorywise(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
+				 <?php for( $i=floor($minimum_prices); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+					<?Php if($maximum_prices==$i){ ?>
+						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
+					<?php }else{ ?>
+						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+						<?php } ?>
 				<?php } ?>
 
 			  </select>
@@ -78,14 +69,17 @@
                      </div>
                      <div id="collapseThree1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree2">
                         <div class="panel-body">
-                           <?php foreach ($brand_list as $list){ ?>
+                           <?php foreach ($brand_list as $list){
+							   if (in_array($list['brand'], $brands)) { ?>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subcatehorywise(this.value, '<?php echo 'brand'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+						<?php } else{  ?>
                            <div class="checkbox"><label><input type="checkbox" onclick="subcatehorywise(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
-                           <?php } ?>
+                           <?php } } ?>
                         </div>
                      </div>
                   </div>
                   <?php } ?>
-				  <?php if(isset($offer_list) && count($offer_list)>0){?>
+				   <?php if(isset($offer_list) && count($offer_list)>0){?>
                   <div class="panel panel-primary">
                      <div class="panel-heading" role="tab" id="headingThree">
                         <h4 class="panel-title">
@@ -96,9 +90,12 @@
                      </div>
                      <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
-                           <?php foreach ($offer_list as $list){ ?>
+                           <?php foreach ($offer_list as $list){ 
+						   	if (in_array($list['offers'], $offers)) { ?>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subcatehorywise(this.value, '<?php echo 'offer'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo number_format($list['offers'], 2, '.', ''); ?></span></label></div>
+						<?php } else{  ?>
                            <div class="checkbox"><label><input type="checkbox" onclick="subcatehorywise(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo number_format($list['offers'], 2, '.', ''); ?></span></label></div>
-                           <?php } ?>
+                           <?php }  }?>
                         </div>
                      </div>
                   </div>
@@ -114,14 +111,17 @@
                      </div>
                      <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree45">
                         <div class="panel-body">
-                           <?php foreach ($color_list as $list){ ?>
-                           <div class="checkbox"><label><input type="checkbox" onclick="subcatehorywise(this.value, '<?php echo 'colour'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[color][]" value="<?php echo $list['colour']; ?>"><span>&nbsp;<?php echo $list['colour']; ?></span></label></div>
-                           <?php } ?>
+                           <?php foreach ($color_list as $list){ 
+							   if (in_array($list['colour'], $colours)) { ?>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subcatehorywise(this.value, '<?php echo 'colour'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[colour][]" value="<?php echo $list['colour']; ?>"><span>&nbsp;<?php echo $list['colour']; ?></span></label></div>
+							<?php } else{  ?>
+                           <div class="checkbox"><label><input type="checkbox" onclick="subcatehorywise(this.value, '<?php echo 'colour'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[colour][]" value="<?php echo $list['colour']; ?>"><span>&nbsp;<?php echo $list['colour']; ?></span></label></div>
+                           <?php } } ?>
                         </div>
                      </div>
                   </div>
                   <?php } ?>
-				  	<?php  if(isset($sizes_list) && count($sizes_list)>0){ ?>
+				  		<?php  if(isset($sizes_list) && count($sizes_list)>0){ ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading" role="tab" id="headingThree">
 						 <h4 class="panel-title">
@@ -133,10 +133,13 @@
 					</div>
 					<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body">
-						<?php foreach ($sizes_list as $list){ ?>
+						<?php foreach ($sizes_list as $list){ 
+							   if (in_array($list['size'], $sizes)) { ?>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subcatehorywise(this.value, '<?php echo 'size'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['size']; ?>"><span>&nbsp;<?php echo $list['size']; ?></span></label></div>
+							<?php } else{  ?>
 							<div class="checkbox"><label><input type="checkbox" onclick="subcatehorywise(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['size']; ?>"><span>&nbsp;<?php echo $list['size']; ?></span></label></div>
 						
-						<?php } ?>
+						<?php }  } ?>
 						</div>
 					</div>
 				</div>
@@ -153,10 +156,13 @@
 						</div>
 						<div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThreecomram">
 							<div class="panel-body">
-							<?php foreach ($ram_list as $list){ ?>
+							<?php foreach ($ram_list as $list){ 
+							   if (in_array($list['ram'], $rams)) { ?>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subcatehorywise(this.value, '<?php echo 'ram'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[ram][]" value="<?php echo $list['ram']; ?>"><span>&nbsp;<?php echo $list['ram']; ?></span></label></div>
+							<?php } else{  ?>
 								<div class="checkbox"><label><input type="checkbox" onclick="subcatehorywise(this.value, '<?php echo 'ram'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[ram][]" value="<?php echo $list['ram']; ?>"><span>&nbsp;<?php echo $list['ram']; ?></span></label></div>
 
-							<?php } ?>
+							<?php } } ?>
 							</div>
 						</div>
 					</div>
@@ -173,10 +179,13 @@
 						</div>
 						<div id="collapseos" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingos">
 							<div class="panel-body">
-							<?php foreach ($os_list as $list){ ?>
+							<?php foreach ($os_list as $list){ 
+							   if (in_array($list['os'], $oss)) { ?>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subcatehorywise(this.value, '<?php echo 'os'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[os][]" value="<?php echo $list['os']; ?>"><span>&nbsp;<?php echo $list['os']; ?></span></label></div>
+							<?php } else{  ?>
 								<div class="checkbox"><label><input type="checkbox" onclick="subcatehorywise(this.value, '<?php echo 'os'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[os][]" value="<?php echo $list['os']; ?>"><span>&nbsp;<?php echo $list['os']; ?></span></label></div>
 
-							<?php } ?>
+							<?php } } ?>
 							</div>
 						</div>
 					</div>
@@ -335,16 +344,7 @@
 </body>
 <script>
 function subcatehorywise(val,status,check){
-	if(status=='mimimum_price'){
-			var minamt=val;
-		}else{
-			var minamt=$('#min').val();
-		}
-		if(status=='maximum_price'){
-			var maxamt=val;
-		}else{
-			var maxamt=$('#max').val();
-		}
+	
 	jQuery.ajax({
 		
 				url: "<?php echo site_url('category/subcategorywiseearch');?>",
@@ -357,15 +357,17 @@ function subcatehorywise(val,status,check){
 					productsvalues: val,
 					searchvalue: status,
 					unchecked: check,
-					mini_mum: minamt,
-					maxi_mum: maxamt,
+					mini_mum: $('#mimimum_price').val(),
+					maxi_mum: $('#maximum_price').val(),
 
 					},
 				dataType: 'html',
 				success: function (data) {
 					//alert(data);
 					$("#withoursearchsubcategory").empty();
-					$("#withoursearchsubcategory").append(data);
+					$("#withoursearchsubcategory").hide();
+					$("#filtersubitemwisedata").empty();
+					$("#filtersubitemwisedata").append(data);
 	}
 });
 }

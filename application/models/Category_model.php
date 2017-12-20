@@ -239,31 +239,7 @@ class Category_model extends MY_Model
 		$sql1="UPDATE subcat_wise_fliter_search SET os ='".$data."' WHERE id ='".$id."'";
 		return $this->db->query($sql1);
 	}
-	public function update_sim_type_privous_subcategorysearchdata($id,$data)
-	{
-		$sql1="UPDATE subcat_wise_fliter_search SET sim_type ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_camera_privous_subcategorysearchdata($id,$data)
-	{
-		$sql1="UPDATE subcat_wise_fliter_search SET camera ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_internal_memeory_privous_subcategorysearchdata($id,$data)
-	{
-		$sql1="UPDATE subcat_wise_fliter_search SET internal_memeory ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_screen_size_privous_subcategorysearchdata($id,$data)
-	{
-		$sql1="UPDATE subcat_wise_fliter_search SET screen_size ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_Processor_privous_subcategorysearchdata($id,$data)
-	{
-		$sql1="UPDATE subcat_wise_fliter_search SET Processor ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
+	
 	public function update_size_privous_subcategorysearchdata($id,$data)
 	{
 		$sql1="UPDATE subcat_wise_fliter_search SET size ='".$data."' WHERE id ='".$id."'";
@@ -275,11 +251,7 @@ class Category_model extends MY_Model
 		$sql1="UPDATE subcat_wise_fliter_search SET color ='".$data."' WHERE id ='".$id."'";
 		return $this->db->query($sql1);
 	}
-	public function update_discount_privous_subcategorysearchdata($id,$data)
-	{
-		$sql1="UPDATE subcat_wise_fliter_search SET discount ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
+	
 	public function update_brand_privous_subcategorysearchdata($id,$data)
 	{
 		$sql1="UPDATE subcat_wise_fliter_search SET brand ='".$data."' WHERE id ='".$id."'";
@@ -290,27 +262,8 @@ class Category_model extends MY_Model
 		$sql1="UPDATE subcat_wise_fliter_search SET offers ='".$data."' WHERE id ='".$id."'";
 		return $this->db->query($sql1);
 	}
-	public function update_res_privous_subcategorysearchdata($id,$data)
-	{
-		$sql1="UPDATE subcat_wise_fliter_search SET restraent ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_cusine_privous_subcategorysearchdata($id,$data)
-	{
-		$sql1="UPDATE subcat_wise_fliter_search SET cusine ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_status_privous_subcategorysearchdata($id,$data)
-	{
-		$sql1="UPDATE subcat_wise_fliter_search SET status ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function get_all_previous_subcategory_search_fields()
-	{
-		$this->db->select('*')->from('subcat_wise_fliter_search');
-		$this->db->where('Ip_address',$this->input->ip_address());
-		return $this->db->get()->result_array();
-	}
+	
+	
 	public function get_all_previous_search_subcategory_fields()
 	{
 		$this->db->select('*')->from('subcat_wise_fliter_search');
@@ -355,38 +308,26 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_all_size_list_sub($catid,$subcatid){
-		$this->db->select('product_size_list.p_size_name')->from('products');
-		$this->db->join('product_size_list', 'product_size_list.item_id = products.item_id', 'left');	
+		$this->db->select('products.size')->from('products');
 		$this->db->where('products.category_id',$catid);
 		$this->db->where('products.category_id',$subcatid);
 		$this->db->where('products.item_status',1);
-		$this->db->where('product_size_list.p_size_name!=','');
-		$this->db->group_by('product_size_list.p_size_name');
+		$this->db->where('products.size!=','');
+		$this->db->group_by('products.size');
 		return $this->db->get()->result_array();
 	}
 	public function get_search_all_subcategorywise_products()
 	{
-	
-	
 	$this->db->select('*')->from('subcat_wise_fliter_search');
-	$this->db->group_by('subcat_wise_fliter_search.cusine');
-	$this->db->group_by('subcat_wise_fliter_search.restraent');
 	$this->db->group_by('subcat_wise_fliter_search.mini_amount');
 	$this->db->group_by('subcat_wise_fliter_search.max_amount');
 	$this->db->group_by('subcat_wise_fliter_search.offers');
 	$this->db->group_by('subcat_wise_fliter_search.brand');
-	$this->db->group_by('subcat_wise_fliter_search.discount');
-	$this->db->group_by('subcat_wise_fliter_search.status');
 	$this->db->group_by('subcat_wise_fliter_search.size');
 	$this->db->group_by('subcat_wise_fliter_search.color');
 	$this->db->group_by('subcat_wise_fliter_search.ram');
 	$this->db->group_by('subcat_wise_fliter_search.colour');
 	$this->db->group_by('subcat_wise_fliter_search.os');
-	$this->db->group_by('subcat_wise_fliter_search.sim_type');
-	$this->db->group_by('subcat_wise_fliter_search.camera');
-	$this->db->group_by('subcat_wise_fliter_search.internal_memeory');
-	$this->db->group_by('subcat_wise_fliter_search.screen_size');
-	$this->db->group_by('subcat_wise_fliter_search.Processor');
 	$query=$this->db->get()->result_array();
 		foreach ($query as $listing){
 			
@@ -396,8 +337,6 @@ class Category_model extends MY_Model
 			}
 			if($listing['offers']!=''){
 			$offers[] =$listing['offers'];
-			}if($listing['discount']!=''){
-			$discount[] =$listing['discount'];
 			}
 			if($listing['ram']!=''){
 			$ram[] =$listing['ram'];
@@ -407,21 +346,6 @@ class Category_model extends MY_Model
 			}
 			if($listing['os']!=''){
 			$os[] =$listing['os'];
-			}
-			if($listing['sim_type']!=''){
-			$sim_type[] =$listing['sim_type'];
-			}
-			if($listing['camera']!=''){
-			$camera[] =$listing['camera'];
-			}
-			if($listing['internal_memeory']!=''){
-			$internal_memeory[] =$listing['internal_memeory'];
-			}
-			if($listing['screen_size']!=''){
-			$screen_size[] =$listing['screen_size'];
-			}
-			if($listing['Processor']!=''){
-			$Processor[] =$listing['Processor'];
 			}
 			$minamount = $listing['mini_amount'];
 			$maxamount = $listing['max_amount'];
@@ -440,11 +364,6 @@ class Category_model extends MY_Model
 		}else{
 		$offerss='NULL';
 		}
-		if(isset($discount) && count($discount)>0 ){
-			$discount=implode('","',$discount);
-		}else{
-		$discount='NULL';
-		}
 		if(isset($ram) && count($ram)>0 ){
 			$ram=implode('","',$ram);
 		}else{
@@ -460,47 +379,25 @@ class Category_model extends MY_Model
 		}else{
 		$os='NULL';
 		}
-		if(isset($sim_type) && count($sim_type)>0 ){
-			$sim_type=implode('","',$sim_type);
-		}else{
-		$sim_type='NULL';
-		}
-		if(isset($camera) && count($camera)>0 ){
-			$camera=implode('","',$camera);
-		}else{
-		$camera='NULL';
-		}if(isset($internal_memeory) && count($internal_memeory)>0 ){
-			$internal_memeory=implode('","',$internal_memeory);
-		}else{
-		$internal_memeory='NULL';
-		}if(isset($screen_size) && count($screen_size)>0 ){
-			$screen_size=implode('","',$screen_size);
-		}else{
-		$screen_size='NULL';
-		}if(isset($Processor) && count($Processor)>0 ){
-			$Processor=implode('","',$Processor);
-		}else{
-		$Processor='NULL';
-		}
-		$return['filterslist'][] = $this->get_subcategory_filers_products_list_alllist($brands,$discount,$offerss,$ram,$colour,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$minamount,$maxamount,$catid,$subcatid);
+		$return['filterslist'] = $this->get_subcategory_filers_products_list_alllist($brands,$offerss,$ram,$colour,$os,$minamount,$maxamount,$catid,$subcatid);
 		//echo $this->db->last_query();exit;
 		
 		//echo '<pre>';print_r($return);exit;
-		if(!empty($return))
+		if(!empty($return['filterslist']))
 		{
-		return $return;
+		return $return['filterslist'];
 		}
 		
 	}
 	
-	public function get_subcategory_filers_products_list_alllist($b,$d,$f,$ram,$colour,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$min,$max,$cid,$subcatid){
+	public function get_subcategory_filers_products_list_alllist($b,$f,$ram,$colour,$os,$min,$max,$cid,$subcatid){
 		
 		$min_amt=(($min)-1);
 		$maxmum=(int)$max;
 		$lessamount=($maxmum)-($min_amt);
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('*')->from('products');
+		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
 		if($lessamount<='500' || $lessamount<='100'){
 		$this->db->where('item_cost <=', '"'.$maxmum.'"',false);
 		}else{
@@ -512,11 +409,6 @@ class Category_model extends MY_Model
 		
 		}if($f!='NULL'){
 			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$f.'"', false);
-			//$this->db->where_in('if(`offer_expairdate`>=NOW(),`offer_percentage`,`offers` )', '"'.$f.'"', false);
-		}if($d!='NULL'){
-			$this->db->where_in('discount','"'.$d.'"',false);
-			//$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_amount`,`discount` )', '"'.$d.'"', false);
-
 		}
 		if($ram!='NULL'){
 			$this->db->where_in('ram','"'.$ram.'"',false);
@@ -524,20 +416,10 @@ class Category_model extends MY_Model
 			$this->db->where_in('colour','"'.$colour.'"',false);
 		}if($os!='NULL'){
 			$this->db->where_in('os','"'.$os.'"',false);
-		}if($sim_type!='NULL'){
-			$this->db->where_in('sim_type','"'.$sim_type.'"',false);
-		}if($camera!='NULL'){
-			$this->db->where_in('camera','"'.$camera.'"',false);
-		}if($internal_memeory!='NULL'){
-			$this->db->where_in('internal_memeory','"'.$internal_memeory.'"',false);
-		}if($screen_size!='NULL'){
-			$this->db->where_in('screen_size','"'.$screen_size.'"',false);
-		}if($Processor!='NULL'){
-			$this->db->where_in('Processor','"'.$Processor.'"',false);
 		}
-		
 		$this->db->where('item_status',1);
 		$this->db->where('category_id',$cid);
+		$this->db->where('subcategory_id',$subcatid);
 		
 		return $this->db->get()->result_array();
 		
@@ -1952,6 +1834,13 @@ class Category_model extends MY_Model
 		$this->db->where('products.subcategory_id',$subcatid);
 		return $this->db->get()->result_array();
 	}
+	public function get_all_subcatproducts_list($subcatid){
+		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.unit,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,sub_items.subitem_name,products.ingredients,products.key_feature,products.disclaimer,products.unit')->from('products');
+		$this->db->join('sub_items', 'sub_items.subitem_id =products.subitemid', 'left');	
+		$this->db->where('products.item_status',1);
+		$this->db->where('products.subcategory_id',$subcatid);
+		return $this->db->get()->result_array();
+	}
 	public function get_subitem_all_brand_list($subcatid,$subitem_id){
 		
 		$this->db->select('products.brand')->from('products');
@@ -2644,6 +2533,16 @@ class Category_model extends MY_Model
 	$this->db->group_by('items_list.id');
 	return $this->db->get()->result_array();
 	}
+	public function get_all_subcatwise_item_list($subcatid)
+	{
+	//$this->db->select('*')->from('sub_items');
+	$this->db->select('items_list.*')->from('products');
+	$this->db->join('items_list', 'items_list.id = products.itemwise_id', 'left'); //
+	$this->db->where('products.subcategory_id',$subcatid);
+	$this->db->where('products.itemwise_id !=','');
+	$this->db->group_by('items_list.id');
+	return $this->db->get()->result_array();
+	}
 	/*subcategory list*/
 	public function get_category_subcategory_list($catid){
 		$this->db->select('subcategories.*')->from('products');
@@ -2875,6 +2774,11 @@ class Category_model extends MY_Model
 		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
 		$this->db->where('products.subcategory_id',$subcatid);
 		$this->db->where('products.item_status ',1);
+		return $this->db->get()->result_array(); 
+	}
+	public function get_subcategory_privousdata($ipaddress){
+		$this->db->select('subcat_wise_fliter_search.id')->from('subcat_wise_fliter_search');
+		$this->db->where('Ip_address',$ipaddress);
 		return $this->db->get()->result_array(); 
 	}
 	  
