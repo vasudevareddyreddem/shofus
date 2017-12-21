@@ -954,24 +954,15 @@
                       <span aria-hidden="true">&times;</span>
             </button>
 		</div>
+		<?php if(isset($subitemwise_item_list)&& count($subitemwise_item_list)>0){ ?>
 		<section>
 			<ul class="sec-des">
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
-				<a href="#"><li>jjhjhfsjdaf</li></a>
+			<?php foreach ($subitemwise_item_list as $list){ ?>
+				<a href="<?php echo base_url('category/item/'.base64_encode($list['id'])); ?>"><li><?php echo $list['item_name']; ?></li></a>
+			<?php } ?>
 			</ul>
 		</section>
+		<?php } ?>
 		<div class="clearfix">&nbsp;</div>
 	
           <div class="title"><span><?php echo ucfirst(strtolower(isset($subitemwise[0]['subitem_name'])?$subitemwise[0]['subitem_name']:'')); ?>&nbsp; subitem wise Products lists</span></div>
