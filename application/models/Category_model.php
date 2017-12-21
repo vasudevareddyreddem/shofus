@@ -628,19 +628,7 @@ class Category_model extends MY_Model
 	
 	/* for subcategory wise*/
 	/* for search data*/
-	public function category_searflietrs(){
-		
-	$this->db->select('fliter_search.category_id,fliter_search.value,')->from('fliter_search');
-	$query=$this->db->get()->result_array();
-	$this->db->group_by('Ip_address',$this->input->ip_address());
-	$this->db->where('Ip_address',$this->input->ip_address());
-
-	$query=$this->db->get()->result_array();
-		foreach ($query as $list){
-			///echo '<pre>';print_r($list);
-			
-		}
-	}
+	
 	public function get_all_category_search_products($data){
 		$this->db->select('*')->from('products');
 		$this->db->where('products.item_status',1);
@@ -649,33 +637,8 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 		
 	}
-	public function save_searchdata($data){
-		
-		$this->db->insert('fliter_search', $data);
-		return $insert_id = $this->db->insert_id();
-	}
-	public function get_all_subcategory_list($ip)
-	{
 	
-	$this->db->select('category.category_id,subcategory_name,subcategories.subcategory_id')->from('fliter_search');
-	$this->db->join('category', 'category.category_id =fliter_search.category_id', 'left');
-	$this->db->join('subcategories', 'subcategories.category_id = category.category_id', 'left');
-	$this->db->group_by('fliter_search.category_id');
-	$this->db->where('fliter_search.Ip_address',$ip);
-	$query=$this->db->get()->result_array();
-	foreach($query as $subcategory)
-	{
-//echo '<pre>';print_r($subcategory);exit;	
-	$return = $this->get_all_subcategory($subcategory['category_id']);
-
-	}
-	if(!empty($return))
-    {
-    return $return;
-	}
-		
 	
-	}
 	
 	
 	/*------------------*/
@@ -825,175 +788,7 @@ class Category_model extends MY_Model
 		$this->db->where('item_id',$id);
 		return $this->db->get()->row_array();
 	}
-	public function update_amount_privous_searchdata($min,$max,$id)
-	{
-		$sql1="UPDATE fliter_search SET mini_amount ='".$min."', max_amount ='".$max."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_cusine_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET cusine ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_offer_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET offers ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_brand_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET brand ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_discount_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET discount ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_color_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET color ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_size_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET size ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_res_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET restraent ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function update_status_privous_searchdata($id,$data)
-	{
-		$sql1="UPDATE fliter_search SET status ='".$data."' WHERE id ='".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function delete_privous_searchdata($id)
-	{
-		$sql1="DELETE FROM fliter_search WHERE id = '".$id."'";
-		return $this->db->query($sql1);
-	}
-	public function get_all_previous_search_fields()
-	{
-		$this->db->select('*')->from('fliter_search');
-		$this->db->where('Ip_address',$this->input->ip_address());
-		return $this->db->get()->result_array();
-	}
-	public function get_search_all_category_id()
-	{
-		$this->db->select('fliter_search.category_id')->from('fliter_search');
-		return $this->db->get()->result_array();
-	}
 	
-	public function get_search_all_subcategory_products()
-	{
-	$this->db->select('fliter_search.*')->from('fliter_search');
-	//$this->db->group_by('fliter_search.cusine');
-	$this->db->group_by('fliter_search.restraent');
-	$this->db->group_by('fliter_search.mini_amount');
-	$this->db->group_by('fliter_search.max_amount');
-	$this->db->group_by('fliter_search.offers');
-	$this->db->group_by('fliter_search.brand');
-	$this->db->group_by('fliter_search.discount');
-	$this->db->group_by('fliter_search.status');
-	$this->db->group_by('fliter_search.size');
-	$this->db->group_by('fliter_search.color');
-	$this->db->order_by('fliter_search.id desc');
-	$query=$this->db->get()->result_array();
-	//echo '<pre>';print_r($query);exit;
-	
-		foreach ($query as $listing){
-			if($listing['brand']!=''){
-			$brand[] = $listing['brand'];	
-			}
-			if($listing['offers']!=''){
-			$offers[] =$listing['offers'];
-			
-			}if($listing['discount']!=''){
-			$discount[] =$listing['discount'];
-			
-			}if($listing['color']!=''){
-			$color[] =$listing['color'];
-			
-			}
-			$minamount = $listing['mini_amount'];
-			$maxamount = $listing['max_amount'];
-			$catid = $listing['category_id'];
-			
-			
-			
-		}
-		if(isset($brand) && count($brand)>0 ){
-			$brands=implode ('","', $brand );
-		}else{
-		$brands='NULL';
-
-		}
-		if(isset($offers) && count($offers)>0){
-			$offerss=implode('","', $offers);
-		}else{
-		$offerss='NULL';
-		}
-		if(isset($discount) && count($discount)>0 ){
-			$discount=implode('","', $discount);
-		}else{
-		$discount='NULL';
-		}
-		if(isset($color) && count($color)>0 ){
-			$color=implode('","', $color);
-		}else{
-		$color='NULL';
-		}		
-		
-		//exit;
-		//echo '<pre>';print_r($listsorting);exit;
-		
-		$return['filterslist'][] = $this->get_filers_products_list_alllist($brands,$discount,$offerss,$color,$minamount,$maxamount,$catid);
-		//echo $this->db->last_query();exit;
-		//echo '<pre>';print_r($return['filterslist']);exit;
-		if(!empty($return['filterslist']))
-		{
-		return $return['filterslist'];
-		}
-		
-		
-		
-		
-		
-	}
-	public function get_filers_products_list_alllist($b,$d,$f,$c,$min,$max,$cid){
-		//echo $b;exit;
-		$min_amt=(($min)-1);
-		$maxmum=(int)$max;
-		$lessamount=($maxmum)-($min_amt);
-		$date = new DateTime("now");
- 		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('*')->from('products');
-		if($lessamount<='500' || $lessamount<='100'){
-		$this->db->where('item_cost <=', '"'.$maxmum.'"',false);
-		}else{
-			$this->db->where('item_cost <=',$maxmum);
-		}
-		$this->db->where('item_cost >=', '"'.(int)$min_amt.'"',false);
-		if($b!='NULL'){
-			$this->db->where_in('brand','"'.$b.'"',false);
-		}if($f!='NULL'){
-			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$f.'"', false);
-		}if($d!='NULL'){
-			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_amount`,`discount` )', '"'.$d.'"', false);
-
-		}if($c!='NULL'){
-			$this->db->where_in('colour','"'.$c.'"',false);
-		}
-		
-		$this->db->where('item_status',1);
-		$this->db->where('category_id',$cid);
-		
-		return $this->db->get()->result_array();
-		
-	}
 	public function get_filers_products_list_amount($min,$max,$cid){
 		$min_amt=(($min)-1);
 		$this->db->select('*')->from('products');
@@ -1603,18 +1398,7 @@ class Category_model extends MY_Model
 	$this->db->where('products.item_id',$itemid);
 	return $this->db->get()->row_array();
  } 
- public function get_all_previous_data_categor_filter($ip)
- {
-  	$this->db->select('*')->from('fliter_search');
-	$this->db->where('Ip_address',$ip);
-	return $this->db->get()->result_array();
- } 
- public function delete_all_previous_data_categor_filter($id,$ip)
- {
-  	$sql1="DELETE FROM fliter_search WHERE Ip_address = '".$ip."' AND  id = '".$id."'";
-	return $this->db->query($sql1);
- }
- public function get_all_subitem_list($catid,$subcatid)
+public function get_all_subitem_list($catid,$subcatid)
  {
   	//$this->db->select('*')->from('sub_items');
   	$this->db->select('sub_items.*')->from('products');
@@ -1707,124 +1491,7 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 		
 	}
-	public function save_mobileviewfilter_data($data){
-		$this->db->insert('fliter_search', $data);
-		return $insert_id = $this->db->insert_id();
-	}
-	public function get_Mobile_search_all_subcategory_products()
-	{
-	$this->db->select('fliter_search.*')->from('fliter_search');
-	//$this->db->group_by('fliter_search.cusine');
-	$this->db->group_by('fliter_search.restraent');
-	$this->db->group_by('fliter_search.mini_amount');
-	$this->db->group_by('fliter_search.max_amount');
-	$this->db->group_by('fliter_search.offers');
-	$this->db->group_by('fliter_search.brand');
-	$this->db->group_by('fliter_search.discount');
-	$this->db->group_by('fliter_search.status');
-	$this->db->group_by('fliter_search.size');
-	$this->db->group_by('fliter_search.color');
-	$this->db->order_by('fliter_search.id desc');
-	$query=$this->db->get()->result_array();
-	//echo '<pre>';print_r($query);exit;
 	
-		foreach ($query as $listing){
-			if($listing['brand']!=''){
-			$brand[] = $listing['brand'];	
-			}
-			if($listing['offers']!=''){
-			$offers[] =$listing['offers'];
-			
-			}if($listing['discount']!=''){
-			$discount[] =$listing['discount'];
-			
-			}if($listing['color']!=''){
-			$color[] =$listing['color'];
-			
-			}
-			$minamount = $listing['mini_amount'];
-			$maxamount = $listing['max_amount'];
-			$catid = $listing['category_id'];
-			$subcatid = $listing['subcategory_id'];
-			
-			
-			
-		}
-		if(isset($brand) && count($brand)>0 ){
-			$brands=implode ('","', $brand );
-		}else{
-		$brands='NULL';
-
-		}
-		if(isset($offers) && count($offers)>0){
-			$offerss=implode('","', $offers);
-		}else{
-		$offerss='NULL';
-		}
-		if(isset($discount) && count($discount)>0 ){
-			$discount=implode('","', $discount);
-		}else{
-		$discount='NULL';
-		}
-		if(isset($color) && count($color)>0 ){
-			$color=implode('","', $color);
-		}else{
-		$color='NULL';
-		}		
-		
-		//exit;
-		//echo '<pre>';print_r($listsorting);exit;
-		
-		$return['filterslist'][] = $this->get_mobile_filers_products_list_alllist($brands,$discount,$offerss,$color,$minamount,$maxamount,$catid,$subcatid);
-		//echo $this->db->last_query();exit;
-		//echo '<pre>';print_r($return['filterslist']);exit;
-		if(!empty($return['filterslist']))
-		{
-		return $return['filterslist'];
-		}
-		
-		
-		
-		
-		
-	}
-	public function get_mobile_filers_products_list_alllist($b,$d,$f,$c,$min,$max,$cid,$subcatid){
-		//echo $b;exit;
-		$min_amt=(($min)-1);
-		$maxmum=(int)$max;
-		$lessamount=($maxmum)-($min_amt);
-		$date = new DateTime("now");
- 		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('*')->from('products');
-		if($lessamount<='500' || $lessamount<='100'){
-		$this->db->where('item_cost <=', '"'.$maxmum.'"',false);
-		}else{
-			$this->db->where('item_cost <=',$maxmum);
-		}
-		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )<=', '"'.$maxmum.'"', false);
-		$this->db->where('item_cost >=', '"'.(int)$min_amt.'"',false);
-		//$this->db->where('if(`offer_expairdate`>="$curr_date",`item_cost`,`special_price` )>=', '"'.(int)$min_amt.'"', false);
-		if($b!='NULL'){
-			$this->db->where_in('brand','"'.$b.'"',false);
-		
-		}if($f!='NULL'){
-			$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_percentage`,`offers` )', '"'.$f.'"', false);
-			//$this->db->where_in('offer_percentage','"'.$f.'"',false);
-		}if($d!='NULL'){
-			//$this->db->where_in('discount','"'.$d.'"',false);
-			$this->db->where_in('if(`offer_expairdate`>="$curr_date",`offer_amount`,`discount` )', '"'.$d.'"', false);
-
-		}if($c!='NULL'){
-			$this->db->where_in('colour','"'.$c.'"',false);
-		}
-		
-		$this->db->where('item_status',1);
-		$this->db->where('category_id',$cid);
-		$this->db->where('subcategory_id',$subcatid);
-		
-		return $this->db->get()->result_array();
-		
-	}
 	/* subitemwise*/
 	public function get_all_itemproducts_list($subcatid,$subitem_id){
 		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.unit,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,sub_items.subitem_name,products.ingredients,products.key_feature,products.disclaimer,products.unit')->from('products');
@@ -2209,7 +1876,6 @@ class Category_model extends MY_Model
 	public function get_subitemwise_search_result_data($ip)
 	{
 	$this->db->select('subitem_wise_filter_search.*')->from('subitem_wise_filter_search');
-	//$this->db->group_by('fliter_search.cusine');
 	$this->db->group_by('subitem_wise_filter_search.offer');
 	$this->db->group_by('subitem_wise_filter_search.brand');
 	$this->db->group_by('subitem_wise_filter_search.discount');
@@ -2850,7 +2516,6 @@ class Category_model extends MY_Model
 	public function get_itemwise_search_result_data($ip)
 	{
 	$this->db->select('item_wise_filter_search.*')->from('item_wise_filter_search');
-	//$this->db->group_by('fliter_search.cusine');
 	$this->db->group_by('item_wise_filter_search.offer');
 	$this->db->group_by('item_wise_filter_search.brand');
 	$this->db->group_by('item_wise_filter_search.discount');
