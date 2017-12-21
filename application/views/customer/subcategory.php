@@ -3,7 +3,7 @@
 <?php //echo '<pre>';print_r($itemlist);exit; ?>
 <!--fasion catagories start-->
 			<?php if(isset($itemlist) && count($itemlist)>0){?>
-				<div class="">
+				<div class="col-md-offset-3">
 						<ul>
 							<?php foreach ($itemlist as $list){ ?>
 										<li class="dropdown mar_t10 col-md-2 ">
@@ -19,7 +19,7 @@
 												<?php if(isset($list['item_list']) && count($list['item_list'])>0){ ?>
 													<ul class="dropdown-menu">
 													<?php foreach ($list['item_list'] as $lis){?>
-													  <li><a href="#"><?php echo $lis['item_name']; ?></a></li>
+													  <li><a href="<?php echo base_url('category/item/'.base64_encode($lis['id'])); ?>"><?php echo $lis['item_name']; ?></a></li>
 													<?php }?>
 													</ul>
 												<?php } ?>
@@ -191,7 +191,7 @@
                       <span aria-hidden="true">&times;</span>
             </button>
 		</div>
-          <div class="title"><span><?php echo ucfirst(strtolower(isset($subitemwise[0]['subitem_name'])?$subitemwise[0]['subitem_name']:'')); ?>&nbsp; subitem wise Products lists</span></div>
+          <div class="title"><span><?php echo ucfirst(strtolower(isset($subcatdetais['subcategory_name'])?$subcatdetais['subcategory_name']:'')); ?>&nbsp; subitem wise Products lists</span></div>
 		
 		<?php 
 		if( isset($productlist) && count($productlist)>0){

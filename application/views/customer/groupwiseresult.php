@@ -50,8 +50,7 @@
    <span id="subitemwisefilterdata">
  <div class="col-sm-3">
             <div class="title"><span>Filters</span></div>
-			<input type="hidden" id="subitemid" name="subitemid" value="<?php echo $subitemid; ?>">
-			<input type="hidden" id="subcatid" name="subcatid" value="<?php echo $subcatid; ?>">
+              <input type="hidden" name="itemid" id="itemid" value="<?php echo $category_id;?>">
               <div class="row">
 				  <div class="col-md-6">
 				  <h4>Min:<span class="site_col"><?php echo $minimum_prices; ?></span></h4>
@@ -62,7 +61,7 @@
 			</div>
 		  <div class="row">
 		  <div class="col-md-6">
-		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="subitemwisefilters(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
+		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="categorywisefilters(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
 				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
 					<?Php if($minimum_prices==$i){ ?>
 						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
@@ -75,7 +74,7 @@
 			  </select>
 		  </div>
 		  <div class="col-md-6">
-		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="subitemwisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
+		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="categorywisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
 				 <?php for( $i=floor($minimum_prices); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
 					<?Php if($maximum_prices==$i){ ?>
 						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
@@ -102,9 +101,9 @@
                         <div class="panel-body">
                            <?php foreach ($offer_list as $list){ 
 						   	if (in_array($list['offers'], $offers)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'offer'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo number_format($list['offers'], 2, '.', ''); ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'offer'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo number_format($list['offers'], 2, '.', ''); ?></span></label></div>
 						<?php } else{  ?>
-                           <div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo number_format($list['offers'], 2, '.', ''); ?></span></label></div>
+                           <div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'offer'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[offers][]" value="<?php echo $list['offers']; ?>"><span>&nbsp;<?php echo number_format($list['offers'], 2, '.', ''); ?></span></label></div>
                            <?php }  }?>
                         </div>
                      </div>
@@ -123,9 +122,9 @@
                         <div class="panel-body">
                            <?php foreach ($brand_list as $list){
 							   if (in_array($list['brand'], $brands)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'brand'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'brand'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
 						<?php } else{  ?>
-                           <div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
+                           <div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'brand'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[brand][]" value="<?php echo $list['brand']; ?>"><span>&nbsp;<?php echo $list['brand']; ?></span></label></div>
                            <?php } } ?>
                         </div>
                      </div>
@@ -145,9 +144,9 @@
                         <div class="panel-body">
                            <?php foreach ($color_list as $list){ 
 							   if (in_array($list['colour'], $colours)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'colour'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[colour][]" value="<?php echo $list['colour']; ?>"><span>&nbsp;<?php echo $list['colour']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'colour'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[colour][]" value="<?php echo $list['colour']; ?>"><span>&nbsp;<?php echo $list['colour']; ?></span></label></div>
 							<?php } else{  ?>
-                           <div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'colour'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[colour][]" value="<?php echo $list['colour']; ?>"><span>&nbsp;<?php echo $list['colour']; ?></span></label></div>
+                           <div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'colour'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[colour][]" value="<?php echo $list['colour']; ?>"><span>&nbsp;<?php echo $list['colour']; ?></span></label></div>
                            <?php } } ?>
                         </div>
                      </div>
@@ -167,9 +166,9 @@
 						<div class="panel-body">
 						<?php foreach ($sizes_list as $list){ 
 							   if (in_array($list['size'], $sizes)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'size'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['size']; ?>"><span>&nbsp;<?php echo $list['size']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'size'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['size']; ?>"><span>&nbsp;<?php echo $list['size']; ?></span></label></div>
 							<?php } else{  ?>
-							<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['size']; ?>"><span>&nbsp;<?php echo $list['size']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[size][]" value="<?php echo $list['size']; ?>"><span>&nbsp;<?php echo $list['size']; ?></span></label></div>
 						
 						<?php }  } ?>
 						</div>
@@ -190,9 +189,9 @@
 							<div class="panel-body">
 							<?php foreach ($ram_list as $list){ 
 							   if (in_array($list['ram'], $rams)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'ram'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[ram][]" value="<?php echo $list['ram']; ?>"><span>&nbsp;<?php echo $list['ram']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'ram'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[ram][]" value="<?php echo $list['ram']; ?>"><span>&nbsp;<?php echo $list['ram']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'ram'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[ram][]" value="<?php echo $list['ram']; ?>"><span>&nbsp;<?php echo $list['ram']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'ram'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[ram][]" value="<?php echo $list['ram']; ?>"><span>&nbsp;<?php echo $list['ram']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -213,9 +212,9 @@
 							<div class="panel-body">
 							<?php foreach ($os_list as $list){ 
 							   if (in_array($list['os'], $oss)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'os'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[os][]" value="<?php echo $list['os']; ?>"><span>&nbsp;<?php echo $list['os']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'os'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[os][]" value="<?php echo $list['os']; ?>"><span>&nbsp;<?php echo $list['os']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'os'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[os][]" value="<?php echo $list['os']; ?>"><span>&nbsp;<?php echo $list['os']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'os'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[os][]" value="<?php echo $list['os']; ?>"><span>&nbsp;<?php echo $list['os']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -236,9 +235,9 @@
 							<div class="panel-body">
 							<?php foreach ($sim_list as $list){ 
 							   if (in_array($list['sim_type'], $sim_types)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'sim_type'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[sim_type][]" value="<?php echo $list['sim_type']; ?>"><span>&nbsp;<?php echo $list['sim_type']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'sim_type'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[sim_type][]" value="<?php echo $list['sim_type']; ?>"><span>&nbsp;<?php echo $list['sim_type']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'sim_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[sim_type][]" value="<?php echo $list['sim_type']; ?>"><span>&nbsp;<?php echo $list['sim_type']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'sim_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[sim_type][]" value="<?php echo $list['sim_type']; ?>"><span>&nbsp;<?php echo $list['sim_type']; ?></span></label></div>
 
 							<?php } }  ?>
 							</div>
@@ -259,9 +258,9 @@
 							<div class="panel-body">
 							<?php foreach ($camera_list as $list){ 
 							   if (in_array($list['camera'], $cameras)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'camera'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[camera][]" value="<?php echo $list['camera']; ?>"><span>&nbsp;<?php echo $list['camera']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'camera'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[camera][]" value="<?php echo $list['camera']; ?>"><span>&nbsp;<?php echo $list['camera']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'camera'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[camera][]" value="<?php echo $list['camera']; ?>"><span>&nbsp;<?php echo $list['camera']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'camera'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[camera][]" value="<?php echo $list['camera']; ?>"><span>&nbsp;<?php echo $list['camera']; ?></span></label></div>
 
 							<?php } }  ?>
 							</div>
@@ -282,9 +281,9 @@
 							<div class="panel-body">
 							<?php foreach ($internal_memeory_list as $list){ 
 							   if (in_array($list['internal_memeory'], $internal_memeorys)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'internal_memeory'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[internal_memeory][]" value="<?php echo $list['internal_memeory']; ?>"><span>&nbsp;<?php echo $list['internal_memeory']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'internal_memeory'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[internal_memeory][]" value="<?php echo $list['internal_memeory']; ?>"><span>&nbsp;<?php echo $list['internal_memeory']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'internal_memeory'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[internal_memeory][]" value="<?php echo $list['internal_memeory']; ?>"><span>&nbsp;<?php echo $list['internal_memeory']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'internal_memeory'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[internal_memeory][]" value="<?php echo $list['internal_memeory']; ?>"><span>&nbsp;<?php echo $list['internal_memeory']; ?></span></label></div>
 
 							<?php }  } ?>
 							</div>
@@ -305,9 +304,9 @@
 							<div class="panel-body">
 							<?php foreach ($screen_size_list as $list){ 
 							   if (in_array($list['screen_size'], $screen_sizes)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'screen_size'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[screen_size][]" value="<?php echo $list['screen_size']; ?>"><span>&nbsp;<?php echo $list['screen_size']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'screen_size'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[screen_size][]" value="<?php echo $list['screen_size']; ?>"><span>&nbsp;<?php echo $list['screen_size']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'screen_size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[screen_size][]" value="<?php echo $list['screen_size']; ?>"><span>&nbsp;<?php echo $list['screen_size']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'screen_size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[screen_size][]" value="<?php echo $list['screen_size']; ?>"><span>&nbsp;<?php echo $list['screen_size']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -328,9 +327,9 @@
 							<div class="panel-body">
 							<?php foreach ($Processor_list as $list){ 
 							   if (in_array($list['Processor'], $Processors)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'Processor'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[Processor][]" value="<?php echo $list['Processor']; ?>"><span>&nbsp;<?php echo $list['Processor']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'Processor'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[Processor][]" value="<?php echo $list['Processor']; ?>"><span>&nbsp;<?php echo $list['Processor']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'Processor'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[Processor][]" value="<?php echo $list['Processor']; ?>"><span>&nbsp;<?php echo $list['Processor']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'Processor'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[Processor][]" value="<?php echo $list['Processor']; ?>"><span>&nbsp;<?php echo $list['Processor']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -352,9 +351,9 @@
 							<div class="panel-body">
 							<?php foreach ($type_list as $list){  
 							   if (in_array($list['type'], $types)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'type'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[type][]" value="<?php echo $list['type']; ?>"><span>&nbsp;<?php echo $list['type']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'type'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[type][]" value="<?php echo $list['type']; ?>"><span>&nbsp;<?php echo $list['type']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[type][]" value="<?php echo $list['type']; ?>"><span>&nbsp;<?php echo $list['type']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[type][]" value="<?php echo $list['type']; ?>"><span>&nbsp;<?php echo $list['type']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -374,9 +373,9 @@
 							<div class="panel-body">
 							<?php foreach ($printer_type as $list){  
 							   if (in_array($list['printer_type'], $printer_types)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'printer_type'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[printer_type][]" value="<?php echo $list['printer_type']; ?>"><span>&nbsp;<?php echo $list['printer_type']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'printer_type'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[printer_type][]" value="<?php echo $list['printer_type']; ?>"><span>&nbsp;<?php echo $list['printer_type']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'printer_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[printer_type][]" value="<?php echo $list['printer_type']; ?>"><span>&nbsp;<?php echo $list['printer_type']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'printer_type'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[printer_type][]" value="<?php echo $list['printer_type']; ?>"><span>&nbsp;<?php echo $list['printer_type']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -397,9 +396,9 @@
 							<div class="panel-body">
 							<?php foreach ($max_copies as $list){  
 							   if (in_array($list['max_copies'], $max_copiess)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'max_copies'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[max_copies][]" value="<?php echo $list['max_copies']; ?>"><span>&nbsp;<?php echo $list['max_copies']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'max_copies'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[max_copies][]" value="<?php echo $list['max_copies']; ?>"><span>&nbsp;<?php echo $list['max_copies']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'max_copies'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[max_copies][]" value="<?php echo $list['max_copies']; ?>"><span>&nbsp;<?php echo $list['max_copies']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'max_copies'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[max_copies][]" value="<?php echo $list['max_copies']; ?>"><span>&nbsp;<?php echo $list['max_copies']; ?></span></label></div>
 							<?php } } ?>
 							</div>
 						</div>
@@ -418,9 +417,9 @@
 							<div class="panel-body">
 							<?php foreach ($paper_size as $list){  
 							   if (in_array($list['paper_size'], $paper_sizes)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'paper_size'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[paper_size][]" value="<?php echo $list['paper_size']; ?>"><span>&nbsp;<?php echo $list['paper_size']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'paper_size'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[paper_size][]" value="<?php echo $list['paper_size']; ?>"><span>&nbsp;<?php echo $list['paper_size']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'paper_size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[paper_size][]" value="<?php echo $list['paper_size']; ?>"><span>&nbsp;<?php echo $list['paper_size']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'paper_size'; ?>','<?php echo ''; ?>');" id="checkbox1" name="products[paper_size][]" value="<?php echo $list['paper_size']; ?>"><span>&nbsp;<?php echo $list['paper_size']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -440,9 +439,9 @@
 							<div class="panel-body">
 							<?php foreach ($headphone_jack as $list){   
 							   if (in_array($list['headphone_jack'], $headphone_jacks)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'headphone_jack'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[headphone_jack][]" value="<?php echo $list['headphone_jack']; ?>"><span>&nbsp;<?php echo $list['headphone_jack']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'headphone_jack'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[headphone_jack][]" value="<?php echo $list['headphone_jack']; ?>"><span>&nbsp;<?php echo $list['headphone_jack']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'headphone_jack'; ?>','<?php echo ''; ?>');" id="headphone_jack" name="products[headphone_jack][]" value="<?php echo $list['headphone_jack']; ?>"><span>&nbsp;<?php echo $list['headphone_jack']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'headphone_jack'; ?>','<?php echo ''; ?>');" id="headphone_jack" name="products[headphone_jack][]" value="<?php echo $list['headphone_jack']; ?>"><span>&nbsp;<?php echo $list['headphone_jack']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -462,9 +461,9 @@
 							<div class="panel-body">
 							<?php foreach ($noise_reduction as $list){    
 							   if (in_array($list['noise_reduction'], $noise_reductions)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'noise_reduction'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[noise_reduction][]" value="<?php echo $list['noise_reduction']; ?>"><span>&nbsp;<?php echo $list['noise_reduction']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'noise_reduction'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[noise_reduction][]" value="<?php echo $list['noise_reduction']; ?>"><span>&nbsp;<?php echo $list['noise_reduction']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'noise_reduction'; ?>','<?php echo ''; ?>');" id="noise_reduction" name="products[noise_reduction][]" value="<?php echo $list['noise_reduction']; ?>"><span>&nbsp;<?php echo $list['noise_reduction']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'noise_reduction'; ?>','<?php echo ''; ?>');" id="noise_reduction" name="products[noise_reduction][]" value="<?php echo $list['noise_reduction']; ?>"><span>&nbsp;<?php echo $list['noise_reduction']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -484,9 +483,9 @@
 							<div class="panel-body">
 							<?php foreach ($usb_port as $list){    
 							   if (in_array($list['usb_port'], $usb_ports)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'usb_port'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[usb_port][]" value="<?php echo $list['usb_port']; ?>"><span>&nbsp;<?php echo $list['usb_port']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'usb_port'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[usb_port][]" value="<?php echo $list['usb_port']; ?>"><span>&nbsp;<?php echo $list['usb_port']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'usb_port'; ?>','<?php echo ''; ?>');" id="usb_port" name="products[usb_port][]" value="<?php echo $list['usb_port']; ?>"><span>&nbsp;<?php echo $list['usb_port']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'usb_port'; ?>','<?php echo ''; ?>');" id="usb_port" name="products[usb_port][]" value="<?php echo $list['usb_port']; ?>"><span>&nbsp;<?php echo $list['usb_port']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -506,9 +505,9 @@
 							<div class="panel-body">
 							<?php foreach ($compatible_for as $list){    
 							   if (in_array($list['compatible_for'], $compatible_fors)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'compatible_for'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[compatible_for][]" value="<?php echo $list['compatible_for']; ?>"><span>&nbsp;<?php echo $list['compatible_for']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'compatible_for'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[compatible_for][]" value="<?php echo $list['compatible_for']; ?>"><span>&nbsp;<?php echo $list['compatible_for']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'compatible_for'; ?>','<?php echo ''; ?>');" id="compatible_for" name="products[compatible_for][]" value="<?php echo $list['compatible_for']; ?>"><span>&nbsp;<?php echo $list['compatible_for']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'compatible_for'; ?>','<?php echo ''; ?>');" id="compatible_for" name="products[compatible_for][]" value="<?php echo $list['compatible_for']; ?>"><span>&nbsp;<?php echo $list['compatible_for']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -528,9 +527,9 @@
 							<div class="panel-body">
 							<?php foreach ($scanner_type as $list){    
 							   if (in_array($list['scanner_type'], $scanner_types)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'scanner_type'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[scanner_type][]" value="<?php echo $list['scanner_type']; ?>"><span>&nbsp;<?php echo $list['scanner_type']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'scanner_type'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[scanner_type][]" value="<?php echo $list['scanner_type']; ?>"><span>&nbsp;<?php echo $list['scanner_type']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'scanner_type'; ?>','<?php echo ''; ?>');" id="scanner_type" name="products[scanner_type][]" value="<?php echo $list['scanner_type']; ?>"><span>&nbsp;<?php echo $list['scanner_type']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'scanner_type'; ?>','<?php echo ''; ?>');" id="scanner_type" name="products[scanner_type][]" value="<?php echo $list['scanner_type']; ?>"><span>&nbsp;<?php echo $list['scanner_type']; ?></span></label></div>
 							<?php } } ?>
 							</div>
 						</div>
@@ -549,9 +548,9 @@
 							<div class="panel-body">
 							<?php foreach ($resolution as $list){    
 							   if (in_array($list['resolution'], $resolutions)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'resolution'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[resolution][]" value="<?php echo $list['resolution']; ?>"><span>&nbsp;<?php echo $list['resolution']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'resolution'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[resolution][]" value="<?php echo $list['resolution']; ?>"><span>&nbsp;<?php echo $list['resolution']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'resolution'; ?>','<?php echo ''; ?>');" id="resolution" name="products[resolution][]" value="<?php echo $list['resolution']; ?>"><span>&nbsp;<?php echo $list['resolution']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'resolution'; ?>','<?php echo ''; ?>');" id="resolution" name="products[resolution][]" value="<?php echo $list['resolution']; ?>"><span>&nbsp;<?php echo $list['resolution']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -571,9 +570,9 @@
 							<div class="panel-body">
 							<?php foreach ($f_stop as $list){     
 							   if (in_array($list['f_stop'], $f_stops)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'f_stop'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[f_stop][]" value="<?php echo $list['f_stop']; ?>"><span>&nbsp;<?php echo $list['f_stop']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'f_stop'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[f_stop][]" value="<?php echo $list['f_stop']; ?>"><span>&nbsp;<?php echo $list['f_stop']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'f_stop'; ?>','<?php echo ''; ?>');" id="f_stop" name="products[f_stop][]" value="<?php echo $list['f_stop']; ?>"><span>&nbsp;<?php echo $list['f_stop']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'f_stop'; ?>','<?php echo ''; ?>');" id="f_stop" name="products[f_stop][]" value="<?php echo $list['f_stop']; ?>"><span>&nbsp;<?php echo $list['f_stop']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -593,9 +592,9 @@
 							<div class="panel-body">
 							<?php foreach ($minimum_focusing_distance as $list){     
 							   if (in_array($list['minimum_focusing_distance'], $minimum_focusing_distances)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'minimum_focusing_distance'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[minimum_focusing_distance][]" value="<?php echo $list['minimum_focusing_distance']; ?>"><span>&nbsp;<?php echo $list['minimum_focusing_distance']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'minimum_focusing_distance'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[minimum_focusing_distance][]" value="<?php echo $list['minimum_focusing_distance']; ?>"><span>&nbsp;<?php echo $list['minimum_focusing_distance']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'minimum_focusing_distance'; ?>','<?php echo ''; ?>');" id="minimum_focusing_distance" name="products[minimum_focusing_distance][]" value="<?php echo $list['minimum_focusing_distance']; ?>"><span>&nbsp;<?php echo $list['minimum_focusing_distance']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'minimum_focusing_distance'; ?>','<?php echo ''; ?>');" id="minimum_focusing_distance" name="products[minimum_focusing_distance][]" value="<?php echo $list['minimum_focusing_distance']; ?>"><span>&nbsp;<?php echo $list['minimum_focusing_distance']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -615,9 +614,9 @@
 							<div class="panel-body">
 							<?php foreach ($aperture_withmaxfocal_length as $list){      
 							   if (in_array($list['aperture_withmaxfocal_length'], $aperture_withmaxfocal_lengths)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'aperture_withmaxfocal_length'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[aperture_withmaxfocal_length][]" value="<?php echo $list['minimum_focusiaperture_withmaxfocal_lengthng_distance']; ?>"><span>&nbsp;<?php echo $list['aperture_withmaxfocal_length']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'aperture_withmaxfocal_length'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[aperture_withmaxfocal_length][]" value="<?php echo $list['minimum_focusiaperture_withmaxfocal_lengthng_distance']; ?>"><span>&nbsp;<?php echo $list['aperture_withmaxfocal_length']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'aperture_withmaxfocal_length'; ?>','<?php echo ''; ?>');" id="aperture_withmaxfocal_length" name="products[aperture_withmaxfocal_length][]" value="<?php echo $list['aperture_withmaxfocal_length']; ?>"><span>&nbsp;<?php echo $list['aperture_withmaxfocal_length']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'aperture_withmaxfocal_length'; ?>','<?php echo ''; ?>');" id="aperture_withmaxfocal_length" name="products[aperture_withmaxfocal_length][]" value="<?php echo $list['aperture_withmaxfocal_length']; ?>"><span>&nbsp;<?php echo $list['aperture_withmaxfocal_length']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -637,9 +636,9 @@
 							<div class="panel-body">
 							<?php foreach ($picture_angle as $list){       
 							   if (in_array($list['picture_angle'], $picture_angles)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'picture_angle'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[picture_angle][]" value="<?php echo $list['picture_angle']; ?>"><span>&nbsp;<?php echo $list['picture_angle']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'picture_angle'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[picture_angle][]" value="<?php echo $list['picture_angle']; ?>"><span>&nbsp;<?php echo $list['picture_angle']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'picture_angle'; ?>','<?php echo ''; ?>');" id="picture_angle" name="products[picture_angle][]" value="<?php echo $list['picture_angle']; ?>"><span>&nbsp;<?php echo $list['picture_angle']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'picture_angle'; ?>','<?php echo ''; ?>');" id="picture_angle" name="products[picture_angle][]" value="<?php echo $list['picture_angle']; ?>"><span>&nbsp;<?php echo $list['picture_angle']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -660,9 +659,9 @@
 							<div class="panel-body">
 							<?php foreach ($weight_list as $list){        
 							   if (in_array($list['weight'], $weights)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'weight'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[weight][]" value="<?php echo $list['weight']; ?>"><span>&nbsp;<?php echo $list['weight']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'weight'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[weight][]" value="<?php echo $list['weight']; ?>"><span>&nbsp;<?php echo $list['weight']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'weight'; ?>','<?php echo ''; ?>');" id="weight" name="products[weight][]" value="<?php echo $list['weight']; ?>"><span>&nbsp;<?php echo $list['weight']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'weight'; ?>','<?php echo ''; ?>');" id="weight" name="products[weight][]" value="<?php echo $list['weight']; ?>"><span>&nbsp;<?php echo $list['weight']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -682,9 +681,9 @@
 							<div class="panel-body">
 							<?php foreach ($occasion_list as $list){         
 							   if (in_array($list['occasion'], $occasions)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'occasion'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[occasion][]" value="<?php echo $list['occasion']; ?>"><span>&nbsp;<?php echo $list['occasion']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'occasion'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[occasion][]" value="<?php echo $list['occasion']; ?>"><span>&nbsp;<?php echo $list['occasion']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'occasion'; ?>','<?php echo ''; ?>');" id="occasion" name="products[occasion][]" value="<?php echo $list['occasion']; ?>"><span>&nbsp;<?php echo $list['occasion']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'occasion'; ?>','<?php echo ''; ?>');" id="occasion" name="products[occasion][]" value="<?php echo $list['occasion']; ?>"><span>&nbsp;<?php echo $list['occasion']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -704,9 +703,9 @@
 							<div class="panel-body">
 							<?php foreach ($material_list as $list){          
 							   if (in_array($list['material'], $materials)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'material'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[material][]" value="<?php echo $list['material']; ?>"><span>&nbsp;<?php echo $list['material']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'material'; ?>','<?php echo 'uncheck'; ?>');" id="checkbox1" name="products[material][]" value="<?php echo $list['material']; ?>"><span>&nbsp;<?php echo $list['material']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'material'; ?>','<?php echo ''; ?>');" id="material" name="products[material][]" value="<?php echo $list['material']; ?>"><span>&nbsp;<?php echo $list['material']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'material'; ?>','<?php echo ''; ?>');" id="material" name="products[material][]" value="<?php echo $list['material']; ?>"><span>&nbsp;<?php echo $list['material']; ?></span></label></div>
 
 							<?php } } ?>
 							</div>
@@ -726,9 +725,9 @@
 							<div class="panel-body">
 							<?php foreach ($collar_type as $list){          
 							   if (in_array($list['collar_type'], $collar_types)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'collar_type'; ?>','<?php echo 'uncheck'; ?>');" id="collar_type" name="products[collar_type][]" value="<?php echo $list['collar_type']; ?>"><span>&nbsp;<?php echo $list['collar_type']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'collar_type'; ?>','<?php echo 'uncheck'; ?>');" id="collar_type" name="products[collar_type][]" value="<?php echo $list['collar_type']; ?>"><span>&nbsp;<?php echo $list['collar_type']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'collar_type'; ?>','<?php echo ''; ?>');" id="collar_type" name="products[collar_type][]" value="<?php echo $list['collar_type']; ?>"><span>&nbsp;<?php echo $list['collar_type']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'collar_type'; ?>','<?php echo ''; ?>');" id="collar_type" name="products[collar_type][]" value="<?php echo $list['collar_type']; ?>"><span>&nbsp;<?php echo $list['collar_type']; ?></span></label></div>
 							<?php } } ?>
 							</div>
 						</div>
@@ -747,9 +746,9 @@
 							<div class="panel-body">
 							<?php foreach ($gender_list as $list){          
 							   if (in_array($list['gender'], $genders)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'gender'; ?>','<?php echo 'uncheck'; ?>');" id="gender" name="products[gender][]" value="<?php echo $list['gender']; ?>"><span>&nbsp;<?php echo $list['gender']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'gender'; ?>','<?php echo 'uncheck'; ?>');" id="gender" name="products[gender][]" value="<?php echo $list['gender']; ?>"><span>&nbsp;<?php echo $list['gender']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'gender'; ?>','<?php echo ''; ?>');" id="gender" name="products[gender][]" value="<?php echo $list['gender']; ?>"><span>&nbsp;<?php echo $list['gender']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'gender'; ?>','<?php echo ''; ?>');" id="gender" name="products[gender][]" value="<?php echo $list['gender']; ?>"><span>&nbsp;<?php echo $list['gender']; ?></span></label></div>
 							<?php } } ?>
 							</div>
 						</div>
@@ -768,9 +767,9 @@
 							<div class="panel-body">
 							<?php foreach ($sleeve_list as $list){           
 							   if (in_array($list['sleeve'], $sleeves)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'sleeve'; ?>','<?php echo 'uncheck'; ?>');" id="sleeve" name="products[sleeve][]" value="<?php echo $list['sleeve']; ?>"><span>&nbsp;<?php echo $list['sleeve']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'sleeve'; ?>','<?php echo 'uncheck'; ?>');" id="sleeve" name="products[sleeve][]" value="<?php echo $list['sleeve']; ?>"><span>&nbsp;<?php echo $list['sleeve']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'sleeve'; ?>','<?php echo ''; ?>');" id="sleeve" name="products[sleeve][]" value="<?php echo $list['sleeve']; ?>"><span>&nbsp;<?php echo $list['sleeve']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'sleeve'; ?>','<?php echo ''; ?>');" id="sleeve" name="products[sleeve][]" value="<?php echo $list['sleeve']; ?>"><span>&nbsp;<?php echo $list['sleeve']; ?></span></label></div>
 							<?php } } ?>
 							</div>
 						</div>
@@ -789,9 +788,9 @@
 							<div class="panel-body">
 							<?php foreach ($look_list as $list){            
 							   if (in_array($list['look'], $looks)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'look'; ?>','<?php echo 'uncheck'; ?>');" id="look" name="products[look][]" value="<?php echo $list['look']; ?>"><span>&nbsp;<?php echo $list['look']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'look'; ?>','<?php echo 'uncheck'; ?>');" id="look" name="products[look][]" value="<?php echo $list['look']; ?>"><span>&nbsp;<?php echo $list['look']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'look'; ?>','<?php echo ''; ?>');" id="look" name="products[look][]" value="<?php echo $list['look']; ?>"><span>&nbsp;<?php echo $list['look']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'look'; ?>','<?php echo ''; ?>');" id="look" name="products[look][]" value="<?php echo $list['look']; ?>"><span>&nbsp;<?php echo $list['look']; ?></span></label></div>
 							<?php } } ?>
 							</div>
 						</div>
@@ -810,9 +809,9 @@
 							<div class="panel-body">
 							<?php foreach ($style_code as $list){             
 							   if (in_array($list['style_code'], $style_codes)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'style_code'; ?>','<?php echo 'uncheck'; ?>');" id="style_code" name="products[style_code][]" value="<?php echo $list['style_code']; ?>"><span>&nbsp;<?php echo $list['style_code']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'style_code'; ?>','<?php echo 'uncheck'; ?>');" id="style_code" name="products[style_code][]" value="<?php echo $list['style_code']; ?>"><span>&nbsp;<?php echo $list['style_code']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'style_code'; ?>','<?php echo ''; ?>');" id="style_code" name="products[style_code][]" value="<?php echo $list['style_code']; ?>"><span>&nbsp;<?php echo $list['style_code']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'style_code'; ?>','<?php echo ''; ?>');" id="style_code" name="products[style_code][]" value="<?php echo $list['style_code']; ?>"><span>&nbsp;<?php echo $list['style_code']; ?></span></label></div>
 							<?php } } ?>
 							</div>
 						</div>
@@ -831,9 +830,9 @@
 							<div class="panel-body">
 							<?php foreach ($inner_material as $list){             
 							   if (in_array($list['inner_material'], $inner_materials)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'inner_material'; ?>','<?php echo 'uncheck'; ?>');" id="inner_material" name="products[inner_material][]" value="<?php echo $list['inner_material']; ?>"><span>&nbsp;<?php echo $list['inner_material']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'inner_material'; ?>','<?php echo 'uncheck'; ?>');" id="inner_material" name="products[inner_material][]" value="<?php echo $list['inner_material']; ?>"><span>&nbsp;<?php echo $list['inner_material']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'inner_material'; ?>','<?php echo ''; ?>');" id="inner_material" name="products[inner_material][]" value="<?php echo $list['inner_material']; ?>"><span>&nbsp;<?php echo $list['inner_material']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'inner_material'; ?>','<?php echo ''; ?>');" id="inner_material" name="products[inner_material][]" value="<?php echo $list['inner_material']; ?>"><span>&nbsp;<?php echo $list['inner_material']; ?></span></label></div>
 							<?php } } ?>
 							</div>
 						</div>
@@ -852,9 +851,9 @@
 							<div class="panel-body">
 							<?php foreach ($waterproof as $list){             
 							   if (in_array($list['waterproof'], $waterproofs)) { ?>
-							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="subitemwisefilters(this.value, '<?php echo 'waterproof'; ?>','<?php echo 'uncheck'; ?>');" id="waterproof" name="products[waterproof][]" value="<?php echo $list['waterproof']; ?>"><span>&nbsp;<?php echo $list['waterproof']; ?></span></label></div>
+							<div class="checkbox"><label><input type="checkbox" checked="checked" onclick="categorywisefilters(this.value, '<?php echo 'waterproof'; ?>','<?php echo 'uncheck'; ?>');" id="waterproof" name="products[waterproof][]" value="<?php echo $list['waterproof']; ?>"><span>&nbsp;<?php echo $list['waterproof']; ?></span></label></div>
 							<?php } else{  ?>
-								<div class="checkbox"><label><input type="checkbox" onclick="subitemwisefilters(this.value, '<?php echo 'waterproof'; ?>','<?php echo ''; ?>');" id="waterproof" name="products[waterproof][]" value="<?php echo $list['waterproof']; ?>"><span>&nbsp;<?php echo $list['waterproof']; ?></span></label></div>
+								<div class="checkbox"><label><input type="checkbox" onclick="categorywisefilters(this.value, '<?php echo 'waterproof'; ?>','<?php echo ''; ?>');" id="waterproof" name="products[waterproof][]" value="<?php echo $list['waterproof']; ?>"><span>&nbsp;<?php echo $list['waterproof']; ?></span></label></div>
 							<?php } } ?>
 							</div>
 						</div>
@@ -875,12 +874,12 @@
                       <span aria-hidden="true">&times;</span>
             </button>
 		</div>
-          <div class="title"><span><?php echo ucfirst(strtolower(isset($subitemdetais['subitem_name'])?$subitemdetais['subitem_name']:'')); ?>&nbsp; subitem wise Products lists</span></div>
-		<?php //echo '<pre>';print_r($subitemdetais);exit; ?>
+          <div class="title"><span><?php echo ucfirst(strtolower(isset($category_details['category_name'])?$category_details['category_name']:'')); ?>&nbsp; category wise Products lists</span></div>
+		<?php //echo '<pre>';print_r($subitemwise);exit; ?>
 		<?php 
-		if(count($subitemwise[0])>0){
+		if(count($itemwise[0])>0){
 		 $customerdetails=$this->session->userdata('userdetails');
-		$cnt=1;foreach($subitemwise as $productslist){ 
+		$cnt=1;foreach($itemwise as $productslist){ 
 		//echo'<pre>';print_r($whishlist_item_ids_list);exit;
 			$currentdate=date('Y-m-d h:i:s A');
 				if($productslist['offer_expairdate']>=$currentdate){
@@ -1022,16 +1021,15 @@
 </body>
 <script>
 
-function subitemwisefilters(val,status,check){
+function categorywisefilters(val,status,check){
 	jQuery.ajax({
 		
-				url: "<?php echo site_url('category/subitemwise_search');?>",
+				url: "<?php echo site_url('category/categorywise_search');?>",
 				type: 'post',
 			
 				data: {
 					form_key : window.FORM_KEY,
-					subcatid: $('#subcatid').val(),
-					subitemid: $('#subitemid').val(),
+					categoryid: $('#categoryid').val(),
 					productsvalues: val,
 					searchvalue: status,
 					unchecked: check,

@@ -863,6 +863,12 @@ public function delete_banner($id,$sid)
 		$this->db->where('bid',$ids);
 		return $this->db->get()->row_array();
 	}
+	public function get_allbrand_details($brand)
+	{
+		$this->db->select('products.category_id')->from('products');
+		$this->db->where('brand',$brand);
+		return $this->db->get()->row_array();
+	}
 	public function get_brand_details_withname($name)
 	{
 		$this->db->select('*')->from('brands');

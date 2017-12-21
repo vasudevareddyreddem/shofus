@@ -82,7 +82,7 @@ $customerdetails=$this->session->userdata('userdetails');
 		<div id="best-seller" class="product-flexslider hidden-buttons cat_sl_s" >
 		   <div class="slider-items slider-width-col4 products-grid  text-center help-owl" >
 				<?php foreach ($step_three as $list){ ?>
-					<a href="#">
+					<a href="<?php echo base_url('category/groupwise/'.base64_encode($list['category_id']).'/'.base64_encode($list['brand']).'/'.base64_encode('brand')); ?>">
 					<div class="item cat_ma-t" >
 					  <div class="top-brands" >
 						<div class="box-product">

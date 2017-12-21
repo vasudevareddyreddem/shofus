@@ -2604,6 +2604,8 @@ public function addhomepagemiddlebannerspost()
 			if($logindetail['role_id']==5)
 			{
 			  $post=$this->input->post();
+			 // echo '<pre>';print_r($post);exit;
+			   $allbranddetails= $this->inventory_model->get_allbrand_details($post['brandname']);
 			  if(isset($post['brandid']) && $post['brandid']!=''){
 			  $brand_details= $this->inventory_model->get_brand_details($post['brandid']);
 			  }else{
@@ -2624,6 +2626,7 @@ public function addhomepagemiddlebannerspost()
 					$details=array(         
 						'added_by' => $logindetail['customer_id'],
 						'brand'=>$post['brandname'],  
+						'category_id'=>$allbranddetails['category_id'],  
 						'image'=>$newfilename1,    
 						'create_at'=>date('Y-m-d H:i:s'),		
 					);

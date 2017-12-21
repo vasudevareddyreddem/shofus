@@ -200,7 +200,7 @@ foreach($previousdata as $predata){
                       <span aria-hidden="true">&times;</span>
             </button>
 		</div>
-          <div class="title"><span><?php echo ucfirst(strtolower(isset($subitemwise[0]['subitem_name'])?$subitemwise[0]['subitem_name']:'')); ?>&nbsp; subitem wise Products lists</span></div>
+          <div class="title"><span><?php echo ucfirst(strtolower(isset($subcatdetais['subcategory_name'])?$subcatdetais['subcategory_name']:'')); ?>&nbsp; subitem wise Products lists</span></div>
 		
 		<?php 
 		if( isset($productlist) && count($productlist)>0){
