@@ -1,6 +1,6 @@
 
-<span id="filtersubitemwisedata"></span>
-   <span id="withoursearchsubcategory">
+<span id=""></span>
+   <span id="groupwiseresult">
 	<div class="col-md-3">
 			<div class="title"><span>Filters</span></div>
 					  <div class="row">
@@ -32,6 +32,7 @@
 		  </div>
 		  </div><br>
 		  <input type="hidden" name="categoryid" id="categoryid" value="<?php echo $caterory_id;?>">
+		  <input type="hidden" name="brand" id="brand" value="<?php echo $brand;?>">
 			
 		  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			<?php if(isset($offer_list) && count($offer_list)>0){?>
@@ -891,6 +892,7 @@ function categorywisefilters(val,status,check){
 				data: {
 					form_key : window.FORM_KEY,
 					categoryid: $('#categoryid').val(),
+					group: $('#brand').val(),
 					productsvalues: val,
 					searchvalue: status,
 					unchecked: check,
@@ -901,8 +903,8 @@ function categorywisefilters(val,status,check){
 				dataType: 'html',
 				success: function (data) {
 					//alert(data);
-					$("#withoursearchsubcategory").empty();
-					$("#withoursearchsubcategory").append(data);
+					$("#groupwiseresult").empty();
+					$("#groupwiseresult").append(data);
 	}
 });
 }

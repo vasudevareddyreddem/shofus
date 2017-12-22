@@ -2618,11 +2618,19 @@ public function subitemwise_search(){
 	 //*groupwise*/
 	 
 	 public function groupwise(){
+		 
+		 /*delete privous data*/
+		 $previousdata=$this->category_model->get_categoryprivous_data($this->input->ip_address());
+		 foreach($previousdata as $lis){
+			 $this->category_model->delete_previous_data($lis['id']);
+		 }
+		 /*delete privous data*/
 		  $catid=base64_decode($this->uri->segment(3));
 		  $brand=base64_decode($this->uri->segment(4));
 		  $group=base64_decode($this->uri->segment(5));
 			$data['product_list']= $this->category_model->get_groupwise_product_list($catid,$brand);
 			$data['caterory_id']=$catid;
+			$data['brand']=$brand;
 			$data['category_details']= $this->category_model->category_details($catid);
 			if(isset($data['itemwise']) && count($data['itemwise'])>0){
 					foreach($data['itemwise'] as $lists){
@@ -2642,43 +2650,44 @@ public function subitemwise_search(){
 							$data['rating_count']=array();
 						}
 				//echo '<pre>';print_r($data['subitemwise']);exit;
-				$data['brand_list']= $this->category_model->get_group_all_brand_list($catid,'brand');
-				$data['price_list']= $this->category_model->get_group_all_price_list($catid);
+				$data['brand_list']= $this->category_model->get_group_all_brand_list($catid,'brand',$brand);
+				$data['price_list']= $this->category_model->get_group_all_price_list($catid,$brand);
 				$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-				$offer_list= $this->category_model->get_group_all_offer_list($catid);
-				$data['color_list']= $this->category_model->get_group_all_brand_list($catid,'colour');
-				$data['ram_list']= $this->category_model->get_group_all_brand_list($catid,'ram');
-				$data['os_list']= $this->category_model->get_group_all_brand_list($catid,'os');
-				$data['sim_list']= $this->category_model->get_group_all_brand_list($catid,'sim_type');
-				$data['camera_list']= $this->category_model->get_group_all_brand_list($catid,'camera');
-				$data['internal_memeory_list']= $this->category_model->get_group_all_brand_list($catid,'internal_memeory');
-				$data['screen_size_list']= $this->category_model->get_group_all_brand_list($catid,'screen_size');
-				$data['Processor_list']= $this->category_model->get_group_all_brand_list($catid,'Processor');
-				$data['printer_type']= $this->category_model->get_group_all_brand_list($catid,'printer_type');
-				$data['type_list']= $this->category_model->get_group_all_brand_list($catid,'type');
-				$data['max_copies']= $this->category_model->get_group_all_brand_list($catid,'max_print_resolution');
-				$data['paper_size']= $this->category_model->get_group_all_brand_list($catid,'paper_size');
-				$data['headphone_jack']= $this->category_model->get_group_all_brand_list($catid,'headphone_jack');
-				$data['noise_reduction']= $this->category_model->get_group_all_brand_list($catid,'noise_reduction');
-				$data['usb_port']= $this->category_model->get_group_all_brand_list($catid,'usb_port');
-				$data['compatible_for']= $this->category_model->get_group_all_brand_list($catid,'compatible_for');
-				$data['scanner_type']= $this->category_model->get_group_all_brand_list($catid,'scanner_type');
-				$data['resolution']= $this->category_model->get_group_all_brand_list($catid,'resolution');
-				$data['f_stop']= $this->category_model->get_group_all_brand_list($catid,'f_stop');
-				$data['minimum_focusing_distance']= $this->category_model->get_group_all_brand_list($catid,'minimum_focusing_distance');
-				$data['aperture_withmaxfocal_length']= $this->category_model->get_group_all_brand_list($catid,'aperture_withmaxfocal_length');
-				$data['picture_angle']= $this->category_model->get_group_all_brand_list($catid,'picture_angle');
-				$data['size_list']= $this->category_model->get_group_all_brand_list($catid,'size');
-				$data['weight_list']= $this->category_model->get_group_all_brand_list($catid,'weight');
-				$data['occasion_list']= $this->category_model->get_group_all_brand_list($catid,'occasion');
-				$data['material_list']= $this->category_model->get_group_all_brand_list($catid,'material');
-				$data['collar_type']= $this->category_model->get_group_all_brand_list($catid,'collar_type');
-				$data['gender_list']= $this->category_model->get_group_all_brand_list($catid,'gender');
-				$data['sleeve_list']= $this->category_model->get_group_all_brand_list($catid,'sleeve');
-				$data['look_list']= $this->category_model->get_group_all_brand_list($catid,'look');
-				$data['style_code']= $this->category_model->get_group_all_brand_list($catid,'style_code');
-				$data['inner_material']= $this->category_model->get_group_all_brand_list($catid,'inner_material');
-				$data['waterproof']= $this->category_model->get_group_all_brand_list($catid,'waterproof');
+				$offer_list= $this->category_model->get_group_all_offer_list($catid,$brand);
+				$data['color_list']= $this->category_model->get_group_all_brand_list($catid,'colour',$brand);
+				$data['ram_list']= $this->category_model->get_group_all_brand_list($catid,'ram',$brand);
+				//echo $this->db->last_query();exit;
+				$data['os_list']= $this->category_model->get_group_all_brand_list($catid,'os',$brand);
+				$data['sim_list']= $this->category_model->get_group_all_brand_list($catid,'sim_type',$brand);
+				$data['camera_list']= $this->category_model->get_group_all_brand_list($catid,'camera',$brand);
+				$data['internal_memeory_list']= $this->category_model->get_group_all_brand_list($catid,'internal_memeory',$brand);
+				$data['screen_size_list']= $this->category_model->get_group_all_brand_list($catid,'screen_size',$brand);
+				$data['Processor_list']= $this->category_model->get_group_all_brand_list($catid,'Processor',$brand);
+				$data['printer_type']= $this->category_model->get_group_all_brand_list($catid,'printer_type',$brand);
+				$data['type_list']= $this->category_model->get_group_all_brand_list($catid,'type',$brand);
+				$data['max_copies']= $this->category_model->get_group_all_brand_list($catid,'max_print_resolution',$brand);
+				$data['paper_size']= $this->category_model->get_group_all_brand_list($catid,'paper_size',$brand);
+				$data['headphone_jack']= $this->category_model->get_group_all_brand_list($catid,'headphone_jack',$brand);
+				$data['noise_reduction']= $this->category_model->get_group_all_brand_list($catid,'noise_reduction',$brand);
+				$data['usb_port']= $this->category_model->get_group_all_brand_list($catid,'usb_port',$brand);
+				$data['compatible_for']= $this->category_model->get_group_all_brand_list($catid,'compatible_for',$brand);
+				$data['scanner_type']= $this->category_model->get_group_all_brand_list($catid,'scanner_type',$brand);
+				$data['resolution']= $this->category_model->get_group_all_brand_list($catid,'resolution',$brand);
+				$data['f_stop']= $this->category_model->get_group_all_brand_list($catid,'f_stop',$brand);
+				$data['minimum_focusing_distance']= $this->category_model->get_group_all_brand_list($catid,'minimum_focusing_distance',$brand);
+				$data['aperture_withmaxfocal_length']= $this->category_model->get_group_all_brand_list($catid,'aperture_withmaxfocal_length',$brand);
+				$data['picture_angle']= $this->category_model->get_group_all_brand_list($catid,'picture_angle',$brand);
+				$data['size_list']= $this->category_model->get_group_all_brand_list($catid,'size',$brand);
+				$data['weight_list']= $this->category_model->get_group_all_brand_list($catid,'weight',$brand);
+				$data['occasion_list']= $this->category_model->get_group_all_brand_list($catid,'occasion',$brand);
+				$data['material_list']= $this->category_model->get_group_all_brand_list($catid,'material',$brand);
+				$data['collar_type']= $this->category_model->get_group_all_brand_list($catid,'collar_type',$brand);
+				$data['gender_list']= $this->category_model->get_group_all_brand_list($catid,'gender',$brand);
+				$data['sleeve_list']= $this->category_model->get_group_all_brand_list($catid,'sleeve',$brand);
+				$data['look_list']= $this->category_model->get_group_all_brand_list($catid,'look',$brand);
+				$data['style_code']= $this->category_model->get_group_all_brand_list($catid,'style_code',$brand);
+				$data['inner_material']= $this->category_model->get_group_all_brand_list($catid,'inner_material',$brand);
+				$data['waterproof']= $this->category_model->get_group_all_brand_list($catid,'waterproof',$brand);
 				 foreach ($data['price_list'] as $list) {
 					$date = new DateTime("now");
 					$curr_date = $date->format('Y-m-d h:i:s A');
@@ -3202,6 +3211,7 @@ public function subitemwise_search(){
 				$data1=array(
 				'ip_address'=>$ip,
 				'category_id'=>$post['categoryid'],
+				'group'=>$post['group'],
 				'minimum_price'=>isset($post['mini_mum']) ? $post['mini_mum']:'',
 				'maximum_price'=>isset($post['maxi_mum']) ? $post['maxi_mum']:'',
 				'offer'=>isset($offer) ? $offer:'',
@@ -3277,45 +3287,46 @@ public function subitemwise_search(){
 				$data['category_details']= $this->category_model->category_details($data['previousdata'][0]['category_id']);
 				$filtersitemid= $this->category_model->get_categorywise_data_item_id($this->input->ip_address());
 				$data['category_id']=$filtersitemid['category_id'];
+				$data['brand']=$filtersitemid['group'];
 				$category_id=$filtersitemid['category_id'];
 				//echo '<pre>';print_r($data['subitemwise']);exit;
-				$data['brand_list']= $this->category_model->get_group_all_brand_list($category_id,'brand');
-				$data['price_list']= $this->category_model->get_group_all_price_list($category_id);
+				$data['brand_list']= $this->category_model->get_group_all_brand_list($category_id,'brand',$data['brand'],$filtersitemid['group']);
+				$data['price_list']= $this->category_model->get_group_all_price_list($category_id,$filtersitemid['group']);
 				$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-				$offer_list= $this->category_model->get_group_all_offer_list($category_id);
-				$data['color_list']= $this->category_model->get_group_all_brand_list($category_id,'colour');
-				$data['ram_list']= $this->category_model->get_group_all_brand_list($category_id,'ram');
-				$data['os_list']= $this->category_model->get_group_all_brand_list($category_id,'os');
-				$data['sim_list']= $this->category_model->get_group_all_brand_list($category_id,'sim_type');
-				$data['camera_list']= $this->category_model->get_group_all_brand_list($category_id,'camera');
-				$data['internal_memeory_list']= $this->category_model->get_group_all_brand_list($category_id,'internal_memeory');
-				$data['screen_size_list']= $this->category_model->get_group_all_brand_list($category_id,'screen_size');
-				$data['Processor_list']= $this->category_model->get_group_all_brand_list($category_id,'Processor');
-				$data['printer_type']= $this->category_model->get_group_all_brand_list($category_id,'printer_type');
-				$data['type_list']= $this->category_model->get_group_all_brand_list($category_id,'type');
-				$data['max_copies']= $this->category_model->get_group_all_brand_list($category_id,'max_print_resolution');
-				$data['paper_size']= $this->category_model->get_group_all_brand_list($category_id,'paper_size');
-				$data['headphone_jack']= $this->category_model->get_group_all_brand_list($category_id,'headphone_jack');
-				$data['noise_reduction']= $this->category_model->get_group_all_brand_list($category_id,'noise_reduction');
-				$data['usb_port']= $this->category_model->get_group_all_brand_list($category_id,'usb_port');
-				$data['compatible_for']= $this->category_model->get_group_all_brand_list($category_id,'compatible_for');
-				$data['scanner_type']= $this->category_model->get_group_all_brand_list($category_id,'scanner_type');
-				$data['resolution']= $this->category_model->get_group_all_brand_list($category_id,'resolution');
-				$data['f_stop']= $this->category_model->get_group_all_brand_list($category_id,'f_stop');
-				$data['minimum_focusing_distance']= $this->category_model->get_group_all_brand_list($category_id,'minimum_focusing_distance');
-				$data['aperture_withmaxfocal_length']= $this->category_model->get_group_all_brand_list($category_id,'aperture_withmaxfocal_length');
-				$data['picture_angle']= $this->category_model->get_group_all_brand_list($category_id,'picture_angle');
-				$data['size_list']= $this->category_model->get_group_all_brand_list($category_id,'size');
-				$data['weight_list']= $this->category_model->get_group_all_brand_list($category_id,'weight');
-				$data['occasion_list']= $this->category_model->get_group_all_brand_list($category_id,'occasion');
-				$data['material_list']= $this->category_model->get_group_all_brand_list($category_id,'material');
-				$data['collar_type']= $this->category_model->get_group_all_brand_list($category_id,'collar_type');
-				$data['gender_list']= $this->category_model->get_group_all_brand_list($category_id,'gender');
-				$data['sleeve_list']= $this->category_model->get_group_all_brand_list($category_id,'sleeve');
-				$data['look_list']= $this->category_model->get_group_all_brand_list($category_id,'look');
-				$data['style_code']= $this->category_model->get_group_all_brand_list($category_id,'style_code');
-				$data['inner_material']= $this->category_model->get_group_all_brand_list($category_id,'inner_material');
-				$data['waterproof']= $this->category_model->get_group_all_brand_list($category_id,'waterproof');
+				$offer_list= $this->category_model->get_group_all_offer_list($category_id,$filtersitemid['group']);
+				$data['color_list']= $this->category_model->get_group_all_brand_list($category_id,'colour',$filtersitemid['group']);
+				$data['ram_list']= $this->category_model->get_group_all_brand_list($category_id,'ram',$filtersitemid['group']);
+				$data['os_list']= $this->category_model->get_group_all_brand_list($category_id,'os',$filtersitemid['group']);
+				$data['sim_list']= $this->category_model->get_group_all_brand_list($category_id,'sim_type',$filtersitemid['group']);
+				$data['camera_list']= $this->category_model->get_group_all_brand_list($category_id,'camera',$filtersitemid['group']);
+				$data['internal_memeory_list']= $this->category_model->get_group_all_brand_list($category_id,'internal_memeory',$filtersitemid['group']);
+				$data['screen_size_list']= $this->category_model->get_group_all_brand_list($category_id,'screen_size',$filtersitemid['group']);
+				$data['Processor_list']= $this->category_model->get_group_all_brand_list($category_id,'Processor',$filtersitemid['group']);
+				$data['printer_type']= $this->category_model->get_group_all_brand_list($category_id,'printer_type',$filtersitemid['group']);
+				$data['type_list']= $this->category_model->get_group_all_brand_list($category_id,'type',$filtersitemid['group']);
+				$data['max_copies']= $this->category_model->get_group_all_brand_list($category_id,'max_print_resolution',$filtersitemid['group']);
+				$data['paper_size']= $this->category_model->get_group_all_brand_list($category_id,'paper_size',$filtersitemid['group']);
+				$data['headphone_jack']= $this->category_model->get_group_all_brand_list($category_id,'headphone_jack',$filtersitemid['group']);
+				$data['noise_reduction']= $this->category_model->get_group_all_brand_list($category_id,'noise_reduction',$filtersitemid['group']);
+				$data['usb_port']= $this->category_model->get_group_all_brand_list($category_id,'usb_port',$filtersitemid['group']);
+				$data['compatible_for']= $this->category_model->get_group_all_brand_list($category_id,'compatible_for',$filtersitemid['group']);
+				$data['scanner_type']= $this->category_model->get_group_all_brand_list($category_id,'scanner_type',$filtersitemid['group']);
+				$data['resolution']= $this->category_model->get_group_all_brand_list($category_id,'resolution',$filtersitemid['group']);
+				$data['f_stop']= $this->category_model->get_group_all_brand_list($category_id,'f_stop',$filtersitemid['group']);
+				$data['minimum_focusing_distance']= $this->category_model->get_group_all_brand_list($category_id,'minimum_focusing_distance',$filtersitemid['group']);
+				$data['aperture_withmaxfocal_length']= $this->category_model->get_group_all_brand_list($category_id,'aperture_withmaxfocal_length',$filtersitemid['group']);
+				$data['picture_angle']= $this->category_model->get_group_all_brand_list($category_id,'picture_angle',$filtersitemid['group']);
+				$data['size_list']= $this->category_model->get_group_all_brand_list($category_id,'size',$filtersitemid['group']);
+				$data['weight_list']= $this->category_model->get_group_all_brand_list($category_id,'weight',$filtersitemid['group']);
+				$data['occasion_list']= $this->category_model->get_group_all_brand_list($category_id,'occasion',$filtersitemid['group']);
+				$data['material_list']= $this->category_model->get_group_all_brand_list($category_id,'material',$filtersitemid['group']);
+				$data['collar_type']= $this->category_model->get_group_all_brand_list($category_id,'collar_type',$filtersitemid['group']);
+				$data['gender_list']= $this->category_model->get_group_all_brand_list($category_id,'gender',$filtersitemid['group']);
+				$data['sleeve_list']= $this->category_model->get_group_all_brand_list($category_id,'sleeve',$filtersitemid['group']);
+				$data['look_list']= $this->category_model->get_group_all_brand_list($category_id,'look',$filtersitemid['group']);
+				$data['style_code']= $this->category_model->get_group_all_brand_list($category_id,'style_code',$filtersitemid['group']);
+				$data['inner_material']= $this->category_model->get_group_all_brand_list($category_id,'inner_material',$filtersitemid['group']);
+				$data['waterproof']= $this->category_model->get_group_all_brand_list($category_id,'waterproof',$filtersitemid['group']);
 				 foreach ($data['price_list'] as $list) {
 					$date = new DateTime("now");
 					$curr_date = $date->format('Y-m-d h:i:s A');

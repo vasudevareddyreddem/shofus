@@ -2830,27 +2830,29 @@ public function get_all_subitem_list($catid,$subcatid)
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
 	}
-	public function get_group_all_brand_list($catid,$where){
+	public function get_group_all_brand_list($catid,$where,$brand){
 		$this->db->select('products.'.$where)->from('products');
+		$this->db->where('brand',$brand);
 		$this->db->where('category_id',$catid);
 		$this->db->where('item_status',1);
 		$this->db->where('products.'.$where.' !=','');
 		$this->db->group_by($where);
 		return $this->db->get()->result_array();
 	}
-	public function get_group_all_price_list($catid){
+	public function get_group_all_price_list($catid,$brand){
 		$this->db->select('products.item_cost,products.special_price,products.offer_expairdate')->from('products');
 		$this->db->where('category_id',$catid);
+		$this->db->where('brand',$brand);
 		$this->db->where('item_status',1);
 		$this->db->where('item_cost!=','');
 		$this->db->where('special_price!=','');
 		$this->db->group_by('item_cost');
 		return $this->db->get()->result_array();
 	}
-	public function get_group_all_offer_list($catid){
+	public function get_group_all_offer_list($catid,$brand){
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
-		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `item_status` = 1  AND  offers!='' OR offer_percentage!=''";
+		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `brand` = '".$brand."' AND `item_status` = 1  AND  offers!='' OR offer_percentage!=''";
 		return $this->db->query($sql)->result_array();
 	}
 	public function category_details($cat_id){
@@ -2918,7 +2920,6 @@ public function get_all_subitem_list($catid,$subcatid)
 	//echo '<pre>';print_r($query);exit;
 	
 		foreach ($query as $listing){
-			
 			if($listing['offer']!=''){ $offer[] =$listing['offer']; }
 			if($listing['brand']!=''){ $brand[] = $listing['brand']; }
 			if($listing['discount']!=''){ $discount[] =$listing['discount']; }
@@ -2958,6 +2959,7 @@ public function get_all_subitem_list($catid,$subcatid)
 			$minamount = $listing['minimum_price'];
 			$maxamount = $listing['maximum_price'];
 			$category_id = $listing['category_id'];
+			$group = $listing['group'];
 		}
 		if(isset($brand) && count($brand)>0 ){
 			$brand=implode ('","', $brand );
@@ -3071,7 +3073,7 @@ public function get_all_subitem_list($catid,$subcatid)
 		//exit;
 		//echo '<pre>';print_r($listsorting);exit;
 		
-		$return['filterslist'] = $this->get_categorywise_filters_search($category_id,$minamount,$maxamount,$offer,$brand,$discount,$colour,$size,$ram,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$printer_type,$type,$max_copies,$paper_size,$headphone_jack,$noise_reduction,$usb_port,$compatible_for,$scanner_type,$resolution,$f_stop,$minimum_focusing_distance,$aperture_withmaxfocal_length,$picture_angle,$weight,$occasion,$material,$collar_type,$gender,$sleeve,$look,$style_code,$inner_material,$waterproof);
+		$return['filterslist'] = $this->get_categorywise_filters_search($group,$category_id,$minamount,$maxamount,$offer,$brand,$discount,$colour,$size,$ram,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$printer_type,$type,$max_copies,$paper_size,$headphone_jack,$noise_reduction,$usb_port,$compatible_for,$scanner_type,$resolution,$f_stop,$minimum_focusing_distance,$aperture_withmaxfocal_length,$picture_angle,$weight,$occasion,$material,$collar_type,$gender,$sleeve,$look,$style_code,$inner_material,$waterproof);
 		//echo $this->db->last_query();exit;
 		//echo '<pre>';print_r($return['filterslist']);exit;
 		if(!empty($return['filterslist']))
@@ -3079,14 +3081,15 @@ public function get_all_subitem_list($catid,$subcatid)
 		return $return['filterslist'];
 		}
 	}
-	public function get_categorywise_filters_search($category_id,$minamount,$maxamount,$offer,$brand,$discount,$colour,$size,$ram,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$printer_type,$type,$max_copies,$paper_size,$headphone_jack,$noise_reduction,$usb_port,$compatible_for,$scanner_type,$resolution,$f_stop,$minimum_focusing_distance,$aperture_withmaxfocal_length,$picture_angle,$weight,$occasion,$material,$collar_type,$gender,$sleeve,$look,$style_code,$inner_material,$waterproof){
+	public function get_categorywise_filters_search($group,$category_id,$minamount,$maxamount,$offer,$brand,$discount,$colour,$size,$ram,$os,$sim_type,$camera,$internal_memeory,$screen_size,$Processor,$printer_type,$type,$max_copies,$paper_size,$headphone_jack,$noise_reduction,$usb_port,$compatible_for,$scanner_type,$resolution,$f_stop,$minimum_focusing_distance,$aperture_withmaxfocal_length,$picture_angle,$weight,$occasion,$material,$collar_type,$gender,$sleeve,$look,$style_code,$inner_material,$waterproof){
 		
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
-		$this->db->where('special_price <=', $maxamount);
 		//$this->db->where('special_price >=', $minamount);
 		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$minamount.'"', false);
+				$this->db->where('special_price <=', $maxamount);
+
 		if($offer!='NULL'){
 			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$offer.'"', false);
 		}if($brand!='NULL'){
@@ -3161,15 +3164,27 @@ public function get_all_subitem_list($catid,$subcatid)
 		
 		$this->db->where('item_status',1);
 		$this->db->where('category_id',$category_id);
+		$this->db->where('brand',$group);
 		
 		return $this->db->get()->result_array();
 	}
 
 	public function get_categorywise_data_item_id($ip)
 	{
-		$this->db->select('brandwise_filters.category_id')->from('brandwise_filters');
+		$this->db->select('brandwise_filters.category_id,brandwise_filters.group')->from('brandwise_filters');
 		$this->db->where('ip_address',$ip);
 		return $this->db->get()->row_array();
+	}
+	public function get_categoryprivous_data($ip)
+	{
+		$this->db->select('*')->from('brandwise_filters');
+		$this->db->where('ip_address',$ip);
+		return $this->db->get()->result_array();
+	}
+	public function delete_previous_data($id)
+	{
+		$sql1="DELETE FROM brandwise_filters WHERE id = '".$id."'";
+		return $this->db->query($sql1);
 	}
 	  
 	  

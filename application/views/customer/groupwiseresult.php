@@ -47,7 +47,7 @@
 		 // echo '<pre>';print_r($maximum_prices);exit;
 
 		  ?>
-   <span id="subitemwisefilterdata">
+   <span id="categorywisefilterdata">
  <div class="col-sm-3">
             <div class="title"><span>Filters</span></div>
               <input type="hidden" name="itemid" id="itemid" value="<?php echo $category_id;?>">
@@ -86,7 +86,9 @@
 			  </select>
 		  </div>
 		  </div><br>
-               <input type="hidden" name="categoryid" id="categoryid" value="<?php echo $this->uri->segment(3);?>">
+               <input type="hidden" name="categoryid" id="categoryid" value="<?php echo $category_id;?>">
+			    <input type="hidden" name="brand" id="brand" value="<?php echo $brand;?>">
+
                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                   <?php if(isset($offer_list) && count($offer_list)>0){?>
                   <div class="panel panel-primary">
@@ -1030,6 +1032,7 @@ function categorywisefilters(val,status,check){
 				data: {
 					form_key : window.FORM_KEY,
 					categoryid: $('#categoryid').val(),
+					group: $('#brand').val(),
 					productsvalues: val,
 					searchvalue: status,
 					unchecked: check,
@@ -1039,8 +1042,8 @@ function categorywisefilters(val,status,check){
 					},
 				dataType: 'html',
 				success: function (data) {
-					$("#subitemwisefilterdata").empty();
-					$("#subitemwisefilterdata").append(data);
+					$("#categorywisefilterdata").empty();
+					$("#categorywisefilterdata").append(data);
 				}
 		});
 }
