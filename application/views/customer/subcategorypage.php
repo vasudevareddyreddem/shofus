@@ -138,14 +138,14 @@ $customerdetails=$this->session->userdata('userdetails');
 			
 			
 			//echo '<pre>';print_r($list);exit; ?>
-			<a href="#">
+			<a href="<?php echo base_url('category/price/'.base64_encode($list[4]).'/'.base64_encode($list[0][0]).'/'.base64_encode('price').'/'.base64_encode(0)); ?>">
 				<div class="col-md-3 col-xs-12 col-sm-12  pri-bran">
 					<div class="pric_fi">
 						<h3> ₹ <?php echo $list[0][0]; ?> </h3>
 					</div>
 				</div>
 			</a>
-			<a href="#">
+			<a href="<?php echo base_url('category/price/'.base64_encode($list[4]).'/'.base64_encode($list[1][0]).'/'.base64_encode('price').'/'.base64_encode($list[0][0])); ?>">
 				<div class="col-md-3 col-xs-12 col-sm-12 pri-bran">
 					<div class="pric_se">
 						<h3> ₹ <?php echo $list[0][0]; ?> - ₹<?php echo $list[1][0] ; ?></h3>
@@ -155,14 +155,14 @@ $customerdetails=$this->session->userdata('userdetails');
 			
 			
 			
-				<a href="#">
+				<a href="<?php echo base_url('category/price/'.base64_encode($list[4]).'/'.base64_encode($list[2][0]).'/'.base64_encode('price').'/'.base64_encode($list[1][0])); ?>">
 				<div class="col-md-3 col-xs-12 col-sm-12 pri-bran">
 					<div class="pric_th">
 						<h3> ₹ <?php echo $list[1][0]; ?> - ₹<?php echo $list[2][0] ; ?></h3>
 					</div>
 				</div>
 				</a>
-				<a href="#">
+				<a href="<?php echo base_url('category/price/'.base64_encode($list[4]).'/'.base64_encode($list[3][0]).'/'.base64_encode('price').'/'.base64_encode($list[2][0])); ?>">
 				<div class="col-md-3 col-xs-12 col-sm-12 pri-bran">
 					<div class="pric_fo">
 						<h3> ₹ <?php echo $list[2][0]; ?> - ₹<?php echo $list[3][0] ; ?></h3>

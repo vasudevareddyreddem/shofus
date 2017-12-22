@@ -2281,7 +2281,7 @@ public function get_all_subitem_list($catid,$subcatid)
 		}
 		
 		public function step_five_data($catid){
-			$this->db->select('max(item_cost)as max,min(item_cost)as min,')->from('products');
+			$this->db->select('max(item_cost)as max,min(item_cost)as min,products.category_id')->from('products');
 			$this->db->where('item_status',1);
 			$this->db->where('products.category_id',$catid);
 			return $this->db->get()->row_array();	
@@ -2823,6 +2823,15 @@ public function get_all_subitem_list($catid,$subcatid)
 		return $this->db->get()->result_array();
 	}
 	/*itemwise filter*/
+	/*groupwise filter*/
+	public function get_groupwise_price_product_list($catid,$maxamount,$minamount){
+		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$minamount.'"', false);
+		$this->db->where('special_price <=', $maxamount);
+		$this->db->where('category_id',$catid);
+		$this->db->where('item_status',1);
+		return $this->db->get()->result_array();
+	}
 	public function get_groupwise_product_list($catid,$brand){
 		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
 		$this->db->where('category_id',$catid);
@@ -3186,6 +3195,17 @@ public function get_all_subitem_list($catid,$subcatid)
 		$sql1="DELETE FROM brandwise_filters WHERE id = '".$id."'";
 		return $this->db->query($sql1);
 	}
+	/*pricewise*/
+	public function get_group_all_brand_list($catid,$where,$brand){
+		$this->db->select('products.'.$where)->from('products');
+		$this->db->where('brand',$brand);
+		$this->db->where('category_id',$catid);
+		$this->db->where('item_status',1);
+		$this->db->where('products.'.$where.' !=','');
+		$this->db->group_by($where);
+		return $this->db->get()->result_array();
+	}
+	/*pricewise*/
 	  
 	  
 }

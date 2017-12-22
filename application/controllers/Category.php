@@ -1642,9 +1642,11 @@ public function subitemwise_search(){
 		$step_four= $this->category_model->step_four_data(2);
 		$data['step_four']=array_chunk($step_four, 2);
 		$step_five= $this->category_model->step_five_data($cateid);
+		//echo '<pre>';print_r($step_five);exit;
 		$amt= ($step_five['max'])/4;
-		$amount=array(array($amt),array($amt*2),array($amt*3),array($amt*4));
-		$data['step_five']=array_chunk($amount, 4);
+		$amount=array(array($amt),array($amt*2),array($amt*3),array($amt*4),$step_five['category_id']);
+		$data['step_five']=array_chunk($amount, 5);
+		//echo '<pre>';print_r($data['step_five']);exit;
 		if($cateid==21 || $cateid==31 || $cateid==19 || $cateid==24 || $cateid==35 ||  $cateid==28 ||  $cateid==20){
 		$data['step_six']= $this->category_model->step_six_data($cateid);
 		}
@@ -3391,6 +3393,149 @@ public function subitemwise_search(){
 			}
 			$this->load->view('customer/groupwiseresult',$data);
 	 }
+	 
+	 
+	 /*pricewise products list*/
+	  public function price(){
+		 
+		 /*delete privous data*/
+		 $previousdata=$this->category_model->get_categoryprivous_data($this->input->ip_address());
+		 foreach($previousdata as $lis){
+			 $this->category_model->delete_previous_data($lis['id']);
+		 }
+		 /*delete privous data*/
+		  $catid=base64_decode($this->uri->segment(3));
+		  $brand=base64_decode($this->uri->segment(4));
+		  $group=base64_decode($this->uri->segment(5));
+		  $minprice=base64_decode($this->uri->segment(6));
+		  $data['product_list']= $this->category_model->get_groupwise_price_product_list($catid,$brand,$minprice);  
+			echo '<pre>';print_r($data['product_list']);exit;
+			$data['caterory_id']=$catid;
+			$data['brand']=$brand;
+			$data['category_details']= $this->category_model->category_details($catid);
+			if(isset($data['itemwise']) && count($data['itemwise'])>0){
+					foreach($data['itemwise'] as $lists){
+					$reviewrating[]=$this->category_model->product_reviews_avg($lists['item_id']);
+					$reviewcount[]=$this->category_model->product_reviews_count($lists['item_id']);
+					}
+				}
+				
+				if(isset($reviewrating) && count($reviewrating)>0){
+							$data['avg_count']=$reviewrating;
+						}else{
+							$data['avg_count']=array();
+						}
+						if(isset($reviewcount) && count($reviewcount)>0){
+							$data['rating_count']=$reviewcount;
+						}else{
+							$data['rating_count']=array();
+						}
+				//echo '<pre>';print_r($data['subitemwise']);exit;
+				$data['brand_list']= $this->category_model->get_group_all_brand_list($catid,'brand',$brand);
+				$data['price_list']= $this->category_model->get_group_all_price_list($catid,$brand);
+				$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
+				$offer_list= $this->category_model->get_group_all_offer_list($catid,$brand);
+				$data['color_list']= $this->category_model->get_group_all_brand_list($catid,'colour',$brand);
+				$data['ram_list']= $this->category_model->get_group_all_brand_list($catid,'ram',$brand);
+				//echo $this->db->last_query();exit;
+				$data['os_list']= $this->category_model->get_group_all_brand_list($catid,'os',$brand);
+				$data['sim_list']= $this->category_model->get_group_all_brand_list($catid,'sim_type',$brand);
+				$data['camera_list']= $this->category_model->get_group_all_brand_list($catid,'camera',$brand);
+				$data['internal_memeory_list']= $this->category_model->get_group_all_brand_list($catid,'internal_memeory',$brand);
+				$data['screen_size_list']= $this->category_model->get_group_all_brand_list($catid,'screen_size',$brand);
+				$data['Processor_list']= $this->category_model->get_group_all_brand_list($catid,'Processor',$brand);
+				$data['printer_type']= $this->category_model->get_group_all_brand_list($catid,'printer_type',$brand);
+				$data['type_list']= $this->category_model->get_group_all_brand_list($catid,'type',$brand);
+				$data['max_copies']= $this->category_model->get_group_all_brand_list($catid,'max_print_resolution',$brand);
+				$data['paper_size']= $this->category_model->get_group_all_brand_list($catid,'paper_size',$brand);
+				$data['headphone_jack']= $this->category_model->get_group_all_brand_list($catid,'headphone_jack',$brand);
+				$data['noise_reduction']= $this->category_model->get_group_all_brand_list($catid,'noise_reduction',$brand);
+				$data['usb_port']= $this->category_model->get_group_all_brand_list($catid,'usb_port',$brand);
+				$data['compatible_for']= $this->category_model->get_group_all_brand_list($catid,'compatible_for',$brand);
+				$data['scanner_type']= $this->category_model->get_group_all_brand_list($catid,'scanner_type',$brand);
+				$data['resolution']= $this->category_model->get_group_all_brand_list($catid,'resolution',$brand);
+				$data['f_stop']= $this->category_model->get_group_all_brand_list($catid,'f_stop',$brand);
+				$data['minimum_focusing_distance']= $this->category_model->get_group_all_brand_list($catid,'minimum_focusing_distance',$brand);
+				$data['aperture_withmaxfocal_length']= $this->category_model->get_group_all_brand_list($catid,'aperture_withmaxfocal_length',$brand);
+				$data['picture_angle']= $this->category_model->get_group_all_brand_list($catid,'picture_angle',$brand);
+				$data['size_list']= $this->category_model->get_group_all_brand_list($catid,'size',$brand);
+				$data['weight_list']= $this->category_model->get_group_all_brand_list($catid,'weight',$brand);
+				$data['occasion_list']= $this->category_model->get_group_all_brand_list($catid,'occasion',$brand);
+				$data['material_list']= $this->category_model->get_group_all_brand_list($catid,'material',$brand);
+				$data['collar_type']= $this->category_model->get_group_all_brand_list($catid,'collar_type',$brand);
+				$data['gender_list']= $this->category_model->get_group_all_brand_list($catid,'gender',$brand);
+				$data['sleeve_list']= $this->category_model->get_group_all_brand_list($catid,'sleeve',$brand);
+				$data['look_list']= $this->category_model->get_group_all_brand_list($catid,'look',$brand);
+				$data['style_code']= $this->category_model->get_group_all_brand_list($catid,'style_code',$brand);
+				$data['inner_material']= $this->category_model->get_group_all_brand_list($catid,'inner_material',$brand);
+				$data['waterproof']= $this->category_model->get_group_all_brand_list($catid,'waterproof',$brand);
+				 foreach ($data['price_list'] as $list) {
+					$date = new DateTime("now");
+					$curr_date = $date->format('Y-m-d h:i:s A');
+					if($list['offer_expairdate']>=$curr_date){
+						$amounts[]=$list['item_cost'];
+					}else{
+						$amounts[]=$list['special_price'];
+					}
+				 }
+					$minamt = min($amounts);
+					$maxamt= max($amounts);
+					//echo '<pre>';print_r( $amounts);exit;
+					$data['minimum_price'] = array('item_cost'=>$minamt);
+					$data['maximum_price'] = array('item_cost'=>$maxamt);
+					//echo max($data['price_list']);
+					foreach ($offer_list as $list) {
+						$date = new DateTime("now");
+						$curr_date = $date->format('Y-m-d h:i:s A');
+						if($list['offer_expairdate']>=$curr_date){
+							if($list['offer_percentage']!=''){
+								$ids[]=$list['offer_percentage'];
+							}
+						}else{
+							if($list['offers']!=''){
+								$ids[]=$list['offers'];
+							}
+						}
+						
+					}
+					foreach (array_unique($ids) as $Li){
+						$uniids[]=array('offers'=>$Li);
+						
+					}
+				$data['offer_list']=$uniids;
+				$cartitemids= $this->category_model->get_all_cart_lists_ids();
+				if(count($cartitemids)>0){
+				foreach($cartitemids as $list){
+					$cust_ids[]=$list['cust_id'];
+					$cart_item_ids[]=$list['item_id'];
+					$cart_ids[]=$list['id'];
+					
+				}
+				$data['cust_ids']=$cust_ids;
+				$data['cart_item_ids']=$cart_item_ids;
+				$data['cart_ids']=$cart_ids;
+				
+			}else{
+				$data['cust_ids']=array();
+				$data['cart_item_ids']=array();
+				$data['cart_ids']=array();
+			}
+			$wishlist_ids= $this->category_model->get_all_wish_lists_ids();
+			if(count($wishlist_ids)>0){
+			foreach ($wishlist_ids as  $list){
+				$customer_ids_list[]=$list['cust_id'];
+				$whishlist_item_ids_list[]=$list['item_id'];
+				$whishlist_ids_list[]=$list['id'];
+			}
+			$data['customer_ids_list']=$customer_ids_list;
+			$data['whishlist_item_ids_list']=$whishlist_item_ids_list;
+			$data['whishlist_ids_list']=$whishlist_ids_list;
+			}
+			//echo '<pre>';print_r($data);exit;
+			$this->template->write_view('content', 'customer/groupwise',$data);
+			$this->template->render(); 
+	 }
+	 /*pricewise products list*/
 	
 }
 ?>
