@@ -175,10 +175,10 @@ public function homepagebanner()
 					$subitem=$item['subitem_id'];
 					$itemid=$item['id'];
 					}else if($post['link']==3){
-					$subitem_id=$this->showups_model->get_subitem_detals($post['selecteddata']);
-					$catid=$subitem_id['category_id'];
-					$subcatid=$subitem_id['subcategory_id'];
-					$subitem=$post['subitem_id'];
+						$subitem_id=$this->showups_model->get_subitem_detals($post['selecteddata']);
+						$catid=$subitem_id['category_id'];
+						$subcatid=$subitem_id['subcategory_id'];
+						$subitem=$subitem_id['subitem_id'];
 					}else if($post['link']==2){
 					$subitem_id=$this->showups_model->get_subcategory_detals($post['selecteddata']);
 					$catid=$subitem_id['category_id'];
@@ -221,7 +221,7 @@ public function homepagebanner()
 				$two=$this->showups_model->get_homepagebanners_list_position_wise_two(2);
 				$three=$this->showups_model->get_homepagebanners_list_position_wise_three(3);
 				$four=$this->showups_model->get_homepagebanners_list_position_wise_four(4);
-				//echo '<pre>';print_r($two);exit;
+				//echo '<pre>';print_r($post);
 				if($post['position']==2){
 					if($two['imagecount']>=3){
 						$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 2 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
@@ -246,9 +246,10 @@ public function homepagebanner()
 					$itemid=$item['id'];
 					}else if($post['link']==3){
 					$subitem_id=$this->showups_model->get_subitem_detals($post['selecteddata']);
+					//echo '<pre>';print_r($subitem_id);
 					$catid=$subitem_id['category_id'];
 					$subcatid=$subitem_id['subcategory_id'];
-					$subitem=$post['subitem_id'];
+					$subitem=$subitem_id['subitem_id'];
 					}else if($post['link']==2){
 					$subitem_id=$this->showups_model->get_subcategory_detals($post['selecteddata']);
 					$catid=$subitem_id['category_id'];
@@ -276,6 +277,7 @@ public function homepagebanner()
 				'created_at'=>date('Y-m-d H:i:s'),		
 				'expirydate'=>$date2		
 			);
+			//echo '<pre>';print_r($data);exit;
 			$banners=$this->showups_model->save_homepagebanners_list_image($data);
 			if(count($banners)>0){
 				$this->session->set_flashdata('success',"Banner successfully Added!");

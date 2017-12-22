@@ -58,7 +58,7 @@
                 <?php foreach($banner_list as $banner) { ?>
                 <tr>
                   <td><?php echo $banner['name']; ?></td>
-                    <td><img src="<?php echo base_url();?>assets/banners/<?php  echo $banner['name']; ?>" width="80" height="50" /></td>
+                    <td><img src="<?php echo base_url();?>assets/categoryimages/<?php  echo $banner['name']; ?>" width="80" height="50" /></td>
 
                   <td><?php if($banner['position']==1){
 					  echo "First position";

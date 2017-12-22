@@ -2708,7 +2708,7 @@ public function addhomepagemiddlebannerspost()
 					$subitem_id=$this->showups_model->get_subitem_detals($post['selecteddata']);
 					$catid=$subitem_id['category_id'];
 					$subcatid=$subitem_id['subcategory_id'];
-					$subitem=$post['subitem_id'];
+					$subitem=$subitem_id['subitem_id'];
 					}else if($post['link']==2){
 					$subitem_id=$this->showups_model->get_subcategory_detals($post['selecteddata']);
 					$catid=$subitem_id['category_id'];
@@ -2792,7 +2792,7 @@ public function addhomepagemiddlebannerspost()
 					$subitem_id=$this->showups_model->get_subitem_detals($post['selecteddata']);
 					$catid=$subitem_id['category_id'];
 					$subcatid=$subitem_id['subcategory_id'];
-					$subitem=$post['subitem_id'];
+					$subitem=$subitem_id['subitem_id'];
 					}else if($post['link']==2){
 					$subitem_id=$this->showups_model->get_subcategory_detals($post['selecteddata']);
 					$catid=$subitem_id['category_id'];
