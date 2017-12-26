@@ -36,7 +36,7 @@ $customerdetails=$this->session->userdata('userdetails');
 					</a>					
 					<?php } ?>
 					<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
-						<?php if($list[0]['link']==1){ ?>
+						<?php if($list[1]['link']==1){ ?>
 							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[1]['selected_id'])); ?>">
 						<?php }else if($list[1]['link']==2){ ?>
 							<a href="<?php echo base_url('category/subcategory/'.base64_encode($list[1]['category_id']).'/'.base64_encode($list[1]['subcategory_id'])); ?>">
@@ -159,7 +159,7 @@ $customerdetails=$this->session->userdata('userdetails');
 					</a>					
 					<?php } ?>
 					<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
-						<?php if($list[0]['link']==1){ ?>
+						<?php if($list[1]['link']==1){ ?>
 							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[1]['selected_id'])); ?>">
 						<?php }else if($list[1]['link']==2){ ?>
 							<a href="<?php echo base_url('category/subcategory/'.base64_encode($list[1]['category_id']).'/'.base64_encode($list[1]['subcategory_id'])); ?>">
@@ -333,12 +333,30 @@ $customerdetails=$this->session->userdata('userdetails');
 	
 	
 	<?php if(isset($step_seven) && count($step_seven)>0){ ?>
+	<?php //echo '<pre>';print_r($step_seven);exit;?>
 		<section>
 		<div class="best-pro slider-items-products container_main">
 			<div class="row mar_t15" >
 			<?php foreach ($step_seven as $list){ ?>
 					<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
 					<?php if($list[0]['link']==1){ ?>
+							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[1]['selected_id'])); ?>">
+						<?php }else if($list[0]['link']==2){ ?>
+							<a href="<?php echo base_url('category/subcategory/'.base64_encode($list[1]['category_id']).'/'.base64_encode($list[1]['subcategory_id'])); ?>">
+						<?php }else if($list[0]['link']==3){ ?>
+								<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[1]['subitem_id']).'/'.base64_encode($list[1]['subcategory_id']).'/'.base64_encode($list[1]['category_id'])); ?>">
+						<?php }else if($list[0]['link']==4){ ?>
+							<a href="<?php echo base_url('category/item/'.base64_encode($list[1]['item_id'])); ?>">
+						<?php }else if($list[0]['link']==5){ ?>
+							<a href="<?php echo base_url('category/productview/'.base64_encode($list[1]['selected_id'])); ?>">
+						<?php } ?>
+					<div class="col-md-4">
+					<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
+					</div> 
+						</a>					
+					<?php } ?>
+					<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
+					<?php if($list[1]['link']==1){ ?>
 							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[1]['selected_id'])); ?>">
 						<?php }else if($list[1]['link']==2){ ?>
 							<a href="<?php echo base_url('category/subcategory/'.base64_encode($list[1]['category_id']).'/'.base64_encode($list[1]['subcategory_id'])); ?>">
@@ -349,12 +367,12 @@ $customerdetails=$this->session->userdata('userdetails');
 						<?php }else if($list[1]['link']==5){ ?>
 							<a href="<?php echo base_url('category/productview/'.base64_encode($list[1]['selected_id'])); ?>">
 						<?php } ?>
-					<div class="col-md-4">
-					<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
-					</div> 
-						</a>					
+						<div class="col-md-4">
+						<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
+						</div> 
+							</a>						
 					<?php } ?>
-					<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
+					<?php if(isset($list[2]['name']) && $list[2]['name']!=''){ ?>
 					<?php if($list[2]['link']==1){ ?>
 							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[2]['selected_id'])); ?>">
 						<?php }else if($list[2]['link']==2){ ?>
@@ -365,23 +383,6 @@ $customerdetails=$this->session->userdata('userdetails');
 							<a href="<?php echo base_url('category/item/'.base64_encode($list[2]['item_id'])); ?>">
 						<?php }else if($list[2]['link']==5){ ?>
 							<a href="<?php echo base_url('category/productview/'.base64_encode($list[2]['selected_id'])); ?>">
-						<?php } ?>
-						<div class="col-md-4">
-						<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
-						</div> 
-							</a>						
-					<?php } ?>
-					<?php if(isset($list[2]['name']) && $list[2]['name']!=''){ ?>
-					<?php if($list[3]['link']==1){ ?>
-							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[3]['selected_id'])); ?>">
-						<?php }else if($list[3]['link']==2){ ?>
-							<a href="<?php echo base_url('category/subcategory/'.base64_encode($list[3]['category_id']).'/'.base64_encode($list[3]['subcategory_id'])); ?>">
-						<?php }else if($list[3]['link']==3){ ?>
-								<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[3]['subitem_id']).'/'.base64_encode($list[3]['subcategory_id']).'/'.base64_encode($list[3]['category_id'])); ?>">
-						<?php }else if($list[3]['link']==4){ ?>
-							<a href="<?php echo base_url('category/item/'.base64_encode($list[3]['item_id'])); ?>">
-						<?php }else if($list[3]['link']==5){ ?>
-							<a href="<?php echo base_url('category/productview/'.base64_encode($list[3]['selected_id'])); ?>">
 						<?php } ?>
 						<div class="col-md-4">
 								<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$list[2]['name']); ?>" alt="<?php echo $list[2]['name']; ?>">
@@ -617,8 +618,25 @@ $customerdetails=$this->session->userdata('userdetails');
 			<?php foreach ($step_eleven as $list){ ?>
 					<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
 					<?php if($list[0]['link']==1){ ?>
+							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
+						<?php }else if($list[0]['link']==2){ ?>
+							<a href="<?php echo base_url('category/subcategory/'.base64_encode($list[0]['category_id']).'/'.base64_encode($list[0]['subcategory_id'])); ?>">
+						<?php }else if($list[0]['link']==3){ ?>
+								<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[0]['subitem_id']).'/'.base64_encode($list[0]['subcategory_id']).'/'.base64_encode($list[0]['category_id'])); ?>">
+						<?php }else if($list[0]['link']==4){ ?>
+							<a href="<?php echo base_url('category/item/'.base64_encode($list[0]['item_id'])); ?>">
+						<?php }else if($list[0]['link']==5){ ?>
+							<a href="<?php echo base_url('category/productview/'.base64_encode($list[0]['selected_id'])); ?>">
+						<?php } ?>
+					<div class="col-md-4">
+					<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
+					</div> 
+						</a>					
+					<?php } ?>
+					<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
+					<?php if($list[1]['link']==1){ ?>
 							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[1]['selected_id'])); ?>">
-						<?php }else if($list[1]['link']==2){ ?>
+						<?php }else if($list[2]['link']==2){ ?>
 							<a href="<?php echo base_url('category/subcategory/'.base64_encode($list[1]['category_id']).'/'.base64_encode($list[1]['subcategory_id'])); ?>">
 						<?php }else if($list[1]['link']==3){ ?>
 								<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[1]['subitem_id']).'/'.base64_encode($list[1]['subcategory_id']).'/'.base64_encode($list[1]['category_id'])); ?>">
@@ -627,12 +645,12 @@ $customerdetails=$this->session->userdata('userdetails');
 						<?php }else if($list[1]['link']==5){ ?>
 							<a href="<?php echo base_url('category/productview/'.base64_encode($list[1]['selected_id'])); ?>">
 						<?php } ?>
-					<div class="col-md-4">
-					<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
-					</div> 
-						</a>					
+						<div class="col-md-4">
+						<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
+						</div> 
+							</a>						
 					<?php } ?>
-					<?php if(isset($list[1]['name']) && $list[1]['name']!=''){ ?>
+					<?php if(isset($list[2]['name']) && $list[2]['name']!=''){ ?>
 					<?php if($list[2]['link']==1){ ?>
 							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[2]['selected_id'])); ?>">
 						<?php }else if($list[2]['link']==2){ ?>
@@ -643,23 +661,6 @@ $customerdetails=$this->session->userdata('userdetails');
 							<a href="<?php echo base_url('category/item/'.base64_encode($list[2]['item_id'])); ?>">
 						<?php }else if($list[2]['link']==5){ ?>
 							<a href="<?php echo base_url('category/productview/'.base64_encode($list[2]['selected_id'])); ?>">
-						<?php } ?>
-						<div class="col-md-4">
-						<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
-						</div> 
-							</a>						
-					<?php } ?>
-					<?php if(isset($list[2]['name']) && $list[2]['name']!=''){ ?>
-					<?php if($list[3]['link']==1){ ?>
-							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[3]['selected_id'])); ?>">
-						<?php }else if($list[3]['link']==2){ ?>
-							<a href="<?php echo base_url('category/subcategory/'.base64_encode($list[3]['category_id']).'/'.base64_encode($list[3]['subcategory_id'])); ?>">
-						<?php }else if($list[3]['link']==3){ ?>
-								<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[3]['subitem_id']).'/'.base64_encode($list[3]['subcategory_id']).'/'.base64_encode($list[3]['category_id'])); ?>">
-						<?php }else if($list[3]['link']==4){ ?>
-							<a href="<?php echo base_url('category/item/'.base64_encode($list[3]['item_id'])); ?>">
-						<?php }else if($list[3]['link']==5){ ?>
-							<a href="<?php echo base_url('category/productview/'.base64_encode($list[3]['selected_id'])); ?>">
 						<?php } ?>
 						<div class="col-md-4">
 								<img class="img-responsive" src="<?php echo base_url('assets/categoryimages/'.$list[2]['name']); ?>" alt="<?php echo $list[2]['name']; ?>">

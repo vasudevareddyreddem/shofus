@@ -2893,7 +2893,8 @@ public function addhomepagemiddlebannerspost()
 			if($logindetail['role_id']==5)
 			{
 					$post=$this->input->post();
-					$alreadyexits = $this->inventory_model->get_itemname_existss($post['itemname']);
+					//echo '<pre>';print_r($post);
+					$alreadyexits = $this->inventory_model->get_itemnameinsamesubitem_existss($post['subitemid'],$post['itemname']);
 						if(count($alreadyexits)>0){
 							$this->session->set_flashdata('error',"Item Name already exits.please use another item Name.");
 							redirect('inventory/itemadd');
@@ -2907,6 +2908,7 @@ public function addhomepagemiddlebannerspost()
 					'update_at' => date('Y-m-d H:i:s'),
 					'created_by' =>$logindetail['customer_id'], 
 					);
+					//echo '<pre>';print_r($additem);exit;
 					$results=$this->inventory_model->save_items($additem);
 					if(count($results)>0){
 					$this->session->set_flashdata('success',"Item Successfully Added");

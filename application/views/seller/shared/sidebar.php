@@ -93,7 +93,7 @@
                     </li>
 					<li class="treeview">
                         <a href="<?php echo base_url('seller/showups/catehorybanner/');?>">
-                            <i class="fa fa-envelope-open-o"></i><span>Caregory Banners</span>
+                            <i class="fa fa-envelope-open-o"></i><span>Category Banners</span>
                         </a>                        
                     </li>
 					<li class="treeview">

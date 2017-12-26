@@ -800,7 +800,12 @@ public function delete_banner($id,$sid)
 	return $this->db->query($sql)->row_array();
 	}
 	
-	function get_itemname_existss($name)
+	function get_itemnameinsamesubitem_existss($subitemid,$name)
+    {
+	   $sql = "SELECT * FROM items_list WHERE item_name ='".$name."' AND subitemid ='".$subitemid."' AND status='1'";
+        return $this->db->query($sql)->row_array();
+     }
+	 function get_itemname_existss($name)
     {
 	   $sql = "SELECT * FROM items_list WHERE item_name ='".$name."' AND status='1'";
         return $this->db->query($sql)->row_array();
