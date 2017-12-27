@@ -2357,7 +2357,11 @@ public function get_all_subitem_list($catid,$subcatid)
 			$curr_date = $date->format('Y-m-d h:i:s A');
 			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
 			$this->db->where('products.item_id !=','');
-			$this->db->where('products.category_id',$catid);
+			if($catid==19){
+			$this->db->where('products.subcategory_id',128);
+			}else{
+				$this->db->where('products.subcategory_id',140);
+			}
 			return $this->db->get()->result_array();			
 		}
 		public function step_ten_data($catid){
