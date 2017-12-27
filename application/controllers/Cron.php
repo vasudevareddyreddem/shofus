@@ -325,6 +325,22 @@ class Cron extends Front_Controller
 		
 	}
 	
+	public function testing(){
+		
+		//echo $list['customer_email_send'];exit;
+				$htmlmessage = "Invoice has been generated from the https:cartinhours.com";
+					$this->load->library('email');
+					$this->email->set_newline("\r\n");
+					$this->email->set_mailtype("html");
+					$this->email->from('cartinhours.com');
+					$this->email->to('vasudevareddy549@gmail.com');
+					$this->email->subject('testing');
+					//echo $html;exit;
+					$this->email->message($htmlmessage);
+					$this->email->send();
+				
+	}
+	
 	
 	
 	
