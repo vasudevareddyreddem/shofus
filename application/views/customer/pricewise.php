@@ -1,4 +1,4 @@
-
+<div class="container-fluid fluid_mod pad_b_t15">
 <span id=""></span>
    <span id="groupwiseresult">
 	<div class="col-md-3">
@@ -875,7 +875,7 @@
 	
 	 <div class="clearfix"></div>
 	 <br>
-	
+	</div>
 </body>
 <script>
 function categoryoricewisefilters(val,status,check){
