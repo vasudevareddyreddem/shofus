@@ -1,9 +1,8 @@
-
-
+<div class="container-fluid fluid_mod">
 <?php //echo '<pre>';print_r($itemlist);exit; ?>
 <!--fasion catagories start-->
 			<?php if(isset($itemlist) && count($itemlist)>0){?>
-				<div class="col-md-offset-3">
+				<div class="col-md-offset-3 pad_b_t15">
 						<ul>
 							<?php foreach ($itemlist as $list){ ?>
 										<li class="dropdown mar_t10 col-md-2 ">
@@ -331,6 +330,7 @@
 	
 	 <div class="clearfix"></div>
 	 <br>
+	 </div>
 	
 </body>
 <script>

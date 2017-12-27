@@ -1,4 +1,4 @@
-
+<div class="container-fluid fluid_mod">
    <span id="filtersubitemwisedata"></span>
    <span id="subitemwisedata">
  <div class="col-sm-3">
@@ -888,6 +888,7 @@
 	
 	 <div class="clearfix"></div>
 	 <br>
+	 </div>
 </body>
 <script>
 

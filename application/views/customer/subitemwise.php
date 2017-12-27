@@ -218,9 +218,10 @@
    }
    }
    </style>
+   <div class="container-fluid fluid_mod">
    <?php if(isset($subitemwise_item_list)&& count($subitemwise_item_list)>0){ ?>
 		<section>
-			<div class="col-md-offset-3">
+			<div class="col-md-offset-3 pad_b_t15">
 			<ul class="sec-des">
 			<?php foreach ($subitemwise_item_list as $list){ ?>
 				<a href="<?php echo base_url('category/item/'.base64_encode($list['id'])); ?>"><li><?php echo $list['item_name']; ?></li></a>
@@ -1112,6 +1113,7 @@
 	
 	 <div class="clearfix"></div>
 	 <br>
+	 </div>
 </body>
 <script>
 
