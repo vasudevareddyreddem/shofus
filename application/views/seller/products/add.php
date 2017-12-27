@@ -908,6 +908,7 @@ function getinputfiledshideshow(ids){
 
   
   function getsubcategory(id){
+	  $('#labelids').hide();
 	  if(id!=''){
 		$('#subcategorylist').empty();
 		jQuery.ajax({

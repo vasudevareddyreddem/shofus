@@ -15,7 +15,7 @@
 					</div>
 				   <div class="row">
 		  <div class="col-md-6">
-		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="subcatehorywise(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
+		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="categorywisefilters(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
 				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 				<?php } ?>
@@ -23,7 +23,7 @@
 			  </select>
 		  </div>
 		  <div class="col-md-6">
-		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="subcatehorywise(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
+		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="categorywisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
 				 <?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
 				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 				<?php } ?>

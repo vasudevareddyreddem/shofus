@@ -16,6 +16,11 @@
 					<span aria-hidden="true">&times;</span>
 					</button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
+					<?php if($this->session->flashdata('error')): ?>
+					<div class="alert dark alert-warning alert-dismissible" id="infoMessage"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button><?php echo $this->session->flashdata('error');?></div>	
+					<?php endif; ?>
 					
 		<?php if(count($bannerslist)>0){ ?>
               <table id="example1" class="table table-bordered table-striped">

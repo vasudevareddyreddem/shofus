@@ -2220,17 +2220,17 @@ public function addhomepagemiddlebannerspost()
 					if($position==2){
 						if($two['imagecount']>=3){
 							$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 2 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
-							redirect('seller/showups/homepagebanerrslist');
+							redirect('inventory/homepagebanerrslist');
 						}
 						}else if($position==3){
 							if($three['imagecount']>=4){
 								$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 2 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
-								redirect('seller/showups/homepagebanerrslist');
+								redirect('inventory/homepagebanerrslist');
 							}
 						}else if($position==3){
 							if($four['imagecount']>=2){
 								$this->session->set_flashdata('error',"while adding it should come like 1 of 2 , 2 of 2...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
-								redirect('seller/showups/homepagebanerrslist');
+								redirect('inventory/homepagebanerrslist');
 							}
 						}
 				}
