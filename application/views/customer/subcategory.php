@@ -56,10 +56,14 @@
 		  </div>
 		  <div class="col-md-6">
 		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="subcatehorywise(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
-				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+				 
+				 <?php if($minimum_price['item_cost']==$maximum_price['item_cost']){ ?>
+						<option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
+				 <?php }else{ ?>
+						 <?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+						<?php } ?>
 				<?php } ?>
-
 			  </select>
 		  </div>
 		  </div><br>
