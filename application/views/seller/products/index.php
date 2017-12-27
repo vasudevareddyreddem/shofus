@@ -45,7 +45,7 @@
 					<?php endif; ?>
 	   <?php  $kk=1;foreach($catitemdata1 as $catitem_data1 )  {  ?> 
 		
-		 <a id="btn_chang<?php echo $kk;?>" onclick="addtabactive(<?php echo $kk;?>);addtabactives(<?php echo $kk;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
+		 <a style="margin:3px" id="btn_chang<?php echo $kk;?>" onclick="addtabactive(<?php echo $kk;?>);addtabactives(<?php echo $kk;?>);" href="#gry<?php echo $catitem_data1->category_id;   ?>" class="btn btn-large btn-info" data-toggle="tab"><?php echo $catitem_data1->category_name;   ?></a>
 
 	<?php $kk++;} ?>
         <?php  $j=1;foreach($catitemdata as $catitem_data )  {    ?>
