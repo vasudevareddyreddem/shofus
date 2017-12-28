@@ -384,6 +384,7 @@ public function category_data($sid){
 	if($sid!=''){
 	$this->db->where('products.seller_id',$sid);
 	}
+	$this->db->where('products.item_status',1);
 	$this->db->group_by('products.category_id');
 	return $this->db->get()->result_array();
 }
@@ -394,6 +395,7 @@ public function subcategory_data($sid){
 	if($sid!=''){
 	$this->db->where('products.seller_id',$sid);
 	}
+	$this->db->where('products.item_status',1);
 	$this->db->group_by('products.subcategory_id');
 	return $this->db->get()->result_array();
 }
@@ -403,6 +405,7 @@ public function subitem_data($sid){
 	if($sid!=''){
 	$this->db->where('products.seller_id',$sid);
 	}
+	$this->db->where('products.item_status',1);
 	$this->db->group_by('products.subitemid');
 	return $this->db->get()->result_array();
 }
@@ -412,6 +415,7 @@ public function item_data($sid){
 	if($sid!=''){
 	$this->db->where('products.seller_id',$sid);
 	}
+	$this->db->where('products.item_status',1);
 	$this->db->group_by('products.itemwise_id');
 	return $this->db->get()->result_array();
 }
@@ -420,6 +424,7 @@ public function products_data($sid){
 	if($sid!=''){
 	$this->db->where('products.seller_id',$sid);
 	}
+	$this->db->where('products.item_status',1);
 	$this->db->group_by('products.item_id');
 	return $this->db->get()->result_array();
 }
