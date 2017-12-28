@@ -232,7 +232,14 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 								<h6><?php echo $list['category_name']; ?></h6>
 								<div class="price">
 									<div class="text-center" style="color:#187a7d;">Up to
-										<span class="label-tags"><p class=" text-success"><?php echo number_format($list['offer_percentage'], 2, '.', ''); ?>% off</p></span>
+										<span class="label-tags"><p class=" text-success">
+										<?php $currentdate=date('Y-m-d h:i:s A');
+										if(	$list['offer_expairdate']>=$currentdate){ ?>
+										<?php echo number_format($list['offer_percentage'], 2, '.', ''); ?>% off
+										<?php }else{ ?>
+										<?php echo number_format($list['offers'], 2, '.', ''); ?>% off
+										<?php } ?>
+										</p></span>
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -269,7 +276,15 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 								<h6><?php echo $list['category_name']; ?></h6>
 								<div class="price">
 									<div class="text-center" style="color:#187a7d;">Up to
-										<span class="label-tags"><p class=" text-success"><?php echo number_format($list['offer_percentage'], 2, '.', ''); ?>% off</p></span>
+										<span class="label-tags"><p class=" text-success">
+										<?php $currentdate=date('Y-m-d h:i:s A');
+										if(	$list['offer_expairdate']>=$currentdate){ ?>
+										<?php echo number_format($list['offer_percentage'], 2, '.', ''); ?>% off
+										<?php }else{ ?>
+										<?php echo number_format($list['offers'], 2, '.', ''); ?>% off
+										<?php } ?>
+										
+										</p></span>
 									</div>
 									<div class="clearfix"></div>
 								</div>

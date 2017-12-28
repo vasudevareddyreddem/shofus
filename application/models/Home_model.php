@@ -199,14 +199,14 @@ class Home_model extends CI_Model
 	}
 	public function get_trending_products()
 	{
-		$this->db->select('*')->from('products');
+		$this->db->select('products.category_id')->from('products');
 		$this->db->order_by('products.offer_percentage desc');
 		$this->db->group_by('products.category_id');
 		$this->db->where('products.category_id !=','');
 		$this->db->where('products.item_status',1);
 		$return=$this->db->get()->result_array();
 		foreach ($return as $lis){
-			//echo '<>'
+			//echo '<pre>';print_r($lis);exit;
 			$trending[]=$this->get_trending_product_percentages_list($lis['category_id']);
 			
 		}
@@ -219,13 +219,14 @@ class Home_model extends CI_Model
 	public function get_trending_product_percentages_list($cid)
 	{
 	
-		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.item_image,category.category_name FROM products  LEFT JOIN category ON category.category_id = products.category_id  WHERE products.category_id ='".$cid."' LIMIT 0, 1";
+		$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.item_image,products.offers,products.offer_expairdate,products.discount,category.category_name FROM products  LEFT JOIN category ON category.category_id = products.category_id  WHERE products.category_id ='".$cid."' ORDER BY if(`offer_expairdate`>='DATE(Y-m-d h:i:s A)',`offer_percentage`,`offers`) DESC LIMIT 0, 1";
+		//$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.item_image,products.offers,products.offer_expairdate,category.category_name FROM products  LEFT JOIN category ON category.category_id = products.category_id  WHERE products.category_id ='".$cid."' ORDER BY products.offer_percentage DESC LIMIT 0, 1";
         return $this->db->query($sql)->row_array(); 
 
 	}
 	public function get_offer_for_you()
 	{
-		$this->db->select('*')->from('products');
+		$this->db->select('products.category_id')->from('products');
         $this->db->order_by('products.offer_percentage desc');
 		$this->db->order_by('products.item_id desc');
 		$this->db->where('products.item_status',1);
