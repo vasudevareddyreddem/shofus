@@ -449,6 +449,7 @@ public function getproducts($subid)
 		$this->db->group_by('category.category_id');
 		$this->db->order_by('category.category_id', 'ASC');
 		$this->db->where('category.status', 1);		
+		$this->db->where('products.item_status', 1);		
 		$query=$this->db->get()->result_array();
 		
 		//echo '<pre>';print_r($query);exit;
@@ -476,8 +477,8 @@ public function get_catedata($category_id)
 	$this->db->group_by('subcategories.subcategory_id');
 	$this->db->order_by('subcategories.subcategory_id', 'ASC'); 
 	$this->db->where('subcategories.category_id', $category_id);	
-	$this->db->where('subcategories.subcategory_id !=', '');	
-
+	$this->db->where('subcategories.subcategory_id !=', '');
+	$this->db->where('products.item_status', 1);	
 	$query=$this->db->get()->result_array();
 	//echo '<pre>';print_r($query);exit;
 	 foreach($query as $subcategory)
@@ -502,6 +503,7 @@ public function get_subcatedata($subcategory_id)
     $this->db->where('products.subitemid !=', '');
     $this->db->where('sub_items.subitem_id !=', '');
 	$this->db->group_by('products.subitemid');
+	$this->db->where('products.item_status', 1);	
 	 return $this->db->get()->result_array();
 }
 	
