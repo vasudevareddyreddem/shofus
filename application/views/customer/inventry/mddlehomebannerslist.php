@@ -26,19 +26,21 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+					<th>Store Name</th>
 					<th>Name</th>
 					<th>Image</th>
 					<th>Category page Position</th>
 					<th>Link Page</th>
 					<th>Created Date</th>
 					<th>Expiry Date</th>
-					<th>Status</th>
-					<th>Action</th>
+					<th>Seller Image Status</th>
+					<th>Home page Status</th>
 				 </tr>
                 </thead>
                 <tbody>
                 <?php  foreach($bannerslist as $banner) { ?>
                 <tr>                  
+                  <td><?php if($banner['store_name']!=''){ echo $banner['store_name']; } else{ echo "Inventory"; } ?></td>
                   <td><?php echo $banner['name']; ?></td>
 		          <td><img src="<?php echo base_url();?>assets/homebanners/<?php  echo $banner['name']; ?>" width="80" height="50" /></td>
 

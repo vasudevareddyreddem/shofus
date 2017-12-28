@@ -1648,6 +1648,8 @@ public function subitemwise_search(){
 		//echo '<pre>';print_r($data['step_five']);exit;
 		if($cateid==21 || $cateid==31 || $cateid==19 || $cateid==24 || $cateid==35 ||  $cateid==28 ||  $cateid==20){
 		$data['step_six']= $this->category_model->step_six_data($cateid);
+		}else if($cateid==19 || $cateid==24){
+			$data['step_six']= $this->category_model->step_six_data($cateid);
 		}
 		$step_seven= $this->category_model->step_seven_data(3);
 		$data['step_seven']=array_chunk($step_seven, 3);
@@ -1723,8 +1725,8 @@ public function subitemwise_search(){
 		 $data['caterory_id']=$catid;
 		 $data['subcaterory_id']=$subcatid;
 		 $data['itemlist']= $this->category_model->subcategorywise_subitems($subcatid);
-		 //echo '<pre>';print_r($subitemwise);exit;
-		 if(isset($catid) && $catid==21){
+		 //echo '<pre>';print_r($data);exit;
+		 if(isset($caterory_id) && $caterory_id==21){
 			$subitemwise= $this->category_model->get_all_subcatproducts_list($subcatid);
 			//echo $this->db->last_query();
 			//echo '<pre>';print_r($subitemwise);exit;
@@ -1745,6 +1747,7 @@ public function subitemwise_search(){
 					$reviewcount[]=$this->category_model->product_reviews_count($list['item_id']);
 					}
 					}
+					//echo '<pre>';print_r($plist);exit;
 				$data['subitemwise']=$plist;
 				}else{
 					$data['subitemwise']=array();
@@ -1774,6 +1777,8 @@ public function subitemwise_search(){
 		$data['subcatdetais']=$this->category_model->get_subcategory_details($subcaterory_id);
 		$data['brand_list']= $this->category_model->get_all_brand_list_sib($caterory_id,$subcaterory_id);
 		$data['price_list']= $this->category_model->get_all_price_list_sub($caterory_id,$subcaterory_id);
+		//echo $this->db->last_query();
+		//echo '<pre>';print_r($data['price_list']);exit;
 		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
 		$offer_list= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
 		$data['color_list']= $this->category_model->get_all_color_list_sub($caterory_id,$subcaterory_id);

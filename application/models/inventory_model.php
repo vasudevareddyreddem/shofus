@@ -696,7 +696,8 @@ public function delete_banner($id,$sid)
 		return $this->db->get()->result_array();
 	}
 	function get_save_subhomepage_banners_list(){
-		$this->db->select('*')->from('homepage_banners');
+		$this->db->select('seller_store_details.store_name,homepage_banners.*')->from('homepage_banners');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = homepage_banners.seller_id', 'left');
 		//$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
@@ -831,7 +832,8 @@ public function delete_banner($id,$sid)
 		return $this->db->get()->row_array();
 	}
 	function get_category_banners_list(){
-		$this->db->select('*')->from('category_banners');
+		$this->db->select('category_banners.*,seller_store_details.store_name')->from('category_banners');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = category_banners.seller_id', 'left');
 		//$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}

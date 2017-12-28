@@ -439,7 +439,7 @@
 			  return false;
 			   
 		   }if(subitemids==''){
-			    $('#errormg2').html('sub Name is required').css("color", "red").fadeIn().fadeOut(10000);
+			    $('#errormg2').html('Sub Item is required').css("color", "red").fadeIn().fadeOut(10000);
 			  return false;
 			   
 		   }else if(img==''){

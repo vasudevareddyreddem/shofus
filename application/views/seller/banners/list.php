@@ -50,6 +50,7 @@
                   <th>Created Date</th>
                   <th>Expiry Date</th>
                   <th>Status</th>
+                  <th>Home Page Status</th>
                   <th>Action</th>
                   
                 </tr>
@@ -86,6 +87,10 @@
                   <td><?php echo $banner['expirydate']; ?></td>
                   <td><?php 
                   if($banner['status']==1){echo "Active";}else{echo "Deactive";} ?>
+                  	
+                  </td>
+				  <td><?php 
+                  if($banner['admin_status']==1){echo "Active";}else{echo "Deactive";} ?>
                   	
                   </td>
                   <td><a href="<?php echo base_url('seller/showups/categorybanner_status/'
