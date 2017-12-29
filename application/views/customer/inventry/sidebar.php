@@ -5,7 +5,7 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
       
-      <ul class="sidebar-menu">
+      <ul class="sidebar-menu" style="height:600px;overflow-y: scroll;padding-bottom:200px;">
         <li class="active ">
           <a href="<?php echo base_url('inventory/dashboard'); ?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>

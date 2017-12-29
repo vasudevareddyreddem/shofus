@@ -21,6 +21,7 @@
 					</button><?php echo $this->session->flashdata('success');?></div>	
 					<?php endif; ?>
 					<?php 	if(count($orderslists)>0){ ?>
+					<div class="table-responsive">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -73,9 +74,10 @@
                 </tbody>              
               </table>
 			  <?php } else{?>
+			 
 				<p>No data available</p>
 				<?php } ?>
-             
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
