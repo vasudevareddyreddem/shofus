@@ -61,6 +61,22 @@
 		background:#fff !important;
 		margin:10px 0px !important;
 		}
+		.cat_sl_s .owl-theme .owl-controls {
+    margin-top: 0px;
+    text-align: center;
+}		
+.cat_sl_s .owl-controls {
+    position: absolute;
+    top:65px !important;
+    right: 10px !important;
+    margin-top: 0;
+}
+.cat_sl_s .owl-item {
+width:180px !important;
+}
+.fl_rig{
+	float:right !important;
+}
 .log_bac_col{
 	background-color:#fff;
 	border-radius:10px;

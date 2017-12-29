@@ -261,38 +261,8 @@
                </div>
             </div>
        
-			 <span class="medias text-center">
-               <a href="<?php echo base_url('customer/nearstores'); ?>">
-                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
-                  <p>Near by stores</p>
-               </a>
-            </span>
-           
-            <?php if($this->session->userdata('userdetails')){ ?>
-            <span class="medias text-center shopping_cart" style="position:relative;">
-            <a href="<?php echo base_url('customer/cart'); ?>">
-               <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
-               <p>Cart</p>
-            </a>
-            <?php if(count($cartitemcount)>0){ ?>
-            <span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688">
-            <?php echo count($cartitemcount); ?>
-            <?php }else{  ?>
-            <span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688;">
-            <?php }?>
-            </span>
-            </span>
-            <?php }else{ ?>
-            <span class="medias text-center shopping_cart" style="position:relative;">
-               <a href=" <?php echo base_url('customer'); ?>">
-                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
-                  <p>Cart</p>
-               </a>
-               <span style="position:absolute;top:-5px;right:-5px;font-size:12px"></span>
-            </span>
-            <?php } ?>
  <?php if($this->session->userdata('userdetails')){ ?>
-            <span class="medias user_log">
+            <span class="medias user_log fl_rig">
                <a>
                   <?php if($details['cust_propic']!=''){ ?>
 				  <i><div class="user_bac"><img class="user_icon" src="<?php echo base_url('uploads/profile/'.$details['cust_propic']); ?>"/></div></i>
@@ -315,14 +285,44 @@
                </ul>
             </div>
             <?php }else{ ?>
-            <span class="medias user_log text-center">
+            <span class="medias user_log text-center fl_rig">
                <a href="<?php echo base_url('customer'); ?>" >
                   <i class="" aria-hidden="true">
                   </i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" />
                   <p>Sign Up/Sign In</p>
                </a>
             </span>
-            <?php } ?>			
+            <?php } ?>	
+			 <span class="medias text-center  fl_rig">
+               <a href="<?php echo base_url('customer/nearstores'); ?>">
+                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/store.png" /></i>
+                  <p>Near by stores</p>
+               </a>
+            </span>
+           
+            <?php if($this->session->userdata('userdetails')){ ?>
+            <span class="medias text-center shopping_cart fl_rig" style="position:relative;">
+            <a href="<?php echo base_url('customer/cart'); ?>">
+               <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+               <p>Cart</p>
+            </a>
+            <?php if(count($cartitemcount)>0){ ?>
+            <span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688">
+            <?php echo count($cartitemcount); ?>
+            <?php }else{  ?>
+            <span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688;">
+            <?php }?>
+            </span>
+            </span>
+            <?php }else{ ?>
+            <span class="medias text-center shopping_cart fl_rig" style="position:relative;">
+               <a href=" <?php echo base_url('customer'); ?>">
+                  <i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/cart.png" /></i>
+                  <p>Cart</p>
+               </a>
+               <span style="position:absolute;top:-5px;right:-5px;font-size:12px"></span>
+            </span>
+            <?php } ?>		
            
             
          </div>
@@ -386,7 +386,7 @@
                </ul>
             </div>
             <?php }else{ ?>
-            <span class="medias user_log text-center">
+            <span class="medias user_log text-center ">
                <a href="<?php echo base_url('customer'); ?>" >
                   <i class="" aria-hidden="true">
                   </i><img src="<?php echo base_url(); ?>assets/home/images/userr.png" />
