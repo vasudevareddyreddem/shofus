@@ -1648,8 +1648,18 @@ public function subitemwise_search(){
 		//echo '<pre>';print_r($data['step_five']);exit;
 		if($cateid==21 || $cateid==31 || $cateid==19 || $cateid==24 || $cateid==35 ||  $cateid==28 ||  $cateid==20){
 		$data['step_six']= $this->category_model->step_six_data($cateid);
+		$data['step_sixlabel']='Offer';
 		}else if($cateid==19 || $cateid==24){
+			$data['step_sixlabel']='Type';
 			$data['step_six']= $this->category_model->step_six_data($cateid);
+		}if($cateid==21 || $cateid==31){
+			$data['step_sixlabel']='Offer';
+		}if($cateid==28 ){
+			$data['step_sixlabel']='Offer';
+		}if($cateid==35 ){
+			$data['step_sixlabel']='Type';
+		}if($cateid==20 ){
+			$data['step_sixlabel']='Screen Size';
 		}
 		$step_seven= $this->category_model->step_seven_data(3);
 		$data['step_seven']=array_chunk($step_seven, 3);
@@ -1657,17 +1667,35 @@ public function subitemwise_search(){
 		if($cateid==21 || $cateid==31 || $cateid==19 || $cateid==24 || $cateid==35 ||  $cateid==28 ||  $cateid==20){
 			if($cateid==21){
 				$data['step_nine']= $this->category_model->step_dealsnine_data($cateid);
-			}else{
+				$data['step_ninelabel']='Deals of the day';
+			}else {
 				$data['step_nine']= $this->category_model->step_nine_data($cateid);
+			}
+			if($cateid==19 || $cateid==24){
+				$data['step_ninelabel']='Occasion';
+			}else if($cateid==20){
+				$data['step_ninelabel']='Battery Capacity';
+			}else if($cateid!=21){
+				$data['step_ninelabel']='X';
 			}
 		}
 		if($cateid==21 || $cateid==31 || $cateid==19 || $cateid==24 || $cateid==35 ||  $cateid==28 ||  $cateid==20){
 			if($cateid==21){
 				$data['step_ten']= $this->category_model->step_seasonten_data($cateid);
+					$data['step_tenlabel']='Season of the day';
 			}else if($cateid==19 || $cateid==24){
 				$data['step_ten']= $this->category_model->step_tenfootwear_data($cateid);
 			}else{
 				$data['step_ten']= $this->category_model->step_ten_data($cateid);
+			}
+			if($cateid==19 || $cateid==24){
+				$data['step_tenlabel']='Footware';
+			}else if($cateid!=21 && $cateid==20){
+				$data['step_tenlabel']='camera';
+			}else if($cateid==30){
+				$data['step_tenlabel']='age';
+			}else if($cateid!=21){
+				$data['step_tenlabel']='Z';
 			}
 		}
 		$step_eleven= $this->category_model->step_eleven_data(4);
