@@ -127,13 +127,13 @@ class DeliveryboyApi extends REST_Controller {
 		$rejectoreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_reject_list($customer_id);
 		if(count($rejectoreders_list)>0){
 				foreach ($rejectoreders_list as $lists){
-					$orditemids[]=$lists['order_item_id'];
+					$orditemids[]=$lists['orderid'];
 					$orddeliveryids[]=$lists['delivery_boy_id'];
 				}
 				foreach ($oreders_list as $orderlists){
 					
 					
-						if(in_array($orderlists['order_item_id'],$orditemids) && in_array($orderlists['delivery_boy_id'],$orddeliveryids) )
+						if(in_array($orderlists['orderid'],$orditemids) && in_array($orderlists['delivery_boy_id'],$orddeliveryids) )
 						{ 
 							$order_lists[]=array();
 						}else{
@@ -160,6 +160,7 @@ class DeliveryboyApi extends REST_Controller {
 		}else{
 			$finalorderlists[]=array();
 		}
+		
 		
 		if(count($finalorderlists)>0){
 				$message = array('status'=>1,'count'=>count($finalorderlists),'list'=>$finalorderlists,'count'=>count($finalorderlists), 'message'=>'orders list are found');
@@ -188,16 +189,16 @@ class DeliveryboyApi extends REST_Controller {
 		}
 		
 	}	
-	public function order_status_change_post(){
+	public function rejectorder_status_change_post(){
 		
 		$customer_id=$this->post('rejectcustomer_id');
-		$order_item_id=$this->post('order_item_id');
+		$order_item_id=$this->post('orderid');
 		$status=$this->post('status');
 		if($customer_id==''){
 		$message = array('status'=>0,'message'=>'Rejected customer id is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}else if($order_item_id==''){
-		$message = array('status'=>0,'message'=>'order item id is required!');
+		$message = array('status'=>0,'message'=>'order id is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}else if($status==''){
 		$message = array('status'=>0,'message'=>'status is required!');
@@ -248,17 +249,17 @@ class DeliveryboyApi extends REST_Controller {
 	}
 	public function order_Packing_status_change_post(){
 		
-		$order_item_id=$this->post('order_item_id');
+		$orderid=$this->post('orderid');
 		$status=$this->post('status');
-		if($order_item_id==''){
-		$message = array('status'=>0,'message'=>'order item id is required!');
+		if($orderid==''){
+		$message = array('status'=>0,'message'=>'order id is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}else if($status==''){
 		$message = array('status'=>0,'message'=>'status is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		if($status==2){
-				$statusupdate=$this->Deliveryboyapi_model->order_Packing_status_updated($order_item_id,$status);
+				$statusupdate=$this->Deliveryboyapi_model->order_Packing_status_updated($orderid,$status);
 				if(count($statusupdate)>0){
 					$message = array('status'=>1, 'message'=>'Packing Order status Succssfully updated');
 					$this->response($message, REST_Controller::HTTP_OK);
@@ -276,17 +277,17 @@ class DeliveryboyApi extends REST_Controller {
 	}
 	public function order_raod_status_change_post(){
 		
-		$order_item_id=$this->post('order_item_id');
+		$orderid=$this->post('orderid');
 		$status=$this->post('status');
-		if($order_item_id==''){
-		$message = array('status'=>0,'message'=>'order item id is required!');
+		if($orderid==''){
+		$message = array('status'=>0,'message'=>'Order id is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}else if($status==''){
 		$message = array('status'=>0,'message'=>'status is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		if($status==3){
-				$statusupdate=$this->Deliveryboyapi_model->order_road_status_updated($order_item_id,$status);
+				$statusupdate=$this->Deliveryboyapi_model->order_road_status_updated($orderid,$status);
 				if(count($statusupdate)>0){
 					$message = array('status'=>1, 'message'=>'Order on Road status Succssfully updated');
 					$this->response($message, REST_Controller::HTTP_OK);
@@ -304,19 +305,19 @@ class DeliveryboyApi extends REST_Controller {
 	}
 	public function order_delivered_status_change_post(){
 		
-		$order_item_id=$this->post('order_item_id');
+		$orderid=$this->post('orderid');
 		$status=$this->post('status');
-		if($order_item_id==''){
-		$message = array('status'=>0,'message'=>'order item id is required!');
+		if($orderid==''){
+		$message = array('status'=>0,'message'=>'Order id is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}else if($status==''){
 		$message = array('status'=>0,'message'=>'status is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		if($status==4){
-				$statusupdate=$this->Deliveryboyapi_model->order_delivered_status_updated($order_item_id,$status);
+				$statusupdate=$this->Deliveryboyapi_model->order_delivered_status_updated($orderid,$status);
 				if(count($statusupdate)>0){
-					$details=$this->Deliveryboyapi_model->get_order_item_details($order_item_id);
+					$details=$this->Deliveryboyapi_model->get_order_item_details($orderid);
 					//echo '<pre>';print_r($details);exit;
 					$msg=' Order Product Name: '.$details['item_name'].'Item successfully delivered';
 					$messagelis['msg']=$msg;
@@ -357,12 +358,12 @@ class DeliveryboyApi extends REST_Controller {
 	}
 	public function deliverycashpayment_Post(){
 		
-		$order_item_id=$this->post('order_item_id');
+		$orderid=$this->post('orderid');
 		$amount=$this->post('amount');
 		$amountstatus=$this->post('amountstatus');
 		$payment_type=$this->post('payment_type');
 		$signature=$this->post('signature');
-		if($order_item_id==''){
+		if($orderid==''){
 		$message = array('status'=>0,'message'=>'order item id is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}else if($amount==''){
@@ -378,13 +379,13 @@ class DeliveryboyApi extends REST_Controller {
 		$message = array('status'=>0,'message'=>'Signature is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
-		$getdetails=$this->Deliveryboyapi_model->get_order_details($order_item_id);
+		$getdetails=$this->Deliveryboyapi_model->get_orderitem_details($orderid);
 		
 		//echo '<pre>';print_r($getdetails);exit;
 		
 		$totalamt=$getdetails['total_price']+$getdetails['delivery_amount'];
 		if($totalamt==$amount){
-			$getdetailss=$this->Deliveryboyapi_model->get_order_details_status($order_item_id,$amount,$amountstatus,$payment_type,date('Y-m-d h:i:s'),$signature);
+			$getdetailss=$this->Deliveryboyapi_model->get_order_details_status($orderid,$amount,$amountstatus,$payment_type,date('Y-m-d h:i:s'),$signature);
 			$this->Deliveryboyapi_model->order_payment_status($getdetails['order_id'],$payment_type);
 			if(count($getdetailss)>0){
 					$message = array('status'=>1, 'message'=>'Order Amount status Succssfully updated');
@@ -455,6 +456,24 @@ class DeliveryboyApi extends REST_Controller {
 				$this->response($message, REST_Controller::HTTP_OK);
 		}else{
 		$message = array('status'=>0,'message'=>'You have no return orders list');
+		$this->response($message, REST_Controller::HTTP_OK);
+		}
+		
+	} 
+public function orderdetails_post(){
+		
+		$orderid=$this->post('orderid');
+		if($orderid==''){
+		$message = array('status'=>0,'message'=>'Order id is required!');
+		$this->response($message, REST_Controller::HTTP_OK);
+		}
+		$orderid_details=$this->Deliveryboyapi_model->get_order_details($orderid);
+		
+		if(count($orderid_details)>0){
+				$message = array('status'=>1,'Details'=>$orderid_details, 'message'=>'Orders details are found');
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+		$message = array('status'=>0,'message'=>'Order Id having no details');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		
