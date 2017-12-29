@@ -25,7 +25,7 @@ class Front_Controller extends MY_Controller {
 				$data['qucikjump']=array();
 				}
 				 $data['catehorywiselist'] = $this->home_model->getcatsubcatpro();
-				 //echo '<pre>';print_r($data['catehorywiselist']);exit; 
+				 ///echo '<pre>';print_r($data['catehorywiselist']);exit; 
 				$data['allcategories_list']= $this->home_model->get_all_category_with_products();
 				$data['sidecaregory_list']= $this->home_model->get_sidebar_category_list();
 				$data['locationdata'] = $this->home_model->getlocations();
