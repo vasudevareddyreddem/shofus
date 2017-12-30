@@ -23,7 +23,11 @@
 }
 .wid_20{
 	width:18% !important;
+	overflow:hidden;
+	border-right:1px solid #ddd;
+	/* margin-left:10px; */
 }
+
 .pr15 {
 	/* border-left:1px solid #ddd; */
 	
@@ -112,8 +116,19 @@ width:180px !important;
 	margin:0 auto;
 }
 .dropdown-menu>li>a{
-	    padding: 10px 20px;
+	    padding: 3px 20px;
 
+}
+.men_btn{
+	background: #fff;
+    position: absolute;
+    z-index: 1024;
+    margin-top: 19px;
+    margin-right: 10px;
+    /* padding: 8px 5px 8px 0px; */
+    /* border-right: 1px solid #ddd; */
+    border-radius: 50px;
+    padding: 6px;
 }
 .near_loc{
 	background:#fff;
@@ -641,7 +656,7 @@ body {
 }
 .jain_container .medias ul li {
 	/* display: inline; */
-	padding: 7px 0px;
+	padding: 4px 0px;
 }
 /* .jain_container .medias i {    font-size: 18px;} */
 .jain_container .navbar-brand {
@@ -1158,12 +1173,12 @@ a.offers_link {
     outline: 0 none;
     font-size: 15px;
     background: #fff;
-    border: 1px solid #4a5c63;
+    border: 1px solid #607d8b;
 	position:relative;
 }
 .flipkart-navbar-button {
-	background-color: #4a5c63;
-	border: 1px solid #4a5c63;
+	background-color: #607d8b;
+	border: 1px solid #607d8b;
 	border-radius: 0 2px 2px 0;
 	color: #fff;
 	padding: 10px 0;
@@ -7824,7 +7839,15 @@ span.round-tab:hover {
     position: relative;
     padding-top: 50px;
 }
-
+.tab-pane h5{
+	color:#607d8b;
+}
+.tab-pane a{
+	color:#000;
+}
+.tab-pane a:hover{
+	color:#d32134;
+}
 .wizard h3 {
     margin-top: 0;
 }
