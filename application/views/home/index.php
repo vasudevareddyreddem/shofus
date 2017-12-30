@@ -461,7 +461,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 <section>
 	<div class="best-pro slider-items-products container_main">
 		<div class="row mar_t15" >
-			<div class="row mar_t15" >
+			
 			<?php foreach($position_four as $list){ ?>
 				<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
 					<?php if($list[0]['link']==1){ ?>
@@ -500,7 +500,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 			
 			<?php } ?>
 				
-		</div>
+		
 	</div>
 		
     </section>
