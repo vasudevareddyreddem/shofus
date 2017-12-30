@@ -182,11 +182,12 @@ class Category extends Front_Controller
 						}
 		$data['brand_list']= $this->category_model->get_all_brand_list_sib($caterory_id,$subcaterory_id);
 		$data['price_list']= $this->category_model->get_all_price_list_sub($caterory_id,$subcaterory_id);
+		//echo $this->db->last_query();exit;
 		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
 		$offer_list= $this->category_model->get_all_offer_list_sub($caterory_id,$subcaterory_id);
 		$data['color_list']= $this->category_model->get_all_color_list_sub($caterory_id,$subcaterory_id);
 		$data['sizes_list']= $this->category_model->get_all_size_list_sub($caterory_id,$subcaterory_id);
-
+			//echo '<pre>';print_r($data['price_list']);exit;
 		foreach ($data['price_list'] as $list) {
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
@@ -202,7 +203,7 @@ class Category extends Front_Controller
 		//echo '<pre>';print_r( $amounts);exit;
 		$data['minimum_price'] = array('item_cost'=>$minamt);
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
-		//echo max($data['price_list']);
+		//echo max($data['price_list']);exit;
 		foreach ($offer_list as $list) {
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
@@ -904,12 +905,14 @@ public function suitemwiseproductslist(){
 		$data['minimum_price'] = array('item_cost'=>$minamt);
 		$data['maximum_price'] = array('item_cost'=>$maxamt);
 		//echo max($data['price_list']);
+		
+		//echo '<pre>';print_r($offer_list);exit;
 		foreach ($offer_list as $list) {
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
 			if($list['offer_expairdate']>=$curr_date){
-				if($list['offer_percentage']!=''){
-				$ids[]=$list['offer_percentage'];
+				if($list['offers']!=''){
+				$ids[]=$list['offers'];
 				}
 			}else{
 				if($list['offers']!=''){
@@ -1569,8 +1572,8 @@ public function subitemwise_search(){
 					$date = new DateTime("now");
 					$curr_date = $date->format('Y-m-d h:i:s A');
 					if($list['offer_expairdate']>=$curr_date){
-						if($list['offer_percentage']!=''){
-						$ids[]=$list['offer_percentage'];
+						if($list['offers']!=''){
+						$ids[]=$list['offers'];
 						}
 					}else{
 						if($list['offers']!=''){
@@ -3507,6 +3510,7 @@ public function subitemwise_search(){
 				$data['style_code']= $this->category_model->get_group_all_pricewise_list($catid,'style_code',$brand,$minprice);
 				$data['inner_material']= $this->category_model->get_group_all_pricewise_list($catid,'inner_material',$brand,$minprice);
 				$data['waterproof']= $this->category_model->get_group_all_pricewise_list($catid,'waterproof',$brand,$minprice);
+				 //echo '<pre>';print_r($data['price_list']);
 				 foreach ($data['price_list'] as $list) {
 					$date = new DateTime("now");
 					$curr_date = $date->format('Y-m-d h:i:s A');
@@ -3521,7 +3525,7 @@ public function subitemwise_search(){
 					//echo '<pre>';print_r( $amounts);exit;
 					$data['minimum_price'] = array('item_cost'=>$minamt);
 					$data['maximum_price'] = array('item_cost'=>$maxamt);
-					//echo '<pre>';print_r($data['maximum_price']);exit;
+					//echo '<pre>';print_r($data['minimum_price']);exit;
 					foreach ($offer_list as $list) {
 						$date = new DateTime("now");
 						$curr_date = $date->format('Y-m-d h:i:s A');
@@ -4180,8 +4184,8 @@ public function subitemwise_search(){
 						$date = new DateTime("now");
 						$curr_date = $date->format('Y-m-d h:i:s A');
 						if($list['offer_expairdate']>=$curr_date){
-							if($list['offer_percentage']!=''){
-								$ids[]=$list['offer_percentage'];
+							if($list['offers']!=''){
+								$ids[]=$list['offers'];
 							}
 						}else{
 							if($list['offers']!=''){

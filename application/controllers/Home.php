@@ -707,13 +707,14 @@ public function percentagecal(){
 		$percentage= (($prices) /$products_list['item_cost'])*100;
 		$orginal_price=$products_list['item_cost'];
 	
-	//echo '<pre>';print_r($products_list);exit;
+	//echo '<pre>';print_r($percentage);
 	$this->home_model->update_discount($products_list['item_id'],number_format($prices, 2),number_format($percentage, 2));	
 	//echo $this->db->last_query();exit;
 	}
 	//echo '<pre>';print_r($$li);exit;
 	
 }
+
 
 
 
