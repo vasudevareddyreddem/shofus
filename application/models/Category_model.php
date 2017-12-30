@@ -3189,7 +3189,7 @@ public function get_all_subitem_list($catid,$subcatid)
 	public function get_groupwise_price_product_list($catid,$maxamount,$minamount){
 		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
 		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$minamount.'"', false);
-		$this->db->where('special_price <=', $maxamount);
+		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) <=', '"'.$maxamount.'"', false);
 		$this->db->where('category_id',$catid);
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
@@ -3228,7 +3228,7 @@ public function get_all_subitem_list($catid,$subcatid)
 	public function get_price_all_offer_list($catid,$maxamount,$minamount){
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
-		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `special_price` <= '".$maxamount."' AND `special_price` >= '".$minamount."' AND `item_status` = 1  AND  offers!='' OR offer_percentage!=''";
+		$sql = "SELECT if(offer_expairdate>='DATE(Y-m-d h:i:s A)',`offer_percentage`,`offers` ) as offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `special_price` <= '".$maxamount."' AND `special_price` >= '".$minamount."' AND `item_status` = 1";
 		return $this->db->query($sql)->result_array();
 	}
 	public function get_categoryprice_all_previous_search_fields()

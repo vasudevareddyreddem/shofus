@@ -1912,6 +1912,7 @@ public function subitemwise_search(){
 						}
 				$data['brand_list']= $this->category_model->get_item_all_brand_list($itemid,'brand');
 				$data['price_list']= $this->category_model->get_item_all_price_list($itemid);
+				//echo $this->db->last_query();
 				$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
 				$offer_list= $this->category_model->get_item_all_offer_list($itemid);
 				$data['color_list']= $this->category_model->get_item_all_brand_list($itemid,'colour');
@@ -1958,7 +1959,7 @@ public function subitemwise_search(){
 				 }
 					$minamt = min($amounts);
 					$maxamt= max($amounts);
-					//echo '<pre>';print_r( $amounts);exit;
+					//echo '<pre>';print_r($data['price_list']);exit;
 					$data['minimum_price'] = array('item_cost'=>$minamt);
 					$data['maximum_price'] = array('item_cost'=>$maxamt);
 					//echo max($data['price_list']);
@@ -3441,7 +3442,8 @@ public function subitemwise_search(){
 		  $brand=base64_decode($this->uri->segment(4));
 		  $group=base64_decode($this->uri->segment(5));
 		  $minprice=base64_decode($this->uri->segment(6));
-		  $data['product_list']= $this->category_model->get_groupwise_price_product_list($catid,$brand,$minprice);  
+		  $data['product_list']= $this->category_model->get_groupwise_price_product_list($catid,$brand,$minprice);
+			//echo $this->db->last_query();exit;		  
 			//echo '<pre>';print_r($data['product_list']);exit;
 			$data['caterory_id']=$catid;
 			$data['brand']=$brand;
@@ -3524,8 +3526,8 @@ public function subitemwise_search(){
 						$date = new DateTime("now");
 						$curr_date = $date->format('Y-m-d h:i:s A');
 						if($list['offer_expairdate']>=$curr_date){
-							if($list['offer_percentage']!=''){
-								$ids[]=$list['offer_percentage'];
+							if($list['offers']!=''){
+								$ids[]=$list['offers'];
 							}
 						}else{
 							if($list['offers']!=''){
@@ -4090,6 +4092,7 @@ public function subitemwise_search(){
 			 
 			  public function categorywiseprice_searchresult(){
 				$data['itemwise']= $this->category_model->get_categorywiseprice_search_result_data($this->input->ip_address());
+				//echo $this->db->last_query();exit;
 				if(isset($data['itemwise']) && count($data['itemwise'])>0){
 					foreach($data['itemwise'] as $lists){
 					$reviewrating[]=$this->category_model->product_reviews_avg($lists['item_id']);

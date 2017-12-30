@@ -219,7 +219,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
         <?php foreach($trending_products as $list){ ?>
-		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('top')); ?>">
+		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('tren')); ?>">
 			<div class="item">
 						<div class=" box-product-outer">
 							<div class="box-product">
@@ -263,7 +263,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
            <?php foreach($offer_for_you as $list){ ?>
-		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('top')); ?>">
+		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('offer')); ?>">
 			<div class="item">
 						<div class=" box-product-outer">
 							<div class="box-product">
@@ -388,7 +388,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
 		<?php foreach($deals_of_the_day as $list){ ?>
-		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('top')); ?>">
+		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('deal')); ?>">
 			<div class="item">
 						<div class=" box-product-outer">
 							<div class="box-product">
@@ -427,7 +427,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
         <div id="best-seller" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col4 products-grid">
 		  	<?php foreach($season_sales as $list){ ?>
-		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('top')); ?>">
+		  <a href="<?php echo base_url('customer/seemore/'.base64_encode($list['category_id']).'/'.base64_encode('season')); ?>">
 			<div class="item">
 						<div class=" box-product-outer">
 							<div class="box-product">
