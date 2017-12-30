@@ -1,6 +1,6 @@
 <style>
 .mobile_wish{
-color:#009688 !important;	
+color:#d32134 !important;	
 }
 .mobile_wish_remove{
 color:#eee !important;	

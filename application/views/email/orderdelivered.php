@@ -1,7 +1,7 @@
 <?php //echo '<pre>';print_r($order_items);exit; ?>
    <table width="100%"  style="max-width:650px;margin:0 auto" cellspacing="0" cellpadding="0" height="60"> 
    <tbody>
-    <tr style="background:#009688"> 
+    <tr style="background:#d32134"> 
      <td> 
       <table width="100%" style="max-width:650px;margin:0 auto"> 
        <tbody>
@@ -39,7 +39,7 @@
                <tbody> 
                 <tr> 
                  <td  align="left" style="float:right;padding:0;text-align:center;vertical-align:middle">
-					<h4><b style="color:#009688">Order :</b><span >&nbsp; Delivered</span></h4>
+					<h4><b style="color:#d32134">Order :</b><span >&nbsp; Delivered</span></h4>
 				 </td> 
                  <td  align="left" style="float:left;vertical-align:middle"> <p style="font-family:'Roboto-Medium',sans-serif;font-size:16px;font-weight:normal;font-style:normal;line-height:1.5;font-stretch:normal;color:#212121;margin:16px 0px">Hi <?php echo isset($order_items[0]['name'])?$order_items[0]['name']:''; ?>,</p> 
 				 </td> 

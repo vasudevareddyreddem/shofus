@@ -1524,7 +1524,7 @@ a.offers_link {
 	position: absolute;
 	bottom: -10px;
 	left: 0;
-	border-color: #1b5c5f #1b5c5f transparent transparent;
+	border-color: #8c1623 #8c1623 transparent transparent;
 }
 .top-cate .new_title span {
 	display: block;
@@ -1724,7 +1724,7 @@ a.offers_link {
 .container_main {
 	width: auto;
 	margin: 0px auto;
-	margin:0 40px;
+	margin:0 20px;
 }
 .owl-buttons {
 	opacity: 1;
@@ -1844,7 +1844,7 @@ a.offers_link {
 	display: inline-block;
 	letter-spacing: 0.5px;
 	text-transform: uppercase;
-	background: #d32134;
+	background: #607D8B;
 	margin-top: 0px;
 	min-width: 250px
 }
@@ -1857,7 +1857,7 @@ a.offers_link {
 	position: absolute;
 	bottom: -10px;
 	left: 0;
-	border-color: #8c1623 #8c1623 transparent transparent;
+	border-color: #455c67 #455c67 transparent transparent;
 }
 #best-seller .owl-item .item.first {
 	margin-left: 0;

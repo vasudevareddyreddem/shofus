@@ -13,7 +13,7 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 		<?php if($this->session->userdata('location_area')!=''){ ?>
 			<div class="row">
 			<div class="col-md-12" style="border-bottom:1px solid #ddd;
-			background:#009688;padding:10px;color:#fff; ">
+			background:#d32134;padding:10px;color:#fff; ">
 				<label >Selected locations </label> &nbsp;<span id="selectedlocation"> : &nbsp;<b class=""><?php echo $this->session->userdata('location_area'); ?></b> </span>
 			</div>
 			</div>

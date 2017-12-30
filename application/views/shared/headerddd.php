@@ -224,7 +224,7 @@
    </div>
    <div class="container1 container-fluid hm_nav affix_sm  sm_hide" >
       <div class="row  ">
-         <div style="background:#009688;">
+         <div style="background:#d32134;">
 
 			<div class="col-sm-2 show_1024">
                <h2 style="margin:0px;color:#fff"><span class="smallnav menu" onclick="openNav()">☰</span></h2>
@@ -292,10 +292,10 @@
                <p>Cart</p>
             </a>
             <?php if(count($cartitemcount)>0){ ?>
-            <span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688">
+            <span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #d32134;padding:0px 4px;border-radius:25%;color:#d32134">
             <?php echo count($cartitemcount); ?>
             <?php }else{  ?>
-            <span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688;">
+            <span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #d32134;padding:0px 4px;border-radius:25%;color:#d32134;">
             <?php }?>
             </span>
             </span>
@@ -517,7 +517,7 @@
       </div>
    </div>
    <!--mobile responsive start-->
-   <div class=" container-fluid hm_nav1  md_hide" style="background:#009688;padding-bottom:20px;">
+   <div class=" container-fluid hm_nav1  md_hide" style="background:#d32134;padding-bottom:20px;">
       <div class="row  ">
          <div >
             <div class="col-sm-2">
@@ -579,10 +579,10 @@
                <p>Cart</p>
             </a>
             <?php if(count($cartitemcount)>0){ ?>
-            <span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688">
+            <span id="supcount" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #d32134;padding:0px 4px;border-radius:25%;color:#d32134">
             <?php echo count($cartitemcount); ?>
             <?php }else{  ?>
-            <span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #009688;padding:0px 4px;border-radius:25%;color:#009688;">
+            <span  id="supcounts" style="position:absolute;top:-10px;right:0px;font-size:12px;border:1px solid #d32134;padding:0px 4px;border-radius:25%;color:#d32134;">
             <?php }?>
             </span>
             </span>
@@ -642,7 +642,7 @@
    <?php } ?>
 </nav>
 <div id="mySidenav" class="sidenav closebtn md_hide" href="javascript:void(0)"  onclick="closeNav()" >
-   <div class="container" style="background-color: #009688;padding:20px 5px; ">
+   <div class="container" style="background-color: #d32134;padding:20px 5px; ">
       <span class="sidenav-heading">
       <?php if($this->session->userdata('userdetails')){ ?>
       <?php echo 'welcome '.$details['cust_firstname'].' '.$details['cust_lastname']; ?>

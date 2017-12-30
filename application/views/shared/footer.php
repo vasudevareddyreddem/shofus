@@ -35,7 +35,7 @@
                 <form name="subscribe" id="subscribe" action="<?php echo base_url('customer/subscribe'); ?>" method="post" id="newsletter-validate-detail1">
                   <div id="container_form_news form-group">
                     <div id="container_form_news2">
-					<span style="font-size:18px;color:#009688;font-weight:400">EMAIL SUBSCRIPTION</span> &nbsp;&nbsp;&nbsp;
+					<span style="font-size:18px;color:#d32134;font-weight:400">EMAIL SUBSCRIPTION</span> &nbsp;&nbsp;&nbsp;
                       <input name="newsletter1" id="newsletter1" class="input-text required-entry validate-email" placeholder="Enter your email address" type="text">
                       <button type="submit" title="Subscribe" class="button subscribe"><span>Subscribe</span></button>
                     </div>
