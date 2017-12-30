@@ -157,7 +157,7 @@
             <div class="top-menu pull-right " >
                <ul>
                   <li>
-                     <a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="http://seller.cartinhours.com/seller/login"><span class=""></span> &nbsp; Sell on cartinhours </a>
+                     <a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="http://seller.cartinhours.com/seller/login"><span class=""></span> &nbsp; Sell on Shofus </a>
                   </li>
                   &nbsp;
                   <li>
@@ -165,7 +165,7 @@
                   </li>
                   &nbsp;
                   <li>
-                     <a class="" href="mailto:support@cartinhours.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhours.com</a>
+                     <a class="" href="mailto:support@cartinhours.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@shofus.com</a>
                   </li>
                </ul>
             </div>
@@ -187,15 +187,15 @@
 			   <div class="medias list_ad sm_hide ">
 				
 			<span class=" dropdown mega-menu">
-               <a  style="background: #fff;position: absolute;z-index:1024;margin-top:19px;margin-right:10px;padding:8px 5px 8px 0px; border-right:1px solid #ddd;"href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+               <a  class="men_btn" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span style="padding: 0px 4px;" class="glyphicon glyphicon-th"></span>
                </a>
-			    <ul class="dropdown-menu" style="padding:20px;">
+			    <ul class="dropdown-menu" style="padding:20px 0px;">
 			
 				 <?php $c=1;foreach ($catehorywiselist as $list){ ?>
 
 				 <?php if($c==1){ ?>
-                  <li class="wid_20 "><a onclick="addtabactive(<?php echo $c;?>);" href="#tabs<?php echo $c; ?>" data-toggle="tab"><?php echo $list['category_name']; ?></a></li>
+                  <li class="wid_20 "><a class="active" onclick="addtabactive(<?php echo $c;?>);" href="#tabs<?php echo $c; ?>" data-toggle="tab"><?php echo $list['category_name']; ?></a></li>
 									
 				<?php }else{ ?>
 				  <li class="wid_20"><a onclick="addtabactive(<?php echo $c; ?>);" href="#tabs<?php echo $c; ?>" data-toggle="tab"><?php echo $list['category_name']; ?></a></li>
@@ -204,7 +204,7 @@
 				 
 					 <?php if($c==1){ ?>
 					 
-							<div class="tab-pane active " id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;padding:20px;border-left:1px solid #ddd;min-height:150px">
+							<div class="tab-pane active " id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;padding:20px;min-height:150px">
 								<div class="row" style="margin-right:30px;">
 								<?php if(isset($list['subcat']) && count($list['subcat'])>0){?>
 									<?php foreach ($list['subcat'] as $subitemlist){ ?>
@@ -220,7 +220,7 @@
 								</div>
 							</div>
 						<?php }else{ ?>
-								<div class="tab-pane tab_hide" id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;padding:20px;border-left:1px solid #ddd;min-height:150">
+								<div class="tab-pane tab_hide" id="tabs<?php echo $c; ?>"  style="position:absolute;right:0;top:0;width:80%;padding:20px;min-height:150">
 										<div class="row" style="margin-right:30px;">
 										<?php if(isset($list['subcat']) && count($list['subcat'])>0){?>
 										<?php foreach ($list['subcat'] as $subitemlist){ ?>
@@ -344,7 +344,7 @@
          <div >
             <div class="col-sm-2">
                <h2 style="color:#fff"><span class="smallnav menu" onclick="openNav()">☰</span></h2>
-               <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a></span></h1>
+               <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Shofus" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a></span></h1>
             </div>
             <div class="flipkart-navbar-search smallsearch col-sm-6 col-xs-11">
                <div class="row" >
