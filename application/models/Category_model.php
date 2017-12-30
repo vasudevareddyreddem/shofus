@@ -1530,7 +1530,7 @@ public function get_all_subitem_list($catid,$subcatid)
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 
-		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `subitemid` = '".$subitem_id."' AND `subcategory_id` = '".$subcatid."' AND `item_status` = 1  AND  offers!='' OR offer_percentage!=''";
+		$sql = "SELECT if(`offer_expairdate`>='DATE(Y-m-d h:i:s A)',`offer_percentage`,`offers` ) as offers , offer_expairdate  FROM `products` WHERE `subitemid` = '".$subitem_id."' AND `subcategory_id` = '".$subcatid."' AND `item_status` = 1 GROUP BY if(`offer_expairdate`>='DATE(Y-m-d h:i:s A)',`offer_percentage`,`offers` )";
 		return $this->db->query($sql)->result_array();
 	}
 	public function get_subitem_all_discount_list($subcatid,$subitem_id)
@@ -2082,7 +2082,7 @@ public function get_all_subitem_list($catid,$subcatid)
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
-		$this->db->where('special_price <=', $maxamount);
+		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) <=', '"'.$maxamount.'"', false);
 		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$minamount.'"', false);
 		if($offer!='NULL'){
 			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$offer.'"', false);
@@ -3218,17 +3218,18 @@ public function get_all_subitem_list($catid,$subcatid)
 		$this->db->select('products.item_cost,products.special_price,products.offer_expairdate')->from('products');
 		$this->db->where('category_id',$catid);
 		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$minamount.'"', false);
-		$this->db->where('special_price <=', $maxamount);
+		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) <=', '"'.$maxamount.'"', false);
 		$this->db->where('item_status',1);
 		$this->db->where('item_cost!=','');
 		$this->db->where('special_price!=','');
+		$this->db->where('item_status',1);
 		$this->db->group_by('item_cost');
 		return $this->db->get()->result_array();
 	}
 	public function get_price_all_offer_list($catid,$maxamount,$minamount){
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
-		$sql = "SELECT if(offer_expairdate>='DATE(Y-m-d h:i:s A)',`offer_percentage`,`offers` ) as offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `special_price` <= '".$maxamount."' AND `special_price` >= '".$minamount."' AND `item_status` = 1";
+		$sql = "SELECT if(offer_expairdate>='DATE(Y-m-d h:i:s A)',`offer_percentage`,`offers` ) as offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND if(`offer_expairdate`>='DATE(Y-m-d h:i:s A)',`special_price`,`item_cost` )<= '".$maxamount."' AND if(`offer_expairdate`>='DATE(Y-m-d h:i:s A)',`special_price`,`item_cost`)>= '".$minamount."' AND `item_status` = 1";
 		return $this->db->query($sql)->result_array();
 	}
 	public function get_categoryprice_all_previous_search_fields()
@@ -3459,9 +3460,7 @@ public function get_all_subitem_list($catid,$subcatid)
 		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
 		//$this->db->where('special_price >=', $minamount);
 		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$minamount.'"', false);
-		$this->db->where('special_price <=', $maxamount);
-		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$minamt.'"', false);
-		$this->db->where('special_price <=', $group);
+		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`item_cost`,`special_price` ) <=', '"'.$maxamount.'"', false);
 		if($offer!='NULL'){
 			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$offer.'"', false);
 		}if($brand!='NULL'){

@@ -76,13 +76,17 @@
 		  </div>
 		  <div class="col-md-6">
 		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="subitemwisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_prices); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+				 <?php $cnt=1;for( $i=floor($minimum_prices); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+					<?php if($cnt==1){
+						if($maximum_prices!=$i){ ?>
+					<option value="<?php echo $maximum_prices; ?>" selected><?php echo $maximum_prices; ?></option>
+					<?php } } ?>
 					<?Php if($maximum_prices==$i){ ?>
 						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
 					<?php }else{ ?>
 						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 						<?php } ?>
-				<?php } ?>
+				<?php $cnt++;} ?>
 
 			  </select>
 		  </div>
