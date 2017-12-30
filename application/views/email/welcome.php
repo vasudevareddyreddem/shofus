@@ -1,7 +1,7 @@
 <?php //echo '<pre>';print_r();exit; ?>
   <table width="100%"  style="max-width:650px;margin:0 auto" cellspacing="0" cellpadding="0" height="60"> 
    <tbody>
-    <tr style="background:#009688">
+    <tr style="background:#d32134">
 		
      <td> 
       <table width="100%" style="max-width:650px;margin:0 auto"> 
@@ -57,7 +57,7 @@
   </table> 
     <table width="100%"  style="max-width:650px;margin:0 auto" cellspacing="0" cellpadding="0" height="5"> 
    <tbody style="margin-top:10px">
-    <tr style="background:#009688">
+    <tr style="background:#d32134">
 		
      <td> 
       

@@ -222,7 +222,7 @@
   
    
 .mobile_wish{
-color:#009688 !important;	
+color:#d32134 !important;	
 }
 .mobile_wish_remove{
 color:#eee !important;	
@@ -232,7 +232,7 @@ color:#eee !important;
     position: absolute;
    top: 20px;
     right: 20px;
-    background: #009688;
+    background: #d32134;
     padding: 2px 20px 5px 5px;
     border-radius: 10px;
 }

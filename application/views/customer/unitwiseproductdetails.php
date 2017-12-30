@@ -21,12 +21,12 @@
    .sidebar li a.active{
    background-color:#335866;
    color:#fff;
-   border-left:5px solid #009688;
+   border-left:5px solid #d32134;
    transition: all 0.5s  ease-in-out;
    margin:4px 0px
    }
    .sidebar li a:hover{
-   background-color:#009688  !important;
+   background-color:#d32134  !important;
    color:#fff;
    }
    .sidebar li a i{ padding-right:5px;}
@@ -49,7 +49,7 @@
    height: 100%;
    }
    .sidebar ul li .sub-menu li a:hover{ background-color:#222; padding-left:20px; transition: all 0.5s  ease-in-out}
-   .sub-menu{ border-left:5px solid #009688;}
+   .sub-menu{ border-left:5px solid #d32134;}
    .sidebar li a .nav-label,.sidebar li a .nav-label+span{ transition: all 0.5s  ease-in-out}
    .sidebar.fliph li a .nav-label,.sidebar.fliph li a .nav-label+span{ display:none;transition: all 0.5s  ease-in-out}
    .bg_defa{

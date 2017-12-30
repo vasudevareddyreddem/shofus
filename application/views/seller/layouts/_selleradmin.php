@@ -112,7 +112,7 @@
                     element: document.getElementById("map1"),
                     projection: 'mercator',
                     fills: {
-                        defaultFill: "#009688",
+                        defaultFill: "#d32134",
                         authorHasTraveledTo: "#fa0fa0"
                     },
                     data: {
@@ -149,16 +149,16 @@
                             {
                                 label: "My First dataset",
                                 data: [65, 59, 80, 81, 56, 55, 40, 25, 35, 51, 94, 16],
-                                borderColor: "#009688",
+                                borderColor: "#d32134",
                                 borderWidth: "0",
-                                backgroundColor: "#009688"
+                                backgroundColor: "#d32134"
                             },
                             {
                                 label: "My Second dataset",
                                 data: [28, 48, 40, 19, 86, 27, 90, 91, 41, 25, 34, 47],
-                                borderColor: "#009688",
+                                borderColor: "#d32134",
                                 borderWidth: "0",
-                                backgroundColor: "#009688"
+                                backgroundColor: "#d32134"
                             }
                         ]
                     },
@@ -182,7 +182,7 @@
                             {
                                 label: "My First dataset",
                                 data: [65, 59, 66, 45, 56, 55, 40],
-                                borderColor: "#00968866",
+                                borderColor: "#d3213466",
                                 borderWidth: "1",
                                 backgroundColor: "rgba(0, 150, 136, 0.35)"
                             },
@@ -244,10 +244,10 @@
                             },
                             {
                                 label: "My Second dataset",
-                                borderColor: "#009688",
+                                borderColor: "#d32134",
                                 borderWidth: "1",
-                                backgroundColor: "#009688",
-                                pointHighlightStroke: "#009688",
+                                backgroundColor: "#d32134",
+                                pointHighlightStroke: "#d32134",
                                 data: [16, 32, 18, 26, 42, 33, 44, 24, 19, 16, 67, 71, 65]
                             }
                         ]

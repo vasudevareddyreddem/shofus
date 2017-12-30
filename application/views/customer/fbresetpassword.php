@@ -32,7 +32,7 @@
     }
 </style>
 
-<body style="background-color:#009688;">
+<body style="background-color:#d32134;">
     <div class="container mar_t10per" style="position:relative" >
         <div class="row ">
 		<div class="col-md-6 col-md-offset-3" style="background-color:#fff; border-radius:10px;padding:10px 0px; ">

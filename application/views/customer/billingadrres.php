@@ -7,7 +7,7 @@
 		display: block;
     font-size: 16px;
     transform: translateY(25px);
-    color: #009688;
+    color: #d32134;
 	}
 </style>
 <div class="container">
