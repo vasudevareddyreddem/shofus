@@ -2720,6 +2720,9 @@ class Import extends Admin_Controller {
 																		}
 																		
 																		
+																 }else{
+																	 $this->session->set_flashdata('error','fields are missing check once again');
+																	 redirect('/seller/products/create');
 																 }
 																}
 																//echo '<pre>';print_r($data);exit;

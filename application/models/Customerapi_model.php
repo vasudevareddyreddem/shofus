@@ -2500,6 +2500,226 @@ class Customerapi_model extends MY_Model
 		
 	}
 	
+	/* newhome page*/
+	public function get_categorywise_list(){
+		$this->db->select('products.category_id,category.category_name,category.category_image')->from('products');
+		$this->db->join('category', 'category.category_id = products.category_id', 'left');
+		$this->db->group_by('products.category_id');
+		$this->db->where('products.category_id !=','');
+		$this->db->where('products.item_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_topoffer_categorywise(){
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.item_image')->from('top_offers');
+		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
+		$this->db->order_by('top_offers.offer_percentage desc');
+		$this->db->where('top_offers.preview_ok',1);
+		$this->db->group_by('products.category_id');
+		$this->db->where('products.item_status',1);
+		$this->db->where('top_offers.expairdate >=', $curr_date);
+		$return=$this->db->get()->result_array();
+		foreach ($return as $lis){
+			//echo '<>'
+			$top[]=$this->get_topoffer_product_percentages_list($lis['category_id']);
+			
+		}
+		if(!empty($top))
+		{
+		return $top;
+		}
+		
+	}
+	public function get_topoffer_product_percentages_list($cid)
+	{
+	
+		$sql="SELECT products.category_id,top_offers.offer_percentage,products.item_image,category.category_name FROM top_offers LEFT JOIN products ON products.item_id = top_offers.item_id LEFT JOIN category ON category.category_id = products.category_id WHERE top_offers.category_id ='".$cid."' ORDER BY top_offers.offer_percentage DESC LIMIT 0, 1";
+        return $this->db->query($sql)->row_array(); 
+
+	}
+	public function get_dealsoftheoffer_categorywise()
+	{
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('deals_ofthe_day.*,products.*')->from('deals_ofthe_day');
+		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
+		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
+		$this->db->group_by('products.category_id');
+		$this->db->where('deals_ofthe_day.preview_ok',1);
+		$this->db->where('products.item_status',1);
+		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
+			$return=$this->db->get()->result_array();
+		foreach ($return as $lis){
+			//echo '<>'
+			$deals[]=$this->get_deals_product_percentages_list($lis['category_id']);
+			
+		}
+		if(!empty($deals))
+		{
+		return $deals;
+		}
+
+	}
+	public function get_deals_product_percentages_list($cid)
+	{
+	
+		$sql="SELECT products.category_id,deals_ofthe_day.offer_percentage,products.item_image,category.category_name FROM deals_ofthe_day LEFT JOIN products ON products.item_id = deals_ofthe_day.item_id LEFT JOIN category ON category.category_id = products.category_id WHERE deals_ofthe_day.category_id ='".$cid."' ORDER BY deals_ofthe_day.offer_percentage DESC LIMIT 0, 1";
+        return $this->db->query($sql)->row_array(); 
+
+	}
+	public function get_seasonofthesaleseoffer_categorywise()
+	{
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('season_sales.expairdate,season_sales.offer_percentage,products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.item_image')->from('season_sales');
+		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
+		$this->db->order_by('season_sales.offer_percentage desc');
+		$this->db->group_by('products.category_id');
+		$this->db->where('season_sales.preview_ok',1);
+		$this->db->where('products.item_status',1);
+		$this->db->where('season_sales.expairdate >=', $curr_date);
+		$return=$this->db->get()->result_array();
+		foreach ($return as $lis){
+			//echo '<>'
+			$season[]=$this->get_season_product_percentages_list($lis['category_id']);
+			
+		}
+		if(!empty($season))
+		{
+		return $season;
+		}
+
+	}
+	public function get_season_product_percentages_list($cid)
+	{
+	
+		$sql="SELECT products.category_id,season_sales.offer_percentage,products.item_image,category.category_name FROM season_sales LEFT JOIN products ON products.item_id = season_sales.item_id LEFT JOIN category ON category.category_id = products.category_id WHERE season_sales.category_id ='".$cid."' ORDER BY season_sales.offer_percentage DESC LIMIT 0, 1";
+        return $this->db->query($sql)->row_array(); 
+
+	}
+	public function get_trendingoffer_categorywise()
+	{
+		$this->db->select('products.category_id')->from('products');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->group_by('products.category_id');
+		$this->db->where('products.category_id !=','');
+		$this->db->where('products.item_status',1);
+		$return=$this->db->get()->result_array();
+		foreach ($return as $lis){
+			//echo '<pre>';print_r($lis);exit;
+			$trending[]=$this->get_trending_product_percentages_list($lis['category_id']);
+			
+		}
+		if(!empty($trending))
+		{
+		return $trending;
+		}
+		
+	}
+	public function get_trending_product_percentages_list($cid)
+	{
+	
+		$sql="SELECT products.category_id,products.item_image,products.offers,category.category_name FROM products  LEFT JOIN category ON category.category_id = products.category_id  WHERE products.category_id ='".$cid."' ORDER BY if(`offer_expairdate`>='DATE(Y-m-d h:i:s A)',`offer_percentage`,`offers`) DESC LIMIT 0, 1";
+		//$sql="SELECT products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.item_image,products.offers,products.offer_expairdate,category.category_name FROM products  LEFT JOIN category ON category.category_id = products.category_id  WHERE products.category_id ='".$cid."' ORDER BY products.offer_percentage DESC LIMIT 0, 1";
+        return $this->db->query($sql)->row_array(); 
+
+	}
+	public function get_offerforyou_categorywise()
+	{
+		$this->db->select('products.category_id')->from('products');
+        $this->db->order_by('products.offer_percentage desc');
+		$this->db->order_by('products.item_id desc');
+		$this->db->where('products.item_status',1);
+		$this->db->group_by('products.category_id');
+		$return=$this->db->get()->result_array();
+		foreach ($return as $lis){
+			//echo '<>'
+			$offers[]=$this->get_trending_product_percentages_list($lis['category_id']);
+			
+		}
+		if(!empty($offers))
+		{
+		return $offers;
+		}
+		
+	}
+	public function get_category_wise_products_list()
+	{
+	
+		$this->db->select('category.category_name,category.category_id,category.category_image')->from('products');
+		$this->db->join('category', 'category.category_id =products.category_id', 'left');
+		$this->db->group_by('category.category_id');
+		$this->db->order_by('category.category_id', 'asc');
+		$this->db->where('category.status', 1);		
+		$return= $this->db->get()->result_array();
+		foreach ($return as $li){
+			//echo '<pre>';print_r($lists);
+		$item_list=$this->get_products_lists($li['category_id']); 
+		foreach ($item_list as $productslist){
+			$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=$percentage;
+			}
+			
+			foreach($plist as $Lis){
+				$list[]=$Lis;
+			}
+				if(isset($list)&& count($list)>0){
+				$catdata[$li['category_id']]=$li;
+				$catdata[$li['category_id']]['plist']=$list;
+				}
+			}
+		
+		//echo '<pre>';print_r($catdata);
+			if(!empty($catdata))
+			{
+			return $catdata;
+			}
+
+	}
+	public function get_products_lists($catid){
+		
+		$this->db->select('products.item_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.item_quantity,products.item_status,products.category_id,products.offer_amount,products.offer_percentage,products.item_image')->from('products');
+        $this->db->where('products.category_id',$catid);
+		return $this->db->get()->result_array();
+		
+	}
+	public function get_homepage_position_two_banner($position){
+	$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
+	$this->db->where('position',$position);
+	$this->db->where('status',1);
+	$this->db->where('admin_status',1);
+	return $this->db->get()->result_array();
+}
+public function get_homepage_position_three_banner($position){
+	$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
+	$this->db->where('position',$position);
+	$this->db->where('status',1);
+	$this->db->where('admin_status',1);
+	return $this->db->get()->result_array();
+}public function get_homepage_position_four_banner($position){
+	$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
+	$this->db->where('position',$position);
+	$this->db->where('status',1);
+	$this->db->where('admin_status',1);
+	return $this->db->get()->result_array();
+}
+	/* newhome page*/
+	
 	
 		
 	

@@ -3472,6 +3472,46 @@ public function homeapi_get()
 				$this->response($message, REST_Controller::HTTP_OK);
 
 	}
+	/*newhomepage*/
+	public function homepage_get(){
+		
+		
+		$categories=$this->Customerapi_model->get_categorywise_list();
+		//echo '<pre>';print_r($categories);exit;
+		$position_two= $this->Customerapi_model->get_homepage_position_two_banner(2);
+		$position_three= $this->Customerapi_model->get_homepage_position_three_banner(3);
+		$position_four= $this->Customerapi_model->get_homepage_position_four_banner(4);
+		$topoffer=$this->Customerapi_model->get_topoffer_categorywise();
+		$dealsffer=$this->Customerapi_model->get_dealsoftheoffer_categorywise();
+		$seasonffer=$this->Customerapi_model->get_seasonofthesaleseoffer_categorywise();
+		$trendingffer=$this->Customerapi_model->get_trendingoffer_categorywise();
+		$offerforyou=$this->Customerapi_model->get_offerforyou_categorywise();
+		$categorywise_plist=$this->Customerapi_model->get_category_wise_products_list();
+		foreach ($categorywise_plist as $list){
+			$cat_wise_plist[]=$list;
+		}
+		$message = array
+		(
+			'status'=>1,
+			'categorylist'=>$categories,
+			'topoffer'=>$topoffer,
+			'position_twobannerlist'=>$position_two,
+			'trendingproducts'=>$trendingffer,
+			'offersforyou'=>$offerforyou,
+			'position_threebannerlist'=>$position_three,
+			'dealsoftheday'=>$dealsffer,
+			'seasonsales'=>$seasonffer,
+			'position_fourbannerlist'=>$position_four,
+			'categorywiseproductlist'=>$cat_wise_plist,
+			'imagepath'=>base_url('uploads/products/'),
+			'bannerspath'=>base_url('assets/homebanners/'),
+			'message'=>'Product list are found.'
+		);
+		$this->response($message, REST_Controller::HTTP_OK);
+				
+		
+	}
+	/*newhomepage*/
 
 
 
