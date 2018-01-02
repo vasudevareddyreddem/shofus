@@ -439,6 +439,21 @@
 				<div class="clearfix">&nbsp;</div>
 			</div>
 			<div class="clearfix">&nbsp;</div>
+				<div>
+					<div class="radio">
+										<label class="col-md-12" >
+											<input type="radio" id="radio1"  name="payment"  value="2"><span >Normal</span>
+										</label>
+								
+										<label class="col-md-12" >
+											<input type="radio" id="radio2" name="payment"  value="3"><span >Fast</span>
+										</label>
+										<!--<label class="col-md-4">
+											<input type="radio" id="radio3" name="payment"  value="4"><span>Paytm</span>
+										</label>-->
+									 </div>
+				</div>
+			<div class="clearfix">&nbsp;</div>
 			<div>
 				<ul>
 					<li>Usually delivered within 1-6 Hours*</li>
@@ -447,6 +462,7 @@
 					<li>Online cancellations</li>
 				</ul>
 			</div>
+			
 			<div class="clearfix">&nbsp;</div>
 			<div class="sm_hide" >
 				<a class="btn btn-warning col-md-6 btn-sm pro_ad_btn cus_pull-ri_800" onclick="singleitemaddtocart('<?php echo $products_list['item_id']; ?>','<?php echo $products_list['category_id']; ?>','single')" type="submit" ><i class="fa fa-shopping-cart"></i>  ADD TO CART</a> 
