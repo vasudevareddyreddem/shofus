@@ -66,7 +66,7 @@
 					 <label for="exampleInputEmail1">link</label>
 					<select class="form-control" id="link" onchange="getselectedproducts(this.value);" name="link" >
 					<option value="">Select item </option>
-					<option value="1">Category </option>
+					<!--<option value="1">Category </option>-->
 					<option value="2">Subcategory </option>
 					<option value="3">Subitem</option>
 					<option value="4">Item</option>

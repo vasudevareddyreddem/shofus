@@ -2699,56 +2699,155 @@ class Customerapi_model extends MY_Model
 		
 	}
 	public function get_homepage_position_two_banner($position){
-	$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
-	$this->db->where('position',$position);
-	$this->db->where('status',1);
-	$this->db->where('admin_status',1);
-	return $this->db->get()->result_array();
-}
-public function get_homepage_position_three_banner($position){
-	$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
-	$this->db->where('position',$position);
-	$this->db->where('status',1);
-	$this->db->where('admin_status',1);
-	return $this->db->get()->result_array();
-}public function get_homepage_position_four_banner($position){
-	$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
-	$this->db->where('position',$position);
-	$this->db->where('status',1);
-	$this->db->where('admin_status',1);
-	return $this->db->get()->result_array();
-}
+		$date = new DateTime("now");
+		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
+		$this->db->where('position',$position);
+		$this->db->where('homepage_banners.expirydate >=', $curr_date);
+		$this->db->where('status',1);
+		$this->db->where('admin_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_homepage_position_three_banner($position){
+		$date = new DateTime("now");
+		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
+		$this->db->where('position',$position);
+		$this->db->where('homepage_banners.expirydate >=', $curr_date);
+		$this->db->where('status',1);
+		$this->db->where('admin_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_homepage_position_four_banner($position){
+		$date = new DateTime("now");
+		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
+		$this->db->where('position',$position);
+		$this->db->where('homepage_banners.expirydate >=', $curr_date);
+		$this->db->where('status',1);
+		$this->db->where('admin_status',1);
+		return $this->db->get()->result_array();
+	}
+	public  function recently_viewed_producrs(){
+		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('vewed_products');
+		$this->db->join('products', 'products.item_id = vewed_products.item_id', 'left'); //
+		$this->db->where('products.item_id !=','');
+		$this->db->group_by('vewed_products.item_id');
+		return $this->db->get()->result_array(); 
+	}
+	public function get_category_wise_dealsseemore($catid){
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('deals_ofthe_day.expairdate,deals_ofthe_day.offer_percentage,products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('deals_ofthe_day');
+		$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left');
+		$this->db->where('products.category_id',$catid);
+        $this->db->where('admin_status','0');
+		$this->db->order_by('deals_ofthe_day.offer_percentage desc');
+		$this->db->where('deals_ofthe_day.preview_ok',1);
+		$this->db->where('products.item_status',1);
+		$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
+		return $this->db->get()->result_array();
+	}
+	public function get_category_wise_seasonseemore($catid)
+	{
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('season_sales.expairdate,season_sales.offer_percentage,products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('season_sales');
+		$this->db->join('products', 'products.item_id = season_sales.item_id', 'left');
+		$this->db->where('products.category_id',$catid);
+		$this->db->order_by('season_sales.offer_percentage desc');
+		$this->db->where('season_sales.preview_ok',1);
+		$this->db->where('products.item_status',1);
+		$this->db->where('season_sales.expairdate >=', $curr_date);
+		return $this->db->get()->result_array();
+	
+	}
+	public function get_category_wise_topseemore($catid)
+	{
+		$date = new DateTime("now");
+ 		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('top_offers.expairdate,top_offers.offer_percentage,products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('top_offers');
+		$this->db->join('products', 'products.item_id = top_offers.item_id', 'left');
+		$this->db->where('products.category_id',$catid);
+        $this->db->where('admin_status','0');
+		$this->db->order_by('top_offers.offer_percentage desc');
+		$this->db->where('top_offers.preview_ok',1);
+		$this->db->where('products.item_status',1);
+		$this->db->where('top_offers.expairdate >=', $curr_date);
+		return $this->db->get()->result_array();
+
+	}
+	public function get_category_wise_trendingseemore($catid)
+	{
+		$this->db->select('products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
+		$this->db->where('products.category_id',$catid);
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage ASC');
+		$this->db->where('products.item_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_category_wise_offersseemore($catid)
+	{
+		$this->db->select('products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
+		$this->db->where('products.category_id',$catid);
+        $this->db->where('admin_status','0');
+		$this->db->order_by('products.offer_percentage desc');
+		$this->db->where('products.item_status',1);
+		return $this->db->get()->result_array();
+	}
 	/* newhome page*/
 	
 	/* category page */
-	public function step_one_data($position){
-		$this->db->select('*')->from('category_banners');
+		public function step_one_data($position){
+		$date = new DateTime("now");
+		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link')->from('category_banners');
 		$this->db->where('category_banners.position',$position);
+		$this->db->where('category_banners.expirydate >=', $curr_date);
 		$this->db->where('category_banners.status',1);
 		$this->db->where('category_banners.admin_status',1);
 		return $this->db->get()->result_array();
 		}
 		public function step_four_data($position){
-		$this->db->select('*')->from('category_banners');
+		$date = new DateTime("now");
+		$curr_date = $date->format('Y-m-d h:i:s A');
+		$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link')->from('category_banners');
 		$this->db->where('category_banners.position',$position);
+		$this->db->where('category_banners.expirydate >=', $curr_date);
 		$this->db->where('category_banners.status',1);
 		$this->db->where('category_banners.admin_status',1);
 		return $this->db->get()->result_array();
 		}
 		public function step_seven_data($position){
-		$this->db->select('*')->from('category_banners');
-		$this->db->where('category_banners.position',$position);
-		$this->db->where('category_banners.status',1);
-		$this->db->where('category_banners.admin_status',1);
-		return $this->db->get()->result_array();
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link')->from('category_banners');
+			$this->db->where('category_banners.position',$position);
+			$this->db->where('category_banners.expirydate >=', $curr_date);
+			$this->db->where('category_banners.status',1);
+			$this->db->where('category_banners.admin_status',1);
+			return $this->db->get()->result_array();
 		}
 		public function step_eleven_data($position){
-		$this->db->select('*')->from('category_banners');
-		$this->db->where('category_banners.position',$position);
-		$this->db->where('category_banners.status',1);
-		$this->db->where('category_banners.admin_status',1);
-		return $this->db->get()->result_array();
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link')->from('category_banners');
+			$this->db->where('category_banners.position',$position);
+			$this->db->where('category_banners.expirydate >=', $curr_date);
+			$this->db->where('category_banners.status',1);
+			$this->db->where('category_banners.admin_status',1);
+			return $this->db->get()->result_array();
 		}
+		public  function step_fourteen_data($position){
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link')->from('category_banners');
+			$this->db->where('category_banners.position',$position);
+			$this->db->where('category_banners.expirydate >=', $curr_date);
+			$this->db->where('category_banners.status',1);
+			$this->db->where('category_banners.admin_status',1);
+			return $this->db->get()->result_array();
+	  }
 		
 		public function step_two_data($catid){
 				$this->db->select('subcategories.subcategory_id,subcategories.subcategory_name,subcategories.category_id,subcategories.subcategory_image')->from('products');
@@ -2771,6 +2870,7 @@ public function get_homepage_position_three_banner($position){
 			$this->db->where('products.category_id',$catid);
 			return $this->db->get()->row_array();	
 		}
+		
 	
 		public function step_six_data($catid){
 			$date = new DateTime("now");
@@ -2792,6 +2892,102 @@ public function get_homepage_position_three_banner($position){
 			$this->db->where('products.item_status',1);
 			return $this->db->get()->result_array();			
 		}
+		public function step_eight_data($catid){
+			
+		$this->db->select('sub_items.subitem_id,sub_items.subitem_name,sub_items.image,sub_items.category_id,sub_items.subcategory_id')->from('products');
+		$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left'); //
+		$this->db->where('sub_items.subitem_id !=','');
+		$this->db->where('products.subitemid !=','');
+		$this->db->where('products.category_id',$catid);
+		$this->db->group_by('products.subitemid');
+		return $this->db->get()->result_array();			
+		}
+		
+		public function step_dealsnine_data($catid){
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('deals_ofthe_day');
+			$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left'); //
+			$this->db->where('products.item_id !=','');
+			$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
+			$this->db->where('deals_ofthe_day.category_id',$catid);
+			return $this->db->get()->result_array();			
+		}
+		 public function step_nine_data($catid){
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			if($catid==21 || $catid==31){
+				$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`)');
+				$this->db->order_by('offer_expairdate desc');
+			}else if($catid==19 || $catid==24){
+				$this->db->where('occasion !=','');
+			}else if($catid==20){
+				$this->db->where('battery_capacity !=','');
+			}
+			$this->db->where('products.category_id',$catid);
+			$this->db->where('products.item_status',1);
+			return $this->db->get()->result_array();			
+	  }
+	   public function step_seasonten_data($catid){
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('season_sales');
+			$this->db->join('products', 'products.item_id = season_sales.item_id', 'left'); //
+			$this->db->where('products.item_id !=','');
+			$this->db->where('season_sales.expairdate >=', $curr_date);
+			$this->db->where('season_sales.category_id',$catid);
+			return $this->db->get()->result_array();			
+		}
+		public function step_tenfootwear_data($catid){
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			$this->db->where('products.item_id !=','');
+			if($catid==19){
+			$this->db->where('products.subcategory_id',128);
+			}else{
+				$this->db->where('products.subcategory_id',140);
+			}
+			return $this->db->get()->result_array();			
+		}
+		public function step_ten_data($catid){
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			if($catid==21 || $catid==31){
+				$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`)');
+				$this->db->order_by('offer_expairdate desc');
+			}else if($catid==19 || $catid==24){
+				$this->db->where('occasion !=','');
+			}else if($catid==20){
+				$this->db->where('camera !=','');
+			}else if($catid==30){
+				$this->db->where('age !=','');
+			}
+			$this->db->where('products.category_id',$catid);
+			$this->db->where('products.item_status',1);
+			return $this->db->get()->result_array();			
+	  }
+	   public  function step_twelve_data($catid,$cutid){
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('vewed_products');
+			$this->db->join('products', 'products.item_id = vewed_products.item_id', 'left'); //
+			$this->db->where('products.item_id !=','');
+			$this->db->group_by('vewed_products.item_id');
+			if($cutid!=''){
+			$this->db->where('vewed_products.customer_id',$cutid);	
+			}
+			$this->db->where('products.category_id',$catid);
+			return $this->db->get()->result_array(); 
+	  }
+	   public  function step_thirteen_data($catid){
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('order_items');
+			$this->db->join('products', 'products.item_id = order_items.item_id', 'left'); //
+			$this->db->where('products.item_id !=','');
+			$this->db->group_by('order_items.item_id');
+			$this->db->where('products.category_id',$catid);
+			return $this->db->get()->result_array(); 
+	  }
 	/* category page */
 	
 	
