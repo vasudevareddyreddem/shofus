@@ -264,6 +264,7 @@ class Category extends Front_Controller
 	$pid=base64_decode($this->uri->segment(3));
 	if($this->session->userdata('userdetails'))
 	 {
+		$customerdetails=$this->session->userdata('userdetails');
 		$custib=$customerdetails['customer_id'];
 	 }else{
 		 $custib='';
