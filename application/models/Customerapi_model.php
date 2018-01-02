@@ -2720,6 +2720,80 @@ public function get_homepage_position_three_banner($position){
 }
 	/* newhome page*/
 	
+	/* category page */
+	public function step_one_data($position){
+		$this->db->select('*')->from('category_banners');
+		$this->db->where('category_banners.position',$position);
+		$this->db->where('category_banners.status',1);
+		$this->db->where('category_banners.admin_status',1);
+		return $this->db->get()->result_array();
+		}
+		public function step_four_data($position){
+		$this->db->select('*')->from('category_banners');
+		$this->db->where('category_banners.position',$position);
+		$this->db->where('category_banners.status',1);
+		$this->db->where('category_banners.admin_status',1);
+		return $this->db->get()->result_array();
+		}
+		public function step_seven_data($position){
+		$this->db->select('*')->from('category_banners');
+		$this->db->where('category_banners.position',$position);
+		$this->db->where('category_banners.status',1);
+		$this->db->where('category_banners.admin_status',1);
+		return $this->db->get()->result_array();
+		}
+		public function step_eleven_data($position){
+		$this->db->select('*')->from('category_banners');
+		$this->db->where('category_banners.position',$position);
+		$this->db->where('category_banners.status',1);
+		$this->db->where('category_banners.admin_status',1);
+		return $this->db->get()->result_array();
+		}
+		
+		public function step_two_data($catid){
+				$this->db->select('subcategories.subcategory_id,subcategories.subcategory_name,subcategories.category_id,subcategories.subcategory_image')->from('products');
+				$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left'); //
+				$this->db->where('products.category_id',$catid);
+				$this->db->where('products.subcategory_id !=','');
+				$this->db->where('products.item_status !=','');
+				$this->db->group_by('products.subcategory_id');
+				return $this->db->get()->result_array();
+		}
+		public function step_three_data($catid){
+			$this->db->select('*')->from('brands');
+			$this->db->where('brands.category_id',$catid);
+			$this->db->where('status',1);
+			return $this->db->get()->result_array();	
+		}
+		public function step_five_data($catid){
+			$this->db->select('max(item_cost)as max,min(item_cost)as min,products.category_id')->from('products');
+			$this->db->where('item_status',1);
+			$this->db->where('products.category_id',$catid);
+			return $this->db->get()->row_array();	
+		}
+	
+		public function step_six_data($catid){
+			$date = new DateTime("now");
+			$curr_date = $date->format('Y-m-d h:i:s A');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			if($catid==21 || $catid==31){
+				$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`)');
+				$this->db->order_by('offer_expairdate desc');
+			}else if($catid==19 || $catid==24 || $catid==35){
+				$this->db->where('type !=','');
+			}else if($catid==28){
+			$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`)');
+			}else if($catid==32){
+			
+			}else if($catid==20){
+				$this->db->where('screen_size !=','');
+			}
+			$this->db->where('products.category_id',$catid);
+			$this->db->where('products.item_status',1);
+			return $this->db->get()->result_array();			
+		}
+	/* category page */
+	
 	
 		
 	

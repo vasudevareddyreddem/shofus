@@ -2227,9 +2227,9 @@ public function addhomepagemiddlebannerspost()
 								$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 2 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
 								redirect('inventory/homepagebanerrslist');
 							}
-						}else if($position==3){
-							if($four['imagecount']>=2){
-								$this->session->set_flashdata('error',"while adding it should come like 1 of 2 , 2 of 2...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
+						}else if($position==4){
+							if($four['imagecount']>=3){
+								$this->session->set_flashdata('error',"while adding it should come like 1 of 2 , 2 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
 								redirect('inventory/homepagebanerrslist');
 							}
 						}
@@ -2693,7 +2693,7 @@ public function addhomepagemiddlebannerspost()
 						redirect('inventory/addmiddlehomebanners');
 					}
 				}else if($post['position']==4){
-					if($four['imagecount']>=2){
+					if($four['imagecount']>=3){
 						$this->session->set_flashdata('error',"while adding it should come like 1 of 2 , 2 of 2...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
 						redirect('inventory/addmiddlehomebanners');
 					}

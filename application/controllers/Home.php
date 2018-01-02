@@ -48,12 +48,13 @@ public function index()
 		$data['category_wise_products'] = $this->home_model->get_category_wise_products_list();
 	 
 
+		$data['recentlyviewd']= $this->home_model->recently_viewed_producrs();
 		$position_two= $this->home_model->get_homepage_position_two_banner(2);
 		$data['position_two']=array_chunk($position_two, 3);
 		$position_three= $this->home_model->get_homepage_position_three_banner(3);
 		$data['position_three']=array_chunk($position_three, 4);
 		$position_four= $this->home_model->get_homepage_position_four_banner(4);
-		$data['position_four']=array_chunk($position_four, 2);
+		$data['position_four']=array_chunk($position_four, 3);
 		//echo '<pre>';print_r($data);exit;
 		
 	

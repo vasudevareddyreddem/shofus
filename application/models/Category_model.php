@@ -2387,11 +2387,14 @@ public function get_all_subitem_list($catid,$subcatid)
 		 $this->db->insert('vewed_products', $data);
 		return $insert_id = $this->db->insert_id(); 
 	  }
-	  public  function step_twelve_data($catid){
+	  public  function step_twelve_data($catid,$cutid){
 			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('vewed_products');
 			$this->db->join('products', 'products.item_id = vewed_products.item_id', 'left'); //
 			$this->db->where('products.item_id !=','');
 			$this->db->group_by('vewed_products.item_id');
+			if($cutid!=''){
+			$this->db->where('vewed_products.customer_id',$cutid);	
+			}
 			$this->db->where('products.category_id',$catid);
 			return $this->db->get()->result_array(); 
 	  }

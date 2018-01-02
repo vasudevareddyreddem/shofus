@@ -3511,6 +3511,46 @@ public function homeapi_get()
 				
 		
 	}
+	
+	public  function subcategorypage_get(){
+		
+		$catid = $this->input->get('category_id');
+		if($catid==''){
+				$message = array('status'=>0,'message'=>'Category id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$position_one=$this->Customerapi_model->get_categorywise_list();
+		//echo '<pre>';print_r($categories);exit;
+		$position_two= $this->Customerapi_model->step_one_data(1);
+		$position_two= $this->Customerapi_model->step_two_data($catid);
+		$position_three= $this->Customerapi_model->step_three_data($catid);
+		$position_four= $this->Customerapi_model->step_four_data(2);
+		$position_five= $this->Customerapi_model->step_five_data($catid);
+		$amt= ($position_five['max'])/4;
+		$step_five=array($amt,$amt*2,$amt*3,$amt*4);
+		if($catid==21 || $catid==31 || $catid==19 || $catid==24 || $catid==35 ||  $catid==28 ||  $catid==20){
+		$data['step_six']= $this->category_model->step_six_data($catid);
+		$data['step_sixlabel']='Offer';
+		}else if($catid==19 || $catid==24){
+			$data['step_sixlabel']='Type';
+			$data['step_six']= $this->category_model->step_six_data($catid);
+		}if($catid==21 || $catid==31){
+			$data['step_sixlabel']='Offer';
+		}if($catid==28 ){
+			$data['step_sixlabel']='Offer';
+		}if($catid==35 ){
+			$data['step_sixlabel']='Type';
+		}if($catid==20 ){
+			$data['step_sixlabel']='Screen Size';
+		}
+		$topoffer=$this->Customerapi_model->get_topoffer_categorywise();
+		$dealsffer=$this->Customerapi_model->get_dealsoftheoffer_categorywise();
+		$seasonffer=$this->Customerapi_model->get_seasonofthesaleseoffer_categorywise();
+		$trendingffer=$this->Customerapi_model->get_trendingoffer_categorywise();
+		$offerforyou=$this->Customerapi_model->get_offerforyou_categorywise();
+		$categorywise_plist=$this->Customerapi_model->get_category_wise_products_list();
+		
+	}
 	/*newhomepage*/
 
 

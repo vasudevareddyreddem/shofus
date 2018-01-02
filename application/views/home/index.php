@@ -455,6 +455,106 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
       </div>
     </section>
 <?php } ?>
+<?php if(isset($recentlyviewd) && count($recentlyviewd)>0){ ?>
+<section>
+	<div class="best-pro slider-items-products container_main">
+		<div class="new_title">
+			<h2>Recently viewed</h2>
+		</div>
+		<div id="best-seller" class="product-flexslider hidden-buttons">
+			<div class="slider-items slider-width-col4 products-grid">
+				<a href="#">
+					<?php //echo '<pre>';print_r($trending_products);exit; 
+				$t=5;foreach ($recentlyviewd as $productslist){
+				$currentdate=date('Y-m-d h:i:s A');
+				if($productslist['offer_expairdate']=!'' && $productslist['offer_expairdate']>=$currentdate){
+				$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+				$percentage= $productslist['offer_percentage'];
+				$orginal_price=$productslist['item_cost'];
+				}else{
+					//echo "expired";
+					$item_price= $productslist['special_price'];
+					$prices= ($productslist['item_cost']-$productslist['special_price']);
+					$percentage= (($prices) /$productslist['item_cost'])*100;
+					$orginal_price=$productslist['item_cost'];
+				}
+				
+				?>
+             <form action="<?php echo base_url('customer/addcart'); ?>" method="Post" name="addtocart" id="addtocart" >
+			<input type="hidden" name="producr_id" id="producr_id" value="<?php echo $productslist['item_id']; ?>" >
+			<input type="hidden" name="category_id" id="category_id" value="<?php echo $productslist['category_id']; ?>" >
+			<input type="hidden" name="qty" id="qty" value="1" >
+			<a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>">
+		<div class="item">
+		       
+          <div class=" box-product-outer" >
+            <div class="box-product">
+              <div class="img-wrapper  img_hover item" style="position:relative">
+			  <div class="img_size">
+         
+               <img class="" src="<?php echo base_url('uploads/products/'.$productslist['item_image']); ?>"> 
+				 
+           
+               
+				</div>
+              
+				<?php if($productslist['item_quantity']<=0 || $productslist['item_status']==0){ ?>
+				
+				<div  class="text-center out_of_stoc">
+					<div style="z-index:1026"><h4>out of stock</h4></div>
+				</div>
+				
+				<?php } ?>
+				
+				<div class="option">
+				<?php if($productslist['item_quantity']>0 && $productslist['category_id']==18 || $productslist['category_id']==21){ ?>
+				<?php 	if (in_array($productslist['item_id'], $cart_item_ids) &&  in_array($customerdetails['customer_id'], $cust_ids)) { ?>
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $t; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Added to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-shopping-cart text-primary"></i></a>                  
+				<?php }else{ ?>	
+				<a class="add-to-cart" style="cursor:pointer;" onclick="itemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','<?php echo $t; ?>');" id="cartitemtitle<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Add to Cart"><i id="addticartitem<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-shopping-cart"></i></a>                  
+				<?php } ?>	
+				<?php } ?>
+				<?php 	if (in_array($productslist['item_id'], $whishlist_item_ids_list) &&  in_array($customerdetails['customer_id'], $customer_ids_list)) { ?>
+				<a href="javascript:void(0);"  onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $t; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Added to Wishlist" class="wishlist"><i id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-heart text-primary"></i></a> 
+				<?php }else{ ?>	
+				<a href="javascript:void(0);" onclick="addwhishlidt('<?php echo $productslist['item_id']; ?>','<?php echo $t; ?>');" id="addwhish<?php echo $productslist['item_id']; ?><?php echo $t; ?>" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i  id="addwishlistids<?php echo $productslist['item_id']; ?><?php echo $t; ?>" class="fa fa-heart"></i></a> 
+				<?php } ?>	
+				</div>
+              </div>
+              <h6><a href="<?php echo base_url('category/productview/'.base64_encode($productslist['item_id'])); ?>"><?php echo $productslist['item_name']; ?></a></h6>
+				<div class="price">
+               
+				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
+			<?php if($percentage!=''){ ?> &nbsp;
+			<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
+				<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>
+			<?Php }else{ ?>
+			<?php } ?>
+				</div>
+				<div class="clearfix"></div>
+            
+              </div>
+            
+            </div>
+          </div>
+		  
+            </div>
+			 </a>
+			
+			
+			</form>
+      
+       <?php $t++;} ?>
+				</a>
+			
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		
+	</div>
+</section>
+
+<?php } ?>
 
 <?php if(isset($position_four) && count($position_four)>0){ ?>
 <?php //echo '<pre>';print_r($position_four);exit; ?>
@@ -475,7 +575,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 						<?php }else if($list[0]['link']==5){ ?>
 							<a href="<?php echo base_url('category/productview/'.base64_encode($list[0]['selected_id'])); ?>">
 						<?php } ?>
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
 						</div>
 						</a>
@@ -492,10 +592,27 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 						<?php }else if($list[1]['link']==5){ ?>
 							<a href="<?php echo base_url('category/productview/'.base64_encode($list[1]['selected_id'])); ?>">
 						<?php } ?>
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
 						</div>
 						</a>
+			<?php } ?>
+			<?php if(isset($list[2]['name']) && $list[2]['name']!=''){ ?>
+					<?php if($list[2]['link']==1){ ?>
+							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[2]['selected_id'])); ?>">
+						<?php }else if($list[2]['link']==2){ ?>
+							<a href="<?php echo base_url('category/subcategory/'.base64_encode($list[2]['category_id']).'/'.base64_encode($list[2]['subcategory_id'])); ?>">
+						<?php }else if($list[2]['link']==3){ ?>
+								<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[2]['subitem_id']).'/'.base64_encode($list[2]['subcategory_id']).'/'.base64_encode($list[2]['category_id'])); ?>">
+						<?php }else if($list[2]['link']==4){ ?>
+							<a href="<?php echo base_url('category/item/'.base64_encode($list[2]['item_id'])); ?>">
+						<?php }else if($list[2]['link']==5){ ?>
+							<a href="<?php echo base_url('category/productview/'.base64_encode($list[2]['selected_id'])); ?>">
+						<?php } ?>
+				<div class="col-md-4">
+					<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[2]['name']); ?>" alt="<?php echo $list[2]['name']; ?>">
+				</div>
+				</a>
 			<?php } ?>
 			
 			<?php } ?>
