@@ -135,6 +135,26 @@
    .tab_show{
 	 display:block;  
    }
+   .scrolltotop {
+       border: 2px solid #507d8b;
+    border-radius: 50%;
+    bottom: 40px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 25px;
+    height: 50px;
+    text-align: center;
+    position: fixed;
+    right: 20px;
+    width: 50px;
+    padding: 5px 11px;
+    z-index: 999;
+    background: #607d8b;
+	-webkit-box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
+}
 </style>
 
 <div class="wrapper">
@@ -492,6 +512,10 @@
    <span class="glyphicon glyphicon-off"></span> Login</a>
 	  <?php } ?>
 </div>
+</div>
+ <!-- side top scroll-->
+	<span class="scrolltotop"><i class="fa fa-arrow-up"></i></span>
+
 <!-- the overlay element --> 
 <script src="<?php echo base_url(); ?>assets/customer/js/select.js"></script>
 <script>
@@ -503,6 +527,21 @@
 <script src="<?php echo base_url(); ?>assets/home/js/classie.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script src="<?php echo base_url(); ?>assets/home/js/chosen.js"></script> 
+<script>
+$('.scrolltotop').on('click', function() {
+          $('html, body').animate({ scrollTop: 0 }, 800);
+          return false;
+      });
+
+      $(document).scroll(function() {
+          var y = $(this).scrollTop();
+          if (y > 300) {
+              $('.scrolltotop').fadeIn();
+          } else {
+              $('.scrolltotop').fadeOut();
+          }
+      });
+</script>
 <script type="text/javascript">
 function addtabactive(id)
 {
