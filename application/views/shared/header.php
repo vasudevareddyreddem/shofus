@@ -512,7 +512,7 @@ box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
    <span class="glyphicon glyphicon-off"></span> Login</a>
 	  <?php } ?>
 </div>
-</div>
+
  <!-- side top scroll-->
 	<span class="scrolltotop"><i class="fa fa-arrow-up"></i></span>
 

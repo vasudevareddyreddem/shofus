@@ -553,6 +553,16 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 		
 	</div>
 </section>
+<section>
+	<div class="">
+	<div class="clearfix">&nbsp;</div>
+				<div class="text-center"><span id="loadmor" class="lod_st">Load more &nbsp; . &nbsp; .</span></div>
+				<div class="clearfix">&nbsp;</div>
+	</div>
+		
+    </section>
+
+
 
 <?php } ?>
 
@@ -730,14 +740,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 
 
 	</div>
-	<section>
-	<div class="">
-	<div class="clearfix">&nbsp;</div>
-				<div class="text-center"><span id="loadmor" class="lod_st">Load more &nbsp; . &nbsp; .</span></div>
-				<div class="clearfix">&nbsp;</div>
-	</div>
-		
-    </section>
+	
   </div>
 </body>
 
