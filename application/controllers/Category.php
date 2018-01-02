@@ -1704,7 +1704,13 @@ public function subitemwise_search(){
 		}
 		$step_eleven= $this->category_model->step_eleven_data(4);
 		$data['step_eleven']=array_chunk($step_eleven, 4);
-		$data['step_twelve']= $this->category_model->step_twelve_data($cateid);
+		if($this->session->userdata('userdetails'))
+		{
+			$customerdetails=$this->session->userdata('userdetails');
+		$data['step_twelve']= $this->category_model->step_twelve_data($cateid, $customerdetails['customer_id']);
+		}else{
+		$data['step_twelve']= $this->category_model->step_twelve_data($cateid,'');
+		}
 		$data['step_thirteen']= $this->category_model->step_thirteen_data($cateid);
 		$step_fourteen= $this->category_model->step_fourteen_data(5);
 		$data['step_fourteen']=array_chunk($step_fourteen, 4);
