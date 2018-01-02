@@ -575,7 +575,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 						<?php }else if($list[0]['link']==5){ ?>
 							<a href="<?php echo base_url('category/productview/'.base64_encode($list[0]['selected_id'])); ?>">
 						<?php } ?>
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[0]['name']); ?>" alt="<?php echo $list[0]['name']; ?>">
 						</div>
 						</a>
@@ -592,10 +592,27 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 						<?php }else if($list[1]['link']==5){ ?>
 							<a href="<?php echo base_url('category/productview/'.base64_encode($list[1]['selected_id'])); ?>">
 						<?php } ?>
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[1]['name']); ?>" alt="<?php echo $list[1]['name']; ?>">
 						</div>
 						</a>
+			<?php } ?>
+			<?php if(isset($list[2]['name']) && $list[2]['name']!=''){ ?>
+					<?php if($list[2]['link']==1){ ?>
+							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[2]['selected_id'])); ?>">
+						<?php }else if($list[2]['link']==2){ ?>
+							<a href="<?php echo base_url('category/subcategory/'.base64_encode($list[2]['category_id']).'/'.base64_encode($list[2]['subcategory_id'])); ?>">
+						<?php }else if($list[2]['link']==3){ ?>
+								<a href="<?php echo base_url('category/subitemwise/'.base64_encode($list[2]['subitem_id']).'/'.base64_encode($list[2]['subcategory_id']).'/'.base64_encode($list[2]['category_id'])); ?>">
+						<?php }else if($list[2]['link']==4){ ?>
+							<a href="<?php echo base_url('category/item/'.base64_encode($list[2]['item_id'])); ?>">
+						<?php }else if($list[2]['link']==5){ ?>
+							<a href="<?php echo base_url('category/productview/'.base64_encode($list[2]['selected_id'])); ?>">
+						<?php } ?>
+				<div class="col-md-4">
+					<img class="img-responsive" src="<?php echo base_url('assets/homebanners/'.$list[2]['name']); ?>" alt="<?php echo $list[2]['name']; ?>">
+				</div>
+				</a>
 			<?php } ?>
 			
 			<?php } ?>

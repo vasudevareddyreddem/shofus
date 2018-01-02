@@ -54,7 +54,7 @@ public function index()
 		$position_three= $this->home_model->get_homepage_position_three_banner(3);
 		$data['position_three']=array_chunk($position_three, 4);
 		$position_four= $this->home_model->get_homepage_position_four_banner(4);
-		$data['position_four']=array_chunk($position_four, 2);
+		$data['position_four']=array_chunk($position_four, 3);
 		//echo '<pre>';print_r($data);exit;
 		
 	
