@@ -3550,17 +3550,76 @@ public function homeapi_get()
 		$this->response($message, REST_Controller::HTTP_OK);
 	}
 	public function homepageseemore_get(){
-		$catid = $this->input->get('category_id');
-		$customer_id = $this->input->get('customer_id');
-		if($category_id==''){
-				$message = array('status'=>0,'message'=>'Category id is required!');
-				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-		}
+		$category_id = $this->input->get('category_id');
 		$topoffer = $this->input->get('topoffer');
 		$trendingproducts = $this->input->get('trendingproducts');
 		$offersforyou = $this->input->get('offersforyou');
 		$dealsoftheday = $this->input->get('dealsoftheday');
 		$seasonsales = $this->input->get('seasonsales');
+		if($category_id==''){
+				$message = array('status'=>0,'message'=>'Category id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		if($topoffer==1 && $trendingproducts=='' && $offersforyou=='' && $dealsoftheday=='' && $seasonsales=='' || $topoffer=='' && $trendingproducts==1 && $offersforyou=='' && $dealsoftheday=='' && $seasonsales=='' || $topoffer=='' && $trendingproducts=='' && $offersforyou==1 && $dealsoftheday=='' && $seasonsales=='' ||  $topoffer=='' && $trendingproducts=='' && $offersforyou=='' && $dealsoftheday==1 && $seasonsales=='' || $topoffer=='' && $trendingproducts=='' && $offersforyou=='' && $dealsoftheday=='' && $seasonsales==1){
+			
+			if($topoffer==1){
+				$seemore='Top Offers';
+				$seemorelist=$this->Customerapi_model->get_category_wise_topseemore($category_id);
+			}else if($trendingproducts==1){
+				$seemore='Trending products';
+				$seemorelist=$this->Customerapi_model->get_category_wise_trendingseemore($category_id);
+			}else if($offersforyou==1){
+				$seemore='Offers for You';
+				$seemorelist=$this->Customerapi_model->get_category_wise_offersseemore($category_id);
+			}else if($dealsoftheday==1){
+				$seemore='Deals Of the Day';
+				$seemorelist=$this->Customerapi_model->get_category_wise_dealsseemore($category_id);
+			}else if($seasonsales==1){
+				$seemore='Season Sales';
+				$seemorelist=$this->Customerapi_model->get_category_wise_seasonseemore($category_id);
+			}
+			if(isset($seemorelist) && count($seemorelist)>0){
+				foreach ($seemorelist as $productslist){
+							
+							$currentdate=date('Y-m-d h:i:s A');
+								if($productslist['offer_expairdate']>=$currentdate){
+								$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+								$percentage= $productslist['offer_percentage'];
+								$orginal_price=$productslist['item_cost'];
+								}else{
+									//echo "expired";
+									$item_price= $productslist['special_price'];
+									$prices= ($productslist['item_cost']-$productslist['special_price']);
+									$percentage= (($prices) /$productslist['item_cost'])*100;
+									$orginal_price=$productslist['item_cost'];
+								}
+							$plist[$productslist['item_id']]=$productslist;
+							$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+							$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+							$plist[$productslist['item_id']]['percentage']=$percentage;
+							
+						}
+						foreach ($plist as $list){
+							$categorywiseseemore_list[]=$list;
+						}
+				}else{
+					$categorywiseseemore_list[]=array();
+				}
+				$message = array
+								(
+								'status'=>1,
+								'seemore'=>$categorywiseseemore_list,
+								'lable'=>$seemore,
+								'imagepath'=>base_url('uploads/products/'),
+								'message'=>'Product list are found.'
+								);
+				$this->response($message, REST_Controller::HTTP_OK);
+			
+		}else{
+			$message = array('status'=>0,'message'=>'Please check only one see more status is 1  remaning all as 0');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		
 		
 		
 	}
