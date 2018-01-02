@@ -32,6 +32,7 @@
 					<th>Category Name</th>
 					<th>Subcategory Name</th>
 					<th>Sub Item Name</th>
+					<th>Image</th>
 					<th>Created Date</th>
 					<th>Status</th>
 					<th>Action</th>
@@ -45,6 +46,8 @@
                 <td><?php echo $subitem['category_name']; ?></a></td>
 					 <td><?php echo $subitem['subcategory_name']; ?></a></td>
 					 <td><?php echo $subitem['subitem_name']; ?></a></td>
+					<td><img src="<?php echo base_url();?>assets/subitemimages/<?php  echo $subitem['image']; ?>" width="80" height="50" /></td>
+
 					 <td><?php echo $subitem['created_at']; ?></a></td>
 						<td><a href="<?php echo base_url('inventory/subitemstatus/'.base64_encode($subitem['subitem_id']).'/'.base64_encode($subitem['status'])); ?>"><?php if($subitem['status']==1){ echo "Active";}else{ echo "Deactive";} ?></a></td>
 					 <td><a href="<?php echo base_url('inventory/addsubitemedit/'.base64_encode($subitem['subitem_id'])); ?>">Edit</a></td>

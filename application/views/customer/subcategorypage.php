@@ -412,7 +412,7 @@ $customerdetails=$this->session->userdata('userdetails');
 				<div class="item cat_ma" >
 				  <div class=" box-product-outer" >
 					<div class="box-product">
-					   <img src="<?php echo base_url('assets/subitems/'.$list['image']); ?>" > 
+					   <img src="<?php echo base_url('assets/subitemimages/'.$list['image']); ?>" > 
 					<h5 class="text-center"><?php echo $list['subitem_name']; ?></h5>
 					</div>
 					

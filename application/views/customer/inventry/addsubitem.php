@@ -56,6 +56,10 @@
 				<label for="category">Sub Item Name</label>
 				<input type="text"  class="form-control" id="subitemname"  name="subitemname"/>
 				</div>
+				<div class="form-group">
+				<label for="category">Sub Item Image</label>
+				<input type="file"  class="form-control" id="image"  name="image"/>
+				</div>
 				
 
 				
@@ -172,6 +176,17 @@ $(document).ready(function() {
 					}
 				}
 			}, 
+			image: {
+					validators: {
+					 notEmpty: {
+					message: 'Subitem Image is required'
+					},
+					regexp: {
+					regexp: /\.(jpe?g|png)$/i,
+					message: 'Uploaded file is not a valid image. Only JPG, PNG and Jpeg files are allowed'
+					}
+				}
+			}, 
 			subitemname: {
 					validators: {
 						notEmpty: {
@@ -183,6 +198,7 @@ $(document).ready(function() {
 					}
 				}
 			}
+			
         }
     });
 });

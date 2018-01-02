@@ -3616,7 +3616,7 @@ public function homeapi_get()
 				$this->response($message, REST_Controller::HTTP_OK);
 			
 		}else{
-			$message = array('status'=>0,'message'=>'Please check only one see more status is 1  remaning all as 0');
+			$message = array('status'=>0,'message'=>'For more status please enter "one" and left all fields  empty');
 			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 		

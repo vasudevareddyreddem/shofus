@@ -2861,12 +2861,15 @@ public function addhomepagemiddlebannerspost()
 							$this->session->set_flashdata('error',"In this Subcategory SubItem Name already exits.please use another subitem Name.");
 							redirect('inventory/subitemadd');
 						}
-					
+					$temp = explode(".", $_FILES["image"]["name"]);
+					$newfilename1 = round(microtime(true)) .'.' . end($temp);
+					move_uploaded_file($_FILES['image']['tmp_name'], "assets/subitemimages/" .$newfilename1);
 					//echo '<pre>';print_r($alreadyexits);exit;
 					$addsubitem = array(
 					'category_id' => $post['category_list'], 
 					'subcategory_id' => $post['subcategory_list'],
 					'subitem_name' => $post['subitemname'],
+					'image' => $newfilename1,
 					'status' => 1,    
 					'updated_at' => date('Y-m-d H:i:s'),    
 					'created_at' => date('Y-m-d H:i:s'),
@@ -3125,7 +3128,7 @@ public function addhomepagemiddlebannerspost()
 				$post=$this->input->post();
 				//echo '<pre>';print_r($post);exit;
 				$ubitem_list = $this->inventory_model->get_subitem_details($post['subitemid']);
-
+				//echo '<pre>';print_r($ubitem_list);exit;
 				if($post['subitemname']!=$ubitem_list['subitem_name']){
 				$result = $this->inventory_model->get_subitemname_existss($post['subitemname']);
 				if(count($result)>0){
@@ -3140,10 +3143,20 @@ public function addhomepagemiddlebannerspost()
 					}else{
 					$subcatid=$post['subcategory_list'];
 					}
+					if($_FILES["image"]["name"]==''){
+					  $newfilename1=$ubitem_list['image'];
+				  }else{
+					  unlink('assets/subitemimages/'.$ubitem_list['image']);
+					$temp = explode(".", $_FILES["image"]["name"]);
+					$newfilename1 = round(microtime(true)) .'.' . end($temp);
+					move_uploaded_file($_FILES['image']['tmp_name'], "assets/subitemimages/" .$newfilename1);
+					
+				  }
 					$updatesubitem = array(
 					'category_id' => $post['category_list'], 
 					'subcategory_id' => $subcatid,
 					'subitem_name' => $post['subitemname'],
+					'image' => $newfilename1,
 					'status' => 1,    
 					'updated_at' => date('Y-m-d H:i:s'),    
 					'created_at' => date('Y-m-d H:i:s'),
