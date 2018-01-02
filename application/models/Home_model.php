@@ -770,21 +770,30 @@ public function get_quickjump_details($subcatid){
 	
 }
 public function get_homepage_position_two_banner($position){
+	$date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s A');
 	$this->db->select('*')->from('homepage_banners');
 	$this->db->where('position',$position);
+	$this->db->where('homepage_banners.expirydate >=', $curr_date);
 	$this->db->where('status',1);
 	$this->db->where('admin_status',1);
 	return $this->db->get()->result_array();
 }
 public function get_homepage_position_three_banner($position){
+	$date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s A');
 	$this->db->select('*')->from('homepage_banners');
 	$this->db->where('position',$position);
+	$this->db->where('homepage_banners.expirydate >=', $curr_date);
 	$this->db->where('status',1);
 	$this->db->where('admin_status',1);
 	return $this->db->get()->result_array();
 }public function get_homepage_position_four_banner($position){
+	$date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s A');
 	$this->db->select('*')->from('homepage_banners');
 	$this->db->where('position',$position);
+	$this->db->where('homepage_banners.expirydate >=', $curr_date);
 	$this->db->where('status',1);
 	$this->db->where('admin_status',1);
 	return $this->db->get()->result_array();
