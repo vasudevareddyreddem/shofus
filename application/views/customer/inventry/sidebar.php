@@ -83,7 +83,7 @@
         </li>
 		<li class="treeview">
           <a href="<?php echo base_url('inventory/categorypagebanners');?>">
-            <i class="fa fa-table"></i> <span>Category page banners</span>
+            <i class="fa fa-table"></i> <span>SubCategory page banners</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

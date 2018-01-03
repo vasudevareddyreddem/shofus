@@ -509,7 +509,7 @@ class CustomerApi extends REST_Controller {
 					$plist[$productslist['item_id']]=$productslist;
 					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$productslist['item_id']]['percentage']=$percentage;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 					
 				}
 				foreach ($plist as $list){
@@ -649,7 +649,7 @@ class CustomerApi extends REST_Controller {
 					$plist[$cartids['item_id']]=$cartids;
 					$plist[$cartids['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$cartids['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$cartids['item_id']]['percentage']=$percentage;
+					$plist[$cartids['item_id']]['percentage']=number_format($percentage, 2);
 			}
 			foreach ($plist as $ls){
 				$wishpdetails[]=$ls;
@@ -770,7 +770,7 @@ class CustomerApi extends REST_Controller {
 			
 		$product_details['withcrossmarkprice']=$orginal_price;
 		$product_details['withoutcrossmarkprice']=$item_price;
-		$product_details['percentage']=$percentage;
+		$product_details['percentage']=number_format($percentage, 2);
 		$des=$this->Customerapi_model->all_product_description($item_id);
 		//$product_details['descriptions']=$des;
 		//$product_details['imagepath']='https://cartinhours.com/uploads/products/';
@@ -869,7 +869,7 @@ class CustomerApi extends REST_Controller {
 					$plist[$productslist['item_id']]=$productslist;
 					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$productslist['item_id']]['percentage']=$percentage;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 
 				}
 				foreach ($plist as $list){
@@ -1482,7 +1482,7 @@ class CustomerApi extends REST_Controller {
 						$plist[$productslist['item_id']]=$productslist;
 						$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 						$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-						$plist[$productslist['item_id']]['percentage']=$percentage;
+						$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 						
 					}
 					foreach ($plist as $list){
@@ -1516,11 +1516,39 @@ class CustomerApi extends REST_Controller {
 	{
 		$get = $this->input->get('category_id');
 		$catwisepro = $this->Customerapi_model->get_category_products($get);
-		if(count($pitemlist[0])>0){
+		///echo $this->db->last_query();exit;
+		if(isset($catwisepro) && count($catwisepro)>0){
+				foreach ($catwisepro as $productslist){
+				
+				$currentdate=date('Y-m-d h:i:s A');
+					if($productslist['offer_expairdate']>=$currentdate){
+					$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+					$percentage= $productslist['offer_percentage'];
+					$orginal_price=$productslist['item_cost'];
+					}else{
+						//echo "expired";
+						$item_price= $productslist['special_price'];
+						$prices= ($productslist['item_cost']-$productslist['special_price']);
+						$percentage= (($prices) /$productslist['item_cost'])*100;
+						$orginal_price=$productslist['item_cost'];
+					}
+				$plist[$productslist['item_id']]=$productslist;
+				$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+				$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+				$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
+				
+			}
+				foreach ($plist as $list){
+					$pitemlist[]=$list;
+				}
+		}else{
+			$pitemlist[]=array();
+		}
+		if(count($pitemlist)>0){
 				$message = array
 				(
 					'status'=>1,
-					'products'=>$catwisepro,
+					'products'=>$pitemlist,
 					'path' =>base_url('uploads/products/')
 				);
 				$this->response($message, REST_Controller::HTTP_OK);
@@ -1556,7 +1584,7 @@ class CustomerApi extends REST_Controller {
 			$plist[$productslist['item_id']]=$productslist;
 			$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 			$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-			$plist[$productslist['item_id']]['percentage']=$percentage;
+			$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 			
 		}
 		foreach ($plist as $list){
@@ -1605,7 +1633,7 @@ class CustomerApi extends REST_Controller {
 			$plist[$productslist['item_id']]=$productslist;
 			$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 			$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-			$plist[$productslist['item_id']]['percentage']=$percentage;
+			$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 			
 		}
 		foreach ($plist as $list){
@@ -1652,7 +1680,7 @@ class CustomerApi extends REST_Controller {
 					$plist[$productslist['item_id']]=$productslist;
 					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$productslist['item_id']]['percentage']=$percentage;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 					
 				}
 				foreach ($plist as $list){
@@ -1699,7 +1727,7 @@ class CustomerApi extends REST_Controller {
 					$plist[$productslist['item_id']]=$productslist;
 					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$productslist['item_id']]['percentage']=$percentage;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 					
 				}
 				foreach ($plist as $list){
@@ -1746,7 +1774,7 @@ class CustomerApi extends REST_Controller {
 					$plist[$productslist['item_id']]=$productslist;
 					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$productslist['item_id']]['percentage']=$percentage;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 					
 				}
 				foreach ($plist as $list){
@@ -2243,7 +2271,7 @@ class CustomerApi extends REST_Controller {
 										$products_list[$pids]=$pdetails;
 										$products_list[$pids]['withcrossmarkprice']=$orginal_price;
 										$products_list[$pids]['withoutcrossmarkprice']=$item_price;
-										$products_list[$pids]['percentage']=$percentage;
+										$products_list[$pids]['percentage']=number_format($percentage, 2);
 
 									}
 									foreach ($products_list as $lis){
@@ -2521,10 +2549,37 @@ class CustomerApi extends REST_Controller {
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 			}
 			$product_list= $this->Customerapi_model->get_sellercategory_wise_productslist($seller_id,$category_id);
+			if(isset($product_list) && count($product_list)>0){
+			foreach ($product_list as $productslist){
+						
+						$currentdate=date('Y-m-d h:i:s A');
+							if($productslist['offer_expairdate']>=$currentdate){
+							$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+							$percentage= $productslist['offer_percentage'];
+							$orginal_price=$productslist['item_cost'];
+							}else{
+								//echo "expired";
+								$item_price= $productslist['special_price'];
+								$prices= ($productslist['item_cost']-$productslist['special_price']);
+								$percentage= (($prices) /$productslist['item_cost'])*100;
+								$orginal_price=$productslist['item_cost'];
+							}
+						$plist[$productslist['item_id']]=$productslist;
+						$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+						$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+						$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
+						
+					}
+					foreach ($plist as $list){
+						$products_list[]=$list;
+					}
+			}else{
+				$products_list[]=array();
+			}
 			
 			//echo '<pre>';print_r($storelist);exit;
-			if(count($product_list)>0){
-					$message = array('status'=>1,'list'=>$product_list,'message'=>'Seller categories wise product list');
+			if(count($products_list)>0){
+					$message = array('status'=>1,'list'=>$products_list,'message'=>'Seller categories wise product list');
 					$this->response($message, REST_Controller::HTTP_OK);
 				}else{
 					$message = array('status'=>0,'message'=>'NO products are available. Please try again!');
@@ -3131,12 +3186,39 @@ class CustomerApi extends REST_Controller {
 				
 		}
 		$productitems= $this->Customerapi_model->get_sub_itemswise_productlist($sub_item_id);
+		if(isset($productitems) && count($productitems)>0){
+				foreach ($productitems as $productslist){
+							
+							$currentdate=date('Y-m-d h:i:s A');
+								if($productslist['offer_expairdate']>=$currentdate){
+								$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+								$percentage= $productslist['offer_percentage'];
+								$orginal_price=$productslist['item_cost'];
+								}else{
+									//echo "expired";
+									$item_price= $productslist['special_price'];
+									$prices= ($productslist['item_cost']-$productslist['special_price']);
+									$percentage= (($prices) /$productslist['item_cost'])*100;
+									$orginal_price=$productslist['item_cost'];
+								}
+							$plist[$productslist['item_id']]=$productslist;
+							$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+							$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+							$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
+							
+						}
+						foreach ($plist as $list){
+							$productitemslist[]=$list;
+						}
+				}else{
+					$productitemslist[]=array();
+				}
 		//echo '<pre>';print_r($item_lists);exit;
-		if(count($productitems)>0){
+		if(count($productitemslist)>0){
 			$message = array(
 				'status'=>1,
 				'message'=>'product List are found',
-				'list'=>$productitems,
+				'list'=>$productitemslist,
 				'path'=>base_url('uploads/products/')
 				);
 				$this->response($message,REST_Controller::HTTP_OK);
@@ -3147,137 +3229,7 @@ class CustomerApi extends REST_Controller {
 		}
 	}
 	
-	public function homepagefunctionality_hideshow_get(){
-			$bannerslist= $this->Customerapi_model->get_home_banners_list();
-			$categories=$this->Customerapi_model->get_categorywise_list();
-			$position_two= $this->Customerapi_model->get_homepage_position_two_banner(2);
-			$position_three= $this->Customerapi_model->get_homepage_position_three_banner(3);
-			$position_four= $this->Customerapi_model->get_homepage_position_four_banner(4);
-			$topoffer=$this->Customerapi_model->get_topoffer_categorywise();
-			$dealsffer=$this->Customerapi_model->get_dealsoftheoffer_categorywise();
-			$seasonffer=$this->Customerapi_model->get_seasonofthesaleseoffer_categorywise();
-			$trendingffer=$this->Customerapi_model->get_trendingoffer_categorywise();
-			$offerforyou=$this->Customerapi_model->get_offerforyou_categorywise();
-			$recentlyviewedlist=$this->Customerapi_model->recently_viewed_producrs();
-			$categorywise_plist=$this->Customerapi_model->get_ioscategory_wise_products_list();
-			if(count($bannerslist)>0){
-				$banner1=1;
-			}else{
-				$banner1=0;
-			}
-			if(count($categories)>0){
-				$categorie=1;
-			}else{
-				$categorie=0;
-			}
-			if(count($position_two)>0){
-				$banner2=1;
-			}else{
-				$banner2=0;
-			}
-			if(count($position_three)>0){
-				$banner3=1;
-			}else{
-				$banner3=0;
-			}if(count($position_four)>0){
-				$banner4=1;
-			}else{
-				$banner4=0;
-			}if(count($topoffer)>0){
-				$top=1;
-			}else{
-				$top=0;
-			}if(count($dealsffer)>0){
-				$deal=1;
-			}else{
-				$deal=0;
-			}if(count($seasonffer)>0){
-				$seasons=1;
-			}else{
-				$seasons=0;
-			}if(count($trendingffer)>0){
-				$treand=1;
-			}else{
-				$treand=0;
-			}if(count($offerforyou)>0){
-				$offer=1;
-			}else{
-				$offer=0;
-			}if(count($recentlyviewedlist)>0){
-				$recently=1;
-			}else{
-				$recently=0;
-			}
-			foreach ($categorywise_plist as $lists){
-				$lis[]=$lists['category_name'];
-			}
-			if($lis[0]='Home & Kitchen'){
-			$HomeKitchen=1;
-			}else{
-				$HomeKitchen=0;
-			}if($lis[1]="Men's Fashion"){
-			$MensFashion=1;
-			}else{
-				$MensFashion=0;
-			}if($lis[2]="Mobiles & Tablets"){
-			$MobilesTablets=1;
-			}else{
-				$MobilesTablets=0;
-			}if($lis[3]="Grocery"){
-			$Grocery=1;
-			}else{
-				$Grocery=0;
-			}if($lis[4]="Computers, Laptops & Accessories"){
-			$ComputersLaptopsAccessories=1;
-			}else{
-				$ComputersLaptopsAccessories=0;
-			}if($lis[5]="TVs, ACs & Appliances"){
-			$TVsACsAppliances=1;
-			}else{
-				$TVsACsAppliances=0;
-			}if($lis[6]="Women's Fashion"){
-			$WomensFashion=1;
-			}else{
-				$WomensFashion=0;
-			}if($lis[7]="Car & Bike Accessories"){
-			$CarBikeAccessories=1;
-			}else{
-				$CarBikeAccessories=0;
-			}if($lis[8]="Books & Stationary"){
-			$BooksStationary=1;
-			}else{
-				$BooksStationary=0;
-			}if($lis[9]="Kids Store"){
-			$KidsStore=1;
-			}else{
-				$KidsStore=0;
-			}if($lis[10]="Sports & Fitness"){
-			$SportsFitness=1;
-			}else{
-			$SportsFitness=0;
-			}if($lis[11]="Furniture & Home-Living"){
-			$FurnitureHomeLiving=1;
-			}else{
-			$FurnitureHomeLiving=0;
-			}if($lis[12]="Gifts Store"){
-			$GiftsStore=1;
-			}else{
-			$GiftsStore=0;
-			}if($lis[13]="Bags & Outdoor"){
-			$BagsOutdoor=1;
-			}else{
-			$BagsOutdoor=0;
-			}
-			//echo '<pre>';print_r($lis);exit;
-		$message = array('status'=>1, 'banner1'=>$banner1,'categories'=>$categorie,'Topoffer'=>$top,'banner2'=>$banner2,'treand'=>$treand,'offer'=>$offer,'banner3'=>$banner3,
-		'season'=>$seasons,'deals'=>$deal,'recentlyviewed'=>$recently,'banner4'=>$banner4,
-		'HomeKitchen'=>$HomeKitchen,'MensFashion'=>$MensFashion,'MobilesTablets'=>$MobilesTablets,'Grocery'=>$Grocery,'ComputersLaptopsAccessories'=>$ComputersLaptopsAccessories,
-		'TVsACsAppliances'=>$TVsACsAppliances,'WomensFashion'=>$WomensFashion,'CarBikeAccessories'=>$CarBikeAccessories,'KidsStore'=>$KidsStore,
-		'SportsFitness'=>$SportsFitness,'FurnitureHomeLiving'=>$FurnitureHomeLiving,'GiftsStore'=>$GiftsStore,'BagsOutdoor'=>$BagsOutdoor,
-		'BooksStationary'=>$BooksStationary,
-		'message'=>'Home view');
-		$this->response($message, REST_Controller::HTTP_OK);
-	}
+	
 	
 	public function subcategories_list_get()
 	{
@@ -3437,7 +3389,7 @@ public function homeapi_get()
 			$plist[$productslist['item_id']]=$productslist;
 			$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 			$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-			$plist[$productslist['item_id']]['percentage']=$percentage;
+			$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 			
 		}
 		foreach ($plist as $list){
@@ -3465,7 +3417,7 @@ public function homeapi_get()
 					$plist[$productslist['item_id']]=$productslist;
 					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$productslist['item_id']]['percentage']=$percentage;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 					
 				}
 				foreach ($plist as $list){
@@ -3494,7 +3446,7 @@ public function homeapi_get()
 			$plist[$productslist['item_id']]=$productslist;
 			$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 			$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-			$plist[$productslist['item_id']]['percentage']=$percentage;
+			$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 			
 		}
 		foreach ($plist as $list){
@@ -3522,7 +3474,7 @@ public function homeapi_get()
 					$plist[$productslist['item_id']]=$productslist;
 					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$productslist['item_id']]['percentage']=$percentage;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 					
 				}
 				foreach ($plist as $list){
@@ -3551,7 +3503,7 @@ public function homeapi_get()
 					$plist[$productslist['item_id']]=$productslist;
 					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$productslist['item_id']]['percentage']=$percentage;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 					
 				}
 				foreach ($plist as $list){
@@ -3606,7 +3558,7 @@ public function homeapi_get()
 					$plist[$productslist['item_id']]=$productslist;
 					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$productslist['item_id']]['percentage']=$percentage;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 					
 				}
 				foreach ($plist as $list){
@@ -3713,7 +3665,7 @@ public function homeapi_get()
 							$plist[$productslist['item_id']]=$productslist;
 							$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 							$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-							$plist[$productslist['item_id']]['percentage']=$percentage;
+							$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 							
 						}
 						foreach ($plist as $list){
@@ -3791,7 +3743,7 @@ public function homeapi_get()
 							$plist[$productslist['item_id']]=$productslist;
 							$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 							$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-							$plist[$productslist['item_id']]['percentage']=$percentage;
+							$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 							
 						}
 						foreach ($plist as $list){
@@ -3835,7 +3787,7 @@ public function homeapi_get()
 						$plist[$productslist['item_id']]=$productslist;
 						$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 						$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-						$plist[$productslist['item_id']]['percentage']=$percentage;
+						$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 						
 					}
 					foreach ($plist as $list){
@@ -3882,7 +3834,7 @@ public function homeapi_get()
 						$plist[$productslist['item_id']]=$productslist;
 						$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 						$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-						$plist[$productslist['item_id']]['percentage']=$percentage;
+						$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 						
 					}
 					foreach ($plist as $list){
@@ -3911,7 +3863,7 @@ public function homeapi_get()
 							$plist[$productslist['item_id']]=$productslist;
 							$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 							$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-							$plist[$productslist['item_id']]['percentage']=$percentage;
+							$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 							
 						}
 						foreach ($plist as $list){
@@ -3940,7 +3892,7 @@ public function homeapi_get()
 							$plist[$productslist['item_id']]=$productslist;
 							$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 							$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-							$plist[$productslist['item_id']]['percentage']=$percentage;
+							$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 							
 						}
 						foreach ($plist as $list){
@@ -4013,7 +3965,7 @@ public function homeapi_get()
 					$plist[$productslist['item_id']]=$productslist;
 					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$productslist['item_id']]['percentage']=$percentage;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 					
 				}
 				foreach ($plist as $list){
@@ -4048,6 +4000,243 @@ public function homeapi_get()
 		$this->response($message, REST_Controller::HTTP_OK);
 				
 		
+	}
+	public function homepagefunctionality_hideshow_get(){
+			$bannerslist= $this->Customerapi_model->get_home_banners_list();
+			$categories=$this->Customerapi_model->get_categorywise_list();
+			$position_two= $this->Customerapi_model->get_homepage_position_two_banner(2);
+			$position_three= $this->Customerapi_model->get_homepage_position_three_banner(3);
+			$position_four= $this->Customerapi_model->get_homepage_position_four_banner(4);
+			$topoffer=$this->Customerapi_model->get_topoffer_categorywise();
+			$dealsffer=$this->Customerapi_model->get_dealsoftheoffer_categorywise();
+			$seasonffer=$this->Customerapi_model->get_seasonofthesaleseoffer_categorywise();
+			$trendingffer=$this->Customerapi_model->get_trendingoffer_categorywise();
+			$offerforyou=$this->Customerapi_model->get_offerforyou_categorywise();
+			$recentlyviewedlist=$this->Customerapi_model->recently_viewed_producrs();
+			$categorywise_plist=$this->Customerapi_model->get_ioscategory_wise_products_list();
+			if(count($bannerslist)>0){
+				$banner1=1;
+			}else{
+				$banner1=0;
+			}
+			if(count($categories)>0){
+				$categorie=1;
+			}else{
+				$categorie=0;
+			}
+			if(count($position_two)>0){
+				$banner2=1;
+			}else{
+				$banner2=0;
+			}
+			if(count($position_three)>0){
+				$banner3=1;
+			}else{
+				$banner3=0;
+			}if(count($position_four)>0){
+				$banner4=1;
+			}else{
+				$banner4=0;
+			}if(count($topoffer)>0){
+				$top=1;
+			}else{
+				$top=0;
+			}if(count($dealsffer)>0){
+				$deal=1;
+			}else{
+				$deal=0;
+			}if(count($seasonffer)>0){
+				$seasons=1;
+			}else{
+				$seasons=0;
+			}if(count($trendingffer)>0){
+				$treand=1;
+			}else{
+				$treand=0;
+			}if(count($offerforyou)>0){
+				$offer=1;
+			}else{
+				$offer=0;
+			}if(count($recentlyviewedlist)>0){
+				$recently=1;
+			}else{
+				$recently=0;
+			}
+			foreach ($categorywise_plist as $lists){
+				$lis[]=$lists['category_name'];
+			}
+			if($lis[0]='Home & Kitchen'){
+			$HomeKitchen=1;
+			}else{
+				$HomeKitchen=0;
+			}if($lis[1]="Men's Fashion"){
+			$MensFashion=1;
+			}else{
+				$MensFashion=0;
+			}if($lis[2]="Mobiles & Tablets"){
+			$MobilesTablets=1;
+			}else{
+				$MobilesTablets=0;
+			}if($lis[3]="Grocery"){
+			$Grocery=1;
+			}else{
+				$Grocery=0;
+			}if($lis[4]="Computers, Laptops & Accessories"){
+			$ComputersLaptopsAccessories=1;
+			}else{
+				$ComputersLaptopsAccessories=0;
+			}if($lis[5]="TVs, ACs & Appliances"){
+			$TVsACsAppliances=1;
+			}else{
+				$TVsACsAppliances=0;
+			}if($lis[6]="Women's Fashion"){
+			$WomensFashion=1;
+			}else{
+				$WomensFashion=0;
+			}if($lis[7]="Car & Bike Accessories"){
+			$CarBikeAccessories=1;
+			}else{
+				$CarBikeAccessories=0;
+			}if($lis[8]="Books & Stationary"){
+			$BooksStationary=1;
+			}else{
+				$BooksStationary=0;
+			}if($lis[9]="Kids Store"){
+			$KidsStore=1;
+			}else{
+				$KidsStore=0;
+			}if($lis[10]="Sports & Fitness"){
+			$SportsFitness=1;
+			}else{
+			$SportsFitness=0;
+			}if($lis[11]="Furniture & Home-Living"){
+			$FurnitureHomeLiving=1;
+			}else{
+			$FurnitureHomeLiving=0;
+			}if($lis[12]="Gifts Store"){
+			$GiftsStore=1;
+			}else{
+			$GiftsStore=0;
+			}if($lis[13]="Bags & Outdoor"){
+			$BagsOutdoor=1;
+			}else{
+			$BagsOutdoor=0;
+			}
+			//echo '<pre>';print_r($lis);exit;
+		$message = array('status'=>1, 'banner1'=>$banner1,'categories'=>$categorie,'Topoffer'=>$top,'banner2'=>$banner2,'treand'=>$treand,'offer'=>$offer,'banner3'=>$banner3,
+		'season'=>$seasons,'deals'=>$deal,'recentlyviewed'=>$recently,'banner4'=>$banner4,
+		'HomeKitchen'=>$HomeKitchen,'MensFashion'=>$MensFashion,'MobilesTablets'=>$MobilesTablets,'Grocery'=>$Grocery,'ComputersLaptopsAccessories'=>$ComputersLaptopsAccessories,
+		'TVsACsAppliances'=>$TVsACsAppliances,'WomensFashion'=>$WomensFashion,'CarBikeAccessories'=>$CarBikeAccessories,'KidsStore'=>$KidsStore,
+		'SportsFitness'=>$SportsFitness,'FurnitureHomeLiving'=>$FurnitureHomeLiving,'GiftsStore'=>$GiftsStore,'BagsOutdoor'=>$BagsOutdoor,
+		'BooksStationary'=>$BooksStationary,
+		'message'=>'Home view');
+		$this->response($message, REST_Controller::HTTP_OK);
+	}
+	public  function subcategoryfunctionality_hideshow_get(){
+		$catid = $this->input->get('category_id');
+		$customer_id = $this->input->get('customer_id');
+		if($catid==''){
+				$message = array('status'=>0,'message'=>'Category id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$position_one= $this->Customerapi_model->step_one_data(1);
+		$position_two= $this->Customerapi_model->step_two_data($catid);
+		$position_three= $this->Customerapi_model->step_three_data($catid);
+		$position_four= $this->Customerapi_model->step_four_data(2);
+		$position_five= $this->Customerapi_model->step_five_data($catid);
+		if($catid==21 || $catid==31 || $catid==19 || $catid==24 || $catid==35 ||  $catid==28 ||  $catid==20){
+		$step_six= $this->Customerapi_model->step_six_data($catid);
+		}else if($catid==19 || $catid==24){
+			$step_six= $this->Customerapi_model->step_six_data($catid);
+		}
+		$step_seven= $this->Customerapi_model->step_seven_data(3);
+		$step_eight= $this->Customerapi_model->step_eight_data($catid);
+		if($catid==21 || $catid==31 || $catid==19 || $catid==24 || $catid==35 ||  $catid==28 ||  $catid==20){
+			if($catid==21){
+				$step_nine= $this->Customerapi_model->step_dealsnine_data($catid);
+				$step_ninelabel='Deals of the day';
+			}else {
+				$step_nine= $this->Customerapi_model->step_nine_data($catid);
+			}
+		}
+		if($catid==21 || $catid==31 || $catid==19 || $catid==24 || $catid==35 ||  $catid==28 ||  $catid==20){
+				if($catid==21){
+					$step_ten= $this->Customerapi_model->step_seasonten_data($catid);
+				}else if($catid==19 || $catid==24){
+					$step_ten= $this->Customerapi_model->step_tenfootwear_data($catid);
+				}else{
+					$step_ten= $this->Customerapi_model->step_ten_data($catid);
+				}
+				
+			}
+		$step_eleven= $this->Customerapi_model->step_eleven_data(4);
+		$step_twelve= $this->Customerapi_model->step_twelve_data($catid, $customer_id);
+		$step_thirteen= $this->Customerapi_model->step_thirteen_data($catid);
+		$step_fourteen= $this->Customerapi_model->step_fourteen_data(5);
+
+
+		if(count($position_one)>0){
+				$banner1=1;
+			}else{
+				$banner1=0;
+		}if(count($position_two)>0){
+				$subcategory=1;
+			}else{
+				$subcategory=0;
+		}if(count($position_three)>0){
+				$topbrands=1;
+			}else{
+				$topbrands=0;
+		}if(count($position_four)>0){
+				$banner2=1;
+			}else{
+				$banner2=0;
+		}if(count($position_five)>0){
+				$shopbyprice=1;
+			}else{
+				$shopbyprice=0;
+		}if(count($step_six)>0){
+				$shopbyx=1;
+			}else{
+				$shopbyx=0;
+			}
+		if(count($step_seven)>0){
+				$banner3=1;
+			}else{
+				$banner3=0;
+		}if(count($step_eight)>0){
+				$subitems=1;
+			}else{
+				$subitems=0;
+		}if(count($step_nine)>0){
+				$shopbyy=1;
+			}else{
+				$shopbyy=0;
+		}if(count($step_ten)>0){
+				$shopbyz=1;
+			}else{
+				$shopbyz=0;
+		}if(count($step_eleven)>0){
+				$banner4=1;
+			}else{
+				$banner4=0;
+		}if(count($step_twelve)>0){
+				$Mostviewed=1;
+			}else{
+				$Mostviewed=0;
+		}if(count($step_thirteen)>0){
+				$Recommended=1;
+			}else{
+				$Recommended=0;
+		}if(count($step_fourteen)>0){
+				$banner5=1;
+			}else{
+				$banner5=0;
+		}
+		$message = array('status'=>1, 'banner1'=>$banner1,'subcategory'=>$subcategory,'topbrands'=>$topbrands,'banner2'=>$banner2,'shopbyprice'=>$shopbyprice,'shopbyx'=>$shopbyx,'banner3'=>$banner3,'subitems'=>$subitems,'shopbyy'=>$shopbyy,'shopbyz'=>$shopbyz,'banner4'=>$banner4,'Mostviewed'=>$Mostviewed,'Recommended'=>$Recommended,'banner5'=>$banner5,
+		'message'=>'Subcategory View');
+		$this->response($message, REST_Controller::HTTP_OK);
+		//echo '<pre>';print_r($position_two);exit;
 	}
 	/*IOS APP HOME PAGE API*/
 

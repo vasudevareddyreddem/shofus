@@ -6,7 +6,7 @@
 	  <?php //echo '<pre>';print_r($category_list);exit; ?>
       <div class="box data_box_wid">
             <div class="box-header" style="border-bottom:1px solid #ddd;">
-              <h3 class="box-title">Category page Banners List</h3>
+              <h3 class="box-title">SubCategory page Banners List</h3>
               <a class="pull-right btn btn-sm btn-primary" href="<?php echo base_url('inventory/addcategorybanners'); ?>" class="box-title">Add</a>
             </div>
 			

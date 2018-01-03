@@ -17,7 +17,7 @@
 					
 				<form enctype="multipart/form-data" method="post" name="addbanners" id="addbanners"  action="<?php echo base_url('inventory/savecategorypagebanners'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
 			
-				<div class=""  style="font-size:20px;font-weight:1200;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Add category page Banner Images</div>
+				<div class=""  style="font-size:20px;font-weight:1200;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Add Subcategory page Banner Images</div>
 				
 				<div class="row">
 						<div class="col-md-6 form-group">

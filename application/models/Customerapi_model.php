@@ -235,7 +235,7 @@ class Customerapi_model extends MY_Model
 
 	public function get_category_products($category_id)
 	{
-		$this->db->select('products.*')->from('products');
+		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.item_quantity,products.item_status,products.offer_amount,products.offer_percentage,products.item_image')->from('products');
 		$this->db->join('category','category.category_id = products.category_id','left');
 		$this->db->where('products.category_id', $category_id);
         return $this->db->get()->result_array();
@@ -252,7 +252,7 @@ class Customerapi_model extends MY_Model
 	}
 	public function get_subcategories($sub_id)
 	{
-		$this->db->select('subcategories.*')->from('products');
+		$this->db->select('subcategories.subcategory_id,subcategories.category_id,subcategories.subcategory_name,subcategories.subcategory_image,')->from('products');
 		$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');
 		$this->db->where('products.category_id',$sub_id);
 		$this->db->where('subcategories.status',1);
@@ -538,7 +538,7 @@ class Customerapi_model extends MY_Model
 		return $this->db->query($sql1);
 	}
 	public function get_order_items($order_id){
-		$this->db->select('order_items.*,products.item_name,products.item_image')->from('order_items');
+		$this->db->select('products.item_name,products.item_image,order_items.order_item_id,order_items.item_id,order_items.seller_id,order_items.customer_id,order_items.qty,order_items.item_price,order_items.total_price,')->from('order_items');
 		$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 		$this->db->where('order_items.order_id', $order_id);
 		return $this->db->get()->result_array();
@@ -2240,7 +2240,7 @@ class Customerapi_model extends MY_Model
 	 }
 	 public function get_sellercategory_wise_productslist($sid,$catid){
 		 
-			$this->db->select('*')->from('products');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.item_quantity,products.item_status,products.offer_amount,products.offer_percentage,products.item_image')->from('products');
 			$this->db->where('seller_id', $sid);
 			$this->db->where('category_id', $catid);
 			$this->db->where('item_status',1);
@@ -2445,7 +2445,7 @@ class Customerapi_model extends MY_Model
 		return $this->db->get()->row_array();
 	}
 	public function get_sub_items_list($subcategory_id){
-	$this->db->select('sub_items.*')->from('products');
+	$this->db->select('sub_items.subitem_id,sub_items.category_id,sub_items.subcategory_id,sub_items.subitem_name,sub_items.image')->from('products');
 	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
     $this->db->where('products.subcategory_id', $subcategory_id);
     $this->db->where('products.item_status', 1);
@@ -2470,7 +2470,7 @@ class Customerapi_model extends MY_Model
 	return $this->db->get()->result_array();
 	}
 	public function get_sub_itemswise_productlist($sub_item_id){
-	$this->db->select('products.*')->from('products');
+	$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.item_quantity,products.item_status,products.offer_amount,products.offer_percentage,products.item_image')->from('products');
 	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
     $this->db->where('products.subitemid', $sub_item_id);
     $this->db->where('products.item_status', 1);

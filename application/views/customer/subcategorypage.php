@@ -859,7 +859,7 @@ $customerdetails=$this->session->userdata('userdetails');
 		<div class="best-pro slider-items-products container_main">
 			<div class="row mar_t15" >
 			<?php foreach ($step_fourteen as $list){ ?>
-					<?php if(isset($lists[0]['name']) && $lists[0]['name']!=''){ ?>
+					<?php if(isset($list[0]['name']) && $list[0]['name']!=''){ ?>
 					<?php if($list[0]['link']==1){ ?>
 							<a href="<?php echo base_url('category/subcategorys/'.base64_encode($list[0]['selected_id'])); ?>">
 						<?php }else if($list[0]['link']==2){ ?>

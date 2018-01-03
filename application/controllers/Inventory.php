@@ -2298,7 +2298,7 @@ public function addhomepagemiddlebannerspost()
 									redirect('inventory/categorypagebanners');
 								}
 							}else if($position==4){
-								if($four['imagecount']>=4){
+								if($four['imagecount']>=3){
 									$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 4 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
 									redirect('inventory/categorypagebanners');
 								}
