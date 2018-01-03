@@ -189,7 +189,7 @@ class Customerapi_model extends MY_Model
 	public function get_subcategorie_items($sub_id)
 	{
 	
-	$this->db->select('products.*')->from('products');
+	$this->db->select('products.item_id,products.item_name,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_cost,products.special_price,products.offer_expairdate,products.item_quantity,products.item_status,products.category_id,products.offer_amount,products.offer_percentage,products.item_image')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
     $this->db->where('products.subcategory_id', $sub_id);
@@ -244,7 +244,7 @@ class Customerapi_model extends MY_Model
 
 	public function get_categories()
 	{
-		$this->db->select('category.category_id,category.category_name,category.category_image,category.status')->from('products');
+		$this->db->select('category.category_id,category.category_name,category.category_image')->from('products');
 		$this->db->join('category', 'category.category_id = products.category_id', 'left');
 		$this->db->where('category.status',1);
 		$this->db->group_by('products.category_id');
