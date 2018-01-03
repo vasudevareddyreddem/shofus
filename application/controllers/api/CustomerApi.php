@@ -3148,33 +3148,134 @@ class CustomerApi extends REST_Controller {
 	}
 	
 	public function homepagefunctionality_hideshow_get(){
-			$topoffer= $this->Customerapi_model->top_offers_product_search();
-			$treanding= $this->Customerapi_model->treanding_product_search();
-			$deals = $this->Customerapi_model->deals_of_the_day_product_search();
-			$season = $this->Customerapi_model->season_sales_product_search();
-			$offers = $this->Customerapi_model->offers_for_you_product_search();
-			if(count($topoffer)>0){
+			$bannerslist= $this->Customerapi_model->get_home_banners_list();
+			$categories=$this->Customerapi_model->get_categorywise_list();
+			$position_two= $this->Customerapi_model->get_homepage_position_two_banner(2);
+			$position_three= $this->Customerapi_model->get_homepage_position_three_banner(3);
+			$position_four= $this->Customerapi_model->get_homepage_position_four_banner(4);
+			$topoffer=$this->Customerapi_model->get_topoffer_categorywise();
+			$dealsffer=$this->Customerapi_model->get_dealsoftheoffer_categorywise();
+			$seasonffer=$this->Customerapi_model->get_seasonofthesaleseoffer_categorywise();
+			$trendingffer=$this->Customerapi_model->get_trendingoffer_categorywise();
+			$offerforyou=$this->Customerapi_model->get_offerforyou_categorywise();
+			$recentlyviewedlist=$this->Customerapi_model->recently_viewed_producrs();
+			$categorywise_plist=$this->Customerapi_model->get_ioscategory_wise_products_list();
+			if(count($bannerslist)>0){
+				$banner1=1;
+			}else{
+				$banner1=0;
+			}
+			if(count($categories)>0){
+				$categorie=1;
+			}else{
+				$categorie=0;
+			}
+			if(count($position_two)>0){
+				$banner2=1;
+			}else{
+				$banner2=0;
+			}
+			if(count($position_three)>0){
+				$banner3=1;
+			}else{
+				$banner3=0;
+			}if(count($position_four)>0){
+				$banner4=1;
+			}else{
+				$banner4=0;
+			}if(count($topoffer)>0){
 				$top=1;
 			}else{
 				$top=0;
-			}if(count($treanding)>0){
-				$treand=1;
-			}else{
-				$treand=0;
-			}if(count($deals)>0){
+			}if(count($dealsffer)>0){
 				$deal=1;
 			}else{
 				$deal=0;
-			}if(count($season)>0){
+			}if(count($seasonffer)>0){
 				$seasons=1;
 			}else{
 				$seasons=0;
-			}if(count($offers)>0){
+			}if(count($trendingffer)>0){
+				$treand=1;
+			}else{
+				$treand=0;
+			}if(count($offerforyou)>0){
 				$offer=1;
 			}else{
 				$offer=0;
+			}if(count($recentlyviewedlist)>0){
+				$recently=1;
+			}else{
+				$recently=0;
 			}
-		$message = array('status'=>1, 'Topoffer'=>$top,'treand'=>$treand,'deals'=>$deal,'season'=>$seasons,'offer'=>$offer,'message'=>'Home view');
+			foreach ($categorywise_plist as $lists){
+				$lis[]=$lists['category_name'];
+			}
+			if($lis[0]='Home & Kitchen'){
+			$HomeKitchen=1;
+			}else{
+				$HomeKitchen=0;
+			}if($lis[1]="Men's Fashion"){
+			$MensFashion=1;
+			}else{
+				$MensFashion=0;
+			}if($lis[2]="Mobiles & Tablets"){
+			$MobilesTablets=1;
+			}else{
+				$MobilesTablets=0;
+			}if($lis[3]="Grocery"){
+			$Grocery=1;
+			}else{
+				$Grocery=0;
+			}if($lis[4]="Computers, Laptops & Accessories"){
+			$ComputersLaptopsAccessories=1;
+			}else{
+				$ComputersLaptopsAccessories=0;
+			}if($lis[5]="TVs, ACs & Appliances"){
+			$TVsACsAppliances=1;
+			}else{
+				$TVsACsAppliances=0;
+			}if($lis[6]="Women's Fashion"){
+			$WomensFashion=1;
+			}else{
+				$WomensFashion=0;
+			}if($lis[7]="Car & Bike Accessories"){
+			$CarBikeAccessories=1;
+			}else{
+				$CarBikeAccessories=0;
+			}if($lis[8]="Books & Stationary"){
+			$BooksStationary=1;
+			}else{
+				$BooksStationary=0;
+			}if($lis[9]="Kids Store"){
+			$KidsStore=1;
+			}else{
+				$KidsStore=0;
+			}if($lis[10]="Sports & Fitness"){
+			$SportsFitness=1;
+			}else{
+			$SportsFitness=0;
+			}if($lis[11]="Furniture & Home-Living"){
+			$FurnitureHomeLiving=1;
+			}else{
+			$FurnitureHomeLiving=0;
+			}if($lis[12]="Gifts Store"){
+			$GiftsStore=1;
+			}else{
+			$GiftsStore=0;
+			}if($lis[13]="Bags & Outdoor"){
+			$BagsOutdoor=1;
+			}else{
+			$BagsOutdoor=0;
+			}
+			//echo '<pre>';print_r($lis);exit;
+		$message = array('status'=>1, 'banner1'=>$banner1,'categories'=>$categorie,'Topoffer'=>$top,'banner2'=>$banner2,'treand'=>$treand,'offer'=>$offer,'banner3'=>$banner3,
+		'season'=>$seasons,'deals'=>$deal,'recentlyviewed'=>$recently,'banner4'=>$banner4,
+		'HomeKitchen'=>$HomeKitchen,'MensFashion'=>$MensFashion,'MobilesTablets'=>$MobilesTablets,'Grocery'=>$Grocery,'ComputersLaptopsAccessories'=>$ComputersLaptopsAccessories,
+		'TVsACsAppliances'=>$TVsACsAppliances,'WomensFashion'=>$WomensFashion,'CarBikeAccessories'=>$CarBikeAccessories,'KidsStore'=>$KidsStore,
+		'SportsFitness'=>$SportsFitness,'FurnitureHomeLiving'=>$FurnitureHomeLiving,'GiftsStore'=>$GiftsStore,'BagsOutdoor'=>$BagsOutdoor,
+		'BooksStationary'=>$BooksStationary,
+		'message'=>'Home view');
 		$this->response($message, REST_Controller::HTTP_OK);
 	}
 	
@@ -3475,9 +3576,9 @@ public function homeapi_get()
 	/*newhomepage*/
 	public function homepage_get(){
 		
-		
+		$bannerslist= $this->Customerapi_model->get_home_banners_list();
 		$categories=$this->Customerapi_model->get_categorywise_list();
-		//echo '<pre>';print_r($categories);exit;
+		//echo '<pre>';print_r($bannerslist);exit;
 		$position_two= $this->Customerapi_model->get_homepage_position_two_banner(2);
 		$position_three= $this->Customerapi_model->get_homepage_position_three_banner(3);
 		$position_four= $this->Customerapi_model->get_homepage_position_four_banner(4);
@@ -3517,17 +3618,19 @@ public function homeapi_get()
 		$message = array
 		(
 			'status'=>1,
+			'banners1'=>$bannerslist,
 			'categorylist'=>$categories,
 			'topoffer'=>$topoffer,
-			'position_twobannerlist'=>$position_two,
+			'banners2'=>$position_two,
 			'trendingproducts'=>$trendingffer,
 			'offersforyou'=>$offerforyou,
-			'position_threebannerlist'=>$position_three,
+			'banners3'=>$position_three,
 			'dealsoftheday'=>$dealsffer,
 			'seasonsales'=>$seasonffer,
-			'position_fourbannerlist'=>$position_four,
+			'banners4'=>$position_four,
 			'recentlyviewed'=>$recentlyviewed,
 			'imagepath'=>base_url('uploads/products/'),
+			'banners1path'=>base_url('assets/appbanners/'),
 			'bannerspath'=>base_url('assets/homebanners/'),
 			'message'=>'Product list are found.'
 		);
@@ -3556,12 +3659,17 @@ public function homeapi_get()
 		$offersforyou = $this->input->get('offersforyou');
 		$dealsoftheday = $this->input->get('dealsoftheday');
 		$seasonsales = $this->input->get('seasonsales');
-		if($category_id==''){
+		$categorywiseproductlist = $this->input->get('categorywiseproductlist');
+		$recentlyviewed = $this->input->get('recentlyviewed');
+		
+		if($topoffer==1 && $trendingproducts=='' && $offersforyou=='' && $dealsoftheday=='' && $seasonsales=='' && $recentlyviewed=='' && $categorywiseproductlist=='' || $topoffer=='' && $trendingproducts==1 && $offersforyou=='' && $dealsoftheday=='' && $seasonsales=='' && $recentlyviewed=='' && $categorywiseproductlist=='' || $topoffer=='' && $trendingproducts=='' && $offersforyou==1 && $dealsoftheday=='' && $seasonsales==''  && $recentlyviewed=='' && $categorywiseproductlist=='' ||  $topoffer=='' && $trendingproducts=='' && $offersforyou=='' && $dealsoftheday==1 && $seasonsales==''  && $recentlyviewed=='' && $categorywiseproductlist==''  || $topoffer=='' && $trendingproducts=='' && $offersforyou=='' && $dealsoftheday=='' && $seasonsales==1  && $recentlyviewed=='' && $categorywiseproductlist==''  || $topoffer=='' && $trendingproducts=='' && $offersforyou=='' && $dealsoftheday=='' && $seasonsales==''  && $recentlyviewed==1 && $categorywiseproductlist=='' || $topoffer=='' && $trendingproducts=='' && $offersforyou=='' && $dealsoftheday=='' && $seasonsales==''  && $recentlyviewed=='' && $categorywiseproductlist==1){
+			
+			if($recentlyviewed!=1){
+				if($category_id==''){
 				$message = array('status'=>0,'message'=>'Category id is required!');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
-		}
-		if($topoffer==1 && $trendingproducts=='' && $offersforyou=='' && $dealsoftheday=='' && $seasonsales=='' || $topoffer=='' && $trendingproducts==1 && $offersforyou=='' && $dealsoftheday=='' && $seasonsales=='' || $topoffer=='' && $trendingproducts=='' && $offersforyou==1 && $dealsoftheday=='' && $seasonsales=='' ||  $topoffer=='' && $trendingproducts=='' && $offersforyou=='' && $dealsoftheday==1 && $seasonsales=='' || $topoffer=='' && $trendingproducts=='' && $offersforyou=='' && $dealsoftheday=='' && $seasonsales==1){
-			
+				}
+			}
 			if($topoffer==1){
 				$seemore='Top Offers';
 				$seemorelist=$this->Customerapi_model->get_category_wise_topseemore($category_id);
@@ -3577,7 +3685,16 @@ public function homeapi_get()
 			}else if($seasonsales==1){
 				$seemore='Season Sales';
 				$seemorelist=$this->Customerapi_model->get_category_wise_seasonseemore($category_id);
+			}else if($categorywiseproductlist==1){
+				$categoryname=$this->Customerapi_model->get_category_deatils($category_id);
+				
+				$seemore=$categoryname['category_name'];
+				$seemorelist=$this->Customerapi_model->get_category_wise_seemore($category_id);
+			}else if($recentlyviewed==1){
+				$seemore='Recently viewed';
+				$seemorelist=$this->Customerapi_model->recently_viewed_producrs();
 			}
+			//echo '<pre>';print_r($seemorelist);exit;
 			if(isset($seemorelist) && count($seemorelist)>0){
 				foreach ($seemorelist as $productslist){
 							
@@ -3837,22 +3954,22 @@ public function homeapi_get()
 			$message = array
 			(
 			'status'=>1,
-			'step_one'=>$position_one,
-			'step_two'=>$position_two,
-			'step_three'=>$position_three,
-			'step_four'=>$position_four,
-			'step_five'=>$step_five,
-			'step_six'=>$step_sixlist,
-			'step_seven'=>$step_seven,
-			'step_eight'=>$step_eight,
-			'step_nine'=>$step_ninelist,
-			'step_ten'=>$step_tenlist,
-			'step_eleven'=>$step_eleven,
-			'step_twelve'=>$step_twelve,
-			'step_thirteen'=>$step_thirteenlist,
-			'step_fourteen'=>$step_fourteen,
+			'banners1'=>$position_one,
+			'subcategory'=>$position_two,
+			'topbrands'=>$position_three,
+			'banners2'=>$position_four,
+			'shopbyprice'=>$step_five,
+			'shopbyx'=>$step_sixlist,
+			'banners3'=>$step_seven,
+			'subitems'=>$step_eight,
+			'shopbyy'=>$step_ninelist,
+			'shopbyz'=>$step_tenlist,
+			'banners4'=>$step_eleven,
+			'mostviewed'=>$step_twelve,
+			'recommended'=>$step_thirteenlist,
+			'banners5'=>$step_fourteen,
 			'imagepath'=>base_url('uploads/products/'),
-			'bannerspath'=>base_url('assets/homebanners/'),
+			'bannerspath'=>base_url('assets/categoryimages/'),
 			'message'=>'Product list are found.'
 			);
 		$this->response($message, REST_Controller::HTTP_OK);
@@ -3862,6 +3979,76 @@ public function homeapi_get()
 	
 	/*newhomepage*/
 
-
+	/*IOS APP HOME PAGE API*/
+	public function ioshomepage_get(){
+		
+		$bannerslist= $this->Customerapi_model->get_home_banners_list();
+		$categories=$this->Customerapi_model->get_categorywise_list();
+		//echo '<pre>';print_r($bannerslist);exit;
+		$position_two= $this->Customerapi_model->get_homepage_position_two_banner(2);
+		$position_three= $this->Customerapi_model->get_homepage_position_three_banner(3);
+		$position_four= $this->Customerapi_model->get_homepage_position_four_banner(4);
+		$topoffer=$this->Customerapi_model->get_topoffer_categorywise();
+		$dealsffer=$this->Customerapi_model->get_dealsoftheoffer_categorywise();
+		$seasonffer=$this->Customerapi_model->get_seasonofthesaleseoffer_categorywise();
+		$trendingffer=$this->Customerapi_model->get_trendingoffer_categorywise();
+		$offerforyou=$this->Customerapi_model->get_offerforyou_categorywise();
+		$recentlyviewedlist=$this->Customerapi_model->recently_viewed_producrs();
+		$categorywise_plist=$this->Customerapi_model->get_category_wise_products_list();
+		if(isset($recentlyviewedlist) && count($recentlyviewedlist)>0){
+		foreach ($recentlyviewedlist as $productslist){
+					
+					$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=$percentage;
+					
+				}
+				foreach ($plist as $list){
+					$recentlyviewed[]=$list;
+				}
+		}else{
+			$recentlyviewed[]=array();
+		}
+		foreach ($categorywise_plist as $list){
+			$cat_wise_plist[]=$list;
+		}
+		$message = array
+		(
+			'status'=>1,
+			'banners1'=>$bannerslist,
+			'categorylist'=>$categories,
+			'topoffer'=>$topoffer,
+			'banners2'=>$position_two,
+			'trendingproducts'=>$trendingffer,
+			'offersforyou'=>$offerforyou,
+			'banners3'=>$position_three,
+			'dealsoftheday'=>$dealsffer,
+			'seasonsales'=>$seasonffer,
+			'banners4'=>$position_four,
+			'recentlyviewed'=>$recentlyviewed,
+			'categorywiseproductlist'=>$cat_wise_plist,
+			'imagepath'=>base_url('uploads/products/'),
+			'banners1path'=>base_url('assets/appbanners/'),
+			'bannerspath'=>base_url('assets/homebanners/'),
+			'message'=>'Product list are found.'
+		);
+		$this->response($message, REST_Controller::HTTP_OK);
+				
+		
+	}
+	/*IOS APP HOME PAGE API*/
 
 }

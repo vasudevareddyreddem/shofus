@@ -1692,8 +1692,10 @@ public function subitemwise_search(){
 			}else{
 				$data['step_ten']= $this->category_model->step_ten_data($cateid);
 			}
-			if($cateid==19 || $cateid==24){
-				$data['step_tenlabel']='Footware';
+			if($cateid==19){
+				$data['step_tenlabel']="Men's Footwear Store";
+			}if($cateid==24){
+				$data['step_tenlabel']="Women's Footwear Store";
 			}else if($cateid!=21 && $cateid==20){
 				$data['step_tenlabel']='camera';
 			}else if($cateid==30){

@@ -2383,7 +2383,7 @@ class Customerapi_model extends MY_Model
 	}
 	
 	public function get_home_banners_list(){
-		$this->db->select('*')->from('appbanners_list');
+		$this->db->select('appbanners_list.img1')->from('appbanners_list');
 		$this->db->where('status', 1);
         return $this->db->get()->result_array();
 	}
@@ -2795,6 +2795,19 @@ class Customerapi_model extends MY_Model
 		$this->db->where('products.item_status',1);
 		return $this->db->get()->result_array();
 	}
+	public function get_category_wise_seemore($catid)
+	{
+		$this->db->select('products.item_id,products.category_id,products.item_cost,products.item_name,products.special_price,products.item_quantity,products.item_status,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
+		$this->db->where('products.category_id',$catid);
+        $this->db->where('admin_status','0');
+		$this->db->where('products.item_status',1);
+		return $this->db->get()->result_array();
+	}
+	public function get_category_deatils($catid){
+		$this->db->select('category.category_name')->from('category');
+		$this->db->where('category.category_id',$catid);
+		return $this->db->get()->row_array();
+	}
 	/* newhome page*/
 	
 	/* category page */
@@ -2875,7 +2888,7 @@ class Customerapi_model extends MY_Model
 		public function step_six_data($catid){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
 			if($catid==21 || $catid==31){
 				$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`)');
 				$this->db->order_by('offer_expairdate desc');
@@ -2906,7 +2919,7 @@ class Customerapi_model extends MY_Model
 		public function step_dealsnine_data($catid){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('deals_ofthe_day');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('deals_ofthe_day');
 			$this->db->join('products', 'products.item_id = deals_ofthe_day.item_id', 'left'); //
 			$this->db->where('products.item_id !=','');
 			$this->db->where('deals_ofthe_day.expairdate >=', $curr_date);
@@ -2916,7 +2929,7 @@ class Customerapi_model extends MY_Model
 		 public function step_nine_data($catid){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
 			if($catid==21 || $catid==31){
 				$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`)');
 				$this->db->order_by('offer_expairdate desc');
@@ -2932,7 +2945,7 @@ class Customerapi_model extends MY_Model
 	   public function step_seasonten_data($catid){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('season_sales');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('season_sales');
 			$this->db->join('products', 'products.item_id = season_sales.item_id', 'left'); //
 			$this->db->where('products.item_id !=','');
 			$this->db->where('season_sales.expairdate >=', $curr_date);
@@ -2942,7 +2955,7 @@ class Customerapi_model extends MY_Model
 		public function step_tenfootwear_data($catid){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
 			$this->db->where('products.item_id !=','');
 			if($catid==19){
 			$this->db->where('products.subcategory_id',128);
@@ -2954,7 +2967,7 @@ class Customerapi_model extends MY_Model
 		public function step_ten_data($catid){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
 			if($catid==21 || $catid==31){
 				$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`)');
 				$this->db->order_by('offer_expairdate desc');
@@ -2988,7 +3001,21 @@ class Customerapi_model extends MY_Model
 			$this->db->where('products.category_id',$catid);
 			return $this->db->get()->result_array(); 
 	  }
+	  
+	  public function get_ioscategory_wise_products_list()
+	{
+	
+		$this->db->select('category.category_name,category.category_id')->from('products');
+		$this->db->join('category', 'category.category_id =products.category_id', 'left');
+		$this->db->group_by('category.category_id');
+		$this->db->order_by('category.category_id', 'asc');
+		$this->db->where('category.status', 1);		
+		return $this->db->get()->result_array();
+		
+	}
 	/* category page */
+	
+	
 	
 	
 		

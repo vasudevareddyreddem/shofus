@@ -63,7 +63,7 @@
 				<input type="text"  class="form-control" id="subitemname"  name="subitemname" value="<?php echo isset($subitem_list['subitem_name'])?$subitem_list['subitem_name']:''; ?>"/>
 				</div>
 				<div class="form-group">
-				<label for="category">Sub Item Name</label>
+				<label for="category">Sub Item Image</label>
 				<input type="file"  class="form-control" id="image"  name="image"/>
 				</div>
 				

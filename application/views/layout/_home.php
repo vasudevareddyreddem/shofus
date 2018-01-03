@@ -12,7 +12,7 @@
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Pragma: no-cache");
  ?>
-<title>Cart In Hours::</title>
+<title>Shofus</title>
 <meta name="google-site-verification" content="2w3VPtkCsjKGCanUFQJQa8jA3RFc70vxEjKmHulkQlg" />
 <link rel="icon" href="<?php echo base_url(); ?>assets/home/images/fav.ico" >
 
