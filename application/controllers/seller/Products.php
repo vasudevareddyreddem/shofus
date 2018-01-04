@@ -239,6 +239,14 @@ public function item_status(){
 			  $this->load->view('seller/products/computerspeakers',$data);	
 			}else if($post['subcategoryid']==226 || $post['subcategoryid']==227 || $post['subcategoryid']==228 || $post['subcategoryid']==229 || $post['subcategoryid']==230 || $post['subcategoryid']==231){
 			  $this->load->view('seller/products/sameproductdetails',$data);	
+			}else if($post['subcategoryid']==237){
+			  $this->load->view('seller/products/externaldvdwriters',$data);	
+			}else if($post['subcategoryid']==238){
+			  $this->load->view('seller/products/converters',$data);	
+			}else if($post['subcategoryid']==239){
+			  $this->load->view('seller/products/projectors',$data);	
+			}else if($post['subcategoryid']==244){
+			  $this->load->view('seller/products/headphones',$data);	
 			}else{
 			   $this->load->view('seller/products/allfields',$data);
 			}
@@ -576,7 +584,21 @@ public function item_status(){
 			'toe_shape' => isset($post['toe_shape'])?$post['toe_shape']:'',
 			'ean_upc' => isset($post['ean_upc'])?$post['ean_upc']:'',
 			'useage' => isset($post['useage'])?$post['useage']:'',
-
+			//dvdwriters
+			'factor' => isset($post['factor'])?$post['factor']:'',
+			'connector1' => isset($post['connector1'])?$post['connector1']:'',
+			'connector2' => isset($post['connector2'])?$post['connector2']:'',
+			//projectors
+			'portable' => isset($post['portable'])?$post['portable']:'',
+			'maximumbrightness' => isset($post['maximumbrightness'])?$post['maximumbrightness']:'',
+			'projectionratio' => isset($post['projectionratio'])?$post['projectionratio']:'',
+			'contrastratio' => isset($post['contrastratio'])?$post['contrastratio']:'',
+			'outputperspeaker' => isset($post['outputperspeaker'])?$post['outputperspeaker']:'',
+			'powersupply' => isset($post['powersupply'])?$post['powersupply']:'',
+			'powerconsumption' => isset($post['powerconsumption'])?$post['powerconsumption']:'',
+			'minopertingtemperature' => isset($post['minopertingtemperature'])?$post['minopertingtemperature']:'',
+			'maxopertingtemperature' => isset($post['maxopertingtemperature'])?$post['maxopertingtemperature']:'',
+			'remotecontrol' => isset($post['remotecontrol'])?$post['remotecontrol']:'',
 			'item_image'=>isset($profilepic1)?$profilepic1:'',
 			'item_image1'=>isset($profilepic2)?$profilepic2:'',
 			'item_image2'=>isset($profilepic3)?$profilepic3:'',
@@ -1180,6 +1202,21 @@ public function update()
 			'toe_shape' => isset($post['toe_shape'])?$post['toe_shape']:'',
 			'ean_upc' => isset($post['ean_upc'])?$post['ean_upc']:'',
 			'useage' => isset($post['useage'])?$post['useage']:'',
+			//dvdwriters
+			'factor' => isset($post['factor'])?$post['factor']:'',
+			'connector1' => isset($post['connector1'])?$post['connector1']:'',
+			'connector2' => isset($post['connector2'])?$post['connector2']:'',
+			//projectors
+			'portable' => isset($post['portable'])?$post['portable']:'',
+			'maximumbrightness' => isset($post['maximumbrightness'])?$post['maximumbrightness']:'',
+			'projectionratio' => isset($post['projectionratio'])?$post['projectionratio']:'',
+			'contrastratio' => isset($post['contrastratio'])?$post['contrastratio']:'',
+			'outputperspeaker' => isset($post['outputperspeaker'])?$post['outputperspeaker']:'',
+			'powersupply' => isset($post['powersupply'])?$post['powersupply']:'',
+			'powerconsumption' => isset($post['powerconsumption'])?$post['powerconsumption']:'',
+			'minopertingtemperature' => isset($post['minopertingtemperature'])?$post['minopertingtemperature']:'',
+			'maxopertingtemperature' => isset($post['maxopertingtemperature'])?$post['maxopertingtemperature']:'',
+			'remotecontrol' => isset($post['remotecontrol'])?$post['remotecontrol']:'',
 			'item_image'=>$image1,
 			'item_image1'=>$image2,
 			'item_image2'=>$image3,
@@ -3183,6 +3220,21 @@ public function returns()
 		}else if($post['valuename']=='useage'){
 			$editdata = array(
 			'useage' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='factor'){
+			$editdata = array(
+			'factor' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='connector1'){
+			$editdata = array(
+			'connector1' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='connector2'){
+			$editdata = array(
+			'connector2' => $post['value'],
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
 		}

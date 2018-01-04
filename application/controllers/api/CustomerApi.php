@@ -3581,7 +3581,7 @@ public function homeapi_get()
 			'seasonsales'=>$seasonffer,
 			'banners4'=>$position_four,
 			'recentlyviewed'=>$recentlyviewed,
-			'imagepath'=>base_url('uploads/products/'),
+			'categoryimagepath'=>base_url('assets/categoryimages/'),
 			'banners1path'=>base_url('assets/appbanners/'),
 			'bannerspath'=>base_url('assets/homebanners/'),
 			'message'=>'Product list are found.'
@@ -3766,7 +3766,7 @@ public function homeapi_get()
 			}else if($catid==20){
 				$step_ninelabel='Battery Capacity';
 			}else if($catid!=21){
-				$step_ninelabel='X';
+				$step_ninelabel='Y';
 			}
 		}
 			if(isset($step_nine) && count($step_nine)>0){
@@ -3912,14 +3912,18 @@ public function homeapi_get()
 			'banners2'=>$position_four,
 			'shopbyprice'=>$step_five,
 			'shopbyx'=>$step_sixlist,
+			'shopbyxlabel'=>$step_sixlabel,
 			'banners3'=>$step_seven,
 			'subitems'=>$step_eight,
 			'shopbyy'=>$step_ninelist,
+			'shopbyylabel'=>$step_ninelabel,
 			'shopbyz'=>$step_tenlist,
+			'shopbyzlable'=>$step_tenlabel,
 			'banners4'=>$step_eleven,
 			'mostviewed'=>$step_twelve,
 			'recommended'=>$step_thirteenlist,
 			'banners5'=>$step_fourteen,
+			'subcategoryimage'=>base_url('assets/subcategoryimages/'),
 			'imagepath'=>base_url('uploads/products/'),
 			'bannerspath'=>base_url('assets/categoryimages/'),
 			'message'=>'Product list are found.'
@@ -3992,6 +3996,7 @@ public function homeapi_get()
 			'banners4'=>$position_four,
 			'recentlyviewed'=>$recentlyviewed,
 			'categorywiseproductlist'=>$cat_wise_plist,
+			'categoryimage'=>base_url('assets/categoryimages/'),
 			'imagepath'=>base_url('uploads/products/'),
 			'banners1path'=>base_url('assets/appbanners/'),
 			'bannerspath'=>base_url('assets/homebanners/'),

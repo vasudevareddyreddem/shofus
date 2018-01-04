@@ -55,102 +55,106 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		</div>
 	</div>
 	<div class="row">
-		<div class=" col-md-6 ">
+			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Color</label>
-					<input type="text" class="form-control" id="colour" name="colour" value="<?php echo isset($item_details['colour'])?$item_details['colour']:''; ?>" >
+					<label for="exampleInputEmail1">Portable</label>
+					<input type="text" class="form-control" id="portable" name="portable" value="<?php echo isset($item_details['portable'])?$item_details['portable']:''; ?>" >
 				</div>
 			</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">useage</label>
-				<input type="text" class="form-control" id="useage" name="useage" value="<?php echo isset($item_details['useage'])?$item_details['useage']:''; ?>" >
+			
+			<div class=" col-md-6 ">
+				<div class="form-group nopaddingRight san-lg">
+					<label for="exampleInputEmail1">Maximum Brightness</label>
+					<input type="text" class="form-control" id="maximumbrightness" name="maximumbrightness" value="<?php echo isset($item_details['maximumbrightness'])?$item_details['maximumbrightness']:''; ?>" >
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="row">
 		
-		<div class="col-md-12 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Type</label>
-				<input type="text" class="form-control" id="type" name="type" value="<?php echo isset($item_details['type'])?$item_details['type']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Sound Features</label>
-	
 	</div>
 	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Noise Reduction</label>
-				<input type="text" class="form-control" id="noise_reduction" name="noise_reduction" value="<?php echo isset($item_details['noise_reduction'])?$item_details['noise_reduction']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Connectivity</label>
-				<input type="text" class="form-control" id="connectivity" name="connectivity" value="<?php echo isset($item_details['connectivity'])?$item_details['connectivity']:''; ?>" >
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Headphone Jack</label>
-				<input type="text" class="form-control" id="headphone_jack" name="headphone_jack" value="<?php echo isset($item_details['headphone_jack'])?$item_details['headphone_jack']:''; ?>" >
-			</div>
-		</div>
-		<div class=" col-md-6 ">
+			<div class=" col-md-6 ">
 				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Microphone</label>
-					<input type="text" class="form-control" id="microphone" name="microphone" value="<?php echo isset($item_details['microphone'])?$item_details['microphone']:''; ?>" >
+				<label for="exampleInputEmail1">Projection Ratio 1</label>
+				<input type="text" class="form-control" id="projectionratio" name="projectionratio"  value="<?php echo isset($item_details['projectionratio'])?$item_details['projectionratio']:''; ?>" >
 				</div>
 			</div>
-	</div>
-	
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Dimensions</label>
-	
-	</div><br>
-	<div class="row">
-		<div class="col-md-12 form-group">
+			
+			<div class="col-md-6 ">
 			<div class="form-group nopaddingRight san-lg">
-				 <label for="exampleInputEmail1">Weight</label>
+				<label for="exampleInputEmail1">Contrast Ratio</label>
+				<input type="text" class="form-control" id="contrastratio" name="contrastratio"  value="<?php echo isset($item_details['contrastratio'])?$item_details['contrastratio']:''; ?>" >
+			</div>
+		</div>
+		
+	</div>
+	<div class="row">
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				 <label for="exampleInputEmail1">Model Name</label>
+				<input type="text" class="form-control" id="model_name" name="model_name" value="<?php echo isset($item_details['model_name'])?$item_details['model_name']:''; ?>" >
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Model ID</label>
+				<input type="text" class="form-control" id="model_id" name="model_id" value="<?php echo isset($item_details['model_id'])?$item_details['model_id']:''; ?>" >
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 ">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Output Per Speaker</label>
+				<input type="text" class="form-control" id="outputperspeaker" name="outputperspeaker" value="<?php echo isset($item_details['outputperspeaker'])?$item_details['outputperspeaker']:''; ?>" >
+			</div>
+		</div>
+		<div class="col-md-6 ">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Power Supply</label>
+				<input type="text" class="form-control" id="powersupply" name="powersupply" value="<?php echo isset($item_details['powersupply'])?$item_details['powersupply']:''; ?>" >
+			</div>
+		</div>
+	
+	</div>
+	<div class="row">
+		<div class="col-md-6 ">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Power Consumption</label>
+				<input type="text" class="form-control" id="powerconsumption" name="powerconsumption" value="<?php echo isset($item_details['powerconsumption'])?$item_details['powerconsumption']:''; ?>" >
+			</div>
+		</div>
+		<div class="col-md-6 ">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Minimum Operating Temperature</label>
+				<input type="text" class="form-control" id="minopertingtemperature" name="minopertingtemperature" value="<?php echo isset($item_details['minopertingtemperature'])?$item_details['minopertingtemperature']:''; ?>" >
+			</div>
+		</div>
+	
+	</div>
+	<div class="row">
+		<div class="col-md-6 ">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Maximum Operting Temperature</label>
+				<input type="text" class="form-control" id="maxopertingtemperature" name="maxopertingtemperature" value="<?php echo isset($item_details['maxopertingtemperature'])?$item_details['maxopertingtemperature']:''; ?>" >
+			</div>
+		</div>
+		<div class="col-md-6 ">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Remote Control </label>
+				<input type="text" class="form-control" id="remotecontrol" name="remotecontrol" value="<?php echo isset($item_details['remotecontrol'])?$item_details['remotecontrol']:''; ?>" >
+			</div>
+		</div>
+	
+	</div>
+	<div class="row">
+
+		<div class=" col-md-12">
+			<div class="form-group nopaddingRight san-lg">
+				<label for="exampleInputEmail1">Weight</label>
 				<input type="text" class="form-control" id="weight" name="weight" value="<?php echo isset($item_details['weight'])?$item_details['weight']:''; ?>" >
 			</div>
 		</div>
 	</div>
-	
-	<div class="clearfix"></div>
-	<br>
-	<div class="" style="position:relative;">
-	<hr style="border-bottom:2px solid #006a99">
-	<label style="position:absolute;top:-20px;background:#fff;border:2px solid  #006a99;border-radius:6px;padding:10px;left:0" >Additional Features</label>
-	
-	</div><br>
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Other Features</label>
-				<input type="text" class="form-control" id="other_camera_features" name="other_camera_features" value="<?php echo isset($item_details['other_camera_features'])?$item_details['other_camera_features']:''; ?>" >
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Compatible For</label>
-				<input type="text" class="form-control" id="compatible_for" name="compatible_for" value="<?php echo isset($item_details['compatible_for'])?$item_details['compatible_for']:''; ?>" >
-			</div>
-		</div>
-	
-	</div>
-	<div class="clearfix"></div>
+	 <div class="clearfix"></div>
 	<br>
 	<div class="" style="position:relative;">
 	<hr style="border-bottom:2px solid #006a99">
@@ -166,6 +170,7 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		</div>
 		
 	</div>
+	
 	
 
 

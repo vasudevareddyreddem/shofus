@@ -291,6 +291,35 @@
 						<th>Other Features</th>
 						<th>Dimension</th>
 						<th>Weight</th>
+					  <?php }else if($subcategory->subcategory_id==237){ ?>
+						<th>Size</th>
+					  	<th>Color</th>
+					  	<th>Writer Type</th>
+					  	<th>Form Factor</th>
+					  	<th>Model Name</th>
+					  	<th>Model ID</th>
+					  <?php }else if($subcategory->subcategory_id==238){ ?>
+						<th>Size</th>
+					  	<th>Color</th>
+					  	<th>Connector 1</th>
+					  	<th>Connector 2</th>
+					  	<th>Model Name</th>
+					  	<th>Model ID</th>
+					  	<th>type</th> 
+						<?php }else if($subcategory->subcategory_id==239){ ?>
+						<th>Portable</th>
+					  	<th>Maximum Brightness</th>
+					  	<th>Projection Ratio 1</th>
+					  	<th>Contrast Ratio</th>
+					  	<th>Model Name</th>
+					  	<th>Model ID</th>
+					  	<th>Output Per Speaker</th>
+					  	<th>Power Supply</th>
+					  	<th>Power Consumption</th>
+					  	<th>Minimum Operating Temperature</th>
+					  	<th>Maximum Operting Temperature</th>
+					  	<th>Remote Control </th>
+					  	<th>Weight</th>
 					  <?php }else { ?>
 					  	<th>Size</th>
 					  	<th>Color</th>
@@ -561,14 +590,42 @@
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','other_camera_features',this.value)" name="other_camera_features" value="<?php echo $item_data->other_camera_features;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','dimension',this.value)" name="dimension" value="<?php echo $item_data->dimension;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+							<?php }else if($item_data->subcategory_id==237){ ?>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','factor',this.value)" name="factor" value="<?php echo $item_data->factor;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_id',this.value)" name="model_id" value="<?php echo $item_data->model_id;?>"/></td>
+							<?php }else if($item_data->subcategory_id==238){ ?>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','connector1',this.value)" name="connector1" value="<?php echo $item_data->connector1;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','connector2',this.value)" name="connector2" value="<?php echo $item_data->connector2;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_id',this.value)" name="model_id" value="<?php echo $item_data->model_id;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+							<?php }else if($item_data->subcategory_id==239){ ?>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','portable',this.value)" name="portable" value="<?php echo $item_data->portable;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','maximumbrightness',this.value)" name="maximumbrightness" value="<?php echo $item_data->maximumbrightness;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','projectionratio',this.value)" name="projectionratio" value="<?php echo $item_data->projectionratio;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','contrastratio',this.value)" name="contrastratio" value="<?php echo $item_data->contrastratio;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_id',this.value)" name="model_id" value="<?php echo $item_data->model_id;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','outputperspeaker',this.value)" name="outputperspeaker" value="<?php echo $item_data->outputperspeaker;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','powersupply',this.value)" name="powersupply" value="<?php echo $item_data->powersupply;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','powerconsumption',this.value)" name="powerconsumption" value="<?php echo $item_data->powerconsumption;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','minopertingtemperature',this.value)" name="minopertingtemperature" value="<?php echo $item_data->minopertingtemperature;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','maxopertingtemperature',this.value)" name="maxopertingtemperature" value="<?php echo $item_data->maxopertingtemperature;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','remotecontrol',this.value)" name="remotecontrol" value="<?php echo $item_data->remotecontrol;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
 							<?php }else{ ?>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
-									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','factor',this.value)" name="factor" value="<?php echo $item_data->factor;?>"/></td>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_id',this.value)" name="model_id" value="<?php echo $item_data->model_id;?>"/></td>
-									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','useage',this.value)" name="useage" value="<?php echo $item_data->useage;?>"/></td>
 							<?php } ?>
 							
 						<td><?php echo $item_data->offer_amount;?></td>

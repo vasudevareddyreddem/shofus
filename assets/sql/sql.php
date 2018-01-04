@@ -216,4 +216,16 @@ ALTER TABLE `cartinho_live`.`products`
 
 ALTER TABLE `cartinhoursstaging_db`.`products`   
   CHANGE `use` `useage` VARCHAR(250) CHARSET latin1 COLLATE latin1_swedish_ci NULL;
+  
+  
+  
+  /*4/1/2018
+  ALTER TABLE `cartinhoursstaging_db`.`products`   
+  ADD COLUMN `factor` VARCHAR(250) NULL AFTER `useage`;
+
+  
+  ALTER TABLE `cartinho_live`.`products`   
+  ADD COLUMN `connector1` VARCHAR(250) NULL AFTER `factor`,
+  ADD COLUMN `connector2` VARCHAR(250) NULL AFTER `connector1`;
+
 

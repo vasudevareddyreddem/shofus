@@ -357,14 +357,13 @@ class DeliveryboyApi extends REST_Controller {
 		
 	}
 	public function deliverycashpayment_Post(){
-		
 		$orderid=$this->post('orderid');
 		$amount=$this->post('amount');
 		$amountstatus=$this->post('amountstatus');
 		$payment_type=$this->post('payment_type');
 		$signature=$this->post('signature');
 		if($orderid==''){
-		$message = array('status'=>0,'message'=>'order item id is required!');
+		$message = array('status'=>0,'message'=>'order id is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}else if($amount==''){
 		$message = array('status'=>0,'message'=>'Amount is required!');
@@ -379,13 +378,21 @@ class DeliveryboyApi extends REST_Controller {
 		$message = array('status'=>0,'message'=>'Signature is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
+		
+		//$path=base_url('assets/Item_delivered_signatures/');
+		$path='/home/cartinhours/public_html/staging/assets/Item_delivered_signatures/';
+		//echo '<pre>';print_r($data);
+		$image_link = $signature;
+		$split_image = pathinfo($image_link);
+		$imagename=round(microtime(true)).$split_image['filename'].".".$split_image['extension'];
+		copy($signature, $path.$imagename);
 		$getdetails=$this->Deliveryboyapi_model->get_orderitem_details($orderid);
 		
 		//echo '<pre>';print_r($getdetails);exit;
 		
 		$totalamt=$getdetails['total_price']+$getdetails['delivery_amount'];
 		if($totalamt==$amount){
-			$getdetailss=$this->Deliveryboyapi_model->get_order_details_status($orderid,$amount,$amountstatus,$payment_type,date('Y-m-d h:i:s'),$signature);
+			$getdetailss=$this->Deliveryboyapi_model->get_order_details_status($orderid,$amount,$amountstatus,$payment_type,date('Y-m-d h:i:s'),$imagename);
 			$this->Deliveryboyapi_model->order_payment_status($getdetails['order_id'],$payment_type);
 			if(count($getdetailss)>0){
 					$message = array('status'=>1, 'message'=>'Order Amount status Succssfully updated');
