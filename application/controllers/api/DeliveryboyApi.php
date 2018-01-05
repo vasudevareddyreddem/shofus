@@ -38,14 +38,32 @@ class DeliveryboyApi extends REST_Controller {
 		
 		}
 		$logindetails=$this->Deliveryboyapi_model->login_customer($username,$password);
-		if(count($logindetails)>0){
 						$message = array('status'=>1,'details'=>$logindetails, 'message'=>'Deliver boy details are found');
-						$this->response($message, REST_Controller::HTTP_OK);
-					}else{
-						$message = array('status'=>0,'message'=>'!Invalida login details.Please try again');
-						$this->response($message, REST_Controller::HTTP_OK);
+		if($logindetails->current_login!=1){
+			if(count($logindetails)>0){
+			
+							$this->Deliveryboyapi_model->check_login_customer($logindetails->customer_id,1);
+							$message = array('status'=>1,'details'=>$logindetails, 'message'=>'Deliver boy details are found');
+							$this->response($message, REST_Controller::HTTP_OK);
+						}else{
+							$message = array('status'=>0,'message'=>'!Invalida login details.Please try again');
+							$this->response($message, REST_Controller::HTTP_OK);
+			}
+		}else{
+			$message = array('status'=>0,'message'=>'Another user already login. Please wait for some time');
+			$this->response($message, REST_Controller::HTTP_OK);
 		}
 	
+	}
+	public function logout_post()
+	{
+		$customer_id=$this->post('customer_id');
+		if($customer_id==''){
+			$message = array('status'=>0,'message'=>'Customer id is required!');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
+		$customer=$this->Deliveryboyapi_model->get_deliveryboy_details($customer_id,6);
+		echo '<pre>';print_r($customer);exit;
 	}
 	public function address_post()
 	{
@@ -373,9 +391,6 @@ class DeliveryboyApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);
 		}else if($payment_type==''){
 		$message = array('status'=>0,'message'=>'Payment type is required!');
-		$this->response($message, REST_Controller::HTTP_OK);
-		}else if($signature==''){
-		$message = array('status'=>0,'message'=>'Signature is required!');
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		
