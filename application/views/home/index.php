@@ -124,7 +124,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 									</div>
 									
 								</div>
-								<h6><?php echo $list['category_name']; ?></h6>
+								<h6><a><?php echo $list['category_name']; ?></a></h6>
 								<div class="price">
 									<div class="text-center" style="color:#187a7d;">Up to
 										<span class="label-tags"><p class=" text-success"><?php echo number_format($list['offer_percentage'], 2, '.', ''); ?>% off</p></span>
@@ -229,7 +229,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 									</div>
 									
 								</div>
-								<h6><?php echo $list['category_name']; ?></h6>
+								<h6><a><?php echo $list['category_name']; ?></a></h6>
 								<div class="price">
 									<div class="text-center" style="color:#187a7d;">Up to
 										<span class="label-tags"><p class=" text-success">
@@ -273,7 +273,7 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 									</div>
 									
 								</div>
-								<h6><?php echo $list['category_name']; ?></h6>
+								<h6><a><?php echo $list['category_name']; ?></a></h6>
 								<div class="price">
 									<div class="text-center" style="color:#187a7d;">Up to
 										<span class="label-tags"><p class=" text-success">

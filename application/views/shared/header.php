@@ -62,7 +62,7 @@
    .sidenav a {
    padding: 20px 8px 8px 10px;
    text-decoration: none;
-   font-size: 16px;
+   font-size: 10px;
    color: #818181;
    display: block;
    transition: 0.3s;
