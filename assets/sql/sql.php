@@ -228,4 +228,25 @@ ALTER TABLE `cartinhoursstaging_db`.`products`
   ADD COLUMN `connector1` VARCHAR(250) NULL AFTER `factor`,
   ADD COLUMN `connector2` VARCHAR(250) NULL AFTER `connector1`;
 
+ALTER TABLE `cartinho_live`.`products`   
+  ADD COLUMN `voltagerange` VARCHAR(250) NULL AFTER `remotecontrol`,
+  ADD COLUMN `turbospeed` VARCHAR(250) NULL AFTER `voltagerange`,
+  ADD COLUMN `graphics` VARCHAR(250) NULL AFTER `turbospeed`;
+  
+  
+ALTER TABLE `cartinhoursstaging_db`.`products`   
+  ADD COLUMN `capacity` VARCHAR(250) NULL AFTER `graphics`,
+  ADD COLUMN `datarate` VARCHAR(250) NULL AFTER `capacity`,
+  ADD COLUMN `technology` VARCHAR(250) NULL AFTER `datarate`;
+  
+  ALTER TABLE `cartinhoursstaging_db`.`products`   
+  DROP COLUMN `item_image8`, 
+  DROP COLUMN `item_image9`, 
+  DROP COLUMN `item_image10`, 
+  DROP COLUMN `item_image11`, 
+  DROP COLUMN `offer_time`, 
+  ADD COLUMN `externaldrivebays` VARCHAR(250) NULL AFTER `technology`,
+  ADD COLUMN `internaldrivebays` VARCHAR(250) NULL AFTER `externaldrivebays`,
+  ADD COLUMN `micport` VARCHAR(250) NULL AFTER `internaldrivebays`;
+
 

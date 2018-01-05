@@ -38,15 +38,14 @@ class DeliveryboyApi extends REST_Controller {
 		
 		}
 		$logindetails=$this->Deliveryboyapi_model->login_customer($username,$password);
-						$message = array('status'=>1,'details'=>$logindetails, 'message'=>'Deliver boy details are found');
 		if($logindetails->current_login!=1){
 			if(count($logindetails)>0){
 			
 							$this->Deliveryboyapi_model->check_login_customer($logindetails->customer_id,1);
-							$message = array('status'=>1,'details'=>$logindetails, 'message'=>'Deliver boy details are found');
+							$message = array('status'=>1,'details'=>$logindetails, 'message'=>'Delivery boy details are found');
 							$this->response($message, REST_Controller::HTTP_OK);
 						}else{
-							$message = array('status'=>0,'message'=>'!Invalida login details.Please try again');
+							$message = array('status'=>0,'message'=>'!Invalid login details.Please try again');
 							$this->response($message, REST_Controller::HTTP_OK);
 			}
 		}else{
@@ -63,7 +62,21 @@ class DeliveryboyApi extends REST_Controller {
 			$this->response($message, REST_Controller::HTTP_OK);
 		}
 		$customer=$this->Deliveryboyapi_model->get_deliveryboy_details($customer_id,6);
-		echo '<pre>';print_r($customer);exit;
+		if(count($customer)>0){
+			$details=$this->Deliveryboyapi_model->check_login_customer($customer['customer_id'],'');
+			//echo $this->db->last_query();exit;
+			if(count($details)>0){
+				$message = array('status'=>1,'message'=>'Succssfully customer logout');
+				$this->response($message, REST_Controller::HTTP_OK);
+			}else{
+				$message = array('status'=>0,'message'=>'techinical problem will occured try again after some time.');
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+		}else{
+			$message = array('status'=>0,'message'=>'Invalid Customer id. Use another one');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
+		//echo '<pre>';print_r($customer);exit;
 	}
 	public function address_post()
 	{
@@ -279,7 +292,7 @@ class DeliveryboyApi extends REST_Controller {
 		if($status==2){
 				$statusupdate=$this->Deliveryboyapi_model->order_Packing_status_updated($orderid,$status);
 				if(count($statusupdate)>0){
-					$message = array('status'=>1, 'message'=>'Packing Order status Succssfully updated');
+					$message = array('status'=>1, 'message'=>'Packing Order status successfully updated');
 					$this->response($message, REST_Controller::HTTP_OK);
 			}else{
 			$message = array('status'=>0,'message'=>'technical problem will occured .try again after some time');
@@ -307,7 +320,7 @@ class DeliveryboyApi extends REST_Controller {
 		if($status==3){
 				$statusupdate=$this->Deliveryboyapi_model->order_road_status_updated($orderid,$status);
 				if(count($statusupdate)>0){
-					$message = array('status'=>1, 'message'=>'Order on Road status Succssfully updated');
+					$message = array('status'=>1, 'message'=>'Order on Road status successfully updated');
 					$this->response($message, REST_Controller::HTTP_OK);
 			}else{
 			$message = array('status'=>0,'message'=>'technical problem will occured .try again after some time');

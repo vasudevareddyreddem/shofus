@@ -247,6 +247,14 @@ public function item_status(){
 			  $this->load->view('seller/products/projectors',$data);	
 			}else if($post['subcategoryid']==244){
 			  $this->load->view('seller/products/headphones',$data);	
+			}else if($post['subcategoryid']==243){
+			  $this->load->view('seller/products/processors',$data);	
+			}else if($post['subcategoryid']==113){
+			  $this->load->view('seller/products/storagedevices',$data);	
+			}else if($post['subcategoryid']==245){
+			  $this->load->view('seller/products/cabinets',$data);	
+			}else if($post['subcategoryid']==246){
+			  $this->load->view('seller/products/ups',$data);	
 			}else{
 			   $this->load->view('seller/products/allfields',$data);
 			}
@@ -599,6 +607,22 @@ public function item_status(){
 			'minopertingtemperature' => isset($post['minopertingtemperature'])?$post['minopertingtemperature']:'',
 			'maxopertingtemperature' => isset($post['maxopertingtemperature'])?$post['maxopertingtemperature']:'',
 			'remotecontrol' => isset($post['remotecontrol'])?$post['remotecontrol']:'',
+			//processors
+			'voltagerange' => isset($post['voltagerange'])?$post['voltagerange']:'',
+			'turbospeed' => isset($post['turbospeed'])?$post['turbospeed']:'',
+			'graphics' => isset($post['graphics'])?$post['graphics']:'',
+			//ram
+			'capacity' => isset($post['capacity'])?$post['capacity']:'',
+			'datarate' => isset($post['datarate'])?$post['datarate']:'',
+			'technology' => isset($post['technology'])?$post['technology']:'',
+			//cabinates
+			'externaldrivebays' => isset($post['externaldrivebays'])?$post['externaldrivebays']:'',
+			'internaldrivebays' => isset($post['internaldrivebays'])?$post['internaldrivebays']:'',
+			'micport' => isset($post['micport'])?$post['micport']:'',
+			//ups
+			'inputvoltage' => isset($post['inputvoltage'])?$post['inputvoltage']:'',
+			'outputvoltage' => isset($post['outputvoltage'])?$post['outputvoltage']:'',
+			'inputfrequency' => isset($post['inputfrequency'])?$post['inputfrequency']:'',
 			'item_image'=>isset($profilepic1)?$profilepic1:'',
 			'item_image1'=>isset($profilepic2)?$profilepic2:'',
 			'item_image2'=>isset($profilepic3)?$profilepic3:'',
@@ -1217,6 +1241,22 @@ public function update()
 			'minopertingtemperature' => isset($post['minopertingtemperature'])?$post['minopertingtemperature']:'',
 			'maxopertingtemperature' => isset($post['maxopertingtemperature'])?$post['maxopertingtemperature']:'',
 			'remotecontrol' => isset($post['remotecontrol'])?$post['remotecontrol']:'',
+			//processors
+			'voltagerange' => isset($post['voltagerange'])?$post['voltagerange']:'',
+			'turbospeed' => isset($post['turbospeed'])?$post['turbospeed']:'',
+			'graphics' => isset($post['graphics'])?$post['graphics']:'',
+			//ram
+			'capacity' => isset($post['capacity'])?$post['capacity']:'',
+			'datarate' => isset($post['datarate'])?$post['datarate']:'',
+			'technology' => isset($post['technology'])?$post['technology']:'',
+			//cabinates
+			'externaldrivebays' => isset($post['externaldrivebays'])?$post['externaldrivebays']:'',
+			'internaldrivebays' => isset($post['internaldrivebays'])?$post['internaldrivebays']:'',
+			'micport' => isset($post['micport'])?$post['micport']:'',
+			//ups
+			'inputvoltage' => isset($post['inputvoltage'])?$post['inputvoltage']:'',
+			'outputvoltage' => isset($post['outputvoltage'])?$post['outputvoltage']:'',
+			'inputfrequency' => isset($post['inputfrequency'])?$post['inputfrequency']:'',
 			'item_image'=>$image1,
 			'item_image1'=>$image2,
 			'item_image2'=>$image3,
@@ -3235,6 +3275,66 @@ public function returns()
 		}else if($post['valuename']=='connector2'){
 			$editdata = array(
 			'connector2' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='voltagerange'){
+			$editdata = array(
+			'voltagerange' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='turbospeed'){
+			$editdata = array(
+			'turbospeed' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='graphics'){
+			$editdata = array(
+			'graphics' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='capacity'){
+			$editdata = array(
+			'capacity' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='datarate'){
+			$editdata = array(
+			'datarate' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='technology'){
+			$editdata = array(
+			'technology' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='externaldrivebays'){
+			$editdata = array(
+			'externaldrivebays' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='internaldrivebays'){
+			$editdata = array(
+			'internaldrivebays' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='micport'){
+			$editdata = array(
+			'micport' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='inputvoltage'){
+			$editdata = array(
+			'inputvoltage' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='outputvoltage'){
+			$editdata = array(
+			'outputvoltage' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='inputfrequency'){
+			$editdata = array(
+			'inputfrequency' => $post['value'],
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
 		}

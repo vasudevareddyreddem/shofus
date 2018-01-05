@@ -75,6 +75,18 @@ class Cron extends Front_Controller
 					$response2 = curl_exec($ch2);
 					curl_close($ch2);
 					$characters2 = json_decode($response2, TRUE);
+					if(isset($characters2['error_message']) && $characters2['error_message']!=''){
+						$urls1 = "https://maps.googleapis.com/maps/api/distancematrix/json?origins='".urlencode($deliveryadd)."'&destinations='".urlencode($selleraddress)."'&sensor=false";
+					$ch2 = curl_init();
+					curl_setopt($ch2, CURLOPT_URL, $urls1);
+					curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
+					curl_setopt($ch2, CURLOPT_PROXYPORT, 3128);
+					curl_setopt($ch2, CURLOPT_SSL_VERIFYHOST, 0);
+					curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, 0);
+					$response2 = curl_exec($ch2);
+					curl_close($ch2);
+					$characters2 = json_decode($response2, TRUE);
+					}
 					//echo '<pre>';print_r($characters2);exit;
 					$dkm[]=isset($characters2['rows'][0]['elements'][0]['distance']['text'])?$characters2['rows'][0]['elements'][0]['distance']['text']:'';
 					$dtime[]=isset($characters2['rows'][0]['elements'][0]['duration']['text'])?$characters2['rows'][0]['elements'][0]['duration']['text']:'';
@@ -83,7 +95,6 @@ class Cron extends Front_Controller
 					/* seller to delivery address*/
 					
 				}
-				
 				//$data=array('61'=>array('dtimevalue'=>221,'dboyid'=>61),'62'=>array('dtimevalue'=>1347,'dboyid'=>62),'63'=>array('dtimevalue'=>1127,'dboyid'=>63),'64'=>array('dtimevalue'=>'','dboyid'=>64),'65'=>array('dtimevalue'=>1424,'dboyid'=>65));
 				foreach($data as $key=>$li){
 					if(!empty($li['dtimevalue'])) {
@@ -93,8 +104,8 @@ class Cron extends Front_Controller
 					
 					
 				}
+				//echo '<pre>';print_r($priceprod);exit;
 				if(isset($priceprod) && $priceprod!=''){
-					
 				
 				$mindistancedboyid = min($priceprod);
 				if($mindistancedboyid['dboyid']!=0){
@@ -324,11 +335,10 @@ class Cron extends Front_Controller
 		
 		
 	}
-	
 	public function testing(){
 		
 		//echo $list['customer_email_send'];exit;
-				$htmlmessage = "Invoice has been generated from the https:cartinhours.com";
+				$htmlmessage = "Invoice has been generated from the";
 					$this->load->library('email');
 					$this->email->set_newline("\r\n");
 					$this->email->set_mailtype("html");
@@ -337,7 +347,11 @@ class Cron extends Front_Controller
 					$this->email->subject('testing');
 					//echo $html;exit;
 					$this->email->message($htmlmessage);
-					$this->email->send();
+					if($this->email->send()){
+							echo 'Email was send';
+							
+							exit;
+						}
 				
 	}
 	

@@ -320,6 +320,64 @@
 					  	<th>Maximum Operting Temperature</th>
 					  	<th>Remote Control </th>
 					  	<th>Weight</th>
+					  <?php }else if($subcategory->subcategory_id==244){ ?>
+							<th>Color</th>
+							<th>useage</th>
+							<th>Type</th>
+							<th>Noise Reduction</th>
+							<th>Connectivity</th>
+							<th>Headphone Jack</th>
+							<th>Microphone</th>
+							<th>Weight</th>
+							<th>Other Features</th>
+							<th>Compatible For</th>
+					  <?php }else if($subcategory->subcategory_id==243){ ?>
+							<th>Size</th>
+							<th>Color</th>
+							<th>Type</th>
+							<th>Weight</th>
+							<th>Model Name</th>
+							<th>Model ID</th>
+							<th>Series</th>
+							<th>Voltage Range</th>
+							<th>Maximum Turbo Speed</th>
+							<th>Integrated Graphics</th>
+					   <?php }else if($subcategory->subcategory_id==113){ ?>
+							<th>Size</th>
+							<th>Color</th>
+							<th>Device Type</th>
+							<th>Weight</th>
+							<th>Model Name</th>
+							<th>Model ID</th>
+							<th>Capacity</th>
+							<th>DATA Rate</th>
+							<th>Technology</th>
+					   <?php }else if($subcategory->subcategory_id==245){ ?>
+							<th>Size</th>
+							<th>Color</th>
+							<th>Type</th>
+							<th>Weight</th>
+							<th>Model Name</th>
+							<th>Model ID</th>
+							<th>Motherboard Series</th>
+							<th>External Drive Bays</th>
+							<th>Internal Drive Bays</th>
+							<th>Front USB Port</th>
+							<th>Front USB / Mic Port</th>
+					    <?php }else if($subcategory->subcategory_id==246){ ?>
+							<th>Size</th>
+							<th>Color</th>
+							<th>Type</th>
+							<th>Weight</th>
+							<th>Model Name</th>
+							<th>Model ID</th>
+							<th>Input Voltage</th>
+							<th>Output Voltage</th>
+							<th>Input Frequency</th>
+							<th>Output Frequency</th>
+							<th>Output Power Wattage</th>
+							<th>Capacity</th>
+							<th>Dimensions</th>
 					  <?php }else { ?>
 					  	<th>Size</th>
 					  	<th>Color</th>
@@ -619,13 +677,72 @@
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','maxopertingtemperature',this.value)" name="maxopertingtemperature" value="<?php echo $item_data->maxopertingtemperature;?>"/></td>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','remotecontrol',this.value)" name="remotecontrol" value="<?php echo $item_data->remotecontrol;?>"/></td>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+							<?php }else if($item_data->subcategory_id==244){ ?>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','useage',this.value)" name="useage" value="<?php echo $item_data->useage;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','noise_reduction',this.value)" name="noise_reduction" value="<?php echo $item_data->noise_reduction;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','connectivity',this.value)" name="connectivity" value="<?php echo $item_data->connectivity;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','headphone_jack',this.value)" name="headphone_jack" value="<?php echo $item_data->headphone_jack;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','microphone',this.value)" name="microphone" value="<?php echo $item_data->microphone;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','compatible_for',this.value)" name="compatible_for" value="<?php echo $item_data->compatible_for;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','other_camera_features',this.value)" name="other_camera_features" value="<?php echo $item_data->other_camera_features;?>"/></td>
+							<?php }else if($item_data->subcategory_id==243){ ?>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_id',this.value)" name="model_id" value="<?php echo $item_data->model_id;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','series',this.value)" name="series" value="<?php echo $item_data->series;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','voltagerange',this.value)" name="voltagerange" value="<?php echo $item_data->voltagerange;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','turbospeed',this.value)" name="turbospeed" value="<?php echo $item_data->turbospeed;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','graphics',this.value)" name="graphics" value="<?php echo $item_data->graphics;?>"/></td>
+							<?php }else if($item_data->subcategory_id==113){ ?>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_id',this.value)" name="model_id" value="<?php echo $item_data->model_id;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','capacity',this.value)" name="capacity" value="<?php echo $item_data->capacity;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','datarate',this.value)" name="datarate" value="<?php echo $item_data->datarate;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','technology',this.value)" name="technology" value="<?php echo $item_data->technology;?>"/></td>
+							<?php }else if($item_data->subcategory_id==245){ ?>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_id',this.value)" name="model_id" value="<?php echo $item_data->model_id;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','series',this.value)" name="series" value="<?php echo $item_data->series;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','externaldrivebays',this.value)" name="externaldrivebays" value="<?php echo $item_data->externaldrivebays;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','internaldrivebays',this.value)" name="internaldrivebays" value="<?php echo $item_data->internaldrivebays;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','usb_port',this.value)" name="usb_port" value="<?php echo $item_data->usb_port;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','micport',this.value)" name="micport" value="<?php echo $item_data->micport;?>"/></td>
+							<?php }else if($item_data->subcategory_id==246){ ?>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_id',this.value)" name="model_id" value="<?php echo $item_data->model_id;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','inputvoltage',this.value)" name="inputvoltage" value="<?php echo $item_data->inputvoltage;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','outputvoltage',this.value)" name="outputvoltage" value="<?php echo $item_data->outputvoltage;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','inputfrequency',this.value)" name="inputfrequency" value="<?php echo $item_data->inputfrequency;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','operating_frequency',this.value)" name="operating_frequency" value="<?php echo $item_data->operating_frequency;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','power',this.value)" name="power" value="<?php echo $item_data->power;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','battery_capacity',this.value)" name="battery_capacity" value="<?php echo $item_data->battery_capacity;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','dimension',this.value)" name="dimension" value="<?php echo $item_data->dimension;?>"/></td>
 							<?php }else{ ?>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','size',this.value)" name="size" value="<?php echo $item_data->size;?>"/></td>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
-									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','factor',this.value)" name="factor" value="<?php echo $item_data->factor;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','weight',this.value)" name="weight" value="<?php echo $item_data->weight;?>"/></td>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_name',this.value)" name="model_name" value="<?php echo $item_data->model_name;?>"/></td>
 									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','model_id',this.value)" name="model_id" value="<?php echo $item_data->model_id;?>"/></td>
+									<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','useage',this.value)" name="useage" value="<?php echo $item_data->useage;?>"/></td>
 							<?php } ?>
 							
 						<td><?php echo $item_data->offer_amount;?></td>
