@@ -187,14 +187,25 @@ tr th:last-child {
 					</tr>
 					<tr>
 						<th>Amount Status </th>
-						<td><?php
-						if(isset($item_details['amount_status']) && $item_details['amount_status']==1){
-						echo "Paid";
-						}else{
-						echo "Pending";
+					<td>
+					<?php if($item_details['status_confirmation']==5){ 
+							if(isset($item_details['amount_status_paid']) && $item_details['amount_status_paid']==1){
+								echo "your payment would be refunded";
+							}else{
+								echo "order cancelled";
+							}
+						} else{
+							if(isset($item_details['amount_status_paid']) && $item_details['amount_status_paid']==1)
+								{
+									echo "Paid";
+								}else{
+									echo "Pending";
 
-						}  ?>
+								}
+						}
+						?>
 					</td>
+				
 
 					</tr>
 					<tr>
