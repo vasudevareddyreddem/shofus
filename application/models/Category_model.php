@@ -50,6 +50,7 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('name',$name);
 		$this->db->where('item_status',1);
+		$this->db->where('unit !=','');
 		$this->db->group_by('unit');
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
@@ -1337,6 +1338,7 @@ class Category_model extends MY_Model
 		
 		$this->db->select('products.item_id,products.unit,products.subcategory_id,products.subitemid,products.itemwise_id')->from('products');
 		$this->db->where('unit',$unit);
+		$this->db->where('unit !=','');
 		$this->db->where('subitemid',$subitem_id);
 		$this->db->where('item_status',1);
 		$this->db->where('item_status',1);

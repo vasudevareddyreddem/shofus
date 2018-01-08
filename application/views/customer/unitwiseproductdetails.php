@@ -102,7 +102,8 @@
                <div class="col-md-6">
                   <div class="gro_tit"><?php echo isset($productslist['item_name'])?$productslist['item_name']:''; ?></div>
                   <p class=""><?php echo isset($productslist['ingredients'])?$productslist['ingredients']:''; ?></p>
-                  <p class="">Available in: &nbsp;&nbsp;
+				<?php if(isset($productslist['unitproducts_list']) && count($productslist['unitproducts_list'])>0){ ?>                 
+				 <p class="">Available in: &nbsp;&nbsp;
                      <?php foreach ($productslist['unitproducts_list'] as $list){ ?>
                      <?php if($list['item_id']==$productslist['item_id']){ ?>
                      <span onclick="getunitwiseproductsinunit('<?php echo $list['item_id']; ?>','<?php echo $cnt; ?>','<?php echo time(); ?>')" class="btn_cus btn_cus_acti pad_rig"><?php echo $list['unit']; ?></span>&nbsp;&nbsp;
@@ -111,6 +112,7 @@
                      <?php  } ?>
                      <?php } ?>
                   </p>
+				<?php } ?>
                   <div  class="input-group incr_btn pull-left">
                      <span class="input-group-btn">
                      <button style="width:20px;padding:6px;"type="button" onclick="productqty1('<?php echo $cnt; ?>','<?php echo time(); ?>');" class="btn btn-primary btn-number btn-small"  data-type="minus" data-field="quant[2]">

@@ -1054,5 +1054,44 @@ function categoryoricewisefilters(val,status,check){
 				}
 		});
 }
+function addwhishlidts(id,val){
+jQuery.ajax({
+			url: "<?php echo site_url('customer/addwhishlist');?>",
+			type: 'post',
+			data: {
+				form_key : window.FORM_KEY,
+				item_id: id,
+				},
+			dataType: 'JSON',
+			success: function (data) {
+			 if(data.msg==0){
+					window.location='<?php echo base_url("customer/"); ?>'; 
+				}else{
+				
+				jQuery('#sucessmsg').show();
+				//alert(data.msg);
+				if(data.msg==2){
+				$('#sucessmsg').show('');
+				$("#addwishlistids"+id+val).removeClass("text-primary");
+				$('#addwhish'+id+val).prop('title', 'Add to Wishlist');
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully Removed to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+				document.getElementById("sucessmsg").focus();
+				
+				}
+				if(data.msg==1){
+				$('#sucessmsg').show('');
+				 $("#addwishlistids"+id+val).addClass("text-primary");
+				 $('#addwhish'+id+val).prop('title', 'Added to Wishlist');
+						$('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Product Successfully added to wishlist <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+				document.getElementById("sucessmsg").focus();				
+				}
+			}
+			
+
+			}
+		});
+	
+	
+}
 
 </script>

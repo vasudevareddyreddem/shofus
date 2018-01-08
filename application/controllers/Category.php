@@ -821,9 +821,14 @@ public function suitemwiseproductslist(){
 			//echo '<pre>';print_r($subitemwise);exit;
 				if(count($subitemwise)>0){
 					foreach($subitemwise as $list){
-					//echo '<pre>';print_r($list);
+					//sssecho '<pre>';print_r($list);
 					$desc=$this->category_model->get_products_desc_list($list['item_id']);
+					if($list['unit']!=''){
 					$sameunitproduct=$this->category_model->get_subitemwise_unit_products_list($list['subitemid'],$list['unit']);
+					}else{
+						$sameunitproduct=array();
+					}
+					//echo '<pre>';print_r($sameunitproduct);exit;
 					$plist[$list['item_id']]=$list;
 					$plist[$list['item_id']]['descriptions_list']=$desc;
 					$plist[$list['item_id']]['unitproducts_list']=$sameunitproduct;
