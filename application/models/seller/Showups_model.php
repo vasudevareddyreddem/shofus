@@ -50,8 +50,11 @@ class Showups_model extends MY_Model
   }
   public function banner_exits($name){
     //echo $date;exit;
+	$date = new DateTime("now");
+ 	$curr_date = $date->format('Y-m-d h:i:s');
     $this->db->select('home_banner.*')->from('home_banner');
     $this->db->where('file_name',$name);
+	$this->db->where('expairydate >=', $curr_date);
     $this->db->where('home_page_status',1);
     return $this->db->get()->row_array();
 

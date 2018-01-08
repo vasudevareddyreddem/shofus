@@ -248,5 +248,14 @@ ALTER TABLE `cartinhoursstaging_db`.`products`
   ADD COLUMN `externaldrivebays` VARCHAR(250) NULL AFTER `technology`,
   ADD COLUMN `internaldrivebays` VARCHAR(250) NULL AFTER `externaldrivebays`,
   ADD COLUMN `micport` VARCHAR(250) NULL AFTER `internaldrivebays`;
+  
+  
+  
+  
+  ALTER TABLE `cartinhoursstaging_db`.`products`   
+  ADD COLUMN `inputvoltage` VARCHAR(250) NULL AFTER `micport`,
+  ADD COLUMN `outputvoltage` VARCHAR(250) NULL AFTER `inputvoltage`,
+  ADD COLUMN `inputfrequency` VARCHAR(250) NULL AFTER `outputvoltage`;
+
 
 

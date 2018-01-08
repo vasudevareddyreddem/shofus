@@ -8,7 +8,7 @@
 	<?php foreach ($seller_cat_list as $list){  ?>
 	<div class="col-md-3 col-sm-4">
       <div class="wrimagecard wrimagecard-topimage">
-          <a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['seller_category_id']).'/'.base64_encode($list['seller_id'])); ?>">
+          <a href="<?php echo base_url('category/subcategorys/'.base64_encode($list['seller_category_id']).'/'.base64_encode($list['seller_id'])); ?>">
         
           <div class="pad_10 text-center bord_ri">
             <h4><?php echo $list['category_name']; ?></h4>

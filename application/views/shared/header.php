@@ -177,7 +177,7 @@ box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
             <div class="top-menu pull-right " >
                <ul>
                   <li>
-                     <a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="http://seller.cartinhours.com/seller/login"><span class=""></span> &nbsp; Sell on Shofus </a>
+                     <a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="http://seller.shofus.com/seller/login"><span class=""></span> &nbsp; Sell on Shofus </a>
                   </li>
                   &nbsp;
                   <li>

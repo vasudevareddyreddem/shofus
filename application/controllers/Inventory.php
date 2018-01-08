@@ -2242,7 +2242,7 @@ public function addhomepagemiddlebannerspost()
 				}else{
 					$status=1;
 				}
-				$updatestatus=$this->inventory_model->update_homepagemiddlebannerimg_status($imageid,$status);
+				$updatestatus=$this->inventory_model->update_homepagemiddlebannerimg_status($imageid,$status,date('Y-m-d H:i:s'));
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
@@ -2317,7 +2317,7 @@ public function addhomepagemiddlebannerspost()
 				}else{
 					$status=1;
 				}
-				$updatestatus=$this->inventory_model->update_categorypage_status($imageid,$status);
+				$updatestatus=$this->inventory_model->update_categorypage_status($imageid,$status,date('Y-m-d H:i:s'));
 				//echo $this->db->last_query();exit;
 				if(count($updatestatus)>0)
 				{
@@ -2818,6 +2818,7 @@ public function addhomepagemiddlebannerspost()
 				'selected_id'=>$post['selecteddata'],  
 				'seller_id' => $this->session->userdata('seller_id'),
 				'created_at'=>date('Y-m-d H:i:s'),		
+				'updated'=>date('Y-m-d H:i:s'),		
 				'expirydate'=>$date2		
 			);
 			$banners=$this->showups_model->save_banners_list_image($data);

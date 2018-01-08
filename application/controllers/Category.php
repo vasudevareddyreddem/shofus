@@ -1637,6 +1637,7 @@ public function subitemwise_search(){
 	 
 	 public function subcategorys(){
 		$cateid=base64_decode($this->uri->segment(3));
+		$seller_id=base64_decode($this->uri->segment(4));
 		//echo '<pre>';print_r($cateid);exit;
 		$step_one= $this->category_model->step_one_data(1);
 		$data['step_one']=array_chunk($step_one, 3);

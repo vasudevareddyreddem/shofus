@@ -807,13 +807,13 @@ class Customer extends Front_Controller
 			$productsdetails= $this->customer_model->get_product_details($list['item_id']);
 			$this->customer_model->cart_item_qty_update($productsdetails['item_id'],$productsdetails['item_quantity']);
 			if($list['qty']==0){
-				$this->session->set_flashdata('qtyerror','Please remove Out of stock product in cart then move to next step!');
+				$this->session->set_flashdata('qtyerror','Please remove out of stock product  from the cart then move to next step');
 			redirect('customer/cart');	
 			}else if($productsdetails['item_quantity']==0){
-				$this->session->set_flashdata('qtyerror','Please remove Out of stock product in cart then move to next step!');
+				$this->session->set_flashdata('qtyerror','Please remove out of stock product  from the cart then move to next step');
 			redirect('customer/cart');	
 			}else if($list['qty']>$productsdetails['item_quantity']){
-				$this->session->set_flashdata('qtyerror','Please decrease this '.$productsdetails['item_name'].' product qty lessthan or equal to '.$productsdetails['item_quantity']);
+				$this->session->set_flashdata('qtyerror','Please decrease this '.$productsdetails['item_name'].' product quantity less than or equal to '.$productsdetails['item_quantity']);
 			redirect('customer/cart');	
 			}
 			

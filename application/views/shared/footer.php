@@ -75,7 +75,7 @@
                 <li class="first"><a href="<?php echo base_url(); ?>">Home</a></li>
 				
 				<?php foreach ($sidecaregory_list as $list){				?>
-                  <li><a href="<?php echo base_url('category/subcategoryview/'.base64_encode($list['category_id'])); ?>"><?php echo ucfirst(strtolower($list['category_name'])); ?></a></li>
+                  <li><a href="<?php echo base_url('category/subcategorys/'.base64_encode($list['category_id'])); ?>"><?php echo ucfirst(strtolower($list['category_name'])); ?></a></li>
 				<?php } ?>
                 
               </ul>
