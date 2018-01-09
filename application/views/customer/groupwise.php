@@ -5,6 +5,8 @@
 			<div class="title"><span>Filters</span></div>
 					  <div class="row">
 						  <div class="col-md-6">
+						  <input type="hidden" name="min" id="min" value="<?php echo $min; ?>">
+						  <input type="hidden" name="max" id="max" value="<?php echo $max; ?>">
 						  <h4>Min:<span class="site_col"><?php echo $minimum_price['item_cost']; ?></span></h4>
 						  <input type="hidden" id="min" name="min" value="<?php echo $minimum_price['item_cost']; ?>">
 						  </div>
@@ -24,9 +26,17 @@
 		  </div>
 		  <div class="col-md-6">
 		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="categorywisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
-				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-				<?php } ?>
+				 <?php if($minimum_price['item_cost'] !=$maximum_price['item_cost']){ ?>
+						 <?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+						<?php } ?>
+				 <?php } if($minimum_price['item_cost']<=1000){ ?>
+					<option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
+
+					 
+					<?php  }else{ ?>
+						<option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
+				 <?php } ?>
 
 			  </select>
 		  </div>
@@ -730,7 +740,7 @@
                       <span aria-hidden="true">&times;</span>
             </button>
 		</div>
-          <div class="title"><span><?php echo ucfirst(strtolower(isset($category_details['category_name'])?$category_details['category_name']:'')); ?>&nbsp; category wise Products lists</span></div>
+          <div class="title"><span><?php echo ucfirst(strtolower(isset($category_details['category_name'])?$category_details['category_name']:'')); ?>&nbsp; category wise brand Products lists</span></div>
 		
 		<?php 
 		if( isset($product_list) && count($product_list)>0){
@@ -898,6 +908,8 @@ function categorywisefilters(val,status,check){
 					unchecked: check,
 					mini_mum: minamt,
 					maxi_mum: maxamt,
+					max: $('#max').val(),
+					min: $('#min').val(),
 
 					},
 				dataType: 'html',

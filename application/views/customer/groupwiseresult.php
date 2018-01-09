@@ -51,6 +51,8 @@
  <div class="col-sm-3">
             <div class="title"><span>Filters</span></div>
               <input type="hidden" name="itemid" id="itemid" value="<?php echo $category_id;?>">
+			    <input type="hidden" name="min" id="min" value="<?php echo $minamt; ?>">
+						  <input type="hidden" name="max" id="max" value="<?php echo $maxamt; ?>">
               <div class="row">
 				  <div class="col-md-6">
 				  <h4>Min:<span class="site_col"><?php echo $minimum_prices; ?></span></h4>
@@ -62,26 +64,42 @@
 		  <div class="row">
 		  <div class="col-md-6">
 		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="categorywisefilters(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+				 <?php $cnt=1;for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
 					<?Php if($minimum_prices==$i){ ?>
 						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
 					<?php }else{ ?>
 						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 						<?php } ?>
-				<?php $min_amt=$i;
-				} ?>
+						<?php if($cnt==1){ ?>
+							<?php if($minimum_price['item_cost']<=1000){ ?>
+							<option value="<?php echo $minimum_prices; ?>"><?php echo $minimum_prices; ?></option>
+							<?php  } ?>
+						<?php } ?>
+				<?php $cnt++;} ?>
 				
 			  </select>
 		  </div>
 		  <div class="col-md-6">
 		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="categorywisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_prices); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+				 <?php $cnt=1;for( $i=floor($minimum_prices); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
 					<?Php if($maximum_prices==$i){ ?>
 						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
 					<?php }else{ ?>
 						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 						<?php } ?>
-				<?php } ?>
+							<?php if($maximum_price['item_cost']<=1000 ){ ?>
+							<option value="<?php echo $maximum_prices; ?>" selected><?php echo $maximum_prices; ?></option>
+							<?php  } ?>
+							<?php if($cnt==1){ ?>
+								<?php if($i!=$maximum_price['item_cost']){ ?>
+									<option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
+								<?php } ?>
+								<?Php if($maximum_prices==$maximum_price['item_cost']){ ?>
+									<option value="<?php echo $maximum_prices; ?>" selected><?php echo $maximum_prices; ?></option>
+								<?php } ?>
+							
+							<?php } ?>
+				<?php $cnt++;} ?>
 
 			  </select>
 		  </div>
@@ -876,7 +894,7 @@
                       <span aria-hidden="true">&times;</span>
             </button>
 		</div>
-          <div class="title"><span><?php echo ucfirst(strtolower(isset($category_details['category_name'])?$category_details['category_name']:'')); ?>&nbsp; category wise Products lists</span></div>
+          <div class="title"><span><?php echo ucfirst(strtolower(isset($category_details['category_name'])?$category_details['category_name']:'')); ?>&nbsp; category wise brand Products lists</span></div>
 		<?php //echo '<pre>';print_r($subitemwise);exit; ?>
 		<?php 
 		if(count($itemwise[0])>0){
@@ -1038,6 +1056,8 @@ function categorywisefilters(val,status,check){
 					unchecked: check,
 					mini_mum: $('#mimimum_price').val(),
 					maxi_mum: $('#maximum_price').val(),
+					max: $('#max').val(),
+					min: $('#min').val(),
 
 					},
 				dataType: 'html',

@@ -117,7 +117,6 @@ public function search_functionality(){
 			}
 		}
 	$i++;} 
-//$text = "'".implode("',' ", $result)."'";
 if(isset($result) && count($result)>0){
 $datails=$result;
 }else{

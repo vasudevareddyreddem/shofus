@@ -43,10 +43,10 @@ header("Pragma: no-cache");
 
 
 
-<script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/home/js/bootstrap.min.js"></script><!--
 <script src="<?php echo base_url(); ?>assets/home/js/dataTables.bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/dataTables.bootstrap.js"></script>
-<script src="<?php echo base_url(); ?>assets/home/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/home/js/jquery.dataTables.min.js"></script>-->
 <script src="<?php echo base_url(); ?>assets/home/js/fSelect.js"></script>
 <script src="<?php echo base_url(); ?>assets/home/js/range.js"></script>
 

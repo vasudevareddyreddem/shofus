@@ -78,6 +78,9 @@
 			  
 			  <?php $w++;} ?>
 			  </div>
+			  
+			  
+		<?php if(isset($whistlist_banners) && count($whistlist_banners)>0){ ?>	  
 		<div class="col-md-4 sm_hide" style=" position:fixed;top:20;right:5% ;background-color:#fff;padding:5px;width:30%" id="social-float">
 			<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
 			<div class='carousel-outer'>
@@ -110,6 +113,9 @@
 			
 			</div>
 		</div>
+		
+		
+		<?php } ?>
 			</div>
 		
 		
