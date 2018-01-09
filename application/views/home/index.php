@@ -5,12 +5,7 @@ $('#removepopuplocation').show();
 $("#fademaskpurpose").removeClass("mask_hide");
 </script>
 
-<?php 	} ?>
-<script>
-$("#selectedlocation").empty();
-$("#selectedlocation").append('<?php echo $locationnames; ?>');
-</script>
-	
+<?php } ?>
 <?php if($this->session->flashdata('success')): ?>
 			<div class="alt_cus"><div class="alert_msg1  btn_suc animated slideInUp"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 			<?php endif; ?> 
@@ -746,7 +741,6 @@ $("#selectedlocation").append('<?php echo $locationnames; ?>');
 
 <script type="text/javascript">
 
-$('.slideInUp').fadeout(5000);
  function itemaddtocart(itemid,catid,val){
 
 jQuery.ajax({

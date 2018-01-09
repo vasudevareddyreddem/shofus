@@ -116,7 +116,7 @@ jQuery(document).ready(function() {
             pagination: !1
         }),
 		/* Mobile Menu */	
-
+/*hide by vassu
         jQuery("#mobile-menu").mobileMenu({
             MenuWidth: 250,
             SlideSpeed: 300,
@@ -127,6 +127,8 @@ jQuery(document).ready(function() {
             CollapseMenu: !0,
             ClassName: "mobile-menu"
         })
+		
+		*/
 		
         /* Top Offer slider */
 	    jQuery("#slideshow > p:gt(0)").hide();

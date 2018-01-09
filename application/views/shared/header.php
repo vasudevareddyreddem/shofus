@@ -1,7 +1,3 @@
-
-
-<!--wrapper start here -->
-<!--wrapper start here -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/jquery-ui.css">
 <script src="<?php echo base_url(); ?>assets/home/js/jquery-auto.js"></script>
 <style>
@@ -274,7 +270,6 @@ box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
                                  <button type="submit" class="flipkart-navbar-button col-xs-1 pull-right"> <i class="fa fa-search font_si" aria-hidden="true"></i></button>
                               </form>
                            </div>
-                           <!--<div style="display:none;" class="search_fun" id="addingdropdown"></div>-->
                         </div>
                      </div>
                   </div>
@@ -588,10 +583,7 @@ function addtabactive(id)
    }
    
    //searchfunction('v');
-    var clicks = 0; 
    function searchfunction(val){
-   	 clicks += 1;
-   	
    	jQuery.ajax({
    			url: "<?php echo site_url('home/search_functionality');?>",
    			type: 'post',
@@ -603,8 +595,7 @@ function addtabactive(id)
    			success: function (data) {
    					 var availableTags = data;
    					 $( "#tags" ).autocomplete({
-   						 
-   					   source: availableTags,
+   						source: availableTags,
    						select: function(event, ui) { 
    						$("input#tags").val(ui.item.value);
    						$("#searchform").submit();
