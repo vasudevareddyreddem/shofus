@@ -116,8 +116,8 @@
                                                     <p><span style="font-size:20px;font-weight:500">₹<?php echo number_format($item_price, 2 ); ?></span> &nbsp;&nbsp;
                                                         <span class="price-old" style="font-size:16px;color:#bbb">₹ <?php echo number_format($orginal_price, 2 ); ?></span>&nbsp;&nbsp;
                                                         <span class="site_col" style="font-size:18px;"><?php echo number_format($percentage, 2, '.', ''); ?>% off</span>&nbsp;&nbsp;</p>
-														<p class="md_hide"><strong>Qty :</strong> &nbsp;<?php echo isset($productslist['qty'])?$productslist['qty']:''; ?></p>
-													<p class="md_hide" ><strong>Total :</strong> &nbsp; ₹ <span class="site_col"><?php echo isset($productslist['total_price'])?$productslist['total_price']:''; ?></span></p>
+														<p class="md_hide"><strong>Qty &nbsp; &nbsp; &nbsp;:</strong> &nbsp;<?php echo isset($productslist['qty'])?$productslist['qty']:''; ?></p>
+													<p class="md_hide" ><strong>Total &nbsp;&nbsp;:</strong> &nbsp; ₹ <span class="site_col"><?php echo isset($productslist['total_price'])?$productslist['total_price']:''; ?></span></p>
 													
                                                 </td>
 											
