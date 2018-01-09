@@ -2680,8 +2680,15 @@ public function subitemwise_search(){
 		 /*delete privous data*/
 		  $catid=base64_decode($this->uri->segment(3));
 		  $brand=base64_decode($this->uri->segment(4));
-		  $group=base64_decode($this->uri->segment(5));
-			$data['product_list']= $this->category_model->get_groupwise_product_list($catid,$brand);
+			$group=base64_decode($this->uri->segment(5));
+			$prices= $this->category_model->get_groupwise_all_price_list_minmax($catid,$brand);
+			$min= min($prices);
+			$max= max($prices);
+			$data['min']=$min['item_cost'];
+			$data['max']=$max['item_cost'];
+			//echo '<pre>';print_r($prices);exit;
+			$data['product_list']= $this->category_model->get_groupwise_product_list($catid,$brand,$min['item_cost'],$max['item_cost']);
+			//echo $this->db->last_query();exit;
 			$data['caterory_id']=$catid;
 			$data['brand']=$brand;
 			$data['category_details']= $this->category_model->category_details($catid);
@@ -2706,7 +2713,7 @@ public function subitemwise_search(){
 				$data['brand_list']= $this->category_model->get_group_all_brand_list($catid,'brand',$brand);
 				$data['price_list']= $this->category_model->get_groupwise_all_price_list($catid,$brand);
 				$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-				$offer_list= $this->category_model->get_group_all_offer_list($catid,$brand);
+				$offer_list= $this->category_model->get_group_all_offer_list($catid,$brand,$min['item_cost'],$max['item_cost']);
 				$data['color_list']= $this->category_model->get_group_all_brand_list($catid,'colour',$brand);
 				$data['ram_list']= $this->category_model->get_group_all_brand_list($catid,'ram',$brand);
 				//echo $this->db->last_query();exit;
@@ -2747,7 +2754,7 @@ public function subitemwise_search(){
 					if($list['offer_expairdate']>=$curr_date){
 						$amounts[]=$list['item_cost'];
 					}else{
-						$amounts[]=$list['special_price'];
+						$amounts[]=$list['item_cost'];
 					}
 				 }
 					$minamt = min($amounts);
@@ -2756,6 +2763,7 @@ public function subitemwise_search(){
 					$data['minimum_price'] = array('item_cost'=>$minamt);
 					$data['maximum_price'] = array('item_cost'=>$maxamt);
 					//echo max($data['price_list']);
+					//echo '<pre>';print_r($offer_list);exit;
 					foreach ($offer_list as $list) {
 						$date = new DateTime("now");
 						$curr_date = $date->format('Y-m-d h:i:s A');
@@ -3264,6 +3272,8 @@ public function subitemwise_search(){
 				$data1=array(
 				'ip_address'=>$ip,
 				'category_id'=>$post['categoryid'],
+				'min'=>$post['min'],
+				'max'=>$post['max'],
 				'group'=>$post['group'],
 				'minimum_price'=>isset($post['mini_mum']) ? $post['mini_mum']:'',
 				'maximum_price'=>isset($post['maxi_mum']) ? $post['maxi_mum']:'',
@@ -3316,8 +3326,9 @@ public function subitemwise_search(){
 					}
 				redirect('category/categorywise_searchresult');
 				}
-			 }
-			 public function categorywise_searchresult(){
+}
+			 
+ public function categorywise_searchresult(){
 				$data['itemwise']= $this->category_model->get_categorywise_search_result_data($this->input->ip_address());
 				if(isset($data['itemwise']) && count($data['itemwise'])>0){
 					foreach($data['itemwise'] as $lists){
@@ -3325,7 +3336,6 @@ public function subitemwise_search(){
 					$reviewcount[]=$this->category_model->product_reviews_count($lists['item_id']);
 					}
 				}
-				
 				if(isset($reviewrating) && count($reviewrating)>0){
 							$data['avg_count']=$reviewrating;
 						}else{
@@ -3341,13 +3351,15 @@ public function subitemwise_search(){
 				$filtersitemid= $this->category_model->get_categorywise_data_item_id($this->input->ip_address());
 				$data['category_id']=$filtersitemid['category_id'];
 				$data['brand']=$filtersitemid['group'];
+				$data['minamt']=$filtersitemid['min'];
+				$data['maxamt']=$filtersitemid['max'];
 				$category_id=$filtersitemid['category_id'];
 				//echo '<pre>';print_r($data['subitemwise']);exit;
 				$data['brand_list']= $this->category_model->get_group_all_brand_list($category_id,'brand',$data['brand'],$filtersitemid['group']);
 				$data['price_list']= $this->category_model->get_groupwise_all_price_list($category_id,$filtersitemid['group']);
 				//$data['price_list']= $this->category_model->get_groupwise_all_price_list($catid,$brand);
 				$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
-				$offer_list= $this->category_model->get_group_all_offer_list($category_id,$filtersitemid['group']);
+				$offer_list= $this->category_model->get_group_all_offer_list($category_id,$filtersitemid['group'],$filtersitemid['min'],$filtersitemid['max']);
 				$data['color_list']= $this->category_model->get_group_all_brand_list($category_id,'colour',$filtersitemid['group']);
 				$data['ram_list']= $this->category_model->get_group_all_brand_list($category_id,'ram',$filtersitemid['group']);
 				$data['os_list']= $this->category_model->get_group_all_brand_list($category_id,'os',$filtersitemid['group']);
@@ -3387,7 +3399,7 @@ public function subitemwise_search(){
 					if($list['offer_expairdate']>=$curr_date){
 						$amounts[]=$list['item_cost'];
 					}else{
-						$amounts[]=$list['special_price'];
+						$amounts[]=$list['item_cost'];
 					}
 				 }
 					$minamt = min($amounts);
