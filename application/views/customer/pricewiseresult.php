@@ -43,8 +43,8 @@
 			
 			//echo '<pre>';print_r($offers);
 		  }
-		  //echo '<pre>';print_r($minimum_price);
-		 // echo '<pre>';print_r($maximum_prices);exit;
+		  //echo '<pre>';print_r($brand);
+		 //echo '<pre>';print_r($minprice);exit;
 
 		  ?>
    <span id="categorywisepricefilterdata">
@@ -62,29 +62,42 @@
 		  <div class="row">
 		  <div class="col-md-6">
 		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="categoryoricewisefilters(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+				 <?php $cnt=1;for($i=floor($minprice); $i<=floor($brand); $i+=1000){  ?>
 					<?Php if($minimum_prices==$i){ ?>
 						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
 					<?php }else{ ?>
 						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 						<?php } ?>
-				<?php $min_amt=$i;
-				} ?>
+						<?php if($minimum_prices!=$minprice){ ?>
+								<?php if($cnt==1){ ?>
+										<?php if($i!=$brand && $brand !=$maximum_prices){ ?>
+											<option value="<?php echo $brand; ?>"><?php echo $brand; ?></option>
+										<?php }?>
+										<?php if($brand ==$maximum_prices){ ?>
+											<option value="<?php echo $brand; ?>" selected><?php echo $brand; ?></option>
+											<?php } ?>
+									<?php  } ?>
+						<?php } ?>
+				<?php $cnt++;} ?>
 				
 			  </select>
 		  </div>
 		  <div class="col-md-6">
 		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="categoryoricewisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
-				 <?php $c=1;for( $i=floor($minimum_prices); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
-					
-					<?php if($c==1){
-						if($maximum_prices!=$i){ ?>
-					<option value="<?php echo $maximum_prices; ?>" selected><?php echo $maximum_prices; ?></option>
-					<?php } } ?>
-					<?Php if($maximum_prices==$i){ ?>
-						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
-					<?php }else{ ?>
-						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+				 <?php $c=1;for( $i=floor($minprice); $i<=floor($brand); $i+=1000 ){ 
+								if($maximum_prices==$i){ ?>
+									<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
+								<?php }else{ ?>
+									<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+								<?php } ?>
+								<?php if($c==1){ ?>
+								<?php if($brand!=$i && $brand !=$maximum_prices){ ?>
+								<option value="<?php echo $brand; ?>"><?php echo $brand; ?></option>
+								<?php } ?>
+								<?php if($brand ==$maximum_prices){ ?>
+								<option value="<?php echo $brand; ?>" selected><?php echo $brand; ?></option>
+								<?php } ?>
+						
 						<?php } ?>
 				<?php $c++;} ?>
 

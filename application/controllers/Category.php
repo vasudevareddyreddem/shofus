@@ -3532,14 +3532,16 @@ public function subitemwise_search(){
 					if($list['offer_expairdate']>=$curr_date){
 						$amounts[]=$list['item_cost'];
 					}else{
-						$amounts[]=$list['special_price'];
+						$amounts[]=$list['item_cost'];
 					}
 				 }
 						$minamt = min($amounts);
 					$maxamt= max($amounts);
 					//echo '<pre>';print_r( $amounts);exit;
-					$data['minimum_price'] = array('item_cost'=>$minamt);
-					$data['maximum_price'] = array('item_cost'=>$maxamt);
+					//$data['minimum_price'] = array('item_cost'=>$minamt);
+					$data['minimum_price'] = array('item_cost'=>$minprice);
+					//$data['maximum_price'] = array('item_cost'=>$maxamt);
+					$data['maximum_price'] = array('item_cost'=>$brand);
 					//echo '<pre>';print_r($data['minimum_price']);exit;
 					foreach ($offer_list as $list) {
 						$date = new DateTime("now");
@@ -4139,7 +4141,7 @@ public function subitemwise_search(){
 				$catid=$filtersitemid['category_id'];
 				$brand=$filtersitemid['group'];
 				$minprice=$filtersitemid['minamt'];
-				//echo '<pre>';print_r($data['subitemwise']);exit;
+				//echo '<pre>';print_r($data['previousdata']);exit;
 				$data['brand_list']= $this->category_model->get_group_all_pricewise_list($catid,'brand',$brand,$minprice);
 				
 				$data['price_list']= $this->category_model->get_group_all_price_list($catid,$brand,$minprice);
@@ -4192,8 +4194,8 @@ public function subitemwise_search(){
 					$minamt = min($amounts);
 					$maxamt= max($amounts);
 					//echo '<pre>';print_r( $amounts);exit;
-					$data['minimum_price'] = array('item_cost'=>$minamt);
-					$data['maximum_price'] = array('item_cost'=>$maxamt);
+					$data['minimum_price'] = array('item_cost'=>$data['previousdata'][0]['minimum_price']);
+					$data['maximum_price'] = array('item_cost'=>$data['previousdata'][0]['maximum_price']);
 					//echo max($data['price_list']);
 					foreach ($offer_list as $list) {
 						$date = new DateTime("now");
