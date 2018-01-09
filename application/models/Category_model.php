@@ -2277,8 +2277,11 @@ public function get_all_subitem_list($catid,$subcatid)
 				return $this->db->get()->result_array();
 		}
 		public function step_three_data($catid){
-			$this->db->select('*')->from('brands');
+			$this->db->select('brands.*')->from('products');
+			$this->db->join('brands', 'brands.brand = products.brand', 'left'); //
 			$this->db->where('brands.category_id',$catid);
+			$this->db->where('products.item_status',1);
+			$this->db->group_by('products.brand');
 			$this->db->where('status',1);
 			return $this->db->get()->result_array();	
 		}
