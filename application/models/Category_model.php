@@ -2162,7 +2162,7 @@ public function get_all_subitem_list($catid,$subcatid)
 	}
 	public function get_subitemwise_data_category_id($ip)
 	{
-		$this->db->select('subitem_wise_filter_search.subcategory_id,subitem_wise_filter_search.subitemid')->from('subitem_wise_filter_search');
+		$this->db->select('subitem_wise_filter_search.subcategory_id,subitem_wise_filter_search.subitemid,subitem_wise_filter_search.min,subitem_wise_filter_search.max')->from('subitem_wise_filter_search');
 		$this->db->where('ip_address',$ip);
 		return $this->db->get()->row_array();
 	}
@@ -3563,6 +3563,12 @@ public function get_all_subitem_list($catid,$subcatid)
 	public function get_categorywiseprice_data_item_id($ip)
 	{
 		$this->db->select('pricewise_filters.category_id,pricewise_filters.group,pricewise_filters.minamt')->from('pricewise_filters');
+		$this->db->where('ip_address',$ip);
+		return $this->db->get()->row_array();
+	}
+	public function get_subcategorywise_data_item_id($ip)
+	{
+		$this->db->select('subcat_wise_fliter_search.max,subcat_wise_fliter_search.min')->from('subcat_wise_fliter_search');
 		$this->db->where('ip_address',$ip);
 		return $this->db->get()->row_array();
 	}

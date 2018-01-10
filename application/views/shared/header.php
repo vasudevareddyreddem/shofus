@@ -489,7 +489,7 @@ box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
    <a href="<?php echo base_url(); ?>"><span class="glyphicon  glyphicon-home"></span> Home</a>
    <?php //echo '<pre>';print_r($sidecaregory_list);exit; ?>
    <?php foreach ($sidecaregory_list as $categories){ ?>
-   <a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>"><span class=" glyphicon glyphicon-erase
+   <a href="<?php echo base_url('category/subcategorys/'.base64_encode($categories['category_id'])); ?>"><span class=" glyphicon glyphicon-erase
       "></span> <?php echo $categories['category_name'] ; ?></a>
    <?php } ?>
    <a href="<?php echo base_url('customer/orders');?>"><span class="glyphicon glyphicon-list-alt

@@ -368,6 +368,8 @@ function subcatehorywise(val,status,check){
 					unchecked: check,
 					mini_mum: minamt,
 					maxi_mum: maxamt,
+					min: $('#min').val(),
+					max: $('#max').val(),
 
 					},
 				dataType: 'html',

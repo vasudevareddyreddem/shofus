@@ -2715,8 +2715,8 @@ public function addhomepagemiddlebannerspost()
 					$subitem_id=$this->showups_model->get_subcategory_detals($post['selecteddata']);
 					$catid=$subitem_id['category_id'];
 					$subcatid=$subitem_id['subcategory_id'];
-					}else if($post['link']==2){
-						$catid=$post['selecteddata'];	
+					}else if($post['link']==1){
+					$catid=$post['selecteddata'];
 					}
 			//echo '<pre>';print_r($post);exit;
 			$temp = explode(".", $_FILES["image"]["name"]);
@@ -2738,6 +2738,7 @@ public function addhomepagemiddlebannerspost()
 				'created_at'=>date('Y-m-d H:i:s'),		
 				'expirydate'=>$date2		
 			);
+			//echo '<pre>';print_r($data);exit;
 			$banners=$this->showups_model->save_homepagebanners_list_image($data);
 			if(count($banners)>0){
 				$this->session->set_flashdata('success',"Banner successfully Added!");
@@ -2823,6 +2824,7 @@ public function addhomepagemiddlebannerspost()
 				'updated'=>date('Y-m-d H:i:s'),		
 				'expirydate'=>$date2		
 			);
+			//echo '<pre>';print_r($data);exit;
 			$banners=$this->showups_model->save_banners_list_image($data);
 			if(count($banners)>0){
 				$this->session->set_flashdata('success',"Banner successfully Added!");

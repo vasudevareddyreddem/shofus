@@ -96,7 +96,7 @@
                 <li class="first"><a  href="<?php echo base_url(); ?>">Careers</a></li>
 				<li><a href="<?php echo base_url(); ?>">About Us</a></li>
 				<!--<li><a href="<?php echo base_url('customer/aboutus'); ?>">About Us</a></li>-->
-                <li><a href="http://seller.cartinhours.com/seller/login" target="_blank">Sell on cartinhours </a></li>
+                <li><a href="http://seller.shofus.com/seller/login" target="_blank">Sell on shofus </a></li>
                 <li><a href="<?php echo base_url('customer/contactus'); ?>">Contact Us</a></li>
               </ul>
             </div>

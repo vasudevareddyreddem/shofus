@@ -263,8 +263,12 @@
 					 <?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
 					<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 					<?php } ?>
-				 <?php }else{ ?>
-				 <option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
+				 <?php }if($minimum_price['item_cost']<=1000){ ?>
+					<option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
+
+					 
+					<?php  }else{ ?>
+						<option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
 				 <?php } ?>
 
 			  </select>
@@ -1142,6 +1146,8 @@ function subitemwisefilters(val,status,check){
 					unchecked: check,
 					mini_mum: minamt,
 					maxi_mum: maxamt,
+					min: $('#min').val(),
+					max: $('#max').val(),
 
 					},
 				dataType: 'html',

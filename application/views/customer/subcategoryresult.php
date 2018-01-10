@@ -22,38 +22,50 @@ foreach($previousdata as $predata){
 					  <div class="row">
 						   <div class="col-md-6">
 				  <h4>Min:<span class="site_col"><?php echo $minimum_prices; ?></span></h4>
+				   <input type="hidden" id="min" name="min" value="<?php echo $min; ?>">
+
 				  </div>
 				  <div class="col-md-6">
 				 <h4>Max:<span class="site_col"><?php echo $maximum_prices; ?></span></h4>
+				 <input type="hidden" id="max" name="max" value="<?php echo $max; ?>">
+
 				  </div>
 					</div>
 				   <div class="row">
 		  <div class="col-md-6">
 		   <select class="form-control" name="mimimum_price" id="mimimum_price" onchange="subcatehorywise(this.value, '<?php echo 'mimimum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
+				 <?php for( $i=floor($minimum_price['item_cost']); $i<=floor($max); $i+=1000 ){  ?>
 					<?Php if($minimum_prices==$i){ ?>
 						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
 					<?php }else{ ?>
 						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 						<?php } ?>
-				<?php $min_amt=$i;
-				} ?>
+				<?php  } ?>
+				
 				
 			  </select>
 		  </div>
 		  <div class="col-md-6">
 		    <select class="form-control" id="maximum_price" name="maximum_price" onchange="subcatehorywise(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
-				 <?php $c=1;for( $i=floor($minimum_prices); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
-					<?php if($c==1){
-						if($maximum_prices!=$i){ ?>
-					<option value="<?php echo $maximum_prices; ?>" selected><?php echo $maximum_prices; ?></option>
-					<?php } } ?>
+				 <?php $cnt=1;for( $i=floor($minimum_prices); $i<=floor($max); $i+=1000 ){  ?>
 					<?Php if($maximum_prices==$i){ ?>
 						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
 					<?php }else{ ?>
 						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 						<?php } ?>
-				<?php $c++;} ?>
+							<?php if($i<=1000 && $maximum_prices<=100){ ?>
+							<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
+							<?php  } ?>
+							<?php if($cnt==1){ ?>
+								<?php if($i!=$max){ ?>
+									<option value="<?php echo $max; ?>"><?php echo $max; ?></option>
+								<?php } ?>
+								<?Php if($maximum_prices==$max){ ?>
+									<option value="<?php echo $max; ?>" selected><?php echo $max; ?></option>
+								<?php } ?>
+							
+							<?php } ?>
+				<?php $cnt++;} ?>
 
 			  </select>
 		  </div>
@@ -363,6 +375,8 @@ function subcatehorywise(val,status,check){
 					unchecked: check,
 					mini_mum: $('#mimimum_price').val(),
 					maxi_mum: $('#maximum_price').val(),
+					min: $('#min').val(),
+					max: $('#max').val(),
 
 					},
 				dataType: 'html',

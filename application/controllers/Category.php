@@ -121,6 +121,8 @@ class Category extends Front_Controller
 	$data1=array(
 	'Ip_address'=>$ip,
 	'category_id'=>$post['categoryid'],
+	'min'=>$post['min'],
+	'max'=>$post['max'],
 	'subcategory_id'=>$post['subcategoryid'],
 	'mini_amount'=>isset($post['mini_mum']) ? $post['mini_mum']:'',
 	'max_amount'=>isset($post['maxi_mum']) ? $post['maxi_mum']:'',
@@ -160,6 +162,10 @@ class Category extends Front_Controller
 	$subcaterory_id=$cat_subcat_ids[0]['subcategory_id'];
 	$data['caterory_id']=$caterory_id;
 	$data['subcaterory_id']=$subcaterory_id;
+	$filtersitemid= $this->category_model->get_subcategorywise_data_item_id($this->input->ip_address());
+
+	$data['min']=$filtersitemid['min'];
+	$data['max']=$filtersitemid['max'];
 	$data['subcatdetais']=$this->category_model->get_subcategory_details($subcaterory_id);
 	if(isset($data['productlist']) && count($data['productlist'])>0){
 					foreach($data['productlist'] as $lists){ 
@@ -194,7 +200,7 @@ class Category extends Front_Controller
 			if($list['offer_expairdate']>=$curr_date){
 				$amounts[]=$list['item_cost'];
 			}else{
-				$amounts[]=$list['special_price'];
+				$amounts[]=$list['item_cost'];
 			}
 			
 		}
@@ -859,6 +865,7 @@ public function suitemwiseproductslist(){
 		//echo '<pre>';print_r($data);exit;
 		$data['brand_list']= $this->category_model->get_subitem_all_brand_list($subcatid,$subitemid);
 		$data['price_list']= $this->category_model->get_subitem_all_price_list($subcatid,$subitemid);
+		//echo '<pre>';print_r($data['price_list']);exit;
 		//$data['discount_list']= $this->category_model->get_subitem_all_discount_list($subitemid);
 		$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
 		$offer_list= $this->category_model->get_subitem_all_offer_list($subcatid,$subitemid);
@@ -905,6 +912,8 @@ public function suitemwiseproductslist(){
 			}
 			
 		}
+		
+		//echo '<pre>';print_r($amounts);exit;
 		$minamt = min($amounts);
 		$maxamt= max($amounts);
 		//echo '<pre>';print_r( $amounts);exit;
@@ -1455,6 +1464,8 @@ public function subitemwise_search(){
 	'ip_address'=>$ip,
 	'subcategory_id'=>$post['subcatid'],
 	'subitemid'=>$post['subitemid'],
+	'min'=>$post['min'],
+	'max'=>$post['max'],
 	'minimum_price'=>isset($post['mini_mum']) ? $post['mini_mum']:'',
 	'maximum_price'=>isset($post['maxi_mum']) ? $post['maxi_mum']:'',
 	'offer'=>isset($offer) ? $offer:'',
@@ -1518,6 +1529,8 @@ public function subitemwise_search(){
 				$data['subcatid']=$filterscatid['subcategory_id'];
 				$subcatid=$filterscatid['subcategory_id'];
 				$subitemid=$filterscatid['subitemid'];
+				$data['min']=$filterscatid['min'];
+				$data['max']=$filterscatid['max'];
 				//echo '<pre>';print_r($data['subitemwise']);exit;
 				$data['brand_list']= $this->category_model->get_subitem_all_brand_list($subcatid,$subitemid);
 				$data['price_list']= $this->category_model->get_subitem_all_price_list($subcatid,$subitemid);
@@ -1563,7 +1576,7 @@ public function subitemwise_search(){
 					if($list['offer_expairdate']>=$curr_date){
 					$amounts[]=$list['item_cost'];
 					}else{
-					$amounts[]=$list['special_price'];
+					$amounts[]=$list['item_cost'];
 					}
 
 				}
