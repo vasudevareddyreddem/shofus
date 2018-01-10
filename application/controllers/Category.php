@@ -901,7 +901,7 @@ public function suitemwiseproductslist(){
 			if($list['offer_expairdate']>=$curr_date){
 				$amounts[]=$list['item_cost'];
 			}else{
-				$amounts[]=$list['special_price'];
+				$amounts[]=$list['item_cost'];
 			}
 			
 		}
@@ -1836,7 +1836,7 @@ public function subitemwise_search(){
 			if($list['offer_expairdate']>=$curr_date){
 				$amounts[]=$list['item_cost'];
 			}else{
-				$amounts[]=$list['special_price'];
+				$amounts[]=$list['item_cost'];
 			}
 			
 		}

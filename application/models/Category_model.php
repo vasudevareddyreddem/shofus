@@ -393,15 +393,11 @@ class Category_model extends MY_Model
 	
 	public function get_subcategory_filers_products_list_alllist($b,$f,$ram,$colour,$os,$min,$max,$cid,$subcatid){
 		
-		$min_amt=(($min)-1);
-		$maxmum=(int)$max;
-		$lessamount=($maxmum)-($min_amt);
+		$amtwhere='item_cost BETWEEN '.'"'.$min.'"'.' AND '.$max;
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
-		$this->db->where('special_price <=', $maxmum);
-		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$min_amt.'"', false);
-		
+		$this->db->where($amtwhere);
 		if($b!='NULL'){
 			$this->db->where_in('brand','"'.$b.'"',false);
 		
@@ -957,7 +953,7 @@ class Category_model extends MY_Model
 		$this->db->where('offers!=','');
 		$this->db->group_by('offers');
 		return $this->db->get()->result_array();*/
-		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `subcategory_id` = '".$subcat."' AND `item_status` = 1 AND `offers` != '' OR offer_percentage!=''";
+		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `subcategory_id` = '".$subcat."' AND `item_status` = 1";
 		return $this->db->query($sql)->result_array();
 		
 	}
@@ -2083,9 +2079,9 @@ public function get_all_subitem_list($catid,$subcatid)
 		
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
+		$amtwhere='item_cost BETWEEN '.'"'.$minamount.'"'.' AND '.$maxamount;
 		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
-		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) <=', '"'.$maxamount.'"', false);
-		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$minamount.'"', false);
+		$this->db->where($amtwhere);
 		if($offer!='NULL'){
 			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$offer.'"', false);
 		}if($brand!='NULL'){
@@ -2327,6 +2323,7 @@ public function get_all_subitem_list($catid,$subcatid)
 			
 			}else if($catid==20){
 				$this->db->where('screen_size !=','');
+				$this->db->order_by('screen_size desc');
 			}
 			$this->db->where('products.category_id',$catid);
 			$this->db->where('products.item_status',1);
@@ -2343,6 +2340,7 @@ public function get_all_subitem_list($catid,$subcatid)
 				$this->db->where('occasion !=','');
 			}else if($catid==20){
 				$this->db->where('battery_capacity !=','');
+				$this->db->order_by('battery_capacity desc');
 			}
 			$this->db->where('products.category_id',$catid);
 			$this->db->where('products.item_status',1);
@@ -2379,8 +2377,10 @@ public function get_all_subitem_list($catid,$subcatid)
 				$this->db->order_by('offer_expairdate desc');
 			}else if($catid==19 || $catid==24){
 				$this->db->where('occasion !=','');
+				$this->db->order_by('occasion desc');
 			}else if($catid==20){
-				$this->db->where('camera !=','');
+				$this->db->where('primary_camera !=','');
+				$this->db->order_by('primary_camera desc');
 			}else if($catid==30){
 				$this->db->where('age !=','');
 			}
