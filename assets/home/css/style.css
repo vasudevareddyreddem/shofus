@@ -255,6 +255,7 @@ input{
 .con_st_bo{
 		margin-top:-20px;
 	}
+	
 .log_res_logo{
 		position: absolute;
 		top:-100px;
@@ -6589,6 +6590,31 @@ and (max-device-width : 1024px)
 	.sm_hide{
 		display:none;
 	}
+	.mar_t8{
+		margin-top:6px;
+	}
+	.carousel-control{
+		display:none;
+	}
+	.mar-t135{
+	margin-top:135px !important;
+}
+	.box-product .img-wrapper > .option {
+    position: relative;
+    top: auto;
+    right: 0;
+    bottom: -30px;
+    left: 0;
+    width: auto;
+    height: 28px;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 0;
+    background-color: rgb(227, 240, 241);
+}
 	.cat_sl_s {
 		background:#fff !important;
 		margin:0px 0px !important;

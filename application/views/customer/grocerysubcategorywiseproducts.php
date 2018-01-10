@@ -63,7 +63,7 @@
    }
    /* grossery sidebar	end *
 </style>
-<div class=" clearfix"></div>
+<div class=" clearfix mar-t135"></div>
 <!-- Filter Sidebar -->
 <div class="row ">
 <div class="mar_t20">
