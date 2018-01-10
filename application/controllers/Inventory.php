@@ -2282,6 +2282,8 @@ public function addhomepagemiddlebannerspost()
 						$three=$this->showups_model->get_categorybanners_list_position_wise_three(3);
 						$four=$this->showups_model->get_categorybanners_list_position_wise_four(4);
 						$five=$this->showups_model->get_categorybanners_list_position_wise_five(5);
+							
+							//echo '<pre>';print_r($five);exit;
 							if($position==1){
 								if($one['imagecount']>=3){
 									$this->session->set_flashdata('error',"while adding it should come like 1 of 3 , 3 of 3...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
@@ -2302,7 +2304,7 @@ public function addhomepagemiddlebannerspost()
 									$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 4 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
 									redirect('inventory/categorypagebanners');
 								}
-							}else if($post['position']==5){
+							}else if($position==5){
 								if($five['imagecount']>=4){
 									$this->session->set_flashdata('error',"while adding it should come like 1 of 4 , 4 of 4...once limit completes, limit for Home banner for Today has completed. add for next day.limit of Home banner for today has completed.");
 									redirect('inventory/categorypagebanners');
