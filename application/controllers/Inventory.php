@@ -2800,7 +2800,7 @@ public function addhomepagemiddlebannerspost()
 					$subitem_id=$this->showups_model->get_subcategory_detals($post['selecteddata']);
 					$catid=$subitem_id['category_id'];
 					$subcatid=$subitem_id['subcategory_id'];
-					}else if($post['link']==2){
+					}else if($post['link']==1){
 						$catid=$post['selecteddata'];	
 					}
 			//echo '<pre>';print_r($post);exit;

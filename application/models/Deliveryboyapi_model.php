@@ -55,7 +55,7 @@ class Deliveryboyapi_model extends MY_Model
        	return $this->db->query($sql1);
 	}
 	public function get_deliver_boy_orders_list($cust_id){
-		$this->db->select('orders.payment_type,orders.amount_status,(order_items.order_item_id) as orderid,order_items.amount_status_paid,order_items.delivery_boy_id,order_items.customer_email,order_items.customer_phone,order_items.customer_address,order_items.landmark,order_items.pincode,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile')->from('order_items');
+		$this->db->select('orders.payment_type,orders.amount_status,(order_items.order_item_id) as orderid,order_items.amount_status_paid,order_items.delivery_boy_id,order_items.customer_email,order_items.customer_phone,order_items.customer_address,order_items.landmark,order_items.pincode,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile,order_status.status_refund as cancelstatus')->from('order_items');
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
