@@ -70,7 +70,7 @@
 <div class="col-md-12  ">
 <?php if(isset($subitemwise_item_list) && count($subitemwise_item_list)>0){
 
-//echo '<pre>';print_r($subitemwise_item_list);exit;	?>
+//echo '<pre>';print_r($subitemwise);exit;	?>
   <div class='col-md-3'>
       <div class="sidebar left ">
          <ul class="list-sidebar bg-defoult">
@@ -161,9 +161,14 @@
                               <p class="">MRP:₹ <?php echo number_format($item_price, 2); ?></p>
                               <p class=""> Total Amount:₹ <span id="totalamount<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
                               <div class="clearfix">&nbsp;</div>
+							  <?php if($productslist['item_status'] !=0 && $productslist['item_quantity']>0){ ?>
                               <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
                               <button type="submit" class="btn btn-warning btn-sm mar_1024_t10">Buy Now</button>
-                           </div>
+							  <?php }else{ ?>
+							    <button type="button" class="btn btn-default btn-sm mar_1024_t10">OUT OF STOCK</button>
+
+							  <?php } ?>
+						   </div>
                            <div class="clearfix">&nbsp;</div>
                            <a data-toggle="collapse" data-parent="#accordion" href="#znajomi<?php echo $cnt; ?>">
                               <div class="text-center "><span class="glyphicon glyphicon-chevron-down down_btn_mod"></span></div>

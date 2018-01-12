@@ -150,9 +150,13 @@
                                  <p class=""> Total Amount:₹ <span id="totalamount<?php echo $cnt; ?>"><?php echo number_format($item_price, 2); ?></span></p>
                                  
 								 <div class="clearfix">&nbsp;</div>
-                                 <a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
-                                 <button type="submit" class="btn btn-warning btn-sm mar_1024_t10">Buy Now</button>
-                              </div>
+								 <?php if($productslist['item_status'] !=0 && $productslist['item_quantity']>0){ ?>
+									<a onclick="singleitemaddtocart('<?php echo $productslist['item_id']; ?>','<?php echo $productslist['category_id']; ?>','single')" class="btn btn-primary btn-sm">Add To Cart</a>
+									<button type="submit" class="btn btn-warning btn-sm mar_1024_t10">Buy Now</button>
+								<?php }else{ ?>
+								<button type="button" class="btn btn-default btn-sm mar_1024_t10">OUT OF STOCK</button>
+								<?php } ?>
+							  </div>
 							  <div class="clearfix">&nbsp;</div>
 												  <a data-toggle="collapse" data-parent="#accordion" href="#znajomi<?php echo $cnt; ?>"> <div class="text-center "><span class="glyphicon glyphicon-chevron-down down_btn_mod"></span></div></a>
                            </div>
