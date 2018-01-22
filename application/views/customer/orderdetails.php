@@ -205,7 +205,7 @@ tr th:last-child {
 		<?php if($item_details['status_deliverd']==4 && $item_details['status_refund']!=''){ ?>
 		<p >Your order is Requested for <?php echo $item_details['status_refund']; ?>  </p>
 		<p >Return policy : <?php echo $item_details['return_policy']; ?>  </p>
-		<p >We will contact you within 12 hrs to clarify your request. Please note that your request will be accepted only if it falls within the sellers return policy of cartinhours.com. </p>
+		<p >We will contact you within 12 hrs to clarify your request. Please note that your request will be accepted only if it falls within the sellers return policy of shofus.com. </p>
 		<?php } ?>
 		</div>
 		</div>
