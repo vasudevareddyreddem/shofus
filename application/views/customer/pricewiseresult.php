@@ -1062,6 +1062,7 @@ function categoryoricewisefilters(val,status,check){
 					},
 				dataType: 'html',
 				success: function (data) {
+					window.location.href = '#mainfocus';
 					$("#categorywisepricefilterdata").empty();
 					$("#categorywisepricefilterdata").append(data);
 				}

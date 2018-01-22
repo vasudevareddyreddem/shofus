@@ -152,7 +152,6 @@
 box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
 }
 </style>
-   <span id="mainfocus"></span>
 
 <div class="wrapper">
 <!--header part start here -->

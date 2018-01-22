@@ -374,7 +374,7 @@ function subcatehorywise(val,status,check){
 					},
 				dataType: 'html',
 				success: function (data) {
-					//alert(data);
+					window.location.href = '#mainfocus';
 					$("#withoursearchsubcategory").empty();
 					$("#withoursearchsubcategory").append(data);
 	}

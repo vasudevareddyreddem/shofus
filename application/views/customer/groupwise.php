@@ -914,7 +914,7 @@ function categorywisefilters(val,status,check){
 					},
 				dataType: 'html',
 				success: function (data) {
-					//alert(data);
+					window.location.href = '#mainfocus';
 					$("#groupwiseresult").empty();
 					$("#groupwiseresult").append(data);
 	}
