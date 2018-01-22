@@ -64,7 +64,7 @@
                         <div style="margin-top:10px" class="form-group">
                             <!-- Button -->
                             <div class="col-sm-12 controls">
-                                <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+                                <button class="btn btn-lg btn-primary btn-block " type="submit">
                                     Change password</button>
 
                             </div>

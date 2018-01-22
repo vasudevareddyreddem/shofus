@@ -26,3 +26,4 @@ application/logs/1f801ba80f60d9640737fc35b9d54e58
 *.log
 application/config/database.php
 application/config/database.php
+application/logs/hybridauth.log

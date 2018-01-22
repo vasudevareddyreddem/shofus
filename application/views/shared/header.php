@@ -152,8 +152,7 @@
 box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
 }
 </style>
-   <span id="mainfocus"></span>
-
+<span id="mainfocus"></span>
 <div class="wrapper">
 <!--header part start here -->
 <div class="jain_container">
@@ -164,9 +163,9 @@ box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
             <div class="social-media pull-left" >
               <span class="font_s12"> Stay connected:</span>
                <ul>
-                  <li><a href="https://www.facebook.com/cartinhoursdotcom/" target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/fb.png" /></i></span></a></li>
+                  <li><a href="https://www.facebook.com/shofusdotcom/" target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/fb.png" /></i></span></a></li>
                   &nbsp;
-                  <li><a href="https://twitter.com/cartinhours" target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/tiw.png" /></i></span></a></li>
+                  <li><a href="https://twitter.com/shofus" target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/tiw.png" /></i></span></a></li>
                   &nbsp;
                   <li><a href="https://plus.google.com/u/0/106334687276812209130"  target="_blank" class=""><span class=""><i class="" aria-hidden="true"><img src="<?php echo base_url(); ?>assets/home/images/gmai.png" /></i></span></a></li>
                </ul>
@@ -182,7 +181,7 @@ box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
                   </li>
                   &nbsp;
                   <li>
-                     <a class="" href="mailto:support@cartinhours.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@shofus.com</a>
+                     <a class="" href="mailto:support@shofus.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@shofus.com</a>
                   </li>
                </ul>
             </div>
@@ -195,11 +194,11 @@ box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
 
 			<div class="col-sm-2 show_1024">
                <h2 style="margin:0px;color:#fff"><span class="smallnav menu" onclick="openNav()">☰</span></h2>
-               <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo_1024.png" /></a></span></h1>
+               <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="shofus" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo_1024.png" /></a></span></h1>
             </div>
 			<div class="col-sm-2 hide_1024">
                <h2 style="margin:0px;color:#fff"><span class="smallnav menu" onclick="openNav()">☰</span></h2>
-               <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="Cartinhours" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a></span></h1>
+               <h1 style="margin:0px;"><span class="largenav"><a class="navbar-brand" href="<?php echo base_url(); ?>" data-toggle="popover" title="shofus" data-content="header"> <img src="<?php echo base_url(); ?>assets/home/images/logo.png" /></a></span></h1>
             </div>
 			   <div class="medias list_ad sm_hide ">
 				
@@ -490,7 +489,7 @@ box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
    <a href="<?php echo base_url(); ?>"><span class="glyphicon  glyphicon-home"></span> Home</a>
    <?php //echo '<pre>';print_r($sidecaregory_list);exit; ?>
    <?php foreach ($sidecaregory_list as $categories){ ?>
-   <a href="<?php echo base_url('category/subcategorys/'.base64_encode($categories['category_id'])); ?>"><span class=" glyphicon glyphicon-erase
+   <a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>"><span class=" glyphicon glyphicon-erase
       "></span> <?php echo $categories['category_name'] ; ?></a>
    <?php } ?>
    <a href="<?php echo base_url('customer/orders');?>"><span class="glyphicon glyphicon-list-alt
