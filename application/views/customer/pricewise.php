@@ -27,9 +27,13 @@
 				 <?php if($minimum_price['item_cost']==$maximum_price['item_cost']){ ?>
 						  <option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
 							<?php }else{ ?>
-						<?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
-						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-						<?php } ?>	
+						<?php $cnt=1;for($i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000){  ?>
+								<?php if($cnt==1){if($maximum_price['item_cost'] !=$i){ ?>
+									<option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
+								<?php } } ?>
+									<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+								
+						<?php $cnt++;} ?>	
 					<?php } ?>
 
 			  </select>

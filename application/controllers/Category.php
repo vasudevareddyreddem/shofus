@@ -1698,7 +1698,7 @@ public function subitemwise_search(){
 				$data['step_ninelabel']='Occasion';
 			}else if($cateid==20){
 				$data['step_ninelabel']='Battery Capacity';
-			}else if($cateid!=21){
+			}else if($cateid!=21 && $cateid!=19 && $cateid!=20 && $cateid!=22 && $cateid!=23 && $cateid!=24 && $cateid!=28 && $cateid!=29 && $cateid!=30 && $cateid!=31 && $cateid!=32 && $cateid!=34 && $cateid!=35 && $cateid!=36){
 				$data['step_ninelabel']='X';
 			}
 		}
@@ -1719,7 +1719,7 @@ public function subitemwise_search(){
 				$data['step_tenlabel']='camera';
 			}else if($cateid==30){
 				$data['step_tenlabel']='age';
-			}else if($cateid!=21){
+			}else if($cateid!=21 && $cateid!=19 && $cateid!=20 && $cateid!=22 && $cateid!=23 && $cateid!=24 && $cateid!=28 && $cateid!=29 && $cateid!=30 && $cateid!=31 && $cateid!=32 && $cateid!=34 && $cateid!=35 && $cateid!=36){
 				$data['step_tenlabel']='Z';
 			}
 		}
