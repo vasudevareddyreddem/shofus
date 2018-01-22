@@ -2672,7 +2672,7 @@ class Customerapi_model extends MY_Model
 					$plist[$productslist['item_id']]=$productslist;
 					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
-					$plist[$productslist['item_id']]['percentage']=$percentage;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 			}
 			
 			foreach($plist as $Lis){

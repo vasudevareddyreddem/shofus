@@ -2202,6 +2202,7 @@ public function get_all_subitem_list($catid,$subcatid)
 	$this->db->where('products.subcategory_id',$subcatid);
 	$this->db->where('products.itemwise_id !=','');
 	$this->db->group_by('items_list.id');
+	$this->db->where('products.item_status',1);
 	return $this->db->get()->result_array();
 	}
 	/*subcategory list*/
