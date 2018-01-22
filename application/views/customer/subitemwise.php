@@ -1154,6 +1154,7 @@ function subitemwisefilters(val,status,check){
 				success: function (data) {
 					$("#subitemwisedata").empty();
    					$("#subitemwisedata").hide();
+					window.location.href = '#mainfocus';
    					$("#filtersubitemwisedata").show();
    					$("#filtersubitemwisedata").append(data);
 				}

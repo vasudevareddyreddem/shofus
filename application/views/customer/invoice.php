@@ -136,7 +136,7 @@ table td.grand {
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>cartinhours</title>
+    <title>Shofus</title>
     <link rel="stylesheet" href="style.css" media="all" />
   </head>
   <body>
@@ -145,6 +145,7 @@ table td.grand {
      
       <h1>INVOICE </h1>
 	   <div class="clearfix">
+		<div ><span style="float:left"> <b>Website Name</b> <span>Shofus.com</span></span>
 		<div ><span style="float:left"> <b>Sold By:</b> <span><?php echo isset($details['store_name'])?$details['store_name']:'';  ?> ,</span></span>
 		<span  style="float:right;"> <b>Invoice Number </b># <?php echo isset($details['order_item_id'])?$details['order_item_id']:'';  ?><?php echo isset($details['invoice_id'])?$details['invoice_id']:'';  ?> </span>
 		</div>
