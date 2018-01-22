@@ -70,6 +70,7 @@ tr th:last-child {
 		
 	 <!-- track start-->
 <div class="row" >
+ <div id="sucessmsg" style="display:none;"></div>
   <?php if($this->session->flashdata('success')): ?>
 		<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 
@@ -487,6 +488,10 @@ function submmtingcancle(){
 		  if(data.msg==1){
 			 location.reload();   
 		  }
+		  if(data.msg==2){
+			 jQuery('#sucessmsg').show();
+			 $('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Please check once order item status. Then proceed to next step <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+		 }
 
         }
       });

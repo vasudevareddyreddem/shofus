@@ -2699,47 +2699,55 @@ public function aboutus(){
 			 );
 			 $canclesaveorder=$this->customer_model->save_cancel_order($post['order_items_id'],$post['pid'],$canceldata);
 			 $custdetails=$this->customer_model->get_customerBilling_details($post['order_items_id']);
+			 $getdetails=$this->customer_model->get_orderitem_details($post['order_items_id']);
+			//echo $post['order_items_id'];
+			//echo '<pre>';print_r($getdetails);exit;
+			if(isset($getdetails['status_refund']) && $getdetails['status_refund'] ==''){
+				 if(count($canclesaveorder)>0){
+					 
+						/*cancel sms */
+						$msg='Cancelled:'.$custdetails['item_name'].' in your order with order ID  : '.$post['order_items_id'].'. has been cancelled.  Please check your email for more details';
+						$messagelis['list']=$custdetails;
+						$username=$this->config->item('smsusername');
+						$pass=$this->config->item('smspassword');
+						$cancelmobilesno=$custdetails['customer_phone'];
+						$ch4 = curl_init();
+						curl_setopt($ch4, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+						curl_setopt($ch4, CURLOPT_POST, 1);
+						curl_setopt($ch4, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$cancelmobilesno.'&text='.$msg.'&priority=ndnd&stype=normal');
+						curl_setopt($ch4, CURLOPT_RETURNTRANSFER, true);
+						//echo '<pre>';print_r($ch);exit;
+						$server_output = curl_exec ($ch4);
+						curl_close ($ch4);
+						/*cancel sms */
+						
+						
+						/*email*/
+						$this->load->library('email');
+						$this->email->set_newline("\r\n");
+						$this->email->set_mailtype("html");
+						$this->email->from('cartinhours.com');
+						$this->email->to($custdetails['cust_email']);
+						$this->email->subject('Cartinhours - Order Cancellation');
+						$html = $this->load->view('email/customerordercancel.php', $messagelis, true); 
+						//echo $html;exit;
+						$this->email->message($html);
+						$this->email->send();
+						
+						/*email*/
+					$data['msg']=1;
+					echo json_encode($data);
+				 }else{
+					 $data['msg']=0;
+					echo json_encode($data);
+				 }
 			
-			 if(count($canclesaveorder)>0){
-				 
-					/*cancel sms */
-					$msg='Cancelled:'.$custdetails['item_name'].' in your order with order ID  : '.$post['order_items_id'].'. has been cancelled.  Please check your email for more details';
-					$messagelis['list']=$custdetails;
-					$username=$this->config->item('smsusername');
-					$pass=$this->config->item('smspassword');
-					$cancelmobilesno=$custdetails['customer_phone'];
-					$ch4 = curl_init();
-					curl_setopt($ch4, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
-					curl_setopt($ch4, CURLOPT_POST, 1);
-					curl_setopt($ch4, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$cancelmobilesno.'&text='.$msg.'&priority=ndnd&stype=normal');
-					curl_setopt($ch4, CURLOPT_RETURNTRANSFER, true);
-					//echo '<pre>';print_r($ch);exit;
-					$server_output = curl_exec ($ch4);
-					curl_close ($ch4);
-					/*cancel sms */
-					
-					
-					/*email*/
-					$this->load->library('email');
-					$this->email->set_newline("\r\n");
-					$this->email->set_mailtype("html");
-					$this->email->from('cartinhours.com');
-					$this->email->to($custdetails['cust_email']);
-					$this->email->subject('Cartinhours - Order Cancellation');
-					$html = $this->load->view('email/customerordercancel.php', $messagelis, true); 
-					//echo $html;exit;
-					$this->email->message($html);
-					$this->email->send();
-					
-					/*email*/
-				$data['msg']=1;
-				echo json_encode($data);
-			 }else{
-				 $data['msg']=0;
-				echo json_encode($data);
-			 }
 			 $this->session->set_flashdata('success','Your request successfully submitted');
-			//redirect('customer/orederdetails/'.base64_encode($post['order_items_id'])); 
+			//redirect('customer/orederdetails/'.base64_encode($post['order_items_id']));
+			}else{
+			 $data['msg']=2;
+			echo json_encode($data);
+			}			
 			
 		}else{
 			$this->session->set_flashdata('loginerror','Please login to continue');
