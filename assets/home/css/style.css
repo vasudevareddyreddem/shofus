@@ -1,6 +1,9 @@
 .pr15 a{
 	color:#555 !important;
 }
+.pad-10{
+	padding:10px;
+}
 .sec-des li{
 	float:left;
 	border:1px solid #009968;
@@ -256,15 +259,21 @@ input{
 		margin-top:-20px;
 	}
 	
-.log_res_logo{
-		position: absolute;
-		top:-100px;
-		right:43%
-	}
+.log_res_logo {
+    position: absolute;
+    top: -78px;
+    right: 40%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 21px;
+}
 	.log_res_logo_for{
 		position: absolute;
-		top:-100px;
-		right:43%
+		top:-62px;
+		right:43%;
+		background: #fff;
+    padding: 20px;
+    border-radius: 21px;
 	}
 .box-product h6 a{
 	text-transform: capitalize !important;
@@ -6805,7 +6814,7 @@ div.bhoechie-tab-container{
 	border:none;
 }
 .mar_res_t150{
-	margin-top:120px;
+	margin-top:140px;
 	margin-bottom:0px;
 }
 .mar_res_t150w{

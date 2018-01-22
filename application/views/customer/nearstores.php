@@ -6,7 +6,7 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 }
 
 </style>
-<div class=" container mar_res_t150">
+<div class=" container mar_res_t150 sm_hide">
  <div class="bac_n_l " style="border:1px solid #ddd;height:220px;">
 	 <form  onSubmit="return validations();" action="<?php echo base_url('customer/nearstores'); ?>" method="post" >
         <div class="form-group"  >
@@ -92,6 +92,17 @@ box-shadow: 0px 0px 5px 2px rgba(221,221,221,1);
 	<?php }	?>
 	<div class="clearfix"> &nbsp;</div>
 	</div>
+	</div>
+	<div class=" container mar_res_t150 md_hide">
+		 <div class="card pad-10" >
+		 <h4 class="">Select Your Shop location</h4>
+		 <hr>
+			<div class="checkbox"><label><input type="checkbox" checked="checked"><span> Kphp</span></label></div>
+            <div class="checkbox"><label><input type="checkbox"><span> Kukkatpalli</span></label></div>
+            <div class="checkbox"><label><input type="checkbox"><span> Miyapur</span></label></div>
+            <div class="checkbox"><label><input type="checkbox"><span> Nizampet</span></label></div>	
+			<button  type="submit" class="btn btn-primary btn-block">Submit</button>		
+		</div>
 	</div>
 
 <div style="margin-top:150px;" class="clearfix">&nbsp;</div>
