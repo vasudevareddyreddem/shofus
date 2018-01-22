@@ -140,8 +140,9 @@ class Deliveryboyapi_model extends MY_Model
        	return $this->db->query($sql1);
 	}
 	public function get_orderitem_details($id){
-		$this->db->select('order_items.total_price,order_items.delivery_amount,order_items.order_id')->from('order_items');
-		$this->db->where('order_item_id',$id);
+		$this->db->select('order_items.total_price,order_items.delivery_amount,order_items.order_id,order_status.status_refund')->from('order_items');
+		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+		$this->db->where('order_items.order_item_id',$id);
 		return $this->db->get()->row_array();
 	}
 	
