@@ -2693,7 +2693,7 @@ class Customerapi_model extends MY_Model
 	}
 	public function get_products_lists($catid){
 		
-		$this->db->select('products.item_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.item_quantity,products.item_status,products.category_id,products.offer_amount,products.offer_percentage,products.item_image')->from('products');
+		$this->db->select('products.item_id,products.subitemid,products.subcategory_id,products.category_id,products.itemwise_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.item_quantity,products.item_status,products.category_id,products.offer_amount,products.offer_percentage,products.item_image')->from('products');
         $this->db->where('products.category_id',$catid);
 		return $this->db->get()->result_array();
 		

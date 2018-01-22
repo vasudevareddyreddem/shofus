@@ -11,7 +11,6 @@ $('#pqty').val("<?php echo isset($item_details['item_quantity'])?$item_details['
 $('#warranty_summary').val("<?php echo isset($item_details['warranty_summary'])?$item_details['warranty_summary']:''; ?>");
 $('#warranty_type').val("<?php echo isset($item_details['warranty_type'])?$item_details['warranty_type']:''; ?>");
 $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_details['service_type']:''; ?>");
-$('#pbrand').val("<?php echo isset($item_details['pbrand'])?$item_details['service_type']:''; ?>");
 </script>
 <?php //echo '<pre>';print_r($item_details); ?>
 
@@ -69,35 +68,36 @@ $('#pbrand').val("<?php echo isset($item_details['pbrand'])?$item_details['servi
 			</div>
 			
 			<div class=" col-md-6 ">
-				<div class="form-group nopaddingRight san-lg">
-					<label for="exampleInputEmail1">Material</label>
-					<input type="text" class="form-control" id="material" name="material" value="<?php echo isset($item_details['material'])?$item_details['material']:''; ?>" >
-				</div>
-			</div>
-		
-	</div>
-	<div class="row">
-					<div class=" col-md-6 ">
-						<div class="form-group nopaddingRight san-lg">
+					<div class="form-group nopaddingRight san-lg">
 							<label for="exampleInputEmail1">Type</label>
 							<input type="text" class="form-control" id="type" name="type" value="<?php echo isset($item_details['type'])?$item_details['type']:''; ?>" >
 						</div>
-					</div>
-					
-					<div class=" col-md-6 ">
-						<div class="form-group nopaddingRight san-lg">
-							<label for="exampleInputEmail1">Waterproof</label>
-							<input type="text" class="form-control" id="waterproof" name="waterproof" value="<?php echo isset($item_details['waterproof'])?$item_details['waterproof']:''; ?>" >
-						</div>
-					</div>
-				
+			</div>
+		
 	</div>
+		<div class="row">
+				
+				
+				<div class=" col-md-6 ">
+					<div class="form-group nopaddingRight san-lg">
+						<label for="exampleInputEmail1">Waterproof</label>
+						<input type="text" class="form-control" id="waterproof" name="waterproof" value="<?php echo isset($item_details['waterproof'])?$item_details['waterproof']:''; ?>" >
+					</div>
+				</div>
+				<div class=" col-md-6 ">
+					<div class="form-group nopaddingRight san-lg">
+						<label for="exampleInputEmail1">Laptop Compartment</label>
+						<input type="text" class="form-control" id="laptop_compartment" name="laptop_compartment" value="<?php echo isset($item_details['laptop_compartment'])?$item_details['laptop_compartment']:''; ?>" >
+					</div>
+				</div>
+			
+		</div>
 	<div class="row">
 					<div class=" col-md-6 ">
 						<div class="form-group nopaddingRight san-lg">
-							<label for="exampleInputEmail1">Laptop Compartment</label>
-							<input type="text" class="form-control" id="laptop_compartment" name="laptop_compartment" value="<?php echo isset($item_details['laptop_compartment'])?$item_details['laptop_compartment']:''; ?>" >
-						</div>
+					<label for="exampleInputEmail1">Number Lock Mechanism</label>
+					<input type="text" class="form-control" id="focus_lock" name="focus_lock" value="<?php echo isset($item_details['focus_lock'])?$item_details['focus_lock']:''; ?>" >
+					</div>
 					</div>
 					
 					<div class=" col-md-6 ">
@@ -118,8 +118,8 @@ $('#pbrand').val("<?php echo isset($item_details['pbrand'])?$item_details['servi
 					
 					<div class=" col-md-6 ">
 						<div class="form-group nopaddingRight san-lg">
-							<label for="exampleInputEmail1">No of Pockets</label>
-							<input type="text" class="form-control" id="no_of_pockets" name="no_of_pockets" value="<?php echo isset($item_details['no_of_pockets'])?$item_details['no_of_pockets']:''; ?>" >
+							<label for="exampleInputEmail1">No of Copartments</label>
+							<input type="text" class="form-control" id="no_of_copartments" name="no_of_copartments" value="<?php echo isset($item_details['no_of_copartments'])?$item_details['no_of_copartments']:''; ?>" >
 						</div>
 					</div>
 				
@@ -127,8 +127,24 @@ $('#pbrand').val("<?php echo isset($item_details['pbrand'])?$item_details['servi
 	<div class="row">
 					<div class=" col-md-6 ">
 						<div class="form-group nopaddingRight san-lg">
+							<label for="exampleInputEmail1">No of Pockets</label>
+							<input type="text" class="form-control" id="no_of_pockets" name="no_of_pockets" value="<?php echo isset($item_details['no_of_pockets'])?$item_details['no_of_pockets']:''; ?>" >
+						</div>
+					</div>
+					
+					<div class=" col-md-6 ">
+						<div class="form-group nopaddingRight san-lg">
 							<label for="exampleInputEmail1">Inner Material</label>
 							<input type="text" class="form-control" id="inner_material" name="inner_material" value="<?php echo isset($item_details['inner_material'])?$item_details['inner_material']:''; ?>" >
+						</div>
+					</div>
+				
+	</div>
+	<div class="row">
+					<div class=" col-md-6 ">
+						<div class="form-group nopaddingRight san-lg">
+							<label for="exampleInputEmail1">Outer Material</label>
+							<input type="text" class="form-control" id="sole_material" name="sole_material" value="<?php echo isset($item_details['sole_material'])?$item_details['sole_material']:''; ?>" >
 						</div>
 					</div>
 					
@@ -142,10 +158,10 @@ $('#pbrand').val("<?php echo isset($item_details['pbrand'])?$item_details['servi
 	</div>
 	<div class="row">
 		<div class="col-md-12 form-group">
-			<div class="form-group nopaddingRight san-lg">
-				<label for="exampleInputEmail1">Disclaimer</label>
-				<textarea  placeholder="Disclaimer" style="width: 1034px; height: 59px;" class="form-control" rows="3" id="disclaimer" name="disclaimer"><?php echo isset($item_details['disclaimer'])?$item_details['disclaimer']:''; ?></textarea>
-			</div>
+		<div class="form-group nopaddingRight san-lg">
+			<label for="exampleInputEmail1">Ideal For</label>
+			<input type="text" class="form-control" id="ideal_for" name="ideal_for" value="<?php echo isset($item_details['ideal_for'])?$item_details['ideal_for']:''; ?>" >
+		</div>
 		</div>
 	</div>
 	

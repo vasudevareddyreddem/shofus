@@ -129,7 +129,7 @@ $('#service_type').val("<?php echo isset($item_details['service_type'])?$item_de
 		<div class="col-md-6 form-group">
 			<div class="form-group nopaddingRight san-lg">
 				 <label for="exampleInputEmail1">Internal Memory</label>
-				<input type="text" class="form-control" id="internal_memory" name="internal_memory" value="<?php echo isset($item_details['internal_memory'])?$item_details['internal_memory']:''; ?>" >
+				<input type="text" class="form-control" id="internal_memeory" name="internal_memeory" value="<?php echo isset($item_details['internal_memeory'])?$item_details['internal_memeory']:''; ?>" >
 			</div>
 		</div>
 		<div class="col-md-6 form-group">
