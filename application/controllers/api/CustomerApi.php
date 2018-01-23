@@ -1062,11 +1062,11 @@ class CustomerApi extends REST_Controller {
 
 					}else if(isset($email) && $email!=''){
 						
-							$msg=$six_digit_random_number.'is your Cartinhours verification code one-time use. Please DO NOT share this OTP with anyone to ensure account security ';
+							$msg=$six_digit_random_number.'is your shofus verification code one-time use. Please DO NOT share this OTP with anyone to ensure account security ';
 							$this->load->library('email');
-							$this->email->from('admin@cartinhours.com', 'CartInHours');
+							$this->email->from('admin@shofus.com', 'shofus');
 							$this->email->to($email);
-							$this->email->subject('CartInHours - Forgot Password');
+							$this->email->subject('shofus - Forgot Password');
 							$html =$msg;
 							//echo $html;exit;
 							$this->email->message($html);
@@ -2463,9 +2463,9 @@ class CustomerApi extends REST_Controller {
 							$this->load->library('email');
 							$this->email->set_newline("\r\n");
 							$this->email->set_mailtype("html");
-							$this->email->from('cartinhours.com');
+							$this->email->from('shofus.com');
 							$this->email->to($custdetails['seller_email']);
-							$this->email->subject('Cartinhours - Order Return');
+							$this->email->subject('shofus - Order Return');
 							$html = $this->load->view('email/orderreturn.php', $messagelis, true); 
 							//echo $html;exit;
 							$this->email->message($html);
@@ -3005,9 +3005,9 @@ class CustomerApi extends REST_Controller {
 					$this->load->library('email');
 					$this->email->set_newline("\r\n");
 					$this->email->set_mailtype("html");
-					$this->email->from('cartinhours.com');
+					$this->email->from('shofus.com');
 					$this->email->to($items['seller_email']);
-					$this->email->subject('Cartinhours - Order Confirmation');
+					$this->email->subject('shofus - Order Confirmation');
 					$html = $this->load->view('email/sellerorederconfirmation.php', $messagelis, true); 
 					//echo $html;exit;
 					$this->email->message($html);
@@ -3052,9 +3052,9 @@ class CustomerApi extends REST_Controller {
 						$this->load->library('email');
 						$this->email->set_newline("\r\n");
 						$this->email->set_mailtype("html");
-						$this->email->from('cartinhours.com');
+						$this->email->from('shofus.com');
 						$this->email->to($customerdetails['cust_email']);
-						$this->email->subject('Cartinhours - Order Confirmation');
+						$this->email->subject('shofus - Order Confirmation');
 						$html = $this->load->view('email/orderconfirmation.php', $data, true); 
 						//echo $html;exit;
 						$this->email->message($html);

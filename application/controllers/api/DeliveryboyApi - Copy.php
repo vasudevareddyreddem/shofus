@@ -335,9 +335,9 @@ class DeliveryboyApi extends REST_Controller {
 					$this->load->library('email');
 					$this->email->set_newline("\r\n");
 					$this->email->set_mailtype("html");
-					$this->email->from('cartinhours.com');
+					$this->email->from('shofus.com');
 					$this->email->to($details['customer_email']);
-					$this->email->subject('Cartinhours - Order Delivered');
+					$this->email->subject('shofus - Order Delivered');
 					$html = $this->load->view('email/sellerorederconfirmation.php', $messagelis, true); 
 					//echo $html;exit;
 					$this->email->message($html);

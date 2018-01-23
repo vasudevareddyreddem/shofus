@@ -111,7 +111,7 @@ public function doforget()
 		
 		if ($this->login_model->checkEmailExits($this->input->post('admin_email')))
 		{
-		$from_email = 'admin@cartinhours.com';
+		$from_email = 'admin@shofus.com';
 		$subject = 'Reset Your Password';
 		$message = "Dear User,\nPlease click on below URL to change the password\n\n dev2.kateit.in/php/infinity_latest/seller_admin/login/changepwd/". $x ."?id=changepwd"."\n\nThanks,\nUncancer Team";
 		

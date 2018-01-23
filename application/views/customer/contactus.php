@@ -43,7 +43,7 @@
           <ul class="list-group list-group-nav">
             <li class="list-group-item">&raquo; Plot No. 177, Sri Vani Nilayam, 1st floor,Beside Sri Chaitanya High School, Sardar Patel Nagar, Nizampet Road, after JNTU , Hyderabad, Telangana, 500072</li>
             <li class="list-group-item">&raquo; 040-48541273</li>
-            <li class="list-group-item">&raquo; support@cartinhours.com</li>
+            <li class="list-group-item">&raquo; support@shofus.com</li>
           </ul>
 
           <!-- Location Map -->

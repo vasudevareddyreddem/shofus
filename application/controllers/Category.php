@@ -1705,7 +1705,7 @@ public function subitemwise_search(){
 		if($cateid==21 || $cateid==31 || $cateid==19 || $cateid==24 || $cateid==35 ||  $cateid==28 ||  $cateid==20){
 			if($cateid==21){
 				$data['step_ten']= $this->category_model->step_seasonten_data($cateid);
-					$data['step_tenlabel']='Season of the day';
+				$data['step_tenlabel']='Season of the day';
 			}else if($cateid==19 || $cateid==24){
 				$data['step_ten']= $this->category_model->step_tenfootwear_data($cateid);
 			}else{

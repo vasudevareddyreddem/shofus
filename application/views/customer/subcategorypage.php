@@ -241,6 +241,7 @@ $customerdetails=$this->session->userdata('userdetails');
 <?php } ?>
 	<!--shop by x start-->
 	<?php if(isset($step_six) && count($step_six)>0) { ?>
+	<?php //echo '<pre>';print_r($step_six);exit;?>
 	<section>
 	<div class="best-pro slider-items-products container_main">
 		<div class="new_title">
@@ -304,7 +305,15 @@ $customerdetails=$this->session->userdata('userdetails');
 				</div>
               </div>
               <h6><a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>"><?php echo $list['item_name']; ?></a></h6>
-            <div class="price">
+              <?php if($list['category_id']==20){ ?>
+			  <div class="text-center" style="color:#187a7d;"><strong><?php echo $list['screen_size']; ?></strong></div>
+			  <?php }else if($list['category_id']==28){ ?>
+			  		<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['offerslist']; ?></strong></div>
+				<?php }else if($list['category_id']==19 || $list['category_id']==24 || $list['category_id']==35){ ?>
+			  		<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['type']; ?></strong></div>
+
+			  <?php } ?>
+			<div class="price">
                
 				<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
 			<?php if($percentage!=''){ ?> &nbsp;
@@ -493,6 +502,14 @@ $customerdetails=$this->session->userdata('userdetails');
 								</div>
 							  </div>
 							  <h6><a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>"><?php echo $list['item_name']; ?></a></h6>
+								<?php if($list['category_id']==19 || $list['category_id']==24){ ?>
+								<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['occasion']; ?></strong></div>
+								<?php }else if($list['category_id']==21 || $list['category_id']==31){ ?>
+								<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['offerslist']; ?></strong></div>
+								<?php }else if($list['category_id']==20){ ?>
+								<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['battery_capacity']; ?></strong></div>
+
+								<?php } ?>
 							<div class="price">
 							   
 								<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
@@ -583,9 +600,17 @@ $customerdetails=$this->session->userdata('userdetails');
 								</div>
 							  </div>
 							  <h6><a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>"><?php echo $list['item_name']; ?></a></h6>
+								<?php if($list['category_id']==19 || $list['category_id']==24){ ?>
+									<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['occasion']; ?></strong></div>
+								<?php }else if($list['category_id']==21 || $list['category_id']==31){ ?>
+									<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['offerslist']; ?></strong></div>
+								<?php }else if($list['category_id']==20){ ?>
+									<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['primary_camera']; ?></strong></div>
+								<?php }else if($list['category_id']==30){ ?>
+									<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['age']; ?></strong></div>
+								<?php } ?>
 							<div class="price">
-							   
-								<div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
+							   <div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 
 							<?php if($percentage!=''){ ?> &nbsp;
 							<span class="price-old">₹ <?php echo number_format($orginal_price, 2); ?></span>
 								<span class="label-tags"><p class=" text-success"> <?php echo number_format($percentage, 2, '.', ''); ?>% off</p></span>

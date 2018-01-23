@@ -2312,7 +2312,7 @@ public function get_all_subitem_list($catid,$subcatid)
 		public function step_six_data($catid){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image,products.screen_size,products.type,if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`) as offerslist')->from('products');
 			if($catid==21 || $catid==31){
 				$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`)');
 				$this->db->order_by('offer_expairdate desc');
@@ -2333,7 +2333,7 @@ public function get_all_subitem_list($catid,$subcatid)
 	  public function step_nine_data($catid){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			$this->db->select('products.occasion,products.battery_capacity,products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image,if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`)as offerslist')->from('products');
 			if($catid==21 || $catid==31){
 				$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`)');
 				$this->db->order_by('offer_expairdate desc');
@@ -2350,7 +2350,7 @@ public function get_all_subitem_list($catid,$subcatid)
 	  public function step_seasonten_data($catid){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('season_sales');
+			$this->db->select('products.primary_camera,products.age,products.occasion,products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('season_sales');
 			$this->db->join('products', 'products.item_id = season_sales.item_id', 'left'); //
 			$this->db->where('products.item_id !=','');
 			$this->db->where('season_sales.expairdate >=', $curr_date);
@@ -2360,7 +2360,7 @@ public function get_all_subitem_list($catid,$subcatid)
 		public function step_tenfootwear_data($catid){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			$this->db->select('products.primary_camera,products.age,products.occasion,products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image,if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`) as offerslist')->from('products');
 			$this->db->where('products.item_id !=','');
 			if($catid==19){
 			$this->db->where('products.subcategory_id',128);
@@ -2372,7 +2372,7 @@ public function get_all_subitem_list($catid,$subcatid)
 		public function step_ten_data($catid){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
+			$this->db->select('products.primary_camera,products.age,products.occasion,products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image,if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`) as offerslist')->from('products');
 			if($catid==21 || $catid==31){
 				$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers`)');
 				$this->db->order_by('offer_expairdate desc');

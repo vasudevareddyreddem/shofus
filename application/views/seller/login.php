@@ -826,7 +826,7 @@
 								 <i class="fa fa-fax"></i> Website  
 							</div>
 							<div class="col-sm-10">
-								 <a href="https://cartinhours.com/"> hhtps://cartinhours.com</a>
+								 <a href="https://shofus.com/"> hhtps://shofus.com</a>
 							</div>
 						</div>
 							<div class="row col1">
@@ -854,7 +854,7 @@
 								<i class="fa fa-envelope"></i>   Email
 							</div>
 							<div class="col-sm-10">
-								 <a href="mailto:operations@cartinhours.com">operations@cartinhours.com</a> <br> <a href="mailto:support@cartinhours.com">support@cartinhours.com</a>
+								 <a href="mailto:operations@shofus.com">operations@shofus.com</a> <br> <a href="mailto:support@shofus.com">support@shofus.com</a>
 							</div>
 						</div>
 					</div>
