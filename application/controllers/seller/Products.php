@@ -3337,6 +3337,16 @@ public function returns()
 			'inputfrequency' => $post['value'],
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
+		}else if($post['valuename']=='ideal_for'){
+			$editdata = array(
+			'ideal_for' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='no_of_copartments'){
+			$editdata = array(
+			'no_of_copartments' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
 		}
 		//echo '<pre>';print_r($editdata);exit;
 		$editsave=$this->products_model->update_deails($post['item_id'],$editdata);
