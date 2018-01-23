@@ -3196,8 +3196,8 @@ public function get_all_subitem_list($catid,$subcatid)
 	/*pricewise*/
 	public function get_groupwise_price_product_list($catid,$maxamount,$minamount){
 		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
-		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$minamount.'"', false);
-		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) <=', '"'.$maxamount.'"', false);
+		$amtwhere='item_cost BETWEEN '.'"'.$minamount.'"'.' AND '.$maxamount;
+		$this->db->where($amtwhere);
 		$this->db->where('category_id',$catid);
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
@@ -3477,8 +3477,8 @@ public function get_all_subitem_list($catid,$subcatid)
  		$curr_date = $date->format('Y-m-d h:i:s A');
 		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
 		//$this->db->where('special_price >=', $minamount);
-		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$minamount.'"', false);
-		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) <=', '"'.$maxamount.'"', false);
+		$amtwhere='item_cost BETWEEN '.'"'.$minamount.'"'.' AND '.$maxamount;
+		$this->db->where($amtwhere);
 		if($offer!='NULL'){
 			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$offer.'"', false);
 		}if($brand!='NULL'){

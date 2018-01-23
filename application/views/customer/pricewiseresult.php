@@ -68,16 +68,7 @@
 					<?php }else{ ?>
 						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 						<?php } ?>
-						<?php if($minimum_prices!=$minprice){ ?>
-								<?php if($cnt==1){ ?>
-										<?php if($i!=$brand && $brand !=$maximum_prices){ ?>
-											<option value="<?php echo $brand; ?>"><?php echo $brand; ?></option>
-										<?php }?>
-										<?php if($brand ==$maximum_prices){ ?>
-											<option value="<?php echo $brand; ?>" selected><?php echo $brand; ?></option>
-											<?php } ?>
-									<?php  } ?>
-						<?php } ?>
+						
 				<?php $cnt++;} ?>
 				
 			  </select>
