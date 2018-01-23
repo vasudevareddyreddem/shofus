@@ -2325,7 +2325,7 @@ class Customerapi_model extends MY_Model
 	 
 	 public function get_same_products($subcat,$name,$item_id)
 	{
-		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.colour,products.internal_memory,products.item_image')->from('products');
+		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.colour,products.internal_memeory,products.item_image')->from('products');
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('item_name', $name);
 		$this->db->where('item_id !=', $item_id);
