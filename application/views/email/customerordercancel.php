@@ -9,7 +9,7 @@
 			<td style="width:50%;text-align:left;padding-left:16px;position:relative"> 
 			 <a style="text-decoration:none;outline:none;color:#ffffff;font-size:13px" href=""> 
 				<span >
-				<img style="position:absolute;top:-19px;left:0;width:72%;" border="0"  src="http://test.shofus.com/assets/home/images/logo_arr.png" alt="cartinhours.com"  class="CToWUd"> 
+				<img style="position:absolute;top:-19px;left:0;width:72%;" border="0"  src="http://test.shofus.com/assets/home/images/logo_arr.png" alt="shofus.com"  class="CToWUd"> 
 			 </a> 
 			 </span>
 			 

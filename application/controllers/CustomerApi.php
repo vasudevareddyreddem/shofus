@@ -918,7 +918,7 @@ class CustomerApi extends REST_Controller {
 						
 							$msg='Greetings! You are just a step away from accessing your shofus account We are sharing a verification code to access your account. Once you have verified the code, you will be prompted to set a new password immediately. This is to ensure that only you have access to your account. Verification code is: '.$six_digit_random_number;
 							$this->load->library('email');
-							$this->email->from('admin@shofus.com', 'CartInHours');
+							$this->email->from('admin@shofus.com', 'shofus');
 							$this->email->to($email);
 							$this->email->subject('shofus - Forgot Password');
 							$html =$msg;

@@ -587,7 +587,7 @@ class Customer_model extends MY_Model
 		return $this->db->get()->row_array();
 	}
 	public function get_orderitem_details($id){
-		$this->db->select('order_status.status_refund')->from('order_items');
+		$this->db->select('order_status.status_refund,order_status.status_deliverd')->from('order_items');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 		$this->db->where('order_items.order_item_id',$id);
 		return $this->db->get()->row_array();

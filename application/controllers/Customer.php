@@ -2697,13 +2697,13 @@ public function aboutus(){
 			 'reason'=>isset($post['reasons'])?$post['reasons']:'',
 			 'comments'=>isset($post['comments'])?$post['comments']:'',
 			 );
-			 $canclesaveorder=$this->customer_model->save_cancel_order($post['order_items_id'],$post['pid'],$canceldata);
-			 $custdetails=$this->customer_model->get_customerBilling_details($post['order_items_id']);
 			 $getdetails=$this->customer_model->get_orderitem_details($post['order_items_id']);
+
 			//echo $post['order_items_id'];
-			//echo '<pre>';print_r($getdetails);exit;
-			if(isset($getdetails['status_refund']) && $getdetails['status_refund'] ==''){
-				 if(count($canclesaveorder)>0){
+			if($getdetails['status_deliverd'] !='' && $getdetails['status_deliverd'] ==0){
+				$canclesaveorder=$this->customer_model->save_cancel_order($post['order_items_id'],$post['pid'],$canceldata);
+				$custdetails=$this->customer_model->get_customerBilling_details($post['order_items_id']);
+					if(count($canclesaveorder)>0){
 					 
 						/*cancel sms */
 						$msg='Cancelled:'.$custdetails['item_name'].' in your order with order ID  : '.$post['order_items_id'].'. has been cancelled.  Please check your email for more details';

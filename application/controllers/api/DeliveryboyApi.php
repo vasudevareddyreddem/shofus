@@ -38,20 +38,21 @@ class DeliveryboyApi extends REST_Controller {
 		
 		}
 		$logindetails=$this->Deliveryboyapi_model->login_customer($username,$password);
-		if(isset($logindetails->current_login) && $logindetails->current_login!=1){
+		
 			if(count($logindetails)>0){
-			
+					if(isset($logindetails->current_login) && $logindetails->current_login!=1){
 							$this->Deliveryboyapi_model->check_login_customer($logindetails->customer_id,1);
 							$message = array('status'=>1,'details'=>$logindetails, 'message'=>'Delivery boy details are found');
 							$this->response($message, REST_Controller::HTTP_OK);
-						}else{
-							$message = array('status'=>0,'message'=>'!Invalid login details.Please try again');
-							$this->response($message, REST_Controller::HTTP_OK);
+					}else{
+						$message = array('status'=>0,'message'=>'Another user already login. Please wait for some time');
+						$this->response($message, REST_Controller::HTTP_OK);
+					}
+			}else{
+				$message = array('status'=>0,'message'=>'!Invalid login details.Please try again');
+				$this->response($message, REST_Controller::HTTP_OK);
 			}
-		}else{
-			$message = array('status'=>0,'message'=>'Another user already login. Please wait for some time');
-			$this->response($message, REST_Controller::HTTP_OK);
-		}
+		
 	
 	}
 	public function logout_post()
@@ -291,8 +292,9 @@ class DeliveryboyApi extends REST_Controller {
 		}
 		if($status==2){
 			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details($orderid);
-			if(isset($getdetails['status_refund']) && $getdetails['status_refund'] ==''){
-				
+			
+			//echo '<pre>';print_r($getdetails);exit;
+			if($getdetails['status_refund']==''){
 				$statusupdate=$this->Deliveryboyapi_model->order_Packing_status_updated($orderid,$status);
 				if(count($statusupdate)>0){
 					$message = array('status'=>1, 'message'=>'Packing Order status successfully updated');
@@ -326,7 +328,7 @@ class DeliveryboyApi extends REST_Controller {
 		}
 		if($status==3){
 			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details($orderid);
-			if(isset($getdetails['status_refund']) && $getdetails['status_refund'] ==''){
+			if($getdetails['status_refund'] ==''){
 					$statusupdate=$this->Deliveryboyapi_model->order_road_status_updated($orderid,$status);
 					if(count($statusupdate)>0){
 						$message = array('status'=>1, 'message'=>'Order on Road status successfully updated');
@@ -361,7 +363,7 @@ class DeliveryboyApi extends REST_Controller {
 		if($status==4){
 			
 			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details($orderid);
-			if(isset($getdetails['status_refund']) && $getdetails['status_refund'] ==''){
+			if($getdetails['status_refund'] ==''){
 				
 				$statusupdate=$this->Deliveryboyapi_model->order_delivered_status_updated($orderid,$status);
 				if(count($statusupdate)>0){
