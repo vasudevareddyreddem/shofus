@@ -2376,10 +2376,24 @@ class Customer extends Front_Controller
 		}else if(isset($post['refund_type1']) && $post['refund_type1']==3){
 				$refundtype1='Replacement';
 		}
+		$time = date("H:i:s a",strtotime('Y-m-d H:i:s'));
+		$begin1 = new DateTime('12:00 am');
+		$end1 = new DateTime('7:00 pm');
+		$begin2 = new DateTime('7:01 pm');
+		$end2 = new DateTime('11:59 pm');
+		$convertdate=date("g:i a", strtotime($time));
+		$now = new DateTime($convertdate);
+		if ($now >= $begin1 && $now <= $end1){
+		$times=' today 10 pm';
+		}else{
+		$times=' tomorrow 2pm';
+		}
+
 			if(isset($post['refund_type']) && $post['refund_type']!=''){
 						$details=array(
 						'region'=>$post['region'],
 						'status_refund'=>$refundtype,
+						'delievry_time'=>$times,
 						'update_time'=>date('Y-m-d H:i:s A'),
 						);
 						//echo '<pre>';print_r($post);exit;
@@ -2387,6 +2401,23 @@ class Customer extends Front_Controller
 						$cutdetails= $this->customer_model->get_customerBilling_details($post['order_item_id']);
 						if(count($savereview)>0){
 							
+							/*return and exchange and replacement purose*/
+							
+							$retuenid_details=$this->customer_model->update_return_item_details_inorders($post['order_item_id']);
+							
+								$exchangereturndetails=array(
+									'order_item_id'=>$post['order_item_id'],
+									'order_status'=>1,
+									'status'=>$refundtype,
+									'created_at'=>date('Y-m-d H:i:s A'),
+								);
+							if(count($retuenid_details)>0){
+								$this->customer_model->update_refund_item_details_inorders($post['order_item_id'],$exchangereturndetails);
+							}else{  
+								$this->customer_model->inert_refund_item_details_inorders($exchangereturndetails);
+							}
+							
+							/*return and exchange and replacement purose*/
 							
 							if(isset($refundtype) && $refundtype=='Refund'){
 							$msg='Refund for Order-item-id : '.$post['order_item_id'].'. is processed successfully. For delays over 4 days, contact your bank.';
@@ -2439,18 +2470,19 @@ class Customer extends Front_Controller
 			if(isset($post['refund_type1']) && $post['refund_type1']!=''){
 				//echo '<pre>';print_r($post);
 				if(isset($post['size']) && $post['size']!=''){
-					$size=$post['size'];
+					$size=isset($post['size'])?$post['size']:'';
 					$uksize='';
 				}else{
 					$size='';
-					$uksize=$post['uksize'];
+					$uksize=isset($post['uksize'])?$post['uksize']:'';
 				}
 				$exchangedetails=array(
-						'color'=>$post['color'],
+						'color'=>isset($post['color'])?$post['color']:'',
 						'size'=>isset($size)?$size:'',
 						'uksize'=>isset($uksize)?$uksize:'',
 						'region'=>isset($post['region'])?$post['region']:'',
 						'status_refund'=>$refundtype1,
+						'delievry_time'=>$times,
 						'update_time'=>date('Y-m-d H:i:s A'),
 						);
 						//echo '<pre>';print_r($exchangedetails);exit;
@@ -2458,7 +2490,19 @@ class Customer extends Front_Controller
 						$details= $this->customer_model->get_customerBilling_details($post['order_item_id']);
 						if(count($exchangesave)>0){
 							
+							$retuenid_details=$this->customer_model->update_return_item_details_inorders($post['order_item_id']);
 							
+								$exchangereturndetails=array(
+									'order_item_id'=>$post['order_item_id'],
+									'order_status'=>1,
+									'status'=>$refundtype1,
+									'created_at'=>date('Y-m-d H:i:s A'),
+								);
+							if(count($retuenid_details)>0){
+								$this->customer_model->update_refund_item_details_inorders($post['order_item_id'],$exchangereturndetails);
+							}else{  
+								$this->customer_model->inert_refund_item_details_inorders($exchangereturndetails);
+							}
 							if(isset($refundtype1) && $refundtype1=='Refund'){
 							$msg='Refund for Order-item-id : '.$post['order_item_id'].'. is processed successfully. For delays over 4 days, contact your bank.';
 							$username=$this->config->item('smsusername');

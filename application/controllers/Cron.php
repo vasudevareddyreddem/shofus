@@ -41,6 +41,7 @@ class Cron extends Front_Controller
 					$timevalue=isset($characters1['rows'][0]['elements'][0]['duration']['value'])?$characters1['rows'][0]['elements'][0]['duration']['value']:'';
 					
 					$this->Cron_model->update_delivery_time($unaslists['order_item_id'],$km,$time,$timevalue);
+					$this->Cron_model->update_return_delivery_time($unaslists['order_item_id'],$km,$time,$timevalue);
 			}
 			
 			/*customer to seller address*/
@@ -169,10 +170,117 @@ class Cron extends Front_Controller
 		}
 		
 	}
+	public function exchangereplceorderdistance (){
+		
+		$unassignorder_list= $this->Cron_model->getall_retrun_replace_asigned_order_list();
+		//echo '<pre>';print_r($unassignorder_list);exit;
+		$selleraddress='';
+		foreach($unassignorder_list as $unaslists){
+			
+			$customeraddress=$unaslists['customer_address'].'&nbsp;'.$unaslists['city'].'&nbsp;'.$unaslists['state'].'&nbsp;'.$unaslists['pincode'];
+			 $selleraddress=$unaslists['selleradd2'];
+			//echo '<pre>';print_r($unaslists);exit;
+			//echo '<pre>';print_r($unaslists);exit;
+			if($unaslists['customer_seller_km']=='' && $unaslists['customer_seller_time']=='' && $unaslists['customer_seller_timevalue']==''){
+			/*customer to seller address*/
+					 $urls = "https://maps.googleapis.com/maps/api/distancematrix/json?origins='".urlencode($customeraddress)."'&destinations='".urlencode($selleraddress)."'&key=AIzaSyBaHdfHglhoERINejBYkHOocaFEsxp8L28&sensor=false";
+					$ch1 = curl_init();
+					curl_setopt($ch1, CURLOPT_URL, $urls);
+					curl_setopt($ch1, CURLOPT_RETURNTRANSFER, 1);
+					curl_setopt($ch1, CURLOPT_PROXYPORT, 3128);
+					curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST, 0);
+					curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, 0);
+					$response = curl_exec($ch1);
+					curl_close($ch1);
+					$characters1 = json_decode($response, TRUE);
+					//echo '<pre>';print_r($characters1);exit;
+					$km=isset($characters1['rows'][0]['elements'][0]['distance']['text'])?$characters1['rows'][0]['elements'][0]['distance']['text']:'';
+					$time=isset($characters1['rows'][0]['elements'][0]['duration']['text'])?$characters1['rows'][0]['elements'][0]['duration']['text']:'';
+					$timevalue=isset($characters1['rows'][0]['elements'][0]['duration']['value'])?$characters1['rows'][0]['elements'][0]['duration']['value']:'';
+					
+					$this->Cron_model->update_return_delivery_time($unaslists['order_item_id'],$km,$time,$timevalue);
+			}
+			
+			/*customer to seller address*/
+			}
+	}
+	public function exchangereplceorderassign(){
+		$returnorder_list= $this->Cron_model->getall_returnreplace_order_list();
+		//echo '<pre>';print_r($returnorder_list);exit;
+		foreach ($returnorder_list as $dlist){
+			//echo '<pre>';print_r($dlist);exit;
+			 if($dlist['status_deliverd']==0){
+				$delivery_boy_list= $this->Cron_model->getall_deliveries_list();
+				//echo '<pre>';print_r($delivery_boy_list);exit;
+				foreach ($delivery_boy_list as $dylist ){
+						//echo '<pre>';print_r($dylist);exit;
+					if($dylist['address1']!=''){
+						$deliveryadd=$dylist['address1'];
+					}else{
+						$deliveryadd=$dylist['address2'];
+					}
+					$cutomertimevalue=$dlist['customer_seller_timevalue'];
+					$cutomertime=$dlist['customer_seller_time'];
+					$selleraddress=$dlist['selleradd2'];
+					//exit;
+				/* seller to delivery address*/
+					$urls1 = "https://maps.googleapis.com/maps/api/distancematrix/json?origins='".urlencode($deliveryadd)."'&destinations='".urlencode($selleraddress)."'&sensor=false";
+					$ch2 = curl_init();
+					curl_setopt($ch2, CURLOPT_URL, $urls1);
+					curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
+					curl_setopt($ch2, CURLOPT_PROXYPORT, 3128);
+					curl_setopt($ch2, CURLOPT_SSL_VERIFYHOST, 0);
+					curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, 0);
+					$response2 = curl_exec($ch2);
+					curl_close($ch2);
+					$characters2 = json_decode($response2, TRUE);
+					//echo '<pre>';print_r($characters2);exit;
+					$dkm[]=isset($characters2['rows'][0]['elements'][0]['distance']['text'])?$characters2['rows'][0]['elements'][0]['distance']['text']:'';
+					$dtime[]=isset($characters2['rows'][0]['elements'][0]['duration']['text'])?$characters2['rows'][0]['elements'][0]['duration']['text']:'';
+					$data[$dylist['customer_id']]['dtimevalue']=isset($characters2['rows'][0]['elements'][0]['duration']['value'])?$characters2['rows'][0]['elements'][0]['duration']['value']:'';
+					$data[$dylist['customer_id']]['dboyid']=$dylist['customer_id'];
+					/* seller to delivery address*/
+				
+					
+				}
+				//$data=array('61'=>array('dtimevalue'=>221,'dboyid'=>61),'62'=>array('dtimevalue'=>1347,'dboyid'=>62),'63'=>array('dtimevalue'=>1127,'dboyid'=>63),'64'=>array('dtimevalue'=>'','dboyid'=>64),'65'=>array('dtimevalue'=>1424,'dboyid'=>65));
+				foreach($data as $key=>$li){
+					if(!empty($li['dtimevalue'])) {
+						$priceprod[$key] = $li;
+						//$priceprod[$g]['did'] = $li['dboyid'];
+					}else{
+						$priceprod[$key] = $li;
+					}
+					
+					
+				}
+
+				if(isset($priceprod) && $priceprod!=''){
+					
+				
+					$mindistancedboyid = min($priceprod);
+					//echo '<pre>';print_r($mindistancedboyid);exit;
+					if($mindistancedboyid['dboyid']!=0){
+						$success=$this->Cron_model->assign_returnreplaceorderto_deliveryboy($mindistancedboyid['dboyid'],$dlist['order_item_id']);
+					}
+				}
+				
+				
+				
+				
+
+				
+				
+			 }
+			
+			
+		}
+		
+	}
 	
 	public function returnorderassign(){
 		$returnorder_list= $this->Cron_model->getall_return_order_list();
-		//echo '<pre>';print_r($returnorder_list);exit;
+		echo '<pre>';print_r($returnorder_list);exit;
 		foreach ($returnorder_list as $dlist){
 			//echo '<pre>';print_r($dlist);exit;
 			 if($dlist['return_deliveryboy_id']==0){

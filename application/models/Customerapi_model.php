@@ -2644,18 +2644,10 @@ class Customerapi_model extends MY_Model
 		}
 		
 	}
-	public function get_category_wise_products_list()
+	public function categorywiseproducts_list($id)
 	{
 	
-		$this->db->select('category.category_name,category.category_id,category.category_image')->from('products');
-		$this->db->join('category', 'category.category_id =products.category_id', 'left');
-		$this->db->group_by('category.category_id');
-		$this->db->order_by('category.category_id', 'asc');
-		$this->db->where('category.status', 1);		
-		$return= $this->db->get()->result_array();
-		foreach ($return as $li){
-			//echo '<pre>';print_r($lists);
-		$item_list=$this->get_products_lists($li['category_id']); 
+		$item_list=$this->get_products_lists($id); 
 		foreach ($item_list as $productslist){
 			$currentdate=date('Y-m-d h:i:s A');
 						if($productslist['offer_expairdate']>=$currentdate){
@@ -2674,22 +2666,18 @@ class Customerapi_model extends MY_Model
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
 					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 			}
+			foreach ($plist as $li){
+				$P[]=$li;
+				
+			}
 			
-			foreach($plist as $Lis){
-				$list[]=$Lis;
-			}
-				if(isset($list)&& count($list)>0){
-				$catdata[$li['category_id']]=$li;
-				$catdata[$li['category_id']]['plist']=$list;
-				}
-			}
-		
-		//echo '<pre>';print_r($catdata);
-			if(!empty($catdata))
+		if(!empty($P))
 			{
-			return $catdata;
+			return $P;
 			}
-
+			
+		
+		
 	}
 	public function get_products_lists($catid){
 		

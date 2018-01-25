@@ -3591,14 +3591,26 @@ public function homeapi_get()
 		
 	}
 	public function homepageloadmore_get(){
-		$categorywise_plist=$this->Customerapi_model->get_category_wise_products_list();
-		foreach ($categorywise_plist as $list){
-			$cat_wise_plist[]=$list;
-		}
+		$categorywise_plist=array(
+		"Home & Kitchen"=>$this->Customerapi_model->categorywiseproducts_list(18),
+		"Mens Fashion"=>$this->Customerapi_model->categorywiseproducts_list(19),
+		"Mobiles & Tablets"=>$this->Customerapi_model->categorywiseproducts_list(20),
+		"Grocery"=>$this->Customerapi_model->categorywiseproducts_list(21),
+		"Computers, Laptops & Accessories"=>$this->Customerapi_model->categorywiseproducts_list(22),
+		"TVs, ACs & Appliances"=>$this->Customerapi_model->categorywiseproducts_list(23),
+		"Women's Fashion"=>$this->Customerapi_model->categorywiseproducts_list(24),
+		"Car & Bike Accessories"=>$this->Customerapi_model->categorywiseproducts_list(28),
+		"Books & Stationary"=>$this->Customerapi_model->categorywiseproducts_list(29),
+		"Kids Store"=>$this->Customerapi_model->categorywiseproducts_list(30),
+		"Sports & Fitness"=>$this->Customerapi_model->categorywiseproducts_list(31),
+		"Furniture & Home-Living"=>$this->Customerapi_model->categorywiseproducts_list(32),
+		"Gifts Store"=>$this->Customerapi_model->categorywiseproducts_list(34),
+		"Bags & Outdoor"=>$this->Customerapi_model->categorywiseproducts_list(35),
+		);
 		$message = array
 		(
 			'status'=>1,
-			'categorywiseproductlist'=>$cat_wise_plist,
+			'categorywiseproductlist'=>$categorywise_plist,
 			'imagepath'=>base_url('uploads/products/'),
 			'message'=>'Product list are found.'
 		);
@@ -3950,7 +3962,23 @@ public function homeapi_get()
 		$trendingffer=$this->Customerapi_model->get_trendingoffer_categorywise();
 		$offerforyou=$this->Customerapi_model->get_offerforyou_categorywise();
 		$recentlyviewedlist=$this->Customerapi_model->recently_viewed_producrs();
-		$categorywise_plist=$this->Customerapi_model->get_category_wise_products_list();
+		$categorywise_plist=array(
+		"Home & Kitchen"=>$this->Customerapi_model->categorywiseproducts_list(18),
+		"Mens Fashion"=>$this->Customerapi_model->categorywiseproducts_list(19),
+		"Mobiles & Tablets"=>$this->Customerapi_model->categorywiseproducts_list(20),
+		"Grocery"=>$this->Customerapi_model->categorywiseproducts_list(21),
+		"Computers, Laptops & Accessories"=>$this->Customerapi_model->categorywiseproducts_list(22),
+		"TVs, ACs & Appliances"=>$this->Customerapi_model->categorywiseproducts_list(23),
+		"Women's Fashion"=>$this->Customerapi_model->categorywiseproducts_list(24),
+		"Car & Bike Accessories"=>$this->Customerapi_model->categorywiseproducts_list(28),
+		"Books & Stationary"=>$this->Customerapi_model->categorywiseproducts_list(29),
+		"Kids Store"=>$this->Customerapi_model->categorywiseproducts_list(30),
+		"Sports & Fitness"=>$this->Customerapi_model->categorywiseproducts_list(31),
+		"Furniture & Home-Living"=>$this->Customerapi_model->categorywiseproducts_list(32),
+		"Gifts Store"=>$this->Customerapi_model->categorywiseproducts_list(34),
+		"Bags & Outdoor"=>$this->Customerapi_model->categorywiseproducts_list(35),
+		);
+		//echo '<pre>';print_r($categorywise_plist);exit;
 		if(isset($recentlyviewedlist) && count($recentlyviewedlist)>0){
 		foreach ($recentlyviewedlist as $productslist){
 					
@@ -3978,9 +4006,7 @@ public function homeapi_get()
 		}else{
 			$recentlyviewed[]=array();
 		}
-		foreach ($categorywise_plist as $list){
-			$cat_wise_plist[]=$list;
-		}
+		
 		$message = array
 		(
 			'status'=>1,
@@ -3995,7 +4021,7 @@ public function homeapi_get()
 			'seasonsales'=>$seasonffer,
 			'banners4'=>$position_four,
 			'recentlyviewed'=>$recentlyviewed,
-			'categorywiseproductlist'=>$cat_wise_plist,
+			'categorywiseproductlist'=>$categorywise_plist,
 			'categoryimage'=>base_url('assets/categoryimages/'),
 			'imagepath'=>base_url('uploads/products/'),
 			'banners1path'=>base_url('assets/appbanners/'),

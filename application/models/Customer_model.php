@@ -389,13 +389,14 @@ class Customer_model extends MY_Model
 			return $this->db->get()->result_array();
 	}
 	public function get_order_items_list($custid,$order_id){
-			$this->db->select('order_items.*,products.item_name,products.item_image,products.colour,products.ram,products.internal_memeory,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,orders.payment_type,orders.amount_status,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name,invoice_list.invoice_id,invoice_list.invoicename,seller_store_details.store_name,products.return_policy')->from('order_items');
+			$this->db->select('order_items.*,products.item_name,products.item_image,products.colour,products.ram,products.internal_memeory,orders.card_number,orders.discount,orders.card_number,orders.payment_mode,orders.payment_type,orders.amount_status,order_status.status_confirmation,order_status.status_packing,order_status.status_road,order_status.status_deliverd,order_status.status_refund,(order_status.create_time)AS createedattime,(order_status.update_time)AS updatetime,billing_address.name,billing_address.mobile,billing_address.emal_id,billing_address.address1,billing_address.address2,locations.location_name,invoice_list.invoice_id,invoice_list.invoicename,seller_store_details.store_name,products.return_policy,exchange_return_order_list.status as rerechangestatus,exchange_return_order_list.order_status as rerechangeorderstatus,exchange_return_order_list.status_packing as rerechangestatus_packing,exchange_return_order_list.status_road as rerechangestatus_road,exchange_return_order_list.status_deliverd as rerechangestatus_deliverd,exchange_return_order_list.delivery_boy_id as rerechangedelivery_boy_id,exchange_return_order_list.delievry_time as rerechangedelivery_boy_id')->from('order_items');
 			$this->db->join('products', 'products.item_id = order_items.item_id', 'left');
 			$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
 			$this->db->join('orders', 'orders.order_id = order_items.order_id', 'left');
 			$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 			$this->db->join('billing_address', 'billing_address.order_id = order_items.order_id', 'left');
 			$this->db->join('invoice_list', 'invoice_list.order_item_id = order_items.order_item_id', 'left');
+			$this->db->join('exchange_return_order_list', 'exchange_return_order_list.order_item_id = order_items.order_item_id', 'left');
 			$this->db->join('locations', 'locations.location_id = billing_address.area', 'left');
 			$this->db->where('order_items.customer_id', $custid);
 			$this->db->where('order_items.order_item_id', $order_id);
@@ -592,6 +593,22 @@ class Customer_model extends MY_Model
 		$this->db->where('order_items.order_item_id',$id);
 		return $this->db->get()->row_array();
 	}
+	
+	/* return order list purpose*/
+	public function inert_refund_item_details_inorders($data){
+		$this->db->insert('exchange_return_order_list', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function update_refund_item_details_inorders($item_id,$data){
+		$this->db->where('order_item_id', $item_id);
+		return $this->db->update('exchange_return_order_list', $data);
+	}
+	public function update_return_item_details_inorders($item_id){
+		$this->db->select('*')->from('exchange_return_order_list');
+		$this->db->where('order_item_id',$item_id);
+		return $this->db->get()->row_array();
+	}
+	/* return order list purpose*/
 	
 }
 ?>

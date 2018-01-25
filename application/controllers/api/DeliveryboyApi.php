@@ -291,7 +291,7 @@ class DeliveryboyApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		if($status==2){
-			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details($orderid);
+			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details_list($orderid);
 			
 			//echo '<pre>';print_r($getdetails);exit;
 			if($getdetails['status_refund']==''){
@@ -327,7 +327,7 @@ class DeliveryboyApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		if($status==3){
-			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details($orderid);
+			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details_list($orderid);
 			if($getdetails['status_refund'] ==''){
 					$statusupdate=$this->Deliveryboyapi_model->order_road_status_updated($orderid,$status);
 					if(count($statusupdate)>0){
@@ -362,7 +362,7 @@ class DeliveryboyApi extends REST_Controller {
 		}
 		if($status==4){
 			
-			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details($orderid);
+			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details_list($orderid);
 			if($getdetails['status_refund'] ==''){
 				
 				$statusupdate=$this->Deliveryboyapi_model->order_delivered_status_updated($orderid,$status);
@@ -441,11 +441,11 @@ class DeliveryboyApi extends REST_Controller {
 		}else{
 		$imagename='';
 		}
-		$getdetails=$this->Deliveryboyapi_model->get_orderitem_details($orderid);
-		if(isset($getdetails['status_refund']) && $getdetails['status_refund'] ==''){
+			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details($orderid);
 			$totalamt=$getdetails['total_price']+$getdetails['delivery_amount'];
 			if($totalamt==$amount){
-				$getdetailss=$this->Deliveryboyapi_model->get_order_details_status($orderid,$amount,$amountstatus,$payment_type,date('Y-m-d h:i:s'),$imagename);
+				$date=date('Y-m-d h:i:s');
+				$getdetailss=$this->Deliveryboyapi_model->get_order_details_status($orderid,$amount,$amountstatus,$payment_type,$date,$imagename);
 				$this->Deliveryboyapi_model->order_payment_status($getdetails['order_id'],$payment_type);
 				if(count($getdetailss)>0){
 						$message = array('status'=>1, 'message'=>'Order Amount status Successfully updated');
@@ -459,10 +459,7 @@ class DeliveryboyApi extends REST_Controller {
 				$message = array('status'=>0,'message'=>'Please enter correct amount');
 				$this->response($message, REST_Controller::HTTP_OK);
 			}
-		}else{
-			$message = array('status'=>0,'message'=>'Please check once order item status. Then proceed to next step');
-			$this->response($message, REST_Controller::HTTP_OK);
-		}
+		
 		
 
 		
@@ -507,6 +504,24 @@ class DeliveryboyApi extends REST_Controller {
 	}
 	
 	public function return_orders_list_post(){
+		
+		$customer_id=$this->post('customer_id');
+		if($customer_id==''){
+		$message = array('status'=>0,'message'=>'customer id is required!');
+		$this->response($message, REST_Controller::HTTP_OK);
+		}
+		$returnoreders_list=$this->Deliveryboyapi_model->get_deliver_boy_orders_return_orderlist($customer_id);
+		
+		if(count($returnoreders_list)>0){
+				$message = array('status'=>1,'count'=>count($returnoreders_list),'list'=>$returnoreders_list, 'message'=>'return orders list are found');
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+		$message = array('status'=>0,'message'=>'You have no return orders list');
+		$this->response($message, REST_Controller::HTTP_OK);
+		}
+		
+	} 
+	public function return_orders_list_post_backup(){
 		
 		$customer_id=$this->post('customer_id');
 		if($customer_id==''){
