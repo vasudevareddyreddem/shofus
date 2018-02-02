@@ -3,7 +3,7 @@
    
       <div class="" style="margin: 0px">
        <!-- <b>Version</b>  -->
-                <strong>Copyright &copy; 2017 Cartinhours.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017 Shofus.</strong> All rights reserved.
       </div>
 
   </footer>

@@ -38,15 +38,15 @@
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingOne">
-                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <i class="more-less glyphicon glyphicon-plus"></i> Why should I sell on CARTINHOUR? </a> </h4>
+                  <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <i class="more-less glyphicon glyphicon-plus"></i> Why should I sell on SHOFUS? </a> </h4>
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                  <div class="panel-body">CARTINHOUR is the new revolution in Indian e-commerce with ability to reach maximum online and highest credibility. </div>
+                  <div class="panel-body">SHOFUS is the new revolution in Indian e-commerce with ability to reach maximum online and highest credibility. </div>
                 </div>
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingTwo">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> <i class="more-less glyphicon glyphicon-plus"></i> Who can sell on CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> <i class="more-less glyphicon glyphicon-plus"></i> Who can sell on SHOFUS?</a> </h4>
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                   <div class="panel-body"> Anyone selling new and genuine products is welcome. In order to start selling, you need to have the following:
@@ -60,38 +60,38 @@
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingThree">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i> How do I sell on CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i> How do I sell on SHOFUS?</a> </h4>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                  <div class="panel-body">To sell on CARTINHOUR:
+                  <div class="panel-body">To sell on SHOFUS:
                     <ul class="checkmark">
-                      <li>Register yourself at seller.CARTINHOUR.com.</li>
+                      <li>Register yourself at seller.SHOFUS.com.</li>
                       <li>List your products under specific product categories.</li>
                       <li>Once an order is received, pack the product and mark it as ‘Ready to go’. Our delivery boy will pick up the product and deliver it to the customer.</li>
-                      <li>Once an order is successfully dispatched, CARTINHOUR will settle your payment within 4-7 business days. </li>
+                      <li>Once an order is successfully dispatched, SHOFUS will settle your payment within 4-7 business days. </li>
                     </ul>
                   </div>
                 </div>
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingfour">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsefpor" aria-expanded="false" aria-controls="collapsefpor"> <i class="more-less glyphicon glyphicon-plus"></i> Can I offer both products and services on CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsefpor" aria-expanded="false" aria-controls="collapsefpor"> <i class="more-less glyphicon glyphicon-plus"></i> Can I offer both products and services on SHOFUS?</a> </h4>
                 </div>
                 <div id="collapsefpor" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfour">
-                  <div class="panel-body">Currently, you can sell only products and not services on CARTINHOUR. </div>
+                  <div class="panel-body">Currently, you can sell only products and not services on SHOFUS. </div>
                 </div>
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingfive">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsefive" aria-expanded="false" aria-controls="collapsefive"> <i class="more-less glyphicon glyphicon-plus"></i> Do I need to courier my products to CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsefive" aria-expanded="false" aria-controls="collapsefive"> <i class="more-less glyphicon glyphicon-plus"></i> Do I need to courier my products to SHOFUS?</a> </h4>
                 </div>
                 <div id="collapsefive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfive">
-                  <div class="panel-body">No, CARTINHOUR will handle shipping of your products. All you need to do is pack the product and keep it ready for dispatch. Our delivery boy will pick up the product from you and deliver it to the customer. </div>
+                  <div class="panel-body">No, SHOFUS will handle shipping of your products. All you need to do is pack the product and keep it ready for dispatch. Our delivery boy will pick up the product from you and deliver it to the customer. </div>
                 </div>
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="six">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsesix" aria-expanded="false" aria-controls="collapsesix"> <i class="more-less glyphicon glyphicon-plus"></i> What are the documents required to register as a seller on CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsesix" aria-expanded="false" aria-controls="collapsesix"> <i class="more-less glyphicon glyphicon-plus"></i> What are the documents required to register as a seller on SHOFUS?</a> </h4>
                 </div>
                 <div id="collapsesix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="six">
                   <div class="panel-body">You are required to have the following documents:
@@ -121,10 +121,10 @@
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="nine">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapnine" aria-expanded="false" aria-controls="collapnine"> <i class="more-less glyphicon glyphicon-plus"></i> Will I get charged for listing products on CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapnine" aria-expanded="false" aria-controls="collapnine"> <i class="more-less glyphicon glyphicon-plus"></i> Will I get charged for listing products on SHOFUS?</a> </h4>
                 </div>
                 <div id="collapnine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="nine">
-                  <div class="panel-body">No. Listing of products on CARTINHOUR.com is free. CARTINHOUR does not charge anything for listing your catalogue online. You only pay a small commission for what you sell. </div>
+                  <div class="panel-body">No. Listing of products on SHOFUS.com is free. SHOFUS does not charge anything for listing your catalogue online. You only pay a small commission for what you sell. </div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -140,7 +140,7 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapeleven" aria-expanded="false" aria-controls="collapeleven"> <i class="more-less glyphicon glyphicon-plus"></i> How and when will I get paid?</a> </h4>
                 </div>
                 <div id="collapeleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="eleven">
-                  <div class="panel-body">The payment will be made directly to your bank account through NEFT transactions within 4-7 business days of dispatching an order. The actual payment period will vary depending on how long you have been selling at CARTINHOUR, your customer ratings and number of orders fulfilled.</div>
+                  <div class="panel-body">The payment will be made directly to your bank account through NEFT transactions within 4-7 business days of dispatching an order. The actual payment period will vary depending on how long you have been selling at SHOFUS, your customer ratings and number of orders fulfilled.</div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -261,7 +261,7 @@
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="list2">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collaplist2" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>How do I list my products on CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collaplist2" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>How do I list my products on SHOFUS?</a> </h4>
                 </div>
                 <div id="collaplist2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="list2">
                   <div class="panel-body">We give you a step-by-step process of how to list your products on our website. It is important to choose the most suitable category to list your product as it will help customers find your products faster. Based on the category you choose, you'll be asked to include product details such as size, model, colour, etc. </div>
@@ -288,15 +288,15 @@
                   <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collaplist5" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>How do I price my products?</a> </h4>
                 </div>
                 <div id="collaplist5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="list5">
-                  <div class="panel-body">When pricing products on CARTINHOUR, please account for the applicable Marketplace Fee and include a suitable margin to arrive at the Selling Price. For ease of calculation, you can use our Commission Calculator widget once onboarded. </div>
+                  <div class="panel-body">When pricing products on SHOFUS, please account for the applicable Marketplace Fee and include a suitable margin to arrive at the Selling Price. For ease of calculation, you can use our Commission Calculator widget once onboarded. </div>
                 </div>
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="list6">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collaplist6" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>Will I get charged for listing products on CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collaplist6" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>Will I get charged for listing products on SHOFUS?</a> </h4>
                 </div>
                 <div id="collaplist6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="list6">
-                  <div class="panel-body">No. Listing of products on CARTINHOUR.com is free. CARTINHOUR does not charge anything to you for listing your catalogue online. You only pay a small commission for what you sell. </div>
+                  <div class="panel-body">No. Listing of products on SHOFUS.com is free. SHOFUS does not charge anything to you for listing your catalogue online. You only pay a small commission for what you sell. </div>
                 </div>
               </div>
             </div>
@@ -314,7 +314,7 @@
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="order2">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collaporder2" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>What should I do if my area is not serviceable by CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collaporder2" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>What should I do if my area is not serviceable by SHOFUS?</a> </h4>
                 </div>
                 <div id="collaporder2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="order2">
                   <div class="panel-body">During registering, save the details of your pin code and click on the Continue button. You will be notified via e-mail when your pin code becomes serviceable.</div>
@@ -322,7 +322,7 @@
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="order3">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collaporder3" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>How do I manage my orders on CARTINHOUR?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collaporder3" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>How do I manage my orders on SHOFUS?</a> </h4>
                 </div>
                 <div id="collaporder3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="order3">
                   <div class="panel-body">Through our seller dashboard, we make it easy for you to manage your orders. Whenever a customer places an order, we send you an email or phone message alert. You need to pack the order and keep it ready for dispatch within the time frame provided by you and inform us through the seller portal. This will alert our delivery boy to pick up the product from you.</div>
@@ -330,7 +330,7 @@
               </div>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="order4">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collaporder4" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>Does CARTINHOUR provide packaging material?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collaporder4" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>Does SHOFUS provide packaging material?</a> </h4>
                 </div>
                 <div id="collaporder4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="order4">
                   <div class="panel-body">We have a strong network of best packaging material providers in the industry. We can connect you with them to get good quality packaging material which impresses the customers and ensures your products remain undamaged.</div>
@@ -343,10 +343,10 @@
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="return1">
-                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapreturn1" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>What protection does CARTINHOUR offer in case of lost/damaged goods and fraudulent customer claims?</a> </h4>
+                  <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapreturn1" aria-expanded="false" aria-controls="collapseThree"> <i class="more-less glyphicon glyphicon-plus"></i>What protection does SHOFUS offer in case of lost/damaged goods and fraudulent customer claims?</a> </h4>
                 </div>
                 <div id="collapreturn1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="return1">
-                  <div class="panel-body">CARTINHOUR has set up a Seller safety scheme (SSS) to protect our sellers against fraud. You can request for SSS claim through the seller dashboard. When the buyer or delivery boy is at fault, you will receive due compensation.</div>
+                  <div class="panel-body">SHOFUS has set up a Seller safety scheme (SSS) to protect our sellers against fraud. You can request for SSS claim through the seller dashboard. When the buyer or delivery boy is at fault, you will receive due compensation.</div>
                 </div>
               </div>
               <div class="panel panel-default">

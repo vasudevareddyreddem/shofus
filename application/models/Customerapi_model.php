@@ -2857,7 +2857,32 @@ class Customerapi_model extends MY_Model
 				$this->db->where('products.subcategory_id !=','');
 				$this->db->where('products.item_status !=','');
 				$this->db->group_by('products.subcategory_id');
-				return $this->db->get()->result_array();
+				$return=$this->db->get()->result_array();
+				foreach($return as $list){
+					$subitems_list=$this->Customerapi_model->get_subitem_list($list['subcategory_id']);
+					$plist[$list['subcategory_id']]=$list;
+					if(isset($subitems_list) && count($subitems_list)>0){
+						$subitems_lists=1;
+					}else{
+						$subitems_lists=0;
+					}
+					$plist[$list['subcategory_id']]['subitems']=$subitems_lists;	
+				}
+				foreach ($plist as $lis){
+					$li[]=$lis;
+					
+				}
+				return $li;
+		}
+		public function get_subitem_list($subcatid){
+			
+		$this->db->select('sub_items.subitem_id,sub_items.subitem_name,sub_items.image,sub_items.category_id,sub_items.subcategory_id')->from('products');
+		$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left'); //
+		$this->db->where('sub_items.subitem_id !=','');
+		$this->db->where('products.subitemid !=','');
+		$this->db->where('products.subcategory_id',$subcatid);
+		$this->db->group_by('products.subitemid');
+		return $this->db->get()->result_array();			
 		}
 		public function step_three_data($catid){
 			$this->db->select('*')->from('brands');

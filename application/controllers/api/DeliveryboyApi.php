@@ -291,29 +291,37 @@ class DeliveryboyApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		if($status==2){
-			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details_list($orderid);
-			
-			//echo '<pre>';print_r($getdetails);exit;
-			if($getdetails['status_refund']==''){
-				$statusupdate=$this->Deliveryboyapi_model->order_Packing_status_updated($orderid,$status);
-				if(count($statusupdate)>0){
-					$message = array('status'=>1, 'message'=>'Packing Order status successfully updated');
-					$this->response($message, REST_Controller::HTTP_OK);
-				}else{
-					$message = array('status'=>0,'message'=>'technical problem will occured .try again after some time');
-					$this->response($message, REST_Controller::HTTP_OK);
-				}
+			$returnorderdetails=$this->Deliveryboyapi_model->get_return_order_details($orderid);
+			if(isset($returnorderdetails) && count($returnorderdetails)>0){
+					$statusupdate=$this->Deliveryboyapi_model->returnorder_Packing_status_updated($orderid,$status);
+					if(count($statusupdate)>0){
+						$message = array('status'=>1, 'message'=>'Packing Order status successfully updated');
+						$this->response($message, REST_Controller::HTTP_OK);
+					}else{
+						$message = array('status'=>0,'message'=>'technical problem will occured .try again after some time');
+						$this->response($message, REST_Controller::HTTP_OK);
+					}
 			}else{
-				$message = array('status'=>0,'message'=>'Please check once order item status. Then proceed to next step');
-				$this->response($message, REST_Controller::HTTP_OK);
+					$getdetails=$this->Deliveryboyapi_model->get_orderitem_details_list($orderid);
+					if($getdetails['status_refund']==''){
+						$statusupdate=$this->Deliveryboyapi_model->order_Packing_status_updated($orderid,$status);
+						if(count($statusupdate)>0){
+							$message = array('status'=>1, 'message'=>'Packing Order status successfully updated');
+							$this->response($message, REST_Controller::HTTP_OK);
+						}else{
+							$message = array('status'=>0,'message'=>'technical problem will occured .try again after some time');
+							$this->response($message, REST_Controller::HTTP_OK);
+						}
+					}else{
+						$message = array('status'=>0,'message'=>'Please check once order item status. Then proceed to next step');
+						$this->response($message, REST_Controller::HTTP_OK);
+					}
 			}
-			
+					
 		}else{
 			$message = array('status'=>0,'message'=>'order status was wrong. please try again');
 			$this->response($message, REST_Controller::HTTP_OK);
 		}
-		
-		
 	}
 	public function order_raod_status_change_post(){
 		
@@ -327,19 +335,31 @@ class DeliveryboyApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		if($status==3){
-			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details_list($orderid);
-			if($getdetails['status_refund'] ==''){
-					$statusupdate=$this->Deliveryboyapi_model->order_road_status_updated($orderid,$status);
+			$returnorderdetails=$this->Deliveryboyapi_model->get_return_order_details($orderid);
+			if(isset($returnorderdetails) && count($returnorderdetails)>0){
+					$statusupdate=$this->Deliveryboyapi_model->returnorder_road_status_updated($orderid,$status);
 					if(count($statusupdate)>0){
 						$message = array('status'=>1, 'message'=>'Order on Road status successfully updated');
 						$this->response($message, REST_Controller::HTTP_OK);
-				}else{
-				$message = array('status'=>0,'message'=>'technical problem will occured .try again after some time');
-				$this->response($message, REST_Controller::HTTP_OK);
-				}
+					}else{
+						$message = array('status'=>0,'message'=>'technical problem will occured .try again after some time');
+						$this->response($message, REST_Controller::HTTP_OK);
+					}
 			}else{
-				$message = array('status'=>0,'message'=>'Please check once order item status. Then proceed to next step');
-				$this->response($message, REST_Controller::HTTP_OK);
+				$getdetails=$this->Deliveryboyapi_model->get_orderitem_details_list($orderid);
+				if($getdetails['status_refund'] ==''){
+						$statusupdate=$this->Deliveryboyapi_model->order_road_status_updated($orderid,$status);
+						if(count($statusupdate)>0){
+							$message = array('status'=>1, 'message'=>'Order on Road status successfully updated');
+							$this->response($message, REST_Controller::HTTP_OK);
+						}else{
+							$message = array('status'=>0,'message'=>'technical problem will occured .try again after some time');
+							$this->response($message, REST_Controller::HTTP_OK);
+						}
+				}else{
+					$message = array('status'=>0,'message'=>'Please check once order item status. Then proceed to next step');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
 			}
 			
 		}else{
@@ -361,47 +381,83 @@ class DeliveryboyApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		if($status==4){
-			
-			$getdetails=$this->Deliveryboyapi_model->get_orderitem_details_list($orderid);
-			if($getdetails['status_refund'] ==''){
-				
-				$statusupdate=$this->Deliveryboyapi_model->order_delivered_status_updated($orderid,$status);
-				if(count($statusupdate)>0){
-					$details=$this->Deliveryboyapi_model->get_order_item_details($orderid);
-					//echo '<pre>';print_r($details);exit;
-					$msg=' Order Product Name: '.$details['item_name'].'Item successfully delivered';
-					$messagelis['msg']=$msg;
-					$username=$this->config->item('smsusername');
-					$pass=$this->config->item('smspassword');
-					$mobilesno=$details['customer_phone'];
-					$ch = curl_init();
-					curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
-					curl_setopt($ch, CURLOPT_POST, 1);
-					curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno.'&text='.$msg.'&priority=ndnd&stype=normal');
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					//echo '<pre>';print_r($ch);exit;
-					$server_output = curl_exec ($ch);
-					curl_close ($ch);
-					$this->load->library('email');
-					$this->email->set_newline("\r\n");
-					$this->email->set_mailtype("html");
-					$this->email->from('shofus.com');
-					$this->email->to($details['customer_email']);
-					$this->email->subject('shofus - Order Delivered');
-					$html = $this->load->view('email/sellerorederconfirmation.php', $messagelis, true); 
-					//echo $html;exit;
-					$this->email->message($html);
-					$this->email->send();
-					$message = array('status'=>1, 'message'=>'Order delivered status Successfully updated');
-					$this->response($message, REST_Controller::HTTP_OK);
-				}else{
-				$message = array('status'=>0,'message'=>'technical problem will occured .try again after some time');
-				$this->response($message, REST_Controller::HTTP_OK);
-				}
-				
+			$returnorderdetails=$this->Deliveryboyapi_model->get_return_order_details($orderid);
+			if(isset($returnorderdetails) && count($returnorderdetails)>0){
+				$statusupdate=$this->Deliveryboyapi_model->returnorder_delivered_status_updated($orderid,$status,date('Y-m-d H:i:s'));
+						if(count($statusupdate)>0){
+							//$this->Deliveryboyapi_model->returnorder_delivered_status_updated_complted_time($orderid,date('Y-m-d H:i:s'));
+							$details=$this->Deliveryboyapi_model->get_order_item_details($orderid);
+							//echo '<pre>';print_r($details);exit;
+							$msg=' Order Product Name: '.$details['item_name'].'Item successfully delivered';
+							$messagelis['msg']=$msg;
+							$username=$this->config->item('smsusername');
+							$pass=$this->config->item('smspassword');
+							$mobilesno=$details['customer_phone'];
+							$ch = curl_init();
+							curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+							curl_setopt($ch, CURLOPT_POST, 1);
+							curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno.'&text='.$msg.'&priority=ndnd&stype=normal');
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+							//echo '<pre>';print_r($ch);exit;
+							$server_output = curl_exec ($ch);
+							curl_close ($ch);
+							$this->load->library('email');
+							$this->email->set_newline("\r\n");
+							$this->email->set_mailtype("html");
+							$this->email->from('shofus.com');
+							$this->email->to($details['customer_email']);
+							$this->email->subject('shofus - Order Delivered');
+							$html = $this->load->view('email/sellerorederconfirmation.php', $messagelis, true); 
+							//echo $html;exit;
+							$this->email->message($html);
+							$this->email->send();
+							$message = array('status'=>1, 'message'=>'Order delivered status Successfully updated');
+							$this->response($message, REST_Controller::HTTP_OK);
+					}else{
+							$message = array('status'=>0,'message'=>'technical problem will occured .try again after some time');
+							$this->response($message, REST_Controller::HTTP_OK);
+					}
 			}else{
-				$message = array('status'=>0,'message'=>'Please check once order item status. Then proceed to next step');
-				$this->response($message, REST_Controller::HTTP_OK);
+					$getdetails=$this->Deliveryboyapi_model->get_orderitem_details_list($orderid);
+					if($getdetails['status_refund'] ==''){
+						
+						$statusupdate=$this->Deliveryboyapi_model->order_delivered_status_updated($orderid,$status);
+						if(count($statusupdate)>0){
+							$details=$this->Deliveryboyapi_model->get_order_item_details($orderid);
+							//echo '<pre>';print_r($details);exit;
+							$msg=' Order Product Name: '.$details['item_name'].'Item successfully delivered';
+							$messagelis['msg']=$msg;
+							$username=$this->config->item('smsusername');
+							$pass=$this->config->item('smspassword');
+							$mobilesno=$details['customer_phone'];
+							$ch = curl_init();
+							curl_setopt($ch, CURLOPT_URL,"http://bhashsms.com/api/sendmsg.php");
+							curl_setopt($ch, CURLOPT_POST, 1);
+							curl_setopt($ch, CURLOPT_POSTFIELDS,'user='.$username.'&pass='.$pass.'&sender=cartin&phone='.$mobilesno.'&text='.$msg.'&priority=ndnd&stype=normal');
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+							//echo '<pre>';print_r($ch);exit;
+							$server_output = curl_exec ($ch);
+							curl_close ($ch);
+							$this->load->library('email');
+							$this->email->set_newline("\r\n");
+							$this->email->set_mailtype("html");
+							$this->email->from('shofus.com');
+							$this->email->to($details['customer_email']);
+							$this->email->subject('shofus - Order Delivered');
+							$html = $this->load->view('email/sellerorederconfirmation.php', $messagelis, true); 
+							//echo $html;exit;
+							$this->email->message($html);
+							$this->email->send();
+							$message = array('status'=>1, 'message'=>'Order delivered status Successfully updated');
+							$this->response($message, REST_Controller::HTTP_OK);
+						}else{
+						$message = array('status'=>0,'message'=>'technical problem will occured .try again after some time');
+						$this->response($message, REST_Controller::HTTP_OK);
+						}
+					}else{
+						$message = array('status'=>0,'message'=>'Please check once order item status. Then proceed to next step');
+						$this->response($message, REST_Controller::HTTP_OK);
+					}
 			}
 			
 		}else{
@@ -471,9 +527,14 @@ class DeliveryboyApi extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);
 		}
 		$completeoreders_list=$this->Deliveryboyapi_model->get_delivered_orders_list($customer_id);
-		
-		if(count($completeoreders_list)>0){
-				$message = array('status'=>1,'count'=>count($completeoreders_list),'list'=>$completeoreders_list, 'message'=>'delivered orders list are found');
+		$returncompleteoreders_list=$this->Deliveryboyapi_model->get_return_delivered_orders_list($customer_id);
+		$completed_order_list=array_merge($completeoreders_list,$returncompleteoreders_list);
+		arsort($completed_order_list);
+		foreach ($completed_order_list as $key => $val) {
+		$completed_order_lists[]=$val;
+		}
+		if(count($completed_order_lists)>0){
+				$message = array('status'=>1,'count'=>count($completed_order_lists),'list'=>$completed_order_lists, 'message'=>'delivered orders list are found');
 				$this->response($message, REST_Controller::HTTP_OK);
 		}else{
 		$message = array('status'=>0,'message'=>'You have no delivered orders list');

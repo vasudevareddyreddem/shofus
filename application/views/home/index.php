@@ -15,7 +15,8 @@ $("#fademaskpurpose").removeClass("mask_hide");
 			<?php endif; ?>
 
 	<body class="bac_img">
-<div class="banner_home con_st_bo" >
+	<?php if(isset($homepage_banner) && count($homepage_banner)>0){ ?>
+	<div class="banner_home con_st_bo" >
      
       <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
         <!-- Indicators -->
@@ -42,15 +43,12 @@ $("#fademaskpurpose").removeClass("mask_hide");
 
         
     </div>
-  
-      
-    
-        
-        <!-- Controls --> 
+  <!-- Controls --> 
         <a class="left carousel-control" href="#myCarousel" data-slide="prev"> <i class="glyphicon glyphicon-chevron-left"></i> </a> <a class="right carousel-control" href="#myCarousel" data-slide="next"> <i class="glyphicon glyphicon-chevron-right"></i> </a> </div>
       <!-- /.carousel --> 
       
     </div>
+	<?php } ?>
 
   <!--header part end here --> 
   <!--body part start here -->
