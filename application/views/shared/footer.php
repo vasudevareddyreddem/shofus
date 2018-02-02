@@ -75,14 +75,14 @@
                 <li class="first"><a href="<?php echo base_url(); ?>">Home</a></li>
 				
 				<?php $cnt=1;foreach ($sidecaregory_list as $list){?>
-				<?php if($cnt <=4){ ?>
+				<?php if($cnt <=3){ ?>
                   <li><a href="<?php echo base_url('category/subcategorys/'.base64_encode($list['category_id'])); ?>"><?php echo ucfirst(strtolower($list['category_name'])); ?></a></li>
 				<?php }?>
 				<?php $cnt++;} ?>
-				<li><a id="readmore" class="btn btn-small btn-primary " style="width:40%">Read More ....</a></li>
-				<div style="display:none" id="showmore">
+				<li><a id="readmore1" class="btn btn-small btn-primary " style="width:40%">Read More ....</a></li>
+				<div style="display:none" id="showmore1">
 				<?php $cnt1=1;foreach ($sidecaregory_list as $list){?>
-				<?php if($cnt1 >4){ ?>
+				<?php if($cnt1 >3){ ?>
                   <li><a href="<?php echo base_url('category/subcategorys/'.base64_encode($list['category_id'])); ?>"><?php echo ucfirst(strtolower($list['category_name'])); ?></a></li>
 				<?php }?>
 				<?php $cnt1++;} ?>
@@ -132,17 +132,17 @@
 <script type="text/javascript">
     $(document).ready(function(){
 		var cnt=2;
-		$("#readmore").click(function(){
-				$("#loadcon").slideToggle("slow", "linear");
+		$("#readmore1").click(function(){
+				$("#loadcon1").slideToggle("slow", "linear");
 				if((cnt % 2) === 0){
-			$("#readmore").text("Read Less..");
+			$("#readmore1").text("Read Less..");
 			}else{
-				$("#readmore").text("Read More..");
+				$("#readmore1").text("Read More..");
 			}
 			cnt++;
 		});
-		 $('#readmore').click(function(){
-          $('#showmore').toggle();
+		 $('#readmore1').click(function(){
+          $('#showmore1').toggle();
 
       });
       $('#frgt_pass').click(function(){

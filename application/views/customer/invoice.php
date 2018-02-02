@@ -136,7 +136,7 @@ table td.grand {
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Shofus</title>
+    <title>Invoice for order id <?php echo isset($details['order_item_id'])?$details['order_item_id']:'';  ?><?php echo isset($details['invoice_id'])?$details['invoice_id']:'';  ?> </title>
     <link rel="stylesheet" href="style.css" media="all" />
   </head>
   <body>

@@ -2393,7 +2393,6 @@ class Customer extends Front_Controller
 						$details=array(
 						'region'=>$post['region'],
 						'status_refund'=>$refundtype,
-						'delievry_time'=>$times,
 						'update_time'=>date('Y-m-d H:i:s A'),
 						);
 						//echo '<pre>';print_r($post);exit;
@@ -2409,6 +2408,7 @@ class Customer extends Front_Controller
 									'order_item_id'=>$post['order_item_id'],
 									'order_status'=>1,
 									'status'=>$refundtype,
+									'delievry_time'=>$times,
 									'created_at'=>date('Y-m-d H:i:s A'),
 								);
 							if(count($retuenid_details)>0){
@@ -2482,7 +2482,6 @@ class Customer extends Front_Controller
 						'uksize'=>isset($uksize)?$uksize:'',
 						'region'=>isset($post['region'])?$post['region']:'',
 						'status_refund'=>$refundtype1,
-						'delievry_time'=>$times,
 						'update_time'=>date('Y-m-d H:i:s A'),
 						);
 						//echo '<pre>';print_r($exchangedetails);exit;
@@ -2496,6 +2495,7 @@ class Customer extends Front_Controller
 									'order_item_id'=>$post['order_item_id'],
 									'order_status'=>1,
 									'status'=>$refundtype1,
+									'delievry_time'=>$times,
 									'created_at'=>date('Y-m-d H:i:s A'),
 								);
 							if(count($retuenid_details)>0){
