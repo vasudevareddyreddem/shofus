@@ -601,13 +601,13 @@ $customerdetails=$this->session->userdata('userdetails');
 							  </div>
 							  <h6><a href="<?php echo base_url('category/productview/'.base64_encode($list['item_id'])); ?>"><?php echo $list['item_name']; ?></a></h6>
 								<?php if($list['category_id']==19 || $list['category_id']==24){ ?>
-									<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['occasion']; ?></strong></div>
+									<div class="text-center" style="color:#187a7d;"><strong><?php echo isset($list['occasion'])?$list['occasion']:''; ?></strong></div>
 								<?php }else if($list['category_id']==21 || $list['category_id']==31){ ?>
-									<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['offerslist']; ?></strong></div>
+									<div class="text-center" style="color:#187a7d;"><strong><?php echo isset($list['offerslist'])?$list['offerslist']:''; ?></strong></div>
 								<?php }else if($list['category_id']==20){ ?>
-									<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['primary_camera']; ?></strong></div>
+									<div class="text-center" style="color:#187a7d;"><strong><?php echo isset($list['primary_camera'])?$list['primary_camera']:''; ?></strong></div>
 								<?php }else if($list['category_id']==30){ ?>
-									<div class="text-center" style="color:#187a7d;"><strong><?php echo $list['age']; ?></strong></div>
+									<div class="text-center" style="color:#187a7d;"><strong><?php echo isset($list['age'])?$list['age']:''; ?></strong></div>
 								<?php } ?>
 							<div class="price">
 							   <div class="text-center" style="color:#187a7d;">₹ <?php echo number_format($item_price, 2 ); ?> 

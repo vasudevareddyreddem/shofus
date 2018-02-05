@@ -3721,21 +3721,26 @@ public function homeapi_get()
 		$position_four= $this->Customerapi_model->step_four_data(2);
 		$position_five= $this->Customerapi_model->step_five_data($catid);
 		$amt= ($position_five['max'])/4;
-		$step_five=array($amt,$amt*2,$amt*3,$amt*4);
+		$amt1=$amt*2;
+		$amt2=$amt*3;
+		$amt3=$amt*4;
+		$step_five=array('₹'.$amt,'₹'.$amt.'- ₹'.$amt*2,'₹'.$amt1.'- ₹'.$amt2,'₹'.$amt2.'- ₹'.$amt3);
 		if($catid==21 || $catid==31 || $catid==19 || $catid==24 || $catid==35 ||  $catid==28 ||  $catid==20){
 		$step_six= $this->Customerapi_model->step_six_data($catid);
 		$step_sixlabel='Offer';
 		}else if($catid==19 || $catid==24){
 			$step_sixlabel='Type';
 			$step_six= $this->Customerapi_model->step_six_data($catid);
-		}if($catid==21 || $catid==31){
+		}else if($catid==21 || $catid==31){
 			$step_sixlabel='Offer';
-		}if($catid==28 ){
+		}else if($catid==28 ){
 			$step_sixlabel='Offer';
-		}if($catid==35 ){
+		}else if($catid==35 ){
 			$step_sixlabel='Type';
-		}if($catid==20 ){
+		}else if($catid==20 ){
 			$step_sixlabel='Screen Size';
+		}else{
+			$step_sixlabel='x';
 		}
 			if(isset($step_six) && count($step_six)>0){
 				foreach ($step_six as $productslist){
@@ -3780,7 +3785,9 @@ public function homeapi_get()
 			}else if($catid!=21){
 				$step_ninelabel='Y';
 			}
-		}
+		}else{
+			$step_ninelabel='Y';
+			}
 			if(isset($step_nine) && count($step_nine)>0){
 			foreach ($step_nine as $productslist){
 						
@@ -3827,6 +3834,8 @@ public function homeapi_get()
 				}else if($catid!=21){
 					$step_tenlabel='Z';
 				}
+			}else{
+				$step_tenlabel='Z';
 			}
 			if(isset($step_ten) && count($step_ten)>0){
 			foreach ($step_ten as $productslist){
@@ -3938,6 +3947,8 @@ public function homeapi_get()
 			'subcategoryimage'=>base_url('assets/subcategoryimages/'),
 			'imagepath'=>base_url('uploads/products/'),
 			'bannerspath'=>base_url('assets/categoryimages/'),
+			'brandimagepath'=>base_url('assets/brands/'),
+			'subitemimagepath'=>base_url('assets/subitemimages/'),
 			'message'=>'Product list are found.'
 			);
 		$this->response($message, REST_Controller::HTTP_OK);
@@ -4270,5 +4281,54 @@ public function homeapi_get()
 		//echo '<pre>';print_r($position_two);exit;
 	}
 	/*IOS APP HOME PAGE API*/
+	public function brandwiseproducts_get(){
+		
+		$category_id=$this->input->get('category_id');
+		$brand=$this->input->get('brand');
+			if($category_id==''){
+			$message = array('status'=>1,'message'=>'Category id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}if($brand==''){
+			$message = array('status'=>1,'message'=>'Brand id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			$brandwise_plist= $this->Customerapi_model->get_brandwise_productlist($category_id,$brand);
+				if(isset($brandwise_plist) && count($brandwise_plist)>0){
+		foreach ($brandwise_plist as $productslist){
+					
+					$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
+					
+				}
+				foreach ($plist as $list){
+					$brand_plist[]=$list;
+				}
+		}else{
+			$brand_plist[]=array();
+		}
+		if(count($brand_plist)>0){
+		
+			$message = array('status'=>1,'message'=>'Product are found','prandwiseproducts'=>$brand_plist,'path'=>base_url('uploads/products/'));
+			$this->response($message,REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>1,'message'=>'brand having no products');
+			
+	}
+
+}
 
 }

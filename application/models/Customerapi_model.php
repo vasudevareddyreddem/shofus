@@ -3025,6 +3025,16 @@ class Customerapi_model extends MY_Model
 		$this->db->where('category.status', 1);		
 		return $this->db->get()->result_array();
 		
+	} 
+	public function get_brandwise_productlist($catid,$brand)
+	{
+	
+		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
+		//$this->db->group_by('products.brand');
+		$this->db->where('products.brand', $brand);		
+		$this->db->where('products.category_id', $catid);		
+		return $this->db->get()->result_array();
+		
 	}
 	/* category page */
 	
