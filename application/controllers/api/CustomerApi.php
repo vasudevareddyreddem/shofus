@@ -3164,16 +3164,92 @@ class CustomerApi extends REST_Controller {
 				
 		}
 		$subitems_list= $this->Customerapi_model->get_sub_items_list($sub_category_id);
-		if(count($subitems_list)>0){
+		foreach($subitems_list as $lis){
+			$item_li=$this->Customerapi_model->get_itemwise_items_list($lis['subitem_id']);
+			if(count($item_li)>0){
+				$li=1;
+			}else{
+				$li=0;
+			}
+			$item_list[$lis['subitem_id']]=$lis;
+			$item_list[$lis['subitem_id']]['itemList']=$li;
+		}
+		if(isset($item_list) && count($item_list)>0){
+			foreach ($item_list as $list){
+				$plist[]=$list;
+			}
+		}else{
+			$plist[]=array();
+		}
+		
+		if(count($plist)>0){
 			$message = array(
 				'status'=>1,
 				'message'=>'Sub Item List are found',
-				'list'=>$subitems_list,
+				'list'=>$plist,
+				'path'=>base_url('assets/subitemimages/'),
 				);
 				$this->response($message,REST_Controller::HTTP_OK);
 			
 		}else{
 				$message = array('status'=>0,'message'=>'Sub category having  no sub items');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+	}	
+	public function pricewise_get(){
+		$category_id=$this->input->get('category_id');
+		$min_price=$this->input->get('min_price');
+		$max_price=$this->input->get('max_price');
+		if($category_id==''){
+				$message = array('status'=>0,'message'=>'Category id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		if($min_price==''){
+				$message = array('status'=>0,'message'=>'Minimum Price is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}if($max_price==''){
+				$message = array('status'=>0,'message'=>'Maximum Price is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$pricewise_list= $this->Customerapi_model->get_price_wise_product_list($category_id,$min_price,$max_price);
+		if(isset($pricewise_list) && count($pricewise_list)>0){
+				foreach ($pricewise_list as $productslist){
+							
+							$currentdate=date('Y-m-d h:i:s A');
+								if($productslist['offer_expairdate']>=$currentdate){
+								$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+								$percentage= $productslist['offer_percentage'];
+								$orginal_price=$productslist['item_cost'];
+								}else{
+									//echo "expired";
+									$item_price= $productslist['special_price'];
+									$prices= ($productslist['item_cost']-$productslist['special_price']);
+									$percentage= (($prices) /$productslist['item_cost'])*100;
+									$orginal_price=$productslist['item_cost'];
+								}
+							$plist[$productslist['item_id']]=$productslist;
+							$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+							$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+							$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
+							
+						}
+						foreach ($plist as $list){
+							$itemlist[]=$list;
+						}
+				}else{
+					$itemlist[]=array();
+				}
+		if(count($itemlist)>0){
+			$message = array(
+				'status'=>1,
+				'message'=>'Item List are found',
+				'list'=>$itemlist,
+				'path'=>base_url('uploads/products/')
+				);
+				$this->response($message,REST_Controller::HTTP_OK);
+			
+		}else{
+				$message = array('status'=>0,'message'=>'price range having  no products ');
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
@@ -3344,6 +3420,29 @@ class CustomerApi extends REST_Controller {
 					$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
 				}
 	}
+	public function item_list_get()
+	{
+		$subitem_id = $this->input->get('subitem_id');
+		if($subitem_id==''){
+				$message = array('status'=>0,'message'=>'Subitem id is required!');
+				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+		}
+		$items_list= $this->Customerapi_model->get_subitemwise_items_list($subitem_id);
+		if(count($items_list)>0){
+						$message = array
+						(
+							'status'=>1,
+							'productlist'=>$items_list,
+							'message'=>'Item list are found.'
+						);
+						$this->response($message, REST_Controller::HTTP_OK);
+					
+				}else{
+				
+					$message = array('status'=>0,'message'=>'Item list Empty.');
+					$this->response($message, REST_Controller::HTTP_NOT_FOUND);	
+				}
+	}
 	public function item_wiseproducts_get()
 	{
 		$item_id = $this->input->get('item_id');
@@ -3352,11 +3451,38 @@ class CustomerApi extends REST_Controller {
 				$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 		}
 		$tems_list= $this->Customerapi_model->get_wise_items_product_list($item_id);
-		if(count($tems_list)>0){
+		if(isset($tems_list) && count($tems_list)>0){
+				foreach ($tems_list as $productslist){
+							
+							$currentdate=date('Y-m-d h:i:s A');
+								if($productslist['offer_expairdate']>=$currentdate){
+								$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+								$percentage= $productslist['offer_percentage'];
+								$orginal_price=$productslist['item_cost'];
+								}else{
+									//echo "expired";
+									$item_price= $productslist['special_price'];
+									$prices= ($productslist['item_cost']-$productslist['special_price']);
+									$percentage= (($prices) /$productslist['item_cost'])*100;
+									$orginal_price=$productslist['item_cost'];
+								}
+							$plist[$productslist['item_id']]=$productslist;
+							$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+							$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+							$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
+							
+						}
+						foreach ($plist as $list){
+							$tems_list_plist[]=$list;
+						}
+				}else{
+					$tems_list_plist[]=array();
+				}
+		if(count($tems_list_plist)>0){
 						$message = array
 						(
 							'status'=>1,
-							'productlist'=>$tems_list,
+							'productlist'=>$tems_list_plist,
 							'path'=>base_url('uploads/products/'),
 							'message'=>'Product list are found.'
 						);
@@ -3941,7 +4067,7 @@ public function homeapi_get()
 			'shopbyz'=>$step_tenlist,
 			'shopbyzlable'=>$step_tenlabel,
 			'banners4'=>$step_eleven,
-			'mostviewed'=>$step_twelve,
+			'mostviewed'=>$step_twelvelist,
 			'recommended'=>$step_thirteenlist,
 			'banners5'=>$step_fourteen,
 			'subcategoryimage'=>base_url('assets/subcategoryimages/'),

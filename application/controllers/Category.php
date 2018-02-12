@@ -372,10 +372,10 @@ public function productscompare()
  {
 
  	$pid=base64_decode($this->uri->segment(3));
- 	$category_ld =base64_decode($this->uri->segment(4));
- 	//print_r($category_ld);exit;
+ 	$subcategory_ld =base64_decode($this->uri->segment(4));
+ 	$subitem_ld =base64_decode($this->uri->segment(5));
 	$data['compore_products']= $this->category_model->get_products($pid);
-	$data['item']=$this->category_model->getsubitemdata($category_ld);
+	$data['item']=$this->category_model->getsubitemdata($subcategory_ld,$subitem_ld);
 	$data['first_item']=$pid;
 	$this->template->write_view('content', 'customer/compare',$data);
 	$this->template->render();
@@ -384,10 +384,10 @@ public function productscompare()
 public function compare_items_list()
 	{
 		$items=$this->input->post('item_id');
-		$category =$this->input->post('category_id');
-		//print_r($category_ld);exit;
+		$subcategory =$this->input->post('subcategory_id');
+		$subitemid =$this->input->post('subitem_id');
 		$data['compare_one']=$this->category_model->getcompare_item_details($items);
-		$data['items']=$this->category_model->getsubitemdata($category);
+		$data['items']=$this->category_model->getsubitemdata($subcategory,$subitemid);
 		//print_r($data);exit;
 		$this->load->view('customer/compareone',$data);
 
@@ -395,9 +395,10 @@ public function compare_items_list()
 	public function compare_items_list_two()
 	{
 		$items=$this->input->post('item_id');
-		$category =$this->input->post('category_id');
+		$subcategory =$this->input->post('subcategory_id');
+		$subitemid =$this->input->post('subitem_id');
 		$data['compare_one']=$this->category_model->getcompare_item_details($items);
-		$data['items']=$this->category_model->getsubitemdata($category);
+		$data['items']=$this->category_model->getsubitemdata($subcategory,$subitemid);
 		$this->load->view('customer/comparetwo',$data);
   	}
 	public function checkpincodes()
@@ -1923,6 +1924,13 @@ public function subitemwise_search(){
 				 if( $itemid==''){
 					 redirect('');
 				}	
+				$item=$this->category_model->get_all_itemfilters_data();
+					if(count($item)>0){
+					foreach ($item as $lis){
+					$this->category_model->delete_itemprivous_searchdata($lis['id']);
+					}
+				}
+				
 				$data['itemdetails']= $this->category_model->item_details($itemid);
 				$data['subitemwise']= $this->category_model->get_all_itemwiseproducts_list($itemid);
 				if(isset($data['subitemwise']) && count($data['subitemwise'])>0){
@@ -1946,6 +1954,8 @@ public function subitemwise_search(){
 				//echo $this->db->last_query();
 				$data['avalibility_list']= array('Instock'=>1,'Out of stock'=>0);
 				$offer_list= $this->category_model->get_item_all_offer_list($itemid);
+				//echo $this->db->last_query();
+				//echo '<pre>';print_r($offer_list);exit;
 				$data['color_list']= $this->category_model->get_item_all_brand_list($itemid,'colour');
 				$data['ram_list']= $this->category_model->get_item_all_brand_list($itemid,'ram');
 				$data['os_list']= $this->category_model->get_item_all_brand_list($itemid,'os');
@@ -1985,7 +1995,7 @@ public function subitemwise_search(){
 					if($list['offer_expairdate']>=$curr_date){
 						$amounts[]=$list['item_cost'];
 					}else{
-						$amounts[]=$list['special_price'];
+						$amounts[]=$list['item_cost'];
 					}
 				 }
 					$minamt = min($amounts);
@@ -2502,6 +2512,8 @@ public function subitemwise_search(){
 				$data1=array(
 				'ip_address'=>$ip,
 				'itemid'=>$post['itemid'],
+				'max'=>isset($post['max']) ? $post['max']:'',
+				'minimum_price'=>isset($post['mini_mum']) ? $post['mini_mum']:'',
 				'minimum_price'=>isset($post['mini_mum']) ? $post['mini_mum']:'',
 				'maximum_price'=>isset($post['maxi_mum']) ? $post['maxi_mum']:'',
 				'offer'=>isset($offer) ? $offer:'',
@@ -2574,6 +2586,7 @@ public function subitemwise_search(){
 							$data['rating_count']=array();
 						}
 				$data['previousdata']= $this->category_model->get_all_previous_itemwise_search_fields($this->input->ip_address());
+				$data['max']=$data['previousdata'][0]['max'];
 				$data['itemdetails']= $this->category_model->item_details($data['previousdata'][0]['itemid']);
 				$filtersitemid= $this->category_model->get_itemwise_data_item_id($this->input->ip_address());
 				$data['itemid']=$filtersitemid['itemid'];

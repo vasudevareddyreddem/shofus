@@ -154,6 +154,63 @@ class Cron_model extends MY_Model
 	
 	/* exchange return orders */
 	
+	/* delteunwanted data*/
+	public function get_all_brandfilters_data(){
+		$this->db->select('*')->from('brandwise_filters');
+		return $this->db->get()->result_array();
+	}
+	public function delete_brandprivous_searchdata($id)
+	{
+		$sql1="DELETE FROM brandwise_filters WHERE id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function get_all_filterfilters_data(){
+		$this->db->select('*')->from('fliter_search');
+		return $this->db->get()->result_array();
+	}
+	public function delete_filterprivous_searchdata($id)
+	{
+		$sql1="DELETE FROM fliter_search WHERE id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function get_all_itemfilters_data(){
+		$this->db->select('*')->from('item_wise_filter_search');
+		return $this->db->get()->result_array();
+	}
+	public function delete_itemprivous_searchdata($id)
+	{
+		$sql1="DELETE FROM item_wise_filter_search WHERE id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function get_all_pricefilters_data(){
+		$this->db->select('*')->from('pricewise_filters');
+		return $this->db->get()->result_array();
+	}
+	public function delete_priceprivous_searchdata($id)
+	{
+		$sql1="DELETE FROM pricewise_filters WHERE id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function get_all_subcatfilters_data(){
+		$this->db->select('*')->from('subcat_wise_fliter_search');
+		return $this->db->get()->result_array();
+	}
+	public function delete_subcatprivous_searchdata($id)
+	{
+		$sql1="DELETE FROM subcat_wise_fliter_search WHERE id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	public function get_all_subitemfilters_data(){
+		$this->db->select('*')->from('subitem_wise_filter_search');
+		return $this->db->get()->result_array();
+	}
+	public function delete_subitemprivous_searchdata($id)
+	{
+		$sql1="DELETE FROM subitem_wise_filter_search WHERE id = '".$id."'";
+		return $this->db->query($sql1);
+	}
+	/* delteunwanted data*/
+	
 
 
 }

@@ -2445,15 +2445,24 @@ class Customerapi_model extends MY_Model
 		return $this->db->get()->row_array();
 	}
 	public function get_sub_items_list($subcategory_id){
-	$this->db->select('sub_items.subitem_id,sub_items.category_id,sub_items.subcategory_id,sub_items.subitem_name,sub_items.image')->from('products');
-	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
-    $this->db->where('products.subcategory_id', $subcategory_id);
+		$this->db->select('sub_items.subitem_id,sub_items.category_id,sub_items.subcategory_id,sub_items.subitem_name,sub_items.image')->from('products');
+		$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
+		$this->db->where('products.subcategory_id', $subcategory_id);
+		$this->db->where('products.item_status', 1);
+		$this->db->where('products.subitemid !=','');
+		$this->db->group_by('products.subitemid');
+		return $this->db->get()->result_array();
+	}
+	public function get_subitemwise_item_list($subitem_id){
+	$this->db->select('items_list.*')->from('products');
+	$this->db->join('items_list', 'items_list.id = products.itemwise_id', 'left');	
+    $this->db->where('products.subitemid', $item_id);
     $this->db->where('products.item_status', 1);
-    //$where = "products.subitemid is  NOT NULL";
-	$this->db->where('products.subitemid !=','');
-    $this->db->group_by('products.subitemid');
+    $this->db->where('items_list.id !=','');
+    $this->db->group_by('products.itemwise_id');
 	return $this->db->get()->result_array();
 	}
+	
 	public function get_itemwise_items_list($item_id){
 	$this->db->select('items_list.*')->from('products');
 	$this->db->join('items_list', 'items_list.id = products.itemwise_id', 'left');	
@@ -2464,9 +2473,16 @@ class Customerapi_model extends MY_Model
 	return $this->db->get()->result_array();
 	}
 	public function get_wise_items_product_list($item_id){
-	$this->db->select('*')->from('products');
+	$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.item_quantity,products.item_status,products.offer_amount,products.offer_percentage,products.item_image')->from('products');
     $this->db->where('products.itemwise_id', $item_id);
     $this->db->where('products.item_status', 1);
+	return $this->db->get()->result_array();
+	}
+	public function get_subitemwise_items_list($subitem_id){
+	$this->db->select('items_list.id as item_id,items_list.subitemid,items_list.item_name,items_list.image')->from('products');
+    $this->db->join('items_list', 'items_list.subitemid = products.subitemid', 'left');	
+    $this->db->where('products.item_status', 1);
+	$this->db->where('items_list.subitemid', $subitem_id);
 	return $this->db->get()->result_array();
 	}
 	public function get_sub_itemswise_productlist($sub_item_id){
@@ -2689,7 +2705,7 @@ class Customerapi_model extends MY_Model
 	public function get_homepage_position_two_banner($position){
 		$date = new DateTime("now");
 		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
+		$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link,homepage_banners.selected_id as product_id')->from('homepage_banners');
 		$this->db->where('position',$position);
 		$this->db->where('homepage_banners.expirydate >=', $curr_date);
 		$this->db->where('status',1);
@@ -2699,7 +2715,7 @@ class Customerapi_model extends MY_Model
 	public function get_homepage_position_three_banner($position){
 		$date = new DateTime("now");
 		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
+		$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link,homepage_banners.selected_id as product_id')->from('homepage_banners');
 		$this->db->where('position',$position);
 		$this->db->where('homepage_banners.expirydate >=', $curr_date);
 		$this->db->where('status',1);
@@ -2709,7 +2725,7 @@ class Customerapi_model extends MY_Model
 	public function get_homepage_position_four_banner($position){
 		$date = new DateTime("now");
 		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link')->from('homepage_banners');
+		$this->db->select('homepage_banners.category_id,homepage_banners.subcategory_id,homepage_banners.subitem_id,homepage_banners.item_id,homepage_banners.position,homepage_banners.name,homepage_banners.link,homepage_banners.selected_id as product_id')->from('homepage_banners');
 		$this->db->where('position',$position);
 		$this->db->where('homepage_banners.expirydate >=', $curr_date);
 		$this->db->where('status',1);
@@ -2802,7 +2818,7 @@ class Customerapi_model extends MY_Model
 		public function step_one_data($position){
 		$date = new DateTime("now");
 		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link')->from('category_banners');
+		$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link,category_banners.selected_id as product_id')->from('category_banners');
 		$this->db->where('category_banners.position',$position);
 		$this->db->where('category_banners.expirydate >=', $curr_date);
 		$this->db->where('category_banners.status',1);
@@ -2812,7 +2828,7 @@ class Customerapi_model extends MY_Model
 		public function step_four_data($position){
 		$date = new DateTime("now");
 		$curr_date = $date->format('Y-m-d h:i:s A');
-		$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link')->from('category_banners');
+		$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link,category_banners.selected_id as product_id')->from('category_banners');
 		$this->db->where('category_banners.position',$position);
 		$this->db->where('category_banners.expirydate >=', $curr_date);
 		$this->db->where('category_banners.status',1);
@@ -2822,7 +2838,7 @@ class Customerapi_model extends MY_Model
 		public function step_seven_data($position){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link')->from('category_banners');
+			$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link,category_banners.selected_id as product_id')->from('category_banners');
 			$this->db->where('category_banners.position',$position);
 			$this->db->where('category_banners.expirydate >=', $curr_date);
 			$this->db->where('category_banners.status',1);
@@ -2832,7 +2848,7 @@ class Customerapi_model extends MY_Model
 		public function step_eleven_data($position){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link')->from('category_banners');
+			$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link,category_banners.selected_id as product_id')->from('category_banners');
 			$this->db->where('category_banners.position',$position);
 			$this->db->where('category_banners.expirydate >=', $curr_date);
 			$this->db->where('category_banners.status',1);
@@ -2842,7 +2858,7 @@ class Customerapi_model extends MY_Model
 		public  function step_fourteen_data($position){
 			$date = new DateTime("now");
 			$curr_date = $date->format('Y-m-d h:i:s A');
-			$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link')->from('category_banners');
+			$this->db->select('category_banners.category_id,category_banners.subcategory_id,category_banners.subitem_id,category_banners.item_id,category_banners.position,category_banners.name,category_banners.link,category_banners.selected_id as product_id')->from('category_banners');
 			$this->db->where('category_banners.position',$position);
 			$this->db->where('category_banners.expirydate >=', $curr_date);
 			$this->db->where('category_banners.status',1);
@@ -3037,6 +3053,18 @@ class Customerapi_model extends MY_Model
 		
 	}
 	/* category page */
+	
+	/*price wise product list*/
+	public function get_price_wise_product_list($catid,$min,$max){
+	$amtwhere='item_cost BETWEEN '.'"'.$min.'"'.' AND '.$max;
+	$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.item_quantity,products.item_status,products.offer_amount,products.offer_percentage,products.item_image')->from('products');
+	$this->db->where($amtwhere);	
+    $this->db->where('products.category_id', $catid);
+    $this->db->where('products.item_status', 1);
+	$this->db->order_by('products.item_cost desc');
+	return $this->db->get()->result_array();
+	}
+	/*price wise product list*/
 	
 	
 	

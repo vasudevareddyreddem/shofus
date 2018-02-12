@@ -160,8 +160,8 @@ $(document).ready(function() {
 						message: 'ItemName is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9.,&-_@#$ ]+$/,
-					message: ' Sub ItemName can only consist of alphanumaric, space and dot'
+					regexp: /^[a-zA-Z0-9.,# ]+$/,
+					message: 'ItemName can only consist of alphanumaric, space and dot'
 					}
 				}
 			},

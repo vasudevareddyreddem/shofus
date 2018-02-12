@@ -19,7 +19,7 @@
 					</button><?php echo validation_errors(); ?></div>	
 					<?php  endif;?>
 				<form enctype="multipart/form-data" method="post" name="edititem" id="edititem"  action="<?php echo base_url('inventory/edititempost'); ?>" class="well col-md-6 col-md-offset-2" style="background-color:#fff;">
-				<div class=""  style="font-size:20px;font-weight:600;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Edit SubItem</div>
+				<div class=""  style="font-size:20px;font-weight:600;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:10px;">Edit Item</div>
 				
 				<input type="hidden" name="itemid" id="itemid" value="<?php echo isset($item_details['id'])?$item_details['id']:''; ?>">
 				
@@ -97,8 +97,8 @@ $(document).ready(function() {
 						message: 'Sub ItemName is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9.,&-_@#$ ]+$/,
-					message: ' Sub ItemName can only consist of alphanumaric, space and dot'
+					regexp: /^[a-zA-Z0-9.,# ]+$/,
+					message: 'ItemName can only consist of alphanumaric, space and dot'
 					}
 				}
 			}

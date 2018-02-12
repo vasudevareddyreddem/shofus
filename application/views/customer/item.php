@@ -25,12 +25,20 @@
 		  <div class="col-md-6">
 		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="itemwisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
 				<?php if($minimum_price['item_cost']==$maximum_price['item_cost']){ ?>
-				<option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
-				<?php }else{ ?>
-						<?php for( $i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
-						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-						<?php } ?>
-				<?php } ?>
+						  <option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
+							<?php }else{ ?>
+						<?php $cnt=1;for($i=floor($minimum_price['item_cost']+1000); $i<=floor($maximum_price['item_cost']); $i+=1000){  ?>
+								<?php if($cnt==1){if($maximum_price['item_cost'] !=$i){ ?>
+									<option value="<?php echo $maximum_price['item_cost']; ?>"><?php echo $maximum_price['item_cost']; ?></option>
+								<?php } } ?>
+									<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+								
+						<?php $cnt++;} ?>	
+					<?php } ?>
+
+			  </select>
+				
+				
 
 			  </select>
 		  </div>
@@ -916,6 +924,7 @@ function itemwisefilters(val,status,check){
 					unchecked: check,
 					mini_mum: minamt,
 					maxi_mum: maxamt,
+					max: $('#max').val(),
 
 					},
 				dataType: 'html',

@@ -104,7 +104,6 @@ class Category_model extends MY_Model
 		$this->db->where('ram!=','');
 		$this->db->group_by('ram');
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_color_type_list($catid,$subcat)
 	{
@@ -115,7 +114,6 @@ class Category_model extends MY_Model
 		$this->db->where('colour!=','');
 		$this->db->group_by('colour');
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_os_type_list($catid,$subcat)
 	{
@@ -126,7 +124,6 @@ class Category_model extends MY_Model
 		$this->db->where('os!=','');
 		$this->db->group_by('os');
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_sim_type_type_list($catid,$subcat)
 	{
@@ -137,7 +134,6 @@ class Category_model extends MY_Model
 		$this->db->where('sim_type!=','');
 		$this->db->group_by('sim_type');
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_ram_list($catid,$subcat)
 	{
@@ -148,7 +144,6 @@ class Category_model extends MY_Model
 		$this->db->where('ram!=','');
 		$this->db->group_by('ram');
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_camera_type_list($catid,$subcat)
 	{
@@ -159,7 +154,6 @@ class Category_model extends MY_Model
 		$this->db->where('camera!=','');
 		$this->db->group_by('camera');
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_internal_memeory_list($catid,$subcat)
 	{
@@ -191,9 +185,6 @@ class Category_model extends MY_Model
 		$this->db->group_by('Processor');
 		return $this->db->get()->result_array();
 	}
-	
-	
-	
 	public function get_strap_color_list($catid,$subcat)
 	{
 		$this->db->select('products.strap_color')->from('products');
@@ -224,7 +215,6 @@ class Category_model extends MY_Model
 		$this->db->group_by('packof');
 		return $this->db->get()->result_array();
 	}
-	
 	public function update_ram_privous_subcategorysearchdata($id,$data)
 	{
 		$sql1="UPDATE subcat_wise_fliter_search SET ram ='".$data."' WHERE id ='".$id."'";
@@ -240,19 +230,16 @@ class Category_model extends MY_Model
 		$sql1="UPDATE subcat_wise_fliter_search SET os ='".$data."' WHERE id ='".$id."'";
 		return $this->db->query($sql1);
 	}
-	
 	public function update_size_privous_subcategorysearchdata($id,$data)
 	{
 		$sql1="UPDATE subcat_wise_fliter_search SET size ='".$data."' WHERE id ='".$id."'";
 		return $this->db->query($sql1);
 	}
-	
 	public function update_color_privoussubcategory_searchdata($id,$data)
 	{
 		$sql1="UPDATE subcat_wise_fliter_search SET color ='".$data."' WHERE id ='".$id."'";
 		return $this->db->query($sql1);
 	}
-	
 	public function update_brand_privous_subcategorysearchdata($id,$data)
 	{
 		$sql1="UPDATE subcat_wise_fliter_search SET brand ='".$data."' WHERE id ='".$id."'";
@@ -263,8 +250,6 @@ class Category_model extends MY_Model
 		$sql1="UPDATE subcat_wise_fliter_search SET offers ='".$data."' WHERE id ='".$id."'";
 		return $this->db->query($sql1);
 	}
-	
-	
 	public function get_all_previous_search_subcategory_fields()
 	{
 		$this->db->select('*')->from('subcat_wise_fliter_search');
@@ -331,7 +316,6 @@ class Category_model extends MY_Model
 	$this->db->group_by('subcat_wise_fliter_search.os');
 	$query=$this->db->get()->result_array();
 		foreach ($query as $listing){
-			
 			//echo '<pre>';print_r($listing);exit;
 			if($listing['brand']!=''){
 			$brand[] = $listing['brand'];	
@@ -352,7 +336,6 @@ class Category_model extends MY_Model
 			$maxamount = $listing['max_amount'];
 			$catid = $listing['category_id'];
 			$subcatid = $listing['subcategory_id'];
-		
 		}
 		if(isset($brand) && count($brand)>0 ){
 			$brands=implode ('","', $brand );
@@ -381,18 +364,12 @@ class Category_model extends MY_Model
 		$os='NULL';
 		}
 		$return['filterslist'] = $this->get_subcategory_filers_products_list_alllist($brands,$offerss,$ram,$colour,$os,$minamount,$maxamount,$catid,$subcatid);
-		//echo $this->db->last_query();exit;
-		
-		//echo '<pre>';print_r($return);exit;
 		if(!empty($return['filterslist']))
 		{
 		return $return['filterslist'];
 		}
-		
 	}
-	
 	public function get_subcategory_filers_products_list_alllist($b,$f,$ram,$colour,$os,$min,$max,$cid,$subcatid){
-		
 		$amtwhere='item_cost BETWEEN '.'"'.$min.'"'.' AND '.$max;
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
@@ -414,12 +391,9 @@ class Category_model extends MY_Model
 		$this->db->where('item_status',1);
 		$this->db->where('category_id',$cid);
 		$this->db->where('subcategory_id',$subcatid);
-		
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_subcategoryinternal_memeory($internal_memeory,$cid,$subcat,$staus){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
 		if($staus!==0){
@@ -431,11 +405,8 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
 	}
 	public function get_subcategoryProcessor($Processor,$cid,$subcat,$staus){
-		
 		$this->db->select('*')->from('products');
 		if($staus!==0){
 		$this->db->where('item_quantity',0);	
@@ -447,11 +418,8 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
 	}
 	public function get_subcategoryscreen_size($screen_size,$cid,$subcat,$staus){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
 		if($staus!==0){
@@ -463,11 +431,8 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
 	}
 	public function get_subcategorycamera($camera,$cid,$subcat,$staus){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
 		if($staus!==0){
@@ -479,11 +444,8 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
 	}
 	public function get_subcategorysim_type($sim_type,$cid,$subcat,$staus){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
 		if($staus!==0){
@@ -495,11 +457,8 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
 	}
 	public function get_subcategoryos($os,$cid,$subcat,$staus){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
 		if($staus!==0){
@@ -511,11 +470,8 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
 	}
 	public function get_subcategorycolour($colour,$cid,$subcat,$staus){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
 		if($staus!==0){
@@ -527,11 +483,8 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
 	}
 	public function get_subcategorydiscount($discount,$cid,$subcat,$staus){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
 		if($staus!==0){
@@ -543,11 +496,8 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
 	}
 	public function get_subcategorybrand($brand,$cid,$subcat,$staus){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
 		if($staus!==0){
@@ -559,11 +509,8 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
 	}
 	public function get_subcategoryoffers($offer,$cid,$subcat,$staus){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$staus);
 		if($staus!==0){
@@ -575,8 +522,6 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
 	}
 	public function get_subcategoryram($ram,$cid,$subcat,$staus){
 		$this->db->select('*')->from('products');
@@ -604,9 +549,7 @@ class Category_model extends MY_Model
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		
 	}
-	
 	/* food categorywise*/
 	public function get_subcategoryamount($min_amunt,$max_amount,$cid,$subcat,$status){
 		$min_amt=(($min_amunt)+1);
@@ -616,164 +559,19 @@ class Category_model extends MY_Model
 			$sql = "SELECT * FROM products WHERE special_price BETWEEN '".$min_amt."' AND '".$max_amount."' AND category_id ='".$cid."' AND  subcategory_id ='".$subcat."' AND item_status ='".$status."' AND item_quantity >'0'";
 		}
 		return $this->db->query($sql)->result_array();
-		//echo $this->db->last_query();exit;
 	}
-	
-	
-	/* for subcategory wise*/
 	/* for search data*/
-	
 	public function get_all_category_search_products($data){
 		$this->db->select('*')->from('products');
 		$this->db->where('products.item_status',1);
 		$this->db->where_in('seller_id',$data);
 		$this->db->where_in('cusine',$data);
 		return $this->db->get()->result_array();
-		
 	}
-	
-	
-	
 	
 	/*------------------*/
-	
-	
-	public function getCategoryData($where = "")
-	{
-		
-		$sql = 
-		"
-			SELECT * FROM categories
-			
-		";
-		$result = $this->db->query($sql);
-		if($result && $result->num_rows()>0)
-		{
-			return $result->result_array();
-		}	
-	}
-	
-	public function getSidebarData()
-	{
-		$productcnts = $this->getproductIds();		
-		$allCat = $this->getParentCategories($productcnts);
-		$retData = $this->getChildCategories($allCat,$productcnts);
-		return $retData;
-	}
-	
-	public function getParentCategories($productcnts)
-	{
-		$sql = 
-		"
-			SELECT cat.category_id, cat.category_name FROM category AS cat		
-			
-			ORDER BY cat.category_id
-		";
-		$result = $this->db->query($sql);
-		if($result && $result->num_rows()>0)
-		{
-			$categoryData = $result->result_array();
-			$retVal = array();	
-			$cnt = 0;
-			foreach($categoryData as $category)
-			{
-				$retVal[$category["category_id"]] = $category;
-				$retVal[$category["category_id"]]["prod_cnt"] = isset($productcnts['category'][$category["category_id"]]["cnt"]) ? $productcnts['category'][$category["category_id"]]["cnt"] : 0;
-				
-				if($retVal[$category["category_id"]]["prod_cnt"] == "0")
-				unset($retVal[$category["category_id"]]);
-				$cnt++;
-			}
-		//	echo "<pre>";print_r($retVal);die;
-			return $retVal;
-		}
-	}
-	
-	public function getChildCategories($allCats,$productcnts)
-	{
-		$sql = "
-			SELECT subcat.category_id,subcat.category_name FROM category AS subcat										
-			
-			ORDER BY subcat.category_id
-		";
-	//	echo "<pre>";print_r($productcnts);die;
-		$result = $this->db->query($sql);
-		if($result && $result->num_rows()>0)
-		{
-			$subcategories = $result->result_array();
-			$retVal = array();
-			$cnt = 0;
-			foreach($allCats as $categories)
-			{
-				$retVal[$categories["category_id"]] = $categories;
-				$retVal[$categories["category_id"]]["sub_categories"] = array();
-				$cntsub = 0;
-				foreach($subcategories as $subcats)
-				{
-					$parents = explode(",",$subcats["parent_category_id"]);
-					foreach($parents as $parent)
-					{
-						if($parent == $categories["category_id"])
-						{
-							$retVal[$categories["category_id"]]["sub_categories"][$subcats["category_id"]] = $subcats;
-							$retVal[$categories["category_id"]]["sub_categories"][$subcats["category_id"]]["prod_cnt"] = isset($productcnts["category"][$parent]["subcategory"][$subcats["category_id"]]) ? $productcnts["category"][$parent]["subcategory"][$subcats["category_id"]] : 0;
-							
-					//		echo $productcnts["category"][$parent]["subcategory"][$subcats["category_id"]];
-							
-							if($retVal[$categories["category_id"]]["sub_categories"][$subcats["category_id"]]["prod_cnt"] == 0)
-							{
-								unset($retVal[$categories["category_id"]]["sub_categories"][$subcats["category_id"]]);
-							}
-							else
-							$cntsub++;							
-						}
-					}
-				}
-				$cnt++;
-			}			
-			return $retVal;
-		}
-	}
-	
-	public function getproductIds()
-	{
-		$sql = "SELECT product_id,category_id,subcategory_id fROM product
-			
-		";
-		$result = $this->db->query($sql);
-		if($result && $result->num_rows()>0)
-		{
-			$retData = array();
-			$retData["category"] = array();			
-			$products = $result->result_array();			
-			foreach($products as $prods)
-			{
-				$cats = explode(",",$prods['category_id']);
-				foreach($cats as $each)
-				{
-					if(isset($retData["category"][$each]["cnt"]))
-					{
-						$retData["category"][$each]["cnt"]++;
-					}
-					else 
-					{
-						$retData["category"][$each]["cnt"] = 1;
-					}
-					$subcats = explode(",",$prods['subcategory_id']);
-					foreach($subcats as $eachsub)
-					{
-						if(isset($retData["category"][$each]["subcategory"][$eachsub]))$retData["category"][$each]["subcategory"][$eachsub]++;
-						else $retData["category"][$each]["subcategory"][$eachsub] = 1;
-					}
-				}				
-			}
-			return $retData;
-			
-		}
-	}
+
 /* added by vasudevareddy */
-	
-	
 	/* cusine list*/
 	public function get_product_details($id)
 	{
@@ -782,7 +580,6 @@ class Category_model extends MY_Model
 		$this->db->where('item_id',$id);
 		return $this->db->get()->row_array();
 	}
-	
 	public function get_filers_products_list_amount($min,$max,$cid){
 		$min_amt=(($min)-1);
 		$this->db->select('*')->from('products');
@@ -790,9 +587,7 @@ class Category_model extends MY_Model
 		$this->db->where('item_cost >=', $min_amt);
 		$this->db->where('item_status',1);
 		$this->db->where('category_id',$cid);
-		
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_filers_products_list_discount($discount,$min,$max,$cid){
 		$min_amt=(($min)-1);
@@ -803,7 +598,6 @@ class Category_model extends MY_Model
 		$this->db->where('category_id',$cid);
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_filers_products_list_brand($brand,$min,$max,$cid){
 		$min_amt=(($min)-1);
@@ -814,7 +608,6 @@ class Category_model extends MY_Model
 		$this->db->where('category_id',$cid);
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_filers_products_list_offer($offers,$min,$max,$cid){
 		$min_amt=(($min)-1);
@@ -825,7 +618,6 @@ class Category_model extends MY_Model
 		$this->db->where('category_id',$cid);
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_filers_products_list_two($offers,$brand,$min,$max,$cid){
 		$min_amt=(($min)-1);
@@ -837,7 +629,6 @@ class Category_model extends MY_Model
 		$this->db->where('category_id',$cid);
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_filers_products_list_three($offers,$brand,$discount,$min,$max,$cid){
 		$min_amt=(($min)+1);
@@ -850,54 +641,43 @@ class Category_model extends MY_Model
 		$this->db->where('category_id',$cid);
 		$this->db->where('item_status',1);
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_offers($offer,$cid,$status){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$status);
 		$this->db->where('offers',$offer);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_brands($brand,$cid,$status){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$status);
 		$this->db->where('brand',$brand);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_discounts($discount,$cid,$status){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',$status);
 		$this->db->where('discount',$discount);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_sizes($size,$cid){
-		
 		$this->db->select('products.*')->from('product_size_list');
 		$this->db->join('products', 'products.item_id = product_size_list.item_id', 'left'); //
 		$this->db->where('products.item_status',1);
 		$this->db->where('product_size_list.p_size_name',$size);
 		$this->db->where('products.category_id',$cid);
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_colors($color,$cid){
-		
 		$this->db->select('products.*')->from('product_color_list');
 		$this->db->join('products', 'products.item_id = product_color_list.item_id', 'left'); //
 		$this->db->where('products.item_status',1);
 		$this->db->where('product_color_list.color_name',$color);
 		$this->db->where('products.category_id',$cid);
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_status($status,$cid){
 		$this->db->select('*')->from('products');
@@ -911,70 +691,38 @@ class Category_model extends MY_Model
 		//$this->db->where('item_status',1);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_cusine($cusine,$cid){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',1);
 		$this->db->where('cusine',$cusine);
 		$this->db->where('category_id',$cid);
-		
 		return $this->db->get()->result_array();
-		//echo '<pre>';print_r($qq);exit;
-		
 	}
 	public function get_restraent($restraent,$cid){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_status',1);
 		$this->db->where('seller_id',$restraent);
 		$this->db->where('category_id',$cid);
 		return $this->db->get()->result_array();
-		
-	}
-	
-	/* food categorywise*/
+	}/* food categorywise*/
 	public function get_amount($min_amunt,$max_amount,$cid){
 		$min_amt=(($min_amunt)+1);
 		$sql = "SELECT * FROM products WHERE category_id ='".$cid."' AND item_status ='1' AND  item_cost BETWEEN '".$min_amt."' AND '".$max_amount."'";
 		return $this->db->query($sql)->result_array();
-		//echo $this->db->last_query();exit;
-	}
-	
-	/*subcatwise*/
+	}/*subcatwise*/
 	public function get_all_offer_list_sub($catid,$subcat)
 	{
-	
-		/*$this->db->select('products.offers')->from('products');
-		$this->db->where('category_id',$catid);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('item_status',1);
-		$this->db->where('offers!=','');
-		$this->db->group_by('offers');
-		return $this->db->get()->result_array();*/
 		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `subcategory_id` = '".$subcat."' AND `item_status` = 1";
 		return $this->db->query($sql)->result_array();
-		
 	}
-	
 	public function get_all_discount_list_sub($catid,$subcat)
 	{
-	
-		/*$this->db->select('products.discount')->from('products');
-		$this->db->where('category_id',$catid);
-		$this->db->where('subcategory_id',$subcat);
-		$this->db->where('item_status',1);
-		$this->db->where('discount!=','');
-		$this->db->group_by('discount');
-		return $this->db->get()->result_array();*/
 		$sql = "SELECT IF(products.offer_expairdate>= DATE('Y-m-d h:i:s A'), offer_amount, discount) AS discount FROM `products` WHERE `category_id` = '".$catid."'  AND `subcategory_id` = '".$subcat."' AND `item_status` = 1 AND `discount` != '' GROUP BY `discount`";
 		return $this->db->query($sql)->result_array();
-		
 	}
 	public function get_all_brand_list_sib($catid,$subcat)
 	{
-	
 		$this->db->select('products.brand')->from('products');
 		$this->db->where('category_id',$catid);
 		$this->db->where('subcategory_id',$subcat);
@@ -982,11 +730,9 @@ class Category_model extends MY_Model
 		$this->db->where('brand!=','');
 		$this->db->group_by('brand');
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_all_cusine_list_sub($catid,$subcat)
 	{
-	
 		$this->db->select('products.cusine')->from('products');
 		$this->db->where('category_id',$catid);
 		$this->db->where('subcategory_id',$subcat);
@@ -994,7 +740,6 @@ class Category_model extends MY_Model
 		$this->db->where('cusine!=','');
 		$this->db->group_by('cusine');
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_all_myrestaurant_list_sub($catid,$subcat)
 	{
@@ -1018,17 +763,14 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	/*subcatwise*/
-
 	public function get_all_cusine_list($catid)
 	{
-	
 		$this->db->select('products.cusine')->from('products');
 		$this->db->where('category_id',$catid);
 		$this->db->where('item_status',1);
 		$this->db->where('cusine!=','');
 		$this->db->group_by('cusine');
 		return $this->db->get()->result_array();
-		
 	}
 	public function get_all_myrestaurant_list($catid)
 	{
@@ -1040,7 +782,6 @@ class Category_model extends MY_Model
 		$this->db->group_by('products.seller_id');
 		return $this->db->get()->result_array();
 	}
-	
 	/* food categorywise*/
 	/*electronic category*/
 	public function get_all_color_list($catid){
@@ -1070,9 +811,7 @@ class Category_model extends MY_Model
 		$this->db->where('brand!=','');
 		$this->db->group_by('brand');
 		return $this->db->get()->result_array();
-		
 	}
-
 	public function get_all_price_list($catid)
 	{
 		$this->db->select('products.item_cost,products.special_price,products.offer_expairdate')->from('products');
@@ -1085,17 +824,8 @@ class Category_model extends MY_Model
 	}
 	public function get_all_discount_list($catid)
 	{
-		//$date = new DateTime("now");
- 		//$curr_date = $date->format('Y-m-d h:i:s A');
-		/*$this->db->select('IF(products.offer_expairdate>= date(Y-m-d h:i:s A),offer_amount,discount')->from('products');
-		$this->db->where('category_id',$catid);
-		$this->db->where('item_status',1);
-		$this->db->where('discount!=','');
-		$this->db->group_by('discount');
-		return $this->db->get()->result_array();*/
 		$sql = "SELECT IF(products.offer_expairdate>= DATE('Y-m-d h:i:s A'), offer_amount, discount) AS discount FROM `products` WHERE `category_id` = '".$catid."' AND `item_status` = 1 AND `discount` != '' GROUP BY `discount`";
 		return $this->db->query($sql)->result_array();
-		
 	}
 	public function get_all_avalibility_list($catid)
 	{
@@ -1109,30 +839,15 @@ class Category_model extends MY_Model
 	{
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
-
-		/*$this->db->select('products.offer_percentage,products.offers')->from('products');
-		$this->db->where('products.category_id',$catid);
-		$this->db->where('products.item_status',1);
-		$this->db->where('products.offer_percentage!=','');
-		if("products.offer_expairdate >= '".$curr_date."'"){
-			$this->db->group_by('products.offer_percentage');
-		}else{
-		$this->db->group_by('products.offers');
-		}
-		return $this->db->get()->result_array();*/
 		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `category_id` = '".$catid."' AND `item_status` = 1 AND  offers!='' OR offer_percentage!=''";
 		return $this->db->query($sql)->result_array();
 	}
-	
 	/* GROCERY categorywise*/
-	
 	public function get_category_name($catid)
 	{
-	
 	$this->db->select('category.category_name')->from('category');
     $this->db->where_in('category_id', $catid);
 	return $this->db->get()->row_array();
-		
 	}
 	public function get_all_wish_lists_ids()
 	{
@@ -1146,20 +861,16 @@ class Category_model extends MY_Model
 	}
 	public function get_all_subcategory_products($category_ids)
 	{
-	
 	$this->db->select('products.*')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
 	$this->db->join('item_wishlist', 'item_wishlist.item_id =products.item_id', 'left');
-		
-    $this->db->where_in('products.category_id', $category_ids);
+	$this->db->where_in('products.category_id', $category_ids);
     $this->db->where('products.item_status', 1);
 	return $this->db->get()->result_array();
-		
 	}
 	public function get_all_subcategory_product($category_ids,$sid)
 	{
-	
 	$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.unit,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.ingredients,products.key_feature,products.disclaimer,products.unit')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');
@@ -1169,42 +880,32 @@ class Category_model extends MY_Model
     $this->db->where('products.category_id', $category_ids);
     $this->db->where('products.item_status', 1);
 	return $this->db->get()->result_array();
-	
-	
 	}
 	public function product_reviews_avg($itemid){
-		 
 		$sql = "SELECT AVG(rating) as avg,item_id FROM ratings WHERE item_id ='".$itemid."'";
 		return $this->db->query($sql)->row_array();	
 	}
 	public function product_reviews_count($itemid){
-		 
 		$sql = "SELECT COUNT(item_id) as count,item_id FROM reviews WHERE item_id ='".$itemid."'";
 		return $this->db->query($sql)->row_array();	
-		 
-	 }	
+	}	
 	public function get_category_id($subcatid)
 	{
-	
 	$this->db->select('subcategories.subcategory_id,subcategories.subcategory_name,subcategories.category_id')->from('subcategories');
     $this->db->where('subcategories.subcategory_id', $subcatid);
 	return $this->db->get()->row_array();
-		
 	}
 	public function get_all_subcategory_products_list($subcatid)
 	{
-	
 	$this->db->select('products.*,category.category_id')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
     $this->db->where('subcategories.subcategory_id', $subcatid);
     $this->db->where('products.item_status', 1);
 	return $this->db->get()->result_array();
-		
 	}
 	public function get_all_subcategory_products_list_grocery($subcatid)
 	{
-	
 	$this->db->select('products.*,category.category_id')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
@@ -1212,11 +913,9 @@ class Category_model extends MY_Model
     $this->db->where('products.item_status', 1);
     $this->db->group_by('products.item_name');
 	return $this->db->get()->result_array();
-		
 	}
 	public function get_all_subcategorys($category_ids)
 	{
-	
 	$this->db->select('category.category_id,subcategories.subcategory_name,subcategories.subcategory_id,subcategories.subcategory_image')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');
@@ -1225,12 +924,9 @@ class Category_model extends MY_Model
 	$this->db->where('subcategories.status', 1);	
 	$this->db->where_in('subcategories.category_id', $category_ids);	
 	return $this->db->get()->result_array();
-		
-	
 	}
 	public function get_all_subcategory($category_id)
 	{
-	
 	$this->db->select('category.category_id,subcategories.subcategory_name,subcategories.subcategory_id,subcategories.subcategory_image')->from('products');
 	$this->db->join('subcategories', 'subcategories.subcategory_id = products.subcategory_id', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');
@@ -1239,14 +935,9 @@ class Category_model extends MY_Model
 	$this->db->where('subcategories.status', 1);	
 	$this->db->where('subcategories.category_id', $category_id);	
 	return $this->db->get()->result_array();
-		
-	
 	}
 	
 	public function get_all_products($catid){
-		
-		
-		//echo "<pre>";print_r($catid);exit;
 		$this->db->select('products.*,category.category_name,item_wishlist.yes')->from('products');
 		$this->db->join('category', 'category.category_id = products.category_id', 'left');
 		//$this->db->join('reviews', 'reviews.item_id = products.item_id', 'left'); //		//
@@ -1256,9 +947,6 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_list_products($catid){
-		
-		
-		//echo "<pre>";print_r($catid);exit;
 		$this->db->select('products.*,category.category_name,item_wishlist.yes')->from('products');
 		$this->db->join('category', 'category.category_id = products.category_id', 'left');
 		//$this->db->join('reviews', 'reviews.item_id = products.item_id', 'left'); //		//
@@ -1268,14 +956,12 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_list_categories($catid){
-		
 		$this->db->select('subcategories.*')->from('subcategories');
 		$this->db->where('category_id',$catid);
 		//$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
 	public function get_product_stock($catid){
-		
 		$this->db->select('products.*')->from('products');
 		$this->db->where('subcategory_id',$catid);
 		$this->db->where('admin_status',0);
@@ -1283,34 +969,29 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_category($catid){
-		
 		$this->db->select('category.category_name')->from('subcategories');
 		$this->db->join('category', 'category.category_id = subcategories.category_id', 'left'); //
 		$this->db->where('subcategories.subcategory_id',$catid);
 		return $this->db->get()->row_array();
 	}
 	public function get_products_sizes_list($pid){
-		
 		$this->db->select('*')->from('product_size_list');
 		$this->db->where('item_id',$pid);
 		$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
 	public function get_products_uksizes_list($pid){
-		
 		$this->db->select('*')->from('product_uksize_list');
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->result_array();
 	}
 	public function get_products_colos_list($pid){
-		
 		$this->db->select('*')->from('product_color_list');
 		$this->db->where('item_id',$pid);
 		$this->db->where('status',1);
 		return $this->db->get()->result_array();
 	}
 	public function get_products_reviews($pid){
-		
 		$this->db->select('reviews.*,ratings.rating,customers.cust_firstname')->from('reviews');
 		$this->db->join('ratings', 'ratings.review_id = reviews.review_id', 'left'); 
 		$this->db->join('customers', 'customers.customer_id = reviews.customer_id', 'left'); 
@@ -1319,19 +1000,16 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_products_specifications_list($pid){
-		
 		$this->db->select('*')->from('product_spcifications');
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->result_array();
 	}
 	public function get_products_desc_list($pid){
-		
 		$this->db->select('*')->from('descrotion_list');
 		$this->db->where('item_id',$pid);
 		return $this->db->get()->result_array();
 	}
 	public function get_subitemwise_unit_products_list($subitem_id,$unit){
-		
 		$this->db->select('products.item_id,products.unit,products.subcategory_id,products.subitemid,products.itemwise_id')->from('products');
 		$this->db->where('unit',$unit);
 		$this->db->where('unit !=','');
@@ -1342,7 +1020,6 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_untiwise_product_details($pid){
-		
 		$this->db->select('*')->from('products');
 		$this->db->where('item_id',$pid);
 		$this->db->where('item_status',1);
@@ -1350,7 +1027,6 @@ class Category_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	public function get_products($pid){
-		
 		$this->db->select('products.*,item_wishlist.yes,seller_store_details.store_name')->from('products');
 		$this->db->join('item_wishlist', 'item_wishlist.item_id = products.item_id', 'left'); //
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = products.seller_id', 'left'); //
@@ -1358,36 +1034,23 @@ class Category_model extends MY_Model
 		return $this->db->get()->row_array();
 	}
 	public function save_review($data){
-		
 		$this->db->insert('reviews', $data);
 		return $insert_id = $this->db->insert_id();
 	}
 	public function save_rating($data){
-		
 		$this->db->insert('ratings', $data);
 		return $insert_id = $this->db->insert_id();
 	}
 
-
-		
-	
-	public function getsubitemdata($cat_id)
- {
-  
-  	$this->db->select('*')->from('products');
- 	$this->db->where('products.category_id',$cat_id);
-  	return $query=$this->db->get()->result();  
- }
- // public function getsubitem_one($category_ld)
- // {
-  
- //  	$this->db->select('products.item_name')->from('products');
- // 	$this->db->where('products.category_id',$category_ld);
- //  	return $query=$this->db->get()->result();  
- // }
-
-
- public function getcompare_item_details($itemid)
+	public function getsubitemdata($subcat_id,$subitemid)
+	{
+	$this->db->select('*')->from('products');
+ 	$this->db->where('products.subcategory_id',$subcat_id);
+ 	$this->db->where('products.subitemid',$subitemid);
+ 	$this->db->where('products.item_status',1);
+	return $query=$this->db->get()->result();  
+	}
+public function getcompare_item_details($itemid)
  {
   	$this->db->select('*')->from('products');
 	$this->db->where('products.item_id',$itemid);
@@ -1395,7 +1058,6 @@ class Category_model extends MY_Model
  } 
 public function get_all_subitem_list($catid,$subcatid)
  {
-  	//$this->db->select('*')->from('sub_items');
   	$this->db->select('sub_items.*')->from('products');
 	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left'); //
 	$this->db->where('products.category_id',$catid);
@@ -1411,8 +1073,7 @@ public function get_all_subitem_list($catid,$subcatid)
 	$this->db->group_by('products.subitemid');
 	return $this->db->get()->result_array();
  }
-
- public function get_category_ids($subcatid)
+public function get_category_ids($subcatid)
  {
   	$this->db->select('*')->from('subcategories');
 	$this->db->where('subcategory_id',$subcatid);
@@ -1420,7 +1081,6 @@ public function get_all_subitem_list($catid,$subcatid)
  } 
  public function get_subitem_list($subitem_id,$item_id)
 	{
-	
 	$this->db->select('products.item_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.ingredients,products.key_feature,products.disclaimer,products.item_cost,products.special_price,products.offer_percentage,products.discount,products.offers,products.offer_expairdate,products.unit,products.item_status,products.item_quantity,products.item_image,category.category_id')->from('products');
 	$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left');	
 	$this->db->join('category', 'category.category_id =products.category_id', 'left');	
@@ -1429,7 +1089,6 @@ public function get_all_subitem_list($catid,$subcatid)
     $this->db->where('products.item_status', 1);
     $this->db->group_by('products.item_name');
 	return $this->db->get()->result_array();
-		
 	}
 	public function get_ll_products()
 	{
@@ -1454,7 +1113,6 @@ public function get_all_subitem_list($catid,$subcatid)
 		return $this->db->get()->row_array();
 	}
 	public function get_mobileview_filers_products_list_alllist($b,$f,$c,$min,$max,$cid,$subcat){
-		//echo $b;exit;
 		$min_amt=(($min)-1);
 		$maxmum=(int)$max;
 		$lessamount=($maxmum)-($min_amt);
@@ -1478,13 +1136,10 @@ public function get_all_subitem_list($catid,$subcatid)
 		}if($c!='NULL'){
 			$this->db->where_in('colour','"'.$c.'"',false);
 		}
-		
 		$this->db->where('item_status',1);
 		$this->db->where('category_id',$cid);
 		$this->db->where('subcategory_id',$subcat);
-		
 		return $this->db->get()->result_array();
-		
 	}
 	
 	/* subitemwise*/
@@ -2489,11 +2144,10 @@ public function get_all_subitem_list($catid,$subcatid)
 		return $this->db->get()->result_array();
 	}
 	public function get_item_all_offer_list($itemid){
-		$date = new DateTime("now");
- 		$curr_date = $date->format('Y-m-d h:i:s A');
-		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `itemwise_id` = '".$itemid."' AND `item_status` = 1  AND  offers!='' OR offer_percentage!=''";
+		$sql = "SELECT offer_percentage, offers, offer_expairdate  FROM `products` WHERE `itemwise_id` = '".$itemid."' AND  `itemwise_id` != ''  AND  `item_status` = 1";
 		return $this->db->query($sql)->result_array();
 	}
+		
 	public function get_all_itemwiseproducts_list($itemid){
 		$this->db->select('products.item_id,products.subitemid,products.category_id,products.item_name,products.item_status,products.item_cost,products.unit,products.special_price,products.item_quantity,products.item_image,products.offer_percentage,products.offer_amount,products.offer_expairdate,sub_items.subitem_name,products.ingredients,products.key_feature,products.disclaimer,products.unit')->from('products');
 		$this->db->join('sub_items', 'sub_items.subitem_id =products.subitemid', 'left');	
@@ -2756,10 +2410,9 @@ public function get_all_subitem_list($catid,$subcatid)
 		
 		$date = new DateTime("now");
  		$curr_date = $date->format('Y-m-d h:i:s A');
+		$amtwhere='item_cost BETWEEN '.'"'.$minamount.'"'.' AND '.$maxamount;
 		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.offer_type,products.discount,products.offers,products.item_image')->from('products');
-		$this->db->where('special_price <=', $maxamount);
-		//$this->db->where('special_price >=', $minamount);
-		$this->db->where('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`special_price`,`item_cost` ) >=', '"'.$minamount.'"', false);
+		$this->db->where($amtwhere);
 		if($offer!='NULL'){
 			$this->db->where_in('if(`offer_expairdate`>="DATE(Y-m-d h:i:s A)",`offer_percentage`,`offers` )', '"'.$offer.'"', false);
 		}if($brand!='NULL'){
@@ -3577,7 +3230,15 @@ public function get_all_subitem_list($catid,$subcatid)
 		return $this->db->get()->row_array();
 	}
 	/*pricewise*/
-	  
+	public function get_all_itemfilters_data(){
+		$this->db->select('*')->from('item_wise_filter_search');
+		return $this->db->get()->result_array();
+	}
+	public function delete_itemprivous_searchdata($id)
+	{
+		$sql1="DELETE FROM item_wise_filter_search WHERE id = '".$id."'";
+		return $this->db->query($sql1);
+	}  
 	  
 }
 ?>

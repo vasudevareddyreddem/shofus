@@ -40,6 +40,8 @@
 				$waterproofs[]=$predata['waterproof'];
 				$minimum_prices=$predata['minimum_price'];
 				$maximum_prices=$predata['maximum_price'];
+				$max=$predata['max'];
+
 			
 			//echo '<pre>';print_r($offers);
 		  }
@@ -57,6 +59,7 @@
 				  </div>
 				  <div class="col-md-6">
 				 <h4>Max:<span class="site_col"><?php echo $maximum_prices; ?></span></h4>
+			<input type="hidden" name="max" id="max" value="<?php echo $max; ?>">
 				  </div>
 			</div>
 		  <div class="row">
@@ -70,18 +73,25 @@
 						<?php } ?>
 				<?php $min_amt=$i;
 				} ?>
-				
-			  </select>
+			</select>
 		  </div>
 		  <div class="col-md-6">
 		   <select class="form-control" id="maximum_price" name="maximum_price" onchange="itemwisefilters(this.value, '<?php echo 'maximum_price'; ?>','<?php echo ''; ?>');">
-				 <?php for( $i=floor($minimum_prices); $i<=floor($maximum_price['item_cost']); $i+=1000 ){  ?>
-					<?Php if($maximum_prices==$i){ ?>
-						<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
-					<?php }else{ ?>
-						<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-						<?php } ?>
-				<?php } ?>
+				<?php $c=1;for( $i=floor($minimum_prices); $i<=floor($max); $i+=1000 ){ 
+								if($maximum_prices==$i){ ?>
+									<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
+								<?php }else{ ?>
+								<?php if($c==1){ ?>
+								<?php if($max!=$i && $max !=$maximum_prices){ ?>
+								<option value="<?php echo $max; ?>"><?php echo $max; ?></option>
+								<?php } ?>
+						
+								<?php }else{ ?>
+									<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+								<?php } ?>
+								<?php } ?>
+								
+				<?php $c++;} ?>
 
 			  </select>
 		  </div>
@@ -1035,6 +1045,7 @@ function itemwisefilters(val,status,check){
 					unchecked: check,
 					mini_mum: $('#mimimum_price').val(),
 					maxi_mum: $('#maximum_price').val(),
+					max: $('#max').val(),
 
 					},
 				dataType: 'html',

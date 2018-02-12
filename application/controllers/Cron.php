@@ -428,21 +428,43 @@ class Cron extends Front_Controller
 	
 		
 	public function remove_unwanteddatedate(){
-		$details=$this->Cron_model->get_all_filters_data();
-		if(count($details)>0){
-			
-			
-		foreach ($details as $lis){
-			$this->Cron_model->delete_privous_searchdata($lis['id']);
-			
+		$brand=$this->Cron_model->get_all_brandfilters_data();
+		if(count($brand)>0){
+			foreach ($brand as $lis){
+				$this->Cron_model->delete_brandprivous_searchdata($lis['id']);
+			}
 		}
-		
+		$fliter_search=$this->Cron_model->get_all_filterfilters_data();
+		if(count($fliter_search)>0){
+			foreach ($fliter_search as $lis){
+				$this->Cron_model->delete_filterprivous_searchdata($lis['id']);
+			}
 		}
-
-		
-		
-		
-	}
+		$item=$this->Cron_model->get_all_itemfilters_data();
+		if(count($item)>0){
+			foreach ($item as $lis){
+				$this->Cron_model->delete_itemprivous_searchdata($lis['id']);
+			}
+		}
+		$price=$this->Cron_model->get_all_pricefilters_data();
+		if(count($price)>0){
+			foreach ($price as $lis){
+				$this->Cron_model->delete_priceprivous_searchdata($lis['id']);
+			}
+		}
+		$subcat=$this->Cron_model->get_all_subcatfilters_data();
+		if(count($subcat)>0){
+			foreach ($subcat as $lis){
+				$this->Cron_model->delete_subcatprivous_searchdata($lis['id']);
+			}
+		}
+		$subitem=$this->Cron_model->get_all_subitemfilters_data();
+		if(count($subitem)>0){
+			foreach ($subitem as $lis){
+				$this->Cron_model->delete_subitemprivous_searchdata($lis['id']);
+			}
+		}
+}
 	public function testing(){
 		
 		//echo $list['customer_email_send'];exit;
