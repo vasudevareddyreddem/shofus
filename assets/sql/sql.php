@@ -209,53 +209,6 @@ ALTER TABLE `cartinho_live`.`products`
   ALTER TABLE `cartinho_live`.`products`   
   CHANGE `item_image1` `item_image1` VARCHAR(250) NULL;
 
-ALTER TABLE `cartinho_live`.`products`   
-  ADD COLUMN `use` VARCHAR(250) NULL AFTER `ean_upc`;
-
-
-
-ALTER TABLE `cartinhoursstaging_db`.`products`   
-  CHANGE `use` `useage` VARCHAR(250) CHARSET latin1 COLLATE latin1_swedish_ci NULL;
-  
-  
-  
-  /*4/1/2018
-  ALTER TABLE `cartinhoursstaging_db`.`products`   
-  ADD COLUMN `factor` VARCHAR(250) NULL AFTER `useage`;
-
-  
-  ALTER TABLE `cartinho_live`.`products`   
-  ADD COLUMN `connector1` VARCHAR(250) NULL AFTER `factor`,
-  ADD COLUMN `connector2` VARCHAR(250) NULL AFTER `connector1`;
-
-ALTER TABLE `cartinho_live`.`products`   
-  ADD COLUMN `voltagerange` VARCHAR(250) NULL AFTER `remotecontrol`,
-  ADD COLUMN `turbospeed` VARCHAR(250) NULL AFTER `voltagerange`,
-  ADD COLUMN `graphics` VARCHAR(250) NULL AFTER `turbospeed`;
-  
-  
-ALTER TABLE `cartinhoursstaging_db`.`products`   
-  ADD COLUMN `capacity` VARCHAR(250) NULL AFTER `graphics`,
-  ADD COLUMN `datarate` VARCHAR(250) NULL AFTER `capacity`,
-  ADD COLUMN `technology` VARCHAR(250) NULL AFTER `datarate`;
-  
-  ALTER TABLE `cartinhoursstaging_db`.`products`   
-  DROP COLUMN `item_image8`, 
-  DROP COLUMN `item_image9`, 
-  DROP COLUMN `item_image10`, 
-  DROP COLUMN `item_image11`, 
-  DROP COLUMN `offer_time`, 
-  ADD COLUMN `externaldrivebays` VARCHAR(250) NULL AFTER `technology`,
-  ADD COLUMN `internaldrivebays` VARCHAR(250) NULL AFTER `externaldrivebays`,
-  ADD COLUMN `micport` VARCHAR(250) NULL AFTER `internaldrivebays`;
-  
-  
-  
-  
-  ALTER TABLE `cartinhoursstaging_db`.`products`   
-  ADD COLUMN `inputvoltage` VARCHAR(250) NULL AFTER `micport`,
-  ADD COLUMN `outputvoltage` VARCHAR(250) NULL AFTER `inputvoltage`,
-  ADD COLUMN `inputfrequency` VARCHAR(250) NULL AFTER `outputvoltage`;
 
 
 

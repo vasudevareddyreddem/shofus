@@ -280,49 +280,57 @@ public function item_status(){
 		$offers= number_format($offers1, 2);
 		
 			if($_FILES['picture1']['name']!=''){
-				$profilepic1=microtime().basename($_FILES["picture1"]["name"]);
+				$profilepicrenam1=microtime().basename($_FILES["picture1"]["name"]);
+				$profilepic1 = str_replace(" ", "", $profilepicrenam1);
 				move_uploaded_file($_FILES['picture1']['tmp_name'], "uploads/products/" . $profilepic1);
 			}else{
 				$profilepic1='';
 			}
-			if($_FILES['picture2']['name']!=''){
-				$profilepic2=microtime().basename($_FILES["picture2"]["name"]);
+			if(isset($_FILES['picture2']['name']) && $_FILES['picture2']['name']!=''){
+				$profilepicrenam2=microtime().basename($_FILES["picture2"]["name"]);
+				$profilepic2 = str_replace(" ", "", $profilepicrenam2);
 				move_uploaded_file($_FILES['picture2']['tmp_name'], "uploads/products/" . $profilepic2);
 			}else{
 				$profilepic2='';
 			}
 			if($_FILES['picture3']['name']!=''){
-				$profilepic3=microtime().basename($_FILES["picture3"]["name"]);
+				$profilepicrenam3=microtime().basename($_FILES["picture3"]["name"]);
+				$profilepic3 = str_replace(" ", "", $profilepicrenam3);
 				move_uploaded_file($_FILES['picture3']['tmp_name'], "uploads/products/" . $profilepic3);
 			}else{
 				$profilepic3='';
 			}
 			if($_FILES['picture4']['name']!=''){
-				$profilepic4=microtime().basename($_FILES["picture4"]["name"]);
+				$profilepicrenam4=microtime().basename($_FILES["picture4"]["name"]);
+				$profilepic4 = str_replace(" ", "", $profilepicrenam4);
 				move_uploaded_file($_FILES['picture4']['tmp_name'], "uploads/products/" . $profilepic4);
 			}else{
 				$profilepic4='';
 			}
 			if($_FILES['picture5']['name']!=''){
-				$profilepic5=microtime().basename($_FILES["picture5"]["name"]);
+				$profilepicrenam5=microtime().basename($_FILES["picture5"]["name"]);
+				$profilepic5 = str_replace(" ", "", $profilepicrenam5);
 				move_uploaded_file($_FILES['picture5']['tmp_name'], "uploads/products/" . $profilepic5);
 			}else{
 				$profilepic5='';
 			}
 			if($_FILES['picture6']['name']!=''){
-				$profilepic6=microtime().basename($_FILES["picture6"]["name"]);
+				$profilepicrenam6=microtime().basename($_FILES["picture6"]["name"]);
+				$profilepic6 = str_replace(" ", "", $profilepicrenam6);
 				move_uploaded_file($_FILES['picture6']['tmp_name'], "uploads/products/" . $profilepic6);
 			}else{
 				$profilepic6='';
 			}
 			if($_FILES['picture7']['name']!=''){
-				$profilepic7=microtime().basename($_FILES["picture7"]["name"]);
+				$profilepicrenam7=microtime().basename($_FILES["picture7"]["name"]);
+				$profilepic7 = str_replace(" ", "", $profilepicrenam7);
 				move_uploaded_file($_FILES['picture7']['tmp_name'], "uploads/products/" . $profilepic7);
 			}else{
 				$profilepic7='';
 			}
 			if($_FILES['picture8']['name']!=''){
-				$profilepic8=microtime().basename($_FILES["picture8"]["name"]);
+				$profilepicrenam8=microtime().basename($_FILES["picture8"]["name"]);
+				$profilepic8 = str_replace(" ", "", $profilepicrenam8);
 				move_uploaded_file($_FILES['picture8']['tmp_name'], "uploads/products/" . $profilepic8);
 			}else{
 				$profilepic8='';
@@ -886,53 +894,61 @@ public function update()
 		$offers= number_format($offers1,2 );
 	$productdetails=$this->products_model->getproductdata($post['product_id']);
 		if($_FILES['picture1']['name']!=''){
-		$image1=microtime().basename($_FILES["picture1"]["name"]);
+		$imagerename1=microtime().basename($_FILES["picture1"]["name"]);
+		$image1 = str_replace(" ", "", $imagerename1);
 		move_uploaded_file($_FILES['picture1']['tmp_name'], "uploads/products/" . $image1);
 
 		}else{
 		$image1=$productdetails['item_image'];
 		}
 		if($_FILES['picture2']['name']!=''){
-		$image2=microtime().basename($_FILES["picture2"]["name"]);
+		$imagerename2=microtime().basename($_FILES["picture2"]["name"]);
+		$image2 = str_replace(" ", "", $imagerename2);
 		move_uploaded_file($_FILES['picture2']['tmp_name'], "uploads/products/" . $image2);
 
 		}else{
 		$image2=$productdetails['item_image1'];
 		}
 		if($_FILES['picture3']['name']!=''){
-		$image3=microtime().basename($_FILES["picture3"]["name"]);
+		$imagerename3=microtime().basename($_FILES["picture3"]["name"]);
+		$image3 = str_replace(" ", "", $imagerename3);
 		move_uploaded_file($_FILES['picture3']['tmp_name'], "uploads/products/" . $image3);
 
 		}else{
 		$image3=$productdetails['item_image2'];
 		}
 		if($_FILES['picture4']['name']!=''){
-		$image4=microtime().basename($_FILES["picture4"]["name"]);
+		$imagerename4=microtime().basename($_FILES["picture4"]["name"]);
+		$image4 = str_replace(" ", "", $imagerename4);
 		move_uploaded_file($_FILES['picture4']['tmp_name'], "uploads/products/" . $image4);
 
 		}else{
 		$image4=$productdetails['item_image3'];
 		}
 		if($_FILES['picture5']['name']!=''){
-		$image5=microtime().basename($_FILES["picture5"]["name"]);
+		$imagerename5=microtime().basename($_FILES["picture5"]["name"]);
+		$image5 = str_replace(" ", "", $imagerename5);
 		move_uploaded_file($_FILES['picture5']['tmp_name'], "uploads/products/" . $image5);
 		}else{
 		$image5=$productdetails['item_image4'];
 		}
 		if($_FILES['picture6']['name']!=''){
-		$image6=microtime().basename($_FILES["picture6"]["name"]);
+		$imagerename6=microtime().basename($_FILES["picture6"]["name"]);
+		$image6 = str_replace(" ", "", $imagerename6);
 		move_uploaded_file($_FILES['picture6']['tmp_name'], "uploads/products/" . $image6);
 		}else{
 		$image6=$productdetails['item_image5'];
 		}
 		if($_FILES['picture7']['name']!=''){
-		$image7=microtime().basename($_FILES["picture7"]["name"]);
+		$imagerename7=microtime().basename($_FILES["picture7"]["name"]);
+		$image7 = str_replace(" ", "", $imagerename7);
 		move_uploaded_file($_FILES['picture7']['tmp_name'], "uploads/products/" . $image7);
 		}else{
 		$image7=$productdetails['item_image6'];
 		}
 		if($_FILES['picture8']['name']!=''){
-		$image8=microtime().basename($_FILES["picture8"]["name"]);
+		$imagerename8=microtime().basename($_FILES["picture8"]["name"]);
+		$image8 = str_replace(" ", "", $imagerename8);
 		move_uploaded_file($_FILES['picture8']['tmp_name'], "uploads/products/" . $image8);
 		}else{
 		$image8=$productdetails['item_image7'];
