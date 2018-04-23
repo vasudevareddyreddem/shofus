@@ -48,9 +48,9 @@
           <li><a href="#Payments" data-toggle="tab">Payments <br> & <br> Settlements </a></li>
           <li><a href="#Metrics" data-toggle="tab">Metrics <br> & <br> Insights  </a></li>
           <li><a href="#Returns" data-toggle="tab"> Returns <br> Management  </a></li>
-          <li><a href="#Advertise" data-toggle="tab"> Advertise<br>  with <br> CARTINHOUR </a></li>
+          <li><a href="#Advertise" data-toggle="tab"> Advertise<br>  with <br> SHOFUS </a></li>
           <li><a href="#Order" data-toggle="tab"> Order <br> Management </a></li>
-          <li><a href="#cih" data-toggle="tab">CARTINHOUR <br> Fulfilment  </a></li>
+          <li><a href="#cih" data-toggle="tab">SHOFUS <br> Fulfilment  </a></li>
           <li><a href="#list" data-toggle="tab"> Listing <br> & <br> Cataloguing  </a></li>
           <li><a href="#good" data-toggle="tab">Goods <br> & <br> Services Tax   </a></li>
           <li><a href="#Events" data-toggle="tab"> Events </a></li>

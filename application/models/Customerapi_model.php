@@ -2325,7 +2325,7 @@ class Customerapi_model extends MY_Model
 	 
 	 public function get_same_products($subcat,$name,$item_id)
 	{
-		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.colour,products.internal_memory,products.item_image')->from('products');
+		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.colour,products.internal_memeory,products.item_image')->from('products');
 		$this->db->where('subcategory_id',$subcat);
 		$this->db->where('item_name', $name);
 		$this->db->where('item_id !=', $item_id);
@@ -2644,18 +2644,10 @@ class Customerapi_model extends MY_Model
 		}
 		
 	}
-	public function get_category_wise_products_list()
+	public function categorywiseproducts_list($id)
 	{
 	
-		$this->db->select('category.category_name,category.category_id,category.category_image')->from('products');
-		$this->db->join('category', 'category.category_id =products.category_id', 'left');
-		$this->db->group_by('category.category_id');
-		$this->db->order_by('category.category_id', 'asc');
-		$this->db->where('category.status', 1);		
-		$return= $this->db->get()->result_array();
-		foreach ($return as $li){
-			//echo '<pre>';print_r($lists);
-		$item_list=$this->get_products_lists($li['category_id']); 
+		$item_list=$this->get_products_lists($id); 
 		foreach ($item_list as $productslist){
 			$currentdate=date('Y-m-d h:i:s A');
 						if($productslist['offer_expairdate']>=$currentdate){
@@ -2674,26 +2666,22 @@ class Customerapi_model extends MY_Model
 					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
 					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
 			}
+			foreach ($plist as $li){
+				$P[]=$li;
+				
+			}
 			
-			foreach($plist as $Lis){
-				$list[]=$Lis;
-			}
-				if(isset($list)&& count($list)>0){
-				$catdata[$li['category_id']]=$li;
-				$catdata[$li['category_id']]['plist']=$list;
-				}
-			}
-		
-		//echo '<pre>';print_r($catdata);
-			if(!empty($catdata))
+		if(!empty($P))
 			{
-			return $catdata;
+			return $P;
 			}
-
+			
+		
+		
 	}
 	public function get_products_lists($catid){
 		
-		$this->db->select('products.item_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.item_quantity,products.item_status,products.category_id,products.offer_amount,products.offer_percentage,products.item_image')->from('products');
+		$this->db->select('products.item_id,products.subitemid,products.subcategory_id,products.category_id,products.itemwise_id,products.item_name,products.item_cost,products.special_price,products.offer_expairdate,products.item_quantity,products.item_status,products.category_id,products.offer_amount,products.offer_percentage,products.item_image')->from('products');
         $this->db->where('products.category_id',$catid);
 		return $this->db->get()->result_array();
 		
@@ -2869,7 +2857,32 @@ class Customerapi_model extends MY_Model
 				$this->db->where('products.subcategory_id !=','');
 				$this->db->where('products.item_status !=','');
 				$this->db->group_by('products.subcategory_id');
-				return $this->db->get()->result_array();
+				$return=$this->db->get()->result_array();
+				foreach($return as $list){
+					$subitems_list=$this->Customerapi_model->get_subitem_list($list['subcategory_id']);
+					$plist[$list['subcategory_id']]=$list;
+					if(isset($subitems_list) && count($subitems_list)>0){
+						$subitems_lists=1;
+					}else{
+						$subitems_lists=0;
+					}
+					$plist[$list['subcategory_id']]['subitems']=$subitems_lists;	
+				}
+				foreach ($plist as $lis){
+					$li[]=$lis;
+					
+				}
+				return $li;
+		}
+		public function get_subitem_list($subcatid){
+			
+		$this->db->select('sub_items.subitem_id,sub_items.subitem_name,sub_items.image,sub_items.category_id,sub_items.subcategory_id')->from('products');
+		$this->db->join('sub_items', 'sub_items.subitem_id = products.subitemid', 'left'); //
+		$this->db->where('sub_items.subitem_id !=','');
+		$this->db->where('products.subitemid !=','');
+		$this->db->where('products.subcategory_id',$subcatid);
+		$this->db->group_by('products.subitemid');
+		return $this->db->get()->result_array();			
 		}
 		public function step_three_data($catid){
 			$this->db->select('*')->from('brands');
@@ -3010,6 +3023,16 @@ class Customerapi_model extends MY_Model
 		$this->db->group_by('category.category_id');
 		$this->db->order_by('category.category_id', 'asc');
 		$this->db->where('category.status', 1);		
+		return $this->db->get()->result_array();
+		
+	} 
+	public function get_brandwise_productlist($catid,$brand)
+	{
+	
+		$this->db->select('products.item_id,products.category_id,products.subcategory_id,products.subitemid,products.itemwise_id,products.item_name,products.item_status,products.item_cost,products.special_price,products.item_quantity,products.offer_percentage,products.offer_amount,products.offer_expairdate,products.item_image')->from('products');
+		//$this->db->group_by('products.brand');
+		$this->db->where('products.brand', $brand);		
+		$this->db->where('products.category_id', $catid);		
 		return $this->db->get()->result_array();
 		
 	}

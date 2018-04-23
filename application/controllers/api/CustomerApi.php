@@ -1062,11 +1062,11 @@ class CustomerApi extends REST_Controller {
 
 					}else if(isset($email) && $email!=''){
 						
-							$msg=$six_digit_random_number.'is your Cartinhours verification code one-time use. Please DO NOT share this OTP with anyone to ensure account security ';
+							$msg=$six_digit_random_number.'is your shofus verification code one-time use. Please DO NOT share this OTP with anyone to ensure account security ';
 							$this->load->library('email');
-							$this->email->from('admin@cartinhours.com', 'CartInHours');
+							$this->email->from('admin@shofus.com', 'shofus');
 							$this->email->to($email);
-							$this->email->subject('CartInHours - Forgot Password');
+							$this->email->subject('shofus - Forgot Password');
 							$html =$msg;
 							//echo $html;exit;
 							$this->email->message($html);
@@ -2463,9 +2463,9 @@ class CustomerApi extends REST_Controller {
 							$this->load->library('email');
 							$this->email->set_newline("\r\n");
 							$this->email->set_mailtype("html");
-							$this->email->from('cartinhours.com');
+							$this->email->from('shofus.com');
 							$this->email->to($custdetails['seller_email']);
-							$this->email->subject('Cartinhours - Order Return');
+							$this->email->subject('shofus - Order Return');
 							$html = $this->load->view('email/orderreturn.php', $messagelis, true); 
 							//echo $html;exit;
 							$this->email->message($html);
@@ -3005,9 +3005,9 @@ class CustomerApi extends REST_Controller {
 					$this->load->library('email');
 					$this->email->set_newline("\r\n");
 					$this->email->set_mailtype("html");
-					$this->email->from('cartinhours.com');
+					$this->email->from('shofus.com');
 					$this->email->to($items['seller_email']);
-					$this->email->subject('Cartinhours - Order Confirmation');
+					$this->email->subject('shofus - Order Confirmation');
 					$html = $this->load->view('email/sellerorederconfirmation.php', $messagelis, true); 
 					//echo $html;exit;
 					$this->email->message($html);
@@ -3052,9 +3052,9 @@ class CustomerApi extends REST_Controller {
 						$this->load->library('email');
 						$this->email->set_newline("\r\n");
 						$this->email->set_mailtype("html");
-						$this->email->from('cartinhours.com');
+						$this->email->from('shofus.com');
 						$this->email->to($customerdetails['cust_email']);
-						$this->email->subject('Cartinhours - Order Confirmation');
+						$this->email->subject('shofus - Order Confirmation');
 						$html = $this->load->view('email/orderconfirmation.php', $data, true); 
 						//echo $html;exit;
 						$this->email->message($html);
@@ -3591,14 +3591,26 @@ public function homeapi_get()
 		
 	}
 	public function homepageloadmore_get(){
-		$categorywise_plist=$this->Customerapi_model->get_category_wise_products_list();
-		foreach ($categorywise_plist as $list){
-			$cat_wise_plist[]=$list;
-		}
+		$categorywise_plist=array(
+		"Home & Kitchen"=>$this->Customerapi_model->categorywiseproducts_list(18),
+		"Mens Fashion"=>$this->Customerapi_model->categorywiseproducts_list(19),
+		"Mobiles & Tablets"=>$this->Customerapi_model->categorywiseproducts_list(20),
+		"Grocery"=>$this->Customerapi_model->categorywiseproducts_list(21),
+		"Computers, Laptops & Accessories"=>$this->Customerapi_model->categorywiseproducts_list(22),
+		"TVs, ACs & Appliances"=>$this->Customerapi_model->categorywiseproducts_list(23),
+		"Women's Fashion"=>$this->Customerapi_model->categorywiseproducts_list(24),
+		"Car & Bike Accessories"=>$this->Customerapi_model->categorywiseproducts_list(28),
+		"Books & Stationary"=>$this->Customerapi_model->categorywiseproducts_list(29),
+		"Kids Store"=>$this->Customerapi_model->categorywiseproducts_list(30),
+		"Sports & Fitness"=>$this->Customerapi_model->categorywiseproducts_list(31),
+		"Furniture & Home-Living"=>$this->Customerapi_model->categorywiseproducts_list(32),
+		"Gifts Store"=>$this->Customerapi_model->categorywiseproducts_list(34),
+		"Bags & Outdoor"=>$this->Customerapi_model->categorywiseproducts_list(35),
+		);
 		$message = array
 		(
 			'status'=>1,
-			'categorywiseproductlist'=>$cat_wise_plist,
+			'categorywiseproductlist'=>$categorywise_plist,
 			'imagepath'=>base_url('uploads/products/'),
 			'message'=>'Product list are found.'
 		);
@@ -3709,21 +3721,26 @@ public function homeapi_get()
 		$position_four= $this->Customerapi_model->step_four_data(2);
 		$position_five= $this->Customerapi_model->step_five_data($catid);
 		$amt= ($position_five['max'])/4;
-		$step_five=array($amt,$amt*2,$amt*3,$amt*4);
+		$amt1=$amt*2;
+		$amt2=$amt*3;
+		$amt3=$amt*4;
+		$step_five=array('₹'.$amt,'₹'.$amt.'- ₹'.$amt*2,'₹'.$amt1.'- ₹'.$amt2,'₹'.$amt2.'- ₹'.$amt3);
 		if($catid==21 || $catid==31 || $catid==19 || $catid==24 || $catid==35 ||  $catid==28 ||  $catid==20){
 		$step_six= $this->Customerapi_model->step_six_data($catid);
 		$step_sixlabel='Offer';
 		}else if($catid==19 || $catid==24){
 			$step_sixlabel='Type';
 			$step_six= $this->Customerapi_model->step_six_data($catid);
-		}if($catid==21 || $catid==31){
+		}else if($catid==21 || $catid==31){
 			$step_sixlabel='Offer';
-		}if($catid==28 ){
+		}else if($catid==28 ){
 			$step_sixlabel='Offer';
-		}if($catid==35 ){
+		}else if($catid==35 ){
 			$step_sixlabel='Type';
-		}if($catid==20 ){
+		}else if($catid==20 ){
 			$step_sixlabel='Screen Size';
+		}else{
+			$step_sixlabel='x';
 		}
 			if(isset($step_six) && count($step_six)>0){
 				foreach ($step_six as $productslist){
@@ -3768,7 +3785,9 @@ public function homeapi_get()
 			}else if($catid!=21){
 				$step_ninelabel='Y';
 			}
-		}
+		}else{
+			$step_ninelabel='Y';
+			}
 			if(isset($step_nine) && count($step_nine)>0){
 			foreach ($step_nine as $productslist){
 						
@@ -3815,6 +3834,8 @@ public function homeapi_get()
 				}else if($catid!=21){
 					$step_tenlabel='Z';
 				}
+			}else{
+				$step_tenlabel='Z';
 			}
 			if(isset($step_ten) && count($step_ten)>0){
 			foreach ($step_ten as $productslist){
@@ -3926,6 +3947,8 @@ public function homeapi_get()
 			'subcategoryimage'=>base_url('assets/subcategoryimages/'),
 			'imagepath'=>base_url('uploads/products/'),
 			'bannerspath'=>base_url('assets/categoryimages/'),
+			'brandimagepath'=>base_url('assets/brands/'),
+			'subitemimagepath'=>base_url('assets/subitemimages/'),
 			'message'=>'Product list are found.'
 			);
 		$this->response($message, REST_Controller::HTTP_OK);
@@ -3950,7 +3973,23 @@ public function homeapi_get()
 		$trendingffer=$this->Customerapi_model->get_trendingoffer_categorywise();
 		$offerforyou=$this->Customerapi_model->get_offerforyou_categorywise();
 		$recentlyviewedlist=$this->Customerapi_model->recently_viewed_producrs();
-		$categorywise_plist=$this->Customerapi_model->get_category_wise_products_list();
+		$categorywise_plist=array(
+		"Home & Kitchen"=>$this->Customerapi_model->categorywiseproducts_list(18),
+		"Mens Fashion"=>$this->Customerapi_model->categorywiseproducts_list(19),
+		"Mobiles & Tablets"=>$this->Customerapi_model->categorywiseproducts_list(20),
+		"Grocery"=>$this->Customerapi_model->categorywiseproducts_list(21),
+		"Computers, Laptops & Accessories"=>$this->Customerapi_model->categorywiseproducts_list(22),
+		"TVs, ACs & Appliances"=>$this->Customerapi_model->categorywiseproducts_list(23),
+		"Women's Fashion"=>$this->Customerapi_model->categorywiseproducts_list(24),
+		"Car & Bike Accessories"=>$this->Customerapi_model->categorywiseproducts_list(28),
+		"Books & Stationary"=>$this->Customerapi_model->categorywiseproducts_list(29),
+		"Kids Store"=>$this->Customerapi_model->categorywiseproducts_list(30),
+		"Sports & Fitness"=>$this->Customerapi_model->categorywiseproducts_list(31),
+		"Furniture & Home-Living"=>$this->Customerapi_model->categorywiseproducts_list(32),
+		"Gifts Store"=>$this->Customerapi_model->categorywiseproducts_list(34),
+		"Bags & Outdoor"=>$this->Customerapi_model->categorywiseproducts_list(35),
+		);
+		//echo '<pre>';print_r($categorywise_plist);exit;
 		if(isset($recentlyviewedlist) && count($recentlyviewedlist)>0){
 		foreach ($recentlyviewedlist as $productslist){
 					
@@ -3978,9 +4017,7 @@ public function homeapi_get()
 		}else{
 			$recentlyviewed[]=array();
 		}
-		foreach ($categorywise_plist as $list){
-			$cat_wise_plist[]=$list;
-		}
+		
 		$message = array
 		(
 			'status'=>1,
@@ -3995,7 +4032,7 @@ public function homeapi_get()
 			'seasonsales'=>$seasonffer,
 			'banners4'=>$position_four,
 			'recentlyviewed'=>$recentlyviewed,
-			'categorywiseproductlist'=>$cat_wise_plist,
+			'categorywiseproductlist'=>$categorywise_plist,
 			'categoryimage'=>base_url('assets/categoryimages/'),
 			'imagepath'=>base_url('uploads/products/'),
 			'banners1path'=>base_url('assets/appbanners/'),
@@ -4244,5 +4281,54 @@ public function homeapi_get()
 		//echo '<pre>';print_r($position_two);exit;
 	}
 	/*IOS APP HOME PAGE API*/
+	public function brandwiseproducts_get(){
+		
+		$category_id=$this->input->get('category_id');
+		$brand=$this->input->get('brand');
+			if($category_id==''){
+			$message = array('status'=>1,'message'=>'Category id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}if($brand==''){
+			$message = array('status'=>1,'message'=>'Brand id is required!');
+			$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			}
+			$brandwise_plist= $this->Customerapi_model->get_brandwise_productlist($category_id,$brand);
+				if(isset($brandwise_plist) && count($brandwise_plist)>0){
+		foreach ($brandwise_plist as $productslist){
+					
+					$currentdate=date('Y-m-d h:i:s A');
+						if($productslist['offer_expairdate']>=$currentdate){
+						$item_price= ($productslist['item_cost']-$productslist['offer_amount']);
+						$percentage= $productslist['offer_percentage'];
+						$orginal_price=$productslist['item_cost'];
+						}else{
+							//echo "expired";
+							$item_price= $productslist['special_price'];
+							$prices= ($productslist['item_cost']-$productslist['special_price']);
+							$percentage= (($prices) /$productslist['item_cost'])*100;
+							$orginal_price=$productslist['item_cost'];
+						}
+					$plist[$productslist['item_id']]=$productslist;
+					$plist[$productslist['item_id']]['withcrossmarkprice']=$orginal_price;
+					$plist[$productslist['item_id']]['withoutcrossmarkprice']=$item_price;
+					$plist[$productslist['item_id']]['percentage']=number_format($percentage, 2);
+					
+				}
+				foreach ($plist as $list){
+					$brand_plist[]=$list;
+				}
+		}else{
+			$brand_plist[]=array();
+		}
+		if(count($brand_plist)>0){
+		
+			$message = array('status'=>1,'message'=>'Product are found','prandwiseproducts'=>$brand_plist,'path'=>base_url('uploads/products/'));
+			$this->response($message,REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>1,'message'=>'brand having no products');
+			
+	}
+
+}
 
 }

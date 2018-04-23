@@ -39,14 +39,34 @@ class Deliveryboyapi_model extends MY_Model
 		$sql1="UPDATE order_status SET status_packing ='".$status."' WHERE order_item_id = '".$order_item_id."'";
        	return $this->db->query($sql1);
 	}
+	public function returnorder_Packing_status_updated($order_item_id,$status){
+
+		$sql1="UPDATE exchange_return_order_list SET status_packing ='".$status."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
+	}
 	public function order_road_status_updated($order_item_id,$status){
 
 		$sql1="UPDATE order_status SET status_road ='".$status."' WHERE order_item_id = '".$order_item_id."'";
        	return $this->db->query($sql1);
 	}
+	public function returnorder_road_status_updated($order_item_id,$status){
+
+		$sql1="UPDATE exchange_return_order_list SET status_road ='".$status."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
+	}
 	public function order_delivered_status_updated($order_item_id,$status){
 
 		$sql1="UPDATE order_status SET status_deliverd ='".$status."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
+	}
+	public function returnorder_delivered_status_updated_complted_time($order_item_id,$date){
+
+		$sql1="UPDATE order_items SET completed_date ='".$date."' WHERE order_item_id = '".$order_item_id."'";
+       	return $this->db->query($sql1);
+	}
+	public function returnorder_delivered_status_updated($order_item_id,$status,$date){
+
+		$sql1="UPDATE exchange_return_order_list SET status_deliverd ='".$status."', delievry_time ='".$date."' WHERE order_item_id = '".$order_item_id."'";
        	return $this->db->query($sql1);
 	}
 	public function check_login_customer($customer_id,$status){
@@ -106,12 +126,24 @@ class Deliveryboyapi_model extends MY_Model
 	}
 	
 	public function get_delivered_orders_list($cust_id){
-		$this->db->select('order_items.order_item_id as orderid,order_items.completed_date,order_items.create_at as created_date,order_items.customer_email,order_items.customer_phone,order_items.customer_address,order_items.landmark,order_items.pincode,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile')->from('order_items');
+		$this->db->select('order_items.order_item_id as orderid,order_items.completed_date,order_items.create_at as created_date,order_items.type as ordertype')->from('order_items');
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
 		$this->db->where('order_status.status_deliverd',4);
 		$this->db->where('order_items.delivery_boy_id',$cust_id);
+		$this->db->order_by('order_status.order_item_id', 'desc'); 
+		return $this->db->get()->result_array();
+	}
+	public function get_return_delivered_orders_list($cust_id){
+		$this->db->select('order_items.order_item_id as orderid,exchange_return_order_list.delievry_time as completed_date,exchange_return_order_list.created_at as created_date,exchange_return_order_list.type as ordertype')->from('exchange_return_order_list');
+		$this->db->join('order_items', 'order_items.order_item_id = exchange_return_order_list.order_item_id', 'left');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
+		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+		$this->db->where('exchange_return_order_list.status_deliverd',4);
+		$this->db->where('exchange_return_order_list.delivery_boy_id',$cust_id);
+		$this->db->order_by('order_items.order_item_id', 'desc'); 
 		return $this->db->get()->result_array();
 	}
 	public function get_order_item_details($ordeitemid){
@@ -127,11 +159,14 @@ class Deliveryboyapi_model extends MY_Model
 	}
 	
 	public function get_deliver_boy_orders_return_orderlist($cust_id){
-		$this->db->select('order_items.order_item_id as orderid,order_items.customer_email,order_items.customer_phone,order_items.customer_address,order_items.landmark,order_items.pincode,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile')->from('order_items');
+		$this->db->select('order_items.order_item_id as orderid,order_items.customer_email,order_items.customer_phone,order_items.customer_address,order_items.landmark,order_items.pincode,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile')->from('exchange_return_order_list');
+		$this->db->join('order_items', 'order_items.order_item_id = exchange_return_order_list.order_item_id', 'left');
 		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
 		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
 		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
-		$this->db->where('order_items.return_deliveryboy_id',$cust_id);
+		$this->db->where('exchange_return_order_list.status_deliverd',0);
+		$this->db->where('exchange_return_order_list.delivery_boy_id',$cust_id);
+		$this->db->order_by('exchange_return_order_list.return_id', 'desc'); 
 		return $this->db->get()->result();
 	}
 	
@@ -139,10 +174,24 @@ class Deliveryboyapi_model extends MY_Model
 		$sql1="UPDATE orders SET payment_type ='".$status."' WHERE order_id = '".$orderid."'";
        	return $this->db->query($sql1);
 	}
+	public function get_orderitem_details_list($id){
+		$this->db->select('order_items.total_price,order_items.delivery_amount,order_items.order_id,order_status.status_refund')->from('order_items');
+		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+		$this->db->where('order_items.order_item_id',$id);
+		return $this->db->get()->row_array();
+	}
 	public function get_orderitem_details($id){
 		$this->db->select('order_items.total_price,order_items.delivery_amount,order_items.order_id')->from('order_items');
-		$this->db->where('order_item_id',$id);
+		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+		$this->db->where('order_items.order_item_id',$id);
 		return $this->db->get()->row_array();
+	}
+	public function get_return_order_details($order_item_id){
+		$this->db->select('exchange_return_order_list.order_item_id')->from('exchange_return_order_list');
+		$this->db->where('exchange_return_order_list.order_item_id',$order_item_id);
+		$this->db->where('exchange_return_order_list.status_deliverd',0);
+		return $this->db->get()->row_array();
+		
 	}
 	
 	

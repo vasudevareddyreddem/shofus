@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.css">
-
 <script src="<?php echo base_url();?>assets/vendor/datatable/jquery.dataTables.min.js"></script>
  <link href="<?php echo base_url(); ?>assets/seller/css/timePicker.css" rel="stylesheet" type="text/css"/> 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendor/datatable/base/jquery-ui.css">
@@ -135,15 +134,18 @@
 					   <th>Packaging Type</th>
 					<?php }else if($subcategory->subcategory_id==132 || $subcategory->subcategory_id==142 || $subcategory->subcategory_id==144 || $subcategory->subcategory_id==220 || $subcategory->subcategory_id==221 || $subcategory->subcategory_id==222){ ?>
 						<th>Color</th>
-						<th>Material</th>
 						<th>Type</th>
 						<th>Waterproof</th>
 						<th>Laptop Compartment</th>
+						<th>Number Lock Mechanism</th>
 						<th>Closure</th>
 						<th>Wheels</th>
+						<th>No of Copartments</th>
 					   <th>No of Pockets</th>
 					   <th>Inner Material</th>
+					   <th>Outer Material</th>
 					   <th>Product Dimension </th>
+					   <th>Ideal For</th>
 					<?php }else if($subcategory->subcategory_id==128 || $subcategory->subcategory_id==129 || $subcategory->subcategory_id==130 || $subcategory->subcategory_id==140 || $subcategory->subcategory_id==232 || $subcategory->subcategory_id==233){ ?>
 						<th>Style Code</th>
 						<th>Color</th>
@@ -469,15 +471,18 @@
 								
 							<?php }else if($item_data->subcategory_id==132 || $item_data->subcategory_id==142 || $item_data->subcategory_id==144 || $item_data->subcategory_id==220 || $item_data->subcategory_id==221 || $item_data->subcategory_id==222){ ?>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','colour',this.value)" name="colour" value="<?php echo $item_data->colour;?>"/></td>
-								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','material',this.value)" name="material" value="<?php echo $item_data->material;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','type',this.value)" name="type" value="<?php echo $item_data->type;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','waterproof',this.value)" name="waterproof" value="<?php echo $item_data->waterproof;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','laptop_compartment',this.value)" name="laptop_compartment" value="<?php echo $item_data->laptop_compartment;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','focus_lock',this.value)" name="focus_lock" value="<?php echo $item_data->focus_lock;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','closure',this.value)" name="closure" value="<?php echo $item_data->closure;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','wheels',this.value)" name="wheels" value="<?php echo $item_data->wheels;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','no_of_copartments',this.value)" name="no_of_copartments" value="<?php echo $item_data->no_of_copartments;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','no_of_pockets',this.value)" name="no_of_pockets" value="<?php echo $item_data->no_of_pockets;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','inner_material',this.value)" name="inner_material" value="<?php echo $item_data->inner_material;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','sole_material',this.value)" name="sole_material" value="<?php echo $item_data->sole_material;?>"/></td>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','product_dimension',this.value)" name="product_dimension" value="<?php echo $item_data->product_dimension;?>"/></td>
+								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','ideal_for',this.value)" name="ideal_for" value="<?php echo $item_data->ideal_for;?>"/></td>
 
 							<?php }else if($item_data->subcategory_id==128 || $item_data->subcategory_id==129 || $item_data->subcategory_id==130 || $item_data->subcategory_id==140 || $item_data->subcategory_id==232 || $item_data->subcategory_id==233){ ?>
 								<td><input type="text" onkeyup="saveeditchanges('<?php echo $subcategory->subcategory_id;?>','<?php echo $item_data->item_id;?>','style_code',this.value)" name="style_code" value="<?php echo $item_data->style_code;?>"/></td>

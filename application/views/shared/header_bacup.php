@@ -207,7 +207,7 @@
             <div class="top-menu pull-right " >
                <ul>
                   <li>
-                     <a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="http://seller.cartinhours.com/seller/login"><span class=""></span> &nbsp; Sell on cartinhours </a>
+                     <a style="paddings-top:10px;color:#fff;" class="tel" target="_blank" href="http://seller.shofus.com/seller/login"><span class=""></span> &nbsp; Sell on shofus </a>
                   </li>
                   &nbsp;
                   <li>
@@ -215,7 +215,7 @@
                   </li>
                   &nbsp;
                   <li>
-                     <a class="" href="mailto:support@cartinhours.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@cartinhours.com</a>
+                     <a class="" href="mailto:support@cartinhours.com"><i><span style="font-size:16px;top:5px" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</i>support@shofus.com</a>
                   </li>
                </ul>
             </div>

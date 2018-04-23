@@ -511,9 +511,9 @@ $result = $you_make - $actual_price;
 			//send mail
 				//$this->email->set_mailtype("html");
 				$this->load->library('email');
-				$this->email->from('admin@cartinhours.com', 'CartInHours');
+				$this->email->from('admin@shofus.com', 'shofus');
 				$this->email->to($post['mobile_number']);
-				$this->email->subject('CartInHours - Unable To Login');
+				$this->email->subject('shofus - Unable To Login');
 				$Unable_otp = "Dear User,\n Your Password is : ".$six_digit_random_number;
 				$this->email->message($Unable_otp);
 				$this->email->send();

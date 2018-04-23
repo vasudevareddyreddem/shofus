@@ -22,6 +22,24 @@ class Cron_model extends MY_Model
 		$sql1="UPDATE order_items SET customer_seller_km ='".$km."', customer_seller_time ='".$time."', customer_seller_timevalue ='".$timevalue."' WHERE order_item_id = '".$orderitem_id."'";
        	return $this->db->query($sql1);
 	}
+	public function getall_retrun_replace_asigned_order_list(){
+		$this->db->select('order_items.order_item_id,order_items.seller_id,order_items.customer_id,order_items.customer_address,order_items.pincode,order_items.customer_email,order_items.customer_phone,order_items.city,order_items.state,(locations.pincode) as customerpincode,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile,exchange_return_order_list.*')->from('exchange_return_order_list');
+		$this->db->join('order_items', 'order_items.order_item_id = exchange_return_order_list.order_item_id', 'left');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
+		$this->db->join('locations', 'locations.location_id = order_items.area', 'left');
+		$this->db->where('exchange_return_order_list.delivery_boy_id', 0);
+		return $this->db->get()->result_array();
+	}
+	public function update_return_delivery_time($orderitem_id,$km,$time,$timevalue){
+		$sql1="UPDATE exchange_return_order_list SET customer_seller_km ='".$km."', customer_seller_time ='".$time."', customer_seller_timevalue ='".$timevalue."' WHERE order_item_id = '".$orderitem_id."'";
+       	return $this->db->query($sql1);
+	}
+	public function assign_returnreplaceorderto_deliveryboy($dboy_id,$orderitem_id){
+		$sql1="UPDATE exchange_return_order_list SET delivery_boy_id='".$dboy_id."' WHERE order_item_id = '".$orderitem_id."'";
+       	return $this->db->query($sql1);
+		
+	}
 	public function getall_deliveries_list(){
 		$this->db->select('customers.customer_id,customers.address1,customers.address2,customers.city,customers.state,customers.pincode')->from('customers');
 		$this->db->where('role_id', 6);
@@ -119,6 +137,22 @@ class Cron_model extends MY_Model
 		$sql1="DELETE FROM fliter_search WHERE id = '".$id."'";
 		return $this->db->query($sql1);
 	}
+	
+	/* exchange return orders */
+	public function getall_returnreplace_order_list(){
+		$this->db->select('order_items.order_item_id,order_items.customer_email,order_items.customer_phone,order_items.customer_address,order_items.landmark,(locations.pincode) as customerpincode,(seller_store_details.addrees1) as selleradd1,(seller_store_details.addrees2) as selleradd2,(seller_store_details.pin_code) as sellerpincode,sellers.seller_mobile,order_status.status_refund,exchange_return_order_list.*')->from('exchange_return_order_list');
+		$this->db->join('order_items', 'order_items.order_item_id = exchange_return_order_list.order_item_id', 'left');
+		$this->db->join('seller_store_details', 'seller_store_details.seller_id = order_items.seller_id', 'left');
+		$this->db->join('sellers', 'sellers.seller_id = order_items.seller_id', 'left');
+		$this->db->join('locations', 'locations.location_id = order_items.area', 'left');
+		$this->db->join('order_status', 'order_status.order_item_id = order_items.order_item_id', 'left');
+		$this->db->where('exchange_return_order_list.status_deliverd', 0);
+		//$this->db->where_in('order_status.status_refund', array('Refund','Exchange','Replacement'));
+		return $this->db->get()->result_array();
+	}
+	
+	
+	/* exchange return orders */
 	
 
 

@@ -491,11 +491,13 @@ box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.75);
    <a href="<?php echo base_url(); ?>"><span class="glyphicon  glyphicon-home"></span> Home</a>
    <?php //echo '<pre>';print_r($sidecaregory_list);exit; ?>
    <?php foreach ($sidecaregory_list as $categories){ ?>
-   <a href="<?php echo base_url('category/subcategoryview/'.base64_encode($categories['category_id'])); ?>"><span class=" glyphicon glyphicon-erase
+   <a href="<?php echo base_url('category/subcategorys/'.base64_encode($categories['category_id'])); ?>"><span class=" glyphicon glyphicon-erase
       "></span> <?php echo $categories['category_name'] ; ?></a>
    <?php } ?>
    <a href="<?php echo base_url('customer/orders');?>"><span class="glyphicon glyphicon-list-alt
-      "></span> My Orders</a>
+      "></span> My Orders</a> 
+	  <a href="<?php echo base_url('customer/nearstores');?>"><span class="glyphicon glyphicon-list-alt
+      "></span> Near By Store</a>
    <a href="<?php echo base_url('customer/wishlist'); ?>"><span class="glyphicon glyphicon-heart"></span> My Wishlist</a>
    <a href="<?php echo base_url('customer/trackorders');?>"><span class="glyphicon glyphicon-road"></span> My Track List</a>
    <a href="<?php echo base_url('customer/account');?>"><span class="glyphicon glyphicon-user

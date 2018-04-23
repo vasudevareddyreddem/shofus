@@ -74,9 +74,22 @@
               <ul class="links" >
                 <li class="first"><a href="<?php echo base_url(); ?>">Home</a></li>
 				
-				<?php foreach ($sidecaregory_list as $list){				?>
+				<?php $cnt=1;foreach ($sidecaregory_list as $list){?>
+				<?php if($cnt <=3){ ?>
                   <li><a href="<?php echo base_url('category/subcategorys/'.base64_encode($list['category_id'])); ?>"><?php echo ucfirst(strtolower($list['category_name'])); ?></a></li>
-				<?php } ?>
+				<?php }?>
+				<?php $cnt++;} ?>
+				<li><a id="readmore1" class="btn btn-small btn-primary " style="width:40%">Read More ....</a></li>
+				<div style="display:none" id="showmore1">
+				<?php $cnt1=1;foreach ($sidecaregory_list as $list){?>
+				<?php if($cnt1 >3){ ?>
+                  <li><a href="<?php echo base_url('category/subcategorys/'.base64_encode($list['category_id'])); ?>"><?php echo ucfirst(strtolower($list['category_name'])); ?></a></li>
+				<?php }?>
+				<?php $cnt1++;} ?>
+				</div>
+				
+				
+				
                 
               </ul>
             </div>
@@ -118,6 +131,20 @@
 <script src="<?php echo base_url(); ?>assets/home/js/modalEffects.js"></script> 
 <script type="text/javascript">
     $(document).ready(function(){
+		var cnt=2;
+		$("#readmore1").click(function(){
+				$("#loadcon1").slideToggle("slow", "linear");
+				if((cnt % 2) === 0){
+			$("#readmore1").text("Read Less..");
+			}else{
+				$("#readmore1").text("Read More..");
+			}
+			cnt++;
+		});
+		 $('#readmore1').click(function(){
+          $('#showmore1').toggle();
+
+      });
       $('#frgt_pass').click(function(){
           $('#log_sign').hide();
           $('#show_pass').show();

@@ -329,9 +329,9 @@ public function item_status(){
 			}
 		//echo '<pre>';print_r($_FILES);
 		//echo '<pre>';print_r($post);exit;
-		if($post['colour']!='' && $post['internal_memeory']!='' && $post['ram']!=''){
+		if($post['colour']!='' && isset($post['internal_memeory']) && $post['internal_memeory']!='' && isset($post['ram']) && $post['ram']!=''){
 			$name=$post['product_name'].' '.ucfirst(strtolower($post['colour'])).' '.str_replace(' ', '', strtoupper($post['internal_memeory'])).' '.$post['ram'].' Ram';
-		}else if($post['colour']!='' && $post['internal_memeory']!=''){
+		}else if($post['colour']!='' && isset($post['internal_memeory']) && $post['internal_memeory']!=''){
 			$name=$post['product_name'].' '.ucfirst(strtolower($post['colour'])).' '.str_replace(' ', '', strtoupper($post['internal_memeory']));
 		}else if($post['colour']!=''){
 			$name=$post['product_name'].' '.ucfirst(strtolower($post['colour']));
@@ -382,7 +382,7 @@ public function item_status(){
 			'ram' => isset($post['ram'])?str_replace(' ', '', strtoupper($post['ram'])):'',
 			'model_name' => isset($post['model_name'])?$post['model_name']:'',
 			'model_id' => isset($post['model_id'])?$post['model_id']:'',
-			'internal_memory' => isset($post['internal_memory'])?str_replace(' ', '', strtoupper($post['internal_memory'])):'',
+			'no_of_copartments' => isset($post['no_of_copartments'])?$post['no_of_copartments']:'',
 			'expand_memory' => isset($post['expand_memory'])?$post['expand_memory']:'',
 			'primary_camera' => isset($post['primary_camera'])?$post['primary_camera']:'',
 			'primary_camera_feature' => isset($post['primary_camera_feature'])?$post['primary_camera_feature']:'',
@@ -1016,7 +1016,7 @@ public function update()
 			'ram' => isset($post['ram'])?str_replace(' ', '', strtoupper($post['ram'])):'',
 			'model_name' => isset($post['model_name'])?$post['model_name']:'',
 			'model_id' => isset($post['model_id'])?$post['model_id']:'',
-			'internal_memory' => isset($post['internal_memory'])?str_replace(' ', '', strtoupper($post['internal_memory'])):'',
+			'no_of_copartments' => isset($post['no_of_copartments'])?$post['no_of_copartments']:'',
 			'expand_memory' => isset($post['expand_memory'])?$post['expand_memory']:'',
 			'primary_camera' => isset($post['primary_camera'])?$post['primary_camera']:'',
 			'primary_camera_feature' => isset($post['primary_camera_feature'])?$post['primary_camera_feature']:'',
@@ -3335,6 +3335,16 @@ public function returns()
 		}else if($post['valuename']=='inputfrequency'){
 			$editdata = array(
 			'inputfrequency' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='ideal_for'){
+			$editdata = array(
+			'ideal_for' => $post['value'],
+			'updated_at' => date('Y-m-d H:i:s'),    
+			);
+		}else if($post['valuename']=='no_of_copartments'){
+			$editdata = array(
+			'no_of_copartments' => $post['value'],
 			'updated_at' => date('Y-m-d H:i:s'),    
 			);
 		}

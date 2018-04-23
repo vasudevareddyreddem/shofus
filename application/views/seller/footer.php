@@ -14,7 +14,7 @@
             <p>Site Map</p>
             <ul class="">
               <li><a href="<?php echo base_url();?>seller/login">Home</a></li>
-              <li><a href="https:cartinhours.com">Cart in Hours </a></li>
+              <li><a href="https://shofus.com">shofus </a></li>
              
               <li><a href="<?php echo base_url();?>seller/login#faq_sc">FAQs</a></li>
             </ul>

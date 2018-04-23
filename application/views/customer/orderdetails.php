@@ -70,6 +70,7 @@ tr th:last-child {
 		
 	 <!-- track start-->
 <div class="row" >
+ <div id="sucessmsg" style="display:none;"></div>
   <?php if($this->session->flashdata('success')): ?>
 		<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> <?php echo $this->session->flashdata('success');?>&nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i></div></div>
 
@@ -254,6 +255,7 @@ tr th:last-child {
 		<div class="row">
 	
 			<div class="panel panel-primary">
+			<?php if($item_details['rerechangedelivery_boy_id']!='' && $item_details['rerechangedelivery_boy_id']==0){ ?>
 			<div class="panel-body"  style="padding:20px 0px;">
 				<div class="col-md-4">
 					<div class="col-md-4 ">
@@ -346,29 +348,127 @@ tr th:last-child {
 				</div>
 					<div class="clearfix">&nbsp;</div>
 						<br>
-					<div class=""><span>
-					<img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
-					
-					<?php if(isset($item_details['status_deliverd']) && $item_details['status_deliverd']!=4){ ?>
-					<i class="font_span">
-					
-					Delivery expected by <?php echo isset($item_details['expected_delivery_time'])?$item_details['expected_delivery_time']:'';  ?>
-					<?php } ?>
-					</i>
-					
-					
+					<div class="">
+						<span><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
+						<?php if(isset($item_details['status_deliverd']) && $item_details['status_deliverd']!=4){ ?>
+						<i class="font_span">
+							Delivery expected by <?php echo isset($item_details['expected_delivery_time'])?$item_details['expected_delivery_time']:'';  ?>
+						<?php } ?>
+						</i>
 					</div>
 					<hr	>
-				<div class="col-md-3 col-md-offset-9">
-						<span class="font_span"><b>Total</b></span>&nbsp;&nbsp;
-						<span class="font_span">₹<?php echo number_format($item_details['total_price']+$item_details['delivery_amount'], 2); ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
-						<?php if(isset($item_details['discount']) && $item_details['discount']!=''){ ?>
-						<span class="font_span site_col">Savings</span>&nbsp;&nbsp;
-						<span class="font_span">₹<?php echo isset($item_details['discount'])?$item_details['discount']:'';  ?></span>
-						<?php } ?>
-				</div>
-
+					<div class="col-md-3 col-md-offset-9">
+							<span class="font_span"><b>Total</b></span>&nbsp;&nbsp;
+							<span class="font_span">₹<?php echo number_format($item_details['total_price']+$item_details['delivery_amount'], 2); ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<?php if(isset($item_details['discount']) && $item_details['discount']!=''){ ?>
+							<span class="font_span site_col">Savings</span>&nbsp;&nbsp;
+							<span class="font_span">₹<?php echo isset($item_details['discount'])?$item_details['discount']:'';  ?></span>
+							<?php } ?>
+					</div>
 			</div>
+			<?php }else{ ?>
+					<div class="panel-body"  style="padding:20px 0px;">
+				<div class="col-md-4">
+					<div class="col-md-4 ">
+					<div class="img-responsive">
+						<a href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>"><img style="height:auto;width:95px;" src="<?php echo base_url('uploads/products/'.$item_details['item_image']);?>" /></a>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<p><a style="text-transform: uppercase;" href="<?php echo base_url('category/productview/'.base64_encode($item_details['item_id'])); ?>">  <td><?php echo isset($item_details['item_name'])?$item_details['item_name']:'';  ?></td></a></p>
+						<?php if(isset($item_details['color']) && $item_details['color']!=''){ ?>
+						<div>Color: <?php echo isset($item_details['color'])?$item_details['color']:'';  ?></div>
+						<?php } ?>
+						<div><?php echo $item_details['return_policy']; ?></div>
+					
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="stepwizard">
+						<div class="stepwizard-row">
+							<div class="stepwizard-step">
+							
+								<?php if($item_details['rerechangeorderstatus']==1){ ?>
+								<button type="button" class="btn btn-primary btn-circle">1</button>
+								<?php }else{ ?>
+								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">1</button>
+								<?php } ?>
+								<p><?php echo $item_details['rerechangestatus']; ?> Order Confirmation</p>
+							</div>
+							<div class="stepwizard-step">
+								<?php if($item_details['rerechangestatus_packing']==2){ ?>
+								<button type="button" class="btn btn-primary btn-circle">2</button>
+								<?php }else{ ?>
+								<button type="button" class="btn btn-defaultt btn-circle"disabled="disabled">2</button>
+								<?php } ?>
+								<p><?php echo $item_details['rerechangestatus']; ?> Packing Order</p>
+							</div>
+							<div class="stepwizard-step">
+								<?php if($item_details['rerechangestatus_road']==3){ ?>
+								<button type="button" class="btn btn-primary btn-circle">3</button>
+								<?php }else{ ?>
+								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">3</button>
+								<?php } ?>
+								<p><?php echo $item_details['rerechangestatus']; ?> Order on Road</p>
+							</div> 
+							<div class="stepwizard-step">
+									<?php if($item_details['rerechangestatus_deliverd']==4){ ?>
+								<button type="button" class="btn btn-primary btn-circle">4</button>
+								<?php }else{ ?>
+								<button type="button" class="btn btn-defaultt btn-circle" disabled="disabled">4</button>
+								<?php } ?>
+								<p><?php echo $item_details['rerechangestatus']; ?> Delivered</p>
+							</div> 
+							</div> 
+					</div>
+				
+
+				</div>
+				<div class="col-md-3">
+					<div class="col-md-3">
+							<span class="font_span">₹<?php echo number_format(isset($item_details['total_price'])?$item_details['total_price']:'', 2);  ?></span>
+					</div>
+					<div class="col-md-9">
+							<span class="btn btn-sm btn-danger pull-right ">
+							
+									 <?php if($item_details['rerechangeorderstatus']==1 && $item_details['rerechangestatus_packing']==''){
+												echo $item_details['rerechangestatus']." Order Confirmed ";  
+											  }else if($item_details['rerechangeorderstatus']==1 && $item_details['rerechangestatus_packing']==2 && $item_details['rerechangestatus_road']==''){
+												  echo $item_details['rerechangestatus']." Packing Order";
+											  }else if($item_details['rerechangeorderstatus']==1 && $item_details['rerechangestatus_packing']==2 && $item_details['rerechangestatus_road']==3 && $item_details['rerechangestatus_deliverd']=='' || $item_details['rerechangestatus_deliverd']==0){
+												  echo $item_details['rerechangestatus']." Order on Road";
+											  }else if($item_details['rerechangeorderstatus']==1 && $item_details['rerechangestatus_packing']==2 && $item_details['rerechangestatus_road']==3 && $item_details['rerechangestatus_deliverd']==4 && $item_details['rerechangestatus_deliverd']==''){
+												  echo $item_details['rerechangestatus']." Delivered";
+											  }else if($item_details['rerechangestatus']!=''){
+												 echo $item_details['rerechangestatus']; 
+											  }
+									  
+									  ?>
+									
+							</span>
+					</div>
+				</div>
+					<div class="clearfix">&nbsp;</div>
+						<br>
+					<div class="">
+						<span><img src="<?php echo base_url(); ?>assets/home/images/track.png" /></span> &nbsp; 
+						<?php if(isset($item_details['rerechangestatus_deliverd']) && $item_details['rerechangestatus_deliverd']!=4){ ?>
+						<i class="font_span">
+							Delivery expected by <?php echo isset($item_details['rerechangedelievry_time'])?$item_details['rerechangedelievry_time']:'';  ?>
+						<?php } ?>
+						</i>
+					</div>
+					<hr	>
+					<div class="col-md-3 col-md-offset-9">
+							<span class="font_span"><b>Total</b></span>&nbsp;&nbsp;
+							<span class="font_span">₹<?php echo number_format($item_details['total_price']+$item_details['delivery_amount'], 2); ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<?php if(isset($item_details['discount']) && $item_details['discount']!=''){ ?>
+							<span class="font_span site_col">Savings</span>&nbsp;&nbsp;
+							<span class="font_span">₹<?php echo isset($item_details['discount'])?$item_details['discount']:'';  ?></span>
+							<?php } ?>
+					</div>
+			</div>
+			<?php } ?>
 		</div>
 		</div>
 		
@@ -487,6 +587,10 @@ function submmtingcancle(){
 		  if(data.msg==1){
 			 location.reload();   
 		  }
+		  if(data.msg==2){
+			 jQuery('#sucessmsg').show();
+			 $('#sucessmsg').html('<div class="alt_cus"><div class="alert_msg1 animated slideInUp btn_suc"> Please check once order item status. Then proceed to next step <i class="fa fa-check  text-success ico_bac" aria-hidden="true"></i></div></div>');  
+		 }
 
         }
       });
