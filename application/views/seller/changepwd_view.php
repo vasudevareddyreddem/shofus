@@ -25,7 +25,7 @@
 <title>Shofus Seller</title>
 <link rel="icon" href="<?php echo base_url(); ?>assets/images/fav.png" type="image/x-icon" />
 <!--css start here -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,600i,700,800" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/home/css/fonts1.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/responsive.css" />
